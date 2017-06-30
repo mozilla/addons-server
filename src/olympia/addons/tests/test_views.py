@@ -572,7 +572,9 @@ class TestDetailPage(TestCase):
         a.name = '<script>alert("fff")</script>'
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        assert '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in response.content
+        assert (
+            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
+            response.content)
         assert '<script>' not in response.content
 
     def test_personas_context(self):
