@@ -3193,8 +3193,8 @@ class TestLeaderboard(EditorTest):
 
     def test_leaderboard_ranks(self):
         users = (self.user,
-                 UserProfile.objects.get(email='regular@mozilla.com'),
-                 UserProfile.objects.get(email='clouserw@gmail.com'))
+                 UserProfile.objects.get(email='persona-reviewer@mozilla.com'),
+                 UserProfile.objects.get(email='senioreditor@mozilla.com'))
 
         self._award_points(users[0], amo.REVIEWED_LEVELS[0]['points'] - 1)
         self._award_points(users[1], amo.REVIEWED_LEVELS[0]['points'] + 1)

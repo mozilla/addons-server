@@ -534,7 +534,7 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
-        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        user2 = UserProfile.objects.get(email='persona-reviewer@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
@@ -558,6 +558,19 @@ class TestReviewerScore(TestCase):
         assert len(leaders['leader_top']) == 1
         assert leaders['leader_top'][0]['user_id'] == user2.id
 
+    def test_only_active_reviewers_in_leaderboards(self):
+        user2 = UserProfile.objects.create(username='former-reviewer')
+        self._give_points()
+        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(user=user2, status=amo.STATUS_NOMINATED)
+        leaders = ReviewerScore.get_leaderboards(self.user)
+        assert leaders['user_rank'] == 1
+        assert leaders['leader_near'] == []
+        assert leaders['leader_top'][0]['user_id'] == self.user.id
+        assert len(leaders['leader_top']) == 1  # Only the editor is here.
+        assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
+            'Unexpected non-reviewer user found in leaderboards.')
+
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
@@ -574,7 +587,9 @@ class TestReviewerScore(TestCase):
     def test_get_leaderboards_last(self):
         users = []
         for i in range(6):
-            users.append(UserProfile.objects.create(username='user-%s' % i))
+            user = UserProfile.objects.create(username='user-%s' % i)
+            GroupUser.objects.create(group_id=50002, user=user)
+            users.append(user)
         last_user = users.pop(len(users) - 1)
         for u in users:
             self._give_points(user=u)
@@ -588,7 +603,7 @@ class TestReviewerScore(TestCase):
         assert len(leaders['leader_near']) == 2
 
     def test_all_users_by_score(self):
-        user2 = UserProfile.objects.get(email='regular@mozilla.com')
+        user2 = UserProfile.objects.get(email='senioreditor@mozilla.com')
         amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
         self._give_points(status=amo.STATUS_PUBLIC)
