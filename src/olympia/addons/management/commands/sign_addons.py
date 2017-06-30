@@ -7,11 +7,11 @@ from olympia.lib.crypto.tasks import sign_addons
 
 
 class Command(BaseCommand):
-    args = '<addon_id addon_id ...>'
     help = 'Sign a list of addons.'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
+        parser.add_argument('addon_id', nargs='*')
         parser.add_argument(
             '--signing-server', action='store', type=str,
             dest='signing_server',
@@ -27,14 +27,14 @@ class Command(BaseCommand):
                  'the developer.')
 
     def handle(self, *args, **options):
-        if len(args) == 0:  # Sign all the addons?
+        if len(options['addon_id']) == 0:  # Sign all the addons?
             raise CommandError(
                 'Please provide at least one addon id to sign. If you want to '
                 'sign them all, use the "process_addons --task sign_addons" '
                 'management command.')
         full_server = options.get('signing_server') or settings.SIGNING_SERVER
 
-        addon_ids = [int(addon_id) for addon_id in args]
+        addon_ids = [int(addon_id) for addon_id in options['addon_id']]
         with override_settings(
                 SIGNING_SERVER=full_server):
             sign_addons(

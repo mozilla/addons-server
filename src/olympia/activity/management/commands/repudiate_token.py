@@ -7,11 +7,11 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 
 
 class Command(BaseCommand):
-    args = u'<token_uuid token_uuid ...>'
     help = u'Force expire a list of Activity Email tokens.'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
+        parser.add_argument('token_uuid', nargs='*')
         parser.add_argument(
             '--version_id', action='store', type=long,
             dest='version_id',
@@ -19,10 +19,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         version_pk = options.get('version_id')
-        if len(args) > 0:
+        token_uuids = options.get('token_uuid')
+        if token_uuids:
             done = [t.expire() for t in ActivityLogToken.objects.filter(
-                uuid__in=args)]
-            log.info(u'%s tokens (%s) expired' % (len(done), ','.join(args)))
+                uuid__in=token_uuids)]
+            log.info(
+                u'%s tokens (%s) expired' % (len(done), ','.join(token_uuids)))
             if version_pk:
                 print 'Warning: --version_id ignored as tokens provided too'
         elif version_pk:

@@ -65,6 +65,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """Handle command arguments."""
+        parser.add_argument('folder_name', default='hive_results', nargs='?')
         parser.add_argument(
             '--date', action='store', type=str,
             dest='date', help='Date in the YYYY-MM-DD format.')
@@ -77,7 +78,7 @@ class Command(BaseCommand):
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        folder = args[0] if args else 'hive_results'
+        folder = options['folder_name']
         folder = path.join(settings.TMP_PATH, folder, day)
         sep = options['separator']
         groups = ('version', 'status', 'app', 'os', 'locale')

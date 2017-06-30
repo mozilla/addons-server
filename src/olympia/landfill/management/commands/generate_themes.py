@@ -27,6 +27,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """Handle command arguments."""
+        parser.add_argument('num', type=int)
         parser.add_argument(
             '--owner', action='store', dest='email',
             default='nobody@mozilla.org',
@@ -36,7 +37,7 @@ class Command(BaseCommand):
         if not settings.DEBUG:
             raise CommandError('You can only run this command with your '
                                'DEBUG setting set to True.')
-        num = int(args[0])
+        num = int(kwargs.get('num'))
         email = kwargs.get('email')
 
         with translation.override(settings.LANGUAGE_CODE):
