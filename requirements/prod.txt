@@ -369,9 +369,9 @@ polib==1.0.8 \
 puente==0.5.0 \
     --hash=sha256:7ba1d07f9cee9657adf874bd94879b343fea81a783fdfa8e53885520477bf1ea \
     --hash=sha256:4a17958f7d6a83cb9ff92593c40f34911abafaec6ad959916b754aaa3869f11f
-pyOpenSSL==17.0.0 \
-    --hash=sha256:0f78204fc2e128dd65ceca25b9f41cb0132e7cf690600f0ef43eddd023d7ec72 \
-    --hash=sha256:48abfe9d2bb8eb8d8947c8452b0223b7b1be2383b332f3b4f248fe59ef0bafdd
+pyOpenSSL==17.1.0 \
+    --hash=sha256:cc21d1dcc5c4413281c59f912975209999ffb8b091b03872d2516e60be512290 \
+    --hash=sha256:5a20a51d35104cd234d056861ace3e7a335aaf1f47fc96726c9e20ac1dc49563
 # pycparser is required by cffi
 pycparser==2.17 \
     --hash=sha256:0aac31e917c24cb3357f5a4d5566f2cc91a19ca41862f6c3c22dc60a629673b6
