@@ -114,8 +114,8 @@ data-default-locale="{{ request.LANG|lower }}"
           <div class="formfields">
           {{ form.biography }}
           {{ some_html_tip(title=
-              _('Allowed HTML: {0}. Links are forbidden.')|format_html(
-                  '<abbr title> <acronym title> <b> <blockquote> <code> <em>
+              _('Allowed HTML: %(html)s. Links are forbidden.',
+                  html='<abbr title> <acronym title> <b> <blockquote> <code> <em>
                    <i> <li> <ol> <strong> <ul>')|e) }}
           {{ form.biography.errors }}
           </div>

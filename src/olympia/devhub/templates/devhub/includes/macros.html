@@ -4,9 +4,8 @@
 <p class="html-support">
 {# L10n: %s is a list of HTML tags. #}
 <span class="tooltip" title="{% if title %}{{ title }}{% else %}{{
-      _('Allowed HTML: %s')|format('<a href title> <abbr title>
-                                <acronym title> <b> <blockquote> <code>
-                                <em> <i> <li> <ol> <strong> <ul>')|safe
+      _('Allowed HTML: %(allowed_html)s', allowed_html='<a href title> <abbr title> <acronym title> <b>
+                             <blockquote> <code> <em> <i> <li> <ol> <strong> <ul>')|safe
     }}{% endif %}">{{ _('Some HTML supported.') }}</span>
 </p>
 {% endmacro %}
