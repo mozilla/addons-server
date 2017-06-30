@@ -572,9 +572,8 @@ class TestDetailPage(TestCase):
         a.name = '<script>alert("fff")</script>'
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert("fff")&lt;/script&gt;' in html
-        assert '<script>' not in html
+        assert '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in response.content
+        assert '<script>' not in response.content
 
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))

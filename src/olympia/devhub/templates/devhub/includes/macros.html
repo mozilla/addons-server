@@ -2,11 +2,11 @@
 
 {% macro some_html_tip(title=None) %}
 <p class="html-support">
-{# L10n: {0} is a list of HTML tags. #}
+{# L10n: %s is a list of HTML tags. #}
 <span class="tooltip" title="{% if title %}{{ title }}{% else %}{{
-      _('Allowed HTML: {0}')|format_html('<a href title> <abbr title>
+      _('Allowed HTML: %s')|format('<a href title> <abbr title>
                                 <acronym title> <b> <blockquote> <code>
-                                <em> <i> <li> <ol> <strong> <ul>')|e
+                                <em> <i> <li> <ol> <strong> <ul>')|safe
     }}{% endif %}">{{ _('Some HTML supported.') }}</span>
 </p>
 {% endmacro %}
