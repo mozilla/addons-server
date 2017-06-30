@@ -39,6 +39,30 @@ The token is available in two forms:
     * For all endpoints, as a cookie called ``api_auth_token``. This cookie
       expires after 30 days and is set as ``HttpOnly``.
 
+The response will contain some profile data for personalization:
+
+    :>json int id: The numeric user id.
+    :>json string email: Email address used by the user to login and create this account.
+    :>json string name: The name chosen by the user, or the username if not set.
+    :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
+    :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
+    :>json array roles: A list of the additional :ref:`roles <login-response-roles>` this user has, to customize the UI (e.g. add extra links, buttons).  See 
+
+.. _login-response-roles:
+
+    Possible values in the ``roles`` list:
+
+    ==============  ==========================================================
+             Value  Description
+    ==============  ==========================================================
+             staff  Has admin-like abilities; in particular the `Addons:Edit`
+                    permission which allows viewing and editing of any add-ons
+                    details in developer tools.
+          reviewer  Can access the add-on reviewer tools to approve/reject add-on
+                    submissions.  Has the `Addons:Review` permission.
+     themereviewer  Can access the theme reviewer tools to approve/reject theme
+                    submissions.  Has the `Personas:Review` permission.
+
 
 Creating an Authorization header
 ================================
