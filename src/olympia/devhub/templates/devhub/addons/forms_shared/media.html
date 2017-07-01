@@ -1,13 +1,13 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless %}
 
-{{ csrf() }}
+{% csrf_token %}
 
 {% set editable = (context == 'edit' and editable) or context == 'submit' %}
 
 <div class="item">
   <div class="item_wrapper">
     <table>
-      <caption>{{ _('Add-on Media for {0}')|fe(addon.name) }}</caption>
+      <caption>{{ _('Add-on Media for {0}')|format_html(addon.name) }}</caption>
       <tbody>
         <tr>
           {% if context == 'edit' %}

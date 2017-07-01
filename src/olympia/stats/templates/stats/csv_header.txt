@@ -1,8 +1,8 @@
-{% if title %}
+{%- if title -%}
 #    {{ title }}
-{% else %}
+{%- else -%}
 #    addons.mozilla.org Statistics for add-on {{ addon.name }}
-{% endif %}
+{%- endif -%}
 #
 #    Generated {{ timestamp }}
 #    from {{ request.build_absolute_uri() }}

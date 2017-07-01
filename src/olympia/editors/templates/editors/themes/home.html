@@ -16,7 +16,7 @@
           <a href="{{ url('editors.themes.list') }}">
             {{ ngettext('{num} Pending Theme Review',
                         '{num} Pending Theme Reviews',
-                        queue_counts['themes'])|f(num=queue_counts['themes']) }}
+                        queue_counts['themes'])|format_html(num=queue_counts['themes']) }}
           </a>
         </div>
         {% if action_allowed(amo.permissions.THEME_ADMIN_TOOLS_VIEW) %}
@@ -24,14 +24,14 @@
             <a href="{{ url('editors.themes.list_flagged') }}">
               {{ ngettext('{num} Flagged Review',
                           '{num} Flagged Reviews',
-                          queue_counts['flagged_themes'])|f(num=queue_counts['flagged_themes']) }}
+                          queue_counts['flagged_themes'])|format_html(num=queue_counts['flagged_themes']) }}
             </a>
           </div>
           <div class="editor-stats-title">
             <a href="{{ url('editors.themes.list_rereview') }}">
               {{ ngettext('{num} Update',
                           '{num} Updates',
-                          queue_counts['rereview_themes'])|f(num=queue_counts['rereview_themes']) }}
+                          queue_counts['rereview_themes'])|format_html(num=queue_counts['rereview_themes']) }}
             </a>
           </div>
         {% endif %}

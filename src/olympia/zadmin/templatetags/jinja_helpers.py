@@ -1,9 +1,9 @@
-from jingo import register
+from django_jinja import library
 
 from olympia.amo.urlresolvers import reverse
 
 
-@register.function
+@library.global_function
 def admin_site_links():
     return {
         'addons': [

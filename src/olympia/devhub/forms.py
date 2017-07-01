@@ -15,7 +15,7 @@ import olympia.core.logger
 from olympia.access import acl
 from olympia import amo, paypal
 from olympia.activity.models import ActivityLog
-from olympia.amo.helpers import mark_safe_lazy
+from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)

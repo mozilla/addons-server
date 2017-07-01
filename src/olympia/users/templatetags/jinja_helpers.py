@@ -1,15 +1,16 @@
 from django.conf import settings
+from django.template import loader
 from django.utils.encoding import force_text
 from django.utils.translation import pgettext
+from django_jinja import library
 
 import jinja2
-from jingo import register, get_env
 
 from olympia import amo
 from olympia.amo.utils import urlparams
 
 
-@register.function
+@library.global_function
 def emaillink(email, title=None, klass=None):
     if not email:
         return ""
@@ -34,14 +35,14 @@ def emaillink(email, title=None, klass=None):
     return jinja2.Markup(node)
 
 
-@register.filter
+@library.filter
 def user_link(user):
     if not user:
         return ''
     return jinja2.Markup(_user_link(user))
 
 
-@register.function
+@library.global_function
 def users_list(users, size=None, max_text_length=None):
     if not users:
         return ''
@@ -59,7 +60,8 @@ def users_list(users, size=None, max_text_length=None):
     return jinja2.Markup(', '.join(user_list + tail))
 
 
-@register.inclusion_tag('users/helpers/addon_users_list.html')
+@library.global_function
+@library.render_with('users/helpers/addon_users_list.html')
 @jinja2.contextfunction
 def addon_users_list(context, addon):
     ctx = dict(context.items())
@@ -80,7 +82,7 @@ def _user_link(user, max_text_length=None):
         jinja2.escape(force_text(username)))
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
 def user_vcard(context, user, table_class='person-info', is_profile=False):
     c = dict(context.items())
@@ -89,11 +91,12 @@ def user_vcard(context, user, table_class='person-info', is_profile=False):
         'table_class': table_class,
         'is_profile': is_profile
     })
-    t = get_env().get_template('users/vcard.html').render(c)
+    t = loader.get_template('users/vcard.html').render(c)
     return jinja2.Markup(t)
 
 
-@register.inclusion_tag('users/report_abuse.html')
+@library.global_function
+@library.render_with('users/report_abuse.html')
 @jinja2.contextfunction
 def user_report_abuse(context, hide, profile):
     new = dict(context.items())
@@ -102,12 +105,12 @@ def user_report_abuse(context, hide, profile):
     return new
 
 
-@register.filter
+@library.filter
 def contribution_type(type):
     return amo.CONTRIB_TYPES[type]
 
 
-@register.function
+@library.global_function
 def user_data(user):
     anonymous, currency, email = True, 'USD', ''
     if hasattr(user, 'is_anonymous'):
@@ -118,7 +121,7 @@ def user_data(user):
     return {'anonymous': anonymous, 'currency': currency, 'email': email}
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def manage_fxa_link(context):
     user = context['user']

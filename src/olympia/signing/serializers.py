@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import FileUpload
 
 

@@ -2037,7 +2037,7 @@ class TestReview(ReviewBase):
 
         self.addon.current_version.delete(hard=True)
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):
         self.generate_deleted_versions()
 
@@ -2388,7 +2388,7 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
@@ -2603,7 +2603,7 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
@@ -2937,7 +2937,7 @@ class TestReviewPending(ReviewBase):
     def pending_dict(self):
         return self.get_dict(action='public')
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2974,7 +2974,7 @@ class TestReviewPending(ReviewBase):
         assert unreviewed.filename in response.content
         assert self.file.filename in response.content
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,
@@ -3337,7 +3337,7 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
             u'Select a valid choice. public is not one of the available '
             u'choices.']
 
-    @patch('olympia.editors.helpers.sign_file')
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version.update(nomination=datetime.now() - timedelta(days=1))

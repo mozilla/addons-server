@@ -29,7 +29,8 @@ from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import user_media_path, user_media_url
+from olympia.amo.templatetags.jinja_helpers import (
+    user_media_path, user_media_url, urlparams, absolutify)
 from olympia.applications.models import AppVersion
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
 from olympia.translations.fields import TranslatedField
@@ -141,7 +142,6 @@ class File(OnChangeMixin, ModelBase):
         return self._make_download_url('signing.file', src)
 
     def _make_download_url(self, view_name, src):
-        from olympia.amo.helpers import urlparams, absolutify
         url = os.path.join(reverse(view_name, args=[self.pk]),
                            self.filename)
         return absolutify(urlparams(url, src=src))

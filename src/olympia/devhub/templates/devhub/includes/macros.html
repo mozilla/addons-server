@@ -2,11 +2,10 @@
 
 {% macro some_html_tip(title=None) %}
 <p class="html-support">
-{# L10n: {0} is a list of HTML tags. #}
+{# L10n: %s is a list of HTML tags. #}
 <span class="tooltip" title="{% if title %}{{ title }}{% else %}{{
-      _('Allowed HTML: {0}')|f('<a href title> <abbr title>
-                                <acronym title> <b> <blockquote> <code>
-                                <em> <i> <li> <ol> <strong> <ul>')|e
+      _('Allowed HTML: %(allowed_html)s', allowed_html='<a href title> <abbr title> <acronym title> <b>
+                             <blockquote> <code> <em> <i> <li> <ol> <strong> <ul>')|safe
     }}{% endif %}">{{ _('Some HTML supported.') }}</span>
 </p>
 {% endmacro %}
@@ -69,7 +68,7 @@
                {1} is the application name. #}
       {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
                   'Select <b>up to {0}</b> {1} categories for this add-on:',
-                  max)|fe(max, form.app.pretty if form.app else '') }}
+                  max)|format_html(max, form.app.pretty if form.app else '') }}
     </label>
     {{ form.application }}
     {{ form.categories }}

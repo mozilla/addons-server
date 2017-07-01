@@ -12,7 +12,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.activity.models import (

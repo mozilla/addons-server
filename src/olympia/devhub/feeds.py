@@ -9,8 +9,8 @@ from django.utils.translation import ugettext
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.helpers import absolutify, url
-from olympia.translations.helpers import clean as clean_html
+from olympia.amo.templatetags.jinja_helpers import absolutify, url
+from olympia.translations.templatetags.jinja_helpers import clean as clean_html
 from olympia.devhub.models import RssKey
 
 

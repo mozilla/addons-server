@@ -71,9 +71,9 @@
             <li>
               {# l10n: {previous review action taken on theme}: {comment about review action} #}
               {% if log.activity_log.details.action == 0 %}
-                {{ _('More Info Requested: {0}')|f(log.activity_log.details.comment) }}
+                {{ _('More Info Requested: {0}')|format_html(log.activity_log.details.comment) }}
               {% elif log.activity_log.details.action == 1 %}
-                {{ _('Flagged: {0}')|f(log.activity_log.details.comment) }}
+                {{ _('Flagged: {0}')|format_html(log.activity_log.details.comment) }}
               {% endif %}
             </li>
           {% endfor %}

@@ -12,54 +12,51 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils.translation import (
     ugettext, trim_whitespace, to_locale, get_language)
-from django.utils.encoding import force_text
-from django.utils.html import format_html
-from django.template import defaultfilters
+from django.utils.encoding import smart_text
+from django.utils.html import format_html as django_format_html
+from django.template import defaultfilters, loader
 from django.utils.functional import lazy
 from django.utils.safestring import mark_safe
 
 import caching.base as caching
 import jinja2
 import waffle
+from django_jinja import library
 from babel.support import Format
-from jingo import register, get_env
-# Needed to make sure our own |f filter overrides jingo's one.
-from jingo import helpers  # noqa
-from jingo_minify.helpers import (
-    _build_html, _get_compiled_css_url, get_path, is_external)
+
+from olympia.lib.jingo_minify_helpers import (
+    _build_html, _get_compiled_css_url, get_path, is_external,
+    get_js_urls, get_css_urls)
 
 from olympia import amo
 from olympia.amo import utils, urlresolvers
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
 
-# Yanking filters from Django.
-register.filter(defaultfilters.slugify)
-
 # Registering some utils as filters:
-urlparams = register.filter(utils.urlparams)
-register.filter(utils.epoch)
-register.filter(utils.isotime)
-register.function(dict)
-register.function(utils.randslice)
+urlparams = library.filter(utils.urlparams)
+library.filter(utils.epoch)
+library.filter(utils.isotime)
+library.global_function(dict)
+library.global_function(utils.randslice)
 
 # Mark a lazy marked instance as safe but keep
 # it lazy
 mark_safe_lazy = lazy(mark_safe, unicode)
 
 
-@register.function
+@library.global_function
 def switch_is_active(switch_name):
     return waffle.switch_is_active(switch_name)
 
 
-@register.filter
+@library.filter
 def link(item):
     html = """<a href="%s">%s</a>""" % (item.get_url_path(),
                                         jinja2.escape(item.name))
     return jinja2.Markup(html)
 
 
-@register.filter
+@library.filter
 def xssafe(value):
     """
     Like |safe but for strings with interpolation.
@@ -70,17 +67,17 @@ def xssafe(value):
     return jinja2.Markup(value)
 
 
-@register.filter
+@library.filter
 def babel_datetime(dt, format='medium'):
     return _get_format().datetime(dt, format=format) if dt else ''
 
 
-@register.filter
+@library.filter
 def babel_date(date, format='medium'):
     return _get_format().date(date, format=format) if date else ''
 
 
-@register.function
+@library.global_function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
     prefixer = urlresolvers.get_url_prefix()
@@ -89,7 +86,7 @@ def locale_url(url):
     return '/'.join(parts)
 
 
-@register.function
+@library.global_function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
@@ -104,25 +101,25 @@ def url(viewname, *args, **kwargs):
     return url
 
 
-@register.function
+@library.global_function
 def services_url(viewname, *args, **kwargs):
     """Helper for ``url`` with host=SERVICES_URL."""
     kwargs.update({'host': settings.SERVICES_URL})
     return url(viewname, *args, **kwargs)
 
 
-@register.filter
+@library.filter
 def paginator(pager):
     return Paginator(pager).render()
 
 
-@register.filter
+@library.filter
 def impala_paginator(pager):
-    t = get_env().get_template('amo/impala/paginator.html')
+    t = loader.get_template('amo/impala/paginator.html')
     return jinja2.Markup(t.render({'pager': pager}))
 
 
-@register.function
+@library.global_function
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
     from olympia.addons.models import Category
@@ -188,7 +185,7 @@ class Paginator(object):
     def render(self):
         c = {'pager': self.pager, 'num_pages': self.num_pages,
              'count': self.count}
-        t = get_env().get_template('amo/paginator.html').render(c)
+        t = loader.get_template('amo/paginator.html').render(c)
         return jinja2.Markup(t)
 
 
@@ -197,12 +194,12 @@ def _get_format():
     return Format(utils.get_locale_from_lang(lang))
 
 
-@register.filter
+@library.filter
 def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
 
 
-@register.filter
+@library.filter
 def currencyfmt(num, currency):
     if num is None:
         return ''
@@ -217,23 +214,23 @@ def page_name(app=None):
         return ugettext('Add-ons')
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def page_title(context, title):
-    title = force_text(title)
+    title = smart_text(title)
     base_title = page_name(context['request'].APP)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
-    return format_html(u'{} :: {}', title, base_title)
+    return django_format_html(u'{} :: {}', title, base_title)
 
 
-@register.filter
+@library.filter
 def json(s):
     return jsonlib.dumps(s)
 
 
-@register.filter
+@library.filter
 def absolutify(url, site=None):
     """Takes a URL and prepends the SITE_URL"""
     if url.startswith('http'):
@@ -242,7 +239,7 @@ def absolutify(url, site=None):
         return urljoin(site or settings.SITE_URL, url)
 
 
-@register.filter
+@library.filter
 def strip_controls(s):
     """
     Strips control characters from a string.
@@ -253,20 +250,20 @@ def strip_controls(s):
     return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
 
 
-@register.filter
+@library.filter
 def external_url(url):
     """Bounce a URL off outgoing.prod.mozaws.net."""
     return urlresolvers.get_outgoing_url(unicode(url))
 
 
-@register.filter
+@library.filter
 def shuffle(sequence):
     """Shuffle a sequence."""
     random.shuffle(sequence)
     return sequence
 
 
-@register.function
+@library.global_function
 def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
@@ -287,11 +284,11 @@ def license_link(license):
     if not getattr(license, 'builtin', True):
         return ugettext('Custom License')
 
-    template = get_env().get_template('amo/license_link.html')
+    template = loader.get_template('amo/license_link.html')
     return jinja2.Markup(template.render({'license': license}))
 
 
-@register.function
+@library.global_function
 def field(field, label=None, **attrs):
     if label is not None:
         field.label = label
@@ -301,7 +298,8 @@ def field(field, label=None, **attrs):
                           field.as_widget(attrs=attrs)))
 
 
-@register.inclusion_tag('amo/category-arrow.html')
+@library.global_function
+@library.render_with('amo/category-arrow.html')
 @jinja2.contextfunction
 def category_arrow(context, key, prefix):
     d = dict(context.items())
@@ -309,7 +307,7 @@ def category_arrow(context, key, prefix):
     return d
 
 
-@register.filter
+@library.filter
 def timesince(time):
     if not time:
         return u''
@@ -318,7 +316,8 @@ def timesince(time):
     return ugettext(u'{0} ago').format(ago)
 
 
-@register.inclusion_tag('amo/recaptcha.html')
+@library.global_function
+@library.render_with('amo/recaptcha.html')
 @jinja2.contextfunction
 def recaptcha(context, form):
     d = dict(context.items())
@@ -326,7 +325,7 @@ def recaptcha(context, form):
     return d
 
 
-@register.filter
+@library.filter
 def is_choice_field(value):
     try:
         return isinstance(value.field.widget, CheckboxInput)
@@ -334,7 +333,7 @@ def is_choice_field(value):
         pass
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def cache_buster(context, url):
     if 'BUILD_ID' in context:
@@ -349,27 +348,27 @@ def cache_buster(context, url):
     return utils.urlparams(url, b=build)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def media(context, url):
     """Get a MEDIA_URL link with a cache buster querystring."""
     return urljoin(settings.MEDIA_URL, cache_buster(context, url))
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def static(context, url):
     """Get a STATIC_URL link with a cache buster querystring."""
     return urljoin(settings.STATIC_URL, cache_buster(context, url))
 
 
-@register.function
+@library.global_function
 @jinja2.evalcontextfunction
 def attrs(ctx, *args, **kw):
     return jinja2.filters.do_xmlattr(ctx, dict(*args, **kw))
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def side_nav(context, addon_type, category=None):
     app = context['request'].APP.id
@@ -393,11 +392,11 @@ def _side_nav(context, addon_type, cat):
         base_url = Addon.get_type_url(addon_type)
     ctx = dict(request=request, base_url=base_url, categories=categories,
                addon_type=addon_type, amo=amo)
-    template = get_env().get_template('amo/side_nav.html')
+    template = loader.get_template('amo/side_nav.html')
     return jinja2.Markup(template.render(ctx))
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def site_nav(context):
     app = context['request'].APP.id
@@ -419,22 +418,22 @@ def _site_nav(context):
     ctx = dict(request=request, amo=amo,
                extensions=sorted_cats(extensions),
                personas=sorted_cats(personas))
-    template = get_env().get_template('amo/site_nav.html')
+    template = loader.get_template('amo/site_nav.html')
     return jinja2.Markup(template.render(ctx))
 
 
-@register.function
+@library.global_function
 def loc(s):
     """A noop function for strings that are not ready to be localized."""
     return trim_whitespace(s)
 
 
-@register.function
+@library.global_function
 def site_event_type(type):
     return amo.SITE_EVENT_CHOICES[type]
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def remora_url(context, url, lang=None, app=None, prefix=''):
     """Wrapper for urlresolvers.remora_url"""
@@ -450,7 +449,7 @@ def remora_url(context, url, lang=None, app=None, prefix=''):
     return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def hasOneToOne(context, obj, attr):
     try:
@@ -460,10 +459,10 @@ def hasOneToOne(context, obj, attr):
         return False
 
 
-@register.function
+@library.global_function
 def no_results_amo():
     # This prints a "No results found" message. That's all. Carry on.
-    t = get_env().get_template('amo/no_results.html').render()
+    t = loader.get_template('amo/no_results.html').render()
     return jinja2.Markup(t)
 
 
@@ -479,7 +478,7 @@ def _relative_to_absolute(url):
     return 'url(%s)' % url
 
 
-@register.function
+@library.global_function
 def inline_css(bundle, media=False, debug=None):
     """
     If we are in debug mode, just output a single style tag for each css file.
@@ -560,6 +559,85 @@ def id_to_path(pk):
     return os.path.join(*path)
 
 
-@register.filter
+@library.filter
 def hidden_field(field):
     return field.as_widget(attrs={'style': 'display:none'})
+
+
+@library.filter
+def format_html(string, *args, **kwargs):
+    """Uses ``str.format`` for string interpolation.
+
+    Uses ``django.utils.html:format_html`` internally.
+
+    >>> {{ "{0} arguments, {x} arguments"|format_html('args', x='kwargs') }}
+    "positional args, kwargs arguments"
+
+    Checks both, *args and **kwargs for potentially unsafe arguments (
+    not marked as `mark_safe`) and escapes them appropriately.
+    """
+    return django_format_html(smart_text(string), *args, **kwargs)
+
+
+@library.global_function
+def js(bundle, debug=None, defer=False, async=False):
+    """
+    If we are in debug mode, just output a single script tag for each js file.
+    If we are not in debug mode, return a script that points at bundle-min.js.
+
+    Copied from jingo-minify until we switch to something better...
+    """
+    attrs = []
+    urls = get_js_urls(bundle, debug)
+
+    attrs.append('src="%s"')
+
+    if defer:
+        attrs.append('defer')
+
+    if async:
+        attrs.append('async')
+
+    return _build_html(urls, '<script %s></script>' % ' '.join(attrs))
+
+
+@library.global_function
+def css(bundle, media=False, debug=None):
+    """
+    If we are in debug mode, just output a single script tag for each css file.
+    If we are not in debug mode, return a script that points at bundle-min.css.
+    """
+    urls = get_css_urls(bundle, debug)
+    if not media:
+        media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
+
+    return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />'
+                             % media)
+
+
+@library.filter
+def nl2br(string):
+    """Turn newlines into <br/>."""
+    if not string:
+        return ''
+    return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))
+
+
+@library.filter(name='datetime')
+def datetime_filter(t, fmt=None):
+    """Call ``datetime.strftime`` with the given format string.
+
+    This is a copy from jingo until we have time to port all our templates
+    to use django's datetime filter.
+    """
+    if fmt is None:
+        fmt = ugettext(u'%B %e, %Y')
+
+    fmt = fmt.encode('utf-8')
+    return smart_text(t.strftime(fmt)) if t else ''
+
+
+@library.filter
+def class_selected(a, b):
+    """Return ``'class="selected"'`` if ``a == b``."""
+    return mark_safe('class="selected"' if a == b else '')

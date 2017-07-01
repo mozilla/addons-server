@@ -15,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.views import refresh_jwt_token
 
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient, TestCase, user_factory, WithDynamicEndpoints)
 from olympia.api.authentication import (

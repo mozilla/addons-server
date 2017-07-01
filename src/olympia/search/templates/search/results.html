@@ -6,14 +6,14 @@
 
 {% if query_term %}
   {# L10n: {0} is a search term, such as Firebug. #}
-  {% set title = _('{0} :: Search')|f(query_term) %}
+  {% set title = _('{0} :: Search')|format_html(query_term) %}
   {# L10n: {0} is a search term, such as Firebug. #}
-  {% set heading = _('Search Results for "{0}"')|f(query_term) %}
+  {% set heading = _('Search Results for "{0}"')|format_html(query_term) %}
 {% elif tag %}
   {# L10n: {0} is a tag, such as jetpack. #}
-  {% set title = _('{0} :: Tag')|f(tag) %}
+  {% set title = _('{0} :: Tag')|format_html(tag) %}
   {# L10n: {0} is a tag, such as jetpack. #}
-  {% set heading = _('Search Results for tag "{0}"')|f(tag) %}
+  {% set heading = _('Search Results for tag "{0}"')|format_html(tag) %}
 {% else %}
   {% set title = _('Search') %}
   {% set heading = title %}
@@ -55,7 +55,7 @@
   <p class="cnt">
     {{ ngettext('<b>{0}</b> matching result',
                 '<b>{0}</b> matching results',
-                cnt)|fe(cnt|numberfmt) }}
+                cnt)|format_html(cnt|numberfmt) }}
   </p>
 {% endmacro %}
 

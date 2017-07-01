@@ -21,7 +21,7 @@
     </pre>
   </p>
   <form enctype="multipart/form-data" method="post">
-    {{ csrf() }}
+    {% csrf_token %}
     {{ form }}
     <input type="submit" value="Update">
   </form>

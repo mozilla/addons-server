@@ -1,4 +1,3 @@
-from jingo import get_env
 from mock import Mock
 from pyquery import PyQuery as pq
 
@@ -10,7 +9,7 @@ def render(s, context=None):
     """Taken from jingo.tests.utils, previously jingo.tests.test_helpers."""
     if context is None:
         context = {}
-    t = get_env().from_string(s)
+    t = amo.utils.from_string(s)
     return t.render(context)
 
 

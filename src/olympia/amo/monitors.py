@@ -13,7 +13,7 @@ import redis as redislib
 
 import olympia.core.logger
 from olympia.amo import search
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.management.commands import dump_apps
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')

@@ -1,19 +1,19 @@
 import jinja2
 
-from jingo import register
 from django.utils.translation import ugettext
+from django_jinja import library
 
 from olympia.amo.utils import chunked
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 
-from . import buttons
+from .. import buttons
 
 
-register.function(buttons.install_button)
-register.function(buttons.big_install_button)
+library.global_function(buttons.install_button)
+library.global_function(buttons.big_install_button)
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
 def statusflags(context, addon):
     """unreviewed/featuredaddon status flags for use as CSS classes"""
@@ -27,7 +27,7 @@ def statusflags(context, addon):
         return ''
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
 def flag(context, addon):
     """unreviewed/featuredaddon flag heading."""
@@ -41,13 +41,15 @@ def flag(context, addon):
         return ''
 
 
-@register.inclusion_tag('addons/impala/dependencies_note.html')
+@library.global_function
+@library.render_with('addons/impala/dependencies_note.html')
 @jinja2.contextfunction
 def dependencies_note(context, addon, module_context='impala'):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/contribution.html')
+@library.global_function
+@library.render_with('addons/contribution.html')
 @jinja2.contextfunction
 def contribution(context, addon, text=None, src='', show_install=False,
                  show_help=True, large=False, contribution_src=None):
@@ -69,7 +71,8 @@ def contribution(context, addon, text=None, src='', show_install=False,
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/impala/contribution.html')
+@library.global_function
+@library.render_with('addons/impala/contribution.html')
 @jinja2.contextfunction
 def impala_contribution(context, addon, text=None, src='', show_install=False,
                         show_help=True, large=False, contribution_src=None):
@@ -92,7 +95,8 @@ def impala_contribution(context, addon, text=None, src='', show_install=False,
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/review_list_box.html')
+@library.global_function
+@library.render_with('addons/review_list_box.html')
 @jinja2.contextfunction
 def review_list_box(context, addon, reviews):
     """Details page: Show a box with three add-on reviews."""
@@ -101,7 +105,8 @@ def review_list_box(context, addon, reviews):
     return c
 
 
-@register.inclusion_tag('addons/impala/review_list_box.html')
+@library.global_function
+@library.render_with('addons/impala/review_list_box.html')
 @jinja2.contextfunction
 def impala_review_list_box(context, addon, reviews):
     """Details page: Show a box with three add-on reviews."""
@@ -110,7 +115,8 @@ def impala_review_list_box(context, addon, reviews):
     return c
 
 
-@register.inclusion_tag('addons/review_add_box.html')
+@library.global_function
+@library.render_with('addons/review_add_box.html')
 @jinja2.contextfunction
 def review_add_box(context, addon):
     """Details page: Show a box for the user to post a review."""
@@ -119,7 +125,8 @@ def review_add_box(context, addon):
     return c
 
 
-@register.inclusion_tag('addons/impala/review_add_box.html')
+@library.global_function
+@library.render_with('addons/impala/review_add_box.html')
 @jinja2.contextfunction
 def impala_review_add_box(context, addon):
     """Details page: Show a box for the user to post a review."""
@@ -128,7 +135,8 @@ def impala_review_add_box(context, addon):
     return c
 
 
-@register.inclusion_tag('addons/tags_box.html')
+@library.global_function
+@library.render_with('addons/tags_box.html')
 @jinja2.contextfunction
 def tags_box(context, addon, tags=None):
     """
@@ -141,7 +149,8 @@ def tags_box(context, addon, tags=None):
     return c
 
 
-@register.inclusion_tag('addons/listing/items.html')
+@library.global_function
+@library.render_with('addons/listing/items.html')
 @jinja2.contextfunction
 def addon_listing_items(context, addons, show_date=False,
                         show_downloads=False, src=None, notes=None):
@@ -150,7 +159,8 @@ def addon_listing_items(context, addons, show_date=False,
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/impala/listing/items.html')
+@library.global_function
+@library.render_with('addons/impala/listing/items.html')
 @jinja2.contextfunction
 def impala_addon_listing_items(context, addons, field=None, src=None,
                                dl_src=None, notes=None):
@@ -163,19 +173,22 @@ def impala_addon_listing_items(context, addons, field=None, src=None,
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/listing/items_compact.html')
+@library.global_function
+@library.render_with('addons/listing/items_compact.html')
 @jinja2.contextfunction
 def addon_listing_items_compact(context, addons, show_date=False, src=None):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/listing_header.html')
+@library.global_function
+@library.render_with('addons/listing_header.html')
 @jinja2.contextfunction
 def addon_listing_header(context, url_base, sort_opts, selected):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/impala/listing/sorter.html')
+@library.global_function
+@library.render_with('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
 def impala_addon_listing_header(context, url_base, sort_opts=None,
                                 selected=None, extra_sort_opts=None,
@@ -201,16 +214,16 @@ def impala_addon_listing_header(context, url_base, sort_opts=None,
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/sidebar_listing.html')
+@library.render_with('addons/impala/sidebar_listing.html')
 def sidebar_listing(context, addon):
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/addon_hovercard.html')
+@library.render_with('addons/impala/addon_hovercard.html')
 def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
     if not src:
         src = context.get('src')
@@ -223,9 +236,9 @@ def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/addon_grid.html')
+@library.render_with('addons/impala/addon_grid.html')
 def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
                vital_summary='rating', vital_more='adu'):
     if not src:
@@ -238,9 +251,9 @@ def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/featured_grid.html')
+@library.render_with('addons/impala/featured_grid.html')
 def featured_grid(context, addons, src=None, dl_src=None, pagesize=3, cols=3):
     if not src:
         src = context.get('src')
@@ -252,9 +265,9 @@ def featured_grid(context, addons, src=None, dl_src=None, pagesize=3, cols=3):
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/toplist.html')
+@library.render_with('addons/impala/toplist.html')
 def addon_toplist(context, addons, vital='users', src=None):
     return new_context(**locals())
 
@@ -265,7 +278,8 @@ def new_context(context, **kw):
     return c
 
 
-@register.inclusion_tag('addons/persona_preview.html')
+@library.global_function
+@library.render_with('addons/persona_preview.html')
 @jinja2.contextfunction
 def persona_preview(context, persona, size='large', linked=True, extra=None,
                     details=False, title=False, caption=False, url=None):
@@ -280,24 +294,25 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
     return c
 
 
-@register.inclusion_tag('addons/persona_grid.html')
+@library.global_function
+@library.render_with('addons/persona_grid.html')
 @jinja2.contextfunction
 def persona_grid(context, addons):
     return new_context(**locals())
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/persona_grid.html')
+@library.render_with('addons/impala/persona_grid.html')
 def impala_persona_grid(context, personas, src=None, pagesize=6, cols=3):
     c = dict(context.items())
     return dict(pages=chunked(personas, pagesize),
                 columns='cols-%d' % cols, **c)
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('addons/impala/theme_grid.html')
+@library.render_with('addons/impala/theme_grid.html')
 def theme_grid(context, themes, src=None, dl_src=None):
     src = context.get('src', src)
     if not dl_src:
@@ -305,7 +320,8 @@ def theme_grid(context, themes, src=None, dl_src=None):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/report_abuse.html')
+@library.global_function
+@library.render_with('addons/report_abuse.html')
 @jinja2.contextfunction
 def addon_report_abuse(context, hide, addon):
     return new_context(**locals())

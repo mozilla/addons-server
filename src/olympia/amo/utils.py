@@ -25,7 +25,7 @@ from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
-from django.template import Context, loader
+from django.template import Context, loader, engines
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse
@@ -38,7 +38,6 @@ from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
-from jingo import get_env, get_standard_processors
 from PIL import Image
 from validator import unicodehelper
 from rest_framework.utils.encoders import JSONEncoder
@@ -53,30 +52,13 @@ from olympia.users.utils import UnsubscribeCode
 from . import logger_log as log
 
 
-def render_to_string(request, template, context=None):
-    """Render a template into a string.
-
-    This is copied and fixed from jingo.
-    """
-    def get_context():
-        c = {}
-        for processor in get_standard_processors():
-            c.update(processor(request))
-
-        if context is not None:
-            c.update(context.copy())
-        return c
-
-    # If it's not a Template, it must be a path to be loaded.
-    if not isinstance(template, jinja2.environment.Template):
-        template = get_env().get_template(template)
-
-    return template.render(get_context())
-
-
 def render(request, template, ctx=None, status=None, content_type=None):
-    rendered = render_to_string(request, template, ctx)
+    rendered = loader.render_to_string(template, ctx, request=request)
     return HttpResponse(rendered, status=status, content_type=content_type)
+
+
+def from_string(string):
+    return engines['jinja2'].from_string(string)
 
 
 def days_ago(n):
@@ -188,7 +170,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     Adds deny checking and error logging.
     """
-    from olympia.amo.helpers import absolutify
+    from olympia.amo.templatetags.jinja_helpers import absolutify
     from olympia.amo.tasks import send_email
     from olympia.users import notifications
 
@@ -311,11 +293,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 @contextlib.contextmanager
 def no_jinja_autoescape():
     """Disable Jinja2 autoescape."""
-    env = get_env()
-    autoescape_orig = env.autoescape
-    env.autoescape = False
+    autoescape_orig = engines['jinja2'].env.autoescape
+    engines['jinja2'].env.autoescape = False
     yield
-    env.autoescape = autoescape_orig
+    engines['jinja2'].env.autoescape = autoescape_orig
 
 
 def send_mail_jinja(subject, template, context, *args, **kwargs):
@@ -325,7 +306,7 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     control.
     """
     with no_jinja_autoescape():
-        template = get_env().get_template(template)
+        template = loader.get_template(template)
     msg = send_mail(subject, template.render(context), *args, **kwargs)
     return msg
 
@@ -335,8 +316,8 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     """Sends HTML mail using a Jinja template with autoescaping turned off."""
     # Get a jinja environment so we can override autoescaping for text emails.
     with no_jinja_autoescape():
-        html_template = get_env().get_template(html_template)
-        text_template = get_env().get_template(text_template)
+        html_template = loader.get_template(html_template)
+        text_template = loader.get_template(text_template)
     msg = send_mail(subject, text_template.render(context),
                     html_message=html_template.render(context), *args,
                     **kwargs)

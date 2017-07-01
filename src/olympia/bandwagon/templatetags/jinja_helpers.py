@@ -1,16 +1,18 @@
 import math
 
 import jinja2
-from jingo import register, get_env
 from django.utils.translation import ugettext
+from django.template import loader
+from django_jinja import library
 
-from olympia.addons.helpers import new_context
-from olympia.accounts.helpers import login_link
+from olympia.addons.templatetags.jinja_helpers import new_context
+from olympia.accounts.templatetags.jinja_helpers import login_link
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 
 
-@register.inclusion_tag('bandwagon/collection_listing_items.html')
+@library.global_function
+@library.render_with('bandwagon/collection_listing_items.html')
 @jinja2.contextfunction
 def collection_listing_items(context, collections, field=None):
     c = dict(context.items())
@@ -18,7 +20,8 @@ def collection_listing_items(context, collections, field=None):
     return c
 
 
-@register.inclusion_tag('bandwagon/impala/collection_listing_items.html')
+@library.global_function
+@library.render_with('bandwagon/impala/collection_listing_items.html')
 @jinja2.contextfunction
 def impala_collection_listing_items(context, collections, field=None):
     c = dict(context.items())
@@ -26,18 +29,19 @@ def impala_collection_listing_items(context, collections, field=None):
     return c
 
 
-@register.function
+@library.global_function
 def user_collection_list(collections=None, heading='', id='', link=None):
     """list of collections, as used on the user profile page"""
     if collections is None:
         collections = []
     c = {'collections': collections, 'heading': heading, 'link': link,
          'id': id}
-    template = get_env().get_template('bandwagon/users/collection_list.html')
+    template = loader.get_template('bandwagon/users/collection_list.html')
     return jinja2.Markup(template.render(c))
 
 
-@register.inclusion_tag('bandwagon/barometer.html')
+@library.global_function
+@library.render_with('bandwagon/barometer.html')
 @jinja2.contextfunction
 def barometer(context, collection):
     """Shows a barometer for a collection."""
@@ -93,26 +97,23 @@ def barometer(context, collection):
     return c
 
 
-@register.inclusion_tag('addons/includes/collection_add_widget.html')
-@register.function
-@jinja2.contextfunction
-def collection_add_widget(context, addon, condensed=False):
+@library.render_with('addons/includes/collection_add_widget.html')
+@library.global_function
+def collection_add_widget(addon, condensed=False):
     """Displays 'Add to Collection' widget"""
-    c = dict(context.items())
-    c.update(locals())
-    return c
+    return {'addon': addon}
 
 
-@register.filter
+@library.filter
 @jinja2.contextfilter
-@register.inclusion_tag('bandwagon/collection_grid.html')
+@library.render_with('bandwagon/collection_grid.html')
 def collection_grid(context, collections, src=None, pagesize=4, cols=2):
     pages = chunked(collections, pagesize)
     columns = 'cols-%d' % cols
     return new_context(**locals())
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def favorites_widget(context, addon, condensed=False):
     """Displays 'Add to Favorites' widget."""
@@ -134,11 +135,11 @@ def favorites_widget(context, addon, condensed=False):
                                    'favorites', 'remove'])
 
         c.update(locals())
-        t = get_env().get_template('bandwagon/favorites_widget.html').render(c)
+        t = loader.get_template('bandwagon/favorites_widget.html').render(c)
         return jinja2.Markup(t)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def collection_widgets(context, collection, condensed=False):
     """Displays collection widgets"""
@@ -146,5 +147,5 @@ def collection_widgets(context, collection, condensed=False):
     if collection:
         c.update({'condensed': condensed,
                   'c': collection})
-        template = get_env().get_template('bandwagon/collection_widgets.html')
+        template = loader.get_template('bandwagon/collection_widgets.html')
         return jinja2.Markup(template.render(c))

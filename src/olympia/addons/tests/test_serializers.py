@@ -5,7 +5,7 @@ from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, ESTestCase, file_factory, TestCase, version_factory,
     user_factory)

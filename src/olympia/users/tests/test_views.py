@@ -20,7 +20,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
-from olympia.amo.helpers import urlparams
+from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
@@ -808,7 +808,7 @@ class TestProfileSections(TestCase):
         assert 'http://spam.com/' not in response.content
 
         assert 'alert("xss")' in response.content
-        assert 'line<br>break' in response.content
+        assert 'line<br/>break' in response.content
         assert 'linkylink' in response.content
         assert '<b>acceptably bold</b>' in response.content
 
@@ -954,7 +954,7 @@ class TestDeleteProfilePicture(TestCase):
         self.login(UserProfile.objects.get(pk=4043307))
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response.context['user'] == self.user
+        assert response.context['target_user'] == self.user
 
     def test_admin_post(self):
         self.admin = UserProfile.objects.get(pk=4043307)

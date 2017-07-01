@@ -1,16 +1,17 @@
 import jinja2
 
-import jingo
+from django_jinja import library
+from django.template.loader import get_template
 from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.access import acl
 from olympia.reviews.models import ReviewFlag
 
-from . import forms
+from .. import forms
 
 
-@jingo.register.filter
+@library.filter
 def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
@@ -18,49 +19,43 @@ def stars(num, large=False):
         return ugettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
-        t = jingo.get_env().get_template('reviews/impala/reviews_rating.html')
+        t = get_template('reviews/impala/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
         return jinja2.Markup(t.render({'rating': num, 'detailpage': large}))
 
 
-@jingo.register.function
+@library.global_function
 def reviews_link(addon, collection_uuid=None, link_to_list=False):
-    t = jingo.get_env().get_template('reviews/reviews_link.html')
+    t = get_template('reviews/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
                                    'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
 
 
-@jingo.register.function
+@library.global_function
 def impala_reviews_link(addon, collection_uuid=None, link_to_list=False):
-    t = jingo.get_env().get_template('reviews/impala/reviews_link.html')
+    t = get_template('reviews/impala/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
                                    'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
 
 
-@jingo.register.inclusion_tag('reviews/report_review.html')
-@jinja2.contextfunction
-def report_review_popup(context):
-    c = dict(context.items())
-    c.update(ReviewFlag=ReviewFlag, flag_form=forms.ReviewFlagForm())
-    return c
+@library.global_function
+@library.render_with('reviews/report_review.html')
+def report_review_popup():
+    return {'ReviewFlag': ReviewFlag, 'flag_form': forms.ReviewFlagForm()}
 
 
-@jingo.register.inclusion_tag('reviews/edit_review.html')
-@jinja2.contextfunction
-def edit_review_form(context):
-    c = dict(context.items())
-    c.update(form=forms.ReviewForm())
-    return c
+@library.global_function
+@library.render_with('reviews/edit_review.html')
+def edit_review_form():
+    return {'form': forms.ReviewForm()}
 
 
-@jingo.register.inclusion_tag('reviews/edit_review.html')
-@jinja2.contextfunction
-def edit_review_reply_form(context):
-    c = dict(context.items())
-    c.update(form=forms.ReviewReplyForm())
-    return c
+@library.global_function
+@library.render_with('reviews/edit_review.html')
+def edit_review_reply_form():
+    return {'form': forms.ReviewReplyForm()}
 
 
 def user_can_delete_review(request, review):
@@ -85,7 +80,7 @@ def user_can_delete_review(request, review):
             acl.action_allowed(request, amo.permissions.ADDONS_EDIT)))
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def check_review_delete(context, review):
     return user_can_delete_review(context['request'], review)

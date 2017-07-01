@@ -1,12 +1,12 @@
 from django.db.transaction import non_atomic_requests
+from django.template.loader import render_to_string
 from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
-import jingo
 import jinja2
 
 from olympia import amo
-from olympia.amo.helpers import urlparams
+from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
 
@@ -37,19 +37,19 @@ def install_button(context, addon, version=None, show_contrib=True,
                                     latest_beta)
     installed = (request.user.is_authenticated() and
                  addon.id in request.user.mobile_addons)
-    c = {'button': button, 'addon': addon, 'version': button.version,
-         'installed': installed}
+    context = {
+        'button': button, 'addon': addon, 'version': button.version,
+        'installed': installed}
     if impala:
         template = 'addons/impala/button.html'
     else:
         template = 'addons/button.html'
-    t = jingo.render_to_string(request, template, c)
-    return jinja2.Markup(t)
+    return jinja2.Markup(render_to_string(template, context, request=request))
 
 
 @jinja2.contextfunction
 def big_install_button(context, addon, **kwargs):
-    from olympia.addons.helpers import statusflags
+    from olympia.addons.templatetags.jinja_helpers import statusflags
     flags = jinja2.escape(statusflags(context, addon))
     button = install_button(context, addon, detailed=True, size='prominent',
                             **kwargs)

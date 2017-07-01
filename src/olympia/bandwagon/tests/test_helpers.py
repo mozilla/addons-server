@@ -1,20 +1,20 @@
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-import jingo
 
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.bandwagon.helpers import barometer, user_collection_list
+from olympia.bandwagon.templatetags.jinja_helpers import (
+    barometer, user_collection_list)
 from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 
 
 class TestHelpers(BaseTestCase):
 
-    @patch('olympia.bandwagon.helpers.login_link', lambda c: 'https://login')
+    @patch('olympia.bandwagon.templatetags.jinja_helpers.login_link',
+           lambda c: 'https://login')
     def test_barometer(self):
         self.client.get('/')
-        jingo.load_helpers()
         collection = Collection(upvotes=1, slug='mccrackin',
                                 author=UserProfile(username='clouserw'))
         # Mock logged out.

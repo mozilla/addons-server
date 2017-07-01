@@ -9,13 +9,14 @@ from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
 from django.utils.translation import get_language, ugettext
+from django.template import loader
 from django.template.defaultfilters import filesizeformat
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
 import jinja2
-from jingo import register, get_env
+from django_jinja import library
 
 import olympia.core.logger
 from olympia import amo
@@ -49,7 +50,7 @@ SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES = frozenset([
 ])
 
 
-@register.function
+@library.global_function
 def file_viewer_class(value, key):
     result = []
     if value['directory']:
@@ -63,11 +64,11 @@ def file_viewer_class(value, key):
     return ' '.join(result)
 
 
-@register.function
+@library.global_function
 def file_tree(files, selected):
     depth = 0
     output = ['<ul class="root">']
-    t = get_env().get_template('files/node.html')
+    t = loader.get_template('files/node.html')
     for k, v in files.items():
         if v['depth'] > depth:
             output.append('<ul class="js-hidden">')

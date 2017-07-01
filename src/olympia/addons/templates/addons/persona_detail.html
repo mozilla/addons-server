@@ -28,14 +28,14 @@
     {% if category_personas %}
       <div id="more-category" class="persona-list {{ 'persona-list-3col' if not author_personas else 'persona-list-2col' }}">
         {# L10n: {0} is a category name, such as Nature #}
-        <h3>{{ _('More {0} Themes')|f(categories[0].name) }}</h3>
+        <h3>{{ _('More {0} Themes')|format_html(categories[0].name) }}</h3>
         <div class="article">
           {% for other in category_personas %}
             {{ persona_preview(other.persona, size='small') }}
           {% endfor %}
         </div>
         {# L10n: {0} is a category name, such as Nature #}
-        <a href="{{ categories[0].get_url_path() }}" class="more-link">{{ _('See all {0} Themes')|f(categories[0].name) }}</a>
+        <a href="{{ categories[0].get_url_path() }}" class="more-link">{{ _('See all {0} Themes')|format_html(categories[0].name) }}</a>
       </div>
     {% endif %}
 

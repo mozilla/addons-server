@@ -20,7 +20,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
-from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.tests import (
     addon_factory, assert_url_equal, create_switch, user_factory,
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,

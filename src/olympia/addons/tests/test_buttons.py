@@ -3,7 +3,6 @@ import json
 
 import jinja2
 
-import jingo
 from mock import patch, Mock
 from pyquery import PyQuery
 import pytest
@@ -12,10 +11,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.buttons import big_install_button, install_button
-
-
-def setup():
-    jingo.load_helpers()
 
 
 class ButtonTest(TestCase):
@@ -71,14 +66,12 @@ class ButtonTest(TestCase):
             'request': self.request,
         }
 
-    @patch('olympia.addons.buttons.jingo.Environment.get_template')
-    def get_button(self, t_mock, **kwargs):
+    @patch('olympia.addons.buttons.render_to_string')
+    def get_button(self, render_mock, **kwargs):
         """Proxy for calling install_button."""
-        template_mock = Mock()
-        t_mock.return_value = template_mock
         install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
-        return template_mock.render.call_args[0][0]['button']
+        return render_mock.call_args[0][1]['button']
 
     def render(self, **kwargs):
         return PyQuery(install_button(self.context, self.addon, **kwargs))
@@ -421,7 +414,7 @@ class TestButtonHtml(ButtonTest):
         assert doc('.contrib .os').text() == ''
 
     @patch('olympia.addons.buttons.install_button')
-    @patch('olympia.addons.helpers.statusflags')
+    @patch('olympia.addons.templatetags.jinja_helpers.statusflags')
     def test_big_install_button_xss(self, flags_mock, button_mock):
         # Make sure there's no xss in statusflags.
         button_mock.return_value = jinja2.Markup('<b>button</b>')

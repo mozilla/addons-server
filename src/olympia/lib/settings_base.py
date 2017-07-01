@@ -55,10 +55,6 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-
-    # TEMPLATE_DIRS is required by jingo, remove this line here once we
-    # get rid of jingo
-    '1_8.W001',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -292,37 +288,36 @@ SUPPORTED_NONLOCALES = (
 SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # Templates
-
-# We don't want jingo's template loaded to pick up templates for third party
-# apps that don't use Jinja2. The Following is a list of prefixes for jingo to
-# ignore.
-JINGO_EXCLUDE_APPS = (
-    'django_extensions',
-    'admin',
-    'rest_framework',
-    'waffle',
-)
-
-JINGO_EXCLUDE_PATHS = (
-    'users/email',
-    'reviews/emails',
-    'editors/emails',
-    'amo/emails',
-    'devhub/email/revoked-key-email.ltxt',
-    'devhub/email/new-key-email.ltxt',
+JINJA_EXCLUDE_TEMPLATE_PATHS = (
+    r'^admin\/',
+    r'^users\/email',
+    r'^reviews\/emails',
+    r'^editors\/emails',
+    r'^amo\/emails',
+    r'^devhub\/email\/revoked-key-email.ltxt',
+    r'^devhub\/email\/new-key-email.ltxt',
 
     # Django specific templates
-    'registration/password_reset_subject.txt'
+    r'^registration\/password_reset_subject.txt'
 )
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'NAME': 'jinja2',
+        'APP_DIRS': True,
         'DIRS': (
             path('media', 'docs'),
             path('src/olympia/templates'),
         ),
         'OPTIONS': {
+            # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
+            'newstyle_gettext': True,
+            # Match our regular .html and .txt file endings except
+            # for the admin and a handful of other paths
+            'match_extension': None,
+            'match_regex': r'^(?!({paths})).*'.format(
+                paths='|'.join(JINJA_EXCLUDE_TEMPLATE_PATHS)),
             'context_processors': (
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
@@ -336,48 +331,45 @@ TEMPLATES = [
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
                 'olympia.amo.context_processors.static_url',
-                'jingo_minify.helpers.build_ids',
+                'olympia.lib.jingo_minify_helpers.build_ids',
             ),
-            'loaders': (
-                'olympia.lib.template_loader.Loader',
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            )
+            'extensions': (
+                'jinja2.ext.autoescape',
+                'jinja2.ext.do',
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.with_',
+                'django_jinja.builtins.extensions.CsrfExtension',
+                'django_jinja.builtins.extensions.DjangoFiltersExtension',
+                'django_jinja.builtins.extensions.StaticFilesExtension',
+                'django_jinja.builtins.extensions.TimezoneExtension',
+                'django_jinja.builtins.extensions.UrlsExtension',
+                'olympia.amo.ext.cache',
+                'puente.ext.i18n',
+                'waffle.jinja.WaffleExtension',
+            ),
+            'finalize': lambda x: x if x is not None else '',
+            'translation_engine': 'django.utils.translation',
+            'autoescape': True,
+            'trim_blocks': True,
         }
-    }
+    },
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'session_csrf.context_processor',
+
+                'django.contrib.messages.context_processors.messages',
+            ),
+        }
+    },
 ]
-
-# jingo still looks at TEMPLATE_DIRS
-TEMPLATE_DIRS = TEMPLATES[0]['DIRS']
-
-
-def JINJA_CONFIG():
-    import jinja2
-    from django.conf import settings
-    from django.core.cache import cache
-    config = {
-        'extensions': [
-            'olympia.amo.ext.cache',
-            'puente.ext.i18n',
-            'waffle.jinja.WaffleExtension',
-            'jinja2.ext.do',
-            'jinja2.ext.with_',
-            'jinja2.ext.loopcontrols'
-        ],
-        'finalize': lambda x: x if x is not None else '',
-        'autoescape': True,
-    }
-
-    if False and not settings.DEBUG:
-        # We're passing the _cache object directly to jinja because
-        # Django can't store binary directly; it enforces unicode on it.
-        # Details: http://jinja.pocoo.org/2/documentation/api#bytecode-cache
-        # and in the errors you get when you try it the other way.
-        bc = jinja2.MemcachedBytecodeCache(cache._cache,
-                                           "%sj2:" % settings.CACHE_PREFIX)
-        config['cache_size'] = -1  # Never clear the cache
-        config['bytecode_cache'] = bc
-    return config
 
 
 X_FRAME_OPTIONS = 'DENY'
@@ -471,6 +463,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'waffle',
     'jingo_minify',
+    'django_jinja',
     'puente',
 
     # Django contrib apps

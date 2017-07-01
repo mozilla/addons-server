@@ -1,19 +1,21 @@
 from django.conf import settings
+from django.template import loader, engines
 from django.utils import translation
 from django.utils.translation.trans_real import to_language
 from django.utils.encoding import force_text
+from django_jinja import library
 
 import bleach
 import jinja2
-import jingo
 
 from olympia.amo.utils import clean_nl
 from olympia.translations.models import PurifiedTranslation
 
-jingo.register.filter(to_language)
+
+library.filter(to_language)
 
 
-@jingo.register.filter
+@library.filter
 def locale_html(translatedfield):
     """HTML attributes for languages different than the site language"""
     if not translatedfield:
@@ -30,7 +32,7 @@ def locale_html(translatedfield):
             jinja2.escape(translatedfield.locale), textdir))
 
 
-@jingo.register.filter
+@library.filter
 def truncate(s, length=255, killwords=True, end='...'):
     """
     Wrapper for jinja's truncate that checks if the object has a
@@ -44,10 +46,13 @@ def truncate(s, length=255, killwords=True, end='...'):
         return ''
     if hasattr(s, '__truncate__'):
         return s.__truncate__(length, killwords, end)
-    return jinja2.filters.do_truncate(force_text(s), length, killwords, end)
+
+    return jinja2.filters.do_truncate(
+        engines['jinja2'].env, force_text(s), length, killwords, end)
 
 
-@jingo.register.inclusion_tag('translations/trans-menu.html')
+@library.global_function
+@library.render_with('translations/trans-menu.html')
 @jinja2.contextfunction
 def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     """Generates the locale menu for zamboni l10n."""
@@ -61,7 +66,7 @@ def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     return c
 
 
-@jingo.register.filter
+@library.filter
 def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
     field = getattr(addon, field_name, None)
     if not addon or field is None:
@@ -70,11 +75,11 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
                                            localized_string__isnull=False)
     ctx = dict(addon=addon, field=field, field_name=field_name,
                translations=trans, nl2br=nl2br, prettify_empty=prettify_empty)
-    t = jingo.get_env().get_template('translations/all-locales.html')
+    t = loader.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
 
 
-@jingo.register.filter
+@library.filter
 def clean(string, strip_all_html=False):
     """Clean html with bleach.
 
@@ -97,7 +102,7 @@ def clean(string, strip_all_html=False):
     return jinja2.Markup(clean_nl(string).strip())
 
 
-@jingo.register.filter
+@library.filter
 def no_links(string):
     """Leave text links untouched, keep only inner text on URLs."""
     if not string:
