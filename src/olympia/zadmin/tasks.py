@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.db.models import Sum
-from django.template import Context, Template
+from django.template import Template
 from django.utils import translation
 
 import requests
@@ -180,14 +180,15 @@ def get_context(addon, version, job, results, fileob=None):
     addon_name = addon.name
     if fileob and fileob.platform != amo.PLATFORM_ALL.id:
         addon_name = u'%s (%s)' % (addon_name, fileob.get_platform_display())
-    return Context({
+    return {
         'ADDON_NAME': addon_name,
         'ADDON_VERSION': version.version,
         'APPLICATION': str(job.application),
         'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
                                           args=[addon.pk, version.pk])),
         'RESULT_LINKS': ' '.join(result_links),
-        'VERSION': job.target_version.version})
+        'VERSION': job.target_version.version
+    }
 
 
 @task
@@ -382,12 +383,12 @@ def notify_compatibility_chunk(users, job, data, **kw):
                               % (user.email, addon.slug,
                                  task_error[0], task_error[1]), exc_info=False)
 
-            context = Context({
+            context = {
                 'APPLICATION': unicode(amo.APP_IDS[job.application].pretty),
                 'VERSION': job.target_version.version,
                 'PASSING_ADDONS': user.passing_addons,
                 'FAILING_ADDONS': user.failing_addons,
-            })
+            }
 
             log.info(u'Emailing %s%s for %d addons about '
                      'bulk validation job %s'

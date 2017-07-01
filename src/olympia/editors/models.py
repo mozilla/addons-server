@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -339,7 +339,7 @@ class EditorSubscription(ModelBase):
     def send_notification(self, version):
         user_log.info('Sending addon update notice to %s for %s' %
                       (self.user.email, self.addon.pk))
-        context = Context({
+        context = {
             'name': self.addon.name,
             'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
                                       add_prefix=False)),
@@ -348,11 +348,11 @@ class EditorSubscription(ModelBase):
                                          args=[self.addon.pk],
                                          add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
-        })
+        }
         # Not being localised because we don't know the editors locale.
         subject = 'Mozilla Add-ons: %s Updated' % self.addon.name
         template = loader.get_template('editors/emails/notify_update.ltxt')
-        send_mail(subject, template.render(Context(context)),
+        send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
                   from_email=settings.EDITORS_EMAIL,
                   use_deny_list=False)

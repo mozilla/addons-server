@@ -25,7 +25,7 @@ from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
-from django.template import Context, loader, engines
+from django.template import loader, engines
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse
@@ -256,7 +256,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                             args=[token, hash, perm_setting.short],
                             add_prefix=False))
 
-                context_options = {
+                context = {
                     'message': message,
                     'manage_url': manage_url,
                     'unsubscribe_url': unsubscribe_url,
@@ -267,13 +267,11 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 # Render this template in the default locale until
                 # bug 635840 is fixed.
                 with no_translation():
-                    context = Context(context_options, autoescape=False)
                     message_with_unsubscribe = text_template.render(context)
 
                 if html_message:
-                    context_options['message'] = html_message
+                    context['message'] = html_message
                     with no_translation():
-                        context = Context(context_options, autoescape=False)
                         html_with_unsubscribe = html_template.render(context)
                         result = send([recipient], message_with_unsubscribe,
                                       html_message=html_with_unsubscribe,

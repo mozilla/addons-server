@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
-from django.template import Context, loader
+from django.template import loader
 from django.utils.encoding import force_text
 from django.utils import translation
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
@@ -591,8 +591,7 @@ class ReviewBase(object):
                              self.version.version if self.version else '')
 
         message = loader.get_template(
-            'editors/emails/%s.ltxt' % template).render(
-            Context(data, autoescape=False))
+            'editors/emails/%s.ltxt' % template).render(data)
         send_activity_mail(
             subject, message, version, self.addon.authors.all(),
             settings.EDITORS_EMAIL, perm_setting=perm_setting)
