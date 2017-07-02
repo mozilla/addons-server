@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 00:08+0000\n"
+"PO-Revision-Date: 2017-07-02 00:46+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -20,16 +20,16 @@ msgid "No links are allowed."
 msgstr "Ingen lenker er tillatne."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Dette visingsnamnet kan ikkje brukast."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Brukarnamn kan ikkje berre innehalde siffer."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Dette brukarnamnet kan ikkje brukast."
 
 msgid "This username is already in use."
 msgstr ""
