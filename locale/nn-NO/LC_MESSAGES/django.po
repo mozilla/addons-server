@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 00:46+0000\n"
+"PO-Revision-Date: 2017-07-02 01:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -26,13 +26,13 @@ msgid "Usernames cannot contain only digits."
 msgstr "Brukarnamn kan ikkje berre innehalde siffer."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Skriv inn eit gyldig brukarnamn som inneheld bokstavar, tal, under- eller bindestrek."
 
 msgid "This username cannot be used."
 msgstr "Dette brukarnamnet kan ikkje brukast."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "Brukarnamnet er allereie tatt."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Bilde må anten vere PNG eller JPG."
@@ -57,7 +57,7 @@ msgid "Need help?"
 msgstr "Treng du hjelp?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Utviklarar av tillegg eller tema kan ikkje slette kontoane sine. Du må slette alle tillegg og tema som er kopla til denne kontoen, eller overføre dei til andre brukarar."
 
 msgid "Review"
 msgstr "Vurdering"
@@ -98,9 +98,9 @@ msgstr "Legg til på {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allereie i bruk. Vel ein annan."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Adresseteksten kan ikkje vera \"%s\". Vel ein annan."
+msgstr "Sluggen kan ikkje vere \"%(slug)s\". Vel ein annan."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1214,16 +1214,14 @@ msgstr "Favoritt"
 msgid "Remove from favorites"
 msgstr "Fjern frå favorittar"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Denne URL-en vert allereie brukt av ei anna samling"
+msgstr "Denne sluggen vert allereie brukt av ei av samlingane dine."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Dette namnet kan ikkje brukast."
+msgstr "Denne sluggen kan ikkje brukast."
 
 msgid "Name"
 msgstr "Namn"
@@ -2125,13 +2123,11 @@ msgstr "Kjeldekode lasta opp for {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Kjeldekode lasta opp"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Godkjenningsmerknadar endra for {addon} {version}."
+msgstr "Auto-godkjenning stadfesta for {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Automatisk godkjend samandrag"
+msgstr "Auto-godkjenning stadfesta"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3506,7 +3502,7 @@ msgid "Change the owner of this theme."
 msgstr ""
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Overfør eigarskap"
 
 msgid "Delete this theme."
 msgstr "Slett dette temaet."
@@ -3920,7 +3916,7 @@ msgid "Review Policies"
 msgstr "Vurderingspraksis"
 
 msgid "FAQ"
-msgstr ""
+msgstr "OSS (FAQ)"
 
 msgid "Report Bug"
 msgstr "Rapporter feil"
@@ -4608,9 +4604,8 @@ msgstr ""
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "Det er bedt om meir informasjon"
+msgstr "Treng du meir informasjon?"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -4719,9 +4714,8 @@ msgstr "Stadfest godkjenning"
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Slett versjonen"
+msgstr "Avvis fleire versjonar"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
@@ -4783,9 +4777,8 @@ msgstr ""
 msgid "Has a pending info request."
 msgstr ""
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Flagga for vidare vurdering"
+msgstr "Er flagga for vurdering av admin."
 
 msgid "Is locked by a reviewer."
 msgstr ""
@@ -4893,13 +4886,11 @@ msgstr "Seinaste dato for godkjenning"
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Rapportar om misbruk"
+msgstr "Misbruksrapportar ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderert vurdering ({num})"
+msgstr "Dårlege brukarvurderingar ({num})"
 
 msgid "More about this add-on"
 msgstr "Meir om denne utvidinga"
@@ -5160,9 +5151,8 @@ msgstr "Last ned filer"
 msgid "The developer has provided source code."
 msgstr "Utviklaren har kome med kjeldekode."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Automatisk godkjende tillegg"
+msgstr "Ikkje auto-godkjent fordi"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -6579,9 +6569,8 @@ msgstr ""
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "{addon} vurdert."
+msgstr "Må utvidinga mi vurderast?"
 
 #, python-format
 msgid ""
