@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 05:18+0000\n"
+"PO-Revision-Date: 2017-07-02 05:28+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6935,7 +6935,7 @@ msgid "Mobile Add-ons"
 msgstr "Mobil-utvidingar"
 
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Kva er mobil-utvidingar?"
 
 #, python-format
 msgid ""
@@ -6951,7 +6951,7 @@ msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(
 msgstr "Sjå <a href=\"%(faq_url)s\">FAQ for utviklarar</a> og <a href=\"%(hub_url)s\">utviklarsenteret</a> for svar på utviklarrelaterte spørsmål om utvidingar."
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Har du framleis spørsmål?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -7056,7 +7056,7 @@ msgid ""
 msgstr ""
 
 msgid "Start Now"
-msgstr ""
+msgstr "Start no"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -7266,35 +7266,35 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr ""
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Flagga for vurdering"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Rapporter denne vurderinga"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Svar på vurderinga"
 
 msgid "Edit reply"
 msgstr "Rediger svar"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Rediger vurderinga"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Slett svaret"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: vurderingar"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Vurderingar av {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> vurdering for denne utvidinga"
+msgstr[1] "<b>{0}</b> vurderingar for denne utvidinga"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7303,33 +7303,33 @@ msgstr "Utviklarsvar frå {0}"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vurdering av %(addon)s av %(user)s"
+msgstr[1] "Vurderingar av %(addon)s av %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Fann ingen vurderingar."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Gjenomsnittleg</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Skriv ei ny vurdering"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Ver den fyrste til å skrive ei vurdering."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} vurdering"
+msgstr[1] "{num} vurderingar"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Vurdert til {0} av 5 stjerner"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Vurdert til %(rating)s av 5 stjerner"
 
 msgid "Most popular this week"
 msgstr "Mest populære denne veka"
@@ -7344,7 +7344,7 @@ msgid "Highest Rated"
 msgstr "Høgast vurdert"
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "søk etter tillegg"
 
 msgid "search for collections"
 msgstr "søk etter samlingar"
@@ -7353,25 +7353,25 @@ msgid "search for themes"
 msgstr "søk etter tema"
 
 msgid "search for apps"
-msgstr ""
+msgstr "søk etter appar"
 
 msgid "Sort By"
 msgstr "Sorter etter"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevans"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Viser {0} - {1} av {2} resultat for <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Viser {0} - {1} av {2} resultat"
 
 msgid "All Add-ons"
 msgstr "Alle utviding"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Nokre {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
@@ -7388,7 +7388,7 @@ msgid "Collection Search Results"
 msgstr ""
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Søk utilgjenglege"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
@@ -7442,13 +7442,13 @@ msgid "Version does not match the manifest file."
 msgstr ""
 
 msgid "Version already exists."
-msgstr ""
+msgstr "Versjonen finst allereie."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Ugyldig GUID i URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
