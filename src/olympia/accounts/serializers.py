@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 import olympia.core.logger
 from olympia.access.models import Group
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.serializers import BaseUserSerializer

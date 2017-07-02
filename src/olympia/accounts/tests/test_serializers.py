@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, BaseTestCase, days_ago, user_factory)
 from olympia.accounts.serializers import (
