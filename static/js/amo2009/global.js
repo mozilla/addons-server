@@ -286,12 +286,6 @@ jQuery(function($) {
 	contributions.init();
 });
 
-jQuery(window).on("load", function() {
-	// Crazyweird fix lets us style abbr using CSS in IE
-	// - do NOT run onDomReady, must be onload
-	document.createElement('abbr');
-});
-
 /* Initialization things that get run on every page. */
 
 $(".hidden").hide(); // hide anything that should be hidden

@@ -222,7 +222,7 @@
                 $p = $this.closest('.row');
             $p.find('input[type="hidden"]').val('');
             $p.find('input[type=file], .note').show();
-            $p.find('.preview').prop('src', '').removeClass('loaded');
+            $p.find('.preview').removeAttr('src').removeClass('loaded');
             updatePersona();
             $this.hide();
         }));
