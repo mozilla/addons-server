@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 10:34+0000\n"
+"PO-Revision-Date: 2017-07-02 10:42+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5037,7 +5037,7 @@ msgid "No review points awarded yet."
 msgstr "Ingen vurderingspoeng delte ut enno."
 
 msgid "Rank"
-msgstr ""
+msgstr "Rank"
 
 msgid "Score"
 msgstr "Poeng"
@@ -5409,7 +5409,7 @@ msgid "File size is over the limit of {0}."
 msgstr ""
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problem med dekodinga av {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
@@ -6718,7 +6718,7 @@ msgid "Using Add-ons"
 msgstr ""
 
 msgid "What is an add-on?"
-msgstr ""
+msgstr "Kva er ei utviding?"
 
 #, python-format
 msgid ""
@@ -6783,7 +6783,7 @@ msgid "Add-ons are automatically checked for updates once every day. In Firefox,
 msgstr ""
 
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Er utvidingar trygge å installere?"
 
 #, python-format
 msgid ""
@@ -6984,13 +6984,13 @@ msgid "Did the add-on work as you expected it to?"
 msgstr ""
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Kva for funksjonar likar du eller mislikar?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Var det nyttig?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Var det let å bruke?"
 
 msgid "Will you continue to use this add-on?"
 msgstr ""
@@ -7177,7 +7177,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Vurderingar av %s"
 
 msgid "Review History for this Addon"
 msgstr ""
@@ -7194,7 +7194,7 @@ msgid "Other (please specify)"
 msgstr ""
 
 msgid "This field is required."
-msgstr ""
+msgstr "Dette feltet er påkravd."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -7234,22 +7234,22 @@ msgid "Reply to review by {0}"
 msgstr ""
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "Skriv eit svar"
 
 msgid "Submit"
-msgstr ""
+msgstr "Send inn"
 
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "eller <a href=\"%(url)s\">Avbryt</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Vel ein grunn:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "av %(user)s <b>(Utviklar)</b> den %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
