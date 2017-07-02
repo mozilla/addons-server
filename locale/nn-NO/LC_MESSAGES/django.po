@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 05:42+0000\n"
+"PO-Revision-Date: 2017-07-02 10:34+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2726,7 +2726,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr ""
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Overkøyr mislykka validering"
 
 msgid "Submit my add-on for manual review."
 msgstr ""
@@ -2843,7 +2843,7 @@ msgid "Changes successfully saved."
 msgstr "Endringane er lagra."
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Kontroller skjemaet for feil."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
@@ -3121,7 +3121,7 @@ msgid "None"
 msgstr "Ingen"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Handsam opphavsmenn og lisens"
 
 msgid "Authors"
 msgstr "Opphavsmenn"
@@ -3529,8 +3529,8 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aktiv brukar"
+msgstr[1] "<strong>{0}</strong> aktive brukarar"
 
 msgid "Submit a New File"
 msgstr "Send inn ei ny fil"
@@ -3795,7 +3795,7 @@ msgid "(required since this add-on accepts contributions)"
 msgstr ""
 
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Handsam utviklarprofilen din"
 
 msgid "Create a Developer Profile"
 msgstr "Opprett ein utviklarprofil"
@@ -3831,7 +3831,7 @@ msgid "Unlisted Review Page"
 msgstr ""
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Vis statistikkdashbord"
 
 msgid "Compatibility Reports"
 msgstr "Kompatibilitetsrapportar"
@@ -4160,10 +4160,10 @@ msgid "Activate Contributions"
 msgstr ""
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"setup-cancel\" href=\"#\">Avbryt</a>"
 
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Overfør eigarskapet"
 
 msgid "Theme Details"
 msgstr "Temadetaljar"
@@ -4333,7 +4333,7 @@ msgid "Select a footer image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 pikslar"
 
 msgid "Aligned to bottom-left"
 msgstr ""
@@ -4413,7 +4413,7 @@ msgid "Request Review"
 msgstr "Be om vurdering"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Avbryt førespurnad om vurdering"
 
 msgid "Loading Review History..."
 msgstr "Lastar vurderingshistorikk…"
@@ -4625,7 +4625,7 @@ msgid "Keep review; remove flags"
 msgstr ""
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Hopp over no"
 
 msgid "Delete review"
 msgstr "Slett vurderinga"
@@ -4760,16 +4760,16 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Brukar ein tilpassa CSP."
 
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Brukar nativeMessaging-rettar."
 
 msgid "Uses a content script for all URLs."
 msgstr ""
 
 msgid "Has too many daily users."
-msgstr ""
+msgstr "Har for mange daglege brukarar."
 
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
@@ -4820,7 +4820,7 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "was approved"
-msgstr ""
+msgstr "vart godkjend"
 
 msgid "given preliminary review"
 msgstr ""
@@ -4836,13 +4836,13 @@ msgid "needs more information"
 msgstr "treng meir informasjon"
 
 msgid "needs super review"
-msgstr ""
+msgstr "treng supervurdering"
 
 msgid "commented"
 msgstr "kommentert"
 
 msgid "confirmed as approved"
-msgstr ""
+msgstr "stadfesta som godkjent"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4853,7 +4853,7 @@ msgid "Your theme locks have successfully been released. Other reviewers may now
 msgstr ""
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: misbruksrapportar"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
@@ -5001,7 +5001,7 @@ msgstr[0] "Oppdatering ({num})"
 msgstr[1] "Oppdatering ({num})"
 
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Gjeldande ventetider:"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
