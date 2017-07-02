@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 01:55+0000\n"
+"PO-Revision-Date: 2017-07-02 05:18+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -360,7 +360,7 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Kompatibel med Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -4166,7 +4166,7 @@ msgid "Transfer ownership"
 msgstr ""
 
 msgid "Theme Details"
-msgstr ""
+msgstr "Temadetaljar"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4214,10 +4214,10 @@ msgid "Your Theme will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Vel ein annan lisens."
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Vel ein lisens for temaet ditt."
 
 msgid "Theme Design"
 msgstr "Temautformgjeving"
@@ -4250,7 +4250,7 @@ msgid "Select colors for your Theme."
 msgstr ""
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Framgrunnstekst"
 
 msgid "This is the color of the tab text."
 msgstr ""
@@ -4279,7 +4279,7 @@ msgid "Background themes let you easily personalize the look of your Firefox. Su
 msgstr ""
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Gje temaet ditt eit namn."
 
 #, python-format
 msgid ""
@@ -4342,17 +4342,17 @@ msgid "Select a different footer image"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Handsam versjon {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Handsam {0}"
 
 msgid "Files"
 msgstr "Filer"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Last opp ei anna fil"
 
 msgid "Version Notes"
 msgstr "Versjonsmerknad"
@@ -4366,7 +4366,7 @@ msgid "Approval Status"
 msgstr "Godkjenningsstatus"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Merknad for vurderarar"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
@@ -4378,7 +4378,7 @@ msgid "If your add-on contain binary or obfuscated code, make the source availab
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fil {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4612,7 +4612,7 @@ msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "namn på tema"
 
 msgid "Someone else is reviewing this theme."
 msgstr ""
@@ -4628,7 +4628,7 @@ msgid "Skip for now"
 msgstr ""
 
 msgid "Delete review"
-msgstr ""
+msgstr "Slett vurderinga"
 
 msgid "Rejected or Unreviewed"
 msgstr ""
@@ -4700,7 +4700,7 @@ msgid "No Reviews"
 msgstr "Ingen vurderingar"
 
 msgid "Weight"
-msgstr ""
+msgstr "Vekt"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4979,10 +4979,10 @@ msgid "Add-on Title"
 msgstr "Tittel på utviding"
 
 msgid "Review Title"
-msgstr ""
+msgstr "Vurderingstittel"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Vureringstekst"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5622,7 +5622,7 @@ msgid "Web page and text translator, dictionary, and more!"
 msgstr ""
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "KJærleik er i lufta"
 
 msgid "Add some romance to your Firefox."
 msgstr ""
@@ -6920,7 +6920,7 @@ msgid "Collections and Favorites"
 msgstr "Samlingar og favorittar"
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Kva er ei samling?"
 
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr "Samlingar er grupper av liknande utvidingar oppretta av brukarar for å dele."
@@ -6932,7 +6932,7 @@ msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back 
 msgstr ""
 
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "Mobil-utvidingar"
 
 msgid "What are mobile add-ons?"
 msgstr ""
@@ -7466,31 +7466,31 @@ msgid "by Source"
 msgstr "etter kjelde"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "etter utvidingsversjon"
 
 msgid "by Application"
-msgstr ""
+msgstr "etter applikasjon"
 
 msgid "by Language"
-msgstr ""
+msgstr "etter språk"
 
 msgid "by Platform"
-msgstr ""
+msgstr "etter plattform"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "etter status for utviding"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonnentar"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Vurderingar"
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistikk for utvidingar"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Tillegg som vert brukte"
 
 msgid "Add-ons Created"
 msgstr ""
@@ -7517,16 +7517,16 @@ msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "Frå"
 
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 msgid "Update"
-msgstr ""
+msgstr "Oppdater"
 
 msgid "Export"
-msgstr ""
+msgstr "Eksporter"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -7546,40 +7546,40 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "Kontrollar:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "nullstill zoom"
 
 msgid "Group by:"
 msgstr "Grupper etter:"
 
 msgid "day"
-msgstr ""
+msgstr "dag"
 
 msgid "week"
-msgstr ""
+msgstr "veke"
 
 msgid "month"
-msgstr ""
+msgstr "månad"
 
 msgid "For last:"
-msgstr ""
+msgstr "Dei siste:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 dagane"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 dagane"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 dagane"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 dagane"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Tilpassa…"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7644,31 +7644,31 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "Lastar…"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Beste program"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Vis fleire program&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Leiande språk"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Vis fleire språk&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Leiande plattformer"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Vis fleire plattformar&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Vurderingar etter dato"
 
 msgid "Reviews Created by Date"
 msgstr ""
@@ -7689,16 +7689,16 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Status for tillegg etter dato"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonnentar etter dato"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Daglege brukarar etter dato"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Kva er daglege brukarar?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7732,10 +7732,10 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr ""
+msgstr "Vel ein kategori"
 
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Vis mobilside"
 
 msgid "Report a bug"
 msgstr "Rapporter feil"
@@ -7767,10 +7767,10 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
 msgid "My Account"
-msgstr ""
+msgstr "Min konto"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Velkomen, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7782,7 +7782,7 @@ msgstr ""
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Velkomen til {0} tillegg."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
@@ -7801,7 +7801,7 @@ msgid "Android Add-ons"
 msgstr ""
 
 msgid "required"
-msgstr ""
+msgstr "påkravd"
 
 msgid "Required fields"
 msgstr ""
@@ -7819,14 +7819,14 @@ msgid "Existing Locales"
 msgstr ""
 
 msgid "New Locales"
-msgstr ""
+msgstr "Nye språk"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr ""
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Ignorer endringar"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
@@ -7839,19 +7839,19 @@ msgid "Email must be {email}."
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Visingsnamn"
 
 msgid "Location"
-msgstr ""
+msgstr "Plassering"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Yrke"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Profilfoto"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
@@ -7864,15 +7864,15 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "andre"
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Ingen brukar med denne e-postadressa."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonym brular {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
@@ -7920,16 +7920,16 @@ msgid "A user with that email address does not exist."
 msgstr ""
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profil sletta"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto sletta"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil oppdatert"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Feil vart funne"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
@@ -7938,10 +7938,10 @@ msgid "User reported."
 msgstr ""
 
 msgid "new"
-msgstr ""
+msgstr "ny"
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "Slett brukarkonto"
 
 #, python-format
 msgid ""
@@ -7969,7 +7969,7 @@ msgid "Delete my user account now"
 msgstr ""
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Slett brukarfoto"
 
 msgid "Delete my user picture now"
 msgstr ""
@@ -7984,16 +7984,16 @@ msgid "Manage basic account information, such as your username and Firefox Accou
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Brukarnamn"
 
 msgid "Email Address"
-msgstr ""
+msgstr "E-postadresse"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Handsam Firefox-kontoen..."
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr ""
@@ -8002,10 +8002,10 @@ msgid "This URL will only be visible if you are a developer."
 msgstr ""
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Vel foto&hellip;"
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "Slett gjeldande foto"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
@@ -8032,43 +8032,43 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr ""
 
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 msgid "Delete Account"
-msgstr ""
+msgstr "Slett kontoen"
 
 msgid "Update Account"
-msgstr ""
+msgstr "Oppdater kontoen"
 
 msgid "none"
-msgstr ""
+msgstr "ingen"
 
 msgid "all"
-msgstr ""
+msgstr "alle"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
 
 msgid "User Login"
-msgstr ""
+msgstr "Brukarinnlogging"
 
 msgid "Log in with Firefox Accounts"
 msgstr "Logg inn med Firefox-kontoar"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Tilbakestilling av passord"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Brukarinfo for {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Rediger profil"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Handsam brukar"
 
 msgid "Report user"
-msgstr ""
+msgstr "Rapporter brukar"
 
 msgid "Add-ons Developer"
 msgstr "Utvidingsutviklar"
@@ -8080,10 +8080,10 @@ msgid "About me"
 msgstr "Om meg"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Litt meir detaljert…"
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Utvidingar eg har laga"
 
 msgid "My Most Popular Themes"
 msgstr "Mine mest populære tema"
@@ -8098,25 +8098,25 @@ msgid "Created by Me"
 msgstr "Laga av meg"
 
 msgid "My Reviews"
-msgstr ""
+msgstr "Mine vurderingar"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Ingen utvidingar er vurderte enno."
 
 msgid "Report User"
-msgstr ""
+msgstr "Rapporter brukar"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Rapporter brukar {0}"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Avslutt abonnementet"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Abonnentet er avslutta!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
@@ -8129,10 +8129,10 @@ msgid "edit your notification settings"
 msgstr ""
 
 msgid "edit your profile"
-msgstr ""
+msgstr "rediger profilen din"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Vi klarte ikkje å avslutte abonnementet ditt"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -8142,19 +8142,19 @@ msgid "Developer Information"
 msgstr "Utviklarinformasjon"
 
 msgid "User since"
-msgstr ""
+msgstr "Brukar sidan"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Tid sidan sist innlogging"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-adresse for sist innlogging"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Tal på utvikla utvidingar"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} utvidingar"
 
 #, python-format
 msgid "%(num)s theme"
@@ -8165,15 +8165,15 @@ msgstr[1] "%(num)s tema"
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s utviding"
+msgstr[1] "%(num)s utvidingar"
 
 msgid "Average rating of developer's add-ons"
 msgstr ""
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s versjonshistorikk"
 
 msgid "Version History with Changelogs"
 msgstr ""
@@ -8192,7 +8192,7 @@ msgstr ""
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Sleppt den {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
@@ -8200,7 +8200,7 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} versjonshistorikk"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
@@ -8237,10 +8237,10 @@ msgid "Non-binary"
 msgstr "Ikkje-binær"
 
 msgid "Message ID"
-msgstr ""
+msgstr "Meldings-ID"
 
 msgid "Message"
-msgstr ""
+msgstr "Melding"
 
 msgid "Compat Type"
 msgstr "Kompatibel type"
@@ -8249,7 +8249,7 @@ msgid "Addons Affected"
 msgstr ""
 
 msgid "Addon"
-msgstr ""
+msgstr "Utviding"
 
 msgid "Validation Result"
 msgstr "Valideringsresultat"
