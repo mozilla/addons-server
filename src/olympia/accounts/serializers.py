@@ -184,8 +184,9 @@ class LoginUserProfileSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
     def get_permissions(self, obj):
-        return [perm for group in obj.groups_list
-                for perm in group.rules.split(',')]
+        out = {perm for group in obj.groups_list
+               for perm in group.rules.split(',')}
+        return sorted(out)
 
     def get_picture_url(self, obj):
         return absolutify(obj.picture_url)
