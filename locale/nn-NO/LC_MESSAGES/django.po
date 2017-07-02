@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 05:28+0000\n"
+"PO-Revision-Date: 2017-07-02 05:42+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -297,7 +297,7 @@ msgstr "Sluttbrukarlisens"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s krev at du godtek følgjande sluttbrukaravtalefør innstalleringa kan fortsetje:"
 
 msgid "Back to {0}…"
 msgstr "Tilbake til {0}…"
@@ -3997,7 +3997,7 @@ msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help
 msgstr ""
 
 msgid "See Schedule"
-msgstr ""
+msgstr "Vis tidsplan"
 
 msgid "View All Submissions"
 msgstr "Vis alle bidrag"
@@ -5260,11 +5260,11 @@ msgstr "Totalt"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Du har <span>{0}</span> poeng."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s den %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr "Dato sletta"
@@ -5273,7 +5273,7 @@ msgid "No deleted themes found for this period."
 msgstr "Fann ingen sletta tema for denne perioden."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Tema-vurderingshistorikk for {0}"
 
 msgid "Review Date"
 msgstr "Vurderingsdato"
@@ -5330,10 +5330,10 @@ msgid "Your Review History"
 msgstr "Din vurderingshistorikk"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Send inn vurderinga"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Send inn vurderingane"
 
 msgid "{0} out of {1} reviewed"
 msgstr "{0} av {1} vurderte"
@@ -5367,13 +5367,13 @@ msgid "More Info Requested: {0}"
 msgstr ""
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Flagga: {0}"
 
 msgid "Approve Theme"
 msgstr "Godkjenn tema"
 
 msgid "Field required"
-msgstr ""
+msgstr "Påkravd felt"
 
 msgid "Enter the ID or URL of the duplicate"
 msgstr ""
@@ -5479,20 +5479,20 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "Tilbake til vurderinga"
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Tilbake til utvidinga"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Filsamanlikning :: Vurderingsverktøy"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Filvisar :: Vurderingsverktøy"
 
 msgid "Validation failed:"
 msgstr "Validering feila:"
@@ -5568,10 +5568,10 @@ msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Bygg den perfekte nettstaden"
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Er det fyrste gong med tillegg for deg?"
 
 msgid "Not to worry, here are three to get started."
 msgstr ""
@@ -5661,10 +5661,10 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Oppdag utvidingar"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "Kva er utvidingar?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -6424,13 +6424,13 @@ msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on 
 msgstr ""
 
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "Kva er ei \".xpi\"-fil?"
 
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
 msgstr ""
 
 msgid "What is XUL?"
-msgstr ""
+msgstr "Kva er XUL?"
 
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
@@ -6475,7 +6475,7 @@ msgid "Does Mozilla offer development services?"
 msgstr ""
 
 msgid "No."
-msgstr ""
+msgstr "Nei."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
@@ -6535,7 +6535,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I submit my add-on?"
-msgstr ""
+msgstr "Korleis sender eg inn ei utviding?"
 
 #, python-format
 msgid ""
@@ -6579,7 +6579,7 @@ msgid ""
 msgstr ""
 
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Kven vurderer utvidinga mi?"
 
 #, python-format
 msgid ""
@@ -6823,7 +6823,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Galleri for utvidingar"
 
 msgid "How do I choose between add-ons that seem to do the same thing?"
 msgstr ""
@@ -7911,7 +7911,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Brukarmerknadar"
 
 msgid "An email address is required."
 msgstr ""
@@ -7960,7 +7960,7 @@ msgid "Your reviews and ratings will not be deleted, but they will no longer be 
 msgstr ""
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Stadfest kontosletting"
 
 msgid "I understand this step cannot be undone."
 msgstr ""
@@ -8219,7 +8219,7 @@ msgid "Current Max. Version"
 msgstr ""
 
 msgid "Target Version"
-msgstr ""
+msgstr "Målversjon"
 
 msgid "Email when finished"
 msgstr ""
