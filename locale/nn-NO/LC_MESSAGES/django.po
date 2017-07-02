@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-01 23:50+0000\n"
+"PO-Revision-Date: 2017-07-02 00:08+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4512,13 +4512,13 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Kos deg med ein serie av nye YouTube-funksjonar, som kinomodus, annonseblokkering, automatisk avspelingskontroll og mykje meir."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Ein lett og effektiv annonseblokkerar. uBlock Origin brukar tusenvis av filter utan å bruke mykje minne."
@@ -4533,7 +4533,7 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "Meir enn berre skjermdumpar, med fantastiske Screenshot Plus kan du kommentere bilde med tekst og grafikk. Lagring og delning av filer er enkelt."
 
 msgid "Approved reviews"
 msgstr "Godkjende vurderingar"
@@ -7367,7 +7367,7 @@ msgid "search for apps"
 msgstr ""
 
 msgid "Sort By"
-msgstr ""
+msgstr "Sorter etter"
 
 msgid "Relevance"
 msgstr ""
@@ -7474,7 +7474,7 @@ msgid "Overview"
 msgstr ""
 
 msgid "by Source"
-msgstr ""
+msgstr "etter kjelde"
 
 msgid "by Add-on Version"
 msgstr ""
@@ -7563,7 +7563,7 @@ msgid "reset zoom"
 msgstr ""
 
 msgid "Group by:"
-msgstr ""
+msgstr "Grupper etter:"
 
 msgid "day"
 msgstr ""
@@ -8103,10 +8103,10 @@ msgid "Themes I've created"
 msgstr "Tema eg har laga"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Som eg følgjer"
 
 msgid "Created by Me"
-msgstr ""
+msgstr "Laga av meg"
 
 msgid "My Reviews"
 msgstr ""
