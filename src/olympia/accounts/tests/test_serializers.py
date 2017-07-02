@@ -107,19 +107,20 @@ class TestLoginUserProfileSerializer(BaseTestCase):
         assert data['picture_url'] == absolutify(self.user.picture_url)
         assert data['username'] == self.user_kwargs['username']
 
-    def test_roles(self):
-        assert self.serializer(self.user).data['roles'] == []
+    def test_permissions(self):
+        assert self.serializer(self.user).data['permissions'] == []
 
         group = Group.objects.create(name='a', rules='Addons:Review')
         GroupUser.objects.create(group=group, user=self.user)
-        assert self.serializer(self.user).data['roles'] == ['reviewer']
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Review']
 
         group.update(rules='Addons:Review,Personas:Review')
         del self.user.groups_list
-        assert self.serializer(self.user).data['roles'] == [
-            'reviewer', 'themereviewer']
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Review', 'Personas:Review']
 
         group.update(rules='Addons:Review,Personas:Review,Addons:Edit')
         del self.user.groups_list
-        assert self.serializer(self.user).data['roles'] == [
-            'staff', 'reviewer', 'themereviewer']
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Review', 'Personas:Review', 'Addons:Edit']

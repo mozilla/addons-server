@@ -763,8 +763,7 @@ class TestRegisterView(BaseAuthenticationView):
         user = UserProfile(username='foobar', email=identity['email'])
         self.register_user.return_value = user
         self.fxa_identify.return_value = identity
-        acl = self.patch('olympia.access.acl.action_allowed_user')
-        acl.return_value = False
+        user.groups_list = []
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200

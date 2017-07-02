@@ -5,8 +5,6 @@ from django.utils.translation import ugettext
 from rest_framework import serializers
 
 import olympia.core.logger
-from olympia import amo
-from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.helpers import absolutify
 from olympia.amo.utils import clean_nl, has_links, slug_validator
@@ -176,23 +174,18 @@ class UserNotificationSerializer(serializers.Serializer):
 
 
 class LoginUserProfileSerializer(serializers.ModelSerializer):
-    roles = serializers.SerializerMethodField()
+    permissions = serializers.SerializerMethodField()
     picture_url = serializers.SerializerMethodField()
 
     class Meta:
         model = UserProfile
-        fields = ('id', 'email', 'name', 'picture_url', 'roles', 'username')
+        fields = ('id', 'email', 'name', 'picture_url', 'permissions',
+                  'username')
         read_only_fields = fields
 
-    def get_roles(self, obj):
-        roles = []
-        if acl.action_allowed_user(obj, amo.permissions.ADDONS_EDIT):
-            roles.append('staff')
-        if acl.action_allowed_user(obj, amo.permissions.ADDONS_REVIEW):
-            roles.append('reviewer')
-        if acl.action_allowed_user(obj, amo.permissions.THEMES_REVIEW):
-            roles.append('themereviewer')
-        return roles
+    def get_permissions(self, obj):
+        return [perm for group in obj.groups_list
+                for perm in group.rules.split(',')]
 
     def get_picture_url(self, obj):
         return absolutify(obj.picture_url)
