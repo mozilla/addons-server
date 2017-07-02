@@ -42,7 +42,7 @@ The token is available in two forms:
 The response will contain some profile data for personalization:
 
     :>json int id: The numeric user id.
-    :>json string email: Email address used by the user to login and create this account.
+    :>json string email: Email address used by the user to log in and create this account.
     :>json string name: The name chosen by the user, or the username if not set.
     :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
     :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
