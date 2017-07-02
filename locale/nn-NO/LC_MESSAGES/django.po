@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 01:49+0000\n"
+"PO-Revision-Date: 2017-07-02 01:55+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5256,7 +5256,7 @@ msgid "No top reviewers yet."
 msgstr ""
 
 msgid "All Time"
-msgstr ""
+msgstr "Totalt"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
@@ -7375,7 +7375,7 @@ msgstr ""
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Alle system"
 
 msgid "All Tags"
 msgstr ""
@@ -7414,10 +7414,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrer resultata"
 
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Tag"
 msgstr ""
@@ -7460,7 +7460,7 @@ msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Oversyn"
 
 msgid "by Source"
 msgstr "etter kjelde"
