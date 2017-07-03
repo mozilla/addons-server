@@ -69,13 +69,13 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
         with self.assertRaises(jwt.DecodeError) as ctx:
             jwt_auth.jwt_decode_handler('}}garbage{{')
 
-        assert ctx.exception.message == 'Not enough segments'
+        assert str(ctx.exception) == 'Not enough segments'
 
     def test_decode_invalid_non_ascii_token(self):
         with self.assertRaises(jwt.DecodeError) as ctx:
             jwt_auth.jwt_decode_handler(u'Ivan Krsti\u0107')
 
-        assert ctx.exception.message == 'Not enough segments'
+        assert str(ctx.exception) == 'Not enough segments'
 
     def test_incorrect_signature(self):
         api_key = self.create_api_key(self.user)
@@ -89,7 +89,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
             jwt_auth.jwt_decode_handler(
                 token, get_api_key=lambda **k: decoy_api_key)
 
-        assert ctx.exception.message == 'Signature verification failed'
+        assert str(ctx.exception) == 'Signature verification failed'
 
     def test_expired_token(self):
         api_key = self.create_api_key(self.user)
