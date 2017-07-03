@@ -149,19 +149,20 @@ TIME_ZONE = 'UTC'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales.
+# Accepted locales
+# Note: If you update this list, don't forget to also update the locale
+# permissions in the database.
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
     'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
     'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
     'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-hans', 'zh-hant',
+    'zh-CN', 'zh-TW',
 )
 
-# Explicit conversion of a language code into a more specific one.
-ALIASED_LANGUAGES = {
-    'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE',
-    'zh': 'zh-hans', 'zh-TW': 'zh-hant', 'zh-CN': 'zh-hans'
+# Explicit conversion of a shorter language code into a more specific one.
+SHORTER_LANGUAGES = {
+    'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
 
 # Not shown on the site, but .po files exist and these are available on the
@@ -183,12 +184,6 @@ def lazy_langs(languages):
             lang_name = product_details.languages['dbg']['native']
         elif lang == 'dbr':
             lang_name = product_details.languages['dbg']['native'] + ' (RTL)'
-        elif lang == 'zh-hant':
-            # product-details only knows about zh-tw at the moment.
-            lang_name = product_details.languages['zh-TW']['native']
-        elif lang == 'zh-hans':
-            # product-details only knows about zh-cn at the moment.
-            lang_name = product_details.languages['zh-CN']['native']
         else:
             lang_name = product_details.languages[lang]['native']
 
@@ -199,17 +194,13 @@ def lazy_langs(languages):
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
-PROD_DETAILS_STORAGE = (
-    'olympia.lib.product_details_backend.NoCachePDFileStorage'
-)
+PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage'  # noqa
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
 
-LANGUAGE_URL_MAP = {i.lower(): i for i in AMO_LANGUAGES}
-LANGUAGE_URL_MAP['zh-CN'] = 'zh-hans'
-LANGUAGE_URL_MAP['zh-TW'] = 'zh-hant'
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 LOCALE_PATHS = (
     path('locale'),

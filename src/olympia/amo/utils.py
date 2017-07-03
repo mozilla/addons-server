@@ -849,7 +849,7 @@ def find_language(locale):
         return locale
 
     # Check if locale has a short equivalent.
-    loc = settings.ALIASED_LANGUAGES.get(locale)
+    loc = settings.SHORTER_LANGUAGES.get(locale)
     if loc:
         return loc
 

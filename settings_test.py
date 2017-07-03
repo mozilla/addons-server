@@ -85,16 +85,14 @@ AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
     'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
     'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-hans', 'zh-hant',
+    'zh-CN', 'zh-TW',
 )
 
 # Make sure we run our tests with debug languages.
 AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
 
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGE_URL_MAP = {i.lower(): i for i in AMO_LANGUAGES}
-LANGUAGE_URL_MAP['zh-CN'] = 'zh-hans'
-LANGUAGE_URL_MAP['zh-TW'] = 'zh-hant'
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = 1337
 
 ES_DEFAULT_NUM_REPLICAS = 0
@@ -172,12 +170,6 @@ if os.environ.get('RUNNING_IN_CI'):
                 u'sr-Latn': {
                     u'native': u'Srpski',
                     u'English': u'Serbian'},
-                u'zh-CN': {
-                    u'English': u'Chinese (Simplified)',
-                    u'native': u'\u4e2d\u6587 (\u7b80\u4f53)'},
-                u'zh-TW': {
-                    u'English': u'Chinese (Traditional)',
-                    u'native': u'\u6b63\u9ad4\u4e2d\u6587 (\u7e41\u9ad4)'},
                 u'dbg': {
                     u'English': u'Debug Robot',
                     u'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167'}})  # noqa
