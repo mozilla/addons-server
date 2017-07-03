@@ -41,7 +41,7 @@
               </li>
             </ul>
           </div>
-          {{ csrf() }}
+          {% csrf_token %}
           <fieldset>
             <legend>{{ _('Confirm account deletion') }}</legend>
             <ul>

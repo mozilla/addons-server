@@ -2,7 +2,7 @@
 
 {% block title %}
 {# L10n: {0} is the name of the collection. #}
-{{ page_title(_('Edit {0}')|fe(collection.name)) }}
+{{ page_title(_('Edit {0}')|format_html(collection.name)) }}
 {% endblock %}
 {% set owner = (collection.owned_by(user) or is_admin) %}
 
@@ -12,7 +12,7 @@
   </div>
   <div class="primary">
     <header>
-      <h2>{{ _('Edit {0}')|fe(collection.name) }}</h2>
+      <h2>{{ _('Edit {0}')|format_html(collection.name) }}</h2>
     </header>
 
     <div id="a" class="tab-wrapper">
@@ -55,7 +55,7 @@
       <div class="tab_panel tab-panel tab-selected" id="addons-edit">
         <form method="post"
               action="{{ url('collections.edit_addons', username, slug) }}">
-        {{ csrf() }}
+        {% csrf_token %}
         {% include 'bandwagon/includes/addon_selector.html' %}
         <div class="listing-footer">
           <input type="submit" value="{{ _('Save Changes') }}">

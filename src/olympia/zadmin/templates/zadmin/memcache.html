@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
 {% block title %}{{ page_title('Memcache') }}{% endblock %}
 
@@ -19,7 +19,7 @@
   {% endfor %}
   <h3>Clear</h3>
   <form method="post" class="featured-inner object-lead user-input">
-    {{ csrf() }}
+    {% csrf_token %}
     <fieldset>
     <p class="instruct">Are you sure you want to clear memcache?</p>
     {{ form }}

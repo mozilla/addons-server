@@ -15,7 +15,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -571,6 +571,11 @@ class ReviewerScore(ModelBase):
         query = (cls.objects
                     .values_list('user__id', 'user__display_name')
                     .annotate(total=Sum('score'))
+                    .filter(user__groups__name__in=(
+                        'Add-on Reviewers',
+                        'Senior Add-on Reviewers',
+                        'Persona Reviewers',
+                        'Senior Personas Reviewers'))
                     .exclude(user__groups__name__in=('No Reviewer Incentives',
                                                      'Staff', 'Admins'))
                     .order_by('-total'))

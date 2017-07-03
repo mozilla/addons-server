@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
 from django.utils.translation import ugettext
-from jingo.helpers import datetime
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import absolutify, url
+from olympia.amo.templatetags.jinja_helpers import (
+    absolutify, url, datetime_filter)
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.utils import urlparams
 from olympia.addons.models import Addon
@@ -81,7 +81,7 @@ class VersionsRss(NonAtomicFeed):
         # L10n: This is the Title for this Version of the Addon
         return u'{name} {version} - {created}'.format(
             name=self.addon.name, version=version.version,
-            created=datetime(version.created))
+            created=datetime_filter(version.created))
 
     def item_description(self, version):
         """Description for particular version (<item><description>)"""

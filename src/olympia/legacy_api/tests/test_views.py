@@ -6,16 +6,15 @@ from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
-import jingo
 import pytest
+import jinja2
 from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, legacy_api
 from olympia.addons.models import (
     Addon, AppSupport, CompatOverride, CompatOverrideRange, Persona, Preview)
-from olympia.amo import helpers
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.views import handler500
@@ -283,7 +282,8 @@ class APITest(TestCase):
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
-        icon_url = "%s3/3615-32.png" % helpers.user_media_url('addon_icons')
+        icon_url = "%s3/3615-32.png" % jinja_helpers.user_media_url(
+            'addon_icons')
         self.assertContains(response, '<icon size="32">' + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
@@ -312,21 +312,24 @@ class APITest(TestCase):
         assert data['version'] == '2.1.072'
         assert data['status'] == 'public'
         assert data['authors'] == (
-            [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
-              'link': absolutify(u'/en-US/firefox/user/55021/?src=api')}])
+            [{
+                'id': 55021,
+                'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
+                'link': jinja_helpers.absolutify(
+                    u'/en-US/firefox/user/55021/?src=api')}])
         assert data['summary'] == unicode(addon.summary)
         assert data['description'] == (
             'This extension integrates your browser with Delicious '
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         assert data['icon'] == (
-            '%s3/3615-32.png?modified=1275037317' % helpers.user_media_url(
-                'addon_icons'))
+            '%s3/3615-32.png?modified=1275037317' %
+            jinja_helpers.user_media_url('addon_icons'))
         assert data['compatible_apps'] == (
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         assert data['eula'] == unicode(addon.eula)
         assert data['learnmore'] == (
-            absolutify('/en-US/firefox/addon/a3615/?src=api'))
+            jinja_helpers.absolutify('/en-US/firefox/addon/a3615/?src=api'))
         assert 'theme' not in data
 
     def test_theme_detail(self):
@@ -355,7 +358,8 @@ class APITest(TestCase):
         assert doc('license name').length == 1
         assert doc('license url').length == 1
         assert doc('license name').text() == unicode(license.name)
-        assert doc('license url').text() == absolutify(license.url)
+        assert (
+            doc('license url').text() == jinja_helpers.absolutify(license.url))
 
         license.url = ''
         license.save()
@@ -363,7 +367,8 @@ class APITest(TestCase):
         response = self.client.get(api_url)
         doc = pq(response.content)
         license_url = addon.current_version.license_url()
-        assert doc('license url').text() == absolutify(license_url)
+        assert (
+            doc('license url').text() == jinja_helpers.absolutify(license_url))
 
         license.delete()
         response = self.client.get(api_url)
@@ -398,10 +403,8 @@ class APITest(TestCase):
         # Link to the developer's profile
         # File size
         """
-        e = jingo.get_env().filters['e']
-
         def urlparams(x, *args, **kwargs):
-            return e(helpers.urlparams(x, *args, **kwargs))
+            return jinja2.escape(jinja_helpers.urlparams(x, *args, **kwargs))
 
         needles = (
             '<addon id="4664">',
@@ -438,11 +441,11 @@ class APITest(TestCase):
         url_needles = {
             "full": urlparams(
                 '{previews}full/20/20397.png'.format(
-                    previews=helpers.user_media_url('previews')),
+                    previews=jinja_helpers.user_media_url('previews')),
                 src='api', modified=1209834208 - 7 * 3600),
             "thumbnail": urlparams(
                 '{previews}thumbs/20/20397.png'.format(
-                    previews=helpers.user_media_url('previews')),
+                    previews=jinja_helpers.user_media_url('previews')),
                 src='api', modified=1209834208 - 7 * 3600),
         }
 

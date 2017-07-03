@@ -37,7 +37,7 @@
     {% if users %}
       <h3>
         {# L10n: {0} is a number (e.g. 1000). #}
-        {{ _('More than {0} add-on reviews')|f(num) }}
+        {{ _('More than {0} add-on reviews')|format_html(num) }}
       </h3>
       <p>
       {% for user in users %}

@@ -4,7 +4,7 @@ from django.utils.translation import ugettext
 import caching.base as caching
 
 from olympia import amo
-from olympia.amo.helpers import url, absolutify
+from olympia.amo.templatetags.jinja_helpers import url, absolutify
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.utils import render
 

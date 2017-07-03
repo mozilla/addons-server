@@ -4,12 +4,12 @@ from django.utils.encoding import smart_text
 from django.utils.translation import trim_whitespace
 
 import mock
-from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import datetime_filter
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.bandwagon.models import MonthlyPick

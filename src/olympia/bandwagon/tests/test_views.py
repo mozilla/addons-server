@@ -5,7 +5,6 @@ from django.core.cache import cache
 from django.forms import ValidationError
 import django.test
 from django.utils.datastructures import MultiValueDict
-from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch, Mock
@@ -56,37 +55,6 @@ def test_collections_form_unicode_slug():
                              initial=dict(author=u))
     assert 'name' in f.errors
     assert 'slug' not in f.errors
-
-
-class HappyUnicodeClient(django.test.Client):
-    """
-    Django's test client runs urllib.unquote on the path you pass in.
-
-    urlilib.unquote does not understand unicode.  It's going to ruin your life.
-
-    >>> u =  u'\u05d0\u05d5\u05e1\u05e3'
-    >>> encoding.iri_to_uri(u)
-    '%D7%90%D7%95%D7%A1%D7%A3'
-    >>> urllib.unquote(encoding.iri_to_uri(u))
-    '\xd7\x90\xd7\x95\xd7\xa1\xd7\xa3'
-    >>> urllib.unquote(unicode(encoding.iri_to_uri(u)))
-    u'\xd7\x90\xd7\x95\xd7\xa1\xd7\xa3'
-    >>> _ == __
-    False
-
-    It all looks the same but the u on the front of the second string means
-    it's interpreted completely different.  I don't even know.
-    """
-
-    def get(self, path_, *args, **kw):
-        path_ = force_bytes(path_)
-        return super(HappyUnicodeClient, self).get(path_, *args, **kw)
-
-    def post(self, path_, *args, **kw):
-        path_ = force_bytes(path_)
-        return super(HappyUnicodeClient, self).post(path_, *args, **kw)
-
-    # Add head, put, options, delete if you need them.
 
 
 class TestViews(TestCase):
@@ -362,7 +330,6 @@ class TestCRUD(TestCase):
 
     def setUp(self):
         super(TestCRUD, self).setUp()
-        self.client = HappyUnicodeClient()
         self.add_url = reverse('collections.add')
         self.login_admin()
         # Oh god it's unicode.
@@ -402,7 +369,7 @@ class TestCRUD(TestCase):
         r = self.client.get(url)
         self.assertContains(
             r,
-            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+            '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
 
@@ -745,7 +712,7 @@ class TestCRUD(TestCase):
         r = self.client.get(url)
         self.assertContains(
             r,
-            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+            '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
 

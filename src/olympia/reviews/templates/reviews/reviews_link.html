@@ -12,10 +12,10 @@
     {% if num %}
     {{ addon.average_rating|float|stars }}
     <a href="{{ base }}">
-      {% with count='<span itemprop="count">{0}</span>'|fe(num|numberfmt) %}
+      {% with count='<span itemprop="count">{0}</span>'|format_html(num|numberfmt) %}
         {# Using num=count so we don't change an L10n string. #}
         <strong>{{ ngettext('{num} review', '{num} reviews',
-                            num)|f(num=count)|safe }}</strong></a>
+                            num)|format_html(num=count) }}</strong></a>
       {% endwith %}
     {% else %}
       <strong>{{ _('Not yet rated') }}</strong>

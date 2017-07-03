@@ -7,7 +7,6 @@ from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
 
-import jingo
 import mock
 import pytest
 from product_details import product_details
@@ -17,7 +16,7 @@ from olympia.amo.utils import (
     cache_ns_key, escape_all, find_language,
     LocalFileStorage, no_jinja_autoescape, no_translation,
     resize_image, rm_local_tmp_dir, slugify, slug_validator,
-    to_language)
+    to_language, from_string)
 
 
 pytestmark = pytest.mark.django_db
@@ -276,7 +275,8 @@ def test_escape_all(test_input, expected):
     assert escape_all(test_input) == expected
 
 
-@mock.patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
+@mock.patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
 @mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
@@ -295,8 +295,8 @@ def test_no_jinja_autoescape():
     val = 'some double quote: " and a <'
     tpl = '{{ val }}'
     ctx = {'val': val}
-    template = jingo.get_env().from_string(tpl)
+    template = from_string(tpl)
     assert template.render(ctx) == 'some double quote: &#34; and a &lt;'
     with no_jinja_autoescape():
-        template = jingo.get_env().from_string(tpl)
+        template = from_string(tpl)
         assert template.render(ctx) == 'some double quote: " and a <'

@@ -13,7 +13,7 @@
       {% if addon_tab %}
         {% set cnt = addons.paginator.count %}
         {# L10n: {0} is an integer. #}
-        <h2 class="submission-count">{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|fe(cnt|numberfmt) }}</h2>
+        <h2 class="submission-count">{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)|format_html(cnt|numberfmt) }}</h2>
       {% endif %}
     </header>
   </section>
@@ -72,7 +72,7 @@
   <section class="dashboard primary theme-dashboard">
     {% set cnt = themes.paginator.count %}
     <h2 class="submission-count">
-      {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|fe(cnt|numberfmt) }}
+      {{ ngettext('<b>{0}</b> theme', '<b>{0}</b> themes', cnt)|format_html(cnt|numberfmt) }}
     </h2>
     {% include "addons/includes/dashboard_tabs.html" %}
     <div class="listing island hero c">

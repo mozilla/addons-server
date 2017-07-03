@@ -45,12 +45,12 @@ def mock_inline_css(monkeypatch):
     When testing, we don't want nor need the bundled/minified css files, so
     pretend that all the css files are external.
 
-    Mocking this will prevent amo.helpers.inline_css to believe it should
-    bundle the css.
+    Mocking this will prevent amo.templatetags.jinja_helpers.inline_css to
+    believe it should bundle the css.
 
     """
-    from olympia.amo import helpers
-    monkeypatch.setattr(helpers, 'is_external', lambda css: True)
+    from olympia.amo.templatetags import jinja_helpers
+    monkeypatch.setattr(jinja_helpers, 'is_external', lambda css: True)
 
 
 def prefix_indexes(config):

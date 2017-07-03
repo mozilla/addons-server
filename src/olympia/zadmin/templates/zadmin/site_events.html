@@ -1,4 +1,4 @@
-{% extends 'admin/base.html' %}
+{% extends 'zadmin/base.html' %}
 
 {% set title = 'Site Events' %}
 
@@ -13,7 +13,7 @@
   <h2>{{ title }}</h2>
 
   <form method="post">
-    {{ csrf() }}
+    {% csrf_token %}
     {{ form.as_p() }}
     <input type="submit" value="Add New Event">
   </form>

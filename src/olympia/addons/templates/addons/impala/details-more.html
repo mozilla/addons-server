@@ -2,7 +2,6 @@
    We want the above-the-fold portion to return and render really fast
    so we pull in reviews and links to other add-ons with js.
    This view returns a chunk of HTML that's injected into the DOM. #}
-{% set user = request.user if request.user.is_authenticated() else None %}
 {% set version = addon.current_version %}
 {% set reviews = reviews[:3] %}
 

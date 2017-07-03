@@ -12,7 +12,7 @@ from olympia.amo import LOG
 from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
 from olympia.amo.tests.test_helpers import render
 from olympia.addons.models import Addon
-from olympia.devhub import helpers
+from olympia.devhub.templatetags import jinja_helpers
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -95,7 +95,7 @@ class TestDevFilesStatus(TestCase):
                                         status=amo.STATUS_AWAITING_REVIEW)
 
     def expect(self, expected):
-        cnt, msg = helpers.dev_files_status([self.file])[0]
+        cnt, msg = jinja_helpers.dev_files_status([self.file])[0]
         assert cnt == 1
         assert msg == unicode(expected)
 
@@ -126,7 +126,7 @@ class TestDevFilesStatus(TestCase):
 
 
 @pytest.mark.parametrize(
-    'action1,action2,action3,count', (
+    'action1,action2,action3,expected_count', (
         (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
          LOG.REQUEST_INFORMATION, 3),
         # Tests with Developer_Reply
@@ -153,7 +153,7 @@ class TestDevFilesStatus(TestCase):
     )
 )
 def test_pending_activity_log_count_for_developer(
-        action1, action2, action3, count):
+        action1, action2, action3, expected_count):
     user = user_factory()
     addon = addon_factory()
     version = addon.current_version
@@ -164,4 +164,5 @@ def test_pending_activity_log_count_for_developer(
     ActivityLog.create(action3, addon, version, user=user).update(
         created=days_ago(0))
 
-    assert helpers.pending_activity_log_count_for_developer(version) == count
+    count = jinja_helpers.pending_activity_log_count_for_developer(version)
+    assert count == expected_count

@@ -49,7 +49,7 @@
       <td class="num-addons">
         {% with num=profile.num_addons_listed %}
           {% if num == 0 %}
-             {{ _('{0} add-ons')|f(num) }}
+             {{ _('{0} add-ons')|format_html(num) }}
           {% else %}
             <a href="{{ '#my-submissions' if is_profile else profile.get_url_path() }}">
               {% if profile.is_artist and not profile.is_addon_developer %}

@@ -2,7 +2,7 @@
 
 {% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless, compat %}
 
-{% set title = _('Manage Version {0}')|f(version.version) %}
+{% set title = _('Manage Version {0}')|format_html(version.version) %}
 
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
@@ -10,14 +10,14 @@
 <header>
   {# L10n: {0} is an add-on name. #}
   {{ l10n_menu(addon.default_locale) }}
-  <h2>{{ _('Manage {0}')|fe(addon.name) }}</h2>
+  <h2>{{ _('Manage {0}')|format_html(addon.name) }}</h2>
 </header>
 <section class="primary devhub-form edit-version" role="main">
   <h3>{{ title }}</h3>
   <form method="post" enctype="multipart/form-data">
     <div class="item">
       <div class="item_wrapper">
-        {{ csrf() }}
+        {% csrf_token %}
         <table>
           <tr>
             <th>{{ _("Files") }}</th>

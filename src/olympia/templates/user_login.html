@@ -1,4 +1,3 @@
-{% set user = request.user %}
 {% if user.is_authenticated() %}
   {% if tools_links and tools_links|count > 1 %}
     <ul class="tools">
@@ -34,7 +33,7 @@
 <p class="context">
   {% if user.is_authenticated() %}
     <span class="greeting">
-      {{ _('Welcome, {0}')|f(user.welcome_name) }}
+      {{ _('Welcome, {0}')|format_html(user.welcome_name) }}
     </span>
   {% else %}
     {% trans reg=register_link(), login=login_link() %}

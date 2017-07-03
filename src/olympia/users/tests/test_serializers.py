@@ -1,6 +1,6 @@
 from rest_framework.test import APIRequestFactory
 
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
 from olympia.users.serializers import (

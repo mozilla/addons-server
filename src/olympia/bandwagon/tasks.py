@@ -7,7 +7,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import attach_trans_dict, resize_image
 from olympia.tags.models import Tag
 from olympia.lib.es.utils import index_objects

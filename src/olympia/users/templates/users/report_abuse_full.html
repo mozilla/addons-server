@@ -1,6 +1,6 @@
 {% extends "impala/base_shared.html" %}
 
-{% set title = _('Report user {0}')|f(profile.name) %}
+{% set title = _('Report user {0}')|format_html(profile.name) %}
 {% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block content %}

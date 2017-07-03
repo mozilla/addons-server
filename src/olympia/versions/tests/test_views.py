@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.amo.helpers import user_media_url
+from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams

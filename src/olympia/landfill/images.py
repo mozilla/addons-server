@@ -8,7 +8,7 @@ from django.conf import settings
 
 from olympia.addons.models import Preview
 from olympia.addons.tasks import save_theme
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.devhub.tasks import resize_preview
 
 

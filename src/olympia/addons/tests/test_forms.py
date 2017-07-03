@@ -14,7 +14,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.addons import forms
 from olympia.addons.models import Addon, Category
-from olympia.files.helpers import copyfileobj
+from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.tags.models import Tag, AddonTag
 from olympia.users.models import UserProfile
 

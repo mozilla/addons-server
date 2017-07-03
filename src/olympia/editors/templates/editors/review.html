@@ -20,7 +20,7 @@
     <img src="{{ addon.icon_url }}" class="icon" alt="" />
     {# L10n: "Review [add-on name]" #}
     <span>
-      {{ _('Review {0}')|fe(addon.name) }}
+      {{ _('Review {0}')|format_html(addon.name) }}
     </span>
     {% if version %}
       <span class="version">{{ version.version }} ({{ version.get_channel_display() }})</span>
@@ -30,7 +30,7 @@
 </hgroup>
 
 <form method="POST" action="#review-actions" class="review-form">
-  {{ csrf() }}
+  {% csrf_token %}
   <div id="addon" class="primary" role="main" data-id="{{ addon.id }}" data-url="{{ url('editors.review_viewing') }}">
 
   {% include 'editors/addon_details_box.html' %}
@@ -252,7 +252,7 @@
 </form>
 
 <form method="POST" action="{{ url('editors.whiteboard', addon.slug if addon.slug else addon.pk) }}">
-  {{ csrf() }}
+  {% csrf_token %}
   <div class="whiteboard">
     <div class="whiteboard-inner">
       <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>

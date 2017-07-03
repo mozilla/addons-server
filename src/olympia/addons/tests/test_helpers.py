@@ -3,7 +3,8 @@ from pyquery import PyQuery
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.addons.helpers import statusflags, flag, contribution
+from olympia.addons.templatetags.jinja_helpers import (
+    statusflags, flag, contribution)
 from olympia.addons.models import Addon
 
 

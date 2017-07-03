@@ -9,7 +9,8 @@ import mock
 
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
-from olympia.amo.helpers import user_media_path, user_media_url
+from olympia.amo.templatetags.jinja_helpers import (
+    user_media_path, user_media_url)
 from olympia.versions.models import Version
 
 from services import theme_update

@@ -15,7 +15,7 @@ from rest_framework.viewsets import ModelViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import render, paginate
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
@@ -26,7 +26,7 @@ from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner,
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 
-from .helpers import user_can_delete_review
+from .templatetags.jinja_helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating
 from .permissions import CanDeleteReviewPermission
 from .serializers import ReviewSerializer, ReviewSerializerReply
@@ -166,8 +166,8 @@ def reply(request, addon, review_id):
             'defaults': _review_details(request, addon, form)
         }
         reply, created = Review.unfiltered.update_or_create(**kwargs)
-        return redirect(helpers.url('addons.reviews.detail', addon.slug,
-                                    review_id))
+        return redirect(jinja_helpers.url(
+            'addons.reviews.detail', addon.slug, review_id))
     ctx = {
         'review': review,
         'form': form,
@@ -192,7 +192,7 @@ def add(request, addon):
                             flag=ReviewFlag.OTHER,
                             note='URLs')
             rf.save()
-        return redirect(helpers.url('addons.reviews.list', addon.slug))
+        return redirect(jinja_helpers.url('addons.reviews.list', addon.slug))
     return render(request, 'reviews/add.html', {'addon': addon, 'form': form})
 
 

@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
 {% block title %}{{ page_title('Celery Stats') }}{% endblock %}
 
@@ -6,7 +6,7 @@
 <h2>Celery Stats</h2>
 <p>The time is {{ now|babel_datetime }}.</p>
 <form method="post">
-  {{ csrf() }}
+  {% csrf_token %}
   <input name="reset" type="submit" value="Reset">
 </form>
 

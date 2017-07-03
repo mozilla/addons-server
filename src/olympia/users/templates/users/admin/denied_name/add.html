@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 {% from 'includes/forms.html' import required %}
 {% block extrahead %}
   {{ super() }}
@@ -17,7 +17,7 @@
 
     {% if form %}
       <form method="post">
-        {{ csrf() }}
+        {% csrf_token %}
         <p>Enter one name per line.</p>
         <div class="form-row">
           {{ form.names.errors }}

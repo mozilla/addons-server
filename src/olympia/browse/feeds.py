@@ -4,7 +4,7 @@ from django.utils.translation import ugettext
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import absolutify, url, page_name
+from olympia.amo.templatetags.jinja_helpers import absolutify, url, page_name
 from olympia.addons.models import Addon, Category
 
 from .views import addon_listing, SearchToolsFilter

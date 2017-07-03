@@ -3,13 +3,10 @@ import sys
 import logging
 import warnings
 
-import jingo
-import jingo.monkey
 import session_csrf
 from django.apps import AppConfig
 from django.core.management import call_command
 from django.conf import settings
-from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -26,11 +23,6 @@ class CoreConfig(AppConfig):
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:
             warnings.simplefilter('ignore')
-
-        jingo.monkey.patch()
-
-        jingo_env = jingo.get_env()
-        jingo_env.install_gettext_translations(translation, newstyle=True)
 
         session_csrf.monkeypatch()
 

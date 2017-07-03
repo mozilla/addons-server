@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.discovery.data import discopane_items
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 

@@ -1,11 +1,11 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
 {% block title %}{{ page_title('Generate an Error') }}{% endblock %}
 
 {% block content %}
 <h2>Generate an Error</h2>
 <form method="post">
-  {{ csrf() }}
+  {% csrf_token %}
   {{ form.as_p() }}
   <button type="submit">Explode!</button>
 </form>

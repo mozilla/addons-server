@@ -2,7 +2,7 @@
 
 {% set c = collection %}
 
-{% block title %}{{ page_title(_('{0} :: Collections')|fe(c.name)) }}{% endblock %}
+{% block title %}{{ page_title(_('{0} :: Collections')|format_html(c.name)) }}{% endblock %}
 
 {% block bodyclass %}inverse{% endblock %}
 
@@ -41,7 +41,7 @@
             {% endtrans %}
           </li>
         {% endif %}
-        <li>{{ _('Updated {0}')|f(c.modified|datetime) }}</li>
+        <li>{{ _('Updated {0}')|format_html(c.modified|datetime) }}</li>
       </ul>
     </div>
     <div class='object-details'>
@@ -57,7 +57,7 @@
         <ul id="collection-favorites-opts">
           <li>
             <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
-              {{ csrf() }}
+              {% csrf_token %}
               <button type="submit">
                 {% if c.listed %}
                   {{ _('Make this Collection Private') }}
@@ -112,7 +112,7 @@
         <label for="sortby">{{ _('Sort by:') }}</label>
         <select id="sortby" name="{{ filter.key }}">
           {% for value, title in filter.opts %}
-          <option value="{{ value }}" {{ value|ifeq(filter.field, 'selected') }}>
+          <option value="{{ value }}"{% if value == filter.field %} selected{% endif %}>
             {{ title }}</option>
           {% endfor %}
         </select>

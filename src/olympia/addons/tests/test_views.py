@@ -16,7 +16,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.helpers import numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
@@ -30,7 +30,7 @@ from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
-from olympia.users.helpers import users_list
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
@@ -384,7 +384,7 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('.biography').html() == (
-            'Bio: This is line one.<br><br>This is line two')
+            'Bio: This is line one.<br/><br/>This is line two')
         addon_reasons = doc('#about-addon p')
         assert addon_reasons.eq(0).html() == (
             'Why: This is line one.<br/><br/>This is line two')
@@ -398,9 +398,9 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         bios = pq(r.content)('.biography')
         assert bios.eq(0).html() == (
-            'Bio1: This is line one.<br><br>This is line two')
+            'Bio1: This is line one.<br/><br/>This is line two')
         assert bios.eq(1).html() == (
-            'Bio2: This is line one.<br><br>This is line two')
+            'Bio2: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         url = reverse('addons.roadblock', args=['a11730'])
@@ -572,9 +572,10 @@ class TestDetailPage(TestCase):
         a.name = '<script>alert("fff")</script>'
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert(&#34;fff&#34;)&lt;/script&gt;' in html
-        assert '<script>' not in html
+        assert (
+            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
+            response.content)
+        assert '<script>' not in response.content
 
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))

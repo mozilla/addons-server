@@ -23,12 +23,12 @@
       <img class="addon-icon" src="{{ addon.icon_url }}" alt="">
       <h2 class="addon-name">{{ addon.name }}</h2>
       <h3 class="author">
-        {{ _('by {0}')|fe(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}
+        {{ _('by {0}')|format_html(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}
         <a href="#ownership" class="button transfer-ownership">{{ _('Transfer ownership') }}</a>
       </h3>
       <div class="owner-email hidden">
         <form action="{{ request.path }}#ownership" method="post">
-          {{ csrf() }}
+          {% csrf_token %}
           {{ owner_form.owner.errors }}
           {{ owner_form.owner }}
           <button name="owner_submit" type="submit">{{ _('Save Changes') }}</button>
@@ -74,7 +74,7 @@
 
   <div class="island prettyform" id="submit-persona">
     <form method="post">
-      {{ csrf() }}
+      {% csrf_token %}
       {{ form.unsaved_data }}
       <fieldset>
         <legend>{{ _('Theme Details') }}</legend>
@@ -99,7 +99,7 @@
             <span class="note">
               {{ ngettext('Comma-separated, minimum of {0} character.',
                           'Comma-separated, minimum of {0} characters.',
-                          amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                          amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
               {{ _('Example: dark, cinema, noir. Limit 20.') }}
             </span>
           </li>
@@ -293,7 +293,6 @@
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
               <span class="author">
-                {% set user = request.user %}
                 {% trans user=user.username,
                          profile_url=url('users.profile', user.id) %}
                   by <a href="{{ profile_url }}">{{ user }}</a>
