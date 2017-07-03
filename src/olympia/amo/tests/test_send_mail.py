@@ -180,7 +180,7 @@ class TestSendMail(BaseTestCase):
     def test_dont_localize(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        translation.activate('zh_TW')
+        translation.activate('es')
         send_mail('test subject', 'test body', perm_setting='reply',
                   recipient_list=[to], fail_silently=False)
         assert u'an add-on developer replies to' in mail.outbox[0].body

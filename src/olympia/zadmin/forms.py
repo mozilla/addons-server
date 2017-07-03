@@ -10,8 +10,6 @@ from django.forms.models import BaseModelFormSet
 from django.template import Template, TemplateSyntaxError
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from product_details import product_details
-
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
@@ -136,9 +134,8 @@ class NotifyForm(happyforms.Form):
 
 class FeaturedCollectionForm(happyforms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
-        (i, product_details.languages[i]['native'])
-        for i in settings.AMO_LANGUAGES
-        if i not in ('dbl', 'dbr'))
+        (k, v) for k, v in settings.LANGUAGES.items()
+        if k not in ('dbl', 'dbr'))
 
     application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)

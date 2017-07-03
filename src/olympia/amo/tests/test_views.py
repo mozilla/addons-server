@@ -31,6 +31,17 @@ def test_locale_switcher(client, locale):
     assert response.status_code == 200
 
 
+@pytest.mark.django_db
+@pytest.mark.parametrize('locale_tuple', settings.ALIASED_LANGUAGES.items())
+def test_locale_redirect(client, locale_tuple):
+    response = client.get('/{}/firefox/'.format(locale_tuple[0]))
+    assert response.status_code == 301
+    # FIXME: this has not been implemented yet, but we should, for
+    # backwards-compatibility.
+    assert response['location'] == (
+        'http://testserver/{}/firefox/'.format(locale_tuple[1]))
+
+
 class Test403(TestCase):
     fixtures = ['base/users']
 

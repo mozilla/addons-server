@@ -259,11 +259,15 @@ def lang_from_accept_header(header):
             return langs[lang]
 
         prefix = lang.split('-')[0]
-        # Downgrade a longer prefix to a shorter one if needed (es-PE > es)
+        # Downgrade a longer prefix to a shorter one if needed (es-PE > es).
         if prefix in langs:
             return langs[prefix]
-        # Upgrade to a longer one, if present (zh > zh-CN)
-        lookup = settings.SHORTER_LANGUAGES.get(prefix, '').lower()
+        # Upgrade to a longer one, if present (pt > pt-PT).
+        lookup = settings.ALIASED_LANGUAGES.get(prefix, '').lower()
+        if lookup and lookup in langs:
+            return langs[lookup]
+        # Handle aliases (zh-CN > zh-hans).
+        lookup = settings.ALIASED_LANGUAGES.get(lang, '').lower()
         if lookup and lookup in langs:
             return langs[lookup]
 
