@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.test import TestCase
+from django.test import override_settings, TestCase
 
 import mock
 from rest_framework.exceptions import APIException, PermissionDenied
@@ -21,9 +21,8 @@ test_exception = SimpleRouter()
 test_exception.register('testexcept', DummyViewSet, base_name='test-exception')
 
 
+@override_settings(ROOT_URLCONF=test_exception.urls)
 class TestExceptionHandlerWithViewSet(TestCase):
-    urls = test_exception.urls
-
     # The test client connects to got_request_exception, so we need to mock it
     # otherwise it would immediately re-raise the exception.
     @mock.patch('olympia.api.exceptions.got_request_exception')
