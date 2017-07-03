@@ -577,6 +577,13 @@ class TestDetailPage(TestCase):
             response.content)
         assert '<script>' not in response.content
 
+    def test_report_abuse_links_to_form_age(self):
+        response = self.client.get_ajax(
+            reverse('addons.detail', args=['a3615']))
+        doc = pq(response.content)
+        expected = reverse('addons.abuse', args=['3615'])
+        assert doc('#report-abuse').attr('href') == expected
+
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
         assert 'review_form' in response.context
