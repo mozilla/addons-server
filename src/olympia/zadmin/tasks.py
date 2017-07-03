@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.db.models import Sum
-from django.template import Template
+from django.template import Context, Template
 from django.utils import translation
 
 import requests
@@ -383,12 +383,12 @@ def notify_compatibility_chunk(users, job, data, **kw):
                               % (user.email, addon.slug,
                                  task_error[0], task_error[1]), exc_info=False)
 
-            context = {
+            context = Context({
                 'APPLICATION': unicode(amo.APP_IDS[job.application].pretty),
                 'VERSION': job.target_version.version,
                 'PASSING_ADDONS': user.passing_addons,
                 'FAILING_ADDONS': user.failing_addons,
-            }
+            })
 
             log.info(u'Emailing %s%s for %d addons about '
                      'bulk validation job %s'

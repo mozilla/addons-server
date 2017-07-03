@@ -7,7 +7,7 @@ from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.forms.models import BaseModelFormSet
-from django.template import Template, TemplateSyntaxError
+from django.template import Context, Template, TemplateSyntaxError
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -120,7 +120,7 @@ class NotifyForm(happyforms.Form):
 
     def check_template(self, data):
         try:
-            Template(data).render({})
+            Template(data).render(Context({}))
         except TemplateSyntaxError, err:
             raise forms.ValidationError(err)
         return data
