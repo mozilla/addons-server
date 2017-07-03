@@ -26,7 +26,7 @@ class PaypalError(Exception):
             u'Please try again later.')
 
     def __str__(self):
-        msg = self.message
+        msg = str(self.args[0] if len(self.args) else '')
         if not msg:
             msg = unicode(messages.get(self.id, self.default))
         return msg.encode('utf8') if isinstance(msg, unicode) else msg
