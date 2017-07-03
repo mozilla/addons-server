@@ -1,7 +1,6 @@
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
-from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
 import caching.base as caching
@@ -220,7 +219,7 @@ class Review(ModelBase):
             template = 'reviews/emails/add_review.ltxt'
             perm_setting = 'new_review'
         send_mail_jinja(
-            subject, template, Context(data),
+            subject, template, data,
             recipient_list=recipients, perm_setting=perm_setting)
 
     @staticmethod

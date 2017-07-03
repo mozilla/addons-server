@@ -2,7 +2,7 @@ import datetime
 import re
 
 from django.conf import settings
-from django.template import Context, loader
+from django.template import loader
 from django.utils import translation
 
 from email_reply_parser import EmailReplyParser
@@ -254,18 +254,15 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     from_name = unicode(note_creator.name).replace('"', '\"')
     from_email = '"%s" <%s>' % (from_name, NOTIFICATIONS_FROM_EMAIL)
     send_activity_mail(
-        subject, template.render(Context(
-            author_context_dict, autoescape=False)),
+        subject, template.render(author_context_dict),
         version, addon_authors, from_email, perm_setting)
 
     send_activity_mail(
-        subject, template.render(Context(
-            reviewer_context_dict, autoescape=False)),
+        subject, template.render(reviewer_context_dict),
         version, reviewers, from_email, perm_setting)
 
     send_activity_mail(
-        subject, template.render(Context(
-            staff_cc_context_dict, autoescape=False)),
+        subject, template.render(staff_cc_context_dict),
         version, staff_cc, from_email, perm_setting)
 
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
@@ -328,7 +325,7 @@ def bounce_mail(message, reason):
         return
 
     body = (loader.get_template('activity/emails/bounce.txt').
-            render(Context({'reason': reason, 'SITE_URL': settings.SITE_URL})))
+            render({'reason': reason, 'SITE_URL': settings.SITE_URL}))
     send_mail(
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,

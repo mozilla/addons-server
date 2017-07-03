@@ -13,7 +13,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.forms import Form
 from django.shortcuts import get_object_or_404, redirect
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -436,8 +436,8 @@ def ownership(request, addon_id, addon):
         t = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
         send_mail(title,
-                  t.render(Context({'author': author, 'addon': addon,
-                                    'site_url': settings.SITE_URL})),
+                  t.render({'author': author, 'addon': addon,
+                            'site_url': settings.SITE_URL}),
                   None, recipients, use_deny_list=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
@@ -1782,7 +1782,7 @@ def send_key_change_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('New API key created'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
@@ -1793,7 +1793,7 @@ def send_key_revoked_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('API key revoked'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )

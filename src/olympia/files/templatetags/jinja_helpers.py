@@ -2,11 +2,11 @@ import codecs
 import mimetypes
 import os
 import stat
+from collections import OrderedDict
 from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
 from django.utils.translation import get_language, ugettext
 from django.template import loader
@@ -279,7 +279,7 @@ class FileViewer(object):
 
     def get_files(self):
         """
-        Returns a SortedDict, ordered by the filename of all the files in the
+        Returns an OrderedDict, ordered by the filename of all the files in the
         addon-file. Full of all the useful information you'll need to serve
         this file, build templates etc.
         """
@@ -364,7 +364,7 @@ class FileViewer(object):
         Otherwise, we would just always have the urls for the files with the
         locale from the first person checking them.
         """
-        result = SortedDict()
+        result = OrderedDict()
 
         for path in get_all_files(self.dest):
             filename = force_text(os.path.basename(path), errors='replace')
@@ -485,7 +485,7 @@ class DiffHelper(object):
         are files that have been deleted between the two versions.
         Every element will be marked as a diff.
         """
-        different = SortedDict()
+        different = OrderedDict()
         if self.right.is_search_engine():
             return different
 

@@ -569,11 +569,11 @@ class TestEditThemeForm(TestCase):
         rqt = RereviewQueueTheme.objects.get(theme=self.instance.persona)
         assert rqt.dupe_persona == theme.persona
 
-    @mock.patch('olympia.addons.tasks.make_checksum', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.make_checksum')
     @mock.patch('olympia.addons.tasks.create_persona_preview_images',
                 new=mock.Mock)
     @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
-    def test_reupload_legacy_header_only(self):
+    def test_reupload_legacy_header_only(self, make_checksum_mock):
         """
         STR the bug this test fixes:
 
@@ -584,6 +584,8 @@ class TestEditThemeForm(TestCase):
         - It run move_stored_file('footer.png', 'leg.png').
         - But footer.png does not exist. BAM BUG.
         """
+        make_checksum_mock.return_value = 'comechecksome'
+
         self.theme.header = 'Legacy-header3H.png'
         self.theme.footer = 'Legacy-footer3H-Copy.jpg'
         self.theme.save()

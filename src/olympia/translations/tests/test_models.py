@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-from contextlib import nested
 
 import django
 from django.conf import settings
@@ -493,38 +492,38 @@ class TranslationMultiDbTests(TransactionTestCase):
         assert len(connections['default'].queries) == 3
 
     @override_settings(DEBUG=True)
+    @patch('multidb.get_slave', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
-            with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.get(pk=1)
-                assert len(connections['default'].queries) == 0
-                assert len(connections['slave-1'].queries) == 0
-                assert len(connections['slave-2'].queries) == 3
+            TranslatedModel.objects.get(pk=1)
+            assert len(connections['default'].queries) == 0
+            assert len(connections['slave-1'].queries) == 0
+            assert len(connections['slave-2'].queries) == 3
 
     @override_settings(DEBUG=True)
+    @patch('multidb.get_slave', lambda: 'slave-2')
     @pytest.mark.xfail(reason='Needs django-queryset-transform patch to work')
     def test_translations_reading_from_multiple_db_using(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
-            with patch('multidb.get_slave', lambda: 'slave-2'):
-                TranslatedModel.objects.using('slave-1').get(pk=1)
-                assert len(connections['default'].queries) == 0
-                assert len(connections['slave-1'].queries) == 3
-                assert len(connections['slave-2'].queries) == 0
+            TranslatedModel.objects.using('slave-1').get(pk=1)
+            assert len(connections['default'].queries) == 0
+            assert len(connections['slave-1'].queries) == 3
+            assert len(connections['slave-2'].queries) == 0
 
     @override_settings(DEBUG=True)
+    @patch('multidb.get_slave', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db_pinning(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
-            with nested(patch('multidb.get_slave', lambda: 'slave-2'),
-                        multidb.pinning.use_master):
+            with multidb.pinning.use_master:
                 TranslatedModel.objects.get(pk=1)
                 assert len(connections['default'].queries) == 3
                 assert len(connections['slave-1'].queries) == 0

@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
-from django.template import Context as TemplateContext
 from django.utils import translation
 
 import mock
@@ -178,20 +177,13 @@ class TestSendMail(BaseTestCase):
         assert mail.outbox[0].to == ['nope@mozilla.org']
         assert FakeEmail.objects.count() == 1
 
-    @mock.patch('olympia.amo.utils.Context')
-    def test_dont_localize(self, fake_Context):
-        perm_setting = []
-
-        def ctx(d, autoescape):
-            perm_setting.append(unicode(d['perm_setting']))
-            return TemplateContext(d, autoescape=autoescape)
-        fake_Context.side_effect = ctx
+    def test_dont_localize(self):
         user = UserProfile.objects.all()[0]
         to = user.email
         translation.activate('zh_TW')
         send_mail('test subject', 'test body', perm_setting='reply',
                   recipient_list=[to], fail_silently=False)
-        assert perm_setting[0] == u'an add-on developer replies to my review'
+        assert u'an add-on developer replies to' in mail.outbox[0].body
 
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']

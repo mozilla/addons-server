@@ -75,7 +75,7 @@ def clean_slug(instance, slug_field='slug'):
         else:
             slug = instance.__class__.__name__
 
-    max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
+    max_length = instance._meta.get_field(slug_field).max_length
     slug = slugify(slug)[:max_length]
 
     if DeniedSlug.blocked(slug):
@@ -374,6 +374,14 @@ class Addon(OnChangeMixin, ModelBase):
 
     class Meta:
         db_table = 'addons'
+        index_together = [
+            ['weekly_downloads', 'type'],
+            ['created', 'type'],
+            ['bayesian_rating', 'type'],
+            ['last_updated', 'type'],
+            ['average_daily_users', 'type'],
+            ['type', 'status', 'disabled_by_user'],
+        ]
 
     @staticmethod
     def __new__(cls, *args, **kw):
@@ -511,7 +519,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def initialize_addon_from_upload(cls, data, upload, channel):
-        fields = cls._meta.get_all_field_names()
+        fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
         if guid:  # It's an extension.

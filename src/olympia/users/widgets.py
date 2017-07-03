@@ -1,5 +1,5 @@
 from django import forms
-from django.template import Context, loader
+from django.template import loader
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
@@ -50,8 +50,8 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
         for e, name in email.NOTIFICATION_GROUPS.items():
             if e in groups:
                 context = {'title': name, 'options': groups[e]}
-                output.append(loader.get_template(template_url).render(
-                    Context(context)))
+                output.append(
+                    loader.get_template(template_url).render(context))
 
         return mark_safe(u'<ol class="complex">%s</ol>' % u'\n'.join(output))
 

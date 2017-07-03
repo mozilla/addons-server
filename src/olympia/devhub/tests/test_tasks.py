@@ -420,7 +420,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
         with pytest.raises(ValueError) as exc:
             tasks.run_addons_linter('doesntexist')
 
-        assert exc.value.message == (
+        assert str(exc.value) == (
             'Path "doesntexist" is not a file or directory or '
             'does not exist.')
 
