@@ -38,7 +38,7 @@ from olympia.zadmin.models import get_config, set_config
 
 
 class EditorTest(TestCase):
-    fixtures = ['base/users', 'base/approvals', 'editors/pending-queue']
+    fixtures = ['base/users', 'base/approvals']
 
     def login_as_admin(self):
         assert self.client.login(email='admin@mozilla.com')
@@ -1370,7 +1370,7 @@ class TestAutoApprovedQueue(QueueTest):
 
 
 class TestPerformance(QueueTest):
-    fixtures = ['base/users', 'editors/pending-queue', 'base/addon_3615']
+    fixtures = ['base/users', 'base/addon_3615']
 
     """Test the page at /editors/performance."""
 
