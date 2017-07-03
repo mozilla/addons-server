@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-from contextlib import nested
 
 import django
 from django.conf import settings
