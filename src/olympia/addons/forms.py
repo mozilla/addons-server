@@ -20,7 +20,7 @@ from olympia.amo.utils import (
 from olympia.addons.models import (
     Addon, AddonCategory, DeniedSlug, Category, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
+from olympia.addons.widgets import CategoriesSelectMultiple
 from olympia.devhub import tasks as devhub_tasks
 from olympia.lib import happyforms
 from olympia.tags.models import Tag
@@ -294,7 +294,7 @@ def icons():
 
 class AddonFormMedia(AddonFormBase):
     icon_type = forms.CharField(widget=forms.RadioSelect(
-        renderer=IconWidgetRenderer, choices=[]), required=False)
+        choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
