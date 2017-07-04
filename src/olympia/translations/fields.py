@@ -118,7 +118,7 @@ def save_on_signal(obj, trans):
     signal.connect(cb, sender=obj.__class__, weak=False)
 
 
-class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
+class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
