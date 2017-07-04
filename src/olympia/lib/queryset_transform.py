@@ -36,8 +36,8 @@ class TransformQuerySet(models.query.QuerySet):
         super(TransformQuerySet, self).__init__(*args, **kwargs)
         self._transform_fns = []
 
-    def _clone(self, klass=None, setup=False, **kw):
-        c = super(TransformQuerySet, self)._clone(klass, setup, **kw)
+    def _clone(self, **kwargs):
+        c = super(TransformQuerySet, self)._clone(**kwargs)
         c._transform_fns = self._transform_fns[:]
         return c
 
