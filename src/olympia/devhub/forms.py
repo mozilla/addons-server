@@ -96,25 +96,8 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(ugettext('Slug incorrect.'))
 
 
-class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
-
-    def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioChoiceInput, self).__init__(
-            name, value, attrs, choice, index)
-        license = choice[1]  # Choice is a tuple (object.id, object).
-        link = (u'<a class="xx extra" href="%s" target="_blank" '
-                u'rel="noopener noreferrer">%s</a>')
-        if hasattr(license, 'url'):
-            details = link % (license.url, ugettext('Details'))
-            self.choice_label = mark_safe(self.choice_label + details)
-
-
-class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
-    choice_input_class = LicenseRadioChoiceInput
-
-
 class LicenseRadioSelect(forms.RadioSelect):
-    renderer = LicenseRadioFieldRenderer
+    pass
 
 
 class LicenseForm(AMOModelForm):
