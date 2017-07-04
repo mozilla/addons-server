@@ -370,8 +370,8 @@ pyOpenSSL==17.1.0 \
     --hash=sha256:cc21d1dcc5c4413281c59f912975209999ffb8b091b03872d2516e60be512290 \
     --hash=sha256:5a20a51d35104cd234d056861ace3e7a335aaf1f47fc96726c9e20ac1dc49563
 # pycparser is required by cffi
-pycparser==2.17 \
-    --hash=sha256:0aac31e917c24cb3357f5a4d5566f2cc91a19ca41862f6c3c22dc60a629673b6
+pycparser==2.18 \
+    --hash=sha256:99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226
 # pyparsing is required by packaging
 pyparsing==2.2.0 \
     --hash=sha256:fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010 \
