@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-04 16:07+0000\n"
+"PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -949,7 +949,7 @@ msgstr "Nóta ón Bhailitheoir"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[0] "<strong>{0}</strong> íoslódáil sa tseachtain"
 msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
@@ -1726,7 +1726,7 @@ msgid "Most Users"
 msgstr "Líon is mó úsáideoirí"
 
 msgid "Weekly Downloads"
-msgstr "Íosluchtuithe sa tSeachtain"
+msgstr "Íoslódálacha sa tSeachtain"
 
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
@@ -1738,7 +1738,7 @@ msgid "Created"
 msgstr "Cruthaithe"
 
 msgid "Downloads"
-msgstr "Íosluchtuithe"
+msgstr "Íoslódálacha"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1762,10 +1762,10 @@ msgid "Install Language Pack"
 msgstr "Suiteáil Pacáiste Teanga"
 
 msgid "Download Dictionary"
-msgstr "Íosluchtaigh Foclóir"
+msgstr "Íoslódáil Foclóir"
 
 msgid "Download Language Pack"
-msgstr "Íosluchtaigh Pacáiste Teanga"
+msgstr "Íoslódáil Pacáiste Teanga"
 
 msgid "Available in your locale"
 msgstr "Ar fáil i do theanga"
@@ -2506,7 +2506,7 @@ msgid "Bookmarks"
 msgstr "Leabharmharcanna"
 
 msgid "Download Management"
-msgstr "Bainistiú Íosluchtuithe"
+msgstr "Bainistiú Íoslódála"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fothaí, Nuacht, agus Blagadóireacht"
@@ -2684,7 +2684,7 @@ msgid "Privacy and Security"
 msgstr "Príobháideachas agus Slándáil"
 
 msgid "Downloading and File Management"
-msgstr "Íosluchtú agus Bainistiú Comhad"
+msgstr "Íoslódáil agus Bainistiú Comhad"
 
 msgid "Interface Customizations"
 msgstr "Saincheapadh an Chomhéadain"
@@ -2876,7 +2876,7 @@ msgid "Need at least one compatible application."
 msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Bhí earráid leis an uasluchtú. Bain triail eile as."
+msgstr "Bhí earráid leis an uaslódáil. Bain triail eile as."
 
 msgid "Override failed validation"
 msgstr ""
@@ -2894,7 +2894,7 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr ""
 
 msgid "You cannot upload any more files for this version."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
 
 msgid "Version doesn't match"
 msgstr "Níl an leagan comhoiriúnach"
@@ -3062,7 +3062,7 @@ msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr "Tharla earráid agus do réamhamharc á uasluchtú."
+msgstr "Tharla earráid agus do réamhamharc á uaslódáil."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3241,8 +3241,8 @@ msgstr ""
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uasluchtaigh Leagan Nua</a> nó <a "
-"href=\"#\" class=\"close\">Ná Bac Leis</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uaslódáil Leagan Nua</a> nó <a href=\"#\" "
+"class=\"close\">Ná Bac Leis</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "Scrúdaigh agus nuashonraigh raonta comhoiriúnachta."
@@ -3554,7 +3554,7 @@ msgid "Used in add-on detail pages."
 msgstr "Úsáidtear é seo ar leathanach mionsonraí an bhreiseáin."
 
 msgid "Upload a Custom Icon..."
-msgstr "Uasluchtaigh Deilbhín Saincheaptha..."
+msgstr "Uaslódáil Deilbhín Saincheaptha..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64×64 má tá sé níos mó."
@@ -3640,13 +3640,13 @@ msgid "Edit information about this add-on."
 msgstr "Cuir an t-eolas faoin bhreiseán seo in eagar."
 
 msgid "Upload a new version of this add-on."
-msgstr "Uasluchtaigh leagan nua den bhreiseán seo."
+msgstr "Uaslódáil leagan nua den bhreiseán seo."
 
 msgid "New Version"
 msgstr "Leagan Nua"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Staitisticí laethúla ar líon íosluchtuithe agus úsáideoirí."
+msgstr "Staitisticí laethúla ar líon íoslódálacha agus úsáideoirí."
 
 msgid "Statistics"
 msgstr "Staitisticí"
@@ -3831,13 +3831,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr "Íosluchtaigh {0}"
+msgstr "Íoslódáil {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
 msgid "Upload File"
-msgstr "Uasluchtaigh Comhad"
+msgstr "Uaslódáil Comhad"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3847,7 +3847,7 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Upload Add-on"
-msgstr "Uasluchtaigh Breiseán"
+msgstr "Uaslódáil Breiseán"
 
 #, fuzzy
 msgid "Where to Host File"
@@ -3858,7 +3858,7 @@ msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
 msgid "Upload Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
@@ -4012,7 +4012,7 @@ msgid "Telling your users what's coming soon will give them something to look fo
 msgstr ""
 
 msgid "Upload New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "View All"
 msgstr ""
@@ -4577,7 +4577,7 @@ msgid "Files"
 msgstr "Comhaid:"
 
 msgid "Upload Another File"
-msgstr "Uasluchtaigh Comhad Eile"
+msgstr "Uaslódáil Comhad Eile"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -4698,7 +4698,7 @@ msgid "All versions"
 msgstr "Féach ar gach Leagan"
 
 msgid "Upload a New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "Delete Version {version}"
 msgstr "Scrios Leagan {version}"
@@ -5737,12 +5737,12 @@ msgstr ""
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil, eilimint <%s> ar iarraidh nó folamh"
 
 msgid "Could not parse uploaded file."
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -6010,7 +6010,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Go raibh maith agat as %(app)s a úsáid agus as tacaíocht a thabhairt do <a href=\"%(url)s\">Mhisean Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Breiseáin íosluchtaithe:"
+msgstr "Breiseáin íoslódáilte:"
 
 msgid "Active Users"
 msgstr "Úsáideoirí Gníomhacha"
@@ -7526,9 +7526,8 @@ msgstr ""
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Níl cead agat níos mó ná léirmheas amháin a dhéanamh ar leagan amháin de bhreiseán."
 
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Go raibh maith agat; cuireadh bratach leis an léirmheas seo agus déanfaidh eagarthóir iniúchadh air."
@@ -7834,7 +7833,7 @@ msgid "Add-ons Created"
 msgstr "Breiseáin cruthaithe"
 
 msgid "Add-ons Downloaded"
-msgstr "Breiseáin Íosluchtaithe"
+msgstr "Breiseáin Íoslódáilte"
 
 msgid "Add-ons Updated"
 msgstr "Breiseáin Nuashonraithe"
@@ -7924,7 +7923,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr "Sonraí is déanaí á luchtú&hellip;"
+msgstr "Sonraí is déanaí á lódáil&hellip;"
 
 msgid "No data available."
 msgstr "Níl aon sonraí ar fáil."
@@ -7983,7 +7982,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr "Á Luchtú..."
+msgstr "Á Lódáil..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -8013,7 +8012,7 @@ msgid "Reviews Created by Date"
 msgstr ""
 
 msgid "Download sources by Date"
-msgstr "Foinsí Íosluchtaithe de réir Dáta"
+msgstr "Foinsí Íoslódála de réir Dáta"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -8122,7 +8121,7 @@ msgstr "<a href=\"%(reg)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil iste
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íosluchtaigh <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
+msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íoslódáil <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
