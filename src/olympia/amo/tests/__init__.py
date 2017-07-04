@@ -8,6 +8,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
+from importlib import import_module
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
@@ -24,7 +25,6 @@ from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_bytes
-from django.utils.importlib import import_module
 from django.utils.http import urlencode
 
 import mock
