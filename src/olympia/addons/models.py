@@ -206,8 +206,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(AddonManager, self).get_queryset()
-        qs = qs._clone(klass=AddonQuerySet)
+        qs = AddonQuerySet(self.model, using=self._db)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
