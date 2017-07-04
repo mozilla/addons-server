@@ -208,9 +208,9 @@ django-csp==3.3 \
 django-environ==0.4.1 \
     --hash=sha256:f7bce5af8a4232f93a9d9e68f0afa6e276c57d8144c17bf330ebda8cc57f2cca \
     --hash=sha256:0e22bd07b632046848c746f6e135cb568b7810201ba692a2edb3d5d6c76de34d # pyup: ==0.4.1
-django-extensions==1.6.7 \
-    --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
-    --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943 # pyup: ==1.6.7
+django-extensions==1.8.0 \
+    --hash=sha256:e58aba78c7c538463395c35f09d48d199c655d9c6c82830bc4b3dd6415e1b9ff \
+    --hash=sha256:27d1345c8b0b4ed8b7d713e4a49e9ea723afa9db1f226efd7cd89176b120edcf
 django-mozilla-product-details==0.12.1 \
     --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
     --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb
