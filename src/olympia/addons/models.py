@@ -1824,7 +1824,9 @@ class Category(OnChangeMixin, ModelBase):
         """Return a Category instance created from a StaticCategory.
 
         Does not save it into the database. Useful in tests."""
-        return cls(**static_category.__dict__)
+        data = static_category.__dict__.copy()
+        del data['name']  # Not accepted as part of a Category.
+        return cls(**data)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,

@@ -658,10 +658,11 @@ def addon_factory(
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
-        static_category = random.choice(
-            CATEGORIES[application][type_].values())
+        category_dict = random.choice(
+            CATEGORIES[application][type_].values()).__dict__.copy()
+        del category_dict['name']  # Not accepted as part of a Category.
         category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+            id=category_dict['id'], defaults=category_dict)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
