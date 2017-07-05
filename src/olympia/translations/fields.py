@@ -120,11 +120,6 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
-
-    def __init__(self, field):
-        super(TranslationDescriptor, self).__init__(field)
-        self.model = field.rel.to
-
     def __get__(self, instance, instance_type=None):
         if instance is None:
             return self
@@ -151,31 +146,34 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             # We always get these back from the database as Translations, but
             # we may want them to be a more specific Purified/Linkified child
             # class.
-            if not isinstance(value, self.model):
-                value = switch(value, self.model)
+            if not isinstance(value, self.field.related_model):
+                value = switch(value, self.field.related_model)
             super(TranslationDescriptor, self).__set__(instance, value)
         elif getattr(instance, self.field.attname, None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
-        try:
-            trans = getattr(instance, self.field.name)
-            trans_id = getattr(instance, self.field.attname)
-            if trans is None and trans_id is not None:
-                # This locale doesn't have a translation set, but there are
-                # translations in another locale, so we have an id already.
-                translation = self.model.new(string, lang, id=trans_id)
-            elif to_language(trans.locale) == lang.lower():
+        trans_id = instance.__dict__.get(self.field.attname)
+        if trans_id is None:
+            # We don't have a translation for this field in any language,
+            # create a brand new one.
+            translation = self.field.related_model.new(string, lang)
+        else:
+            try:
+                trans = getattr(instance, self.field.name)
+            except AttributeError, instance.DoesNotExist:
+                trans = None
+            if trans is not None and to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
                 trans.localized_string = string
                 translation = trans
             else:
-                # We already have a translation in a different language.
-                translation = self.model.new(string, lang, id=trans.id)
-        except AttributeError:
-            # Create a brand new translation.
-            translation = self.model.new(string, lang)
+                # We either could not find a translation (but know that one
+                # already exist, because trans_id is set) or are looking to
+                # create one in a different language anyway.
+                translation = self.field.related_model.new(
+                    string, lang, id=trans_id)
 
         # A new translation has been created and it might need to be saved.
         # This adds the translation to the queue of translation that need
