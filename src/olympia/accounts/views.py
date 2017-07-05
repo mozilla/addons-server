@@ -41,8 +41,9 @@ from olympia.users.notifications import NOTIFICATIONS
 
 from . import verify
 from .serializers import (
-    AccountSuperCreateSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer)
+    AccountSuperCreateSerializer, LoginUserProfileSerializer,
+    PublicUserProfileSerializer, UserNotificationSerializer,
+    UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 log = olympia.core.logger.getLogger('accounts')
@@ -312,7 +313,8 @@ class LoginBaseView(FxAConfigMixin, APIView):
             return Response({'error': ERROR_NO_USER}, status=422)
         else:
             update_user(user, identity)
-            response = Response({'email': identity['email']})
+            serializer = LoginUserProfileSerializer(user)
+            response = Response(serializer.data)
             add_api_token_to_response(response, user)
             log.info('Logging in user {} from FxA'.format(user))
             return response
@@ -336,7 +338,8 @@ class RegisterView(APIView):
                             status=422)
         else:
             user = register_user(request, identity)
-            response = Response({'email': user.email})
+            serializer = LoginUserProfileSerializer(user)
+            response = Response(serializer.data)
             add_api_token_to_response(response, user)
             return response
 

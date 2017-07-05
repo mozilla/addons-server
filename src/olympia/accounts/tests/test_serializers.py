@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
+from olympia.access.models import Group, GroupUser
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, BaseTestCase, days_ago, user_factory)
 from olympia.accounts.serializers import (
-    PublicUserProfileSerializer, UserNotificationSerializer,
-    UserProfileSerializer)
+    PublicUserProfileSerializer, LoginUserProfileSerializer,
+    UserNotificationSerializer, UserProfileSerializer)
 from olympia.users.models import UserNotification
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 
@@ -87,3 +89,48 @@ class TestUserNotificationSerializer(BaseTestCase):
         assert data['name'] == user_notification.notification.short
         assert data['enabled'] == user_notification.enabled
         assert data['mandatory'] == user_notification.notification.mandatory
+
+
+class TestLoginUserProfileSerializer(BaseTestCase):
+    serializer = LoginUserProfileSerializer
+    user_kwargs = {
+        'username': 'amo', 'email': 'amo@amo.amo', 'display_name': u'Ms. Amó'}
+
+    def setUp(self):
+        self.user = user_factory(**self.user_kwargs)
+
+    def test_basic(self):
+        data = self.serializer(self.user).data
+        assert data['id'] == self.user.id
+        assert data['email'] == self.user_kwargs['email']
+        assert data['name'] == self.user_kwargs['display_name']
+        assert data['picture_url'] == absolutify(self.user.picture_url)
+        assert data['username'] == self.user_kwargs['username']
+
+    def test_permissions(self):
+        assert self.serializer(self.user).data['permissions'] == []
+
+        # Single permission
+        group = Group.objects.create(name='a', rules='Addons:Review')
+        GroupUser.objects.create(group=group, user=self.user)
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Review']
+
+        # Multiple permissions
+        group.update(rules='Addons:Review,Personas:Review,Addons:Edit')
+        del self.user.groups_list
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+
+        # Change order to test sort
+        group.update(rules='Personas:Review,Addons:Review,Addons:Edit')
+        del self.user.groups_list
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+
+        # Add a second group membership to test duplicates
+        group2 = Group.objects.create(name='b', rules='Foo:Bar,Addons:Edit')
+        GroupUser.objects.create(group=group2, user=self.user)
+        Group.objects.invalidate(*Group.objects.all())
+        assert self.serializer(self.user).data['permissions'] == [
+            'Addons:Edit', 'Addons:Review', 'Foo:Bar', 'Personas:Review']

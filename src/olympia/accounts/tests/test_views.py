@@ -702,8 +702,7 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
         assert not self.update_user.called
 
     def test_login_success(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com')
+        user = user_factory(username='foobar', email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.post(
@@ -764,6 +763,7 @@ class TestRegisterView(BaseAuthenticationView):
         user = UserProfile(username='foobar', email=identity['email'])
         self.register_user.return_value = user
         self.fxa_identify.return_value = identity
+        user.groups_list = []
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
