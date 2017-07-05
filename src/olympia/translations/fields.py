@@ -17,7 +17,7 @@ class TranslatedField(models.ForeignKey):
     we will look for 1) a translation in the current locale and 2) fallback
     with any translation matching the foreign key.
     """
-    to = 'Translation'
+    to = 'translations.Translation'
     requires_unique_target = False
 
     def __init__(self, **kwargs):
@@ -83,19 +83,19 @@ class TranslatedField(models.ForeignKey):
 
 
 class PurifiedField(TranslatedField):
-    to = 'PurifiedTranslation'
+    to = 'translations.PurifiedTranslation'
 
 
 class LinkifiedField(TranslatedField):
-    to = 'LinkifiedTranslation'
+    to = 'translations.LinkifiedTranslation'
 
 
 class NoLinksField(TranslatedField):
-    to = 'NoLinksTranslation'
+    to = 'translations.NoLinksTranslation'
 
 
 class NoLinksNoMarkupField(TranslatedField):
-    to = 'NoLinksNoMarkupTranslation'
+    to = 'translations.NoLinksNoMarkupTranslation'
 
 
 def switch(obj, new_model):
