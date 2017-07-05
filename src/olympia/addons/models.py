@@ -44,7 +44,8 @@ from olympia.files.utils import (
 from olympia.reviews.models import Review
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
+    LinkifiedField, PurifiedField, save_signal, TranslatedField)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version

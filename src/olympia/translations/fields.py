@@ -6,8 +6,6 @@ from django.utils import translation as translation_utils
 from django.utils.translation.trans_real import to_language
 
 from .hold import add_translation, make_key, save_translations
-from .models import (Translation, PurifiedTranslation, LinkifiedTranslation,
-                     NoLinksTranslation, NoLinksNoMarkupTranslation)
 from .widgets import TransInput, TransTextarea
 
 
@@ -19,7 +17,7 @@ class TranslatedField(models.ForeignKey):
     we will look for 1) a translation in the current locale and 2) fallback
     with any translation matching the foreign key.
     """
-    to = Translation
+    to = 'Translation'
     requires_unique_target = False
 
     def __init__(self, **kwargs):
@@ -85,19 +83,19 @@ class TranslatedField(models.ForeignKey):
 
 
 class PurifiedField(TranslatedField):
-    to = PurifiedTranslation
+    to = 'PurifiedTranslation'
 
 
 class LinkifiedField(TranslatedField):
-    to = LinkifiedTranslation
+    to = 'LinkifiedTranslation'
 
 
 class NoLinksField(TranslatedField):
-    to = NoLinksTranslation
+    to = 'NoLinksTranslation'
 
 
 class NoLinksNoMarkupField(TranslatedField):
-    to = NoLinksNoMarkupTranslation
+    to = 'NoLinksNoMarkupTranslation'
 
 
 def switch(obj, new_model):
