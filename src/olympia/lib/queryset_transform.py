@@ -46,11 +46,8 @@ class TransformQuerySet(models.query.QuerySet):
         c._transform_fns.append(fn)
         return c
 
-    def iterator(self):
-        result_iter = super(TransformQuerySet, self).iterator()
+    def _fetch_all(self):
+        super(TransformQuerySet, self)._fetch_all()
         if self._transform_fns:
-            results = list(result_iter)
             for fn in self._transform_fns:
-                fn(results)
-            return iter(results)
-        return result_iter
+                fn(self._result_cache)

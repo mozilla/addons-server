@@ -3,12 +3,10 @@ from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
-import caching.base as caching
-
 import olympia.core.logger
 from olympia import activity, amo
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.templatetags.jinja_helpers import truncate
@@ -44,7 +42,7 @@ class WithoutRepliesReviewManager(ManagerBase):
         return qs.filter(reply_to__isnull=True)
 
 
-class ReviewQuerySet(caching.CachingQuerySet):
+class ReviewQuerySet(BaseQuerySet):
     """
     A queryset modified for soft deletion.
     """
