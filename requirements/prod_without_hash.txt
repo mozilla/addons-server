@@ -1,2 +1,2 @@
 ## Forked.
--e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
+-e git+https://github.com/diox/django-cache-machine@9ac646ce3903ecee75a88067e69257c32c2448ad#egg=django-cache-machine
