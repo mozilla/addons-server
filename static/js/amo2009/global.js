@@ -53,7 +53,7 @@
             clearInterval(self.interval);
         });
 
-        $(self.container).bind('newPopup', function() {
+        $(self.container).on('newPopup', function() {
             clearInterval(self.interval);
         });
 
@@ -177,7 +177,7 @@
        }
      );
      // if box now showing bind bodyclick
-     $('body').bind("click", function(e) {
+     $('body').on("click", function(e) {
        self.bodyclick(e);
      });
     }
@@ -284,12 +284,6 @@ jQuery(function($) {
 	})
 
 	contributions.init();
-});
-
-jQuery(window).load(function() {
-	// Crazyweird fix lets us style abbr using CSS in IE
-	// - do NOT run onDomReady, must be onload
-	document.createElement('abbr');
 });
 
 /* Initialization things that get run on every page. */

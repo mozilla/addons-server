@@ -13,21 +13,21 @@
 
 (function() {
     var $window = $(window);
-    $window.delegate('.install-button a.button', 'click', function(e) {
+    $window.on('click', '.install-button a.button', function(e) {
         e.preventDefault();
         var $el = $(this);
 
         // When everything is loaded, trigger a click on the button
-        $window.bind('buttons_loaded_click', function() {
+        $window.on('buttons_loaded_click', function() {
             $el.trigger('click');
         });
     });
-    $window.bind('buttons_loaded', function() {
+    $window.on('buttons_loaded', function() {
         // Trigger all the clicks
         $window.trigger('buttons_loaded_click');
 
         // Clean up after ourselves
-        $window.unbind('buttons_loaded buttons_loaded_click');
-        $window.undelegate('.install-button a.button', 'click');
+        $window.off('buttons_loaded buttons_loaded_click');
+        $window.off('click', '.install-button a.button');
     });
 })();

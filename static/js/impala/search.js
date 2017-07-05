@@ -5,7 +5,7 @@
     function autofillPlatform(context) {
         var $context = $(context || document.body);
 
-        $('#search', $context).bind('autofill', function(e) {
+        $('#search', $context).on('autofill', function(e) {
             var $this = $(this);
 
             // Bail if we're searching within apps.
@@ -37,7 +37,7 @@
 
 
     $(function() {
-        $('#search-facets').delegate('li.facet', 'click', function(e) {
+        $('#search-facets').on('click', 'li.facet', function(e) {
             var $this = $(this);
             if ($this.hasClass('active')) {
                 if ($(e.target).is('a')) {
@@ -48,18 +48,18 @@
                 $this.closest('ul').find('.active').removeClass('active');
                 $this.addClass('active');
             }
-        }).delegate('a', 'highlight', function(e) {
+        }).on('highlight', 'a', function(e) {
             // Highlight selection on sidebar.
             var $this = $(this);
             $this.closest('.facet-group').find('.selected').removeClass('selected');
             $this.closest('li').addClass('selected');
-        }).delegate('.cnt', 'recount', function(e, newCount) {
+        }).on('recount', '.cnt', function(e, newCount) {
             // Update # of results on sidebar.
             var $this = $(this);
             if (newCount.length && $this.html() != newCount.html()) {
                 $this.replaceWith(newCount);
             }
-        }).delegate('a[data-params]', 'rebuild', function(e) {
+        }).on('rebuild', 'a[data-params]', function(e) {
             var $this = $(this),
                 url = rebuildLink($this.attr('href'), $this.attr('data-params'));
             $this.attr('href', url);

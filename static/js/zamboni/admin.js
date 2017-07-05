@@ -29,7 +29,7 @@
                     event.preventDefault();
                 }
             });
-            $form.bind('submit', _pd(function() {
+            $form.on('submit', _pd(function() {
                 // Prevent just submitting the form because that takes you
                 // to your page. TODO: do something clever with this.
             }));

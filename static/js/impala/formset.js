@@ -114,7 +114,7 @@ $.zAutoFormset = function(o) {
             $input.prop('disabled', true).slideUp();
             $('.ui-autocomplete').hide();
         } else if ($visible < maxItems) {
-            $input.filter(':disabled').removeAttr('disabled').slideDown();
+            $input.filter(':disabled').prop('disabled', false).slideDown();
         }
     }
 
@@ -127,7 +127,7 @@ $.zAutoFormset = function(o) {
             if (!dupe.visible) {
                 // Undelete the item.
                 var $item = dupe.item;
-                $item.find('input[name$=-DELETE]').removeAttr('checked');
+                $item.find('input[name$=-DELETE]').prop('checked', false);
                 $item.slideDown(toggleInput);
             }
             clearInput();
@@ -223,7 +223,7 @@ $.zAutoFormset = function(o) {
 
     toggleInput();
 
-    $delegate.delegate('.' + removeClass, 'click', _pd(function() {
+    $delegate.on('click', '.' + removeClass, _pd(function() {
         removed($(this).closest(formSelector));
     }));
 

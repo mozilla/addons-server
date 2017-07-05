@@ -15,11 +15,11 @@
             $(document).ready(init);
             function init() {
                 gotoPage(0);
-                $paginator.delegate('.next', 'click', _pd(function() {
+                $paginator.on('click', '.next', _pd(function() {
                     if ($(this).hasClass('disabled')) return;
                     gotoPage(currentPage+1);
                 }));
-                $paginator.delegate('.prev', 'click', _pd(function() {
+                $paginator.on('click', '.prev', _pd(function() {
                     if ($(this).hasClass('disabled')) return;
                     gotoPage(currentPage-1);
                 }));

@@ -28,12 +28,12 @@ $(document).ready(function() {
                 });
             };
 
-            $popup.delegate('li a', 'click', function(e) {
+            $popup.on('click', 'li a', function(e) {
                 e.preventDefault();
                 var el = $(e.target);
                 if (el.attr('href') == '#review_flag_reason_other') {
                     $popup.addClass('other')
-                          .delegate('form', 'submit', function(e) {
+                          .on('submit', 'form', function(e) {
                               e.preventDefault();
                               var note = $popup.find('#id_note').val();
                               if (!note) {
@@ -67,7 +67,7 @@ $(document).ready(function() {
                 title_selector;
 
             clearErrors($form);
-            $form.unbind().hide();
+            $form.off().hide();
             $('.review').not($review).show();
             $form.detach().insertAfter($review);
 
@@ -88,9 +88,9 @@ $(document).ready(function() {
 
             function done_edit() {
                 clearErrors($form);
-                $form.unbind().hide();
+                $form.off().hide();
                 $review.show();
-                $cancel.unbind();
+                $cancel.off();
                 $window.resize();
             }
 
@@ -117,7 +117,7 @@ $(document).ready(function() {
                         done_edit();
                     },
                     error: function(xhr) {
-                        var errors = $.parseJSON(xhr.responseText);
+                        var errors = JSON.parse(xhr.responseText);
                         populateErrors($form, errors);
                     },
                     dataType: 'json'
@@ -127,7 +127,7 @@ $(document).ready(function() {
         }
     }
 
-    $('.primary').delegate('.review-reply-edit', 'click',
+    $('.primary').on('click', '.review-reply-edit',
         review_comment_edit_click(
             'review-reply-edit-form',
             'id_review_reply_title',
@@ -136,7 +136,7 @@ $(document).ready(function() {
         )
     );
 
-    $('.primary').delegate('.review-edit', 'click',
+    $('.primary').on('click', '.review-edit',
         review_comment_edit_click(
             'review-edit-form',
             'id_review_title',

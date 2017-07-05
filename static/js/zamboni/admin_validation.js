@@ -107,7 +107,7 @@ function initAdminValidation(doc) {
 
     startStats();
 
-    $('td').bind('receivestats', function(ev, stats) {
+    $('td').on('receivestats', function(ev, stats) {
         var $el = $(this),
             $tr = $el.parent(),
             complete = stats.percent_complete;
@@ -125,7 +125,7 @@ function initAdminValidation(doc) {
         }
     });
 
-    $('#admin-validation').bind('checkstats', function(ev, job_ids) {
+    $('#admin-validation').on('checkstats', function(ev, job_ids) {
         $.ajax({type: 'POST',
                 url: $(this).attr('data-status-url'),
                 data: {job_ids: JSON.stringify(job_ids)},
