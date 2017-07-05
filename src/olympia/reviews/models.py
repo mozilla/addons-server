@@ -15,33 +15,6 @@ from olympia.translations.templatetags.jinja_helpers import truncate
 log = olympia.core.logger.getLogger('z.reviews')
 
 
-class ReviewManager(ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instantiation and understand the consequences.
-        super(ReviewManager, self).__init__()
-        self.include_deleted = include_deleted
-
-    def get_queryset(self):
-        qs = super(ReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
-        if not self.include_deleted:
-            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
-        return qs
-
-
-class WithoutRepliesReviewManager(ManagerBase):
-    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
-
-    def get_queryset(self):
-        qs = super(WithoutRepliesReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
-        qs = qs.exclude(deleted=True)
-        return qs.filter(reply_to__isnull=True)
-
-
 class ReviewQuerySet(BaseQuerySet):
     """
     A queryset modified for soft deletion.
@@ -65,6 +38,33 @@ class ReviewQuerySet(BaseQuerySet):
         else:
             for review in self:
                 review.delete(user_responsible=user_responsible)
+
+
+class ReviewManager(ManagerBase):
+    queryset_class = ReviewQuerySet
+
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        super(ReviewManager, self).__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(ReviewManager, self).get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+        return qs
+
+
+class WithoutRepliesReviewManager(ManagerBase):
+    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
+    queryset_class = ReviewQuerySet
+
+    def get_queryset(self):
+        qs = super(WithoutRepliesReviewManager, self).get_queryset()
+        qs = qs.exclude(deleted=True)
+        return qs.filter(reply_to__isnull=True)
 
 
 class Review(ModelBase):

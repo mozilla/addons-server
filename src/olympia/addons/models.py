@@ -199,6 +199,7 @@ class AddonQuerySet(BaseQuerySet):
 
 
 class AddonManager(ManagerBase):
+    queryset_class = AddonQuerySet
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
@@ -208,7 +209,7 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = AddonQuerySet(self.model, using=self._db)
+        qs = super(AddonManager, self).get_queryset()
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)

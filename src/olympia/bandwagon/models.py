@@ -8,10 +8,8 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import connection, models
 
-import caching.base as caching
-
 from olympia import activity, amo
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import (
@@ -42,7 +40,7 @@ class TopTags(object):
         cache.set(self.key(obj), value, two_days)
 
 
-class CollectionQuerySet(caching.CachingQuerySet):
+class CollectionQuerySet(BaseQuerySet):
 
     def with_has_addon(self, addon_id):
         """Add a `has_addon` property to each collection.
@@ -61,10 +59,10 @@ class CollectionQuerySet(caching.CachingQuerySet):
 
 
 class CollectionManager(ManagerBase):
+    queryset_class = CollectionQuerySet
 
     def get_queryset(self):
         qs = super(CollectionManager, self).get_queryset()
-        qs = qs._clone(klass=CollectionQuerySet)
         return qs.transform(Collection.transformer)
 
     def manual(self):

@@ -92,6 +92,7 @@ class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
 
 
 class UncachedManagerBase(models.Manager):
+    queryset_class = TransformQuerySet
 
     def get_queryset(self):
         qs = self._with_translations(
@@ -139,9 +140,10 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
+    queryset_class = BaseQuerySet
 
     def get_queryset(self):
-        qs = BaseQuerySet(self.model, using=self._db)
+        qs = self.queryset_class(self.model, using=self._db)
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)
