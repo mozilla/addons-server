@@ -92,7 +92,6 @@
             $upload_field.fileUploader(settings);
 
             function textSize(bytes) {
-                // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
                 var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
                 if(bytes === 0) return bytes + " " + s[1];
                 var e = Math.floor( Math.log(bytes) / Math.log(1024) );
