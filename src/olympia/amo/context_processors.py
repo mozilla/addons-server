@@ -88,7 +88,7 @@ def global_settings(request):
         if (acl.action_allowed(request, amo.permissions.ADMIN) or
                 acl.action_allowed(request, amo.permissions.ADMIN_TOOLS_VIEW)):
             tools_links.append({'text': ugettext('Admin Tools'),
-                                'href': reverse('zadmin.home')})
+                                'href': reverse('zadmin.index')})
 
         context['user'] = request.user
     else:
