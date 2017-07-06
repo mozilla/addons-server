@@ -15,20 +15,4 @@
     <a href="#" class="reset">
       {{ _('Select a different header image') }}</a>
   </li>
-  <li id="persona-footer" class="row">
-    {{ pretty_field(form.footer, label=_('Select a footer image for your Theme.'),
-                    tag=None) }}
-    {{ form.footer_hash.as_widget(attrs={'required': ''}) }}
-    {{ form.footer_hash.errors }}
-    <ul class="note">
-      <li>{{ _('3000 &times; 100 pixels') }}</li>
-      <li>{{ _('300 KB max') }}</li>
-      <li>{{ _('PNG or JPG') }}</li>
-      <li>{{ _('Aligned to bottom-left') }}</li>
-    </ul>
-    <ul class="errorlist"></ul>
-    <img class="preview" alt="">
-    <a href="#" class="reset">
-      {{ _('Select a different footer image') }}</a>
-  </li>
 </ul>
