@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import requests
+from asn1crypto import cms
 from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
@@ -125,6 +126,12 @@ def sign_file(file_obj, server):
             file_obj.pk))
         return
 
+    # Don't sign Mozilla signed extensions (they're already signed).
+    if file_obj.is_mozilla_signed_extension:
+        log.info(u'Not signing file {0}: mozilla signed extension is already '
+                 u'signed'.format(file_obj.pk))
+        return
+
     # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
     if file_obj.is_multi_package:
         log.info(u'Not signing file {0}: multi-package XPI'.format(
@@ -172,3 +179,21 @@ def is_signed(file_path):
         filenames = set()
     return set([u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf',
                 u'META-INF/manifest.mf']).issubset(filenames)
+
+
+def get_signature_ou(pkcs7):
+    """
+    Extracts the ou out of a DER formatted, detached PKCS7
+    signature buffer
+    """
+    content = cms.ContentInfo.load(pkcs7)['content'].native
+
+    # Fetch the certificate stack that is the list of signers
+    # Since there should only be one in this use case, take the zeroth
+    # cert in the stack and return its OU
+    try:
+        cert = content['certificates'][0]['tbs_certificate']
+        log.info(cert)
+        return cert['subject']['organizational_unit_name']
+    except (IndexError, KeyError):
+        return None

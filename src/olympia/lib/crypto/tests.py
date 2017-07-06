@@ -204,6 +204,12 @@ class TestPackaged(TestCase):
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             self.assert_not_signed()
 
+    def test_no_sign_again_mozilla_signed_extensions(self):
+        """Don't try to resign mozilla signed extensions."""
+        self.file_.update(is_mozilla_signed_extension=True)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
+
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)

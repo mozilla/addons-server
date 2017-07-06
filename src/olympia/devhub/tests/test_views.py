@@ -1627,6 +1627,37 @@ class TestUploadDetail(BaseUploadTest):
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.files.utils.get_signature_ou')
+    def test_mozilla_signed_allowed(self, mock_validator, mock_get_signature):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        mock_get_signature.return_value = "Mozilla Extensions"
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
+
+    @mock.patch('olympia.files.utils.get_signature_ou')
+    def test_mozilla_signed_not_allowed_not_mozilla(self, mock_get_signature):
+        user_factory(email='bluepanda@notzilla.com')
+        assert self.client.login(email='bluepanda@notzilla.com')
+        mock_get_signature.return_value = 'Mozilla Extensions'
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == [
+            {u'tier': 1,
+             u'message': u'You cannot submit a Mozilla Signed Extension',
+             u'fatal': True, u'type': u'error'}]
+
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_system_addon_update_allowed(self, mock_validator):
         """Updates to system addons are allowed from anyone."""
         user = user_factory(email='pinkpanda@notzilla.com')

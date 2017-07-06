@@ -34,6 +34,7 @@ from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
+from olympia.lib.crypto.packaged import get_signature_ou
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -117,13 +118,17 @@ class Extractor(object):
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
+        certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
         if os.path.exists(manifest_json):
-            return ManifestJSONExtractor(manifest_json).parse()
+            data = ManifestJSONExtractor(manifest_json).parse()
         elif os.path.exists(install_rdf):
-            return RDFExtractor(path).data
+            data = RDFExtractor(path).data
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
+        if os.path.exists(certificate):
+            data.update(MozillaSignedCertificateChecker(certificate).parse())
+        return data
 
 
 def get_appversions(app, min_version, max_version):
@@ -395,6 +400,26 @@ class ManifestJSONExtractor(object):
             'content_scripts': self.get('content_scripts', []),
             'is_static_theme': 'theme' in self.data
         }
+
+
+class MozillaSignedCertificateChecker(object):
+
+    def __init__(self, path, data=''):
+        self.path = path
+
+        if not data:
+            with open(path) as fobj:
+                data = fobj.read()
+
+        pkcs7 = data
+        self.cert_ou = get_signature_ou(pkcs7)
+
+    @property
+    def is_mozilla_signed_ou(self):
+        return self.cert_ou == 'Mozilla Extensions'
+
+    def parse(self):
+        return {'is_mozilla_signed_extension': self.is_mozilla_signed_ou}
 
 
 def extract_search(content):
