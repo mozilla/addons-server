@@ -1,26 +1,10 @@
 # -*- coding: utf-8 -*-
-import json
-
 from django.core import mail
 
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.stats.models import Contribution
-from olympia.stats.db import StatsDictField
 from olympia.users.models import UserProfile
-
-
-class TestStatsDictField(TestCase):
-
-    def test_to_python_none(self):
-        assert StatsDictField().to_python(None) is None
-
-    def test_to_python_dict(self):
-        assert StatsDictField().to_python({'a': 1}) == {'a': 1}
-
-    def test_to_python_json(self):
-        val = {'a': 1}
-        assert StatsDictField().to_python(json.dumps(val)) == val
 
 
 class TestEmail(TestCase):
