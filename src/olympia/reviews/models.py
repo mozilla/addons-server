@@ -115,6 +115,21 @@ class Review(ModelBase):
         if user_responsible is not None:
             self.user_responsible = user_responsible
 
+    @property
+    def user_responsible(self):
+        """Return user responsible for the current changes being made on this
+        model. Only set by the views when they are about to save a Review
+        instance, to track if the original author or an admin was responsible
+        for the change.
+
+        Having this as a @property with a setter makes update_or_create() work,
+        otherwise it rejects the property, causing an error."""
+        return self._user_responsible
+
+    @user_responsible.setter
+    def user_responsible(self, value):
+        self._user_responsible = value
+
     def get_url_path(self):
         return jinja_helpers.url(
             'addons.reviews.detail', self.addon.slug, self.id)
@@ -225,7 +240,7 @@ class Review(ModelBase):
         if kwargs.get('raw'):
             return
 
-        if hasattr(instance, 'user_responsible'):
+        if getattr(instance, 'user_responsible', None):
             # user_responsible is not a field on the model, so it's not
             # persistent: it's just something the views will set temporarily
             # when manipulating a Review that indicates a real user made that
