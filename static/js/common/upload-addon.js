@@ -285,7 +285,7 @@
                     if (xhr.status == 413) {
                         errors.push(
                             format(
-                                gettext("Your add-on exceeds the maximum size of 200 MB."),
+                                gettext("Your add-on exceeds the maximum size of " + textSize(settings.maxSize) + "."),
                                 [xhr.status]));
                     } else {
                         // L10n: first argument is an HTTP status code
