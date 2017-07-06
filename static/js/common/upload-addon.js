@@ -27,7 +27,12 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {
+            'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'],
+            'getErrors': getErrors,
+            'cancel': $(),
+            'maxSize': 200 * 1024 * 1024 // 200M
+        };
 
         if (options) {
             $.extend( settings, options );
@@ -277,9 +282,18 @@
                     $upload_field.trigger("upload_finished", [file]);
 
                 } else if(xhr.readyState == 4 && !aborted) {
-                    // L10n: first argument is an HTTP status code
-                    errors = [format(gettext("Received an empty response from the server; status: {0}"),
-                                     [xhr.status])];
+                    if (xhr.status == 413) {
+                        errors.push(
+                            format(
+                                gettext("Your add-on exceeds the maximum size of 200 MB."),
+                                [xhr.status]));
+                    } else {
+                        // L10n: first argument is an HTTP status code
+                        errors.push(
+                            format(
+                                gettext("Received an empty response from the server; status: {0}"),
+                                [xhr.status]));
+                    }
 
                     $upload_field.trigger("upload_errors", [file, errors]);
                 }
