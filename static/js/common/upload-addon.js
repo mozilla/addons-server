@@ -27,7 +27,12 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {
+            'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'],
+            'getErrors': getErrors,
+            'cancel': $(),
+            'maxSize': 200 * 1024 * 1024 // 200M
+        };
 
         if (options) {
             $.extend( settings, options );
@@ -87,7 +92,6 @@
             $upload_field.fileUploader(settings);
 
             function textSize(bytes) {
-                // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
                 var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
                 if(bytes === 0) return bytes + " " + s[1];
                 var e = Math.floor( Math.log(bytes) / Math.log(1024) );
@@ -277,9 +281,18 @@
                     $upload_field.trigger("upload_finished", [file]);
 
                 } else if(xhr.readyState == 4 && !aborted) {
-                    // L10n: first argument is an HTTP status code
-                    errors = [format(gettext("Received an empty response from the server; status: {0}"),
-                                     [xhr.status])];
+                    if (xhr.status == 413) {
+                        errors.push(
+                            format(
+                                gettext("Your add-on exceeds the maximum size of " + textSize(settings.maxSize) + "."),
+                                [xhr.status]));
+                    } else {
+                        // L10n: first argument is an HTTP status code
+                        errors.push(
+                            format(
+                                gettext("Received an empty response from the server; status: {0}"),
+                                [xhr.status]));
+                    }
 
                     $upload_field.trigger("upload_errors", [file, errors]);
                 }
