@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-07 15:08+0000\n"
+"PO-Revision-Date: 2017-07-07 15:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -965,13 +965,11 @@ msgstr "<h1>Oeps! Net tastien.</h1> <p>Jo hawwe probearre wat te dwaan wat net t
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>Probearje werom te gean nei de foarige side, te ferfarskjen en probearje it dan opnij.</p>"
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Net fûn"
+msgstr "Side net fûn"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Mear add-ons"
+msgstr "Firefox-add-ons"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
