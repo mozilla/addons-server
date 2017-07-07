@@ -56,6 +56,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z')
         assert result_file['hash'] == file_.hash
+        assert result_file['is_restart_required'] == file_.requires_restart
         assert result_file['is_webextension'] == file_.is_webextension
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
@@ -83,6 +84,7 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
+                'no_restart': True,
                 'is_webextension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
@@ -427,8 +429,7 @@ class AddonSerializerOutputTestMixin(object):
             'http://testserver/static/img/addon-icons/default-64.png')
 
     def test_webextension(self):
-        self.addon = addon_factory(
-            file_kw={'is_webextension': True})
+        self.addon = addon_factory(file_kw={'is_webextension': True})
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=self.addon.current_version.all_files[0],
@@ -442,6 +443,13 @@ class AddonSerializerOutputTestMixin(object):
         # Double check the permissions got correctly set.
         assert result['current_version']['files'][0]['permissions'] == ([
             'bookmarks', 'random permission'])
+
+    def test_requires_restart(self):
+        self.addon = addon_factory(file_kw={'no_restart': False})
+        result = self.serialize()
+
+        self._test_version(
+            self.addon.current_version, result['current_version'])
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):

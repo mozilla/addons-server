@@ -34,11 +34,13 @@ class FileSerializer(serializers.ModelSerializer):
     permissions = serializers.ListField(
         source='webext_permissions_list',
         child=serializers.CharField())
+    is_restart_required = serializers.BooleanField(source='requires_restart')
 
     class Meta:
         model = File
-        fields = ('id', 'created', 'hash', 'is_webextension', 'platform',
-                  'size', 'status', 'url', 'permissions')
+        fields = ('id', 'created', 'hash', 'is_restart_required',
+                  'is_webextension', 'platform', 'size', 'status', 'url',
+                  'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -319,6 +321,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
             is_webextension=data.get('is_webextension'),
+            no_restart=data.get('no_restart', True),
             platform=data['platform'], size=data['size'],
             status=data['status'], version=obj)
         file_.webext_permissions_list = data.get('webext_permissions_list', [])
