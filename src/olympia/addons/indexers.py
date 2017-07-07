@@ -94,7 +94,8 @@ class AddonIndexer(BaseSearchIndexer):
                         'properties': {
                             'id': {'type': 'long', 'index': 'no'},
                             'name': {'type': 'string'},
-                            'username': {'type': 'string', 'index': 'no'},
+                            'username': {'type': 'string',
+                                         'index': 'not_analyzed'},
                         },
                     },
                     'modified': {'type': 'date', 'index': 'no'},

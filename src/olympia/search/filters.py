@@ -101,6 +101,14 @@ class AddonAppVersionFilterParam(AddonFilterParam):
         ]
 
 
+class AddonAuthorFilterParam(AddonFilterParam):
+    query_param = 'author'
+    es_field = 'listed_authors.username'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '')
+
+
 class AddonPlatformFilterParam(AddonFilterParam):
     query_param = 'platform'
     reverse_dict = amo.PLATFORM_DICT
@@ -293,7 +301,8 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
                          AddonPlatformFilterParam, AddonTypeFilterParam,
-                         AddonCategoryFilterParam, AddonTagFilterParam]
+                         AddonCategoryFilterParam, AddonTagFilterParam,
+                         AddonAuthorFilterParam]
 
     def filter_queryset(self, request, qs, view):
         must = []
