@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-28 15:04+0000\n"
+"PO-Revision-Date: 2017-07-08 02:00+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -187,10 +187,10 @@ msgid "for {0}"
 msgstr "para {0}"
 
 msgid "View privacy policy"
-msgstr "Ver a política de privacidade"
+msgstr "Ver política de privacidade"
 
 msgid "View End-User License Agreement"
-msgstr "Ver acordo de licenciamento para o utilizador final"
+msgstr "Ver Acordo de licença de utilizador final"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -295,14 +295,14 @@ msgstr "Contribuição efetuada, obrigado."
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr "Acordo de Licença para o Utilizador Final para {0}"
+msgstr "Acordo de licença de utilizador final para {0}"
 
 msgid "End-User License Agreement"
 msgstr "Acordo de licença de utilizador final"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s necessita que aceite o seguinte Acordo de Licença para o Utilizador Final antes de continuar com a instalação:"
+msgstr "%(addon_name)s requer que aceite o seguinte Acordo de licença de utilizador final antes que a instalação possa prosseguir:"
 
 msgid "Back to {0}…"
 msgstr "Voltar para {0}…"
@@ -2727,16 +2727,16 @@ msgid "License text is required when choosing Other."
 msgstr "É necessário o texto da licença ao escolher Outro."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr "Este extra tem um acordo de licença para o utilizador final"
+msgstr "Este extra tem um Acordo de licença de utilizador final"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Por favor, especifique o acordo de licença para o utilizador final para o extra:"
+msgstr "Por favor especifique o Acordo de licença de utilizador final do seu extra:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "O extra tem uma política de privacidade"
+msgstr "O extra tem uma Política de privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Por favor específique a política de privacidade do seu extra:"
+msgstr "Por favor especifique a Política de privacidade do seu extra:"
 
 msgid "Why did you make this add-on?"
 msgstr "Porque é que fez este extra?"
@@ -3971,13 +3971,13 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Os utilizadores terão de aceitar um acordo de licenciamento para utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra "
-"recebe. Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
+"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra recebe. "
+"Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. É apenas relevante "
-"para extras listados."
+"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Esta apenas é "
+"relevante para extras listados."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Se o seu extra contem código binário ou ofuscado para além de bibliotecas conhecidas, envie as respetivas fontes para revisão."
@@ -5012,7 +5012,7 @@ msgid "Abuse Reports"
 msgstr "Relatórios de abuso"
 
 msgid "View Privacy Policy"
-msgstr "Ver política de privacidade"
+msgstr "Ver Política de privacidade"
 
 msgid "EULA"
 msgstr "EULA"
@@ -6707,7 +6707,7 @@ msgstr "A Mozilla mantém em segredo as informações da minha conta?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Sim. Nossa <a href=\"%(url)s\">Política de privacidade</a> descreve como suas informações são gerenciadas pela Mozilla."
+msgstr "Sim. A nossa <a href=\"%(url)s\">Política de privacidade</a> descreve como suas informações são manejadas pela Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr "O que são as \"ferramentas do programador\" listadas no AMO?"
@@ -6766,7 +6766,7 @@ msgstr ""
 "submetido."
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr "Eu posso incluir uma política de privacidade no meu extra?"
+msgstr "Posso incluir uma política de privacidade para o meu extra?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
