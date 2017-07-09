@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-02 10:42+0000\n"
+"PO-Revision-Date: 2017-07-09 15:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -357,7 +357,7 @@ msgid "Requires Restart"
 msgstr "Krev omstart"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Dette tillegget er bygd med ny teknikk som er kompatibel med Firefox 57 og nyare."
 
 msgid "Compatible with Firefox 57+"
 msgstr "Kompatibel med Firefox 57+"
@@ -477,30 +477,30 @@ msgstr ""
 "knappen ved sidan av søkefeltet for utvidingar, velg «Installer utvidingar frå fil...» og finn den nedlasta utvidinga.</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "For å installere dette temaet, <b>last ned Thunderbird</b>, ein gratis e-postklient med open kjeldekode frå Mozilla Messaging, og installer utvidinga Personas Plus."
 
 msgid "Learn more about Thunderbird"
 msgstr "Les meir om Thunderbird"
 
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "For å installere dette temaet og tusenvis andre, <b>last ned Firefox</b>, ein gratis og open kjeldekode-nettlesar frå Mozilla."
 
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr ""
+msgstr "Denne utvidinga er ikkje oppdatert til å verke med din versjon av %(app)s."
 
 msgid "Install Anyway"
 msgstr "Installer likevel"
 
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Denne utvidinga krev ein versjon av Firefox som ikkje er utgjeven enno."
 
 msgid "Help test new Firefox Versions"
 msgstr "Hjelp til med å testa nye Firefox-versjonar"
 
 #, python-format
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Denne utvidinga krev %(app)s {new_version}. Du brukar no %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 msgid "Upgrade {0}"
@@ -512,7 +512,7 @@ msgstr "eller vis <a href=\"%(href)s\"> eldre versjonar av denne utvidinga</a>."
 
 #, python-format
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Denne Personaen krev %(app)s %(new_version)s. Du brukar no %(app)s {old_version}."
 
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
@@ -520,18 +520,18 @@ msgid ""
 msgstr ""
 
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr ""
+msgstr "<strong>Merk:</strong> Denne utvidinga er ikkje kompatibel med operativsystemet ditt."
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Denne utvidinga er ikkje kompatibel med din versjon av %(app)s på grunn av:"
 
 msgid "View other versions"
 msgstr "Vis andre versjonar"
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Denne utvidinga er ikkje kompatibel med din versjon av %(app)s."
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -1120,7 +1120,7 @@ msgid "Application Versions"
 msgstr "Applikasjonsversjonar"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Godtekne versjonar for alle applikasjonar på AMO."
 
 msgid "Valid Application Versions"
 msgstr "Gyldige applikasjonsversjonar"
