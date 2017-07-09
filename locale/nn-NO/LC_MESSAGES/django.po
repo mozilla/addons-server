@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-09 15:10+0000\n"
+"PO-Revision-Date: 2017-07-09 15:26+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -558,6 +558,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"Dersom du mistenkjer at ei utviding strid mot <a href=\"%(url)s\">praksisen vår</a> eller har tryggings- eller personvernproblem, bruk skjemaet nedanfor for å skildre bekymringane dine. Ikkje bruk "
+"skjemaet for andre føremål."
 
 msgid "Send Report"
 msgstr "Send rapport"
@@ -643,15 +645,15 @@ msgstr "Likar du denne utvidinga?"
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utviklaren av denne utvidinga</a> ber om at du hjelper til å støtte kontinuert utvikling ved å gje eit lite bidrag."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utviklaren av denne utvidinga</a> ber om at du viser støtta di ved å gje ein donasjon til <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Utviklaren av denne utvidinga</a> ber om at du viser støtta di ved å gje eit lite bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Denne utvidinga krev følgjande utviding for å fungera på rett måte:"
@@ -750,6 +752,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Utviklingskanalen lar deg teste ein eksperimentell versjon av denne utvidinga før ho vert utgjeven til offentlegheita. Etter du installerer ein utviklingsversjon vil du fortsetje å få oppdateringer "
+"frå denne kanalen. For å slutte å få utviklingsoppdateringar må du reinstallere standardversjonen frå lenka ovanfor."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
@@ -1561,7 +1565,7 @@ msgid "Comment"
 msgstr "Kommentar"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Skriv inn namnet på utvidinga du vil ta med"
 
 msgid "Add to Collection"
 msgstr "Legg til i samlinga"
@@ -2759,7 +2763,7 @@ msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Ei plattform kan berre veljast éin gong."
 
 msgid "Reputation"
 msgstr "Rykte"
@@ -2876,7 +2880,7 @@ msgid "Validate Add-on"
 msgstr "Valider utvidinga"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Kontroller kompatibliteten til utvidinga"
 
 msgid "You cannot submit this type of add-on"
 msgstr ""
@@ -3206,7 +3210,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Døme: mørk, kino, svart. Grense 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
