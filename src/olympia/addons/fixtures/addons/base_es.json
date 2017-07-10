@@ -537,7 +537,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:39:45",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },
@@ -559,7 +559,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:07",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },
@@ -581,7 +581,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:16",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },
@@ -603,7 +603,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:23",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },
@@ -625,7 +625,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:24",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },
@@ -647,7 +647,7 @@
     "jetpack_version": null,
     "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:25",
-    "no_restart": false,
+    "is_restart_required": true,
     "size": 0
   }
 },

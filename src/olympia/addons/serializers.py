@@ -34,7 +34,7 @@ class FileSerializer(serializers.ModelSerializer):
     permissions = serializers.ListField(
         source='webext_permissions_list',
         child=serializers.CharField())
-    is_restart_required = serializers.BooleanField(source='requires_restart')
+    is_restart_required = serializers.BooleanField()
 
     class Meta:
         model = File
@@ -321,7 +321,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
             is_webextension=data.get('is_webextension'),
-            no_restart=data.get('no_restart', True),
+            is_restart_required=data.get('is_restart_required', False),
             platform=data['platform'], size=data['size'],
             status=data['status'], version=obj)
         file_.webext_permissions_list = data.get('webext_permissions_list', [])

@@ -56,7 +56,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z')
         assert result_file['hash'] == file_.hash
-        assert result_file['is_restart_required'] == file_.requires_restart
+        assert result_file['is_restart_required'] == file_.is_restart_required
         assert result_file['is_webextension'] == file_.is_webextension
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
@@ -84,7 +84,7 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
-                'no_restart': True,
+                'is_restart_required': False,
                 'is_webextension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
@@ -444,8 +444,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']['files'][0]['permissions'] == ([
             'bookmarks', 'random permission'])
 
-    def test_requires_restart(self):
-        self.addon = addon_factory(file_kw={'no_restart': False})
+    def test_is_restart_required(self):
+        self.addon = addon_factory(file_kw={'is_restart_required': True})
         result = self.serialize()
 
         self._test_version(

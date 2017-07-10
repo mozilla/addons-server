@@ -117,7 +117,7 @@ class TestAddonIndexer(TestCase):
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
             'id', 'created', 'filename', 'hash', 'is_webextension',
-            'no_restart', 'platform', 'size', 'status',
+            'is_restart_required', 'platform', 'size', 'status',
             'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
@@ -210,7 +210,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['no_restart'] == file_.no_restart
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -237,7 +238,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['no_restart'] == file_.no_restart
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -265,7 +267,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['no_restart'] == file_.no_restart
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status

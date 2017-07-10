@@ -53,7 +53,8 @@ class AddonIndexer(BaseSearchIndexer):
                         'filename': {
                             'type': 'string', 'index': 'no'},
                         'is_webextension': {'type': 'boolean'},
-                        'no_restart': {'type': 'boolean', 'index': 'no'},
+                        'is_restart_required': {
+                            'type': 'boolean', 'index': 'no'},
                         'platform': {
                             'type': 'byte', 'index': 'no'},
                         'size': {'type': 'long', 'index': 'no'},
@@ -167,7 +168,7 @@ class AddonIndexer(BaseSearchIndexer):
                 'filename': file_.filename,
                 'hash': file_.hash,
                 'is_webextension': file_.is_webextension,
-                'no_restart': file_.no_restart,
+                'is_restart_required': file_.is_restart_required,
                 'platform': file_.platform,
                 'size': file_.size,
                 'status': file_.status,
