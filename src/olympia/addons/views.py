@@ -751,9 +751,11 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(using=amo.search.get_es(),
-                      index=AddonIndexer.get_index_alias(),
-                      doc_type=AddonIndexer.get_doctype_name())
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'exclude': AddonIndexer.hidden_fields})
 
     @classmethod
     def as_view(cls, **kwargs):

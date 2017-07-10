@@ -58,7 +58,7 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'match': {
-                'name_english': {
+                'name_l10n_english': {
                     'query': 'tea pot', 'boost': 2.5,
                     'analyzer': 'english'
                 }
@@ -68,7 +68,7 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'match': {
-                'description_english': {
+                'description_l10n_english': {
                     'query': 'tea pot', 'boost': 0.6,
                     'analyzer': 'english', 'type': 'phrase'
                 }
@@ -414,7 +414,7 @@ class TestCombinedFilter(FilterTestsBase):
         should = filtered['query']['function_score']['query']['bool']['should']
         expected = {
             'match': {
-                'name_english': {
+                'name_l10n_english': {
                     'analyzer': 'english', 'boost': 2.5, 'query': u'test'
                 }
             }
