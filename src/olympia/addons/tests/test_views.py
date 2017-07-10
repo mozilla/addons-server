@@ -2637,6 +2637,26 @@ class TestAddonSearchView(ESTestCase):
             self.url, {'app': 'lol'}, expected_status=400)
         assert data == ['Invalid "app" parameter.']
 
+    def test_filter_by_author(self):
+        author = user_factory(username=u'my-fancyAuthôr')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        author2 = user_factory(username=u'my-FancyAuthôrName')
+        AddonUser.objects.create(addon=addon2, user=author2)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
 
 class TestAddonFeaturedView(TestCase):
     client_class = APITestClient
