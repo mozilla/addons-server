@@ -383,7 +383,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    score = models.SmallIntegerField()
+    score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)
