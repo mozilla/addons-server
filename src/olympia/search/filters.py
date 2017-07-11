@@ -224,9 +224,14 @@ class SearchQueryFilter(BaseFilterBackend):
         # and analyzer.
         if analyzer:
             should.append(
-                query.Match(**{'name_%s' % analyzer: {'query': search_query,
-                                                      'boost': 2.5,
-                                                      'analyzer': analyzer}}))
+                query.Match(**{
+                    'name_l10n_%s' % analyzer: {
+                        'query': search_query,
+                        'boost': 2.5,
+                        'analyzer': analyzer
+                    }
+                })
+            )
 
         return should
 
@@ -248,10 +253,10 @@ class SearchQueryFilter(BaseFilterBackend):
         # right language and analyzer.
         if analyzer:
             should.extend([
-                query.Match(**{'summary_%s' % analyzer: {
+                query.Match(**{'summary_l10n_%s' % analyzer: {
                     'query': search_query, 'boost': 0.6, 'type': 'phrase',
                     'analyzer': analyzer}}),
-                query.Match(**{'description_%s' % analyzer: {
+                query.Match(**{'description_l10n_%s' % analyzer: {
                     'query': search_query, 'boost': 0.6, 'type': 'phrase',
                     'analyzer': analyzer}})
             ])

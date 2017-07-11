@@ -19,6 +19,28 @@ WEBEXTENSIONS_WEIGHT = 2.0
 
 
 class AddonIndexer(BaseSearchIndexer):
+    """Fields we don't need to expose in the results, only used for filtering
+    or sorting."""
+    hidden_fields = (
+        'name_sort',
+        'boost',
+        'hotness'
+        # Translated content that is used for filtering purposes is stored
+        # under 3 different fields:
+        # - One field with all translations (e.g., "name").
+        # - One field for each language, with language-specific analyzers
+        #   (e.g., "name_l10n_italian", "name_l10n_french", etc.)
+        # - One field with all translations in separate objects for the API
+        #   (e.g. "name_translations")
+        # Only that last one with all translations needs to be returned.
+        'name',
+        'description',
+        'name_l10n_*',
+        'description_l10n_*',
+        'summary',
+        'summary_l10n_*',
+    )
+
     @classmethod
     def get_model(cls):
         from olympia.addons.models import Addon
