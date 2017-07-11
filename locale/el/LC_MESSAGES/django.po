@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 13:19+0000\n"
+"PO-Revision-Date: 2017-07-11 18:31+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1264,17 +1264,14 @@ msgstr "Αγαπημένη"
 msgid "Remove from favorites"
 msgstr "Αφαίρεση από τις αγαπημένες"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
+msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
+msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
+msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "Name"
 msgstr "Όνομα"
@@ -3523,7 +3520,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Εισάγετε το ακόλουθο κείμενο για να επιβεβαιώσετε την απόφασή σας: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Παρακαλώ πείτε μας γιατί διαγράφετε το θέμα σας:"
@@ -3598,7 +3595,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Αυτό το πρόσθετο δεν έχει καμία έκδοση."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -4073,7 +4070,7 @@ msgid "Manage Your Add-on"
 msgstr "Διαχείριση προσθέτου"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Συνδεθείτε για να επεξεργαστείτε και να ενημερώσετε το πρόσθετό σας"
 
 msgid "Evolution in Add-on Development"
 msgstr "Εξέλιξη στην ανάπτυξη προσθέτων"
@@ -6624,11 +6621,11 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Διατηρεί η Mozilla ιδιωτικές τις πληροφορίες του λογαριασμού μου;"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Ναι. Η <a href=\"%(url)s\">πολιτική απορρήτου</a> μας περιγράφει πώς διαχειρίζεται η Mozilla τις πληροφορίες σας."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr ""
