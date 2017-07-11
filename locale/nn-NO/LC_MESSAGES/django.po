@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-10 07:26+0000\n"
+"PO-Revision-Date: 2017-07-11 08:14+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2682,10 +2682,10 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Denne utvidinga har ein personvernpraksis"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Spesifiser personvernpraksisen til utvidinga di:"
 
 msgid "Why did you make this add-on?"
 msgstr "Kvifor laga du denne utvidinga?"
@@ -6519,7 +6519,7 @@ msgstr ""
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Ja. <a href=\"%(url)s\">Personvernpraksisen</a> vår skildrar korleis din informasjon vert handsama av Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr ""
@@ -6568,10 +6568,12 @@ msgid "Yes. You can specify a license agreement when submitting your add-on. You
 msgstr ""
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Kan eg inkludere ein personvernpraksis for utvidinga mi?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
+"Ja. Du kan spesifisere ein personvernpraksis når du sender inn utvidinga di. Du kan også legge til eller oppdatere ein personvernpraksis via oversikta for utviklarverktøy etter at tillegget er sendt"
+" inn."
 
 msgid "Must my add-on be reviewed?"
 msgstr "Må utvidinga mi vurderast?"
