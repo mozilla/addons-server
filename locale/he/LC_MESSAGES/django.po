@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 18:08+0000\n"
+"PO-Revision-Date: 2017-05-29 11:04+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2193,13 +2193,11 @@ msgstr ""
 msgid "Approval notes changed"
 msgstr ""
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "רישיון קוד מקור עבור {addon}"
+msgstr "קוד מקור הועלה עבור {addon} {version}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "רישיון קוד מקור"
+msgstr "קוד מקור הועלה"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
