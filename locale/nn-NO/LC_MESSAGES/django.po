@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 08:14+0000\n"
+"PO-Revision-Date: 2017-07-11 08:29+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -903,7 +903,7 @@ msgid "Submit a New Theme"
 msgstr "Send inn eit nytt tema"
 
 msgid "Developer Hub"
-msgstr "Utviklarsenter"
+msgstr "Utviklarhubb"
 
 msgid "Manage API Keys"
 msgstr "Handsam API-nøklar"
@@ -2786,7 +2786,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Utvidingsdokumentasjon :: Utviklarsenter"
+msgstr "Utvidingsdokumentasjon :: Utviklarhubb"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -2985,7 +2985,7 @@ msgstr "Gå tilbake til heimesida for DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Utviding</small> Utviklarsenter"
+msgstr "<small>Utviding</small> Utviklarhubb"
 
 msgid "more add-ons..."
 msgstr "fleire utvidingar…"
@@ -3576,7 +3576,7 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Om utvidinga di overfører data frå datamaskina til brukaren, krevst det ein personvernpraksis som skildrar kva for data som vert overførte og korleis dei vert brukte."
 
 msgid "Notes to Reviewer:"
 msgstr "Merknad for vurderar:"
@@ -3879,6 +3879,8 @@ msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Om tillegget ditt overfører data frå brukaren si datamaskin, krev det ein personvernpraksis som skildrar kva for data som vert sende og korleis dei vert brukte.\n"
+"                Detta gjeld berre for «lista» utvidingar."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr ""
@@ -4016,7 +4018,7 @@ msgid "Submit Your First Theme"
 msgstr "Send inn det første temaet ditt"
 
 msgid "Add-on Developer Hub"
-msgstr "Utviklarhub for utvidingar"
+msgstr "Utviklarhubb for utvidingar"
 
 msgid "Docs"
 msgstr "Dokument"
@@ -6954,7 +6956,7 @@ msgstr "Utviklaremne"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Sjå <a href=\"%(faq_url)s\">FAQ for utviklarar</a> og <a href=\"%(hub_url)s\">utviklarsenteret</a> for svar på utviklarrelaterte spørsmål om utvidingar."
+msgstr "Sjå <a href=\"%(faq_url)s\">FAQ for utviklarar</a> og <a href=\"%(hub_url)s\">utviklarhubben</a> for svar på utviklarrelaterte spørsmål om utvidingar."
 
 msgid "Still have questions?"
 msgstr "Har du framleis spørsmål?"
