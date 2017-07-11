@@ -3,12 +3,10 @@ from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
-import caching.base as caching
-
 import olympia.core.logger
 from olympia import activity, amo
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.templatetags.jinja_helpers import truncate
@@ -17,34 +15,7 @@ from olympia.translations.templatetags.jinja_helpers import truncate
 log = olympia.core.logger.getLogger('z.reviews')
 
 
-class ReviewManager(ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instantiation and understand the consequences.
-        super(ReviewManager, self).__init__()
-        self.include_deleted = include_deleted
-
-    def get_queryset(self):
-        qs = super(ReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
-        if not self.include_deleted:
-            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
-        return qs
-
-
-class WithoutRepliesReviewManager(ManagerBase):
-    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
-
-    def get_queryset(self):
-        qs = super(WithoutRepliesReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
-        qs = qs.exclude(deleted=True)
-        return qs.filter(reply_to__isnull=True)
-
-
-class ReviewQuerySet(caching.CachingQuerySet):
+class ReviewQuerySet(BaseQuerySet):
     """
     A queryset modified for soft deletion.
     """
@@ -67,6 +38,33 @@ class ReviewQuerySet(caching.CachingQuerySet):
         else:
             for review in self:
                 review.delete(user_responsible=user_responsible)
+
+
+class ReviewManager(ManagerBase):
+    queryset_class = ReviewQuerySet
+
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        super(ReviewManager, self).__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(ReviewManager, self).get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+        return qs
+
+
+class WithoutRepliesReviewManager(ManagerBase):
+    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
+    queryset_class = ReviewQuerySet
+
+    def get_queryset(self):
+        qs = super(WithoutRepliesReviewManager, self).get_queryset()
+        qs = qs.exclude(deleted=True)
+        return qs.filter(reply_to__isnull=True)
 
 
 class Review(ModelBase):
@@ -116,6 +114,21 @@ class Review(ModelBase):
         super(Review, self).__init__(*args, **kwargs)
         if user_responsible is not None:
             self.user_responsible = user_responsible
+
+    @property
+    def user_responsible(self):
+        """Return user responsible for the current changes being made on this
+        model. Only set by the views when they are about to save a Review
+        instance, to track if the original author or an admin was responsible
+        for the change.
+
+        Having this as a @property with a setter makes update_or_create() work,
+        otherwise it rejects the property, causing an error."""
+        return self._user_responsible
+
+    @user_responsible.setter
+    def user_responsible(self, value):
+        self._user_responsible = value
 
     def get_url_path(self):
         return jinja_helpers.url(
@@ -227,7 +240,7 @@ class Review(ModelBase):
         if kwargs.get('raw'):
             return
 
-        if hasattr(instance, 'user_responsible'):
+        if getattr(instance, 'user_responsible', None):
             # user_responsible is not a field on the model, so it's not
             # persistent: it's just something the views will set temporarily
             # when manipulating a Review that indicates a real user made that

@@ -26,7 +26,8 @@ from jinja2.filters import do_dictsort
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.amo.models import (
-    SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
+    BaseQuerySet, SlugField, OnChangeMixin, ModelBase, ManagerBase,
+    manual_order)
 from olympia.access import acl
 from olympia.addons.utils import (
     get_creatured_ids, get_featured_ids, generate_addon_guid)
@@ -44,7 +45,8 @@ from olympia.files.utils import (
 from olympia.reviews.models import Review
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
+    LinkifiedField, PurifiedField, save_signal, TranslatedField)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version
@@ -129,7 +131,7 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonQuerySet(caching.CachingQuerySet):
+class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
@@ -197,6 +199,7 @@ class AddonQuerySet(caching.CachingQuerySet):
 
 
 class AddonManager(ManagerBase):
+    queryset_class = AddonQuerySet
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
@@ -207,7 +210,6 @@ class AddonManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(AddonManager, self).get_queryset()
-        qs = qs._clone(klass=AddonQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -1824,7 +1826,9 @@ class Category(OnChangeMixin, ModelBase):
         """Return a Category instance created from a StaticCategory.
 
         Does not save it into the database. Useful in tests."""
-        return cls(**static_category.__dict__)
+        data = static_category.__dict__.copy()
+        del data['name']  # Not accepted as part of a Category.
+        return cls(**data)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,

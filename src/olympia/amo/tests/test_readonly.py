@@ -1,6 +1,7 @@
+from importlib import import_module
+
 from django.conf import settings
 from django.db import models
-from django.utils import importlib
 
 import MySQLdb as mysql
 from pyquery import PyQuery as pq
@@ -33,7 +34,7 @@ class ReadOnlyModeTest(TestCase):
         self.old_settings = dict((k, quickcopy(getattr(settings, k)))
                                  for k in pubdir(settings))
         settings.SLAVE_DATABASES = ['default']
-        settings_module = importlib.import_module(settings.SETTINGS_MODULE)
+        settings_module = import_module(settings.SETTINGS_MODULE)
         settings_module.read_only_mode(settings._wrapped.__dict__)
         self.client.handler.load_middleware()
 

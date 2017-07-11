@@ -67,6 +67,10 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
         return super(TransformQuerySet, self).transform(f)
 
 
+class BaseQuerySet(TransformQuerySet, caching.base.CachingQuerySet):
+    pass
+
+
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
 
@@ -87,16 +91,12 @@ class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
     """A RawQuerySet with __len__ and caching."""
 
 
-# Make TransformQuerySet one of CachingQuerySet's parents so that we can do
-# transforms on objects and then get them cached.
-CachingQuerySet = caching.base.CachingQuerySet
-CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
-
-
 class UncachedManagerBase(models.Manager):
+    queryset_class = TransformQuerySet
 
     def get_queryset(self):
-        qs = self._with_translations(TransformQuerySet(self.model))
+        qs = self._with_translations(
+            TransformQuerySet(self.model, using=self._db))
         return qs
 
     def _with_translations(self, qs):
@@ -140,9 +140,10 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     If a model has translated fields, they'll be attached through a transform
     function.
     """
+    queryset_class = BaseQuerySet
 
     def get_queryset(self):
-        qs = super(ManagerBase, self).get_queryset()
+        qs = self.queryset_class(self.model, using=self._db)
         if getattr(_locals, 'skip_cache', False):
             qs = qs.no_cache()
         return self._with_translations(qs)

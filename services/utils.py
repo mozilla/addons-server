@@ -1,3 +1,4 @@
+from importlib import import_module
 import logging
 import logging.config
 import os
@@ -18,8 +19,7 @@ import sys
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-from django.utils import importlib
-settings = importlib.import_module(settingmodule)
+settings = import_module(settingmodule)
 
 import olympia.core.logger
 from olympia.lib.log_settings_base import formatters, handlers

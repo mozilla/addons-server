@@ -8,6 +8,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
+from importlib import import_module
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
@@ -24,7 +25,6 @@ from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_bytes
-from django.utils.importlib import import_module
 from django.utils.http import urlencode
 
 import mock
@@ -658,10 +658,11 @@ def addon_factory(
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
-        static_category = random.choice(
-            CATEGORIES[application][type_].values())
+        category_dict = random.choice(
+            CATEGORIES[application][type_].values()).__dict__.copy()
+        del category_dict['name']  # Not accepted as part of a Category.
         category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+            id=category_dict['id'], defaults=category_dict)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.

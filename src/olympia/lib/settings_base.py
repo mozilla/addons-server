@@ -423,6 +423,8 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
+    'olympia.translations',
+
     'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
@@ -449,7 +451,6 @@ INSTALLED_APPS = (
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
-    'olympia.translations',
     'olympia.users',
     'olympia.versions',
     'olympia.zadmin',

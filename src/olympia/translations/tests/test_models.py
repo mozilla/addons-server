@@ -104,46 +104,51 @@ class TranslationTestCase(BaseTestCase):
 
     def test_fetch_translations(self):
         """Basic check of fetching translations in the current locale."""
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         self.trans_eq(o.name, 'some name', 'en-US')
         self.trans_eq(o.description, 'some description', 'en-US')
 
     def test_fetch_no_translations(self):
         """Make sure models with no translations aren't harmed."""
-        o = UntranslatedModel.objects.get(id=1)
+        o = UntranslatedModel.objects.get(pk=1)
         assert o.number == 17
 
     def test_fetch_translation_de_locale(self):
         """Check that locale fallbacks work."""
         try:
             translation.activate('de')
-            o = TranslatedModel.objects.get(id=1)
+            o = TranslatedModel.objects.get(pk=1)
             self.trans_eq(o.name, 'German!! (unst unst)', 'de')
             self.trans_eq(o.description, 'some description', 'en-US')
         finally:
             translation.deactivate()
 
     def test_create_translation(self):
+        assert Translation.objects.count() == 9
         o = TranslatedModel.objects.create(name='english name')
 
         def get_model():
-            return TranslatedModel.objects.get(id=o.id)
+            return TranslatedModel.objects.get(pk=o.pk)
 
+        assert Translation.objects.count() == 10
         self.trans_eq(o.name, 'english name', 'en-US')
         assert o.description is None
 
         # Make sure the translation id is stored on the model, not the autoid.
         assert o.name.id == o.name_id
 
-        # Check that a different locale creates a new row with the same id.
+        # Reload the object from database with a different locale activated.
+        # Its name should still be there, using the fallback...
         translation.activate('de')
         german = get_model()
-        self.trans_eq(o.name, 'english name', 'en-US')
+        self.trans_eq(german.name, 'english name', 'en-US')
 
+        # Check that a different locale creates a new row with the same id.
         german.name = u'Gemütlichkeit name'
         german.description = u'clöüserw description'
         german.save()
 
+        assert Translation.objects.count() == 12  # New name *and* description.
         self.trans_eq(german.name, u'Gemütlichkeit name', 'de')
         self.trans_eq(german.description, u'clöüserw description', 'de')
 
@@ -172,13 +177,13 @@ class TranslationTestCase(BaseTestCase):
         assert fresh_english.description.id == fresh_german.description.id
 
     def test_update_translation(self):
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         translation_id = o.name.autoid
 
         o.name = 'new name'
         o.save()
 
-        o = TranslatedModel.objects.get(id=1)
+        o = TranslatedModel.objects.get(pk=1)
         self.trans_eq(o.name, 'new name', 'en-US')
         # Make sure it was an update, not an insert.
         assert o.name.autoid == translation_id
@@ -193,7 +198,7 @@ class TranslationTestCase(BaseTestCase):
 
         # Check that de was set.
         translation.activate('de')
-        o = TranslatedModel.objects.get(id=o.id)
+        o = TranslatedModel.objects.get(pk=o.id)
         self.trans_eq(o.name, 'wrong language', 'de')
 
         # We're in de scope, so we should see the de text.
@@ -202,12 +207,12 @@ class TranslationTestCase(BaseTestCase):
 
         # Make sure en-US was still set.
         translation.deactivate()
-        o = TranslatedModel.objects.get(id=de.id)
+        o = TranslatedModel.objects.get(pk=de.id)
         self.trans_eq(o.name, 'right language', 'en-US')
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(id=1)
+            return TranslatedModel.objects.get(pk=1)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
@@ -232,7 +237,7 @@ class TranslationTestCase(BaseTestCase):
 
     def test_dict_with_hidden_locale(self):
         with self.settings(HIDDEN_LANGUAGES=('xxx',)):
-            o = TranslatedModel.objects.get(id=1)
+            o = TranslatedModel.objects.get(pk=1)
             o.name = {'en-US': 'active language', 'xxx': 'hidden language',
                       'de': 'another language'}
             o.save()
@@ -241,7 +246,7 @@ class TranslationTestCase(BaseTestCase):
             ['de', 'en-US', 'xxx'])
 
     def test_dict_bad_locale(self):
-        m = TranslatedModel.objects.get(id=1)
+        m = TranslatedModel.objects.get(pk=1)
         m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
         m.save()
 
@@ -397,7 +402,7 @@ class TranslationTestCase(BaseTestCase):
             assert m.linkified.localized_string == s
 
     def test_require_locale(self):
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         assert unicode(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'en-US'
 
@@ -405,7 +410,7 @@ class TranslationTestCase(BaseTestCase):
         obj.no_locale.locale = 'fr'
         obj.no_locale.save()
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         assert unicode(obj.no_locale) == 'blammo'
         assert obj.no_locale.locale == 'fr'
 
@@ -414,7 +419,7 @@ class TranslationTestCase(BaseTestCase):
         Test that deleting a translation sets the corresponding FK to NULL,
         if it was the only translation for this field.
         """
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
         trans_id = obj.description.id
         assert Translation.objects.filter(id=trans_id).count() == 1
 
@@ -431,7 +436,7 @@ class TranslationTestCase(BaseTestCase):
         # fallback to the second locale, which is 'de'.
         get_fallback.return_value = 'de'
 
-        obj = TranslatedModel.objects.get(id=1)
+        obj = TranslatedModel.objects.get(pk=1)
 
         orig_name_id = obj.name.id
         assert obj.name.locale.lower() == 'en-us'
