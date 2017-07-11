@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 08:29+0000\n"
+"PO-Revision-Date: 2017-07-11 08:45+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3832,7 +3832,7 @@ msgid "Listed Review Page"
 msgstr "Vurderingsside for oppførte"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Vureringsside for ikkje-oppførte"
 
 msgid "View Statistics Dashboard"
 msgstr "Vis statistikkdashbord"
@@ -3889,7 +3889,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Les meir om vurderingspraksisen for kjeldekode."
 
 msgid "Latest News"
 msgstr "Siste nytt"
@@ -3985,7 +3985,7 @@ msgid "Manage Your Add-on"
 msgstr "Fleire utvidingar"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Logg inn for å redigere og oppdatere utvidinga di"
 
 msgid "Evolution in Add-on Development"
 msgstr ""
@@ -4122,7 +4122,7 @@ msgid "Contributions"
 msgstr "Bidrag"
 
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "Fyll inn felta nedanfor for å byrje å be om frivillige bidrag frå brukarane."
 
 msgid "Who will receive contributions to this add-on?"
 msgstr "Kven vil få bidrag for dette tillegget?"
@@ -4253,19 +4253,19 @@ msgid "Footer"
 msgstr "Botntekst"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Vel fargar for temaet ditt."
 
 msgid "Foreground Text"
 msgstr "Framgrunnstekst"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Dette er tekstfargen på fana."
 
 msgid "Background"
 msgstr "Bakgrunn"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Dette er fargen på fanene."
 
 msgid "Preview"
 msgstr "Førehandsvising"
@@ -7685,7 +7685,7 @@ msgid "Download sources by Date"
 msgstr ""
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Om å spore eksterne kjelder…"
 
 #, python-format
 msgid ""
@@ -8004,7 +8004,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Skriv litt meir om deg sjølv. Alle felta er valfrie, men dei vil hjelpe andre med å bli betre kjent med deg."
 
 msgid "This URL will only be visible if you are a developer."
 msgstr ""
