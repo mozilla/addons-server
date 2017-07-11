@@ -940,21 +940,6 @@ class AjaxTest(TestCase):
             "The new collection is not selected.")
         assert Collection.objects.filter(slug='auniqueone')
 
-    def test_ajax_new_supports_addon_id_get(self):
-        # Make sure we support addon_id as GET (this is what we do for
-        # our pop-up add-new-collection widget)
-        # See https://github.com/mozilla/addons-server/issues/5854
-        assert not Collection.objects.filter(slug='auniqueone')
-
-        r = self.client.post(
-            reverse('collections.ajax_new') + '?addon_id=%s' % 5299,
-            {'name': 'foo', 'slug': 'auniqueone',
-             'description': 'foobar', 'listed': True},
-            follow=True)
-        doc = pq(r.content)
-        assert len(doc('li.selected')) == 1
-        assert Collection.objects.filter(slug='auniqueone')
-
     def test_add_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
         c = Collection(author=self.other)
