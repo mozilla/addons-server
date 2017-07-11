@@ -77,6 +77,20 @@ class TestHomeAndIndex(TestCase):
         assert response.context['user'].email == 'admin@mozilla.com'
 
 
+class TestStaffAdmin(TestCase):
+    def test_index(self):
+        url = reverse('staffadmin:index')
+        response = self.client.get(url)
+        self.assert3xx(response, '/admin/staff-models/login/?'
+                                 'next=/en-US/admin/staff-models/')
+
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+
 class TestSiteEvents(TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 
