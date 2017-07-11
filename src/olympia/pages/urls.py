@@ -63,6 +63,9 @@ urlpatterns = [
     url('^shield_study_12$',
         TemplateView.as_view(template_name='pages/shield_study_12.html'),
         name='pages.shield_study_12'),
+    url('^shield_study_13$',
+        TemplateView.as_view(template_name='pages/shield_study_13.html'),
+        name='pages.shield_study_13'),
 
     url('^pages/compatibility_firstrun$',
         lambda r: perma_redirect(reverse('pages.acr_firstrun'))),
