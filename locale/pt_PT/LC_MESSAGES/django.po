@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-10 23:21+0000\n"
+"PO-Revision-Date: 2017-07-11 03:47+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1728,13 +1728,13 @@ msgstr[0] "<b>{0}</b> extra"
 msgstr[1] "<b>{0}</b> extras"
 
 msgid "Search Extensions"
-msgstr "Pesquisar extensões"
+msgstr "Extensões de pesquisa"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Adicionar funcionalidades de pesquisa ao Firefox"
 
 msgid "Search Providers"
-msgstr "Pesquisar fornecedores"
+msgstr "Fornecedores de pesquisa"
 
 msgid "Find new providers for your search bar"
 msgstr "Encontre novos fornecedores para a sua barra de pesquisa"
@@ -3011,10 +3011,10 @@ msgstr "Voltar aos extras"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr "{0} :: Pesquisar"
+msgstr "{0} :: Pesquisa"
 
 msgid "Search"
-msgstr "Pesquisar"
+msgstr "Pesquisa"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -7644,7 +7644,7 @@ msgid "Highest Rated"
 msgstr "Avaliação mais alta"
 
 msgid "search for add-ons"
-msgstr "pesquisar por extras"
+msgstr "pesquisar extras"
 
 msgid "search for collections"
 msgstr "pesquisar coleções"
