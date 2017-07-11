@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 12:10+0000\n"
+"PO-Revision-Date: 2017-07-11 12:46+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2757,10 +2757,10 @@ msgid "Version {version} already exists."
 msgstr "Versjon {version} finst allereie."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Fortsetje med eksisterande opplasting i staden?"
 
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Plattforma Alle kan ikkje kombinerast med spesifikke plattformer."
 
 msgid "A platform can only be chosen once."
 msgstr "Ei plattform kan berre veljast éin gong."
@@ -3684,7 +3684,7 @@ msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Administrative overstyringar"
 
 msgid "Submit File"
 msgstr "Send inn fil"
@@ -3718,16 +3718,16 @@ msgid ""
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Du har ingena API-inloggingsakkreditiv."
 
 msgid "Revoke"
 msgstr "Tilbakekall"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Kall tilbake og regenerer akkreditiv"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generer nye akkreditiv"
 
 msgid "Invisible"
 msgstr "Usynleg"
@@ -4163,7 +4163,7 @@ msgid ""
 msgstr ""
 
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Aktiver bidrag"
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "eller <a id=\"setup-cancel\" href=\"#\">Avbryt</a>"
@@ -4330,7 +4330,7 @@ msgid "PNG or JPG"
 msgstr "PNG eller JPG"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Justert ;vst til h;gre"
 
 msgid "Select a different header image"
 msgstr ""
@@ -4404,7 +4404,7 @@ msgid "0 files"
 msgstr "0 filer"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Aktiver versjonen på nytt"
 
 msgid "Close Review History"
 msgstr "Lukk vurderingshistorikk"
@@ -4593,7 +4593,7 @@ msgid "Search by add-on name / author email / guid"
 msgstr ""
 
 msgid "Max. Version"
-msgstr ""
+msgstr "Kompatibel til og med"
 
 msgid "Comments:"
 msgstr "Kommentarar:"
@@ -5469,10 +5469,10 @@ msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match th
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Dobbel utvidings-ID funne."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Versjonsnummer skal ha færre enn 32 teikn."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
@@ -5514,7 +5514,7 @@ msgid "Add-on file being processed, please wait."
 msgstr ""
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Hentar valideringsresultat…"
 
 msgid "Deleted files:"
 msgstr "Sletta filer:"
@@ -5640,13 +5640,13 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nytt &amp; No"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Sutlaus surfning"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
@@ -5661,7 +5661,7 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr ""
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Må-ha media"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
@@ -5692,7 +5692,7 @@ msgid "Browse all add-ons"
 msgstr "Bla i alle utvidingane"
 
 msgid "See all complete themes"
-msgstr ""
+msgstr "Vis alle utvida tema"
 
 msgid "Close Video"
 msgstr "Lukk video"
@@ -5709,7 +5709,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr ""
 
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Nedlasta utvidingar:"
 
 msgid "Active Users"
 msgstr "Aktive brukarar"
@@ -6351,13 +6351,13 @@ msgid "Thank you!"
 msgstr "Takk skal du ha!"
 
 msgid "Site Credits"
-msgstr ""
+msgstr "Nettstaden takkar"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
 msgstr ""
 
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Utviklarar &amp; administratorar"
 
 msgid "Localizers"
 msgstr "Omsettarar"
@@ -6404,20 +6404,20 @@ msgid "Sections"
 msgstr "Seksjonar"
 
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Utvikle ei utviding"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
 msgstr "Brukarstøtteresursar"
 
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Bidrar di utviding"
 
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Vurderingsprosess for utviding"
 
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Handsam utvidinga di"
 
 msgid "References for Open Source Licenses"
 msgstr ""
@@ -6493,7 +6493,7 @@ msgid ""
 msgstr ""
 
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Kan eg hyse mine eigne utvidingar?"
 
 #, python-format
 msgid ""
@@ -6502,11 +6502,11 @@ msgid ""
 msgstr ""
 
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Kan Mozilla hyse utvidinga mi?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Ja. Du kan hyse utvidinga di på <a href=\"%(url)s\">Mozillas nettstad for utvidingar</a>."
 
 msgid "What is AMO?"
 msgstr "Kva er AMO?"
@@ -6746,7 +6746,7 @@ msgid ""
 msgstr ""
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Kva for ulike typar utvidingar finst det?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
@@ -6977,7 +6977,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Å gjere:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -7007,7 +7007,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Å ikkje gjere:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
@@ -7149,7 +7149,7 @@ msgid ""
 msgstr ""
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Presentert av:"
 
 msgid "Sunbird has retired"
 msgstr ""
@@ -7193,7 +7193,7 @@ msgstr ""
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Vurdert til %d av 5 stjerner"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -7226,7 +7226,7 @@ msgid "Thanks; this review has been flagged for editor approval."
 msgstr ""
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Legg til ei vurdering for {0}"
 
 #, python-format
 msgid ""
@@ -7239,7 +7239,7 @@ msgid ""
 msgstr ""
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Svar på vurdering av {0}"
 
 msgid "Write a Reply"
 msgstr "Skriv eit svar"
@@ -7386,7 +7386,7 @@ msgid "All Systems"
 msgstr "Alle system"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Alle taggar"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7410,7 +7410,7 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Tagg"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7418,8 +7418,8 @@ msgstr ""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> treff"
+msgstr[1] "<b>{0}</b> treff"
 
 msgid "Filter Results"
 msgstr "Filtrer resultata"
@@ -7428,32 +7428,32 @@ msgid "Category"
 msgstr "Kategori"
 
 msgid "Tag"
-msgstr ""
+msgstr "Tagg"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Klarte ikkje å finne ei utviding med ID-en \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Du eig ikkje denne utvidinga."
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Du kan ikkje legge til versjonar til ei utviding som har statusen: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versjonen passar ikkje med manifest-fila."
 
 msgid "Version already exists."
 msgstr "Versjonen finst allereie."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Berre WebExtensions har løyve tiilå utelate GUID"
 
 msgid "Invalid GUID in URL"
 msgstr "Ugyldig GUID i URL"
@@ -7465,7 +7465,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Takk for at du har bidrege til {addon_name}"
 
 msgid "Overview"
 msgstr "Oversyn"
@@ -7763,16 +7763,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Gå tilbake til heimesida for {0}-utvidingar"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Utvidingar"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Utvidingar"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Utvidingar"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Utvidingar"
 
 msgid "My Account"
 msgstr "Min konto"
