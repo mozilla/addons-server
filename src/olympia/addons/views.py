@@ -547,10 +547,11 @@ def find_replacement_addon(request):
     if not guid:
         raise http.Http404
     try:
-        replace_url = ReplacementAddon.objects.get(guid=guid).path
+        path = ReplacementAddon.objects.get(guid=guid).path
     except ReplacementAddon.DoesNotExist:
-        replace_url = DEFAULT_FIND_REPLACEMENT_PATH
-    replace_url += '?src=%s' % FIND_REPLACEMENT_SRC
+        path = DEFAULT_FIND_REPLACEMENT_PATH
+    replace_url = '%s%s?src=%s' % (
+        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
     return redirect(replace_url, permanent=False)
 
 

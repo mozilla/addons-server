@@ -1588,6 +1588,14 @@ class TestFindReplacement(TestCase):
         self.assert3xx(
             response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
 
+    def test_match_no_leading_slash(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')
         response = self.client.get(self.url)

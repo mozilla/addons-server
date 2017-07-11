@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.core.urlresolvers import resolve
 
 from olympia import amo
-from olympia.zadmin.admin import staff_admin_site
+from olympia.zadmin.admin import staff_admin_site, StaffModelAdmin
 
 from . import models
 
@@ -83,13 +83,14 @@ class ReplacementAddonForm(forms.ModelForm):
         path = None
         try:
             path = self.data.get('path')
+            path = ('/' if not path.startswith('/') else '') + path
             resolve(path)
         except:
             raise forms.ValidationError('Path [%s] is not valid' % path)
-        return self.cleaned_data
+        return super(ReplacementAddonForm, self).clean()
 
 
-class ReplacementAddonAdmin(admin.ModelAdmin):
+class ReplacementAddonAdmin(StaffModelAdmin):
     list_display = ('guid', 'path')
     form = ReplacementAddonForm
 

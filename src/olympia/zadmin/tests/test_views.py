@@ -89,6 +89,16 @@ class TestStaffAdmin(TestCase):
         self.client.login(email='staffperson@m.c')
         response = self.client.get(url)
         assert response.status_code == 200
+        assert 'Replacement addons' in response.content
+
+    def test_model_page(self):
+        url = reverse('staffadmin:addons_replacementaddon_changelist')
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert 'Select replacement addon to change' in response.content
 
 
 class TestSiteEvents(TestCase):

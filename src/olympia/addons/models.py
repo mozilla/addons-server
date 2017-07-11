@@ -2129,7 +2129,9 @@ def update_incompatible_versions(sender, instance, **kw):
 
 class ReplacementAddon(ModelBase):
     guid = models.CharField(max_length=255, unique=True, null=True)
-    path = models.CharField(max_length=255, null=True)
+    path = models.CharField(max_length=255, null=True,
+                            help_text=_('Addon and collection paths need to '
+                                        'end with "/"'))
 
     class Meta:
         db_table = 'replacement_addons'

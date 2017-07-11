@@ -13,6 +13,20 @@ class StaffAdminSite(admin.AdminSite):
         return acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
 
 
+class StaffModelAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return self.admin_site.has_permission(request)
+
+    def has_change_permission(self, request, obj=None):
+        return self.admin_site.has_permission(request)
+
+    def has_delete_permission(self, request, obj=None):
+        return self.admin_site.has_permission(request)
+
+    def has_module_permission(self, request):
+        return self.admin_site.has_permission(request)
+
+
 staff_admin_site = StaffAdminSite(name='staffadmin')
 
 admin.site.register(models.Config)
