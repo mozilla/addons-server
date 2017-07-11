@@ -1,4 +1,4 @@
-{% set title = _('Rated {0} out of 5 stars')|f(rating) %}
+{% set title = _('Rated {0} out of 5 stars')|format_html(rating) %}
 {% if detailpage %}
   <span class="stars large stars-{{ rating }}" title="{{ title }}">
       {% trans %}

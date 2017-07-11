@@ -16,7 +16,7 @@ from olympia.addons.models import (
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from olympia.editors.models import RereviewQueueTheme

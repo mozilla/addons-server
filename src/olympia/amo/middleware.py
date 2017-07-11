@@ -24,7 +24,7 @@ import MySQLdb as mysql
 from olympia import amo
 from olympia.amo.utils import render
 from . import urlresolvers
-from .helpers import urlparams
+from .templatetags.jinja_helpers import urlparams
 
 
 auth_path = re.compile(r'^/api/v3/accounts/authenticate/?$')

@@ -1,7 +1,7 @@
 from django import http
 from django.utils.translation import ugettext
 
-from olympia.amo.helpers import absolutify, page_name
+from olympia.amo.templatetags.jinja_helpers import absolutify, page_name
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.access import acl

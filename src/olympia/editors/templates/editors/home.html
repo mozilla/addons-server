@@ -10,14 +10,14 @@
           <a href="{{ url('editors.queue_nominated') }}">
             {{ ngettext('New Add-on ({num})',
                         'New Add-ons ({num})',
-                        queue_counts_total['nominated'])|f(num=queue_counts_total['nominated']) }}
+                        queue_counts_total['nominated'])|format_html(num=queue_counts_total['nominated']) }}
           </a>
         </div>
         <div class="editor-stats-title">
           <a href="{{ url('editors.queue_pending') }}">
             {{ ngettext('Update ({num})',
                         'Updates ({num})',
-                        queue_counts_total['pending'])|f(num=queue_counts_total['pending']) }}
+                        queue_counts_total['pending'])|format_html(num=queue_counts_total['pending']) }}
           </a>
         </div>
       </div>
@@ -34,8 +34,8 @@
                      data-delay="100"
                      style="width:{{ percentage[type][d] }}%"
                      title="{{ duration }} ::
-                            {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
-                            &bull; {{ _('{0}%%')|f(percentage[type][d]|round|int) }}"></div>
+                            {{ ngettext('{0} add-on', '{0} add-ons', total)|format_html(total) }}
+                            &bull; {{ _('{0}%%')|format_html(percentage[type][d]|round|int) }}"></div>
                 {% endfor %}
               </div>
             </div>
@@ -65,7 +65,7 @@
             </table>
           </div>
           {% if reviews_total_position > reviews_max_display %}
-            <div>{{ _("You're #{0} with {1} reviews")|f(reviews_total_position, reviews_total_count) }}</div>
+            <div>{{ _("You're #{0} with {1} reviews")|format_html(reviews_total_position, reviews_total_count) }}</div>
           {% endif %}
         </div>
         <div class="editor-stats-table three-col">
@@ -80,7 +80,7 @@
             </table>
           </div>
           {% if reviews_monthly_position > reviews_max_display %}
-            <div>{{ _("You're #{0} with {1} reviews")|f(reviews_monthly_position, reviews_monthly_count) }}</div>
+            <div>{{ _("You're #{0} with {1} reviews")|format_html(reviews_monthly_position, reviews_monthly_count) }}</div>
           {% endif %}
         </div>
         <div class="editor-stats-table three-col">
@@ -112,7 +112,7 @@
         {# L10n: num = number of reviews in the queue #}
         {{ ngettext('Moderated Review ({num})',
                     'Moderated Reviews ({num})',
-                    queue_counts_total['moderated'])|f(num=queue_counts_total['moderated']) }}</a>
+                    queue_counts_total['moderated'])|format_html(num=queue_counts_total['moderated']) }}</a>
       </div>
       {% for item in eventlog %}
       <div class="row">

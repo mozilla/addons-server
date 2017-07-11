@@ -2,7 +2,7 @@
 
 {% if filename %}
   {# L10n: first parameter is a filename like lorem-ipsum-1.0.2.xpi #}
-  {% set title = _('Validation Results for {0}')|f(filename) %}
+  {% set title = _('Validation Results for {0}')|format_html(filename) %}
 {% else %}
   {% set title = _('Validation Results') %}
 {% endif %}

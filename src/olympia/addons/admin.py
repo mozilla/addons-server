@@ -30,7 +30,7 @@ class AddonAdmin(admin.ModelAdmin):
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'view_source',
-                       'public_stats', 'prerelease', 'admin_review',
+                       'public_stats', 'is_experimental', 'admin_review',
                        'external_software', 'dev_agreement'),
         }),
         ('Money', {

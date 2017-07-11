@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import caching.base as caching
-import jingo
 import jinja2
 from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -58,7 +58,7 @@ class TemplatePromo(PromoModule):
     def render(self, **kw):
         c = dict(self.context(**kw))
         c.update(kw)
-        r = jingo.render_to_string(self.request, self.template, c)
+        r = render_to_string(self.template, c, request=self.request)
         return jinja2.Markup(r)
 
 
@@ -118,8 +118,8 @@ class CollectionPromo(PromoModule):
                  descriptions=self.get_descriptions())
         if self.collection:
             c.update(addons=self.get_addons())
-        return jinja2.Markup(
-            jingo.render_to_string(self.request, self.template, c))
+        return jinja2.Markup(render_to_string(
+            self.template, c, request=self.request))
 
 
 class ShoppingCollection(CollectionPromo):

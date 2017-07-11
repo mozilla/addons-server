@@ -3,11 +3,11 @@
   <div class="info">
     <h3><a href="{{ version.get_url_path() }}"
            title="{{ _('Permanent link to this version') }}">
-      {{ _('Version {0}')|f(version.version) }}</a>
+      {{ _('Version {0}')|format_html(version.version) }}</a>
       <span class="meta">
         <time datetime="{{ version.created|isotime }}">
           {# L10n: {0} is a timestamp, such as September 28, 2011. #}
-          {{ _('Released {0}')|f(version.created|datetime) }}
+          {{ _('Released {0}')|format_html(version.created|datetime) }}
         </time>
         {% if version.has_files %}
           <span class="filesize">

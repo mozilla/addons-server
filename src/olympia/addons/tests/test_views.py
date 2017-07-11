@@ -16,7 +16,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.helpers import numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
@@ -30,7 +30,7 @@ from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
-from olympia.users.helpers import users_list
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
@@ -384,7 +384,7 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('.biography').html() == (
-            'Bio: This is line one.<br><br>This is line two')
+            'Bio: This is line one.<br/><br/>This is line two')
         addon_reasons = doc('#about-addon p')
         assert addon_reasons.eq(0).html() == (
             'Why: This is line one.<br/><br/>This is line two')
@@ -398,9 +398,9 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         bios = pq(r.content)('.biography')
         assert bios.eq(0).html() == (
-            'Bio1: This is line one.<br><br>This is line two')
+            'Bio1: This is line one.<br/><br/>This is line two')
         assert bios.eq(1).html() == (
-            'Bio2: This is line one.<br><br>This is line two')
+            'Bio2: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         url = reverse('addons.roadblock', args=['a11730'])
@@ -572,9 +572,17 @@ class TestDetailPage(TestCase):
         a.name = '<script>alert("fff")</script>'
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert(&#34;fff&#34;)&lt;/script&gt;' in html
-        assert '<script>' not in html
+        assert (
+            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
+            response.content)
+        assert '<script>' not in response.content
+
+    def test_report_abuse_links_to_form_age(self):
+        response = self.client.get_ajax(
+            reverse('addons.detail', args=['a3615']))
+        doc = pq(response.content)
+        expected = reverse('addons.abuse', args=['3615'])
+        assert doc('#report-abuse').attr('href') == expected
 
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
@@ -918,19 +926,18 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_requires_restart(self):
-        span_restart = '<span class="requires-restart">Requires Restart</span>'
-        f = self.addon.current_version.all_files[0]
+    def test_is_restart_required(self):
+        span_is_restart_required = (
+            '<span class="is-restart-required">Requires Restart</span>')
+        file_ = self.addon.current_version.all_files[0]
 
-        assert f.requires_restart is True
-        r = self.client.get(self.url)
-        assert span_restart in r.content
+        assert file_.is_restart_required is False
+        response = self.client.get(self.url)
+        assert span_is_restart_required not in response.content
 
-        f.no_restart = True
-        f.save()
-        assert f.requires_restart is False
-        r = self.client.get(self.url)
-        assert span_restart not in r.content
+        file_.update(is_restart_required=True)
+        response = self.client.get(self.url)
+        assert span_is_restart_required in response.content
 
     def test_is_webextension(self):
         file_ = self.addon.current_version.all_files[0]
@@ -940,7 +947,7 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
-        file_.update(is_webextension=True, no_restart=True)
+        file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -2628,6 +2635,26 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(
             self.url, {'app': 'lol'}, expected_status=400)
         assert data == ['Invalid "app" parameter.']
+
+    def test_filter_by_author(self):
+        author = user_factory(username=u'my-fancyAuthôr')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        author2 = user_factory(username=u'my-FancyAuthôrName')
+        AddonUser.objects.create(addon=addon2, user=author2)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
 
 
 class TestAddonFeaturedView(TestCase):

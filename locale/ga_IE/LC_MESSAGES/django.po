@@ -2,13 +2,13 @@
 # Copyright (C) 2006 Mozilla Corporation
 # This file is distributed under the same license as the REMORA package.
 # Wil Clouser <clouserw@mozilla.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-02-08 03:44+0000\n"
+"PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -76,14 +76,14 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Ní féidir nótaí a chur ach leis an leagan is déanaí de bhreiseán."
 
 msgid "Download Now"
-msgstr "Íosluchtaigh Anois"
+msgstr "Íoslódáil Anois"
 
 msgid "Download"
-msgstr "Íosluchtaigh"
+msgstr "Íoslódáil"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Leathanach Íosluchtaithe&nbsp;&rarr;"
+msgstr "Leathanach Íoslódála&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Mór-Le-Rá"
@@ -187,8 +187,8 @@ msgstr ""
 msgid "Listed"
 msgstr "Liostaithe"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 msgid "Contribution for {0}"
 msgstr "Deontais le haghaidh {0}"
 
@@ -232,9 +232,9 @@ msgstr "Tá forbróir an bhreiseáin seo ag iarraidh go dtacóidh tú leis trí 
 msgid "Contribute"
 msgstr "Tabhair deontas"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 msgid "or"
 msgstr "nó"
 
@@ -263,19 +263,16 @@ msgid "Help support the continued development of <strong>%(addon_name)s</strong>
 msgstr "Tacaigh le forbairt leanúnach <strong>%(addon_name)s</strong> trí dheontas beag a thabhairt do na forbróirí trí <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Chun do thacaíocht do <b>%(addon_name)s</b> a léiriú, tá an forbróir ag iarraidh go dtabharfaidh tú deontas do <a href=\"%(charity_url)s\">%(charity_name)s</a> trí <a href=\"%(paypal_url)s"
-"\">Paypal</a>."
+"Chun do thacaíocht do <b>%(addon_name)s</b> a léiriú, tá an forbróir ag iarraidh go dtabharfaidh tú deontas do <a href=\"%(charity_url)s\">%(charity_name)s</a> trí <a "
+"href=\"%(paypal_url)s\">Paypal</a>."
 
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Chun do thacaíocht do <b>%(addon_name)s</b> a léiriú, tá an forbróir ag iarraidh go dtabharfaidh tú deontas beag do <a href=\"%(charity_url)s\">%(charity_name)s</a> trí <a href=\"%(paypal_url)s"
-"\">Paypal</a>."
+"Chun do thacaíocht do <b>%(addon_name)s</b> a léiriú, tá an forbróir ag iarraidh go dtabharfaidh tú deontas beag do <a href=\"%(charity_url)s\">%(charity_name)s</a> trí <a "
+"href=\"%(paypal_url)s\">Paypal</a>."
 
 msgid "How much would you like to contribute?"
 msgstr "Cá mhéad atá tú ag iarraidh tabhairt?"
@@ -375,11 +372,11 @@ msgstr "Curtha leis ar {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s íosluchtú sa tseachtain"
-msgstr[1] "%(num)s íosluchtú sa tseachtain"
-msgstr[2] "%(num)s íosluchtú sa tseachtain"
-msgstr[3] "%(num)s n-íosluchtú sa tseachtain"
-msgstr[4] "%(num)s íosluchtú sa tseachtain"
+msgstr[0] "%(num)s íoslódáil sa tseachtain"
+msgstr[1] "%(num)s íoslódáil sa tseachtain"
+msgstr[2] "%(num)s íoslódáil sa tseachtain"
+msgstr[3] "%(num)s n-íoslódáil sa tseachtain"
+msgstr[4] "%(num)s íoslódáil sa tseachtain"
 
 #, python-format
 msgid "%(num)s user"
@@ -402,11 +399,11 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} íosluchtú sa tseachtain"
-msgstr[1] "{0} íosluchtú sa tseachtain"
-msgstr[2] "{0} íosluchtú sa tseachtain"
-msgstr[3] "{0} n-íosluchtú sa tseachtain"
-msgstr[4] "{0} íosluchtú sa tseachtain"
+msgstr[0] "{0} íoslódáil sa tseachtain"
+msgstr[1] "{0} íoslódáil sa tseachtain"
+msgstr[2] "{0} íoslódáil sa tseachtain"
+msgstr[3] "{0} n-íoslódáil sa tseachtain"
+msgstr[4] "{0} íoslódáil sa tseachtain"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -513,14 +510,14 @@ msgid "Learn more about Firefox"
 msgstr "Tuilleadh eolais faoi Firefox"
 
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "nó <b><a class=\"button installer\" href=\"{url}\">íosluchtaigh mar sin féin</a></b>"
+msgstr "nó <b><a class=\"button installer\" href=\"{url}\">íoslódáil mar sin féin</a></b>"
 
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Conas a Shuiteáil in Thunderbird</strong> <ol> <li>Íosluchtaigh agus sábháil an comhad ar do dhiosca crua.</li> <li>In Mozilla Thunderbird, oscail 'Breiseáin' ón roghchlár 'Uirlisí'.</li> "
-"<li>Ón chnaipe roghanna in aice leis an réimse cuardaigh, roghnaigh \"Suiteáil Breiseán Ó Chomhad...\" agus aimsigh an breiseán íosluchtaithe.</li> </ol>"
+"<strong>Conas a Shuiteáil in Thunderbird</strong> <ol> <li>Íoslódáil agus sábháil an comhad ar do dhiosca crua.</li> <li>In Mozilla Thunderbird, oscail 'Breiseáin' ón roghchlár 'Uirlisí'.</li> "
+"<li>Ón chnaipe roghanna in aice leis an réimse cuardaigh, roghnaigh \"Suiteáil Breiseán Ó Chomhad...\" agus aimsigh an breiseán íoslódáilte.</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
@@ -561,8 +558,8 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Teastaíonn ón Phearsantacht seo leagan %(new_version)s de %(app)s. Tá leagan {old_version} agat faoi láthair."
 
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -693,7 +690,7 @@ msgid "This add-on has been marked as experimental by its developers"
 msgstr "Deir na forbróirí gur breiseán turgnamhach é seo"
 
 msgid "Download Anyway"
-msgstr "Íosluchtaigh mar sin féin"
+msgstr "Íoslódáil mar sin féin"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -838,8 +835,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr ""
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
@@ -851,8 +848,8 @@ msgstr "Is breiseán turgnamhach é seo"
 msgid "Thank you for installing {0}"
 msgstr "Go raibh maith agat as {0} a shuiteáil"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 msgid "Meet the {0} Developer"
 msgstr "Téigh in aithne ar fhorbróir {0}"
 
@@ -952,7 +949,7 @@ msgstr "Nóta ón Bhailitheoir"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[0] "<strong>{0}</strong> íoslódáil sa tseachtain"
 msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
@@ -1065,8 +1062,8 @@ msgstr "Gan Aimsiú"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
@@ -1468,8 +1465,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 
 msgid "My favorite add-ons"
@@ -1729,7 +1726,7 @@ msgid "Most Users"
 msgstr "Líon is mó úsáideoirí"
 
 msgid "Weekly Downloads"
-msgstr "Íosluchtuithe sa tSeachtain"
+msgstr "Íoslódálacha sa tSeachtain"
 
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
@@ -1741,7 +1738,7 @@ msgid "Created"
 msgstr "Cruthaithe"
 
 msgid "Downloads"
-msgstr "Íosluchtuithe"
+msgstr "Íoslódálacha"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1765,10 +1762,10 @@ msgid "Install Language Pack"
 msgstr "Suiteáil Pacáiste Teanga"
 
 msgid "Download Dictionary"
-msgstr "Íosluchtaigh Foclóir"
+msgstr "Íoslódáil Foclóir"
 
 msgid "Download Language Pack"
-msgstr "Íosluchtaigh Pacáiste Teanga"
+msgstr "Íoslódáil Pacáiste Teanga"
 
 msgid "Available in your locale"
 msgstr "Ar fáil i do theanga"
@@ -1943,8 +1940,8 @@ msgstr "Tuairiscí ar Chomhoiriúnacht an Bhreiseáin"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 
 msgid "Reports for your Add-ons"
@@ -2509,7 +2506,7 @@ msgid "Bookmarks"
 msgstr "Leabharmharcanna"
 
 msgid "Download Management"
-msgstr "Bainistiú Íosluchtuithe"
+msgstr "Bainistiú Íoslódála"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fothaí, Nuacht, agus Blagadóireacht"
@@ -2687,7 +2684,7 @@ msgid "Privacy and Security"
 msgstr "Príobháideachas agus Slándáil"
 
 msgid "Downloading and File Management"
-msgstr "Íosluchtú agus Bainistiú Comhad"
+msgstr "Íoslódáil agus Bainistiú Comhad"
 
 msgid "Interface Customizations"
 msgstr "Saincheapadh an Chomhéadain"
@@ -2879,7 +2876,7 @@ msgid "Need at least one compatible application."
 msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Bhí earráid leis an uasluchtú. Bain triail eile as."
+msgstr "Bhí earráid leis an uaslódáil. Bain triail eile as."
 
 msgid "Override failed validation"
 msgstr ""
@@ -2897,7 +2894,7 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr ""
 
 msgid "You cannot upload any more files for this version."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
 
 msgid "Version doesn't match"
 msgstr "Níl an leagan comhoiriúnach"
@@ -2936,15 +2933,14 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Doiciméadú Breiseán :: Lárionad Forbartha."
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} earráid"
@@ -2953,8 +2949,8 @@ msgstr[2] "{0} earráid"
 msgstr[3] "{0} n-earráid"
 msgstr[4] "{0} earráid"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} rabhadh"
@@ -3066,7 +3062,7 @@ msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr "Tharla earráid agus do réamhamharc á uasluchtú."
+msgstr "Tharla earráid agus do réamhamharc á uaslódáil."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3243,12 +3239,10 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uasluchtaigh Leagan Nua</a> nó <a href=\"#"
-"\" class=\"close\">Ná Bac Leis</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uaslódáil Leagan Nua</a> nó <a href=\"#\" "
+"class=\"close\">Ná Bac Leis</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "Scrúdaigh agus nuashonraigh raonta comhoiriúnachta."
@@ -3371,8 +3365,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -3431,8 +3424,8 @@ msgid "Support Information for {0}"
 msgstr "Eolas Tacaíochta le haghaidh {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3561,7 +3554,7 @@ msgid "Used in add-on detail pages."
 msgstr "Úsáidtear é seo ar leathanach mionsonraí an bhreiseáin."
 
 msgid "Upload a Custom Icon..."
-msgstr "Uasluchtaigh Deilbhín Saincheaptha..."
+msgstr "Uaslódáil Deilbhín Saincheaptha..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64×64 má tá sé níos mó."
@@ -3647,13 +3640,13 @@ msgid "Edit information about this add-on."
 msgstr "Cuir an t-eolas faoin bhreiseán seo in eagar."
 
 msgid "Upload a new version of this add-on."
-msgstr "Uasluchtaigh leagan nua den bhreiseán seo."
+msgstr "Uaslódáil leagan nua den bhreiseán seo."
 
 msgid "New Version"
 msgstr "Leagan Nua"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Staitisticí laethúla ar líon íosluchtuithe agus úsáideoirí."
+msgstr "Staitisticí laethúla ar líon íoslódálacha agus úsáideoirí."
 
 msgid "Statistics"
 msgstr "Staitisticí"
@@ -3838,13 +3831,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr "Íosluchtaigh {0}"
+msgstr "Íoslódáil {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
 msgid "Upload File"
-msgstr "Uasluchtaigh Comhad"
+msgstr "Uaslódáil Comhad"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3854,7 +3847,7 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Upload Add-on"
-msgstr "Uasluchtaigh Breiseán"
+msgstr "Uaslódáil Breiseán"
 
 #, fuzzy
 msgid "Where to Host File"
@@ -3865,7 +3858,7 @@ msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
 msgid "Upload Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
@@ -3906,8 +3899,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -4019,7 +4012,7 @@ msgid "Telling your users what's coming soon will give them something to look fo
 msgstr ""
 
 msgid "Upload New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "View All"
 msgstr ""
@@ -4214,8 +4207,7 @@ msgstr "Tuilleadh Eolais"
 msgid "What's New"
 msgstr "Leagan Is Déanaí:"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 msgid "See Schedule"
@@ -4258,8 +4250,8 @@ msgstr "Téamaí so-úsáidte i bhFirefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
-"a>, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
+" you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -4576,8 +4568,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Bainistigh Leagan {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Bainistigh {0}"
 
@@ -4585,7 +4577,7 @@ msgid "Files"
 msgstr "Comhaid:"
 
 msgid "Upload Another File"
-msgstr "Uasluchtaigh Comhad Eile"
+msgstr "Uaslódáil Comhad Eile"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -4706,7 +4698,7 @@ msgid "All versions"
 msgstr "Féach ar gach Leagan"
 
 msgid "Upload a New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "Delete Version {version}"
 msgstr "Scrios Leagan {version}"
@@ -5745,12 +5737,12 @@ msgstr ""
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil, eilimint <%s> ar iarraidh nó folamh"
 
 msgid "Could not parse uploaded file."
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -6018,7 +6010,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Go raibh maith agat as %(app)s a úsáid agus as tacaíocht a thabhairt do <a href=\"%(url)s\">Mhisean Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Breiseáin íosluchtaithe:"
+msgstr "Breiseáin íoslódáilte:"
 
 msgid "Active Users"
 msgstr "Úsáideoirí Gníomhacha"
@@ -6589,8 +6581,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -6610,9 +6601,7 @@ msgid "I have a question"
 msgstr ""
 
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 
 #, python-format
@@ -6624,8 +6613,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 msgid "Add-on Compatibility Reporter"
@@ -6696,8 +6685,8 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Úsáidtear deilbhíní ón <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, ar fáil de réir coinníollacha an cheadúnais <a href=\"http://creativecommons.org/licenses/"
-"by/2.5/\">Creative Commons Attribution, leagan 2.5</a>."
+"Úsáidtear deilbhíní ón <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, ar fáil de réir coinníollacha an cheadúnais <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution, leagan 2.5</a>."
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
@@ -6804,8 +6793,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 msgid "Can I host my own add-on?"
@@ -6852,8 +6841,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
-"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
+" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
 msgid "How do I submit my add-on?"
@@ -6861,8 +6850,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
+" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -6875,8 +6864,8 @@ msgid "What category do I choose for my add-on?"
 msgstr ""
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
@@ -6906,9 +6895,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
+" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
+" href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
@@ -7005,10 +6994,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr ""
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 msgid ""
@@ -7054,9 +7043,10 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
 
 msgid "What are the different types of add-ons?"
@@ -7201,8 +7191,8 @@ msgid "What are beta add-ons?"
 msgstr "Cad is Breiseán Béite ann?"
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr ""
 
 msgid ""
@@ -7230,9 +7220,9 @@ msgstr "Cad is Ceadúnas Cóid Fhoinsigh ann?"
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
 
 #, python-format
@@ -7287,8 +7277,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -7536,9 +7526,8 @@ msgstr ""
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Níl cead agat níos mó ná léirmheas amháin a dhéanamh ar leagan amháin de bhreiseán."
 
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Go raibh maith agat; cuireadh bratach leis an léirmheas seo agus déanfaidh eagarthóir iniúchadh air."
@@ -7550,10 +7539,10 @@ msgstr "Déan léirmheas ar {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -7844,7 +7833,7 @@ msgid "Add-ons Created"
 msgstr "Breiseáin cruthaithe"
 
 msgid "Add-ons Downloaded"
-msgstr "Breiseáin Íosluchtaithe"
+msgstr "Breiseáin Íoslódáilte"
 
 msgid "Add-ons Updated"
 msgstr "Breiseáin Nuashonraithe"
@@ -7886,8 +7875,8 @@ msgstr "{0} :: Clár na Staitisticí"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "Clár na Staitisticí :: Breiseáin {0}"
 
-# %1 is the name of a collection
 #. {0} is an add-on name
+# %1 is the name of a collection
 msgid "Statistics for {0}"
 msgstr "Staitisticí le haghaidh {0}"
 
@@ -7934,7 +7923,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr "Sonraí is déanaí á luchtú&hellip;"
+msgstr "Sonraí is déanaí á lódáil&hellip;"
 
 msgid "No data available."
 msgstr "Níl aon sonraí ar fáil."
@@ -7993,7 +7982,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr "Á Luchtú..."
+msgstr "Á Lódáil..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -8023,18 +8012,18 @@ msgid "Reviews Created by Date"
 msgstr ""
 
 msgid "Download sources by Date"
-msgstr "Foinsí Íosluchtaithe de réir Dáta"
+msgstr "Foinsí Íoslódála de réir Dáta"
 
 msgid "About tracking external sources..."
 msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -8095,8 +8084,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Úsáidtear deilbhíní ón <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, ar fáil de réir coinníollacha an cheadúnais <a href=\"http://creativecommons.org/licenses/"
-"by/2.5/\">Creative Commons Attribution, leagan 2.5</a>."
+"Úsáidtear deilbhíní ón <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, ar fáil de réir coinníollacha an cheadúnais <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution, leagan 2.5</a>."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "dul in aitheantas ar <b>bhreiseáin</b>"
@@ -8132,7 +8121,7 @@ msgstr "<a href=\"%(reg)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil iste
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íosluchtaigh <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
+msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íoslódáil <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
@@ -8562,8 +8551,8 @@ msgstr "Foilsithe {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Bunchód ar fáil de réir: <a href=\"%(url)s\">%(name)s</a>"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
 msgstr "Stair na Leaganacha {0}"
 

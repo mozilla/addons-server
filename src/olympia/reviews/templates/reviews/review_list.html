@@ -1,8 +1,7 @@
 {% extends "impala/base_shared.html" %}
-{% set user = request.user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
-{% block title %}{{ page_title(_('{0} :: Reviews')|fe(addon.name)) }}{% endblock %}
+{% block title %}{{ page_title(_('{0} :: Reviews')|format_html(addon.name)) }}{% endblock %}
 
 {% block bodyclass %}reviews gutter{% endblock %}
 
@@ -18,16 +17,16 @@
   <header>
     <hgroup>
       {% if page == 'list' %}
-        <h1>{{ _('Reviews for {0}')|fe(addon.name) }}</h1>
+        <h1>{{ _('Reviews for {0}')|format_html(addon.name) }}</h1>
         {% with num = reviews.paginator.count %}
           {# L10n: {0} is a number. #}
           <h3>{{ ngettext('<b>{0}</b> review for this add-on',
                           '<b>{0}</b> reviews for this add-on',
-                          num)|fe(num|numberfmt) }}</h3>
+                          num)|format_html(num|numberfmt) }}</h3>
         {% endwith %}
       {% elif reply %}
         {# L10n: {0} is a developer's name. #}
-        <h1>{{ _('Developer reply by {0}')|f(reply.user.name) }}</h1>
+        <h1>{{ _('Developer reply by {0}')|format_html(reply.user.name) }}</h1>
       {% elif reviews.object_list %}
         <h1>{% trans cnt=reviews.object_list|length, addon=addon.name,
                      user=reviews.object_list[0].user.name %}
@@ -41,8 +40,6 @@
     </hgroup>
   </header>
   {% endblock %}
-
-
 
   <div class="secondary">
     <section>
@@ -64,7 +61,7 @@
       {% include "reviews/grouped_ratings.html" %}
     </section>
     <section>
-      {% if user and addon.can_review(user) %}
+      {% if addon.can_review(user) %}
         <a class="button" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}

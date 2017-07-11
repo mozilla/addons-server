@@ -183,7 +183,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 subject = mail_subject.format(addon=addon.name)
                 message = mail_message.format(
                     addon=addon.name,
-                    addon_url=amo.helpers.absolutify(
+                    addon_url=amo.templatetags.jinja_helpers.absolutify(
                         addon.get_dev_url(action='versions')))
                 amo.utils.send_mail(
                     subject, message, recipient_list=emails,

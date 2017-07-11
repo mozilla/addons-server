@@ -1171,7 +1171,7 @@ pathAnim = {
 		 * @param {Function} fn The event handler
 		 */
 		addEvent: function (el, event, fn) {
-			$(el).bind(event, fn);
+			$(el).on(event, fn);
 		},
 	
 		/**
@@ -1188,7 +1188,7 @@ pathAnim = {
 				el[func] = function () {};
 			}
 	
-			$(el).unbind(eventType, handler);
+			$(el).off(eventType, handler);
 		},
 	
 		/**

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from olympia.translations.helpers import truncate
+from olympia.translations.templatetags.jinja_helpers import truncate
 
 from .models import CannedResponse, EventLog, ReviewerScore
 

@@ -15,11 +15,11 @@
             $(document).ready(init);
             function init() {
                 gotoPage(0);
-                $paginator.delegate('.next', 'click', _pd(function() {
+                $paginator.on('click', '.next', _pd(function() {
                     if ($(this).hasClass('disabled')) return;
                     gotoPage(currentPage+1);
                 }));
-                $paginator.delegate('.prev', 'click', _pd(function() {
+                $paginator.on('click', '.prev', _pd(function() {
                     if ($(this).hasClass('disabled')) return;
                     gotoPage(currentPage-1);
                 }));
@@ -76,9 +76,10 @@
 
                      _.each(fields, function(f) {
                          var id = f.split('|').pop(),
-                             prettyName = _.escape(z.StatsManager.getPrettyName(metric, id));
+                             prettyName = _.escape(z.StatsManager.getPrettyName(metric, id)),
+                             trimmedPrettyName = (prettyName.length > 32) ? (prettyName.substr(0, 32) + '...') : prettyName;
                          newHead += format('<th title="{0}">', prettyName);
-                         newHead += prettyName;
+                         newHead += trimmedPrettyName;
                          newHead += '</th>';
                      });
 

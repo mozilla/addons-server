@@ -1,5 +1,3 @@
-from optparse import make_option
-
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
@@ -46,14 +44,21 @@ class Command(BaseCommand):
     qs: a list of Q objects to apply to the method
     kwargs: any extra kwargs you want to apply to the delay method (optional)
     """
-    option_list = BaseCommand.option_list + (
-        make_option('--task', action='store', type='string',
-                    dest='task', help='Run task on the addons.'),
-        make_option('--with-deleted', action='store_true',
-                    dest='with_deleted',
-                    help='Include deleted add-ons when determining which '
-                         'add-ons to process.'),
-    )
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--task',
+            action='store',
+            dest='task',
+            type=str,
+            help='Run task on the addons.')
+
+        parser.add_argument(
+            '--with-deleted',
+            action='store_true',
+            dest='with_deleted',
+            help='Include deleted add-ons when determining which '
+                 'add-ons to process.')
 
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))

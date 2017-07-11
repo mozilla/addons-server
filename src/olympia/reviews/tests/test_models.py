@@ -5,7 +5,7 @@ from django.core import mail
 from django.utils import translation
 
 from olympia import amo
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
@@ -211,9 +211,10 @@ class TestReviewModel(TestCase):
 
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
-        reply_url = helpers.absolutify(
-            helpers.url('addons.reviews.reply', addon.slug,
-                        review.pk, add_prefix=False))
+        reply_url = jinja_helpers.absolutify(
+            jinja_helpers.url(
+                'addons.reviews.reply', addon.slug, review.pk,
+                add_prefix=False))
         assert email.subject == 'Mozilla Add-on User Review: my addon name'
         assert 'A user has left a review for your add-on,' in email.body
         assert 'my addon name' in email.body
@@ -231,9 +232,10 @@ class TestReviewModel(TestCase):
         assert not ActivityLog.objects.exists()
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
-        reply_url = helpers.absolutify(
-            helpers.url('addons.reviews.detail', review.addon.slug,
-                        review.pk, add_prefix=False))
+        reply_url = jinja_helpers.absolutify(
+            jinja_helpers.url(
+                'addons.reviews.detail', review.addon.slug, review.pk,
+                add_prefix=False))
         assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
         assert 'A developer has replied to your review' in email.body
         assert 'add-on my addon name' in email.body

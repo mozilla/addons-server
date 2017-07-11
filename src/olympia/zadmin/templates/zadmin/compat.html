@@ -1,6 +1,6 @@
-{% extends 'admin/base.html' %}
+{% extends 'zadmin/base.html' %}
 
-{% set title = 'Compatibility Reports for Firefox {version}'|f(version=version) %}
+{% set title = 'Compatibility Reports for Firefox {version}'|format_html(version=version) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
@@ -64,7 +64,7 @@ button { margin: 4px; padding: 0 2px }
           {% endif %}
         </td>
         {% with num = addon.usage %}
-          <td class="users">{{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}</td>
+          <td class="users">{{ ngettext('{0} user', '{0} users', num)|format_html(num|numberfmt) }}</td>
           <td class="percentage">{{ (100 * num / (usage_total or 1))|round(2) }}%</td>
         {% endwith %}
         <td class="version">
@@ -86,7 +86,7 @@ button { margin: 4px; padding: 0 2px }
               {% set initial = 0 %}
             {% endif %}
             <form action="{{ form_url }}" method="post">
-              {{ csrf() }}
+              {% csrf_token %}
               <input type="hidden" name="_compat_ranges-TOTAL_FORMS" value="{{ initial + 1 }}">
               <input type="hidden" name="_compat_ranges-INITIAL_FORMS" value="{{ initial }}">
               <input type="hidden" name="_continue" value="1">

@@ -23,7 +23,7 @@ Tabs.prototype = {
 
         /* Bind hashchange, trigger event to check for existing hash. */
         var self = this;
-        $(document).bind('hashchange', function(e) {
+        $(document).on('hashchange', function(e) {
             self.hashChange(e);
         }).trigger('hashchange');
     },
@@ -50,7 +50,7 @@ Tabs.prototype = {
             self.select($(e.target).attr('href'), true);
             $("a", this).blur();
         };
-        this.tabs.unbind('click', cb).click(cb);
+        this.tabs.off('click', cb).click(cb);
     },
 
     /* Get the fragment this tab points to. */

@@ -23,7 +23,7 @@
 
   <div class="island hero prettyform" id="submit-persona">
     <form method="post">
-      {{ csrf() }}
+      {% csrf_token %}
       {{ form.unsaved_data }}
       <fieldset>
         <legend>{{ _('Theme Details') }}</legend>
@@ -43,7 +43,7 @@
             <span class="note">
               {{ ngettext('Comma-separated, minimum of {0} character.',
                           'Comma-separated, minimum of {0} characters.',
-                          amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                          amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
               {{ _('Example: dark, cinema, noir. Limit 20.') }}
             </span>
           </li>
@@ -180,7 +180,6 @@
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
               <span class="author">
-                {% set user = request.user %}
                 {% trans user=user.username,
                          profile_url=user.get_url_path() %}
                   by <a href="{{ profile_url }}">{{ user }}</a>

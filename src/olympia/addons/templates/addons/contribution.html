@@ -40,7 +40,7 @@
 
     <div class="suggestion">
       {% if has_suggested %}
-        <p>{{ _('Suggested Contribution: {0}')|f(
+        <p>{{ _('Suggested Contribution: {0}')|format_html(
           addon.suggested_amount|currencyfmt('USD')) }}</p>
       {% endif %}
       {% if show_help %}

@@ -19,6 +19,7 @@ def login(request):
         return redirect_for_login(request)
 
 
+admin.site.site_header = admin.site.index_title = 'AMO Administration'
 admin.site.login = login
 
 

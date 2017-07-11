@@ -17,7 +17,7 @@
         <strong>public</strong> and <strong>required</strong> for contributions.
       {% endtrans %}</p>
       <form method="post" action="{{ remove_url }}">
-        {{ csrf() }}
+        {% csrf_token %}
         <button type="submit">{{ _('Remove Both') }}</button>
       </form>
     </div>
@@ -28,13 +28,13 @@
         <strong>public</strong>.
       {% endtrans %}</p>
       <form method="post" action="{{ remove_url }}">
-        {{ csrf() }}
+        {% csrf_token %}
         <button type="submit">{{ _('Remove Profile') }}</button>
       </form>
     </div>
   {% endif %}
   <form id="profile-form" method="post" action="{{ addon.get_dev_url('profile') }}">
-    {{ csrf() }}
+    {% csrf_token %}
     {% include "devhub/includes/addons_create_profile.html" %}
     <p class="item-group">
       <button>

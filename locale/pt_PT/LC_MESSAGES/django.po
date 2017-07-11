@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-28 15:04+0000\n"
+"PO-Revision-Date: 2017-07-11 03:47+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -187,10 +187,10 @@ msgid "for {0}"
 msgstr "para {0}"
 
 msgid "View privacy policy"
-msgstr "Ver a política de privacidade"
+msgstr "Ver política de privacidade"
 
 msgid "View End-User License Agreement"
-msgstr "Ver acordo de licenciamento para o utilizador final"
+msgstr "Ver Acordo de licença de utilizador final"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -295,14 +295,14 @@ msgstr "Contribuição efetuada, obrigado."
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr "Acordo de Licença para o Utilizador Final para {0}"
+msgstr "Acordo de licença de utilizador final para {0}"
 
 msgid "End-User License Agreement"
 msgstr "Acordo de licença de utilizador final"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s necessita que aceite o seguinte Acordo de Licença para o Utilizador Final antes de continuar com a instalação:"
+msgstr "%(addon_name)s requer que aceite o seguinte Acordo de licença de utilizador final antes que a instalação possa prosseguir:"
 
 msgid "Back to {0}…"
 msgstr "Voltar para {0}…"
@@ -526,7 +526,7 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla e não pode ser instalado em versões finais do Firefox 43 e mais recente.  Tenha cuidado ao instalar software de terceiros que possa "
+"<strong>Cuidado:</strong> Este extra não foi revisto pela Mozilla e não pode ser instalado em versões finais do Firefox 43 e mais acima.  Tenha cuidado ao instalar software de terceiros que possa "
 "danificar o seu computador."
 
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -673,7 +673,7 @@ msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you s
 msgstr "O <a href=\"%(meet_url)s\">programador deste extra</a> pede que o apoie no desenvolvimento com uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Este extra necessita dos seguintes extras para funcionar corretamente:"
+msgstr "Este extra requer os seguintes extras para funcionar corretamente:"
 
 msgid "Average"
 msgstr "Média"
@@ -774,7 +774,7 @@ msgstr ""
 "atualizações deste canal. Para parar de receber atualizações de desenvolvimento, reinstale a versão predefinida a partir da ligação acima."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla."
+msgstr "<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla."
 
 msgid "See complete development channel history"
 msgstr "Ver o histórico completo do canal de desenvolvimento"
@@ -1078,10 +1078,10 @@ msgid "Most Followers"
 msgstr "Maior número de seguidores"
 
 msgid "Collections I've Made"
-msgstr "Coleções que eu fiz"
+msgstr "Coleções que fiz"
 
 msgid "Collections I'm Following"
-msgstr "Coleções que acompanho"
+msgstr "Coleções que sigo"
 
 msgid "My Favorite Add-ons"
 msgstr "Os meus extras favoritos"
@@ -1333,7 +1333,7 @@ msgid "{0} :: Collections"
 msgstr "{0} :: Coleções"
 
 msgid "private"
-msgstr "privado"
+msgstr "privada"
 
 #, python-format
 msgid "<span>%(num)s</span> follower"
@@ -1459,7 +1459,7 @@ msgid "Stop Following"
 msgstr "Deixar de seguir"
 
 msgid "Follow this Collection"
-msgstr "Siga esta coleção"
+msgstr "Seguir esta coleção"
 
 msgid "Edit this Collection"
 msgstr "Editar esta coleção"
@@ -1552,7 +1552,7 @@ msgid "No collections found."
 msgstr "Nenhuma coleção encontrada."
 
 msgid "Most-Followed Collections"
-msgstr "Coleções com maiores seguidores"
+msgstr "Coleções com maior número de seguidores"
 
 msgid "Newest Collections"
 msgstr "Coleções mais recentes"
@@ -1728,13 +1728,13 @@ msgstr[0] "<b>{0}</b> extra"
 msgstr[1] "<b>{0}</b> extras"
 
 msgid "Search Extensions"
-msgstr "Pesquisar extensões"
+msgstr "Extensões de pesquisa"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Adicionar funcionalidades de pesquisa ao Firefox"
 
 msgid "Search Providers"
-msgstr "Pesquisar fornecedores"
+msgstr "Fornecedores de pesquisa"
 
 msgid "Find new providers for your search bar"
 msgstr "Encontre novos fornecedores para a sua barra de pesquisa"
@@ -2122,7 +2122,7 @@ msgid "User {user} restricted."
 msgstr "Utilizador {user} restringido."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "O administrador {0} visualizou o registo de atividade de {user}."
+msgstr "O administrador {0} viu o registo de atividade para {user}."
 
 # 83%
 msgid "{review} for {addon} updated."
@@ -2727,16 +2727,16 @@ msgid "License text is required when choosing Other."
 msgstr "É necessário o texto da licença ao escolher Outro."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr "Este extra tem um acordo de licença para o utilizador final"
+msgstr "Este extra tem um Acordo de licença de utilizador final"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Por favor, especifique o acordo de licença para o utilizador final para o extra:"
+msgstr "Por favor especifique o Acordo de licença de utilizador final do seu extra:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "O extra tem uma política de privacidade"
+msgstr "O extra tem uma Política de privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Por favor específique a política de privacidade do seu extra:"
+msgstr "Por favor especifique a Política de privacidade do seu extra:"
 
 msgid "Why did you make this add-on?"
 msgstr "Porque é que fez este extra?"
@@ -3011,10 +3011,10 @@ msgstr "Voltar aos extras"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr "{0} :: Pesquisar"
+msgstr "{0} :: Pesquisa"
 
 msgid "Search"
-msgstr "Pesquisar"
+msgstr "Pesquisa"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -3527,7 +3527,7 @@ msgstr ""
 "que outros não possam submeter versões utilizando o mesmo ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Introduza o seguinte texto para confirmar a sua decisão: {slug}"
+msgstr "Digite o seguinte texto para confirmar a sua decisão: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Por favor, diga-nos porque está a eliminar o seu tema:"
@@ -3971,13 +3971,13 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Os utilizadores terão de aceitar um acordo de licenciamento para utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra "
-"recebe. Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
+"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra recebe. "
+"Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. É apenas relevante "
-"para extras listados."
+"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Esta apenas é "
+"relevante para extras listados."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Se o seu extra contem código binário ou ofuscado para além de bibliotecas conhecidas, envie as respetivas fontes para revisão."
@@ -4430,7 +4430,7 @@ msgstr "Forneça mais detalhes acerca do seu tema ao <a href=\"%(edit_url)s\">ed
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Veja e subscreva ao <a href=\"%(feed_url)s\">registo de atividade</a> do seu tema para se manter a par das revisões, coleções e muito mais."
+msgstr "Veja e subscreva ao <a href=\"%(feed_url)s\">registo de atividade</a> do seu tema para se manter a par das revisões, coleções, e mais."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -5012,7 +5012,7 @@ msgid "Abuse Reports"
 msgstr "Relatórios de abuso"
 
 msgid "View Privacy Policy"
-msgstr "Ver política de privacidade"
+msgstr "Ver Política de privacidade"
 
 msgid "EULA"
 msgstr "EULA"
@@ -6383,7 +6383,7 @@ msgid ""
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Os extras listados aqui foram criados por milhares de programadores da nossa comunidade, que vão desde indivíduos a grandes empresas. Todos os extras publicamente listados são revistos por uma "
-"equipa de editores antes de serem lançados. Extras marcados como experimentais não foram revistos e devem ser instalados com precaução."
+"equipa de editores antes de serem lançados. Extras marcados como experimentais não foram revistos e devem apenas ser instalados com cuidado."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Como posso acompanhar o que se está a passar com o AMO?"
@@ -6514,7 +6514,7 @@ msgid "Site Credits"
 msgstr "Créditos do site"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "A Mozilla gostaria de agradecer às seguintes pessoas pelas suas colaborações ao projeto addons.mozilla.org ao longo dos anos:"
+msgstr "A Mozilla gostaria de agradecer às seguintes pessoas pelas suas contribuições ao projeto addons.mozilla.org ao longo dos anos:"
 
 msgid "Developers &amp; Administrators"
 msgstr "Programadores e administradores"
@@ -6707,7 +6707,7 @@ msgstr "A Mozilla mantém em segredo as informações da minha conta?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Sim. Nossa <a href=\"%(url)s\">Política de privacidade</a> descreve como suas informações são gerenciadas pela Mozilla."
+msgstr "Sim. A nossa <a href=\"%(url)s\">Política de privacidade</a> descreve como suas informações são manejadas pela Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr "O que são as \"ferramentas do programador\" listadas no AMO?"
@@ -6766,7 +6766,7 @@ msgstr ""
 "submetido."
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr "Eu posso incluir uma política de privacidade no meu extra?"
+msgstr "Posso incluir uma política de privacidade para o meu extra?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
@@ -7103,8 +7103,8 @@ msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Estes podem ainda ter bugs ou não funcionar corretamente. Tenha cuidado ao instalar "
-"extras experimentais e desinstale o extra imediatamente se notar problemas. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
+"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Estes podem ter bugs ou não funcionar corretamente. Tenha cuidado ao instalar extras "
+"experimentais e desinstale o extra imediatamente se notar problemas. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Qual o significado de um extra \"não revisto\"?"
@@ -7115,7 +7115,7 @@ msgid ""
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Se receber uma ligação direta para um extra que diz que ainda não foi revisto, significa que está atualmente à espera de revisão pela Mozilla. Tenha cuidado ao instalar estes extras, pois podem "
-"danificar o seu computador ou violar sua privacidade. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
+"danificar o seu computador ou violar a sua privacidade. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Quanto custam os extras?"
@@ -7644,7 +7644,7 @@ msgid "Highest Rated"
 msgstr "Avaliação mais alta"
 
 msgid "search for add-ons"
-msgstr "pesquisar por extras"
+msgstr "pesquisar extras"
 
 msgid "search for collections"
 msgstr "pesquisar coleções"
@@ -8351,7 +8351,7 @@ msgid "Display the collections I have created"
 msgstr "Mostrar as coleções que criei"
 
 msgid "Display collections I'm following"
-msgstr "Mostrar as coleções que acompanho"
+msgstr "Mostrar as coleções que sigo"
 
 msgid "Notifications"
 msgstr "Notificações"
@@ -8424,7 +8424,7 @@ msgid "Themes I've created"
 msgstr "Temas que criei"
 
 msgid "Followed by Me"
-msgstr "Acompanhado por mim"
+msgstr "Seguido por mim"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

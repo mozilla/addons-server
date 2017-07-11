@@ -12,7 +12,7 @@
     <div class="item_wrapper">
       <table>
         {# L10n: {0} is an addon name #}
-        <caption>{{ _('Support Information for {0}')|fe(addon.name) }}</caption>
+        <caption>{{ _('Support Information for {0}')|format_html(addon.name) }}</caption>
         <tbody>
           <tr>
             <th>

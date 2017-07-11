@@ -195,7 +195,7 @@
             }
 
             var isRejecting = false;
-            $(document).delegate('li.reject_reason', 'click', _pd(function(e) {
+            $(document).on('click', 'li.reject_reason', _pd(function(e) {
                 if (isRejecting) {
                     var i = getThemeParent(e.currentTarget);
                     var rejectId = $(this).data('id');
@@ -328,7 +328,7 @@
 
                 clearReview: function(i) {
                     $('input.action, input.comment, input.reject-reason',
-                      nthTheme(i)).removeAttr('value');
+                      nthTheme(i)).prop('value', '');
                     $(nthTheme(i)).removeClass('reviewed');
                     $('.status', nthTheme(i)).removeClass('reviewed');
 
@@ -336,22 +336,22 @@
                 }
             };
 
-            $(document).delegate('button.approve', 'click', _pd(function(e) {
+            $(document).on('click', 'button.approve', _pd(function(e) {
                 themeActions.approve(getThemeParent(e.currentTarget));
             }))
-            .delegate('button.reject', 'click', _pd(function(e) {
+            .on('click', 'button.reject', _pd(function(e) {
                 themeActions.reject_reason(getThemeParent(e.currentTarget));
             }))
-            .delegate('button.duplicate', 'click', _pd(function(e) {
+            .on('click', 'button.duplicate', _pd(function(e) {
                 themeActions.duplicate(getThemeParent(e.currentTarget));
             }))
-            .delegate('button.flag', 'click', _pd(function(e) {
+            .on('click', 'button.flag', _pd(function(e) {
                 themeActions.flag(getThemeParent(e.currentTarget));
             }))
-            .delegate('button.moreinfo', 'click', _pd(function(e) {
+            .on('click', 'button.moreinfo', _pd(function(e) {
                 themeActions.moreinfo(getThemeParent(e.currentTarget));
             }))
-            .delegate('.clear-review', 'click', _pd(function(e) {
+            .on('click', '.clear-review', _pd(function(e) {
                 themeActions.clearReview(getThemeParent(e.currentTarget));
             }));
         });

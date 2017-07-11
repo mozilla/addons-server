@@ -10,14 +10,14 @@ from django.utils import http as urllib
 from django.utils.translation import trim_whitespace
 
 import pytest
-from jingo.helpers import datetime as datetime_filter
 import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import absolutify, numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import (
+    absolutify, numberfmt, urlparams, datetime_filter)
 from olympia.addons.models import (
     Addon, AddonCategory, Category, AppSupport, FrozenAddon, Persona)
 from olympia.bandwagon.models import (

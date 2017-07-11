@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -15,7 +15,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -32,7 +32,7 @@ user_log = olympia.core.logger.getLogger('z.users')
 VIEW_QUEUE_FLAGS = (
     ('admin_review', 'admin-review', _('Admin Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
-    ('requires_restart', 'requires_restart', _('Requires Restart')),
+    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('has_info_request', 'info', _('More Information Requested')),
     ('has_editor_comment', 'editor', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
@@ -129,7 +129,7 @@ class ViewQueue(RawSQLModel):
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
-    is_restartless = models.BooleanField()
+    is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
@@ -153,7 +153,7 @@ class ViewQueue(RawSQLModel):
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
-                ('is_restartless', 'MAX(files.no_restart)'),
+                ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
                 ('waiting_time_days',
@@ -180,10 +180,6 @@ class ViewQueue(RawSQLModel):
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
             ],
             'group_by': 'id'}
-
-    @property
-    def requires_restart(self):
-        return not self.is_restartless
 
     @property
     def sources_provided(self):
@@ -339,7 +335,7 @@ class EditorSubscription(ModelBase):
     def send_notification(self, version):
         user_log.info('Sending addon update notice to %s for %s' %
                       (self.user.email, self.addon.pk))
-        context = Context({
+        context = {
             'name': self.addon.name,
             'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
                                       add_prefix=False)),
@@ -348,11 +344,11 @@ class EditorSubscription(ModelBase):
                                          args=[self.addon.pk],
                                          add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
-        })
+        }
         # Not being localised because we don't know the editors locale.
         subject = 'Mozilla Add-ons: %s Updated' % self.addon.name
         template = loader.get_template('editors/emails/notify_update.ltxt')
-        send_mail(subject, template.render(Context(context)),
+        send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
                   from_email=settings.EDITORS_EMAIL,
                   use_deny_list=False)
@@ -383,7 +379,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    score = models.SmallIntegerField()
+    score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)
@@ -571,6 +567,11 @@ class ReviewerScore(ModelBase):
         query = (cls.objects
                     .values_list('user__id', 'user__display_name')
                     .annotate(total=Sum('score'))
+                    .filter(user__groups__name__in=(
+                        'Add-on Reviewers',
+                        'Senior Add-on Reviewers',
+                        'Persona Reviewers',
+                        'Senior Personas Reviewers'))
                     .exclude(user__groups__name__in=('No Reviewer Incentives',
                                                      'Staff', 'Admins'))
                     .order_by('-total'))
@@ -886,7 +887,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_uses_implied_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'IMPLIED_EVAL')
+        return cls.check_for_linter_flag(version, 'NO_IMPLIED_EVAL')
 
     @classmethod
     def check_uses_innerhtml(cls, version):

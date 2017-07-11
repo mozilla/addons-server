@@ -10,7 +10,6 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
 
-import jingo
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery
@@ -18,7 +17,8 @@ from pyquery import PyQuery
 import olympia
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo import urlresolvers, utils, helpers
+from olympia.amo import urlresolvers, utils
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import ImageCheck
 from olympia.versions.models import License
 
@@ -34,19 +34,19 @@ pytestmark = pytest.mark.django_db
 def render(s, context=None):
     if context is None:
         context = {}
-    t = jingo.get_env().from_string(s)
+    t = utils.from_string(s)
     return t.render(context)
 
 
 def test_currencyfmt():
-    assert helpers.currencyfmt(None, 'USD') == ''
-    assert helpers.currencyfmt(5, 'USD') == '$5.00'
-    assert helpers.currencyfmt('12', 'USD') == '$12.00'
+    assert jinja_helpers.currencyfmt(None, 'USD') == ''
+    assert jinja_helpers.currencyfmt(5, 'USD') == '$5.00'
+    assert jinja_helpers.currencyfmt('12', 'USD') == '$12.00'
 
 
 def test_strip_controls():
     # We want control codes like \x0c to disappear.
-    assert 'I ove you' == helpers.strip_controls('I \x0cove you')
+    assert 'I ove you' == jinja_helpers.strip_controls('I \x0cove you')
 
 
 def test_finalize():
@@ -87,7 +87,8 @@ def test_page_title_markup():
     request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
-        '{{ page_title("{0}"|fe("It\'s all text")) }}', {'request': request})
+        '{{ page_title("{0}"|format_html("It\'s all text")) }}',
+        {'request': request})
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -99,53 +100,54 @@ def test_template_escaping():
     expected = '<a href="...">This is a test</a>'
     assert render('{{ _(\'<a href="...">This is a test</a>\') }}') == expected
 
-    # Simple HTML in a translatable string, with |fe works as expected
+    # Simple HTML in a translatable string, with |format_html works
+    # as expected
     expected = '<a href="...">This is a test</a>'
-    original = '{{ _(\'<a href="...">{0}</a>\')|fe(\'This is a test\') }}'
+    original = (
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}')
     assert render(original) == expected
 
-    # |f does not mark the resulting string as "safe" thus autoescaping
-    # set's in
-    expected = '&lt;a href=&#34;...&#34;&gt;This is a test&lt;/a&gt;'
-    original = '{{ _(\'<a href="...">{0}</a>\')|f(\'This is a test\') }}'
+    # The html provided in the translatable string won't be escaped
+    # but all arguments are.
+    expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
+    original = (
+        '{{ _(\'<a href="...">{0}</a>\')|format_html('
+        '"This is a <h1>test</h1>") }}')
     assert render(original) == expected
 
-    # if an explicit |safe before |f is applied the output is still unsafe
-    # and will be autoescaped. Use |fe for that.
-    expected = '&lt;a href=&#34;...&#34;&gt;This is a test&lt;/a&gt;'
-    original = '{{ _(\'<a href="...">{0}</a>\')|safe|f(\'This is a test\') }}'
+    # Unless marked explicitly as safe
+    expected = '<a href="...">This is a <h1>test</h1></a>'
+    original = (
+        '{{ _(\'<a href="...">{0}</a>\')'
+        '|format_html("This is a <h1>test</h1>"|safe) }}')
     assert render(original) == expected
 
-    # |safe after the |f marks the whole formatted string as safe though
-    # and autoescaping won't be applied anymore.
-    # Please note that this does not escape the arguments of |f!
-    expected = '<a href="...">This is a test</a>'
-    original = '{{ _(\'<a href="...">{0}</a>\')|f(\'This is a test\')|safe }}'
-    assert render(original) == expected
+    # Document how newstyle gettext behaves, everything that get's passed in
+    # like that needs to be escaped!
+    expected = '&lt;script&gt;&lt;/script&gt;'
+    assert render('{{ _(foo) }}', {'foo': '<script></script>'}) != expected
+    assert render(
+        '{{ _(foo|escape) }}', {'foo': '<script></script>'}) == expected
 
     # Various tests for gettext related helpers and make sure they work
     # properly just as `_()` does.
     expected = '<b>5 users</b>'
     assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)|fe(5) }}'
+        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+        '|format_html(5) }}'
     ) == expected
 
     # You could also mark the whole output as |safe but note that this
-    # does not escape the arguments of |f!
-    expected = '<b>5 users</b>'
+    # still escapes the arguments of |format_html unless explicitly
+    # marked as safe
+    expected = '<b>&lt;script&gt; users</b>'
     assert render(
         '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|f(5)|safe }}'
-    ) == expected
-
-    # and now only with |f it get's escaped again
-    expected = '&lt;b&gt;5 users&lt;/b&gt;'
-    assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)|f(5) }}'
+        '|format_html("<script>")|safe }}'
     ) == expected
 
 
-@patch('olympia.amo.helpers.urlresolvers.reverse')
+@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
@@ -210,7 +212,8 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
-    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    s = render(
+        u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
     assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
 
     s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
@@ -269,7 +272,9 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -280,7 +285,9 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.assert_called_with('foo')
 
 
-@patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'linkify_bounce_url_callback')
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -304,7 +311,9 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
 
-@patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'linkify_bounce_url_callback')
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -450,7 +459,7 @@ class TestAnimatedImages(TestCase):
 def test_site_nav():
     r = Mock()
     r.APP = amo.FIREFOX
-    assert 'id="site-nav"' in helpers.site_nav({'request': r})
+    assert 'id="site-nav"' in jinja_helpers.site_nav({'request': r})
 
 
 def test_jinja_trans_monkeypatch():
@@ -462,21 +471,22 @@ def test_jinja_trans_monkeypatch():
 
 
 def test_absolutify():
-    assert helpers.absolutify('/woo'), urljoin(settings.SITE_URL == '/woo')
-    assert helpers.absolutify('https://addons.mozilla.org') == (
+    assert jinja_helpers.absolutify('/woo'), urljoin(
+        settings.SITE_URL == '/woo')
+    assert jinja_helpers.absolutify('https://addons.mozilla.org') == (
         'https://addons.mozilla.org')
 
 
 def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
-    assert helpers.timesince(month_ago) == u'1 month ago'
-    assert helpers.timesince(None) == u''
+    assert jinja_helpers.timesince(month_ago) == u'1 month ago'
+    assert jinja_helpers.timesince(None) == u''
 
 
-def test_f():
+def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
-    assert render(u'{{ "foo {0}"|f("baré") }}') == u'foo baré'
+    assert render(u'{{ "foo {0}"|format_html("baré") }}') == u'foo baré'
 
 
 class TestStoragePath(TestCase):
@@ -484,12 +494,12 @@ class TestStoragePath(TestCase):
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
     def test_without_settings(self):
         del settings.ADDONS_PATH
-        path = helpers.user_media_path('addons')
+        path = jinja_helpers.user_media_path('addons')
         assert path == '/path/addons'
 
     @override_settings(ADDONS_PATH="/another/path/")
     def test_with_settings(self):
-        path = helpers.user_media_path('addons')
+        path = jinja_helpers.user_media_path('addons')
         assert path == '/another/path/'
 
 
@@ -499,20 +509,20 @@ class TestMediaUrl(TestCase):
     def test_without_settings(self):
         del settings.USERPICS_URL
         settings.MEDIA_URL = '/mediapath/'
-        url = helpers.user_media_url('userpics')
+        url = jinja_helpers.user_media_url('userpics')
         assert url == '/mediapath/userpics/'
 
 
 class TestIdToPath(TestCase):
 
     def test_with_1_digit(self):
-        assert helpers.id_to_path(1) == '1/1/1'
+        assert jinja_helpers.id_to_path(1) == '1/1/1'
 
     def test_with_2_digits(self):
-        assert helpers.id_to_path(12) == '2/12/12'
+        assert jinja_helpers.id_to_path(12) == '2/12/12'
 
     def test_with_3_digits(self):
-        assert helpers.id_to_path(123) == '3/23/123'
+        assert jinja_helpers.id_to_path(123) == '3/23/123'
 
     def test_with_many_digits(self):
-        assert helpers.id_to_path(123456789) == '9/89/123456789'
+        assert jinja_helpers.id_to_path(123456789) == '9/89/123456789'

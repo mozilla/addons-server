@@ -22,12 +22,12 @@ $(document).ready(function() {
                 });
             };
 
-            $popup.delegate("li a", "click", function(e) {
+            $popup.on("click", "li a", function(e) {
                 e.preventDefault();
                 var el = $(e.target);
                 if (el.attr("href") == "#review_flag_reason_other") {
                     $popup.addClass('other')
-                          .delegate("form", "submit", function(e) {
+                          .on("submit", "form", function(e) {
                               e.preventDefault();
                               var note = $popup.find('#id_note').val();
                               if (!note) {
@@ -49,7 +49,7 @@ $(document).ready(function() {
         }
     });
 
-    $('.primary').delegate('.review-edit', 'click', function(e) {
+    $('.primary').on('click', '.review-edit', function(e) {
         e.preventDefault();
         var $form = $("#review-edit-form"),
             $review = $(this).parents(".review"),
@@ -66,9 +66,9 @@ $(document).ready(function() {
         $form.show();
 
         function done_edit() {
-            $form.unbind().hide();
+            $form.off().hide();
             $review.show();
-            $cancel.unbind();
+            $cancel.off();
         }
 
         $cancel.click(function(e) {

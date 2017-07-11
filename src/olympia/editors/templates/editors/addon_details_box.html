@@ -4,9 +4,9 @@
       <div id="addon-summary-wrapper">
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-          {% if version and version.requires_restart %}
-            <div id="requires-restart" class="js-hidden">
-              <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
+          {% if version and version.is_restart_required %}
+            <div>
+              <span>{{ _('Requires Restart') }}</span>
             </div>
           {% endif %}
 
@@ -19,9 +19,9 @@
           {% endif %}
 
           <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
-            {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|fe(addon.name) %}
+            {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
               {# L10n: This is a caption for a table. {0} is an add-on name. #}
-              <caption>{{ _('Add-on Information for {0}')|f(addon_name|xssafe) }}</caption>
+              <caption>{{ _('Add-on Information for {0}')|format_html(addon_name) }}</caption>
             {% endwith %}
             <tbody>
               {% if addon.is_deleted %}
@@ -185,12 +185,12 @@
 
   {% if is_post_reviewer and was_auto_approved %}
     {% if reports %}
-      <h3><a href="{{ url('editors.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|fe(num=reports.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('editors.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "editors/includes/abuse_reports_list.html" %}
     {% endif %}
 
     {% if user_reviews %}
-      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|fe(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|format_html(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
       {% include "editors/includes/user_reviews_list.html" %}
     {% endif %}
   {% endif %}
@@ -246,7 +246,7 @@
               {% endtrans %}
             </p>
             <dl>
-              <dt class="beta-version">{{ _('Version {0}')|f(
+              <dt class="beta-version">{{ _('Version {0}')|format_html(
                 addon.current_beta_version.version) }}</dt>
               <dd>{{ install_button(addon, latest_beta=True,
                                     show_warning=False) }}</dd>

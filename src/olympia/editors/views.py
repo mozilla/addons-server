@@ -33,7 +33,7 @@ from olympia.editors.models import (
     get_reviewing_cache_key, PerformanceGraph, ReviewerScore,
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
-from olympia.editors.helpers import (
+from olympia.editors.templatetags.jinja_helpers import (
     AutoApprovedTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag

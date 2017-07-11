@@ -4,7 +4,7 @@
 <div id="editor-motd">
   {% if form %}
     <form action="{{ url('editors.save_motd') }}" method="post">
-      {{ csrf() }}
+      {% csrf_token %}
       <h3>{{ _('Update message of the day') }}</h3>
       {{ form.errors.motd }}
       {{ form.motd }}

@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-22 06:34+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2017-07-07 19:20+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -4615,13 +4615,13 @@ msgid "theme, reviewer, or comment"
 msgstr "主题、审核员或评论"
 
 msgid "Keep review; remove flags"
-msgstr "保存评论；移除标志"
+msgstr "保留评价、移除标记"
 
 msgid "Skip for now"
 msgstr "暂时跳过"
 
 msgid "Delete review"
-msgstr "删除评论"
+msgstr "删除评价"
 
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未审核"
@@ -4640,7 +4640,7 @@ msgstr[0] "更新 ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "提请仲裁的评论（{0}）"
+msgstr[0] "提请仲裁的评价 ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -4764,7 +4764,7 @@ msgid "Has a pending info request."
 msgstr "有待处理的信息请求。"
 
 msgid "Is flagged for admin review."
-msgstr "已标记管理员审核。"
+msgstr "已标记为等待管理员审核。"
 
 msgid "Is locked by a reviewer."
 msgstr "已由一名审核员锁定。"
@@ -4841,7 +4841,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 滥用报告"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "对 {addon} 及其开发者的滥用报告（{num} 条）"
+msgstr "对 {addon} 及其开发者的滥用报告 ({num} 项)"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -4872,10 +4872,10 @@ msgid "Approvals Since Last Automatic Review"
 msgstr "连续自动批准次数"
 
 msgid "Abuse Reports ({num})"
-msgstr "滥用报告（{num} 条）"
+msgstr "滥用报告 ({num} 项)"
 
 msgid "Bad User Reviews ({num})"
-msgstr "不良用户评论（{num} 项）"
+msgstr "不良用户评价 ({num} 项)"
 
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
@@ -4909,7 +4909,7 @@ msgid "New Add-ons"
 msgstr "新附加组件"
 
 msgid "Moderated Reviews"
-msgstr "提请仲裁的评论"
+msgstr "提请仲裁的评价"
 
 msgid "Auto Approved Add-ons"
 msgstr "自动批准的附加组件"
@@ -4924,7 +4924,7 @@ msgid "Add-on Review Log"
 msgstr "附加组件审核日志"
 
 msgid "Moderated Review Log"
-msgstr "提请仲裁的评论日志"
+msgstr "提请仲裁的评价日志"
 
 msgid "Signed Beta Files Log"
 msgstr "已签名 Beta 文件日志"
@@ -4962,24 +4962,24 @@ msgid "Add-on Title"
 msgstr "附加组件标题"
 
 msgid "Review Title"
-msgstr "评论标题"
+msgstr "评价标题"
 
 msgid "Review Text"
-msgstr "评论文本"
+msgstr "评价文本"
 
 msgid "Review was flagged prior to deletion."
-msgstr "评论已被标记为提请删除。"
+msgstr "评价已被标记为提请删除。"
 
 msgid "Undelete"
 msgstr "取消删除"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "新附加组件 ({num})"
+msgstr[0] "新附加组件 ({num} 项)"
 
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "更新 ({num})"
+msgstr[0] "更新 ({num} 项)"
 
 msgid "Current waiting times:"
 msgstr "目前等待时间："
@@ -5007,13 +5007,13 @@ msgstr "您在审核第 #{0} 项，共 {1} 项"
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "提请仲裁的评论（{num} 项）"
+msgstr[0] "提请仲裁的评价 ({num} 项)"
 
 msgid "Reviewer Leaderboard"
 msgstr "审核员排行榜"
 
 msgid "No review points awarded yet."
-msgstr "尚未获得评论点。"
+msgstr "此处尚无评价。"
 
 msgid "Rank"
 msgstr "排名"
@@ -5076,7 +5076,7 @@ msgid "clear search"
 msgstr "清除搜索"
 
 msgid "Process Reviews"
-msgstr "处理评论"
+msgstr "处理评价"
 
 msgid "Moderation actions:"
 msgstr "仲裁操作："
@@ -5179,7 +5179,7 @@ msgid "Resolution"
 msgstr "决定"
 
 msgid "Reviewer"
-msgstr "评论者"
+msgstr "评价者"
 
 msgid "Add-on has been deleted."
 msgstr "附加组件已被删除。"
@@ -5272,7 +5272,7 @@ msgstr[0] "{num} 项待定的主题审核"
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} 项已标记的评论"
+msgstr[0] "{num} 项已标记的评价"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
@@ -5315,7 +5315,7 @@ msgid "{0} out of {1} reviewed"
 msgstr "已审核 {0} / {1} 个"
 
 msgid "There are currently no Themes to review."
-msgstr "暂时没有可评论的主题。"
+msgstr "暂时没有可审核的主题。"
 
 msgid "Clear Search"
 msgstr "清除搜索"
@@ -6632,7 +6632,7 @@ msgstr "开发者只要登录 AMO，就可以对任何在它们自己的附加�
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
-msgstr "垃圾信息或其他非评论内容"
+msgstr "垃圾信息或其他非评价内容"
 
 #. part of a list (<li>)
 msgid "Inappropriate language/dialog"
@@ -6650,13 +6650,13 @@ msgid "Currently, AMO does not provide a mechanism to directly communicate with 
 msgstr "目前来说，AMO 不提供与评价用户直接沟通的机制。"
 
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr "我可以要求审核并删除负面的评论吗？"
+msgstr "我可以要求审核并删除负面的评价吗？"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "不。我们不会删除附加组件的负面评论，除非他们被发现是假的。"
+msgstr "不。我们不会删除附加组件的负面评价，除非内容是虚假的。"
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "我可以要求审核并删除不准确的评论吗？"
+msgstr "我可以要求审核并删除不准确的评价吗？"
 
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
 msgstr "如果一名作者联系我们，并且要求对含有虚假或不准确的信息进行审核并删除，我们会认真审核后考虑是否去除。"
@@ -7221,7 +7221,7 @@ msgstr ""
 " href=\"%(guide)s\">《审查指南》</a>可详细了解有关附加组件评论的信息。</p>"
 
 msgid "Reply to review by {0}"
-msgstr "回复 {0} 的评论"
+msgstr "回复 {0} 的评价"
 
 msgid "Write a Reply"
 msgstr "撰写回复"
@@ -7255,34 +7255,34 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "对这个附加组件，此用户的<a href=\"%(user_review_url)s\">其他评论</a>。"
 
 msgid "Flagged for review"
-msgstr "已标记评论"
+msgstr "已标记的评价"
 
 msgid "Report this review"
-msgstr "报告此评论"
+msgstr "举报此评价"
 
 msgid "Reply to review"
-msgstr "回复评论"
+msgstr "回复评价"
 
 msgid "Edit reply"
 msgstr "编辑回复"
 
 msgid "Edit review"
-msgstr "编辑评论"
+msgstr "编辑评价"
 
 msgid "Delete reply"
 msgstr "删除回复"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr "{0} :: 评论"
+msgstr "{0} :: 评价"
 
 msgid "Reviews for {0}"
-msgstr "对 {0} 的评论"
+msgstr "对 {0} 的评价"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "这个附加组件有 <b>{0}</b> 条评论"
+msgstr[0] "这个附加组件有 <b>{0}</b> 条评价"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7291,24 +7291,24 @@ msgstr "由开发者 {0} 做的回复"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s 对 %(addon)s 发表的评论"
+msgstr[0] "%(user)s 对 %(addon)s 发表的评价"
 
 msgid "No reviews found."
-msgstr "还没有评论。"
+msgstr "还没有评价。"
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>平均</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr "写一段新的评论"
+msgstr "撰写新评价"
 
 msgid "Be the first to write a review."
-msgstr "来写下第一篇评论吧。"
+msgstr "写下第一条评价吧。"
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} 条评论"
+msgstr[0] "{num} 条评价"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "评分 {0}，满分5星"
@@ -7497,7 +7497,7 @@ msgid "Collections Created"
 msgstr "收藏集创建量"
 
 msgid "Reviews Written"
-msgstr "评论撰写量"
+msgstr "评价数量"
 
 msgid "User Signups"
 msgstr "用户注册量"
@@ -7664,7 +7664,7 @@ msgid "Ratings by Date"
 msgstr "依照日期统计的评分"
 
 msgid "Reviews Created by Date"
-msgstr "依照日期统计的评论创建"
+msgstr "依照日期统计的评价创建"
 
 msgid "Download sources by Date"
 msgstr "依照日期统计的下载来源"
@@ -7878,7 +7878,7 @@ msgid "an add-on developer thanks me for a contribution"
 msgstr "一名附加组件开发者感谢了我的捐款"
 
 msgid "an add-on developer replies to my review"
-msgstr "一名附加组件开发者回复了我的评论"
+msgstr "一名附加组件开发者回复了我的评价"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "有新的附加组件或者 Firefox 特性现在可用"
@@ -7890,7 +7890,7 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr "我的基于SDK的附加组件升级成功"
 
 msgid "someone writes a review of my add-on"
-msgstr "有人对我的附加组件写了评论"
+msgstr "有人对我的附加组件写了评价"
 
 msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr "关注最新的附加组件开发者消息和事件"
@@ -7954,7 +7954,7 @@ msgid "You will not be able to log into %(site)s anymore."
 msgstr "您将不能再登录到 %(site)s。"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "您的评论和评分不会被删除，但不再与您有关联。"
+msgstr "您的评价和评分不会被删除，但不再与您有关联。"
 
 msgid "Confirm account deletion"
 msgstr "确认账户删除"
@@ -8098,10 +8098,10 @@ msgstr "由我建立"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr "我所发表的评论"
+msgstr "我所发表的评价"
 
 msgid "No add-on reviews yet."
-msgstr "还没有附加组件评论。"
+msgstr "还没有附加组件评价。"
 
 msgid "Report User"
 msgstr "报告用户"

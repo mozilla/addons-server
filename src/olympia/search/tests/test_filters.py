@@ -58,7 +58,7 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'match': {
-                'name_english': {
+                'name_l10n_english': {
                     'query': 'tea pot', 'boost': 2.5,
                     'analyzer': 'english'
                 }
@@ -68,7 +68,7 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'match': {
-                'description_english': {
+                'description_l10n_english': {
                     'query': 'tea pot', 'boost': 0.6,
                     'analyzer': 'english', 'type': 'phrase'
                 }
@@ -358,6 +358,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'tags': 'foo'}} in must
         assert {'term': {'tags': 'bar'}} in must
 
+    def test_search_by_author(self):
+        qs = self._filter(data={'author': 'fooBar'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'listed_authors.username': 'fooBar'}} in must
+
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
     filter_classes = [InternalSearchParameterFilter]
@@ -414,7 +419,7 @@ class TestCombinedFilter(FilterTestsBase):
         should = filtered['query']['function_score']['query']['bool']['should']
         expected = {
             'match': {
-                'name_english': {
+                'name_l10n_english': {
                     'analyzer': 'english', 'boost': 2.5, 'query': u'test'
                 }
             }

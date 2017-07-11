@@ -13,7 +13,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.forms import Form
 from django.shortcuts import get_object_or_404, redirect
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -36,7 +36,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import escape_all, MenuItem, send_mail, render
 from olympia.api.models import APIKey
@@ -45,7 +45,8 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.helpers import get_position, ReviewHelper
+from olympia.editors.templatetags.jinja_helpers import (
+    get_position, ReviewHelper)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -435,8 +436,8 @@ def ownership(request, addon_id, addon):
         t = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
         send_mail(title,
-                  t.render(Context({'author': author, 'addon': addon,
-                                    'site_url': settings.SITE_URL})),
+                  t.render({'author': author, 'addon': addon,
+                            'site_url': settings.SITE_URL}),
                   None, recipients, use_deny_list=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
@@ -1781,7 +1782,7 @@ def send_key_change_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('New API key created'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
@@ -1792,7 +1793,7 @@ def send_key_revoked_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('API key revoked'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )

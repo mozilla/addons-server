@@ -4,6 +4,7 @@ import itertools
 import json
 import os
 import time
+from collections import OrderedDict
 from datetime import date, timedelta, datetime
 
 from django import http
@@ -15,7 +16,6 @@ from django.db.models import Avg, Count, Q, Sum
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
-from django.utils.datastructures import SortedDict
 
 from dateutil.parser import parse
 from product_details import product_details
@@ -510,8 +510,8 @@ def _site_query(period, start, end, field=None, request=None):
         cursor.execute(sql, [start, end] + _KEYS.keys())
 
         # Process the results into a format that is friendly for render_*.
-        default = dict([(k, 0) for k in _CACHED_KEYS])
-        result = SortedDict()
+        default = {k: 0 for k in _CACHED_KEYS}
+        result = OrderedDict()
         for name, date_, count in cursor.fetchall():
             date_ = date_.strftime('%Y-%m-%d')
             if date_ not in result:

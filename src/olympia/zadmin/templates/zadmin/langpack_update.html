@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
 {% block title %}Language Pack Updates {{ super() }}{% endblock %}
 
@@ -7,7 +7,7 @@
 
 <form action="{{ url('zadmin.langpacks') }}" method="post"
       id="admin-fetch-langpacks">
-  {{ csrf() }}
+  {% csrf_token %}
   <div>
     <span class="edit_with_prefix">
       <span>{{ base_url }}</span><input type="text" id="id_path" name="path"

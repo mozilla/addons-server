@@ -3,7 +3,6 @@ from uuid import UUID
 
 from django.core.urlresolvers import reverse
 
-import jingo
 from mock import Mock
 from pyquery import PyQuery as pq
 
@@ -249,22 +248,22 @@ class TestActivityLog(TestCase):
         ActivityLog.create(amo.LOG.CHANGE_USER_WITH_ROLE, au.user,
                            au.get_role_display(), addon)
         log = ActivityLog.objects.get()
-        env = jingo.get_env()
 
         log_expected = ('yolo role changed to Owner for <a href="/en-US/'
                         'firefox/addon/a3615/">Delicious &lt;script src='
                         '&#34;x.js&#34;&gt;Bookmarks</a>.')
         assert log.to_string() == log_expected
-        assert env.from_string('<p>{{ log }}</p>').render({'log': log}) == (
-            '<p>%s</p>' % log_expected)
+
+        rendered = amo.utils.from_string('<p>{{ log }}</p>').render(
+            {'log': log})
+        assert rendered == '<p>%s</p>' % log_expected
 
     def test_tag_no_match(self):
         addon = Addon.objects.get()
         tag = Tag.objects.create(tag_text='http://foo.com')
         ActivityLog.create(amo.LOG.ADD_TAG, addon, tag)
         log = ActivityLog.objects.get()
-        env = jingo.get_env()
-        text = env.from_string('<p>{{ log }}</p>').render({'log': log})
+        text = amo.utils.from_string('<p>{{ log }}</p>').render({'log': log})
         # There should only be one a, the link to the addon, but no tag link.
         assert len(pq(text)('a')) == 1
 

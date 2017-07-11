@@ -78,7 +78,7 @@
       {{ app }} {old_version}.
     {% endtrans %}</p>
     {# L10n: {0} is an app name, like Firefox. #}
-    <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
+    <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|format_html(APP.pretty) }}</a></p>
   </div>
   {# Building a url with a fake addon that's replaced with a js placeholder?  Sketchy. #}
   <p class="older-versions">{% trans href="/addons/versions/{addon}" %}
@@ -97,7 +97,7 @@
     {{ app }} {old_version}.
   {% endtrans %}</p>
   {# L10n: {0} is an app name, like Firefox. #}
-  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|f(APP.pretty) }}</a></p>
+  <p><a href="{{ app_url }}" class="button">{{ _('Upgrade {0}')|format_html(APP.pretty) }}</a></p>
 </div>
 {% endmacro %}
 

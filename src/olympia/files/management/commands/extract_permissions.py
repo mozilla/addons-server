@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from celery import group
-from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
@@ -11,10 +10,15 @@ from olympia.files.tasks import extract_webext_permissions
 
 class Command(BaseCommand):
     help = 'Extract webextension permissions from manifests in stored xpis.'
-    option_list = BaseCommand.option_list + (
-        make_option('--force', action='store_true', dest='force',
-                    help='Extract from Files that already have permissions'),
-    )
+
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--force',
+            action='store_true',
+            dest='force',
+            default=False,
+            help='Extract from Files that already have permissions.')
 
     def handle(self, *args, **options):
         files = File.objects.filter(is_webextension=True)

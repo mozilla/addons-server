@@ -68,7 +68,7 @@ function PopcornObj() {
             // Preload persona images
             var preload = $('<div>', {'id': 'preload-personas', 'css': {'display': 'none'}}).appendTo('body');
             $promo_addons.find('a[data-browsertheme]').each(function() {
-                var theme = $.parseJSON($(this).attr('data-browsertheme'));
+                var theme = parse.JSON($(this).attr('data-browsertheme'));
                 preload.append($('<img>', {'src': theme['headerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
                 preload.append($('<img>', {'src': theme['footerURL'].replace(/http:\/\//, 'https://'), 'alt': ''}));
             });
@@ -141,7 +141,7 @@ function PopcornObj() {
 
     this.code = function(options){
         if(options['onEnd']) {
-            $('#promo-video').bind('close', options['onEnd']);
+            $('#promo-video').on('close', options['onEnd']);
         }
         pop.code(options);
     }
@@ -259,7 +259,7 @@ $(function() {
         popcorn.start();
     }));
 
-    $('#promos').delegate('.vid-button a', 'click', _pd(function() {
+    $('#promos').on('click', '.vid-button a', _pd(function() {
         popcorn.start();
     }));
 });

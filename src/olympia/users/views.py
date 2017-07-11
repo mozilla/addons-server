@@ -127,7 +127,7 @@ def delete_photo(request, user_id):
         )
         return http.HttpResponseRedirect(redirect + '#user-profile')
 
-    return render(request, 'users/delete_photo.html', dict(user=user))
+    return render(request, 'users/delete_photo.html', {'target_user': user})
 
 
 @write

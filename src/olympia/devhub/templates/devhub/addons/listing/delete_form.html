@@ -1,7 +1,7 @@
 {% from 'includes/forms.html' import optional %}
 {% set title = _('Delete Theme') if addon.is_persona() else _('Delete Add-on') %}
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
-  {{ csrf() }}
+  {% csrf_token %}
   <h3>
     {{ title }}
   </h3>
@@ -23,7 +23,7 @@
   {% endif %}
   <p>
     <label>
-      {{ _('Enter the following text to confirm your decision: {slug}')|fe(slug=addon.slug) }}
+      {{ _('Enter the following text to confirm your decision: {slug}')|format_html(slug=addon.slug) }}
     </label>
     <input class="full-width" type="text" name="slug" autocomplete="off"
            placeholder="{{ addon.slug }}" pattern="{{ addon.slug }}" required>

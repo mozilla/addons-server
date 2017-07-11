@@ -30,7 +30,7 @@ from olympia.amo.models import (
 from olympia.access import acl
 from olympia.addons.utils import (
     get_creatured_ids, get_featured_ids, generate_addon_guid)
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.decorators import use_master, write
 from olympia.amo.utils import (
     attach_trans_dict, cache_ns_key, chunked,
@@ -75,7 +75,7 @@ def clean_slug(instance, slug_field='slug'):
         else:
             slug = instance.__class__.__name__
 
-    max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
+    max_length = instance._meta.get_field(slug_field).max_length
     slug = slugify(slug)[:max_length]
 
     if DeniedSlug.blocked(slug):
@@ -374,6 +374,14 @@ class Addon(OnChangeMixin, ModelBase):
 
     class Meta:
         db_table = 'addons'
+        index_together = [
+            ['weekly_downloads', 'type'],
+            ['created', 'type'],
+            ['bayesian_rating', 'type'],
+            ['last_updated', 'type'],
+            ['average_daily_users', 'type'],
+            ['type', 'status', 'disabled_by_user'],
+        ]
 
     @staticmethod
     def __new__(cls, *args, **kw):
@@ -467,7 +475,7 @@ class Addon(OnChangeMixin, ModelBase):
                 'name': self.name,
                 'slug': self.slug,
                 'total_downloads': self.total_downloads,
-                'url': helpers.absolutify(self.get_url_path()),
+                'url': jinja_helpers.absolutify(self.get_url_path()),
                 'user_str': ("%s, %s (%s)" % (user.display_name or
                                               user.username, user.email,
                                               user.id) if user else "Unknown"),
@@ -511,7 +519,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def initialize_addon_from_upload(cls, data, upload, channel):
-        fields = cls._meta.get_all_field_names()
+        fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
         if guid:  # It's an extension.
@@ -632,7 +640,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def reviews_url(self):
-        return helpers.url('addons.reviews.list', self.slug)
+        return jinja_helpers.url('addons.reviews.list', self.slug)
 
     def get_ratings_url(self, action='list', args=None, add_prefix=True):
         return reverse('ratings.themes.%s' % action,
@@ -854,7 +862,7 @@ class Addon(OnChangeMixin, ModelBase):
         return False
 
     def get_icon_dir(self):
-        return os.path.join(helpers.user_media_path('addon_icons'),
+        return os.path.join(jinja_helpers.user_media_path('addon_icons'),
                             '%s' % (self.id / 1000))
 
     def get_icon_url(self, size, use_default=True):
@@ -906,7 +914,7 @@ class Addon(OnChangeMixin, ModelBase):
                 split_id.group(2) or '0',
                 '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
             ])
-            return helpers.user_media_url('addon_icons') + path
+            return jinja_helpers.user_media_url('addon_icons') + path
 
     def get_default_icon_url(self, size):
         return '{0}img/addon-icons/{1}-{2}.png'.format(
@@ -1198,10 +1206,11 @@ class Addon(OnChangeMixin, ModelBase):
         return get_featured_ids(app, lang)
 
     @property
-    def requires_restart(self):
+    def is_restart_required(self):
         """Whether the add-on current version requires a browser restart to
         work."""
-        return self.current_version and self.current_version.requires_restart
+        return (
+            self.current_version and self.current_version.is_restart_required)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
@@ -1250,18 +1259,11 @@ class Addon(OnChangeMixin, ModelBase):
         return [app for app, ver in self.compatible_apps.items() if ver and
                 version_int(ver.max.version) < version_int(app.latest_version)]
 
-    def has_author(self, user, roles=None):
-        """True if ``user`` is an author with any of the specified ``roles``.
-
-        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
-        not specified, has_author will return true if the user has any role.
-        """
+    def has_author(self, user):
+        """True if ``user`` is an author of the add-on."""
         if user is None or user.is_anonymous():
             return False
-        if roles is None:
-            roles = dict(amo.AUTHOR_CHOICES).keys()
-        return AddonUser.objects.filter(addon=self, user=user,
-                                        role__in=roles).exists()
+        return AddonUser.objects.filter(addon=self, user=user).exists()
 
     @property
     def takes_contributions(self):
@@ -1334,7 +1336,8 @@ class Addon(OnChangeMixin, ModelBase):
         return ''
 
     def can_review(self, user):
-        return not(user and self.has_author(user))
+        """Check whether the user should be prompted to add a review or not."""
+        return not user.is_authenticated() or not self.has_author(user)
 
     @property
     def all_dependencies(self):
@@ -1512,7 +1515,7 @@ class Persona(caching.CachingMixin, models.Model):
         return self.persona_id == 0
 
     def _image_url(self, filename):
-        host = helpers.user_media_url('addons')
+        host = jinja_helpers.user_media_url('addons')
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
         # TODO: Bust the cache on the hash of the image contents or something.
         if self.addon.modified is not None:
@@ -1522,7 +1525,7 @@ class Persona(caching.CachingMixin, models.Model):
         return '%s?%s' % (image_url, modified)
 
     def _image_path(self, filename):
-        return os.path.join(helpers.user_media_path('addons'),
+        return os.path.join(jinja_helpers.user_media_path('addons'),
                             str(self.addon.id), filename)
 
     @cached_property
@@ -1629,7 +1632,7 @@ class Persona(caching.CachingMixin, models.Model):
             'previewURL': self.preview_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
-            'detailURL': helpers.absolutify(self.addon.get_url_path()),
+            'detailURL': jinja_helpers.absolutify(self.addon.get_url_path()),
             'version': '1.0'
         }
 
@@ -1860,21 +1863,21 @@ class Preview(ModelBase):
     @property
     def thumbnail_url(self):
         template = (
-            helpers.user_media_url('previews') +
+            jinja_helpers.user_media_url('previews') +
             'thumbs/%s/%d.png?modified=%s')
         return self._image_url(template)
 
     @property
     def image_url(self):
         template = (
-            helpers.user_media_url('previews') +
+            jinja_helpers.user_media_url('previews') +
             'full/%s/%d.png?modified=%s')
         return self._image_url(template)
 
     @property
     def thumbnail_path(self):
         template = os.path.join(
-            helpers.user_media_path('previews'),
+            jinja_helpers.user_media_path('previews'),
             'thumbs',
             '%s',
             '%d.png'
@@ -1884,7 +1887,7 @@ class Preview(ModelBase):
     @property
     def image_path(self):
         template = os.path.join(
-            helpers.user_media_path('previews'),
+            jinja_helpers.user_media_path('previews'),
             'full',
             '%s',
             '%d.png'

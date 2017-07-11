@@ -4,7 +4,7 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
 from olympia.amo.utils import resize_image
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.lib.es.utils import index_objects
 
 

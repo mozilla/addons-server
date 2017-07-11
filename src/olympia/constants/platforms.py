@@ -1,4 +1,5 @@
-from django.utils.datastructures import SortedDict
+from collections import OrderedDict
+
 from django.utils.translation import ugettext_lazy as _
 
 from . import applications
@@ -70,12 +71,12 @@ PLATFORMS = {PLATFORM_ANY.id: PLATFORM_ANY, PLATFORM_ALL.id: PLATFORM_ALL,
              PLATFORM_SUN.id: PLATFORM_SUN,
              PLATFORM_ANDROID.id: PLATFORM_ANDROID}
 
-MOBILE_PLATFORMS = SortedDict([(PLATFORM_ANDROID.id, PLATFORM_ANDROID)])
+MOBILE_PLATFORMS = OrderedDict([(PLATFORM_ANDROID.id, PLATFORM_ANDROID)])
 
-DESKTOP_PLATFORMS = SortedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
-                                (PLATFORM_LINUX.id, PLATFORM_LINUX),
-                                (PLATFORM_MAC.id, PLATFORM_MAC),
-                                (PLATFORM_WIN.id, PLATFORM_WIN)])
+DESKTOP_PLATFORMS = OrderedDict([(PLATFORM_ALL.id, PLATFORM_ALL),
+                                 (PLATFORM_LINUX.id, PLATFORM_LINUX),
+                                 (PLATFORM_MAC.id, PLATFORM_MAC),
+                                 (PLATFORM_WIN.id, PLATFORM_WIN)])
 
 SUPPORTED_PLATFORMS = DESKTOP_PLATFORMS.copy()
 SUPPORTED_PLATFORMS.update(MOBILE_PLATFORMS)

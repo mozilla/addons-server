@@ -34,7 +34,7 @@
   {% endif %}
 
   <div class="submit-buttons">
-      {{ csrf() }}
+      {% csrf_token %}
       <button id="accept-agreement" type="submit">
         {% if waffle.switch('post-review') %}
           {{ _('I have read and accept this Agreement and the Rules and Policies') }}
@@ -42,6 +42,6 @@
           {{ _('I Accept this Agreement') }}
         {% endif %}
       </button>
-    {{ _('or <a href="{0}">Cancel</a>')|fe(url('devhub.index')) }}
+    {{ _('or <a href="{0}">Cancel</a>')|format_html(url('devhub.index')) }}
   </div>
 </form>

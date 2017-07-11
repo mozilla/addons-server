@@ -2,7 +2,7 @@
 
 {% block title %}
   {# L10n: {0} is the name of the add-on #}
-  {{ page_title(_('End-User License Agreement for {0}')|fe(addon.name)) }}
+  {{ page_title(_('End-User License Agreement for {0}')|format_html(addon.name)) }}
 {% endblock %}
 
 {% block bodyclass %}{{ super() }} eula{% endblock %}

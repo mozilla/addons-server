@@ -52,7 +52,7 @@
 
     <h3>{{ _('All Time') }}</h3>
     {# L10n: {0} is a number, like "480". #}
-    <p class="total">{{ _('You have <span>{0}</span> points.')|fe(total|numberfmt) }}</p>
+    <p class="total">{{ _('You have <span>{0}</span> points.')|format_html(total|numberfmt) }}</p>
     <p><a href="{{ url('editors.leaderboard') }}">{{ _('Reviewer Leaderboard') }}</a></p>
 
   </li>

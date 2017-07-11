@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
@@ -35,19 +34,24 @@ To limit the  date range:
 
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option('--addons',
-                    help='Add-on ids to process. Use commas to separate '
-                         'multiple ids.'),
-        make_option('--date',
-                    help='The date or date range to process. Use the format '
-                         'YYYY-MM-DD for a single date or '
-                         'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
-                         '(inclusive).'),
-        make_option('--index',
-                    help='Optional index name to use.'),
-    )
     help = HELP
+
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--addons',
+            help='Add-on ids to process. Use commas to separate multiple ids.')
+
+        parser.add_argument(
+            '--date',
+            help='The date or date range to process. Use the format '
+                 'YYYY-MM-DD for a single date or '
+                 'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
+                 '(inclusive).')
+
+        parser.add_argument(
+            '--index',
+            help='Optional index name to use.')
 
     def handle(self, *args, **kw):
         addons, dates, index = kw['addons'], kw['date'], kw['index']
