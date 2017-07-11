@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 08:45+0000\n"
+"PO-Revision-Date: 2017-07-11 09:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -8031,10 +8031,10 @@ msgid "Display collections I'm following"
 msgstr "Vis samlingane eg følgjer"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Varsel"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Av og til sender Mozilla deg e-post om komande utgjevingar ogg utvidings-hendingar. Vel dei emna du er interessert i."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr ""
@@ -8055,7 +8055,7 @@ msgid "all"
 msgstr "alle"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Mozilla-utvidingar har gått over til Firefox-kontoar for å logge inn. Fortset for å fullføre den enkle innloggingsprosessen."
 
 msgid "User Login"
 msgstr "Brukarinnlogging"
@@ -8115,7 +8115,7 @@ msgid "Report User"
 msgstr "Rapporter brukar"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Beskriv kvifor du rapporterer denne brukaren, som til dømes for søppelpost (spam) eller upassande bilde."
 
 msgid "Report user {0}"
 msgstr "Rapporter brukar {0}"
@@ -8128,13 +8128,13 @@ msgstr "Abonnentet er avslutta!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "E-postadressa <strong>%(email)s</strong> vil ikkje lenger få meldingar når:"
 
 msgid "More Actions:"
 msgstr "Fleire handlingar:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "rediger varslingsinnstillingane dine"
 
 msgid "edit your profile"
 msgstr "rediger profilen din"
@@ -8144,7 +8144,7 @@ msgstr "Vi klarte ikkje å avslutte abonnementet ditt"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Diverre greidde vi ikkje å avslutte abonnementet ditt. Lenka du klikka på er ugyldig. Men du kan likevel avslutte abonnementet ved å <a href=\"%(edit_url)s\">redigere profilsida di</a>."
 
 msgid "Developer Information"
 msgstr "Utviklarinformasjon"
@@ -8177,26 +8177,26 @@ msgstr[0] "%(num)s utviding"
 msgstr[1] "%(num)s utvidingar"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Gjennomsnittleg vurdering for utviklaren si utviding"
 
 #, python-format
 msgid "%s Version History"
 msgstr "%s versjonshistorikk"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Versjonshistorikk med endringsloggar"
 
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Utvidingar brukar binære komponentar."
 
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Utvidinga har valt streng kompatibilitetskontroll."
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} og nyare"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Permanent lenke til denne versjonen"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
@@ -8204,7 +8204,7 @@ msgstr "Sleppt den {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Kjeldekoden sleppt under <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
@@ -8213,30 +8213,30 @@ msgstr "{0} versjonshistorikk"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> versjon"
+msgstr[1] "<b>{0}</b> versjonar"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Ver forsiktig med gamle versjonar!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Desse versjonane vert viste for referanse og testføremål. Du bør alltid bruke <a href=\"%(url)s\">den siste versjonen</a> av eit tillegg."
 
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Gjeldande maks-versjon"
 
 msgid "Target Version"
 msgstr "Målversjon"
 
 msgid "Email when finished"
-msgstr ""
+msgstr "Send e-post når det er klart"
 
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Logg e-post i staden for å sende"
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Sletta versjonar kan ikkje endrast."
 
 msgid "Binary"
 msgstr "Binær"
@@ -8254,7 +8254,7 @@ msgid "Compat Type"
 msgstr "Kompatibel type"
 
 msgid "Addons Affected"
-msgstr ""
+msgstr "Utvidingar det vedkjem"
 
 msgid "Addon"
 msgstr "Utviding"
