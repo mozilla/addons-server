@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 09:15+0000\n"
+"PO-Revision-Date: 2017-07-11 11:50+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -7971,25 +7971,25 @@ msgid "Confirm account deletion"
 msgstr "Stadfest kontosletting"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Eg forstår at dette steget ikkje kan gjerast om."
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Slett brukarkontoen min no"
 
 msgid "Delete User Photo"
 msgstr "Slett brukarfoto"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Slett brukarbildet mitt no"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Vel visingsnamn"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Vel visingsnamn eller brukarnamn for å fullføre registreringsprosessen."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Handsam grunnleggande kontoinformasjon, slik som brukarnamnet ditt og innstillingar for Firefox-kontoen din."
 
 msgid "Username"
 msgstr "Brukarnamn"
@@ -8007,7 +8007,7 @@ msgid "Give us a bit more information about yourself. All these fields are optio
 msgstr "Skriv litt meir om deg sjølv. Alle felta er valfrie, men dei vil hjelpe andre med å bli betre kjent med deg."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Denne URL-en vert berre vist om du er ein utviklar."
 
 msgid "Choose Photo&hellip;"
 msgstr "Vel foto&hellip;"
@@ -8016,7 +8016,7 @@ msgid "Delete current photo"
 msgstr "Slett gjeldande foto"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Presenter deg sjølv for fellesskapen, om du vil! Denne teksten vert vist offentleg på brukarinformasjonssida di."
 
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Tillaten HTML: {0}. Lenker er forbodne."
