@@ -163,6 +163,9 @@ ADDON_SEARCH_TYPES = [
     ADDON_PERSONA,
 ]
 
+# Add-on types that need to be exposed in the admin. Those are directly used
+# with no special handling, so we need to remove the ADDON_ANY type, it's not
+# a valid type, just something we have for the frontend search UI.
 ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
 ADDON_ADMIN_SEARCH_TYPES.remove(ADDON_ANY)
 
