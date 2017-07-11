@@ -381,7 +381,14 @@ def ajax_new(request):
 
     if request.method == 'POST' and form.is_valid():
         collection = form.save()
-        addon_id = request.POST['addon_id']
+
+        # addon_id is supplied as a GET argument for our ajax
+        # popup window.
+        if 'addon_id' in request.GET:
+            addon_id = request.GET['addon_id']
+        else:
+            addon_id = request.POST['addon_id']
+
         collection.add_addon(Addon.objects.get(pk=addon_id))
         log.info('Created collection %s' % collection.id)
         return http.HttpResponseRedirect(reverse('collections.ajax_list') +
