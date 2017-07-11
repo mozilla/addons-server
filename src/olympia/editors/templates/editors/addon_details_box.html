@@ -126,6 +126,12 @@
                   </td>
                 </tr>
               {% endif %}
+              <tr>
+                <th>{{ _('Requires Payment') }}</th>
+                <td>
+                    {{ _('Yes') if addon.requires_payment else _('No') }}
+                </td>
+              </tr>
               {% if addon.eula %}
                 <tr>
                   <th>{{ _('EULA') }}</th>
