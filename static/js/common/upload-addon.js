@@ -457,6 +457,11 @@
                                 gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
                             ],
                             warnings_id = [
+                                'NO_DOCUMENT_WRITE',
+                                'DANGEROUS_EVAL',
+                                'NO_IMPLIED_EVAL',
+                                'UNSAFE_VAR_ASSIGNMENT',
+                                'MANIFEST_CSP',
                                 'set_innerHTML',
                                 'namespace_pollution',
                                 'dangerous_global'
@@ -492,7 +497,11 @@
                             $('<h6>').text(gettext("The validation process found these issues that can lead to rejections:")).appendTo(checklist_box);
                             var messages_ul = $('<ul>');
                             $.each(messages, function (i) {
-                                $('<li>').text(messages[i]).appendTo(messages_ul);
+                                // Note: validation messages are supposed to be already escaped by
+                                // devhub.views.json_upload_detail(), which does an escape_all()
+                                // call on messages. So we need to use html() and not text() to
+                                // display them, since they can contain HTML entities.
+                                $('<li>').html(messages[i]).appendTo(messages_ul);
                             });
                             messages_ul.appendTo(checklist_box);
                         }
