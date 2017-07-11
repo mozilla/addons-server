@@ -141,6 +141,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int ratings.count: The number of user ratings for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
+    :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
     :>json string review_url: The URL to the review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
