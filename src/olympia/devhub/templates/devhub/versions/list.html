@@ -164,7 +164,7 @@
                     class="enable-addon">
         {{ _("{label_open}Visible:{label_close} Visible to everyone on {site_url} and included "
              "in search results and listing pages.")|format_html(
-             label_open='<strong>', label_close='</strong>', site_url=settings.SITE_URL)|safe }}</label>
+             label_open='<strong>'|safe, label_close='</strong>'|safe, site_url=settings.SITE_URL)|safe }}</label>
         <br>
         <label><input name="addon-state" value="hidden" type="radio"
                     {% if not owner %}disabled="disabled"{% endif %}
@@ -173,7 +173,7 @@
         {{ _("{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will "
               "indicate you disabled it. New version submissions for listing "
               "won't be accepted in this state.")|format_html(
-             label_open='<strong>', label_close='</strong>')|safe }}</label>
+             label_open='<strong>'|safe, label_close='</strong>'|safe) }}</label>
       </div>
     </div>
 
