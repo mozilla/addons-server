@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 09:07+0000\n"
+"PO-Revision-Date: 2017-07-11 09:15+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -8019,7 +8019,7 @@ msgid "Introduce yourself to the community, if you like! This text will appear p
 msgstr ""
 
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Tillaten HTML: {0}. Lenker er forbodne."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Bestem kva for samlingar som skal visast i profilen din."
@@ -8037,7 +8037,7 @@ msgid "From time to time, Mozilla may send you email about upcoming releases and
 msgstr "Av og til sender Mozilla deg e-post om komande utgjevingar ogg utvidings-hendingar. Vel dei emna du er interessert i."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla tek atterhald og minner om retten ein har til å kontakte deg individuelt om særskilde spørsmål omkring utvidinga di."
 
 msgid "Admin"
 msgstr "Admin"
