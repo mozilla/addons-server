@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.core.urlresolvers import resolve
 
 from olympia import amo
 
@@ -76,7 +77,24 @@ class CompatOverrideAdmin(admin.ModelAdmin):
     form = CompatOverrideAdminForm
 
 
+class ReplacementAddonForm(forms.ModelForm):
+    def clean(self):
+        path = None
+        try:
+            path = self.data.get('path')
+            resolve(path)
+        except:
+            raise forms.ValidationError('Path [%s] is not valid' % path)
+        return self.cleaned_data
+
+
+class ReplacementAddonAdmin(admin.ModelAdmin):
+    list_display = ('guid', 'path')
+    form = ReplacementAddonForm
+
+
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)
+admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)

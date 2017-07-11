@@ -2127,6 +2127,14 @@ def update_incompatible_versions(sender, instance, **kw):
         tasks.update_incompatible_appversions.delay(chunk)
 
 
+class ReplacementAddon(ModelBase):
+    guid = models.CharField(max_length=255, unique=True, null=True)
+    path = models.CharField(max_length=255, null=True)
+
+    class Meta:
+        db_table = 'replacement_addons'
+
+
 models.signals.post_save.connect(update_incompatible_versions,
                                  sender=CompatOverrideRange,
                                  dispatch_uid='cor_update_incompatible')
