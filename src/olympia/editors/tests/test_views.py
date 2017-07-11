@@ -2438,6 +2438,19 @@ class TestReview(ReviewBase):
         assert r.status_code == 200
         self.assertContains(r, 'View Privacy Policy')
 
+    def test_requires_payment_indicator(self):
+        assert not self.addon.requires_payment
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert 'No' in doc('tr.requires-payment td').text()
+
+        self.addon.update(requires_payment=True)
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert 'Yes' in doc('tr.requires-payment td').text()
+
     def test_viewing(self):
         url = reverse('editors.review_viewing')
         r = self.client.post(url, {'addon_id': self.addon.id})
