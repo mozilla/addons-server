@@ -64,9 +64,6 @@ class File(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     is_restart_required = models.BooleanField(default=False)
-    # FIXME: remove no_restart once is_restart_required is deployed to
-    # production.
-    no_restart = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
