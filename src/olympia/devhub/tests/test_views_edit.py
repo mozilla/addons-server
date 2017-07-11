@@ -81,6 +81,7 @@ class BaseTestEdit(TestCase):
         if self.listed:
             fs = formset(self.cat_initial, initial_count=1)
             result.update({'is_experimental': True,
+                           'requires_payment': True,
                            'tags': ', '.join(self.tags)})
             result.update(fs)
 
@@ -575,6 +576,21 @@ class TestEditBasicListed(BaseTestEditBasic):
         doc = pq(response.content)
         assert doc('#experimental-edit').text() == (
             'This add-on is experimental.')
+
+    def test_not_requires_payment_flag(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#requires-payment-edit').text() == (
+            'This add-on is doesn\'t require any additional payments, '
+            'paid services or software or additional hardware.')
+
+    def test_requires_payment_flag(self):
+        self.get_addon().update(requires_payment=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#requires-payment-edit').text() == (
+            'This add-on requires payment, non-free services or '
+            'software, or additional hardware.')
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',

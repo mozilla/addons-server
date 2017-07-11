@@ -83,6 +83,21 @@
           </tr>
           <tr>
             <th>
+              {{ tip(_('Requires Payment?'),
+                     _("Check this box if this add-on's core features require "
+                       "some form of payment upfront or after a trial period "
+                       "in order to work.")) }}
+            </th>
+            <td id="requires-payment-edit">
+              {{ flags(_('This add-on requires payment, non-free services or '
+                         'software, or additional hardware.'),
+                       addon.requires_payment if not editable else form.requires_payment, editable,
+                       _("This add-on is doesn't require any additional payments, "
+                         "paid services or software or additional hardware.")) }}
+            </td>
+          </tr>
+          <tr>
+            <th>
               {{ tip(_("Categories"),
                      _("Categories are the primary way users browse through add-ons. "
                        "Choose any that fit your add-on's functionality for the most "

@@ -391,7 +391,8 @@ class TestAddonSubmitDetails(TestSubmitBase):
     def get_dict(self, minimal=True, **kw):
         result = {}
         describe_form = {'name': 'Test name', 'slug': 'testname',
-                         'summary': 'Hello!', 'is_experimental': True}
+                         'summary': 'Hello!', 'is_experimental': True,
+                         'requires_payment': True}
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
@@ -439,6 +440,7 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert addon.slug == 'testname'
         assert addon.summary == 'Hello!'
         assert addon.is_experimental
+        assert addon.requires_payment
         assert addon.all_categories[0].id == 22
 
         # Test add-on log activity.
