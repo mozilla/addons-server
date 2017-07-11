@@ -909,12 +909,12 @@ class TestQueueBasics(QueueTest):
         assert rows.find('td').eq(1).text() == 'Jetpack 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 1
 
-    def test_flags_requires_restart(self):
+    def test_flags_is_restart_required(self):
         addon = addon_factory(
             status=amo.STATUS_NOMINATED, name='Some Add-on',
             version_kw={'version': '0.1'},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'no_restart': False})
+                     'is_restart_required': True})
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -923,14 +923,14 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Some Add-on 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
-        assert rows.find('.ed-sprite-requires_restart').length == 1
+        assert rows.find('.ed-sprite-is_restart_required').length == 1
 
-    def test_flags_no_restart(self):
+    def test_flags_is_restart_required_false(self):
         addon = addon_factory(
             status=amo.STATUS_NOMINATED, name='Restartless',
             version_kw={'version': '0.1'},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'no_restart': True})
+                     'is_restart_required': False})
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -939,7 +939,7 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
-        assert rows.find('.ed-sprite-requires_restart').length == 0
+        assert rows.find('.ed-sprite-is_restart_required').length == 0
 
     def test_theme_redirect(self):
         users = []
@@ -1857,13 +1857,13 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_not_flags(self):
-        self.addon.current_version.files.update(no_restart=True)
+        self.addon.current_version.files.update(is_restart_required=False)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
     def test_flag_admin_review(self):
-        self.addon.current_version.files.update(no_restart=True)
+        self.addon.current_version.files.update(is_restart_required=False)
         self.addon.update(admin_review=True)
         response = self.client.get(self.url)
         assert len(response.context['flags']) == 1

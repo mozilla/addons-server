@@ -1206,10 +1206,11 @@ class Addon(OnChangeMixin, ModelBase):
         return get_featured_ids(app, lang)
 
     @property
-    def requires_restart(self):
+    def is_restart_required(self):
         """Whether the add-on current version requires a browser restart to
         work."""
-        return self.current_version and self.current_version.requires_restart
+        return (
+            self.current_version and self.current_version.is_restart_required)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""

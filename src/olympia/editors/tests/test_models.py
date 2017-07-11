@@ -104,7 +104,8 @@ class TestPendingQueue(TestQueue):
                         'created': self.days_ago(1)})
         version_factory(
             addon=addon, version=version, channel=self.channel,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'no_restart': True})
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
+                     'is_restart_required': False})
         return addon
 
     def new_search_ext(self, name, version, **kw):
@@ -146,12 +147,12 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         assert q.flags == [('jetpack', 'Jetpack Add-on')]
 
-    def test_flags_requires_restart(self):
+    def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
-            no_restart=False)
+            is_restart_required=True)
 
         q = self.Queue.objects.get()
-        assert q.flags == [('requires_restart', 'Requires Restart')]
+        assert q.flags == [('is_restart_required', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
         self.new_addon().find_latest_version(self.channel).update(
