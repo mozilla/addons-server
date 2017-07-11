@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 18:31+0000\n"
+"PO-Revision-Date: 2017-07-11 18:34+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6660,7 +6660,7 @@ msgid "You must choose the operating systems on which your add-on will successfu
 msgstr ""
 
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Ποια κατηγορία να επιλέξω για το πρόσθετό μου;"
 
 msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
@@ -6871,7 +6871,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Τα πλήρη θέματα</a></strong> αλλάζουν ολόκληρη την εμφάνιση του %(app_name)s και, συχνά, περιλαμβάνουν εικονίδια, χρώματα, διαλόγους και άλλα οπτικά στυλ."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -7222,7 +7222,7 @@ msgid "What will happen next"
 msgstr "Τι θα συμβεί μετά"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Αν συμφωνείτε</strong> να συμμετάσχετε:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
