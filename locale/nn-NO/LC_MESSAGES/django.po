@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 11:50+0000\n"
+"PO-Revision-Date: 2017-07-11 12:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -7501,28 +7501,28 @@ msgid "Add-ons in Use"
 msgstr "Tillegg som vert brukte"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Utvidingar som er laga"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Uvidingar som er lasta ned"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Utvidingar som er oppdaterte"
 
 msgid "Collections Created"
 msgstr "Samling oppretta"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Skrivne vurderingar"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Brukarregistreringar"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Arkiverte data"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Tilpassa datointervall"
 
 msgid "From"
 msgstr "Frå"
@@ -7538,20 +7538,20 @@ msgstr "Eksporter"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Statistikkdashbord :: Utvidingar for {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Statistikkdashbord"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Statistikkdashbord :: Utvidingar for {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistics for {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Statistikkdashbord"
 
 msgid "Controls:"
 msgstr "Kontrollar:"
@@ -7593,49 +7593,49 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Lastar inn siste datat&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "Ingen data er tilgjengelege."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Dette dashbordet er for tida <b>offentleg</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Bidragsstatistikk er for tida <b>privat</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Dette dashbordet er for tida <b>privat</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Endre innstillingar."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Utvidingar laga etter dato"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Utvidingar lasta ned etter dato"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Utvidingar i bruk etter dato"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Utvidingar oppdaterte etter dato"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Programbruk etter dato"
 
 msgid "Collections Created by Date"
 msgstr "Samlingar oppretta etter dato"
 
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Bidrag etter dato"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Nedlasta etter dato"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Korleis tel ein nedlastingar?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7643,19 +7643,19 @@ msgid ""
 msgstr ""
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Brukarspråk etter dato"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Plattformbruk etter dato"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Nedlastingar"
 
 msgid "Loading..."
 msgstr "Lastar…"
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Gjennomsnittleg daglege brukarar"
 
 msgid "Top Applications"
 msgstr "Beste program"
@@ -7679,10 +7679,10 @@ msgid "Ratings by Date"
 msgstr "Vurderingar etter dato"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Vurderingar laga eter dato"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Last ned kjeldekode etter dato"
 
 msgid "About tracking external sources..."
 msgstr "Om å spore eksterne kjelder…"
@@ -7719,13 +7719,13 @@ msgid ""
 msgstr ""
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Registrerte brukarar etter dato"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Programversjonar etter dato"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-utvidingar"
 
 msgid "Find add-ons for other applications"
 msgstr "Finn utvidingar for andre program"
@@ -7737,7 +7737,7 @@ msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "For å opprette eigne samlingar, må du ha ein konto for Mozilla-utvidingar."
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Botntekstlogo"
 
 msgid "Choose a category"
 msgstr "Vel ein kategori"
@@ -7800,31 +7800,31 @@ msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
 
 msgid "On the go?"
-msgstr ""
+msgstr "På farten?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Utvidingar for Android"
 
 msgid "required"
 msgstr "påkravd"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Påkravde felt"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Omsett til: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksisterande språk"
 
 msgid "New Locales"
 msgstr "Nye språk"
@@ -7841,10 +7841,10 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Slett språk"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-post må vere {email}."
 
 msgid "Display Name"
 msgstr "Visingsnamn"
@@ -7883,7 +7883,7 @@ msgid "Anonymous user {id}"
 msgstr "Anonym brular {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Mine mobilutvidingar"
 
 msgid "an add-on developer thanks me for a contribution"
 msgstr ""
@@ -7922,10 +7922,10 @@ msgid "User Notifications"
 msgstr "Brukarmerknadar"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Ei e-postadresse er påkravd."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Ein brukar med den e-postadressa finst ikkje."
 
 msgid "Profile Deleted"
 msgstr "Profil sletta"
@@ -7943,7 +7943,7 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr ""
 
 msgid "User reported."
-msgstr ""
+msgstr "Brukar rapportert."
 
 msgid "new"
 msgstr "ny"
