@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-12 09:49+0000\n"
+"PO-Revision-Date: 2017-07-12 10:08+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -632,7 +632,7 @@ msgid "Permissions"
 msgstr "Løyve"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Denne utvidinga er merka eksperimentell av utviklaren"
 
 msgid "Download Anyway"
 msgstr "Last ned likevel"
@@ -757,7 +757,7 @@ msgstr ""
 "frå denne kanalen. For å slutte å få utviklingsoppdateringar må du reinstallere standardversjonen frå lenka ovanfor."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Åtvaring:</strong> Utviklarvershonar av denne utvidinga er ikkje vurdert av Mozilla."
 
 msgid "See complete development channel history"
 msgstr "Sjå komplett historikk for utviklingskanalen"
@@ -766,12 +766,14 @@ msgid "close"
 msgstr "lat att"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Visse utvidingar kan be om løyve til å utføre visse funksjonar (Døme: Ei utviding som handsamar faner, kan be om å få tilgang til fanesystemet i nettlesaren din)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Sidan du har kontroll over Firefox, er valet å godta eller avslå desse løyveførespurnadane. Å godta løyveførespurnadar tyder ikkje at du kompromitterer yting eller sikkerheit, men i enkelte sjeldne "
+"høve kan det vere ein risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -970,6 +972,8 @@ msgstr "Heimeside for utvidingar"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Om du følge ei lenke frå nokon stad, gjer vel og %(open_bug_link)ssend inn eit spørsmål%(close_bug_link)s. Fortel oss kvar du kom ifrå og kva du såg etter, og vi vil gjere vårt beste for å fikse "
+"det."
 
 msgid "Not Found"
 msgstr "Ikkje funne"
@@ -1023,6 +1027,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Skriv inn <strong>alle orda</strong> nedanfor <strong>med eit mellom rom når det trengst</strong>. </p> <p> Om det er vanskeleg å lese kan du <a href=\"#\" id=\"recaptcha_different\">prøve med "
+"andre ord </a> eller <a href=\"#\" id=\"recaptcha_audio\">prøve ein annan metode</a> i staden. </p>"
 
 msgid "Top Rated"
 msgstr "Høgast vurdert"
@@ -1119,7 +1125,7 @@ msgstr "Språkkoden {lang_code} er ugyldig."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Ugyldig pk eller slugg \"%s\" - objektet finst ikkje."
 
 msgid "Application Versions"
 msgstr "Applikasjonsversjonar"
