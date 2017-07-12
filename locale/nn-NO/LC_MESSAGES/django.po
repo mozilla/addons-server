@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-12 10:08+0000\n"
+"PO-Revision-Date: 2017-07-12 10:22+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1391,7 +1391,7 @@ msgstr[1] "<span>%(addons)s</span> utvidingar"
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> følgjar"
-msgstr[1] ""
+msgstr[1] "<span>%(followers)s</span> følgjarar"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1501,7 +1501,7 @@ msgid "Admin Settings"
 msgstr "Admin-innstillingar"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Åtvaring:</b> Om du byter eigar på denne samlinga vil du ikkje lenger kunne redigere henne. Du vil berre kunne leggje til og fjerne utvidingar."
 
 msgid "Continue"
 msgstr "Fortset"
@@ -2731,7 +2731,7 @@ msgid "Invalid version range."
 msgstr "Ugyldig versjonsintervall."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Treng minst eitt kompatibelt program."
 
 msgid "There was an error with your upload. Please try again."
 msgstr ""
@@ -2872,7 +2872,7 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Ein opphavsmann er lagt til i utvidinga di"
 
 msgid "An author has a role changed on your add-on"
 msgstr ""
@@ -3613,7 +3613,7 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Korleis du distribuerer denne versjonen"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
@@ -3667,7 +3667,7 @@ msgid "Go to My Submissions"
 msgstr "Gå til bidraga mine"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Distribusjonsavtale for utvidingar"
 
 msgid "Upload Add-on"
 msgstr "Last opp utviding"
@@ -3950,13 +3950,13 @@ msgid "Get Your Add-on Featured"
 msgstr "Få utvidinga di framheva"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Knappen «Last ned utvidinga»"
 
 msgid "Legal"
 msgstr "Juridisk"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Rapporter misbruk av varemerke"
 
 msgid "Legal Notices"
 msgstr "Juridisk informasjon"
@@ -4188,7 +4188,7 @@ msgid "Select the category that best describes your Theme."
 msgstr ""
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Legg til nokre taggar for å skildre temaet ditt."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
