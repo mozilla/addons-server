@@ -128,7 +128,6 @@ GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
 
 # Singular
 ADDON_TYPE = {
-    ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extension'),
     ADDON_THEME: _(u'Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
@@ -141,7 +140,6 @@ ADDON_TYPE = {
 
 # Plural
 ADDON_TYPES = {
-    ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extensions'),
     ADDON_THEME: _(u'Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
@@ -162,12 +160,6 @@ ADDON_SEARCH_TYPES = [
     ADDON_LPAPP,
     ADDON_PERSONA,
 ]
-
-# Add-on types that need to be exposed in the admin. Those are directly used
-# with no special handling, so we need to remove the ADDON_ANY type, it's not
-# a valid type, just something we have for the frontend search UI.
-ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
-ADDON_ADMIN_SEARCH_TYPES.remove(ADDON_ANY)
 
 # Icons
 ADDON_ICONS = {
@@ -243,7 +235,7 @@ VIDEO_TYPES = ('video/webm',)
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)
-HAS_COMPAT = dict((t, t not in NO_COMPAT) for t in ADDON_TYPES)
+HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 
 # Contributions
 CONTRIB_NONE = 0
