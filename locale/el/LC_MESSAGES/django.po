@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 12:50+0000\n"
+"PO-Revision-Date: 2017-07-13 13:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3943,10 +3943,10 @@ msgstr ""
 
 #. {0} is a list of HTML tags.
 msgid "Allowed HTML: {0}"
-msgstr "Κώδικας HTML που επιτρέπεται: {0}"
+msgstr "Επιτρεπτό HTML: {0}"
 
 msgid "Some HTML supported."
-msgstr "Επιτρέπεται μερική HTML."
+msgstr "Μερική υποστήριξη HTML."
 
 msgid "Remove this application"
 msgstr "Αφαίρεση αυτής της εφαρμογής"
@@ -4281,7 +4281,7 @@ msgid "Theme License"
 msgstr "Άδεια θέματος"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Μπορούν οι άλλοι χρήστες να μοιραστούν το θέμα σας, εφόσον σάς αναφέρουν ως δημιουργό;"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
@@ -4290,10 +4290,10 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr ""
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Μπορούν οι άλλοι χρήστες να κάνουν εμπορική χρήση του θέματός σας;"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Μπορούν οι άλλοι χρήστες να δημιουργήσουν παράγωγα έργα από το θέμα σας;"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
@@ -4308,7 +4308,7 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Το θέμα σας θα εκδοθεί υπό την ακόλουθη άδεια:"
 
 msgid "Select a different license."
 msgstr "Επιλέξτε μια διαφορετική άδεια."
@@ -4347,16 +4347,16 @@ msgid "Select colors for your Theme."
 msgstr "Επιλέξτε χρώματα για το θέμα σας."
 
 msgid "Foreground Text"
-msgstr "Χρώμα προσκηνίου"
+msgstr "Κείμενο προσκηνίου"
 
 msgid "This is the color of the tab text."
-msgstr "Αυτό θα είναι το χρώμα για το κείμενο των καρτελών"
+msgstr "Αυτό είναι το χρώμα του κειμένου καρτέλας."
 
 msgid "Background"
 msgstr "Παρασκήνιο"
 
 msgid "This is the color of the tabs."
-msgstr "Αυτό θα είναι το χρώμα για τις καρτέλες"
+msgstr "Αυτό είναι το χρώμα των καρτελών."
 
 msgid "Preview"
 msgstr "Προεπισκόπηση"
@@ -4383,6 +4383,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Αποδέχομαι τη <a href=\"%(agreement_url)s\">συμφωνία διανομής προσθέτων Firefox</a> και συμφωνώ με τη μεταχείριση των πληροφοριών μου, όπως περιγράφεται στη <a "
+"href=\"%(privacy_notice_url)s\">σημείωση απορρήτου ιστοσελίδων, επικοινωνιών και cookies</a>."
 
 msgid "Submit Theme"
 msgstr "Υποβολή θέματος"
@@ -4409,7 +4411,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 εικονοστοιχεία"
@@ -4427,7 +4429,7 @@ msgid "Select a different header image"
 msgstr "Επιλογή διαφορετικής εικόνας κεφαλίδας"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Επιλέξτε μια εικόνα υποσέλιδου για το θέμα σας."
 
 msgid "3000 &times; 100 pixels"
 msgstr "3000 &times; 100 pixels"
@@ -8186,7 +8188,7 @@ msgid "Introduce yourself to the community, if you like! This text will appear p
 msgstr "Παρουσιάστε, αν θέλετε,τον εαυτό σας στην κοινότητα! Αυτό το κείμενο θα εμφανίζεται δημόσια στη σελίδα πληροφοριών χρήστη."
 
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr "Επιτρεπόμενο HTML: {0}. Απαγορεύονται οι σύνδεσμοι."
+msgstr "Επιτρεπτό HTML: {0}. Απαγορεύονται οι σύνδεσμοι."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Αποφασίστε ποιες συλλογές θα εμφανίζονται στο προφίλ σας."
