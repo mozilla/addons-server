@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 13:09+0000\n"
+"PO-Revision-Date: 2017-07-13 13:30+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3014,7 +3014,7 @@ msgid "Printable Version"
 msgstr "Έκδοση για εκτύπωση"
 
 msgid "I Accept this Agreement"
-msgstr "Αποδέχομαι το συμφωνητικό"
+msgstr "Αποδοχή συμφωνίας"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ή <a href=\"{0}\">Ακύρωση</a>"
@@ -4045,16 +4045,16 @@ msgid "Review Add-ons"
 msgstr "Αξιολόγηση προσθέτων"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Οι εθελοντές κριτικοί βοηθούν στη διασφάλιση της ασφάλειας και της αξιοπιστίας των προσθέτων. Απολαμβάνουν και εξαιρετικά προνόμια!"
 
 msgid "Join us!"
-msgstr ""
+msgstr "Συνεισφέρετε!"
 
 msgid "Write Some Code"
 msgstr "Γράψτε λίγο κώδικα"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Βοηθήστε μας να κάνουμε τα πρόσθετα καλύτερα με τις ικανότητές σας στον προγραμματισμό."
 
 msgid "Get started"
 msgstr "Ξεκινήστε"
@@ -4063,7 +4063,7 @@ msgid "More Ways to Participate"
 msgstr "Περισσότεροι τρόποι συμμετοχής"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Δεν χρειάζεστε ικανότητες στον προγραμματισμό για να κάνετε το Firefox το πιο προσαρμόσιμο πρόγραμμα περιήγησης!"
 
 msgid "See how"
 msgstr "Δείτε πώς"
@@ -4078,7 +4078,7 @@ msgid "Evolution in Add-on Development"
 msgstr "Εξέλιξη στην ανάπτυξη προσθέτων"
 
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr ""
+msgstr "Τα WebExtensions είναι πλέον το στάνταρ για την ανάπτυξη προσθέτων στο Firefox. Θα χρειαστεί να ενημερώσετε τα πρόσθετα παλαιού τύπου σας για να παραμείνουν συμβατά."
 
 msgid "Learn How"
 msgstr "Μάθετε πώς"
@@ -4088,6 +4088,8 @@ msgstr "Τι νέο υπάρχει"
 
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
+"Αλλάζετε τα πρόσθετα παλαιού τύπου σας σε WebExtensions; Λάβετε πιο εξατομικευμένη βοήθεια κατά τις εργάσιμες ώρες ή στείλτε email στο <a href=\"mailto:webextensions-support@mozilla.org"
+"\">webextensions-support@mozilla.org</a>."
 
 msgid "See Schedule"
 msgstr "Προβολή προγράμματος"
@@ -4097,12 +4099,14 @@ msgstr "Προβολή όλων των υποβολών"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
+"Εδώ μπορείτε να δείτε και να διαχειριστείτε τα πρόσθετα και τα θέματά σας. Για να δημοσιεύσετε το πρώτο σας πρόσθετο, κάντε κλικ στο \"Υποβολή του πρώτου σας προσθέτου\" ή στο \"Υποβολή του πρώτου "
+"σας θέματος\"."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Υποβολή του πρώτου σας προσθέτου"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Υποβολή του πρώτου σας θέματος"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
