@@ -7,8 +7,8 @@ from olympia.amo.tests import (
     addon_factory, file_factory, TestCase, version_factory)
 from olympia.addons.models import Addon
 from olympia.editors.forms import ReviewForm
-from olympia.editors.templatetags.jinja_helpers import ReviewHelper
 from olympia.editors.models import CannedResponse
+from olympia.editors.utils import ReviewHelper
 from olympia.users.models import UserProfile
 
 
