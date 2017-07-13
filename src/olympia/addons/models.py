@@ -325,9 +325,6 @@ class Addon(OnChangeMixin, ModelBase):
         null=True, help_text=_('Users have the option of contributing more '
                                'or less than this amount.'))
 
-    total_contributions = models.DecimalField(max_digits=9, decimal_places=2,
-                                              blank=True, null=True)
-
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
         help_text=_(u'Users will always be asked in the Add-ons'
