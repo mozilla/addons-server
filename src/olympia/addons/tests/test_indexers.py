@@ -4,10 +4,12 @@ from itertools import chain
 from olympia import amo
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import (
-    addon_factory, ESTestCase, file_factory, TestCase, version_factory)
+    addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
+    version_factory)
 from olympia.addons.models import (
     Addon, attach_tags, attach_translations, Preview)
 from olympia.addons.indexers import AddonIndexer
+from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
@@ -48,9 +50,9 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'latest_unlisted_version', 'listed_authors',
-            'name', 'name_sort', 'platforms', 'previews', 'public_stats',
-            'ratings', 'summary', 'tags'
+            'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
+            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
+            'public_stats', 'ratings', 'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -156,6 +158,16 @@ class TestAddonIndexer(TestCase):
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True
         assert extracted['has_privacy_policy'] is True
+        assert extracted['is_featured'] is False
+
+    def test_extract_is_featured(self):
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=collection.application)
+        collection.add_addon(self.addon)
+        assert self.addon.is_featured()
+        extracted = self._extract()
+        assert extracted['is_featured'] is True
 
     def test_extract_eula_privacy_policy(self):
         # Remove eula.

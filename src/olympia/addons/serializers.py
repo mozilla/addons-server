@@ -160,6 +160,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     is_source_public = serializers.BooleanField(source='view_source')
+    is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='all_previews')
     ratings = serializers.SerializerMethodField()
@@ -192,6 +193,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'icon_url',
             'is_disabled',
             'is_experimental',
+            'is_featured',
             'is_source_public',
             'last_updated',
             'name',
@@ -241,6 +243,12 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_has_eula(self, obj):
         return bool(getattr(obj, 'has_eula', obj.eula))
+
+    def get_is_featured(self, obj):
+        if not hasattr(obj, '_is_featured'):
+            # Any featuring will do.
+            obj._is_featured = obj.is_featured(app=None, lang=None)
+        return obj._is_featured
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -419,6 +427,8 @@ class ESBaseAddonSerializer(BaseESSerializer):
 
         obj.average_rating = data.get('ratings', {}).get('average')
         obj.total_reviews = data.get('ratings', {}).get('count')
+
+        obj._is_featured = data.get('is_featured', False)
 
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')

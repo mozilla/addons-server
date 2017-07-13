@@ -1,10 +1,11 @@
 import uuid
 import random
 
+from django.core.cache import cache
 from django.db.models import Q
 
 import olympia.core.logger
-from olympia.amo.cache_nuggets import memoize
+from olympia.amo.cache_nuggets import memoize, memoize_key
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
@@ -15,12 +16,18 @@ def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 
 
+def clear_get_featured_ids_cache(*args, **kwargs):
+    cache_key = memoize_key('addons:featured', *args, **kwargs)
+    cache.delete(cache_key)
+
+
 @memoize('addons:featured', time=60 * 10)
-def get_featured_ids(app, lang=None, type=None):
+def get_featured_ids(app=None, lang=None, type=None):
     from olympia.addons.models import Addon
     ids = []
-    is_featured = (Q(collections__featuredcollection__isnull=False) &
-                   Q(collections__featuredcollection__application=app.id))
+    is_featured = Q(collections__featuredcollection__isnull=False)
+    if app:
+        is_featured &= Q(collections__featuredcollection__application=app.id)
     qs = Addon.objects.valid()
 
     if type:

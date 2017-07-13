@@ -7,8 +7,8 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, ESTestCase, file_factory, TestCase, version_factory,
-    user_factory)
+    addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
+    version_factory, user_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -18,6 +18,7 @@ from olympia.addons.serializers import (
     ESAddonSerializerWithUnlistedData, SimpleVersionSerializer,
     VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
+from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
@@ -175,6 +176,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
+        assert result['is_featured'] == self.addon.is_featured() is False
         assert result['is_source_public'] == self.addon.view_source
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
@@ -350,6 +352,17 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['has_eula'] is True
         assert result['has_privacy_policy'] is True
+
+    def test_is_featured(self):
+        self.addon = addon_factory()
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=collection.application)
+        collection.add_addon(self.addon)
+        assert self.addon.is_featured()
+
+        result = self.serialize()
+        assert result['is_featured'] is True
 
     def test_translations(self):
         translated_descriptions = {

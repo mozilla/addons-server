@@ -111,6 +111,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
+                    'is_featured': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'latest_unlisted_version': version_mapping,
                     'listed_authors': {
@@ -277,6 +278,8 @@ class AddonIndexer(BaseSearchIndexer):
             {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors
         ]
+
+        data['is_featured'] = obj.is_featured(None, None)
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)

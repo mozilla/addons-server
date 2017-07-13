@@ -14,6 +14,7 @@ from olympia import activity, amo
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
@@ -335,6 +336,9 @@ class Collection(ModelBase):
     def is_public(self):
         return self.listed
 
+    def is_featured(self):
+        return FeaturedCollection.objects.filter(collection=self).exists()
+
     @staticmethod
     def transformer(collections):
         if not collections:
@@ -352,6 +356,8 @@ class Collection(ModelBase):
             return
         tasks.collection_meta.delay(instance.id, using='default')
         tasks.index_collections.delay([instance.id])
+        if instance.is_featured():
+            Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
@@ -359,6 +365,16 @@ class Collection(ModelBase):
         if kwargs.get('raw'):
             return
         tasks.unindex_collections.delay([instance.id])
+        if instance.is_featured():
+            Collection.update_featured_status(sender, instance, **kwargs)
+
+    @staticmethod
+    def update_featured_status(sender, instance, **kwargs):
+        from olympia.addons.tasks import index_addons
+        addons = [addon.id for addon in instance.addons.all()]
+        if addons:
+            clear_get_featured_ids_cache(None, None)
+            index_addons.delay(addons)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -515,6 +531,17 @@ class FeaturedCollection(ModelBase):
     def __unicode__(self):
         return u'%s (%s: %s)' % (self.collection, self.application,
                                  self.locale)
+
+    @staticmethod
+    def post_save_or_delete(sender, instance, **kwargs):
+        Collection.update_featured_status(
+            FeaturedCollection, instance.collection, **kwargs)
+
+
+models.signals.post_save.connect(FeaturedCollection.post_save_or_delete,
+                                 sender=FeaturedCollection)
+models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
+                                   sender=FeaturedCollection)
 
 
 class MonthlyPick(ModelBase):
