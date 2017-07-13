@@ -260,9 +260,10 @@ class Addon(OnChangeMixin, ModelBase):
                                       db_column='defaultlocale')
 
     type = models.PositiveIntegerField(
-        choices=amo.ADDON_TYPE.items(), db_column='addontype_id', default=0)
+        choices=amo.ADDON_TYPE.items(), db_column='addontype_id',
+        default=amo.ADDON_EXTENSION)
     status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=0)
+        choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
     homepage = TranslatedField()

@@ -882,8 +882,8 @@ def upload_detail(request, uuid, format='html'):
 
 class AddonDependencySearch(BaseAjaxSearch):
     # No personas.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 @dev_required

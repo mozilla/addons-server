@@ -1,8 +1,6 @@
 from django import forms
 from django.contrib import admin
 
-from olympia import amo
-
 from . import models
 
 
@@ -42,8 +40,7 @@ class AddonAdmin(admin.ModelAdmin):
         }))
 
     def queryset(self, request):
-        types = amo.ADDON_ADMIN_SEARCH_TYPES
-        return models.Addon.unfiltered.filter(type__in=types)
+        return models.Addon.unfiltered
 
 
 class FeatureAdmin(admin.ModelAdmin):
