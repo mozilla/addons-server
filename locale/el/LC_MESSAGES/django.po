@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 12:28+0000\n"
+"PO-Revision-Date: 2017-07-13 12:50+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1084,7 +1084,7 @@ msgid "Themes"
 msgstr "Θέματα"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Θέλετε περισσότερη εξατομίκευση; Δοκιμάστε τα <b>Πλήρη Θέματα</b>"
+msgstr "Θέλετε περισσότερη εξατομίκευση; Δείτε τα <b>Πλήρη Θέματα</b>"
 
 msgid "Most Followers"
 msgstr "Περισσότεροι ακόλουθοι"
@@ -1594,7 +1594,7 @@ msgid "Create a Collection"
 msgstr "Δημιουργία συλλογής"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Οι συλλογές είναι ένας εύκολος τρόπος για να παρακολουθήσετε τα αγαπημένα σας πρόσθετα και να βοηθήσετε κι άλλους να προσαρμόσουν τον περιηγητή τους τέλεια όπως το δικό σας."
+msgstr "Οι συλλογές κάνουν εύκολη την παρακολούθηση αγαπημένων προσθέτων και την κοινή χρήση του τέλεια προσαρμοσμένου προγράμματος περιήγησής σας με άλλους χρήστες."
 
 msgid "Collection Icon"
 msgstr "Εικονίδιο συλλογής"
@@ -1833,7 +1833,7 @@ msgid "Create Your Own Theme"
 msgstr "Δημιουργία θέματος"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "Ο περιηγητής σας, το στυλ σας! Ντύστε τον με δικά σας σχέδια!"
+msgstr "Το πρόγραμμα περιήγησής σας, το στυλ σας! Ντύστε το με ένα δικό σας σχέδιο!"
 
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
@@ -3259,6 +3259,8 @@ msgstr "Σύνοψη"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Μια σύντομη εξήγηση των βασικών λειτουργιών του προσθέτου σας, που εμφανίζεται στην αναζήτηση και τις λίστες εξερεύνησης, καθώς και στο πάνω μέρος της σελίδας λεπτομερειών του προσθέτου σας. Αφορά "
+"μόνο τα καταχωρημένα πρόσθετα."
 
 msgid "Experimental?"
 msgstr "Πειραματικό;"
@@ -3286,11 +3288,11 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος {0} χαρακτήρα."
-msgstr[1] "λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος {0} χαρακτήρες."
+msgstr[0] "Λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος: {0} χαρακτήρα."
+msgstr[1] "Λίστα διαχωριζόμενη με κόμματα, ελάχιστο μήκος: {0} χαρακτήρες."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Παράδειγμα: σκοτάδι, σινεμά, noir. Όριο 20."
+msgstr "Παράδειγμα: σκοτεινό, σινεμά, noir. Όριο: 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -3629,7 +3631,7 @@ msgid "Add-on URL:"
 msgstr "URL προσθέτου:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα, αριθμούς, κάτω παύλες, και παύλες στο URL σας."
+msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα, αριθμούς, κάτω παύλες και παύλες στο URL σας."
 
 msgid "Summary:"
 msgstr "Σύνοψη:"
@@ -4267,13 +4269,13 @@ msgid "Supply a pretty URL for your detail page."
 msgstr "Παραθέστε ένα όμορφο URL για τη σελίδα λεπτομερειών σας."
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Επιλέξτε την κατηγορία που περιγράφει καλύτερα το θέμα σας."
 
 msgid "Add some tags to describe your Theme."
 msgstr "Προσθέστε μερικές ετικέτες για να περιγράψετε το θέμα σας."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "Μια σύντομη εξήγηση των βασικών λειτουργιών του θέματός σας, που εμφανίζεται στην αναζήτηση και τις λίστες εξερεύνησης, καθώς και στο πάνω μέρος της σελίδας λεπτομερειών του θέματός σας."
 
 msgid "Theme License"
 msgstr "Άδεια θέματος"
@@ -4371,7 +4373,7 @@ msgstr "Δημιουργία νέου θέματος"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Τα θέματα παρασκηνίου σάς επιτρέπουν να εξατομικεύσετε εύκολα την εμφάνιση του Firefox. Υποβάλετε το δικό σας σχέδιο παρακάτω ή <a href=\"%(submit_url)s\">μάθετε πώς να δημιουργήσετε ένα</a>!"
 
 msgid "Give your Theme a name."
 msgstr "Δώστε ένα όνομα στο θέμα σας."
@@ -7345,7 +7347,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Βαθμολογήθηκε με %d στα 5 αστέρια"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Πρέπει να παρέχεται μια σύντομη εξήγηση όταν γίνεται επιλογή του \"Άλλο\" ως αιτία αναφοράς."
 
 msgid "Other (please specify)"
 msgstr "Άλλος (παρακαλούμε εξηγήστε)"
@@ -8184,7 +8186,7 @@ msgid "Introduce yourself to the community, if you like! This text will appear p
 msgstr "Παρουσιάστε, αν θέλετε,τον εαυτό σας στην κοινότητα! Αυτό το κείμενο θα εμφανίζεται δημόσια στη σελίδα πληροφοριών χρήστη."
 
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Επιτρεπόμενο HTML: {0}. Απαγορεύονται οι σύνδεσμοι."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Αποφασίστε ποιες συλλογές θα εμφανίζονται στο προφίλ σας."
