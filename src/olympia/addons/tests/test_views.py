@@ -23,7 +23,9 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Charity, Persona)
+    Charity, Persona, ReplacementAddon)
+from olympia.addons.views import (
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission, WebextPermissionDescription
@@ -926,19 +928,18 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_requires_restart(self):
-        span_restart = '<span class="requires-restart">Requires Restart</span>'
-        f = self.addon.current_version.all_files[0]
+    def test_is_restart_required(self):
+        span_is_restart_required = (
+            '<span class="is-restart-required">Requires Restart</span>')
+        file_ = self.addon.current_version.all_files[0]
 
-        assert f.requires_restart is True
-        r = self.client.get(self.url)
-        assert span_restart in r.content
+        assert file_.is_restart_required is False
+        response = self.client.get(self.url)
+        assert span_is_restart_required not in response.content
 
-        f.no_restart = True
-        f.save()
-        assert f.requires_restart is False
-        r = self.client.get(self.url)
-        assert span_restart not in r.content
+        file_.update(is_restart_required=True)
+        response = self.client.get(self.url)
+        assert span_is_restart_required in response.content
 
     def test_is_webextension(self):
         file_ = self.addon.current_version.all_files[0]
@@ -948,7 +949,7 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
-        file_.update(is_webextension=True, no_restart=True)
+        file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -1571,10 +1572,28 @@ class TestReportAbuse(TestCase):
 
 
 class TestFindReplacement(TestCase):
-    def test_basic(self):
+    def test_no_match(self):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        self.assert3xx(
+            response,
+            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='/addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match_no_leading_slash(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')
@@ -2636,6 +2655,26 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(
             self.url, {'app': 'lol'}, expected_status=400)
         assert data == ['Invalid "app" parameter.']
+
+    def test_filter_by_author(self):
+        author = user_factory(username=u'my-fancyAuthôr')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        author2 = user_factory(username=u'my-FancyAuthôrName')
+        AddonUser.objects.create(addon=addon2, user=author2)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
 
 
 class TestAddonFeaturedView(TestCase):

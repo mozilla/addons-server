@@ -260,9 +260,10 @@ class Addon(OnChangeMixin, ModelBase):
                                       db_column='defaultlocale')
 
     type = models.PositiveIntegerField(
-        choices=amo.ADDON_TYPE.items(), db_column='addontype_id', default=0)
+        choices=amo.ADDON_TYPE.items(), db_column='addontype_id',
+        default=amo.ADDON_EXTENSION)
     status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=0)
+        choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
     homepage = TranslatedField()
@@ -1206,10 +1207,11 @@ class Addon(OnChangeMixin, ModelBase):
         return get_featured_ids(app, lang)
 
     @property
-    def requires_restart(self):
+    def is_restart_required(self):
         """Whether the add-on current version requires a browser restart to
         work."""
-        return self.current_version and self.current_version.requires_restart
+        return (
+            self.current_version and self.current_version.is_restart_required)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
@@ -2125,6 +2127,16 @@ def update_incompatible_versions(sender, instance, **kw):
     versions = instance.compat.addon.versions.values_list('id', flat=True)
     for chunk in chunked(versions, 50):
         tasks.update_incompatible_appversions.delay(chunk)
+
+
+class ReplacementAddon(ModelBase):
+    guid = models.CharField(max_length=255, unique=True, null=True)
+    path = models.CharField(max_length=255, null=True,
+                            help_text=_('Addon and collection paths need to '
+                                        'end with "/"'))
+
+    class Meta:
+        db_table = 'replacement_addons'
 
 
 models.signals.post_save.connect(update_incompatible_versions,

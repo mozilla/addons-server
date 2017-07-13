@@ -64,6 +64,14 @@ class TestVersion(TestCase):
         assert doc('.addon-status .status-disabled').text() == (
             'Invisible')
 
+    def test_label_open_marked_safe(self):
+        doc = self.get_doc()
+        assert '<strong>Visible:</strong>' in doc.html()
+
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        doc = self.get_doc()
+        assert '<strong>Invisible:</strong>' in doc.html()
+
     def test_no_validation_results(self):
         doc = self.get_doc()
         v = doc('td.file-validation').text()

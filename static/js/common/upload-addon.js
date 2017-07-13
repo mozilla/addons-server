@@ -27,7 +27,12 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {
+            'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'],
+            'getErrors': getErrors,
+            'cancel': $(),
+            'maxSize': 200 * 1024 * 1024 // 200M
+        };
 
         if (options) {
             $.extend( settings, options );
@@ -87,7 +92,6 @@
             $upload_field.fileUploader(settings);
 
             function textSize(bytes) {
-                // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
                 var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
                 if(bytes === 0) return bytes + " " + s[1];
                 var e = Math.floor( Math.log(bytes) / Math.log(1024) );
@@ -277,9 +281,18 @@
                     $upload_field.trigger("upload_finished", [file]);
 
                 } else if(xhr.readyState == 4 && !aborted) {
-                    // L10n: first argument is an HTTP status code
-                    errors = [format(gettext("Received an empty response from the server; status: {0}"),
-                                     [xhr.status])];
+                    if (xhr.status == 413) {
+                        errors.push(
+                            format(
+                                gettext("Your add-on exceeds the maximum size of " + textSize(settings.maxSize) + "."),
+                                [xhr.status]));
+                    } else {
+                        // L10n: first argument is an HTTP status code
+                        errors.push(
+                            format(
+                                gettext("Received an empty response from the server; status: {0}"),
+                                [xhr.status]));
+                    }
 
                     $upload_field.trigger("upload_errors", [file, errors]);
                 }
@@ -457,6 +470,11 @@
                                 gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
                             ],
                             warnings_id = [
+                                'NO_DOCUMENT_WRITE',
+                                'DANGEROUS_EVAL',
+                                'NO_IMPLIED_EVAL',
+                                'UNSAFE_VAR_ASSIGNMENT',
+                                'MANIFEST_CSP',
                                 'set_innerHTML',
                                 'namespace_pollution',
                                 'dangerous_global'
@@ -492,7 +510,11 @@
                             $('<h6>').text(gettext("The validation process found these issues that can lead to rejections:")).appendTo(checklist_box);
                             var messages_ul = $('<ul>');
                             $.each(messages, function (i) {
-                                $('<li>').text(messages[i]).appendTo(messages_ul);
+                                // Note: validation messages are supposed to be already escaped by
+                                // devhub.views.json_upload_detail(), which does an escape_all()
+                                // call on messages. So we need to use html() and not text() to
+                                // display them, since they can contain HTML entities.
+                                $('<li>').html(messages[i]).appendTo(messages_ul);
                             });
                             messages_ul.appendTo(checklist_box);
                         }

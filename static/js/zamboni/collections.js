@@ -514,14 +514,21 @@ $(document).ready(function () {
                 var tgt = $(this);
                 if (ct.hasClass('ajax-loading')) return;
                 ct.addClass('ajax-loading');
-                form_data = $('#add-to-collection form').serialize();
-                $.post(form_url + '?addon_id=' + addon_id, form_data, renderList, 'html');
+
+                var form_data = {};
+                $.each($('#add-to-collection form').serializeArray(), function() {
+                    form_data[this.name] = this.value;
+                })
+
+                form_data['addon_id'] = addon_id;
+
+                $.post(form_url, form_data, renderList, 'html');
             };
 
             var handleNew = function(e) {
                 e.preventDefault();
                 var tgt = $(this);
-                $.get(form_url, {'addon_id': addon_id}, function(d) {
+                $.get(form_url, function(d) {
                     $widget.html(d);
                     $widget.setWidth(410);
                     $widget.setPos(ct);

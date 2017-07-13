@@ -871,6 +871,12 @@ class TestHome(TestCase):
         self.assertTemplateUsed(response, 'devhub/index.html')
         assert 'Customize Firefox' in response.content
 
+    def test_default_lang_selected(self):
+        self.client.logout()
+        doc = self.get_pq()
+        selected_value = doc('#language option:selected').attr('value')
+        assert selected_value == 'en-us'
+
     def test_basic_logged_in(self):
         response = self.client.get(self.url)
         assert response.status_code == 200

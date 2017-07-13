@@ -376,7 +376,7 @@ class TestTrackFileStatusChange(TestCase):
         f = self.create_file(
             status=amo.STATUS_PUBLIC,
             jetpack_version='1.0',
-            no_restart=True,
+            is_restart_required=False,
             requires_chrome=False,
         )
         with patch('olympia.files.models.statsd.incr') as mock_incr:
@@ -490,20 +490,20 @@ class TestParseXpi(TestCase):
         # See bug 1220097: telemetry experiments (type 128) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
-        assert parsed['no_restart']
+        assert not parsed['is_restart_required']
 
     def test_match_type_extension_for_webextension_experiments(self):
         parsed = self.parse(filename='webextension_experiment.xpi')
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
-        assert parsed['no_restart']
+        assert not parsed['is_restart_required']
 
     def test_match_type_extension_for_webextensions(self):
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
-        assert parsed['no_restart']
+        assert not parsed['is_restart_required']
 
     def test_match_mozilla_signed_extension(self):
         parsed = self.parse(filename='webextension_signed_already.xpi')
@@ -529,20 +529,20 @@ class TestParseXpi(TestCase):
         result = self.parse(filename='dictionary-test.xpi')
         assert result['type'] == amo.ADDON_DICT
         # We detected it as a dictionary but it's not using the explicit
-        # dictionary type, so it's not restartless.
-        assert not result['no_restart']
+        # dictionary type, so it will require a restart.
+        assert result['is_restart_required']
 
     def test_parse_dictionary_explicit_type(self):
         result = self.parse(filename='dictionary-explicit-type-test.xpi')
         assert result['type'] == amo.ADDON_DICT
-        assert result['no_restart']
+        assert not result['is_restart_required']
 
     def test_parse_dictionary_extension(self):
         result = self.parse(filename='dictionary-extension-test.xpi')
         assert result['type'] == amo.ADDON_EXTENSION
-        # It's not a real dictionary, it's an extension, so it's not
-        # restartless.
-        assert not result['no_restart']
+        # It's not a real dictionary, it's an extension, so it will require a
+        # restart.
+        assert result['is_restart_required']
 
     def test_parse_jar(self):
         result = self.parse(filename='theme.jar')
@@ -567,7 +567,7 @@ class TestParseXpi(TestCase):
     def test_parse_langpack(self):
         result = self.parse(filename='langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
-        assert result['no_restart']
+        assert not result['is_restart_required']
 
     def test_good_version_number(self):
         check_xpi_info({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
@@ -1001,19 +1001,19 @@ class TestFileFromUpload(UploadTest):
         assert f.hash.startswith('sha256:')
         assert len(f.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
-    def test_no_restart_true(self):
+    def test_does_not_requires_a_restart(self):
         upload = self.upload('jetpack')
         data = parse_addon(upload.path)
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=data)
-        assert file_.no_restart
+        assert not file_.is_restart_required
 
-    def test_no_restart_false(self):
+    def test_does_require_a_restart(self):
         upload = self.upload('extension')
         data = parse_addon(upload.path)
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=data)
-        assert not file_.no_restart
+        assert file_.is_restart_required
 
     def test_utf8(self):
         upload = self.upload(u'jétpack')
@@ -1077,7 +1077,7 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=data)
         assert file_.filename.endswith('.xpi')
-        assert file_.no_restart
+        assert not file_.is_restart_required
 
     def test_search_extension(self):
         upload = self.upload('search.xml')
@@ -1085,7 +1085,7 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=data)
         assert file_.filename.endswith('.xml')
-        assert file_.no_restart
+        assert not file_.is_restart_required
 
     def test_multi_package(self):
         upload = self.upload('multi-package')
@@ -1239,7 +1239,7 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
         assert self.parse() == {
             'guid': None,
             'name': u'search tool',
-            'no_restart': True,
+            'is_restart_required': False,
             'version': datetime.now().strftime('%Y%m%d'),
             'summary': u'Search Engine for Firefox',
             'type': amo.ADDON_SEARCH}

@@ -32,7 +32,7 @@ user_log = olympia.core.logger.getLogger('z.users')
 VIEW_QUEUE_FLAGS = (
     ('admin_review', 'admin-review', _('Admin Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
-    ('requires_restart', 'requires_restart', _('Requires Restart')),
+    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('has_info_request', 'info', _('More Information Requested')),
     ('has_editor_comment', 'editor', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
@@ -129,7 +129,7 @@ class ViewQueue(RawSQLModel):
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
-    is_restartless = models.BooleanField()
+    is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
@@ -153,7 +153,7 @@ class ViewQueue(RawSQLModel):
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
-                ('is_restartless', 'MAX(files.no_restart)'),
+                ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
                 ('waiting_time_days',
@@ -180,10 +180,6 @@ class ViewQueue(RawSQLModel):
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
             ],
             'group_by': 'id'}
-
-    @property
-    def requires_restart(self):
-        return not self.is_restartless
 
     @property
     def sources_provided(self):
@@ -383,7 +379,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    score = models.SmallIntegerField()
+    score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)

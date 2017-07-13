@@ -50,9 +50,7 @@ class TestAddonIndexer(TestCase):
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'latest_unlisted_version', 'listed_authors',
             'name', 'name_sort', 'platforms', 'previews', 'public_stats',
-            'ratings', 'summary', 'tags', 'has_theme_rereview',
-            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
-            'public_stats', 'ratings', 'summary', 'tags',
+            'ratings', 'summary', 'tags'
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -63,8 +61,8 @@ class TestAddonIndexer(TestCase):
         # version for each language-specific analyzer we have.
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
-            [['%s_%s' % (field, analyzer) for analyzer in SEARCH_ANALYZER_MAP]
-             for field in _indexed_translated_fields]))
+            [['%s_l10n_%s' % (field, analyzer) for analyzer
+             in SEARCH_ANALYZER_MAP] for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
         # but to make sure the test is correct we still do a simple check of
@@ -116,8 +114,9 @@ class TestAddonIndexer(TestCase):
         # Make sure files mapping is set inside current_version.
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
-            'id', 'created', 'filename', 'hash', 'is_webextension', 'platform',
-            'size', 'status', 'webext_permissions_list')
+            'id', 'created', 'filename', 'hash', 'is_webextension',
+            'is_restart_required', 'platform', 'size', 'status',
+            'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def _extract(self):
@@ -208,6 +207,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -233,6 +235,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -259,6 +264,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -289,13 +297,13 @@ class TestAddonIndexer(TestCase):
             {'lang': u'es', 'string': translations_description['es']},
             {'lang': u'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
         ])
-        assert extracted['name_english'] == [translations_name['en-US']]
-        assert extracted['name_spanish'] == [translations_name['es']]
-        assert (extracted['description_english'] ==
+        assert extracted['name_l10n_english'] == [translations_name['en-US']]
+        assert extracted['name_l10n_spanish'] == [translations_name['es']]
+        assert (extracted['description_l10n_english'] ==
                 [translations_description['en-US']])
-        assert (extracted['description_spanish'] ==
+        assert (extracted['description_l10n_spanish'] ==
                 [translations_description['es']])
-        assert (extracted['description_italian'] ==
+        assert (extracted['description_l10n_italian'] ==
                 ['&lt;script&gt;alert(42)&lt;/script&gt;'])
 
     def test_extract_persona(self):

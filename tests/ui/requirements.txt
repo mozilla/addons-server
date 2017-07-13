@@ -1,4 +1,4 @@
-fxapom==1.10.0
+fxapom==1.10.1
 PyJWT==1.5.2
 PyPOM==1.2.0
 pytest==3.1.3

@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib import admin
+from django.core.urlresolvers import resolve
 
-from olympia import amo
+from olympia.zadmin.admin import staff_admin_site, StaffModelAdmin
 
 from . import models
 
@@ -30,7 +31,7 @@ class AddonAdmin(admin.ModelAdmin):
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'view_source',
-                       'public_stats', 'prerelease', 'admin_review',
+                       'public_stats', 'is_experimental', 'admin_review',
                        'external_software', 'dev_agreement'),
         }),
         ('Money', {
@@ -42,8 +43,7 @@ class AddonAdmin(admin.ModelAdmin):
         }))
 
     def queryset(self, request):
-        types = amo.ADDON_ADMIN_SEARCH_TYPES
-        return models.Addon.unfiltered.filter(type__in=types)
+        return models.Addon.unfiltered
 
 
 class FeatureAdmin(admin.ModelAdmin):
@@ -76,7 +76,26 @@ class CompatOverrideAdmin(admin.ModelAdmin):
     form = CompatOverrideAdminForm
 
 
+class ReplacementAddonForm(forms.ModelForm):
+    def clean(self):
+        path = None
+        try:
+            path = self.data.get('path')
+            path = ('/' if not path.startswith('/') else '') + path
+            resolve(path)
+        except:
+            raise forms.ValidationError('Path [%s] is not valid' % path)
+        return super(ReplacementAddonForm, self).clean()
+
+
+class ReplacementAddonAdmin(StaffModelAdmin):
+    list_display = ('guid', 'path')
+    form = ReplacementAddonForm
+
+
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)
+admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)
+staff_admin_site.register(models.ReplacementAddon, ReplacementAddonAdmin)

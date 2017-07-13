@@ -221,8 +221,8 @@ class SearchSuggestionsAjax(BaseAjaxSearch):
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
     # No personas.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 class PersonaSuggestionsAjax(SearchSuggestionsAjax):
@@ -315,8 +315,9 @@ def name_only_query(q):
 
     analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
-        d['name_%s__match' % analyzer] = {'query': q, 'boost': 2.5,
-                                          'analyzer': analyzer}
+        d['name_l10n_%s__match' % analyzer] = {
+            'query': q, 'boost': 2.5, 'analyzer': analyzer
+        }
     return d
 
 
@@ -340,14 +341,12 @@ def name_query(q):
 
     analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
-        more['summary_%s__match' % analyzer] = {'query': q,
-                                                'boost': 0.6,
-                                                'type': 'phrase',
-                                                'analyzer': analyzer}
-        more['description_%s__match' % analyzer] = {'query': q,
-                                                    'boost': 0.1,
-                                                    'type': 'phrase',
-                                                    'analyzer': analyzer}
+        more['summary_l10n_%s__match' % analyzer] = {
+            'query': q, 'boost': 0.6, 'type': 'phrase', 'analyzer': analyzer
+        }
+        more['description_l10n_%s__match' % analyzer] = {
+            'query': q, 'boost': 0.1, 'type': 'phrase', 'analyzer': analyzer
+        }
     return dict(more, **name_only_query(q))
 
 

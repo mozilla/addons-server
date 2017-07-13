@@ -63,10 +63,10 @@ class TestPackaged(TestCase):
         monkeypatch.setattr('requests.post', mock_post_call)
 
     @pytest.fixture(autouse=True)
-    def mock_get_signature_serial_number(self, monkeypatch):
+    def mock_get_signer_serial_number(self, monkeypatch):
         """Fake a standard signing-client response."""
         monkeypatch.setattr(
-            'olympia.lib.crypto.packaged.get_signature_serial_number',
+            'olympia.lib.crypto.packaged.get_signer_serial_number',
             lambda pkcs7: 'serial number')
 
     def assert_not_signed(self):

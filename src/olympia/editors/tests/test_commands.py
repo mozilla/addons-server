@@ -223,7 +223,7 @@ class TestAutoApproveCommand(TestCase):
         )
         assert review_helper_mock().handler.process_public.call_count == 1
 
-    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_full(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
@@ -256,7 +256,7 @@ class TestAutoApproveCommand(TestCase):
             unicode(self.addon.name), self.version.version)
 
     @override_switch('post-review', active=True)
-    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_full_post_review(self, sign_file_mock):
         # Simple integration test with as few mocks as possible, and
         # post-review waffle enabled.
