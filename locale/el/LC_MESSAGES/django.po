@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 12:09+0000\n"
+"PO-Revision-Date: 2017-07-13 12:28+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5166,7 +5166,7 @@ msgid "Range"
 msgstr "Εύρος"
 
 msgid "Your Reviews"
-msgstr "Οι αξιολογήσεις σας"
+msgstr "Οι κριτικές σας"
 
 msgid "By {user_name}"
 msgstr "Από {user_name}"
@@ -5219,7 +5219,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από το χρήστη %(user)s στις %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr "Όλες οι αξιολογήσεις έχουν περάσει από έλεγχο. Συγχαρητήρια!"
+msgstr "Όλες οι κριτικές έχουν περάσει από έλεγχο. Συγχαρητήρια!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr "Προς το παρόν δεν υπάρχουν πρόσθετα αυτού του τύπου για αξιολόγηση."
@@ -7949,7 +7949,7 @@ msgstr "<a href=\"%(reg)s\">Εγγραφή</a> ή <a href=\"%(login)s\">Σύνδ
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Για να δοκιμάσετε τα χιλιάδες διαθέσιμα πρόσθετα που είναι διαθέσιμα εδω, κάντε λήψη του <a href=\"%(url)s\">Mozilla Firefox</a>, ενός γρήγορου, ελεύθερου τρόπου να πλοηγηθείτε στο Web!"
+msgstr "Για να δοκιμάσετε τα χιλιάδες διαθέσιμα πρόσθετα που είναι διαθέσιμα εδώ, κάντε λήψη του <a href=\"%(url)s\">Mozilla Firefox</a>, ενός γρήγορου, ελεύθερου τρόπου για πλοήγηση στο διαδίκτυο!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
@@ -8010,7 +8010,7 @@ msgid "Email must be {email}."
 msgstr "Το email πρέπει να είναι {email}."
 
 msgid "Display Name"
-msgstr "Εμφάνιση ονόματος"
+msgstr "Όνομα προβολής"
 
 msgid "Location"
 msgstr "Τοποθεσία"
@@ -8019,7 +8019,7 @@ msgid "Occupation"
 msgstr "Απασχόληση"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Οι χρήστες των Λογαριασμών Firefox δεν μπορούν να αλλάξουν τη διεύθυνση e-mail τους αυτή τη στιγμή."
 
 msgid "Profile Photo"
 msgstr "Φωτογραφία προφίλ"
@@ -8151,16 +8151,16 @@ msgid "Please set your display name"
 msgstr "Παρακαλώ ορίστε το όνομα προβολής σας"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Παρακαλώ ορίστε το όνομα προβολής ή το όνομα χρήστη σας για να ολοκληρώσετε τη διαδικασία εγγραφής."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Διαχειριστείτε βασικές πληροφορίες λογαριασμού, όπως το όνομα χρήστη και οι ρυθμίσεις του Λογαριασμού Firefox."
 
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
 msgid "Email Address"
-msgstr "Διεύθυνση ηλ. ταχυδρομείου"
+msgstr "Διεύθυνση e-mail"
 
 msgid "Manage Firefox Account..."
 msgstr "Διαχείριση λογαριασμού Firefox..."
@@ -8169,7 +8169,7 @@ msgid "Profile"
 msgstr "Προφίλ"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Παραθέσετε λίγες ακόμη πληροφορίες σχετικά με εσάς. Όλα αυτά τα πεδία είναι προαιρετικά, αλλά θα βοηθήσουν τους άλλους χρήστες να σάς γνωρίσουν καλύτερα."
 
 msgid "This URL will only be visible if you are a developer."
 msgstr "Αυτό το URL θα είναι ορατό μόνο αν είστε προγραμματιστής."
@@ -8187,13 +8187,13 @@ msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Αποφασίστε ποιες συλλογές θα εμφανίζονται στο προφίλ σας."
 
 msgid "Display the collections I have created"
 msgstr "Προβολή των συλλογών που έχω δημιουργήσει"
 
 msgid "Display collections I'm following"
-msgstr "Εμφάνιση των συλλογών που παρακολουθώ"
+msgstr "Προβολή των συλλογών που παρακολουθώ"
 
 msgid "Notifications"
 msgstr "Ειδοποιήσεις"
@@ -8254,7 +8254,7 @@ msgid "About me"
 msgstr "Σχετικά με εμένα"
 
 msgid "In a little more detail..."
-msgstr "Με πιο πολλές λεπτομέρειες...."
+msgstr "Με πιο πολλές λεπτομέρειες..."
 
 msgid "Add-ons I've created"
 msgstr "Πρόσθετα που έχω δημιουργήσει"
@@ -8274,10 +8274,10 @@ msgstr "Δημιουργήθηκε από εμένα"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr "Οι αξιολογήσεις μου"
+msgstr "Οι κριτικές μου"
 
 msgid "No add-on reviews yet."
-msgstr "Δεν υπάρχουν για την ώρα αξιολογήσεις για το πρόσθετο."
+msgstr "Δεν υπάρχουν ακόμη κριτικές προσθέτων."
 
 msgid "Report User"
 msgstr "Αναφορά χρήστη"
@@ -8327,7 +8327,7 @@ msgid "IP address of last login"
 msgstr "Διεύθυνση IP τελευταίας σύνδεσης"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Αριθμός αναπτυγμένων προσθέτων"
 
 msgid "{0} add-ons"
 msgstr "{0} πρόσθετα"
@@ -8345,7 +8345,7 @@ msgstr[0] "%(num)s πρόσθετο"
 msgstr[1] "%(num)s πρόσθετα"
 
 msgid "Average rating of developer's add-ons"
-msgstr "Μέσος όρος βαθμολογιών των προσθέτων του προγραμματιστή"
+msgstr "Μέση βαθμολογία προσθέτων προγραμματιστή"
 
 #, python-format
 msgid "%s Version History"
