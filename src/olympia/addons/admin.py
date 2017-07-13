@@ -2,7 +2,6 @@ from django import forms
 from django.contrib import admin
 from django.core.urlresolvers import resolve
 
-from olympia import amo
 from olympia.zadmin.admin import staff_admin_site, StaffModelAdmin
 
 from . import models
@@ -44,8 +43,7 @@ class AddonAdmin(admin.ModelAdmin):
         }))
 
     def queryset(self, request):
-        types = amo.ADDON_ADMIN_SEARCH_TYPES
-        return models.Addon.unfiltered.filter(type__in=types)
+        return models.Addon.unfiltered
 
 
 class FeatureAdmin(admin.ModelAdmin):

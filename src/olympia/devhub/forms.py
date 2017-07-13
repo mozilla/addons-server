@@ -727,9 +727,6 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
 
 
 class AdminForm(happyforms.ModelForm):
-    _choices = [(k, v) for k, v in amo.ADDON_TYPE.items()
-                if k != amo.ADDON_ANY]
-    type = forms.ChoiceField(choices=_choices)
     reputation = forms.ChoiceField(
         label=_(u'Reputation'),
         choices=(

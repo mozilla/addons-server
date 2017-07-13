@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-06 21:03+0000\n"
+"PO-Revision-Date: 2017-07-11 18:34+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -57,6 +57,8 @@ msgstr "Χρειάζεστε βοήθεια;"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
+"Οι προγραμματιστές των προσθέτων ή των θεμάτων δεν μπορούν να διαγράψουν το λογαριασμό τους. Πρέπει να διαγράψετε όλα τα πρόσθετα και τα θέματα που έχουν συνδεθεί με αυτό το λογαριασμό, ή να τα "
+"μεταφέρετε σε άλλους χρήστες."
 
 msgid "Review"
 msgstr "Αξιολόγηση"
@@ -1160,7 +1162,7 @@ msgstr "Ο κωδικός γλώσσας {lang_code} δεν είναι έγκυ�
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Άκυρο pk ή slug \"%s\" - το αντικείμενο δεν υπάρχει."
 
 msgid "Application Versions"
 msgstr "Εκδόσεις εφαρμογών"
@@ -1262,17 +1264,14 @@ msgstr "Αγαπημένη"
 msgid "Remove from favorites"
 msgstr "Αφαίρεση από τις αγαπημένες"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
+msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
+msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
+msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "Name"
 msgstr "Όνομα"
@@ -2154,7 +2153,7 @@ msgid "User {0.name} removed from {group}."
 msgstr "Ο χρήστης {0.name} αφαιρέθηκε από το {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "Το {addon} έχει αποκαταχωρηθεί."
 
 msgid "{file} was signed."
 msgstr "Το {file} έχει υπογραφεί."
@@ -2167,13 +2166,13 @@ msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
 
 msgid "Developer Reply"
 msgstr "Απάντηση δημιουργού"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Απάντηση κριτή στο {addon} {version}."
 
 msgid "Reviewer Reply"
 msgstr "Απάντηση κριτή"
@@ -3521,7 +3520,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Εισάγετε το ακόλουθο κείμενο για να επιβεβαιώσετε την απόφασή σας: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Παρακαλώ πείτε μας γιατί διαγράφετε το θέμα σας:"
@@ -3596,7 +3595,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Αυτό το πρόσθετο δεν έχει καμία έκδοση."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -4071,7 +4070,7 @@ msgid "Manage Your Add-on"
 msgstr "Διαχείριση προσθέτου"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Συνδεθείτε για να επεξεργαστείτε και να ενημερώσετε το πρόσθετό σας"
 
 msgid "Evolution in Add-on Development"
 msgstr "Εξέλιξη στην ανάπτυξη προσθέτων"
@@ -4806,7 +4805,7 @@ msgid "No Reviews"
 msgstr "Καμία κριτική"
 
 msgid "Weight"
-msgstr ""
+msgstr "Βάρος"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4851,13 +4850,13 @@ msgid "Admin Review"
 msgstr "Αξιολόγηση συντάκτη"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Πρόσθετο Jetpack"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 msgid "Contains Reviewer Comment"
-msgstr ""
+msgstr "Περιέχει σχόλιο κριτή"
 
 msgid "Sources provided"
 msgstr ""
@@ -4878,7 +4877,7 @@ msgid "Has too many daily users."
 msgstr "Έχει πάρα πολλούς καθημερινούς χρήστες."
 
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Έχει πολύ λίγες συνεχόμενες ενημερώσεις που έχουν εγκριθεί από άνθρωπο."
 
 msgid "Has a pending info request."
 msgstr ""
@@ -5829,7 +5828,7 @@ msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Η επιλογή του μήνα από την κοινότητα Mozilla!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Γίνετε ένας Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
@@ -6622,11 +6621,11 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Διατηρεί η Mozilla ιδιωτικές τις πληροφορίες του λογαριασμού μου;"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Ναι. Η <a href=\"%(url)s\">πολιτική απορρήτου</a> μας περιγράφει πώς διαχειρίζεται η Mozilla τις πληροφορίες σας."
 
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr ""
@@ -6661,7 +6660,7 @@ msgid "You must choose the operating systems on which your add-on will successfu
 msgstr ""
 
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Ποια κατηγορία να επιλέξω για το πρόσθετό μου;"
 
 msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
@@ -6872,7 +6871,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Τα πλήρη θέματα</a></strong> αλλάζουν ολόκληρη την εμφάνιση του %(app_name)s και, συχνά, περιλαμβάνουν εικονίδια, χρώματα, διαλόγους και άλλα οπτικά στυλ."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -7223,7 +7222,7 @@ msgid "What will happen next"
 msgstr "Τι θα συμβεί μετά"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Αν συμφωνείτε</strong> να συμμετάσχετε:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""

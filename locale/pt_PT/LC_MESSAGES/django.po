@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-08 03:05+0000\n"
+"PO-Revision-Date: 2017-07-11 03:47+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -673,7 +673,7 @@ msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you s
 msgstr "O <a href=\"%(meet_url)s\">programador deste extra</a> pede que o apoie no desenvolvimento com uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Este extra necessita dos seguintes extras para funcionar corretamente:"
+msgstr "Este extra requer os seguintes extras para funcionar corretamente:"
 
 msgid "Average"
 msgstr "Média"
@@ -1078,10 +1078,10 @@ msgid "Most Followers"
 msgstr "Maior número de seguidores"
 
 msgid "Collections I've Made"
-msgstr "Coleções que eu fiz"
+msgstr "Coleções que fiz"
 
 msgid "Collections I'm Following"
-msgstr "Coleções que acompanho"
+msgstr "Coleções que sigo"
 
 msgid "My Favorite Add-ons"
 msgstr "Os meus extras favoritos"
@@ -1333,7 +1333,7 @@ msgid "{0} :: Collections"
 msgstr "{0} :: Coleções"
 
 msgid "private"
-msgstr "privado"
+msgstr "privada"
 
 #, python-format
 msgid "<span>%(num)s</span> follower"
@@ -1459,7 +1459,7 @@ msgid "Stop Following"
 msgstr "Deixar de seguir"
 
 msgid "Follow this Collection"
-msgstr "Siga esta coleção"
+msgstr "Seguir esta coleção"
 
 msgid "Edit this Collection"
 msgstr "Editar esta coleção"
@@ -1552,7 +1552,7 @@ msgid "No collections found."
 msgstr "Nenhuma coleção encontrada."
 
 msgid "Most-Followed Collections"
-msgstr "Coleções com maiores seguidores"
+msgstr "Coleções com maior número de seguidores"
 
 msgid "Newest Collections"
 msgstr "Coleções mais recentes"
@@ -1728,13 +1728,13 @@ msgstr[0] "<b>{0}</b> extra"
 msgstr[1] "<b>{0}</b> extras"
 
 msgid "Search Extensions"
-msgstr "Pesquisar extensões"
+msgstr "Extensões de pesquisa"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Adicionar funcionalidades de pesquisa ao Firefox"
 
 msgid "Search Providers"
-msgstr "Pesquisar fornecedores"
+msgstr "Fornecedores de pesquisa"
 
 msgid "Find new providers for your search bar"
 msgstr "Encontre novos fornecedores para a sua barra de pesquisa"
@@ -3011,10 +3011,10 @@ msgstr "Voltar aos extras"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr "{0} :: Pesquisar"
+msgstr "{0} :: Pesquisa"
 
 msgid "Search"
-msgstr "Pesquisar"
+msgstr "Pesquisa"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -3527,7 +3527,7 @@ msgstr ""
 "que outros não possam submeter versões utilizando o mesmo ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Introduza o seguinte texto para confirmar a sua decisão: {slug}"
+msgstr "Digite o seguinte texto para confirmar a sua decisão: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Por favor, diga-nos porque está a eliminar o seu tema:"
@@ -6514,7 +6514,7 @@ msgid "Site Credits"
 msgstr "Créditos do site"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "A Mozilla gostaria de agradecer às seguintes pessoas pelas suas colaborações ao projeto addons.mozilla.org ao longo dos anos:"
+msgstr "A Mozilla gostaria de agradecer às seguintes pessoas pelas suas contribuições ao projeto addons.mozilla.org ao longo dos anos:"
 
 msgid "Developers &amp; Administrators"
 msgstr "Programadores e administradores"
@@ -7644,7 +7644,7 @@ msgid "Highest Rated"
 msgstr "Avaliação mais alta"
 
 msgid "search for add-ons"
-msgstr "pesquisar por extras"
+msgstr "pesquisar extras"
 
 msgid "search for collections"
 msgstr "pesquisar coleções"
@@ -8351,7 +8351,7 @@ msgid "Display the collections I have created"
 msgstr "Mostrar as coleções que criei"
 
 msgid "Display collections I'm following"
-msgstr "Mostrar as coleções que acompanho"
+msgstr "Mostrar as coleções que sigo"
 
 msgid "Notifications"
 msgstr "Notificações"
@@ -8424,7 +8424,7 @@ msgid "Themes I've created"
 msgstr "Temas que criei"
 
 msgid "Followed by Me"
-msgstr "Acompanhado por mim"
+msgstr "Seguido por mim"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

@@ -928,19 +928,18 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_requires_restart(self):
-        span_restart = '<span class="requires-restart">Requires Restart</span>'
-        f = self.addon.current_version.all_files[0]
+    def test_is_restart_required(self):
+        span_is_restart_required = (
+            '<span class="is-restart-required">Requires Restart</span>')
+        file_ = self.addon.current_version.all_files[0]
 
-        assert f.requires_restart is True
-        r = self.client.get(self.url)
-        assert span_restart in r.content
+        assert file_.is_restart_required is False
+        response = self.client.get(self.url)
+        assert span_is_restart_required not in response.content
 
-        f.no_restart = True
-        f.save()
-        assert f.requires_restart is False
-        r = self.client.get(self.url)
-        assert span_restart not in r.content
+        file_.update(is_restart_required=True)
+        response = self.client.get(self.url)
+        assert span_is_restart_required in response.content
 
     def test_is_webextension(self):
         file_ = self.addon.current_version.all_files[0]
@@ -950,7 +949,7 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
-        file_.update(is_webextension=True, no_restart=True)
+        file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
         response = self.client.get(self.url)
         doc = pq(response.content)

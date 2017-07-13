@@ -736,19 +736,18 @@ class TestAddonModels(TestCase):
         addon.disabled_by_user = True
         assert not addon.is_public()
 
-    def test_requires_restart(self):
+    def test_is_restart_required(self):
         addon = Addon.objects.get(pk=3615)
         file_ = addon.current_version.all_files[0]
-        assert not file_.no_restart
-        assert file_.requires_restart
-        assert addon.requires_restart
+        assert not file_.is_restart_required
+        assert not addon.is_restart_required
 
-        file_.update(no_restart=True)
-        assert not Addon.objects.get(pk=3615).requires_restart
+        file_.update(is_restart_required=True)
+        assert Addon.objects.get(pk=3615).is_restart_required
 
         addon.versions.all().delete()
         addon._current_version = None
-        assert not addon.requires_restart
+        assert not addon.is_restart_required
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""

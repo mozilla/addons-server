@@ -65,7 +65,7 @@
             $this.attr('href', url);
         });
         if ($('body').hasClass('pjax') && $.support.pjax && z.capabilities.JSON) {
-            $('#pjax-results').initSearchPjax($('#search-facets'));
+            $('#pjax-results').initSearchPjax($('#search-facets'), '#pjax-results');
         }
     });
 
@@ -77,9 +77,9 @@
     }
 
 
-    $.fn.initSearchPjax = function($filters) {
+    $.fn.initSearchPjax = function($filters, containerSelector) {
         var $container = $(this),
-            container = $container.selector,
+            container = containerSelector,
             $triggered;
 
         function pjaxOpen(url) {

@@ -183,9 +183,9 @@ class RDFExtractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
-            'no_restart': (
-                self.find('bootstrap') == 'true' or
-                self.find('type') in self.ALWAYS_RESTARTLESS_TYPES),
+            'is_restart_required': (
+                self.find('bootstrap') != 'true' and
+                self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',
@@ -386,7 +386,7 @@ class ManifestJSONExtractor(object):
             'version': self.get('version', ''),
             'homepage': self.get('homepage_url'),
             'summary': self.get('description'),
-            'no_restart': True,
+            'is_restart_required': False,
             'apps': list(self.apps()),
             'is_webextension': True,
             'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
@@ -427,7 +427,7 @@ def parse_search(fileorpath, addon=None):
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
             'name': data['name'],
-            'no_restart': True,
+            'is_restart_required': False,
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
 

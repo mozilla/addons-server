@@ -356,16 +356,6 @@ class TestDetails(TestCase):
     def get_addon(self):
         return Addon.objects.get(id=3615)
 
-    def test_requires_restart(self):
-        f = self.addon.current_version.all_files[0]
-        assert f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 1
-        f.update(no_restart=True)
-        assert not f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 0
-
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
         assert doc('#install .install-button').text() == 'Download Now'
