@@ -403,7 +403,10 @@ class ManifestJSONExtractor(object):
 
 
 class MozillaSignedCertificateChecker(object):
-
+    """Process the signature to determine the addon is a Mozilla Signed
+    extension, so is signed already with a special certificate.  We want to
+    know this so we don't write over it later, and stop unauthorised people
+    from submitting them to AMO."""
     def __init__(self, path, data=''):
         self.path = path
 
