@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-11 18:34+0000\n"
+"PO-Revision-Date: 2017-07-13 12:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5679,7 +5679,7 @@ msgid "Build the perfect website"
 msgstr "Φτιάξτε την τέλεια ιστοσελίδα"
 
 msgid "First time with Add-ons?"
-msgstr "Πρώτη σας φορά στα πρόσθετα;"
+msgstr "Πρώτη φορά στα πρόσθετα;"
 
 msgid "Not to worry, here are three to get started."
 msgstr "Μην ανησυχείτε, ιδού τρία για να ξεκινήσετε."
@@ -5697,7 +5697,7 @@ msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Θέματα της Hμέρας του Αγίου Πατρικίου"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Διακοσμήστε στον περιηγητή σας για να γιορτάσετε την ημέρα του Αγίου Πατρίκιου."
+msgstr "Διακοσμήστε το πρόγραμμα περιήγησής σας για να γιορτάσετε την ημέρα του Αγίου Πατρικίου."
 
 msgid "Sit Back and Relax"
 msgstr ""
@@ -5831,7 +5831,7 @@ msgid "Become a Test Pilot"
 msgstr "Γίνετε ένας Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Ξεκλειδώστε πρώιμη πρόσβαση σε πειραματικές λειτουργίες."
 
 msgid "Get Started"
 msgstr "Ξεκινήστε"
@@ -7501,7 +7501,7 @@ msgid "Highest Rated"
 msgstr "Υψηλότερες βαθμολογίες"
 
 msgid "search for add-ons"
-msgstr "αναζήτηση για πρόσθετα"
+msgstr "Αναζήτηση για πρόσθετα"
 
 msgid "search for collections"
 msgstr "αναζήτηση για συλλογές"
@@ -7899,7 +7899,7 @@ msgid "Choose a category"
 msgstr "Επιλογή κατηγορίας"
 
 msgid "View Mobile Site"
-msgstr "Δείτε τον ιστότοπο για κινητά"
+msgstr "Προβολή ιστοσελίδας για κινητά"
 
 msgid "Report a bug"
 msgstr "Αναφορά σφάλματος"
@@ -7945,7 +7945,7 @@ msgstr "Καλώς ορίσατε, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Εγγραφείτε</a> ή <a href=\"%(login)s\">συνδεθείτε</a>"
+msgstr "<a href=\"%(reg)s\">Εγγραφή</a> ή <a href=\"%(login)s\">Σύνδεση</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
