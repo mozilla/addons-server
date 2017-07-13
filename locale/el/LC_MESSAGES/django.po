@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 13:30+0000\n"
+"PO-Revision-Date: 2017-07-13 14:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4155,7 +4155,7 @@ msgstr "Είσοδος"
 
 # Header for a column in a table
 msgid "Validator"
-msgstr ""
+msgstr "Επαληθευτής"
 
 msgid "Automated code tests for your add-on."
 msgstr "Αυτοματοποιημένες δοκιμές κώδικα για το πρόσθετό σας."
@@ -4186,7 +4186,7 @@ msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
 
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Επιλέξτε πότε και πώς θα ζητείται από τους χρήστες να συνεισφέρουν"
 
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
 msgstr "Δεχτείτε δωρεές στο λογαριασμό σας στο PayPal ή στείλτε τις σε κάποιον οργανισμό που θέλετε"
@@ -4867,10 +4867,10 @@ msgid "Contains Reviewer Comment"
 msgstr "Περιέχει σχόλιο κριτή"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Παρέχονται πηγές"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
 msgstr "Χρησιμοποιεί προσαρμοσμένο CSP."
@@ -4959,8 +4959,8 @@ msgstr "επιβεβαιώθηκε ως εγκεκριμένο"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Επεξεργάστηκε επιτυχώς {0} κριτική θέματος (+{1} πόντοι, {2} συνολικά)."
+msgstr[1] "Επεξεργάστηκαν επιτυχώς {0} κριτικές θέματος (+{1} πόντοι, {2} συνολικά)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "Τα θέματα σας ξεκλειδώθηκαν επιτυχώς. Άλλοι επιθεωρητές μπορεί να μην τα επιθεωρήσουν. Χρειάζεται να ανανεώσετε τη σελίδα για να δείτε τις αλλαγές που εμφανίζονται στον παρακάτω πίνακα."
@@ -5332,7 +5332,7 @@ msgstr "Δεν βρέθηκαν αξιολογήσεις γι' αυτή την �
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "Ο/Η %(user)s [%(ip_address)s] ανέφερε το %(object)s στις %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Απομάκρυνση αυτής της ανακοίνωσης"
@@ -5579,7 +5579,7 @@ msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match th
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Βρέθηκε διπλό ID προσθέτου."
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Οι αριθμοί εκδόσεων θα πρέπει να έχουν λιγότερους από 32 χαρακτήρες."
@@ -6475,7 +6475,7 @@ msgid "Localizers"
 msgstr "Μεταφραστές"
 
 msgid "Reviewers"
-msgstr ""
+msgstr "Κριτικοί"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
@@ -6572,11 +6572,11 @@ msgid ""
 msgstr ""
 
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Χρειάζομαι μερικές συμβουλές σχετικά με την ανάπτυξη προσθέτων. Πού μπορώ να βρω βοήθεια;"
 
 #. #extdev is the name of the IRC channel.  do not change.
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (για συζητήσεις ανάπτυξης προσθέτων)"
 
 #. #amo is the name of the IRC channel.  do not change.
 msgid "#amo (for support relating to hosting your add-on on AMO)"
@@ -6744,26 +6744,26 @@ msgid "The Statistics Dashboard found in the Developer Tools dashboard provides 
 msgstr ""
 
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Πώς μπορώ να δω πόσοι ενεργοί χρήστες χρησιμοποιούν το πρόσθετό μου;"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
 
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Πώς υποβάλλω μια ενημέρωση για το πρόσθετό μου;"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr ""
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "Πρέπει η ενημέρωσή μου να αξιολογηθεί από κριτικούς;"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr ""
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Πώς απαντώ σε ένα χρήστη που έχει δημοσιεύσει μια αρνητική κριτική για το πρόσθετό μου;"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
@@ -6788,10 +6788,10 @@ msgid "Currently, AMO does not provide a mechanism to directly communicate with 
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Μπορώ να ζητήσω να αφαιρεθεί μια κριτική αν είναι αρνητική;"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Όχι. Δεν αφαιρούμε αρνητικές κριτικές από τα πρόσθετα, εκτός κι αν δεν είναι αληθείς."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
@@ -7121,7 +7121,7 @@ msgstr ""
 "href=\"%(forum_url)s\">φόρουμ</a> μας."
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Μερικές συμβουλές για τη συγγραφή μιας εξαιρετικής κριτικής"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
@@ -7206,7 +7206,7 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Είμαι δημιουργός προσθέτων, μπορώ να απαντήσω στις κριτικές;"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
@@ -7338,7 +7338,7 @@ msgstr ""
 #. L10n: {0} is the currency.
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Ο πωλητής δεν αποδέχεται πληρωμές σε %s."
 
 #, python-format
 msgid "Reviews for %s"
@@ -7365,7 +7365,7 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Δεν μπορείτε να απαντήσετε σε μια κριτική που είναι ήδη απάντηση."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
 msgstr ""
@@ -7819,7 +7819,7 @@ msgid "Loading..."
 msgstr "Φόρτωση..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> μέσοι καθημερινοί χρήστες"
 
 msgid "Top Applications"
 msgstr "Κορυφαίες εφαρμογές"
