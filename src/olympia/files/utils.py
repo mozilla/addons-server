@@ -27,6 +27,7 @@ from django.utils.translation import ugettext
 import flufl.lock
 import rdflib
 import waffle
+from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
 from olympia import amo, core
@@ -34,7 +35,6 @@ from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
-from olympia.lib.crypto.packaged import get_signature_ou
 
 
 log = olympia.core.logger.getLogger('z.files.utils')
@@ -412,7 +412,7 @@ class MozillaSignedCertificateChecker(object):
                 data = fobj.read()
 
         pkcs7 = data
-        self.cert_ou = get_signature_ou(pkcs7)
+        self.cert_ou = get_signer_organizational_unit_name(pkcs7)
 
     @property
     def is_mozilla_signed_ou(self):

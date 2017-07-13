@@ -1627,7 +1627,7 @@ class TestUploadDetail(BaseUploadTest):
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')
-    @mock.patch('olympia.files.utils.get_signature_ou')
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, mock_validator, mock_get_signature):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
@@ -1641,7 +1641,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
-    @mock.patch('olympia.files.utils.get_signature_ou')
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_not_allowed_not_mozilla(self, mock_get_signature):
         user_factory(email='bluepanda@notzilla.com')
         assert self.client.login(email='bluepanda@notzilla.com')
