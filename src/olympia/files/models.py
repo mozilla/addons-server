@@ -87,6 +87,9 @@ class File(OnChangeMixin, ModelBase):
     is_experiment = models.BooleanField(default=False)
     # Is the file a WebExtension?
     is_webextension = models.BooleanField(default=False)
+    # Is the file a special "Mozilla Signed Extension"
+    # see https://wiki.mozilla.org/Add-ons/InternalSigning
+    is_mozilla_signed_extension = models.BooleanField(default=False)
     # The user has disabled this file and this was its status.
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(
@@ -164,6 +167,8 @@ class File(OnChangeMixin, ModelBase):
         file_.is_multi_package = parsed_data.get('is_multi_package', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
         file_.is_webextension = parsed_data.get('is_webextension', False)
+        file_.is_mozilla_signed_extension = parsed_data.get(
+            'is_mozilla_signed_extension', False)
 
         if (is_beta and addon.status == amo.STATUS_PUBLIC and
                 version.channel == amo.RELEASE_CHANNEL_LISTED):

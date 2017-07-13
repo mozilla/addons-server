@@ -505,6 +505,10 @@ class TestParseXpi(TestCase):
         assert parsed['is_webextension']
         assert not parsed['is_restart_required']
 
+    def test_match_mozilla_signed_extension(self):
+        parsed = self.parse(filename='webextension_signed_already.xpi')
+        assert parsed['is_mozilla_signed_extension']
+
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:
@@ -1105,6 +1109,20 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data={'is_experiment': False})
         assert not file_.is_experiment
+
+    def test_mozilla_signed_extension(self):
+        upload = self.upload('webextension_signed_already')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_mozilla_signed_extension': True})
+        assert file_.is_mozilla_signed_extension
+
+    def test_not_mozilla_signed_extension(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_mozilla_signed_extension': False})
+        assert not file_.is_mozilla_signed_extension
 
     def test_webextension(self):
         upload = self.upload('webextension')

@@ -125,6 +125,12 @@ def sign_file(file_obj, server):
             file_obj.pk))
         return
 
+    # Don't sign Mozilla signed extensions (they're already signed).
+    if file_obj.is_mozilla_signed_extension:
+        log.info(u'Not signing file {0}: mozilla signed extension is already '
+                 u'signed'.format(file_obj.pk))
+        return
+
     # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
     if file_obj.is_multi_package:
         log.info(u'Not signing file {0}: multi-package XPI'.format(

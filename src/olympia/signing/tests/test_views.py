@@ -181,6 +181,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.status == amo.STATUS_PUBLIC
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.auto_sign_version.assert_called_with(version, is_beta=False)
+        assert not version.all_files[0].is_mozilla_signed_extension
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -241,6 +242,43 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
+
+    def test_mozilla_signed_allowed(self):
+        guid = '@webextension-guid'
+        self.user.update(email='redpanda@mozilla.com')
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.0.1',
+            filename='src/olympia/files/fixtures/files/'
+                     'webextension_signed_already.xpi')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        self.auto_sign_version.assert_called_with(
+            latest_version, is_beta=False)
+        assert latest_version.all_files[0].is_mozilla_signed_extension
+
+    def test_mozilla_signed_not_allowed_not_mozilla(self):
+        guid = '@webextension-guid'
+        self.user.update(email='yellowpanda@notzilla.com')
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.0.1',
+            filename='src/olympia/files/fixtures/files/'
+                     'webextension_signed_already.xpi')
+        assert response.status_code == 400
+        assert response.data['error'] == (
+            'You cannot submit a Mozilla Signed Extension')
 
     def test_system_addon_allowed(self):
         guid = 'systemaddon@mozilla.org'
