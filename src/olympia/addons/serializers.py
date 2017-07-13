@@ -245,6 +245,8 @@ class AddonSerializer(serializers.ModelSerializer):
         return bool(getattr(obj, 'has_eula', obj.eula))
 
     def get_is_featured(self, obj):
+        # obj._is_featured is set from ES, so will only be present for list
+        # requests.
         if not hasattr(obj, '_is_featured'):
             # Any featuring will do.
             obj._is_featured = obj.is_featured(app=None, lang=None)
