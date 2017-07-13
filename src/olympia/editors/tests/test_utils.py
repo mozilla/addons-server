@@ -17,13 +17,13 @@ from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.editors.templatetags import jinja_helpers
 from olympia.editors.models import AutoApprovalSummary, ReviewerScore
+from olympia.editors.utils import (
+    ReviewAddon, ReviewFiles, ReviewHelper, PENDING_STATUSES,
+    ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.files.models import File
 from olympia.tags.models import Tag
-from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -36,7 +36,7 @@ class TestViewPendingQueueTable(TestCase):
 
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
-        self.table = jinja_helpers.ViewPendingQueueTable([])
+        self.table = ViewPendingQueueTable([])
 
     def test_addon_name(self):
         row = Mock()
@@ -104,7 +104,7 @@ class TestUnlistedViewAllListTable(TestCase):
 
     def setUp(self):
         super(TestUnlistedViewAllListTable, self).setUp()
-        self.table = jinja_helpers.ViewUnlistedAllListTable([])
+        self.table = ViewUnlistedAllListTable([])
 
     def test_addon_name(self):
         row = Mock()
@@ -200,7 +200,7 @@ class TestReviewHelper(TestCase):
                 'info_request': self.version.has_info_request}
 
     def get_helper(self):
-        return jinja_helpers.ReviewHelper(
+        return ReviewHelper(
             request=self.request, addon=self.addon, version=self.version)
 
     def setup_type(self, status):
@@ -227,7 +227,7 @@ class TestReviewHelper(TestCase):
         assert self.setup_type(amo.STATUS_BETA) == 'pending'
 
     def test_no_version(self):
-        helper = jinja_helpers.ReviewHelper(
+        helper = ReviewHelper(
             request=self.request, addon=self.addon, version=None)
         assert helper.handler.review_type == 'pending'
 
@@ -237,11 +237,11 @@ class TestReviewHelper(TestCase):
                         file_kw={'status': amo.STATUS_PUBLIC})
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
-            assert self.helper.handler.__class__ == jinja_helpers.ReviewFiles
+            assert self.helper.handler.__class__ == ReviewFiles
 
     def test_review_addon(self):
         self.setup_data(status=amo.STATUS_NOMINATED)
-        assert self.helper.handler.__class__ == jinja_helpers.ReviewAddon
+        assert self.helper.handler.__class__ == ReviewAddon
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
@@ -531,7 +531,7 @@ class TestReviewHelper(TestCase):
         # It wasn't a webextension, it should not receive the firefox57 tag.
         assert self.addon.tags.all().count() == 0
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_nomination_to_public(self, sign_mock):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
@@ -558,7 +558,7 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_old_nomination_to_public_bonus_score(self, sign_mock):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
@@ -588,7 +588,7 @@ class TestReviewHelper(TestCase):
         # 2 days over the limit = 4 points
         self._check_score(amo.REVIEWED_ADDON_FULL, bonus=4)
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_nomination_to_public_no_request(self, sign_mock):
         self.request = None
         sign_mock.reset()
@@ -621,7 +621,7 @@ class TestReviewHelper(TestCase):
         # No request, no user, therefore no score.
         assert ReviewerScore.objects.count() == 0
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_public_addon_with_version_awaiting_review_to_public(
             self, sign_mock):
         sign_mock.reset()
@@ -638,7 +638,7 @@ class TestReviewHelper(TestCase):
             addon=self.addon, counter=1, last_human_review=self.days_ago(42))
 
         # Safeguards.
-        assert isinstance(self.helper.handler, jinja_helpers.ReviewFiles)
+        assert isinstance(self.helper.handler, ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.current_version.files.all()[0].status == (
@@ -675,7 +675,7 @@ class TestReviewHelper(TestCase):
         # It wasn't a webextension, it should not receive the firefox57 tag.
         assert self.addon.tags.all().count() == 0
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_public_addon_with_version_awaiting_review_to_sandbox(
             self, sign_mock):
         sign_mock.reset()
@@ -691,7 +691,7 @@ class TestReviewHelper(TestCase):
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
         # Safeguards.
-        assert isinstance(self.helper.handler, jinja_helpers.ReviewFiles)
+        assert isinstance(self.helper.handler, ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.current_version.files.all()[0].status == (
@@ -789,7 +789,7 @@ class TestReviewHelper(TestCase):
                                .get())
         assert activity.arguments == [self.addon, self.version]
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NULL,
@@ -816,7 +816,7 @@ class TestReviewHelper(TestCase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_nomination_to_public_failed_signing(self, sign_mock):
         sign_mock.side_effect = Exception
         sign_mock.reset()
@@ -837,7 +837,7 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 0
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_nomination_to_sandbox(self, sign_mock):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_sandbox()
@@ -860,7 +860,7 @@ class TestReviewHelper(TestCase):
         assert not storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file',
+    @patch('olympia.editors.utils.sign_file',
            lambda *a, **kw: None)
     def test_nomination_to_public_webextension(self):
         self.file.update(is_webextension=True)
@@ -870,7 +870,7 @@ class TestReviewHelper(TestCase):
             set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
             set(['firefox57']))
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file',
+    @patch('olympia.editors.utils.sign_file',
            lambda *a, **kw: None)
     def test_public_to_public_already_had_webextension_tag(self):
         self.file.update(is_webextension=True)
@@ -887,7 +887,7 @@ class TestReviewHelper(TestCase):
         self.setup_data(amo.STATUS_PUBLIC)
 
         # Safeguards.
-        assert isinstance(self.helper.handler, jinja_helpers.ReviewFiles)
+        assert isinstance(self.helper.handler, ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.current_version.files.all()[0].status == (
@@ -975,7 +975,7 @@ class TestReviewHelper(TestCase):
         assert 'Tested' not in mail.outbox[0].body
 
     def test_pending_to_super_review(self):
-        for status in jinja_helpers.PENDING_STATUSES:
+        for status in PENDING_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_super_review()
 
@@ -1017,7 +1017,7 @@ class TestReviewHelper(TestCase):
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
 
         # Safeguards.
-        assert isinstance(self.helper.handler, jinja_helpers.ReviewFiles)
+        assert isinstance(self.helper.handler, ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
         assert self.addon.current_version.is_public()
@@ -1054,7 +1054,7 @@ class TestReviewHelper(TestCase):
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
 
         # Safeguards.
-        assert isinstance(self.helper.handler, jinja_helpers.ReviewFiles)
+        assert isinstance(self.helper.handler, ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
         assert self.addon.current_version.is_public()
@@ -1099,13 +1099,6 @@ class TestReviewHelper(TestCase):
             reverse('devhub.addons.versions', args=[self.addon.id]))
 
 
-def test_page_title_unicode():
-    t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
-    request = Mock()
-    request.APP = amo.FIREFOX
-    jinja_helpers.editor_page_title({'request': request}, title=t)
-
-
 def test_send_email_autoescape():
     s = 'woo&&<>\'""'
 
@@ -1116,66 +1109,3 @@ def test_send_email_autoescape():
               use_deny_list=False)
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == s
-
-
-class TestCompareLink(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestCompareLink, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.current = File.objects.get(pk=67442)
-        self.version = Version.objects.create(addon=self.addon)
-
-    def test_same_platform(self):
-        file = File.objects.create(version=self.version,
-                                   platform=self.current.platform)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
-
-    def test_different_platform(self):
-        file = File.objects.create(version=self.version,
-                                   platform=self.current.platform)
-        File.objects.create(version=self.version,
-                            platform=amo.PLATFORM_LINUX.id)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
-
-    def test_specific_platform(self):
-        self.current.platform_id = amo.PLATFORM_LINUX.id
-        self.current.save()
-
-        linux = File.objects.create(version=self.version,
-                                    platform=amo.PLATFORM_LINUX.id)
-        assert linux.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
-
-    def test_no_platform(self):
-        self.current.platform_id = amo.PLATFORM_LINUX.id
-        self.current.save()
-        file = File.objects.create(version=self.version,
-                                   platform=amo.PLATFORM_WIN.id)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
-
-
-def test_version_status():
-    addon = Addon()
-    version = Version()
-    version.all_files = [File(status=amo.STATUS_PUBLIC),
-                         File(status=amo.STATUS_AWAITING_REVIEW)]
-    assert u'Approved,Awaiting Review' == (
-        jinja_helpers.version_status(addon, version))
-
-    version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
-    assert u'Awaiting Review' == jinja_helpers.version_status(addon, version)
-
-
-def test_file_review_status_handles_invalid_status_id():
-    # When status is a valid one, one of STATUS_CHOICES_FILE return label.
-    assert amo.STATUS_CHOICES_FILE[amo.STATUS_PUBLIC] == (
-        jinja_helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC)))
-
-    # 99 isn't a valid status, so return the status code for reference.
-    status = jinja_helpers.file_review_status(None, File(status=99))
-    assert u'[status:99]' == status
