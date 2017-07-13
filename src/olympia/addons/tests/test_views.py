@@ -23,7 +23,9 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Charity, Persona)
+    Charity, Persona, ReplacementAddon)
+from olympia.addons.views import (
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission, WebextPermissionDescription
@@ -1570,10 +1572,28 @@ class TestReportAbuse(TestCase):
 
 
 class TestFindReplacement(TestCase):
-    def test_basic(self):
+    def test_no_match(self):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        self.assert3xx(
+            response,
+            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='/addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match_no_leading_slash(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')

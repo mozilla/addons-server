@@ -72,3 +72,4 @@ The following values are recognized:
     cb-dl-updated,"Browse Listing Updated Sort"
     cb-btn-hotness,"Browse Listing Up and Coming Sort"
     cb-dl-hotness,"Browse Listing Up and Coming Sort"
+    find-replacement,"Find replacement service for obsolete add-ons"

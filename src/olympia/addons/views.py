@@ -59,7 +59,7 @@ from olympia.versions.models import Version
 from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .indexers import AddonIndexer
-from .models import Addon, Persona, FrozenAddon
+from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
@@ -538,11 +538,21 @@ def icloud_bookmarks_redirect(request):
         return addon_detail(request, 'icloud-bookmarks')
 
 
+DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
+FIND_REPLACEMENT_SRC = 'find-replacement'
+
+
 def find_replacement_addon(request):
     guid = request.GET.get('guid')
     if not guid:
         raise http.Http404
-    return render(request, 'addons/replacement_addons.html')
+    try:
+        path = ReplacementAddon.objects.get(guid=guid).path
+    except ReplacementAddon.DoesNotExist:
+        path = DEFAULT_FIND_REPLACEMENT_PATH
+    replace_url = '%s%s?src=%s' % (
+        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
+    return redirect(replace_url, permanent=False)
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):

@@ -17,6 +17,8 @@ def admin_site_links():
             ('Fake mail', reverse('zadmin.mail')),
             ('ACR Reports', reverse('zadmin.compat')),
             ('Email Add-on Developers', reverse('zadmin.email_devs')),
+            ('Replacement Addons', reverse(
+                'staffadmin:addons_replacementaddon_changelist')),
         ],
         'users': [
             ('Configure groups', reverse('admin:access_group_changelist')),
