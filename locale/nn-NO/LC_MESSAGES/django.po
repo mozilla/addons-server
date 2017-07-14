@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-14 14:50+0000\n"
+"PO-Revision-Date: 2017-07-14 14:53+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4815,35 +4815,35 @@ msgid "New Add-ons (Under 5 days)"
 msgstr "Nye utvidingar (Under 5 dagar)"
 
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Ventande (5 til 10 dagar)"
 
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Forseine (Over 10 dagar)"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Det oppstod ein ukjend feil"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Det er ikkje tillate å vurdere seg sjølv."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Vurdering behandla."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Grensa for granskingslås er nådd"
 
 msgid "was approved"
 msgstr "vart godkjend"
 
 msgid "given preliminary review"
-msgstr ""
+msgstr "gjeven førebels vurdering"
 
 msgid "rejected"
 msgstr "avvist"
 
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "opptrappa"
 
 msgid "needs more information"
 msgstr "treng meir informasjon"
