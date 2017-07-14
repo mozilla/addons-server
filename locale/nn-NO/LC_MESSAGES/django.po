@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-13 10:31+0000\n"
+"PO-Revision-Date: 2017-07-14 14:29+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2881,7 +2881,7 @@ msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Det oppstod ein feil då bidraget ditt skulle sendast inn."
 
 msgid "Validate Add-on"
 msgstr "Valider utvidinga"
@@ -2890,10 +2890,10 @@ msgid "Check Add-on Compatibility"
 msgstr "Kontroller kompatibliteten til utvidinga"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Du kan ikkje sende inn denne typen av utviding"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med \"@mozilla.org\""
 
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
@@ -3177,7 +3177,7 @@ msgid "Add-on URL"
 msgstr "URL for utvidingar"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Vel ein kort, unik URL-slugg for utvidinga di."
 
 msgid "View Listing"
 msgstr "Vis listning"
@@ -3213,8 +3213,8 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Skild med komma, minst {0} teikn."
+msgstr[1] "Skild med komma, minst {0} teikn."
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "Døme: mørk, kino, svart. Grense 20."
@@ -3298,7 +3298,7 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr ""
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Dette tillegget krev ekstern programvare."
 
 msgid "View Source?"
 msgstr "Vise kjeldekode?"
@@ -3337,7 +3337,7 @@ msgid "No, this add-on will be upgraded manually."
 msgstr ""
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Unikt ID-nummer"
 
 msgid "UUID"
 msgstr "UUID"
@@ -3371,7 +3371,7 @@ msgid ""
 msgstr ""
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Vel eit ikon for utvidinga di:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -3510,7 +3510,7 @@ msgid "View Statistics"
 msgstr "Vis statistikk"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Endre eigar for dette temaet."
 
 msgid "Transfer Ownership"
 msgstr "Overfør eigarskap"
@@ -3522,7 +3522,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Denne utvidinga har ingen versjonar."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
