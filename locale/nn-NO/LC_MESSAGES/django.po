@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-07-14 14:29+0000\n"
+"PO-Revision-Date: 2017-07-14 14:50+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3492,13 +3492,13 @@ msgid "Manage Status & Versions"
 msgstr "Handsam status og versjonar"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Vis listing for utvidinga"
 
 msgid "View Recent Changes"
 msgstr "Vis siste endringar"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Rediger detaljar for listinga av dette temaet."
 
 msgid "Edit Listing"
 msgstr "Rediger oppføringa"
@@ -3535,7 +3535,7 @@ msgstr "Slått av"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Køplass:</b> %(pos)s av %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3595,7 +3595,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel Review and Disable Version"
-msgstr ""
+msgstr "Avbryt vurderinga og inaktiver versjonen"
 
 msgid "Submit Version for Review"
 msgstr "Send inn versjon for vurdering"
@@ -3619,7 +3619,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Innsendinga fullført"
 
 msgid "You’re done!"
 msgstr "Du er klar!"
@@ -3700,7 +3700,7 @@ msgid "Sign Add-on"
 msgstr "SIgner utviding"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox distribusjonsavtale for utvidingar"
 
 msgid "API Credentials"
 msgstr "API-inloggingsopplysningar"
@@ -3763,7 +3763,7 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Multi-prosesstatus for utvidingar:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
@@ -3784,7 +3784,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Køar vert ikkje vurderte i streng rekkjefølgje"
 
 msgid "Queue Position:"
 msgstr "Køplass:"
@@ -3800,7 +3800,7 @@ msgid "Latest Version:"
 msgstr "Siste versjon:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Dette er den siste opplasta ulista versjonen."
 
 msgid "(required since this add-on accepts contributions)"
 msgstr ""
@@ -3817,7 +3817,7 @@ msgid ""
 msgstr ""
 
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Kontroller at brukarprofilen din er oppdatert."
 
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
@@ -4072,7 +4072,7 @@ msgid "Validator"
 msgstr "Validator"
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Automatisert kodetestar for utvidinga di."
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
@@ -4081,11 +4081,11 @@ msgid "Tell us if an add-on works in a particular version of Firefox."
 msgstr ""
 
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "Du ber no om <b>bidrag</b> frå brukarar"
 
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Bidragssida di: <a href=\"%(url)s\">%(url_full)s</a>"
 
 msgid "Disable Contributions"
 msgstr "Slå av bidrag"
@@ -4185,7 +4185,7 @@ msgid "Supply a pretty URL for your detail page."
 msgstr ""
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Vel kategorien som best skildrar temaet ditt."
 
 msgid "Add some tags to describe your Theme."
 msgstr "Legg til nokre taggar for å skildre temaet ditt."
@@ -4621,21 +4621,21 @@ msgid "Is more info requested?"
 msgstr "Treng du meir informasjon?"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Vel eit standardsvar…"
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
 msgstr "namn på tema"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Nokon annan vurderer dette temaet."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "tema, vurderar eller kommentar"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Behald vurdering; fjern flagg"
 
 msgid "Skip for now"
 msgstr "Hopp over no"
@@ -4644,7 +4644,7 @@ msgid "Delete review"
 msgstr "Slett vurderinga"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Avvist og ikkje vurdert"
 
 #, python-format
 msgid "[status:%s]"
@@ -4662,8 +4662,8 @@ msgstr[1] "Oppdateringar ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Moderert vurdering({0})"
+msgstr[1] "Modererte vurderingar ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -4671,7 +4671,7 @@ msgstr[0] "Automatisk godkjend tillegg ({0})"
 msgstr[1] "Automatisk godkjende tillegg ({0})"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Alle ulista utvidingar"
 
 msgid "Type"
 msgstr "Type"
@@ -4740,7 +4740,7 @@ msgid "This will send a message to the developer. You will be notified when they
 msgstr ""
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Be om ei supervurdering"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
@@ -4767,7 +4767,7 @@ msgid "Contains Reviewer Comment"
 msgstr "Inneheld vurderarkommentar"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Tilgjengelege kjelder"
 
 msgid "WebExtension"
 msgstr "WebExtension"
@@ -4797,22 +4797,22 @@ msgid "Is locked by a reviewer."
 msgstr ""
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Duplikat-innsending"
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Takk for at du sende inn temaet ditt"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Eit problem med det innsende temaet ditt"
 
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Innsendt tema flagga for vurdering"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Eit spørsmål om det innsende temaet ditt"
 
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Nye utvidingar (Under 5 dagar)"
 
 msgid "Passable (5 to 10 days)"
 msgstr ""
