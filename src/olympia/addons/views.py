@@ -63,7 +63,7 @@ from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
-    VersionSerializer, StaticCategorySerializer)
+    LanguageToolsSerializer, VersionSerializer, StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -859,3 +859,26 @@ class StaticCategoryView(ListAPIView):
             request, response, *args, **kwargs)
         patch_cache_control(response, max_age=60 * 60 * 6)
         return response
+
+
+class LanguageToolsView(ListAPIView):
+    authentication_classes = []
+    pagination_class = None
+    permission_classes = []
+    serializer_class = LanguageToolsSerializer
+
+    def get_queryset(self):
+        try:
+            application_id = AddonAppFilterParam(self.request).get_value()
+        except ValueError:
+            raise ParseError('Invalid app parameter.')
+
+        types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
+        return Addon.objects.public().filter(
+            appsupport__app=application_id, type__in=types,
+            target_locale__isnull=False).exclude(target_locale='')
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
