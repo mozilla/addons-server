@@ -3047,9 +3047,8 @@ msgid ""
 " which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Sporazum o razširjanju dodatkov"
+msgstr ""
 
 msgid "Review Policy"
 msgstr ""
