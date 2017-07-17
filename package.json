@@ -23,7 +23,7 @@
     "less": "2.7.2",
     "stylus": "0.54.5",
     "raven-js": "3.17.0",
-    "timeago": "1.5.4",
+    "timeago": "1.6.0",
     "uglify-js": "3.0.24",
     "underscore": "1.8.3"
   },
