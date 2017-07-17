@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:38+0000\n"
-"PO-Revision-Date: 2017-07-17 11:50+0000\n"
+"PO-Revision-Date: 2017-07-17 12:10+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1540,9 +1540,9 @@ msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela. 
 msgid "Subscribe"
 msgstr "Prenumerera"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "av %(users)s"
+msgstr "av %(author_link)s"
 
 msgid "Following"
 msgstr "Följer"
@@ -2908,7 +2908,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
 
 msgid "Icons cannot be animated."
 msgstr "Ikoner kan inte vara animerade."
@@ -2960,15 +2960,15 @@ msgstr "Nya API-nyckel skapad"
 msgid "API key revoked"
 msgstr "API-nyckel återkallad"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "Innan du börjar, läs och acceptera vår distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
+msgstr ""
+"Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
+"sekretesspolicy som förklarar hur vi hanterar din information."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Distributionsavtal för tillägg"
+msgstr "Distributionsavtal"
 
 #, fuzzy
 msgid "Review Policy"
