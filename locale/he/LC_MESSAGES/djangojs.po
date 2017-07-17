@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-06-01 18:15+0000\n"
+"PO-Revision-Date: 2017-05-30 14:19+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -661,7 +661,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "עליך להשתמש ב־Firefox 10.0 ומעלה."
 
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla סימן גרסה זו כבלתי נתמכת עם גרסת ה־Firefox שלך."
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
