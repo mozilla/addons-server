@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-06-13 10:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,9 @@ msgstr "Se fullstendig valideringsrapport"
 msgid "Validating {0}"
 msgstr "Validerer {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Mottok en tom respons fra serveren; status: {0}"
 
@@ -130,6 +132,9 @@ msgstr "Beklager, ingen støttet plattform har blitt funnet."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Du avbrøt opplastingen."

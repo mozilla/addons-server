@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:38+0000\n"
 "PO-Revision-Date: 2017-07-14 14:53+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,9 +156,6 @@ msgstr "Skildre temaet ditt."
 msgid "Enter a new author's email address"
 msgstr "Skriv inn ei ny adresse til utviklaren"
 
-msgid "Not Reviewed"
-msgstr "Ikkje vurdert"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Brukarar kan velja om dei vil gje meir eller mindre enn dette beløpet."
 
@@ -167,6 +164,9 @@ msgstr "Brukarar vil altid bli spurt i Utvidingshandsamaren (Firefox 4 og nyare)
 
 msgid "Listed"
 msgstr "Oppført"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -241,12 +241,16 @@ msgid "Help support the continued development of <strong>%(addon_name)s</strong>
 msgstr "Hjelp til og støtt vidare utvikling av <strong>%(addon_name)s</strong> ved å gje eit lite bidrag via <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "For å visa støtta di til <b>%(addon_name)s</b>, ber utviklaren deg donera til <a href=\"%(charity_url)s\">%(charity_name)s</a> med <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "For at visa støtta di til <b>%(addon_name)s</b>, ber udviklaren deg om at du gjev eit mindre bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">Paypal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
+msgstr ""
+"For at visa støtta di til <b>%(addon_name)s</b>, ber udviklaren deg om at du gjev eit mindre bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">Paypal</a>."
 
 msgid "How much would you like to contribute?"
 msgstr "Kor mykje vil du bidra med?"
@@ -515,8 +519,8 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Denne Personaen krev %(app)s %(new_version)s. Du brukar no %(app)s {old_version}."
 
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
 msgstr ""
 
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -547,9 +551,6 @@ msgstr "QR-kode for utviding"
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
 "Vill du ha {0} på den mobile Firefox-en din?  Skann denne QR-koden for å installere direkte på telefonen din.  (Du treng ein QR-lesar.  Søk etter appar i telefonens marknad om du ikkje har ein.)"
-
-msgid "Replacement Add-ons for {0}"
-msgstr "Erstatningsutvidingar for {0}"
 
 msgid "Report Abuse"
 msgstr "Rapporter misbruk"
@@ -769,8 +770,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Visse utvidingar kan be om løyve til å utføre visse funksjonar (Døme: Ei utviding som handsamar faner, kan be om å få tilgang til fanesystemet i nettlesaren din)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Sidan du har kontroll over Firefox, er valet å godta eller avslå desse løyveførespurnadane. Å godta løyveførespurnadar tyder ikkje at du kompromitterer yting eller sikkerheit, men i enkelte sjeldne "
 "høve kan det vere ein risiko."
@@ -878,6 +879,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> nedlasting pr. veke"
 msgstr[1] "<strong>{0}</strong> nedlastingar pr. veke"
 
+msgid "Not Reviewed"
+msgstr "Ikkje vurdert"
+
 msgid "Tools"
 msgstr "Verktøy"
 
@@ -926,19 +930,6 @@ msgstr "Feil ved kontroll av input. Prøv på nytt."
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Dette må vera ein gyldig hexadecimal-fargekode, som t.d. #000000."
 
-msgid "Collections"
-msgstr "Samlingar"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Ordbøker og språkpakkar"
-
-msgid "Add-ons"
-msgstr "Utvidingar"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} sidan"
-
 msgid "Not allowed"
 msgstr "Ikkje tillate"
 
@@ -981,8 +972,8 @@ msgstr "Ikkje funne"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
@@ -1052,6 +1043,9 @@ msgstr "Vil du ha meir tilpassing? Prøv <b>udvida tema</b>"
 msgid "Most Followers"
 msgstr "Flest følgjarar"
 
+msgid "Collections"
+msgstr "Samlingar"
+
 msgid "Collections I've Made"
 msgstr "Samlingar eg har laga"
 
@@ -1066,6 +1060,9 @@ msgstr "Meir&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Utvidingar for mobil"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Ordbøker og språkpakkar"
 
 msgid "Search Tools"
 msgstr "Søkjeverktøy"
@@ -1089,6 +1086,17 @@ msgstr "Hopp til sistesida"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
+
+msgid "Add-ons"
+msgstr "Utvidingar"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} sidan"
+
+#, fuzzy, python-format
+msgid "%B %e, %Y"
+msgstr "%%e %%b %%Y"
 
 msgid "Title"
 msgstr "Tittel"
@@ -1203,27 +1211,6 @@ msgstr "Denne URL-en vert allereie brukt av ei anna samling"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikon må anten vera PNG eller JPG."
-
-msgid "Add a positive vote for this collection"
-msgstr "Legg til ei positiv røyst for denne samlinga"
-
-msgid "Add a negative vote for this collection"
-msgstr "Legg til ei negativ røyst for denne samlinga"
-
-msgid "Remove my vote for this collection"
-msgstr "Fjern røysta mi for denne samlinga"
-
-msgid "Log in to vote for this collection"
-msgstr "Logg inn for å røyste på denne samlinga"
-
-msgid "Add to favorites"
-msgstr "Legg til i favorittar"
-
-msgid "Favorite"
-msgstr "Favoritt"
-
-msgid "Remove from favorites"
-msgstr "Fjern frå favorittar"
 
 msgid "This slug is already in use by another one of your collections."
 msgstr "Denne sluggen vert allereie brukt av ei av samlingane dine."
@@ -1374,8 +1361,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 
 msgid "My favorite add-ons"
@@ -1509,6 +1496,12 @@ msgstr "Fortset"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Avbryt</a>"
 
+msgid "Remove from favorites"
+msgstr "Fjern frå favorittar"
+
+msgid "Add to favorites"
+msgstr "Legg til i favorittar"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "Samlingar av {0}"
@@ -1537,6 +1530,10 @@ msgstr "Samlingar er grupper av tillegg som kven som helst kan lage og dele. Utf
 
 msgid "Subscribe"
 msgstr "Abonner"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "av %(users)s"
 
 msgid "Following"
 msgstr "Følgjer"
@@ -1585,6 +1582,21 @@ msgstr "Legg til ein kommentar"
 
 msgid "Remove this add-on from the collection"
 msgstr "Fjern denne utvidinga frå samlinga"
+
+msgid "Add a positive vote for this collection"
+msgstr "Legg til ei positiv røyst for denne samlinga"
+
+msgid "Add a negative vote for this collection"
+msgstr "Legg til ei negativ røyst for denne samlinga"
+
+msgid "Remove my vote for this collection"
+msgstr "Fjern røysta mi for denne samlinga"
+
+msgid "Log in to vote for this collection"
+msgstr "Logg inn for å røyste på denne samlinga"
+
+msgid "Favorite"
+msgstr "Favoritt"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1828,8 +1840,8 @@ msgstr "Rapportar for utvidingskompatiblitet"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Rapportar sendt til oss gjennom <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> vert samla her slik at utviklarar kan sjå dei. Desse rapportane hjelper oss med å avgjere kva for "
 "utvidingar som treng hjelp med støtte for ein komande Firefox-versjon. </p>"
@@ -2193,9 +2205,6 @@ msgstr "Vurderar"
 
 msgid "Support"
 msgstr "Hjelp"
-
-msgid "Any"
-msgstr "Alle"
 
 msgid "Extension"
 msgstr "Udviding"
@@ -2627,6 +2636,9 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
+msgid "Any"
+msgstr "Alle"
+
 msgid "All Platforms"
 msgstr "Alle platformer"
 
@@ -2789,23 +2801,9 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Utvidingsdokumentasjon :: Utviklarhubb"
-
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} feil"
-msgstr[1] "{0} feil"
-
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} åtvaring"
-msgstr[1] "{0} åtvaringar"
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
@@ -2895,6 +2893,9 @@ msgstr "Du kan ikkje sende inn denne typen av utviding"
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med \"@mozilla.org\""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
 
@@ -2945,11 +2946,31 @@ msgstr "Ny API-nykel laga"
 msgid "API key revoked"
 msgstr "API-nykel tilbakekalla"
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+#, fuzzy
+msgid "Distribution Agreement"
+msgstr "Distribusjonsavtale for utvidingar"
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "Vurderingspraksis"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "Vurderarar"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Utskriftsvennleg versjon"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Eg godtek denne avtalen"
@@ -2959,29 +2980,6 @@ msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
 msgid "Back to Add-ons"
 msgstr "Tilbake til utvidingar"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Søk"
-
-msgid "Search"
-msgstr "Søk"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Søkjeresultat for \"{0}\""
-
-msgid "Search Results"
-msgstr "Søkjeresultat"
-
-msgid "Please enter some search terms."
-msgstr "Skriv inn nokre søkeord."
-
-msgid "Loading results&hellip;"
-msgstr "Lastar resultat &hellip;"
-
-msgid "No results found."
-msgstr "Ingen resultat."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3033,6 +3031,9 @@ msgstr "Fleire resursar"
 msgid "Search Developer Docs"
 msgstr "Søk it utviklardokument"
 
+msgid "Search"
+msgstr "Søk"
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -3069,6 +3070,9 @@ msgstr "Nyleg aktivitet for {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> av %(user)s"
 
+msgid "No results found."
+msgstr "Ingen resultat."
+
 msgid "Refine Activity"
 msgstr "AVgrens aktivitet"
 
@@ -3085,7 +3089,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges."
@@ -3205,7 +3211,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -3258,8 +3265,8 @@ msgid "Support Information for {0}"
 msgstr "Brukarstøtteinformasjon for {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3594,8 +3601,16 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Avbryt vurderinga og inaktiver versjonen"
+
 msgid "Cancel Review and Disable Version"
 msgstr "Avbryt vurderinga og inaktiver versjonen"
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "Send inn ein ny versjon"
 
 msgid "Submit Version for Review"
 msgstr "Send inn versjon for vurdering"
@@ -3623,6 +3638,13 @@ msgstr "Innsendinga fullført"
 
 msgid "You’re done!"
 msgstr "Du er klar!"
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "Versjon signert"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
 
 msgid "Version Submitted for Review"
 msgstr "Versjon sendt inn for vurdering"
@@ -3720,8 +3742,8 @@ msgstr "JWT-hemmelegheit"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3862,9 +3884,10 @@ msgstr "Les bloggen &#9658;"
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "Tillaten HTML: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "Noko HTML-støtte."
@@ -3907,8 +3930,9 @@ msgstr "Les meir på bloggen vår"
 msgid "Resources"
 msgstr "Resursar"
 
-msgid "WebExtensions"
-msgstr "WebUtvidingar"
+#, fuzzy
+msgid "Porting"
+msgstr "Vurdering"
 
 msgid "Community"
 msgstr "Fellesskap"
@@ -3925,8 +3949,9 @@ msgstr "Blogg"
 msgid "Contact Us"
 msgstr "Kontakt oss"
 
-msgid "Review Policies"
-msgstr "Vurderingspraksis"
+#, fuzzy
+msgid "Policies"
+msgstr "Retningslinjer for utvidingar"
 
 msgid "FAQ"
 msgstr "OSS (FAQ)"
@@ -3994,10 +4019,11 @@ msgstr "Fleire utvidingar"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Logg inn for å redigere og oppdatere utvidinga di"
 
-msgid "Evolution in Add-on Development"
-msgstr ""
+#, fuzzy
+msgid "Update Your Legacy Extension"
+msgstr "Utvalde utvidingar"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 msgid "Learn How"
@@ -4006,11 +4032,12 @@ msgstr "Lær deg korleis"
 msgid "What's New"
 msgstr "Kva er nytt"
 
-msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
-msgstr "Vis tidsplan"
+#, fuzzy
+msgid "See Tutorial"
+msgstr "Visa alle"
 
 msgid "View All Submissions"
 msgstr "Vis alle bidrag"
@@ -4045,8 +4072,8 @@ msgstr "Tilpass Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
+"a>, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -4520,6 +4547,21 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
+msgid "Add-on Documentation :: Developer Hub"
+msgstr "Utvidingsdokumentasjon :: Utviklarhubb"
+
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} feil"
+msgstr[1] "{0} feil"
+
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} åtvaring"
+msgstr[1] "{0} åtvaringar"
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
@@ -4643,35 +4685,62 @@ msgstr "Hopp over no"
 msgid "Delete review"
 msgstr "Slett vurderinga"
 
-msgid "Rejected or Unreviewed"
-msgstr "Avvist og ikkje vurdert"
+msgid "Admin Review"
+msgstr "Adminvurdering"
 
-#, python-format
-msgid "[status:%s]"
-msgstr "[status: %s]"
+msgid "Jetpack Add-on"
+msgstr "Jetpack-utviding"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Ny utviding ({0})"
-msgstr[1] "Nye utvidingar for ({0})"
+msgid "More Information Requested"
+msgstr "Meir informasjon er påkravd"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Oppdatering ({0})"
-msgstr[1] "Oppdateringar ({0})"
+msgid "Contains Reviewer Comment"
+msgstr "Inneheld vurderarkommentar"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderert vurdering({0})"
-msgstr[1] "Modererte vurderingar ({0})"
+msgid "Sources provided"
+msgstr "Tilgjengelege kjelder"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Automatisk godkjend tillegg ({0})"
-msgstr[1] "Automatisk godkjende tillegg ({0})"
+msgid "WebExtension"
+msgstr "WebExtension"
 
-msgid "All Unlisted Add-ons"
-msgstr "Alle ulista utvidingar"
+msgid "Uses a custom CSP."
+msgstr "Brukar ein tilpassa CSP."
+
+msgid "Uses nativeMessaging permission."
+msgstr "Brukar nativeMessaging-rettar."
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+msgid "Has too many daily users."
+msgstr "Har for mange daglege brukarar."
+
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+msgid "Is flagged for admin review."
+msgstr "Er flagga for vurdering av admin."
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr "Duplikat-innsending"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Takk for at du sende inn temaet ditt"
+
+msgid "A problem with your Theme submission"
+msgstr "Eit problem med det innsende temaet ditt"
+
+msgid "Theme submission flagged for review"
+msgstr "Innsendt tema flagga for vurdering"
+
+msgid "A question about your Theme submission"
+msgstr "Eit spørsmål om det innsende temaet ditt"
 
 msgid "Type"
 msgstr "Type"
@@ -4747,69 +4816,6 @@ msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
-
-msgid "Flagged"
-msgstr "Flagga"
-
-msgid "Updates"
-msgstr "Oppdateringar"
-
-msgid "Admin Review"
-msgstr "Adminvurdering"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack-utviding"
-
-msgid "More Information Requested"
-msgstr "Meir informasjon er påkravd"
-
-msgid "Contains Reviewer Comment"
-msgstr "Inneheld vurderarkommentar"
-
-msgid "Sources provided"
-msgstr "Tilgjengelege kjelder"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Brukar ein tilpassa CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Brukar nativeMessaging-rettar."
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr "Har for mange daglege brukarar."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr "Er flagga for vurdering av admin."
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Duplikat-innsending"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Takk for at du sende inn temaet ditt"
-
-msgid "A problem with your Theme submission"
-msgstr "Eit problem med det innsende temaet ditt"
-
-msgid "Theme submission flagged for review"
-msgstr "Innsendt tema flagga for vurdering"
-
-msgid "A question about your Theme submission"
-msgstr "Eit spørsmål om det innsende temaet ditt"
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nye utvidingar (Under 5 dagar)"
@@ -4938,6 +4944,9 @@ msgstr "Køar"
 msgid "New Add-ons"
 msgstr "Nye utvidingar"
 
+msgid "Updates"
+msgstr "Oppdateringar"
+
 msgid "Moderated Reviews"
 msgstr "Modererte vurderingar"
 
@@ -4946,6 +4955,9 @@ msgstr "Automatisk godkjende tillegg"
 
 msgid "Unlisted Queues"
 msgstr "Ikkje-oppførte køar"
+
+msgid "All Unlisted Add-ons"
+msgstr "Alle ulista utvidingar"
 
 msgid "Logs"
 msgstr "Loggar"
@@ -5403,31 +5415,37 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr "Avvist og ikkje vurdert"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status: %s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Ny utviding ({0})"
+msgstr[1] "Nye utvidingar for ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Oppdatering ({0})"
+msgstr[1] "Oppdateringar ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Moderert vurdering({0})"
+msgstr[1] "Modererte vurderingar ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Automatisk godkjend tillegg ({0})"
+msgstr[1] "Automatisk godkjende tillegg ({0})"
+
+msgid "Flagged"
+msgstr "Flagga"
+
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr "Problem med dekodinga av {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "Access your data for {name}"
@@ -5567,6 +5585,30 @@ msgstr ""
 
 msgid "Fetching file."
 msgstr "Hentar fil."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr "Problem med dekodinga av {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
+msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -6285,7 +6327,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -6305,7 +6348,9 @@ msgid "I have a question"
 msgstr "Eg har eit spørsmål"
 
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 
 #, python-format
@@ -6317,8 +6362,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 msgid "Add-on Compatibility Reporter"
@@ -6495,8 +6540,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 msgid "Can I host my own add-on?"
@@ -6543,8 +6588,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
-" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
+"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
 msgid "How do I submit my add-on?"
@@ -6552,8 +6597,8 @@ msgstr "Korleis sender eg inn ei utviding?"
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
+"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -6566,8 +6611,8 @@ msgid "What category do I choose for my add-on?"
 msgstr ""
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
@@ -6581,8 +6626,8 @@ msgstr "Kan eg inkludere ein personvernpraksis for utvidinga mi?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Ja. Du kan spesifisere ein personvernpraksis når du sender inn utvidinga di. Du kan også legge til eller oppdatere ein personvernpraksis via oversikta for utviklarverktøy etter at tillegget er sendt"
-" inn."
+"Ja. Du kan spesifisere ein personvernpraksis når du sender inn utvidinga di. Du kan også legge til eller oppdatere ein personvernpraksis via oversikta for utviklarverktøy etter at tillegget er "
+"sendt inn."
 
 msgid "Must my add-on be reviewed?"
 msgstr "Må utvidinga mi vurderast?"
@@ -6598,9 +6643,9 @@ msgstr "Kven vurderer utvidinga mi?"
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
-" href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
@@ -6697,10 +6742,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr ""
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 msgid ""
@@ -6746,10 +6791,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
 
 msgid "What are the different types of add-ons?"
@@ -6893,8 +6937,8 @@ msgid "What are beta add-ons?"
 msgstr ""
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
 
 msgid ""
@@ -6922,9 +6966,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 
 #, python-format
@@ -6979,8 +7023,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -7239,10 +7283,10 @@ msgstr "Legg til ei vurdering for {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -7376,12 +7420,6 @@ msgstr "Sorter etter"
 msgid "Relevance"
 msgstr "Relevans"
 
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Viser {0} - {1} av {2} resultat for <strong>{3}</strong>"
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Viser {0} - {1} av {2} resultat"
-
 msgid "All Add-ons"
 msgstr "Alle utviding"
 
@@ -7402,6 +7440,9 @@ msgstr ""
 msgid "Collection Search Results"
 msgstr ""
 
+msgid "Search Results"
+msgstr "Søkjeresultat"
+
 msgid "Search Unavailable"
 msgstr "Søk utilgjenglege"
 
@@ -7414,6 +7455,14 @@ msgstr ""
 
 msgid "Themes Search Results"
 msgstr ""
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: Søk"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "Søkjeresultat for \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7436,6 +7485,12 @@ msgstr "Kategori"
 
 msgid "Tag"
 msgstr "Tagg"
+
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "Viser {0} - {1} av {2} resultat for <strong>{3}</strong>"
+
+msgid "Showing {0} - {1} of {2} results"
+msgstr "Viser {0} - {1} av {2} resultat"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -7696,11 +7751,11 @@ msgstr "Om å spore eksterne kjelder…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -7877,10 +7932,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr ""
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "andre"
-
 msgid "No user with that email."
 msgstr "Ingen brukar med denne e-postadressa."
 
@@ -8025,7 +8076,8 @@ msgstr "Slett gjeldande foto"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Presenter deg sjølv for fellesskapen, om du vil! Denne teksten vert vist offentleg på brukarinformasjonssida di."
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, fuzzy, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "Tillaten HTML: {0}. Lenker er forbodne."
 
 msgid "Decide what collections should be shown in your profile."
@@ -8185,6 +8237,10 @@ msgstr[1] "%(num)s utvidingar"
 
 msgid "Average rating of developer's add-ons"
 msgstr "Gjennomsnittleg vurdering for utviklaren si utviding"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "andre"
 
 #, python-format
 msgid "%s Version History"

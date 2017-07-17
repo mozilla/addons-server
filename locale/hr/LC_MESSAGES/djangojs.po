@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -72,7 +72,9 @@ msgstr "Pogledajte cijelo izvješće ovjere"
 msgid "Validating {0}"
 msgstr "Ovjera {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Primljen prazni odgovor od servera; status: {0}"
 
@@ -139,6 +141,9 @@ msgstr "Isprika, nije pronađena podržana platforma."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tip datoteke koji ste učitali nije prepoznat."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Prekinuli ste učitavanje."

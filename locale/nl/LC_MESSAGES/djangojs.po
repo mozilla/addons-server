@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-03-18 12:26+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -66,7 +66,9 @@ msgstr "Volledig validatierapport bekijken"
 msgid "Validating {0}"
 msgstr "{0} wordt gevalideerd"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons van server ontvangen; status: {0}"
 
@@ -135,6 +137,9 @@ msgstr "Sorry, geen ondersteund platform gevonden."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Het door u geüploade bestandstype wordt niet herkend."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "U hebt de upload geannuleerd."

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-07-11 03:48+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -66,7 +66,9 @@ msgstr "Ver relatório de validação completo"
 msgid "Validating {0}"
 msgstr "A validar {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida resposta vazia do servidor; estado: {0}"
 
@@ -132,6 +134,9 @@ msgstr "Lamentamos, mas não foi encontrada nenhuma plataforma suportada."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de ficheiro que carregou não é reconhecido."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Você cancelou o carregamento."

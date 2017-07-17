@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2016-11-04 10:22+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -72,7 +72,9 @@ msgstr "Oglejte si popolno poročilo o preverjanju veljavnosti"
 msgid "Validating {0}"
 msgstr "Preverjanje veljavnosti {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
@@ -141,6 +143,9 @@ msgstr "Podprtega okolja ni bilo mogoče najti."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Vrsta datoteke, ki ste jo naložili, ni prepoznana."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Preklicali ste nalaganje."

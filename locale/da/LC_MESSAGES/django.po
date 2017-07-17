@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:38+0000\n"
 "PO-Revision-Date: 2017-06-08 13:28+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -158,9 +158,6 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-msgid "Not Reviewed"
-msgstr ""
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Det er muligt at bidrage med beløb større eller mindre end dette."
 
@@ -170,6 +167,9 @@ msgstr ""
 # Column name in a table.
 msgid "Listed"
 msgstr "Listet"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -561,12 +561,6 @@ msgstr "QR-kode til tilføjelse"
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr "Ønsker du {0} på din mobile Firefox?  Skan denne QR-kode for at installere direkte på din telefon.  (Du behøver en QR-læser.  Søg på din telefons markedsplads, hvis du ikke har en.)"
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Replacement Add-ons for {0}"
-msgstr "Erstatnings-tilføjelser til {0}"
-
 msgid "Report Abuse"
 msgstr "Rapportér misbrug"
 
@@ -901,6 +895,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ugentlig filhentning"
 msgstr[1] "<strong>{0}</strong> ugentlige filhentninger"
 
+msgid "Not Reviewed"
+msgstr ""
+
 msgid "Tools"
 msgstr "Værktøjer"
 
@@ -948,19 +945,6 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
-
-msgid "Collections"
-msgstr "Samlinger"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Ordbøger & sprogpakker"
-
-msgid "Add-ons"
-msgstr "Tilføjelser"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} siden"
 
 msgid "Not allowed"
 msgstr "Ikke tilladt"
@@ -1080,6 +1064,9 @@ msgstr "Vil du have mere tilpasning? Prøv <b>udvidede temaer</b>"
 msgid "Most Followers"
 msgstr "Flest følgere"
 
+msgid "Collections"
+msgstr "Samlinger"
+
 msgid "Collections I've Made"
 msgstr "Samlinger jeg har lavet"
 
@@ -1094,6 +1081,9 @@ msgstr "Flere&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Tilføjelser til Mobilen"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Ordbøger & sprogpakker"
 
 msgid "Search Tools"
 msgstr "Søgning"
@@ -1117,6 +1107,17 @@ msgstr "Hop til sidste side"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
+
+msgid "Add-ons"
+msgstr "Tilføjelser"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} siden"
+
+#, python-format
+msgid "%B %e, %Y"
+msgstr ""
 
 msgid "Title"
 msgstr "Titel"
@@ -1231,27 +1232,6 @@ msgstr "Denne url anvendes allerede af en anden samling"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner skal være enten PNG eller JPG."
-
-msgid "Add a positive vote for this collection"
-msgstr "Tilføj en positiv stemme til denne samling"
-
-msgid "Add a negative vote for this collection"
-msgstr "Tilføj en negativ stemme til denne samling"
-
-msgid "Remove my vote for this collection"
-msgstr "Fjern min stemme fra denne samling"
-
-msgid "Log in to vote for this collection"
-msgstr "Log ind for at stemme på denne samling"
-
-msgid "Add to favorites"
-msgstr "Føj til favoritter"
-
-msgid "Favorite"
-msgstr "Favorit"
-
-msgid "Remove from favorites"
-msgstr "Fjern fra favoritter"
 
 msgid "This slug is already in use by another one of your collections."
 msgstr "Denne url anvendes allerede af en anden af dine samlinger."
@@ -1545,6 +1525,12 @@ msgstr "Fortsæt"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Annuller</a>"
 
+msgid "Remove from favorites"
+msgstr "Fjern fra favoritter"
+
+msgid "Add to favorites"
+msgstr "Føj til favoritter"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "Samlinger af {0}"
@@ -1573,6 +1559,10 @@ msgstr "Samlinger er grupper af relaterede tilføjelser, som alle kan lave og de
 
 msgid "Subscribe"
 msgstr "Abonner"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "af %(users)s"
 
 msgid "Following"
 msgstr "Følger"
@@ -1621,6 +1611,21 @@ msgstr "Tilføj en kommentar"
 
 msgid "Remove this add-on from the collection"
 msgstr "Fjern denne tilføjelse fra samlingen"
+
+msgid "Add a positive vote for this collection"
+msgstr "Tilføj en positiv stemme til denne samling"
+
+msgid "Add a negative vote for this collection"
+msgstr "Tilføj en negativ stemme til denne samling"
+
+msgid "Remove my vote for this collection"
+msgstr "Fjern min stemme fra denne samling"
+
+msgid "Log in to vote for this collection"
+msgstr "Log ind for at stemme på denne samling"
+
+msgid "Favorite"
+msgstr "Favorit"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2231,9 +2236,6 @@ msgstr "Seer"
 msgid "Support"
 msgstr "Support"
 
-msgid "Any"
-msgstr "Alle"
-
 msgid "Extension"
 msgstr "Udvidelse"
 
@@ -2667,6 +2669,9 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
+msgid "Any"
+msgstr "Alle"
+
 msgid "All Platforms"
 msgstr "Alle platforme"
 
@@ -2834,23 +2839,6 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
-
-# {0} is a number
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} fejl"
-msgstr[1] "{0} fejl"
-
-# {0} is a number
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} advarsel"
-msgstr[1] "{0} advarsler"
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
@@ -2939,6 +2927,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "Ikoner kan ikke være animerede."
 
@@ -2989,10 +2980,29 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "Anmeldelseshistorik"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "Godkendere"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
+msgstr ""
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3003,29 +3013,6 @@ msgstr "eller <a href=\"{0}\">Annuller</a>"
 
 msgid "Back to Add-ons"
 msgstr "Tilbage til tilføjelser"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Søgning"
-
-msgid "Search"
-msgstr "Søg"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Resultat af søgning efter \"{0}\""
-
-msgid "Search Results"
-msgstr "Søgeresultater"
-
-msgid "Please enter some search terms."
-msgstr "Indtast nogle søgekriterier."
-
-msgid "Loading results&hellip;"
-msgstr "Indlæser resultater&hellip;"
-
-msgid "No results found."
-msgstr "Ingen resultater fundet."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3077,6 +3064,9 @@ msgstr ""
 msgid "Search Developer Docs"
 msgstr ""
 
+msgid "Search"
+msgstr "Søg"
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -3112,6 +3102,9 @@ msgstr "Recent Activity for {0}"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> af %(user)s"
+
+msgid "No results found."
+msgstr "Ingen resultater fundet."
 
 msgid "Refine Activity"
 msgstr ""
@@ -3641,8 +3634,16 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Annuller installation"
+
 msgid "Cancel Review and Disable Version"
 msgstr ""
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "Indsend anmeldelse"
 
 msgid "Submit Version for Review"
 msgstr ""
@@ -3669,6 +3670,13 @@ msgid "Submission Complete"
 msgstr ""
 
 msgid "You’re done!"
+msgstr ""
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "Indsendt"
+
+msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 msgid "Version Submitted for Review"
@@ -3909,9 +3917,10 @@ msgstr "Læs bloggen &#9658;"
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "Tilladt HTML: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "Noget HTML understøttes."
@@ -3952,9 +3961,9 @@ msgstr "Læs mere i vores blog"
 msgid "Resources"
 msgstr "Ressourcer"
 
-# Plural in this context means many of the add-on type
-msgid "WebExtensions"
-msgstr "WebExtensions"
+#, fuzzy
+msgid "Porting"
+msgstr "Bedømmelse"
 
 msgid "Community"
 msgstr "Fællesskab"
@@ -3972,8 +3981,9 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kontakt os"
 
-msgid "Review Policies"
-msgstr ""
+#, fuzzy
+msgid "Policies"
+msgstr "Add-on Policies"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4042,11 +4052,12 @@ msgstr "Håndter din tilføjelse"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Log ind for at redigere og opdatere din tilføjelse"
 
-# The title for a user if they are a developer
-msgid "Evolution in Add-on Development"
-msgstr "Udviklingen i udvikling af tilføjelser"
+#, fuzzy
+msgid "Update Your Legacy Extension"
+msgstr "Udvalgte udvidelser"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+#, fuzzy
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr "WebExtensions er nu standard når det drejer sig om udvikling af tilføjelser til Firefox. Du vil skulle opdatere dine gamle tilføjelser så de vil være kompatible fremover."
 
 msgid "Learn How"
@@ -4055,14 +4066,12 @@ msgstr "Læs hvordan"
 msgid "What's New"
 msgstr "Sidste nyt"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
-"Brug WebExtensions til din gamle tilføjelse? Få mere personlig hjælp i almindelig kontortid eller skriv til <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</"
-"a>."
 
-msgid "See Schedule"
-msgstr "Se tidsplanen"
+#, fuzzy
+msgid "See Tutorial"
+msgstr "Se alle"
 
 msgid "View All Submissions"
 msgstr ""
@@ -4580,6 +4589,23 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
+msgid "Add-on Documentation :: Developer Hub"
+msgstr ""
+
+# {0} is a number
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} fejl"
+msgstr[1] "{0} fejl"
+
+# {0} is a number
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} advarsel"
+msgstr[1] "{0} advarsler"
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
@@ -4703,40 +4729,61 @@ msgstr ""
 msgid "Delete review"
 msgstr "Slet anmeldelse"
 
-msgid "Rejected or Unreviewed"
+msgid "Admin Review"
 msgstr ""
 
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
+msgid "Jetpack Add-on"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Ny tilføjelse ({0})"
-msgstr[1] "Nye tilføjelser ({0})"
+msgid "More Information Requested"
+msgstr ""
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Opdatering ({0})"
-msgstr[1] "Opdateringer ({0})"
+msgid "Contains Reviewer Comment"
+msgstr ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Sources provided"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgid "WebExtension"
+msgstr "WebExtension"
 
-msgid "All Unlisted Add-ons"
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+msgid "Has too many daily users."
+msgstr ""
+
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+msgid "Is flagged for admin review."
+msgstr ""
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -4812,69 +4859,6 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr ""
-
-msgid "Admin Review"
-msgstr ""
-
-msgid "Jetpack Add-on"
-msgstr ""
-
-msgid "More Information Requested"
-msgstr ""
-
-msgid "Contains Reviewer Comment"
-msgstr ""
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr ""
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr ""
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5006,6 +4990,9 @@ msgstr ""
 msgid "New Add-ons"
 msgstr "Nye tilføjelser"
 
+msgid "Updates"
+msgstr ""
+
 msgid "Moderated Reviews"
 msgstr ""
 
@@ -5013,6 +5000,9 @@ msgid "Auto Approved Add-ons"
 msgstr ""
 
 msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Logs"
@@ -5471,31 +5461,43 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Ny tilføjelse ({0})"
+msgstr[1] "Nye tilføjelser ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Opdatering ({0})"
+msgstr[1] "Opdateringer ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Flagged"
+msgstr ""
+
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr "Filen findes ikke længere"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "Access your data for {name}"
@@ -5634,6 +5636,30 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
+msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr "Filen findes ikke længere"
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -7536,19 +7562,6 @@ msgstr "Sortér efter"
 msgid "Relevance"
 msgstr "Relevans"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Viser {0} - {1} af {2} resultater af søgningen <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Viser {0} - {1} af {2} resultater"
-
 msgid "All Add-ons"
 msgstr "Alle tilføjelser"
 
@@ -7569,6 +7582,9 @@ msgstr "Samling resultat af søgning efter {0}"
 msgid "Collection Search Results"
 msgstr "Samling søgeresultat"
 
+msgid "Search Results"
+msgstr "Søgeresultater"
+
 msgid "Search Unavailable"
 msgstr "Søgning ikke tilgængelig"
 
@@ -7581,6 +7597,14 @@ msgstr "Temaer søgeresultater for {0}"
 
 msgid "Themes Search Results"
 msgstr "Temaer søgeresultater"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: Søgning"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "Resultat af søgning efter \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7603,6 +7627,19 @@ msgstr "Kategori"
 
 msgid "Tag"
 msgstr "Mærkat"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "Viser {0} - {1} af {2} resultater af søgningen <strong>{3}</strong>"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "Viser {0} - {1} af {2} resultater"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
@@ -8048,10 +8085,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr ""
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "andre"
-
 msgid "No user with that email."
 msgstr "Ingen bruger med denne mailadresse."
 
@@ -8196,7 +8229,8 @@ msgstr "Slet nuværende foto"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Introducer dig selv til fællesskabet, hvis du vil! Denne tekst vil blive vist offentligt op din brugerside."
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, fuzzy, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "Tilladt HTML: {0}. Links er forbudt."
 
 msgid "Decide what collections should be shown in your profile."
@@ -8359,6 +8393,10 @@ msgstr[1] "%(num)s tilføjelser"
 
 msgid "Average rating of developer's add-ons"
 msgstr "Gennemsnitlig bedømmelse af udviklerens tilføjelser"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "andre"
 
 #, python-format
 msgid "%s Version History"

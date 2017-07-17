@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-03-27 06:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -63,7 +63,9 @@ msgstr "検証レポートの詳細を見る"
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバーから空の応答が返りました。ステータス: {0}"
 
@@ -127,6 +129,9 @@ msgstr "申し訳ありませんが、対応プラットフォームがひとつ
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "アップロードがキャンセルされました。"

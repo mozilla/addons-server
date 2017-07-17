@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2016-10-25 17:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,9 @@ msgstr "Dospołnu přepruwowansku rozprawu čitać"
 msgid "Validating {0}"
 msgstr "{0} so přepruwuje"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prózdna wotmołwa je so wot serwera dóstała; status: {0}"
 
@@ -142,6 +144,9 @@ msgstr "Bohužel njeje so podpěrana platforma namakała."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Datajowy typ, kotryž sć nahrał, so njespóznawa."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Sće nahraće přetorhnył."

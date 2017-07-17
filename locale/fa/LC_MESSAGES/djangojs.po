@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-05-25 11:21+0000\n"
 "Last-Translator: Amin Mahmudian <amin.mahmudian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,9 @@ msgstr ""
 msgid "Validating {0}"
 msgstr "در حال اعتبار سنجی {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "یک پاسخ خالی از سرور دریافت شد، وضعیت: {0}"
 
@@ -124,6 +126,9 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."

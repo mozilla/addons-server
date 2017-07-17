@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-06-14 08:07+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -66,7 +66,9 @@ msgstr "Пълен доклад за валидацията"
 msgid "Validating {0}"
 msgstr "Валидиране {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен е празен отговор от сървъра; състояние {0}"
 
@@ -132,6 +134,9 @@ msgstr "Съжаляваме, не е открита поддържана пла
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Видът на файла, който качихте не е разпознат."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Вие отказахте качването."

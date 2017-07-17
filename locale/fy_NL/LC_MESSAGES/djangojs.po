@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2016-11-08 08:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,9 @@ msgstr "Folslein falidaasjerapport besjen"
 msgid "Validating {0}"
 msgstr "{0} wurdt falidearre"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons fan server ûntfongen; steat: {0}"
 
@@ -135,6 +137,9 @@ msgstr "Sorry, gjin stipe platfoarm fûn."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "It troch jo oplade bestânstype is net bekend."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Jo hawwe de oplaad annulearre."
