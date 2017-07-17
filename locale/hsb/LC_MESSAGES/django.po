@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:38+0000\n"
-"PO-Revision-Date: 2017-07-17 13:13+0000\n"
+"PO-Revision-Date: 2017-07-17 13:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1134,9 +1134,9 @@ msgstr "Přidatki"
 msgid "{0} ago"
 msgstr "před {0}"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%B %e, %Y"
-msgstr "%%b. %%e %%Y"
+msgstr "%%d.%%m.%%Y"
 
 msgid "Title"
 msgstr "Titul"
@@ -1594,9 +1594,9 @@ msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež kóždy móže wutwor
 msgid "Subscribe"
 msgstr "Abonować"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "wot %(users)s"
+msgstr "wot %(author_link)s"
 
 msgid "Following"
 msgstr "Wobkedźbować"
@@ -3020,25 +3020,21 @@ msgstr "Nowy API-kluč wutworjeny"
 msgid "API key revoked"
 msgstr "API-kluč wotwołany"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju přidatkow Firefox. Wobsahuje tež wotkaz k našeje pokazce priwatnosće, kotraž wujasnja, kak z wašimi informacijemi "
-"wobchadźamy."
+"Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju a naše přepruwowanske zasady a prawidła. Dojednanje wo rozdźělowanju Firefox tež na naš pokazku priwatnosće "
+"wotkazuje, kotryž wujasnja, kak z wašimi informacijemi wobchadźamy."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Dojednanje za rozdźělowanje přidatkow"
+msgstr "Dojednanje za rozdźělowanje"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Přepruwowanske prawidła"
+msgstr "Přepruwowanske zasady"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Přepruwowarjo"
+msgstr "Přepruwowanske prawidła"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -3716,16 +3712,14 @@ msgstr "Je něšto, štož naši přepruwowarjo měli wobkedźbować, hdyž tut�
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Přepruwowanje přetorhnyć a wersiju znjemóžnić"
+msgstr "Přetorhnyć a wersiju znjemóžnić"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Přepruwowanje přetorhnyć a wersiju znjemóžnić"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Nowu wersiju zapodać"
+msgstr "Wersiju zapodać"
 
 msgid "Submit Version for Review"
 msgstr "Wersiju za přepruwowanje zapodać"
@@ -3754,9 +3748,8 @@ msgstr "Zapodaće dokónčene"
 msgid "You’re done!"
 msgstr "Sće hotowy!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Wersija je so signowała"
+msgstr "Wersija je so zapodała"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "Sće hotowy! Tuta wersija budźe bórze na našim sydle k dispoziciji."
@@ -4051,9 +4044,8 @@ msgstr "Dalše informacije w našim blogu"
 msgid "Resources"
 msgstr "Resursy"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Pohódnoćenje"
+msgstr "Portowanje"
 
 msgid "Community"
 msgstr "Zhromadźenstwo"
@@ -4070,9 +4062,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Stajće so z nami do zwiska"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Prawidła přidatkow"
+msgstr "Zasady"
 
 msgid "FAQ"
 msgstr "Huste prašenja"
@@ -4140,13 +4131,11 @@ msgstr "Waš přidatk rjadować"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přizjewće so, zo byšće swój přidatk wobdźěłował a aktualizował"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Předstajene rozšěrjenja"
+msgstr "Aktualizujće swoje zestarjene rozšěrjenje"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions su nětko standard za wuwiwanje přidatkow w Firefox. Dyrbiće swoje stare přidatki aktualizować, zo bychu kompatibelne wostali."
+msgstr "Je nětko nowy standard za wuwiwanje přidatkow w Firefox, kotryž hodźi so za wšelake wobhladowak wužiwać. Dyrbiće swoje stare přidatki aktualizować, zo bychu kompatibelne wostali."
 
 msgid "Learn How"
 msgstr "Zhońće, kak to dźe"
@@ -4157,9 +4146,8 @@ msgstr "Nowosće"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr "Sće hotowy, přidatk zapodać? Čitajće naš nawod wo zapodawanskim procesu krok po kroku."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Wšě pokazać"
+msgstr "Nawod pokazać"
 
 msgid "View All Submissions"
 msgstr "Wšě zapodaća pokazać"
@@ -8417,9 +8405,9 @@ msgstr "Aktualne foto zhašeć"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Předstajće sej zhromadźenstwu, jeli chceće! Tutón tekst so na stronje wužiwarskich informacijow zjewi."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Dowoleny HTML: {0}. Wotkazy su zakazane."
+msgstr "Dowoleny HTML: %(html)s. Wotkazy su zakazane."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Rozsudźće, kotre zběrki maja so we wašim profilu pokazać."
