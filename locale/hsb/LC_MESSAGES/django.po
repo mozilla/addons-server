@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -1136,7 +1136,7 @@ msgstr "před {0}"
 
 #, python-format
 msgid "%B %e, %Y"
-msgstr "%%d.%%m.%%Y"
+msgstr "%%e.%%B.%%Y"
 
 msgid "Title"
 msgstr "Titul"
