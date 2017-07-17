@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:38+0000\n"
-"PO-Revision-Date: 2017-07-17 13:32+0000\n"
+"PO-Revision-Date: 2017-07-17 13:43+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2977,13 +2977,13 @@ msgid "Review Rules"
 msgstr "Granskningsregler"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Innan du börjar, läs och acceptera vår distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
+msgstr "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
 
 msgid "Printable Version"
 msgstr "Utskriftsvänlig version"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
 
 msgid "I Accept this Agreement"
 msgstr "Jag accepterar detta avtal"
@@ -3678,16 +3678,14 @@ msgstr "Är det något våra granskare bör ha i åtanke när du granskar detta 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Avbryt granskning och inaktivera versionen"
+msgstr "Avbryt och inaktivera versionen"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Avbryt granskning och inaktivera versionen"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Skicka in en ny version"
+msgstr "Skicka in version"
 
 msgid "Submit Version for Review"
 msgstr "Skicka in version för granskning"
@@ -3716,12 +3714,11 @@ msgstr "Inskickning komplett"
 msgid "You’re done!"
 msgstr "Du är klar!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Version som signerats"
+msgstr "Version inskickad"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Du är klar! Denna version blir snart tillgänglig på vår hemsida."
 
 msgid "Version Submitted for Review"
 msgstr "Version som skickats in för granskning"
@@ -3977,7 +3974,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Tillåten HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Viss HTML-stöd."
@@ -4022,9 +4019,8 @@ msgstr "Läs mer i vår blogg"
 msgid "Resources"
 msgstr "Resurser"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Betyg"
+msgstr "Portning"
 
 msgid "Community"
 msgstr "Gemenskap"
@@ -4041,9 +4037,8 @@ msgstr "Blogg"
 msgid "Contact Us"
 msgstr "Kontakta oss"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Riktlinjer för tillägg"
+msgstr "Policyer"
 
 msgid "FAQ"
 msgstr "FAQ"
@@ -4111,13 +4106,11 @@ msgstr "Hantera ditt tillägg"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Logga in för att redigera och uppdatera ditt tillägg"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Utvalda utökningar"
+msgstr "Uppdatera ditt äldre tillägg"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions är nu standard för tilläggsutveckling i Firefox. Du behöver uppdatera dina äldre tillägg för att behålla kompatibilitet."
+msgstr "Det finns en ny standard för att utveckla tillägg i Firefox. Du måste uppdatera dina gamla tillägg för att hålla dig kompatibel."
 
 msgid "Learn How"
 msgstr "Lär dig hur"
@@ -4126,11 +4119,10 @@ msgid "What's New"
 msgstr "Nyheter"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Klar för att skicka in ett tillägg? Läs vår steg-för-steg-handledning för inlämningsprocessen."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Visa alla"
+msgstr "Se handledning"
 
 msgid "View All Submissions"
 msgstr "Visa alla bidrag"
@@ -8352,9 +8344,9 @@ msgstr "Ta bort aktuell bild"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Presentera dig själv för gemenskapen, om du vill! Denna text visas publikt på din användarinformationssida."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Tillåten HTML: {0}. Länkar är förbjudna."
+msgstr "Tillåten HTML: %(html)s. Länkar är förbjudna."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Bestäm dig vilka samlingar som ska visas i din profil."
