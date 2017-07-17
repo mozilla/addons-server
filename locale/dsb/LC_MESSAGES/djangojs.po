@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2016-10-26 17:34+0000\n"
+"PO-Revision-Date: 2017-07-17 15:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -74,7 +74,7 @@ msgid "Validating {0}"
 msgstr "{0} se pśeglědujo"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Waš dodank pśekšacujo maksimalnu wjelikosć {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prozne wótegrono jo se wót serwera dostało; status: {0}"
@@ -133,8 +133,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego "
-"koda, až njeby se wašo zapódaśe wótpokazało."
+"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego koda,"
+" až njeby se wašo zapódaśe wótpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Pśeglědowański proces jo slědujuce problemy namakał, kótarež bymógli k wótpokazanjam wjasć:"
@@ -146,7 +146,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Datajowy typ, kótaryž sćo nagrał, se njespóznawa."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Waša dataja pśekšacujo maksimalnu wjelikosć {0}."
 
 msgid "You cancelled the upload."
 msgstr "Sćo nagraśe pśetergnuł."
