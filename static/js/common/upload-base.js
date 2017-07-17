@@ -70,8 +70,7 @@
                 }
 
                 if (settings.maxSize && domfile.size > settings.maxSize) {
-                    errors = [gettext("Your file exceeds the maximum size of " + textSize(settings.maxSize) + ".")];
-
+                    errors = [format(gettext("Your file exceeds the maximum size of {0}."), [textSize(settings.maxSize)])];
                     $upload_field.trigger("upload_errors", [file, errors]);
                     $upload_field.trigger("upload_finished", [file]);
                     return;
