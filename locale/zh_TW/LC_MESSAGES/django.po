@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
@@ -1076,7 +1076,7 @@ msgstr "{0} 前"
 
 #, python-format
 msgid "%B %e, %Y"
-msgstr "%Y-%m-%d"
+msgstr "%%Y-%%B-%%e"
 
 msgid "Title"
 msgstr "標題"
