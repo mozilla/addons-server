@@ -62,8 +62,9 @@ from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
-    LanguageToolsSerializer, VersionSerializer, StaticCategorySerializer)
+    AddonSerializer, AddonSerializerWithUnlistedData,
+    ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
+    VersionSerializer, StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -771,6 +772,39 @@ class AddonSearchView(ListAPIView):
     def as_view(cls, **kwargs):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class AddonAutoCompleteSearchView(AddonSearchView):
+    pagination_class = None
+    serializer_class = ESAddonAutoCompleteSerializer
+
+    def get_queryset(self):
+        # Minimal set of fields from ES that we need to build our results.
+        # It's the opposite tactic used by the regular search endpoint, which
+        # excludes a specific set of fields - because we know that autocomplete
+        # only needs to return very few things.
+        included_fields = (
+            'icon_type',  # Needed for icon_url.
+            'id',  # Needed for... id.
+            'modified',  # Needed for icon_url.
+            'name_translations',  # Needed for... name.
+            'persona',  # Needed for icon_url (sadly).
+            'slug',  # Needed for url.
+            'type',  # Needed to attach the Persona for icon_url (sadly).
+        )
+
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'include': included_fields})
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (slice directly) but do wrap the data in a
+        # 'results' property to mimic what the search API does.
+        queryset = self.filter_queryset(self.get_queryset())[:10]
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
 
 class AddonFeaturedView(GenericAPIView):

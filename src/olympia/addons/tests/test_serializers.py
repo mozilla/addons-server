@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import override
 
-from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -10,14 +9,15 @@ from olympia.amo.tests import (
     addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
     version_factory, user_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
-    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
+    AddonSerializer, AddonSerializerWithUnlistedData,
+    ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
     SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
+from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission
@@ -496,9 +496,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def search(self):
         self.reindex(Addon)
 
-        qs = Search(using=amo.search.get_es(),
-                    index=AddonIndexer.get_index_alias(),
-                    doc_type=AddonIndexer.get_doctype_name())
+        qs = AddonSearchView().get_queryset()
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
@@ -715,3 +713,97 @@ class TestLanguageToolsSerializerOutput(TestCase):
         addon_testcase.addon = self.addon
         addon_testcase._test_version(
             self.addon.current_version, result['current_version'])
+
+
+class TestESAddonAutoCompleteSerializer(ESTestCase):
+    def setUp(self):
+        super(TestESAddonAutoCompleteSerializer, self).setUp()
+        self.request = APIRequestFactory().get('/')
+
+    def tearDown(self):
+        super(TestESAddonAutoCompleteSerializer, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def search(self):
+        self.reindex(Addon)
+
+        qs = AddonAutoCompleteSearchView().get_queryset()
+        return qs.filter('term', id=self.addon.pk).execute()[0]
+
+    def serialize(self):
+        self.serializer = ESAddonAutoCompleteSerializer(
+            context={'request': self.request})
+
+        obj = self.search()
+
+        with self.assertNumQueries(0):
+            result = self.serializer.to_representation(obj)
+        return result
+
+    def test_basic(self):
+        self.addon = addon_factory()
+
+        result = self.serialize()
+        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert result['id'] == self.addon.pk
+        assert result['name'] == {'en-US': unicode(self.addon.name)}
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['url'] == absolutify(self.addon.get_url_path())
+
+    def test_translations(self):
+        translated_name = {
+            'en-US': u'My Addôn name in english',
+            'fr': u'Nom de mon Addôn',
+        }
+        self.addon = addon_factory()
+        self.addon.name = translated_name
+        self.addon.save()
+
+        result = self.serialize()
+        assert result['name'] == translated_name
+
+        # Try a single translation. The locale activation is normally done by
+        # LocaleAndAppURLMiddleware, but since we're directly calling the
+        # serializer we need to do it ourselves.
+        self.request = APIRequestFactory().get('/', {'lang': 'fr'})
+        with override('fr'):
+            result = self.serialize()
+        assert result['name'] == translated_name['fr']
+
+    def test_icon_url_with_persona_id(self):
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.persona_id = 42
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        assert not persona.is_new()
+
+        result = self.serialize()
+        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+
+    def test_icon_url_persona_with_no_persona_id(self):
+        self.addon = addon_factory(
+            name=u'My Personâ',
+            description=u'<script>alert(42)</script>My Personä description',
+            type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.persona_id = 0  # For "new" style Personas this is always 0.
+        persona.header = u'myheader.png'
+        persona.footer = u'myfooter.png'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        assert persona.is_new()
+
+        result = self.serialize()
+        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))

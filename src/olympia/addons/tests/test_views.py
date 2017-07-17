@@ -2677,6 +2677,72 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == addon.slug
 
 
+class TestAddonAutoCompleteSearchView(ESTestCase):
+    client_class = APITestClient
+
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonAutoCompleteSearchView, self).setUp()
+        self.url = reverse('addon-autocomplete')
+
+    def tearDown(self):
+        super(TestAddonAutoCompleteSearchView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later.
+        waffle.switch_is_active('boost-webextensions-in-search')
+
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'my'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
+
+    def test_empty(self):
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_no_unlisted(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      status=amo.STATUS_NULL,
+                      weekly_downloads=666,
+                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        self.refresh()
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_pagination(self):
+        [addon_factory() for x in range(0, 11)]
+        self.refresh()
+
+        # page_size should be ignored, we should get 10 results.
+        data = self.perform_search(self.url, {'page_size': 1})
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 10
+
+
 class TestAddonFeaturedView(TestCase):
     client_class = APITestClient
 
