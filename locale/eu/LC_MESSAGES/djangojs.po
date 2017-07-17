@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -66,7 +66,9 @@ msgstr "Ikusi balidazioaren txosten osoa"
 msgid "Validating {0}"
 msgstr "{0} balidatzen"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Erantzun huts jaso da zerbitzaritik; egoera: {0}"
 
@@ -129,6 +131,9 @@ msgstr "Sentitzen dugu, ez da onarturiko plataformarik aurkitu."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Igo duzun fitxategi mota ez da ezagutzen."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Igotzea bertan behera utzi duzu."

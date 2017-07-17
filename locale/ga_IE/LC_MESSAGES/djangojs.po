@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -75,7 +75,9 @@ msgstr "Tuairisc iomlán ón bhailíochtóir"
 msgid "Validating {0}"
 msgstr "{0} á bhailíochtú"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fuarthas freagra folamh ón bhfreastalaí; stádas: {0}"
 
@@ -144,6 +146,9 @@ msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Ní aithnítear cineál an chomhaid a d'uaslódáil tú."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Chealaigh tú an uaslódáil."

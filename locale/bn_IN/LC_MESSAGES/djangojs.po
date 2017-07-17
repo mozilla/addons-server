@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2016-11-07 11:20+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -66,7 +66,9 @@ msgstr "ভালিডেশনের সম্পূর্ণ প্রতি�
 msgid "Validating {0}"
 msgstr "ভ্যালিডেট করা হচ্ছে {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "সার্ভার থেকে একটি খালি উত্তর পেয়েছেন; স্ট্যাটাস: {0}"
 
@@ -128,6 +130,9 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
