@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2016-10-25 12:17+0000\n"
+"PO-Revision-Date: 2017-07-17 11:33+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -68,7 +68,7 @@ msgid "Validating {0}"
 msgstr "{0} ellenőrzése"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "A kiegészítője túllépi a maximális méretet, ami {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
@@ -112,8 +112,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
@@ -138,7 +138,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "A feltöltött fájl típusa nem ismerhető fel."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "A fájl mérete túllépi a maximális méretet, ami {0}."
 
 msgid "You cancelled the upload."
 msgstr "A feltöltés megszakítva."
