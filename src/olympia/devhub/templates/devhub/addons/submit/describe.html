@@ -49,6 +49,18 @@
                         'visibility.  You can change this setting later.')
                   }}">?</span>
     </div>
+    <div class="addon-submission-field">
+      <label for="{{ form.requires_payment.auto_id }}">
+      {{ form.requires_payment }}
+      {{ _('This add-on requires payment, non-free services or software, or '
+           'additional hardware.') }}
+      </label>
+      <span class="tip tooltip"
+            title="{{ _("Check this box if this add-on's core features require "
+                        "some form of payment upfront or after a trial period "
+                        "in order to work.")
+                  }}">?</span>
+    </div>
     <div id="addon-categories-edit" class="addon-submission-field"
          data-max-categories="{{ amo.MAX_CATEGORIES }}">
       {{ cat_form.non_form_errors() }}

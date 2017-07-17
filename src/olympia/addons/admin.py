@@ -30,7 +30,7 @@ class AddonAdmin(admin.ModelAdmin):
                        'average_daily_downloads', 'average_daily_users'),
         }),
         ('Truthiness', {
-            'fields': ('disabled_by_user', 'view_source',
+            'fields': ('disabled_by_user', 'view_source', 'requires_payment',
                        'public_stats', 'is_experimental', 'admin_review',
                        'external_software', 'dev_agreement'),
         }),

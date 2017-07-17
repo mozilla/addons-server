@@ -207,6 +207,7 @@ class AddonSerializerOutputTestMixin(object):
             'count': self.addon.total_reviews,
         }
         assert result['public_stats'] == self.addon.public_stats
+        assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))
         assert result['slug'] == self.addon.slug
@@ -291,6 +292,12 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
 
         assert result['is_experimental'] is True
+
+    def test_requires_payment(self):
+        self.addon = addon_factory(requires_payment=True)
+        result = self.serialize()
+
+        assert result['requires_payment'] is True
 
     def test_icon_url_without_icon_type_set(self):
         self.addon = addon_factory()

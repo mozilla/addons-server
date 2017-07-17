@@ -654,6 +654,7 @@ class DescribeForm(AddonFormBase):
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     is_experimental = forms.BooleanField(required=False)
+    requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
     has_priv = forms.BooleanField(
@@ -666,7 +667,7 @@ class DescribeForm(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'is_experimental', 'support_url',
-                  'support_email', 'privacy_policy')
+                  'support_email', 'privacy_policy', 'requires_payment')
 
     def __init__(self, *args, **kw):
         kw['initial'] = {
