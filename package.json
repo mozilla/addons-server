@@ -24,7 +24,7 @@
     "stylus": "0.54.5",
     "raven-js": "3.17.0",
     "timeago": "1.6.0",
-    "uglify-js": "3.0.24",
+    "uglify-js": "3.0.25",
     "underscore": "1.8.3"
   },
   "devDependencies": {
