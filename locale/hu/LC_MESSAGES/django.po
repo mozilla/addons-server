@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:38+0000\n"
-"PO-Revision-Date: 2017-07-17 11:32+0000\n"
+"PO-Revision-Date: 2017-07-17 11:36+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -174,7 +174,7 @@ msgid "Listed"
 msgstr "Felsorolva"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -2941,7 +2941,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Nem nyújthat be „@mozilla.org” GUID-dal végződő kiegészítőt"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 
 msgid "Icons cannot be animated."
 msgstr "Az ikon nem lehet animált."
@@ -3017,7 +3017,7 @@ msgid "Printable Version"
 msgstr "Nyomtatható verzió"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
 
 msgid "I Accept this Agreement"
 msgstr "Elfogadom a megállapodást"
@@ -3718,7 +3718,7 @@ msgid "Version Submitted"
 msgstr "Verzió beküldve"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Kész van! Ez a verzió hamarosan elérhető lesz az oldalunkon."
 
 msgid "Version Submitted for Review"
 msgstr "Verzió értékelésre benyújtva"
@@ -3970,7 +3970,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Engedélyezett HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Némi HTML támogatva."
@@ -4117,7 +4117,7 @@ msgid "What's New"
 msgstr "Újdonságok"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Készen áll a kiegészítő beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
 
 msgid "See Tutorial"
 msgstr "Ismertető megtekintése"
