@@ -1087,7 +1087,7 @@ msgstr "{0}前"
 
 #, python-format
 msgid "%B %e, %Y"
-msgstr "%Y 年 %m 月 %e 日"
+msgstr "%%Y 年 %%B 月 %e 日"
 
 msgid "Title"
 msgstr "タイトル"
