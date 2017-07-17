@@ -41,6 +41,8 @@ The token is available in two forms:
 
 The response will contain some profile data for personalization:
 
+.. http:get:: /api/v3/accounts/login/
+
     :>json int id: The numeric user id.
     :>json string email: Email address used by the user to log in and create this account.
     :>json string name: The name chosen by the user, or the username if not set.
@@ -67,6 +69,7 @@ The response will contain some profile data for personalization:
                         add-on submissions.
      `Personas:Review`  Can access the theme reviewer tools to approve/reject
                         theme submissions.
+    ==================  ==========================================================
 
 
 Creating an Authorization header
