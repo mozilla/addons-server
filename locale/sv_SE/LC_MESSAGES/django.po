@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:38+0000\n"
-"PO-Revision-Date: 2017-07-17 12:10+0000\n"
+"PO-Revision-Date: 2017-07-17 13:32+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1097,9 +1097,9 @@ msgstr "Tillägg"
 msgid "{0} ago"
 msgstr "{0} sedan"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%B %e, %Y"
-msgstr "%%e %%b %%Y"
+msgstr "%%e %%B %%Y"
 
 msgid "Title"
 msgstr "Titel"
@@ -2970,13 +2970,11 @@ msgstr ""
 msgid "Distribution Agreement"
 msgstr "Distributionsavtal"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Granskningspolicies"
+msgstr "Granskningspolicy"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Granskare"
+msgstr "Granskningsregler"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Innan du börjar, läs och acceptera vår distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
