@@ -131,7 +131,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json object|null latest_unlisted_version: Object holding the latest unlisted :ref:`version <version-detail-object>` of the add-on. This field is only present if the user has unlisted reviewer permissions, or is listed as a developer of the add-on.
-    :>json string locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
     :>json string|object|null previews[].caption: The caption describing a preview (See :ref:`translated fields <api-overview-translations>`).
@@ -150,7 +149,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
-    :>json string target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
