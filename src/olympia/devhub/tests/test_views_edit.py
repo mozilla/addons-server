@@ -581,8 +581,8 @@ class TestEditBasicListed(BaseTestEditBasic):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('#requires-payment-edit').text() == (
-            'This add-on is doesn\'t require any additional payments, '
-            'paid services or software or additional hardware.')
+            'This add-on doesn\'t require any additional payments, '
+            'paid services or software, or additional hardware.')
 
     def test_requires_payment_flag(self):
         self.get_addon().update(requires_payment=True)
