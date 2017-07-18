@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-05-21 07:31+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2017-07-18 11:01+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "您的附加组件超出大小限制 {0}。"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
@@ -128,7 +128,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "无法识别您上传的文件格式。"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "您的文件超过大小限制 {0}。"
 
 msgid "You cancelled the upload."
 msgstr "您已取消上传。"
