@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,12 +546,6 @@ msgstr "{0} ɹoɟ ʎɔıʅoԀ ʎɔɐʌıɹԀ"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "ʎɔıʅoԀ ʎɔɐʌıɹԀ"
-
-msgid "QR code for add-on"
-msgstr "uo-ppɐ ɹoɟ ǝpoɔ ᴚÒ"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "(.ǝuo ǝʌɐɥ ʇ,uop ɟı ǝɔɐʅdʇǝʞɹɐɯ s,ǝuoɥd ɹnoʎ ɥɔɹɐǝS  .ɹǝpɐǝɹ ᴚÒ ɐ pǝǝu ʅʅ,no⅄)  .ǝuoɥd ɹnoʎ oʇ ʎʅʇɔǝɹıp ʅʅɐʇsuı oʇ ǝpoɔ ᴚÒ sıɥʇ uɐɔS  ¿xoɟǝɹıℲ ǝʅıqoɯ ɹnoʎ uo {0} ʇuɐＭ"
 
 msgid "Report Abuse"
 msgstr "ǝsnq∀ ʇɹodǝᴚ"
@@ -1100,10 +1094,6 @@ msgstr "suo-pp∀"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "oƃɐ {0}"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "⅄%% ´ǝ%% q%%"
 
 msgid "Title"
 msgstr "ǝʅʇı⊥"
@@ -3232,6 +3222,19 @@ msgstr ".ʅɐʇuǝɯıɹǝdxǝ sı uo-ppɐ sıɥ⊥"
 msgid "This add-on is ready for general use."
 msgstr ".ǝsn ʅɐɹǝuǝƃ ɹoɟ ʎpɐǝɹ sı uo-ppɐ sıɥ⊥"
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "ʇɹɐʇsǝᴚ sǝɹınbǝᴚ"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ǝɹnsodxǝ ʇsoɯ ǝɥʇ ɹoɟ ʎʇıʅɐuoıʇɔunɟ s,uo-ppɐ ɹnoʎ ʇıɟ ʇɐɥʇ ʎuɐ ǝsooɥↃ .suo-ppɐ ɥƃnoɹɥʇ ǝsʍoɹq sɹǝsn ʎɐʍ ʎɹɐɯıɹd ǝɥʇ ǝɹɐ sǝıɹoƃǝʇɐↃ"
 
@@ -4952,6 +4955,10 @@ msgstr "sʇɹodǝᴚ ǝsnq∀"
 msgid "View Privacy Policy"
 msgstr "ʎɔıʅoԀ ʎɔɐʌıɹԀ ʍǝıɅ"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "ʇɹɐʇsǝᴚ sǝɹınbǝᴚ"
+
 msgid "EULA"
 msgstr "∀⅂∩Ǝ"
 
@@ -4972,23 +4979,6 @@ msgstr "uo-ppɐ sıɥʇ ʇnoqɐ ǝɹoW"
 
 msgid "Image Gallery"
 msgstr "ʎɹǝʅʅɐ⅁ ǝƃɐɯI"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-".ʅǝuuɐɥɔ sıɥʇ ɯoɹɟ sǝʇɐpdn ʇǝƃ oʇ ǝnuıʇuoɔ ʅʅıʍ noʎ ´uoısɹǝʌ ʇuǝɯdoʅǝʌǝp ǝɥʇ ʅʅɐʇsuı noʎ ǝɔuO .ɔıʅqnd ʅɐɹǝuǝƃ ǝɥʇ oʇ pǝsɐǝʅǝɹ s,ʇı ǝɹoɟǝq uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ʍǝu ʅɐʇuǝɯıɹǝdxǝ uɐ ʇsǝʇ noʎ sʇǝʅ "
-"ʅǝuuɐɥↃ ʇuǝɯdoʅǝʌǝᗡ ǝɥ⊥"
-
-msgid "Install development version"
-msgstr "uoısɹǝʌ ʇuǝɯdoʅǝʌǝp ʅʅɐʇsuI"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-".ǝʌoqɐ ʞuıʅ ǝɥʇ ɯoɹɟ uoısɹǝʌ ʇʅnɐɟǝp ǝɥʇ ʅʅɐʇsuıǝɹ ´sǝʇɐpdn ʇuǝɯdoʅǝʌǝp ƃuıʌıǝɔǝɹ doʇs o⊥ .ɹǝdoʅǝʌǝp sıɥʇ ɯoɹɟ sǝʇɐpdn ʇuǝɯdoʅǝʌǝp ǝʌıǝɔǝɹ oʇ ǝnuıʇuoɔ ʅʅıʍ noʎ uoısɹǝʌ ʇuǝɯdoʅǝʌǝp ɐ ʅʅɐʇsuı noʎ "
-"ǝɔuO .ɐʅʅızoW ʎq pǝʍǝıʌǝɹ uǝǝq ʇou ǝʌɐɥ uo-ppɐ sıɥʇ ɟo suoısɹǝʌ ʇuǝɯdoʅǝʌǝᗡ <strong>:uoıʇnɐↃ</strong>"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ".sʅıɐʇǝp ʎuɐ ǝpnʅɔuı ʇou pıp ɹǝdoʅǝʌǝp ǝɥ⊥  ¡ǝɹǝɥ ǝǝs oʇ ƃuıɥʇoN"

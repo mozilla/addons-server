@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -547,12 +547,6 @@ msgstr "Chính sách Riêng tư cho {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Chính sách Riêng tư"
-
-msgid "QR code for add-on"
-msgstr "Mã QR cho tiện ích"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "Báo cáo Lạm dụng"
@@ -1111,10 +1105,6 @@ msgstr "Tiện ích"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} trước"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr ""
@@ -3275,6 +3265,19 @@ msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
 msgid "This add-on is ready for general use."
 msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Trường bắt buộc"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5063,6 +5066,10 @@ msgstr ""
 msgid "View Privacy Policy"
 msgstr "Xem Chính sách Riêng tư"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Trường bắt buộc"
+
 msgid "EULA"
 msgstr "Thỏa thuận Người dùng Cuối"
 
@@ -5086,23 +5093,6 @@ msgstr "Thông tin thêm về tiện ích"
 
 msgid "Image Gallery"
 msgstr "Trưng bày Hình ảnh"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Kênh Phát triển cho phép bạn thử phiên bản thử nghiệm mới của tiện ích này trước khi nó được phát hành ra công chúng. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ "
-"kênh này."
-
-msgid "Install development version"
-msgstr "Cài đặt phiên bản phát triển"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Cẩn thận:</strong> Phiên bản phát triển của tiện ích này chưa được duyệt bởi Mozilla. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ nhà phát triển. Để ngừng "
-"nhận cập nhật kiểu này, hãy cài lại phiên bản mặc định từ liên kết bên trên."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""

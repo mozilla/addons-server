@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-05-18 14:57+0000\n"
 "Last-Translator: ilkeryus <ilkeryus@gmail.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -559,14 +559,6 @@ msgstr "{0} Gizlilik Politikası"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
-
-msgid "QR code for add-on"
-msgstr "Eklentinin QR kodu"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"{0} telefonunuzdaki Firefox'ta da kullanılabilir. Doğrudan telefonunuza kurmak için bu QR kodunu tarayın. (QR kodu okuyucusuna ihtiyacınız olacak. Okuyunuz yoksa telefonunuzun uygulama mağazasında "
-"arayın.)"
 
 msgid "Report Abuse"
 msgstr "Suistimal rapor et"
@@ -1128,10 +1120,6 @@ msgstr "Eklentiler"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} önce"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "Başlık"
@@ -3340,6 +3328,19 @@ msgstr "Bu eklenti deneyseldir."
 msgid "This add-on is ready for general use."
 msgstr "Eklenti genel kullanım için hazır."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Yeniden başlatma gerektirir"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Kategoriler, kullanıcıların eklentilerle göz atmasının başlıca yoludur. En çok görünebilirlik için eklentinizin işlevselliğine uyan herhangi birini seçin. Yalnızca listelenen eklentiler için "
@@ -5232,6 +5233,10 @@ msgstr "Suistimal Raporları"
 msgid "View Privacy Policy"
 msgstr "Gizlilik Politikasını İncele"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Yeniden başlatma gerektirir"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5255,23 +5260,6 @@ msgstr "Bu eklenti hakkında daha fazla bilgi"
 
 msgid "Image Gallery"
 msgstr "Resim Galerisi"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Geliştirme Kanalı, bu ekletinin deneysel bir yeni sürümünü, genel kullanıcılara açılmadan önce test etmenize olanak tanır. Geliştirme sürümünü bir kez yükledikten sonra bu kanaldaki güncellemeleri "
-"almaya devam edersiniz."
-
-msgid "Install development version"
-msgstr "Geliştirme sürümünü yükle"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Uyarı:</strong> Bu eklentinin geliştirme sürümleri Mozilla tarafından incelenmemiştir. Geliştirme sürümünü bir kez yükledikten sonra bu geliştiricinin geliştirme güncellemelerini almaya "
-"devam edeceksiniz. Gelişme güncellemelerini durdurmak için, yukarıki linkten varsayılan sürümü tekrar yükleyin."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Burda bir şey yok!  Geliştirici herhangi bir ayrıntı vermemiş."

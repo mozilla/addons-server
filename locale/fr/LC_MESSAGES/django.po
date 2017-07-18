@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-07 18:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -561,14 +561,6 @@ msgstr "Politique de confidentialité pour {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Politique de confidentialité"
-
-msgid "QR code for add-on"
-msgstr "Code QR pour le module"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"Vous voulez {0} sur votre Firefox mobile ? Scannez ce code QR pour l’installer directement sur votre téléphone (vous aurez besoin d’un lecteur de code QR. Recherchez dans le marketplace de votre "
-"appareil si vous n’en avez pas encore)."
 
 msgid "Report Abuse"
 msgstr "Signaler un abus"
@@ -1131,10 +1123,6 @@ msgstr "Modules"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "Il y a {0}"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%e %%b %%Y"
 
 msgid "Title"
 msgstr "Titre"
@@ -3291,6 +3279,19 @@ msgstr "Ce module est expérimental."
 msgid "This add-on is ready for general use."
 msgstr "Ce module est prêt pour une utilisation générale."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Redémarrage nécessaire"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Pour naviguer entre les modules, les utilisateurs utilisent principalement les catégories. Choisissez les catégories qui correspondent à la fonctionnalité de votre module. Ce champ est uniquement "
@@ -5055,6 +5056,10 @@ msgstr "Rapporter un abus"
 msgid "View Privacy Policy"
 msgstr "Voir la politique de vie privée"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Redémarrage nécessaire"
+
 msgid "EULA"
 msgstr "CLUF"
 
@@ -5076,23 +5081,6 @@ msgstr "En savoir plus sur ce module"
 
 msgid "Image Gallery"
 msgstr "Galerie d’images"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Le canal développement vous permet de tester une version expérimentale de ce module avant qu’il ne soit distribué à tout le monde. Une fois une version de développement installée, vous continuerez "
-"à obtenir les mises à jour de ce canal."
-
-msgid "Install development version"
-msgstr "Installer la version de développement"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Attention :</strong> Les versions de développement de ce module n’ont pas été vérifiées par Mozilla. Une fois la version de développement installée, vous continuerez à recevoir des mises à "
-"jour de développement de la part de ce développeur. Pour cesser, réinstaller la version par défaut du lien ci-dessous."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Pas d’autres précisions disponibles. Le développeur n’a pas donné de détails."

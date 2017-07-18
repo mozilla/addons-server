@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -558,14 +558,6 @@ msgstr "Rregulla Privatësie për {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
-
-msgid "QR code for add-on"
-msgstr "Kodi QR për shtesën"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"E doni {0} te Firefox-i juaj për celular?  Skanojeni këtë kod QR që të instalohet drejt e telefoni juaj.  (Do t’ju duhet një lexues kodesh QR.  Nëse s’keni një të tillë, kërkoni te programet për "
-"telefonin tuaj.)"
 
 msgid "Report Abuse"
 msgstr "Njoftoni Shpërdorim"
@@ -1120,10 +1112,6 @@ msgstr "Shtesa"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} më parë"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%e %%b, %%Y"
 
 msgid "Title"
 msgstr "Titull"
@@ -3278,6 +3266,19 @@ msgstr "Kjo shtesë është eksperimentale."
 msgid "This add-on is ready for general use."
 msgstr "Kjo shtesë është gati për përdorim të përgjithshëm."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Lyp Rinisje"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Kategoritë janë rruga parësore përmes të cilës përdoruesit shfletojnë për shtesa. Zgjidhni cilëndo që i përshtatet funksioneve të shtesës suaj për ekspozim sa më të madh. Kjo vlen vetëm për shtesat "
@@ -5034,6 +5035,10 @@ msgstr "Raportime Abuzimesh"
 msgid "View Privacy Policy"
 msgstr "Shihni Rregullat e Privatësisë"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Lyp Rinisje"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5057,23 +5062,6 @@ msgstr "Më tepër rreth kësaj shtese"
 
 msgid "Image Gallery"
 msgstr "Galeri Figurash"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Kanali i Zhvillimit ju lë të provoni një version të ri eksperimental të kësaj shtese, përpara se të hidhet në qarkullim për publikun e përgjithshëm. Pasi instaloni versionin zhvillim, do të "
-"vazhdoni të merrni njoftime përditësimesh prej këtij kanali."
-
-msgid "Install development version"
-msgstr "Instalo versionin zhvillim"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Kujdes:</strong> Versionet beta të kësaj shtese s’janë shqyrtuar nga Mozilla. Pasi të instaloni një version beta, do të vazhdojnë t’ju vijnë përditësime prej këtij zhvilluesi. Që të mos ju "
-"vijnë përditësime lidhur me zhvillimin, riinstaloni versionin parazgjedhje prej lidhjes së më sipërme."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Këtu nuk ka gjë për t’u parë.  Programuesi nuk ka dhënë ndonjë hollësi."
