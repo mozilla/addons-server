@@ -15,45 +15,33 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Sebastian Kitty' theme.
-    DiscoItem(addon_id=283823, addon_name='Sebastian Kitty'),
+    # 'Summer Fractal' theme.
+    DiscoItem(addon_id=25542),
 
-    # Enhancer for YouTube
+    # Privacy Badger
     DiscoItem(
-        addon_id=700308,
-        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
+        addon_id=506646,
+        heading=_(u'Stop sneaky trackers {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
-              u'ad blocking, auto-play control, and more.'),
+            _(u'Block invisible trackers and spying ads that follow you '
+              u'around the Web.'),
             '</blockquote>')),
 
-    # uBlock Origin
+    # LanguageTool Grammar Checker
     DiscoItem(
-        addon_id=607454,
-        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
+        addon_id=708770,
+        heading=_(u'Improve your writing {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'A lightweight and effective ad blocker. uBlock Origin '
-              u'enforces thousands of content filters without chewing up a '
-              u'bunch of memory.'),
+            _(u'Supporting 25+ languages, this extension puts a proofreader '
+              u'right in your browser.'),
             '</blockquote>')),
 
-    # 'Vintage Fabric' theme.
-    DiscoItem(addon_id=492244, addon_name='Vintage Fabric'),
-
-    # Emoji Keyboard
-    DiscoItem(
-        addon_id=674732,
-        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis for every occasion—always just one '
-              u'click away.'),
-            '</blockquote>')),
+    # 'Romantic Firefox' theme.
+    DiscoItem(addon_id=319259, addon_name='Romantic Firefox'),
 
     # Awesome Screenshot Plus
     DiscoItem(
@@ -67,6 +55,17 @@ discopane_items = [
               u'files is a breeze.'),
             '</blockquote>')),
 
-    # 'Festival of Lights' theme.
-    DiscoItem(addon_id=372503, addon_name='Festival of Lights'),
+    # Enhancer for YouTube
+    DiscoItem(
+        addon_id=700308,
+        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
+              u'ad blocking, auto-play control, and more.'),
+            '</blockquote>')),
+
+    # 'Space Stars' theme.
+    DiscoItem(addon_id=211644, addon_name='Space Stars'),
 ]
