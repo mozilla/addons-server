@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 09:36+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: 2017-06-07 18:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -4712,23 +4712,19 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
 msgstr[1] "{0} avertissements"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Bénéficiez de nouvelles fonctionnalités YouTube comme le mode cinéma, le blocage des publicités, le contrôle de la lecture automatique et bien davantage."
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Un bloqueur de publicités léger et efficace. uBlock Origin exécute des milliers de filtres de contenu sans consommer énormément de mémoire."
+msgid "Block invisible trackers and spying ads that follow you around the Web."
+msgstr ""
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Des émoticônes à profusion {start_sub_heading} avec {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Des dizaines d’émoticônes géniales pour toutes les occasions, à portée de clic."
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -4736,6 +4732,12 @@ msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{e
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 "Bien plus que réaliser de simples captures d’écran, Awesome Screenshot Plus vous permet d’annoter des images avec du texte et d’autres images. Enregistrez et partagez des fichiers en un clin d’œil."
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Bénéficiez de nouvelles fonctionnalités YouTube comme le mode cinéma, le blocage des publicités, le contrôle de la lecture automatique et bien davantage."
 
 msgid "Approved reviews"
 msgstr "Revues approuvées"
