@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 09:36+0000\n"
-"PO-Revision-Date: 2017-07-18 15:31+0000\n"
+"PO-Revision-Date: 2017-07-18 15:36+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3175,16 +3175,16 @@ msgid "This add-on is ready for general use."
 msgstr "このアドオンは一般ユーザーの使用に適しています。"
 
 msgid "Requires Payment?"
-msgstr "購入が必要ですか？"
+msgstr "課金が必要ですか？"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "このアドオンの主要機能を使用するため、試用期間開始前もしくは終了後に何らかの形での支払いを必要とする場合は、ここにチェックを入れてください。"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "このアドオンは、購入、有償のサービスもしくはソフトウェア、あるいは追加のハードウェアを必要とします。"
+msgstr "このアドオンは、課金、有償のサービスもしくはソフトウェア、あるいは追加のハードウェアを必要とします。"
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "このアドオンは、追加の課金、有償のサービスもしくはソフトウェア、あるいは追加のハードウェアを一切必要としません。"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "カテゴリーはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリーをすべて選んでください。当該アドオンにのみ関係します。"
@@ -4865,7 +4865,7 @@ msgid "View Privacy Policy"
 msgstr "プライバシーポリシーを表示"
 
 msgid "Requires Payment"
-msgstr "要購入"
+msgstr "課金あり"
 
 msgid "EULA"
 msgstr "エンドユーザー使用許諾契約書 (EULA)"
