@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 09:36+0000\n"
-"PO-Revision-Date: 2017-07-18 15:06+0000\n"
+"PO-Revision-Date: 2017-07-18 15:03+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3279,7 +3279,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr ""
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Il componente aggiuntivo non addebita pagamenti aggiuntivi, non contiene servizi o software a pagamento né necessita di hardware aggiuntivi per funzionare."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3747,7 +3747,7 @@ msgid "Version Submitted"
 msgstr "La versione è stata caricata"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Procedura terminata. La versione caricata del componente aggiuntivo sarà a breve disponibile sul sito."
 
 msgid "Version Submitted for Review"
 msgstr "La versione caricata è stata inclusa tra i componenti da revisionare"
@@ -4155,7 +4155,7 @@ msgid "What's New"
 msgstr "Ultimissime dal fronte componenti aggiuntivi"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Sei pronto a caricare un componente aggiuntivo? Segui i passaggi della guida per il caricamento dei componenti aggiuntivi."
 
 msgid "See Tutorial"
 msgstr "Segui il tutorial"
