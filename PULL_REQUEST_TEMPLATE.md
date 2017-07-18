@@ -1,29 +1,16 @@
-# Creating a Pull Request
-
 Thanks for opening a Pull Request (PR), here's a few guidelines as to what
-we expect in a Pull Request.
+what we need in your PR before we review it.
 
-## Associating the PR with an issue
+Please delete anything that isn't relevant to your patch.
 
-Please include the text `Fixes #ISSUNUM` at the top of your PR. If this PR
-doesn't have an associated issue please create one with details of how to
-reproduce it.
+* [ ] This PR relates to an existing open issue and there are no existing
+      PRs open for the same issue.
+* [ ] Add `Fixes #ISSUENUM` at the top of your PR.
+* [ ] Add a description of the the changes introduced in this PR.
+* [ ] The change has been successfully run locally.
+* [ ] Add tests to cover the changes added in this PR.
+* [ ] Add before and after screenshots (Only for changes that impact the UI).
 
-We use issues (not PRs) to track the progress of code through our pipeline.
-PRs without issues are a lot less visible.
-
-## Description
-
-Please add details of what changes this patch introduces and how it solves
-the problem in the associated issue.
-
-## Screenshots
-
-If your patch contains changes that are visible in the UI please include
-before and after screenshots. This helps us to to validate the changes.
-
-## Test coverage
-
-If your pull-request provides code changes please ensure you have added
-tests to cover the changes. If you're not sure where to start, please ask
-for help.
+Once you have met the above requirements please replace this section with
+a `Fixes #ISSUENUM` linking to the issue fixed by this PR along with an
+explanation of the changes. Thanks for your contribution!
