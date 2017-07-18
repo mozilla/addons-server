@@ -79,6 +79,36 @@ This endpoint allows you to search through public add-ons.
     For instance, to sort search results by downloads and then by creation
     date, use `sort=downloads,created`.
 
+
+------------
+Autocomplete
+------------
+
+.. _addon-autocomplete:
+
+Similar to :ref:`add-ons search endpoint <addon-search>` above, this endpoint
+allows you to search through public add-ons. Because it's meant as a backend
+for autocomplete though, there are a couple key differences:
+ - No pagination is supported. There are no ``next``, ``prev`` or ``count``
+   fields, and passing ``page_size`` or ``page`` has no effect, a maximum of 10
+   results will be returned at all times.
+ - Only a subset of fields are returned.
+
+.. http:get:: /api/v3/addons/autocomplete/
+
+    :query string q: The search query.
+    :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
+    :query string author: Filter by exact author username.
+    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
+    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name`` and ``url`` fields are supported though.
+
+
 ------
 Detail
 ------

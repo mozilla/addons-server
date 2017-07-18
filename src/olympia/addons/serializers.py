@@ -393,10 +393,12 @@ class ESBaseAddonSerializer(BaseESSerializer):
         )
 
         # Attach attributes that do not have the same name/format in ES.
-        obj.tag_list = data['tags']
-        obj.disabled_by_user = data['is_disabled']  # Not accurate, but enough.
+        obj.tag_list = data.get('tags', [])
         obj.all_categories = [
             CATEGORIES_BY_ID[cat_id] for cat_id in data.get('category', [])]
+
+        # Not entirely accurate, but enough in the context of the search API.
+        obj.disabled_by_user = data.get('is_disabled', False)
 
         # Attach translations (they require special treatment).
         self._attach_translations(obj, data, self.translated_fields)
@@ -469,6 +471,19 @@ class ESAddonSerializerWithUnlistedData(
     # Override authors because we don't want picture_url in serializer.
     authors = BaseUserSerializer(many=True, source='listed_authors')
     previews = ESPreviewSerializer(many=True, source='all_previews')
+
+
+class ESAddonAutoCompleteSerializer(ESAddonSerializer):
+    class Meta(ESAddonSerializer.Meta):
+        fields = ('id', 'icon_url', 'name', 'url')
+        model = Addon
+
+    def get_url(self, obj):
+        # Addon.get_url_path() wants current_version to exist, but that's just
+        # a safeguard. We don't care and don't want to fetch the current
+        # version field to improve perf, so give it a fake one.
+        obj._current_version = Version()
+        return absolutify(obj.get_url_path())
 
 
 class StaticCategorySerializer(serializers.Serializer):
