@@ -1114,7 +1114,7 @@ msgstr "{0} atrás"
 
 #, python-format
 msgid "%B %e, %Y"
-msgstr "%B %e, %Y"
+msgstr "%%B %%e, %%Y"
 
 msgid "Title"
 msgstr "Título"

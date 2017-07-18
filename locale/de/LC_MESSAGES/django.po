@@ -1123,7 +1123,7 @@ msgstr "vor {0}"
 
 #, python-format
 msgid "%B %e, %Y"
-msgstr "%B %e, %Y"
+msgstr "%%B %%e, %%Y"
 
 msgid "Title"
 msgstr "Titel"
