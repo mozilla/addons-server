@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 09:36+0000\n"
-"PO-Revision-Date: 2017-07-18 14:48+0000\n"
+"PO-Revision-Date: 2017-07-18 14:55+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4143,11 +4143,10 @@ msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
 msgid "Update Your Legacy Extension"
 msgstr "Aggiorna una vecchia estensione"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
-"D’ora in poi la tecnologia WebExtensions sarà lo standard per lo sviluppo dei componenti aggiuntivi in Firefox. Se hai realizzato dei componenti aggiuntivi utilizzando vecchie tecnologie, dovrai "
-"aggiornarli affinché rimangano compatibili con le nuove versioni di Firefox."
+"Esiste una nuova tecnologia, compatibile con tutti i browser, per realizzare estensioni per Firefox. Se hai realizzato dei componenti aggiuntivi utilizzando vecchie tecnologie, dovrai aggiornarli "
+"affinché rimangano compatibili."
 
 msgid "Learn How"
 msgstr "Scopri come fare"
@@ -4158,9 +4157,8 @@ msgstr "Ultimissime dal fronte componenti aggiuntivi"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Visualizza tutti"
+msgstr "Segui il tutorial"
 
 msgid "View All Submissions"
 msgstr "Visualizza tutti i file caricati"
@@ -5049,9 +5047,8 @@ msgstr "Segnala abuso"
 msgid "View Privacy Policy"
 msgstr "Visualizza informativa sulla privacy"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Riavvio richiesto"
+msgstr "Richiede un pagamento"
 
 msgid "EULA"
 msgstr "EULA"
@@ -8410,9 +8407,9 @@ msgstr "Elimina la foto corrente"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Se lo desideri, presentati alla comunità! Questo testo apparirà nella pagina pubblica del tuo profilo."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Tag HTML consentiti: {0}. Non è consentito inserire link."
+msgstr "Tag HTML consentiti: %(html)s. Non è consentito inserire link."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Decidi quali raccolte visualizzare nel tuo profilo."
