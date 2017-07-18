@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,12 +546,6 @@ msgstr "{0} জন্য গোপনীয়তা নীতি"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "গোপনীয়তার নীতি"
-
-msgid "QR code for add-on"
-msgstr "অ্যাড-অনের জন্য QR কোড"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "অপব্যবহার রিপোর্ট করুন"
@@ -1096,10 +1090,6 @@ msgstr "অ্যাড-অন"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} আগে"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "শিরেনাম"
@@ -3221,6 +3211,19 @@ msgstr "অ্যাড-অনটি পরীক্ষামূলক।"
 msgid "This add-on is ready for general use."
 msgstr ""
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "পুনরায় চালু করা প্রয়োজন"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4951,6 +4954,10 @@ msgstr "অপব্যবহারের রিপোর্ট"
 msgid "View Privacy Policy"
 msgstr "গোপনীয়তার নীতি দেখুন"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "পুনরায় চালু করা প্রয়োজন"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -4974,21 +4981,6 @@ msgstr "এই অ্যাড-অনটি সম্পর্কে আরও �
 
 msgid "Image Gallery"
 msgstr "ইমেজ গ্যালারি"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "ডেভেলপমেন্ট চ্যানেল আপনাকে এই অ্যাড-অনের সাধারণ ব্যবহারকারীর নিকট উন্মুক্ত করার পূর্বে পরীক্ষামূলক সংস্করণ পরীক্ষা করতে দেয়। একবার ডেভেলপমেন্ট সংস্করণ ইনস্টল করলে আপনি এই চ্যানেল থেকে হালনাগাদ পেতে থাকবেন।"
-
-msgid "Install development version"
-msgstr "উন্নত সংস্করণ ইনস্টল করুন"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>সতর্কতা:</strong> এই অ্যাড-অনটির ডেভলপমেট মজিলা দ্বারা পর্যালোচনা করা হয়নি। যখনই আপনি একটি ডেভলপমেন্ট সংস্করণ ইন্সটল করবেন, তার পর থেকেই আপনি ডেভলপার হতে অ্যাড অনটির ডেভলপমেন্ট হালনাগাদ পেতে থাকবেন। "
-"ডেভলপমেন্ট হালনাগাদ বন্ধ করতে, উপরের লিংক হতে পূর্বনির্ধারিত সংস্করণটি ইন্সটল করুন।"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "এখানে দেখার মতো কিছু নেই!  ডেভেলপার কোনো বিবরণ অন্তর্ভুক্ত করেনি।"

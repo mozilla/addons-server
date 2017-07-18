@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -559,12 +559,6 @@ msgstr "سياسية الخصوصية لـ {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "سياسة الخصوصية"
-
-msgid "QR code for add-on"
-msgstr "رمز QR للإضافة"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "إبلاغ عن إساءة استخدام"
@@ -1119,10 +1113,6 @@ msgstr "الإضافات"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} مضت"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "العنوان"
@@ -3285,6 +3275,19 @@ msgstr "هذه الإضافة أزالها مطوّرها."
 msgid "This add-on is ready for general use."
 msgstr ""
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "حقول مطلوبة"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5064,6 +5067,10 @@ msgstr "بلاغات الإساءة"
 msgid "View Privacy Policy"
 msgstr "عرض سياسة الخصوصية"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "حقول مطلوبة"
+
 msgid "EULA"
 msgstr "اتفاقية ترخيص المستخدم"
 
@@ -5087,21 +5094,6 @@ msgstr "المزيد عن هذه الإضافة"
 
 msgid "Image Gallery"
 msgstr "معرض الصور"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "تتيح لك قناة التطوير اختبار الإصدارات الجديدة التجريبية من هذه الإضافة قبل صدورها إلى العامة. بمجرد تثبيتك للإصدارة التطويرية، ستستمر باستقبال التحديثات من هذه القناة."
-
-msgid "Install development version"
-msgstr "تثبيت الإصدارة التطويرية"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>تحذير:</strong> الإصدارات التطويرية لهذه الإضافة لم تراجع بعد من قِبَل موزيلا. بمجرد تثبيتك للإصدارة التطويرية ستستمر باستقبال التحديثاث التطويرية من مطور الإضافة. لإيقاف استقبال التحديثات "
-"التطويرية، أعِد تثبيت الإصدارة الافتراضية من الرابط العلوي الأساسي."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""

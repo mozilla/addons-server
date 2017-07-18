@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -547,12 +547,6 @@ msgstr "ਲਈ ਪਰਦਾ ਨੀਤੀ {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
-
-msgid "QR code for add-on"
-msgstr "ਐਡ-ਆਨ ਲਈ QR ਕੋਡ"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
@@ -1109,10 +1103,6 @@ msgstr "ਐਡ-ਆਨ"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "ਟਾਈਟਲ"
@@ -3285,6 +3275,19 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ 
 msgid "This add-on is ready for general use."
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
 
@@ -5081,6 +5084,10 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 msgid "View Privacy Policy"
 msgstr "ਵੇਖੋ ਪਰਦਾ ਨੀਤੀ"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5104,21 +5111,6 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਹੋਰ"
 
 msgid "Image Gallery"
 msgstr "ਤਸਵੀਰ ਗੈਲਰੀ"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "ਵਿਕਾਸ ਚੈਨਲ ਤੁਹਾਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਨਵੇਂ ਪ੍ਰਯੋਗਆਤਮਕ ਵਰਜਨ ਦੀ ਪਰਖ ਕਰਨ ਦਵੇਗਾ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਇਹ ਆਮ ਲੋਕਾਂ ਲਈ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ, ਤੁਹਾਡਾ ਇਸ ਚੈਨਲ ਤੋਂ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ।"
-
-msgid "Install development version"
-msgstr "ਇੰਸਟਾਲ ਵਿਕਾਸ ਵਰਜਨ"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>ਸਾਵਧਾਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨ ਦੀ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਇੱਕ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ ਤਾਂ ਤੁਹਾਡਾ ਇਸ ਦੇ ਡਿਵੈਲਪਰ ਤੋਂ ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣੀਆਂ ਬੰਦ ਕਰਨ ਲਈ, "
-"ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -539,12 +539,6 @@ msgstr "นโยบายความเป็นส่วนตัวของ
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
-
-msgid "QR code for add-on"
-msgstr "QR code ของส่วนเสริม"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "รายงานการละเมิด"
@@ -1087,10 +1081,6 @@ msgstr "ส่วนเสริม"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ที่ผ่านมา"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "หัวข้อ"
@@ -3236,6 +3226,19 @@ msgstr "ส่วนเสริมนี้ถูกเอาออกโดย
 msgid "This add-on is ready for general use."
 msgstr ""
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "ช่องที่ต้องการ"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4979,6 +4982,10 @@ msgstr "รายงานการละเมิด"
 msgid "View Privacy Policy"
 msgstr "ดูนโยบายความเป็นส่วนตัว"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "ช่องที่ต้องการ"
+
 msgid "EULA"
 msgstr "ข้อตกลงอนุญาตใช้งานซอฟต์แวร์"
 
@@ -5000,19 +5007,6 @@ msgstr "เพิ่มเติมเกี่ยวกับส่วนเส
 
 msgid "Image Gallery"
 msgstr "คลังภาพ"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "ช่องการพัฒนาเชิญชวนให้คุณทดสอบรุ่นทดลองใหม่ของส่วนเสริมนี้ก่อนจะถูกปล่อยสู่สาธารณะทั่วไป เมื่อคุณติดตั้งรุ่นพัฒนา คุณจะยังคงได้รับการปรับปรุงจากช่องนี้"
-
-msgid "Install development version"
-msgstr "ติดตั้งรุ่นพัฒนา"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>คำเตือน:</strong> รุ่นพัฒนาของส่วนเสริมนี้ยังไม่ถูกตรวจสอบโดย Mozilla เมื่อคุณติดตั้งรุ่นพัฒนาคุณจะยังคงได้รับการปรับปรุงเป็นรุ่นพัฒนาจากนักพัฒนานี้ เพื่อหยุดการปรับปรุงเป็นรุ่นพัฒนา ติดตั้งรุ่นเริ่มต้นใหม่จากลิงก์ด้านบน"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""

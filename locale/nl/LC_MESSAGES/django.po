@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-15 10:04+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -555,12 +555,6 @@ msgstr "Privacybeleid voor {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Privacybeleid"
-
-msgid "QR code for add-on"
-msgstr "QR-code voor add-on"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "Wilt u {0} op uw mobiele Firefox? Scan deze QR-code om direct op uw telefoon te installeren. (U hebt een QR-lezer nodig. Zoek op de marktplaats van uw telefoon als u er geen hebt.)"
 
 msgid "Report Abuse"
 msgstr "Misbruik melden"
@@ -1117,10 +1111,6 @@ msgstr "Add-ons"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} geleden"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%d %%b %%Y"
 
 msgid "Title"
 msgstr "Titel"
@@ -3268,6 +3258,19 @@ msgstr "Deze add-on is experimenteel."
 msgid "This add-on is ready for general use."
 msgstr "Deze add-on is gereed voor algemeen gebruik."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Vereist herstart"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Categorieën zijn de voornaamste manier waarop gebruikers door add-ons bladeren. Kies er één die de functionaliteit van uw add-on in de meeste gevallen beschrijft. Alleen relevant voor vermelde add-"
@@ -5012,6 +5015,10 @@ msgstr "Misbruikmeldingen"
 msgid "View Privacy Policy"
 msgstr "Privacybeleid bekijken"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Vereist herstart"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5032,23 +5039,6 @@ msgstr "Meer over deze add-on"
 
 msgid "Image Gallery"
 msgstr "Afbeeldingengalerij"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Met het Ontwikkelingskanaal kunt u een experimentele nieuwe versie van deze add-on testen voordat deze wordt vrijgegeven voor het publiek. Als u de ontwikkelversie installeert, ontvangt u voortaan "
-"updates via dit kanaal."
-
-msgid "Install development version"
-msgstr "Ontwikkelversie installeren"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet beoordeeld door Mozilla. Als u een ontwikkelversie installeert, ontvangt u voortaan ontwikkelingsupdates van deze "
-"ontwikkelaar. Om geen ontwikkelingsupdates meer te ontvangen dient u de standaardversie via bovenstaande koppeling te installeren."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Niets te zien hier!  De ontwikkelaar heeft geen details gegeven."

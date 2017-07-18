@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -571,12 +571,6 @@ msgstr "Política de privadesa del {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Política de privadesa"
-
-msgid "QR code for add-on"
-msgstr "Codi QR del complement"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "Denuncieu un abús"
@@ -1147,10 +1141,6 @@ msgstr "Complements"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "fa {0}"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr ""
@@ -3322,6 +3312,19 @@ msgstr "Aquest complement requereix un programa extern."
 msgid "This add-on is ready for general use."
 msgstr "Aquest complement requereix un programa extern."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Camps obligatoris"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5122,6 +5125,10 @@ msgstr "Informes d'abús"
 msgid "View Privacy Policy"
 msgstr "Mostra la política de privadesa"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Camps obligatoris"
+
 msgid "EULA"
 msgstr "ALUF (EULA)"
 
@@ -5147,23 +5154,6 @@ msgstr "Més informació sobre aquest complement"
 
 msgid "Image Gallery"
 msgstr "Galeria d'imatges"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"El canal de desenvolupament us permet provar una versió experimental nova d'aquest complement abans que es publiqui. Una vegada instal·leu la versió de desenvolupament, us permetrà rebre "
-"actualitzacions des d'aquest canal."
-
-msgid "Install development version"
-msgstr "Instal·la la versió de desenvolupament"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Atenció:</strong> Mozilla no revisa les versions de desenvolupament d'aquest complement. Un cop instal·leu una versió de desenvolupament, continuareu rebent actualitzacions del complement a "
-"mesura que el desenvolupador les publiqui. Si voleu parar de rebre actualitzacions de desenvolupament, torneu a instal·lar la versió estable amb l'enllaç anterior."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""

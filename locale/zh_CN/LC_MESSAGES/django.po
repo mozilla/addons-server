@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-07-07 19:20+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -539,12 +539,6 @@ msgstr "{0} 的隐私政策"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "隐私政策"
-
-msgid "QR code for add-on"
-msgstr "附加组件的二维码"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "想在您的移动版 Firefox 上使用 {0}？扫描此二维码，直接安装到您的手机。（您需要一个二维码扫描器。如果没有，在您的手机应用商店中搜索下载。）"
 
 msgid "Report Abuse"
 msgstr "报告滥用"
@@ -1083,10 +1077,6 @@ msgstr "附加组件"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} 前"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%Y-%%m-%%d"
 
 msgid "Title"
 msgstr "标题"
@@ -3194,6 +3184,19 @@ msgstr "这个附加组件为实验性。"
 msgid "This add-on is ready for general use."
 msgstr "这个附加组件可用于一般用途。"
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "需要重启"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "分类是许多用户浏览附加组件的主要方式。选择任何您的附加组件的功能适合展示的分类。此项只与上架的附加组件相关。"
 
@@ -4883,6 +4886,10 @@ msgstr "报告滥用行为"
 msgid "View Privacy Policy"
 msgstr "查看隐私政策"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "需要重启"
+
 msgid "EULA"
 msgstr "最终用户许可协议"
 
@@ -4903,19 +4910,6 @@ msgstr "关于此附加组件的更多信息"
 
 msgid "Image Gallery"
 msgstr "图片集"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "开发通道让您可以在此附加组件的正式版本发布前体验实验性的新版本。一旦您安装了开发版本，您将持续从此通道获得更新。"
-
-msgid "Install development version"
-msgstr "安装开发版本"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。一旦您安装此开发版本，您将持续收到来自此开发者的开发版本的更新。如果您不想再收到此更新，请从上面的链接重新安装默认版本。"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "这里什么都没有！开发者没有写下任何详细信息。"

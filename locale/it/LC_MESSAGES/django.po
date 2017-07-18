@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-16 07:22+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -561,14 +561,6 @@ msgstr "Informativa sulla privacy per {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Informativa sulla privacy"
-
-msgid "QR code for add-on"
-msgstr "Codice QR del componente aggiuntivo"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"Vuoi aggiungere {0} alla versione di Firefox del tuo dispositivo <em>mobile</em>? Leggi questo codice QR per installarlo direttamente. Per farlo è necessario che sullo smartphone sia installato un "
-"lettore di codici QR, nel caso non ci sia, cercane uno sul marketplace del tuo smartphone."
 
 msgid "Report Abuse"
 msgstr "Segnala abuso"
@@ -1130,10 +1122,6 @@ msgstr "Componenti aggiuntivi"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} fa"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%e %%b %%Y"
 
 msgid "Title"
 msgstr "Titolo"
@@ -3293,6 +3281,19 @@ msgstr "Questo componente aggiuntivo è sperimentale."
 msgid "This add-on is ready for general use."
 msgstr "Questo componente aggiuntivo è pronto per la distribuzione a tutti gli utenti."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Riavvio richiesto"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Le categorie sono lo strumento principale attraverso cui gli utenti esplorano i componenti aggiuntivi. Per ottenere massima visibilità seleziona la categoria più adatta alle caratteristiche del "
@@ -5068,6 +5069,10 @@ msgstr "Segnala abuso"
 msgid "View Privacy Policy"
 msgstr "Visualizza informativa sulla privacy"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Riavvio richiesto"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5088,23 +5093,6 @@ msgstr "Altre informazioni"
 
 msgid "Image Gallery"
 msgstr "Galleria delle anteprime"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Il Canale di sviluppo ti permette di provare le ultime versioni sperimentali di questo componente aggiuntivo prima che vengano distribuite al pubblico. Una volta installata una versione di "
-"sviluppo, continuerai a ricevere aggiornamenti da questo canale di distribuzione."
-
-msgid "Install development version"
-msgstr "Installa versione di sviluppo"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Attenzione:</strong> le versioni di sviluppo di questo componente aggiuntivo non sono state verificate da Mozilla. Installando una versione di sviluppo continuerai a ricevere tutti gli "
-"aggiornamenti relativi alle versioni sperimentali. Per non ricevere più questo tipo di aggiornamenti, reinstalla la versione ufficiale utilizzando il link fornito."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nessuna informazione disponibile. Lo sviluppatore non ha inserito dati."

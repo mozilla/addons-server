@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -550,12 +550,6 @@ msgstr "Política de privacidade para {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
-
-msgid "QR code for add-on"
-msgstr "Código QR para o extra"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
 
 msgid "Report Abuse"
 msgstr "Denunciar abuso"
@@ -1114,10 +1108,6 @@ msgstr "Extras"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "à {0}"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "Título"
@@ -3303,6 +3293,19 @@ msgstr "Este extra necessita de software externo."
 msgid "This add-on is ready for general use."
 msgstr "Este extra necessita de software externo."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Campos necessários"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "As categorias são o método primário de navegação para os utilizadores encontrarem extras. Escolha qualquer uma que se adeque à funcionalidade do seu extra para uma maior exposição. Isto apenas é "
@@ -5137,6 +5140,10 @@ msgstr "Denúncias de abuso"
 msgid "View Privacy Policy"
 msgstr "Ver política de privacidade"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Campos necessários"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5160,23 +5167,6 @@ msgstr "Mais sobre este extra"
 
 msgid "Image Gallery"
 msgstr "Galeria de imagens"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"O Canal de Desenvolvimento permite que teste uma versão experimental do novo extra antes de este ser lançado para o público em geral. Depois de instalar a versão de desenvolvimento, vai continuar a "
-"receber as atualizações a partir deste canal."
-
-msgid "Install development version"
-msgstr "Instalar versão de desenvolvimento"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla. Depois de instalar uma versão de desenvolvimento vai continuar a receber atualizações de "
-"desenvolvimento deste programador. Para parar de receber atualizações de desenvolvimento, reinstale a versão por omissão na ligação acima."
 
 #, fuzzy
 msgid "Nothing to see here!  The developer did not include any details."

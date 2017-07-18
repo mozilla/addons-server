@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-15 15:16+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -563,12 +563,6 @@ msgstr "Política de privacidad de {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Política de privacidad"
-
-msgid "QR code for add-on"
-msgstr "Código QR para el complemento"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "¿Quieres tener {0} en tu móvil Firefox?  Escanea este código QR para instalarlo directamente.  Necesitarás un lector de código QR.  Si no tienes, busca uno en el marketplace de tu teléfono."
 
 msgid "Report Abuse"
 msgstr "Informar de uso indebido"
@@ -1125,10 +1119,6 @@ msgstr "Complementos"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "hace {0}"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%b %%e, %%Y"
 
 msgid "Title"
 msgstr "Título"
@@ -3281,6 +3271,19 @@ msgstr "Este complemento es experimental."
 msgid "This add-on is ready for general use."
 msgstr "Este complemento está listo para uso general."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Necesita reiniciarse"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Las categorías son la forma principal de buscar complementos.\n"
@@ -5089,6 +5092,10 @@ msgstr "Informes de uso indebido"
 msgid "View Privacy Policy"
 msgstr "Ver la política de privacidad"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Necesita reiniciarse"
+
 msgid "EULA"
 msgstr "CLUF"
 
@@ -5109,23 +5116,6 @@ msgstr "Más sobre este complemento"
 
 msgid "Image Gallery"
 msgstr "Galería de imágenes"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"El canal de desarrollo te permite probar una nueva versión experimental de este complemento antes de que sea público. Una vez instalada la versión de desarrollo, recibirás las actualizaciones de "
-"este canal."
-
-msgid "Install development version"
-msgstr "Instalar la versión de desarrollo"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Atención:</strong> las versiones de pruebas de este complemento no han sido revisadas por Mozilla. Una vez instales la versión de desarrollo, continuarás recibiendo actualizaciones de "
-"desarrollo. Para dejar de recibirlas, reinstala la versión por defecto desde el siguiente enlace."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "¡Nada que mostrar aquí!  El desarrollador no incluyó ningún detalle."

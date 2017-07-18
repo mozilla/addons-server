@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-04-23 03:04+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -548,14 +548,6 @@ msgstr "Kebijakan Privasi untuk {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Kebijakan Privasi"
-
-msgid "QR code for add-on"
-msgstr "Kode QR untuk pengaya"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"Ingin {0} pada Firefox di perangkat bergerak Anda?  Pindai kode QR berikut ini untuk memasangnya secara langsung pada ponsel Anda.  (Anda memerlukan pembaca QR. Carilah di toko perangkat lunak "
-"ponsel Anda jika belum memilikinya.)"
 
 msgid "Report Abuse"
 msgstr "Laporkan Penyalahgunaan"
@@ -1104,10 +1096,6 @@ msgstr "Pengaya"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} yang lalu"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%b %%e, %%Y"
 
 msgid "Title"
 msgstr "Judul"
@@ -3261,6 +3249,19 @@ msgstr "Pengaya ini merupakan percobaan."
 msgid "This add-on is ready for general use."
 msgstr "Pengaya ini siap untuk digunakan secara umum."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Perlu Mulai Ulang"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Kategori adalah cara utama pengguna menelusuri pengaya.\n"
@@ -5155,6 +5156,10 @@ msgstr "Laporan Penyalahgunaan"
 msgid "View Privacy Policy"
 msgstr "Tampilkan Kebijakan Privasi"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Perlu Mulai Ulang"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5178,23 +5183,6 @@ msgstr "Lebih jauh tentang pengaya ini"
 
 msgid "Image Gallery"
 msgstr "Galeri Gambar"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Saluran Pengembang memungkinkan anda mengetes versi baru yang eksperimental dari pengaya ini sebelum diluncurkan kepada publik. Sekali anda memasang versi pengembangan, anda akan terus mendapatkan "
-"pembaruan dari saluran ini."
-
-msgid "Install development version"
-msgstr "Pasang versi pengembangan"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Awas:</strong> Versi pengembangan pengaya ini belum diulas oleh Mozilla. Sekali anda memasang versi pengembangan anda akan terus menerima pembaruan pengembangan dari pengembang ini. Untuk "
-"berhenti menerimanya, pasang kembali versi tetap dari tautan di atas."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tidak ada yang bisa dilihat di sini!  Pengembang tidak menyertakan rincian apapun."

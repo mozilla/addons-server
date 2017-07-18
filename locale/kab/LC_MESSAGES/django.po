@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-08 08:46+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -545,12 +545,6 @@ msgstr "Tsertit tabaḍnit i {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Tasertit n tbaḍnit"
-
-msgid "QR code for add-on"
-msgstr "Tangalt QR i uzegrir"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "Tebɣiḍ {0} ɣefFirefox aziraz ? Ṭṭef tangalt QR akken ad yebded srid ɣef tiliɣri yinek (tesriḍ ameɣri n tengalt QR. Nadi di marketplace n yienk inek ma yella ur tufiḍ ara yakan)."
 
 msgid "Report Abuse"
 msgstr "Azen yir aseqdec"
@@ -1096,10 +1090,6 @@ msgstr "Izegrar"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} aya"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%b %%e, %%Y"
 
 msgid "Title"
 msgstr "Azwel"
@@ -3229,6 +3219,19 @@ msgstr "Azegrir-agi d armitan."
 msgid "This add-on is ready for general use."
 msgstr "Azegrir-agi ihegga i useqdec amatu."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Yesra asenker tikelt nniden"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -4939,6 +4942,10 @@ msgstr "Assaγ n uẓekker"
 msgid "View Privacy Policy"
 msgstr "Wali tasertit n tbaḍnit"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Yesra asenker tikelt nniden"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -4962,21 +4969,6 @@ msgstr "Ugar γef uzegrir-agi"
 
 msgid "Image Gallery"
 msgstr "Timidelt n tugniwin"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "Abad n tneflit ad k-yeǧǧ ad tegeḍ asekyed n lqem armitan n uzegrir-agi send ad yettuzuzer i yak yiwen. Ticki lqem n tneflit yebded, tzemreḍ ad tkemleḍ awway n ileqman n ubadu-agi."
-
-msgid "Install development version"
-msgstr "Sebded lqem n tneflit"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Γur-k:</strong> Ileqman n tneflit n uzegrir-agi ur ttwasneden ra sγur Mozilla. Ticki lqem n tneflit yebded, Tzemreḍ ad d-remseḍ ileqman n tneflit seg uneflay-agi. Akken ad tesḥebseḍ, sebded "
-"lqem amezwer n useγwen daw-a."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."

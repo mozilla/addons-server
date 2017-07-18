@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -546,12 +546,6 @@ msgstr "{0}의 개인 정보 보호 정책"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
-
-msgid "QR code for add-on"
-msgstr "부가 기능 QR 코드"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "모바일용 Firefox에 {0}을 설치하고 싶으세요?  이 QR 코드를 스캔하면 바로 폰에 설치하실 수 있습니다.  (QR리더가 필요합니다.  없을 경우 보유하신 폰의 마켓플레이스에서 찾아보세요.)"
 
 msgid "Report Abuse"
 msgstr "정책 위반 신고"
@@ -1110,10 +1104,6 @@ msgstr "부가 기능"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} 전"
-
-#, python-format
-msgid "%B %e, %Y"
-msgstr ""
 
 msgid "Title"
 msgstr "제목"
@@ -3264,6 +3254,19 @@ msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
 msgid "This add-on is ready for general use."
 msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "다시 시작 필요"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5069,6 +5072,10 @@ msgstr "정책 위반 신고"
 msgid "View Privacy Policy"
 msgstr "개인 정보 보호 정책 보기"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "다시 시작 필요"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5094,21 +5101,6 @@ msgstr "상세 정보"
 
 msgid "Image Gallery"
 msgstr "이미지 갤러리"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "개발 채널은 이 부가 기능이 공개되기 이전의 새 시험용 버전을 테스트해주는 곳입니다. 개발자 버전을 설치하면 이 채널을 통해 업데이트를 지속적으로 받아볼 수 있습니다."
-
-msgid "Install development version"
-msgstr "개발자 버전 설치"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그"
-"만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
 
 #, fuzzy
 msgid "Nothing to see here!  The developer did not include any details."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:38+0000\n"
+"POT-Creation-Date: 2017-07-18 09:36+0000\n"
 "PO-Revision-Date: 2017-04-07 05:29+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,12 +546,6 @@ msgstr "Privacy Policy for {0}"
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
 msgstr "Privacy Policy"
-
-msgid "QR code for add-on"
-msgstr "QR code for add-on"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 
 msgid "Report Abuse"
 msgstr "Report Abuse"
@@ -1099,10 +1093,6 @@ msgstr "Add-ons"
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ago"
-
-#, fuzzy, python-format
-msgid "%B %e, %Y"
-msgstr "%%e %%b %%Y"
 
 msgid "Title"
 msgstr "Title"
@@ -3240,6 +3230,19 @@ msgstr "This add-on is experimental."
 msgid "This add-on is ready for general use."
 msgstr "This add-on is ready for general use."
 
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Requires Restart"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Categories are the primary way users browse through add-ons.\n"
@@ -5027,6 +5030,10 @@ msgstr "Abuse Reports"
 msgid "View Privacy Policy"
 msgstr "View Privacy Policy"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Requires Restart"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5050,23 +5057,6 @@ msgstr "More about this add-on"
 
 msgid "Image Gallery"
 msgstr "Image Gallery"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-
-msgid "Install development version"
-msgstr "Install development version"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nothing to see here!  The developer did not include any details."
