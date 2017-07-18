@@ -2858,3 +2858,55 @@ class TestStaticCategoryView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response['cache-control'] == 'max-age=21600'
+
+
+class TestLanguageToolsView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestLanguageToolsView, self).setUp()
+        self.url = reverse('addon-language-tools')
+
+    def test_wrong_app(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 400
+
+        response = self.client.get(self.url, {'app': 'foo'})
+        assert response.status_code == 400
+
+    def test_basic(self):
+        dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        dictionary_spelling_variant = addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+
+        # These add-ons below should be ignored: they are either not public or
+        # of the wrong type, not supporting the app we care about, or their
+        # target locale is empty.
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            status=amo.STATUS_NOMINATED)
+        addon_factory(type=amo.ADDON_DICT, target_locale='')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale=None)
+        addon_factory(target_locale='fr')
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 3
+        expected = [dictionary, dictionary_spelling_variant, language_pack]
+
+        assert (
+            set(item['id'] for item in data['results']) ==
+            set(item.pk for item in expected))
+
+        assert 'locale_disambiguation' in data['results'][0]
+        assert 'target_locale' in data['results'][0]

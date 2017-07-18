@@ -15,8 +15,8 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
-    ESAddonSerializerWithUnlistedData, SimpleVersionSerializer,
-    VersionSerializer)
+    ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
+    SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
@@ -688,3 +688,30 @@ class TestSimpleVersionSerializerOutput(TestCase):
         assert result['license']['name']['fr'] == u'Mä Licence'
         assert result['license']['url'] == 'http://license.example.com/'
         assert 'text' not in result['license']
+
+
+class TestLanguageToolsSerializerOutput(TestCase):
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+
+    def serialize(self):
+        serializer = LanguageToolsSerializer(context={'request': self.request})
+        return serializer.to_representation(self.addon)
+
+    def test_basic(self):
+        self.addon = addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation=u'lolé')
+        result = self.serialize()
+        assert result['id'] == self.addon.pk
+        assert result['default_locale'] == self.addon.default_locale
+        assert result['locale_disambiguation'] == (
+            self.addon.locale_disambiguation)
+        assert result['name'] == {'en-US': self.addon.name}
+        assert result['target_locale'] == self.addon.target_locale
+        assert result['url'] == absolutify(self.addon.get_url_path())
+
+        addon_testcase = AddonSerializerOutputTestMixin()
+        addon_testcase.addon = self.addon
+        addon_testcase._test_version(
+            self.addon.current_version, result['current_version'])

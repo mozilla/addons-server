@@ -359,3 +359,35 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
 
     :>json string|object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
+
+
+--------------
+Language Tools
+--------------
+
+.. _addon-language-tools:
+
+This endpoint allows you to list all public language tools add-ons available
+on AMO.
+
+.. http:get:: /api/v3/addons/language-tools/
+
+    .. note::
+        Because this endpoint is intended to be used to feed a page that
+        displays all available language tools in a single page, it is not
+        paginated as normal, and instead will return all results without
+        obeying regular pagination parameters. The ordering is left undefined,
+        it's up to the clients to re-order results as needed before displaying
+        the add-ons to the end-users.
+
+    :query string app: Mandatory. Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :>json array results: An array of language tools.
+    :>json int results[].id: The add-on id on AMO.
+    :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
+    :>json string results[].default_locale: The add-on default locale for translations.
+    :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :>json string results[].locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
+    :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
+    :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
+    :>json string results[].url: The (absolute) add-on detail URL.

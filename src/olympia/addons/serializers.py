@@ -486,3 +486,14 @@ class StaticCategorySerializer(serializers.Serializer):
 
     def get_type(self, obj):
         return ADDON_TYPE_CHOICES_API[obj.type]
+
+
+class LanguageToolsSerializer(AddonSerializer):
+    target_locale = serializers.CharField()
+    locale_disambiguation = serializers.CharField()
+
+    class Meta:
+        model = Addon
+        fields = ('id', 'current_version', 'default_locale',
+                  'locale_disambiguation', 'name', 'target_locale', 'type',
+                  'url', )
