@@ -879,6 +879,9 @@ class LanguageToolsView(ListAPIView):
             target_locale__isnull=False).exclude(target_locale='')
 
     def list(self, request, *args, **kwargs):
+        # Ignore pagination (return everything) but do wrap the data in a
+        # 'results' property to mimic what the default implementation of list()
+        # does in DRF.
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data})
