@@ -1,21 +1,24 @@
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version:  addons\n"
+"Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2012-03-02 17:35-0700\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2017-07-18 10:15+0000\n"
+"Last-Translator: Dinesh <dineshmv38@gmail.com>\n"
 "Language-Team: none\n"
-"Language: \n"
+"Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} నక్షత్రము"
+msgstr[1] "{0} నక్షత్రాలు"
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -24,7 +27,7 @@ msgid "Select a file..."
 msgstr ""
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -33,7 +36,7 @@ msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} యొక్క {0}"
 
 msgid "Cancel"
 msgstr ""
@@ -45,12 +48,12 @@ msgid "Error with {0}"
 msgstr ""
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "మీ పొడిగింతను ప్రాసెస్ చేయడానికి మేము ఒక క్రొత్త లింటర్ను ప్రారంభించాము. దయచేసి ఏదైనా సమస్యలను GitHub లో నివేదించారో లేదో నిర్ధారించుకోండి"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "మీ పొడిగింత {0} లోపంతో ధృవీకరణ విఫలమైంది."
+msgstr[1] "మీ పొడిగింత {0} లోపాలతో ధృవీకరణ విఫలమైంది."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -64,7 +67,7 @@ msgid "Validating {0}"
 msgstr ""
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
@@ -76,17 +79,17 @@ msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "మీ పొడిగింత ధ్రువీకరణ సమయం ముగిసింది, ఇది మానవీయంగా సమీక్షించబడుతుంది."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "లోపాలు లేకుండా మరియు {0} హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
+msgstr[1] "లోపాలు మరియు {0} హెచ్చరికలు లేకుండా మీ పొడిగింత ధృవీకరించబడింది."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "మీ పొడిగింత లోపాలు మరియు {0} సందేశాలతో ధృవీకరించబడలేదు."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
@@ -161,22 +164,22 @@ msgid "Creative Commons Attribution 3.0"
 msgstr ""
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "మీ థీము పేరు"
 
 msgid "Flagged for review"
 msgstr ""
