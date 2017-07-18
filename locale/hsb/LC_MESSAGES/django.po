@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 09:36+0000\n"
-"PO-Revision-Date: 2017-07-18 12:29+0000\n"
+"PO-Revision-Date: 2017-07-18 12:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3280,18 +3280,17 @@ msgstr "Přidatk je eksperimentelny."
 msgid "This add-on is ready for general use."
 msgstr "Tutón přidatk je hotowy za powšitkowne wužiwanje."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Trjeba znowastartowanje"
+msgstr "Płaćenje trěbne?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Stajće hóčku do kašćika, jeli sej hłowne funkcije tutoho přidatka někotru formu płaćenja dočasa abo po testowej dobje wužaduja, zo bychu fungowali."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "Tutón přidatk sej płaćenje, njedarmotne słužby abo programy abo přidatnu hardwaru wužaduje."
+msgstr "Tutón přidatk sej płaćenje, płaćomne słužby, softwaru abo přidatnu hardwaru wužaduje."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Tutón přidatk sej přidatne płaćenja, płaćomne słužby, softwaru abo přidatnu hardwaru njewužaduje."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -5035,9 +5034,8 @@ msgstr "Rozprawy wo znjewužiwanju"
 msgid "View Privacy Policy"
 msgstr "Prawidła priwatnosće pokazać"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Trjeba znowastartowanje"
+msgstr "Płaćenje trěbne"
 
 msgid "EULA"
 msgstr "EULA"
