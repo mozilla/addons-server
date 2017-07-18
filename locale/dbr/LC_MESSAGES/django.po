@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 09:36+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4621,29 +4621,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ".ǝɹoɯ puɐ ´ʅoɹʇuoɔ ʎɐʅd-oʇnɐ ´ƃuıʞɔoʅq pɐ ´ǝpoɯ ɐɯǝuıɔ ǝʞıʅ ´sǝɹnʇɐǝɟ ǝqn⊥no⅄ ʍǝu ɟo ǝʇıns ɐ ʎoɾuƎ"
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ".ʎɹoɯǝɯ ɟo ɥɔunq ɐ dn ƃuıʍǝɥɔ ʇnoɥʇıʍ sɹǝʇʅıɟ ʇuǝʇuoɔ ɟo spuɐsnoɥʇ sǝɔɹoɟuǝ uıƃıɹO ʞɔoʅԐn .ɹǝʞɔoʅq pɐ ǝʌıʇɔǝɟɟǝ puɐ ʇɥƃıǝʍʇɥƃıʅ ∀"
+msgid "Block invisible trackers and spying ads that follow you around the Web."
+msgstr ""
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıssǝɹdxǝ ıɾoɯƎ"
+#, fuzzy
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
 
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ".ʎɐʍɐ ʞɔıʅɔ ǝuo ʇsnɾ sʎɐʍʅɐ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ".ǝzǝǝɹq ɐ sı sǝʅıɟ ƃuıɹɐɥs puɐ ƃuıɹoʇS .sɔıɥdɐɹƃ puɐ ʇxǝʇ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´sʇoɥsuǝǝɹɔs ʇsnɾ uɐɥʇ ǝɹoW"
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ".ǝɹoɯ puɐ ´ʅoɹʇuoɔ ʎɐʅd-oʇnɐ ´ƃuıʞɔoʅq pɐ ´ǝpoɯ ɐɯǝuıɔ ǝʞıʅ ´sǝɹnʇɐǝɟ ǝqn⊥no⅄ ʍǝu ɟo ǝʇıns ɐ ʎoɾuƎ"
 
 msgid "Approved reviews"
 msgstr "sʍǝıʌǝɹ pǝʌoɹdd∀"
