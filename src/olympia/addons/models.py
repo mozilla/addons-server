@@ -1211,10 +1211,9 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             self.current_version and self.current_version.is_restart_required)
 
-    def is_featured(self, app, lang=None):
+    def is_featured(self, app=None, lang=None):
         """Is add-on globally featured for this app and language?"""
-        if app:
-            return self.id in get_featured_ids(app, lang)
+        return self.id in get_featured_ids(app, lang)
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
