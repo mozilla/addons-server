@@ -266,7 +266,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -306,7 +306,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.reviewer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -339,7 +339,7 @@ class TestLogAndNotify(TestCase):
         assert not logs[0].details  # No details json because no comment.
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -368,7 +368,7 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
 
         recipients = self._recipients(send_mail_mock)
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
@@ -503,8 +503,8 @@ class TestLogAndNotify(TestCase):
         comments = u'Thîs ïs a revïewer replyîng'
         log_and_notify(action, comments, self.reviewer, self.version)
 
-        sender = '"%s" <notifications@%s>' % (
-            'mr \"quote\" escape', settings.INBOUND_EMAIL_DOMAIN)
+        sender = r'"mr \"quote\" escape" <notifications@%s>' % (
+            settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
 
 

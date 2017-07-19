@@ -1,5 +1,6 @@
 import datetime
 import re
+from email.utils import formataddr
 
 from django.conf import settings
 from django.template import loader
@@ -251,8 +252,7 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         subject = u'Mozilla Add-ons: %s %s %s' % (
             version.addon.name, version.version, action.short)
     template = template_from_user(note_creator, version)
-    from_name = unicode(note_creator.name).replace('"', '\"')
-    from_email = '"%s" <%s>' % (from_name, NOTIFICATIONS_FROM_EMAIL)
+    from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
         subject, template.render(author_context_dict),
         version, addon_authors, from_email, perm_setting)
