@@ -598,6 +598,10 @@ class ReviewBase(object):
         version is listed, incrementing AddonApprovalsCounter, which also
         resets the last human review date to now, and log it so that it's
         displayed later in the review page."""
+        # The confirm auto-approval action should not show the comment box,
+        # so override the text in case the reviewer switched between actions
+        # and accidently submitted some comments from another action.
+        self.data['comments'] = ''
         if self.version.channel == amo.RELEASE_CHANNEL_LISTED:
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
