@@ -33,6 +33,7 @@ addons:
   apt:
     packages:
       - swig
+      - gettext
   firefox: latest
 
 before_install:
