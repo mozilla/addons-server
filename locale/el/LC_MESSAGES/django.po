@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 20:04+0000\n"
+"PO-Revision-Date: 2017-07-19 21:10+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2778,7 +2778,7 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "View current"
-msgstr ""
+msgstr "Προβολή τρέχοντος"
 
 msgid "Invalid version range."
 msgstr "Μη έγκυρο εύρος εκδόσεων."
@@ -5027,7 +5027,7 @@ msgid "Logs"
 msgstr "Καταγραφές"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
 
 msgid "Moderated Review Log"
 msgstr ""
@@ -5621,13 +5621,13 @@ msgid "Add-on SDK Version:"
 msgstr "Έκδοση SDK προσθέτου:"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Διακοπές καρτελών:"
 
 msgid "Up file"
-msgstr ""
+msgstr "Αρχείο πάνω"
 
 msgid "Down file"
-msgstr ""
+msgstr "Αρχείο κάτω"
 
 msgid "Previous diff"
 msgstr "Προηγούμενη διαφορά"
@@ -5717,7 +5717,7 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Διακοσμήστε το πρόγραμμα περιήγησής σας για να γιορτάσετε την ημέρα του Αγίου Πατρικίου."
 
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Χαλαρώστε"
 
 msgid "Add-ons that help you on your travels!"
 msgstr "Πρόσθετα που σάς βοηθούν στα ταξίδια σας!"
@@ -6593,7 +6593,7 @@ msgstr ""
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (για συζητήσεις σχετικά με την ανάπτυξη και μεταβίβαση σε WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Φόρουμ προσθέτων"
