@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-13 12:59+0000\n"
+"PO-Revision-Date: 2017-07-19 19:59+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "Γίνεται επικύρωση {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Το πρόσθετό σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
@@ -139,7 +139,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Το αρχείο σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "You cancelled the upload."
 msgstr "Ακυρώσατε την μεταφόρτωση."
