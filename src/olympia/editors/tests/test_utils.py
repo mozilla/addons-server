@@ -744,6 +744,7 @@ class TestReviewHelper(TestCase):
                                .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
                                .get())
         assert activity.arguments == [self.addon, self.version]
+        assert activity.details['comments'] == ''
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')

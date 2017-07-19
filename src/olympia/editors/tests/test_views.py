@@ -2663,11 +2663,17 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.login_as_senior_editor()
-        response = self.client.post(
-            self.url, {'action': 'confirm_auto_approved'})
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
         assert response.status_code == 302
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
 
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
