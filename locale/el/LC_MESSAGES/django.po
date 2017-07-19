@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 21:10+0000\n"
+"PO-Revision-Date: 2017-07-19 21:11+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6605,7 +6605,7 @@ msgid "No."
 msgstr "Όχι."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "Υπάρχουν τρίτοι προγραμματιστές που μπορώ να προσλάβω ώστε να αναπτύξουν το πρόσθετό μου;"
 
 #, python-format
 msgid ""
