@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Q
 from .models import AbuseReport
 
 
@@ -32,14 +33,15 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         if self.value() == 'user':
             return queryset.filter(user__isnull=False)
         elif self.value() == 'addon':
-            return queryset.filter(addon__isnull=False)
+            return queryset.filter(Q(addon__isnull=False) |
+                                   Q(guid__isnull=False))
         return queryset
 
 
 class AbuseReportAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon', 'user', 'reporter')
     readonly_fields = ('ip_address', 'message', 'created', 'addon', 'user',
-                       'reporter')
+                       'guid', 'reporter')
     list_display = ('reporter', 'ip_address', 'type', 'target', 'message',
                     'created')
     list_filter = (AbuseReportTypeFilter, )
