@@ -872,8 +872,7 @@ class TestThemesProfile(TestCase):
     def test_themes_category(self):
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['fashion'])
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
 
         self.theme = amo.tests.addon_factory(
             type=amo.ADDON_PERSONA, users=[self.user], category=category)

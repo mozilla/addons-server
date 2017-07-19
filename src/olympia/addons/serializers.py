@@ -505,6 +505,7 @@ class StaticCategorySerializer(serializers.Serializer):
     misc = serializers.BooleanField()
     type = serializers.SerializerMethodField()
     weight = serializers.IntegerField()
+    description = serializers.CharField()
 
     def get_application(self, obj):
         return APPS_ALL[obj.application].short
