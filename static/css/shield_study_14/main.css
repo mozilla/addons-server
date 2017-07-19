@@ -36,7 +36,7 @@ body {
 }
 
 .title::before {
-  background: url('../../img/shield_study_12/small-firefox-logo@2x.png') no-repeat left center;
+  background: url('../../img/shield_study_14/small-firefox-logo@2x.png') no-repeat left center;
   background-size: 57px 59px;
   content: '';
   display: block;
