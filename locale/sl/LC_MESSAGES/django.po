@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 17:34+0000\n"
+"PO-Revision-Date: 2017-07-19 17:57+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4089,9 +4089,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Pišite nam"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Politika za dodatke"
+msgstr "Pravilniki"
 
 msgid "FAQ"
 msgstr "Pogosta vprašanja"
@@ -4160,13 +4159,11 @@ msgstr "Upravljajte dodatek"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Prijavite se za urejanje in upravljanje dodatka"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Izbrane razširitve"
+msgstr "Posodobite svojo zastarelo razširitev"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions so zdaj standard za razvoj dodatkov za Firefox. Da bodo vaši dodatki ostali združljivi, jih boste morali posodobiti."
+msgstr "Ustvarjen je bil nov standard za razvoj dodatkov za Firefox, uporabnih v vseh brskalnikih. Da bodo vaše razširitve ostale združljive, jih boste morali posodobiti."
 
 msgid "Learn How"
 msgstr "Več o tem"
@@ -4735,19 +4732,17 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ustavite zahrbtne sledilce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Izboljšajte svoje pisanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Ta razširitev podpira prek 25 jezikov in postavi orodje za lektoriranje neposredno v vaš brskalnik."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zajemajte posnetke zaslona {start_sub_heading}z {addon_name}{end_sub_heading}"
