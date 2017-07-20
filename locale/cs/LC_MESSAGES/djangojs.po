@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2016-12-23 22:41+0000\n"
+"PO-Revision-Date: 2017-07-20 06:21+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -70,7 +70,7 @@ msgid "Validating {0}"
 msgstr "Probíhá kontrola {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Velkosti vašeho doplňku překračuje limit ({0})."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
@@ -142,7 +142,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Typ souboru, který jste nahráli, nebyl rozpoznán."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Velikost vašeho souboru překračuje limit ({0})."
 
 msgid "You cancelled the upload."
 msgstr "Zrušili jste nahrávání."
