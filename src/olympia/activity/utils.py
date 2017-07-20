@@ -249,8 +249,8 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = u'Mozilla Add-ons: %s %s %s' % (
-            version.addon.name, version.version, action.short)
+        subject = u'Mozilla Add-ons: %s %s' % (
+            version.addon.name, version.version)
     template = template_from_user(note_creator, version)
     from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
