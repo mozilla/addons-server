@@ -48,6 +48,7 @@ class AddonSerializerOutputTestMixin(object):
                 'min': compat.min.version,
                 'max': compat.max.version
             }
+        assert data['is_strict_compatibility_enabled'] is False
         assert data['files']
         assert len(data['files']) == 1
 
@@ -328,9 +329,12 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['id'] == self.addon.pk
         assert result['current_version']
-        assert result['current_version']['reviewed'] == version.reviewed
-        assert result['current_version']['version'] == version.version
-        assert result['current_version']['files'] == []
+        result_version = result['current_version']
+        assert result_version['reviewed'] == version.reviewed
+        assert result_version['version'] == version.version
+        assert result_version['files'] == []
+        assert result_version['is_strict_compatibility_enabled'] is False
+        assert result_version['compatibility'] == {}
 
     def test_deleted(self):
         self.addon = addon_factory(name=u'My Deleted Addôn')
@@ -470,6 +474,37 @@ class AddonSerializerOutputTestMixin(object):
 
         self._test_version(
             self.addon.current_version, result['current_version'])
+
+    def test_special_compatibility_cases(self):
+        # Test an add-on with strict compatibility enabled.
+        self.addon = addon_factory(file_kw={'strict_compatibility': True})
+        result_version = self.serialize()['current_version']
+        assert result_version['compatibility'] == {
+            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'}
+        }
+        assert result_version['is_strict_compatibility_enabled'] is True
+
+        # Test an add-on with no compatibility info.
+        self.addon = addon_factory()
+        ApplicationsVersions.objects.filter(
+            version=self.addon.current_version).delete()
+        result_version = self.serialize()['current_version']
+        assert result_version['compatibility'] == {}
+        assert result_version['is_strict_compatibility_enabled'] is False
+
+        # Test an add-on with some compatibility info but which should not have
+        # any because its type is in NO_COMPAT.
+        self.addon = addon_factory(type=amo.ADDON_SEARCH)
+        av_min = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
+        av_max = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
+            min=av_min, max=av_max)
+        result_version = self.serialize()['current_version']
+        assert result_version['compatibility'] == {}
+        assert result_version['is_strict_compatibility_enabled'] is False
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):

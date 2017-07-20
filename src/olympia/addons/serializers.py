@@ -102,6 +102,7 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 class SimpleVersionSerializer(serializers.ModelSerializer):
     compatibility = serializers.SerializerMethodField()
+    is_strict_compatibility_enabled = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
     license = CompactLicenseSerializer()
@@ -109,8 +110,9 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Version
-        fields = ('id', 'license', 'compatibility', 'edit_url', 'files',
-                  'reviewed', 'url', 'version')
+        fields = ('id', 'compatibility', 'edit_url', 'files',
+                  'is_strict_compatibility_enabled', 'license', 'reviewed',
+                  'url', 'version')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -120,9 +122,14 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             'versions.edit', args=[obj.pk], prefix_only=True))
 
     def get_compatibility(self, obj):
+        if obj.addon.type in amo.NO_COMPAT:
+            return {}
         return {app.short: {'min': compat.min.version,
                             'max': compat.max.version}
                 for app, compat in obj.compatible_apps.items()}
+
+    def get_is_strict_compatibility_enabled(self, obj):
+        return any(file_.strict_compatibility for file_ in obj.all_files)
 
 
 class VersionSerializer(SimpleVersionSerializer):
@@ -133,7 +140,8 @@ class VersionSerializer(SimpleVersionSerializer):
     class Meta:
         model = Version
         fields = ('id', 'channel', 'compatibility', 'edit_url', 'files',
-                  'license', 'release_notes', 'reviewed', 'url', 'version')
+                  'is_strict_compatibility_enabled', 'license',
+                  'release_notes', 'reviewed', 'url', 'version')
 
 
 class AddonEulaPolicySerializer(serializers.ModelSerializer):
@@ -334,7 +342,9 @@ class ESBaseAddonSerializer(BaseESSerializer):
             is_webextension=data.get('is_webextension'),
             is_restart_required=data.get('is_restart_required', False),
             platform=data['platform'], size=data['size'],
-            status=data['status'], version=obj)
+            status=data['status'],
+            strict_compatibility=data.get('strict_compatibility', False),
+            version=obj)
         file_.webext_permissions_list = data.get('webext_permissions_list', [])
         return file_
 
