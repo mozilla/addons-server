@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 15:29+0000\n"
+"PO-Revision-Date: 2017-07-20 06:49+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -175,7 +175,7 @@ msgid "Listed"
 msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Las rutas del complemento y la colección tienen que terminar con \"/\""
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -2937,7 +2937,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "No puedes enviar un complemento con un guid acabado en \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "No puedes enviar una extensión firmada de Mozilla"
 
 msgid "Icons cannot be animated."
 msgstr "Los iconos no pueden ser animados."
@@ -2997,9 +2997,8 @@ msgstr ""
 "Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
 "manejaremos tu información."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Acuerdo de distribución de complementos"
+msgstr "Acuerdo de distribución"
 
 #, fuzzy
 msgid "Review Policy"
@@ -3264,15 +3263,14 @@ msgstr "Este complemento es experimental."
 msgid "This add-on is ready for general use."
 msgstr "Este complemento está listo para uso general."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Necesita reiniciarse"
+msgstr "¿Hay que hacer algún pago?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Marca esta casilla si la función principal de tu complemento requiere cierta forma de pago previa o tras un periodo de prueba para funcionar correctamente."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Este complemento necesita pago, servicios o software de pago o hardware adicional."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
 msgstr ""
@@ -3724,16 +3722,14 @@ msgstr "¿Hay algo que tengan que tener en cuenta los revisores al verificar est
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Solo tú y nuestros revisores podréis ver estas notas."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Cancelar revisión y deshabilitar versión"
+msgstr "Cancelar y deshabilitar versión"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Cancelar revisión y deshabilitar versión"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Envía una nueva versión"
+msgstr "Enviar versión"
 
 msgid "Submit Version for Review"
 msgstr "Enviar versión para revisión"
@@ -3762,9 +3758,8 @@ msgstr "Envío completo"
 msgid "You’re done!"
 msgstr "¡Ya está!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Versión firmada"
+msgstr "Versión enviada"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -4089,9 +4084,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Contacto"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Políticas sobre complementos"
+msgstr "Políticas"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4179,9 +4173,8 @@ msgstr "Novedades"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Verlos todos"
+msgstr "Ver tutorial"
 
 msgid "View All Submissions"
 msgstr "Ver todos los envíos"
@@ -4755,9 +4748,8 @@ msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_headin
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mejora los vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Mejora la escritura {start_sub_heading} con {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
@@ -5086,9 +5078,8 @@ msgstr "Informes de uso indebido"
 msgid "View Privacy Policy"
 msgstr "Ver la política de privacidad"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Necesita reiniciarse"
+msgstr "Requiere hacer pagos"
 
 msgid "EULA"
 msgstr "CLUF"
@@ -8461,9 +8452,9 @@ msgstr "Borrar foto actual"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "¡Preséntate a ti mismo en la comunidad, si quieres! Este texto aparecerá públicamente en tu página de información de usuario."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML permitido: {0}. Se prohíben enlaces."
+msgstr "HTML permitido: %(html)s. Se prohíben enlaces."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Decide qué colecciones deben mostrarse en tu perfil."
