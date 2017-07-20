@@ -245,7 +245,7 @@ class TestButton(ButtonTest):
 
         b = self.get_button()
         assert b.attrs() == {
-            'data-no_compat-necessary': 'true'
+            'data-no-compat-necessary': 'true'
         }
 
         self.addon.takes_contributions = True
@@ -256,7 +256,7 @@ class TestButton(ButtonTest):
         assert b.attrs() == {
             'data-after': 'contrib',
             'data-search': 'true',
-            'data-no_compat-necessary': 'true'
+            'data-no-compat-necessary': 'true'
         }
 
     def test_after_no_show_contrib(self):

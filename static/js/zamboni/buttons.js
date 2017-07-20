@@ -64,7 +64,7 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
-        no_compat_necessary = $this.hasattr('data-no_compat-necessary'),
+        no_compat_necessary = $this.hasattr('data-no-compat-necessary'),
         accept_eula = $this.hasClass('accept'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
