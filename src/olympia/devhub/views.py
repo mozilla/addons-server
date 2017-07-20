@@ -68,7 +68,7 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 # We use a session cookie to make sure people see the dev agreement.
 
-MDN_BASE = 'https://developer.mozilla.org/Add-ons'
+MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
 class AddonFilter(BaseFilter):
