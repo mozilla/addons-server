@@ -698,7 +698,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
 
     def test_basic(self):
         self.addon = addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
+            type=amo.ADDON_LPAPP, target_locale='fr',
             locale_disambiguation=u'lolé')
         result = self.serialize()
         assert result['id'] == self.addon.pk

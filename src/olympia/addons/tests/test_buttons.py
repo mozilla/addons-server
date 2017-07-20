@@ -241,12 +241,23 @@ class TestButton(ButtonTest):
         b = self.get_button()
         assert b.attrs() == {}
 
+        self.addon.type = amo.ADDON_DICT
+
+        b = self.get_button()
+        assert b.attrs() == {
+            'data-no_compat-necessary': 'true'
+        }
+
         self.addon.takes_contributions = True
         self.addon.annoying = amo.CONTRIB_AFTER
         self.addon.type = amo.ADDON_SEARCH
 
         b = self.get_button()
-        assert b.attrs() == {'data-after': 'contrib', 'data-search': 'true'}
+        assert b.attrs() == {
+            'data-after': 'contrib',
+            'data-search': 'true',
+            'data-no_compat-necessary': 'true'
+        }
 
     def test_after_no_show_contrib(self):
         self.addon.takes_contributions = True

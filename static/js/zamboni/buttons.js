@@ -64,6 +64,7 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
+        no_compat_necessary = $this.hasattr('data-no_compat-necessary'),
         accept_eula = $this.hasClass('accept'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
@@ -159,7 +160,7 @@ var installButton = function() {
 
     // Change the button text to "Add to Firefox".
     var addToApp = function() {
-        if (appSupported || (search && z.appMatchesUserAgent)) {
+        if (appSupported || (no_compat_necessary && z.appMatchesUserAgent)) {
             $button.addClass('add').removeClass('download')
                 .find('span').text(addto);
         }
@@ -169,7 +170,7 @@ var installButton = function() {
     // on something with a .installer class.
     var clickHijack = function() {
         try {
-            if (!appSupported && !search || !("InstallTrigger" in window)) return;
+            if (!appSupported && !no_compat_necessary || !("InstallTrigger" in window)) return;
         } catch (e) {
             return;
         }
@@ -345,7 +346,7 @@ var installButton = function() {
             $button.addPopup(pmsg);
             $button.closest('div').attr('data-version-supported', true);
             return true;
-        } else if (!unreviewed && (appSupported || search)) {
+        } else if (!unreviewed && (appSupported || no_compat_necessary)) {
             // Good version, good platform.
             $button.addClass('installer');
             $button.closest('div').attr('data-version-supported', true);
@@ -395,7 +396,7 @@ var installButton = function() {
     } else if (z.appMatchesUserAgent) {
         clickHijack();
         addToApp();
-        var opts = search ? {addPopup: false, addWarning: false} : {};
+        var opts = no_compat_necessary ? {addPopup: false, addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
         $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
