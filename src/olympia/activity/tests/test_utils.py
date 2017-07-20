@@ -242,9 +242,9 @@ class TestLogAndNotify(TestCase):
             assert reply_to.endswith(settings.INBOUND_EMAIL_DOMAIN)
         return recipients
 
-    def _check_email(self, call, url, action_text, reason_text):
-        assert call[0][0] == u'Mozilla Add-ons: %s %s %s' % (
-            self.addon.name, self.version.version, action_text)
+    def _check_email(self, call, url, reason_text):
+        assert call[0][0] == u'Mozilla Add-ons: %s %s' % (
+            self.addon.name, self.version.version)
         assert ('visit %s' % url) in call[0][1]
         assert ('receiving this email because %s' % reason_text) in call[0][1]
 
@@ -278,7 +278,6 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review',
@@ -286,8 +285,7 @@ class TestLogAndNotify(TestCase):
                             'channel': 'listed'},
                     add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
         assert not self.version.has_info_request
 
@@ -318,11 +316,9 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Reviewer Reply',
                           'you are an author of this add-on.')
         self._check_email(send_mail_mock.call_args_list[1],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Reviewer Reply',
                           'you are an author of this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -381,7 +377,7 @@ class TestLogAndNotify(TestCase):
                             'channel': 'listed'},
                     add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
+                          review_url,
                           'you are member of the activity email cc group.')
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -446,14 +442,12 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review', add_prefix=False,
                     kwargs={'channel': 'listed', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_review_url_unlisted(self, send_mail_mock):
@@ -484,14 +478,12 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review', add_prefix=False,
                     kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_from_name_escape(self, send_mail_mock):
