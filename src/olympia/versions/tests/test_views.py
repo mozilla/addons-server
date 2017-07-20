@@ -166,6 +166,17 @@ class TestViews(TestCase):
         response = self.client.get(self.url_list)
         assert '1.0 KiB' in response.content
 
+    def test_version_list_no_compat_displayed_if_not_necessary(self):
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert compat_info
+        assert 'Firefox 4.0.99 and later' in compat_info
+
+        self.addon.update(type=amo.ADDON_DICT)
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert not compat_info
+
 
 class TestDownloadsBase(TestCase):
     fixtures = ['base/addon_5299_gcal', 'base/users']
