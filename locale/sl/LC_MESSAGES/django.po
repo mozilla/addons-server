@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 17:57+0000\n"
+"PO-Revision-Date: 2017-07-21 20:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2978,7 +2978,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Ne smete oddati dodatka, katerega guid se končuje z \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Ne morete poslati Mozilline podpisane razširitve"
 
 msgid "Icons cannot be animated."
 msgstr "Ikone ne morejo biti animirane."
@@ -3030,20 +3030,21 @@ msgstr "Nov ključ API ustvarjen"
 msgid "API key revoked"
 msgstr "Ključ API preklican"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
+msgstr ""
+"Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov, kot tudi našo politiko in pravila pregledov. Sporazum vsebuje tudi povezavo na naše Obvestilo o zasebnosti, ki "
+"razlaga, kako ravnamo z vašimi podatki."
 
 msgid "Distribution Agreement"
 msgstr "Sporazum o razširjanju"
 
 msgid "Review Policy"
-msgstr ""
+msgstr "Politika pregledov"
 
 msgid "Review Rules"
-msgstr ""
+msgstr "Pravila pregledov"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
@@ -3052,7 +3053,7 @@ msgid "Printable Version"
 msgstr "Različica za tiskanje"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
 
 msgid "I Accept this Agreement"
 msgstr "S tem sporazumom se strinjam"
