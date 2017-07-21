@@ -1,2 +1,1 @@
-insert into download_sources (name, type, created)
-    values ('find-replacement', 'full', NOW());
+INSERT INTO download_sources (name, description, type, created) VALUES ('find-replacement', '', 'full', NOW());
