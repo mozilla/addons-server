@@ -80,6 +80,8 @@ class AddonIndexer(BaseSearchIndexer):
                         'platform': {
                             'type': 'byte', 'index': 'no'},
                         'size': {'type': 'long', 'index': 'no'},
+                        'strict_compatibility': {
+                            'type': 'boolean', 'index': 'no'},
                         'status': {'type': 'byte'},
                         'webext_permissions_list': {
                             'type': 'string', 'index': 'no'},
@@ -197,6 +199,7 @@ class AddonIndexer(BaseSearchIndexer):
                 'platform': file_.platform,
                 'size': file_.size,
                 'status': file_.status,
+                'strict_compatibility': file_.strict_compatibility,
                 'webext_permissions_list': file_.webext_permissions_list,
             } for file_ in version_obj.all_files],
             'reviewed': version_obj.reviewed,
