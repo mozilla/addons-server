@@ -72,9 +72,9 @@ PyJWT==1.5.2 \
     --hash=sha256:1179f0bff86463b5308ee5f7aff1c350e1f38139d62a723e16fb2c557d1c795f
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.68 \
-    --hash=sha256:ffb2cca2b8d9c276df054f1679e529441f114f28696f5eb7ee56907f7d1fea7f \
-    --hash=sha256:ea2a221e76364405a84f354d2aad87655891fb1401b2f3c37509b0200280d007
+amo-validator==1.10.69 \
+    --hash=sha256:a8f781cbe6267d077c08175837bc892f4ac5be6c48d57de8b14e8820df71cc3e \
+    --hash=sha256:941e185c03947952aaa0ea2ae52d79e820af5d44e95ff88ce8ba32ef0a5311a5
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
