@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-21 14:56+0000\n"
+"PO-Revision-Date: 2017-07-22 12:33+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3813,9 +3813,8 @@ msgstr "Submissão concluída"
 msgid "You’re done!"
 msgstr "Concluído!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Versão assinada"
+msgstr "Versão submetida"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -4122,9 +4121,8 @@ msgstr "Leia mais em nosso Blog"
 msgid "Resources"
 msgstr "Recursos"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Avaliação"
+msgstr "Portando"
 
 msgid "Community"
 msgstr "Comunidade"
@@ -4214,9 +4212,8 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Inicie a sessão para editar e atualizar sua extensão"
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Extensões em destaque"
+msgstr "Atualize sua extensão legada"
 
 #, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
@@ -4231,9 +4228,8 @@ msgstr "Novidades"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Ver todos"
+msgstr "Ver Tutorial"
 
 msgid "View All Submissions"
 msgstr "Ver todas as submissões"
@@ -8543,9 +8539,9 @@ msgstr "Excluir a foto atual"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Apresente-se à comunidade, se você quiser! Esse texto será exibido publicamente no seu perfil de usuário."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML permitido: {0}. Links são proibidos."
+msgstr "HTML permitido: %(html)s. Links são proibidos."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Decida quais coleções devem ser exibidas no seu perfil."
