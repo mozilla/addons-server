@@ -4025,7 +4025,7 @@ msgstr "Пожалуйста, выберите лицензию, подходя�
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Разрешённое HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Кое-что из HTML поддерживается."
