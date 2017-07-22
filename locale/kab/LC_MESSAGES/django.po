@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 14:50+0000\n"
+"PO-Revision-Date: 2017-07-22 14:56+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4970,7 +4970,7 @@ msgid "Return to the Reviewer Tools homepage"
 msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
 
 msgid "Queues"
-msgstr ""
+msgstr "Yettwarna ar udras"
 
 msgid "New Add-ons"
 msgstr "Izegrar imaynuten"
@@ -6049,7 +6049,7 @@ msgid "Korea (South) Won"
 msgstr ""
 
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Dinaṛ n kuwayet"
 
 msgid "Cayman Islands Dollar"
 msgstr ""
@@ -7714,7 +7714,7 @@ msgid "Controls:"
 msgstr ""
 
 msgid "reset zoom"
-msgstr ""
+msgstr "wennez aswir n usemɣer/asemẓi"
 
 msgid "Group by:"
 msgstr "Sdukel s:"
@@ -7729,7 +7729,7 @@ msgid "month"
 msgstr "aggur"
 
 msgid "For last:"
-msgstr ""
+msgstr "Si:"
 
 msgid "7 days"
 msgstr "7 wussan"
@@ -8268,13 +8268,13 @@ msgid "No add-on reviews yet."
 msgstr "Ulac iceggiren n izegrar akka tura."
 
 msgid "Report User"
-msgstr ""
+msgstr "Sefrek aseqdac"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Sefrek aseqdac {0}"
 
 msgid "Unsubscribe"
 msgstr "Ffeɣ seg ujerred"
@@ -8290,7 +8290,7 @@ msgid "More Actions:"
 msgstr "Ugar n tigawin:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "ẓreg iγewwaṛen n ilγa inek"
 
 msgid "edit your profile"
 msgstr "Ẓreg amaɣnu inek"
@@ -8390,7 +8390,7 @@ msgid "Target Version"
 msgstr ""
 
 msgid "Email when finished"
-msgstr ""
+msgstr "Azen imay m'ara ad tfakeḍ"
 
 msgid "Log emails instead of sending"
 msgstr ""
@@ -8420,4 +8420,4 @@ msgid "Addon"
 msgstr "Azegrir"
 
 msgid "Validation Result"
-msgstr ""
+msgstr "Agemuḍ n usentem"
