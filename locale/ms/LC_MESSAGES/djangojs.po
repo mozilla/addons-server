@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 05:24+0000\n"
+"PO-Revision-Date: 2017-07-23 05:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -120,30 +120,32 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Susunan binari, serta skrip yang diringkaskan atau dikelirukan (tidak termasuk pustaka yang diketahui) perlu ada sumbernya dan dikemukakan secara berasingan untuk semakan. Pastikan anda menggunakan "
+"medan memuat naik kod sumber untuk mengelakkan penghantaran anda ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Proses pengesahan menemukan isu berikut yang boleh menyebabkan penghantaran ditolak:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Maaf, tidak menemukan platform yang menyokong."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Jenis fail yang anda muat naik tidak dikenali."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Fail anda melebihi saiz maksimum sebanyak {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Anda dibatalkan memuat naik."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Imej mesti samada PNG atau JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video mesti dalam WebM."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ikuti Koleksi ini"
 
 msgid "Stop Following"
 msgstr "Berhenti Ikuti"
@@ -153,7 +155,7 @@ msgstr "Ikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Tema ini tidak serasi dengan versi {0} anda"
 
 msgid "All Rights Reserved"
 msgstr "Hak Cipta Terpelihara"
@@ -180,28 +182,28 @@ msgid "Your Theme's Name"
 msgstr "Nama Tema Anda"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ditanda untuk semakan"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Input anda diperlukan"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Ditandai untuk penghapusan"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Mengemaskini hasil&hellip;"
 
 msgid "Category"
 msgstr "Kategori"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Cari tema untuk <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Cari aplikasi untuk <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Cari add-ons untuk <b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
