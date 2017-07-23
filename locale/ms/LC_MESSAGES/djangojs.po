@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 10:50+0000\n"
+"PO-Revision-Date: 2017-07-23 11:06+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -809,93 +809,93 @@ msgid "Average Reviews"
 msgstr "Purata Ulasan"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Bilangan Ulasan"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Memuatkan..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> aksara lagi."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar lagi."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Buang lokalisasi ini"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Info diminta"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Ditandai"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikasi"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Ditolak"
 
 msgid "Approved"
-msgstr ""
+msgstr "Diluluskan"
 
 msgid "No results found"
-msgstr ""
+msgstr "Tiada hasil ditemukan"
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Pengulas"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Lulus semua ujian."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ujian berikut tidak dilaksanakan."
 
 msgid "Tests"
-msgstr ""
+msgstr "Ujian"
 
 msgid "Error"
-msgstr ""
+msgstr "Ralat"
 
 msgid "Warning"
-msgstr ""
+msgstr "Amaran"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} baris {1} lajur {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} baris {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Ujian Keserasian"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Add-on gagal pengesahan."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Add-on lulus pengesahan."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} ralat"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} amaran"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} notis"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Tugas pengesahan tidak dapat diselesaikan atau diselesaikan dengan ada ralat"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Ralat pelayan dalaman"
