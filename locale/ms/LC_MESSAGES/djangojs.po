@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 06:32+0000\n"
+"PO-Revision-Date: 2017-07-23 07:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -321,7 +321,7 @@ msgid "Homepage Most Popular"
 msgstr "Paling Popular dalam Halaman utama"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Butiran Halaman"
 
 msgid "Detail Page (bottom)"
 msgstr "Halaman Butiran (bawah)"
@@ -439,43 +439,43 @@ msgstr "Pemasangan dan Pengguna Harian, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Pemasangan dan Pengguna Harian, {0} hingga {1} hari lepas"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Muat turun, l{0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Muat turun daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Pengguna Harian, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Pengguna Harian daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Aplikasi, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Aplikasi daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platform, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platform daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Bahasa, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
