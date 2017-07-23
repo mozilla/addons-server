@@ -436,9 +436,9 @@ requests==2.18.1 \
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==36.2.0 \
-    --hash=sha256:8dbfb44a16b73ea756edfe8805a25338eead94bd2426b64374a7f6a7a125028d \
-    --hash=sha256:4c2bda3829c9dbbe9c2b33d89c4b1cb6d45813615ab8e248ad352e3697a96d81
+setuptools==36.2.1 \
+    --hash=sha256:493695b7a6913067570b4e23c22b678c7ada44711d7b3c27652df64fd9e2f114 \
+    --hash=sha256:cf8a8df1fbd999531fd54e32c7ec1ab0a4180f789dd7d1e0e5a2b7d118a2982d
 signing-clients==1.3.2 \
     --hash=sha256:2b74b3fce06b1a6acf790fcbc59ea345137698c53757e87af84db092c2190760 \
     --hash=sha256:5cc61c9caa960cea5bec2bc8eae17c3197e872a9008bf52146d4cbb03da93c08
