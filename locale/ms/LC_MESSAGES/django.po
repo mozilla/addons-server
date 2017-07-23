@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 01:09+0000\n"
+"PO-Revision-Date: 2017-07-23 01:31+0000\n"
 "Last-Translator: Norman Haikal <normanh876@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -174,21 +174,21 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "Tiada versi serasi"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
-msgstr ""
+msgstr "untuk {0}"
 
 msgid "View privacy policy"
-msgstr ""
+msgstr "Lihat dasar privasi"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Lihat Perjanjian Lesen Pengguna Akhir"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Add-on ini belum disemak oleh Mozilla. <a href=\"%(url)s\">Ketahui lanjut</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr ""
@@ -205,14 +205,14 @@ msgid "The developer of this add-on asks that you show your support by making a 
 msgstr ""
 
 msgid "Contribute"
-msgstr ""
+msgstr "Menyumbang"
 
 #. Click Contribute button OR Install button
 msgid "or"
-msgstr ""
+msgstr "atau"
 
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Cadangan Sumbangan: {0}"
 
 msgid "What's this?"
 msgstr ""
@@ -268,7 +268,7 @@ msgid "Leave a comment or request with your contribution."
 msgstr ""
 
 msgid "(optional)"
-msgstr ""
+msgstr "(pilihan)"
 
 msgid "Make Contribution"
 msgstr ""
@@ -310,104 +310,104 @@ msgid "Most Popular"
 msgstr ""
 
 msgid "All »"
-msgstr ""
+msgstr "Semua »"
 
 msgid "See all »"
-msgstr ""
+msgstr "Papar semua »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Tema Terpilih"
 
 msgid "Featured Collections"
-msgstr ""
+msgstr "Koleksi Terpilih"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Susun ikut:"
 
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "Dikemaskini {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Ditambah {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s muat turun mingguan"
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s pengguna"
 
 msgid "Requires Restart"
-msgstr ""
+msgstr "Perlukan Mula semula"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Add-on ini dibina dengan teknologi baru yang serasi dengan Firefox 57 dan seterusnya."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Serasi dengan Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
+msgstr[0] "{0} muat turun mingguan"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} pengguna"
 
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Bayaran terbatal"
 
 msgid "Payment completed"
-msgstr ""
+msgstr "Bayaran lengkap"
 
 msgid "Return to the addon."
-msgstr ""
+msgstr "Kembali ke addon."
 
 msgid "by"
-msgstr ""
+msgstr "oleh"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Lagi Tema {0}"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Lihat semua Tema {0}"
 
 msgid "More by this Artist"
-msgstr ""
+msgstr "Lagi oleh Artis ini"
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Lihat semua Tema oleh Artis ini"
 
 msgid "Categories"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Updated"
-msgstr ""
+msgstr "Dikemaskini"
 
 msgid "Artist"
-msgstr ""
+msgstr "Artis"
 
 msgid "Rating"
-msgstr ""
+msgstr "Kadaran"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Pengguna Harian"
 
 msgid "License"
-msgstr ""
+msgstr "Lesen"
 
 msgid "Awaiting Review"
 msgstr ""
@@ -421,40 +421,40 @@ msgstr ""
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> pengguna"
 
 msgid "Hover to Preview"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "Tambah"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d-%%m-%%Y"
 
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "oleh {0} pada {1}"
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "Belum dikadar"
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> pengguna"
 
 msgid "{0} Daily Users"
-msgstr ""
+msgstr "{0} Pengguna Harian"
 
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Untuk pasang add-on ini dan beribu lagi, <b>dapatkan Firefox</b>, sebuah pelayar web yang percuma dan terbuka dari Mozilla."
 
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Ketahui selanjutnya perihal Firefox"
 
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
@@ -468,7 +468,7 @@ msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source ema
 msgstr ""
 
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Ketahu selanjutnya perihal Thunderbird"
 
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
@@ -478,7 +478,7 @@ msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
 
 msgid "Install Anyway"
-msgstr ""
+msgstr "Pasang Jua"
 
 msgid "This add-on requires a version of Firefox that has not been released yet."
 msgstr ""
@@ -492,7 +492,7 @@ msgstr ""
 
 #. {0} is an app name, like Firefox.
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Naik taraf {0}"
 
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
@@ -515,22 +515,22 @@ msgid "This add-on is not compatible with your version of %(app)s because of the
 msgstr ""
 
 msgid "View other versions"
-msgstr ""
+msgstr "Lihat versi lain"
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Add-on ini tidak serasi dengan versi %(app)s anda."
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Dasar Privasi untuk {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Dasar Privasi"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "Lapor Salah guna"
 
 #, python-format
 msgid ""
@@ -539,10 +539,10 @@ msgid ""
 msgstr ""
 
 msgid "Send Report"
-msgstr ""
+msgstr "Hantar Laporan"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 msgid "What do you think?"
 msgstr ""
@@ -552,13 +552,13 @@ msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
 
 msgid "Title:"
-msgstr ""
+msgstr "Tajuk:"
 
 msgid "Review:"
-msgstr ""
+msgstr "Ulasan:"
 
 msgid "Rating:"
-msgstr ""
+msgstr "Kadaran:"
 
 msgid "Submit review"
 msgstr ""
@@ -576,11 +576,11 @@ msgid "Review Guidelines"
 msgstr ""
 
 msgid "Reviews"
-msgstr ""
+msgstr "Ulasan"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "oleh %(user)s pada %(date)s"
 
 msgid "Show the developer's reply to this review"
 msgstr ""
@@ -591,30 +591,30 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 
 msgid "Tags"
-msgstr ""
+msgstr "Tag"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ikon untuk {0}"
 
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "oleh %(users)s"
 
 msgid "[Warning]"
-msgstr ""
+msgstr "[Amaran]"
 
 msgid "Permissions"
-msgstr ""
+msgstr "Keizinan"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya"
 
 msgid "Download Anyway"
 msgstr ""
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> dicadangkan"
 
 msgid "Enjoy this add-on?"
 msgstr ""
@@ -635,10 +635,10 @@ msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
 msgid "Average"
-msgstr ""
+msgstr "Purata"
 
 msgid "Write a review"
-msgstr ""
+msgstr "Tulis ulasan"
 
 msgid "Related Categories"
 msgstr ""
@@ -660,10 +660,10 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Urus"
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "Ulasan Add-on"
 
 msgid "Admin Manage"
 msgstr ""
@@ -788,46 +788,46 @@ msgid "Source Code License"
 msgstr ""
 
 msgid "permalink"
-msgstr ""
+msgstr "pautan kekal"
 
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
+msgstr[0] "Lihat semua %(cnt)s ulasan pengguna"
 
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Add-on ini belum diulas."
 
 msgid "Be the first!"
-msgstr ""
+msgstr "Jadi yang pertama!"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} pengguna"
 
 msgid "More"
 msgstr ""
 
 msgid "Add to collection"
-msgstr ""
+msgstr "Tambah ke koleksi"
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "Add-on Saya"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Tema Saya"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Maklumat Add-on untuk {0}"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "Edit Tema"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Lulus / Tolak"
 
 msgid "Review History"
-msgstr ""
+msgstr "Sejarah Ulasan"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
