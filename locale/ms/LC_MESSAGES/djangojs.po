@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 01:08+0000\n"
+"PO-Revision-Date: 2017-07-23 04:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -21,13 +21,13 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} bintang"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Ada masalah menghubungi pelayan."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Pilih fail..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Add-on anda sepatutnya berakhir dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
