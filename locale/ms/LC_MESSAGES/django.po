@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 12:48+0000\n"
+"PO-Revision-Date: 2017-07-23 13:32+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -171,7 +171,7 @@ msgid "Abuse reported."
 msgstr "Salah guna dilapor."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Add-on saya tidak boleh dimuatkan ke dalam mana-mana kategori"
 
 msgid "No compatible versions"
 msgstr "Tiada versi serasi"
@@ -191,18 +191,18 @@ msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn m
 msgstr "Add-on ini belum disemak oleh Mozilla. <a href=\"%(url)s\">Ketahui lanjut</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "Pembangun add-on ini meminta bantuan anda untuk menyokong pembangunan yang berterusan dengan memberikan sedikit sumbangan."
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Pembangun add-on ini meminta anda menunjukkan sokongan dengan membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Pembangun add-on ini meminta anda menunjukkan sokongan dengan membuat sedikt sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "Contribute"
 msgstr "Menyumbang"
@@ -215,15 +215,15 @@ msgid "Suggested Contribution: {0}"
 msgstr "Cadangan Sumbangan: {0}"
 
 msgid "What's this?"
-msgstr ""
+msgstr "Apa ini?"
 
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Pembangun add-on ini mahu anda mempertimbangkan untuk membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> jika anda seronok menggunakannya."
 
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Pembangun add-on ini mahu anda mempertimbangkan untuk membuat sedikit sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> jika anda seronok menggunakannya."
 
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
 msgstr ""
