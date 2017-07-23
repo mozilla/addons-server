@@ -89,10 +89,11 @@ Autocomplete
 Similar to :ref:`add-ons search endpoint <addon-search>` above, this endpoint
 allows you to search through public add-ons. Because it's meant as a backend
 for autocomplete though, there are a couple key differences:
- - No pagination is supported. There are no ``next``, ``prev`` or ``count``
-   fields, and passing ``page_size`` or ``page`` has no effect, a maximum of 10
-   results will be returned at all times.
- - Only a subset of fields are returned.
+
+  - No pagination is supported. There are no ``next``, ``prev`` or ``count``
+    fields, and passing ``page_size`` or ``page`` has no effect, a maximum of 10
+    results will be returned at all times.
+  - Only a subset of fields are returned.
 
 .. http:get:: /api/v3/addons/autocomplete/
 
@@ -142,9 +143,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int average_daily_users: The average number of users for the add-on per day.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
-    :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
-    :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
-    :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
     :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string default_locale: The add-on default locale for translations.
@@ -324,6 +322,9 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json object compatibility: Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
+    :>json object compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
+    :>json object compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :>json string edit_url: The URL to the developer edit page for the version.
     :>json array files: Array holding information about the files for the version.
     :>json int files[].id: The id for a file.
@@ -342,6 +343,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string|null license.url: The URL of the full text of license.
     :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
+    :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string version: The version number string for the version.
 
 

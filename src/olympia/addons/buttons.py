@@ -136,6 +136,8 @@ class InstallButton(object):
             rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
+        if addon.type in amo.NO_COMPAT:
+            rv['data-no-compat-necessary'] = 'true'
         return rv
 
     def links(self):

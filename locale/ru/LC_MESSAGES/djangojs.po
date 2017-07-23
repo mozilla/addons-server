@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2016-10-27 14:27+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2017-07-22 19:02+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgid "Validating {0}"
 msgstr "Валидация {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Размер вашего дополнения превышает максимально допустимый размер {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
@@ -128,8 +128,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
-"вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
+"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что вы"
+" используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
@@ -141,7 +141,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип загруженного вами файла не распознан."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Размер вашего файла превышает максимально допустимый размер {0}."
 
 msgid "You cancelled the upload."
 msgstr "Вы отменили загрузку."

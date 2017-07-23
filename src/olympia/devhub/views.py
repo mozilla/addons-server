@@ -68,7 +68,7 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 # We use a session cookie to make sure people see the dev agreement.
 
-MDN_BASE = 'https://developer.mozilla.org/Add-ons'
+MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
 class AddonFilter(BaseFilter):
@@ -621,6 +621,11 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         upload.user = user
         upload.save()
     if app_id and version_id:
+        # If app_id and version_id are present, we are dealing with a
+        # compatibility check (i.e. this is not an upload meant for submission,
+        # we were called from check_addon_compatibility()), which essentially
+        # consists in running the addon uploaded against the legacy validator
+        # with a specific min/max appversion override.
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()

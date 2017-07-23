@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 16:43+0000\n"
+"PO-Revision-Date: 2017-07-22 06:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -165,7 +165,7 @@ msgid "Listed"
 msgstr "表示"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
 
 #. l10n: {0} is the addon name
 # {0} is an add-on name.
@@ -2865,7 +2865,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "「@mozilla.org」で終わる GUID が設定されたアドオンを投稿することはできません"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "あなたは Mozilla Signed Extension を登録できません"
 
 msgid "Icons cannot be animated."
 msgstr "アニメーションするアイコンは使用できません。"
@@ -2938,7 +2938,7 @@ msgid "Printable Version"
 msgstr "印刷版"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "この規約とルール・ポリシーを読み同意しました"
 
 msgid "I Accept this Agreement"
 msgstr "この規約に同意します"
@@ -3616,7 +3616,7 @@ msgid "Version Submitted"
 msgstr "登録済みバージョン"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "設定完了！ このバージョンはまもなくサイト上で公開されます。"
 
 msgid "Version Submitted for Review"
 msgstr "審査が申請されているバージョン"
@@ -3859,7 +3859,7 @@ msgstr "あなたのソースコードに付与する権利のための適切な
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "使用可能な HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "いくつかの HTML タグに対応しています。"
@@ -4001,7 +4001,7 @@ msgid "What's New"
 msgstr "最新ニュース"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "アドオンを登録する準備ができましたか？ 登録手順に関する順を追ったチュートリアルを見てください。"
 
 msgid "See Tutorial"
 msgstr "チュートリアルを見る"

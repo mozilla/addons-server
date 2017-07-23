@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 17:57+0000\n"
+"PO-Revision-Date: 2017-07-21 20:35+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2978,7 +2978,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Ne smete oddati dodatka, katerega guid se končuje z \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Ne morete poslati Mozilline podpisane razširitve"
 
 msgid "Icons cannot be animated."
 msgstr "Ikone ne morejo biti animirane."
@@ -3030,20 +3030,21 @@ msgstr "Nov ključ API ustvarjen"
 msgid "API key revoked"
 msgstr "Ključ API preklican"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
+msgstr ""
+"Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov, kot tudi našo politiko in pravila pregledov. Sporazum vsebuje tudi povezavo na naše Obvestilo o zasebnosti, ki "
+"razlaga, kako ravnamo z vašimi podatki."
 
 msgid "Distribution Agreement"
 msgstr "Sporazum o razširjanju"
 
 msgid "Review Policy"
-msgstr ""
+msgstr "Politika pregledov"
 
 msgid "Review Rules"
-msgstr ""
+msgstr "Pravila pregledov"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
@@ -3052,7 +3053,7 @@ msgid "Printable Version"
 msgstr "Različica za tiskanje"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
 
 msgid "I Accept this Agreement"
 msgstr "S tem sporazumom se strinjam"
@@ -3297,13 +3298,13 @@ msgid "Requires Payment?"
 msgstr "Zahteva plačilo?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Potrdite to polje, če glavne funkcije tega dodatka za delovanje zahtevajo plačilo po namestitvi ali po preizkusnem obdobju."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Ta dodatek zahteva plačilo, plačljive storitve ali programsko opremo ali dodatno strojno opremo."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Ta dodatek ne zahteva dodatnih plačil, plačljivih storitev ali programske opreme ali dodatne strojne opreme."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "Kategorije so primarni način, kako uporabniki brskajo med dodatki. Za kar najboljšo izpostavljenost izberite take, ki ustrezajo funkcionalnosti dodatka. Velja samo za dodatke na seznamu."
@@ -4070,9 +4071,8 @@ msgstr "Preberite več na našem blogu"
 msgid "Resources"
 msgstr "Viri"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Ocena"
+msgstr "Izvoz"
 
 msgid "Community"
 msgstr "Skupnost"
@@ -4736,7 +4736,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Ustavite zahrbtne sledilce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Blokirajte nevidne sledilce in vohunske oglase, ki vam sledijo po spletu."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte svoje pisanje {start_sub_heading}z {addon_name}{end_sub_heading}"

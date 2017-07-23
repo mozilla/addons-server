@@ -2951,7 +2951,7 @@ class TestLanguageToolsView(TestCase):
         # of the wrong type, not supporting the app we care about, or their
         # target locale is empty.
         addon_factory(
-            type=amo.ADDON_DICT, target_locale='de',
+            type=amo.ADDON_LPAPP, target_locale='de',
             version_kw={'application': amo.THUNDERBIRD.id})
         addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
