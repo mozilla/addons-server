@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 10:28+0000\n"
+"PO-Revision-Date: 2017-07-23 10:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -788,25 +788,25 @@ msgid "{name} was viewing this add-on first."
 msgstr "{name} telah meninjau add-on ini terlebih dahulu."
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Memuatkan&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Nota Versi"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Nota untuk Pengulas"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Tiada nota versi ditemui"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Teks Ulasan"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "Nota ulasan ditemui"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Purata Ulasan"
 
 msgid "Number of Reviews"
 msgstr ""
