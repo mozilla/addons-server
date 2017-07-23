@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 13:47+0000\n"
+"PO-Revision-Date: 2017-07-23 13:59+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7622,19 +7622,19 @@ msgid "Top Applications"
 msgstr ""
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Lihat lebih banyak aplikasi&hellip;"
 
 msgid "Top Languages"
 msgstr ""
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Lihat lebih banyak bahasa&hellip;"
 
 msgid "Top Platforms"
 msgstr ""
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Lihat lebih banyak platform&hellip;"
 
 msgid "Ratings by Date"
 msgstr ""
