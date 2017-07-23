@@ -1,22 +1,24 @@
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-07-23 00:48+0000\n"
+"Last-Translator: Norman Haikal <normanh876@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -30,20 +32,20 @@ msgstr ""
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% siap"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} daripada {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Memuat naik {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Ralat dengan {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
@@ -51,12 +53,10 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;dan {0} lagi"
 
 msgid "See full validation report"
 msgstr ""
@@ -82,12 +82,10 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
@@ -146,10 +144,10 @@ msgid "Follow this Collection"
 msgstr ""
 
 msgid "Stop Following"
-msgstr ""
+msgstr "Berhenti Ikuti"
 
 msgid "Following"
-msgstr ""
+msgstr "Ikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -177,7 +175,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nama Tema Anda"
 
 msgid "Flagged for review"
 msgstr ""
@@ -192,7 +190,7 @@ msgid "Updating results&hellip;"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
@@ -207,25 +205,25 @@ msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Minggu {0}"
 
 msgid " downloads"
-msgstr ""
+msgstr " muat turun"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} pengguna"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-on"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} koleksi"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} ulasan"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} jualan"
 
 msgid "{0} refunds"
 msgstr ""
@@ -634,12 +632,10 @@ msgstr ""
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -758,12 +754,10 @@ msgstr ""
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Learn more"
 msgstr ""
@@ -820,7 +814,6 @@ msgstr ""
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
@@ -888,17 +881,14 @@ msgstr ""
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
