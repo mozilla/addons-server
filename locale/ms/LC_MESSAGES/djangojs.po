@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 08:51+0000\n"
+"PO-Revision-Date: 2017-07-23 10:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -396,10 +396,10 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr "Senarai Pelayaran Akan Muncul Disisih"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Jumlah Amaun Disumbangkan"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Purata Sumbangan"
 
 msgid "Usage"
 msgstr "Pengunaan"
@@ -662,17 +662,17 @@ msgstr "Mozilla telah tandakan versi ini sebagai tidak serasi dengan versi Firef
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Teruskan sahaja pasang untuk {0}"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Teruskan sahaja muat turun untuk {0}"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Tidak tersedia untuk platform anda"
 
 #. L10n: {0} is an app name, {1} is the app version.
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Tidak tersedia untuk {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
