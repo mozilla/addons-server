@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 08:31+0000\n"
+"PO-Revision-Date: 2017-07-23 08:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -360,40 +360,40 @@ msgid "Collections"
 msgstr "Koleksi"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Kategori Pelantar Berciri Karusel"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategori Pelantar Taraf Teratas"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategori Pelantar Paling Popular"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategori Pelantar Terkini Ditambah"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Berciri Disisih"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Pengguna Disisih"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Penarafan Disisih"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Dicipta Disisih"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Nama Disisih"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Popular Disisih"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Dikemas kini Disisih"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Senarai Pelayaran Akan Muncul Disisih"
 
 msgid "Total Amount Contributed"
 msgstr ""
@@ -619,43 +619,43 @@ msgstr "<b>{0}</b> daripada {1} hingga {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> purata dalam tempoh {1} hari lepas"
 
 msgid "No data available."
-msgstr ""
+msgstr "Tiada data tersedia."
 
 msgid "Date"
-msgstr ""
+msgstr "Tarikh"
 
 msgid "Other"
-msgstr ""
+msgstr "Lain-lain"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih dulu aplikasi"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
+msgstr[0] "Tetapkan {0} add-ons sehingga versi maksimum {1} dan e-mel kepada pengarang."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "E-mel pengarang add-ons {2} yang gagal pengesahan."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "Terima dan Pasang"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tambah ke {0}"
 
 msgid "Download Now"
-msgstr ""
+msgstr "Muat Turun Sekarang"
 
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Add-on tidak dikemaskini untuk menyokong piawai-ke-serasi."
 
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Anda perlu gunakan Firefox 10.0 atau lebih baru."
 
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
