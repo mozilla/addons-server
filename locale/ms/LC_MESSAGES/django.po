@@ -836,7 +836,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr ""
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "Nota Pengumpul"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
