@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 05:12+0000\n"
-"Last-Translator: Norman Haikal <normanh876@gmail.com>\n"
+"PO-Revision-Date: 2017-07-23 11:43+0000\n"
+"Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Usernames cannot contain only digits."
 msgstr "Nama pengguna tidak boleh hanya mengandungi nombor."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Masukkan nama pengguna yang sah yang mengandungi huruf, nombor, garis bawah atau tanda sempang."
 
 msgid "This username cannot be used."
 msgstr "Nama pengguna ini tidak boleh digunakan."
@@ -42,7 +42,7 @@ msgid "Please use images smaller than %dMB."
 msgstr "Sila gunakan imej kecil daripada %dMB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Anda sudah log masuk."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Percubaan log masuk anda tidak dapat dihuraikan. Sila cuba lagi."
@@ -57,7 +57,7 @@ msgid "Need help?"
 msgstr "Perlukan bantuan?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Pembangun add-ons atau tema tidak boleh menghapuskan akaun mereka. Anda mesti hapuskan semua add-ons dan tema yang dikaitkan dengan akaun ini atau pindahkannya kepada pengguna lain."
 
 msgid "Review"
 msgstr "Ulasan"
@@ -69,7 +69,7 @@ msgid "Review note"
 msgstr "Nota ulasan"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Hanya add-ons versi terkini boleh disertakan dengan nota."
 
 msgid "Download Now"
 msgstr "Muat turun Sekarang"
@@ -100,21 +100,21 @@ msgstr "Slug ini sedang digunakan. Sila pilih yang lain."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "Slug tidak hanya \"%(slug)s\". Sila pilih yang lain."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
+msgstr[0] "Tag tidak sah: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
+msgstr[0] "\"{0}\" adalah tag rizab dan tidak boleh digunakan."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
+msgstr[0] "Anda ada {0} terlalu banyak tag."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
