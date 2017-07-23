@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 05:07+0000\n"
+"PO-Revision-Date: 2017-07-23 05:24+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -97,22 +97,24 @@ msgid "WebExtension upgrade"
 msgstr "kemaskini WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Mengalihkan add-on Firefox legasi di MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Samada anda perlukan akaun untuk masuk ke laman web supaya add-on boleh diuji sepenuhnya, termasuk ujian nama pengguna dan kata laluan dalam Nota kepada Pengulas (ini boleh dilakukan dalam langkah "
+"seterusnya)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Senarai semak penghantaran add-on"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Sila sahkan butiran berikut sebelum memuktamadkan penghantaran anda. Ini akan mengurangkan kelewatan atau salah faham semasa proses semakan:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
