@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 10:10+0000\n"
+"PO-Revision-Date: 2017-07-23 10:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -675,19 +675,19 @@ msgid "Not available for {0} {1}"
 msgstr "Tidak tersedia untuk {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Berfungsi dengan {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "Berfungsi dengan {app}"
 
 msgid "View other versions"
-msgstr ""
+msgstr "Tinjau versi lain"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
 msgid "Download now"
-msgstr ""
+msgstr "Muat turun sekarang"
 
 msgid "Only available on Firefox Desktop"
 msgstr "Hanya terdapat dalam Firefox Desktop"
@@ -696,96 +696,96 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "Maaf, anda perlukan pelayar berasaskan-Mozilla (seperti Firefox) untuk memasang plugin carian."
 
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Menambah ke Kegemaran&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Menghapuskan Kegemaran&hellip;"
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Tambah ke Kegemaran"
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Buang daripada Kegemaran"
 
 msgid "Pending"
-msgstr ""
+msgstr "Tertangguh"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Tambah komen"
 
 msgid "Comment"
-msgstr ""
+msgstr "Komen"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Buang add-on ini daripada koleksi"
 
 msgid "Remove"
-msgstr ""
+msgstr "Buang"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Singkir pengguna ini daripada penyumbang"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Alamat e-mel diperlukan."
 
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Anda tidak boleh masukkan diri sendiri sebagai penyumbang."
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "Anda sudah masukkan pengguna tersebut."
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tambah ke kegemaran"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Buang daripada kegemaran"
 
 msgid "Stop following"
-msgstr ""
+msgstr "Berhenti ikuti"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Pelayar anda tidak menyokong tag video ini"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Perubahan Disimpan"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Masukkan alamat e-mel baru pengarang"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Ada ralat semasa memuat naik fail anda."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} fail"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} ulasan pengguna"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Ketahui selanjutnya"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Perubahan imej sedang diproses"
 
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Mesti alamat e-mel yang sah."
 
 msgid "No results found."
-msgstr ""
+msgstr "Tiada hasil ditemukan."
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} telah meninjau halaman ini terlebih dahulu."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Resit disemak oleh aplikasi."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Resit tidak disemak oleh aplikasi."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} telah meninjau add-on ini terlebih dahulu."
 
 msgid "Loading&hellip;"
 msgstr ""
