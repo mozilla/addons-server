@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 04:49+0000\n"
+"PO-Revision-Date: 2017-07-23 05:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -48,53 +48,53 @@ msgid "Error with {0}"
 msgstr "Ralat dengan {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Kami telah dayakan linter baru untuk memproses Add-on anda. Sila pastikan anda lapor sebarang isu di GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "Add-on anda gagal pengesahan dengan {0} ralat."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dan {0} lagi"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Lihat laporan pengesahan penuh"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Mengesahkan {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Add-on anda melebihi saiz maksimum sebanyak {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Menerima respons kosong darpada pelayan; status: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Ralat tidak dijangka semasa mengesahkan."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Siap mengesahkan {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Pengesahan add-on anda tamat tempoh, akan disemak secara manual."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Add-on anda telah disahkan dengan tiada ralat dan {0} amaran."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Add-on anda telah disahkan dengan tiada ralat dan {0} mesej."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Add-on anda telah disahkan dengan tiada ralat atau amaran."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Penghantaran anda akan didaftarkan secara automatik."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "kemaskini WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
