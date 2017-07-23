@@ -354,10 +354,10 @@ msgid "Sharing"
 msgstr "Perkongsian"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Halaman Kategori"
 
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
