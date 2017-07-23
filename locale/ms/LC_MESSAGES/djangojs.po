@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 08:02+0000\n"
+"PO-Revision-Date: 2017-07-23 08:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -443,7 +443,7 @@ msgstr "Pemasangan dan Pengguna Harian, {0} hingga {1} hari lepas"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Muat turun, l{0} hari lepas"
+msgstr "Muat turun, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -555,67 +555,67 @@ msgstr "Add-ons Dikemaskini daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Ulasan Ditulis, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Ulasan Ditulis daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Pendaftaran Pengguna, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Pendaftaran Pengguna daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Koleksi Dicipta, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Koleksi Dicipta daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Pelanggan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Pelanggan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Penarafan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Penarafan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Jualan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Jualan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Pemasangan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Pemasangan daripada {0} untuk {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> dalam tempoh {1} hari lepas"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> daripada {1} hingga {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
