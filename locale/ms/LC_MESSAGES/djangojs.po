@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 05:57+0000\n"
+"PO-Revision-Date: 2017-07-23 06:32+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -315,43 +315,43 @@ msgid "Homepage Featured"
 msgstr "Ciri Halaman utama"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Akan Muncul dalam Halaman Utama"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Paling Popular dalam Halaman utama"
 
 msgid "Detail Page"
 msgstr ""
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Halaman Butiran (bawah)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Halaman Butiran (Saluran Pembangunan)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Sering Digunakan Dengan"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Lain-lain Mengikut Pengarang"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Kebergantungan"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Upsell"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Bertemu Pembangun"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Profil Pengguna"
 
 msgid "Version History"
-msgstr ""
+msgstr "Sejarah Versi"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Perkongsian"
 
 msgid "Category Pages"
 msgstr ""
