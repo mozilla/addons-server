@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 08:50+0000\n"
+"PO-Revision-Date: 2017-07-23 08:51+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -658,7 +658,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Anda perlu gunakan Firefox 10.0 atau lebih baru."
 
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla telah tandakan versi ini sebagai tidak serasi dengan versi Firefox anda."
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
