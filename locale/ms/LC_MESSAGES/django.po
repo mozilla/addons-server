@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 13:32+0000\n"
+"PO-Revision-Date: 2017-07-23 13:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -226,76 +226,80 @@ msgid "The developer of this add-on would like you to consider making a small co
 msgstr "Pembangun add-on ini mahu anda mempertimbangkan untuk membuat sedikit sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> jika anda seronok menggunakannya."
 
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr ""
+msgstr "Mozilla komited untuk menyokong ekosistem pembangun yang cergas dan sihat. Sumbangan pilihan anda membantu mengekalkan pembangunan selanjutnya add-on ini."
 
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Hulurkan Derma"
 
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Bantu menyokong pembangunan berterusan <strong>%(addon_name)s</strong> dengan membuat sedikit sumbangan melalui <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Untuk menunjukkan sokongan anda kepada <b>%(addon_name)s</b>, pembangun meminta anda membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Untuk menunjukkan sokongan anda kepada <b>%(addon_name)s</b>, pembangun meminta anda membuat sedikit sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Berapa jumlah yang anda mahu sumbangkan?"
 
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "Jumlah maksimum sumbangan ialah {0}."
 
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Jumlah minimum sumbangan ialah {0}."
 
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Amaun sumbangan mesti dalam nombor."
 
 #. {0} is a currency amount (e.g., $5.00)
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "Sumbangan sekali-sahaja yang dicadangan {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount input
 #. field
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "Sumbangan sekali-sahaja {0} {1}"
 
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Berikan komen atau permintaan dengan sumbangan anda."
 
 msgid "(optional)"
 msgstr "(pilihan)"
 
 msgid "Make Contribution"
-msgstr ""
+msgstr "Memberi Sumbangan"
 
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Menghubungi PayPal"
 
 msgid "No Thanks"
-msgstr ""
+msgstr "Tidak, Terima kasih"
 
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Sumbangan telah dibuat, terima kasih."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Perjanjian Lesen Pengguna-Akhir {0}"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Perjanjian Lesen Pengguna-Akhir"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s meminta anda menerima Perjanjian Lesen Pengguna-Akhir sebelum pemasangan boleh diteruskan:"
 
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Kembali ke {0}…"
 
 msgid "Add-ons for {0}"
 msgstr "Add-on untuk {0}"
