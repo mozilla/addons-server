@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 08:48+0000\n"
+"PO-Revision-Date: 2017-07-24 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -846,10 +846,10 @@ msgid "Review History"
 msgstr "Sejarah Ulasan"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Maaf, tema ini masih tertangguh. Sila cuba lagi seketika nanti."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Tema ini masih tertangguh. Tidak dapat dilihat oleh sesiapa kecuali anda sendiri."
 
 msgid "Collector's Note"
 msgstr "Nota Pengumpul"
@@ -857,7 +857,7 @@ msgstr "Nota Pengumpul"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> muat turun mingguan"
 
 msgid "Not Reviewed"
 msgstr ""
@@ -866,40 +866,40 @@ msgid "Tools"
 msgstr "Alatan"
 
 msgid "My Profile"
-msgstr ""
+msgstr "Profil Saya"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "Tetapan Akaun"
 
 msgid "My Collections"
-msgstr ""
+msgstr "Koleksi Saya"
 
 msgid "My Favorites"
-msgstr ""
+msgstr "Kegemaran Saya"
 
 msgid "Log out"
-msgstr ""
+msgstr "Log keluar"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Urus Penghantaran Saya"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Hantar Add-on Baru"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Hantar Tema Baru"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "Hab Pembangun"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Urus Kekunci API"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Alatan Pengulas"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Alatan Pentadbir"
 
 msgid "Incorrect, please try again."
 msgstr ""
