@@ -2911,7 +2911,8 @@ class TestStaticCategoryView(TestCase):
         }
 
     def test_with_description(self):
-        # StaticCategories are immutable so have to hack around.
+        # StaticCategory is immutable, so avoid calling it's __setattr__
+        # directly.
         object.__setattr__(CATEGORIES_BY_ID[1], 'description', u'does stuff')
         with self.assertNumQueries(0):
             response = self.client.get(self.url)
