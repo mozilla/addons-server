@@ -27,6 +27,7 @@ cache:
     - node_modules
 
 services:
+  - mysql
   - memcached
 
 addons:
@@ -37,6 +38,7 @@ addons:
   firefox: latest
 
 before_install:
+  - mysql -e 'create database olympia;'
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
 
@@ -48,7 +50,6 @@ install:
   - pip install --upgrade pip wheel setuptools tox==1.8.1
 
 before_script:
-  - mysql -e 'create database olympia;'
   - node --version
   - |
       if [[ $TOXENV == "ui-tests" ]]; then
