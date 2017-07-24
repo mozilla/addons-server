@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 09:50+0000\n"
+"PO-Revision-Date: 2017-07-24 10:09+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -902,43 +902,43 @@ msgid "Admin Tools"
 msgstr "Alatan Pentadbir"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Tidak betul, sila cuba lagi."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Ralat mengesahkan input, sila cuba lagi."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Mesti kod warna hex yang sah, seperti #000000."
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Tidak dibenarkan"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>Oops! Tidak dibenarkan.</h1> <p>Anda cuba melakukan sesuatu yang tidak dibenarkan.</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Cuba undur ke halaman sebelum ini, muatkan semula dan kemudian cuba lagi.</p>"
 
 msgid "Page Not Found"
-msgstr ""
+msgstr "Halaman Tidak Ditemui"
 
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Add-ons Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Maaf, kami tidak menemukan apa-apa pada alamat yang anda masukkan. Jika anda mengikuti pautan add-on, mungkin add-on tersebut telah dikeluarkan oleh pengarangnya."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Halaman Disyorkan"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "Layari semua ekstensi"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "Layari semua tema"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "Halaman utama Add-ons"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
