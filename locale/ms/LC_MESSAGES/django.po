@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 02:29+0000\n"
+"PO-Revision-Date: 2017-07-24 03:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -990,9 +990,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Sila masukkan <strong>semua perkataan</strong> di bawah, <strong>diasingkan dengan ruang, jika perlu.</strong>. </p> <p> Jika sukar dibaca, anda boleh <a href=\"#\" "
+"id=\"recaptcha_different\">cuba perkataan lain</a> atau <a href=\"#\" id=\"recaptcha_audio\">cuba pula cabaran jenis lain</a>. </p>"
 
 msgid "Top Rated"
-msgstr ""
+msgstr "Tahap Tinggi"
 
 msgid "Newest"
 msgstr ""
@@ -1246,7 +1248,7 @@ msgstr ""
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Untuk menilaikan koleksi, anda perlu ada akaun add-ons."
 
 msgid "Create an Add-ons Account"
 msgstr ""
@@ -1694,7 +1696,7 @@ msgid "Most Popular Extensions"
 msgstr ""
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Ekstensi Tahap-Tinggi"
 
 msgid "Newest Extensions"
 msgstr ""
@@ -1720,7 +1722,7 @@ msgid "Most Popular Complete Themes"
 msgstr ""
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Tahap-Tinggi"
 
 msgid "Newest Complete Themes"
 msgstr ""
@@ -1768,7 +1770,7 @@ msgid "View All Most Popular"
 msgstr ""
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Papar Semua Tahap Tinggi"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
@@ -2076,7 +2078,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} dipindahkan daripada persediaan."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
