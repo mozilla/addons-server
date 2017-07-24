@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 19:31+0000\n"
+"PO-Revision-Date: 2017-07-24 19:35+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4994,20 +4994,17 @@ msgstr "Requires Payment"
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Approval Status"
+msgstr "Last Approval Date"
 
 msgid "Approvals Since Last Automatic Review"
 msgstr "Approvals Since Last Automatic Review"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Abuse Reports for {addon} ({num})"
+msgstr "Abuse Reports ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderated Review ({num})"
+msgstr "Bad User Reviews ({num})"
 
 msgid "More about this add-on"
 msgstr "More about this add-on"
@@ -5033,9 +5030,8 @@ msgstr "Updates"
 msgid "Moderated Reviews"
 msgstr "Moderated Reviews"
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Android Add-ons"
+msgstr "Auto Approved Add-ons"
 
 msgid "Unlisted Queues"
 msgstr "Unlisted Queues"
@@ -5077,9 +5073,8 @@ msgstr "No events found for this period."
 msgid "Log details"
 msgstr "Log details"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Review History"
+msgstr "Review Author"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5261,9 +5256,8 @@ msgstr "Download files"
 msgid "The developer has provided source code."
 msgstr "The developer has provided source code."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Android Add-ons"
+msgstr "Not Auto Approved Because"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Auto-Approval script has not run yet on this version."
@@ -5344,9 +5338,8 @@ msgstr "Contents"
 msgid "Compare"
 msgstr "Compare"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Permissions"
+msgstr "Permissions:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5527,11 +5520,10 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderated Review ({0})"
 msgstr[1] "Moderated Reviews ({0})"
 
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "New Add-on ({0})"
-msgstr[1] "New Add-ons ({0})"
+msgstr[0] "Auto Approved Add-on ({0})"
+msgstr[1] "Auto Approved Add-ons ({0})"
 
 msgid "Flagged"
 msgstr "Flagged"
@@ -6623,15 +6615,14 @@ msgstr ""
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "How do I test for compatibility with the latest version of Mozilla software?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
+"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
+"are not negatively impacted upon final release of Mozilla software."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "I need some advice building my add-on. Where can I find help?"
@@ -6671,14 +6662,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Can I host my own add-on?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site.  <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage"
-" source code, version control, bug tracking and documentation."
+"to the large volume of visitors to the site."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Can Mozilla host my add-on?"
@@ -6717,25 +6707,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Does Mozilla have a policy in place as to what is an acceptable submission?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
-"href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
+" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "How do I submit my add-on for review?"
+msgstr "How do I submit my add-on?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
+" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "What operating system do I choose for my add-on?"
@@ -6765,41 +6754,40 @@ msgstr "Can I include a privacy policy for my add-on?"
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Why must my add-on be reviewed?"
+msgstr "Must my add-on be reviewed?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
-"<a href=\"%(url)s\">Add-on Review Guide</a>."
+"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
+"to review add-on submissions."
 
 msgid "Who reviews my add-on?"
 msgstr "Who reviews my add-on?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
-"href=\"%(url)s\">Add-on Review Guide</a>."
+" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
+" href=\"%(url)s\">Add-on Review Guide</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "What are the guidelines used to review my add-on?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
-"that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
+"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
+"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "How long will it take for my add-on to be reviewed?"
@@ -6871,9 +6859,8 @@ msgstr "Misplaced bug report or support request"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Other (provides a pop-up prompt for information)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
+msgstr "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Can I request that a review be removed if the review is negative?"
@@ -6946,16 +6933,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Will add-ons work with my web browser or application?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 
 msgid "What are the different types of add-ons?"
@@ -7080,36 +7067,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "What if I can't find an add-on I'm looking for?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons </a>forum."
+"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "What does it mean if an add-on is \"experimental\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
-"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
-"process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
+"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "What does it mean if an add-on is \"not reviewed\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
+"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "How much do add-ons cost to purchase?"
@@ -7143,13 +7129,12 @@ msgstr ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
+"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "How do I report an inappropriate or spam user review?"
@@ -7208,13 +7193,13 @@ msgstr "Mobile Add-ons"
 msgid "What are mobile add-ons?"
 msgstr "What are mobile add-ons?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 
 msgid "Developer Topics"
 msgstr "Developer Topics"
@@ -7331,13 +7316,12 @@ msgstr "Yes, add-on authors can provide a single response to a review. You can s
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "I’m an add-on author, can I delete unfavourable reviews or ratings?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
+"valid due to a new release of your add-on, we may consider deleting the review."
 
 msgid "Start Now"
 msgstr "Start Now"
@@ -7348,9 +7332,8 @@ msgstr "Mozilla wants to figure out the best way to keep our users safe if they 
 msgid "What will happen next"
 msgstr "What will happen next"
 
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>If you agree</strong> to participate:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -7385,9 +7368,8 @@ msgstr "If you opt out of the study early we will ask you to fill out a survey. 
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr "Opting out of a study does not prevent you from participating in future studies."
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "Privacy:"
+msgstr "Your privacy"
 
 msgid "All Shield Studies"
 msgstr "All Shield Studies"
@@ -8328,9 +8310,9 @@ msgstr "Delete current photo"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Allowed HTML: {0}. Links are forbidden."
+msgstr "Allowed HTML: %(html)s. Links are forbidden."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Decide what collections should be shown in your profile."
