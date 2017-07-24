@@ -596,6 +596,9 @@ class Addon(OnChangeMixin, ModelBase):
             # Don't change anything if we don't meet the requirements
             return data
 
+        # find_language might have expanded short to full locale, so update it.
+        data['default_locale'] = default_locale
+
         fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
 
