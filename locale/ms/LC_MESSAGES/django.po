@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 15:43+0000\n"
+"PO-Revision-Date: 2017-07-24 23:15+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1105,17 +1105,17 @@ msgid "Error decoding signature."
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Token JWT Tidak Sah."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Panjang medan perlu ada sekurang-kurangnya {num} aksara."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Kod bahasa {lang_code} tidak sah."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Pk atau slug tidak sah \"%s\" - objek tidak wujud."
 
 msgid "Application Versions"
 msgstr ""
