@@ -11,7 +11,7 @@ class AbuseReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AbuseReport
-        fields = ('reporter', 'ip_address', 'addon', 'user', 'message')
+        fields = ('reporter', 'addon', 'user', 'message')
 
     def get_addon(self, obj):
         addon = obj.addon

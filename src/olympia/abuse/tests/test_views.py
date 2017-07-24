@@ -20,7 +20,7 @@ class AbuseReviewSetTestBase(object):
 
     def check_report(self, report, text):
         assert unicode(report) == text
-        assert report.ip_address
+        assert report.ip_address == '123.45.67.89'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
@@ -28,7 +28,8 @@ class AbuseReviewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': unicode(addon.id), 'message': 'abuse!'})
+            data={'addon': unicode(addon.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
@@ -40,7 +41,8 @@ class AbuseReviewSetTestBase(object):
         addon = addon_factory()
         response = self.client.post(
             self.url,
-            data={'addon': addon.slug, 'message': 'abuse!'})
+            data={'addon': addon.slug, 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
@@ -52,7 +54,8 @@ class AbuseReviewSetTestBase(object):
         addon = addon_factory(guid='@badman')
         response = self.client.post(
             self.url,
-            data={'addon': addon.guid, 'message': 'abuse!'})
+            data={'addon': addon.guid, 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
@@ -64,7 +67,8 @@ class AbuseReviewSetTestBase(object):
         guid = '@mysteryman'
         response = self.client.post(
             self.url,
-            data={'addon': guid, 'message': 'abuse!'})
+            data={'addon': guid, 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(guid=guid).exists()
@@ -82,7 +86,8 @@ class AbuseReviewSetTestBase(object):
         addon = addon_factory(status=amo.STATUS_NULL)
         response = self.client.post(
             self.url,
-            data={'addon': unicode(addon.id), 'message': 'abuse!'})
+            data={'addon': unicode(addon.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
@@ -94,7 +99,8 @@ class AbuseReviewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': unicode(user.id), 'message': 'abuse!'})
+            data={'user': unicode(user.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
@@ -106,7 +112,8 @@ class AbuseReviewSetTestBase(object):
         user = user_factory()
         response = self.client.post(
             self.url,
-            data={'user': unicode(user.username), 'message': 'abuse!'})
+            data={'user': unicode(user.username), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
         assert response.status_code == 201
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()

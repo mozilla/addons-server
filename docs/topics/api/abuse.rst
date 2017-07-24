@@ -25,7 +25,6 @@ so reports can be responded to if nessecary.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
-    :>json string ip_address: The IP address where the report was submitted from, to track potential abuse of this API.
     :>json object|null addon: If this was an add-on abuse report, then the add-on.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json int|null addon.id: The add-on id on AMO.  If the guid submitted didn't match a known add-on on AMO, then null.

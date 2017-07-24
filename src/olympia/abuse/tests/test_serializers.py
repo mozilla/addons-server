@@ -15,7 +15,6 @@ class TestAbuseReportSerializer(BaseTestCase):
         report = AbuseReport(addon=addon, message='bad stuff')
         serial = self.serialize(report)
         assert serial == {'reporter': None,
-                          'ip_address': '0.0.0.0',
                           'addon': {'guid': addon.guid,
                                     'id': addon.id,
                                     'slug': addon.slug},
@@ -26,7 +25,6 @@ class TestAbuseReportSerializer(BaseTestCase):
         report = AbuseReport(guid='@guid', message='bad stuff')
         serial = self.serialize(report)
         assert serial == {'reporter': None,
-                          'ip_address': '0.0.0.0',
                           'addon': {'guid': '@guid',
                                     'id': None,
                                     'slug': None},
@@ -39,7 +37,6 @@ class TestAbuseReportSerializer(BaseTestCase):
         serial = self.serialize(report)
         user_serial = BaseUserSerializer(user).data
         assert serial == {'reporter': None,
-                          'ip_address': '0.0.0.0',
                           'addon': None,
                           'user': user_serial,
                           'message': 'bad stuff'}
