@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 08:30+0000\n"
+"PO-Revision-Date: 2017-07-24 08:48+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -782,26 +782,26 @@ msgstr "Apa perkembangan lanjutan {0}"
 
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
+msgstr[0] "Perihal Pembangun"
 
 msgid "No Photo"
-msgstr ""
+msgstr "Tiada Foto"
 
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Siapakah gerangan {0}?"
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Add-on ini telah dibuang oleh pengarangnya."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Add-on ini telah dinyahdayakan oleh pentadbir."
 
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Lesen Kod Sumber untuk {addon}"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr ""
+msgstr "Lesen Kod Sumber"
 
 msgid "permalink"
 msgstr "pautan kekal"
@@ -821,7 +821,7 @@ msgid "{0} users"
 msgstr "{0} pengguna"
 
 msgid "More"
-msgstr ""
+msgstr "Selanjutnya"
 
 msgid "Add to collection"
 msgstr "Tambah ke koleksi"
@@ -863,7 +863,7 @@ msgid "Not Reviewed"
 msgstr ""
 
 msgid "Tools"
-msgstr ""
+msgstr "Alatan"
 
 msgid "My Profile"
 msgstr ""
@@ -1281,7 +1281,7 @@ msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 
 msgid "About this Collection"
-msgstr ""
+msgstr "Perihal Koleksi ini"
 
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
@@ -3107,7 +3107,7 @@ msgid "Authors"
 msgstr ""
 
 msgid "About author roles"
-msgstr ""
+msgstr "Perihal peranan pengarang"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3902,7 +3902,7 @@ msgid "Community"
 msgstr ""
 
 msgid "About"
-msgstr ""
+msgstr "Perihal"
 
 msgid "Forum"
 msgstr ""
@@ -6254,17 +6254,21 @@ msgstr "Ada banyak cara untuk anda melibatkan diri. Jika anda cenderung bidang t
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Bina add-on anda sendiri</a>. Kami menyediakan perkhidmatan hosting dan kemas kini percuma, dan boleh membantu anda mencapai ramai pengguna."
 
 #, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
+"Jika anda ada pengalaman pembangunan add-on, <a href=\"%(url)s\"> jadilah Pengulas Add-on</a>! Pengulas kami adalah peminat add-on dengan latar belakang teknikal yang menyemak kualiti dan kestabilan"
+" kod add-ons."
 
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Bantu memperbaiki laman web ini. Sumber terbuka, dan anda boleh memfailkan pepijat dan mengemukakan tampalan. <a href=\"%(url)s\">GitHub</a> mengandungi semua pepijat semasa kami, legasi pepijat "
+"masih dapat dijumpai di Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr "Jika anda berminat dalam add-ons tetapi masih kurang pengetahuan teknikal, masih ada cara untuk membantu:"
@@ -6330,6 +6334,8 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
+"Jika anda mengemaskini ke versi baru Firefox atau add-ons, laporan versi lama anda akan disorok supaya anda boleh menguji versi baru tersebut. Jika anda ada soalan, sila tanya dalam <a "
+"href=\"%(url)s\">forum kami</a>."
 
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
@@ -8075,7 +8081,7 @@ msgid "Themes Artist"
 msgstr ""
 
 msgid "About me"
-msgstr ""
+msgstr "Perihal diri saya"
 
 msgid "In a little more detail..."
 msgstr ""
