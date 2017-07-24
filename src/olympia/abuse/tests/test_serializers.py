@@ -1,14 +1,15 @@
 from olympia.abuse.models import AbuseReport
-from olympia.abuse.serializers import AbuseReportSerializer
+from olympia.abuse.serializers import (
+    AddonAbuseReportSerializer, UserAbuseReportSerializer)
 from olympia.amo.tests import (
     addon_factory, BaseTestCase, user_factory)
 from olympia.users.serializers import BaseUserSerializer
 
 
-class TestAbuseReportSerializer(BaseTestCase):
+class TestAddonAbuseReportSerializer(BaseTestCase):
 
     def serialize(self, report, **extra_context):
-        return AbuseReportSerializer(report, context=extra_context).data
+        return AddonAbuseReportSerializer(report, context=extra_context).data
 
     def test_addon_report(self):
         addon = addon_factory(guid='@guid')
@@ -18,7 +19,6 @@ class TestAbuseReportSerializer(BaseTestCase):
                           'addon': {'guid': addon.guid,
                                     'id': addon.id,
                                     'slug': addon.slug},
-                          'user': None,
                           'message': 'bad stuff'}
 
     def test_guid_report(self):
@@ -28,8 +28,13 @@ class TestAbuseReportSerializer(BaseTestCase):
                           'addon': {'guid': '@guid',
                                     'id': None,
                                     'slug': None},
-                          'user': None,
                           'message': 'bad stuff'}
+
+
+class TestUserAbuseReportSerializer(BaseTestCase):
+
+    def serialize(self, report, **extra_context):
+        return UserAbuseReportSerializer(report, context=extra_context).data
 
     def test_user_report(self):
         user = user_factory()
@@ -37,6 +42,5 @@ class TestAbuseReportSerializer(BaseTestCase):
         serial = self.serialize(report)
         user_serial = BaseUserSerializer(user).data
         assert serial == {'reporter': None,
-                          'addon': None,
                           'user': user_serial,
                           'message': 'bad stuff'}

@@ -4,14 +4,13 @@ from olympia.abuse.models import AbuseReport
 from olympia.users.serializers import BaseUserSerializer
 
 
-class AbuseReportSerializer(serializers.ModelSerializer):
+class AddonAbuseReportSerializer(serializers.ModelSerializer):
     addon = serializers.SerializerMethodField()
     reporter = BaseUserSerializer(read_only=True)
-    user = BaseUserSerializer()
 
     class Meta:
         model = AbuseReport
-        fields = ('reporter', 'addon', 'user', 'message')
+        fields = ('reporter', 'addon', 'message')
 
     def get_addon(self, obj):
         addon = obj.addon
@@ -22,3 +21,12 @@ class AbuseReportSerializer(serializers.ModelSerializer):
             'id': addon.id if addon else None,
             'slug': addon.slug if addon else None,
         }
+
+
+class UserAbuseReportSerializer(serializers.ModelSerializer):
+    reporter = BaseUserSerializer(read_only=True)
+    user = BaseUserSerializer()
+
+    class Meta:
+        model = AbuseReport
+        fields = ('reporter', 'user', 'message')
