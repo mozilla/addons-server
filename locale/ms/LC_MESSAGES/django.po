@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 00:01+0000\n"
-"Last-Translator: Norman Haikal <normanh876@gmail.com>\n"
+"PO-Revision-Date: 2017-07-24 01:43+0000\n"
+"Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Teruskan untuk Muat turun&nbsp;&rarr;"
 
 msgid "Featured"
-msgstr "Terpilih"
+msgstr "Sorotan"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
@@ -305,7 +305,7 @@ msgid "Add-ons for {0}"
 msgstr "Add-on untuk {0}"
 
 msgid "Featured Extensions"
-msgstr "Ekstensi Terpilih"
+msgstr "Ekstensi Sorotan"
 
 msgid "Popular Extensions"
 msgstr "Ekstensi Popular"
@@ -323,10 +323,10 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr "Tema Terpilih"
+msgstr "Tema Sorotan"
 
 msgid "Featured Collections"
-msgstr "Koleksi Terpilih"
+msgstr "Koleksi Sorotan"
 
 msgid "Sort by:"
 msgstr "Susun ikut:"
@@ -1562,7 +1562,7 @@ msgstr ""
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Add-ons Sorotan :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1600,14 +1600,14 @@ msgstr ""
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Add-ons Sorotan"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Tiada add-ons sorotan dalam {0}."
 
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Add-ons Sorotan"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -1704,7 +1704,7 @@ msgstr ""
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Sorotan"
 
 msgid "Most Popular Complete Themes"
 msgstr ""
