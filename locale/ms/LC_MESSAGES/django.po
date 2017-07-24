@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 12:31+0000\n"
+"PO-Revision-Date: 2017-07-24 12:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4026,7 +4026,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Daftar Masuk</a>"
 
 msgid "Customize Firefox"
 msgstr ""
@@ -6750,6 +6750,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Ekstensi</a></strong> tambah ciri baru ke %(app_name)s atau ubah fungsi sedia ada. Ada ekstensi yang membolehkan anda menyekat pengiklanan, memuat turun video "
+"daripada laman web, berintegrasi lebih dekat dengan laman web sosial, dan menambah ciri yang anda jumpa dalam aplikasi lain."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -7727,7 +7729,7 @@ msgid "Mozilla Add-ons"
 msgstr ""
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Cari add-ons untuk aplikasi lain"
 
 msgid "Other Applications"
 msgstr "Aplikasi Lain"
@@ -7781,7 +7783,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Log masuk</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
