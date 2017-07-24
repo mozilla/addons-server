@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 01:43+0000\n"
+"PO-Revision-Date: 2017-07-24 02:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -943,6 +943,12 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Maafkan kerana kami tidak dapat mencari apa yang anda inginkan.</h1> <p> Halaman atau fail yang anda minta tidak ditemui dalam laman kami. Mungkin anda klik pautan yang sudah lapuk, atau taip "
+"alamat yang salah.</p> <ul> <li>Jika anda taip alamat, sila semak semula ejaannya.</li> <li> Jika anda mengikuti pautan, sila <a href=\"https://github.com/mozilla/addons-server/issues/new/\">failkan"
+" isu</a>. Beritahu kami dari mana anda datang dan apa yang anda cari, dan kami akan buat yang terbaik untuk membaikinya. </li> </ul> <p>Atau anda boleh terus ke halaman yang popular di laman web "
+"kami.</p> <ul> <li>Adakah anda berminat dengan<a href=\"%(rec)s\">senarai add-on sorotan</a>?</li> <li> Adakah anda mahu <a href=\"%(search)s\">cari add-ons</a>? Anda boleh pergi ke <a "
+"href=\"%(search)s\">cari dalam halaman</a> atau gunakan sahaja medan carian di atas.</li> <li> Jika anda lebih suka untuk mulakan semula, pergi sahaja ke <a href=\"%(home)s\">halaman depan add-"
+"ons</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr ""
@@ -972,10 +978,10 @@ msgid "Maintenance in progress"
 msgstr ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami membuat penyelenggaraan laman web. Sila gunakan butang Undur pelayar anda dan cuba semula sebentar lagi."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Sesetengah ciri pada halaman ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar nanti."
 
 msgid "Are you human?"
 msgstr ""
@@ -1316,11 +1322,15 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Add-ons yang anda tandakan sebagai kegemaran menggunakan ciri <b>Tambah ke Kegemaran</b> akan muncul di bawah. Koleksi ini kini <b>umum</b>, iaitu semua orang boleh melihatnya. Jika anda mahu "
+"menyembunyikannya daripada pandangan umum, klik butang di bawah untuk menjadikannya peribadi."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Add-ons yang anda tandakan sebagai kegemaran menggunakan ciri <b>Tambah ke Kegemaran</b> akan muncul di bawah. Koleksi ini kini <b>peribadi</b>, iaitu hanya anda boleh melihatnya. Jika anda mahu "
+"semua orang boleh melihat kegemaran anda, klik butang di bawah untuk menjadikannya umum."
 
 msgid "My favorite add-ons"
 msgstr ""
@@ -1771,7 +1781,7 @@ msgstr ""
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Tema Lengkap mengubah penampilan pelayar anda dengan gaya untuk bingkai tetingkap, bar alamat, butang, tab dan menu. <a href=\"%(url)s\" class=\"more-info\">Mulakan meneroka</a>"
 
 msgid "Up & Coming Themes"
 msgstr ""
@@ -1960,17 +1970,17 @@ msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} sorotan dalam {0}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} tidak lagi sorotan dalam {0}."
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} kini jadi sorotan."
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} tidak lagi jadi sorotan."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
