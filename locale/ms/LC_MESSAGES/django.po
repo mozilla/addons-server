@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 14:24+0000\n"
+"PO-Revision-Date: 2017-07-24 15:08+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -972,17 +972,17 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr "<h1>Ooops!  Ada ralat.</h1> <p>Kami akan membaikinya sebentar lagi.</p> <p>Anda boleh cuba memulakan semula halaman, atau pergi ke <a href=\"%(home)s\">Halaman utama Add-ons</a>.</p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Beberapa hak cipta terpelihara"
 
 msgid "No results found"
-msgstr ""
+msgstr "Tiada hasil ditemukan"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Dulu"
 
 msgid "Next"
-msgstr ""
+msgstr "Berikut"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
