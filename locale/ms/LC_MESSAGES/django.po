@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 04:29+0000\n"
+"PO-Revision-Date: 2017-07-24 04:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -574,16 +574,18 @@ msgid "Submit review"
 msgstr "Hantar ulasan"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
+msgstr "Jangan post laporan pepijat di sini. Kami tidak memberikan alamat e-mel anda kepada pembangun add-on, maka mereka tidak akan dapat menghubungi anda untuk menyelesaikan masalah anda."
 
 #, python-format
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Lihat <a href=\"%(support)s\">bahagian sokongan</a> add-on ini untuk ketahui samada disediakan bantuan atau tidak. Anda juga boleh bertanya kepada <a href=\"https://discourse.mozilla-community.org/c"
+"/add-ons/add-on-support\">komuniti add-on</a> untuk bantuan."
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Panduan Ulasan"
 
 msgid "Reviews"
 msgstr "Ulasan"
@@ -593,12 +595,12 @@ msgid "by %(user)s on %(date)s"
 msgstr "oleh %(user)s pada %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Papar balasan pemaju untuk ulasan ini"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
+msgstr[0] "Lihat semua %(cnt)s ulasan untuk add-on ini"
 
 msgid "Tags"
 msgstr "Tag"
@@ -620,29 +622,29 @@ msgid "This add-on has been marked as experimental by its developers"
 msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya"
 
 msgid "Download Anyway"
-msgstr ""
+msgstr "Teruskan Muat turun"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
 msgstr "<b>%(amt)s</b> dicadangkan"
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Suka add-on ini?"
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta bantuan anda untuk menyokong pembangunan yang berterusan dengan memberikan sedikit sumbangan."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta anda menunjukkan sokongan dengan membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta anda menunjukkan sokongan dengan membuat sedikt sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Add-on ini memerlukan add-ons berikut supaya dapat berfungsi dengan sempurna:"
 
 msgid "Average"
 msgstr "Purata"
@@ -651,23 +653,23 @@ msgid "Write a review"
 msgstr "Tulis ulasan"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "Kategori Berkaitan"
 
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Bahagian Koleksi berikut"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
+msgstr[0] "Add-ons lain oleh pengarang berikut"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ulasan pengguna"
 
 msgid "View statistics"
-msgstr ""
+msgstr "Papar statistik"
 
 msgid "Manage"
 msgstr "Urus"
@@ -676,19 +678,19 @@ msgid "Add-on Review"
 msgstr "Ulasan Add-on"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "Urusan Pentadbir"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Ikon {0}"
 
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
+msgstr[0] "<a href=\"%(url)s\">Bertemu Pembangun</a>"
 
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "Ketahui mengapa {0} dicipta dan yang akan datang untuk add-on ini."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
