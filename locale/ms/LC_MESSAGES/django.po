@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 03:39+0000\n"
+"PO-Revision-Date: 2017-07-24 04:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -320,7 +320,7 @@ msgid "See all »"
 msgstr "Papar semua »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Ekstensi Penampilan"
 
 msgid "Featured Themes"
 msgstr "Tema Sorotan"
@@ -329,7 +329,7 @@ msgid "Featured Collections"
 msgstr "Koleksi Sorotan"
 
 msgid "Sort by:"
-msgstr "Susun ikut:"
+msgstr "Susun mengikut:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -461,7 +461,7 @@ msgid "Learn more about Firefox"
 msgstr "Ketahui selanjutnya perihal Firefox"
 
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "atau <b><a class=\"button installer\" href=\"{url}\">teruskan muat turun</a></b>"
 
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
@@ -7327,7 +7327,7 @@ msgid "search for apps"
 msgstr ""
 
 msgid "Sort By"
-msgstr ""
+msgstr "Susun Mengikut"
 
 msgid "Relevance"
 msgstr ""

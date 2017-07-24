@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-24 03:49+0000\n"
+"PO-Revision-Date: 2017-07-24 03:59+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -372,28 +372,28 @@ msgid "Category Landing Recently Added"
 msgstr "Kategori Pelantar Terkini Ditambah"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Isih Sorotan Senarai Pelayaran"
+msgstr "Layari Senarai Isih Sorotan"
 
 msgid "Browse Listing Users Sort"
-msgstr "Senarai Pelayaran Pengguna Disisih"
+msgstr "Layari Senarai Isih Pengguna"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Senarai Pelayaran Penarafan Disisih"
+msgstr "Layari Senarai Isih Tahap"
 
 msgid "Browse Listing Created Sort"
-msgstr "Senarai Pelayaran Dicipta Disisih"
+msgstr "Layari Senarai Isih Dicipta"
 
 msgid "Browse Listing Name Sort"
-msgstr "Senarai Pelayaran Nama Disisih"
+msgstr "Layari Senarai Isih Nama"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Senarai Pelayaran Popular Disisih"
+msgstr "Layari Senarai Isih Popular"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Senarai Pelayaran Dikemas kini Disisih"
+msgstr "Layari Senarai Isih Dikemas kini"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Senarai Pelayaran Akan Muncul Disisih"
+msgstr "Layari Senarai Isih Penampilan"
 
 msgid "Total Amount Contributed"
 msgstr "Jumlah Amaun Disumbangkan"
