@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 08:02+0000\n"
+"PO-Revision-Date: 2017-07-24 08:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6270,14 +6270,14 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr "Jika anda berminat dalam add-ons tetapi masih kurang pengetahuan teknikal, masih ada cara untuk membantu:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Beritahu kawan anda! Biar semua orang tahu add-ons yang anda gunakan."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Ambil bahagian dalam <a href=\"%(url)s\">forum</a> kami."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Ulas add-ons dalam laman ini. Pengarang akan lebih cenderung meningkatkan add-ons mereka dan menulis yang baru apabila mereka tahu ada orang menghargai kerja mereka."
 
 msgid "I have a question"
 msgstr "Saya ada soalan"
