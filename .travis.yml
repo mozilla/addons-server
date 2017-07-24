@@ -1,5 +1,6 @@
 language: python
 sudo: false
+dist: precise
 
 python:
   - 2.7
@@ -26,6 +27,7 @@ cache:
     - node_modules
 
 services:
+  - mysql
   - memcached
   - elasticsearch
 
@@ -40,6 +42,9 @@ addons:
       - gettext
   firefox: latest
 
+before_install:
+  - mysql -e 'create database olympia;'
+
 install:
   - nvm current
   - nvm deactivate
@@ -48,7 +53,7 @@ install:
   - pip install --upgrade pip wheel setuptools tox==1.8.1
 
 before_script:
-  - mysql -e 'create database olympia;'
+  - mysql --version
   - node --version
   - java -version
   - curl -v http://localhost:9200/
