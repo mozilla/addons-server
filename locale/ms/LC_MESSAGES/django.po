@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 07:31+0000\n"
+"PO-Revision-Date: 2017-07-24 07:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6248,7 +6248,7 @@ msgid "This sounds great! How can I get involved?"
 msgstr "Menakjubkan! Bagaimana saya boleh melibatkan diri?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Ada banyak cara untuk anda melibatkan diri. Jika anda cenderung bidang teknikal:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -6265,7 +6265,7 @@ msgid "Help improve this website. It's open source, and you can file bugs and su
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Jika anda berminat dalam add-ons tetapi masih kurang pengetahuan teknikal, masih ada cara untuk membantu:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
@@ -6278,24 +6278,28 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "Saya ada soalan"
 
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Tempat yang baik untuk memulakan adalah <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a> kami. Jika tiada jawapan anda di sini, anda boleh <a "
+"href=\"%(forum_url)s\">tanya dalam forum kami</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Jika anda benar-benar perlu menghubungi seseorang daripada pasukan Mozilla, sila lihat halaman <a href=\"%(url)s\"> maklumat hubungan</a> kami."
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Siapa yang menyelenggara laman web ini?"
 
 #, python-format
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Selama beberapa tahun ini, ramai yang telah memberi sumbangan kepada laman web ini, termasuk kedua-dua sukarelawan daripada komuniti dan sebuah pasukan AMO yang khusus. Senarai penyumbang penting "
+"boleh ditemukan dalam halaman <a href=\"%(url)s\"> Laman Penghargaan</a> kami."
 
 msgid "Add-on Compatibility Reporter"
 msgstr ""
@@ -7741,7 +7745,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "mengenal <b>add-ons</b>"
 
 msgid "Other languages"
 msgstr ""
@@ -7987,7 +7991,7 @@ msgid "Profile"
 msgstr ""
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Berikan kami sedikit maklumat diri anda. Semua medan ini adalah pilihan, tetapi akan dapat membantu pengguna lain mengenali anda dengan lebih baik."
 
 msgid "This URL will only be visible if you are a developer."
 msgstr ""
