@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 15:08+0000\n"
+"PO-Revision-Date: 2017-07-24 15:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -989,7 +989,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr ""
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Penyelenggaran sedang dijalankan"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami membuat penyelenggaraan laman web. Sila gunakan butang Undur pelayar anda dan cuba semula sebentar lagi."
@@ -998,7 +998,7 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "Sesetengah ciri pada halaman ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar nanti."
 
 msgid "Are you human?"
-msgstr ""
+msgstr "Adakah anda manusia?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1011,83 +1011,83 @@ msgid "Top Rated"
 msgstr "Tahap Tinggi"
 
 msgid "Newest"
-msgstr ""
+msgstr "Terbaru"
 
 msgid "Explore"
-msgstr ""
+msgstr "Teroka"
 
 msgid "Extensions"
-msgstr ""
+msgstr "Ekstensi"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
-msgstr ""
+msgstr "Tema"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Mahu lebih banyak penyesuaian? Cuba <b>Tema Lengkap</b>"
 
 msgid "Most Followers"
-msgstr ""
+msgstr "Pengikut Teramai"
 
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Koleksi Saya Buat"
 
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Koleksi Saya Ikuti"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Add-ons Kegemaran Saya"
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "Selanjutnya&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Add-ons untuk Mudah alih"
 
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Kamus & Pek Bahasa"
 
 msgid "Search Tools"
-msgstr ""
+msgstr "Alatan Carian"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Halaman <a href=\"%(current_pg_url)s\">%(current_pg)s</a> daripada <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Pergi ke halaman pertama"
 
 msgid "Previous"
-msgstr ""
+msgstr "Terdahulu"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Pergi ke halaman terakhir"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Memaparkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> daripada <b>%(count)s</b>"
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Add-ons"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} lepas"
 
 msgid "Title"
-msgstr ""
+msgstr "Tajuk"
 
 msgid "Body"
-msgstr ""
+msgstr "Isi"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Tajuk Lain"
 
 msgid "Another Body"
 msgstr ""
