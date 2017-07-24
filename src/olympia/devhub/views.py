@@ -11,12 +11,14 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
+from django.forms import Form
 from django.shortcuts import get_object_or_404, redirect
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -34,23 +36,26 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import escape_all, MenuItem, send_mail, render
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
-from olympia.devhub.forms import CheckCompatibilityForm
+from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.helpers import get_position, ReviewHelper
+from olympia.editors.templatetags.jinja_helpers import get_position
+from olympia.editors.utils import ReviewHelper
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
 from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
-from olympia.users.utils import system_addon_submission_allowed
+from olympia.users.utils import (
+    mozilla_signed_extension_submission_allowed,
+    system_addon_submission_allowed)
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, ValidationResult
 
@@ -63,7 +68,7 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 # We use a session cookie to make sure people see the dev agreement.
 
-MDN_BASE = 'https://developer.mozilla.org/Add-ons'
+MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
 class AddonFilter(BaseFilter):
@@ -433,8 +438,8 @@ def ownership(request, addon_id, addon):
         t = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))
         send_mail(title,
-                  t.render(Context({'author': author, 'addon': addon,
-                                    'site_url': settings.SITE_URL})),
+                  t.render({'author': author, 'addon': addon,
+                            'site_url': settings.SITE_URL}),
                   None, recipients, use_deny_list=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
@@ -616,6 +621,11 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         upload.user = user
         upload.save()
     if app_id and version_id:
+        # If app_id and version_id are present, we are dealing with a
+        # compatibility check (i.e. this is not an upload meant for submission,
+        # we were called from check_addon_compatibility()), which essentially
+        # consists in running the addon uploaded against the legacy validator
+        # with a specific min/max appversion override.
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()
@@ -780,6 +790,10 @@ def json_upload_detail(request, upload, addon_slug=None):
                 raise django_forms.ValidationError(
                     ugettext(u'You cannot submit an add-on with a guid '
                              u'ending "@mozilla.org"'))
+            if not mozilla_signed_extension_submission_allowed(
+                    request.user, pkg):
+                raise django_forms.ValidationError(
+                    ugettext(u'You cannot submit a Mozilla Signed Extension'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -879,8 +893,8 @@ def upload_detail(request, uuid, format='html'):
 
 class AddonDependencySearch(BaseAjaxSearch):
     # No personas.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 @dev_required
@@ -1282,10 +1296,16 @@ def submit_addon(request):
                             'devhub.submit.distribution')
 
 
+@dev_required
+def submit_version_agreement(request, addon_id, addon):
+    return render_agreement(
+        request, 'devhub/addons/submit/start.html',
+        reverse('devhub.submit.version', args=(addon.slug,)),
+        submit_page='version')
+
+
 @transaction.atomic
 def _submit_distribution(request, addon, next_view):
-    if request.user.read_dev_agreement is None:
-        return redirect('devhub.submit.agreement')
     # Accept GET for the first load so we can preselect the channel.
     form = forms.DistributionChoiceForm(
         request.POST if request.method == 'POST' else
@@ -1305,11 +1325,15 @@ def _submit_distribution(request, addon, next_view):
 
 @login_required
 def submit_addon_distribution(request):
+    if not request.user.has_read_developer_agreement():
+        return redirect('devhub.submit.agreement')
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
 @dev_required(submitting=True)
 def submit_version_distribution(request, addon_id, addon):
+    if not request.user.has_read_developer_agreement():
+        return redirect('devhub.submit.version.agreement', addon.slug)
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
 
@@ -1430,6 +1454,8 @@ def submit_version_upload(request, addon_id, addon, channel):
 @dev_required
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
+    if not request.user.has_read_developer_agreement():
+        return redirect('devhub.submit.version.agreement', addon.slug)
     # choose the channel we need from the last upload
     last_version = addon.find_latest_version(None, exclude=())
     if not last_version:
@@ -1450,7 +1476,6 @@ def submit_file(request, addon_id, addon, version_id):
 
 
 def _submit_details(request, addon, version):
-    forms_list, context = [], {}
     if version and version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Not a listed version ? Then nothing to do here.
         return redirect('devhub.submit.version.finish', addon.slug, version.pk)
@@ -1461,6 +1486,11 @@ def _submit_details(request, addon, version):
     if not latest_version:
         # No listed version ? Then nothing to do in the listed submission flow.
         return redirect('devhub.submit.finish', addon.slug)
+    forms_list = []
+    context = {
+        'addon': addon,
+        'version': version,
+    }
     post_data = request.POST if request.method == 'POST' else None
     show_all_fields = not version or not addon.has_complete_metadata()
 
@@ -1670,9 +1700,8 @@ def docs(request, doc_name=None):
         'themes': '/Themes/Background',
         'themes/faq': '/Themes/Background/FAQ',
         'policies': '/AMO/Policy',
-        'policies/submission': '/AMO/Policy/Submission',
         'policies/reviews': '/AMO/Policy/Reviews',
-        'policies/maintenance': '/AMO/Policy/Maintenance',
+        'policies/rules': '/AMO/Policy/Rules',
         'policies/contact': '/AMO/Policy/Contact',
         'policies/agreement': '/AMO/Policy/Agreement',
     }
@@ -1690,14 +1719,29 @@ def api_key_agreement(request):
     return render_agreement(request, 'devhub/api/agreement.html', next_step)
 
 
-def render_agreement(request, template, next_step):
-    if request.method == 'POST':
+def render_agreement(request, template, next_step, **extra_context):
+    new_style_agreement = waffle.switch_is_active('post-review')
+    # If using the new style agreement, use AgreementForm, otherwise just an
+    # empty django Form that will always be valid when you POST things to it.
+    form_class = AgreementForm if new_style_agreement else Form
+    form = form_class(request.POST if request.method == 'POST' else None)
+    if request.method == 'POST' and form.is_valid():
+        # Developer has validated the form: let's update its profile and
+        # redirect to next step.
         request.user.update(read_dev_agreement=datetime.datetime.now())
         return redirect(next_step)
-
-    if request.user.read_dev_agreement is None:
-        return render(request, template)
+    elif not request.user.has_read_developer_agreement():
+        # Developer has either posted an invalid form or just landed on the
+        # page but haven't read the agreement yet: show the form (with
+        # potential errors highlighted)
+        context = {
+            'agreement_form': form,
+        }
+        context.update(extra_context)
+        return render(request, template, context)
     else:
+        # The developer has already read the agreement, we should just redirect
+        # to the next step.
         response = redirect(next_step)
         return response
 
@@ -1705,7 +1749,7 @@ def render_agreement(request, template, next_step):
 @login_required
 @transaction.atomic
 def api_key(request):
-    if request.user.read_dev_agreement is None:
+    if not request.user.has_read_developer_agreement():
         return redirect(reverse('devhub.api_key_agreement'))
 
     try:
@@ -1749,7 +1793,7 @@ def send_key_change_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('New API key created'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
@@ -1760,7 +1804,7 @@ def send_key_revoked_email(to_email, key):
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('API key revoked'),
-        template.render(Context({'key': key, 'url': url})),
+        template.render({'key': key, 'url': url}),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )

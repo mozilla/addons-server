@@ -1,7 +1,7 @@
 {% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
 
-{% set title = _('Add a review for {0}')|fe(addon.name) %}
+{% set title = _('Add a review for {0}')|format_html(addon.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
@@ -46,7 +46,7 @@
     </fieldset>
     <form method="post" class="review-form" id="review-form"
           action="{{ url('addons.reviews.add', addon.slug) }}">
-      {{ csrf() }}
+      {% csrf_token %}
       <fieldset>
         <ul>
           {{ pretty_field(form.title, label=_('Title')) }}

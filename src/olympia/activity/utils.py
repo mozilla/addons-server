@@ -1,8 +1,9 @@
 import datetime
 import re
+from email.utils import formataddr
 
 from django.conf import settings
-from django.template import Context, loader
+from django.template import loader
 from django.utils import translation
 
 from email_reply_parser import EmailReplyParser
@@ -12,7 +13,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import no_translation, send_mail
 from olympia.users.models import UserProfile
@@ -248,30 +249,21 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = u'Mozilla Add-ons: %s %s %s' % (
-            version.addon.name, version.version, action.short)
+        subject = u'Mozilla Add-ons: %s %s' % (
+            version.addon.name, version.version)
     template = template_from_user(note_creator, version)
+    from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
+    send_activity_mail(
+        subject, template.render(author_context_dict),
+        version, addon_authors, from_email, perm_setting)
 
     send_activity_mail(
-        subject, template.render(Context(
-            author_context_dict, autoescape=False)),
-        version, addon_authors,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        subject, template.render(reviewer_context_dict),
+        version, reviewers, from_email, perm_setting)
 
     send_activity_mail(
-        subject, template.render(Context(
-            reviewer_context_dict, autoescape=False)),
-        version, reviewers,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
-
-    send_activity_mail(
-        subject, template.render(Context(
-            staff_cc_context_dict, autoescape=False)),
-        version, staff_cc,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        subject, template.render(staff_cc_context_dict),
+        version, staff_cc, from_email, perm_setting)
 
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
         version.update(has_info_request=False)
@@ -291,11 +283,18 @@ def send_activity_mail(subject, message, version, recipients, from_email,
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
             REPLY_TO_PREFIX, token.uuid.hex, settings.INBOUND_EMAIL_DOMAIN)
+        reference_header = '{addon}/{version}@{site}'.format(
+            addon=version.addon.id, version=version.id,
+            site=settings.INBOUND_EMAIL_DOMAIN)
+        headers = {
+            'In-Reply-To': reference_header,
+            'References': reference_header
+        }
         log.info('Sending activity email to %s for %s version %s' % (
             recipient, version.addon.pk, version.pk))
         send_mail(
             subject, message, recipient_list=[recipient.email],
-            from_email=from_email, use_deny_list=False,
+            from_email=from_email, use_deny_list=False, headers=headers,
             perm_setting=perm_setting, reply_to=[reply_to])
 
 
@@ -326,7 +325,7 @@ def bounce_mail(message, reason):
         return
 
     body = (loader.get_template('activity/emails/bounce.txt').
-            render(Context({'reason': reason, 'SITE_URL': settings.SITE_URL})))
+            render({'reason': reason, 'SITE_URL': settings.SITE_URL}))
     send_mail(
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,

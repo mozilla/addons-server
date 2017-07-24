@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,9 +154,6 @@ msgstr "ਤੁਹਾਡਾ ਥੀਮ ਦਾ ਵਰਣਨ ਕਰੋ।"
 msgid "Enter a new author's email address"
 msgstr "ਇੱਕ ਨਵੇਂ ਲੇਖਕ ਦਾ ਈਮੇਲ ਪਤਾ ਭਰੋ"
 
-msgid "Not Reviewed"
-msgstr "ਪੁਨਰ ਵਿਚਾਰ ਨਹੀਂ"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "ਉਪਭੋਗੀਆਂ ਕੋਲ ਇਸ ਰਕਮ ਨਾਲੋਂ ਵੱਧ ਜਾਂ ਘੱਟ ਯੋਗਦਾਨ ਦੇਣ ਦੀ ਚੋਣ ਹੈ।"
 
@@ -165,6 +162,9 @@ msgstr ""
 
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -545,16 +545,6 @@ msgstr "ਲਈ ਪਰਦਾ ਨੀਤੀ {0}"
 msgid "Privacy Policy"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
 
-msgid "QR code for add-on"
-msgstr "ਐਡ-ਆਨ ਲਈ QR ਕੋਡ"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-
-#, fuzzy
-msgid "Replacement Add-ons for {0}"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
-
 msgid "Report Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
@@ -887,6 +877,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 msgstr[1] "<strong>{0}</strong> ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 
+msgid "Not Reviewed"
+msgstr "ਪੁਨਰ ਵਿਚਾਰ ਨਹੀਂ"
+
 msgid "Tools"
 msgstr "ਟੂਲ"
 
@@ -935,19 +928,6 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "ਇਹ ਇੱਕ ਜਾਇਜ ਹੈਕਸ ਕਲਰ ਕੋਡ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ #000000।"
-
-msgid "Collections"
-msgstr "ਸੰਗ੍ਰਹਿ "
-
-msgid "Dictionaries & Language Packs"
-msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
-
-msgid "Add-ons"
-msgstr "ਐਡ-ਆਨ"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} ਪਹਿਲਾਂ"
 
 msgid "Not allowed"
 msgstr "ਇਜ਼ਾਜਤ ਨਹੀਂ"
@@ -1070,6 +1050,9 @@ msgstr "ਹੋਰ ਆਪਣਾ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ? 
 msgid "Most Followers"
 msgstr "ਜਿਆਦਾਤਰ ਸਮਰਥਕ"
 
+msgid "Collections"
+msgstr "ਸੰਗ੍ਰਹਿ "
+
 msgid "Collections I've Made"
 msgstr "ਮੇਰੇ ਬਣਾਏ ਹੋਏ ਸੰਗ੍ਰਹਿ"
 
@@ -1084,6 +1067,9 @@ msgstr "ਹੋਰ&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "ਮੋਬਾਈਲ ਲਈ ਐਡ-ਆਨ"
+
+msgid "Dictionaries & Language Packs"
+msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
 
 msgid "Search Tools"
 msgstr "ਖੋਜ ਟੂਲ"
@@ -1107,6 +1093,13 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b>ਵਿੱਚ<b>%(begin)s</b>&ndash;<b>%(end)s</b>ਵਿਖਾ ਰਿਹਾ"
+
+msgid "Add-ons"
+msgstr "ਐਡ-ਆਨ"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} ਪਹਿਲਾਂ"
 
 msgid "Title"
 msgstr "ਟਾਈਟਲ"
@@ -1222,27 +1215,6 @@ msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍
 
 msgid "Icons must be either PNG or JPG."
 msgstr "ਆਈਕਾਨ PNG ਜਾਂJPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-msgid "Add a positive vote for this collection"
-msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਇੱਕ ਸਕਾਰਾਤਮਕ ਵੋਟ ਜੋੜੋ"
-
-msgid "Add a negative vote for this collection"
-msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਇੱਕ ਨਕਾਰਾਤਮਕ ਵੋਟ ਜੋੜੋ"
-
-msgid "Remove my vote for this collection"
-msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਮੇਰਾ ਵੋਟ ਹਟਾਓ"
-
-msgid "Log in to vote for this collection"
-msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਵੋਟ ਕਰਨ ਵਾਸਤੇ ਲਾਗ ਇਨ ਕਰੋ "
-
-msgid "Add to favorites"
-msgstr "ਪੰਸਦੀਦਾ ਵਿੱਚ ਜੋੜੋ"
-
-msgid "Favorite"
-msgstr "ਪਸੰਦੀਦਾ"
-
-msgid "Remove from favorites"
-msgstr "ਪਸੰਦੀਦਾ ਵਿੱਚੋ ਹਟਾਓ"
 
 #, fuzzy
 msgid "This slug is already in use by another one of your collections."
@@ -1539,6 +1511,12 @@ msgstr "ਜਾਰੀ"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "ਜਾਂ <a id=\"change-owner-cancel\" href=\"#\">ਰੱਦ</a>"
 
+msgid "Remove from favorites"
+msgstr "ਪਸੰਦੀਦਾ ਵਿੱਚੋ ਹਟਾਓ"
+
+msgid "Add to favorites"
+msgstr "ਪੰਸਦੀਦਾ ਵਿੱਚ ਜੋੜੋ"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "{0} ਵੱਲੋਂ ਸੰਗ੍ਰਹਿ"
@@ -1567,6 +1545,10 @@ msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱ�
 
 msgid "Subscribe"
 msgstr "ਗਾਹਕੀ"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "%(users)s ਵੱਲੋਂ"
 
 msgid "Following"
 msgstr "ਸਮਰਥਨ ਕਰ ਰਿਹਾ"
@@ -1617,6 +1599,21 @@ msgstr "ਇੱਕ ਟਿੱਪਣੀ ਜੋੜੋ"
 
 msgid "Remove this add-on from the collection"
 msgstr "ਸੰਗ੍ਰਹਿ ਤੋਂ ਇਸ ਐਡ-ਆਨ ਨੂੰ ਹਟਾਓ"
+
+msgid "Add a positive vote for this collection"
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਇੱਕ ਸਕਾਰਾਤਮਕ ਵੋਟ ਜੋੜੋ"
+
+msgid "Add a negative vote for this collection"
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਇੱਕ ਨਕਾਰਾਤਮਕ ਵੋਟ ਜੋੜੋ"
+
+msgid "Remove my vote for this collection"
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਮੇਰਾ ਵੋਟ ਹਟਾਓ"
+
+msgid "Log in to vote for this collection"
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਲਈ ਵੋਟ ਕਰਨ ਵਾਸਤੇ ਲਾਗ ਇਨ ਕਰੋ "
+
+msgid "Favorite"
+msgstr "ਪਸੰਦੀਦਾ"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2239,9 +2236,6 @@ msgstr "ਦਰਸ਼ਕ"
 msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
 
-msgid "Any"
-msgstr "ਕੋਈ"
-
 msgid "Extension"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
@@ -2702,6 +2696,9 @@ msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬ੍ਯੂਸ਼�
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬ੍ਯੂਸ਼ਨ-ਸ਼ੇਅਰ ਅਲਾਈਕ 3.0"
 
+msgid "Any"
+msgstr "ਕੋਈ"
+
 msgid "All Platforms"
 msgstr "ਸਾਰੇ ਪਲੇਟਫ਼ਾਰਮ"
 
@@ -2870,21 +2867,6 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "ਐਡ-ਆਨ ਦਸਤਾਵੇਜ਼ :: ਡਿਵੈਲਪਰ ਹਬ"
-
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} ਗਲਤੀ"
-msgstr[1] "{0} ਗਲਤੀਆਂ"
-
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} ਚੇਤਾਵਨੀ"
-msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
@@ -2973,6 +2955,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 
@@ -3024,11 +3009,31 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+#, fuzzy
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
+
+msgid "Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "ਸਮੀਖਿਅਕ"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
 
 msgid "Printable Version"
 msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "ਮੈਨੂੰ ਇਹ ਸਮਝੌਤਾ ਮਨਜ਼ੂਰ ਹੈ"
@@ -3038,29 +3043,6 @@ msgstr "ਜਾਂ <a href=\"{0}\">ਰੱਦ</a>"
 
 msgid "Back to Add-ons"
 msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: ਖੋਜ"
-
-msgid "Search"
-msgstr "ਖੋਜ"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "\"{0}\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
-
-msgid "Search Results"
-msgstr "ਖੋਜ ਨਤੀਜੇ"
-
-msgid "Please enter some search terms."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਖੋਜ ਸ਼ਬਦ ਦਰਜ ਕਰੋ।"
-
-msgid "Loading results&hellip;"
-msgstr "ਨਤੀਜੇ&hellip ਲੋਡ ਕਰ ਰਿਹਾ;"
-
-msgid "No results found."
-msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3112,6 +3094,9 @@ msgstr "ਹੋਰ ਵਸੀਲੇ"
 msgid "Search Developer Docs"
 msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
 
+msgid "Search"
+msgstr "ਖੋਜ"
+
 msgid "Use the field below to upload your add-on package."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
@@ -3147,6 +3132,9 @@ msgstr "{0} ਲਈ ਤਾਜ਼ਾ ਸਰਗਰਮੀ"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ਵੱਲੋਂ %(user)s"
+
+msgid "No results found."
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
 msgid "Refine Activity"
 msgstr "ਸਰਗਰਮੀ ਸੁਧਾਰ"
@@ -3288,6 +3276,19 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ 
 #, fuzzy
 msgid "This add-on is ready for general use."
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
@@ -3703,8 +3704,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਡਿਵੈਲਪਰ ਹੋ।"
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
+
+#, fuzzy
 msgid "Cancel Review and Disable Version"
 msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
 #, fuzzy
 msgid "Submit Version for Review"
@@ -3736,6 +3745,13 @@ msgstr "ਦਾਖਲ ਕਰਨਾ ਮੁੰਕਮਲ"
 #, fuzzy
 msgid "You’re done!"
 msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "ਵਰਜਨ ਨੋਟ"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -4000,9 +4016,10 @@ msgstr "ਬਲੌਗ ਵੇਖੋ &#9658;"
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ ਨੂੰ ਦਿੱਤੇ ਅਧਿਕਾਰਾਂ ਦੇ ਅਨੁਕੂਲ ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਲਾਇਸੰਸ ਚੁਣੋ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "ਮਨਜ਼ੂਰ HTML: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "ਕੁੱਝ HTML ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ।"
@@ -4047,8 +4064,8 @@ msgid "Resources"
 msgstr "ਹੋਰ ਵਸੀਲੇ"
 
 #, fuzzy
-msgid "WebExtensions"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ"
+msgid "Porting"
+msgstr "ਰੇਟਿੰਗ"
 
 #, fuzzy
 msgid "Community"
@@ -4068,8 +4085,8 @@ msgid "Contact Us"
 msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
 
 #, fuzzy
-msgid "Review Policies"
-msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
+msgid "Policies"
+msgstr "ਐਡ-ਆਨ ਨੀਤੀਆਂ"
 
 msgid "FAQ"
 msgstr "FAQ"
@@ -4147,10 +4164,10 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
 #, fuzzy
-msgid "Evolution in Add-on Development"
-msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
+msgid "Update Your Legacy Extension"
+msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਦੀ ਪੇਸਕਸ਼"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 #, fuzzy
@@ -4161,12 +4178,12 @@ msgstr "ਹੋਰ ਜਾਣੋ"
 msgid "What's New"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
-msgstr ""
+#, fuzzy
+msgid "See Tutorial"
+msgstr "ਸਾਰੇ ਵੇਖੋ"
 
 #, fuzzy
 msgid "View All Submissions"
@@ -4707,28 +4724,43 @@ msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕ�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Add-on Documentation :: Developer Hub"
+msgstr "ਐਡ-ਆਨ ਦਸਤਾਵੇਜ਼ :: ਡਿਵੈਲਪਰ ਹਬ"
+
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ਗਲਤੀ"
+msgstr[1] "{0} ਗਲਤੀਆਂ"
+
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} ਚੇਤਾਵਨੀ"
+msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
+
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
-
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4832,39 +4864,66 @@ msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 msgid "Delete review"
 msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
 
-msgid "Rejected or Unreviewed"
-msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
+msgid "Admin Review"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "ਦਰਜਾ:"
+msgid "Jetpack Add-on"
+msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
 
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgid "More Information Requested"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
-msgstr[1] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgid "Contains Reviewer Comment"
+msgstr "ਸੰਪਾਦਕ ਟਿੱਪਣੀ ਸ਼ਾਮਲ"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgid "Sources provided"
+msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
+
+msgid "WebExtension"
+msgstr ""
+
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
 
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgid "Has too many daily users."
+msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?"
+
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
 
 #, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgid "Is flagged for admin review."
+msgstr "ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲੱਗਿਆ"
+
+#, fuzzy
+msgid "Is locked by a reviewer."
+msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
+
+msgid "Duplicate Submission"
+msgstr "ਨਕਲ ਦਾਖਲ ਕੀਤੀ"
+
+msgid "Thanks for submitting your Theme"
+msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਦਾਖਲ ਕਰਨ ਲਈ ਧੰਨਵਾਦ"
+
+msgid "A problem with your Theme submission"
+msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾਖਲ ਕਾਰਜ ਨਾਲ ਖਾਮੀ"
+
+msgid "Theme submission flagged for review"
+msgstr "ਦਾਖਲ ਥੀਮ ਤੇ ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲਗਾਇਆ"
+
+msgid "A question about your Theme submission"
+msgstr "ਤੁਹਾਡੇ ਦਾਖਲ ਕੀਤੇ ਥੀਮ ਬਾਰੇ ਇੱਕ ਸਵਾਲ"
 
 msgid "Type"
 msgstr "ਕਿਸਮ"
@@ -4949,73 +5008,6 @@ msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਦੀ �
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖਕ ਇਸ ਨੂੰ ਨਹੀਂ ਵੇਖ ਸਕੇਗਾ।"
 
-msgid "Flagged"
-msgstr "ਨਿਸ਼ਾਨਬੱਧ"
-
-msgid "Updates"
-msgstr "ਅੱਪਡੇਟਾਂ"
-
-msgid "Admin Review"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
-
-msgid "Jetpack Add-on"
-msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
-
-msgid "More Information Requested"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
-
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "ਸੰਪਾਦਕ ਟਿੱਪਣੀ ਸ਼ਾਮਲ"
-
-msgid "Sources provided"
-msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
-
-msgid "WebExtension"
-msgstr ""
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-#, fuzzy
-msgid "Has too many daily users."
-msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?"
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-#, fuzzy
-msgid "Is flagged for admin review."
-msgstr "ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲੱਗਿਆ"
-
-#, fuzzy
-msgid "Is locked by a reviewer."
-msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
-
-msgid "Duplicate Submission"
-msgstr "ਨਕਲ ਦਾਖਲ ਕੀਤੀ"
-
-msgid "Thanks for submitting your Theme"
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਦਾਖਲ ਕਰਨ ਲਈ ਧੰਨਵਾਦ"
-
-msgid "A problem with your Theme submission"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾਖਲ ਕਾਰਜ ਨਾਲ ਖਾਮੀ"
-
-msgid "Theme submission flagged for review"
-msgstr "ਦਾਖਲ ਥੀਮ ਤੇ ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲਗਾਇਆ"
-
-msgid "A question about your Theme submission"
-msgstr "ਤੁਹਾਡੇ ਦਾਖਲ ਕੀਤੇ ਥੀਮ ਬਾਰੇ ਇੱਕ ਸਵਾਲ"
-
 msgid "New Add-ons (Under 5 days)"
 msgstr "ਨਵੇਂ ਐਡ-ਆਨ (5 ਦਿਨਾਂ ਅੰਦਰ)"
 
@@ -5098,6 +5090,10 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 msgid "View Privacy Policy"
 msgstr "ਵੇਖੋ ਪਰਦਾ ਨੀਤੀ"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5122,21 +5118,6 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਹੋਰ"
 msgid "Image Gallery"
 msgstr "ਤਸਵੀਰ ਗੈਲਰੀ"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "ਵਿਕਾਸ ਚੈਨਲ ਤੁਹਾਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਨਵੇਂ ਪ੍ਰਯੋਗਆਤਮਕ ਵਰਜਨ ਦੀ ਪਰਖ ਕਰਨ ਦਵੇਗਾ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਇਹ ਆਮ ਲੋਕਾਂ ਲਈ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ, ਤੁਹਾਡਾ ਇਸ ਚੈਨਲ ਤੋਂ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ।"
-
-msgid "Install development version"
-msgstr "ਇੰਸਟਾਲ ਵਿਕਾਸ ਵਰਜਨ"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>ਸਾਵਧਾਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨ ਦੀ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਇੱਕ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ ਤਾਂ ਤੁਹਾਡਾ ਇਸ ਦੇ ਡਿਵੈਲਪਰ ਤੋਂ ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣੀਆਂ ਬੰਦ ਕਰਨ ਲਈ, "
-"ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
-
 #, fuzzy
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "ਇੱਥੇ ਵੇਖਣ ਲਈ ਕੁੱਝ ਨਹੀਂ! ਡਿਵੈਲਪਰ ਨੇ ਕੋਈ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ।"
@@ -5152,6 +5133,9 @@ msgstr "ਕਤਾਰਾਂ"
 msgid "New Add-ons"
 msgstr "ਹੋਰ ਐਡ-ਆਨ"
 
+msgid "Updates"
+msgstr "ਅੱਪਡੇਟਾਂ"
+
 msgid "Moderated Reviews"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ"
 
@@ -5161,6 +5145,10 @@ msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
 msgid "Unlisted Queues"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 
 msgid "Logs"
 msgstr "ਚਿੱਠੇ"
@@ -5625,32 +5613,41 @@ msgstr "ਕਲਾਕਾਰ ਤੋਂ ਇੱਕ ਸਵਾਲ ਪੁੱਛੋ"
 msgid "Describe your reason for flagging"
 msgstr "ਫ਼ਲੈਗ ਕਰਨ ਲਈ ਆਪਣੇ ਕਾਰਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
+msgid "Rejected or Unreviewed"
+msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "ਦਰਜਾ:"
+
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgstr[1] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+msgid "Flagged"
+msgstr "ਨਿਸ਼ਾਨਬੱਧ"
+
 msgid "Cannot diff a version against itself"
 msgstr "ਵਰਜਨ ਦਾ ਖੁਦ ਤੋਂ ਫ਼ਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
-
-msgid "That file no longer exists."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
-
-msgid "Problems decoding {0}."
-msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "This file is a directory."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
 
 msgid "Access your data for {name}"
 msgstr ""
@@ -5792,6 +5789,30 @@ msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼�
 
 msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
+
+msgid "That file no longer exists."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
+
+msgid "Problems decoding {0}."
+msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
+
+msgid "This file is a directory."
+msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -7702,12 +7723,6 @@ msgstr "ਦੁਆਰਾ ਕ੍ਰਮਬੱਧ"
 msgid "Relevance"
 msgstr "ਸਬੰਧਤ"
 
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "<strong>{3}</strong> ਲਈ {2} ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr "{2} ਨਤੀਜਿਆਂ ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
-
 msgid "All Add-ons"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨ"
 
@@ -7728,6 +7743,9 @@ msgstr "{0} ਲਈ ਸੰਗ੍ਰਹਿ ਖੋਜ ਨਤੀਜੇ"
 msgid "Collection Search Results"
 msgstr "ਸੰਗ੍ਰਹਿ ਖੋਜ ਨਤੀਜੇ"
 
+msgid "Search Results"
+msgstr "ਖੋਜ ਨਤੀਜੇ"
+
 msgid "Search Unavailable"
 msgstr "ਖੋਜ ਉੱਪਲਬਧ ਨਹੀਂ"
 
@@ -7740,6 +7758,14 @@ msgstr "{0} ਲਈ ਥੀਮ ਖੋਜ ਨਤੀਜੇ"
 
 msgid "Themes Search Results"
 msgstr "ਥੀਮ ਖੋਜ ਨਤੀਜੇ"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: ਖੋਜ"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "\"{0}\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7762,6 +7788,12 @@ msgstr "ਸੰਗ੍ਰਹਿ"
 
 msgid "Tag"
 msgstr "ਟੈਗ"
+
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "<strong>{3}</strong> ਲਈ {2} ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
+
+msgid "Showing {0} - {1} of {2} results"
+msgstr "{2} ਨਤੀਜਿਆਂ ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
@@ -8216,10 +8248,6 @@ msgstr "ਅਣਪਛਾਤਾ ਰੱਖਣ ਲਈ, ਬਦਲਾਅ ਲਈ ਇੱ
 msgid "Please enter at least one name to be denied."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਬਲੈਕਲਿਸਟ ਕਰਨ ਲਈ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨਾਂ ਦਿਓ।"
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "ਹੋਰ"
-
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
 
@@ -8368,7 +8396,8 @@ msgstr "ਮੌਜੂਦਾ ਫ਼ੋਟੋ ਹਟਾਓ"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "ਭਾਈਚਾਰੇ ਨੂੰ ਆਪਣੇ ਆਪ ਤੋਂ ਜਾਣੂ ਕਰਵਾਓ, ਜੇਕਰ ਤੁਸੀਂ ਪਸੰਦ ਕਰੋ! ਇਹ ਟੈਕਸਟ ਤੁਹਾਡੇ ਉਪਭੋਗੀ ਇੰਫ਼ੋ ਸਫ਼ੇ ਤੇ ਜਨਤਕ ਰੂਪ ਵਿੱਚ ਵਿਖਾਈ ਦੇਵੇਗਾ।"
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, fuzzy, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "ਪ੍ਰਵਾਨਿਤ HTML: {0}। ਲਿੰਕਾਂ ਦੀ ਮਨਾਹੀ ਹੈ।"
 
 msgid "Decide what collections should be shown in your profile."
@@ -8528,6 +8557,10 @@ msgstr[1] "%(num)s ਐਡ-ਆਨਾਂ"
 
 msgid "Average rating of developer's add-ons"
 msgstr "ਡਿਵੈਲਪਰ ਦੇ ਐਡ-ਆਨਾਂ ਦੀ ਔਸਤ ਰੇਟਿੰਗ"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "ਹੋਰ"
 
 #, python-format
 msgid "%s Version History"

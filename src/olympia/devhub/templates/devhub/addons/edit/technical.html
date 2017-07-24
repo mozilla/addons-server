@@ -13,7 +13,7 @@
     <div class="item_wrapper">
       <table>
         {# L10n: {0} is an addon name #}
-        <caption>{{ _('Technical Details for {0}')|fe(addon.name) }}</caption>
+        <caption>{{ _('Technical Details for {0}')|format_html(addon.name) }}</caption>
         <tbody>
           {% if show_listed_fields %}
           <tr>

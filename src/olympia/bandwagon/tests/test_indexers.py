@@ -47,15 +47,17 @@ class TestCollectionIndexer(TestCase):
         self.collection.save()
 
         extracted = self._extract()
-        assert extracted['name_english'] == [translations_name['en-US']]
-        assert extracted['name_french'] == []
-        assert extracted['name_italian'] == []
-        assert extracted['name_spanish'] == [translations_name['es']]
+        assert extracted['name_l10n_english'] == [translations_name['en-US']]
+        assert extracted['name_l10n_french'] == []
+        assert extracted['name_l10n_italian'] == []
+        assert extracted['name_l10n_spanish'] == [translations_name['es']]
 
-        assert extracted['description_english'] == [translations_desc['en-US']]
-        assert extracted['description_french'] == ['']
-        assert extracted['description_italian'] == []
-        assert extracted['description_spanish'] == [translations_desc['es']]
+        assert extracted['description_l10n_english'] == [
+            translations_desc['en-US']]
+        assert extracted['description_l10n_french'] == ['']
+        assert extracted['description_l10n_italian'] == []
+        assert extracted['description_l10n_spanish'] == [
+            translations_desc['es']]
 
     def test_mapping(self):
         doc_name = self.indexer.get_doctype_name()
@@ -70,5 +72,5 @@ class TestCollectionIndexer(TestCase):
         assert 'boost' in mapping_properties
 
         # Make sure the name & description translated properties are present.
-        assert 'description_spanish' in mapping_properties
-        assert 'name_french' in mapping_properties
+        assert 'description_l10n_spanish' in mapping_properties
+        assert 'name_l10n_french' in mapping_properties

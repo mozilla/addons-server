@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.discovery.data import discopane_items
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 
@@ -13,18 +13,18 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = {
-            283823: addon_factory(
-                id=283823, type=amo.ADDON_PERSONA,
+            25542: addon_factory(
+                id=25542, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
-            700308: addon_factory(id=700308, type=amo.ADDON_EXTENSION),
-            607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
-            492244: addon_factory(
-                id=492244, type=amo.ADDON_PERSONA,
+            506646: addon_factory(id=506646, type=amo.ADDON_EXTENSION),
+            708770: addon_factory(id=708770, type=amo.ADDON_EXTENSION),
+            319259: addon_factory(
+                id=319259, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
-            674732: addon_factory(id=674732, type=amo.ADDON_EXTENSION),
             287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
-            372503: addon_factory(
-                id=372503, type=amo.ADDON_PERSONA,
+            700308: addon_factory(id=700308, type=amo.ADDON_EXTENSION),
+            211644: addon_factory(
+                id=211644, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
         }
 
@@ -91,13 +91,13 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_deleted = self.addons[283823]
+        addon_deleted = self.addons[25542]
         addon_deleted.delete()
 
-        disabled_by_user = self.addons[700308]
+        disabled_by_user = self.addons[506646]
         disabled_by_user.update(disabled_by_user=True)
 
-        self.addons[607454].update(status=amo.STATUS_NOMINATED)
+        self.addons[708770].update(status=amo.STATUS_NOMINATED)
 
         response = self.client.get(self.url)
         assert response.data

@@ -7,10 +7,14 @@
   <h2>{{ title }}</h2>
 </header>
 <form method="post" id="create-addon" class="item new-addon-file">
-  {{ csrf() }}
+  {% csrf_token %}
   <p>
   {% trans %}
     Use the field below to upload your add-on package.
+  {% endtrans %}
+  {% trans webext_doc_url='https://developer.mozilla.org/en-US/Add-ons/WebExtensions' %}
+    Note that this tool only works with legacy add-ons.
+    WebExtension APIs are thoroughly <a href="{{ webext_doc_url }}">documented here</a>.
   {% endtrans %}
   </p>
   {% if appversion_form %}

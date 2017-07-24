@@ -7,18 +7,22 @@ from olympia.applications.models import AppVersion
 
 
 class Command(BaseCommand):
-    use_argparse = False
     help = ('Add a new version of an application. Syntax: \n'
             '    ./manage.py addnewversion <application_name> <version>')
     log = olympia.core.logger.getLogger('z.appversions')
 
+    def add_arguments(self, parser):
+        parser.add_argument('application_name')
+        parser.add_argument('version')
+
     def handle(self, *args, **options):
         try:
-            do_addnewversion(args[0], args[1])
+            do_addnewversion(options['application_name'], options['version'])
         except IndexError:
             raise CommandError(self.help)
 
-        msg = 'Adding version %r to application %r\n' % (args[1], args[0])
+        msg = 'Adding version %r to application %r\n' % (
+            options['version'], options['application_name'])
         self.log.info(msg)
         self.stdout.write(msg)
 

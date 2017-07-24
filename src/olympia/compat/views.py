@@ -35,7 +35,7 @@ def incoming(request):
 
     # Build up a new report.
     report = CompatReport(client_ip=request.META.get('REMOTE_ADDR', ''))
-    fields = CompatReport._meta.get_all_field_names()
+    fields = [field.name for field in CompatReport._meta.get_fields()]
     for key, value in data:
         if key in fields:
             setattr(report, key, value)

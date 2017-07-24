@@ -4,10 +4,10 @@
       <span class="updated">
         {% if type == 'updated' %}
           {# L10n: {0} is a date. #}
-          {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+          {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
         {% else %}
           {# L10n: {0} is a date. #}
-          {{ _('Added {0}')|f(addon.created|datetime) }}
+          {{ _('Added {0}')|format_html(addon.created|datetime) }}
         {% endif %}
       </span>
     {% elif type == 'rating' %}
@@ -38,8 +38,8 @@
 
 {% macro addon_flags(addon, version) %}
     {% if version %}
-      {% if version.requires_restart %}
-        <span class="requires-restart">{{ _('Requires Restart') }}</span>
+      {% if version.is_restart_required %}
+        <span class="is-restart-required">{{ _('Requires Restart') }}</span>
       {% elif version.is_webextension %}
         <a href="https://support.mozilla.org/kb/firefox-add-technology-modernizing" class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">{{ _('Compatible with Firefox 57+') }}</a>
       {% endif %}
@@ -61,14 +61,14 @@
       {% with num=addon.weekly_downloads %}
         {# L10n: {0} is the number of downloads. #}
         {{ ngettext('{0} weekly download', '{0} weekly downloads',
-                    num)|f(num|numberfmt) }}
+                    num)|format_html(num|numberfmt) }}
       {% endwith %}
     </div>
   {% else %}
     <div class="adu">
       {% with num=addon.average_daily_users %}
         {# L10n: {0} is the number of users. #}
-        {{ ngettext('{0} user', '{0} users', num)|f(num|numberfmt) }}
+        {{ ngettext('{0} user', '{0} users', num)|format_html(num|numberfmt) }}
       {% endwith %}
     </div>
   {% endif %}
@@ -76,10 +76,10 @@
     <div class="updated">
       {% if field == 'created' %}
         {# L10n: {0} is a date. #}
-        {{ _('Added {0}')|f(addon.created|datetime) }}
+        {{ _('Added {0}')|format_html(addon.created|datetime) }}
       {% else %}
         {# L10n: {0} is a date. #}
-        {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+        {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
       {% endif %}
     </div>
   {% endif %}

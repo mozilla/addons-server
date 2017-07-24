@@ -14,7 +14,7 @@
       {# L10n: {0} is the number of downloads. #}
       {{ ngettext("<strong>{0}</strong> weekly download",
                   "<strong>{0}</strong> weekly downloads",
-                  num)|f(num|numberfmt)|safe }}
+                  num)|format_html(num|numberfmt)|safe }}
     {% endwith %}
   </p>
   <p class="users">
@@ -22,7 +22,7 @@
       {# L10n: {0} is the number of active users. #}
       {{ ngettext("<strong>{0}</strong> active user",
                   "<strong>{0}</strong> active users",
-                  num)|f(num|numberfmt)|safe }}
+                  num)|format_html(num|numberfmt)|safe }}
     {% endwith %}
   </p>
 {% endmacro %}

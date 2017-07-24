@@ -12,12 +12,19 @@
       {{ _("You’re done!") }}
     </p>
   {% else %}
-    <h3>{{ _("Version Submitted for Review") }}</h3>
-    <p>
-      {{ _("You’re done! This version has been submitted for review. You will be "
-           "notified when the review has been completed, or if our reviewers have "
-           "any questions about your submission.") }}
-    </p>
+    {% if waffle.switch('post-review') and uploaded_version.is_webextension %}
+      <h3>{{ _("Version Submitted") }}</h3>
+      <p>
+        {{ _("You’re done! This version will be available on our site shortly.") }}
+      </p>
+    {% else %}
+      <h3>{{ _("Version Submitted for Review") }}</h3>
+      <p>
+        {{ _("You’re done! This version has been submitted for review. You will be "
+             "notified when the review has been completed, or if our reviewers have "
+             "any questions about your submission.") }}
+      </p>
+    {% endif %}
     {% if submit_page == 'addon' %}
       <p>
         {{ _("Your listing will be more successful by adding a detailed description "
@@ -35,7 +42,7 @@
   </p>
   <p>
     <a class="button" href="{{ version_edit_url }}">{{
-        _("Edit version {0}")|fe(uploaded_version.version) }}</a>
+        _("Edit version {0}")|format_html(uploaded_version.version) }}</a>
   </p>
 {% else %}
   {% if submit_page == 'file' %}
@@ -54,7 +61,7 @@
   <p>
     {% set file = uploaded_version.all_files[-1] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
-        _("Download {0}")|fe(file.pretty_filename()) }}</a>
+        _("Download {0}")|format_html(file.pretty_filename()) }}</a>
   </p>
 {% endif %}
 

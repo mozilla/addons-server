@@ -48,7 +48,7 @@
                 };
 
             // reload the data when the view's range is modified.
-            $win.bind('changeview', function(e, newView) {
+            $win.on('changeview', function(e, newView) {
                 // we only want to respond to changes in range.
                 if (!newView.range) return;
                 $self.addClass('loading');

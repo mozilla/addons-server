@@ -2,7 +2,7 @@
 {% from "addons/macros.html" import addon_heading %}
 
 {% block title %}
-  {{ page_title(_('Source Code License for {addon}'))|f(addon=addon.name) }}
+  {{ page_title(_('Source Code License for {addon}'))|format_html(addon=addon.name) }}
 {% endblock %}
 
 {% set addon_type = addon.type %}

@@ -133,10 +133,12 @@ class AddonFormBasic(AddonFormBase):
                          max_length=250)
     tags = forms.CharField(required=False)
     is_experimental = forms.BooleanField(required=False)
+    requires_payment = forms.BooleanField(required=False)
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'is_experimental')
+        fields = ('name', 'slug', 'summary', 'tags', 'is_experimental',
+                  'requires_payment')
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)

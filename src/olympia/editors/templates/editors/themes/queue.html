@@ -98,7 +98,7 @@
   {% endif %}
 
   <form id="theme-queue-form" action="{{ url('editors.themes.commit') }}" method="post">
-    {{ csrf() }}
+    {% csrf_token %}
     {{ formset.management_form }}
     {% include 'editors/themes/themes.html' %}
   </form>

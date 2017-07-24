@@ -23,7 +23,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked, send_mail, sorted_groupby
 from olympia.constants.categories import CATEGORIES
@@ -180,14 +180,15 @@ def get_context(addon, version, job, results, fileob=None):
     addon_name = addon.name
     if fileob and fileob.platform != amo.PLATFORM_ALL.id:
         addon_name = u'%s (%s)' % (addon_name, fileob.get_platform_display())
-    return Context({
+    return {
         'ADDON_NAME': addon_name,
         'ADDON_VERSION': version.version,
         'APPLICATION': str(job.application),
         'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
                                           args=[addon.pk, version.pk])),
         'RESULT_LINKS': ' '.join(result_links),
-        'VERSION': job.target_version.version})
+        'VERSION': job.target_version.version
+    }
 
 
 @task

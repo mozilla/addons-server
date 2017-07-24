@@ -24,7 +24,6 @@ cache:
   pip: true
   directories:
     - node_modules
-    - .tox
 
 services:
   - memcached
@@ -38,7 +37,8 @@ addons:
       - swig
       - oracle-java8-set-default
       - elasticsearch
-  firefox: latest-nightly
+      - gettext
+  firefox: latest
 
 install:
   - nvm current

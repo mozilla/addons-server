@@ -64,7 +64,7 @@ $.fn.promoPager = function() {
 };
 
 (function() {
-    $(document).delegate('#holiday .addons a', 'click', function() {
+    $(document).on('click', '#holiday .addons a', function() {
         dcsMultiTrack('DCS.dcssip', 'addons.mozilla.org',
                       'DCS.dcsuri', location.pathname,
                       'WT.ti', 'Link: ' + $('h3', this).text(),

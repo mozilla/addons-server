@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-03-18 12:26+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"PO-Revision-Date: 2017-07-19 21:47+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -66,7 +66,9 @@ msgstr "Volledig validatierapport bekijken"
 msgid "Validating {0}"
 msgstr "{0} wordt gevalideerd"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Uw add-on overschrijdt de maximale grootte van {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons van server ontvangen; status: {0}"
 
@@ -135,6 +137,9 @@ msgstr "Sorry, geen ondersteund platform gevonden."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Het door u geüploade bestandstype wordt niet herkend."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Uw bestand overschrijdt de maximale grootte van {0}."
 
 msgid "You cancelled the upload."
 msgstr "U hebt de upload geannuleerd."
@@ -438,8 +443,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
 
@@ -485,11 +490,11 @@ msgstr "Talen van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Add-on-versies, laatste {0} dagen"
+msgstr "Add-onversies, laatste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Add-on-versies van {0} tot {1}"
+msgstr "Add-onversies van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -519,8 +524,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
 

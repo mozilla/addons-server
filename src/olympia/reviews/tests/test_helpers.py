@@ -1,4 +1,4 @@
-import jingo
+from django.template import engines
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import addon_factory, TestCase
@@ -13,8 +13,7 @@ class HelpersTest(TestCase):
     def render(self, s, context=None):
         if context is None:
             context = {}
-        t = jingo.get_env().from_string(s)
-        return t.render(context)
+        return engines['jinja2'].from_string(s).render(context)
 
     def test_stars(self):
         s = self.render('{{ num|stars }}', {'num': None})

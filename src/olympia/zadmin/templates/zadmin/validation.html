@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
 {% set title = 'Bulk Addon Validation' %}
 {% block title %}{{ page_title(title) }}{% endblock %}
@@ -9,7 +9,7 @@
   <h2>{{ title }}</h2>
   {{ form.errors }}
   <form action="{{ url('zadmin.start_validation') }}" method="post">
-  {{ csrf() }}
+  {% csrf_token %}
   <div class="form-row">
     {% for elem in ('application', 'curr_max_version', 'target_version') %}
       <label id="label-{{ elem }}" for="id_{{ elem }}">{{ form[elem].label }}</label>
@@ -94,7 +94,7 @@
 <div class="hidden">
     <div class="popup" id="notify">
         <form method="post" data-url="{{ url('zadmin.notify.syntax') }}">
-            {{ csrf() }}
+            {% csrf_token %}
             <p>{# placeholder for form text #}</p>
             <p>Available variables: {{ ', '.join(notify_form.variables) }}</p>
             <p class="js-hidden error"></p>

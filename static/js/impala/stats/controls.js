@@ -37,7 +37,7 @@
         e.preventDefault();
     });
 
-    $groupSelector.delegate('a', 'click', function(e) {
+    $groupSelector.on('click', 'a', function(e) {
         var $target = $(this).parent(),
             newGroup = $target.attr("data-group");
 
@@ -46,7 +46,7 @@
     });
 
     // set controls when `changeview` is detected.
-    $(window).bind('changeview', function(e, newState) {
+    $(window).on('changeview', function(e, newState) {
         if (!newState) return;
         function populateCustomRange() {
             var nRange = normalizeRange(newState.range),

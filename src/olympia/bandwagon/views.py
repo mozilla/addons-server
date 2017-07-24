@@ -320,7 +320,7 @@ def collection_vote(request, username, slug, direction):
 
 
 def initial_data_from_request(request):
-    return dict(author=request.user, application=request.APP.id)
+    return {'author': request.user, 'application': request.APP.id}
 
 
 def collection_message(request, collection, option):
@@ -376,12 +376,12 @@ def add(request):
 def ajax_new(request):
     form = forms.CollectionForm(
         request.POST or None,
-        initial={'author': request.user, 'application': request.APP.id},
-    )
+        initial=initial_data_from_request(request))
 
     if request.method == 'POST' and form.is_valid():
         collection = form.save()
-        addon_id = request.REQUEST['addon_id']
+        addon_id = request.POST['addon_id']
+
         collection.add_addon(Addon.objects.get(pk=addon_id))
         log.info('Created collection %s' % collection.id)
         return http.HttpResponseRedirect(reverse('collections.ajax_list') +

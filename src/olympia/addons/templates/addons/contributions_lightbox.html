@@ -1,6 +1,6 @@
 <div id="contribute-box" class="jqmWindow modal">
   <form action="{{ url('addons.contribute', addon.slug) }}" method="post" data-no-csrf="anon-only">
-    {{ csrf() }}
+    {% csrf_token %}
     <input type="hidden" name="source" value="{{ contribution_src }}"/>
     <h2>{{ _('Make a Contribution') }}</h2>
     <p class="support">
@@ -30,11 +30,11 @@
     <h4>{{ _('How much would you like to contribute?') }}</h4>
     <div class="error" id="contrib-too-much"
          data-max-amount="{{ settings.MAX_CONTRIBUTION }}">
-        {{ _('The maximum contribution amount is {0}.')|f(
+        {{ _('The maximum contribution amount is {0}.')|format_html(
            settings.MAX_CONTRIBUTION|currencyfmt('USD')) }}
     </div>
     <div class="error" id="contrib-too-little">
-        {{ _('The minimum contribution amount is {0}.')|f(
+        {{ _('The minimum contribution amount is {0}.')|format_html(
            0.01|currencyfmt('USD')) }}
     </div>
     <div class="error" id="contrib-not-entered">
@@ -49,7 +49,7 @@
                id="contrib-suggested" checked="checked"/>
         <label for="contrib-suggested">
           {# L10n: {0} is a currency amount (e.g., $5.00) #}
-          {{ _('A one-time suggested contribution of {0}')|f(
+          {{ _('A one-time suggested contribution of {0}')|format_html(
             addon.suggested_amount|currencyfmt('USD')) }}
         </label>
       </li>
@@ -61,7 +61,7 @@
         <label>
           {# L10n: {0} is a currency symbol (e.g., $),
                    {1} is an amount input field #}
-          {{ _('A one-time contribution of {0} {1}')|fe(
+          {{ _('A one-time contribution of {0} {1}')|format_html(
             '$', '<input type="text" name="onetime-amount" value=""/>'|safe) }}
         </label>
       </li>

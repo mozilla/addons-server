@@ -12,7 +12,6 @@ from olympia.lib.settings_base import *  # noqa
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # These apps are great during development.

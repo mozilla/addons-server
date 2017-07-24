@@ -11,7 +11,7 @@
 <section class="primary payments devhub-form" role="main">
     <h3>{{ _('Step 2. Pricing and Availability') }}</h3>
     <form method="post">
-        {{ csrf() }}
+        {% csrf_token %}
         {% include "devhub/payments/includes/tier.html" %}
         <button type="submit">{{ _('Continue') }}</button>
         {% trans cancel=addon.get_dev_url('payments') %}

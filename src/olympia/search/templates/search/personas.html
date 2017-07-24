@@ -6,7 +6,7 @@
 {% block title %}
 {% if query %}
   {# L10n: {0} is the string the user was searching for #}
-  {{ page_title(_('Themes Search Results for {0}')|f(query)) }}
+  {{ page_title(_('Themes Search Results for {0}')|format_html(query)) }}
 {% else %}
   {{ page_title(_('Themes Search Results')) }}
 {% endif %}

@@ -5,27 +5,25 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.utils import chunked
-from olympia.editors.helpers import ReviewHelper
+from olympia.editors.utils import ReviewHelper
 
 log = olympia.core.logger.getLogger('z.addons')
 
 
 class Command(BaseCommand):
-    args = u'<addon_guid addon_guid ...>'
     help = u'Approve a list of add-ons, given their GUIDs.'
 
-    def handle(self, *args, **options):
-        if len(args) == 0:  # No GUID provided?
-            raise CommandError(
-                u'Please provide at least one add-on guid to approve.')
+    def add_arguments(self, parser):
+        parser.add_argument('addon_guid', nargs='+')
 
+    def handle(self, *args, **options):
         confirm = raw_input(
             u'Are you sure you want to bulk approve and sign all those {0} '
             u'addons? (yes/no)'.format(len(args)))
         if confirm != 'yes':
             raise CommandError(u'Aborted.')
 
-        for chunk in chunked(args, 100):
+        for chunk in chunked(options['addon_guid'], 100):
             files = get_files(chunk)
             log.info(u'Bulk approving chunk of %s files', len(files))
 

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {# L10n: {0} is an add-on name. #}
-{% block title %}{{ page_title('{0} :: Versions')|fe(addon.name) }}{% endblock %}
+{% block title %}{{ page_title('{0} :: Versions')|format_html(addon.name) }}{% endblock %}
 
 {% block bodyclass %}versions gutter{% endblock %}
 
@@ -20,10 +20,10 @@
   <header>
     {# L10n: {0} is an add-on name. #}
     <hgroup>
-      <h1>{{ _('{0} Version History')|fe(addon.name) }}</h1>
+      <h1>{{ _('{0} Version History')|format_html(addon.name) }}</h1>
       {% with cnt=versions.paginator.count %}
         {# L10n: {0} is a number. #}
-        <h3>{{ ngettext('<b>{0}</b> version', '<b>{0}</b> versions', cnt)|fe(cnt) }}</h3>
+        <h3>{{ ngettext('<b>{0}</b> version', '<b>{0}</b> versions', cnt)|format_html(cnt) }}</h3>
       {% endwith %}
     </hgroup>
   </header>

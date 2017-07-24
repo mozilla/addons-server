@@ -1,6 +1,6 @@
 {% extends "impala/base_shared.html" %}
 
-{% block title %}{{ page_title(_('{addon} Compatibility Reports')|fe(addon=name)) }}{% endblock %}
+{% block title %}{{ page_title(_('{addon} Compatibility Reports')|format_html(addon=name)) }}{% endblock %}
 
 {% block bodyclass %}compat gutter{% endblock %}
 
@@ -10,17 +10,17 @@
     {% if works.success or works.failure %}
       <a href="{{ detail_url|urlparams(works_properly=1) }}" class="button good">
         {{ ngettext('{0} success report', '{0} success reports',
-                    works.success)|f(works.success|numberfmt) }}</a>
+                    works.success)|format_html(works.success|numberfmt) }}</a>
       <a href="{{ detail_url|urlparams(works_properly=0) }}" class="button bad">
         {{ ngettext('{0} problem report', '{0} problem reports',
-                    works.failure)|f(works.failure|numberfmt) }}</a>
+                    works.failure)|format_html(works.failure|numberfmt) }}</a>
     {% endif %}
     {% if works_properly %}
       <a href="{{ detail_url }}" class="button">{{ _('View all') }}</a>
     {% endif %}
   </div>
   <header>
-    <h1>{{ _('{addon} Compatibility Reports')|fe(addon=name) }}</h1>
+    <h1>{{ _('{addon} Compatibility Reports')|format_html(addon=name) }}</h1>
     {% if reports.object_list %}
       <form class="go" id="compat-form" data-no-csrf>
         <label>{{ _('Filter by Application') }}: {{ form.appver }}</label>

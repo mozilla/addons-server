@@ -13,7 +13,7 @@ import redis as redislib
 
 import olympia.core.logger
 from olympia.amo import search
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.management.commands import dump_apps
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
@@ -69,12 +69,6 @@ def libraries():
     except Exception, e:
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
-
-    try:
-        import M2Crypto  # NOQA
-        libraries_results.append(('M2Crypto', True, 'Got it!'))
-    except ImportError:
-        libraries_results.append(('M2Crypto', False, 'Failed to import'))
 
     missing_libs = [l for l, s, m in libraries_results if not s]
     if missing_libs:

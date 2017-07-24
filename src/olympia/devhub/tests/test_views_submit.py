@@ -6,6 +6,8 @@ from django.core.files import temp
 
 import mock
 from pyquery import PyQuery as pq
+from waffle.models import Switch
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -84,32 +86,70 @@ class TestSubmitBase(TestCase):
 
 
 class TestAddonSubmitAgreement(TestSubmitBase):
-    def test_step1_submit(self):
+    def test_submit_agreement_page_links(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         doc = pq(response.content)
-        links = doc('#agreement-container a')
+        links = doc('.agreement-links a')
         assert links
         for ln in links:
             href = ln.attrib['href']
-            assert not href.startswith('%'), (
+            assert href.startswith(('https://', '/', 'mailto:')), (
                 "Looks like link %r to %r is still a placeholder" %
                 (href, ln.text))
 
-    def test_read_dev_agreement_set(self):
+    def test_set_read_dev_agreement(self):
         """Store current date when the user agrees with the user agreement."""
         self.user.update(read_dev_agreement=None)
 
-        response = self.client.post(reverse('devhub.submit.agreement'),
-                                    follow=True)
-        user = response.context['user']
-        self.assertCloseToNow(user.read_dev_agreement)
+        response = self.client.post(reverse('devhub.submit.agreement'))
+        assert response.status_code == 302
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
 
     def test_read_dev_agreement_skip(self):
         # The current user fixture has already read the agreement so we skip
         response = self.client.get(reverse('devhub.submit.agreement'))
         self.assert3xx(response, reverse('devhub.submit.distribution'))
+
+
+@override_switch('post-review', active=True)
+class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
+    def test_set_read_dev_agreement(self):
+        response = self.client.post(reverse('devhub.submit.agreement'), {
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+            'review_rules': 'on',
+        })
+        assert response.status_code == 302
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+
+    def test_set_read_dev_agreement_error(self):
+        response = self.client.post(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+        form = response.context['agreement_form']
+        assert form.is_valid() is False
+        assert form.errors == {
+            'distribution_agreement': [u'This field is required.'],
+            'review_policy': [u'This field is required.'],
+            'review_rules': [u'This field is required.']
+        }
+        doc = pq(response.content)
+        for id_ in form.errors.keys():
+            selector = 'li input#id_%s + a + .errorlist' % id_
+            assert doc(selector).text() == 'This field is required.'
+
+    def test_read_dev_agreement_skip(self):
+        # Make the switch modified date older so that the user read dev
+        # agreement date is more recent than the switch.
+        Switch.objects.filter(name='post-review').update(
+            modified=self.user.read_dev_agreement - timedelta(days=1))
+        super(
+            TestAddonSubmitAgreementWithPostReviewEnabled,
+            self).test_read_dev_agreement_skip()
 
 
 class TestAddonSubmitDistribution(TestCase):
@@ -138,12 +178,19 @@ class TestAddonSubmitDistribution(TestCase):
         assert doc('.notification-box.warning').html().strip() == config.value
 
     def test_redirect_back_to_agreement(self):
-        # We require a cookie that gets set in step 1.
         self.user.update(read_dev_agreement=None)
 
         response = self.client.get(
             reverse('devhub.submit.distribution'), follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
+
+        with override_switch('post-review', active=True):
+            # If the post-review waffle is enabled, read_dev_agreement also
+            # needs to be a more recent date than the waffle modification date.
+            self.user.update(read_dev_agreement=self.days_ago(42))
+            response = self.client.get(
+                reverse('devhub.submit.distribution'), follow=True)
+            self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_listed_redirects_to_next_step(self):
         response = self.client.post(reverse('devhub.submit.distribution'),
@@ -245,7 +292,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    @mock.patch('olympia.editors.helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
         assert Addon.objects.count() == 0
@@ -344,7 +391,8 @@ class TestAddonSubmitDetails(TestSubmitBase):
     def get_dict(self, minimal=True, **kw):
         result = {}
         describe_form = {'name': 'Test name', 'slug': 'testname',
-                         'summary': 'Hello!', 'is_experimental': True}
+                         'summary': 'Hello!', 'is_experimental': True,
+                         'requires_payment': True}
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
@@ -392,6 +440,7 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert addon.slug == 'testname'
         assert addon.summary == 'Hello!'
         assert addon.is_experimental
+        assert addon.requires_payment
         assert addon.all_categories[0].id == 22
 
         # Test add-on log activity.
@@ -655,6 +704,10 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # Third back to my submissions.
         assert links[2].attrib['href'] == reverse('devhub.addons')
 
+    @override_switch('post-review', active=True)
+    def test_finish_submitting_listed_addon_with_post_review_enabled(self):
+        self.test_finish_submitting_listed_addon()
+
     def test_finish_submitting_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
 
@@ -674,6 +727,10 @@ class TestAddonSubmitFinish(TestSubmitBase):
             'Download %s' % file_.filename)
         # Second back to my submissions.
         assert links[1].attrib['href'] == reverse('devhub.addons')
+
+    @override_switch('post-review', active=True)
+    def test_finish_submitting_unlisted_addon_with_post_review_enabled(self):
+        self.test_finish_submitting_unlisted_addon()
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_listed_addon(self):
@@ -789,6 +846,13 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
+    def test_has_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.agreement', args=[self.addon.slug]))
+
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """ Just check we chose the right upload channel.  The upload tests
@@ -825,6 +889,13 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
             response,
             reverse('devhub.submit.version.distribution',
                     args=[self.addon.slug]))
+
+    def test_has_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.agreement', args=[self.addon.slug]))
 
 
 class VersionSubmitUploadMixin(object):
@@ -1041,7 +1112,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         return reverse('devhub.submit.version.finish', args=[
             self.addon.slug, version.pk])
 
-    @mock.patch('olympia.editors.helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_success(self, mock_sign_file):
         """Sign automatically."""
         # No validation errors or warning.
@@ -1124,6 +1195,10 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.version.reload()
         assert self.version.approvalnotes == 'approove plz'
         assert self.version.releasenotes == 'loadsa stuff'
+
+    @override_switch('post-review', active=True)
+    def test_submit_success_with_post_review_enabled(self):
+        self.test_submit_success()
 
     def test_submit_details_unlisted_should_redirect(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

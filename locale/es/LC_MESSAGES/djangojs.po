@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-10-31 12:31+0000\n"
-"Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"PO-Revision-Date: 2017-07-20 06:42+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,9 @@ msgstr "Ver el informe completo de validación"
 msgid "Validating {0}"
 msgstr "Validando {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Tu complemento excede el tamaño máximo de {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Se ha recibido una respuesta vacía del servidor; estado: {0}"
 
@@ -121,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -132,6 +134,9 @@ msgstr "Lo sentimos, no se ha encontrado ninguna plataforma compatible."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "No se reconoce el tipo de archivo que has subido."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Tu archivo excede el tamaño máximo de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Has cancelado la subida."

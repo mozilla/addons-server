@@ -77,6 +77,42 @@ class TestHomeAndIndex(TestCase):
         assert response.context['user'].email == 'admin@mozilla.com'
 
 
+class TestStaffAdmin(TestCase):
+    def test_index(self):
+        url = reverse('staffadmin:index')
+        response = self.client.get(url)
+        self.assert3xx(response, '/admin/staff-models/login/?'
+                                 'next=/en-US/admin/staff-models/')
+
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert 'Replacement addons' in response.content
+
+    def test_model_page(self):
+        url = reverse('staffadmin:addons_replacementaddon_changelist')
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        redirect_url_403 = ('/admin/staff-models/login/?next=/en-US/admin/'
+                            'staff-models/addons/replacementaddon/')
+
+        # Not logged in.
+        response = self.client.get(url)
+        self.assert3xx(response, redirect_url_403)
+
+        # Logged in but not auth'd.
+        self.client.login(email='staffperson@m.c')
+        response = self.client.get(url)
+        self.assert3xx(response, redirect_url_403)
+
+        # Only succeeds with correct permission.
+        self.grant_permission(user, 'Addons:Edit')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert 'Select replacement addon to change' in response.content
+
+
 class TestSiteEvents(TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 

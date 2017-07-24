@@ -1,7 +1,7 @@
 import pytest
 from mock import Mock
 
-from olympia.amo.helpers import Paginator
+from olympia.amo.templatetags.jinja_helpers import Paginator
 
 
 pytestmark = pytest.mark.django_db

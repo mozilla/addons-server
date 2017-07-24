@@ -6,6 +6,8 @@ from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter
@@ -16,6 +18,7 @@ from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache)
 from olympia.files.models import FileValidation
+from olympia.files.utils import atomic_lock
 from olympia.zadmin.models import Config, get_config, set_config
 
 
@@ -100,7 +103,7 @@ class TestAutoApproveCommand(TestCase):
             'status': amo.STATUS_AWAITING_REVIEW,
             'is_webextension': True})
 
-        # Non-public add-on
+        # Non-public add-on.
         addon_factory(status=amo.STATUS_NOMINATED, file_kw={
             'status': amo.STATUS_AWAITING_REVIEW,
             'is_webextension': True})
@@ -142,6 +145,73 @@ class TestAutoApproveCommand(TestCase):
         assert len(qs) == 1
         assert qs[0] == self.version
 
+    @override_switch('post-review', active=True)
+    def test_fetch_candidates_post_review(self):
+        # Add nominated add-on: it should be considered since post-review
+        # waffle is enabled.
+        self.version.update(nomination=self.days_ago(1))
+        new_addon = addon_factory(status=amo.STATUS_NOMINATED, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW,
+            'is_webextension': True})
+        new_addon_version = new_addon.versions.all()[0]
+        new_addon_version.update(nomination=self.days_ago(2))
+
+        # Add a bunch of add-ons in various states that should not be returned.
+        # Public add-on with no updates.
+        addon_factory(file_kw={'is_webextension': True})
+
+        # Non-extension with updates.
+        search_addon = addon_factory(type=amo.ADDON_SEARCH)
+        version_factory(addon=search_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW,
+            'is_webextension': True})
+
+        # Disabled add-on with updates.
+        disabled_addon = addon_factory(disabled_by_user=True)
+        version_factory(addon=disabled_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW,
+            'is_webextension': True})
+
+        # Add-on with deleted version.
+        addon_with_deleted_version = addon_factory()
+        deleted_version = version_factory(
+            addon=addon_with_deleted_version, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        deleted_version.delete()
+
+        # Add-on with a non-webextension update.
+        non_webext_addon = addon_factory()
+        version_factory(addon=non_webext_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Add-on with 3 versions:
+        # - one webext, listed, public.
+        # - one non-listed webext version
+        # - one listed non-webext awaiting review.
+        complex_addon = addon_factory(file_kw={'is_webextension': True})
+        version_factory(
+            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True})
+        version_factory(addon=complex_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Finally, add a second file to self.version to test the distinct().
+        file_factory(
+            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
+            is_webextension=True)
+
+        # Gather the candidates.
+        command = auto_approve.Command()
+        command.post_review = True
+        qs = command.fetch_candidates()
+
+        # 2 versions should be found. Because of the nomination date,
+        # new_addon_version should be first, followed by self.version.
+        assert len(qs) == 2
+        assert qs[0] == new_addon_version
+        assert qs[1] == self.version
+
     @mock.patch(
         'olympia.editors.management.commands.auto_approve.ReviewHelper')
     def test_approve(self, review_helper_mock):
@@ -153,7 +223,7 @@ class TestAutoApproveCommand(TestCase):
         )
         assert review_helper_mock().handler.process_public.call_count == 1
 
-    @mock.patch('olympia.editors.helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_full(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
@@ -161,6 +231,47 @@ class TestAutoApproveCommand(TestCase):
         ActivityLog.objects.all().delete()
         self.author = user_factory()
         self.addon.addonuser_set.create(user=self.author)
+
+        call_command('auto_approve', '--dry-run')
+        call_command('auto_approve')
+
+        self.addon.reload()
+        self.file.reload()
+        assert AutoApprovalSummary.objects.count() == 1
+        assert AutoApprovalSummary.objects.get(version=self.version)
+        assert get_reviewing_cache(self.addon.pk) is None
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.file.reviewed
+        assert ActivityLog.objects.count()
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.APPROVE_VERSION.id
+        assert sign_file_mock.call_count == 1
+        assert sign_file_mock.call_args[0][0] == self.file
+        assert len(mail.outbox) == 1
+        msg = mail.outbox[0]
+        assert msg.to == [self.author.email]
+        assert msg.from_email == settings.EDITORS_EMAIL
+        assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
+            unicode(self.addon.name), self.version.version)
+
+    @override_switch('post-review', active=True)
+    @mock.patch('olympia.editors.utils.sign_file')
+    def test_full_post_review(self, sign_file_mock):
+        # Simple integration test with as few mocks as possible, and
+        # post-review waffle enabled.
+        assert not AutoApprovalSummary.objects.exists()
+        assert not self.file.reviewed
+        ActivityLog.objects.all().delete()
+        self.author = user_factory()
+        self.addon.addonuser_set.create(user=self.author)
+
+        # Delete the add-on current version and approval info, leaving it
+        # nominated. Because we're in post-review we should pick it up and
+        # approve it anyway.
+        AddonApprovalsCounter.objects.filter(addon=self.addon).get().delete()
+        self.addon.current_version.delete()
+        self.addon.update_status()
 
         call_command('auto_approve', '--dry-run')
         call_command('auto_approve')
@@ -245,7 +356,7 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
-             'dry_run': True})
+             'dry_run': True, 'post_review': False})
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'auto_approved': 1})
 
@@ -260,7 +371,7 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
-             'dry_run': False})
+             'dry_run': False, 'post_review': False})
         assert get_reviewing_cache(self.addon.pk) is None
         assert approve_mock.call_count == 1
         assert approve_mock.call_args == (
@@ -286,7 +397,7 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
-             'dry_run': False})
+             'dry_run': False, 'post_review': False})
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({
             'total': 1,
@@ -296,3 +407,12 @@ class TestAutoApproveCommand(TestCase):
             'too_many_average_daily_users': 1,
             'too_few_approved_updates': 1,
         })
+
+    def test_prevent_multiple_runs_in_parallel(self):
+        # Create a lock manually, the command should exit immediately without
+        # doing anything.
+        with atomic_lock(settings.TMP_PATH, auto_approve.LOCK_NAME):
+            call_command('auto_approve')
+
+        assert self.log_final_summary_mock.call_count == 0
+        assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW

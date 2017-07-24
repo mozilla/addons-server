@@ -20,7 +20,7 @@ from olympia.applications.models import AppVersion
 from olympia.editors.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
-from olympia.reviews.helpers import user_can_delete_review
+from olympia.reviews.templatetags.jinja_helpers import user_can_delete_review
 from olympia.reviews.models import Review
 from olympia.versions.models import Version
 
@@ -115,7 +115,7 @@ class QueueSearchForm(happyforms.Form):
     addon_type_ids = forms.MultipleChoiceField(
         required=False,
         label=_(u'Add-on Types'),
-        choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()))
+        choices=[(amo.ADDON_ANY, _(u'Any'))] + amo.ADDON_TYPES.items())
 
     def __init__(self, *args, **kw):
         super(QueueSearchForm, self).__init__(*args, **kw)

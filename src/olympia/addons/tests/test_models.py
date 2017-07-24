@@ -8,6 +8,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.contrib.auth.models import AnonymousUser
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -16,7 +17,7 @@ from mock import Mock, patch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.amo.tests import addon_factory, TestCase, version_factory
-from olympia.amo.helpers import absolutify, user_media_url
+from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
@@ -735,19 +736,18 @@ class TestAddonModels(TestCase):
         addon.disabled_by_user = True
         assert not addon.is_public()
 
-    def test_requires_restart(self):
+    def test_is_restart_required(self):
         addon = Addon.objects.get(pk=3615)
         file_ = addon.current_version.all_files[0]
-        assert not file_.no_restart
-        assert file_.requires_restart
-        assert addon.requires_restart
+        assert not file_.is_restart_required
+        assert not addon.is_restart_required
 
-        file_.update(no_restart=True)
-        assert not Addon.objects.get(pk=3615).requires_restart
+        file_.update(is_restart_required=True)
+        assert Addon.objects.get(pk=3615).is_restart_required
 
         addon.versions.all().delete()
         addon._current_version = None
-        assert not addon.requires_restart
+        assert not addon.is_restart_required
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
@@ -992,7 +992,8 @@ class TestAddonModels(TestCase):
 
         assert self.newlines_helper(before) == after
 
-    @patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
+    @patch(
+        'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
         mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'
@@ -1445,6 +1446,25 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Still complete
         assert not addon.has_complete_metadata(has_listed_versions=True)
+
+    def test_can_review(self):
+        user = AnonymousUser()
+        addon = Addon.objects.get(id=3615)
+        assert addon.can_review(user)
+
+        user = addon.addonuser_set.all()[0].user
+        assert not addon.can_review(user)
+
+        user = UserProfile.objects.get(pk=2519)
+        assert addon.can_review(user)
+
+    def test_has_author(self):
+        addon = Addon.objects.get(id=3615)
+        user = addon.addonuser_set.all()[0].user
+        assert addon.has_author(user)
+
+        user = UserProfile.objects.get(pk=2519)
+        assert not addon.has_author(user)
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):

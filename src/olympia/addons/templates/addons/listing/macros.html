@@ -23,23 +23,23 @@
         {# L10n: {0} is the number of downloads. #}
         {{ ngettext("<strong>{0}</strong> weekly download",
                     "<strong>{0}</strong> weekly downloads",
-                    num)|f(num|numberfmt)|safe }}
+                    num)|format_html(num|numberfmt)|safe }}
       {% endwith %}
     {% else %}
       {% with num=addon.average_daily_users %}
         {# L10n: {0} is the number of users. #}
         {{ ngettext("<strong>{0}</strong> user",
                     "<strong>{0}</strong> users",
-                    num)|f(num|numberfmt)|safe }}
+                    num)|format_html(num|numberfmt)|safe }}
       {% endwith %}
     {% endif %}
   </p>
   <p class="updated">
     {% if show_date in ['created', 'new', 'newest'] %}
-    {{ _('Added {0}')|f(addon.created|datetime) }}
+    {{ _('Added {0}')|format_html(addon.created|datetime) }}
     {% elif show_date == 'updated' %}
     {# L10n: {0} is a date #}
-    {{ _('Updated {0}')|f(addon.last_updated|datetime) }}
+    {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
     {% endif %}
   </p>
 {% endmacro %}

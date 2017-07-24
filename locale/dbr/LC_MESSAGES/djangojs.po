@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.4.0\n"
 
 msgid "{0} star"
@@ -65,7 +65,9 @@ msgstr "ʇɹodǝɹ uoıʇɐpıʅɐʌ ʅʅnɟ ǝǝS"
 msgid "Validating {0}"
 msgstr "{0} ƃuıʇɐpıʅɐɅ"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "{0} :snʇɐʇs ;ɹǝʌɹǝs ǝɥʇ ɯoɹɟ ǝsuodsǝɹ ʎʇdɯǝ uɐ pǝʌıǝɔǝᴚ"
 
@@ -130,6 +132,9 @@ msgstr ".punoɟ uǝǝq sɐɥ ɯɹoɟʇɐʅd pǝʇɹoddns ou ´ʎɹɹoS"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr ".pǝzıuƃoɔǝɹ ʇ,usı pǝpɐoʅdn noʎ ǝdʎʇǝʅıɟ ǝɥ⊥"
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr ".pɐoʅdn ǝɥʇ pǝʅʅǝɔuɐɔ no⅄"

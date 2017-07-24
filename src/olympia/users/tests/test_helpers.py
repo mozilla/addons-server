@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestPersonas
-from olympia.users.helpers import (
+from olympia.users.templatetags.jinja_helpers import (
     addon_users_list, emaillink, manage_fxa_link, user_data, user_link,
     users_list)
 from olympia.users.models import UserProfile

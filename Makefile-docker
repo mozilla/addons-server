@@ -8,15 +8,25 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 endif
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
 STATIC_JQUERY_UI := static/js/node_lib/ui/
 
+NODE_LIBS_CSS := \
+@claviska/jquery-minicolors/jquery.minicolors.css \
+@claviska/jquery-minicolors/jquery.minicolors.png \
+
 NODE_LIBS_JS := \
 less/dist/less.js \
+jqmodal/jqModal.js \
 jquery/dist/jquery.js \
 jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
+@claviska/jquery-minicolors/jquery.minicolors.js \
+jquery-pjax/jquery.pjax.js \
+raven-js/dist/raven.js \
 timeago/jquery.timeago.js \
+underscore/underscore.js \
 
 NODE_LIBS_JQUERY_UI := \
 jquery-ui/ui/version.js \
@@ -90,16 +100,17 @@ install_python_dependencies:
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
-install_node_dependencies:
+install_node_dependencies: install_node_js copy_node_js
+
+install_node_js:
 	npm install $(NPM_ARGS)
-	$(MAKE) copy_node_js
 
 copy_node_js:
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
-update_deps:
-	$(MAKE) install_python_dependencies install_node_dependencies
+update_deps: install_python_dependencies install_node_dependencies
 
 update_db:
 	schematic src/olympia/migrations
@@ -108,12 +119,10 @@ update_assets:
 	python manage.py compress_assets --use-uuid
 	python manage.py collectstatic --noinput
 
-update:
-	$(MAKE) update_deps update_db update_assets
+update: update_deps update_db update_assets
 	python manage.py update_permissions_from_mc
 
 reindex:
 	python manage.py reindex $(ARGS)
 
-initialize:
-	$(MAKE) update_deps initialize_db update_assets populate_data
+initialize: update_deps initialize_db update_assets populate_data

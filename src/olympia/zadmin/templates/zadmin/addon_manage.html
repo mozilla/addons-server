@@ -1,6 +1,6 @@
-{% extends "admin/base.html" %}
+{% extends "zadmin/base.html" %}
 
-{% block title %}{{ page_title('Manage {0}')|fe(addon.name) }}{% endblock %}
+{% block title %}{{ page_title('Manage {0}')|format_html(addon.name) }}{% endblock %}
 
 {% block content %}
 <h2>Manage {{ addon.name }}</h2>
@@ -66,7 +66,7 @@
   {% endif %}
   <p><input type="submit" value="Update Statuses"></p>
   {{ formset.management_form }}
-  {{ csrf() }}
+  {% csrf_token %}
   {% if pager.paginator.num_pages > 1 %}
     <div class="listing-footer">
       {{ pager|paginator }}

@@ -16,6 +16,8 @@ from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 
 import caching.base as caching
+import waffle
+from waffle.models import Switch
 
 import olympia.core.logger
 from olympia import amo, core
@@ -176,6 +178,18 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_superuser
 
+    def has_read_developer_agreement(self):
+        if self.read_dev_agreement is None:
+            return False
+        if waffle.switch_is_active('post-review'):
+            # We want to make sure developers read the latest version of the
+            # agreement. The cutover date is the date the switch was last
+            # modified to turn it on. (When removing the waffle, change this
+            # for a static date).
+            switch = Switch.objects.get(name='post-review')
+            return self.read_dev_agreement > switch.modified
+        return True
+
     backend = 'django.contrib.auth.backends.ModelBackend'
 
     def get_session_auth_hash(self):
@@ -231,7 +245,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_dir(self):
-        from olympia.amo.helpers import user_media_path
+        from olympia.amo.templatetags.jinja_helpers import user_media_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(user_media_path('userpics'),
                             split_id.group(2) or '0',
@@ -243,7 +257,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_url(self):
-        from olympia.amo.helpers import user_media_url
+        from olympia.amo.templatetags.jinja_helpers import user_media_url
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
@@ -288,6 +302,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def get_full_name(self):
         return self.name
+
+    def get_short_name(self):
+        return self.username
 
     def _anonymous_username_id(self):
         if self.has_anonymous_username():

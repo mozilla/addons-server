@@ -6,21 +6,27 @@ from django.core.management.base import BaseCommand, CommandError
 from django.core.urlresolvers import reverse
 from django.db import transaction
 
+import waffle
+
 import olympia.core.logger
 from olympia import amo
-from olympia.editors.helpers import ReviewHelper
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
+from olympia.editors.utils import ReviewHelper
+from olympia.files.utils import atomic_lock
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
 
 log = olympia.core.logger.getLogger('z.editors.auto_approve')
 
+LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
+
 
 class Command(BaseCommand):
     help = 'Auto-approve add-ons based on predefined criteria'
+    post_review = False
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -34,16 +40,21 @@ class Command(BaseCommand):
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
+        if self.post_review:
+            addon_statuses = (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED)
+        else:
+            addon_statuses = (amo.STATUS_PUBLIC,)
         return (Version.objects.filter(
             addon__type=amo.ADDON_EXTENSION,
             addon__disabled_by_user=False,
-            addon__status=amo.STATUS_PUBLIC,
+            addon__status__in=addon_statuses,
             files__status=amo.STATUS_AWAITING_REVIEW,
             files__is_webextension=True)
             .no_cache().order_by('nomination', 'created').distinct())
 
     def handle(self, *args, **options):
         """Command entry point."""
+        self.post_review = waffle.switch_is_active('post-review')
         self.dry_run = options.get('dry_run', False)
         self.max_average_daily_users = int(
             get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
@@ -68,13 +79,22 @@ class Command(BaseCommand):
             else amo.AUTO_APPROVED)
 
         self.stats = Counter()
-        qs = self.fetch_candidates()
-        self.stats['total'] = len(qs)
 
-        for version in qs:
-            self.process(version)
+        # Get a lock before doing anything, we don't want to have multiple
+        # instances of the command running in parallel.
+        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
+        with lock as lock_attained:
+            if lock_attained:
+                qs = self.fetch_candidates()
+                self.stats['total'] = len(qs)
 
-        self.log_final_summary(self.stats)
+                for version in qs:
+                    self.process(version)
+
+                self.log_final_summary(self.stats)
+            else:
+                # We didn't get the lock...
+                log.error('auto-approve lock present, aborting.')
 
     @transaction.atomic
     def process(self, version):
@@ -94,7 +114,8 @@ class Command(BaseCommand):
             summary, info = AutoApprovalSummary.create_summary_for_version(
                 version, max_average_daily_users=self.max_average_daily_users,
                 min_approved_updates=self.min_approved_updates,
-                dry_run=self.dry_run)
+                dry_run=self.dry_run,
+                post_review=waffle.switch_is_active('post-review'))
             log.info('Auto Approval for %s version %s: %s',
                      unicode(version.addon.name),
                      unicode(version.version),
@@ -131,28 +152,29 @@ class Command(BaseCommand):
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""
-        log.info('There were %d webextensions add-ons in the updates queue.',
+        log.info('There were %d webextensions add-ons in the queue.',
                  stats['total'])
         if stats['error']:
             log.info(
                 '%d versions were skipped because they had no files or had '
                 'no validation attached to their files.', stats['error'])
-        log.info('%d versions were already locked by a reviewer.',
-                 stats['is_locked'])
-        log.info('%d versions were flagged for admin review',
-                 stats['is_under_admin_review'])
-        log.info('%d versions had a pending info request',
-                 stats['has_info_request'])
-        log.info('%d versions belonged to an add-on with too many daily '
-                 'active users.', stats['too_many_average_daily_users'])
-        log.info('%d versions did not have enough approved updates.',
-                 stats['too_few_approved_updates'])
-        log.info('%d versions used a custom CSP.',
-                 stats['uses_custom_csp'])
-        log.info('%d versions used nativeMessaging permission.',
-                 stats['uses_native_messaging'])
-        log.info('%d versions used a content script for all URLs.',
-                 stats['uses_content_script_for_all_urls'])
+        if not self.post_review:
+            log.info('%d versions were already locked by a reviewer.',
+                     stats['is_locked'])
+            log.info('%d versions were flagged for admin review',
+                     stats['is_under_admin_review'])
+            log.info('%d versions had a pending info request',
+                     stats['has_info_request'])
+            log.info('%d versions belonged to an add-on with too many daily '
+                     'active users.', stats['too_many_average_daily_users'])
+            log.info('%d versions did not have enough approved updates.',
+                     stats['too_few_approved_updates'])
+            log.info('%d versions used a custom CSP.',
+                     stats['uses_custom_csp'])
+            log.info('%d versions used nativeMessaging permission.',
+                     stats['uses_native_messaging'])
+            log.info('%d versions used a content script for all URLs.',
+                     stats['uses_content_script_for_all_urls'])
         if self.dry_run:
             log.info('%d versions were marked as would have been approved.',
                      stats['auto_approved'])

@@ -4,12 +4,12 @@ from django.utils.encoding import smart_text
 from django.utils.translation import trim_whitespace
 
 import mock
-from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import datetime_filter
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.bandwagon.models import MonthlyPick
@@ -355,16 +355,6 @@ class TestDetails(TestCase):
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
-
-    def test_requires_restart(self):
-        f = self.addon.current_version.all_files[0]
-        assert f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 1
-        f.update(no_restart=True)
-        assert not f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 0
 
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)

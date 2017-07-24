@@ -3,7 +3,7 @@
 
 {% set name = category.name if category else filter.title %}
 {# L10n: {0} is a category name. Ex: "Sports" #}
-{% set title = _('Themes') if is_homepage else _('{0} Themes')|f(name) %}
+{% set title = _('Themes') if is_homepage else _('{0} Themes')|format_html(name) %}
 {% set url_base = request.path %}
 {% if category %}
   {% set url_base = profile.get_user_url('themes', args=[category.slug]) if profile else url('browse.personas', category.slug) %}
@@ -12,7 +12,7 @@
 {% block title %}
   {% if profile %}
     {# L10n: {0} is a user's name. #}
-    {% set pagetitle = _("{0}'s Themes")|f(profile.name) %}
+    {% set pagetitle = _("{0}'s Themes")|format_html(profile.name) %}
     {{ page_title('%s :: %s' % (name ~ '', pagetitle)) }}
   {% else %}
     {{ page_title(title) }}
@@ -37,7 +37,7 @@
         <div>{{ _('View Profile') }}</div>
       </a>
     </aside>
-    {{ secondary_categories(_("{0}'s Themes")|f(profile.name), 'browse.personas', categories, filter, profile) }}
+    {{ secondary_categories(_("{0}'s Themes")|format_html(profile.name), 'browse.personas', categories, filter, profile) }}
   {% else %}
     {{ secondary_categories(_('Themes'), 'browse.personas', categories, filter) }}
     <div class="submit-theme">

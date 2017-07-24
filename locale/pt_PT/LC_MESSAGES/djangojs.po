@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-05-27 12:24+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"PO-Revision-Date: 2017-07-17 14:48+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -66,7 +66,9 @@ msgstr "Ver relatório de validação completo"
 msgid "Validating {0}"
 msgstr "A validar {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "O seu extra excede o tamanho máximo de {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida resposta vazia do servidor; estado: {0}"
 
@@ -133,6 +135,9 @@ msgstr "Lamentamos, mas não foi encontrada nenhuma plataforma suportada."
 msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de ficheiro que carregou não é reconhecido."
 
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "O seu ficheiro excede o tamanho máximo de {0}."
+
 msgid "You cancelled the upload."
 msgstr "Você cancelou o carregamento."
 
@@ -198,7 +203,7 @@ msgid "Search themes for <b>{0}</b>"
 msgstr "Procurar temas para <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Procurar apps para o <b>{0}</b>"
+msgstr "Pesquisar apps para o <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pesquise extras para o <b>{0}</b>"
@@ -690,7 +695,7 @@ msgid "Download now"
 msgstr "Descarregar agora"
 
 msgid "Only available on Firefox Desktop"
-msgstr "Apenas disponível no Firefox para Computadores"
+msgstr "Apenas disponível no Firefox para Computador"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
@@ -741,7 +746,7 @@ msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
 msgid "Stop following"
-msgstr "Parar o seguimento"
+msgstr "Deixar de seguir"
 
 msgid "Your browser does not support the video tag"
 msgstr "O seu navegador não suporta a etiqueta de vídeo"

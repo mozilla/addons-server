@@ -59,10 +59,11 @@ from olympia.versions.models import Version
 from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .indexers import AddonIndexer
-from .models import Addon, Persona, FrozenAddon
+from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
+    AddonSerializer, AddonSerializerWithUnlistedData,
+    ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     VersionSerializer, StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
@@ -538,11 +539,21 @@ def icloud_bookmarks_redirect(request):
         return addon_detail(request, 'icloud-bookmarks')
 
 
+DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
+FIND_REPLACEMENT_SRC = 'find-replacement'
+
+
 def find_replacement_addon(request):
     guid = request.GET.get('guid')
     if not guid:
         raise http.Http404
-    return render(request, 'addons/replacement_addons.html')
+    try:
+        path = ReplacementAddon.objects.get(guid=guid).path
+    except ReplacementAddon.DoesNotExist:
+        path = DEFAULT_FIND_REPLACEMENT_PATH
+    replace_url = '%s%s?src=%s' % (
+        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
+    return redirect(replace_url, permanent=False)
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
@@ -552,19 +563,21 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     ]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
-    # Permission classes disallow access to non-public/unlisted add-ons unless
-    # logged in as a reviewer/addon owner/admin, so we don't have to filter the
-    # base queryset here.
-    queryset = Addon.objects.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):
+        """Return queryset to be used for the view. We implement our own that
+        does not depend on self.queryset to avoid cache-machine caching the
+        queryset too agressively (mozilla/addons-frontend#2497)."""
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
         if self.request.user.is_authenticated() and self.request.user.is_staff:
             return Addon.unfiltered.all()
-        return super(AddonViewSet, self).get_queryset()
+        # Permission classes disallow access to non-public/unlisted add-ons
+        # unless logged in as a reviewer/addon owner/admin, so we don't have to
+        # filter the base queryset here.
+        return Addon.objects.all()
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
@@ -642,12 +655,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
-    # By default, we rely on queryset filtering to hide non-public/unlisted
-    # versions. get_queryset() might override this if we are asked to see
-    # non-valid, deleted and/or unlisted versions explicitly.
-    queryset = Version.objects.filter(
-        files__status=amo.STATUS_PUBLIC,
-        channel=amo.RELEASE_CHANNEL_LISTED).distinct()
     serializer_class = VersionSerializer
 
     def check_permissions(self, request):
@@ -717,26 +724,31 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             elif requested not in valid_filters:
                 raise serializers.ValidationError(
                     'Invalid "filter" parameter specified.')
-
         # By default we restrict to valid, listed versions. Some filtering
         # options are available when listing, and in addition, when returning
         # a single instance, we don't filter at all.
         if requested == 'all_with_deleted' or self.action != 'list':
-            self.queryset = Version.unfiltered.all()
+            queryset = Version.unfiltered.all()
         elif requested == 'all_with_unlisted':
-            self.queryset = Version.objects.all()
+            queryset = Version.objects.all()
         elif requested == 'all_without_unlisted':
-            self.queryset = Version.objects.filter(
+            queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
         elif requested == 'only_beta':
-            self.queryset = Version.objects.filter(
+            queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED,
                 files__status=amo.STATUS_BETA).distinct()
+        else:
+            # By default, we rely on queryset filtering to hide
+            # non-public/unlisted versions. get_queryset() might override this
+            # if we are asked to see non-valid, deleted and/or unlisted
+            # versions explicitly.
+            queryset = Version.objects.filter(
+                files__status=amo.STATUS_PUBLIC,
+                channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
-        # Now that the base queryset has been altered, call super() to use it.
-        qs = super(AddonVersionViewSet, self).get_queryset()
         # Filter with the add-on.
-        return qs.filter(addon=self.get_addon_object())
+        return queryset.filter(addon=self.get_addon_object())
 
 
 class AddonSearchView(ListAPIView):
@@ -750,14 +762,49 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(using=amo.search.get_es(),
-                      index=AddonIndexer.get_index_alias(),
-                      doc_type=AddonIndexer.get_doctype_name())
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'exclude': AddonIndexer.hidden_fields})
 
     @classmethod
     def as_view(cls, **kwargs):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class AddonAutoCompleteSearchView(AddonSearchView):
+    pagination_class = None
+    serializer_class = ESAddonAutoCompleteSerializer
+
+    def get_queryset(self):
+        # Minimal set of fields from ES that we need to build our results.
+        # It's the opposite tactic used by the regular search endpoint, which
+        # excludes a specific set of fields - because we know that autocomplete
+        # only needs to return very few things.
+        included_fields = (
+            'icon_type',  # Needed for icon_url.
+            'id',  # Needed for... id.
+            'modified',  # Needed for icon_url.
+            'name_translations',  # Needed for... name.
+            'persona',  # Needed for icon_url (sadly).
+            'slug',  # Needed for url.
+            'type',  # Needed to attach the Persona for icon_url (sadly).
+        )
+
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'include': included_fields})
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (slice directly) but do wrap the data in a
+        # 'results' property to mimic what the search API does.
+        queryset = self.filter_queryset(self.get_queryset())[:10]
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
 
 class AddonFeaturedView(GenericAPIView):
@@ -767,7 +814,6 @@ class AddonFeaturedView(GenericAPIView):
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
-    queryset = Addon.objects.valid()
 
     def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -780,6 +826,9 @@ class AddonFeaturedView(GenericAPIView):
     def as_view(cls, **kwargs):
         view = super(AddonFeaturedView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+    def get_queryset(self):
+        return Addon.objects.valid()
 
     def filter_queryset(self, queryset):
         # We can pass the optional lang parameter to either get_creatured_ids()
@@ -844,3 +893,29 @@ class StaticCategoryView(ListAPIView):
             request, response, *args, **kwargs)
         patch_cache_control(response, max_age=60 * 60 * 6)
         return response
+
+
+class LanguageToolsView(ListAPIView):
+    authentication_classes = []
+    pagination_class = None
+    permission_classes = []
+    serializer_class = LanguageToolsSerializer
+
+    def get_queryset(self):
+        try:
+            application_id = AddonAppFilterParam(self.request).get_value()
+        except ValueError:
+            raise ParseError('Invalid app parameter.')
+
+        types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
+        return Addon.objects.public().filter(
+            appsupport__app=application_id, type__in=types,
+            target_locale__isnull=False).exclude(target_locale='')
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (return everything) but do wrap the data in a
+        # 'results' property to mimic what the default implementation of list()
+        # does in DRF.
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})

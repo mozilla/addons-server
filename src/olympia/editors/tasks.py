@@ -11,7 +11,7 @@ from olympia.addons.tasks import create_persona_preview_images
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.editors.models import AutoApprovalSummary
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.utils import LocalFileStorage, send_mail_jinja
 from olympia.versions.models import Version

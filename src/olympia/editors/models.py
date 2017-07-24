@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.template import Context, loader
+from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -15,7 +15,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
@@ -32,7 +32,7 @@ user_log = olympia.core.logger.getLogger('z.users')
 VIEW_QUEUE_FLAGS = (
     ('admin_review', 'admin-review', _('Admin Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
-    ('requires_restart', 'requires_restart', _('Requires Restart')),
+    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('has_info_request', 'info', _('More Information Requested')),
     ('has_editor_comment', 'editor', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
@@ -129,7 +129,7 @@ class ViewQueue(RawSQLModel):
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
-    is_restartless = models.BooleanField()
+    is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
@@ -153,7 +153,7 @@ class ViewQueue(RawSQLModel):
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
-                ('is_restartless', 'MAX(files.no_restart)'),
+                ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
                 ('waiting_time_days',
@@ -180,10 +180,6 @@ class ViewQueue(RawSQLModel):
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
             ],
             'group_by': 'id'}
-
-    @property
-    def requires_restart(self):
-        return not self.is_restartless
 
     @property
     def sources_provided(self):
@@ -339,7 +335,7 @@ class EditorSubscription(ModelBase):
     def send_notification(self, version):
         user_log.info('Sending addon update notice to %s for %s' %
                       (self.user.email, self.addon.pk))
-        context = Context({
+        context = {
             'name': self.addon.name,
             'url': absolutify(reverse('addons.detail', args=[self.addon.pk],
                                       add_prefix=False)),
@@ -348,11 +344,11 @@ class EditorSubscription(ModelBase):
                                          args=[self.addon.pk],
                                          add_prefix=False)),
             'SITE_URL': settings.SITE_URL,
-        })
+        }
         # Not being localised because we don't know the editors locale.
         subject = 'Mozilla Add-ons: %s Updated' % self.addon.name
         template = loader.get_template('editors/emails/notify_update.ltxt')
-        send_mail(subject, template.render(Context(context)),
+        send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
                   from_email=settings.EDITORS_EMAIL,
                   use_deny_list=False)
@@ -383,7 +379,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    score = models.SmallIntegerField()
+    score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)
@@ -571,6 +567,11 @@ class ReviewerScore(ModelBase):
         query = (cls.objects
                     .values_list('user__id', 'user__display_name')
                     .annotate(total=Sum('score'))
+                    .filter(user__groups__name__in=(
+                        'Add-on Reviewers',
+                        'Senior Add-on Reviewers',
+                        'Persona Reviewers',
+                        'Senior Personas Reviewers'))
                     .exclude(user__groups__name__in=('No Reviewer Incentives',
                                                      'Staff', 'Admins'))
                     .order_by('-total'))
@@ -748,7 +749,7 @@ class AutoApprovalSummary(ModelBase):
             # Reputation is set by admin - the value is inverted to add from
             # -300 (decreasing priority for "trusted" add-ons) to 0.
             'reputation': (
-                max(min(int(addon.reputation or 0) * -100, 300), 0)),
+                max(min(int(addon.reputation or 0) * -100, 0), -300)),
             # Average daily users: value divided by 10000 is added to the
             # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users / 10000, 100),
@@ -773,9 +774,10 @@ class AutoApprovalSummary(ModelBase):
         try:
             factors = {
                 # Static analysis flags from linter:
-                # eval, evalInSandbox, document.write: 20.
-                'uses_dangerous_eval': (
-                    20 if self.check_uses_eval(self.version) else 0),
+                # eval() or document.write(): 20.
+                'uses_eval_or_document_write': (
+                    20 if self.check_uses_eval_or_document_write(self.version)
+                    else 0),
                 # Implied eval in setTimeout/setInterval/ on* attributes: 5.
                 'uses_implied_eval': (
                     5 if self.check_uses_implied_eval(self.version) else 0),
@@ -800,7 +802,7 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
-            dry_run=False, pretty=False):
+            dry_run=False, pretty=False, post_review=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
 
@@ -813,21 +815,26 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # We need everything in that dict to be False for verdict to be
-        # successful.
-        verdict_info = {
-            'uses_custom_csp': self.uses_custom_csp,
-            'uses_native_messaging': self.uses_native_messaging,
-            'uses_content_script_for_all_urls':
-                self.uses_content_script_for_all_urls,
-            'too_many_average_daily_users':
-                self.average_daily_users >= max_average_daily_users,
-            'too_few_approved_updates':
-                self.approved_updates < min_approved_updates,
-            'has_info_request': self.has_info_request,
-            'is_under_admin_review': self.is_under_admin_review,
-            'is_locked': self.is_locked,
-        }
+        if post_review:
+            # If post_review is enabled, add-ons always get a successful
+            # verdict, so verdict_info must be an empty dict.
+            verdict_info = {}
+        else:
+            # We need everything in that dict to be False for verdict to be
+            # successful.
+            verdict_info = {
+                'uses_custom_csp': self.uses_custom_csp,
+                'uses_native_messaging': self.uses_native_messaging,
+                'uses_content_script_for_all_urls':
+                    self.uses_content_script_for_all_urls,
+                'too_many_average_daily_users':
+                    self.average_daily_users >= max_average_daily_users,
+                'too_few_approved_updates':
+                    self.approved_updates < min_approved_updates,
+                'has_info_request': self.has_info_request,
+                'is_under_admin_review': self.is_under_admin_review,
+                'is_locked': self.is_locked,
+            }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
         else:
@@ -873,12 +880,14 @@ class AutoApprovalSummary(ModelBase):
                    for file_ in version.all_files)
 
     @classmethod
-    def check_uses_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'DANGEROUS_EVAL')
+    def check_uses_eval_or_document_write(cls, version):
+        return (
+            cls.check_for_linter_flag(version, 'NO_DOCUMENT_WRITE') or
+            cls.check_for_linter_flag(version, 'DANGEROUS_EVAL'))
 
     @classmethod
     def check_uses_implied_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'IMPLIED_EVAL')
+        return cls.check_for_linter_flag(version, 'NO_IMPLIED_EVAL')
 
     @classmethod
     def check_uses_innerhtml(cls, version):
@@ -914,7 +923,7 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def create_summary_for_version(
             cls, version, max_average_daily_users=0,
-            min_approved_updates=0, dry_run=False):
+            min_approved_updates=0, dry_run=False, post_review=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
 
@@ -953,7 +962,7 @@ class AutoApprovalSummary(ModelBase):
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(
             dry_run=dry_run, max_average_daily_users=max_average_daily_users,
-            min_approved_updates=min_approved_updates)
+            min_approved_updates=min_approved_updates, post_review=post_review)
         instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where
         # it already existed. So we put the verdict and weight we just

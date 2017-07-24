@@ -27,6 +27,7 @@ from django.utils.translation import ugettext
 import flufl.lock
 import rdflib
 import waffle
+from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
 from olympia import amo, core
@@ -117,13 +118,17 @@ class Extractor(object):
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
+        certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
         if os.path.exists(manifest_json):
-            return ManifestJSONExtractor(manifest_json).parse()
+            data = ManifestJSONExtractor(manifest_json).parse()
         elif os.path.exists(install_rdf):
-            return RDFExtractor(path).data
+            data = RDFExtractor(path).data
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
+        if os.path.exists(certificate):
+            data.update(MozillaSignedCertificateChecker(certificate).parse())
+        return data
 
 
 def get_appversions(app, min_version, max_version):
@@ -183,9 +188,9 @@ class RDFExtractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
-            'no_restart': (
-                self.find('bootstrap') == 'true' or
-                self.find('type') in self.ALWAYS_RESTARTLESS_TYPES),
+            'is_restart_required': (
+                self.find('bootstrap') != 'true' and
+                self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',
@@ -386,7 +391,7 @@ class ManifestJSONExtractor(object):
             'version': self.get('version', ''),
             'homepage': self.get('homepage_url'),
             'summary': self.get('description'),
-            'no_restart': True,
+            'is_restart_required': False,
             'apps': list(self.apps()),
             'is_webextension': True,
             'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
@@ -395,6 +400,29 @@ class ManifestJSONExtractor(object):
             'content_scripts': self.get('content_scripts', []),
             'is_static_theme': 'theme' in self.data
         }
+
+
+class MozillaSignedCertificateChecker(object):
+    """Process the signature to determine the addon is a Mozilla Signed
+    extension, so is signed already with a special certificate.  We want to
+    know this so we don't write over it later, and stop unauthorised people
+    from submitting them to AMO."""
+    def __init__(self, path, data=''):
+        self.path = path
+
+        if not data:
+            with open(path) as fobj:
+                data = fobj.read()
+
+        pkcs7 = data
+        self.cert_ou = get_signer_organizational_unit_name(pkcs7)
+
+    @property
+    def is_mozilla_signed_ou(self):
+        return self.cert_ou == 'Mozilla Extensions'
+
+    def parse(self):
+        return {'is_mozilla_signed_extension': self.is_mozilla_signed_ou}
 
 
 def extract_search(content):
@@ -427,7 +455,7 @@ def parse_search(fileorpath, addon=None):
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
             'name': data['name'],
-            'no_restart': True,
+            'is_restart_required': False,
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
 

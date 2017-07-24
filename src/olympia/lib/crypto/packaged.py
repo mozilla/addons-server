@@ -11,7 +11,7 @@ from django.core.files.storage import default_storage as storage
 
 import requests
 from django_statsd.clients import statsd
-from signing_clients.apps import get_signature_serial_number, JarExtractor
+from signing_clients.apps import get_signer_serial_number, JarExtractor
 
 import olympia.core.logger
 from olympia import amo
@@ -93,7 +93,7 @@ def call_signing(file_obj, endpoint):
         raise SigningError(msg)
 
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
-    cert_serial_num = get_signature_serial_number(pkcs7)
+    cert_serial_num = get_signer_serial_number(pkcs7)
     jar.make_signed(pkcs7, sigpath=u'mozilla')
     shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
@@ -123,6 +123,12 @@ def sign_file(file_obj, server):
     if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
         log.info(u'Not signing file {0}: addon is a hotfix'.format(
             file_obj.pk))
+        return
+
+    # Don't sign Mozilla signed extensions (they're already signed).
+    if file_obj.is_mozilla_signed_extension:
+        log.info(u'Not signing file {0}: mozilla signed extension is already '
+                 u'signed'.format(file_obj.pk))
         return
 
     # Don't sign multi-package XPIs. Their inner add-ons need to be signed.

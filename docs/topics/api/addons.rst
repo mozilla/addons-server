@@ -42,6 +42,7 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
+    :query string author: Filter by exact author username.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
@@ -78,6 +79,37 @@ This endpoint allows you to search through public add-ons.
     For instance, to sort search results by downloads and then by creation
     date, use `sort=downloads,created`.
 
+
+------------
+Autocomplete
+------------
+
+.. _addon-autocomplete:
+
+Similar to :ref:`add-ons search endpoint <addon-search>` above, this endpoint
+allows you to search through public add-ons. Because it's meant as a backend
+for autocomplete though, there are a couple key differences:
+
+  - No pagination is supported. There are no ``next``, ``prev`` or ``count``
+    fields, and passing ``page_size`` or ``page`` has no effect, a maximum of 10
+    results will be returned at all times.
+  - Only a subset of fields are returned.
+
+.. http:get:: /api/v3/addons/autocomplete/
+
+    :query string q: The search query.
+    :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
+    :query string author: Filter by exact author username.
+    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
+    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name`` and ``url`` fields are supported though.
+
+
 ------
 Detail
 ------
@@ -107,12 +139,10 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int authors[].id: The id for an author.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
+    :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.  For performance reasons this field is omitted from search results.
     :>json int average_daily_users: The average number of users for the add-on per day.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
-    :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
-    :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
-    :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
     :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string default_locale: The add-on default locale for translations.
@@ -125,6 +155,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
+    :>json boolean is_featured: The add-on appears in a featured collection.
     :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
@@ -139,6 +170,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int ratings.count: The number of user ratings for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
+    :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
     :>json string review_url: The URL to the review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
@@ -222,6 +254,13 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
         dictionary  Dictionary
     ==============  ==========================================================
 
+
+-----------------------------
+Add-on and Version Submission
+-----------------------------
+
+See :ref:`Uploading a version <upload-version>`.
+
 -------------
 Versions List
 -------------
@@ -283,6 +322,9 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json object compatibility: Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
+    :>json object compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
+    :>json object compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :>json string edit_url: The URL to the developer edit page for the version.
     :>json array files: Array holding information about the files for the version.
     :>json int files[].id: The id for a file.
@@ -290,6 +332,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string files[].hash: The hash for a file.
     :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file.
     :>json int files[].id: The size for a file, in bytes.
+    :>json boolean files[].is_restart_required: Whether the file requires a browser restart to work once installed or not.
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file. An optional ``src`` query parameter can be added to indicate the source page (See :ref:`download sources <download-sources>`).
@@ -300,6 +343,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string|null license.url: The URL of the full text of license.
     :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
+    :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string version: The version number string for the version.
 
 
@@ -347,3 +391,35 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
 
     :>json string|object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
+
+
+--------------
+Language Tools
+--------------
+
+.. _addon-language-tools:
+
+This endpoint allows you to list all public language tools add-ons available
+on AMO.
+
+.. http:get:: /api/v3/addons/language-tools/
+
+    .. note::
+        Because this endpoint is intended to be used to feed a page that
+        displays all available language tools in a single page, it is not
+        paginated as normal, and instead will return all results without
+        obeying regular pagination parameters. The ordering is left undefined,
+        it's up to the clients to re-order results as needed before displaying
+        the add-ons to the end-users.
+
+    :query string app: Mandatory. Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :>json array results: An array of language tools.
+    :>json int results[].id: The add-on id on AMO.
+    :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
+    :>json string results[].default_locale: The add-on default locale for translations.
+    :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :>json string results[].locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
+    :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
+    :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
+    :>json string results[].url: The (absolute) add-on detail URL.

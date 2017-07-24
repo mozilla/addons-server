@@ -1,6 +1,6 @@
 {% extends "impala/base_shared.html" %}
 
-{% set title = 'Report abuse for {0}'|fe(addon.name) %}
+{% set title = 'Report abuse for {0}'|format_html(addon.name) %}
 {% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block content %}

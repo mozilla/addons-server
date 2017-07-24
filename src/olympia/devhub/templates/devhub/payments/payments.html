@@ -27,7 +27,7 @@
         </span>
       </p>
       <form method="post" action="{{ addon.get_dev_url('payments.disable') }}">
-        {{ csrf() }}
+        {% csrf_token %}
         <button type="submit">{{ _('Disable Contributions') }}</button>
       </form>
     </div>

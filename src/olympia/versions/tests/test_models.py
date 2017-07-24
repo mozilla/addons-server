@@ -93,16 +93,15 @@ class TestVersion(TestCase):
         assert v.minor2 is None
         assert v.minor3 is None
 
-    def test_requires_restart(self):
+    def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]
-        assert not file_.no_restart
-        assert file_.requires_restart
-        assert version.requires_restart
+        assert not file_.is_restart_required
+        assert not version.is_restart_required
 
-        file_.update(no_restart=True)
+        file_.update(is_restart_required=True)
         version = Version.objects.get(pk=81551)
-        assert not version.requires_restart
+        assert version.is_restart_required
 
     def test_is_webextension(self):
         version = Version.objects.get(pk=81551)

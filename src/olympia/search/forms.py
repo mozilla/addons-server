@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.util import ErrorDict
+from django.forms.utils import ErrorDict
 from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo

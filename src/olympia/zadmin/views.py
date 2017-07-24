@@ -33,7 +33,7 @@ from olympia.amo.utils import HttpResponseSendFile, chunked, render
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
-from olympia.editors.helpers import ItemStateTable
+from olympia.editors.utils import ItemStateTable
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
@@ -562,9 +562,7 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = (Addon.search()
-                       .query(name__text=q.lower())
-                       .filter(type__in=amo.ADDON_ADMIN_SEARCH_TYPES)[:100])
+            qs = Addon.search().query(name__text=q.lower())[:100]
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs

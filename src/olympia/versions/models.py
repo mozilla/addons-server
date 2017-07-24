@@ -19,7 +19,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import user_media_path, id_to_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
 from olympia.applications.models import AppVersion
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -448,8 +448,8 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
-    def requires_restart(self):
-        return any(file_.requires_restart for file_ in self.all_files)
+    def is_restart_required(self):
+        return any(file_.is_restart_required for file_ in self.all_files)
 
     @property
     def is_webextension(self):

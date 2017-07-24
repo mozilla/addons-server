@@ -1,6 +1,5 @@
 import codecs
 from datetime import datetime, timedelta
-from optparse import make_option
 from os import path, unlink
 
 from django.conf import settings
@@ -39,19 +38,22 @@ class Command(BaseCommand):
     """
     help = __doc__
 
-    option_list = BaseCommand.option_list + (
-        make_option('--date', action='store', type='string',
-                    dest='date', help='Date in the YYYY-MM-DD format.'),
-        make_option('--separator', action='store', type='string', default='\t',
-                    dest='separator', help='Field separator in file.'),
-    )
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument('folder_name', default='hive_results', nargs='?')
+        parser.add_argument(
+            '--date', action='store', type=str,
+            dest='date', help='Date in the YYYY-MM-DD format.')
+        parser.add_argument(
+            '--separator', action='store', type=str, default='\t',
+            dest='separator', help='Field separator in file.')
 
     def handle(self, *args, **options):
         start = datetime.now()  # Measure the time it takes to run the script.
         day = options['date']
         if not day:
             day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        folder = args[0] if args else 'hive_results'
+        folder = options['folder_name']
         folder = path.join(settings.TMP_PATH, folder, day)
         sep = options['separator']
         filepath = path.join(folder, 'theme_update_counts.hive')

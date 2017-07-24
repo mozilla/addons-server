@@ -19,6 +19,28 @@ WEBEXTENSIONS_WEIGHT = 2.0
 
 
 class AddonIndexer(BaseSearchIndexer):
+    """Fields we don't need to expose in the results, only used for filtering
+    or sorting."""
+    hidden_fields = (
+        'name_sort',
+        'boost',
+        'hotness'
+        # Translated content that is used for filtering purposes is stored
+        # under 3 different fields:
+        # - One field with all translations (e.g., "name").
+        # - One field for each language, with language-specific analyzers
+        #   (e.g., "name_l10n_italian", "name_l10n_french", etc.)
+        # - One field with all translations in separate objects for the API
+        #   (e.g. "name_translations")
+        # Only that last one with all translations needs to be returned.
+        'name',
+        'description',
+        'name_l10n_*',
+        'description_l10n_*',
+        'summary',
+        'summary_l10n_*',
+    )
+
     @classmethod
     def get_model(cls):
         from olympia.addons.models import Addon
@@ -53,9 +75,13 @@ class AddonIndexer(BaseSearchIndexer):
                         'filename': {
                             'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
+                        'is_restart_required': {
+                            'type': 'boolean', 'index': 'no'},
                         'platform': {
                             'type': 'byte', 'index': False},
                         'size': {'type': 'long', 'index': False},
+                        'strict_compatibility': {
+                            'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
                         'webext_permissions_list': {
                             'type': 'keyword', 'index': False},
@@ -87,6 +113,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'icon_type': {'type': 'keyword', 'index': False},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
+                    'is_featured': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'latest_unlisted_version': version_mapping,
                     'listed_authors': {
@@ -94,7 +121,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'properties': {
                             'id': {'type': 'long', 'index': False},
                             'name': {'type': 'text'},
-                            'username': {'type': 'keyword', 'index': False},
+                            'username': {'type': 'keyword'},
                         },
                     },
                     'modified': {'type': 'date', 'index': False},
@@ -132,6 +159,7 @@ class AddonIndexer(BaseSearchIndexer):
                         }
                     },
                     'slug': {'type': 'text'},
+                    'requires_payment': {'type': 'boolean', 'index': False},
                     'status': {'type': 'byte'},
                     'summary': {'type': 'text', 'analyzer': 'snowball'},
                     'tags': {'type': 'keyword'},
@@ -166,9 +194,11 @@ class AddonIndexer(BaseSearchIndexer):
                 'filename': file_.filename,
                 'hash': file_.hash,
                 'is_webextension': file_.is_webextension,
+                'is_restart_required': file_.is_restart_required,
                 'platform': file_.platform,
                 'size': file_.size,
                 'status': file_.status,
+                'strict_compatibility': file_.strict_compatibility,
                 'webext_permissions_list': file_.webext_permissions_list,
             } for file_ in version_obj.all_files],
             'reviewed': version_obj.reviewed,
@@ -200,8 +230,8 @@ class AddonIndexer(BaseSearchIndexer):
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
                  'is_disabled', 'is_experimental', 'last_updated',
-                 'modified', 'public_stats', 'slug', 'status', 'type',
-                 'view_source', 'weekly_downloads')
+                 'modified', 'public_stats', 'requires_payment', 'slug',
+                 'status', 'type', 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
@@ -250,6 +280,8 @@ class AddonIndexer(BaseSearchIndexer):
             {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors
         ]
+
+        data['is_featured'] = obj.is_featured(None, None)
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)

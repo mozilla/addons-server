@@ -20,7 +20,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
-from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.tests import (
     addon_factory, assert_url_equal, create_switch, user_factory,
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
@@ -702,8 +702,7 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
         assert not self.update_user.called
 
     def test_login_success(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com')
+        user = user_factory(username='foobar', email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.post(
@@ -764,6 +763,7 @@ class TestRegisterView(BaseAuthenticationView):
         user = UserProfile(username='foobar', email=identity['email'])
         self.register_user.return_value = user
         self.fxa_identify.return_value = identity
+        user.groups_list = []
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
@@ -1128,6 +1128,31 @@ class TestAccountViewSetUpdate(TestCase):
         assert self.user.biography == 'not just setting photo'
 
         assert path.exists(self.user.picture_path)
+
+    def test_delete_picture(self):
+        # use test_picture_upload to set up a photo
+        self.test_picture_upload()
+        assert path.exists(self.user.picture_path)
+        # call the endpoint to delete
+        picture_url = reverse('account-picture', kwargs={'pk': self.user.pk})
+        response = self.client.delete(picture_url)
+        assert response.status_code == 200
+        # Should delete the photo
+        assert not path.exists(self.user.picture_path)
+        json_content = json.loads(response.content)
+        assert 'anon_user.png' in json_content['picture_url']
+
+    def test_account_picture_disallowed_verbs(self):
+        picture_url = reverse('account-picture', kwargs={'pk': self.user.pk})
+        self.client.login_api(self.user)
+        response = self.client.get(picture_url)
+        assert response.status_code == 405
+        response = self.client.post(picture_url)
+        assert response.status_code == 405
+        response = self.client.put(picture_url)
+        assert response.status_code == 405
+        response = self.client.patch(picture_url)
+        assert response.status_code == 405
 
     def test_picture_upload_valid(self):
         self.client.login_api(self.user)

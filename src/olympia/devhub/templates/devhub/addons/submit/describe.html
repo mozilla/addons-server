@@ -6,7 +6,7 @@
 {% block primary %}
   <h3>{{ _('Describe Add-on') }}</h3>
   <form method="post" id="submit-describe" class="item">
-    {{ csrf() }}
+    {% csrf_token %}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
       {{ form.name }}
@@ -47,6 +47,18 @@
                         'or otherwise not ready for general use.  The '
                         'add-on will be listed but will have reduced '
                         'visibility.  You can change this setting later.')
+                  }}">?</span>
+    </div>
+    <div class="addon-submission-field">
+      <label for="{{ form.requires_payment.auto_id }}">
+      {{ form.requires_payment }}
+      {{ _('This add-on requires payment, non-free services or software, or '
+           'additional hardware.') }}
+      </label>
+      <span class="tip tooltip"
+            title="{{ _("Check this box if this add-on's core features require "
+                        "some form of payment upfront or after a trial period "
+                        "in order to work.")
                   }}">?</span>
     </div>
     <div id="addon-categories-edit" class="addon-submission-field"
@@ -123,11 +135,19 @@
     <div class="submission-buttons addon-submission-field">
       <button class="delete-button" type="sumbit"
               formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
-          {{ _('Cancel Review and Disable Version') }}
+          {% if waffle.switch('post-review') and version.is_webextension %}
+            {{ _('Cancel and Disable Version') }}
+          {% else %}
+            {{ _('Cancel Review and Disable Version') }}
+          {% endif %}
       </button>
       &nbsp;
       <button type="submit">
-        {{ _('Submit Version for Review') }}
+        {% if waffle.switch('post-review') and version.is_webextension %}
+          {{ _('Submit Version') }}
+        {% else %}
+          {{ _('Submit Version for Review') }}
+        {% endif %}
       </button>
     </div>
   </form>

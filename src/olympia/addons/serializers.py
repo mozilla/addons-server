@@ -3,7 +3,7 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
@@ -13,7 +13,8 @@ from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.users.serializers import BaseUserSerializer
+from olympia.users.serializers import (
+    AddonDeveloperSerializer, BaseUserSerializer)
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
@@ -33,11 +34,13 @@ class FileSerializer(serializers.ModelSerializer):
     permissions = serializers.ListField(
         source='webext_permissions_list',
         child=serializers.CharField())
+    is_restart_required = serializers.BooleanField()
 
     class Meta:
         model = File
-        fields = ('id', 'created', 'hash', 'is_webextension', 'platform',
-                  'size', 'status', 'url', 'permissions')
+        fields = ('id', 'created', 'hash', 'is_restart_required',
+                  'is_webextension', 'platform', 'size', 'status', 'url',
+                  'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -99,6 +102,7 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 class SimpleVersionSerializer(serializers.ModelSerializer):
     compatibility = serializers.SerializerMethodField()
+    is_strict_compatibility_enabled = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
     license = CompactLicenseSerializer()
@@ -106,8 +110,9 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Version
-        fields = ('id', 'license', 'compatibility', 'edit_url', 'files',
-                  'reviewed', 'url', 'version')
+        fields = ('id', 'compatibility', 'edit_url', 'files',
+                  'is_strict_compatibility_enabled', 'license', 'reviewed',
+                  'url', 'version')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -117,9 +122,14 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             'versions.edit', args=[obj.pk], prefix_only=True))
 
     def get_compatibility(self, obj):
+        if obj.addon.type in amo.NO_COMPAT:
+            return {}
         return {app.short: {'min': compat.min.version,
                             'max': compat.max.version}
                 for app, compat in obj.compatible_apps.items()}
+
+    def get_is_strict_compatibility_enabled(self, obj):
+        return any(file_.strict_compatibility for file_ in obj.all_files)
 
 
 class VersionSerializer(SimpleVersionSerializer):
@@ -130,7 +140,8 @@ class VersionSerializer(SimpleVersionSerializer):
     class Meta:
         model = Version
         fields = ('id', 'channel', 'compatibility', 'edit_url', 'files',
-                  'license', 'release_notes', 'reviewed', 'url', 'version')
+                  'is_strict_compatibility_enabled', 'license',
+                  'release_notes', 'reviewed', 'url', 'version')
 
 
 class AddonEulaPolicySerializer(serializers.ModelSerializer):
@@ -146,7 +157,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
 
 
 class AddonSerializer(serializers.ModelSerializer):
-    authors = BaseUserSerializer(many=True, source='listed_authors')
+    authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
@@ -157,6 +168,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     is_source_public = serializers.BooleanField(source='view_source')
+    is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='all_previews')
     ratings = serializers.SerializerMethodField()
@@ -189,12 +201,14 @@ class AddonSerializer(serializers.ModelSerializer):
             'icon_url',
             'is_disabled',
             'is_experimental',
+            'is_featured',
             'is_source_public',
             'last_updated',
             'name',
             'previews',
             'public_stats',
             'ratings',
+            'requires_payment',
             'review_url',
             'slug',
             'status',
@@ -237,6 +251,14 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_has_eula(self, obj):
         return bool(getattr(obj, 'has_eula', obj.eula))
+
+    def get_is_featured(self, obj):
+        # obj._is_featured is set from ES, so will only be present for list
+        # requests.
+        if not hasattr(obj, '_is_featured'):
+            # Any featuring will do.
+            obj._is_featured = obj.is_featured(app=None, lang=None)
+        return obj._is_featured
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -318,8 +340,11 @@ class ESBaseAddonSerializer(BaseESSerializer):
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
             is_webextension=data.get('is_webextension'),
+            is_restart_required=data.get('is_restart_required', False),
             platform=data['platform'], size=data['size'],
-            status=data['status'], version=obj)
+            status=data['status'],
+            strict_compatibility=data.get('strict_compatibility', False),
+            version=obj)
         file_.webext_permissions_list = data.get('webext_permissions_list', [])
         return file_
 
@@ -368,6 +393,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
                 'last_updated',
                 'modified',
                 'public_stats',
+                'requires_payment',
                 'slug',
                 'status',
                 'type',
@@ -377,10 +403,12 @@ class ESBaseAddonSerializer(BaseESSerializer):
         )
 
         # Attach attributes that do not have the same name/format in ES.
-        obj.tag_list = data['tags']
-        obj.disabled_by_user = data['is_disabled']  # Not accurate, but enough.
+        obj.tag_list = data.get('tags', [])
         obj.all_categories = [
             CATEGORIES_BY_ID[cat_id] for cat_id in data.get('category', [])]
+
+        # Not entirely accurate, but enough in the context of the search API.
+        obj.disabled_by_user = data.get('is_disabled', False)
 
         # Attach translations (they require special treatment).
         self._attach_translations(obj, data, self.translated_fields)
@@ -414,6 +442,8 @@ class ESBaseAddonSerializer(BaseESSerializer):
         obj.average_rating = data.get('ratings', {}).get('average')
         obj.total_reviews = data.get('ratings', {}).get('count')
 
+        obj._is_featured = data.get('is_featured', False)
+
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
             if persona_data:
@@ -441,12 +471,29 @@ class ESBaseAddonSerializer(BaseESSerializer):
 
 
 class ESAddonSerializer(ESBaseAddonSerializer, AddonSerializer):
+    # Override authors because we don't want picture_url in serializer.
+    authors = BaseUserSerializer(many=True, source='listed_authors')
     previews = ESPreviewSerializer(many=True, source='all_previews')
 
 
 class ESAddonSerializerWithUnlistedData(
         ESBaseAddonSerializer, AddonSerializerWithUnlistedData):
+    # Override authors because we don't want picture_url in serializer.
+    authors = BaseUserSerializer(many=True, source='listed_authors')
     previews = ESPreviewSerializer(many=True, source='all_previews')
+
+
+class ESAddonAutoCompleteSerializer(ESAddonSerializer):
+    class Meta(ESAddonSerializer.Meta):
+        fields = ('id', 'icon_url', 'name', 'url')
+        model = Addon
+
+    def get_url(self, obj):
+        # Addon.get_url_path() wants current_version to exist, but that's just
+        # a safeguard. We don't care and don't want to fetch the current
+        # version field to improve perf, so give it a fake one.
+        obj._current_version = Version()
+        return absolutify(obj.get_url_path())
 
 
 class StaticCategorySerializer(serializers.Serializer):
@@ -464,3 +511,14 @@ class StaticCategorySerializer(serializers.Serializer):
 
     def get_type(self, obj):
         return ADDON_TYPE_CHOICES_API[obj.type]
+
+
+class LanguageToolsSerializer(AddonSerializer):
+    target_locale = serializers.CharField()
+    locale_disambiguation = serializers.CharField()
+
+    class Meta:
+        model = Addon
+        fields = ('id', 'current_version', 'default_locale',
+                  'locale_disambiguation', 'name', 'target_locale', 'type',
+                  'url', )

@@ -63,10 +63,10 @@ class TestPackaged(TestCase):
         monkeypatch.setattr('requests.post', mock_post_call)
 
     @pytest.fixture(autouse=True)
-    def mock_get_signature_serial_number(self, monkeypatch):
+    def mock_get_signer_serial_number(self, monkeypatch):
         """Fake a standard signing-client response."""
         monkeypatch.setattr(
-            'olympia.lib.crypto.packaged.get_signature_serial_number',
+            'olympia.lib.crypto.packaged.get_signer_serial_number',
             lambda pkcs7: 'serial number')
 
     def assert_not_signed(self):
@@ -203,6 +203,12 @@ class TestPackaged(TestCase):
             self.addon.update(guid=hotfix_guid)
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             self.assert_not_signed()
+
+    def test_no_sign_again_mozilla_signed_extensions(self):
+        """Don't try to resign mozilla signed extensions."""
+        self.file_.update(is_mozilla_signed_extension=True)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
 
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)

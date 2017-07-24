@@ -14,7 +14,7 @@
     <div class="item_wrapper">
       <table>
         {# L10n: {0} is the addon name #}
-        <caption>{{ _('Basic Information for {0}')|fe(addon.name) }}</caption>
+        <caption>{{ _('Basic Information for {0}')|format_html(addon.name) }}</caption>
         <tbody>
           <tr>
             <th><label data-for="name">{{ _("Name") }}</label></th>
@@ -83,6 +83,21 @@
           </tr>
           <tr>
             <th>
+              {{ tip(_('Requires Payment?'),
+                     _("Check this box if this add-on's core features require "
+                       "some form of payment upfront or after a trial period "
+                       "in order to work.")) }}
+            </th>
+            <td id="requires-payment-edit">
+              {{ flags(_('This add-on requires payment, non-free services or '
+                         'software, or additional hardware.'),
+                       addon.requires_payment if not editable else form.requires_payment, editable,
+                       _("This add-on doesn't require any additional payments, "
+                         "paid services or software, or additional hardware.")) }}
+            </td>
+          </tr>
+          <tr>
+            <th>
               {{ tip(_("Categories"),
                      _("Categories are the primary way users browse through add-ons. "
                        "Choose any that fit your add-on's functionality for the most "
@@ -142,7 +157,7 @@
                 <div class="edit-addon-details">
                   {{ ngettext('Comma-separated, minimum of {0} character.',
                               'Comma-separated, minimum of {0} characters.',
-                              amo.MIN_TAG_LENGTH)|f(amo.MIN_TAG_LENGTH) }}
+                              amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
                   {{ _('Example: dark, cinema, noir. Limit 20.') }}
                 </div>
                 {% if restricted_tags %}

@@ -17,7 +17,7 @@ from waffle.models import Switch
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, version_factory
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests.test_helpers import get_image_path, get_addon_file
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -420,7 +420,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
         with pytest.raises(ValueError) as exc:
             tasks.run_addons_linter('doesntexist')
 
-        assert exc.value.message == (
+        assert str(exc.value) == (
             'Path "doesntexist" is not a file or directory or '
             'does not exist.')
 

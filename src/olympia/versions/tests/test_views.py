@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.amo.helpers import user_media_url
+from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
@@ -165,6 +165,17 @@ class TestViews(TestCase):
     def test_version_list_file_size_uses_binary_prefix(self):
         response = self.client.get(self.url_list)
         assert '1.0 KiB' in response.content
+
+    def test_version_list_no_compat_displayed_if_not_necessary(self):
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert compat_info
+        assert 'Firefox 4.0.99 and later' in compat_info
+
+        self.addon.update(type=amo.ADDON_DICT)
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert not compat_info
 
 
 class TestDownloadsBase(TestCase):

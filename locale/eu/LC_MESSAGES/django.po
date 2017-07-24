@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -160,9 +160,6 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-msgid "Not Reviewed"
-msgstr "Berrikusi gabea"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
 
@@ -172,6 +169,9 @@ msgstr ""
 # Column name in a table.
 msgid "Listed"
 msgstr "Zerrendatuta"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -557,18 +557,6 @@ msgstr "{0} gehigarriaren pribatutasun-politika"
 msgid "Privacy Policy"
 msgstr "Pribatutasun-politika"
 
-msgid "QR code for add-on"
-msgstr "Gehigarriaren QR kodea"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "Replacement Add-ons for {0}"
-msgstr "{0}(e)rako gehigarriak"
-
 msgid "Report Abuse"
 msgstr ""
 
@@ -902,6 +890,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "Deskarga <strong>bat</strong> asteko"
 msgstr[1] "<strong>{0}</strong> deskarga asteko"
 
+msgid "Not Reviewed"
+msgstr "Berrikusi gabea"
+
 msgid "Tools"
 msgstr "Tresnak"
 
@@ -950,19 +941,6 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
-
-msgid "Collections"
-msgstr "Bildumak"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Hiztegiak eta hizkuntza-paketeak"
-
-msgid "Add-ons"
-msgstr "Gehigarriak"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "duela {0}"
 
 msgid "Not allowed"
 msgstr ""
@@ -1079,6 +1057,9 @@ msgstr ""
 msgid "Most Followers"
 msgstr "Jarraitzaile gehienekoak"
 
+msgid "Collections"
+msgstr "Bildumak"
+
 msgid "Collections I've Made"
 msgstr "Egin ditudan bildumak"
 
@@ -1093,6 +1074,9 @@ msgstr "Gehiago&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr ""
+
+msgid "Dictionaries & Language Packs"
+msgstr "Hiztegiak eta hizkuntza-paketeak"
 
 msgid "Search Tools"
 msgstr "Bilaketa-tresnak"
@@ -1116,6 +1100,13 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> emaitzatik <b>%(begin)s</b>&ndash;<b>%(end)s</b> erakusten"
+
+msgid "Add-ons"
+msgstr "Gehigarriak"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "duela {0}"
 
 msgid "Title"
 msgstr ""
@@ -1231,27 +1222,6 @@ msgstr "URLa beste bilduma batek darabil"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonoek PNG edo JPG izan behar dute."
-
-msgid "Add a positive vote for this collection"
-msgstr "Gehitu bozka positiboa bilduma honentzat"
-
-msgid "Add a negative vote for this collection"
-msgstr "Gehitu bozka negatiboa bilduma honentzat"
-
-msgid "Remove my vote for this collection"
-msgstr "Kendu bilduma honi nik emandako bozka"
-
-msgid "Log in to vote for this collection"
-msgstr "Hasi saioa bilduma bozkatzeko."
-
-msgid "Add to favorites"
-msgstr "Gehitu gogokoetara"
-
-msgid "Favorite"
-msgstr "Gogokoa"
-
-msgid "Remove from favorites"
-msgstr "Kendu gogokoetatik"
 
 #, fuzzy
 msgid "This slug is already in use by another one of your collections."
@@ -1541,6 +1511,12 @@ msgstr "Jarraitu"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "edo <a id=\"change-owner-cancel\" href=\"#\">Utzi</a>"
 
+msgid "Remove from favorites"
+msgstr "Kendu gogokoetatik"
+
+msgid "Add to favorites"
+msgstr "Gehitu gogokoetara"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "{0} erabiltzailearen bildumak"
@@ -1570,6 +1546,10 @@ msgstr ""
 # 100%
 msgid "Subscribe"
 msgstr "Harpidetu"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "egilea: %(users)s"
 
 msgid "Following"
 msgstr ""
@@ -1618,6 +1598,21 @@ msgstr "Gehitu iruzkina"
 
 msgid "Remove this add-on from the collection"
 msgstr "Kendu gehigarri hau bildumatik"
+
+msgid "Add a positive vote for this collection"
+msgstr "Gehitu bozka positiboa bilduma honentzat"
+
+msgid "Add a negative vote for this collection"
+msgstr "Gehitu bozka negatiboa bilduma honentzat"
+
+msgid "Remove my vote for this collection"
+msgstr "Kendu bilduma honi nik emandako bozka"
+
+msgid "Log in to vote for this collection"
+msgstr "Hasi saioa bilduma bozkatzeko."
+
+msgid "Favorite"
+msgstr "Gogokoa"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2240,9 +2235,6 @@ msgstr "Ikustailea"
 msgid "Support"
 msgstr "Laguntza"
 
-msgid "Any"
-msgstr "Edozein"
-
 msgid "Extension"
 msgstr "Hedapena"
 
@@ -2688,6 +2680,9 @@ msgstr ""
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
+msgid "Any"
+msgstr "Edozein"
+
 msgid "All Platforms"
 msgstr "Plataforma guztiak"
 
@@ -2857,23 +2852,6 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
-
-# {0} is a number
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "Errore {0}"
-msgstr[1] "{0} errore"
-
-# {0} is a number
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "abisu {0}"
-msgstr[1] "{0} abisu"
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
@@ -2962,6 +2940,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "Ikonoak ezin dira animatuak izan."
 
@@ -3013,11 +2994,30 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "Berrikusi"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "Berrikusteko gidalerroak"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Inprimatzeko bertsioa"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr ""
@@ -3029,29 +3029,6 @@ msgstr "edo <a href=\"{0}\">Utzi</a>"
 
 msgid "Back to Add-ons"
 msgstr "Atzera gehigarrietara"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr ""
-
-msgid "Search"
-msgstr "Bilatu"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr ""
-
-msgid "Search Results"
-msgstr "Bilaketaren emaitzak"
-
-msgid "Please enter some search terms."
-msgstr ""
-
-msgid "Loading results&hellip;"
-msgstr ""
-
-msgid "No results found."
-msgstr "Ez da emaitzarik aurkitu."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3103,6 +3080,9 @@ msgstr ""
 msgid "Search Developer Docs"
 msgstr ""
 
+msgid "Search"
+msgstr "Bilatu"
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -3138,6 +3118,9 @@ msgstr "{0} gehigarriaren azkenaldiko jarduera"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr ""
+
+msgid "No results found."
+msgstr "Ez da emaitzarik aurkitu."
 
 msgid "Refine Activity"
 msgstr "Birfindu jarduera"
@@ -3275,6 +3258,19 @@ msgid "This add-on is experimental."
 msgstr "Gehigarri hau ez da berrikusi oraindik."
 
 msgid "This add-on is ready for general use."
+msgstr ""
+
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Kanpoko softwarea behar du"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -3683,8 +3679,16 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Utzi instalazioa"
+
 msgid "Cancel Review and Disable Version"
 msgstr ""
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "Bidali gehigarri berria"
 
 #, fuzzy
 msgid "Submit Version for Review"
@@ -3714,6 +3718,13 @@ msgid "Submission Complete"
 msgstr "Bidalketa burututa"
 
 msgid "You’re done!"
+msgstr ""
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "Bertsioa"
+
+msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 #, fuzzy
@@ -3979,9 +3990,10 @@ msgstr ""
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "Onartutako HTMLa: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "HTML apur bat onartzen da."
@@ -4028,10 +4040,9 @@ msgstr "Eskatu informazio gehiago"
 msgid "Resources"
 msgstr "Baliabide gehigarriak"
 
-# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "WebExtensions"
-msgstr "Hedapenak"
+msgid "Porting"
+msgstr "Balorazioa"
 
 #, fuzzy
 msgid "Community"
@@ -4052,8 +4063,8 @@ msgid "Contact Us"
 msgstr "Kontaktuak"
 
 #, fuzzy
-msgid "Review Policies"
-msgstr "Berrikusi"
+msgid "Policies"
+msgstr "Gehigarriaren politikak"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4127,12 +4138,11 @@ msgstr "Gehigarri gehiago"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-# The title for a user if they are a developer
 #, fuzzy
-msgid "Evolution in Add-on Development"
-msgstr "Gehigarrien garatzailea"
+msgid "Update Your Legacy Extension"
+msgstr "Nabarmendutako gehigarriak"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 #, fuzzy
@@ -4143,12 +4153,12 @@ msgstr "Argibide gehiago"
 msgid "What's New"
 msgstr "Zer da hau?"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
-msgstr ""
+#, fuzzy
+msgid "See Tutorial"
+msgstr "Ikusi guztiak"
 
 #, fuzzy
 msgid "View All Submissions"
@@ -4689,28 +4699,45 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+# {0} is a number
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "Errore {0}"
+msgstr[1] "{0} errore"
+
+# {0} is a number
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "abisu {0}"
+msgstr[1] "{0} abisu"
+
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4815,42 +4842,63 @@ msgstr "Saltatu oraingoz"
 msgid "Delete review"
 msgstr "Ezabatu berrikuspena"
 
-msgid "Rejected or Unreviewed"
+#, fuzzy
+msgid "Admin Review"
+msgstr "Kudeatzailearen berrikuspena"
+
+msgid "Jetpack Add-on"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Egoera:"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "{0}(e)rako gehigarriak"
-msgstr[1] "{0}(e)rako gehigarriak"
+msgid "More Information Requested"
+msgstr ""
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Eguneraketa: {0}"
-msgstr[1] "Eguneraketa: {0}"
+msgid "Contains Reviewer Comment"
+msgstr "Garatzailearen iruzkinak"
 
-# %1 is the review count
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderatutako berrikuspena ({0})"
-msgstr[1] "Moderatutako berrikuspenak ({0})"
+msgid "Sources provided"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "{0}(e)rako gehigarriak"
-msgstr[1] "{0}(e)rako gehigarriak"
+msgid "WebExtension"
+msgstr ""
 
-msgid "All Unlisted Add-ons"
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+msgid "Has too many daily users."
+msgstr ""
+
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+msgid "Is flagged for admin review."
+msgstr ""
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -4929,71 +4977,6 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr ""
-
-#, fuzzy
-msgid "Admin Review"
-msgstr "Kudeatzailearen berrikuspena"
-
-msgid "Jetpack Add-on"
-msgstr ""
-
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "Garatzailearen iruzkinak"
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr ""
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr ""
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr ""
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5081,6 +5064,10 @@ msgstr ""
 msgid "View Privacy Policy"
 msgstr "Ikusi pribatutasun-politika"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Kanpoko softwarea behar du"
+
 msgid "EULA"
 msgstr "AELK"
 
@@ -5107,19 +5094,6 @@ msgstr "Gehiago gehigarri honi buruz"
 msgid "Image Gallery"
 msgstr "Irudi-galeria"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-
-msgid "Install development version"
-msgstr "Instalatu garapeneko bertsioa"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
@@ -5135,6 +5109,9 @@ msgstr ""
 msgid "New Add-ons"
 msgstr "Gehigarri gehiago"
 
+msgid "Updates"
+msgstr ""
+
 # %1 is the review count
 msgid "Moderated Reviews"
 msgstr "Moderatutako berrikuspenak"
@@ -5144,6 +5121,9 @@ msgid "Auto Approved Add-ons"
 msgstr "Gehigarri gehiago"
 
 msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
 msgstr ""
 
 #, fuzzy
@@ -5625,31 +5605,45 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Egoera:"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "{0}(e)rako gehigarriak"
+msgstr[1] "{0}(e)rako gehigarriak"
+
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Eguneraketa: {0}"
+msgstr[1] "Eguneraketa: {0}"
+
+# %1 is the review count
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Moderatutako berrikuspena ({0})"
+msgstr[1] "Moderatutako berrikuspenak ({0})"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "{0}(e)rako gehigarriak"
+msgstr[1] "{0}(e)rako gehigarriak"
+
+msgid "Flagged"
+msgstr ""
+
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "Access your data for {name}"
@@ -5791,6 +5785,30 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
+msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -7613,19 +7631,6 @@ msgstr "Ordena"
 msgid "Relevance"
 msgstr "Garrantzia"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "<strong>{3}</strong> bilaketarako {2} emaitzatik {0} - {1} tartea erakusten"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "{2} emaitzatik {0} - {1} tartea erakusten"
-
 msgid "All Add-ons"
 msgstr ""
 
@@ -7647,6 +7652,9 @@ msgstr "Bildumaren bilaketa-emaitzak"
 msgid "Collection Search Results"
 msgstr "Bildumaren bilaketa-emaitzak"
 
+msgid "Search Results"
+msgstr "Bilaketaren emaitzak"
+
 msgid "Search Unavailable"
 msgstr ""
 
@@ -7658,6 +7666,14 @@ msgid "Themes Search Results for {0}"
 msgstr ""
 
 msgid "Themes Search Results"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
 msgstr ""
 
 #. {0} is a tag, such as jetpack.
@@ -7681,6 +7697,19 @@ msgstr "Kategoria"
 
 msgid "Tag"
 msgstr ""
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "<strong>{3}</strong> bilaketarako {2} emaitzatik {0} - {1} tartea erakusten"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "{2} emaitzatik {0} - {1} tartea erakusten"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -8125,10 +8154,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr "Erabili %dMB baino gutxiagoko irudiak."
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "besteak"
-
 msgid "No user with that email."
 msgstr "Erabiltzailerik ez helbide elektroniko horrekin."
 
@@ -8273,7 +8298,8 @@ msgstr ""
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
@@ -8436,6 +8462,10 @@ msgstr[1] "%(num)s gehigarri"
 
 msgid "Average rating of developer's add-ons"
 msgstr ""
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "besteak"
 
 # {0} is the add-on name
 #, python-format

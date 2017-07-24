@@ -1,0 +1,63 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url("chrome://global/skin/in-content/common.css");
+
+html {
+  height: 100%;
+}
+
+body {
+  align-items: stretch;
+  display: flex;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.container {
+  margin: 10vh 0;
+  max-width: 920px;
+  padding: 0 10px;
+}
+
+.title-container {
+  align-items: center;
+  border-bottom: 1px solid var(--in-content-box-border-color);
+  display: flex;
+  margin-bottom: .5em;
+  padding-bottom: 1em;
+  position: relative;
+}
+
+.title {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.title::before {
+  background: url('../../img/shield_study_15/small-firefox-logo@2x.png') no-repeat left center;
+  background-size: 57px 59px;
+  content: '';
+  display: block;
+  height: 59px;
+  left: -2.3em;
+  position: absolute;
+  top: 0;
+  width: 57px;
+}
+
+.button {
+  height: 40px;
+  margin: 0;
+  padding: 0 15px;
+}
+
+/* issues/4 */
+code {
+  background-color: rgba(0,0,0,.1);
+}
+
+pre > code {
+  display: block;
+}

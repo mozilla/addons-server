@@ -33,7 +33,7 @@
       <strong>
         <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
            title="{{ _('Edit this version') }}">
-          {{ _('Version {0}')|f(version.version) }}</a>
+          {{ _('Version {0}')|format_html(version.version) }}</a>
       </strong>
       <span title="{{ version.created|isotime }}" class="note">
         {{ version.created|datetime }}
@@ -50,7 +50,7 @@
       {% if version.is_user_disabled %}
         <div>
         <form method="post" action="{{ url('devhub.versions.reenable', addon.slug) }}">
-            {{ csrf() }}
+            {% csrf_token %}
             <input type="hidden" name="version_id" class="version_id" value="{{ version.id }}">
             <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
             <button type="submit" class="link">{{ _('Re-enable Version') }}</button>
@@ -102,7 +102,7 @@
         {% if can_request_review %}
           <form method="post"
                 action="{{ url('devhub.request-review', addon.slug) }}">
-            {{ csrf() }}
+            {% csrf_token %}
             <button class="link" type="submit">{{ _('Request Review') }}</button> &middot;
           </form>
         {% endif %}
@@ -163,8 +163,8 @@
                     data-url="{{ addon.get_dev_url('enable') }}"
                     class="enable-addon">
         {{ _("{label_open}Visible:{label_close} Visible to everyone on {site_url} and included "
-             "in search results and listing pages.")|f(
-             label_open='<strong>', label_close='</strong>', site_url=settings.SITE_URL)|safe }}</label>
+             "in search results and listing pages.")|format_html(
+             label_open='<strong>'|safe, label_close='</strong>'|safe, site_url=settings.SITE_URL)|safe }}</label>
         <br>
         <label><input name="addon-state" value="hidden" type="radio"
                     {% if not owner %}disabled="disabled"{% endif %}
@@ -172,8 +172,8 @@
                     class="disable-addon">
         {{ _("{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will "
               "indicate you disabled it. New version submissions for listing "
-              "won't be accepted in this state.")|f(
-             label_open='<strong>', label_close='</strong>')|safe }}</label>
+              "won't be accepted in this state.")|format_html(
+             label_open='<strong>'|safe, label_close='</strong>'|safe) }}</label>
       </div>
     </div>
 
@@ -292,7 +292,7 @@
         version with the same version number.
       {% endtrans %}
       <p>{{ _('Are you sure you wish to delete this version?') }}</p>
-      {{ csrf() }}
+      {% csrf_token %}
       <div class="modal-actions">
         <input type="hidden" name="version_id" class="version_id">
         <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
@@ -331,7 +331,7 @@
           Are you sure you wish to hide your add-on?
         {% endtrans %}
       </p>
-      {{ csrf() }}
+      {% csrf_token %}
       <input type="hidden" name="version_id" class="version_id">
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
@@ -359,7 +359,7 @@
           Are you sure you wish to cancel your review request?
         {% endtrans %}
       </p>
-      {{ csrf() }}
+      {% csrf_token %}
       <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
       <p>
         <button type="submit">{{ _('Cancel Review Request') }}</button>

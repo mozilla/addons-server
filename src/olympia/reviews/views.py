@@ -15,7 +15,7 @@ from rest_framework.viewsets import ModelViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import render, paginate
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
@@ -26,7 +26,7 @@ from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner,
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 
-from .helpers import user_can_delete_review
+from .templatetags.jinja_helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating
 from .permissions import CanDeleteReviewPermission
 from .serializers import ReviewSerializer, ReviewSerializerReply
@@ -166,8 +166,8 @@ def reply(request, addon, review_id):
             'defaults': _review_details(request, addon, form)
         }
         reply, created = Review.unfiltered.update_or_create(**kwargs)
-        return redirect(helpers.url('addons.reviews.detail', addon.slug,
-                                    review_id))
+        return redirect(jinja_helpers.url(
+            'addons.reviews.detail', addon.slug, review_id))
     ctx = {
         'review': review,
         'form': form,
@@ -192,7 +192,7 @@ def add(request, addon):
                             flag=ReviewFlag.OTHER,
                             note='URLs')
             rf.save()
-        return redirect(helpers.url('addons.reviews.list', addon.slug))
+        return redirect(jinja_helpers.url('addons.reviews.list', addon.slug))
     return render(request, 'reviews/add.html', {'addon': addon, 'form': form})
 
 
@@ -248,8 +248,6 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
     )]
     reply_serializer_class = ReviewSerializerReply
-
-    queryset = Review.objects.all()
 
     def set_addon_object_from_review(self, review):
         """Set addon object on the instance from a review object."""
@@ -343,7 +341,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
                 # because the frontend wants to call this before and after
                 # having posted a new review, and needs accurate results.
                 self.pagination_class = OneOrZeroPageNumberPagination
-        return qs
+        return super(ReviewViewSet, self).filter_queryset(qs)
 
     def get_paginated_response(self, data):
         response = super(ReviewViewSet, self).get_paginated_response(data)
@@ -361,7 +359,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         return response
 
     def get_queryset(self):
-        requested = self.request.GET.get('filter')
+        requested = self.request.GET.get('filter', '').split(',')
         has_addons_edit = acl.action_allowed(self.request,
                                              amo.permissions.ADDONS_EDIT)
 
@@ -369,7 +367,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # information to the serializer to show/hide delete replies.
         if not hasattr(self, 'should_access_deleted_reviews'):
             self.should_access_deleted_reviews = (
-                (requested == 'with_deleted' or self.action != 'list') and
+                ('with_deleted' in requested or self.action != 'list') and
                 self.request.user.is_authenticated() and
                 has_addons_edit)
 
@@ -383,30 +381,36 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             # any filtering, allowing them to access any review out of the box
             # with no extra parameter needed.
             if self.action == 'list':
-                self.queryset = Review.unfiltered.filter(reply_to__isnull=True)
+                queryset = Review.unfiltered.filter(reply_to__isnull=True)
             else:
-                self.queryset = Review.unfiltered.all()
+                queryset = Review.unfiltered.all()
         elif should_access_only_top_level_reviews:
             # When listing add-on reviews, exclude replies, they'll be
             # included during serialization as children of the relevant
             # reviews instead.
-            self.queryset = Review.without_replies.all()
+            queryset = Review.without_replies.all()
+        else:
+            queryset = Review.objects.all()
 
-        # Filter out (other user's) empty reviews for non-admins.
-        if self.action == 'list' and not has_addons_edit:
-            user_filter = (Q(user=self.request.user.pk)
-                           if self.request.user.is_authenticated() else Q())
-            self.queryset = self.queryset.filter(~Q(body=None) | user_filter)
+        # Filter out empty reviews if specified.
+        # Should the users own empty reviews be filtered back in?
+        if 'with_yours' in requested and self.request.user.is_authenticated():
+            user_filter = Q(user=self.request.user.pk)
+        else:
+            user_filter = Q()
+        # Apply the filter(s)
+        if 'without_empty_body' in requested:
+            queryset = queryset.filter(~Q(body=None) | user_filter)
 
-        qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs reply, version (only the "version" field) and
         # user. We don't need much for version and user, so we can make joins
         # with select_related(), but for replies additional queries will be
         # made for translations anyway so we're better off using
         # prefetch_related() to make a separate query to fetch them all.
-        qs = qs.select_related('version__version', 'user')
+        queryset = queryset.select_related('version__version', 'user')
         replies_qs = Review.unfiltered.select_related('user')
-        return qs.prefetch_related(Prefetch('reply', queryset=replies_qs))
+        return queryset.prefetch_related(
+            Prefetch('reply', queryset=replies_qs))
 
     @detail_route(
         methods=['post'], permission_classes=reply_permission_classes,

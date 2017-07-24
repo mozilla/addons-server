@@ -566,6 +566,10 @@ body:not(.home) .amo-header,
   margin-top: 22px;
   padding: 15px 45px 15px 15px;
 
+  .html-rtl& {
+    padding: 15px 15px 15px 45px;
+  }
+
   &::before, &::after {
     display: none;
   }
@@ -1203,6 +1207,13 @@ body:not(.developer-hub) section.secondary {
   }
 }
 
+.html-rtl.addon-details {
+   .extra .button.disabled.not-available {
+    background-position: right 6px center;
+    padding: 5px 25px 5px 5px;
+  }
+}
+
 #addon h1 {
   color: #fff;
 }
@@ -1386,6 +1397,10 @@ h3.author .transfer-ownership {
 
   .version-number {
     font-size: 0.39em;
+
+    .html-rtl& {
+      margin: 15px 4px 0 4px;
+    }
   }
 
   .notice h3 {

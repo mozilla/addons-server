@@ -15,11 +15,11 @@
 {% block title %}
       {# L10n: {0} is an add-on name, {1} is an app name (like Firefox) #}
       {% if addon %}
-        {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|fe(addon.name, request.APP.pretty) }}
+        {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|format_html(addon.name, request.APP.pretty) }}
       {% elif c %}
-        {{ _('{0} :: Statistics Dashboard')|f(c.name) }}
+        {{ _('{0} :: Statistics Dashboard')|format_html(c.name) }}
       {% else %}
-        {{ _('Statistics Dashboard :: Add-ons for {0}')|f(request.APP.pretty) }}
+        {{ _('Statistics Dashboard :: Add-ons for {0}')|format_html(request.APP.pretty) }}
       {% endif %}
 {% endblock %}
 
@@ -29,10 +29,10 @@
     {% if addon %}
       <h1 class="addon"{{ addon.name|locale_html }}>
         {# L10n: {0} is an add-on name #}
-        {{ _('Statistics for {0}')|fe(addon.name) }}
+        {{ _('Statistics for {0}')|format_html(addon.name) }}
       </h1>
     {% elif c %}
-      <h1>{{ _('Statistics for {0}')|fe(c.name) }}</h1>
+      <h1>{{ _('Statistics for {0}')|format_html(c.name) }}</h1>
     {% else %}
       <h1>
         {{ _('Statistics Dashboard') }}

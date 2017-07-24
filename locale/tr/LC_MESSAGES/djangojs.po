@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
 "PO-Revision-Date: 2017-02-15 16:57+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,9 @@ msgstr "Tam doğrulama raporuna bak"
 msgid "Validating {0}"
 msgstr "{0} doğrulanıyor"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Sunucudan boş yanıt alındı. Durum: {0}"
 
@@ -126,6 +128,9 @@ msgstr "Üzgünüz, desteklenen platform bulunamadı."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Yüklediğiniz dosya türü tanınmıyor."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Yüklemeyi iptal ettiniz."

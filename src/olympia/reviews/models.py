@@ -1,18 +1,17 @@
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
-from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
 import caching.base as caching
 
 import olympia.core.logger
 from olympia import activity, amo
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
-from olympia.translations.helpers import truncate
+from olympia.translations.templatetags.jinja_helpers import truncate
 
 
 log = olympia.core.logger.getLogger('z.reviews')
@@ -119,7 +118,8 @@ class Review(ModelBase):
             self.user_responsible = user_responsible
 
     def get_url_path(self):
-        return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
+        return jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, self.id)
 
     def approve(self, user):
         from olympia.editors.models import ReviewerScore
@@ -190,13 +190,14 @@ class Review(ModelBase):
     def send_notification_email(self):
         if self.reply_to:
             # It's a reply.
-            reply_url = helpers.url('addons.reviews.detail', self.addon.slug,
-                                    self.reply_to.pk, add_prefix=False)
+            reply_url = jinja_helpers.url(
+                'addons.reviews.detail', self.addon.slug,
+                self.reply_to.pk, add_prefix=False)
             data = {
                 'name': self.addon.name,
                 'reply_title': self.title,
                 'reply': self.body,
-                'reply_url': helpers.absolutify(reply_url)
+                'reply_url': jinja_helpers.absolutify(reply_url)
             }
             recipients = [self.reply_to.user.email]
             subject = u'Mozilla Add-on Developer Reply: %s' % self.addon.name
@@ -204,20 +205,21 @@ class Review(ModelBase):
             perm_setting = 'reply'
         else:
             # It's a new review.
-            reply_url = helpers.url('addons.reviews.reply', self.addon.slug,
-                                    self.pk, add_prefix=False)
+            reply_url = jinja_helpers.url(
+                'addons.reviews.reply', self.addon.slug, self.pk,
+                add_prefix=False)
             data = {
                 'name': self.addon.name,
                 'rating': '%s out of 5 stars' % self.rating,
                 'review': self.body,
-                'reply_url': helpers.absolutify(reply_url)
+                'reply_url': jinja_helpers.absolutify(reply_url)
             }
             recipients = [author.email for author in self.addon.authors.all()]
             subject = u'Mozilla Add-on User Review: %s' % self.addon.name
             template = 'reviews/emails/add_review.ltxt'
             perm_setting = 'new_review'
         send_mail_jinja(
-            subject, template, Context(data),
+            subject, template, data,
             recipient_list=recipients, perm_setting=perm_setting)
 
     @staticmethod

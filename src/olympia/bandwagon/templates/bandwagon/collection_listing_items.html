@@ -34,10 +34,10 @@
         <li class="modified">
           {% if field == 'created' %}
             {# L10n: {0} is a date. #}
-            {{ _('Added {0}')|f(c.created|datetime) }}
+            {{ _('Added {0}')|format_html(c.created|datetime) }}
           {% elif field == 'updated' %}
             {# L10n: {0} is a date. #}
-            {{ _('Updated {0}')|f(c.modified|datetime) }}
+            {{ _('Updated {0}')|format_html(c.modified|datetime) }}
           {% endif %}
         </li>
       {% endif %}
@@ -53,7 +53,7 @@
       {% if c.type == amo.ADDON_PERSONA %}
         {{ users_list(c.persona.listed_authors) or c.persona.display_username }}
       {% else %}
-        {{ _('by {0}')|fe(c.author|user_link) }}
+        {{ _('by {0}')|format_html(c.author|user_link) }}
       {% endif %}
     </span>
   </h3>

@@ -15,7 +15,7 @@ from olympia.browse.views import personas_listing as personas_listing_view
 from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
 from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
-from olympia.amo.helpers import locale_url, urlparams
+from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
 from olympia.amo.utils import sorted_groupby, render
 from olympia.bandwagon.models import Collection
 from olympia.versions.compare import dict_from_int, version_dict, version_int
@@ -232,8 +232,8 @@ class SearchSuggestionsAjax(BaseAjaxSearch):
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
     # No personas.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 class PersonaSuggestionsAjax(SearchSuggestionsAjax):
@@ -326,8 +326,9 @@ def name_only_query(q):
 
     analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
-        d['name_%s__match' % analyzer] = {'query': q, 'boost': 2.5,
-                                          'analyzer': analyzer}
+        d['name_l10n_%s__match' % analyzer] = {
+            'query': q, 'boost': 2.5, 'analyzer': analyzer
+        }
     return d
 
 
@@ -355,11 +356,11 @@ def name_query(q):
 
     analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
-        more['summary_%s__match_phrase' % analyzer] = {
+        more['summary_l10n_%s__match' % analyzer] = {
             'query': q,
             'boost': 0.6,
             'analyzer': analyzer}
-        more['description_%s__match_phrase' % analyzer] = {
+        more['description_l10n_%s__match' % analyzer] = {
             'query': q,
             'boost': 0.1,
             'analyzer': analyzer}

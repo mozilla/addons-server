@@ -56,14 +56,14 @@
       {% if cnt %}
         {% set cnt_id = 'daily-users' %}
         {% set cnt_pretty = ngettext(
-          '{0} user', '{0} users', cnt)|f(cnt|numberfmt) %}
+          '{0} user', '{0} users', cnt)|format_html(cnt|numberfmt) %}
       {% endif %}
     {% else %}
       {% set cnt = addon.weekly_downloads %}
       {% if cnt %}
         {% set cnt_id = 'weekly-downloads' %}
         {% set cnt_pretty = ngettext('{0} weekly download',
-          '{0} weekly downloads', cnt)|f(cnt|numberfmt) %}
+          '{0} weekly downloads', cnt)|format_html(cnt|numberfmt) %}
       {% endif %}
     {% endif %}
     {% if cnt %}
@@ -101,7 +101,7 @@
     <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
       <hgroup>
         {# L10n: {0} is an add-on name. #}
-        <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|fe(addon.name) }}">
+        <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|format_html(addon.name) }}">
         <h1 class="addon"{{ addon.name|locale_html }}>
           <span itemprop="name">{{ addon.name }}</span>
           {% if version %}
@@ -141,7 +141,7 @@
           <img class="avatar" alt="{{ single_dev.name }}" height="64" alt=""
                width="64" src="{{ single_dev.picture_url }}"/>
           <p>{{ _("Learn why {0} was created and find out what's next for this "
-                  "add-on.")|fe(addon.name) }}</p>
+                  "add-on.")|format_html(addon.name) }}</p>
         {% endwith %}
       </div>
     {% endif %}
@@ -165,7 +165,7 @@
               <a class="screenshot thumbnail" rel="jquery-lightbox"
                  href="{{ preview.image_url }}" title="{{ preview.caption }}">
                 {# L10n: {0} is an index. #}
-                <img src="{{ preview.thumbnail_url }}" alt="{{ _('Add-on screenshot #{0}')|f(loop.index) }}">
+                <img src="{{ preview.thumbnail_url }}" alt="{{ _('Add-on screenshot #{0}')|format_html(loop.index) }}">
               </a>
             </li>
           {%- endfor -%}
@@ -203,7 +203,7 @@
   </ul>
   {% if version %}
     <ul>
-      <li>{{ _('Version {0}')|f(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
+      <li>{{ _('Version {0}')|format_html(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
       <li>{% trans %}Last Updated:{% endtrans %} {{ version.created|datetime }}</li>
       <li class="source-license">
         {% set license = version.license %}
@@ -287,7 +287,7 @@
             {% endtrans %}
           </p>
           <dl>
-            <dt class="beta-version">{{ _('Version {0}')|f(
+            <dt class="beta-version">{{ _('Version {0}')|format_html(
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, latest_beta=True,
                                   show_warning=False, impala=True,

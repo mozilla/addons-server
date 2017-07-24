@@ -100,6 +100,14 @@ class AddonAppVersionFilterParam(AddonFilterParam):
         ]
 
 
+class AddonAuthorFilterParam(AddonFilterParam):
+    query_param = 'author'
+    es_field = 'listed_authors.username'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '')
+
+
 class AddonPlatformFilterParam(AddonFilterParam):
     query_param = 'platform'
     reverse_dict = amo.PLATFORM_DICT
@@ -217,9 +225,14 @@ class SearchQueryFilter(BaseFilterBackend):
         # and analyzer.
         if analyzer:
             should.append(
-                query.Match(**{'name_%s' % analyzer: {'query': search_query,
-                                                      'boost': 2.5,
-                                                      'analyzer': analyzer}}))
+                query.Match(**{
+                    'name_l10n_%s' % analyzer: {
+                        'query': search_query,
+                        'boost': 2.5,
+                        'analyzer': analyzer
+                    }
+                })
+            )
 
         return should
 
@@ -243,10 +256,10 @@ class SearchQueryFilter(BaseFilterBackend):
         # right language and analyzer.
         if analyzer:
             should.extend([
-                query.MatchPhrase(**{'summary_%s' % analyzer: {
+                query.MatchPhrase(**{'summary_l10n_%s' % analyzer: {
                     'query': search_query, 'boost': 0.6,
                     'analyzer': analyzer}}),
-                query.MatchPhrase(**{'description_%s' % analyzer: {
+                query.MatchPhrase(**{'description_l10n_%s' % analyzer: {
                     'query': search_query, 'boost': 0.6,
                     'analyzer': analyzer}})
             ])
@@ -298,7 +311,8 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
                          AddonPlatformFilterParam, AddonTypeFilterParam,
-                         AddonCategoryFilterParam, AddonTagFilterParam]
+                         AddonCategoryFilterParam, AddonTagFilterParam,
+                         AddonAuthorFilterParam]
 
     def filter_queryset(self, request, qs, view):
         must = []

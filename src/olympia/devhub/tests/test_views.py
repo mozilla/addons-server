@@ -14,7 +14,6 @@ from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
-from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo, core, paypal
@@ -22,7 +21,8 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonUser, Charity)
-from olympia.amo.helpers import url as url_reverse
+from olympia.amo.templatetags.jinja_helpers import (
+    url as url_reverse, datetime_filter)
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
@@ -871,6 +871,12 @@ class TestHome(TestCase):
         self.assertTemplateUsed(response, 'devhub/index.html')
         assert 'Customize Firefox' in response.content
 
+    def test_default_lang_selected(self):
+        self.client.logout()
+        doc = self.get_pq()
+        selected_value = doc('#language option:selected').attr('value')
+        assert selected_value == 'en-us'
+
     def test_basic_logged_in(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1624,6 +1630,37 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == [
             {u'tier': 1, u'message': u'You cannot submit an add-on with a '
                                      u'guid ending "@mozilla.org"',
+             u'fatal': True, u'type': u'error'}]
+
+    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
+    def test_mozilla_signed_allowed(self, mock_validator, mock_get_signature):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        mock_get_signature.return_value = "Mozilla Extensions"
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
+
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
+    def test_mozilla_signed_not_allowed_not_mozilla(self, mock_get_signature):
+        user_factory(email='bluepanda@notzilla.com')
+        assert self.client.login(email='bluepanda@notzilla.com')
+        mock_get_signature.return_value = 'Mozilla Extensions'
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == [
+            {u'tier': 1,
+             u'message': u'You cannot submit a Mozilla Signed Extension',
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')

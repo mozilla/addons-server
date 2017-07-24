@@ -115,7 +115,7 @@ z.StatsManager = (function() {
             }, 0);
         });
     }
-    $(window).bind('changeview', processView);
+    $(window).on('changeview', processView);
 
 
     // Retrieves a list of site-wide events that may impact statistics data.

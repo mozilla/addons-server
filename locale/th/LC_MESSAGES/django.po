@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -156,9 +156,6 @@ msgstr "อธิบายชุดตกแต่งของคุณ"
 msgid "Enter a new author's email address"
 msgstr "ใส่ที่อยู่อีเมลใหม่ของผู้สร้าง"
 
-msgid "Not Reviewed"
-msgstr "ยังไม่ถูกตรวจสอบ"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "ผู้ใช้มีตัวเลือกที่จะบริจาคมากกว่าหรือน้อยกว่าจำนวนนี้"
 
@@ -167,6 +164,9 @@ msgstr ""
 
 msgid "Listed"
 msgstr "รายการ"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -540,16 +540,6 @@ msgstr "นโยบายความเป็นส่วนตัวของ
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
 
-msgid "QR code for add-on"
-msgstr "QR code ของส่วนเสริม"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-
-#, fuzzy
-msgid "Replacement Add-ons for {0}"
-msgstr "ส่วนเสริมสำหรับ {0}"
-
 msgid "Report Abuse"
 msgstr "รายงานการละเมิด"
 
@@ -871,6 +861,9 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ดาวน์โหลดต่อสัปดาห์"
 
+msgid "Not Reviewed"
+msgstr "ยังไม่ถูกตรวจสอบ"
+
 msgid "Tools"
 msgstr "เครื่องมือ"
 
@@ -919,19 +912,6 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "สิ่งนี้ต้องเป็นโค้ดสี hex ที่ถูกต้อง เช่น #000000"
-
-msgid "Collections"
-msgstr "ชุดสะสม"
-
-msgid "Dictionaries & Language Packs"
-msgstr "พจนานุกรมและชุดภาษา"
-
-msgid "Add-ons"
-msgstr "ส่วนเสริม"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} ที่ผ่านมา"
 
 msgid "Not allowed"
 msgstr "ไม่อนุญาต"
@@ -1051,6 +1031,9 @@ msgstr ""
 msgid "Most Followers"
 msgstr "ติดตามมากที่สุด"
 
+msgid "Collections"
+msgstr "ชุดสะสม"
+
 msgid "Collections I've Made"
 msgstr "ชุดสะสมที่ฉันสร้าง"
 
@@ -1065,6 +1048,9 @@ msgstr "เพิ่มเติม&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "ส่วนเสริมสำหรับมือถือ"
+
+msgid "Dictionaries & Language Packs"
+msgstr "พจนานุกรมและชุดภาษา"
 
 msgid "Search Tools"
 msgstr "เครื่องมือค้นหา"
@@ -1088,6 +1074,13 @@ msgstr "กระโดดไปยังหน้าสุดท้าย"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "กำลังแสดง <b>%(begin)s</b>&ndash;<b>%(end)s</b> จาก <b>%(count)s</b>"
+
+msgid "Add-ons"
+msgstr "ส่วนเสริม"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} ที่ผ่านมา"
 
 msgid "Title"
 msgstr "หัวข้อ"
@@ -1203,27 +1196,6 @@ msgstr "url นี้ถูกใช้งานกับชุดสะสม�
 
 msgid "Icons must be either PNG or JPG."
 msgstr "ไอคอนต้องเป็น PNG หรือ JPG"
-
-msgid "Add a positive vote for this collection"
-msgstr "เพิ่มคะแนนบวกสำหรับชุดสะสมนี้"
-
-msgid "Add a negative vote for this collection"
-msgstr "ลบคะแนนสำหรับชุดสะสมนี้"
-
-msgid "Remove my vote for this collection"
-msgstr "ลบการลงคะแนนของฉันสำหรับชุดสะสมนี้"
-
-msgid "Log in to vote for this collection"
-msgstr "เข้าสู่ระบบเพื่อลงคะแนนสำหรับชุดสะสมนี้"
-
-msgid "Add to favorites"
-msgstr "เพิ่มไปยังรายการโปรด"
-
-msgid "Favorite"
-msgstr "รายการโปรด"
-
-msgid "Remove from favorites"
-msgstr "เอาออกจากรายการโปรด"
 
 #, fuzzy
 msgid "This slug is already in use by another one of your collections."
@@ -1508,6 +1480,12 @@ msgstr "ทำต่อ"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "หรือ <a id=\"change-owner-cancel\" href=\"#\">ยกเลิก</a>"
 
+msgid "Remove from favorites"
+msgstr "เอาออกจากรายการโปรด"
+
+msgid "Add to favorites"
+msgstr "เพิ่มไปยังรายการโปรด"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "ชุดสะสมโดย {0}"
@@ -1536,6 +1514,10 @@ msgstr ""
 
 msgid "Subscribe"
 msgstr "บอกรับ"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "โดย %(users)s"
 
 msgid "Following"
 msgstr "กำลังติดตาม"
@@ -1584,6 +1566,21 @@ msgstr "เพิ่มความเห็น"
 
 msgid "Remove this add-on from the collection"
 msgstr "เอาส่วนเสริมนี้ออกจากชุดสะสม"
+
+msgid "Add a positive vote for this collection"
+msgstr "เพิ่มคะแนนบวกสำหรับชุดสะสมนี้"
+
+msgid "Add a negative vote for this collection"
+msgstr "ลบคะแนนสำหรับชุดสะสมนี้"
+
+msgid "Remove my vote for this collection"
+msgstr "ลบการลงคะแนนของฉันสำหรับชุดสะสมนี้"
+
+msgid "Log in to vote for this collection"
+msgstr "เข้าสู่ระบบเพื่อลงคะแนนสำหรับชุดสะสมนี้"
+
+msgid "Favorite"
+msgstr "รายการโปรด"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2200,9 +2197,6 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-msgid "Any"
-msgstr ""
-
 msgid "Extension"
 msgstr "ส่วนขยาย"
 
@@ -2656,6 +2650,9 @@ msgstr ""
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
+msgid "Any"
+msgstr ""
+
 msgid "All Platforms"
 msgstr "ทุกแพลตฟอร์ม"
 
@@ -2824,19 +2821,6 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
-
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} ข้อผิดพลาด"
-
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} คำเตือน"
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
@@ -2925,6 +2909,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr ""
 
@@ -2976,10 +2963,29 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "บทวิจารณ์:"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "แนวทางการวิจารณ์"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
+msgstr ""
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -2990,29 +2996,6 @@ msgstr ""
 
 msgid "Back to Add-ons"
 msgstr "กลับไปยังส่วนเสริม"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: ค้นหา"
-
-msgid "Search"
-msgstr "ค้นหา"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "ผลการค้นหาสำหรับ \"{0}\""
-
-msgid "Search Results"
-msgstr "ผลการค้นหา"
-
-msgid "Please enter some search terms."
-msgstr ""
-
-msgid "Loading results&hellip;"
-msgstr ""
-
-msgid "No results found."
-msgstr "ไม่พบผลลัพธ์"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3064,6 +3047,9 @@ msgstr ""
 msgid "Search Developer Docs"
 msgstr "ค้นหาเอกสารนักพัฒนา"
 
+msgid "Search"
+msgstr "ค้นหา"
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -3099,6 +3085,9 @@ msgstr "กิจกรรมล่าสุดของ {0}"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> โดย %(user)s"
+
+msgid "No results found."
+msgstr "ไม่พบผลลัพธ์"
 
 msgid "Refine Activity"
 msgstr ""
@@ -3235,6 +3224,19 @@ msgid "This add-on is experimental."
 msgstr "ส่วนเสริมนี้ถูกเอาออกโดยผู้สร้างส่วนเสริม"
 
 msgid "This add-on is ready for general use."
+msgstr ""
+
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "ช่องที่ต้องการ"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -3640,8 +3642,15 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
+msgid "Cancel and Disable Version"
+msgstr ""
+
 msgid "Cancel Review and Disable Version"
 msgstr ""
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "ส่งส่วนเสริมใหม่"
 
 #, fuzzy
 msgid "Submit Version for Review"
@@ -3672,6 +3681,13 @@ msgstr ""
 #, fuzzy
 msgid "You’re done!"
 msgstr "เสร็จแล้ว!"
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "รุ่น"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3928,9 +3944,10 @@ msgstr ""
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "HTML ที่อนุญาต: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr ""
@@ -3972,8 +3989,8 @@ msgid "Resources"
 msgstr "ทรัพยากร"
 
 #, fuzzy
-msgid "WebExtensions"
-msgstr "ส่วนขยาย"
+msgid "Porting"
+msgstr "การจัดอันดับ"
 
 #, fuzzy
 msgid "Community"
@@ -3993,8 +4010,8 @@ msgid "Contact Us"
 msgstr "เนื้อหา"
 
 #, fuzzy
-msgid "Review Policies"
-msgstr "บทวิจารณ์:"
+msgid "Policies"
+msgstr "นโยบายส่วนเสริม"
 
 msgid "FAQ"
 msgstr "คำถามที่พบบ่อย"
@@ -4070,10 +4087,11 @@ msgstr "ส่วนเสริมเพิ่มเติม"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Evolution in Add-on Development"
-msgstr ""
+#, fuzzy
+msgid "Update Your Legacy Extension"
+msgstr "ส่วนขยายที่แนะนำ"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 msgid "Learn How"
@@ -4083,11 +4101,10 @@ msgstr "เรียนรู้วิธี"
 msgid "What's New"
 msgstr "รุ่นล่าสุด:"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
+msgid "See Tutorial"
 msgstr ""
 
 #, fuzzy
@@ -4617,28 +4634,41 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ข้อผิดพลาด"
+
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} คำเตือน"
+
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4741,33 +4771,61 @@ msgstr ""
 msgid "Delete review"
 msgstr ""
 
-msgid "Rejected or Unreviewed"
+msgid "Admin Review"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "สถานะ:"
+msgid "Jetpack Add-on"
+msgstr ""
 
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "ส่วนเสริมสำหรับ {0}"
+msgid "More Information Requested"
+msgstr ""
 
-#, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "ปรับปรุงเมื่อ {0}"
+msgid "Contains Reviewer Comment"
+msgstr ""
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
+msgid "Sources provided"
+msgstr ""
 
-#, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "ส่วนเสริมสำหรับ {0}"
+msgid "WebExtension"
+msgstr ""
 
-msgid "All Unlisted Add-ons"
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+msgid "Has too many daily users."
+msgstr ""
+
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+msgid "Is flagged for admin review."
+msgstr ""
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -4843,69 +4901,6 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr ""
-
-msgid "Admin Review"
-msgstr ""
-
-msgid "Jetpack Add-on"
-msgstr ""
-
-msgid "More Information Requested"
-msgstr ""
-
-msgid "Contains Reviewer Comment"
-msgstr ""
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr ""
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr ""
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr ""
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -4987,6 +4982,10 @@ msgstr "รายงานการละเมิด"
 msgid "View Privacy Policy"
 msgstr "ดูนโยบายความเป็นส่วนตัว"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "ช่องที่ต้องการ"
+
 msgid "EULA"
 msgstr "ข้อตกลงอนุญาตใช้งานซอฟต์แวร์"
 
@@ -5009,19 +5008,6 @@ msgstr "เพิ่มเติมเกี่ยวกับส่วนเส
 msgid "Image Gallery"
 msgstr "คลังภาพ"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "ช่องการพัฒนาเชิญชวนให้คุณทดสอบรุ่นทดลองใหม่ของส่วนเสริมนี้ก่อนจะถูกปล่อยสู่สาธารณะทั่วไป เมื่อคุณติดตั้งรุ่นพัฒนา คุณจะยังคงได้รับการปรับปรุงจากช่องนี้"
-
-msgid "Install development version"
-msgstr "ติดตั้งรุ่นพัฒนา"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>คำเตือน:</strong> รุ่นพัฒนาของส่วนเสริมนี้ยังไม่ถูกตรวจสอบโดย Mozilla เมื่อคุณติดตั้งรุ่นพัฒนาคุณจะยังคงได้รับการปรับปรุงเป็นรุ่นพัฒนาจากนักพัฒนานี้ เพื่อหยุดการปรับปรุงเป็นรุ่นพัฒนา ติดตั้งรุ่นเริ่มต้นใหม่จากลิงก์ด้านบน"
-
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
@@ -5036,6 +5022,9 @@ msgstr ""
 msgid "New Add-ons"
 msgstr "ส่วนเสริมเพิ่มเติม"
 
+msgid "Updates"
+msgstr ""
+
 msgid "Moderated Reviews"
 msgstr ""
 
@@ -5044,6 +5033,9 @@ msgid "Auto Approved Add-ons"
 msgstr "ส่วนเสริมสำหรับระบบ Android"
 
 msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Logs"
@@ -5500,31 +5492,36 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "สถานะ:"
+
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "ส่วนเสริมสำหรับ {0}"
+
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "ปรับปรุงเมื่อ {0}"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] ""
+
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "ส่วนเสริมสำหรับ {0}"
+
+msgid "Flagged"
+msgstr ""
+
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "Access your data for {name}"
@@ -5664,6 +5661,30 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
+msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -7474,12 +7495,6 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr ""
-
 # 81%
 #, fuzzy
 msgid "All Add-ons"
@@ -7502,6 +7517,9 @@ msgstr ""
 msgid "Collection Search Results"
 msgstr ""
 
+msgid "Search Results"
+msgstr "ผลการค้นหา"
+
 msgid "Search Unavailable"
 msgstr ""
 
@@ -7514,6 +7532,14 @@ msgstr "ผลการค้นหาชุดตกแต่งสำหรั
 
 msgid "Themes Search Results"
 msgstr "ผลการค้นหาชุดตกแต่ง"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: ค้นหา"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "ผลการค้นหาสำหรับ \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7535,6 +7561,12 @@ msgstr ""
 
 msgid "Tag"
 msgstr "ป้ายกำกับ"
+
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr ""
+
+msgid "Showing {0} - {1} of {2} results"
+msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -7977,10 +8009,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr ""
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr ""
-
 msgid "No user with that email."
 msgstr ""
 
@@ -8125,7 +8153,8 @@ msgstr ""
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
@@ -8282,6 +8311,10 @@ msgid_plural "%(num)s add-ons"
 msgstr[0] ""
 
 msgid "Average rating of developer's add-ons"
+msgstr ""
+
+msgctxt "user_list_others"
+msgid "others"
 msgstr ""
 
 #, python-format

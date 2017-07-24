@@ -25,8 +25,8 @@ user has already posted a review for the current version of an add-on.
 
 .. http:get:: /api/v3/reviews/review/
 
-    :query string addon: The add-on id to fetch reviews from. When passed, the reviews shown will always be the latest posted by each user on this particular add-on (which means there should only be one review per user in the results), unless the ``version`` parameter is also passed.
-    :query string filter: The :ref:`filter <review-filtering-param>` to apply.
+    :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch reviews from. When passed, the reviews shown will always be the latest posted by each user on this particular add-on (which means there should only be one review per user in the results), unless the ``version`` parameter is also passed.
+    :query string filter: The :ref:`filter(s) <review-filtering-param>` to apply.
     :query string user: The user id to fetch reviews from.
     :query boolean show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
     :query string version: The version id to fetch reviews from.
@@ -40,13 +40,20 @@ user has already posted a review for the current version of an add-on.
 
 .. _review-filtering-param:
 
-   By default, the review list API will only return not-deleted reviews. You
-   can change that with the ``filter=with_deleted`` query parameter, which
-   requires the Addons:Edit permission.
+   By default, the review list API will only return not-deleted reviews, and
+   include reviews without text. You can change that with the ``filter`` query
+   parameter.  You can filter by multiple values, e.g. ``filter=with_deleted,without_empty_body,with_yours``
 
-   Only non-empty reviews (reviews with both a rating and text body) are returned,
-   unless a) the reviews were created by the user making the API request or
-   b) the user has the Addons:Edit permission.
+    ===================  ======================================================
+                  Value  Description
+    ===================  ======================================================
+           with_deleted  Returns deleted reviews too.  This requires the
+                         Addons:Edit permission.
+     without_empty_body  Excludes reviews that only contain a rating, and no
+                         textual content.
+             with_yours  Used in combination `without_empty_body` to include
+                         your own reviews, even if they have no text.
+    ===================  ======================================================
 
 ------
 Detail

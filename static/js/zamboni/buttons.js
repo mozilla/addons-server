@@ -64,6 +64,7 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
+        no_compat_necessary = $this.hasattr('data-no-compat-necessary'),
         accept_eula = $this.hasClass('accept'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
@@ -159,7 +160,7 @@ var installButton = function() {
 
     // Change the button text to "Add to Firefox".
     var addToApp = function() {
-        if (appSupported || (search && z.appMatchesUserAgent)) {
+        if (appSupported || (no_compat_necessary && z.appMatchesUserAgent)) {
             $button.addClass('add').removeClass('download')
                 .find('span').text(addto);
         }
@@ -169,16 +170,16 @@ var installButton = function() {
     // on something with a .installer class.
     var clickHijack = function() {
         try {
-            if (!appSupported && !search || !("InstallTrigger" in window)) return;
+            if (!appSupported && !no_compat_necessary || !("InstallTrigger" in window)) return;
         } catch (e) {
             return;
         }
 
         $this.addClass('clickHijack'); // So we can disable pointer events
 
-        $this.bind('mousedown focus', function(e) {
+        $this.on('mousedown focus', function(e) {
             $this.addClass('active');
-        }).bind('mouseup blur', function(e) {
+        }).on('mouseup blur', function(e) {
             $this.removeClass('active');
         }).click(function(e) {
             // If the click was on a.installer or a child, call the special
@@ -345,7 +346,7 @@ var installButton = function() {
             $button.addPopup(pmsg);
             $button.closest('div').attr('data-version-supported', true);
             return true;
-        } else if (!unreviewed && (appSupported || search)) {
+        } else if (!unreviewed && (appSupported || no_compat_necessary)) {
             // Good version, good platform.
             $button.addClass('installer');
             $button.closest('div').attr('data-version-supported', true);
@@ -395,7 +396,7 @@ var installButton = function() {
     } else if (z.appMatchesUserAgent) {
         clickHijack();
         addToApp();
-        var opts = search ? {addPopup: false, addWarning: false} : {};
+        var opts = no_compat_necessary ? {addPopup: false, addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
         $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
@@ -445,10 +446,10 @@ jQuery.fn.addPopup = function(html, allowClick) {
 
         if (this.hasPopup) {
             // We've been here before, queue a follow-up button.
-            $this.bind('newPopup', function(e, popup) {
-                $this.unbind('newPopup');
+            $this.on('newPopup', function(e, popup) {
+                $this.off('newPopup');
                 $(popup).find('.installer').click(function(e) {
-                    $this.unbind('click');  // Drop the current popup.
+                    $this.off('click');  // Drop the current popup.
                     self.hasPopup = false;
                     var next = self.popupQueue.pop();
                     if (!next[1]) { // allowClick
@@ -487,11 +488,11 @@ jQuery.fn.addPopup = function(html, allowClick) {
                         return;
                     }
                     _html.remove();
-                    $body.unbind('click newPopup', cb);
+                    $body.off('click newPopup', cb);
                     $body.trigger('closeStatic');
                 };
                 // Trampoline the binding so it isn't triggered by the current click.
-                setTimeout(function(){ $body.bind('click newPopup', cb); }, 0);
+                setTimeout(function(){ $body.on('click newPopup', cb); }, 0);
             });
         }
     });

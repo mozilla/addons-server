@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-15 09:10+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"PO-Revision-Date: 2017-07-19 13:23+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -150,9 +150,6 @@ msgstr "描述您的主题。"
 msgid "Enter a new author's email address"
 msgstr "输入新的作者电子邮件地址"
 
-msgid "Not Reviewed"
-msgstr "尚未审核"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "用户可以选择捐助多于或少于这个金额。"
 
@@ -162,6 +159,9 @@ msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会�
 # Column name in a table.
 msgid "Listed"
 msgstr "已上架"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr "附加组件和收集路径需要以“/”结尾"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -535,18 +535,6 @@ msgstr "{0} 的隐私政策"
 msgid "Privacy Policy"
 msgstr "隐私政策"
 
-msgid "QR code for add-on"
-msgstr "附加组件的二维码"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "想在您的移动版 Firefox 上使用 {0}？扫描此二维码，直接安装到您的手机。（您需要一个二维码扫描器。如果没有，在您的手机应用商店中搜索下载。）"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Replacement Add-ons for {0}"
-msgstr "{0} 附加组件的替代品"
-
 msgid "Report Abuse"
 msgstr "报告滥用"
 
@@ -867,6 +855,9 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> 次周下载量"
 
+msgid "Not Reviewed"
+msgstr "尚未审核"
+
 msgid "Tools"
 msgstr "工具"
 
@@ -915,19 +906,6 @@ msgstr "验证输入出错，请重试。"
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "这里必须是一个有效的十六进制颜色代码，例如 #000000。"
 
-msgid "Collections"
-msgstr "收藏集"
-
-msgid "Dictionaries & Language Packs"
-msgstr "字典及语言包"
-
-msgid "Add-ons"
-msgstr "附加组件"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} 前"
-
 msgid "Not allowed"
 msgstr "不被允许"
 
@@ -960,7 +938,7 @@ msgstr "附加组件主页"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "如果您从其他地方点击而来，请%(open_bug_link)s填报问题%(close_bug_link)s。告诉我们你从何而来、在找什么，我们会尽力解决。"
+msgstr "如果您点击某个链接而来，请%(open_bug_link)s填报问题%(close_bug_link)s。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。"
 
 msgid "Not Found"
 msgstr "找不到页面"
@@ -973,9 +951,9 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>很抱歉，但是我们找不到您要查找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您自己输入了网址，请仔细检查有无拼写错误。</li> <li>如果您从其他链接跳转过来，请发送电子邮件到 <a "
-"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a> 告知我们。请说明您从哪里跳转过来，您本来希望看到什么内容，我们会尽力修复。</li> </ul> <p>或者您可以转到我们网站上的其他热门页面。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>感兴趣吗？</li> "
-"<li>您想<a href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果您想从头开始，可以转到<a href=\"%(home)s\">附加组件首页</a>。</li> </ul>"
+"<h1>非常抱歉，我们找不到您要查找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您自己输入了网址，请仔细检查有无拼写错误。</li> <li>如如果您点击某个链接而来，请<a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">填报问题</a>。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。</li> </ul> <p>要不转到网站其他地方逛逛吧。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>有兴趣吗？</li> <li>您想<a "
+"href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果您想从头开始，可以转到<a href=\"%(home)s\">附加组件首页</a>。</li> </ul>"
 
 msgid "Oops"
 msgstr "哎呀"
@@ -1041,6 +1019,9 @@ msgstr "想要更强定制性？尝试<b>完整主题</b>"
 msgid "Most Followers"
 msgstr "最多关注者"
 
+msgid "Collections"
+msgstr "收藏集"
+
 msgid "Collections I've Made"
 msgstr "我建立的收藏集"
 
@@ -1055,6 +1036,9 @@ msgstr "更多 &hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
+
+msgid "Dictionaries & Language Packs"
+msgstr "字典及语言包"
 
 msgid "Search Tools"
 msgstr "搜索工具"
@@ -1078,6 +1062,13 @@ msgstr "跳到最后一页"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "目前显示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 项，共 <b>%(count)s</b> 项"
+
+msgid "Add-ons"
+msgstr "附加组件"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} 前"
 
 msgid "Title"
 msgstr "标题"
@@ -1192,27 +1183,6 @@ msgstr "此网址已被其他收藏集使用"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
-
-msgid "Add a positive vote for this collection"
-msgstr "给此收藏集一个好评"
-
-msgid "Add a negative vote for this collection"
-msgstr "给此收藏集一个差评"
-
-msgid "Remove my vote for this collection"
-msgstr "移除我对此收藏集的评价"
-
-msgid "Log in to vote for this collection"
-msgstr "登录以对此收藏集进行评价"
-
-msgid "Add to favorites"
-msgstr "添加到我最喜爱"
-
-msgid "Favorite"
-msgstr "我最喜爱"
-
-msgid "Remove from favorites"
-msgstr "从我最喜爱中移除"
 
 msgid "This slug is already in use by another one of your collections."
 msgstr "此网址已被您的另一个收藏集使用。"
@@ -1492,6 +1462,12 @@ msgstr "继续"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "或<a id=\"change-owner-cancel\" href=\"#\">取消</a>"
 
+msgid "Remove from favorites"
+msgstr "从我最喜爱中移除"
+
+msgid "Add to favorites"
+msgstr "添加到我最喜爱"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "{0} 的收藏集"
@@ -1520,6 +1496,10 @@ msgstr "收藏集是相关附加组件的集合，任何人都可以创建与分
 
 msgid "Subscribe"
 msgstr "订阅"
+
+#, python-format
+msgid "by %(author_link)s"
+msgstr "作者：%(author_link)s"
 
 msgid "Following"
 msgstr "正在关注"
@@ -1568,6 +1548,21 @@ msgstr "添加评论"
 
 msgid "Remove this add-on from the collection"
 msgstr "从收藏集中移除此附加组件"
+
+msgid "Add a positive vote for this collection"
+msgstr "给此收藏集一个好评"
+
+msgid "Add a negative vote for this collection"
+msgstr "给此收藏集一个差评"
+
+msgid "Remove my vote for this collection"
+msgstr "移除我对此收藏集的评价"
+
+msgid "Log in to vote for this collection"
+msgstr "登录以对此收藏集进行评价"
+
+msgid "Favorite"
+msgstr "我最喜爱"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2172,9 +2167,6 @@ msgstr "查看者"
 msgid "Support"
 msgstr "支持"
 
-msgid "Any"
-msgstr "任意"
-
 msgid "Extension"
 msgstr "扩展"
 
@@ -2607,6 +2599,9 @@ msgstr "知识共享“署名-禁止演绎 3.0”"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "知识共享“署名-相同方式共享 3.0”"
 
+msgid "Any"
+msgstr "任意"
+
 msgid "All Platforms"
 msgstr "所有平台"
 
@@ -2772,21 +2767,6 @@ msgstr "在本网站上。<span class=\"helptext\">您提交的作品将在通�
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来处理。</span>"
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "附加组件文档 :: 开发者中心"
-
-#. L10n: first parameter is the number of errors
-# {0} is a number
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} 个错误"
-
-#. L10n: first parameter is the number of warnings
-# {0} is a number
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} 个警告"
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，本网站只接受 WebExtension 形式的新扩展。"
 
@@ -2875,6 +2855,9 @@ msgstr "您不能提交此类型的附加组件"
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "您提交的附加组件不能以“@mozilla.org”作为 GUID 结尾"
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "您不能提交一个 Mozilla 签名的扩展"
+
 msgid "Icons cannot be animated."
 msgstr "不能使用动画图标。"
 
@@ -2925,11 +2908,28 @@ msgstr "新的 API 密钥已创建"
 msgid "API key revoked"
 msgstr "API密钥已废除"
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
+msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
+
+msgid "Distribution Agreement"
+msgstr "分发协议"
+
+msgid "Review Policy"
+msgstr "审核政策"
+
+msgid "Review Rules"
+msgstr "审核规则"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议。它还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
 msgid "Printable Version"
 msgstr "可打印版本"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已阅读并同意本协议和规则与政策"
 
 msgid "I Accept this Agreement"
 msgstr "我同意这个协议"
@@ -2939,29 +2939,6 @@ msgstr "或<a href=\"{0}\">取消</a>"
 
 msgid "Back to Add-ons"
 msgstr "返回附加组件"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: 搜索"
-
-msgid "Search"
-msgstr "搜索"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "“{0}”的搜索结果"
-
-msgid "Search Results"
-msgstr "搜索结果"
-
-msgid "Please enter some search terms."
-msgstr "请输入搜索关键词。"
-
-msgid "Loading results&hellip;"
-msgstr "正在载入搜索结果 &hellip;"
-
-msgid "No results found."
-msgstr "未找到结果。"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3013,6 +2990,9 @@ msgstr "更多资源"
 msgid "Search Developer Docs"
 msgstr "搜索开发者文档"
 
+msgid "Search"
+msgstr "搜索"
+
 msgid "Use the field below to upload your add-on package."
 msgstr "使用下面的按钮上传您的附加组件包。"
 
@@ -3048,6 +3028,9 @@ msgstr "{0} 的近期动态"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> 由 %(user)s"
+
+msgid "No results found."
+msgstr "未找到结果。"
 
 msgid "Refine Activity"
 msgstr "动态提要"
@@ -3180,6 +3163,18 @@ msgstr "这个附加组件为实验性。"
 
 msgid "This add-on is ready for general use."
 msgstr "这个附加组件可用于一般用途。"
+
+msgid "Requires Payment?"
+msgstr "需要付费？"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr "如果该附加组件的核心功能或试用期后需要某种形式的支付款项，请选中此框。"
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr "此附加组件需要付费，非免费服务或软件，或需额外硬件。"
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr "此附加组件不需要任何形式的支付、付费服务、付费软件或额外硬件。"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "分类是许多用户浏览附加组件的主要方式。选择任何您的附加组件的功能适合展示的分类。此项只与上架的附加组件相关。"
@@ -3571,8 +3566,14 @@ msgstr "对我们审核此附加组件，有什么备注说明吗？"
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "此备注只有您和我们的审核员能看到。"
 
+msgid "Cancel and Disable Version"
+msgstr "取消审核并禁用版本"
+
 msgid "Cancel Review and Disable Version"
 msgstr "取消审核并禁用版本"
+
+msgid "Submit Version"
+msgstr "提交新版本"
 
 msgid "Submit Version for Review"
 msgstr "提交版本进行审核"
@@ -3600,6 +3601,12 @@ msgstr "提交完成"
 
 msgid "You’re done!"
 msgstr "完成了！"
+
+msgid "Version Submitted"
+msgstr "版本已提交"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr "完工！此版本将在我们的网站上发布。"
 
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
@@ -3839,9 +3846,10 @@ msgstr "查看博客 &#9658;"
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "请选择一个许可协议，标明您对您的源代码授予的权利。此项只与上架的附加组件相关。"
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "允许使用的 HTML：{0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr "允许的 HTML：%(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "支持某些 HTML。"
@@ -3881,8 +3889,8 @@ msgstr "阅读我们的博客了解更多"
 msgid "Resources"
 msgstr "资源"
 
-msgid "WebExtensions"
-msgstr "WebExtension"
+msgid "Porting"
+msgstr "待定"
 
 msgid "Community"
 msgstr "社区"
@@ -3900,8 +3908,8 @@ msgstr "博客"
 msgid "Contact Us"
 msgstr "联系我们"
 
-msgid "Review Policies"
-msgstr "审核政策"
+msgid "Policies"
+msgstr "政策"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -3970,11 +3978,11 @@ msgstr "管理您的附加组件"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "登录以编辑和更新您的附加组件"
 
-msgid "Evolution in Add-on Development"
-msgstr "演变中的附加组件开发"
+msgid "Update Your Legacy Extension"
+msgstr "更新您的传统扩展"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtension 正在成为 Firefox 中的附加组件开发标准。您得更新您的旧款附加组件才能保持兼容性。"
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgstr "Firefox 已采用全新、跨浏览器的扩展开发标准。您得更新您的旧款附加组件才能保持兼容性。"
 
 msgid "Learn How"
 msgstr "了解方法"
@@ -3982,11 +3990,11 @@ msgstr "了解方法"
 msgid "What's New"
 msgstr "最新消息"
 
-msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
-msgstr "正在迁移您的旧式附加组件到 WebExtensions？在办公时间可取得更多针对性帮助，也可发电子邮件至 <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>。"
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgstr "准备提交附加组件？阅读我们关于提交流程的分步解释。"
 
-msgid "See Schedule"
-msgstr "参见日程表"
+msgid "See Tutorial"
+msgstr "查看教程"
 
 msgid "View All Submissions"
 msgstr "查看所有提交"
@@ -4500,29 +4508,44 @@ msgstr "撤销您的附加组件审核请求将使其停留在未完成状态。
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您确定要撤销您的审核请求吗？"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Add-on Documentation :: Developer Hub"
+msgstr "附加组件文档 :: 开发者中心"
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
+#. L10n: first parameter is the number of errors
+# {0} is a number
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} 个错误"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+#. L10n: first parameter is the number of warnings
+# {0} is a number
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} 个警告"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "一个轻量级、有效率的广告拦截器。uBlock Origin 可施行大量的内容过滤器，而不占用很多内存。"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "拒绝跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji 输入器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Block invisible trackers and spying ads that follow you around the Web."
+msgstr "拦截在网络世界中不断尾随你的跟踪器。"
 
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "精美 emoji 一键即得——随处可用。"
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "校阅写作文字 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgstr "支持超过25种语言，此扩展可为您的浏览器提供文字校阅功能。"
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "截取图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr "Awesome Screenshot Plus 不仅仅是截图，还能用文本和图形注解图像。存储和共享文件也很轻松。"
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
 
 msgid "Approved reviews"
 msgstr "已通过的审核"
@@ -4615,39 +4638,70 @@ msgid "theme, reviewer, or comment"
 msgstr "主题、审核员或评论"
 
 msgid "Keep review; remove flags"
-msgstr "保存评论；移除标志"
+msgstr "保留评价、移除标记"
 
 msgid "Skip for now"
 msgstr "暂时跳过"
 
 msgid "Delete review"
-msgstr "删除评论"
+msgstr "删除评价"
 
-msgid "Rejected or Unreviewed"
-msgstr "被退回或未审核"
+msgid "Admin Review"
+msgstr "管理员审核"
 
-#, python-format
-msgid "[status:%s]"
-msgstr "[状态：%s]"
+msgid "Jetpack Add-on"
+msgstr "Jetpack 附加组件"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "新附加组件 ({0})"
+msgid "More Information Requested"
+msgstr "要求更多信息"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "更新 ({0})"
+msgid "Contains Reviewer Comment"
+msgstr "包含审核员意见"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "提请仲裁的评论（{0}）"
+msgid "Sources provided"
+msgstr "已提供来源"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "自动批准的附加组件 ({0})"
+msgid "WebExtension"
+msgstr "WebExtension"
 
-msgid "All Unlisted Add-ons"
-msgstr "所有未上架的附加组件"
+msgid "Uses a custom CSP."
+msgstr "使用自定义 CSP。"
+
+msgid "Uses nativeMessaging permission."
+msgstr "使用 nativeMessaging 权限。"
+
+msgid "Uses a content script for all URLs."
+msgstr "为所有网址使用一个内容脚本。"
+
+msgid "Has too many daily users."
+msgstr "有很多日常用户。"
+
+msgid "Has too few consecutive human-approved updates."
+msgstr "很少的连续人类审批更新。"
+
+msgid "Has a pending info request."
+msgstr "有待处理的信息请求。"
+
+msgid "Is flagged for admin review."
+msgstr "已标记为等待管理员审核。"
+
+msgid "Is locked by a reviewer."
+msgstr "已由一名审核员锁定。"
+
+msgid "Duplicate Submission"
+msgstr "重复的提交"
+
+msgid "Thanks for submitting your Theme"
+msgstr "感谢您投递主题"
+
+msgid "A problem with your Theme submission"
+msgstr "您所提交主题的问题"
+
+msgid "Theme submission flagged for review"
+msgstr "主题提交标记供审核"
+
+msgid "A question about your Theme submission"
+msgstr "您提交的主题的一个问题"
 
 msgid "Type"
 msgstr "类型"
@@ -4721,69 +4775,6 @@ msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "对此版本进行注释。其开发者不会看到这些。"
 
-msgid "Flagged"
-msgstr "已标记"
-
-msgid "Updates"
-msgstr "更新"
-
-msgid "Admin Review"
-msgstr "管理员审核"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack 附加组件"
-
-msgid "More Information Requested"
-msgstr "要求更多信息"
-
-msgid "Contains Reviewer Comment"
-msgstr "包含审核员意见"
-
-msgid "Sources provided"
-msgstr "已提供来源"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "使用自定义 CSP。"
-
-msgid "Uses nativeMessaging permission."
-msgstr "使用 nativeMessaging 权限。"
-
-msgid "Uses a content script for all URLs."
-msgstr "为所有网址使用一个内容脚本。"
-
-msgid "Has too many daily users."
-msgstr "有很多日常用户。"
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "很少的连续人类审批更新。"
-
-msgid "Has a pending info request."
-msgstr "有待处理的信息请求。"
-
-msgid "Is flagged for admin review."
-msgstr "已标记管理员审核。"
-
-msgid "Is locked by a reviewer."
-msgstr "已由一名审核员锁定。"
-
-msgid "Duplicate Submission"
-msgstr "重复的提交"
-
-msgid "Thanks for submitting your Theme"
-msgstr "感谢您投递主题"
-
-msgid "A problem with your Theme submission"
-msgstr "您所提交主题的问题"
-
-msgid "Theme submission flagged for review"
-msgstr "主题提交标记供审核"
-
-msgid "A question about your Theme submission"
-msgstr "您提交的主题的一个问题"
-
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
 
@@ -4841,7 +4832,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 滥用报告"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "对 {addon} 及其开发者的滥用报告（{num} 条）"
+msgstr "对 {addon} 及其开发者的滥用报告 ({num} 项)"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -4862,6 +4853,9 @@ msgstr "报告滥用行为"
 msgid "View Privacy Policy"
 msgstr "查看隐私政策"
 
+msgid "Requires Payment"
+msgstr "需要付费"
+
 msgid "EULA"
 msgstr "最终用户许可协议"
 
@@ -4872,29 +4866,16 @@ msgid "Approvals Since Last Automatic Review"
 msgstr "连续自动批准次数"
 
 msgid "Abuse Reports ({num})"
-msgstr "滥用报告（{num} 条）"
+msgstr "滥用报告 ({num} 项)"
 
 msgid "Bad User Reviews ({num})"
-msgstr "不良用户评论（{num} 项）"
+msgstr "不良用户评价 ({num} 项)"
 
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
 
 msgid "Image Gallery"
 msgstr "图片集"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr "开发通道让您可以在此附加组件的正式版本发布前体验实验性的新版本。一旦您安装了开发版本，您将持续从此通道获得更新。"
-
-msgid "Install development version"
-msgstr "安装开发版本"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。一旦您安装此开发版本，您将持续收到来自此开发者的开发版本的更新。如果您不想再收到此更新，请从上面的链接重新安装默认版本。"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "这里什么都没有！开发者没有写下任何详细信息。"
@@ -4908,14 +4889,20 @@ msgstr "队列"
 msgid "New Add-ons"
 msgstr "新附加组件"
 
+msgid "Updates"
+msgstr "更新"
+
 msgid "Moderated Reviews"
-msgstr "提请仲裁的评论"
+msgstr "提请仲裁的评价"
 
 msgid "Auto Approved Add-ons"
 msgstr "自动批准的附加组件"
 
 msgid "Unlisted Queues"
 msgstr "未上架队列"
+
+msgid "All Unlisted Add-ons"
+msgstr "所有未上架的附加组件"
 
 msgid "Logs"
 msgstr "日志"
@@ -4924,7 +4911,7 @@ msgid "Add-on Review Log"
 msgstr "附加组件审核日志"
 
 msgid "Moderated Review Log"
-msgstr "提请仲裁的评论日志"
+msgstr "提请仲裁的评价日志"
 
 msgid "Signed Beta Files Log"
 msgstr "已签名 Beta 文件日志"
@@ -4962,24 +4949,24 @@ msgid "Add-on Title"
 msgstr "附加组件标题"
 
 msgid "Review Title"
-msgstr "评论标题"
+msgstr "评价标题"
 
 msgid "Review Text"
-msgstr "评论文本"
+msgstr "评价文本"
 
 msgid "Review was flagged prior to deletion."
-msgstr "评论已被标记为提请删除。"
+msgstr "评价已被标记为提请删除。"
 
 msgid "Undelete"
 msgstr "取消删除"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "新附加组件 ({num})"
+msgstr[0] "新附加组件 ({num} 项)"
 
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "更新 ({num})"
+msgstr[0] "更新 ({num} 项)"
 
 msgid "Current waiting times:"
 msgstr "目前等待时间："
@@ -5007,13 +4994,13 @@ msgstr "您在审核第 #{0} 项，共 {1} 项"
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "提请仲裁的评论（{num} 项）"
+msgstr[0] "提请仲裁的评价 ({num} 项)"
 
 msgid "Reviewer Leaderboard"
 msgstr "审核员排行榜"
 
 msgid "No review points awarded yet."
-msgstr "尚未获得评论点。"
+msgstr "此处尚无评价。"
 
 msgid "Rank"
 msgstr "排名"
@@ -5076,7 +5063,7 @@ msgid "clear search"
 msgstr "清除搜索"
 
 msgid "Process Reviews"
-msgstr "处理评论"
+msgstr "处理评价"
 
 msgid "Moderation actions:"
 msgstr "仲裁操作："
@@ -5179,7 +5166,7 @@ msgid "Resolution"
 msgstr "决定"
 
 msgid "Reviewer"
-msgstr "评论者"
+msgstr "评价者"
 
 msgid "Add-on has been deleted."
 msgstr "附加组件已被删除。"
@@ -5272,7 +5259,7 @@ msgstr[0] "{num} 项待定的主题审核"
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} 项已标记的评论"
+msgstr[0] "{num} 项已标记的评价"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
@@ -5315,7 +5302,7 @@ msgid "{0} out of {1} reviewed"
 msgstr "已审核 {0} / {1} 个"
 
 msgid "There are currently no Themes to review."
-msgstr "暂时没有可评论的主题。"
+msgstr "暂时没有可审核的主题。"
 
 msgid "Clear Search"
 msgstr "清除搜索"
@@ -5366,32 +5353,34 @@ msgstr "向艺术家提问"
 msgid "Describe your reason for flagging"
 msgstr "描述您标注的理由"
 
+msgid "Rejected or Unreviewed"
+msgstr "被退回或未审核"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[状态：%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "新附加组件 ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "更新 ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "提请仲裁的评价 ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "自动批准的附加组件 ({0})"
+
+msgid "Flagged"
+msgstr "已标记"
+
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "文件查看器已锁定，正在提取 %s。请大约5分钟后再来。"
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "访问文件 %s 时遇到错误。"
-
-msgid "That file no longer exists."
-msgstr "此文件已不存在。"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "文件大小超过了{0}限制。"
-
-msgid "Problems decoding {0}."
-msgstr "解码 {0} 时遇到问题。"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "此文件无法在线查看。请下载文件以查看内容。"
-
-msgid "This file is a directory."
-msgstr "此文件是一个目录。"
 
 msgid "Access your data for {name}"
 msgstr "访问您用于 {name} 的数据"
@@ -5530,6 +5519,30 @@ msgstr "上传的文件中没有文件。"
 
 msgid "Fetching file."
 msgstr "正在获取文件。"
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "文件查看器已锁定，正在提取 %s。请大约5分钟后再来。"
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "访问文件 %s 时遇到错误。"
+
+msgid "That file no longer exists."
+msgstr "此文件已不存在。"
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "文件大小超过了{0}限制。"
+
+msgid "Problems decoding {0}."
+msgstr "解码 {0} 时遇到问题。"
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "此文件无法在线查看。请下载文件以查看内容。"
+
+msgid "This file is a directory."
+msgstr "此文件是一个目录。"
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "您使用的 API 版本 {0:.1f} 无效。请升级到当前版本 {1:.1f} 的 API。"
@@ -6632,7 +6645,7 @@ msgstr "开发者只要登录 AMO，就可以对任何在它们自己的附加�
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
-msgstr "垃圾信息或其他非评论内容"
+msgstr "垃圾信息或其他非评价内容"
 
 #. part of a list (<li>)
 msgid "Inappropriate language/dialog"
@@ -6650,13 +6663,13 @@ msgid "Currently, AMO does not provide a mechanism to directly communicate with 
 msgstr "目前来说，AMO 不提供与评价用户直接沟通的机制。"
 
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr "我可以要求审核并删除负面的评论吗？"
+msgstr "我可以要求审核并删除负面的评价吗？"
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "不。我们不会删除附加组件的负面评论，除非他们被发现是假的。"
+msgstr "不。我们不会删除附加组件的负面评价，除非内容是虚假的。"
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "我可以要求审核并删除不准确的评论吗？"
+msgstr "我可以要求审核并删除不准确的评价吗？"
 
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
 msgstr "如果一名作者联系我们，并且要求对含有虚假或不准确的信息进行审核并删除，我们会认真审核后考虑是否去除。"
@@ -7221,7 +7234,7 @@ msgstr ""
 " href=\"%(guide)s\">《审查指南》</a>可详细了解有关附加组件评论的信息。</p>"
 
 msgid "Reply to review by {0}"
-msgstr "回复 {0} 的评论"
+msgstr "回复 {0} 的评价"
 
 msgid "Write a Reply"
 msgstr "撰写回复"
@@ -7255,34 +7268,34 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "对这个附加组件，此用户的<a href=\"%(user_review_url)s\">其他评论</a>。"
 
 msgid "Flagged for review"
-msgstr "已标记评论"
+msgstr "已标记的评价"
 
 msgid "Report this review"
-msgstr "报告此评论"
+msgstr "举报此评价"
 
 msgid "Reply to review"
-msgstr "回复评论"
+msgstr "回复评价"
 
 msgid "Edit reply"
 msgstr "编辑回复"
 
 msgid "Edit review"
-msgstr "编辑评论"
+msgstr "编辑评价"
 
 msgid "Delete reply"
 msgstr "删除回复"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr "{0} :: 评论"
+msgstr "{0} :: 评价"
 
 msgid "Reviews for {0}"
-msgstr "对 {0} 的评论"
+msgstr "对 {0} 的评价"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "这个附加组件有 <b>{0}</b> 条评论"
+msgstr[0] "这个附加组件有 <b>{0}</b> 条评价"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7291,24 +7304,24 @@ msgstr "由开发者 {0} 做的回复"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s 对 %(addon)s 发表的评论"
+msgstr[0] "%(user)s 对 %(addon)s 发表的评价"
 
 msgid "No reviews found."
-msgstr "还没有评论。"
+msgstr "还没有评价。"
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>平均</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr "写一段新的评论"
+msgstr "撰写新评价"
 
 msgid "Be the first to write a review."
-msgstr "来写下第一篇评论吧。"
+msgstr "写下第一条评价吧。"
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} 条评论"
+msgstr[0] "{num} 条评价"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "评分 {0}，满分5星"
@@ -7347,19 +7360,6 @@ msgstr "排序依据"
 msgid "Relevance"
 msgstr "相关性"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "包含 <strong>{3}</strong> 的结果共有 {2} 项，显示第 {0} - {1} 项"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
-
 msgid "All Add-ons"
 msgstr "所有附加组件"
 
@@ -7380,6 +7380,9 @@ msgstr "{0} 的收藏集搜索结果"
 msgid "Collection Search Results"
 msgstr "收藏集搜索结果"
 
+msgid "Search Results"
+msgstr "搜索结果"
+
 msgid "Search Unavailable"
 msgstr "搜索不可用"
 
@@ -7392,6 +7395,14 @@ msgstr "{0} 的主题搜索结果"
 
 msgid "Themes Search Results"
 msgstr "主题搜索结果"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: 搜索"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "“{0}”的搜索结果"
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7413,6 +7424,19 @@ msgstr "类别"
 
 msgid "Tag"
 msgstr "标签"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "包含 <strong>{3}</strong> 的结果共有 {2} 项，显示第 {0} - {1} 项"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将很快恢复全部功能。"
@@ -7497,7 +7521,7 @@ msgid "Collections Created"
 msgstr "收藏集创建量"
 
 msgid "Reviews Written"
-msgstr "评论撰写量"
+msgstr "评价数量"
 
 msgid "User Signups"
 msgstr "用户注册量"
@@ -7664,7 +7688,7 @@ msgid "Ratings by Date"
 msgstr "依照日期统计的评分"
 
 msgid "Reviews Created by Date"
-msgstr "依照日期统计的评论创建"
+msgstr "依照日期统计的评价创建"
 
 msgid "Download sources by Date"
 msgstr "依照日期统计的下载来源"
@@ -7859,10 +7883,6 @@ msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字
 msgid "Please enter at least one name to be denied."
 msgstr "请输入至少一个要拒绝的名称。"
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "等"
-
 msgid "No user with that email."
 msgstr "那个邮件地址没有用户。"
 
@@ -7878,7 +7898,7 @@ msgid "an add-on developer thanks me for a contribution"
 msgstr "一名附加组件开发者感谢了我的捐款"
 
 msgid "an add-on developer replies to my review"
-msgstr "一名附加组件开发者回复了我的评论"
+msgstr "一名附加组件开发者回复了我的评价"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "有新的附加组件或者 Firefox 特性现在可用"
@@ -7890,7 +7910,7 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr "我的基于SDK的附加组件升级成功"
 
 msgid "someone writes a review of my add-on"
-msgstr "有人对我的附加组件写了评论"
+msgstr "有人对我的附加组件写了评价"
 
 msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr "关注最新的附加组件开发者消息和事件"
@@ -7954,7 +7974,7 @@ msgid "You will not be able to log into %(site)s anymore."
 msgstr "您将不能再登录到 %(site)s。"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "您的评论和评分不会被删除，但不再与您有关联。"
+msgstr "您的评价和评分不会被删除，但不再与您有关联。"
 
 msgid "Confirm account deletion"
 msgstr "确认账户删除"
@@ -8007,8 +8027,9 @@ msgstr "删除当前照片"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "如果愿意，向社区介绍您自己。这些内容将会公开显示在您的用户信息页面。"
 
-msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr "允许的 HTML：{0}。不允许使用链接。"
+#, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
+msgstr "允许的 HTML：%(html)s。不允许使用链接。"
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "决定将在您的概况页面显示哪些收藏集。"
@@ -8098,10 +8119,10 @@ msgstr "由我建立"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr "我所发表的评论"
+msgstr "我所发表的评价"
 
 msgid "No add-on reviews yet."
-msgstr "还没有附加组件评论。"
+msgstr "还没有附加组件评价。"
 
 msgid "Report User"
 msgstr "报告用户"
@@ -8168,6 +8189,10 @@ msgstr[0] "%(num)s 个附加组件"
 
 msgid "Average rating of developer's add-ons"
 msgstr "开发的附加组件平均得分"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "等"
 
 #, python-format
 msgid "%s Version History"

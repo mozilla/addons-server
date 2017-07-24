@@ -1,6 +1,6 @@
 {% extends "impala/base_shared.html" %}
 
-{% block title %}{{ _('Add-ons for {0}')|f(request.APP.pretty) }}{% endblock %}
+{% block title %}{{ _('Add-ons for {0}')|format_html(request.APP.pretty) }}{% endblock %}
 
 {% block bodyclass %}home{% endblock %}
 

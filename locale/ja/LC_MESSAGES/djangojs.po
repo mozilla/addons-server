@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-03-27 06:56+0000\n"
+"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"PO-Revision-Date: 2017-07-22 06:52+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -63,7 +63,9 @@ msgstr "検証レポートの詳細を見る"
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "このアドオンは最大サイズ {0} を超えています。"
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバーから空の応答が返りました。ステータス: {0}"
 
@@ -94,8 +96,7 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension へのアップグレード"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
+msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "従来型 Firefox アドオンの移植に関する MDN の記事"
@@ -115,9 +116,7 @@ msgstr "登録を完了する前に以下の点について確認してくださ
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
-"ドフォームを使い、審査が即座に却下されないようにしてください。"
+msgstr "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、審査が即座に却下されないようにしてください。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
@@ -127,6 +126,9 @@ msgstr "申し訳ありませんが、対応プラットフォームがひとつ
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "このファイルは最大サイズ {0} を超えています。"
 
 msgid "You cancelled the upload."
 msgstr "アップロードがキャンセルされました。"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-07-18 17:53+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -154,9 +154,6 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-msgid "Not Reviewed"
-msgstr "Chưa duyệt"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Người dùng được quyền chọn đóng góp nhiều hoặc ít hơn khoản này."
 
@@ -166,6 +163,9 @@ msgstr ""
 # Column name in a table.
 msgid "Listed"
 msgstr "Liệt kê"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -548,18 +548,6 @@ msgstr "Chính sách Riêng tư cho {0}"
 msgid "Privacy Policy"
 msgstr "Chính sách Riêng tư"
 
-msgid "QR code for add-on"
-msgstr "Mã QR cho tiện ích"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "Replacement Add-ons for {0}"
-msgstr "Tiện ích {0}"
-
 msgid "Report Abuse"
 msgstr "Báo cáo Lạm dụng"
 
@@ -894,6 +882,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> lượt tải hàng tuần<strong>{0}</strong> lượt tải hàng tuần"
 msgstr[1] ""
 
+msgid "Not Reviewed"
+msgstr "Chưa duyệt"
+
 msgid "Tools"
 msgstr "Công cụ"
 
@@ -942,19 +933,6 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
-
-msgid "Collections"
-msgstr "Bộ sưu tập"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Gói Ngôn ngữ & Từ điển"
-
-msgid "Add-ons"
-msgstr "Tiện ích"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} trước"
 
 msgid "Not allowed"
 msgstr "Không cho phép"
@@ -1077,6 +1055,9 @@ msgstr ""
 msgid "Most Followers"
 msgstr ""
 
+msgid "Collections"
+msgstr "Bộ sưu tập"
+
 msgid "Collections I've Made"
 msgstr "Bộ sưu tập Tôi đã tạo"
 
@@ -1091,6 +1072,9 @@ msgstr "Thêm&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Tiện ích Di động"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Gói Ngôn ngữ & Từ điển"
 
 msgid "Search Tools"
 msgstr "Công cụ Tìm kiếm"
@@ -1114,6 +1098,13 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Đang hiện <b>%(begin)s</b>&ndash;<b>%(end)s</b> trên tổng <b>%(count)s</b>"
+
+msgid "Add-ons"
+msgstr "Tiện ích"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} trước"
 
 msgid "Title"
 msgstr ""
@@ -1229,27 +1220,6 @@ msgstr "Url này đã được dùng bởi bộ sưu tập khác"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Biểu tượng phải là PNG hoặc JPG."
-
-msgid "Add a positive vote for this collection"
-msgstr "Thêm một phiếu thuận cho bộ sưu tập này"
-
-msgid "Add a negative vote for this collection"
-msgstr "Thêm một phiếu chống cho bộ sưu tập này"
-
-msgid "Remove my vote for this collection"
-msgstr "Xóa phiếu của tôi cho bộ sưu tập này"
-
-msgid "Log in to vote for this collection"
-msgstr "Đăng nhập để bình chọn cho bộ sưu tập này"
-
-msgid "Add to favorites"
-msgstr "Thêm vào ưa thích"
-
-msgid "Favorite"
-msgstr "Ưa thích"
-
-msgid "Remove from favorites"
-msgstr "Xóa khỏi ưa thích"
 
 #, fuzzy
 msgid "This slug is already in use by another one of your collections."
@@ -1544,6 +1514,12 @@ msgstr "Tiếp tục"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "hoặc <a id=\"change-owner-cancel\" href=\"#\">Hủy bỏ</a>"
 
+msgid "Remove from favorites"
+msgstr "Xóa khỏi ưa thích"
+
+msgid "Add to favorites"
+msgstr "Thêm vào ưa thích"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "Bộ sưu tập bởi {0}"
@@ -1572,6 +1548,10 @@ msgstr "Bộ sưu tập là nhóm các tiện ích liên quan mà bất kì cũn
 
 msgid "Subscribe"
 msgstr "Đăng kí theo dõi"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "bởi %(users)s"
 
 msgid "Following"
 msgstr ""
@@ -1620,6 +1600,21 @@ msgstr "Thêm một bình luận"
 
 msgid "Remove this add-on from the collection"
 msgstr "Bỏ tiện ích này khỏi bộ sưu tập"
+
+msgid "Add a positive vote for this collection"
+msgstr "Thêm một phiếu thuận cho bộ sưu tập này"
+
+msgid "Add a negative vote for this collection"
+msgstr "Thêm một phiếu chống cho bộ sưu tập này"
+
+msgid "Remove my vote for this collection"
+msgstr "Xóa phiếu của tôi cho bộ sưu tập này"
+
+msgid "Log in to vote for this collection"
+msgstr "Đăng nhập để bình chọn cho bộ sưu tập này"
+
+msgid "Favorite"
+msgstr "Ưa thích"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2240,9 +2235,6 @@ msgstr "Người quan sát"
 msgid "Support"
 msgstr "Hỗ trợ"
 
-msgid "Any"
-msgstr "Bất kì"
-
 msgid "Extension"
 msgstr "Phần mở rộng"
 
@@ -2692,6 +2684,9 @@ msgstr ""
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
+msgid "Any"
+msgstr "Bất kì"
+
 msgid "All Platforms"
 msgstr "Tất cả Nền tảng"
 
@@ -2860,23 +2855,6 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
-
-# {0} is a number
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} lỗi"
-msgstr[1] ""
-
-# {0} is a number
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} cảnh báo"
-msgstr[1] ""
-
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
@@ -2965,6 +2943,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "Biểu tượng không được chuyển động."
 
@@ -3016,11 +2997,30 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policy"
+msgstr "Ngày Duyệt"
+
+#, fuzzy
+msgid "Review Rules"
+msgstr "Hướng dẫn Đánh giá"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Phiên bản In được"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Tôi Chấp Thuận Thỏa Thuận Này"
@@ -3030,29 +3030,6 @@ msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
 
 msgid "Back to Add-ons"
 msgstr "Trở lại Tiện ích"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Tìm kiếm"
-
-msgid "Search"
-msgstr "Tìm kiếm"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Kết quả Tìm kiếm cho \"{0}\""
-
-msgid "Search Results"
-msgstr "Kết quả Tìm kiếm"
-
-msgid "Please enter some search terms."
-msgstr ""
-
-msgid "Loading results&hellip;"
-msgstr ""
-
-msgid "No results found."
-msgstr "Không tìm thấy kết quả."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3104,6 +3081,9 @@ msgstr ""
 msgid "Search Developer Docs"
 msgstr "Tìm kiếm trong Tài liệu Nhà phát triển"
 
+msgid "Search"
+msgstr "Tìm kiếm"
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -3139,6 +3119,9 @@ msgstr "Hoạt động Gần đây cho {0}"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> bởi %(user)s"
+
+msgid "No results found."
+msgstr "Không tìm thấy kết quả."
 
 msgid "Refine Activity"
 msgstr "Tinh chế Hoạt động"
@@ -3281,6 +3264,19 @@ msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
 #, fuzzy
 msgid "This add-on is ready for general use."
 msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
+
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Trường bắt buộc"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3689,8 +3685,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Hủy bỏ Yêu cầu Xét duyệt"
+
+#, fuzzy
 msgid "Cancel Review and Disable Version"
 msgstr "Hủy bỏ Yêu cầu Xét duyệt"
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "Gửi lên một Tiện ích Mới"
 
 #, fuzzy
 msgid "Submit Version for Review"
@@ -3722,6 +3726,13 @@ msgstr "Việc gửi lên Hoàn tất"
 #, fuzzy
 msgid "You’re done!"
 msgstr "Bạn đã xong rồi!"
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "Ghi chú Phiên bản"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3981,9 +3992,10 @@ msgstr ""
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "HTML được cho phép: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "Một số HTML được hỗ trợ."
@@ -4025,10 +4037,9 @@ msgstr ""
 msgid "Resources"
 msgstr "Tài nguyên Khác"
 
-# Plural in this context means many of the add-on type
 #, fuzzy
-msgid "WebExtensions"
-msgstr "Phần mở rộng"
+msgid "Porting"
+msgstr "Xếp hạng"
 
 #, fuzzy
 msgid "Community"
@@ -4049,8 +4060,8 @@ msgid "Contact Us"
 msgstr "Danh bạ"
 
 #, fuzzy
-msgid "Review Policies"
-msgstr "Ngày Duyệt"
+msgid "Policies"
+msgstr "Chính sách Tiện ích"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4128,12 +4139,11 @@ msgstr "Thêm Tiện ích"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-# The title for a user if they are a developer
 #, fuzzy
-msgid "Evolution in Add-on Development"
-msgstr "Nhà phát triển Tiện ích"
+msgid "Update Your Legacy Extension"
+msgstr "Phần mở rộng Chọn lọc"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 #, fuzzy
@@ -4144,12 +4154,12 @@ msgstr "Tìm hiểu Thêm"
 msgid "What's New"
 msgstr "Đây là gì?"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
-msgstr ""
+#, fuzzy
+msgid "See Tutorial"
+msgstr "Xem tất cả"
 
 #, fuzzy
 msgid "View All Submissions"
@@ -4691,28 +4701,45 @@ msgstr "Hủy bỏ yêu cầu xét duyệt sẽ đánh dấu tiện ích của b
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duyệt của mình không?"
 
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+# {0} is a number
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} lỗi"
+msgstr[1] ""
+
+# {0} is a number
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} cảnh báo"
+msgstr[1] ""
+
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4815,41 +4842,64 @@ msgstr "Bỏ qua"
 msgid "Delete review"
 msgstr "Xóa đánh giá"
 
-msgid "Rejected or Unreviewed"
+msgid "Admin Review"
+msgstr "Quản trị Xét duyệt"
+
+msgid "Jetpack Add-on"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Trạng thái:"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Tiện ích {0}"
-msgstr[1] "Tiện ích {0}"
+msgid "More Information Requested"
+msgstr ""
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Cập nhật {0}"
-msgstr[1] "Cập nhật {0}"
+msgid "Contains Reviewer Comment"
+msgstr "Bình luận của Nhà phát triển"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
-msgstr[1] ""
+msgid "Sources provided"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
+msgid "WebExtension"
+msgstr ""
+
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Tiện ích {0}"
-msgstr[1] "Tiện ích {0}"
+msgid "Has too many daily users."
+msgstr "Người dùng hàng ngày là ai?"
 
-msgid "All Unlisted Add-ons"
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+#, fuzzy
+msgid "Is flagged for admin review."
+msgstr "Gắn cờ chờ đánh giá"
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -4936,72 +4986,6 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr "Cập nhật"
-
-msgid "Admin Review"
-msgstr "Quản trị Xét duyệt"
-
-msgid "Jetpack Add-on"
-msgstr ""
-
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "Bình luận của Nhà phát triển"
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr ""
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-#, fuzzy
-msgid "Has too many daily users."
-msgstr "Người dùng hàng ngày là ai?"
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-#, fuzzy
-msgid "Is flagged for admin review."
-msgstr "Gắn cờ chờ đánh giá"
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
-msgstr ""
-
 msgid "New Add-ons (Under 5 days)"
 msgstr "Tiện ích Mới (chưa tới 5 ngày)"
 
@@ -5082,6 +5066,10 @@ msgstr ""
 msgid "View Privacy Policy"
 msgstr "Xem Chính sách Riêng tư"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Trường bắt buộc"
+
 msgid "EULA"
 msgstr "Thỏa thuận Người dùng Cuối"
 
@@ -5106,23 +5094,6 @@ msgstr "Thông tin thêm về tiện ích"
 msgid "Image Gallery"
 msgstr "Trưng bày Hình ảnh"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Kênh Phát triển cho phép bạn thử phiên bản thử nghiệm mới của tiện ích này trước khi nó được phát hành ra công chúng. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ "
-"kênh này."
-
-msgid "Install development version"
-msgstr "Cài đặt phiên bản phát triển"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Cẩn thận:</strong> Phiên bản phát triển của tiện ích này chưa được duyệt bởi Mozilla. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ nhà phát triển. Để ngừng "
-"nhận cập nhật kiểu này, hãy cài lại phiên bản mặc định từ liên kết bên trên."
-
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
@@ -5137,6 +5108,9 @@ msgstr "Hàng chờ"
 msgid "New Add-ons"
 msgstr "Thêm Tiện ích"
 
+msgid "Updates"
+msgstr "Cập nhật"
+
 msgid "Moderated Reviews"
 msgstr "Xét duyệt Đã được Điều chỉnh"
 
@@ -5145,6 +5119,9 @@ msgid "Auto Approved Add-ons"
 msgstr "Thêm Tiện ích"
 
 msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Logs"
@@ -5609,31 +5586,44 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Trạng thái:"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Tiện ích {0}"
+msgstr[1] "Tiện ích {0}"
+
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Cập nhật {0}"
+msgstr[1] "Cập nhật {0}"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
+msgstr[1] ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Tiện ích {0}"
+msgstr[1] "Tiện ích {0}"
+
+msgid "Flagged"
+msgstr ""
+
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "Access your data for {name}"
@@ -5774,6 +5764,30 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 
 msgid "Fetching file."
 msgstr "Đang truy xuất tập tin."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
+msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -7630,19 +7644,6 @@ msgstr "Sắp xếp theo"
 msgid "Relevance"
 msgstr "Trùng khớp"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả"
-
 msgid "All Add-ons"
 msgstr "Tất cả Tiện ích"
 
@@ -7663,6 +7664,9 @@ msgstr "Kết quả Tìm kiếm Bộ sưu tập cho {0}"
 msgid "Collection Search Results"
 msgstr "Kết quả Tìm kiếm Bộ sưu tập"
 
+msgid "Search Results"
+msgstr "Kết quả Tìm kiếm"
+
 msgid "Search Unavailable"
 msgstr "Tìm kiếm Không có sẵn"
 
@@ -7675,6 +7679,14 @@ msgstr "Kết quả Tìm kiếm Giao diện cho {0}"
 
 msgid "Themes Search Results"
 msgstr "Kết quả Tìm kiếm Giao diện"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: Tìm kiếm"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "Kết quả Tìm kiếm cho \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7697,6 +7709,19 @@ msgstr "Phân mục"
 
 msgid "Tag"
 msgstr "Nhãn"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</strong>"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
@@ -8141,10 +8166,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr "Vui lòng nhập một khoản đề xuất nhỏ hơn ${0}."
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "khác"
-
 msgid "No user with that email."
 msgstr "Không người dùng nào có email đó."
 
@@ -8292,7 +8313,8 @@ msgstr "Xóa hình ảnh hiện tại"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Giới thiệu bản thân tới cộng đồng, nếu bạn thích! Đoạn văn này sẽ xuất hiện công khai trên trang thông tin người dùng của bạn."
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, fuzzy, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "HTML được cho phép: {0}. Các liên kết bị cấm."
 
 msgid "Decide what collections should be shown in your profile."
@@ -8455,6 +8477,10 @@ msgstr[1] ""
 
 msgid "Average rating of developer's add-ons"
 msgstr "Đánh giá trung bình của các tiện ích của nhà phát triển"
+
+msgctxt "user_list_others"
+msgid "others"
+msgstr "khác"
 
 #, python-format
 msgid "%s Version History"

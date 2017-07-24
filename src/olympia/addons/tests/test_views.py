@@ -16,21 +16,23 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.helpers import numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Charity, Persona)
+    Charity, Persona, ReplacementAddon)
+from olympia.addons.views import (
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
-from olympia.users.helpers import users_list
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
@@ -384,7 +386,7 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('.biography').html() == (
-            'Bio: This is line one.<br><br>This is line two')
+            'Bio: This is line one.<br/><br/>This is line two')
         addon_reasons = doc('#about-addon p')
         assert addon_reasons.eq(0).html() == (
             'Why: This is line one.<br/><br/>This is line two')
@@ -398,9 +400,9 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         bios = pq(r.content)('.biography')
         assert bios.eq(0).html() == (
-            'Bio1: This is line one.<br><br>This is line two')
+            'Bio1: This is line one.<br/><br/>This is line two')
         assert bios.eq(1).html() == (
-            'Bio2: This is line one.<br><br>This is line two')
+            'Bio2: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         url = reverse('addons.roadblock', args=['a11730'])
@@ -572,9 +574,17 @@ class TestDetailPage(TestCase):
         a.name = '<script>alert("fff")</script>'
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        html = pq(response.content)('table caption').html()
-        assert '&lt;script&gt;alert(&#34;fff&#34;)&lt;/script&gt;' in html
-        assert '<script>' not in html
+        assert (
+            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
+            response.content)
+        assert '<script>' not in response.content
+
+    def test_report_abuse_links_to_form_age(self):
+        response = self.client.get_ajax(
+            reverse('addons.detail', args=['a3615']))
+        doc = pq(response.content)
+        expected = reverse('addons.abuse', args=['3615'])
+        assert doc('#report-abuse').attr('href') == expected
 
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
@@ -918,19 +928,18 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_requires_restart(self):
-        span_restart = '<span class="requires-restart">Requires Restart</span>'
-        f = self.addon.current_version.all_files[0]
+    def test_is_restart_required(self):
+        span_is_restart_required = (
+            '<span class="is-restart-required">Requires Restart</span>')
+        file_ = self.addon.current_version.all_files[0]
 
-        assert f.requires_restart is True
-        r = self.client.get(self.url)
-        assert span_restart in r.content
+        assert file_.is_restart_required is False
+        response = self.client.get(self.url)
+        assert span_is_restart_required not in response.content
 
-        f.no_restart = True
-        f.save()
-        assert f.requires_restart is False
-        r = self.client.get(self.url)
-        assert span_restart not in r.content
+        file_.update(is_restart_required=True)
+        response = self.client.get(self.url)
+        assert span_is_restart_required in response.content
 
     def test_is_webextension(self):
         file_ = self.addon.current_version.all_files[0]
@@ -940,7 +949,7 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
-        file_.update(is_webextension=True, no_restart=True)
+        file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -1563,10 +1572,28 @@ class TestReportAbuse(TestCase):
 
 
 class TestFindReplacement(TestCase):
-    def test_basic(self):
+    def test_no_match(self):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        self.assert3xx(
+            response,
+            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='/addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match_no_leading_slash(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')
@@ -1789,6 +1816,30 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = self._test_url()
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
+
+    def test_with_lang(self):
+        self.addon.name = {
+            'en-US': u'My Addôn, mine',
+            'fr': u'Mon Addôn, le mien',
+        }
+        self.addon.save()
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'My Addôn, mine'
+
+        response = self.client.get(self.url, {'lang': 'fr'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'Mon Addôn, le mien'
+
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'My Addôn, mine'
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
@@ -2607,6 +2658,92 @@ class TestAddonSearchView(ESTestCase):
             self.url, {'app': 'lol'}, expected_status=400)
         assert data == ['Invalid "app" parameter.']
 
+    def test_filter_by_author(self):
+        author = user_factory(username=u'my-fancyAuthôr')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        author2 = user_factory(username=u'my-FancyAuthôrName')
+        AddonUser.objects.create(addon=addon2, user=author2)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+
+class TestAddonAutoCompleteSearchView(ESTestCase):
+    client_class = APITestClient
+
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonAutoCompleteSearchView, self).setUp()
+        self.url = reverse('addon-autocomplete')
+
+    def tearDown(self):
+        super(TestAddonAutoCompleteSearchView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later.
+        waffle.switch_is_active('boost-webextensions-in-search')
+
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'my'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
+
+    def test_empty(self):
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_no_unlisted(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      status=amo.STATUS_NULL,
+                      weekly_downloads=666,
+                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        self.refresh()
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_pagination(self):
+        [addon_factory() for x in range(0, 11)]
+        self.refresh()
+
+        # page_size should be ignored, we should get 10 results.
+        data = self.perform_search(self.url, {'page_size': 1})
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 10
+
 
 class TestAddonFeaturedView(TestCase):
     client_class = APITestClient
@@ -2789,3 +2926,55 @@ class TestStaticCategoryView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response['cache-control'] == 'max-age=21600'
+
+
+class TestLanguageToolsView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestLanguageToolsView, self).setUp()
+        self.url = reverse('addon-language-tools')
+
+    def test_wrong_app(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 400
+
+        response = self.client.get(self.url, {'app': 'foo'})
+        assert response.status_code == 400
+
+    def test_basic(self):
+        dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        dictionary_spelling_variant = addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+
+        # These add-ons below should be ignored: they are either not public or
+        # of the wrong type, not supporting the app we care about, or their
+        # target locale is empty.
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            status=amo.STATUS_NOMINATED)
+        addon_factory(type=amo.ADDON_DICT, target_locale='')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale=None)
+        addon_factory(target_locale='fr')
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 3
+        expected = [dictionary, dictionary_spelling_variant, language_pack]
+
+        assert (
+            set(item['id'] for item in data['results']) ==
+            set(item.pk for item in expected))
+
+        assert 'locale_disambiguation' in data['results'][0]
+        assert 'target_locale' in data['results'][0]
