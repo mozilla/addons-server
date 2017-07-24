@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 04:07+0000\n"
+"PO-Revision-Date: 2017-07-24 04:29+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -467,32 +467,34 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Cara untuk Pasang dalam Thunderbird</strong> <ol> <li>Muat turun dan simpan fail dalam cakera keras anda.</li> <li>Dalam Mozilla Thunderbird, buka Add-ons dalam menu Alatan.</li> <li>Dari "
+"butang pilihan di sebelah medan carian add-on, pilih \"Pasang Add-on Daripada Fail...\" dan cari lokasi add-on yang telah dimuat turun.</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "Untuk pasang Tema ini, <b>dapatkan Thunderbird</b>, klien e-mel percuma dan sumber terbuka daripada Mozilla Messaging dan Pasang add-on Personas Plus."
 
 msgid "Learn more about Thunderbird"
 msgstr "Ketahu selanjutnya perihal Thunderbird"
 
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Untuk pasang Tema ini serta ribuan yang lain, <b>dapatkan Firefox</b>, sebuah pelayar web yang percuma dan terbuka daripada Mozilla."
 
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr ""
+msgstr "Add-on ini tidak dikemaskini supaya berfungsi dengan versi %(app)s anda."
 
 msgid "Install Anyway"
 msgstr "Pasang Jua"
 
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Add-on ini memerlukan versi Firefox yang masih belum dikeluarkan lagi."
 
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Bantu menguji Versi Firefox baru"
 
 #, python-format
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Add-on ini memerlukan %(app)s {new_version}. Anda kini menggunakan %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 msgid "Upgrade {0}"
@@ -500,23 +502,25 @@ msgstr "Naik taraf {0}"
 
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "atau tinjau <a href=\"%(href)s\">versi lebih lama add-on ini</a>."
 
 #, python-format
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Persona ini memerlukan %(app)s %(new_version)s. Anda kini menggunakan %(app)s {old_version}."
 
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
+"<strong>Amaran:</strong> Add-on ini masih belum disemak oleh Mozilla dan tidak boleh dipasang dalam keluaran versi Firefox 43 dan ke atas.  Berhati-hati apabila memasang perisian pihak ketiga yang "
+"mungkin membahayakan komputer anda."
 
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr ""
+msgstr "<strong>Sila ambil perhatian:</strong> Add-on ini adalah tidak serasi dengan sistem operasi anda."
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Add-on ini tidak serasi dengan versi %(app)s anda kerana yang berikut:"
 
 msgid "View other versions"
 msgstr "Lihat versi lain"
@@ -541,6 +545,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"Jika anda mengesyaki add-on ini menyalahi <a href=\"%(url)s\">polisi kami</a> atau ada isu keselamatan atau privasi, sila gunakan borang di bawah untuk menjelaskan kebimbangan anda itu. Jangan "
+"gunakan borang ini untuk sebab-sebab lain."
 
 msgid "Send Report"
 msgstr "Hantar Laporan"
@@ -549,11 +555,11 @@ msgid "Cancel"
 msgstr "Batal"
 
 msgid "What do you think?"
-msgstr ""
+msgstr "Apa pendapat anda?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Sila <a href=\"%(login)s\">log masuk</a> untuk mengemukakan ulasan"
 
 msgid "Title:"
 msgstr "Tajuk:"
@@ -565,7 +571,7 @@ msgid "Rating:"
 msgstr "Kadaran:"
 
 msgid "Submit review"
-msgstr ""
+msgstr "Hantar ulasan"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
