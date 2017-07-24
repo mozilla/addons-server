@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 07:08+0000\n"
+"PO-Revision-Date: 2017-07-24 07:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -737,6 +737,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Saluran Pembangunan membolehkan anda menguji versi baru eksperimen add-on ini sebelum dikeluarkan kepada umum. Apabila memasang versi pembangunan, anda akan sentiasa mendapat kemas kini daripada "
+"saluran ini. Untuk berhenti menerima kemas kini, pasang semula versi piawai dari pautan di atas."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
@@ -6228,7 +6230,7 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr "Apa cara untuk saya ikuti perkembangan di AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Ada beberapa cara untuk mendapatkan perkembangan terkini dunia add-ons ini:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
@@ -6243,7 +6245,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Menakjubkan! Bagaimana saya boleh melibatkan diri?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
