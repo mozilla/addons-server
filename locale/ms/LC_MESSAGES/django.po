@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 03:30+0000\n"
+"PO-Revision-Date: 2017-07-24 03:39+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2286,7 +2286,7 @@ msgid "Updated Complete Theme Review"
 msgstr ""
 
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Ulasan Add-on Moderat"
 
 msgid "Addon Review Moderation Reverted"
 msgstr ""
@@ -2785,7 +2785,7 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
 
 msgid "All My Add-ons"
 msgstr ""
@@ -3182,7 +3182,7 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
+msgstr[0] "Dipisahkan-koma, minimum {0} aksara."
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
@@ -4879,7 +4879,7 @@ msgid "Updates"
 msgstr ""
 
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Ulasan Moderat"
 
 msgid "Auto Approved Add-ons"
 msgstr ""
@@ -4897,7 +4897,7 @@ msgid "Add-on Review Log"
 msgstr ""
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Log Ulasan Moderat"
 
 msgid "Signed Beta Files Log"
 msgstr ""
@@ -4980,7 +4980,7 @@ msgstr ""
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "Ulasan Moderat ({num})"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5063,7 +5063,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Semua ulasan adalah moderat. Syabas!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
@@ -5356,7 +5356,7 @@ msgstr[0] ""
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "Ulasan Moderat ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -7160,7 +7160,7 @@ msgstr ""
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Tahap %d daripada 5 bintang"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -7296,11 +7296,11 @@ msgid_plural "{num} reviews"
 msgstr[0] ""
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Tahap {0} daripada 5 bintang"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Tahap %(rating)s daripada 5 bintang"
 
 msgid "Most popular this week"
 msgstr ""
