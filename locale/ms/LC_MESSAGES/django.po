@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-23 13:59+0000\n"
-"Last-Translator: manxmensch <manxmensch@gmail.com>\n"
+"PO-Revision-Date: 2017-07-24 00:01+0000\n"
+"Last-Translator: Norman Haikal <normanh876@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
@@ -305,13 +305,13 @@ msgid "Add-ons for {0}"
 msgstr "Add-on untuk {0}"
 
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Ekstensi Terpilih"
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Ekstensi Popular"
 
 msgid "Most Popular"
-msgstr ""
+msgstr "Paling Popular"
 
 msgid "All »"
 msgstr "Semua »"
@@ -414,13 +414,13 @@ msgid "License"
 msgstr "Lesen"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Menunggu Penelitian"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Ditolak"
 
 msgid "Approved"
-msgstr ""
+msgstr "Diluluskan"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -428,7 +428,7 @@ msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> pengguna"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Legar untuk Previu"
 
 msgid "Add"
 msgstr "Tambah"
