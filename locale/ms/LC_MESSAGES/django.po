@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 05:22+0000\n"
+"PO-Revision-Date: 2017-07-24 07:08+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -694,44 +694,44 @@ msgstr "Ketahui mengapa {0} dicipta dan yang akan datang untuk add-on ini."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Skrinsyot add-on #{0}"
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "Halaman utama Add-on"
 
 msgid "Support site"
-msgstr ""
+msgstr "Laman Sokongan"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "E-mel Sokongan"
 
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 msgid "Last Updated:"
-msgstr ""
+msgstr "Kemaskini Terakhir:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Dikeluarkan di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
-msgstr ""
+msgstr "Lesen Langganan"
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "Perihal Add-on ini"
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Komen Pembangun"
 
 msgid "Version Information"
-msgstr ""
+msgstr "Maklumat Versi"
 
 msgid "See complete version history"
-msgstr ""
+msgstr "Lihat sejarah versi lengkap"
 
 msgid "Development Channel"
-msgstr ""
+msgstr "Saluran Pembangunan"
 
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
