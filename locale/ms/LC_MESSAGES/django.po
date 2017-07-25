@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 03:07+0000\n"
+"PO-Revision-Date: 2017-07-25 03:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1524,10 +1524,10 @@ msgid "Create a Collection"
 msgstr "Cipta Koleksi"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Koleksi memudahkan anda menjejaki add-ons kegemaran anda dan mengongsi pelayar yang anda sudah lengkapkan penyesesuaiannya dengan orang lain."
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "Ikon Koleksi"
 
 msgid "Reset"
 msgstr ""
@@ -1539,10 +1539,10 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Add-ons dalam Koleksi Anda"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Untuk menambah add-on dalam koleksi ini, masukkan namanya di dalam kotan di bawah dan tekan masuk."
 
 msgid "Add-on"
 msgstr ""
@@ -1554,7 +1554,7 @@ msgid "Enter the name of the add-on to include"
 msgstr ""
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "Tambah ke Koleksi"
 
 msgid "Pending"
 msgstr ""
@@ -1563,19 +1563,19 @@ msgid "Add a comment"
 msgstr ""
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Buang add-on ini daripada koleksi"
 
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Beri undi positif untuk koleksi ini"
 
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Beri undi negatif untuk koleksi ini"
 
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Padam undi saya untuk koleksi ini"
 
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Log masuk untuk undi koleksi ini"
 
 msgid "Favorite"
 msgstr ""
@@ -1823,6 +1823,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Laporan yang dihantar kepada kami melalui <a href=\"%(url_)s\">Pelapor Keserasian Add-on</a> dikumpulkan di sini untuk tinjauan pembangun. Laporan ini membantu kami menentukan add-ons yang perlu"
+" dibantu supaya boleh menyokong versi Firefox yang akan datang. </p>"
 
 msgid "Reports for your Add-ons"
 msgstr ""
@@ -1980,10 +1982,10 @@ msgid "{tag} removed from {addon}."
 msgstr ""
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} ditambah ke {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} dibuang daripada {collection}."
 
 msgid "{review} for {addon} written."
 msgstr ""
@@ -2818,7 +2820,7 @@ msgid "Add-on Status"
 msgstr ""
 
 msgid "User Collections"
-msgstr ""
+msgstr "Koleksi Pengguna"
 
 msgid "User Reviews"
 msgstr ""
@@ -4314,7 +4316,7 @@ msgstr ""
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Tinjau dan langgan <a href=\"%(feed_url)s\">suapan aktiviti</a> tema anda untuk terus mendapatkan ulasan, koleksi dan banyak lagi."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -5638,7 +5640,7 @@ msgid "Worry-free browsing"
 msgstr ""
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Lindungi privasi dalam talian anda dengan add-ons dalam koleksi ini."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
@@ -6930,19 +6932,21 @@ msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a
 msgstr ""
 
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Koleksi dan Kegemaran"
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Apakah koleksi?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang dicipta oleh pengguna untuk dikongsi."
 
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Apakah koleksi Kegemaran Saya?"
 
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
+"Add-ons kegemaran ialah add-ons yang anda tandabuku supaya mudah didapatkan semula. Anda boleh tambah add-on ke koleksi kegemaran anda dengan mengklik \"Tambah ke kegemaran\" pada halaman "
+"butirannya."
 
 msgid "Mobile Add-ons"
 msgstr ""
@@ -7356,7 +7360,7 @@ msgid "search for add-ons"
 msgstr ""
 
 msgid "search for collections"
-msgstr ""
+msgstr "cari koleksi"
 
 msgid "search for themes"
 msgstr ""
@@ -7385,10 +7389,10 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Hasil Carian Koleksi untuk {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Hasil Carian Koleksi"
 
 msgid "Search Results"
 msgstr ""
@@ -7521,7 +7525,7 @@ msgid "Add-ons Updated"
 msgstr ""
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Koleksi Dicipta"
 
 msgid "Reviews Written"
 msgstr ""
@@ -7637,7 +7641,7 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Koleksi Dicipta mengikut Tarikh"
 
 msgid "Contributions by Date"
 msgstr ""
@@ -7745,7 +7749,7 @@ msgid "Other Applications"
 msgstr "Aplikasi Lain"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Untuk mencipta koleksi anda sendiri, anda mesti ada akaun Add-ons Mozilla."
 
 msgid "Footer logo"
 msgstr ""
@@ -8030,10 +8034,10 @@ msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Tentukan koleksi yang patut dipaparkan dalam profil anda."
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Papar koleksi yang saya cipta"
 
 msgid "Display collections I'm following"
 msgstr ""
