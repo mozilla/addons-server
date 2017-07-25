@@ -7,16 +7,13 @@ from olympia.bandwagon.indexers import CollectionIndexer
 from olympia.compat.cron import compatibility_report
 from olympia.compat.indexers import AppCompatIndexer
 from olympia.lib.es.utils import create_index
-from olympia.users.cron import reindex_users
-from olympia.users.indexers import UserProfileIndexer
 
 
 log = olympia.core.logger.getLogger('z.es')
 
 
 # Search-related indexers.
-indexers = (AddonIndexer, AppCompatIndexer, CollectionIndexer,
-            UserProfileIndexer)
+indexers = (AddonIndexer, AppCompatIndexer, CollectionIndexer)
 
 # Search-related index settings.
 # TODO: Is this still needed? Do we care?
@@ -100,8 +97,7 @@ def reindex(index_name):
     # FIXME: refactor these reindex functions, moving them to a reindex method
     # on the indexer class, and then simply go through indexers like
     # get_mapping() does.
-    reindexers = [reindex_addons, reindex_collections, reindex_users,
-                  compatibility_report]
+    reindexers = [reindex_addons, reindex_collections, compatibility_report]
     for reindexer in reindexers:
         log.info('Reindexing %r' % reindexer.__name__)
         try:
