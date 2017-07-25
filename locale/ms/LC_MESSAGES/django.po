@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 09:31+0000\n"
+"PO-Revision-Date: 2017-07-25 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1804,19 +1804,19 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr "Tema Lengkap mengubah penampilan pelayar anda dengan gaya untuk bingkai tetingkap, bar alamat, butang, tab dan menu. <a href=\"%(url)s\" class=\"more-info\">Mulakan meneroka</a>"
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Tema Penampilan"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Tinjau Semua Penampilan"
 
 msgid "No themes found"
-msgstr ""
+msgstr "Tiada tema ditemui"
 
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Laporan Keserasian Add-on"
 
 #, python-format
 msgid ""
@@ -1827,69 +1827,69 @@ msgstr ""
 " dibantu supaya boleh menyokong versi Firefox yang akan datang. </p>"
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Laporan untuk Add-ons anda"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Masukkan GUID add-on di bawah untuk melihat laporan yang kami terima."
 
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Laporan Keserasian {addon}"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan kejayaan"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan masalah"
 
 msgid "View all"
-msgstr ""
+msgstr "Papar semua"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "Saring mengikut Aplikasi"
 
 msgid "Report Type"
-msgstr ""
+msgstr "Jenis Laporan"
 
 msgid "Version"
-msgstr ""
+msgstr "Versi"
 
 msgid "Application Version"
-msgstr ""
+msgstr "Versi Aplikasi"
 
 msgid "Application Build"
-msgstr ""
+msgstr "Binaan Aplikasi"
 
 msgid "Platform"
-msgstr ""
+msgstr "Platform"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "Keupayaan e10s"
 
 msgid "e10s Compatible"
-msgstr ""
+msgstr "Serasi e10s"
 
 msgid "Submitted"
-msgstr ""
+msgstr "Dihantar"
 
 msgid "Success"
-msgstr ""
+msgstr "Berjaya"
 
 msgid "Problem"
-msgstr ""
+msgstr "Masalah"
 
 msgid "No reports found."
-msgstr ""
+msgstr "Tiada laporan ditemukan."
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} dicipta."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Sifat {addon} diedit."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Keterangan {addon} diedit."
 
 msgid "Categories edited for {addon}."
 msgstr ""
