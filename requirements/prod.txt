@@ -264,9 +264,9 @@ easy-thumbnails==2.4.1 \
 elasticsearch==5.3.0 \
     --hash=sha256:aea16d6d6ad03a509c9f591eee9ce4ce62918d8ba26bf6513097223929be0a09 \
     --hash=sha256:cb7f1346ebf7fb3fac1efcd8454d2d124d29cc55a009ed5683fe4c6ecad12925
-elasticsearch-dsl==5.2.0 \
-    --hash=sha256:0c4df03eeb2c254d0c2df49df3fcfbfb1f9af18ab22308487b023f9c9adbf87d \
-    --hash=sha256:1a816fed5a0b9cbc862670f3455aa151e75f6042db38a1b008f73cc12173e0d0
+elasticsearch-dsl==5.3.0 \
+    --hash=sha256:de5fd68901c5b94e51e2ae4e8ad6f618b22665d89794d96f9b6b763986665527 \
+    --hash=sha256:de81b2322cde9bf1171c8a41d80596cdadd433b88b93daa09060af3a512523a7
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # enum34 is required by cryptography, docker-compose, flake8
