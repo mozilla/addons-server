@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 
 
 urlpatterns = [
+    url(r'^v3/abuse/', include('olympia.abuse.urls')),
     url(r'^v3/accounts/', include('olympia.accounts.urls')),
     url(r'^v3/addons/', include('olympia.addons.api_urls')),
     url(r'^v3/', include('olympia.discovery.api_urls')),

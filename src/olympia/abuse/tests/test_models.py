@@ -18,6 +18,7 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[User] Abuse Report for regularuser التطب')
+        assert 'user/regularuser' in mail.outbox[0].body
 
         assert mail.outbox[0].to == [settings.ABUSE_EMAIL]
 
@@ -30,6 +31,7 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[Extension] Abuse Report for Delicious Bookmarks')
+        assert 'addon/a3615' in mail.outbox[0].body
 
     def test_addon_fr(self):
         with self.activate(locale='fr'):
@@ -41,3 +43,14 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[Extension] Abuse Report for Delicious Bookmarks')
+
+    def test_guid(self):
+        report = AbuseReport(guid='foo@bar.org')
+        report.send()
+        assert (
+            unicode(report) ==
+            u'[Addon] Abuse Report for foo@bar.org')
+        assert (
+            mail.outbox[0].subject ==
+            u'[Addon] Abuse Report for foo@bar.org')
+        assert 'GUID not in database' in mail.outbox[0].body

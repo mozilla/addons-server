@@ -21,6 +21,8 @@ class TestAbuse(TestCase):
         AbuseReport.objects.create(
             addon=addon, ip_address='1.2.3.4', reporter=user_factory(),
             message='Bar')
+        # This is a report for an addon not in the database
+        AbuseReport.objects.create(guid='@guid', message='Foo')
         AbuseReport.objects.create(user=user_factory(), message='Eheheheh')
 
         url = reverse('admin:abuse_abusereport_changelist')
@@ -29,12 +31,12 @@ class TestAbuse(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 3
+        assert doc('#result_list tbody tr').length == 4
 
         response = self.client.get(url, {'type': 'addon'})
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 2
+        assert doc('#result_list tbody tr').length == 3
 
         response = self.client.get(url, {'type': 'user'})
         assert response.status_code == 200
