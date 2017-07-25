@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 02:36+0000\n"
+"PO-Revision-Date: 2017-07-25 03:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1254,27 +1254,27 @@ msgid "Start a new collection..."
 msgstr "Mulakan koleksi baru..."
 
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Mulakan Koleksi Baru"
 
 msgid "Name:"
-msgstr ""
+msgstr "Nama:"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"collections-new-cancel\" href=\"#\">Batal</a>"
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
 msgstr "Untuk menilaikan koleksi, anda perlu ada akaun add-ons."
 
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Cipta Akaun Add-ons"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "atau <a href=\"%(login)s\">log masuk akaun sedia ada anda</a>"
 
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Koleksi"
 
 msgid "private"
 msgstr ""
@@ -1291,41 +1291,41 @@ msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
 
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Jadikan Koleksi ini Peribadi"
 
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Jadikan Koleksi ini Umum"
 
 msgid "Learn about collections"
-msgstr ""
+msgstr "Belajar perihal koleksi"
 
 msgid "More Options:"
 msgstr ""
 
 msgid "Edit Collection"
-msgstr ""
+msgstr "Edit Koleksi"
 
 msgid "Delete Collection"
-msgstr ""
+msgstr "Buang Koleksi"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s Tema dalam Koleksi ini"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s Add-ons dalam Koleksi ini"
 
 msgid "Go"
 msgstr ""
 
 msgid "What are Collections?"
-msgstr ""
+msgstr "Apakah Koleksi?"
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "Teroka Koleksi"
 
 msgid "Common Tags"
 msgstr ""
@@ -1334,7 +1334,7 @@ msgid "More by this User"
 msgstr ""
 
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Pamer semua koleksi pengguna ini"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1370,14 +1370,14 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut mingguan"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut bulanan"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1386,7 +1386,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut"
 
 msgid "by {0}"
 msgstr ""
@@ -1395,14 +1395,14 @@ msgid "Stop Following"
 msgstr ""
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ikuti Koleksi ini"
 
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Edit Koleksi ini"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr ""
+msgstr "Buang {0}"
 
 msgid "Are you sure?"
 msgstr ""
@@ -1415,7 +1415,7 @@ msgstr ""
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "Edit {0}"
 
 msgid "Description"
 msgstr ""
@@ -1439,12 +1439,14 @@ msgid "Remove"
 msgstr ""
 
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Penyumbang Koleksi"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Anda boleh masukkan beberapa penyumbang kepada koleksi ini. Penyumbang boleh menambah dan mengalih keluar add-ons daripada koleksi ini, tetapi tidak boleh mengubah nama atau perihalannya. Untuk "
+"masukkan penyumbang, masukkan e-mel mereka di dalam kotak di bawah. Penyumbang perlu ada akaun Add-ons Mozilla."
 
 msgid "User"
 msgstr ""
@@ -1468,7 +1470,7 @@ msgid "Admin Settings"
 msgstr ""
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Amaran:</b> Dengan menukar pemilik koleksi ini, anda tidak boleh lagi mengeditnya. Anda hanya akan boleh menambah dan mengalihkan keluar add-ons daripadanya."
 
 msgid "Continue"
 msgstr ""
@@ -1484,29 +1486,29 @@ msgstr ""
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Koleksi oleh {0}"
 
 msgid "No collections found."
-msgstr ""
+msgstr "Tiada koleksi dijumpai."
 
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Koleksi Paling-Diikuti"
 
 msgid "Newest Collections"
-msgstr ""
+msgstr "Koleksi Terbaru"
 
 msgid "Collections by Name"
-msgstr ""
+msgstr "Koleksi mengikut Nama"
 
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Koleksi Terkini Dikemaskini"
 
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Koleksi Terkini Popular"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Koleksi adalah sekumpulan add-ons yang boleh dicipta dan dikongsi oleh sesiapa. Layari koleksi yang dicipta oleh pengguna lain atau <a href=\"%(url)s\">cipta sendiri</a>."
 
 msgid "Subscribe"
 msgstr ""
@@ -1519,7 +1521,7 @@ msgid "Following"
 msgstr ""
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "Cipta Koleksi"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
