@@ -7,7 +7,7 @@ from django.db import connection
 from django.db.models import Sum, Max
 
 from apiclient.discovery import build
-from elasticsearch.helpers import bulk_index
+from elasticsearch.helpers import bulk as bulk_index
 from oauth2client.client import OAuth2Credentials
 
 import olympia.core.logger
@@ -270,7 +270,7 @@ def index_update_counts(ids, index=None, **kw):
 
     es = amo_search.get_es()
     qs = UpdateCount.objects.filter(id__in=ids)
-    if qs:
+    if qs.exists():
         log.info('Indexing %s updates for %s.' % (qs.count(), qs[0].date))
     data = []
     try:
@@ -289,7 +289,8 @@ def index_download_counts(ids, index=None, **kw):
 
     es = amo_search.get_es()
     qs = DownloadCount.objects.filter(id__in=ids)
-    if qs:
+
+    if qs.exists():
         log.info('Indexing %s downloads for %s.' % (qs.count(), qs[0].date))
     try:
         data = []
@@ -308,9 +309,11 @@ def index_collection_counts(ids, index=None, **kw):
 
     es = amo_search.get_es()
     qs = CollectionCount.objects.filter(collection__in=ids)
-    if qs:
+
+    if qs.exists():
         log.info('Indexing %s addon collection counts: %s'
                  % (qs.count(), qs[0].date))
+
     data = []
     try:
         for collection_count in qs:
@@ -336,10 +339,11 @@ def index_theme_user_counts(ids, index=None, **kw):
     es = amo_search.get_es()
     qs = ThemeUserCount.objects.filter(id__in=ids)
 
-    if qs:
+    if qs.exists():
         log.info('Indexing %s theme user counts for %s.'
                  % (qs.count(), qs[0].date))
     data = []
+
     try:
         for user_count in qs:
             data.append(search.extract_theme_user_count(user_count))

@@ -745,8 +745,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log
 
 
-class TestVersionEditSearchEngine(TestVersionEditMixin,
-                                  amo.tests.BaseTestCase):
+class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
@@ -886,7 +885,7 @@ class TestVersionEditFiles(TestVersionEditBase):
             sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
-class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
+class TestPlatformSearch(TestVersionEditMixin, TestCase):
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):

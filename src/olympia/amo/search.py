@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
@@ -19,6 +21,9 @@ def get_es(hosts=None, timeout=None, **settings):
     hosts = hosts or getattr(dj_settings, 'ES_HOSTS', DEFAULT_HOSTS)
     timeout = (timeout if timeout is not None else
                getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT))
+
+    if os.environ.get('RUNNING_IN_CI'):
+        settings['http_auth'] = ('elastic', 'changeme')
 
     return Elasticsearch(hosts, timeout=timeout, **settings)
 
@@ -101,8 +106,7 @@ class ES(object):
         filters = []
         queries = []
         sort = []
-        fields = ['id']
-        source = []
+        source = ['id']
         aggregations = {}
         functions = [
             # By default, boost results using the field in the index named...
@@ -118,13 +122,11 @@ class ES(object):
                     else:
                         sort.append(key)
             elif action == 'values':
-                fields.extend(value)
+                source.extend(value)
                 as_list, as_dict = True, False
             elif action == 'values_dict':
-                if not value:
-                    fields = []
-                else:
-                    fields.extend(value)
+                if value:
+                    source.extend(value)
                 as_list, as_dict = False, True
             elif action == 'query':
                 queries.extend(self._process_queries(value))
@@ -156,10 +158,11 @@ class ES(object):
 
         if filters:
             if len(filters) > 1:
-                filters = {"and": filters}
+                filters = {'bool': {'must': filters}}
+
             qs = {
-                "filtered": {
-                    "query": qs,
+                "bool": {
+                    "must": qs,
                     "filter": filters
                 }
             }
@@ -174,14 +177,10 @@ class ES(object):
         if aggregations:
             body['aggs'] = aggregations
 
-        if fields:
-            body['fields'] = fields
-        # As per version 1.0, ES has deprecated loading fields not stored from
-        # '_source', plus non leaf fields are not allowed in fields.
         if source:
             body['_source'] = source
 
-        self.fields, self.as_list, self.as_dict = fields, as_list, as_dict
+        self.source, self.as_list, self.as_dict = source, as_list, as_dict
         return body
 
     def _split(self, string):
@@ -204,20 +203,22 @@ class ES(object):
                         '<field>__exists only works with a "True" value.')
                 rv.append({'exists': {'field': key}})
             elif field_action == 'in':
-                rv.append({'in': {key: val}})
+                rv.append({'terms': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})
             elif field_action == 'range':
                 from_, to = val
                 rv.append({'range': {key: {'gte': from_, 'lte': to}}})
         if or_:
-            rv.append({'or': self._process_filters(or_.items())})
+            rv.append({'should': self._process_filters(or_.items())})
         return rv
 
     def _process_queries(self, value):
         rv = []
         value = dict(value)
-        or_ = value.pop('or_', [])
+        or_ = value.pop('or_', {})
+        extend = value.pop('extend_', [])
+
         for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
@@ -232,6 +233,9 @@ class ES(object):
                 rv.append({'fuzzy': {key: val}})
         if or_:
             rv.append({'bool': {'should': self._process_queries(or_.items())}})
+        if extend:
+            rv.extend(extend)
+
         return rv
 
     def _do_search(self):
@@ -243,7 +247,7 @@ class ES(object):
                 ResultClass = ListSearchResults
             else:
                 ResultClass = ObjectSearchResults
-            self._results_cache = ResultClass(self.type, hits, self.fields)
+            self._results_cache = ResultClass(self.type, hits, self.source)
         return self._results_cache
 
     def raw(self):
@@ -280,12 +284,12 @@ class ES(object):
 
 class SearchResults(object):
 
-    def __init__(self, type, results, fields):
+    def __init__(self, type, results, source):
         self.type = type
         self.took = results['took']
         self.count = results['hits']['total']
         self.results = results
-        self.fields = fields
+        self.source = source
         self.set_objects(results['hits']['hits'])
 
     def set_objects(self, hits):
@@ -301,27 +305,7 @@ class SearchResults(object):
 class DictSearchResults(SearchResults):
 
     def set_objects(self, hits):
-        objs = []
-
-        if self.fields:
-            # When fields are specified in `values_dict(...)` we return the
-            # fields. Each field is coerced to a list to match the
-            # Elasticsearch >= 1.0 style.
-            for h in hits:
-                hit = {}
-                fields = h['fields']
-                # If source is returned, it means that it has been asked, so
-                # take it.
-                if '_source' in h:
-                    fields.update(h['_source'])
-                for field, value in fields.items():
-                    if type(value) != list:
-                        value = [value]
-                    hit[field] = value
-                objs.append(hit)
-            self.objects = objs
-        else:
-            self.objects = [r['_source'] for r in hits]
+        self.objects = [r['_source'] for r in hits]
 
         return self.objects
 
@@ -329,14 +313,10 @@ class DictSearchResults(SearchResults):
 class ListSearchResults(SearchResults):
 
     def set_objects(self, hits):
-        key = 'fields' if self.fields else '_source'
-
-        # When fields are specified in `values(...)` we return the fields. Each
-        # field is coerced to a list to match the Elasticsearch >= 1.0 style.
+        # When fields are specified in `values(...)` we return the fields.
         objs = []
         for hit in hits:
-            objs.append(tuple([v] if key == 'fields' and type(v) != list else v
-                              for v in hit[key].values()))
+            objs.append(tuple(v for v in hit['_source'].values()))
 
         self.objects = objs
 

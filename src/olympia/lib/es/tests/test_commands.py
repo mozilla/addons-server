@@ -22,7 +22,7 @@ class TestIndexCommand(ESTestCase):
 
         # We store previously existing indices in order to delete the ones
         # created during this test run.
-        self.indices = self.es.indices.status()['indices'].keys()
+        self.indices = self.es.indices.stats()['indices'].keys()
 
     # Since this test plays with transactions, but we don't have (and don't
     # really want to have) a ESTransactionTestCase class, use the fixture setup
@@ -34,7 +34,7 @@ class TestIndexCommand(ESTestCase):
         return TransactionTestCase._fixture_teardown(self)
 
     def tearDown(self):
-        current_indices = self.es.indices.status()['indices'].keys()
+        current_indices = self.es.indices.stats()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
                 self.es.indices.delete(index, ignore=404)
@@ -72,7 +72,7 @@ class TestIndexCommand(ESTestCase):
     @classmethod
     def get_indices_aliases(cls):
         """Return the test indices with an alias."""
-        indices = cls.es.indices.get_aliases()
+        indices = cls.es.indices.get_alias()
         items = [(index, aliases['aliases'].keys()[0])
                  for index, aliases in indices.items()
                  if len(aliases['aliases']) > 0 and index.startswith('test_')]

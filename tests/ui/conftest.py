@@ -8,6 +8,7 @@ import jwt
 import pytest
 import requests
 from django.core.management import call_command
+from django.conf import settings
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 from olympia import amo
 from olympia.addons.forms import icons
@@ -238,7 +239,7 @@ def minimal_addon(transactional_db, create_superuser, pytestconfig):
     addon.reload()
 
     addon.save()
-    generate_collection(addon, app=FIREFOX)
+    generate_collection(addon, app=FIREFOX, type=amo.COLLECTION_FEATURED)
     print('Created addon {0} for testing successfully'.format(addon.name))
     return addon
 
@@ -359,3 +360,31 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
         'iat': datetime.datetime.utcnow(),
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)}
     return jwt.encode(payload, jwt_secret, algorithm='HS256')
+
+
+def pytest_configure(config):
+    from olympia.amo.tests import prefix_indexes
+
+    prefix_indexes(config)
+
+
+@pytest.fixture(scope='session')
+def es_test(pytestconfig):
+    from olympia.amo.tests import (
+        start_es_mocks, stop_es_mocks, amo_search, setup_es_test_data)
+
+    stop_es_mocks()
+
+    es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
+    _SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
+    amo.SEARCH_ANALYZER_MAP = {
+        'english': ['en-us'],
+        'spanish': ['es'],
+    }
+
+    setup_es_test_data(es)
+
+    yield
+
+    amo.SEARCH_ANALYZER_MAP = _SEARCH_ANALYZER_MAP
+    start_es_mocks()

@@ -373,8 +373,10 @@ class TestCompatibilityReportCronMixin(object):
         return addon
 
     def generate_reports(self, addon, good, bad, app, app_version):
-        defaults = dict(guid=addon.guid, app_guid=app.guid,
-                        app_version=app_version)
+        defaults = {
+            'guid': addon.guid,
+            'app_guid': app.guid,
+            'app_version': app_version}
         for x in xrange(good):
             CompatReport.objects.create(works_properly=True, **defaults)
         for x in xrange(bad):
@@ -385,6 +387,7 @@ class TestCompatibilityReportCron(
         TestCompatibilityReportCronMixin, ESTestCase):
     def setUp(self):
         self.app_version = FIREFOX_COMPAT[0]['main']
+        super(TestCompatibilityReportCron, self).setUp()
 
     def test_with_bad_support_data(self):
         # Test containing an addon which has an AppSupport data indicating it

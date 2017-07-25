@@ -2600,6 +2600,8 @@ class TestAddonSearchView(ESTestCase):
         other_category = Category.from_static_category(static_category, True)
         addon_factory(slug='different-addon', category=other_category)
 
+        self.refresh()
+
         # Search for add-ons in the first category. There should be only one.
         data = self.perform_search(self.url, {'app': 'firefox',
                                               'type': 'extension',
