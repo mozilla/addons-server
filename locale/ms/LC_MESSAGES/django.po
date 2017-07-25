@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 09:50+0000\n"
+"PO-Revision-Date: 2017-07-25 09:58+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1892,55 +1892,55 @@ msgid "{addon} description edited."
 msgstr "Keterangan {addon} diedit."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategori diedit untuk {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) ditambah ke {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) dibuang daripada {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Sumbangan untuk {addon}."
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} dinyahdayakan."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} didayakan."
 
 #. L10n: {0} is the status
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} ditukar status ke {0}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} ditambah ke {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} diedit untuk {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Versi {0} dibuang daripada {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Fail {0.name} ditambah ke {version} {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Fail {0} dibuang daripada {version} {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} diluluskan."
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} diberi semakan awalan."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Semakan Awalan diluluskan"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} ditolak."
 
 msgid "{addon} {version} retained."
 msgstr ""
