@@ -114,6 +114,9 @@ LOGGING = {
     'loggers': {}
 }
 
+# Enable this in tests by default so our AclPermission checks work.
+ADMIN_ACL_ENABLED = True
+
 ###############################################################################
 # Only if running on a CI server.
 ###############################################################################

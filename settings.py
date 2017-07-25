@@ -145,6 +145,9 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 GITHUB_API_USER = ''
 GITHUB_API_TOKEN = ''
 
+# Enable this locally so our AclPermission checks work.
+ADMIN_ACL_ENABLED = True
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa

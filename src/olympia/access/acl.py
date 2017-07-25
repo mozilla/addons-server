@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from olympia import amo
 
 
@@ -38,6 +40,12 @@ def action_allowed_user(user, permission):
         return False
 
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
+
+    # Unless admin_acl is enabled, limit to certain 'safe' permissions
+    if (not settings.ADMIN_ACL_ENABLED and
+            permission not in amo.permissions.ADMIN_ACL_SAFE_LIST):
+        return False
+
     return any(
         match_rules(group.rules, permission.app, permission.action)
         for group in user.groups_list)
