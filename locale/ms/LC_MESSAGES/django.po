@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 08:10+0000\n"
+"PO-Revision-Date: 2017-07-25 08:38+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1328,10 +1328,10 @@ msgid "Explore Collections"
 msgstr "Teroka Koleksi"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "Tag Lazim"
 
 msgid "More by this User"
-msgstr ""
+msgstr "Selanjutnya oleh Pengguna ini"
 
 msgid "See all collections by this user"
 msgstr "Pamer semua koleksi pengguna ini"
@@ -1405,13 +1405,13 @@ msgid "Delete {0}"
 msgstr "Buang {0}"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Adakah anda pasti?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
@@ -1611,22 +1611,22 @@ msgid "Search tools"
 msgstr "Alatan carian"
 
 msgid "Most Users"
-msgstr ""
+msgstr "Ramai Pengguna"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Muat turun Mingguan"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "Penampilan"
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Terkini Ditambah"
 
 msgid "Created"
-msgstr ""
+msgstr "Dicipta"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Muat turun"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1641,52 +1641,52 @@ msgstr "Add-ons Sorotan"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Di sini ada beberapa add-ons kegemaran kami untuk membantu anda mulakan penyesuaian %(app)s."
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Pasang Kamus"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Pasang Pek Bahasa"
 
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Muat turun Kamus"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Muat turun Pek Bahasa"
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "Ada dalam bahasa anda"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Senarai pek bahasa dan kamus yang tersedia dalam bahasa anda."
 
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Kamus"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Pek Bahasa"
 
 msgid "All locales"
-msgstr ""
+msgstr "Semua lokaliti"
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Senarai pek bahasa dan kamus."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Cari Alatan"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> add-ons"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Cari Ekstensi"
 
 msgid "Add search-related functionality to Firefox"
 msgstr ""
