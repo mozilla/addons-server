@@ -596,6 +596,9 @@ class Addon(OnChangeMixin, ModelBase):
             # Don't change anything if we don't meet the requirements
             return data
 
+        # find_language might have expanded short to full locale, so update it.
+        data['default_locale'] = default_locale
+
         fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
 
@@ -1818,11 +1821,19 @@ class Category(OnChangeMixin, ModelBase):
         return staticcategory
 
     @classmethod
-    def from_static_category(cls, static_category):
+    def from_static_category(cls, static_category, save=False):
         """Return a Category instance created from a StaticCategory.
 
-        Does not save it into the database. Useful in tests."""
-        return cls(**static_category.__dict__)
+        Does not save it into the database by default. Useful in tests."""
+        # we need to drop description as it's a StaticCategory only property.
+        _dict = dict(static_category.__dict__)
+        del _dict['description']
+        if save:
+            category, _ = Category.objects.get_or_create(
+                id=static_category.id, defaults=_dict)
+            return category
+        else:
+            return cls(**_dict)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,

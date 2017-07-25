@@ -40,9 +40,9 @@ requests==2.18.1 \
     --hash=sha256:6afd3371c1f4c1970497cdcace5c5ecbbe58267bf05ca1abd93d99d170803ab7 \
     --hash=sha256:c6f3bdf4a4323ac7b45d01e04a6f6c20e32a052cd04de81e05103abc049ad9b9
 # setuptools is required by Sphinx
-setuptools==36.2.0 \
-    --hash=sha256:8dbfb44a16b73ea756edfe8805a25338eead94bd2426b64374a7f6a7a125028d \
-    --hash=sha256:4c2bda3829c9dbbe9c2b33d89c4b1cb6d45813615ab8e248ad352e3697a96d81
+setuptools==36.2.2 \
+    --hash=sha256:63bdc8ef07b4c99ff4c265ab9042333807fa66d60eea87df402f3a470fc10d7d \
+    --hash=sha256:38156edc9b9b21f8926821d3f994abf931a50c1a2a6a2bab4d195b7d866d9bb0
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, traitlets
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \

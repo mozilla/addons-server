@@ -722,8 +722,7 @@ def addon_factory(
     if not category:
         static_category = random.choice(
             CATEGORIES[application][type_].values())
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.

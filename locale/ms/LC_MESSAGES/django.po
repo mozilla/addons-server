@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-24 10:09+0000\n"
+"PO-Revision-Date: 2017-07-25 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -860,7 +860,7 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> muat turun mingguan"
 
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Belum Disemak"
 
 msgid "Tools"
 msgstr "Alatan"
@@ -943,9 +943,11 @@ msgstr "Halaman utama Add-ons"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Jika anda mengikuti pautan dari mana-mana, sila %(open_bug_link)sfailkan isu%(close_bug_link)s. Beritahu kami dari mana anda datang dan apa yang anda cari, dan kami akan buat yang terbaik untuk "
+"mengatasinya."
 
 msgid "Not Found"
-msgstr ""
+msgstr "Tidak Ditemui"
 
 #, python-format
 msgid ""
@@ -963,31 +965,31 @@ msgstr ""
 "ons</a>. </li> </ul>"
 
 msgid "Oops"
-msgstr ""
+msgstr "Ooops"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ooops!  Ada ralat.</h1> <p>Kami akan membaikinya sebentar lagi.</p> <p>Anda boleh cuba memulakan semula halaman, atau pergi ke <a href=\"%(home)s\">Halaman utama Add-ons</a>.</p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Beberapa hak cipta terpelihara"
 
 msgid "No results found"
-msgstr ""
+msgstr "Tiada hasil ditemukan"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Dulu"
 
 msgid "Next"
-msgstr ""
+msgstr "Berikut"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Hasil <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> daripada <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Penyelenggaran sedang dijalankan"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami membuat penyelenggaraan laman web. Sila gunakan butang Undur pelayar anda dan cuba semula sebentar lagi."
@@ -996,7 +998,7 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr "Sesetengah ciri pada halaman ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar nanti."
 
 msgid "Are you human?"
-msgstr ""
+msgstr "Adakah anda manusia?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1009,328 +1011,330 @@ msgid "Top Rated"
 msgstr "Tahap Tinggi"
 
 msgid "Newest"
-msgstr ""
+msgstr "Terbaru"
 
 msgid "Explore"
-msgstr ""
+msgstr "Teroka"
 
 msgid "Extensions"
-msgstr ""
+msgstr "Ekstensi"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
-msgstr ""
+msgstr "Tema"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Mahu lebih banyak penyesuaian? Cuba <b>Tema Lengkap</b>"
 
 msgid "Most Followers"
-msgstr ""
+msgstr "Pengikut Teramai"
 
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Koleksi Saya Buat"
 
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Koleksi Saya Ikuti"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Add-ons Kegemaran Saya"
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "Selanjutnya&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Add-ons untuk Mudah alih"
 
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Kamus & Pek Bahasa"
 
 msgid "Search Tools"
-msgstr ""
+msgstr "Alatan Carian"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Halaman <a href=\"%(current_pg_url)s\">%(current_pg)s</a> daripada <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Pergi ke halaman pertama"
 
 msgid "Previous"
-msgstr ""
+msgstr "Terdahulu"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Pergi ke halaman terakhir"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Memaparkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> daripada <b>%(count)s</b>"
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Add-ons"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} lepas"
 
 msgid "Title"
-msgstr ""
+msgstr "Tajuk"
 
 msgid "Body"
-msgstr ""
+msgstr "Isi"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Tajuk Lain"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Isi Lain"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Pengepala Autoriti tidak sah. Tiada kelayakan yang diberikan."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Pengepala Autoriti tidak sah. Rentetan kelayakan tidak boleh mengandungi ruang."
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Tandatangan telah tamat tempoh."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Ralat penyahkodan tandatangan."
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Token JWT Tidak Sah."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Panjang medan perlu ada sekurang-kurangnya {num} aksara."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Kod bahasa {lang_code} tidak sah."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Pk atau slug tidak sah \"%s\" - objek tidak wujud."
 
 msgid "Application Versions"
-msgstr ""
+msgstr "Versi Aplikasi"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Versi yang boleh diterima bagi semua aplikasi dalam pada AMO."
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Versi Aplikasi Sah"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Add-ons yang dikemukakan ke Add-ons Mozilla mesti mengandungi satu fail manifes dengan sekurang-kurangnya disokong oleh salah satu aplikasi di bawah. Hanya versi yang disenaraikan di bawah "
+"dibenarkan bagi aplikasi tersebut."
 
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr ""
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "Sila ambil perhatian bahawa WebExtensions tidak akan menerima \"*\" dalam <a href=\"%(version_url)s\">versi_min_tepat</a>."
 
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 msgid "Versions"
-msgstr ""
+msgstr "Versi"
 
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
 msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Jika aplikasi yang disokong tidak memerlukan fail manifes, anda masih perlu menyertakannya dengan sifat yang diperlukan seperti yang dinyatakan <a href=\"%(url)s\">di sini</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Koleksi :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang boleh dicipta dan dikongsi oleh sesiapa sahaja."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Koleksi :: {1}"
 
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Hanya saya sendiri boleh lihat koleksi ini."
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Sesiapa sahaja boleh lihat koleksi ini."
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Berikan nama koleksi anda."
 
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Jelaskan koleksi anda (tiada pautan dibenarkan)."
 
 msgid "Privacy:"
-msgstr ""
+msgstr "Privasi:"
 
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Sila jangan isi medan ini, digunakan untuk menangkap bot"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Nama ini tidak boleh digunakan."
 
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Url ini sudah digunakan oleh koleksi lain"
 
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ikon mesti samada PNG atau JPG."
 
 msgid "This slug is already in use by another one of your collections."
-msgstr ""
+msgstr "Slug ini sudah digunakan oleh koleksi anda yang lain."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Masukkan slug yang sah yang mengandungi huruf, nombor, garis bawah atau tanda sempang."
 
 msgid "This slug cannot be used."
-msgstr ""
+msgstr "Slug ini tidak boleh digunakan."
 
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 msgid "Recently Updated"
-msgstr ""
+msgstr "Terkini Dikemaskini"
 
 msgid "Recently Popular"
-msgstr ""
+msgstr "Terkini Popular"
 
 msgid "Added"
-msgstr ""
+msgstr "Ditambah"
 
 msgid "Popularity"
-msgstr ""
+msgstr "Populariti"
 
 msgid "Collection created!"
-msgstr ""
+msgstr "Koleksi dicipta!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Koleksi baru anda dipaparkan di bawah. Anda boleh <a href=\"%(url)s\">edit tetapan tambahan</a> jika anda mahu."
 
 msgid "Collection updated!"
-msgstr ""
+msgstr "Koleksi dikemaskini!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Tinjau koleksi anda</a> untuk melihat perubahan."
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Ikon Dipadam"
 
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Cipta Koleksi Baru"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Seperti yang dinyatakan dalam <a href=\"%(legal)s\">Notis Undang-undang</a> kami, pengaturan koleksi individu dikawal oleh Lesen Creative Commons Attribution Share-Alike"
 
 msgid "Create Collection"
-msgstr ""
+msgstr "Cipta Koleksi"
 
 msgid "View this collection"
-msgstr ""
+msgstr "Tinjau koleksi ini"
 
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Mulakan koleksi baru..."
 
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Mulakan Koleksi Baru"
 
 msgid "Name:"
-msgstr ""
+msgstr "Nama:"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"collections-new-cancel\" href=\"#\">Batal</a>"
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
 msgstr "Untuk menilaikan koleksi, anda perlu ada akaun add-ons."
 
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Cipta Akaun Add-ons"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "atau <a href=\"%(login)s\">log masuk akaun sedia ada anda</a>"
 
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Koleksi"
 
 msgid "private"
-msgstr ""
+msgstr "peribadi"
 
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(num)s</span> pengikut"
 
 msgid "About this Collection"
 msgstr "Perihal Koleksi ini"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Add-ons diselaraskan ke Firefox Mobile saya"
 
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Jadikan Koleksi ini Peribadi"
 
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Jadikan Koleksi ini Umum"
 
 msgid "Learn about collections"
-msgstr ""
+msgstr "Belajar perihal koleksi"
 
 msgid "More Options:"
-msgstr ""
+msgstr "Pilihan Lain:"
 
 msgid "Edit Collection"
-msgstr ""
+msgstr "Edit Koleksi"
 
 msgid "Delete Collection"
-msgstr ""
+msgstr "Buang Koleksi"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s Tema dalam Koleksi ini"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s Add-ons dalam Koleksi ini"
 
 msgid "Go"
-msgstr ""
+msgstr "Teruskan"
 
 msgid "What are Collections?"
-msgstr ""
+msgstr "Apakah Koleksi?"
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "Teroka Koleksi"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "Tag Lazim"
 
 msgid "More by this User"
-msgstr ""
+msgstr "Selanjutnya oleh Pengguna ini"
 
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Pamer semua koleksi pengguna ini"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1347,17 +1351,17 @@ msgstr ""
 "semua orang boleh melihat kegemaran anda, klik butang di bawah untuk menjadikannya umum."
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Add-ons Kegemaran Saya"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
+msgstr[0] "<span>%(addons)s</span> add-ons"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> pengikut"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1366,14 +1370,14 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut mingguan"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut bulanan"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1382,207 +1386,209 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut"
 
 msgid "by {0}"
-msgstr ""
+msgstr "oleh {0}"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "Berhenti Ikuti"
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ikuti Koleksi ini"
 
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Edit Koleksi ini"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr ""
+msgstr "Buang {0}"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Adakah anda pasti?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "Edit {0}"
 
 msgid "Description"
-msgstr ""
+msgstr "Keterangan"
 
 msgid "Contributors & More"
-msgstr ""
+msgstr "Penyumbang & Lanjutan"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Simpan Perubahan"
 
 msgid "Owner"
-msgstr ""
+msgstr "Pemilik"
 
 msgid "Make Owner"
-msgstr ""
+msgstr "Jadi Pemilik"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Singkir pengguna ini daripada penyumbang"
 
 msgid "Remove"
-msgstr ""
+msgstr "Buang"
 
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Penyumbang Koleksi"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Anda boleh masukkan beberapa penyumbang kepada koleksi ini. Penyumbang boleh menambah dan mengalih keluar add-ons daripada koleksi ini, tetapi tidak boleh mengubah nama atau perihalannya. Untuk "
+"masukkan penyumbang, masukkan e-mel mereka di dalam kotak di bawah. Penyumbang perlu ada akaun Add-ons Mozilla."
 
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 msgid "Email"
-msgstr ""
+msgstr "E-mel"
 
 msgid "Role"
-msgstr ""
+msgstr "Peranan"
 
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Masukkan alamat e-mel penyumbang untuk dimasukkan"
 
 msgid "Add Contributor"
-msgstr ""
+msgstr "Masukkan Penyumbang"
 
 msgid "Contributor"
-msgstr ""
+msgstr "Penyumbang"
 
 msgid "Admin Settings"
-msgstr ""
+msgstr "Tetapan Pentadbir"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Amaran:</b> Dengan menukar pemilik koleksi ini, anda tidak boleh lagi mengeditnya. Anda hanya akan boleh menambah dan mengalihkan keluar add-ons daripadanya."
 
 msgid "Continue"
-msgstr ""
+msgstr "Sambung"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"change-owner-cancel\" href=\"#\">Batal</a>"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Buang daripada kegemaran"
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tambah ke kegemaran"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Koleksi oleh {0}"
 
 msgid "No collections found."
-msgstr ""
+msgstr "Tiada koleksi dijumpai."
 
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Koleksi Paling-Diikuti"
 
 msgid "Newest Collections"
-msgstr ""
+msgstr "Koleksi Terbaru"
 
 msgid "Collections by Name"
-msgstr ""
+msgstr "Koleksi mengikut Nama"
 
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Koleksi Terkini Dikemaskini"
 
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Koleksi Terkini Popular"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Koleksi adalah sekumpulan add-ons yang boleh dicipta dan dikongsi oleh sesiapa. Layari koleksi yang dicipta oleh pengguna lain atau <a href=\"%(url)s\">cipta sendiri</a>."
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Langgan"
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr ""
+msgstr "oleh %(author_link)s"
 
 msgid "Following"
-msgstr ""
+msgstr "Ikuti"
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "Cipta Koleksi"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Koleksi memudahkan anda menjejaki add-ons kegemaran anda dan mengongsi pelayar yang anda sudah lengkapkan penyesesuaiannya dengan orang lain."
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "Ikon Koleksi"
 
 msgid "Reset"
-msgstr ""
+msgstr "Set semula"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Menyokong PNG dan JPG. Saiz imej akan diubah ke 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Ada ralat dalam borang ini.  Sila betulkannya di bawah."
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Add-ons dalam Koleksi Anda"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Untuk menambah add-on dalam koleksi ini, masukkan namanya di dalam kotan di bawah dan tekan masuk."
 
 msgid "Add-on"
-msgstr ""
+msgstr "Add-on"
 
 msgid "Comment"
-msgstr ""
+msgstr "Komen"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Masukkan nama add-on untuk disertakan"
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "Tambah ke Koleksi"
 
 msgid "Pending"
-msgstr ""
+msgstr "Tertangguh"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Tambah komen"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Buang add-on ini daripada koleksi"
 
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Beri undi positif untuk koleksi ini"
 
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Beri undi negatif untuk koleksi ini"
 
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Padam undi saya untuk koleksi ini"
 
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Log masuk untuk undi koleksi ini"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Kegemaran"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "Add-ons %s"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "Tema %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1591,36 +1597,36 @@ msgstr "Add-ons Sorotan :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Di sini ada beberapa add-ons kegemaran kami untuk membantu anda mulakan penyesuaian %s."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Alatan carian berkaitan dengan %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Alatan carian dan ekstensi berkaitan-carian"
 
 msgid "Search tools"
-msgstr ""
+msgstr "Alatan carian"
 
 msgid "Most Users"
-msgstr ""
+msgstr "Ramai Pengguna"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Muat turun Mingguan"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "Penampilan"
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Terkini Ditambah"
 
 msgid "Created"
-msgstr ""
+msgstr "Dicipta"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Muat turun"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1635,95 +1641,95 @@ msgstr "Add-ons Sorotan"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Di sini ada beberapa add-ons kegemaran kami untuk membantu anda mulakan penyesuaian %(app)s."
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Pasang Kamus"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Pasang Pek Bahasa"
 
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Muat turun Kamus"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Muat turun Pek Bahasa"
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "Ada dalam bahasa anda"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Senarai pek bahasa dan kamus yang tersedia dalam bahasa anda."
 
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Kamus"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Pek Bahasa"
 
 msgid "All locales"
-msgstr ""
+msgstr "Semua lokaliti"
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Senarai pek bahasa dan kamus."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Cari Alatan"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> add-ons"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Cari Ekstensi"
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Tambah fungsi berkaitan-carian ke Firefox"
 
 msgid "Search Providers"
-msgstr ""
+msgstr "Penyedia Carian"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Cari penyedia baru untuk bar carian anda"
 
 msgid "Additional Resources"
-msgstr ""
+msgstr "Sumber Tambahan"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Ketahui selanjutnya perihal <a href=\"http://support.mozilla.com/kb/Search+bar\">bar carian</a> dalam {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Buat sendiri</a> alatan carian"
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Ekstensi Paling Popular"
 
 msgid "Top-Rated Extensions"
 msgstr "Ekstensi Tahap-Tinggi"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Ekstensi Terbaru"
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Ekstensi mengikut Nama"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Ekstensi mengikut Muat turun Mingguan"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Ekstensi Terkini Dikemaskini"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Ekstensi Penampilan"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1731,65 +1737,65 @@ msgid "Featured Complete Themes"
 msgstr "Tema Lengkap Sorotan"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Paling Popular"
 
 msgid "Top-Rated Complete Themes"
 msgstr "Tema Lengkap Tahap-Tinggi"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Terbaru"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Tema Lengkap mengikut Nama"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Tema Lengkap mengikut Muat turun Mingguan"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Terkini Dikemaskini"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Penampilan"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "Lihat semua %(cnt)s ekstensi dalam %(name)s &raquo;"
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "Tema {0}"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Tema {0}"
 
 msgid "View Profile"
-msgstr ""
+msgstr "Lihat Profil"
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Cipta Tema Anda Sendiri"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Pelayar anda, gaya anda! Lengkapinya dengan reka bentuk anda sendiri!"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Ketahui selanjutnya"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Tinjau Semua Terkini Ditambah"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Tinjau Semua Paling Popular"
 
 msgid "View All Top Rated"
 msgstr "Papar Semua Tahap Tinggi"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Lebih 300,000 reka bentuk untuk memperibadikan pelayar anda! Gerakkan tetikus di atas Tema Latar Belakang untuk anda mencubanya. <a href=\"%(url)s\" class=\"more-info\">Mulakan meneroka</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Mahu jadikan lebih personalisasi?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1798,90 +1804,92 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr "Tema Lengkap mengubah penampilan pelayar anda dengan gaya untuk bingkai tetingkap, bar alamat, butang, tab dan menu. <a href=\"%(url)s\" class=\"more-info\">Mulakan meneroka</a>"
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Tema Penampilan"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Tinjau Semua Penampilan"
 
 msgid "No themes found"
-msgstr ""
+msgstr "Tiada tema ditemui"
 
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Laporan Keserasian Add-on"
 
 #, python-format
 msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Laporan yang dihantar kepada kami melalui <a href=\"%(url_)s\">Pelapor Keserasian Add-on</a> dikumpulkan di sini untuk tinjauan pembangun. Laporan ini membantu kami menentukan add-ons yang perlu"
+" dibantu supaya boleh menyokong versi Firefox yang akan datang. </p>"
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Laporan untuk Add-ons anda"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Masukkan GUID add-on di bawah untuk melihat laporan yang kami terima."
 
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Laporan Keserasian {addon}"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan kejayaan"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan masalah"
 
 msgid "View all"
-msgstr ""
+msgstr "Papar semua"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "Saring mengikut Aplikasi"
 
 msgid "Report Type"
-msgstr ""
+msgstr "Jenis Laporan"
 
 msgid "Version"
-msgstr ""
+msgstr "Versi"
 
 msgid "Application Version"
-msgstr ""
+msgstr "Versi Aplikasi"
 
 msgid "Application Build"
-msgstr ""
+msgstr "Binaan Aplikasi"
 
 msgid "Platform"
-msgstr ""
+msgstr "Platform"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "Keupayaan e10s"
 
 msgid "e10s Compatible"
-msgstr ""
+msgstr "Serasi e10s"
 
 msgid "Submitted"
-msgstr ""
+msgstr "Dihantar"
 
 msgid "Success"
-msgstr ""
+msgstr "Berjaya"
 
 msgid "Problem"
-msgstr ""
+msgstr "Masalah"
 
 msgid "No reports found."
-msgstr ""
+msgstr "Tiada laporan ditemukan."
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} dicipta."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Sifat {addon} diedit."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Keterangan {addon} diedit."
 
 msgid "Categories edited for {addon}."
 msgstr ""
@@ -1974,10 +1982,10 @@ msgid "{tag} removed from {addon}."
 msgstr ""
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} ditambah ke {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} dibuang daripada {collection}."
 
 msgid "{review} for {addon} written."
 msgstr ""
@@ -2812,7 +2820,7 @@ msgid "Add-on Status"
 msgstr ""
 
 msgid "User Collections"
-msgstr ""
+msgstr "Koleksi Pengguna"
 
 msgid "User Reviews"
 msgstr ""
@@ -3074,7 +3082,7 @@ msgid "Supported Versions"
 msgstr ""
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Tambah Aplikasi Lain&hellip;"
 
 msgid "Close"
 msgstr ""
@@ -3713,6 +3721,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Untuk membuat permintaan API, hantar <a href=\"%(jwt_url)s\">Token Web (JWT)</a> sebagai pengepala autoriti. Anda perlu menjana JWT bagi setiap permintaan seperti yang dijelaskan dalam <a "
+"href=\"%(docs_url)s\">dokumentasi</a>."
 
 msgid "You don't have any API credentials."
 msgstr ""
@@ -4026,7 +4036,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Daftar Masuk</a>"
 
 msgid "Customize Firefox"
 msgstr ""
@@ -4306,7 +4316,7 @@ msgstr ""
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Tinjau dan langgan <a href=\"%(feed_url)s\">suapan aktiviti</a> tema anda untuk terus mendapatkan ulasan, koleksi dan banyak lagi."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -5630,7 +5640,7 @@ msgid "Worry-free browsing"
 msgstr ""
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Lindungi privasi dalam talian anda dengan add-ons dalam koleksi ini."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
@@ -6543,6 +6553,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
+"Papan pemuka Alatan Pembangun membolehkan anda memuat naik dan menghantar add-ons ke AMO. Anda mestilah pengguna berdaftar AMO sebelum boleh menghantar add-on. Sebelum menghantar add-on, pastikan "
+"anda sudah membaca <a href=\"%(url)s\">Polisi Semakan Add-on</a> untuk memastikan add-on anda dibuat dengan mematuhi garis panduan kami."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr ""
@@ -6750,6 +6762,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Ekstensi</a></strong> tambah ciri baru ke %(app_name)s atau ubah fungsi sedia ada. Ada ekstensi yang membolehkan anda menyekat pengiklanan, memuat turun video "
+"daripada laman web, berintegrasi lebih dekat dengan laman web sosial, dan menambah ciri yang anda jumpa dalam aplikasi lain."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -6918,19 +6932,21 @@ msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a
 msgstr ""
 
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Koleksi dan Kegemaran"
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "Apakah koleksi?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang dicipta oleh pengguna untuk dikongsi."
 
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Apakah koleksi Kegemaran Saya?"
 
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
+"Add-ons kegemaran ialah add-ons yang anda tandabuku supaya mudah didapatkan semula. Anda boleh tambah add-on ke koleksi kegemaran anda dengan mengklik \"Tambah ke kegemaran\" pada halaman "
+"butirannya."
 
 msgid "Mobile Add-ons"
 msgstr ""
@@ -7344,7 +7360,7 @@ msgid "search for add-ons"
 msgstr ""
 
 msgid "search for collections"
-msgstr ""
+msgstr "cari koleksi"
 
 msgid "search for themes"
 msgstr ""
@@ -7373,10 +7389,10 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Hasil Carian Koleksi untuk {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Hasil Carian Koleksi"
 
 msgid "Search Results"
 msgstr ""
@@ -7509,7 +7525,7 @@ msgid "Add-ons Updated"
 msgstr ""
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Koleksi Dicipta"
 
 msgid "Reviews Written"
 msgstr ""
@@ -7625,7 +7641,7 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Koleksi Dicipta mengikut Tarikh"
 
 msgid "Contributions by Date"
 msgstr ""
@@ -7727,13 +7743,13 @@ msgid "Mozilla Add-ons"
 msgstr ""
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Cari add-ons untuk aplikasi lain"
 
 msgid "Other Applications"
-msgstr ""
+msgstr "Aplikasi Lain"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Untuk mencipta koleksi anda sendiri, anda mesti ada akaun Add-ons Mozilla."
 
 msgid "Footer logo"
 msgstr ""
@@ -7781,7 +7797,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Log masuk</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -8018,13 +8034,13 @@ msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Tentukan koleksi yang patut dipaparkan dalam profil anda."
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Papar koleksi yang saya cipta"
 
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Papar koleksi yang saya ikuti"
 
 msgid "Notifications"
 msgstr ""

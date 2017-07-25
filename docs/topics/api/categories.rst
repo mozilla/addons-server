@@ -28,6 +28,7 @@ This endpoint is not paginated.
     :>json boolean misc: Whether or not the category is miscellaneous.
     :>json string type: Category type, see :ref:`add-on type <addon-detail-type>` for more details.
     :>json int weight: Category weight used in sort ordering.
+    :>json string description: The category description. Returns the already translated string.
 
 
 .. _category-csv-table:

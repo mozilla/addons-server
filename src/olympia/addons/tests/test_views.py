@@ -27,7 +27,7 @@ from olympia.addons.models import (
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
 from olympia.bandwagon.models import Collection
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
@@ -2588,8 +2588,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_category(self):
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
         addon = addon_factory(
             slug='my-addon', name=u'My Addôn', category=category)
 
@@ -2598,8 +2597,7 @@ class TestAddonSearchView(ESTestCase):
         # Create an add-on in a different category.
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs'])
-        other_category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        other_category = Category.from_static_category(static_category, True)
         addon_factory(slug='different-addon', category=other_category)
 
         self.refresh()
@@ -2909,6 +2907,32 @@ class TestStaticCategoryView(TestCase):
             u'misc': False,
             u'id': 1,
             u'application': u'firefox',
+            u'description': None,
+            u'type': u'extension',
+            u'slug': u'feeds-news-blogging'
+        }
+
+    def test_with_description(self):
+        # StaticCategory is immutable, so avoid calling it's __setattr__
+        # directly.
+        object.__setattr__(CATEGORIES_BY_ID[1], 'description', u'does stuff')
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+
+        assert len(data) == 97
+
+        # some basic checks to verify integrity
+        entry = data[0]
+
+        assert entry == {
+            u'name': u'Feeds, News & Blogging',
+            u'weight': 0,
+            u'misc': False,
+            u'id': 1,
+            u'application': u'firefox',
+            u'description': u'does stuff',
             u'type': u'extension',
             u'slug': u'feeds-news-blogging'
         }
