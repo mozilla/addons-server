@@ -124,11 +124,12 @@ class AddonAbuseViewSetTestBase(object):
 
     def test_throttle(self):
         addon = addon_factory()
-        response = self.client.post(
-            self.url,
-            data={'addon': unicode(addon.id), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
-        assert response.status_code == 201
+        for x in xrange(20):
+            response = self.client.post(
+                self.url,
+                data={'addon': unicode(addon.id), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
@@ -221,11 +222,12 @@ class UserAbuseViewSetTestBase(object):
 
     def test_throttle(self):
         user = user_factory()
-        response = self.client.post(
-            self.url,
-            data={'user': unicode(user.username), 'message': 'abuse!'},
-            REMOTE_ADDR='123.45.67.89')
-        assert response.status_code == 201
+        for x in xrange(20):
+            response = self.client.post(
+                self.url,
+                data={'user': unicode(user.username), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201, x
 
         response = self.client.post(
             self.url,
