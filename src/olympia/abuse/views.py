@@ -2,9 +2,10 @@ from django.http import Http404
 
 from rest_framework import status
 from rest_framework.exceptions import ParseError
-from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import CreateModelMixin
+from rest_framework.response import Response
+from rest_framework.throttling import UserRateThrottle
+from rest_framework.viewsets import GenericViewSet
 
 from olympia.accounts.views import AccountViewSet
 from olympia.abuse.models import AbuseReport
@@ -13,9 +14,14 @@ from olympia.abuse.serializers import (
 from olympia.addons.views import AddonViewSet
 
 
+class AbuseThrottle(UserRateThrottle):
+    rate = '1/minute'
+
+
 class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = AddonAbuseReportSerializer
+    throttle_classes = (AbuseThrottle,)
 
     def get_addon_viewset(self):
         if hasattr(self, 'addon_viewset'):
@@ -80,6 +86,7 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
 class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = UserAbuseReportSerializer
+    throttle_classes = (AbuseThrottle,)
 
     def get_user_object(self, user_id):
         if hasattr(self, 'user_object'):
