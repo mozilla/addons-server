@@ -15,11 +15,11 @@ either listed on https://addons.mozilla.org or not.
 Authentication is not required, but is recommended so reports can be responded
 to if nessecary.
 
-.. http:post:: /api/v3/abuse/reportaddon/
+.. http:post:: /api/v3/abuse/report/addon/
 
     .. _addonabusereport-create-request:
 
-    :<json string addon: The add-on id, slug, or guid of the add-on (required).
+    :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
@@ -27,8 +27,8 @@ to if nessecary.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
     :>json object addon: The add-on reported for abuse.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json int|null addon.id: The add-on id on AMO.  If the guid submitted didn't match a known add-on on AMO, then null.
-    :>json string|null addon.slug: The add-on slug.  If the guid submitted didn't match a known add-on on AMO, then null.
+    :>json int|null addon.id: The add-on id on AMO. If the guid submitted didn't match a known add-on on AMO, then null.
+    :>json string|null addon.slug: The add-on slug. If the guid submitted didn't match a known add-on on AMO, then null.
     :>json string message: The body/content of the abuse report.
 
 
@@ -42,11 +42,11 @@ The following API endpoint allows an abuse report to be submitted for a user acc
 on https://addons.mozilla.org.  Authentication is not required, but is recommended
 so reports can be responded to if nessecary.
 
-.. http:post:: /api/v3/abuse/reportuser/
+.. http:post:: /api/v3/abuse/report/user/
 
     .. _userabusereport-create-request:
 
-    :<json string user: The user id or username of the user (required).
+    :<json string user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
