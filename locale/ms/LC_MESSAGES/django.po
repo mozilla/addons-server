@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 03:32+0000\n"
+"PO-Revision-Date: 2017-07-25 04:33+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1288,7 +1288,7 @@ msgid "About this Collection"
 msgstr "Perihal Koleksi ini"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Add-ons diselaraskan ke Firefox Mobile saya"
 
 msgid "Make this Collection Private"
 msgstr "Jadikan Koleksi ini Peribadi"
@@ -1300,7 +1300,7 @@ msgid "Learn about collections"
 msgstr "Belajar perihal koleksi"
 
 msgid "More Options:"
-msgstr ""
+msgstr "Pilihan Lain:"
 
 msgid "Edit Collection"
 msgstr "Edit Koleksi"
@@ -1351,17 +1351,17 @@ msgstr ""
 "semua orang boleh melihat kegemaran anda, klik butang di bawah untuk menjadikannya umum."
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Add-ons Kegemaran Saya"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
+msgstr[0] "<span>%(addons)s</span> add-ons"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> pengikut"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
