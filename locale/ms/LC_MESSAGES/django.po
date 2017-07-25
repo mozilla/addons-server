@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 08:42+0000\n"
+"PO-Revision-Date: 2017-07-25 09:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1708,28 +1708,28 @@ msgid "Browse through even more search providers at <a href=\"http://mycroftproj
 msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Buat sendiri</a> alatan carian"
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Ekstensi Paling Popular"
 
 msgid "Top-Rated Extensions"
 msgstr "Ekstensi Tahap-Tinggi"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Ekstensi Terbaru"
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Ekstensi mengikut Nama"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Ekstensi mengikut Muat turun Mingguan"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Ekstensi Terkini Dikemaskini"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Ekstensi Penampilan"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1737,65 +1737,65 @@ msgid "Featured Complete Themes"
 msgstr "Tema Lengkap Sorotan"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Paling Popular"
 
 msgid "Top-Rated Complete Themes"
 msgstr "Tema Lengkap Tahap-Tinggi"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Terbaru"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Tema Lengkap mengikut Nama"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Tema Lengkap mengikut Muat turun Mingguan"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Terkini Dikemaskini"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap Penampilan"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "Lihat semua %(cnt)s ekstensi dalam %(name)s &raquo;"
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "Tema {0}"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Tema {0}"
 
 msgid "View Profile"
-msgstr ""
+msgstr "Lihat Profil"
 
 msgid "Create Your Own Theme"
 msgstr "Cipta Tema Anda Sendiri"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Pelayar anda, gaya anda! Lengkapinya dengan reka bentuk anda sendiri!"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Ketahui selanjutnya"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Tinjau Semua Terkini Ditambah"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Tinjau Semua Paling Popular"
 
 msgid "View All Top Rated"
 msgstr "Papar Semua Tahap Tinggi"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Lebih 300,000 reka bentuk untuk memperibadikan pelayar anda! Gerakkan tetikus di atas Tema Latar Belakang untuk anda mencubanya. <a href=\"%(url)s\" class=\"more-info\">Mulakan meneroka</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Mahu jadikan lebih personalisasi?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
