@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 07:50+0000\n"
+"PO-Revision-Date: 2017-07-25 08:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1430,13 +1430,13 @@ msgid "Owner"
 msgstr "Pemilik"
 
 msgid "Make Owner"
-msgstr ""
+msgstr "Jadi Pemilik"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Singkir pengguna ini daripada penyumbang"
 
 msgid "Remove"
-msgstr ""
+msgstr "Buang"
 
 msgid "Collection Contributors"
 msgstr "Penyumbang Koleksi"
@@ -1449,40 +1449,40 @@ msgstr ""
 "masukkan penyumbang, masukkan e-mel mereka di dalam kotak di bawah. Penyumbang perlu ada akaun Add-ons Mozilla."
 
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 msgid "Email"
-msgstr ""
+msgstr "E-mel"
 
 msgid "Role"
-msgstr ""
+msgstr "Peranan"
 
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Masukkan alamat e-mel penyumbang untuk dimasukkan"
 
 msgid "Add Contributor"
-msgstr ""
+msgstr "Masukkan Penyumbang"
 
 msgid "Contributor"
-msgstr ""
+msgstr "Penyumbang"
 
 msgid "Admin Settings"
-msgstr ""
+msgstr "Tetapan Pentadbir"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Amaran:</b> Dengan menukar pemilik koleksi ini, anda tidak boleh lagi mengeditnya. Anda hanya akan boleh menambah dan mengalihkan keluar add-ons daripadanya."
 
 msgid "Continue"
-msgstr ""
+msgstr "Sambung"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"change-owner-cancel\" href=\"#\">Batal</a>"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Buang daripada kegemaran"
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tambah ke kegemaran"
 
 #. {0} is a username.
 msgid "Collections by {0}"
@@ -1511,14 +1511,14 @@ msgid "Collections are groups of related add-ons that anyone can create and shar
 msgstr "Koleksi adalah sekumpulan add-ons yang boleh dicipta dan dikongsi oleh sesiapa. Layari koleksi yang dicipta oleh pengguna lain atau <a href=\"%(url)s\">cipta sendiri</a>."
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Langgan"
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr ""
+msgstr "oleh %(author_link)s"
 
 msgid "Following"
-msgstr ""
+msgstr "Ikuti"
 
 msgid "Create a Collection"
 msgstr "Cipta Koleksi"
@@ -1530,13 +1530,13 @@ msgid "Collection Icon"
 msgstr "Ikon Koleksi"
 
 msgid "Reset"
-msgstr ""
+msgstr "Set semula"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Menyokong PNG dan JPG. Saiz imej akan diubah ke 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Ada ralat dalam borang ini.  Sila betulkannya di bawah."
 
 msgid "Add-ons in Your Collection"
 msgstr "Add-ons dalam Koleksi Anda"
@@ -1545,22 +1545,22 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr "Untuk menambah add-on dalam koleksi ini, masukkan namanya di dalam kotan di bawah dan tekan masuk."
 
 msgid "Add-on"
-msgstr ""
+msgstr "Add-on"
 
 msgid "Comment"
-msgstr ""
+msgstr "Komen"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Masukkan nama add-on untuk disertakan"
 
 msgid "Add to Collection"
 msgstr "Tambah ke Koleksi"
 
 msgid "Pending"
-msgstr ""
+msgstr "Tertangguh"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Tambah komen"
 
 msgid "Remove this add-on from the collection"
 msgstr "Buang add-on ini daripada koleksi"
@@ -1578,17 +1578,17 @@ msgid "Log in to vote for this collection"
 msgstr "Log masuk untuk undi koleksi ini"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Kegemaran"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "Add-ons %s"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "Tema %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1597,18 +1597,18 @@ msgstr "Add-ons Sorotan :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Di sini ada beberapa add-ons kegemaran kami untuk membantu anda mulakan penyesuaian %s."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Alatan carian berkaitan dengan %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Alatan carian dan ekstensi berkaitan-carian"
 
 msgid "Search tools"
-msgstr ""
+msgstr "Alatan carian"
 
 msgid "Most Users"
 msgstr ""
