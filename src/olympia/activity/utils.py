@@ -283,7 +283,7 @@ def send_activity_mail(subject, message, version, recipients, from_email,
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
             REPLY_TO_PREFIX, token.uuid.hex, settings.INBOUND_EMAIL_DOMAIN)
-        reference_header = '{addon}/{version}@{site}'.format(
+        reference_header = '<{addon}/{version}@{site}>'.format(
             addon=version.addon.id, version=version.id,
             site=settings.INBOUND_EMAIL_DOMAIN)
         headers = {
