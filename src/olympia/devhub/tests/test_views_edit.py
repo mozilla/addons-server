@@ -42,6 +42,7 @@ class BaseTestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
     listed = True
+    __test__ = False  # this is an abstract test case
 
     def setUp(self):
         # Make new for each test.
@@ -90,6 +91,7 @@ class BaseTestEdit(TestCase):
 
 
 class BaseTestEditBasic(BaseTestEdit):
+    __test__ = False  # this is an abstract test case
 
     def setUp(self):
         super(BaseTestEditBasic, self).setUp()
@@ -233,7 +235,7 @@ class BaseTestEditBasic(BaseTestEdit):
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
 
-    def test_nav_links(self):
+    def test_nav_links(self, show_compat_reporter=True):
         if self.listed:
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
@@ -241,21 +243,22 @@ class BaseTestEditBasic(BaseTestEdit):
                 self.addon.get_dev_url('profile'),  # Manage Developer Profile
                 self.addon.get_dev_url('payments'),  # Manage Payments
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
-
                 self.addon.get_url_path(),  # View Listing
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
                 reverse('stats.overview', args=[self.addon.slug]),  # Stats
-                reverse('compat.reporter_detail', args=[self.addon.guid]),
             ]
         else:
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
                 self.addon.get_dev_url('owner'),  # Manage Authors
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
-
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
-                reverse('compat.reporter_detail', args=[self.addon.guid]),
             ]
+
+        if show_compat_reporter:
+            # Compatibility Reporter. Only shown for legacy extensions.
+            links.append(
+                reverse('compat.reporter_detail', args=[self.addon.guid]))
 
         response = self.client.get(self.url)
         doc_links = [
@@ -263,8 +266,13 @@ class BaseTestEditBasic(BaseTestEdit):
             for a in pq(response.content)('#edit-addon-nav').find('li a')]
         assert links == doc_links
 
+    def test_nav_links_webextensions(self):
+        self.addon.find_latest_version(None).files.update(is_webextension=True)
+        self.test_nav_links(show_compat_reporter=False)
+
 
 class TestEditBasicListed(BaseTestEditBasic):
+    __test__ = True
 
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
@@ -544,14 +552,6 @@ class TestEditBasicListed(BaseTestEditBasic):
         doc = pq(response.content)
         assert doc('#addon-flags').text() == 'None'
 
-    def test_nav_links(self):
-        activity_url = reverse('devhub.feed', args=['a3615'])
-        response = self.client.get(self.url)
-        doc = pq(response.content)('#edit-addon-nav')
-        assert doc('ul:last').find('li a').eq(1).attr('href') == (
-            activity_url)
-        assert doc('.view-stats').length == 1
-
     def test_nav_links_admin(self):
         assert self.client.login(email='admin@mozilla.com')
         response = self.client.get(self.url)
@@ -621,6 +621,7 @@ class TestEditBasicListed(BaseTestEditBasic):
 
 
 class TestEditMedia(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(TestEditMedia, self).setUp()
@@ -949,6 +950,7 @@ class TestEditMedia(BaseTestEdit):
 
 
 class BaseTestEditDetails(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
@@ -1063,6 +1065,7 @@ class TestEditDetailsListed(BaseTestEditDetails):
 
 
 class TestEditSupport(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(TestEditSupport, self).setUp()
@@ -1110,6 +1113,7 @@ class TestEditSupport(BaseTestEdit):
 
 
 class TestEditTechnical(BaseTestEdit):
+    __test__ = True
     fixtures = BaseTestEdit.fixtures + [
         'addons/persona', 'base/addon_40', 'base/addon_1833_yoono',
         'base/addon_4664_twitterbar.json',
@@ -1382,6 +1386,7 @@ class TestEditTechnical(BaseTestEdit):
 
 class TestEditBasicUnlisted(BaseTestEditBasic):
     listed = False
+    __test__ = True
 
 
 class TestEditDetailsUnlisted(BaseTestEditDetails):
@@ -1389,6 +1394,7 @@ class TestEditDetailsUnlisted(BaseTestEditDetails):
 
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
+    __test__ = True
     listed = False
 
     def test_whiteboard(self):
