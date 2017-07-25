@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 00:38+0000\n"
+"PO-Revision-Date: 2017-07-25 02:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1164,64 +1164,64 @@ msgid "{0} :: Collections :: {1}"
 msgstr "{0} :: Koleksi :: {1}"
 
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Hanya saya sendiri boleh lihat koleksi ini."
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Sesiapa sahaja boleh lihat koleksi ini."
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Berikan nama koleksi anda."
 
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Jelaskan koleksi anda (tiada pautan dibenarkan)."
 
 msgid "Privacy:"
-msgstr ""
+msgstr "Privasi:"
 
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Sila jangan isi medan ini, digunakan untuk menangkap bot"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Nama ini tidak boleh digunakan."
 
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Url ini sudah digunakan oleh koleksi lain"
 
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ikon mesti samada PNG atau JPG."
 
 msgid "This slug is already in use by another one of your collections."
-msgstr ""
+msgstr "Slug ini sudah digunakan oleh koleksi anda yang lain."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Masukkan slug yang sah yang mengandungi huruf, nombor, garis bawah atau tanda sempang."
 
 msgid "This slug cannot be used."
-msgstr ""
+msgstr "Slug ini tidak boleh digunakan."
 
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 msgid "Recently Updated"
-msgstr ""
+msgstr "Terkini Dikemaskini"
 
 msgid "Recently Popular"
-msgstr ""
+msgstr "Terkini Popular"
 
 msgid "Added"
-msgstr ""
+msgstr "Ditambah"
 
 msgid "Popularity"
-msgstr ""
+msgstr "Populariti"
 
 msgid "Collection created!"
-msgstr ""
+msgstr "Koleksi dicipta!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
