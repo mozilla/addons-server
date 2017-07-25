@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 03:31+0000\n"
+"PO-Revision-Date: 2017-07-25 03:32+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1277,12 +1277,12 @@ msgid "{0} :: Collections"
 msgstr "{0} :: Koleksi"
 
 msgid "private"
-msgstr ""
+msgstr "peribadi"
 
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(num)s</span> pengikut"
 
 msgid "About this Collection"
 msgstr "Perihal Koleksi ini"
@@ -1773,7 +1773,7 @@ msgid "View Profile"
 msgstr ""
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Cipta Tema Anda Sendiri"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
@@ -8040,7 +8040,7 @@ msgid "Display the collections I have created"
 msgstr "Papar koleksi yang saya cipta"
 
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Papar koleksi yang saya ikuti"
 
 msgid "Notifications"
 msgstr ""
