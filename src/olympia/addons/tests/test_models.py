@@ -2418,7 +2418,7 @@ class TestAddonFromUpload(UploadTest):
     def test_webext_resolve_translations_corrects_locale(self, parse_addon):
         """Make sure we correct invalid `default_locale` values"""
         parse_addon.return_value = {
-            'default_locale': u'en',
+            'default_locale': u'sv',
             'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
@@ -2434,8 +2434,8 @@ class TestAddonFromUpload(UploadTest):
             self.get_upload('notify-link-clicks-i18n.xpi'),
             [self.platform])
 
-        # Normalized from `en` to `en-US`
-        assert addon.default_locale == 'en-US'
+        # Normalized from `sv` to `sv-SE`
+        assert addon.default_locale == 'sv-SE'
 
     @patch('olympia.addons.models.parse_addon')
     def test_webext_resolve_translations_unknown_locale(self, parse_addon):
