@@ -1,7 +1,7 @@
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.users.models import UserProfile
 from olympia.users.serializers import (
     AddonDeveloperSerializer, BaseUserSerializer)
@@ -24,6 +24,26 @@ class TestBaseUserSerializer(TestCase):
         result = self.serialize()
         assert result['id'] == self.user.pk
         assert result['name'] == self.user.name
+        assert result['url'] is None
+
+    def test_url_for_yourself(self):
+        # should include account profile url
+        self.request.user = self.user
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_developers(self):
+        # should include account profile url
+        addon_factory(users=[self.user])
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_admins(self):
+        # should include account profile url
+        admin = user_factory()
+        self.grant_permission(admin, 'Users:Edit')
+        self.request.user = admin
+        result = self.serialize()
         assert result['url'] == absolutify(self.user.get_url_path())
 
 

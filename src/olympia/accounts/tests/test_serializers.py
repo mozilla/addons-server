@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, TestCase, days_ago, user_factory)
+    addon_factory, days_ago, TestCase, user_factory)
 from olympia.accounts.serializers import (
     PublicUserProfileSerializer, LoginUserProfileSerializer,
     UserNotificationSerializer, UserProfileSerializer)
@@ -19,10 +21,12 @@ class TestPublicUserProfileSerializer(TestCase):
         'location': 'everywhere', 'occupation': 'job'}
 
     def setUp(self):
+        self.request = APIRequestFactory().get('/')
         self.user = user_factory(**self.user_kwargs)
 
     def serialize(self):
-        return self.serializer(self.user).data
+        return (self.serializer(context={'request': self.request})
+                .to_representation(self.user))
 
     def test_picture(self):
         serial = self.serialize()
@@ -51,6 +55,24 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         assert data['num_addons_listed'] == 2  # only public addons.
         assert data['average_addon_rating'] == '3.6'
+
+    def test_url_for_non_developers(self):
+        result = self.serialize()
+        assert result['url'] is None
+
+    def test_url_for_developers(self):
+        # should include the account profile url for a developer
+        addon_factory(users=[self.user])
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_admins(self):
+        # should include account profile url for admins
+        admin = user_factory()
+        self.grant_permission(admin, 'Users:Edit')
+        self.request.user = admin
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
 
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer):
