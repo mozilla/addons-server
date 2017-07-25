@@ -221,11 +221,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         url = reverse('users.%s' % url_name, args=[username] + args)
         return urlparams(url, src=src)
 
-    def get_user_url(self, name='profile', src=None, args=None):
-        return self.create_user_url(self.id, self.username, name, src, args)
+    def get_themes_url_path(self, src=None, args=None):
+        return self.create_user_url(self.id, self.username, 'themes', src=src,
+                                    args=args)
 
     def get_url_path(self, src=None):
-        return self.get_user_url('profile', src=src)
+        return self.create_user_url(self.id, self.username, 'profile', src=src)
 
     @cached_property
     def groups_list(self):
