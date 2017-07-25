@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 12:43+0000\n"
+"PO-Revision-Date: 2017-07-25 23:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2131,67 +2131,67 @@ msgid "Auto-Approval confirmed"
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobile"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox untuk Android"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "Tidak lengkap"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Dinyahdaya oleh Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Dipadam"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "Menunggu kelulusan"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Ditanda untuk semakan lanjut"
 
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Tidak tersenarai"
 
 msgid "Developer"
-msgstr ""
+msgstr "Pembangun"
 
 msgid "Viewer"
-msgstr ""
+msgstr "Pemerhati"
 
 msgid "Support"
-msgstr ""
+msgstr "Sokongan"
 
 msgid "Extension"
-msgstr ""
+msgstr "Ekstensi"
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "Tema Lengkap"
 
 msgid "Search Engine"
-msgstr ""
+msgstr "Enjin Carian"
 
 msgid "Language Pack (Application)"
 msgstr ""
