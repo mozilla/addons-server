@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 08:38+0000\n"
+"PO-Revision-Date: 2017-07-25 08:42+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1689,23 +1689,23 @@ msgid "Search Extensions"
 msgstr "Cari Ekstensi"
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Tambah fungsi berkaitan-carian ke Firefox"
 
 msgid "Search Providers"
-msgstr ""
+msgstr "Penyedia Carian"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Cari penyedia baru untuk bar carian anda"
 
 msgid "Additional Resources"
-msgstr ""
+msgstr "Sumber Tambahan"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Ketahui selanjutnya perihal <a href=\"http://support.mozilla.com/kb/Search+bar\">bar carian</a> dalam {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
