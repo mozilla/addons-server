@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 04:33+0000\n"
+"PO-Revision-Date: 2017-07-25 07:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1319,7 +1319,7 @@ msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "%(num)s Add-ons dalam Koleksi ini"
 
 msgid "Go"
-msgstr ""
+msgstr "Teruskan"
 
 msgid "What are Collections?"
 msgstr "Apakah Koleksi?"
@@ -1389,10 +1389,10 @@ msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s pengikut"
 
 msgid "by {0}"
-msgstr ""
+msgstr "oleh {0}"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "Berhenti Ikuti"
 
 msgid "Follow this Collection"
 msgstr "Ikuti Koleksi ini"
@@ -1418,16 +1418,16 @@ msgid "Edit {0}"
 msgstr "Edit {0}"
 
 msgid "Description"
-msgstr ""
+msgstr "Keterangan"
 
 msgid "Contributors & More"
-msgstr ""
+msgstr "Penyumbang & Lanjutan"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Simpan Perubahan"
 
 msgid "Owner"
-msgstr ""
+msgstr "Pemilik"
 
 msgid "Make Owner"
 msgstr ""
