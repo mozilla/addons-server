@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 02:30+0000\n"
+"PO-Revision-Date: 2017-07-25 02:36+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1225,33 +1225,33 @@ msgstr "Koleksi dicipta!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Koleksi baru anda dipaparkan di bawah. Anda boleh <a href=\"%(url)s\">edit tetapan tambahan</a> jika anda mahu."
 
 msgid "Collection updated!"
-msgstr ""
+msgstr "Koleksi dikemaskini!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Tinjau koleksi anda</a> untuk melihat perubahan."
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Ikon Dipadam"
 
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Cipta Koleksi Baru"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Seperti yang dinyatakan dalam <a href=\"%(legal)s\">Notis Undang-undang</a> kami, pengaturan koleksi individu dikawal oleh Lesen Creative Commons Attribution Share-Alike"
 
 msgid "Create Collection"
-msgstr ""
+msgstr "Cipta Koleksi"
 
 msgid "View this collection"
-msgstr ""
+msgstr "Tinjau koleksi ini"
 
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Mulakan koleksi baru..."
 
 msgid "Start a New Collection"
 msgstr ""
