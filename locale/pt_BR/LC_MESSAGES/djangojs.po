@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-05-24 01:31+0000\n"
+"PO-Revision-Date: 2017-07-25 23:00+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "Validando {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Sua extensão excede o tamanho máximo de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida uma resposta vazia do servidor; estado: {0}"
@@ -136,7 +136,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de arquivo que você enviou não foi reconhecido."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Seu arquivo excede o tamanho máximo de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Você cancelou o envio."

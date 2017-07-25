@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 12:33+0000\n"
+"PO-Revision-Date: 2017-07-25 23:02+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3034,12 +3034,12 @@ msgstr "Criana nova chave de API"
 msgid "API key revoked"
 msgstr "Chave da API revogada"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de complementos Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua informação."
+"Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
+"informação."
 
 msgid "Distribution Agreement"
 msgstr "Acordo de distribuição"
@@ -4075,7 +4075,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "HTML permitido: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Alguns elementos HTML são suportados."
@@ -4215,9 +4215,8 @@ msgstr "Inicie a sessão para editar e atualizar sua extensão"
 msgid "Update Your Legacy Extension"
 msgstr "Atualize sua extensão legada"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Agora as WebExtensions são o padrão para o desenvolvimento de extensões do Firefox. Você precisará atualizar suas extensões para permanecer compatível."
+msgstr "Existe um novo padrão de cross-browser para o desenvolvimento de extensões do Firefox. Você precisará atualizar suas extensões legadas para ficarem compatíveis."
 
 msgid "Learn How"
 msgstr "Saiba como"
@@ -4226,7 +4225,7 @@ msgid "What's New"
 msgstr "Novidades"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Pronto/a para submeter uma extensão? Leia o nosso tutorial passo-a-passo sobre o processo de submissão."
 
 msgid "See Tutorial"
 msgstr "Ver Tutorial"
@@ -4793,19 +4792,17 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pare trackers sorrateiros {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Bloqueia trackers invisíveis e anúncios espiões que o seguem através da Web."
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Ao suportar mais de 25 idiomas, esta extensão coloca um corretor diretamente no seu navegador."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
