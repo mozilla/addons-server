@@ -361,7 +361,7 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_author(self):
         qs = self._filter(data={'author': 'fooBar'})
-        must = qs['query']['filtered']['filter']['bool']['must']
+        must = qs['query']['bool']['must']
         assert {'term': {'listed_authors.username': 'fooBar'}} in must
 
 

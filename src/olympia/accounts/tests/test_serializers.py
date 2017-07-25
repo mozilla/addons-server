@@ -91,7 +91,7 @@ class TestUserNotificationSerializer(TestCase):
         assert data['mandatory'] == user_notification.notification.mandatory
 
 
-class TestLoginUserProfileSerializer(BaseTestCase):
+class TestLoginUserProfileSerializer(TestCase):
     serializer = LoginUserProfileSerializer
     user_kwargs = {
         'username': 'amo', 'email': 'amo@amo.amo', 'display_name': u'Ms. Amó'}
