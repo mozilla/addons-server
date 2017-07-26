@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 08:43+0000\n"
+"PO-Revision-Date: 2017-07-26 09:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2679,46 +2679,46 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Sila tetapkan Perjanjian Lesen Pengguna-Akhir add-on anda:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Add-on ini ada Polisi Privasi"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Sila tetapkan Polisi Privasi add-on anda:"
 
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Kenapa anda bina add-on ini?"
 
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Apa perkembangan lanjut add-on ini?"
 
 msgid "The developers of this add-on"
-msgstr ""
+msgstr "Pembangun add-on ini"
 
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "Yayasan Mozilla"
 
 msgid "An organization of my choice"
-msgstr ""
+msgstr "Sebuah organisasi piihan saya"
 
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Sila masukkan cadangan amaun lebih daripada 0."
 
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Sila masukkan cadangan amaun kurang daripada ${0}."
 
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "ID PayPal diperlukan untuk menerima sumbangan."
 
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Tidak dapat mengesahkan id PayPal."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
 
 msgid "View current"
-msgstr ""
+msgstr "Tinjau semasa"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Julat versi tidak sah."
 
 msgid "Need at least one compatible application."
 msgstr ""
