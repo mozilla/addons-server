@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 08:10+0000\n"
+"PO-Revision-Date: 2017-07-26 08:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2525,152 +2525,152 @@ msgid "Import/Export"
 msgstr "Import/Export"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Mesej dan Membaca Berita"
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Privasi dan Keselamatan"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Muat turun dan Pengurusan Fail"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Penyesuaian Antaramuka"
 
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Sokongan Bahasa dan Penterjemahan"
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "Foto dan Media"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, Berita dan Blog"
 
 msgid "Site-specific"
-msgstr ""
+msgstr "Laman-khusus"
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Web dan Alatan Pembangun"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Minta Info Lanjutan"
 
 msgid "Flag"
-msgstr ""
+msgstr "Tanda"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikasi"
 
 msgid "Reject"
-msgstr ""
+msgstr "Tolak"
 
 msgid "Approve"
-msgstr ""
+msgstr "Lulus"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Kandungan seksual atau pornografi"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Kandungan tidak sesuai atau menyinggung"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Imej keganasan, peperangan, atau senjata"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazi atau kandungan kebencian lain"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Kandungan fitnah"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Perjudian dalam talian"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Kandungan spam"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Rendah kualiti, diregangkan, atau imej kosong"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Masalah penjajaran imej pengepala"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Hak Cipta Terpelihara"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "Mana-mana"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Semua Platform"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Core"
-msgstr ""
+msgstr "Core"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Perubahan Terkini untuk %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Perubahan Terkini untuk Add-ons Saya"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Sekurang-kurangnya seorang pengarang mesti disenaraikan."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Seorang pengarang hanya boleh disenaraikan sekali sahaja."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug tidak betul."
 
 msgid "Details"
-msgstr ""
+msgstr "Butiran"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Apakah nama lesen anda?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Sertakan teks untuk lesen anda."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Teks lesen diperlukan apabila memilih Lain-lain."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
