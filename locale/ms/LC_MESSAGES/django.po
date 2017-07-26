@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 11:30+0000\n"
+"PO-Revision-Date: 2017-07-26 11:38+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2889,25 +2889,25 @@ msgstr "Imej tidak boleh melebihi %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Imej mesti tepat {0} piksel lebar dan {1} piksel tinggi."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Ada ralat semasa memuat naik previu anda."
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Versi %s dinyahdaya."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Versi %s dibuang."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Versi %s didayakan-semula."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Muat naik ini telah gagal disahkan, dan mungkin kurang lengkap pengesahannya. Sila berhati-hati apabila menelitinya."
 
 msgid "Review requested."
 msgstr ""
