@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 10:52+0000\n"
+"PO-Revision-Date: 2017-07-26 11:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2618,7 +2618,7 @@ msgid "Any"
 msgstr "Mana-mana"
 
 msgid "All Platforms"
-msgstr "Semua Platform"
+msgstr "Platform All"
 
 msgid "Linux"
 msgstr "Linux"
@@ -2757,7 +2757,7 @@ msgid "Continue with existing upload instead?"
 msgstr "Teruskan sahaja memuat naik?"
 
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Platform All tidak boleh digabungkan dengan platform khusus."
 
 msgid "A platform can only be chosen once."
 msgstr "Platform boleh dipilih sekali sahaja."
@@ -2860,32 +2860,32 @@ msgid "An author has been removed from your add-on"
 msgstr "Seorang pengarang disingkir daripada add-on anda"
 
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Ada ralat dalam penghantaran anda."
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Sahkan Add-on"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Semak Keserasian Add-on"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Anda tidak boleh kemukakan add-on jenis ini"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Ikon tidak boleh bentuk animasi."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Imej tidak boleh bentuk animasi."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Imej tidak boleh melebihi %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
