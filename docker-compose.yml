@@ -49,7 +49,9 @@ mysqld:
 elasticsearch:
   image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
   environment:
-    -  xpack.security.enabled=false
+    - xpack.security.enabled=false
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  mem_limit: 2g
 
 redis:
   image: redis:2.8
