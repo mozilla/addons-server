@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 23:58+0000\n"
+"PO-Revision-Date: 2017-07-26 07:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1955,31 +1955,31 @@ msgid "Super review requested"
 msgstr "Kajian teliti diperlukan"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} perlukan semakan."
 
 msgid "Review requested"
-msgstr ""
+msgstr "Semakan diperlukan"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} perlukan maklumat lanjut."
 
 msgid "More information requested"
-msgstr ""
+msgstr "Perlukan maklumat lanjut"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} perlukan semakan teliti."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "Add-on ini telah ditanda untuk Semakan Pentadbir.  Masih dalam giliran semakan kami, tapi perlu disemak oleh salah seorang pentadbir kami. Semakan ini mungkin lebih lama daripada biasa."
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komen untuk {addon} {version}."
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} ditanda untuk {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} dibuang daripada {addon}."
 
 msgid "{addon} added to {collection}."
 msgstr "{addon} ditambah ke {collection}."
@@ -1988,7 +1988,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} dibuang daripada {collection}."
 
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} untuk {addon} ditulis."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -2006,50 +2006,50 @@ msgstr "{addon} tidak lagi jadi sorotan."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} ditambah."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "peranan {0.name} ditukar ke {1} untuk {addon}."
 
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} kini dilesenkan di bawah {0.name}."
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "polisi {addon} ditukar."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "ikon {addon} ditukar."
 
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} untuk {addon} diluluskan."
 
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} meluluskan {review} untuk {addon}."
 
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Ulasan {review} untuk {addon} dipadam."
 
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} membuang {review} untuk {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Versi maksimum aplikasi {version} dikemaskini."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "E-mel pengarang perihal keserasian {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mel dihantar kepada Pengarang perihal keserasian add-on."
 
 msgid "Password changed."
-msgstr ""
+msgstr "Kata laluan ditukar."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} dluluskan tetapi masih menunggu untuk dikeluarkan kepada umum."
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Diluluskan tetapi menunggu"
 
 msgid "Account updated."
 msgstr "Akaun dikemaskini."
@@ -2061,16 +2061,16 @@ msgid "Edited field: {2} set to: {0}."
 msgstr "Medan diedit: {2} set ke: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Dipadam: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Pengguna {user} mengedit, alasan: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Pengguna {user} anonimus."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Pengguna {user} dihadkan."
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
