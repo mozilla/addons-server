@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-21 21:08+0000\n"
+"PO-Revision-Date: 2017-07-26 16:35+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -308,7 +308,7 @@ msgid "Featured Extensions"
 msgstr "შემოთავაზებული გაფართოებები"
 
 msgid "Popular Extensions"
-msgstr "პოპულარული გაფართოებები"
+msgstr "მოთხოვნადი გაფართოებები"
 
 msgid "Most Popular"
 msgstr "ყველაზე მოთხოვნადი"
@@ -1200,13 +1200,13 @@ msgid "Recently Updated"
 msgstr "ბოლოს განახლებული"
 
 msgid "Recently Popular"
-msgstr "ბოლო დროს პოპულარული"
+msgstr "ბოლო დროს მოთხოვნადი"
 
 msgid "Added"
 msgstr "დამატებული"
 
 msgid "Popularity"
-msgstr "პოპულარობა"
+msgstr "მოთხოვნადობა"
 
 msgid "Collection created!"
 msgstr "კრებული შეიქმნა!"
