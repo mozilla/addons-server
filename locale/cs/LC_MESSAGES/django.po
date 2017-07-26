@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-20 06:22+0000\n"
+"PO-Revision-Date: 2017-07-26 08:31+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -176,7 +176,7 @@ msgid "Listed"
 msgstr "Zobrazení"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Cesta k doplňkům a sbírkám musí končit znakem \"/\""
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -2953,7 +2953,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Nemůžete odeslat doplněk s GUID končícím \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
 msgid "Icons cannot be animated."
 msgstr "Ikony nemohou být animované."
@@ -3005,19 +3005,18 @@ msgstr "Nový API klíč byl vytvořen"
 msgid "API key revoked"
 msgstr "API klíč byl revokován"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, které odkazují na naše oznámení o zásadách ochrany osobních údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
+"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznáky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše oznámení o zásadách ochrany osobních "
+"údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Dohoda o distribuci doplňků"
+msgstr "Dohoda o distribuci"
 
 msgid "Review Policy"
-msgstr ""
+msgstr "Poznámka ke kontrole"
 
 msgid "Review Rules"
 msgstr "Pravidla kontroly"
@@ -3030,7 +3029,7 @@ msgid "Printable Version"
 msgstr "Tisková verze"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Přečetl jsem si a souhlasím s podmínkami, pravidly i poznámkou zmíněnými výše"
 
 msgid "I Accept this Agreement"
 msgstr "Souhlasím s tímto ujednáním"
@@ -3273,9 +3272,8 @@ msgstr "Tento doplněk je experimentální."
 msgid "This add-on is ready for general use."
 msgstr "Tento doplněk je připraven pro obecné použití."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Vyžaduje restart"
+msgstr "Je vyžadována platba?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -4053,9 +4051,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kontaktujte nás"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Zásady tvorby a správy doplňků"
+msgstr "Zásady"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4124,9 +4121,8 @@ msgstr "Spravujte svůj doplněk"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přihlaste se pro editaci a aktualizaci svého doplňku"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Doporučené doplňky"
+msgstr "Aktualizujte své zastaralé doplňky"
 
 #, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
@@ -4139,11 +4135,10 @@ msgid "What's New"
 msgstr "Co je nového"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Jste připraveni nahrát doplněk? Přečtěte si našeho průvodce, který vás celým procesem provede krok za krokem."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Vše"
+msgstr "Prohlédnout si průvoce"
 
 msgid "View All Submissions"
 msgstr "Zobrazit všechny příspěvky"
@@ -4684,19 +4679,17 @@ msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Zastavte slídily {start_sub_heading}s doplňkem{addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Blokujte neviditelné sledovací prvky a špehující reklamy, který vás sledují po celém webu."
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Zlepšete svůj pravopis {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Kontrola pravopisu ve více než 25 jazycích přímo ve vašem prohlížeči."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vytvářejte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -6759,8 +6752,8 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v <a href=\"%(p_url)s\">zásadách pro doplňky</a> Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího upozornění. Tým "
-"redaktorů AMO navíc používá <a href=\"%(g_url)s\">Příručku pro kontrolu doplňků</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
+"Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v <a href=\"%(p_url)s\">poznámce ke kontrole doplňků</a> Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího "
+"upozornění. Tým redaktorů AMO navíc používá <a href=\"%(g_url)s\">Příručku pro kontrolu doplňků</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
 
 msgid "How do I submit my add-on?"
 msgstr "Jak svůj doplněk nahraji?"
@@ -6771,7 +6764,7 @@ msgid ""
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 "Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a "
-"href=\"%(url)s\">příručku pro kontrolu doplňků</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat."
+"href=\"%(url)s\">poznámky ke kontrole doplňků</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Jaký operační systém mám pro můj doplněk zvolit?"
