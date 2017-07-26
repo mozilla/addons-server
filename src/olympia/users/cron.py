@@ -8,7 +8,6 @@ import olympia.core.logger
 from olympia.amo import VALID_ADDON_STATUSES
 from olympia.amo.utils import chunked
 
-from .models import UserProfile
 from .tasks import update_user_ratings_task
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -44,12 +43,3 @@ def update_user_ratings():
     ts = [update_user_ratings_task.subtask(args=[chunk])
           for chunk in chunked(d, 1000)]
     TaskSet(ts).apply_async()
-
-
-def reindex_users(index=None):
-    from . import tasks
-    ids = UserProfile.objects.values_list('id', flat=True)
-    taskset = [tasks.index_users.subtask(args=[chunk],
-                                         kwargs=dict(index=index))
-               for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(taskset).apply_async()

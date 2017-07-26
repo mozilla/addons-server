@@ -1091,8 +1091,6 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
     'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
-    'olympia.users.tasks.index_users': {'queue': 'priority'},
-    'olympia.users.tasks.unindex_users': {'queue': 'priority'},
 
     # Other queues we prioritize below.
 
@@ -1719,5 +1717,4 @@ CRON_JOBS = {
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',
-    'reindex_users': 'olympia.users.cron',
 }

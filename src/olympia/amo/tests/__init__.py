@@ -356,7 +356,6 @@ ES_patchers = [
     mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
     mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
     mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
-    mock.patch('olympia.users.tasks.index_users.delay', spec=True),
 ]
 
 
