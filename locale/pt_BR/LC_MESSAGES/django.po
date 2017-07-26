@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 23:02+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2017-07-26 16:29+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgid "Listed"
 msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "As rotas da extensão precisam terminar com \"/\""
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -2981,7 +2981,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Você não pode enviar uma extensão com guid terminando em \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
 
 msgid "Icons cannot be animated."
 msgstr "Os ícones não podem ser animados."
@@ -3058,7 +3058,7 @@ msgid "Printable Version"
 msgstr "Versão para impressão"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Eu li e aceito o Acordo e as Regras e Políticas"
 
 msgid "I Accept this Agreement"
 msgstr "Eu aceito esse acordo"
@@ -3817,7 +3817,7 @@ msgid "Version Submitted"
 msgstr "Versão submetida"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Pronto! Essa versão estará disponível em breve no nosso site."
 
 msgid "Version Submitted for Review"
 msgstr "Versão submetida para análise"
