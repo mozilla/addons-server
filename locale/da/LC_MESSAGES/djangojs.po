@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-05-24 11:32+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"PO-Revision-Date: 2017-07-26 22:39+0000\n"
+"Last-Translator: Bente <fox@frkolsen.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "Select a file..."
 msgstr "Vælg en fil..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Din tilføjelse skal ende på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -57,7 +57,7 @@ msgstr[1] "Validering af din tilføjelse mislykkedes, der var {0} fejl."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip;og {0} mere"
 msgstr[1] ""
 
 msgid "See full validation report"
@@ -67,10 +67,10 @@ msgid "Validating {0}"
 msgstr "Validerer {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Din tilføjelse overstiger maximumstørrelsen på {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Modtog et tomt svar fra serveren, status: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Uventet serverfejl under valideringen."
@@ -83,16 +83,16 @@ msgstr "Valideringen af din tilføjelse udløb, den vil blive manuelt bedømt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Din tilføjelse er valideret som fejlfri og med {0} advarsel(-ler)."
 msgstr[1] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Din tilføjelse er valideret som fejlfri og med {0} advarsel(-ler)."
 msgstr[1] ""
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Din tilføjelse er valideret uden fejl eller advarsler."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
