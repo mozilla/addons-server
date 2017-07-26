@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 13:51+0000\n"
+"PO-Revision-Date: 2017-07-26 23:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3012,55 +3012,55 @@ msgid "Search Developer Docs"
 msgstr "Dokumen Pembangun Carian"
 
 msgid "Search"
-msgstr ""
+msgstr "Cari"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Selepas muat naik, satu siri ujian pengesahan automatik akan berjalan untuk menyemak keserasian dengan versi aplikasi berikut:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Selepas upload, satu siri ujian pengesahan automatik akan dilaksanakan dalam fail anda."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Adakah anda mahu add-on anda diedarkan dalam laman ini?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Keputusan Pengesahan untuk {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Keputusan Pengesahan"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Pengesahan pada:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Diuji untuk keserasian dengan:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Aktiviti Terkini untuk Add-ons Saya"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Aktiviti Terkini untuk {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> oleh %(user)s"
 
 msgid "No results found."
-msgstr ""
+msgstr "Tiada hasil ditemukan."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Aktiviti Penapisan"
 
 msgid "Activity"
-msgstr ""
+msgstr "Aktiviti"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Langgan suapan ini"
 
 #, python-format
 msgid ""
