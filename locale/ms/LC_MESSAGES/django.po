@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 07:50+0000\n"
+"PO-Revision-Date: 2017-07-26 08:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2318,211 +2318,211 @@ msgid "Level 2"
 msgstr "Tahap 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Tahap 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Tahap 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Tahap 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Tahap 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Tahap 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Tahap 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Tahap 9"
 
 msgid "Compatible"
-msgstr ""
+msgstr "Serasi"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Tidak-serasi"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Makluman & Kemaskini"
 
 msgid "Appearance"
-msgstr ""
+msgstr "Penampilan"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Tandabuku"
 
 msgid "Download Management"
-msgstr ""
+msgstr "Pengurusan Muat turun"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Suapan, Berita & Blog"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Permainan & Hiburan"
 
 msgid "Language Support"
-msgstr ""
+msgstr "Sokongan Bahasa"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Foto, Muzik & Video"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Privasi & Keselamatan"
 
 msgid "Shopping"
-msgstr ""
+msgstr "Beli-belah"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Sosial & Komunikasi"
 
 msgid "Tabs"
-msgstr ""
+msgstr "Tab"
 
 msgid "Web Development"
-msgstr ""
+msgstr "Pembangunan Web"
 
 msgid "Animals"
-msgstr ""
+msgstr "Haiwan"
 
 msgid "Compact"
-msgstr ""
+msgstr "Padat"
 
 msgid "Large"
-msgstr ""
+msgstr "Besar"
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Pelbagai"
 
 msgid "Modern"
-msgstr ""
+msgstr "Moden"
 
 msgid "Nature"
-msgstr ""
+msgstr "Alam"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "Integrasi OS"
 
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 msgid "Sports"
-msgstr ""
+msgstr "Sukan"
 
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
 msgid "Business"
-msgstr ""
+msgstr "Perniagaan"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Kamus & Ensiklopedia"
 
 msgid "Kids"
-msgstr ""
+msgstr "Kanak-kanak"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "Pelbagai Carian"
 
 msgid "Music"
-msgstr ""
+msgstr "Muzik"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "Berita & Blog"
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "Foto & Imej"
 
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Beli-belah & E-Dagang"
 
 msgid "Social & People"
-msgstr ""
+msgstr "Sosial & Manusia"
 
 msgid "Travel"
-msgstr ""
+msgstr "Pelancongan"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Abstract"
-msgstr ""
+msgstr "Abstrak"
 
 msgid "Causes"
-msgstr ""
+msgstr "Alasan"
 
 msgid "Fashion"
-msgstr ""
+msgstr "Fesyen"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Filem dan TV"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
-msgstr ""
+msgstr "Percutian"
 
 msgid "Scenery"
-msgstr ""
+msgstr "Pemandangan"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "Musim"
 
 msgid "Solid"
-msgstr ""
+msgstr "Padu"
 
 msgid "Websites"
-msgstr ""
+msgstr "Laman web"
 
 msgid "Device Features & Location"
 msgstr "Ciri & Lokasi Peranti"
 
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimen"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Suapan, Berita & Blog"
 
 msgid "Performance"
-msgstr ""
+msgstr "Prestasi"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "Foto & Media"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Keselamatan & Privasi"
 
 msgid "Social Networking"
-msgstr ""
+msgstr "Rangkaian Sosial"
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sukan & Permainan"
 
 msgid "User Interface"
-msgstr ""
+msgstr "Antaramuka Pengguna"
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Penampilan dan Penyesuaian"
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Kalendar dan Tarikh/Time"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "Chat dan IM"
 
 msgid "Message Composition"
-msgstr ""
+msgstr "Karangan Mesej"
 
 msgid "Contacts"
-msgstr ""
+msgstr "Kenalan"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Folder dan Penyaring"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "Import/Export"
 
 msgid "Message and News Reading"
 msgstr ""
