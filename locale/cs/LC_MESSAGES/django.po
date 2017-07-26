@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 08:31+0000\n"
+"PO-Revision-Date: 2017-07-26 08:39+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3276,13 +3276,13 @@ msgid "Requires Payment?"
 msgstr "Je vyžadována platba?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Toto políčko zaškrtněte, pokud klíčové funkce tohoto doplňku ke své funkci vyžadují nějakou formu platby předem či po uběhnutí zkušební doby."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Tento doplněk vyžaduje platbu, placené služby nebo software, či dodatečný hardware."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Tento doplněk nevyžaduje platby, placené služby nebo software, ani dodatečný hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3697,16 +3697,14 @@ msgstr "Je tu něco, na co by redaktoři měli při kontrole doplňku myslet?"
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Zrušit kontrolu a zakázat verzi"
+msgstr "Zrušit a zakázat verzi"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Zrušit kontrolu a zakázat verzi"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Odeslat novou verzi"
+msgstr "Odeslat verzi"
 
 msgid "Submit Version for Review"
 msgstr "Odeslat verzi ke kontrole"
@@ -3735,12 +3733,11 @@ msgstr "Odeslání dokončeno"
 msgid "You’re done!"
 msgstr "A je to hotovo!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Verze podepsána"
+msgstr "Verze odeslána"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Hotovo! Tato verze bude brzy k dispozici na našich stánkách."
 
 msgid "Version Submitted for Review"
 msgstr "Verze odeslaná ke kontrole"
@@ -3987,7 +3984,7 @@ msgstr "Vyberte prosím vhodnou licenci vzhledem k právům, která chcete posky
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Povolené HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Některé HTML je podporováno."
@@ -4031,9 +4028,8 @@ msgstr "Přečtěte si více na našem blogu"
 msgid "Resources"
 msgstr "Zdroje"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Hodnocení"
+msgstr "Portování"
 
 msgid "Community"
 msgstr "Komunita"
@@ -4124,9 +4120,8 @@ msgstr "Přihlaste se pro editaci a aktualizaci svého doplňku"
 msgid "Update Your Legacy Extension"
 msgstr "Aktualizujte své zastaralé doplňky"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions jsou nyní standardem pro vývoj doplňků pro Firefox. Aby zůstaly vaše starší doplňky kompatibilní, budete je muset aktualizovat."
+msgstr "Firefox nyní podporujeme nový standard doplňků, který je kompatibilní napříč prohlížeči. Aby zůstaly vaše starší doplňky kompatibilní, budete je muset aktualizovat."
 
 msgid "Learn How"
 msgstr "Zjistit více"
