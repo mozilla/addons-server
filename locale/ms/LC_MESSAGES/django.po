@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 09:55+0000\n"
+"PO-Revision-Date: 2017-07-26 10:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2778,75 +2778,77 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Dalam laman ini. <span class=\"helptext\">Penghantaran anda akan disenaraikan dalam laman ini dan laman Pengurus Add-ons Mozilla untuk berjuta-juta pengguna, selepas lulus semakan kod. Kemaskini "
-"automatik akan diuruskan oleh laman ini. Add-on ini juga akan dianggap sebagai promosi dan pertandingan Mozilla. Pengedaran sendiri juga boleh dilakukan. </span>"
+"Dalam laman ini. <span class=\"helptext\">Serahan anda akan disenaraikan dalam laman ini dan laman Pengurus Add-ons Mozilla untuk berjuta-juta pengguna, selepas lulus semakan kod. Kemaskini "
+"automatik akan diuruskan oleh laman ini. Add-on ini juga dianggap sebagai promosi dan pertandingan Mozilla. Mengedarkan sendiri juga boleh dilakukan. </span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"Anda mengedarkan sendiri. <span class=\"helptext\">Serahan anda akan serta-merta ditandatangan untuk diedarkan-sendiri. Anda akan uruskan sendiri kemaskini via updateURL atau kemaskini aplikasi "
+"luar.</span>"
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "Bermula Firefox 53, ekstensi baru dalam laman web ini hanyalah WebExtensions."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s memberi respons dengan %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Sambungan ke \"%s\" tamat tempoh."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Tidak dapat menghubungi hos di\"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Semua Add-ons Saya"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Semua Aktiviti"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Kemaskini Add-on"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status Add-on"
 
 msgid "User Collections"
 msgstr "Koleksi Pengguna"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Ulasan Pengguna"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Perubahan berjaya disimpan."
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Sila semak borang untuk ralat."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Add-on ini tidak boleh dibuang, Hanya nyahdaya sahaja."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema dibuang."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Add-on dibuang."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Nama URL tidak betul. Tema tidak dibuang."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Nama URL tidak betul. Add-on tidak dibuang."
 
 msgid "An author has been added to your add-on"
 msgstr ""
