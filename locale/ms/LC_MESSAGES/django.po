@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 13:33+0000\n"
+"PO-Revision-Date: 2017-07-26 13:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3538,10 +3538,10 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 
 msgid "Submit a New File"
-msgstr ""
+msgstr "Hantar Fail Baru"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "Hantar Versi Baru"
 
 msgid "Describe Add-on"
 msgstr ""
@@ -3595,10 +3595,10 @@ msgid "Cancel Review and Disable Version"
 msgstr ""
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Hantar Versi"
 
 msgid "Submit Version for Review"
-msgstr ""
+msgstr "Hantar Versi untuk Semakan"
 
 msgid "Describe Version"
 msgstr ""
@@ -3625,16 +3625,16 @@ msgid "You’re done!"
 msgstr ""
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "Versi Dihantar"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Versi Dihantar untuk Semakan"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Sudah siap! Versi ini telah dihantar untuk semakan. Anda akan dimaklumkan apabila semakan telah selesai, atau apabila penyemak kami ada soalan berkaitan serahan anda tersebut."
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
@@ -3700,7 +3700,7 @@ msgid "Administrative overrides"
 msgstr ""
 
 msgid "Submit File"
-msgstr ""
+msgstr "Hantar Fail"
 
 msgid "Sign Add-on"
 msgstr ""
@@ -4015,7 +4015,7 @@ msgid "What's New"
 msgstr ""
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah perihal proses penghantaran."
 
 msgid "See Tutorial"
 msgstr ""
@@ -4024,13 +4024,13 @@ msgid "View All Submissions"
 msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Di sinilah tempat anda tinjau dan uruskan add-ons dan tema anda. Untuk menerbitkan add-on pertama anda, klik \"Hantar Add-on Pertama Anda\" atau \"Hantar Tema Pertama Anda\"."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Hantar Add-on Pertama Anda"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Hantar Tema Pertama Anda"
 
 msgid "Add-on Developer Hub"
 msgstr ""
@@ -4071,7 +4071,7 @@ msgid "Publish Your Add-on"
 msgstr ""
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Add-on anda sudah siap? Hantar ekstensi atau tema anda untuk disenaraikan dalam addons.mozilla.org atau tandatangan dan anda edarkan sendiri ekstensi tersebut."
 
 msgid "Sign In"
 msgstr ""
@@ -4250,7 +4250,7 @@ msgid "Upon upload and form submission, the AMO Team will review your updated de
 msgstr ""
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Reka bentuk anda sebelum ini yang direka semula, yang masih menunggu semakan."
 
 msgid "Pending Header"
 msgstr ""
@@ -4297,7 +4297,7 @@ msgstr ""
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan mudah. Hantarkan rekaan anda sendiri di bawah, atau <a href=\"%(submit_url)s\">belajar cara mencipta</a>!"
 
 msgid "Give your Theme a name."
 msgstr ""
@@ -4309,13 +4309,13 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Hantar Tema"
 
 msgid "You're done!"
 msgstr ""
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Tema anda telah dihantar ke Giliran Semakan. Anda akan terima e-mel apabila tema anda sudah disemak, biasanya dalam tempoh 24 jam."
 
 msgid "Next steps:"
 msgstr ""
@@ -4710,7 +4710,7 @@ msgid "Duplicate Submission"
 msgstr ""
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Terima kasih kerana mengemukakan Tema anda"
 
 msgid "A problem with your Theme submission"
 msgstr ""
