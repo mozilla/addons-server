@@ -161,7 +161,7 @@ class Command(BaseCommand):
                     confirm = raw_input('Please enter either "yes" or "no": ')
 
             if (confirm == 'yes' or skip_confirmation):
-                unflag_database(stdout=self.stdout)
+                unflag_database()
                 for index in set(modules.keys()):
                     ES.indices.delete(index, ignore=404)
             else:
