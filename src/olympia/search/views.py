@@ -388,14 +388,12 @@ def _filter_search(request, qs, query, filters, sorting,
         low = version_int(query['appver'])
         # Get a max version greater than X.0a.
         high = version_int(query['appver'] + 'a')
-        # If we're not using D2C then fall back to appversion checking.
-        extensions_shown = (not query.get('atype') or
-                            query['atype'] == amo.ADDON_EXTENSION)
-        if not extensions_shown or low < version_int('10.0'):
-            qs = qs.filter(**{
-                'current_version.compatible_apps.%s.max__gte' % APP.id: high,
-                'current_version.compatible_apps.%s.min__lte' % APP.id: low
-            })
+        # Note: when strict compatibility is not enabled on add-ons, we
+        # fake the max version we index in compatible_apps.
+        qs = qs.filter(**{
+            'current_version.compatible_apps.%s.max__gte' % APP.id: high,
+            'current_version.compatible_apps.%s.min__lte' % APP.id: low
+        })
     if 'atype' in show and query['atype'] in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
     else:

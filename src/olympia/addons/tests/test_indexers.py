@@ -203,10 +203,12 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version']
         assert extracted['current_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 2000000200100L,
-                'max': 4000000200100L,
+                'max': 9999000000200100,
                 'max_human': '4.0',
                 'min_human': '2.0',
             }
@@ -232,10 +234,12 @@ class TestAddonIndexer(TestCase):
         version = current_beta_version
         assert extracted['current_beta_version']
         assert extracted['current_beta_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_beta_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -260,10 +264,12 @@ class TestAddonIndexer(TestCase):
         version = unlisted_version
         assert extracted['latest_unlisted_version']
         assert extracted['latest_unlisted_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['latest_unlisted_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -283,6 +289,22 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert extracted_file['webext_permissions_list'] == []
+
+    def test_version_compatibility_with_strict_compatibility_enabled(self):
+        version = self.addon.current_version
+        file_factory(
+            version=version, platform=PLATFORM_MAC.id,
+            strict_compatibility=True)
+        extracted = self._extract()
+
+        assert extracted['current_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 2000000200100L,
+                'max': 4000000200100L,
+                'max_human': '4.0',
+                'min_human': '2.0',
+            }
+        }
 
     def test_extract_translations(self):
         translations_name = {
