@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 12:28+0000\n"
+"PO-Revision-Date: 2017-07-26 12:52+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2931,83 +2931,85 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox serta Polisi dan Peraturan Semakan kami. Perjanjian Pengedaran Add-on Firefox juga ada hubungan dengan Notis Privasi kami"
+" yang menjelaskan cara kami mengendalikan maklumat anda."
 
 msgid "Distribution Agreement"
-msgstr ""
+msgstr "Perjanjian Pengedaran"
 
 msgid "Review Policy"
-msgstr ""
+msgstr "Polisi Semakan"
 
 msgid "Review Rules"
-msgstr ""
+msgstr "Peraturan Semakan"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox kami. Ini juga ada hubungan dengan Notis Privasi kami yang menjelaskan cara kami mengendalikan maklumat anda."
 
 msgid "Printable Version"
-msgstr ""
+msgstr "Versi Boleh Cetak"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
 
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Saya Terima Perjanjian ini"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "atau <a href=\"{0}\">Batal</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Kembali ke Add-ons"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "Add-ons {0}"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Kembali ke halaman utama DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Add-on</small> Hab Pembangun"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "add-ons selanjutnya..."
 
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentasi"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Pembangunan Ekstensi"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Tema Ringan"
 
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Polisi Add-on"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Pengesah Add-on"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Pemeriksa Keserasian Add-on"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Pembangunan Add-ons"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Komuniti & Sokongan"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog Add-ons"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Forum Add-ons"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Sumber Selanjutnya"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Dokumen Pembangun Carian"
 
 msgid "Search"
 msgstr ""
