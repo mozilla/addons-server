@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-25 23:50+0000\n"
+"PO-Revision-Date: 2017-07-25 23:58+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2194,59 +2194,59 @@ msgid "Search Engine"
 msgstr "Enjin Carian"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Pek Bahasa (Aplikasi)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pek Bahasa (Add-on)"
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Tema Lengkap"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Kamus"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Pek Bahasa (Aplikasi)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Pek Bahasa (Add-on)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Minta hanya halaman add-on ini dan profil pembangun"
 
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Minta selepas pengguna muat turun add-on ini"
 
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Minta sebelum pengguna boleh muat turun add-on ini"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "Lain-lain"
 
 msgid "Exception"
-msgstr ""
+msgstr "Pengecualian"
 
 msgid "Release"
-msgstr ""
+msgstr "Keluaran"
 
 msgid "Change"
-msgstr ""
+msgstr "Tukar"
 
 msgid "App"
-msgstr ""
+msgstr "App"
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "Manual Reviewer Points"
 msgstr ""
