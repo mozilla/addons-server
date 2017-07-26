@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 11:38+0000\n"
+"PO-Revision-Date: 2017-07-26 12:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2910,22 +2910,22 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Muat naik ini telah gagal disahkan, dan mungkin kurang lengkap pengesahannya. Sila berhati-hati apabila menelitinya."
 
 msgid "Review requested."
-msgstr ""
+msgstr "Semakan diperlukan."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Anda perlu sediakan butiran lanjut untuk meneruskan."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Kelayakan anda yang lama telah dibatalkan dan tidak lagi sah. Pastikan anda maklumkan semua pelanggan API dengan kelayakan anda yang baru."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Kelayakan anda yang lama telah dibatalkan dan tidak lagi sah."
 
 msgid "New API key created"
-msgstr ""
+msgstr "Kekunci API baru dicipta"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Kekunci API ditarik balik"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
