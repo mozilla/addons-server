@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 07:31+0000\n"
+"PO-Revision-Date: 2017-07-26 07:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2073,62 +2073,62 @@ msgid "User {user} restricted."
 msgstr "Pengguna {user} dihadkan."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Pentadbir {0} meninjau log aktiviti {user}."
 
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} untuk {addon} dikemaskini."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} disemak."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Pengguna {0.name} dimasukkan ke {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Pengguna {0.name} disingkir daripada {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} tidak-tersenarai."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} telah ditandatangan."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Id add-on {0} dengan GUID {1} telah dibuang"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} dipindahkan daripada persediaan."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Jawapan oleh pembangun {addon} {version}."
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "Jawapan Pembangun"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Jawapan oleh penyemak {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Jawapan Penyemak"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Nota kelulusan {addon} {version} diubah."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Nota kelulusan diubah"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Kod sumber dimuat naik untuk {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Kod sumber dimuat naik"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Auto-kelulusan disahkan untuk {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Auto-kelulusan disahkan"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2249,73 +2249,73 @@ msgid "Persona"
 msgstr "Persona"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Poin Penyemak Manual"
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "Ulasan Add-on Baru"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Ulasan Add-on Awalan"
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Ulasan Add-on Dikemaskini"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Ulasan Kamus Baru"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Ulasan Kamus Awalan"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Ulasan Kamus Dikemaskini"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Ulasan Pek Bahasa Baru"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Ulasan Pek Bahasa Awalan"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Ulasan Pek Bahasa Dikemaskini"
 
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus untuk ulasan tertunda"
 
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Hari Sebelum Poin Bonus Diterapkan"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Ulasan Tema"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Ulasan Penyedia Carian Baru"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Ulasan Penyedia Carian Awalan"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Ulasan Penyedia Carian Dikemaskini"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Tema Lengkap Baru"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Tema Lengkap Awalan"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Tema Lengkap Dikemaskini"
 
 msgid "Moderated Addon Review"
 msgstr "Ulasan Add-on Moderat"
 
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Ulasan Add-on Moderat Dibalikkan"
 
 msgid "Level 1"
-msgstr ""
+msgstr "Tahap 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Tahap 2"
 
 msgid "Level 3"
 msgstr ""
