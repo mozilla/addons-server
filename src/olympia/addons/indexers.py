@@ -76,7 +76,7 @@ class AddonIndexer(BaseSearchIndexer):
                             'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
                         'is_restart_required': {
-                            'type': 'boolean', 'index': 'no'},
+                            'type': 'boolean', 'index': False},
                         'platform': {
                             'type': 'byte', 'index': False},
                         'size': {'type': 'long', 'index': False},
