@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 09:11+0000\n"
+"PO-Revision-Date: 2017-07-26 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2727,49 +2727,49 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Ada ralat dengan muat naik anda. Sila cuba lagi."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Pembatalan gagal pengesahan"
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Kemukakan add-on saya untuk semakan manual."
 
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Jangan senaraikan add-on saya dalam laman ini"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "Tandakan pilihan ini jika anda berhasrat untuk mengedarkan sendiri add-on anda dan hanya perlukannya ditandatangan oleh Mozilla."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Fail dengan versi yang berakhir dengan a|alpha|b|beta|pre|rc dan satu nombor pilihan akan dikesan sebagai beta."
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Anda tidak boleh memuat naik lagi fail versi ini."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Versi tidak sepadan"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Versi {version} telah dimuat naik dan dibuang."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Versi {version} sudah wujud."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Teruskan sahaja memuat naik?"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Platform boleh dipilih sekali sahaja."
 
 msgid "Reputation"
-msgstr ""
+msgstr "Reputasi"
 
 msgid "Application"
-msgstr ""
+msgstr "Aplikasi"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih dulu aplikasi"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
