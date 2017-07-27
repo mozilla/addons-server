@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 22:49+0000\n"
+"PO-Revision-Date: 2017-07-27 11:08+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -63,7 +63,7 @@ msgid "Need help?"
 msgstr "Besoin d’aide ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Les développeurs de modules ou de thèmes ne peuvent pas supprimer leur compte. Vous devez supprimer tous les modules et thèmes liés à ce compte, ou les transférer à d’autres utilisateurs."
 
 msgid "Review"
 msgstr "Critique"
@@ -3752,7 +3752,7 @@ msgid "Version Submitted"
 msgstr "Version signée"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site."
 
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
@@ -4710,7 +4710,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
 
 #, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4931,7 +4931,7 @@ msgid "No Reviews"
 msgstr "Aucune revue"
 
 msgid "Weight"
-msgstr ""
+msgstr "Poids"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
@@ -5332,7 +5332,7 @@ msgid "This version has not been reviewed."
 msgstr "Cette version n’a pas été revue."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Veuillez sélectionner une ou plusieurs versions dans la liste ci-dessus."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Vous pouvez toujours envoyer ce formulaire, cependant ne le faites que si vous savez que cela n’entrera pas en conflit."
@@ -7081,7 +7081,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Comment garder à jour les modules ?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "La mise à jour des modules est effectuée quotidiennement et de façon automatique. Dans Firefox, les mises à jour sont automatiquement installées par défaut. "
 
 msgid "Are add-ons safe to install?"
 msgstr "Est-ce que les modules sont sûrs à installer ?"

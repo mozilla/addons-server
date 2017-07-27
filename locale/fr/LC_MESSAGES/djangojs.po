@@ -2,14 +2,14 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-01-17 03:30+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2017-07-27 03:07+0000\n"
+"Last-Translator: hugo.thiessard <hugo.thiessard@etu.u-bordeaux.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgid "Validating {0}"
 msgstr "Validation {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Votre module dépasse la taille maximale de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Réception d’une réponse vide depuis le serveur ; statut : {0}"
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -143,7 +143,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Votre fichier dépasse la taille maximale de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Vous avez annulé l’envoi."
