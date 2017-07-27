@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 11:31+0000\n"
+"PO-Revision-Date: 2017-07-27 12:12+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3357,15 +3357,17 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "UUID add-on anda sudah ditetapkan dalam manifes pemasangan dan mengenal pastinya secara unik. Anda tidak boleh tukar UUID selepas anda kemukakannya."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Whiteboard"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"Whiteboaed ialah tempat untuk menyediakan maklumat berkaitan add-on anda, versi apa saja, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. "
+"Whiteboard juga boleh diedit oleh editor."
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Buang add-on bergantung ini"
 
 msgid "Enter the name of an add-on"
 msgstr ""
