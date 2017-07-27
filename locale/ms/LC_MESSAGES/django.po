@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 02:05+0000\n"
+"PO-Revision-Date: 2017-07-27 02:26+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3141,58 +3141,60 @@ msgstr "Urus Profil Pembangun"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
+msgstr "Profil pembangun<a href=\"%(url)s\"></a> anda pada masa ini<strong>umum</strong> dan <strong>diperlukan</strong> untuk sumbangan."
 
 msgid "Remove Both"
-msgstr ""
+msgstr "Buang Kedua-duanya"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "Profil pembangun<a href=\"%(url)s\"></a> anda pada masa ini <strong>umum</strong>."
 
 msgid "Remove Profile"
-msgstr ""
+msgstr "Buang Profil"
 
 msgid "Create Profile"
-msgstr ""
+msgstr "Cipta Profil"
 
 msgid "Basic Information"
-msgstr ""
+msgstr "Maklumat Asas"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Maklumat Asas untuk {0}"
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL Add-on"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Pilih slug URL yang ringkas dan unik untuk add-on anda."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Papar Senarai"
 
 msgid "Summary"
-msgstr ""
+msgstr "Ringkasan"
 
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Penjelasan ringkas perihal fungsi asas add-on anda yang dipaparkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran add-on anda. Ini hanya berkenaan add-on yang "
+"tersenarai."
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Eksperimen?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Jika add-on anda masih dalam eksperimen ataupun belum siap untuk kegunaan umum.  Add-on akan disenaraikan tapi kurang dapat dilihat. "
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Add-on ini masih eksperimen."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Add-on ini siap untuk kegunaan umum."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "Perlukan Bayaran?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
