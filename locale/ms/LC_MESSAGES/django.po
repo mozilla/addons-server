@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 01:49+0000\n"
+"PO-Revision-Date: 2017-07-27 02:05+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3086,43 +3086,43 @@ msgid "Update Compatibility"
 msgstr "Kemaskini Keserasian"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Mengubah maklumat aplikasi di sini akan membolehkan pengguna memasang add-on anda walaupun manifes pemasangan di dalam pakej menjelaskan bahawa add-on ini tidak serasi."
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Versi Disokong"
 
 msgid "Add Another Application&hellip;"
 msgstr "Tambah Aplikasi Lain&hellip;"
 
 msgid "Close"
-msgstr ""
+msgstr "Tutup"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Aktiviti Terkini"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s oleh %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Aktiviti Terdahulu untuk Add-ons Saya"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> tema"
 
 msgid "Edit Information"
-msgstr ""
+msgstr "Edit Maklumat"
 
 msgid "None"
-msgstr ""
+msgstr "Tiada"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Urus Pengarang & Lesen"
 
 msgid "Authors"
-msgstr ""
+msgstr "Pengarang"
 
 msgid "About author roles"
 msgstr "Perihal peranan pengarang"
@@ -3132,9 +3132,12 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Add-ons boleh diurus oleh beberapa pengarang dengan 3 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
+"pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain dan menguruskan bayaran</li> <li><b>Penyemak:</b> "
+"Boleh menyemak tetapan dan statistik add-on, tapi tidak boleh membuat apa-apa perubahan</li> </ul>"
 
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Urus Profil Pembangun"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
