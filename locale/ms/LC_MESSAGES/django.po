@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 12:12+0000\n"
+"PO-Revision-Date: 2017-07-27 12:37+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3370,89 +3370,91 @@ msgid "Remove this dependent add-on"
 msgstr "Buang add-on bergantung ini"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Masukkan nama add-on"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Media Add-on untuk {0}"
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Ikon add-on"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Muat naik ikon untuk add-on anda atau pilih salah satu daripada milik kami. Ikon akan dipaparkan hampir di semua tempat add-on anda berada. Imej yang dimuat naik mesti salah satu jenis imej berikut:"
+" .png, jpg. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Pilih ikon untuk add-on anda:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Digunakan dalam senarai add-on, seperti hasil carian dan add-on sorotan."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Digunakan dalam halaman butiran add-on."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Muat naik Ikon Lazim..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG dan JPG disokong. Saiz ikon diubah ke 64x64 piksel, jika terlebih besar."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Skrinsyot"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Sila beri sekurang-kurang satu skrinsyot add-on anda:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Sila beri keterangan skrinsyot ini:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Tambah Skrinsyot..."
 
 msgid "Tests"
-msgstr ""
+msgstr "Ujian"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Ujian Umum"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Ujian Keselamatan"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Ujian Ekstensi"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Ujian Lokalisasi"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Ujian Keserasian"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Sorok mesej yang tidak diperlukan untuk tandatangan automatik"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Sorok mesej yang ada dalam versi terdahulu dan diabaikan"
 
 msgid "Top"
-msgstr ""
+msgstr "Teratas"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Buang Tema"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Buang Add-on"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Membuang tema anda akan menghapuskannya secara kekal daripada laman ini."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -3462,13 +3464,13 @@ msgstr ""
 "orang lain tidak boleh menghantar versi menggunakan ID yang sama."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Masukkan teks berikut untuk mengesahkan keputusan anda: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Sila maklumkan kami kenapa anda buang tema anda:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Sila maklumkan kami kenapa anda buang add-on anda:"
 
 msgid "Actions"
 msgstr ""
