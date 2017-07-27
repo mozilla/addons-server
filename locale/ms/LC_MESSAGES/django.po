@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 03:11+0000\n"
+"PO-Revision-Date: 2017-07-27 04:08+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3270,22 +3270,24 @@ msgstr ""
 "yang tersenarai."
 
 msgid "Website"
-msgstr ""
+msgstr "Laman web"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Jika add-on anda ada laman web atau forum sokongan, masukkan alamatnya di sini. Jika laman web anda diterjemahkan ke bahasa lain, pelbagai terjemahan medan ini boleh ditambah. Ini hanya berkenaan "
+"add-on yang tersenarai."
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Butiran Teknikal"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Butiran Teknikal untuk {0}"
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "Ulasan Pembangun"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
