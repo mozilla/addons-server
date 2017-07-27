@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 12:37+0000\n"
+"PO-Revision-Date: 2017-07-27 12:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3473,64 +3473,64 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr "Sila maklumkan kami kenapa anda buang add-on anda:"
 
 msgid "Actions"
-msgstr ""
+msgstr "Tindakan"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Sambung proses penghantaran add-on ini."
 
 msgid "Resume"
-msgstr ""
+msgstr "Sambung"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Buang add-on ini."
 
 msgid "Delete"
-msgstr ""
+msgstr "Buang"
 
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Edit maklumat add-on ini."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Muat naik versi baru add-on ini."
 
 msgid "New Version"
-msgstr ""
+msgstr "Versi Baru"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Statistik harian muat turun dan pengguna."
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 msgid "Manage Payments"
-msgstr ""
+msgstr "Urus Bayaran"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Urus Status & Versi"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Tinjau Penyenaraian Add-on"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Papar Perubahan Terbaru"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Edit butiran penyenaraian tema ini."
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "Edit Penyenaraian"
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Lihat populariti tema ini sepanjang tempoh."
 
 msgid "View Statistics"
-msgstr ""
+msgstr "Lihat Statistik"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Tukar pemilik tema ini."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Pindah Pemilikan"
 
 msgid "Delete this theme."
 msgstr ""
