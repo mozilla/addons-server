@@ -121,6 +121,35 @@ class TestAddonIndexer(TestCase):
             'strict_compatibility', 'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
+    def test_index_setting_boolean(self):
+        """Make sure that the `index` setting is a true/false boolean.
+
+        Old versions of ElasticSearch allowed 'no' and 'yes' strings,
+        this changed with ElasticSearch 5.x.
+        """
+        doc_name = self.indexer.get_doctype_name()
+        assert doc_name
+
+        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in mapping_properties.values()
+            if 'index' in prop)
+
+        # Make sure our version_mapping is setup correctly too.
+        props = mapping_properties['current_version']['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props.values() if 'index' in prop)
+
+        # As well as for current_version.files
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props['files']['properties'].values()
+            if 'index' in prop)
+
     def _extract(self):
         qs = Addon.unfiltered.filter(id__in=[self.addon.pk]).no_cache()
         for t in self.transforms:
