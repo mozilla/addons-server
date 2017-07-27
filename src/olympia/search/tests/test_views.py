@@ -525,21 +525,29 @@ class TestESSearch(SearchBase):
         assert r.status_code == 200
         assert self.get_results(r) == themes
 
-    def test_results_respect_appver_filtering(self):
-        r = self.client.get(self.url, {'appver': '9.00'})
-        assert self.get_results(r) == []
+    def test_appversion_filtering(self):
+        # All test add-ons have min version 4.0.99, max version 5.0.99. They
+        # don't have strict compatibility enabled.
+        # Search for add-ons compatible with Firefox 4.0: none should be found.
+        response = self.client.get(self.url, {'appver': '4.0'})
+        assert self.get_results(response) == []
 
-    def test_results_skip_appver_filtering_for_d2c(self):
-        r = self.client.get(self.url, {'appver': '10.0a1'})
-        assert self.get_results(r) == (
-            sorted(self.addons.values_list('id', flat=True)))
+        # Search for add-ons compatible with Firefox 10.0: all should be found.
+        response = self.client.get(self.url, {'appver': '10.0'})
+        expected_addons_pks = sorted(self.addons.values_list('id', flat=True))
+        assert self.get_results(response) == expected_addons_pks
 
-    def test_results_respect_appver_filtering_for_non_extensions(self):
-        self.addons.update(type=amo.ADDON_THEME)
-        r = self.client.get(self.url, {
-            'appver': '10.0a1', 'type': amo.ADDON_THEME})
-        assert self.get_results(r) == (
-            sorted(self.addons.values_list('id', flat=True)))
+        # Set strict compatibility to True on one of them, it should no longer
+        # be returned when searching for add-ons compatible with 10.0 since the
+        # max version is 5.0.99.
+        addon = self.addons[0]
+        addon.current_version.files.update(strict_compatibility=True)
+        addon.save()
+        self.refresh()
+        response = self.client.get(self.url, {'appver': '10.0'})
+        expected_addons_pks = sorted(
+            self.addons.exclude(pk=addon.pk).values_list('id', flat=True))
+        assert self.get_results(response) == expected_addons_pks
 
     def test_results_platform_filter_all(self):
         for platform in ('', 'all'):
