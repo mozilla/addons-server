@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 12:49+0000\n"
+"PO-Revision-Date: 2017-07-27 14:16+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3533,31 +3533,31 @@ msgid "Transfer Ownership"
 msgstr "Pindah Pemilikan"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Buang tema ini."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Add-on ini hilang beberapa maklumat yang diperlukan sebelum boleh dihantar untuk penerbitan."
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Add-on ini tiada versi apa-apa."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Add-on ini tiada versi yang diluluskan, jadi halaman umumnya (termasuk versi beta) disorok."
 
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Dinyahdayakan"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Kedudukan barisan:</b> %(pos)s daripada %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
 msgid "Submit a New File"
 msgstr "Hantar Fail Baru"
@@ -3566,22 +3566,22 @@ msgid "Submit a New Version"
 msgstr "Hantar Versi Baru"
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "Huraikan Add-on"
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "URL Add-on:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Sila gunakan hanya huruf, nombor, garis bawah, dan sengkang dalam URL anda."
 
 msgid "Summary:"
-msgstr ""
+msgstr "Ringkasan:"
 
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Ringkasan ini akan ditunjukkan dalam senarai dan carian."
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Add-on ini masih eksperimen"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
