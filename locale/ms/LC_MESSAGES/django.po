@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 04:51+0000\n"
+"PO-Revision-Date: 2017-07-27 05:04+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3303,49 +3303,49 @@ msgid "Limit 3"
 msgstr "Had 3"
 
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Tanda Add-ons"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Tanda berikut digunakan untuk mengiklan add-ons. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Add-on ini perlukan perisian luar."
 
 msgid "View Source?"
-msgstr ""
+msgstr "Tinjau Sumber?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Samada sumber add-on anda mahu dipaparkan pada paparan dalam talian kami. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Kod sumber add-on ini dipamer kepada umum."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Tidak, kod sumber add-on ini tidak boleh dipamer kepada umum."
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "Statistik Umum?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Samada muat turun dan penggunaan add-on anda boleh dipamer pada paparan dalam talian kami. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statistik add-on ini dipamer kepada umum."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Tidak, statistik add-on ini tidak boleh dipamer kepada umum."
 
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Kemaskini SDK?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Jika dipilih, kami akan cuba mengemaskini add-on anda secara automatik apabila ada versi baru SDK dikeluarkan. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Add-on ini akan dikemaskini secara automatik ke versi baru SDK Add-on."
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Tidak, add-on ini akan dikemaskini secara manual."
 
 msgid "Universally unique identifier"
 msgstr ""
