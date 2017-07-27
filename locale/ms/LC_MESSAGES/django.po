@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 02:45+0000\n"
+"PO-Revision-Date: 2017-07-27 03:08+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3212,54 +3212,55 @@ msgstr ""
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "Kategori tidak boleh ditukar semasa add-on anda menjadi ciri aplikasi ini. Sila e-mel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan supaya kategori anda itu perlu ditukar."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Tag membantu pengguna menemukan add-on anda, dan keterangannya perlu ringkas seperti tab, bar alatan, atau twitter. Anda boleh {0} tag maksimum. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Dipisahkan-koma, minimum {0} aksara."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Contoh: gelap, sinema, noir. Had 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "Tag rizab:"
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "Butiran Add-on"
 
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Butiran Add-on untuk {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Penjelasan lanjut perihal ciri, fungsi dan maklumat yang berkaitan. Medan ini hanya dipaparkan dalam halaman butiran add-on. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Lokaliti Piawai"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Maklumat perihal add-on anda dipaparkan dalam lokaliti ini kecuali anda menterbalikkannya dengan terjemahan lokaliti-khusus. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "Homepage"
-msgstr ""
+msgstr "Halaman utama"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Jika add-on anda ada halaman utama lain, masukkan alamatnya di sini. Jika laman web anda diterjemahkan ke pelbagai bahasa, medan ini boleh ditambah. Ini hanya berkenaan add-on yang tersenarai."
 
 msgid "Images"
-msgstr ""
+msgstr "Imej"
 
 msgid "Support Information"
-msgstr ""
+msgstr "Maklumat Sokongan"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Maklumat sokongan untuk {0}"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
