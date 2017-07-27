@@ -992,7 +992,9 @@ function initCatFields(delegate) {
             $("input", $misc).prop("checked", checkedLength <= 0);
         };
         var checkOther = function() {
-            $("input", $main).prop("checked", false).prop("disabled", false);
+            // Get main categories
+            var $mainCat = $main.find('input[name="form-0-categories"]');
+            $($mainCat).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
         $(document).on('change', main_selector + ' input', checkMain);
