@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-27 02:26+0000\n"
+"PO-Revision-Date: 2017-07-27 02:45+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3197,16 +3197,18 @@ msgid "Requires Payment?"
 msgstr "Perlukan Bayaran?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Tandakan kotak ini jika ciri teras add-on perlu dibayar dahulu atau selepas tempoh percubaan, supaya dapat berfungsi."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Add-on ini perlu dibayar, perkhidmatan, perisian atau perkakasan tambahan bukan-percuma."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Add-on ini tidak perlu apa-apa bayaran tambahan, perkhidmatan, perisian atau perkakasan tambahan berbayar."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategori adalah cara utama yang pengguna gunakan untuk melayari add-ons. Pilih kategori yang paling sesuai untuk add-on anda supaya dapat pendedahan terbaik. Ini hanya berkenaan add-ons yang "
+"tersenarai."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
