@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 10:25+0000\n"
+"PO-Revision-Date: 2017-07-28 10:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -414,7 +414,7 @@ msgid "License"
 msgstr "Lesen"
 
 msgid "Awaiting Review"
-msgstr "Menunggu Penelitian"
+msgstr "Menunggu Semakan"
 
 msgid "Rejected"
 msgstr "Ditolak"
@@ -571,7 +571,7 @@ msgid "Rating:"
 msgstr "Kadaran:"
 
 msgid "Submit review"
-msgstr "Hantar ulasan"
+msgstr "Hantar semakan"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr "Jangan post laporan pepijat di sini. Kami tidak memberikan alamat e-mel anda kepada pembangun add-on, maka mereka tidak akan dapat menghubungi anda untuk menyelesaikan masalah anda."
@@ -585,7 +585,7 @@ msgstr ""
 "/add-ons/add-on-support\">komuniti add-on</a> untuk bantuan."
 
 msgid "Review Guidelines"
-msgstr "Panduan Ulasan"
+msgstr "Garis Panduan Semakan"
 
 msgid "Reviews"
 msgstr "Ulasan"
@@ -843,7 +843,7 @@ msgid "Approve / Reject"
 msgstr "Lulus / Tolak"
 
 msgid "Review History"
-msgstr "Sejarah Ulasan"
+msgstr "Sejarah Semakan"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr "Maaf, tema ini masih tertangguh. Sila cuba lagi seketika nanti."
@@ -1952,13 +1952,13 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} dipertingkatkan."
 
 msgid "Super review requested"
-msgstr "Kajian teliti diperlukan"
+msgstr "Perlu semakan teliti"
 
 msgid "{addon} {version} review requested."
-msgstr "{addon} {version} perlukan semakan."
+msgstr "{addon} {version} perlu semakan."
 
 msgid "Review requested"
-msgstr "Semakan diperlukan"
+msgstr "Perlu semakan"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} perlukan maklumat lanjut."
@@ -2910,7 +2910,7 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Muat naik ini telah gagal disahkan, dan mungkin kurang lengkap pengesahannya. Sila berhati-hati apabila menelitinya."
 
 msgid "Review requested."
-msgstr "Semakan diperlukan."
+msgstr "Perlu semakan."
 
 msgid "You must provide further details to proceed."
 msgstr "Anda perlu sediakan butiran lanjut untuk meneruskan."
@@ -6953,6 +6953,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
+"Untuk melaporkan ulasan pengguna, log masuk akaun anda dan lawati halaman ulasan add-on. Cari ulasan yang mahu anda lapor, klik \"Lapor ulasan ini\" dan pilih alasannya. Pasukan editorial kami akan "
+"menyiasat ulasan tersebut dan mengambil tindakan sewajarnya."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr ""
@@ -7574,7 +7576,7 @@ msgid "Collections Created"
 msgstr "Koleksi Dicipta"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Ulasan Ditulis"
 
 msgid "User Signups"
 msgstr ""

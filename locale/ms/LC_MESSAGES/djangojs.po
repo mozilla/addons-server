@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-28 10:09+0000\n"
+"PO-Revision-Date: 2017-07-28 10:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -224,7 +224,7 @@ msgid "{0} collections"
 msgstr "{0} koleksi"
 
 msgid "{0} reviews"
-msgstr "{0} ulasan"
+msgstr "{0} semakan"
 
 msgid "{0} sales"
 msgstr "{0} jualan"
@@ -279,7 +279,7 @@ msgid "Subscribers"
 msgstr "Pelanggan"
 
 msgid "Ratings"
-msgstr "Kadaran"
+msgstr "Penarafan"
 
 msgid "Sales"
 msgstr "Jualan"
@@ -794,16 +794,16 @@ msgid "Version Notes"
 msgstr "Nota Versi"
 
 msgid "Notes for Reviewers"
-msgstr "Nota untuk Pengulas"
+msgstr "Nota kepada Penyemak"
 
 msgid "No version notes found"
 msgstr "Tiada nota versi ditemui"
 
 msgid "Review Text"
-msgstr "Teks Ulasan"
+msgstr "Teks Semakan"
 
 msgid "Review notes found"
-msgstr "Nota ulasan ditemui"
+msgstr "Nota semakan ditemui"
 
 msgid "Average Reviews"
 msgstr "Purata Ulasan"
