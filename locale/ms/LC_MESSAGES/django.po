@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 23:18+0000\n"
+"PO-Revision-Date: 2017-07-28 23:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -502,7 +502,7 @@ msgstr "Naik taraf {0}"
 
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "atau tinjau <a href=\"%(href)s\">versi lebih lama add-on ini</a>."
+msgstr "atau lihat <a href=\"%(href)s\">versi lebih lama add-on ini</a>."
 
 #, python-format
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
@@ -3875,36 +3875,36 @@ msgid "Unlisted Review Page"
 msgstr "Halaman Semakan Tidak Disenaraikan"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Lihat Statistik Papan Pemuka"
 
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Laporan Keserasian"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} laporan kegagalan"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} laporan kejayaan"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Berita Pembangun"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Lihat blog &#9658;"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Sila pilih lesen yang sesuai dengan hak cipta yang anda beri untuk kod sumber anda. Ini hanya berkenaan add-on yang tersenarai."
 
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "HTML Diizinkan: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Beberapa HTML disokong."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Buang aplikasi ini"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
