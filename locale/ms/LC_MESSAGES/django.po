@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 07:10+0000\n"
+"PO-Revision-Date: 2017-07-28 07:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3636,22 +3636,22 @@ msgid "These notes will appear on the detail page."
 msgstr "Nota ini akan muncul dalam halaman butiran."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Bagaimana Distribusi Versi ini"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Maklumat lanjut perihal Distribusi dan Tandatangan Add-on"
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Penghantaran Siap"
 
 msgid "You’re done!"
-msgstr ""
+msgstr "Sudah siap!"
 
 msgid "Version Submitted"
 msgstr "Versi Dihantar"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Sudah siap! Versi ini akan berada dalam laman kami tidak lama lagi."
 
 msgid "Version Submitted for Review"
 msgstr "Versi Dihantar untuk Semakan"
@@ -3660,10 +3660,10 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "Sudah siap! Versi ini telah dihantar untuk semakan. Anda akan dimaklumkan apabila semakan telah selesai, atau apabila penyemak kami ada soalan berkaitan serahan anda tersebut."
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Penyenaraian anda akan lebih berjaya dengan menyertakan butiran lengkap dan skrinsyot. Jadikan penyenaraian anda sedia untuk diterbitkan:"
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Urus Penyenaraian"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -3784,6 +3784,8 @@ msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Add-on anda tidak akan dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Penghantaran versi baru untuk penyenaraian tidak akan diterima dalam keadaan"
+" ini."
 
 msgid "Created:"
 msgstr ""
@@ -4222,7 +4224,7 @@ msgid "Add some tags to describe your Theme."
 msgstr ""
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "Penjelasan ringkas fungsi asas tema anda yang dipamerkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran tema anda."
 
 msgid "Theme License"
 msgstr ""
@@ -4345,7 +4347,7 @@ msgstr ""
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Sediakan lebih banyak butiran tema anda dengan <a href=\"%(edit_url)s\">mengedit penyenaraiannya</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4475,14 +4477,16 @@ msgid "Reply"
 msgstr ""
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Ketampakan penyenaraian"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Tampak:{label_close} Tampak kepada semua dalam {site_url} dan dimasukkan dalam hasil carian dan halaman penyenaraian."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Halimunan:{label_close} Tidak dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Penghantaran versi baru untuk penyenaraian tidak akan "
+"diterima dalam keadaan ini."
 
 msgid "Listed versions"
 msgstr ""
