@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 17:07+0000\n"
+"PO-Revision-Date: 2017-07-28 18:25+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3863,16 +3863,16 @@ msgid "Telling your users what's coming soon will give them something to look fo
 msgstr "Memaklumkan pengguna apa yang akan datang tidak lama lagi akan memberikan mereka sesuatu yang ditunggu-tunggu."
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Muat naik Versi Baru"
 
 msgid "View All"
-msgstr ""
+msgstr "Papar Semua"
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Halaman Semakan Disenaraikan"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Halaman Semakan Tidak Disenaraikan"
 
 msgid "View Statistics Dashboard"
 msgstr ""
