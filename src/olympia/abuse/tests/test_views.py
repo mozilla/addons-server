@@ -9,7 +9,7 @@ from olympia.amo.tests import (
     addon_factory, APITestClient, TestCase, user_factory)
 
 
-class AddonAbuseReviewSetTestBase(object):
+class AddonAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -103,7 +103,7 @@ class AddonAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Need an addon parameter'}
 
-    def test_message_required(self):
+    def test_message_required_empty(self):
         addon = addon_factory()
         response = self.client.post(
             self.url,
@@ -113,6 +113,8 @@ class AddonAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
+    def test_message_required_missing(self):
+        addon = addon_factory()
         response = self.client.post(
             self.url,
             data={'addon': unicode(addon.id)})
@@ -120,15 +122,30 @@ class AddonAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
+    def test_throttle(self):
+        addon = addon_factory()
+        for x in xrange(20):
+            response = self.client.post(
+                self.url,
+                data={'addon': unicode(addon.id), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201, x
 
-class TestAddonAbuseReviewSetLoggedOut(AddonAbuseReviewSetTestBase, TestCase):
+        response = self.client.post(
+            self.url,
+            data={'addon': unicode(addon.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
+        assert response.status_code == 429
+
+
+class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
         assert not report.reporter
 
 
-class TestAddonAbuseReviewSetLoggedIn(AddonAbuseReviewSetTestBase, TestCase):
+class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
     def setUp(self):
-        super(TestAddonAbuseReviewSetLoggedIn, self).setUp()
+        super(TestAddonAbuseViewSetLoggedIn, self).setUp()
         self.user = user_factory()
         self.client.login_api(self.user)
 
@@ -136,7 +153,7 @@ class TestAddonAbuseReviewSetLoggedIn(AddonAbuseReviewSetTestBase, TestCase):
         assert report.reporter == self.user
 
 
-class UserAbuseReviewSetTestBase(object):
+class UserAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
@@ -185,7 +202,7 @@ class UserAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Need a user parameter'}
 
-    def test_message_required(self):
+    def test_message_required_empty(self):
         user = user_factory()
         response = self.client.post(
             self.url,
@@ -194,6 +211,8 @@ class UserAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
+    def test_message_required_missing(self):
+        user = user_factory()
         response = self.client.post(
             self.url,
             data={'user': unicode(user.username)})
@@ -201,15 +220,30 @@ class UserAbuseReviewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
+    def test_throttle(self):
+        user = user_factory()
+        for x in xrange(20):
+            response = self.client.post(
+                self.url,
+                data={'user': unicode(user.username), 'message': 'abuse!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201, x
 
-class TestUserAbuseReviewSetLoggedOut(UserAbuseReviewSetTestBase, TestCase):
+        response = self.client.post(
+            self.url,
+            data={'user': unicode(user.username), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89')
+        assert response.status_code == 429
+
+
+class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
         assert not report.reporter
 
 
-class TestUserAbuseReviewSetLoggedIn(UserAbuseReviewSetTestBase, TestCase):
+class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
     def setUp(self):
-        super(TestUserAbuseReviewSetLoggedIn, self).setUp()
+        super(TestUserAbuseViewSetLoggedIn, self).setUp()
         self.user = user_factory()
         self.client.login_api(self.user)
 
