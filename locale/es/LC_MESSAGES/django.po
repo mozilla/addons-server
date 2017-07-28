@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-20 06:56+0000\n"
+"PO-Revision-Date: 2017-07-28 13:51+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2989,13 +2989,12 @@ msgstr "Nueva clave API creada"
 msgid "API key revoked"
 msgstr "Clave API revocada"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
-"manejaremos tu información."
+"Antes de comenzar, lee y acepta nuestro Acuerdo de distribución de complementos de Firefox y nuestras Reglas y políticas de revisión. En el acuerdo también encontrarás un enlace a nuestro Aviso de "
+"privacidad, donde se explica cómo administraremos tu información."
 
 msgid "Distribution Agreement"
 msgstr "Acuerdo de distribución"
@@ -3017,7 +3016,7 @@ msgid "Printable Version"
 msgstr "Versión para imprimir"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "He leído y acepto el Acuerdo y las Normas y políticas"
 
 msgid "I Accept this Agreement"
 msgstr "Acepto la licencia"
@@ -3273,7 +3272,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Este complemento necesita pago, servicios o software de pago o hardware adicional."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Este complemento no requiere ningún pago adicional, servicios de pago o software ni ningún hardware extra."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -4752,7 +4751,7 @@ msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Mejora la escritura {start_sub_heading} con {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Al admitir más de 25 idiomas, es como si esta extensión te ofreciera un corrector integrado en el navegador."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Haz capturas de pantalla {start_sub_heading}con {addon_name}{end_sub_heading}"
