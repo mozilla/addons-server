@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 02:50+0000\n"
+"PO-Revision-Date: 2017-07-28 03:09+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7090,6 +7090,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Sila lapor atau tandakan semakan yang diragui dengan mengklik \"Lapor semakan ini\" dan akan diserahkan ke halaman berkenaan untuk dipertimbangkan. Pasukan moderat kami akan merujuki Garis Panduan "
+"Semakan untuk menilai samada menghapuskan semakan itu atau mengembalikannya semula ke halaman berkenaan."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr ""
@@ -7099,7 +7101,7 @@ msgid "Yes, add-on authors can provide a single response to a review. You can se
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Saya seorang pengarang add-on, bolehkah saya menghapuskan ulasan atau penarafan yang tidak menyebelahi saya?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -7331,7 +7333,7 @@ msgid "Edit review"
 msgstr ""
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Hapus balasan"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
@@ -7890,7 +7892,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Hapus Lokaliti"
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7973,10 +7975,10 @@ msgid "A user with that email address does not exist."
 msgstr ""
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profil Dihapuskan"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto Dihapuskan"
 
 msgid "Profile Updated"
 msgstr ""
@@ -7994,23 +7996,25 @@ msgid "new"
 msgstr ""
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "Hapus Akaun Pengguna"
 
 #, python-format
 msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Anda tidak boleh menghapuskan akaun anda jika disenaraikan sebagai <a href=\"%(link)s\"> pengarang add-ons</a>. Untuk menghapuskan akaun, sila minta seseorang dalam kumpulan pembangunan anda "
+"menyingkirkan anda daripada senarai pengarang add-on itu. Selepas itu barulah anda boleh menghapuskan akaun anda."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Dengan mengklik \"hapus\" akaun anda akan <strong>dihapuskan secara kekal</strong>. Ini bermakna:"
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Ulasan dan penarafan tidak akan dihapuskan, tapi tidak akan dikaitkan lagi dengan anda."
 
 msgid "Confirm account deletion"
 msgstr ""
@@ -8019,13 +8023,13 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Hapus akaun pengguna saya sekarang"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Hapus Foto Pengguna"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Hapus foto pengguna saya sekarang"
 
 msgid "Please set your display name"
 msgstr ""
@@ -8058,7 +8062,7 @@ msgid "Choose Photo&hellip;"
 msgstr ""
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "Hapus foto semasa"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
@@ -8089,7 +8093,7 @@ msgid "Admin"
 msgstr ""
 
 msgid "Delete Account"
-msgstr ""
+msgstr "Hapus Akaun"
 
 msgid "Update Account"
 msgstr ""
@@ -8283,7 +8287,7 @@ msgid "Log emails instead of sending"
 msgstr ""
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Versi yang dihapuskan tidak boleh diubah."
 
 msgid "Binary"
 msgstr ""
