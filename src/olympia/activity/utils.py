@@ -203,6 +203,8 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         log_kwargs['details'] = detail_kwargs
 
     note = ActivityLog.create(action, version.addon, version, **log_kwargs)
+    if not note:
+        return
 
     # Collect reviewers involved with this version.
     review_perm = (amo.permissions.ADDONS_REVIEW
@@ -255,15 +257,15 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     from_email = formataddr((note_creator.name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
         subject, template.render(author_context_dict),
-        version, addon_authors, from_email, perm_setting)
+        version, addon_authors, from_email, note.id, perm_setting)
 
     send_activity_mail(
         subject, template.render(reviewer_context_dict),
-        version, reviewers, from_email, perm_setting)
+        version, reviewers, from_email, note.id, perm_setting)
 
     send_activity_mail(
         subject, template.render(staff_cc_context_dict),
-        version, staff_cc, from_email, perm_setting)
+        version, staff_cc, from_email, note.id, perm_setting)
 
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
         version.update(has_info_request=False)
@@ -272,7 +274,20 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
 
 def send_activity_mail(subject, message, version, recipients, from_email,
-                       perm_setting=None):
+                       unique_id, perm_setting=None):
+    thread_id = '{addon}/{version}'.format(
+        addon=version.addon.id, version=version.id)
+    reference_header = '<{thread}@{site}>'.format(
+        thread=thread_id, site=settings.INBOUND_EMAIL_DOMAIN)
+    message_id = '<{thread}/{message}@{site}>'.format(
+        thread=thread_id, message=unique_id,
+        site=settings.INBOUND_EMAIL_DOMAIN)
+    headers = {
+        'In-Reply-To': reference_header,
+        'References': reference_header,
+        'Message-ID': message_id,
+    }
+
     for recipient in recipients:
         token, created = ActivityLogToken.objects.get_or_create(
             version=version, user=recipient)
@@ -283,13 +298,6 @@ def send_activity_mail(subject, message, version, recipients, from_email,
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
             REPLY_TO_PREFIX, token.uuid.hex, settings.INBOUND_EMAIL_DOMAIN)
-        reference_header = '<{addon}/{version}@{site}>'.format(
-            addon=version.addon.id, version=version.id,
-            site=settings.INBOUND_EMAIL_DOMAIN)
-        headers = {
-            'In-Reply-To': reference_header,
-            'References': reference_header
-        }
         log.info('Sending activity email to %s for %s version %s' % (
             recipient, version.addon.pk, version.pk))
         send_mail(
