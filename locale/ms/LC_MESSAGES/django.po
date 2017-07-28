@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 03:09+0000\n"
+"PO-Revision-Date: 2017-07-28 03:23+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3585,24 +3585,25 @@ msgstr "Add-on ini masih eksperimen"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Tandakan pilihan ini jika add-on anda masih eksperimen ataupun belum bersedia untuk kegunaan umum.  Add-on ini akan disenaraikan tapi kurang dapat dilihat.   Anda boleh ubah tetapan ini kemudian."
 
 msgid "Support email:"
-msgstr ""
+msgstr "E-mel Sokongan:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "Laman web Sokongan:"
 
 msgid "License:"
-msgstr ""
+msgstr "Lesen:"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
+msgstr "Sila pilih lesen yang bersesuaian dengan hak cipta yang anda beri untuk sumber kod anda."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Jika add-on anda menghantar data daripada komputer pengguna, polisi privasi diperlukan yang menjelaskan jenis data yang dihantar dan cara data itu digunakan."
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Nota untuk Penyemak:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
