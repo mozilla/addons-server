@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 13:51+0000\n"
+"PO-Revision-Date: 2017-07-28 13:56+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2999,13 +2999,11 @@ msgstr ""
 msgid "Distribution Agreement"
 msgstr "Acuerdo de distribución"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Ver las notas"
+msgstr "Política de revisión"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Revisores"
+msgstr "Reglas de revisión"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4155,13 +4153,11 @@ msgstr "Administrar tu complemento"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Inicia sesión para editar y actualizar tu complemento"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Extensiones destacadas"
+msgstr "Actualizar la extensión"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions es ahora la referencia para el desarrollo de complementos en Firefox. Tendrás que actualizar tus complementos de enseñanza para que sean compatibles."
+msgstr "Existe un nuevo estándar para desarrollar extensiones en Firefox. Tendrás que actualizar tus extensiones educativas para que sean compatibles."
 
 msgid "Learn How"
 msgstr "Descubre cómo"
@@ -4740,9 +4736,8 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad engañosa {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr "Bloquea rastreadores invisibles y espías que te siguen por toda la Web."
