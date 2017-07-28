@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 07:50+0000\n"
+"PO-Revision-Date: 2017-07-28 07:59+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3774,13 +3774,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Sila lengkapkan add-on anda dengan menambah versi atau metadata yang hilang."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Anda akan terima e-mel.apabila semakan anda siap. Sebelum itu, add-on anda tidak disenaraikan dalam galeri kami tapi boleh diakses terus dalam halaman butirannya. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Add-on anda ada dipamerkan dalam galeri kami dan pengguna menerima kemaskini secara automatik."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Add-on anda diyahdayakan oleh pentadbir laman dan tidak lagi dipamerkan dalam galeri kami. Jika anda ada soalan, sila e-mel amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3788,18 +3788,18 @@ msgstr ""
 " ini."
 
 msgid "Created:"
-msgstr ""
+msgstr "Dicipta:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b %%e, %%Y"
 
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Status Multi Proses Add-on:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Keserasian add-on dengan Multi Process Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
