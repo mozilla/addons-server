@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 15:21+0000\n"
+"PO-Revision-Date: 2017-07-28 16:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3695,31 +3695,31 @@ msgid "Go to My Submissions"
 msgstr "Pergi ke Serahan Saya"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Perjanjian Distribusi Add-on"
 
 msgid "Upload Add-on"
 msgstr "Muat naik Add-on"
 
 msgid "Where to Host File"
-msgstr ""
+msgstr "Di mana untuk Hos fail"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Di mana untuk Host Versi"
 
 msgid "Upload Version"
-msgstr ""
+msgstr "Muat naik Versi"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda dan pilih mana-mana sekatan platform. Selepas memuat naik, siri ujian pengesahan automatik akan dijalankan kepada fail anda."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Platform mana yang serasi dengan fail ini?"
 
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Hanya terbit versi ini ke saluran beta saya."
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Terbalikkan pentadbiran"
 
 msgid "Submit File"
 msgstr "Hantar Fail"
@@ -3728,17 +3728,17 @@ msgid "Sign Add-on"
 msgstr "Tandatangan Add-on"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Perjanjian Distribusi Add-on Firefox"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Kelayakan API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Untuk arahan terperinci, rujuk <a href=\"%(docs_url)s\">dokumentasi API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Pastikan kekunci API anda rahsia dan <strong>jangan kongsi dengan sesiapa</strong>, termasuk penyumbang Mozilla."
 
 msgid "JWT issuer"
 msgstr ""
