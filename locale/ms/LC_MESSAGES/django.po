@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 13:43+0000\n"
+"PO-Revision-Date: 2017-07-28 14:12+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -881,7 +881,7 @@ msgid "Log out"
 msgstr "Log keluar"
 
 msgid "Manage My Submissions"
-msgstr "Urus Penghantaran Saya"
+msgstr "Urus Serahan Saya"
 
 msgid "Submit a New Add-on"
 msgstr "Hantar Add-on Baru"
@@ -2779,12 +2779,11 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "Dalam laman ini. <span class=\"helptext\">Serahan anda akan disenaraikan dalam laman ini dan laman Pengurus Add-ons Mozilla untuk berjuta-juta pengguna, selepas lulus semakan kod. Kemaskini "
-"automatik akan diuruskan oleh laman ini. Add-on ini juga dianggap sebagai promosi dan pertandingan Mozilla. Mengedarkan sendiri juga boleh dilakukan. </span>"
+"automatik akan diuruskan oleh laman ini. Add-on ini juga dianggap sebagai promosi dan pertandingan Mozilla. Mengedarkan-sendiri juga boleh dilakukan. </span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Anda mengedarkan sendiri. <span class=\"helptext\">Serahan anda akan serta-merta ditandatangan untuk diedarkan-sendiri. Anda akan uruskan sendiri kemaskini via updateURL atau kemaskini aplikasi "
-"luar.</span>"
+"Anda sendiri. <span class=\"helptext\">Serahan anda akan serta-merta ditandatangani untuk mengedarkan-sendiri. Anda akan uruskan sendiri kemaskini via updateURL atau kemaskini aplikasi luar.</span>"
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Bermula Firefox 53, ekstensi baru dalam laman web ini hanyalah WebExtensions."
@@ -2860,7 +2859,7 @@ msgid "An author has been removed from your add-on"
 msgstr "Seorang pengarang disingkir daripada add-on anda"
 
 msgid "There were errors in your submission."
-msgstr "Ada ralat dalam penghantaran anda."
+msgstr "Ada ralat dalam serahan anda."
 
 msgid "Validate Add-on"
 msgstr "Sahkan Add-on"
@@ -3476,7 +3475,7 @@ msgid "Actions"
 msgstr "Tindakan"
 
 msgid "Resume the submission process for this add-on."
-msgstr "Sambung proses penghantaran add-on ini."
+msgstr "Sambung proses serahan add-on ini."
 
 msgid "Resume"
 msgstr "Sambung"
@@ -3642,7 +3641,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr "Maklumat lanjut perihal Distribusi dan Tandatangan Add-on"
 
 msgid "Submission Complete"
-msgstr "Penghantaran Siap"
+msgstr "Serahan Siap"
 
 msgid "You’re done!"
 msgstr "Sudah siap!"
@@ -3657,7 +3656,7 @@ msgid "Version Submitted for Review"
 msgstr "Versi Dihantar untuk Semakan"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Sudah siap! Versi ini telah dihantar untuk semakan. Anda akan dimaklumkan apabila semakan telah selesai, atau apabila penyemak kami ada soalan berkaitan serahan anda tersebut."
+msgstr "Siap! Versi ini telah dihantar untuk semakan. Anda akan dimaklumkan apabila semakan telah selesai, atau apabila penyemak kami ada soalan berkaitan serahan anda tersebut."
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "Penyenaraian anda akan lebih berjaya dengan menyertakan butiran lengkap dan skrinsyot. Jadikan penyenaraian anda sedia untuk diterbitkan:"
@@ -3666,7 +3665,7 @@ msgid "Manage Listing"
 msgstr "Urus Penyenaraian"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Anda juga boleh edit versi ini untuk menambah nota, atau kod sumber versi jika penghantaran anda disertakan kod mini, disamarkan atau dikompilasikan."
+msgstr "Anda juga boleh edit versi ini untuk menambah nota, atau kod sumber versi jika serahan anda disertakan kod mini, dikelirukan atau dikompilasikan."
 
 msgid "Edit version {0}"
 msgstr "Edit versi {0}"
@@ -3687,13 +3686,13 @@ msgid "Download {0}"
 msgstr "Muat turun {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Anda pilih hanya beberapa platform yang tersedia untuk penghantaran ini. Anda boleh muat naik lebih banyak fail yang mensasarkan platform lain:"
+msgstr "Anda pilih hanya beberapa platform yang tersedia untuk serahan ini. Anda boleh muat naik lebih banyak fail yang mensasarkan platform lain:"
 
 msgid "Upload File"
 msgstr "Muat naik Fail"
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Pergi ke Serahan Saya"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -3784,8 +3783,7 @@ msgstr "Add-on anda diyahdayakan oleh pentadbir laman dan tidak lagi dipamerkan 
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Add-on anda tidak akan dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Penghantaran versi baru untuk penyenaraian tidak akan diterima dalam keadaan"
-" ini."
+"Add-on anda tidak akan dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Serahan versi baru untuk penyenaraian tidak akan diterima dalam keadaan ini."
 
 msgid "Created:"
 msgstr "Dicipta:"
@@ -4040,7 +4038,7 @@ msgid "What's New"
 msgstr ""
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah perihal proses penghantaran."
+msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah perihal proses serahan."
 
 msgid "See Tutorial"
 msgstr ""
@@ -4485,7 +4483,7 @@ msgstr "{label_open}Tampak:{label_close} Tampak kepada semua dalam {site_url} da
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"{label_open}Halimunan:{label_close} Tidak dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Penghantaran versi baru untuk penyenaraian tidak akan "
+"{label_open}Halimunan:{label_close} Tidak dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Penyerahan versi baru untuk penyenaraian tidak akan "
 "diterima dalam keadaan ini."
 
 msgid "Listed versions"
