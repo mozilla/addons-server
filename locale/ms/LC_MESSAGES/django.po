@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 12:58+0000\n"
+"PO-Revision-Date: 2017-07-28 13:43+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3675,13 +3675,13 @@ msgid "File Signed"
 msgstr "Fail Bertandatangan"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Siap! Fail ini telah ditandatangani dan sedia untuk diedarkan sendiri. Anda boleh muat turun dengan mengklik butang di bawah."
 
 msgid "Version Signed"
 msgstr "Versi Ditandatangani"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Siap! Versi ini telah ditandatangani dan sedia untuk diedarkan sendiri. Anda boleh muat turun dengan mengklik butang di bawah."
 
 msgid "Download {0}"
 msgstr "Muat turun {0}"
@@ -4337,7 +4337,7 @@ msgid "Submit Theme"
 msgstr "Hantar Tema"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Siap!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr "Tema anda telah dihantar ke Giliran Semakan. Anda akan terima e-mel apabila tema anda sudah disemak, biasanya dalam tempoh 24 jam."
