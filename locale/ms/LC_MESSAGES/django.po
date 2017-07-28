@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 11:32+0000\n"
+"PO-Revision-Date: 2017-07-28 11:59+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7330,11 +7330,11 @@ msgstr ""
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
+msgstr[0] "Pengguna ini ada <a href=\"%(user_review_url)s\">%(cnt)s ulasan sebelum ini</a> perihal add-on ini."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
 
 msgid "Flagged for review"
 msgstr ""
@@ -7356,15 +7356,15 @@ msgstr "Hapus balasan"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Ulasan"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Ulasan untuk {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7373,10 +7373,10 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
+msgstr[0] "Ulasan untuk %(addon)s oleh %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Belum ada ulasan."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -7390,7 +7390,7 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} ulasan"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Tahap {0} daripada 5 bintang"
@@ -7749,7 +7749,7 @@ msgid "Ratings by Date"
 msgstr ""
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Ulasan Dibuat mengikut Tarikh"
 
 msgid "Download sources by Date"
 msgstr ""
@@ -8175,10 +8175,10 @@ msgid "Created by Me"
 msgstr ""
 
 msgid "My Reviews"
-msgstr ""
+msgstr "Ulasan Saya"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Masih tiada ulasan add-on."
 
 msgid "Report User"
 msgstr ""
