@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 16:10+0000\n"
+"PO-Revision-Date: 2017-07-28 16:51+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2915,16 +2915,16 @@ msgid "You must provide further details to proceed."
 msgstr "Anda perlu sediakan butiran lanjut untuk meneruskan."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Kelayakan anda yang lama telah dibatalkan dan tidak lagi sah. Pastikan anda maklumkan semua pelanggan API dengan kelayakan anda yang baru."
+msgstr "Kelayakan anda yang lama telah dimansuhkan dan tidak lagi sah. Pastikan anda maklumkan semua pelanggan API dengan kelayakan anda yang baru."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Kelayakan anda yang lama telah dibatalkan dan tidak lagi sah."
+msgstr "Kelayakan anda yang lama telah dimansuhkan dan tidak lagi sah."
 
 msgid "New API key created"
 msgstr "Kekunci API baru dicipta"
 
 msgid "API key revoked"
-msgstr "Kekunci API ditarik balik"
+msgstr "Kekunci API dimansuhkan"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -3741,10 +3741,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr "Pastikan kekunci API anda rahsia dan <strong>jangan kongsi dengan sesiapa</strong>, termasuk penyumbang Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "Pengeluar JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "Rahsia JWT"
 
 #, python-format
 msgid ""
@@ -3755,16 +3755,16 @@ msgstr ""
 "href=\"%(docs_url)s\">dokumentasi</a>."
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Anda tidak ada sebarang kelayakan API."
 
 msgid "Revoke"
-msgstr ""
+msgstr "Mansuh"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Mansuh dan jana semula kelayakan"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Menjana surat kelayakan baru"
 
 msgid "Invisible"
 msgstr "Halimunan"
