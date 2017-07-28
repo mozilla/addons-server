@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 10:49+0000\n"
+"PO-Revision-Date: 2017-07-28 11:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4595,7 +4595,7 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Semakan diluluskan"
 
 msgid "Deleted reviews"
 msgstr "Semakan dihapuskan"
@@ -4784,7 +4784,7 @@ msgid "Last Update"
 msgstr ""
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Tiada Semakan"
 
 msgid "Weight"
 msgstr ""
@@ -4835,7 +4835,7 @@ msgid "An unknown error occurred"
 msgstr ""
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Semakan-sendiri tidak dibenarkan."
 
 msgid "Review successfully processed."
 msgstr ""
@@ -4870,7 +4870,7 @@ msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "{0} semakan tema berjaya diproses (+{1} poin, {2} jumlah)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
@@ -5027,21 +5027,21 @@ msgid "{0}%%"
 msgstr ""
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Bilangan Semakan"
 
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Semakan Bulan Ini"
 
 msgid "New Reviewers"
 msgstr ""
 
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Anda #{0} dengan {1} semakan"
 
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Ulasan Moderat ({num})"
+msgstr[0] "Semakan Moderat ({num})"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5071,7 +5071,7 @@ msgid "Range"
 msgstr ""
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Semakan Anda"
 
 msgid "By {user_name}"
 msgstr ""
@@ -5110,7 +5110,7 @@ msgid "clear search"
 msgstr ""
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Proses Semakan"
 
 msgid "Moderation actions:"
 msgstr ""
@@ -5124,7 +5124,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr "Semua ulasan adalah moderat. Syabas!"
+msgstr "Semua semakan adalah moderat. Syabas!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
@@ -5225,7 +5225,7 @@ msgid "Hide Comments"
 msgstr ""
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Tiada semakan ditemukan dalam tempoh ini."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
@@ -5298,15 +5298,15 @@ msgid "Reason"
 msgstr ""
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Masih tiada semakan."
 
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "{num} Semakan Tema Menunggu"
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "{num} Semakan Ditanda"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
@@ -5343,7 +5343,7 @@ msgid "Commit Review"
 msgstr ""
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Melakukan Semakan"
 
 msgid "{0} out of {1} reviewed"
 msgstr ""
@@ -5417,7 +5417,7 @@ msgstr[0] ""
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Ulasan Moderat ({0})"
+msgstr[0] "Semakan Moderat ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -6411,7 +6411,7 @@ msgstr ""
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Lebih daripada {0} semakan add-on"
 
 msgid "Other Contributors"
 msgstr ""
@@ -6631,7 +6631,7 @@ msgid ""
 msgstr ""
 
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Siapa semak add-on saya?"
 
 #, python-format
 msgid ""
@@ -6725,7 +6725,7 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Tidak. Kami tidak buang ulasan negatif add-ons kecuali jika didapati palsu."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
@@ -7024,7 +7024,7 @@ msgid "Some tips for writing a great review"
 msgstr ""
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Soalan Lazim perihal Semakan"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
