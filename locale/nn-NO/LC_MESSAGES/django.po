@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 13:29+0000\n"
+"PO-Revision-Date: 2017-07-28 17:32+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3447,10 +3447,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Fortel oss gjerne kvifor du slettar temaet ditt:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Fortel oss gjerne kvifor du slettar utvidinga di:"
 
 msgid "Actions"
 msgstr "Handlingar"
@@ -4708,7 +4708,7 @@ msgid "Is flagged for admin review."
 msgstr "Er flagga for vurdering av admin."
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "Er låst av ein vurderar."
 
 msgid "Duplicate Submission"
 msgstr "Duplikat-innsending"
@@ -5048,10 +5048,10 @@ msgid "Add-on Reviewer Performance"
 msgstr ""
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Vis statistikk for brukar"
 
 msgid "Range"
-msgstr ""
+msgstr "Intervall"
 
 msgid "Your Reviews"
 msgstr "Dine vurderinga"
@@ -5084,7 +5084,7 @@ msgid "Year"
 msgstr "År"
 
 msgid "All-Time"
-msgstr ""
+msgstr "Totalt"
 
 msgid "Advanced Search"
 msgstr "Avansert søk"
@@ -5093,7 +5093,7 @@ msgid "clear search"
 msgstr "tøm søk"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Handsam vurderingar"
 
 msgid "Moderation actions:"
 msgstr "Modererande handlingar:"
@@ -5119,7 +5119,7 @@ msgid "Add-on Policy"
 msgstr "Praksis for utvidingar"
 
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Guide for redigerarar"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5347,20 +5347,20 @@ msgid "Interactive Theme Queue"
 msgstr ""
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Retningslinjer for vurderarar"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Temavurdering for {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Sannsynlegvis ei dubbel innsending)"
 
 msgid "Past Review Notes"
 msgstr ""
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Meir info påkravd: {0}"
 
 msgid "Flagged: {0}"
 msgstr "Flagga: {0}"
@@ -5443,7 +5443,7 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Ugyldig filnamn i arkivet: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
@@ -5452,13 +5452,13 @@ msgid "Invalid archive."
 msgstr "Ugyldig arkiv."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Kunne ikkje tolke manifest-fila."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Klarte ikkje å finne nokon utvidings-ID."
 
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Utvidings-ID må vere på 64 teikn eller mindre."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
