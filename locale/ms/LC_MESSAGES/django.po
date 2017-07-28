@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 16:51+0000\n"
+"PO-Revision-Date: 2017-07-28 17:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3764,7 +3764,7 @@ msgid "Revoke and regenerate credentials"
 msgstr "Mansuh dan jana semula kelayakan"
 
 msgid "Generate new credentials"
-msgstr "Menjana surat kelayakan baru"
+msgstr "Jana semula kelayakan baru"
 
 msgid "Invisible"
 msgstr "Halimunan"
@@ -3818,47 +3818,49 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Baris gilir tidak disemak mengikut giliran"
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "Kedudukan Giliran:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s daripada %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Ditandatangani untuk mengedarkan-sendiri. Kemaskini diuruskan oleh anda."
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Versi Terbaru:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Ini ialah muat naik terbaru versi yang tidak disenaraikan."
 
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(diperlukan kerana add-on ini menerima sumbangan)"
 
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Urus Profil Pembangun Anda"
 
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Cipta Profil Pembangun"
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
+"Profil pembangun anda akan memaklumkan pengguna perihal diri anda, mengapa anda mencipta add-on ini, dan perkembangannya. Profil ini diperlukan bagi add-on yang meminta sumbangan, tetapi mungkin "
+"berguna kepada pembangun yang berminat untuk berhubungan dengan pengguna."
 
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Pastikan profil pengguna anda sentiasa dikemaskini."
 
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Kemaskini profil pengguna anda.</strong></a>"
 
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "Samada idea ini anda dapat semasa beratur di kedai atau menyelesaikan masalah besar seseorang, kongsi kisah anda."
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "Memaklumkan pengguna apa yang akan datang tidak lama lagi akan memberikan mereka sesuatu yang ditunggu-tunggu."
 
 msgid "Upload New Version"
 msgstr ""
