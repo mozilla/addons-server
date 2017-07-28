@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 14:12+0000\n"
+"PO-Revision-Date: 2017-07-28 14:25+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4044,7 +4044,7 @@ msgid "See Tutorial"
 msgstr ""
 
 msgid "View All Submissions"
-msgstr ""
+msgstr "Tinjau Semua Serahan"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Di sinilah tempat anda tinjau dan uruskan add-ons dan tema anda. Untuk menerbitkan add-on pertama anda, klik \"Hantar Add-on Pertama Anda\" atau \"Hantar Tema Pertama Anda\"."
@@ -4270,7 +4270,7 @@ msgid "Upload New Design"
 msgstr ""
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Setelah muat naik dan serahan borang, pasukan AMO akan mengkaji semula reka bentuk anda yang dikemaskini. Pada masa yang sama, reka bentuk semasa masih akan dipamerkan kepada umum."
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Reka bentuk anda sebelum ini yang direka semula, yang masih menunggu semakan."
@@ -4734,19 +4734,19 @@ msgid "Is locked by a reviewer."
 msgstr ""
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Duplikasi Serahan"
 
 msgid "Thanks for submitting your Theme"
 msgstr "Terima kasih kerana mengemukakan Tema anda"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Ada masalah dengan serahan Tema anda"
 
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Serahan tema anda ditandakan untuk semakan"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Ada soalan perihal serahan Tema anda"
 
 msgid "Type"
 msgstr ""
@@ -5365,7 +5365,7 @@ msgid "Theme Review for {0}"
 msgstr ""
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Kemungkinan Duplikasi Serahan)"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -6574,13 +6574,15 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
+msgstr "Mozilla ada menetapkan polisi berkenaan serahan yang diterima?"
 
 #, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
+"Ya. <a href=\"%(p_url)s\">Polisi Semakan Add-on</a> Mozilla menjelaskan apa yang dianggap serahan yang boleh diterima. Polisi ini tertakluk kepada perubahan tanpa notis. Di samping itu, Pasukan "
+"Penyemak Add-on menggunakan <a href=\"%(g_url)s\">Panduan Semakan Add-on</a> untuk memastikan bahawa add-on anda memenuhi garis panduan khusus untuk fungsi dan Keselamatan."
 
 msgid "How do I submit my add-on?"
 msgstr ""
@@ -6627,6 +6629,8 @@ msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
+"Add-on baru dan yang dikemaskini tertakluk kepada semakan untuk memastikan bahawa pengguna Mozilla dapat pengalaman yang stabil dan selamat. Garis panduan yang digariskan dalam <a "
+"href=\"%(url)s\">Panduan Semakan Add-on</a> akan digunakan untuk menyemak serahan add-on."
 
 msgid "Who reviews my add-on?"
 msgstr "Siapa semak add-on saya?"
@@ -6655,7 +6659,7 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "bilangan serahan add-on"
 
 #. part of a list (<li>)
 msgid "complexity of an add-on’s code"
@@ -6692,7 +6696,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr ""
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Add-on yang dikemaskini juga tertakluk kepada semakan sama seperti serahan yang baru."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
