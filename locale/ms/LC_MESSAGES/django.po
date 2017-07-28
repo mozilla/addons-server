@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 18:25+0000\n"
+"PO-Revision-Date: 2017-07-28 23:18+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -184,7 +184,7 @@ msgid "View privacy policy"
 msgstr "Lihat dasar privasi"
 
 msgid "View End-User License Agreement"
-msgstr "Lihat Perjanjian Lesen Pengguna-Akhir"
+msgstr "Lihat Perjanjian Lesen Pengguna Akhir"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
@@ -1248,7 +1248,7 @@ msgid "Create Collection"
 msgstr "Cipta Koleksi"
 
 msgid "View this collection"
-msgstr "Tinjau koleksi ini"
+msgstr "Papar koleksi ini"
 
 msgid "Start a new collection..."
 msgstr "Mulakan koleksi baru..."
