@@ -52,17 +52,6 @@
   {% endif %}
 {% endif %}
 
-{% if version.is_compatible %}
-  {% with reasons=version.is_compatible[1] %}
-    <div class="d2c-reasons-popup popup">
-      <p>{% trans app=APP.pretty %}
-        This add-on is not compatible with your version of {{ app }} because of
-        the following:
-      {% endtrans %}</p>
-      <ul>{% for reason in reasons %}<li>{{ reason }}</li>{% endfor %}</ul>
-    </div>
-  {% endwith %}
-{% endif %}
 <p>
     <a id="downloadAnyway" hidden="true">{{ _('Download Anyway') }}</a>
 </p>
