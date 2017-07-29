@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 16:18+0000\n"
+"PO-Revision-Date: 2017-07-29 22:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4319,21 +4319,21 @@ msgid "Preview"
 msgstr "Previu"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nama Tema Anda"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "oleh <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Cipta Tema Baru"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan mudah. Hantarkan rekaan anda sendiri di bawah, atau <a href=\"%(submit_url)s\">belajar cara mencipta</a>!"
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Berikan nama untuk Tema anda."
 
 #, python-format
 msgid ""
