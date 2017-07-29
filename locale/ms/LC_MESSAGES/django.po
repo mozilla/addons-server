@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 23:31+0000\n"
+"PO-Revision-Date: 2017-07-29 23:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4256,22 +4256,22 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ya, selagi mereka berkongsi yang sama"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Pemberi lesen membenarkan pihak lain untuk mengedarkan kerja terbitan hanya di bawah lesen yang sama atau yang serasi dengan yang mengawal lesen kerja."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Tema anda akan dikeluarkan di bawah lesen berikut:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Pilih lesen yang lain."
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Pilih lesen untuk Tema anda."
 
 msgid "Theme Design"
 msgstr "Rekaan Tema"
@@ -4286,34 +4286,34 @@ msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Reka bentuk anda sebelum ini yang direka semula, yang masih menunggu semakan."
 
 msgid "Pending Header"
-msgstr ""
+msgstr "Pengepala Tertangguh"
 
 msgid "Pending Footer"
-msgstr ""
+msgstr "Pembawah Tertangguh"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Anda boleh mengemaskini reka bentuk tema anda di sini apabila sudah diluluskan."
 
 msgid "Header"
-msgstr ""
+msgstr "Pengepala"
 
 msgid "Footer"
-msgstr ""
+msgstr "Pembawah"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Pilih warna untuk Tema anda."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Teks Latardepan"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Ini warna untuk teks tab."
 
 msgid "Background"
 msgstr "Latar belakang"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Ini warna untuk tab."
 
 msgid "Preview"
 msgstr "Previu"
@@ -4459,25 +4459,25 @@ msgid "Re-enable Version"
 msgstr "Versi Didayakan-semula"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Tutup Sejarah Semakan"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Tidak disahkan."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Sahkan sekarang."
 
 msgid "Request Review"
-msgstr ""
+msgstr "Minta Semakan"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Batal Minta Semakan"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Memuat Sejarah Semakan..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Kami ada masalah mendapatkan nota semakan"
 
 msgid "Load older..."
 msgstr ""
