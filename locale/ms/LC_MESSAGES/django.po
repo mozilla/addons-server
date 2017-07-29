@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 13:10+0000\n"
+"PO-Revision-Date: 2017-07-29 13:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4174,54 +4174,56 @@ msgid "Who will receive contributions to this add-on?"
 msgstr "Siapa penerima sumbangan add-on ini?"
 
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Apakah nama organisasi berkenaan?"
 
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Apakah URL organisasi berkenaan?"
 
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Apakah ID PayPal organisasi berkenaan?"
 
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Apakah ID PayPal anda?"
 
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Mendaftar PayPal"
 
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Berapa jumlah sumbangan yang anda cadangkan?"
 
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Contoh: 3.99)"
 
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Bilakah pengguna akan diminta memberikan sumbangan?"
 
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Hantar nota ucapan terima kasih?"
 
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr ""
+msgstr "Kami akan hantar e-mel automatik dengan mesej ini kepada pengguna yang memberikan sumbangan kepada anda."
 
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"Kami mencadangkan supaya anda mengucapkan terima kasih kepada pengguna dan memaklumkan  betapa anda menghargainya sokongan mereka. Anda juga boleh memaklum mereka perihal perkembangan seterusnya "
+"add-on anda itu dan add-on lain yang anda mahu mereka mencubanya."
 
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Aktifkan Sumbangan"
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"setup-cancel\" href=\"#\">Batal</a>"
 
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Pindah pemilikan"
 
 msgid "Theme Details"
-msgstr ""
+msgstr "Butiran Tema"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Sesiakan URL yang cantik untuk halaman butiran anda."
 
 msgid "Select the category that best describes your Theme."
 msgstr ""
