@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 12:32+0000\n"
+"PO-Revision-Date: 2017-07-29 13:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4139,39 +4139,39 @@ msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr "Beri galakan kepada pengguna untuk menyokong add-on anda melalui Profil Pembangun anda"
 
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Pilih bila dan cara pengguna diminta untuk membuat sumbangan"
 
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr ""
+msgstr "Terima sumbangan anda melalui akaun PayPal anda atau dihantarkan ke organisasi pilihan anda"
 
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr ""
+msgstr "Sumbangan hanya disediakan untuk add-on dengan versi tersenarai."
 
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "Sumbangan hanya disediakan untuk add-on dengan <a href=\"%(url)s\">profil pembangun lengkap</a>."
 
 msgid "Contributions are only available for approved add-ons."
-msgstr ""
+msgstr "Sumbangan hanya disediakan untuk add-on yang diluluskan."
 
 msgid "Set up Contributions"
-msgstr ""
+msgstr "Menetapkan Sumbangan"
 
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Langkah 2. Harga dan Ketersediaan"
 
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "atau <a href=\"%(cancel)s\">Batal</a>"
 
 msgid "Contributions"
-msgstr ""
+msgstr "Sumbangan"
 
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "Isi medan di bawah untuk memulakan meminta sumbangan sukarela daripada pengguna."
 
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Siapa penerima sumbangan add-on ini?"
 
 msgid "What is the name of the organization?"
 msgstr ""
