@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 23:08+0000\n"
+"PO-Revision-Date: 2017-07-29 23:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4417,44 +4417,46 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Maklumat perihal perubahan dalam keluaran ini, ciri baru, pepijat yang diketahui, dan maklumat berguna lain khusus dalam keluaran ini/version. Maklumat ini juga dipamerkan dalam Pengurus Add-ons "
+"semasa mengemaskini."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Status Kelulusan"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Nota kepada Penyemak"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Sebagai pilihan, masukkan apa-apa maklumat yang mungkin berguna kepada Penyemak add-on ini, seperti maklumat akaun ujian."
 
 msgid "Source code"
-msgstr ""
+msgstr "Kod sumber"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Jika add-on anda mengandungi kod binari atau dikelirukan, sediakan sumbernya kepada penyemak di sini."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fail {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Dicipta pada %(created)s dan diubah ke %(status)s pada %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Dicipta pada %(created)s dan diubah ke %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status & Versi"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Edit versi ini"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 fail"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Versi Didayakan-semula"
 
 msgid "Close Review History"
 msgstr ""
