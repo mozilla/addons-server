@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 11:49+0000\n"
+"PO-Revision-Date: 2017-07-29 12:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4009,43 +4009,43 @@ msgid "Write Some Code"
 msgstr "Tulis Beberapa Kod"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Bantu membuatkan add-on lebih baik dengan menyumbangkan kemahiran pengkodan anda."
 
 msgid "Get started"
-msgstr ""
+msgstr "Mulakan"
 
 msgid "More Ways to Participate"
-msgstr ""
+msgstr "Cara Lain untuk Turut Serta"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Anda tidak perlu ada kemahiran pengkodan untuk membantu mengekalkan Firefox sebagai pelayar sedia ada yang paling boleh disesuaikan!"
 
 msgid "See how"
-msgstr ""
+msgstr "Lihat caranya"
 
 msgid "Manage Your Add-on"
-msgstr ""
+msgstr "Urus Add-on Anda"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Daftar masuk untuk Mengedit dan Mengemaskini Add-on Anda"
 
 msgid "Update Your Legacy Extension"
-msgstr ""
+msgstr "Kemaskini Ekstensi Legasi Anda"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
+msgstr "Ada piawaian lintas-pelayar baru untuk pembangunan ekstensi di Firefox. Anda perlu mengemaskini ekstensi legasi anda supaya kekal serasi."
 
 msgid "Learn How"
-msgstr ""
+msgstr "Belajar Caranya"
 
 msgid "What's New"
-msgstr ""
+msgstr "Apa Yang Terbaru"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah perihal proses serahan."
 
 msgid "See Tutorial"
-msgstr ""
+msgstr "Lihat Tutorial"
 
 msgid "View All Submissions"
 msgstr "Tinjau Semua Serahan"
@@ -4060,23 +4060,23 @@ msgid "Submit Your First Theme"
 msgstr "Hantar Tema Pertama Anda"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Hab Pembangun Add-on"
 
 msgid "Docs"
-msgstr ""
+msgstr "Dokumen"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Daftar Keluar"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Foto Pengguna"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
 msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Daftar Masuk</a>"
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Penyesuaian Firefox"
 
 #, python-format
 msgid ""
