@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 23:50+0000\n"
+"PO-Revision-Date: 2017-07-29 00:05+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3910,7 +3910,7 @@ msgstr "Buang aplikasi ini"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
+msgstr[0] "Pilih <b>sehingga {0}</b> {1} kategori untuk add-on ini:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -3921,24 +3921,26 @@ msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Jika add-on anda menghantar data daripada komputer pengguna, polisi privasi diperlukan yang menjelaskan jenis data yang dihantar dan cara data itu digunakan. Ini hanya berkenaan add-on yang "
+"tersenarai."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Jika add-on anda mengandungi kod binari atau disamarkan selain kod pustaka yang diketahui, muat naik sumbernya untuk semakan."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Sila sertakan arahan perihal cara menghasilkan semula fail add-on penamat, samada dalam fail README atau Nota kepada Penyemak untuk versi ini."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Baca selanjutnya perihal polisi semakan kod sumber."
 
 msgid "Latest News"
-msgstr ""
+msgstr "Berita Terkini"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Baca selanjutnya dalam Blog kami"
 
 msgid "Resources"
-msgstr ""
+msgstr "Sumber"
 
 msgid "Porting"
 msgstr ""
