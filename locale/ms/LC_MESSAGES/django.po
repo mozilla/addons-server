@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 00:49+0000\n"
+"PO-Revision-Date: 2017-07-29 01:01+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3946,55 +3946,55 @@ msgid "Porting"
 msgstr "Pemindahan"
 
 msgid "Community"
-msgstr ""
+msgstr "Komuniti"
 
 msgid "About"
 msgstr "Perihal"
 
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Contact Us"
-msgstr ""
+msgstr "Hubungi Kami"
 
 msgid "Policies"
-msgstr ""
+msgstr "Polisi"
 
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 msgid "Report Bug"
-msgstr ""
+msgstr "Lapor Pepijat"
 
 msgid "Site Status"
-msgstr ""
+msgstr "Status Laman"
 
 msgid "Compatibility Checker"
-msgstr ""
+msgstr "Penguji Keserasian"
 
 msgid "Compatibility Reporter"
-msgstr ""
+msgstr "Pelapor Keserasian"
 
 msgid "Promote"
-msgstr ""
+msgstr "Mempromosi"
 
 msgid "Get Your Add-on Featured"
-msgstr ""
+msgstr "Jadikan Add-on Anda Sorotan"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Butang \"Dapatkan Add-on\""
 
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Lapor Penyalahgunaan Cap Dagangan"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Notis Undang-undang"
 
 msgid "Review Add-ons"
 msgstr ""
@@ -6521,7 +6521,7 @@ msgstr ""
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (untuk perbincangan perihal pembangunan dan pemindahan ke WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr ""
@@ -8193,7 +8193,7 @@ msgid "Report User"
 msgstr ""
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Sila jelaskan kenapa anda melaporkan pengguna ini seperti spam atau gambar tidak sesuai."
 
 msgid "Report user {0}"
 msgstr ""
