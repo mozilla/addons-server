@@ -4226,7 +4226,7 @@ msgid "Supply a pretty URL for your detail page."
 msgstr "Sesiakan URL yang cantik untuk halaman butiran anda."
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Pilih kategori yang paling sesuai menjelaskan Tema anda."
 
 msgid "Add some tags to describe your Theme."
 msgstr ""
