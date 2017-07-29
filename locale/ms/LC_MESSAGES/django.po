@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 00:17+0000\n"
+"PO-Revision-Date: 2017-07-29 00:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5738,7 +5738,7 @@ msgstr ""
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Terima kasih kerana menggunakan %(app)s dan menyokong <a href=\"%(url)s\">Misi Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
 msgstr ""
@@ -6368,7 +6368,7 @@ msgid "It’s easy to help us make sure add-ons are updated in time for the rele
 msgstr ""
 
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Ini cara memulakan melaporkan keserasian add-on anda:"
 
 msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
@@ -6495,6 +6495,9 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Nota:</strong> XUL dianggap teknologi legasi dalam Firefox, dan add-on yang menggunakan XUL tidak lagi dimuatkan mulai Firefox 57. Sila guna <a href=\"%(webext_url)s\">WebExtensions</a> APIs"
+" untuk membangunkan add-ons baru. Jika anda ada add-on legasi, pertimbangkan untuk memindahkannya ke WebExtensions. Untuk maklumat pemindahan add-on legasi, sila layari<a "
+"href=\"%(portlegacy_url)s\">Pemindahan add-on legasi Firefox</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
