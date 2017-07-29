@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 12:07+0000\n"
+"PO-Revision-Date: 2017-07-29 12:29+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4083,50 +4083,54 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Add-ons membolehkan berjuta-juta pengguna Firefox menambahkan pengalaman pelayaran mereka. Jika anda tahu <a href=\"%(html_link)s\"></a>, <a href=\"%(js_link)s\">JavaScript</a>, dan <a "
+"href=\"%(css_link)s\">CSS</a>, anda sudah ada semua kemahiran untuk membina add-on yang bagus."
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "Belajar Cara Membina Add-on"
 
 msgid "Port a Chrome Extension"
-msgstr ""
+msgstr "Port Ekstensi Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox menyokong APIs WebExtension, yang dalam kebanyakan keadaan serasi dengan ekstensi APIs yang disokong oleh Chrome, Opera dan.Edge, supaya ekstensi dapat berfungsi dalam Firefox dengan hanya "
+"sedikit perubahan."
 
 msgid "Publish Your Add-on"
-msgstr ""
+msgstr "Terbitkan Add-on Anda"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Add-on anda sudah siap? Hantar ekstensi atau tema anda untuk disenaraikan dalam addons.mozilla.org atau tandatangan dan anda edarkan sendiri ekstensi tersebut."
 
 msgid "Sign In"
-msgstr ""
+msgstr "Daftar Masuk"
 
 msgid "Validator"
-msgstr ""
+msgstr "Pengesah"
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Ujian kod automatik untuk add-on anda."
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Semak samada add-on anda akan terkesan dengan perubahan dalam Firefox."
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Maklumkan kami samada add-on berfungsi dalam versi Firefox yang tertentu."
 
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "Anda sedang meminta <b>sumbangan</b> daripada pengguna"
 
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Halaman sumbangan anda: <a href=\"%(url)s\">%(url_full)s</a>"
 
 msgid "Disable Contributions"
-msgstr ""
+msgstr "Nyahdaya Sumbangan"
 
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Sumbangan Sukarela"
 
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
 msgstr ""
