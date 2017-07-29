@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 13:31+0000\n"
+"PO-Revision-Date: 2017-07-29 16:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4229,25 +4229,25 @@ msgid "Select the category that best describes your Theme."
 msgstr "Pilih kategori yang paling sesuai menjelaskan Tema anda."
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Tambah beberapa tag untuk menjelaskan Tema anda."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr "Penjelasan ringkas fungsi asas tema anda yang dipamerkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran tema anda."
 
 msgid "Theme License"
-msgstr ""
+msgstr "Lesen Tema"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Bolehkah orang lain berkongsi tema anda, selagi anda diberi penghargaan?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr ""
