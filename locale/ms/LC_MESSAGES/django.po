@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 16:07+0000\n"
+"PO-Revision-Date: 2017-07-29 16:18+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4250,10 +4250,10 @@ msgid "Can others make commercial use of your Theme?"
 msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Tema anda?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
 
 msgid "Yes, as long as they share alike"
 msgstr ""
@@ -4274,10 +4274,10 @@ msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
-msgstr ""
+msgstr "Rekaan Tema"
 
 msgid "Upload New Design"
-msgstr ""
+msgstr "Muat naik Rekaan Baru"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr "Setelah muat naik dan serahan borang, pasukan AMO akan mengkaji semula reka bentuk anda yang dikemaskini. Pada masa yang sama, reka bentuk semasa masih akan dipamerkan kepada umum."
@@ -4310,13 +4310,13 @@ msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Latar belakang"
 
 msgid "This is the color of the tabs."
 msgstr ""
 
 msgid "Preview"
-msgstr ""
+msgstr "Previu"
 
 msgid "Your Theme's Name"
 msgstr ""
