@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 00:05+0000\n"
+"PO-Revision-Date: 2017-07-29 00:17+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3943,7 +3943,7 @@ msgid "Resources"
 msgstr "Sumber"
 
 msgid "Porting"
-msgstr ""
+msgstr "Pemindahan"
 
 msgid "Community"
 msgstr ""
@@ -4582,7 +4582,7 @@ msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Menyokong 25+ bahasa, ekstensi ini menyediakan pembaca pruf terus dari dalam pelayar anda."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""

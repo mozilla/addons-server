@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-28 23:15+0000\n"
+"PO-Revision-Date: 2017-07-29 00:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -100,7 +100,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Mengalihkan add-on Firefox legasi di MDN"
+msgstr "Pemindahan add-on Firefox legasi di MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
