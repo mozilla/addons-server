@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 19:10+0000\n"
+"PO-Revision-Date: 2017-07-29 14:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -177,7 +177,7 @@ msgid "Listed"
 msgstr "Опубликованное"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -2956,7 +2956,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Вы не можете представить дополнение с guid, оканчивающимся на «@mozilla.org»"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
 msgid "Icons cannot be animated."
 msgstr "Иконки не могут быть анимированы."
@@ -3033,7 +3033,7 @@ msgid "Printable Version"
 msgstr "Версия для печати"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Я прочитал и принимаю это соглашение, а также правила и политики"
 
 msgid "I Accept this Agreement"
 msgstr "Я принимаю это соглашение"
@@ -3284,13 +3284,13 @@ msgid "Requires Payment?"
 msgstr "Требуется оплата?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Установите этот флажок, если вашему дополнению для работы требуется его покупка или покупка после пробного периода."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Это дополнение требует оплаты, платных услуг или программного обеспечения, или дополнительного оборудования."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Это дополнение не требует никаких дополнительных платежей, платных услуг или программного обеспечения, или дополнительного оборудования."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3769,7 +3769,7 @@ msgid "Version Submitted"
 msgstr "Версия представлена"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Готово! Эта версия скоро появится на нашем сайте."
 
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
@@ -4173,7 +4173,7 @@ msgid "What's New"
 msgstr "Что нового"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Готовы представить дополнение? Прочтите наше пошаговое руководство о процессе представления."
 
 msgid "See Tutorial"
 msgstr "Показать руководство"
@@ -4731,13 +4731,13 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Остановите пронырливые трекеры {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Блокируйте невидимые трекеры и шпионскую рекламу, которая следит за вами в Интернете."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте ваше правописание {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Поддерживая более 25 языков, это расширение проверяет грамматику прямо в вашем браузере."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Создавайте скриншоты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
