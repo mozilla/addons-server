@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 22:50+0000\n"
+"PO-Revision-Date: 2017-07-29 23:08+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4340,6 +4340,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Saya setuju dengan <a href=\"%(agreement_url)s\">Perjanjian Distribusi Add-on Firefox</a> dan maklumat saya dikendalikan seperti yang dijelaskan dalam <a href=\"%(privacy_notice_url)s\">Notis "
+"Privasi Laman Web, Komunikasi dan Kuki</a>."
 
 msgid "Submit Theme"
 msgstr "Hantar Tema"
@@ -4351,7 +4353,7 @@ msgid "Your theme has been submitted to the Review Queue. You'll receive an emai
 msgstr "Tema anda telah dihantar ke Giliran Semakan. Anda akan terima e-mel apabila tema anda sudah disemak, biasanya dalam tempoh 24 jam."
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Langkah berikut:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -4363,53 +4365,53 @@ msgstr "Tinjau dan langgan <a href=\"%(feed_url)s\">suapan aktiviti</a> tema and
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Sertai perbualan dalam <a href=\"%(forum_url)s\">forum</a> kami."
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Pilih imej pengepala untuk Tema anda."
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 piksel"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB max"
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG atau JPG"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Sejajar bahagian atas-kanan"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Pilih imej pengepala yang lain"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Pilih imej pembawah untuk Tema anda."
 
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 piksel"
 
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Sejajar bahagian bawah-kiri"
 
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Pilih imej pembawah yang lain"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Urus Versi {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Urus {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Fail"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Muat naik Fail Lain"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Nota Versi"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
