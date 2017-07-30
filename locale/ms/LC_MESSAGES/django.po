@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 02:31+0000\n"
+"PO-Revision-Date: 2017-07-30 03:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4832,41 +4832,41 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terhadap add-on ini, sila masukkan komen anda dalam kawasan di bawah. Ini tidak akan dihantar kepada pembangun."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
 
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Add-ons Baru (Kurang daripada 5 hari)"
 
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Memadai (5 hingga 10 hari)"
 
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Terlewat (Melebihi 10 hari)"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Ada ralat yang tidak diketahui"
 
 msgid "Self-reviews are not allowed."
 msgstr "Semakan-sendiri tidak dibenarkan."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Semakan berjaya diproses."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Mencapai had semakan dikunci"
 
 msgid "was approved"
-msgstr ""
+msgstr "telah diluluskan"
 
 msgid "given preliminary review"
-msgstr ""
+msgstr "diberikan semakan awalan"
 
 msgid "rejected"
-msgstr ""
+msgstr "ditolak"
 
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "dipertingkatkan"
 
 msgid "needs more information"
 msgstr ""
