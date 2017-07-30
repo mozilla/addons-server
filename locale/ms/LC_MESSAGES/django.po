@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 10:49+0000\n"
+"PO-Revision-Date: 2017-07-30 11:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6075,100 +6075,100 @@ msgid "Malawi Kwacha"
 msgstr "Kwacha Malawi"
 
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Peso Mexico"
 
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Ringgit Malaysia"
 
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Metical Mozambique"
 
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Dollar Namibia"
 
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Naira Nigeria"
 
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Cordoba Nicaragua"
 
 msgid "Norway Krone"
-msgstr ""
+msgstr "Krone Norway"
 
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Rupee Nepal"
 
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Dollar New Zealand"
 
 msgid "Oman Rial"
-msgstr ""
+msgstr "Rial Oman"
 
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Balboa Panama"
 
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Nuevo Sol Peru"
 
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Kina Papua New Guinea"
 
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Peso Filipina"
 
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Rupee Pakistan"
 
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Zloty Poland"
 
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Guarani Paraguay"
 
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Riyal Qatar"
 
 msgid "Romania New Leu"
-msgstr ""
+msgstr "New Leu Romania"
 
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Dinar Serbia"
 
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ruble Rusia"
 
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Franc Rwanda"
 
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Riyal Arab Saudi"
 
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dollar Kepulauan Solomon"
 
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Rupee Seychelles"
 
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Pound Sudan"
 
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Krona Sweden"
 
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Dolar Singapura"
 
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Pound Saint Helena"
 
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Leone Sierra Leone"
 
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Shilling Somalia"
 
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Luigino Seborga"
 
 msgid "Suriname Dollar"
 msgstr ""
