@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 12:47+0000\n"
+"PO-Revision-Date: 2017-07-30 12:57+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6300,15 +6300,15 @@ msgstr "Ada beberapa cara untuk mendapatkan perkembangan terkini dunia add-ons i
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Blog Add-ons</a> kami sentiasa dikemaskini dengan maklumat penggemar add-on dan pembangun."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Kami kerap menyiarkan berita, panduan dan helah ke akaun Twitter kami, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Forum</a> kami adalah tempat yang bagus untuk berinteraksi dengan komuniti add-ons dan berbincang perubahan yang akan datang di AMO."
 
 msgid "This sounds great! How can I get involved?"
 msgstr "Menakjubkan! Bagaimana saya boleh melibatkan diri?"
@@ -6372,10 +6372,10 @@ msgstr ""
 "boleh ditemukan dalam halaman <a href=\"%(url)s\"> Laman Penghargaan</a> kami."
 
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Pelapor Keserasian Add-on"
 
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Pelapor Keserasian Add-on telah dipasang"
 
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
 msgstr ""
