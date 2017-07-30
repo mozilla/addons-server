@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 00:24+0000\n"
+"PO-Revision-Date: 2017-07-30 01:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4653,48 +4653,48 @@ msgid "no"
 msgstr "tidak"
 
 msgid "Admin Flag"
-msgstr ""
+msgstr "Tanda Pentadbir"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "Jenis Add-on"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Cari mengikut nama add-on / e-mel pengarang / guid"
 
 msgid "Max. Version"
-msgstr ""
+msgstr "Versi Max"
 
 msgid "Comments:"
-msgstr ""
+msgstr "Komen:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Sistem pengoperasian:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "Aplikasi:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
+msgstr "Maklumkan saya apabila add-on ini dikemaskini. (Kemaskini seterusnya tidak akan menjana e-mel)"
 
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Buang Tanda Semakan Pentadbir"
 
 msgid "Is more info requested?"
-msgstr ""
+msgstr "Perlu minta info selanjutnya?"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Pilih respons lazim..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "nama tema"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Ada seseorang sedang menyemak tema ini."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "tema, penyemak, atau komen"
 
 msgid "Keep review; remove flags"
 msgstr ""
