@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 08:31+0000\n"
+"PO-Revision-Date: 2017-07-30 08:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5680,59 +5680,61 @@ msgid "Get up and move!"
 msgstr "Ayuh bangkit dan maju!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Pasang add-ons kesihatan untuk kekal aktif dan sihat."
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Baru &amp; Sekarang"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Dapatkan add-ons mutakhir dan mesti-ada pada masa sekarang."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Pelayar tanpa rasa khuatir"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Lindungi privasi dalam talian anda dengan add-ons dalam koleksi ini."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Add-ons terbaik untuk kerja, keseronokan, privasi, produktiviti&hellip; hampir dalam semua perkara!"
 
 msgid "Games!"
-msgstr ""
+msgstr "Permainan!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Tambah keseronokan ke Firefox anda. Main berdozen permainan terus dari dalam pelayar anda—teka-teki, arked klasik, permainan aksi, dan banyak lagi!"
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Media Mesti-Ada"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Ambil skrinsyot yang lebih baik, tingkatkan pengalaman video dalam talian anda, akhir sekali belajar cara mencipta GIF, dan alatan media menakjubkan yang lain."
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Teroka Add-ons"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "Apakah Add-ons?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Add-ons ialah aplikasi yang membolehkan anda memperibadikan %(app)s dengan fungsi atau gaya tambahan. Cuba bar sisi penjimat-masa, pemaklum cuaca, atau tema penampilan yang membuatkan %(app)s milik "
+"anda."
 
 msgid "Learn More"
-msgstr ""
+msgstr "Ketahui Selanjutnya"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Ketahui selanjutnya Perihal Add-ons"
 
 msgid "See all"
-msgstr ""
+msgstr "Papar semua"
 
 msgid "More ways to customize"
-msgstr ""
+msgstr "Cara selanjutnya untuk penyesuaian"
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Layari semua add-ons"
 
 msgid "See all complete themes"
 msgstr ""
