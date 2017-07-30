@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 10:31+0000\n"
+"PO-Revision-Date: 2017-07-30 10:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5955,124 +5955,124 @@ msgid "Haiti Gourde"
 msgstr "Gourde Haiti"
 
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Forint Hungary"
 
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Rupiah Indonesia"
 
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Shekel Israel"
 
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Pound Isle of Man"
 
 msgid "India Rupee"
-msgstr ""
+msgstr "Rupee India"
 
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Dinar Irak"
 
 msgid "Iran Rial"
-msgstr ""
+msgstr "Rial Iran"
 
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Krona Iceland"
 
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Pound Jersey"
 
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Dollar Jamaica"
 
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Dinar Jordan"
 
 msgid "Japan Yen"
-msgstr ""
+msgstr "Yen Jepun"
 
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Shilling Kenya"
 
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Som Kyrgyzstan"
 
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Riel Kemboja"
 
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Franc Comoros"
 
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Won Korea (Utara)"
 
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Won Korea (Selatan)"
 
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Dinar Kuwait"
 
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Dollar Cayman Islands"
 
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Tenge Kazakhstan"
 
 msgid "Laos Kip"
-msgstr ""
+msgstr "Kip Laos"
 
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Pound Lebanon"
 
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Rupee Sri Lanka"
 
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Dollar Liberia"
 
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Loti Lesotho"
 
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Litas Lithuania"
 
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Lat Latvia"
 
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Dinar Libya"
 
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Dirham Maghribi"
 
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Leu Moldova"
 
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Ariary Madagascar"
 
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Denar Macedonia"
 
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Kyat Myanmar (Burma)"
 
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Tughrik Mongolia"
 
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Pataca Macau"
 
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Ouguiya Mauritania"
 
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Rupee Mauritius"
 
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Rufiyaa Maldives (Kepulauan Maldive)"
 
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Kwacha Malawi"
 
 msgid "Mexico Peso"
 msgstr ""
