@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 03:30+0000\n"
+"PO-Revision-Date: 2017-07-30 03:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4869,16 +4869,16 @@ msgid "escalated"
 msgstr "dipertingkatkan"
 
 msgid "needs more information"
-msgstr ""
+msgstr "perlu maklumat lanjut"
 
 msgid "needs super review"
-msgstr ""
+msgstr "perlu semakan teliti"
 
 msgid "commented"
-msgstr ""
+msgstr "komen"
 
 msgid "confirmed as approved"
-msgstr ""
+msgstr "disahkan sebagai diluluskan"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4886,107 +4886,108 @@ msgstr[0] "{0} semakan tema berjaya diproses (+{1} poin, {2} jumlah)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Tema anda yang dikunci telah berjaya dilepaskan. Penyemak lain kini boleh menyemak tema berkenaan. Anda perlu memuat semula halaman untuk melihat perubahan yang dinyatakan di dalam jadual di bawah."
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Laporan Penyalahgunaan"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr ""
+msgstr "Berfungsi dengan"
 
 msgid "Visibility"
-msgstr ""
+msgstr "Ketampakan"
 
 msgid "Visible"
-msgstr ""
+msgstr "Tampak"
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Purata Pengguna Harian"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Laporan Penyalahgunaan"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Lihat Dasar Privasi"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Perlu Bayaran"
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "Tarikh Kelulusan Terakhir"
 
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "Kelulusan Semenjak Semakan Automatik Terakhir"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "Laporan Penyalahgunaan ({num})"
 
 msgid "Bad User Reviews ({num})"
 msgstr "Ulasan Buruk Pengguna ({num})"
 
 msgid "More about this add-on"
-msgstr ""
+msgstr "Maklumat lanjut perihal add-on ini"
 
 msgid "Image Gallery"
-msgstr ""
+msgstr "Galeri Imej"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
 
 msgid "Return to the Reviewer Tools homepage"
-msgstr ""
+msgstr "Kembali ke halaman utama Alatan Penyemak"
 
 msgid "Queues"
-msgstr ""
+msgstr "Giliran"
 
 msgid "New Add-ons"
-msgstr ""
+msgstr "Add-ons Baru"
 
 msgid "Updates"
-msgstr ""
+msgstr "Kemaskini"
 
 msgid "Moderated Reviews"
 msgstr "Ulasan Moderat"
 
 msgid "Auto Approved Add-ons"
-msgstr ""
+msgstr "Add-on Automatik Diluluskan"
 
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Barisan Tiada-disenaraikan"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Semua Add-ons Tiada-disenaraikan"
 
 msgid "Logs"
-msgstr ""
+msgstr "Log"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Log Semakan Add-on"
 
 msgid "Moderated Review Log"
 msgstr "Log Ulasan Moderat"
 
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Log Fail Beta Ditandatangani"
 
 msgid "Announcement"
-msgstr ""
+msgstr "Pengumuman"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Saring"
 
 msgid "Date"
-msgstr ""
+msgstr "Tarikh"
 
 msgid "Event"
-msgstr ""
+msgstr "Acara"
 
 msgid "More details."
 msgstr ""
