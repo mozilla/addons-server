@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 11:17+0000\n"
+"PO-Revision-Date: 2017-07-30 12:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6234,40 +6234,40 @@ msgid "Venezuela Bolivar"
 msgstr "Bolivar Venezuela"
 
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Dong Viet Nam"
 
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vatu Vanuatu"
 
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Tala Samoa"
 
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "CFA Franc BEAC Communauté Financière Africaine (BEAC)"
 
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Dolar Caribbean Timur"
 
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Hak Pengeluaran Khas Tabung Kewangan Antarabangsa (IMF)"
 
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franc Communauté Financière Africaine (BCEAO)"
 
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franc Comptoirs Français du Pacifique (CFP)"
 
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Rial Yemen"
 
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Rand Afrika Selatan"
 
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Kwacha Zambia"
 
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dollar Zimbabwe"
 
 msgid "About Mozilla Add-ons"
 msgstr "Perihal Add-ons Mozilla"
