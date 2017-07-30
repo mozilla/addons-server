@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 04:27+0000\n"
+"PO-Revision-Date: 2017-07-30 06:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5217,80 +5217,80 @@ msgid "Admin Page"
 msgstr "Halaman Pentadbir"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Semak Add-ons Ini"
 
 msgid "More Information"
-msgstr ""
+msgstr "Maklumat Lanjut"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Resolusi"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Penyemak"
 
 msgid "Add-on has been deleted."
 msgstr "Add-on telah dihapuskan."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Papar Komen"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Sorok Komen"
 
 msgid "No reviews found for this period."
 msgstr "Tiada semakan ditemukan dalam tempoh ini."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] melaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Abaikan pengumuman ini"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Fail dalam versi ini:"
 
 msgid "Contents"
-msgstr ""
+msgstr "Kandungan"
 
 msgid "Compare"
-msgstr ""
+msgstr "Banding"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "Keizinan:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Oleh %(user)s pada %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Lebih lama"
 
 msgid "Newer"
-msgstr ""
+msgstr "Lebih baru"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Poin Terkini"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Belum ada poin yang diberikan."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Penyemak Teratas (7 hari lepas)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Belum ada penyemak teratas lagi."
 
 msgid "All Time"
-msgstr ""
+msgstr "Sepanjang Masa"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Anda ada <span>{0}</span> poin."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s pada %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr "Tarikh Dihapuskan"
@@ -5299,16 +5299,16 @@ msgid "No deleted themes found for this period."
 msgstr "Tiada tema dihapuskan yang ditemukan dalam tempoh ini."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Sejarah Semakan Tema untuk {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "Tarikh Semakan"
 
 msgid "Action"
-msgstr ""
+msgstr "Tindakan"
 
 msgid "Reason"
-msgstr ""
+msgstr "Alasan"
 
 msgid "There are currently no reviews."
 msgstr "Masih tiada semakan."
@@ -5323,25 +5323,25 @@ msgstr[0] "{num} Semakan Ditanda"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num} Kemaskini"
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Tema Ditandai"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Giliran Semakan Tema"
 
 msgid "Review Options"
-msgstr ""
+msgstr "Pilihan Semakan"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Auto-kemajuan selepas semakan"
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Dayakan pintasan papan kekunci"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Pintasan Papan Kekunci"
 
 msgid "Next Theme"
 msgstr ""
