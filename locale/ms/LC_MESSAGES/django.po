@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 13:50+0000\n"
+"PO-Revision-Date: 2017-07-30 14:05+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6501,18 +6501,20 @@ msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on 
 msgstr "<h3>Bagaimana saya boleh membina Add-on?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana untuk membina add-on melalui <a href=\"%(url)s\">Rangkaian Pembangun Mozilla</a>. </p>"
 
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "Apakah fail \".xpi\"?"
 
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "Ekstensi digabungkan dan diedarkan dalam fail ZIP atau Bundles, dengan fail ekstensi XPI (disebut \"zippy\")."
 
 msgid "What is XUL?"
-msgstr ""
+msgstr "Apakah XUL?"
 
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (Bahasa Antaramuka Pengguna XML) ialah bahasa asas-XML Mozilla yang membolehkan anda membina aplikasi silang platform yang penuh-ciri. Asas ini menyediakan pengguna dengan widget  antaramuka "
+"seperti butang, menu, alatan bar, pepohon dsb yang boleh digunakan untuk meningkatkan add-on dengan mengubah sebahagian daripada UI pelayar."
 
 #, python-format
 msgid ""
@@ -6525,7 +6527,7 @@ msgstr ""
 "href=\"%(portlegacy_url)s\">Pemindahan add-on legasi Firefox</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Bagaimana saya boleh menguji keserasian dengan versi terkini perisian Mozilla?"
 
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
