@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 04:10+0000\n"
+"PO-Revision-Date: 2017-07-30 04:27+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5117,104 +5117,104 @@ msgid "All-Time"
 msgstr "Sepanjang-Masa"
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "Carian Lanjutan"
 
 msgid "clear search"
-msgstr ""
+msgstr "buang carian"
 
 msgid "Process Reviews"
 msgstr "Proses Semakan"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Tindakan moderat:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "mengikut %(user)s pada %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandakan oleh %(user)s pada %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "Semua semakan adalah moderat. Syabas!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Masih belum ada add-on jenis ini untuk disemak buat masa ini."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Pautan Berguna:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Polisi Add-on"
 
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Panduan Editor"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Semakan {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Sejarah perubahan pengguna add-on"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Sejarah Add-on"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Keserasian:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Sumber tambahan:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Muat turun fail"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Pembangun menyediakan kod sumber."
 
 msgid "Not Auto Approved Because"
-msgstr ""
+msgstr "Tidak Auto Diluluskan Kerana"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Skrip auto-diluluskan masih belum dijalankan untuk versi ini."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Versi ini masih belum disemak."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Sila pilih satu atau lebih versi dalam senarai di atas."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Anda masih boleh hantar borang ini, tapi jika anda tahu tidak akan berlaku konflik."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Sertakan respons lazim..."
 
 msgid "Files:"
-msgstr ""
+msgstr "Fail:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Diuji pada:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Amaran!</strong> Ada pengguna lain meninjau halaman ini sebelum anda."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "Whiteboard adalah tempat untuk bertukar maklumat berkaitan addon ini (apa sahaja versi), antara pembangun dengan editor. Ini adalah boleh dilihat dan boleh diedit oleh kedua-duanya."
 
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Kemaskini whiteboard"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(pentadbir)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Halaman Pentadbir"
 
 msgid "Review This Add-on"
 msgstr ""
