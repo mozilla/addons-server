@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 06:10+0000\n"
+"PO-Revision-Date: 2017-07-30 06:12+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5344,22 +5344,22 @@ msgid "Keyboard Shortcuts"
 msgstr "Pintasan Papan Kekunci"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Tema Berikut"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "Tema Terdahulu"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "Sejarah Semakan Anda"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Melakukan Semakan"
 
 msgid "Commit Reviews"
 msgstr "Melakukan Semakan"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} daripada {1} disemak"
 
 msgid "There are currently no Themes to review."
 msgstr ""
