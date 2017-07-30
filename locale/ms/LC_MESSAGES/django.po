@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 02:10+0000\n"
+"PO-Revision-Date: 2017-07-30 02:26+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4745,7 +4745,7 @@ msgid "Is flagged for admin review."
 msgstr "Ditandai untuk semakan pentadbir."
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "Dikunci oleh penyemak."
 
 msgid "Duplicate Submission"
 msgstr "Duplikasi Serahan"
@@ -4763,70 +4763,70 @@ msgid "A question about your Theme submission"
 msgstr "Ada soalan perihal serahan Tema anda"
 
 msgid "Type"
-msgstr ""
+msgstr "Jenis"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Tempoh Menunggu"
 
 msgid "Flags"
-msgstr ""
+msgstr "Tanda"
 
 msgid "moments ago"
-msgstr ""
+msgstr "sebentar tadi"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} minit"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} jam"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} hari"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Semakan Terakhir"
 
 msgid "Last Update"
-msgstr ""
+msgstr "Kemaskini Terakhir"
 
 msgid "No Reviews"
 msgstr "Tiada Semakan"
 
 msgid "Weight"
-msgstr ""
+msgstr "Pertimbangkan"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Komen akan dihantar kepada pembangun."
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Sahkan Kelulusan"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "Versi umum terkini add-on ini diluluskan secara automatik. Ini akan merekodkan pengesahan kelulusan anda tanpa memaklumkan pembangun."
 
 msgid "Reject Multiple Versions"
-msgstr ""
+msgstr "Tolak Versi Pelbagai"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ini akan menolak versi umum yang dipilih. Komen akan dihantar kepada pembangun."
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "Jawapan penyemak"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Ini akan menghantar mesej kepada pembangun. Anda akan dimaklumkan apabila mereka membalas."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Minta semakan-teliti"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
