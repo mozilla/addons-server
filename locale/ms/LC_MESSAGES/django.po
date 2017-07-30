@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 01:47+0000\n"
+"PO-Revision-Date: 2017-07-30 02:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4697,52 +4697,52 @@ msgid "theme, reviewer, or comment"
 msgstr "tema, penyemak, atau komen"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Kekalkan semakan; buang tanda"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Langkau dulu sekarang"
 
 msgid "Delete review"
 msgstr "Hapus semakan"
 
 msgid "Admin Review"
-msgstr ""
+msgstr "Semakan Pentadbir"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Add-on Jetpack"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Perlukan Maklumat Lanjut"
 
 msgid "Contains Reviewer Comment"
-msgstr ""
+msgstr "Ada Komen Penyemak"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Sumber disediakan"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Menggunakan sesuaian CSP."
 
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Menggunakan keizinan nativeMessaging."
 
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Menggunakan skrip kandungan semua URLs."
 
 msgid "Has too many daily users."
-msgstr ""
+msgstr "Ada terlalu ramai pengguna harian."
 
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Ada terlalu sedikit kemaskini diluluskan-manusia."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Ada permintaan info tertangguh."
 
 msgid "Is flagged for admin review."
-msgstr ""
+msgstr "Ditandai untuk semakan pentadbir."
 
 msgid "Is locked by a reviewer."
 msgstr ""
