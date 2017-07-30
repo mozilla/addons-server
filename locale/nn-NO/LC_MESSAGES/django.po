@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 16:09+0000\n"
+"PO-Revision-Date: 2017-07-30 16:31+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2743,10 +2743,10 @@ msgid "Do not list my add-on on this site"
 msgstr "Ikkje list utvidinga mi på denne nettsida"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "Marker dette alternativet om du ønskjer å distribuere utvidinga di på eiga hand og berre treng det for at det skal signerast av Mozilla."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Ei fil med ein versjon som sluttar med a|alpha|b|beta|pre|rc og eit valfritt nummer er detektert som beta."
 
 msgid "You cannot upload any more files for this version."
 msgstr "Du kan ikkje late opp fleire filer for denne versjonen."
@@ -2878,7 +2878,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
 
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
@@ -2922,7 +2922,7 @@ msgid "Your old credentials were revoked and are no longer valid. Be sure to upd
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Dei gamle innloggingsopplysningane dine er tilbakekalla og gjeld ikkje lenger."
 
 msgid "New API key created"
 msgstr "Ny API-nykel laga"
@@ -2945,13 +2945,13 @@ msgid "Review Rules"
 msgstr "Vurderingsreglar"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "Før du byrjar, les og godta distribusjonsavtalen vår for Firefox-utvidingar. Denne lenkar også til personvernpraksisen vår som forklarar korleis vi handsamar informasjonen din."
 
 msgid "Printable Version"
 msgstr "Utskriftsvennleg versjon"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Eg har lese og godteke denne avtalen, reglane og retningslinjene"
 
 msgid "I Accept this Agreement"
 msgstr "Eg godtek denne avtalen"
@@ -3016,16 +3016,16 @@ msgid "Search"
 msgstr "Søk"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Bruk feltet nedanfor for å laste opp utvidingspakken din."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Etter opplasting vil ei rad med automatiserte valideringstenester køyre for å kontrollere kompatibilitet med følgjande programversjon:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Etter opplasting vil ei rad automatiserte valideringstenester køyrast på fila di."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Vil du at utvidinga di skal distribuerast på nenne nettstaden?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -3074,7 +3074,7 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Vis og oppdater applikasjonskompatibilitetsområdet."
 
 msgid "Compatibility"
 msgstr "Kompatibilitet"
@@ -3331,7 +3331,7 @@ msgid "This add-on will be automatically upgraded to new versions of the Add-on 
 msgstr ""
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Nei, denne utvidinga kjem til å bli oppgradert manuelt."
 
 msgid "Universally unique identifier"
 msgstr "Unikt ID-nummer"
@@ -3421,7 +3421,7 @@ msgid "Compatibility Tests"
 msgstr "Kompatibilitetstestar"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Gøuym meldingar som ikkje krevst for automatisk signering"
 
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
@@ -3501,7 +3501,7 @@ msgid "Edit Listing"
 msgstr "Rediger oppføringa"
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Vis popularitet for dette temaet gjennom tidene."
 
 msgid "View Statistics"
 msgstr "Vis statistikk"
@@ -3559,7 +3559,7 @@ msgid "Summary:"
 msgstr "Samandrag:"
 
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Dette samandraget vert vist i lister og søk."
 
 msgid "This add-on is experimental"
 msgstr "Denne utvidinga er eksperimentell"
@@ -4088,7 +4088,7 @@ msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Fortel oss i tilfellet om utvidinga fungerer i ein bestemt version av Firefox."
 
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "Du ber no om <b>bidrag</b> frå brukarar"
@@ -4255,10 +4255,10 @@ msgid "Your previously resubmitted design, which is under pending review."
 msgstr ""
 
 msgid "Pending Header"
-msgstr ""
+msgstr "Avventande sidehovud"
 
 msgid "Pending Footer"
-msgstr ""
+msgstr "Avventande botntekst"
 
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
@@ -4335,7 +4335,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Vel eit bilde for temaet ditt til sidehovudet."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikslar"
@@ -4350,19 +4350,19 @@ msgid "Aligned to top-right"
 msgstr "Justert ;vst til h;gre"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Vel eit anna bilde for sidehovud"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Vel eit fotnotebildet for temaet ditt."
 
 msgid "3000 &times; 100 pixels"
 msgstr "3000 &times; 100 pikslar"
 
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Juster lengst ned til venstre"
 
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Vel eit anna fotnotebilde"
 
 msgid "Manage Version {0}"
 msgstr "Handsam versjon {0}"
@@ -4405,11 +4405,11 @@ msgstr "Fil {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Oppretta den %(created)s endra til %(status)s den %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Oppretta den %(created)s endra til %(status)s"
 
 msgid "Status & Versions"
 msgstr "Status og versjonar"
