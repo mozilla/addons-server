@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 07:31+0000\n"
+"PO-Revision-Date: 2017-07-30 07:40+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5589,38 +5589,38 @@ msgid "There was an error accessing file %s."
 msgstr "Ada ralat mengakses fail %s."
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Fail tidak lagi wujud."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Saiz fail melebihi had {0}."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Masalah menyahkod {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Fail ini tidak boleh dipaparkan dalam talian. Sila muat turun fail untuk melihat kandungannya."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Fail ini ialah direktori."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Versi API, {0:.1f}, yang sedang anda gunakan tidak sah. Sila naik taraf ke versi semasa API {1:.1f}."
 
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Belum dilaksanakan lagi."
 
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Membeli-belah Semakin Mudah"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Simpan item kegemaran anda dari tempat duduk anda."
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Bina laman web yang sempurna"
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Pertama kali menggunakan Add-ons?"
 
 msgid "Not to worry, here are three to get started."
 msgstr ""
