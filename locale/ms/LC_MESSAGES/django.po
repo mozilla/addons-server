@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 14:16+0000\n"
+"PO-Revision-Date: 2017-07-30 23:14+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6560,7 +6560,7 @@ msgid "No."
 msgstr "Tidak."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "Adakah wujud pembangun pihak ke-3 yang boleh saya upah untuk membina add-on saya?"
 
 #, python-format
 msgid ""
