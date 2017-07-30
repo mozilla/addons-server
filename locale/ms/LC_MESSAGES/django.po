@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 09:49+0000\n"
+"PO-Revision-Date: 2017-07-30 10:05+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5743,51 +5743,51 @@ msgid "Close Video"
 msgstr "Tutup Video"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Semasa memainkan video, add-ons yang berkenaan akan muncul di sini."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Hai, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
 msgstr "Terima kasih kerana menggunakan %(app)s dan menyokong <a href=\"%(url)s\">Misi Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Add-on dimuat turun:"
 
 msgid "Active Users"
-msgstr ""
+msgstr "Pengguna Aktif"
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Kemaskini Terakhir"
 
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Batal Pemasangan"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo; Pilihan Bulan Ini!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Jadilah Penguji Perintis"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Dapatkan akses awal kepada ciri eksperimen pelayar."
 
 msgid "Get Started"
-msgstr ""
+msgstr "Memulakan"
 
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Dirham Emiriah Arab Bersatu"
 
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afghani Afghanistan"
 
 msgid "Albania Lek"
-msgstr ""
+msgstr "Lek Albania"
 
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Dram Armenia"
 
 msgid "Netherlands Antilles Guilder"
 msgstr ""
