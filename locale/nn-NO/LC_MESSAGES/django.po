@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-28 17:32+0000\n"
+"PO-Revision-Date: 2017-07-30 12:03+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -166,7 +166,7 @@ msgid "Listed"
 msgstr "Oppført"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Søkesti for utviding og samling må avsluttast med \"/\""
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
