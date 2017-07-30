@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 08:09+0000\n"
+"PO-Revision-Date: 2017-07-30 08:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5632,52 +5632,52 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr "Mudah menghubungkan ke rangkaian sosial anda, dan kongsi atau komen halaman yang anda lawati."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "Tinjauan ringkas untuk membandingkan harga apabila anda membeli belah dalam talian atau mencari tarikh penerbangan."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Tema Hari St. Patrick&rsquo;s"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Hiasi pelayar anda untuk menyambut Hari St. Patrick&rsquo;s."
 
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Duduk dan Rehat"
 
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Add-on yang membantu anda ketika melancong!"
 
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "Papar bendera negara yang menggambarkan lokasi semasa pelayan laman web dan banyak lagi."
 
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "FoxClocks membolehkan anda melihat waktu di serata dunia."
 
 msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
+msgstr "Secara automatik mendapatkan harga terendah apabila anda membeli belah dalam talian atau mencari jadual penerbangan."
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "Add-ons A+ untuk Sekolah"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Add-ons untuk para guru, ibu bapa dan pelajar yang akan kembali ke sekolah."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Adakah anda ingin tahu laman web yang boleh anda percayai?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks adalah #1 add-on penandabuku."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Penterjemah halaman dan teks, kamus dan banyak lagi!"
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Suasana penuh Keriangan"
 
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Sertakan sedikit rasa romantik ke Firefox anda."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Ayuh bangkit dan maju!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
