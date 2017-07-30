@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 23:50+0000\n"
+"PO-Revision-Date: 2017-07-30 00:11+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4480,13 +4480,13 @@ msgid "We had a problem retrieving review notes"
 msgstr "Kami ada masalah mendapatkan nota semakan"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Muatkan yang terdahulu..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Beri pesanan"
 
 msgid "Reply"
-msgstr ""
+msgstr "Balas"
 
 msgid "Listing visibility"
 msgstr "Ketampakan penyenaraian"
@@ -4501,31 +4501,31 @@ msgstr ""
 "diterima dalam keadaan ini."
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Versi disenaraikan"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Pada masa ini di AMO"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Validation"
-msgstr ""
+msgstr "Pengesahan"
 
 msgid "Delete/Disable"
 msgstr "Hapus/Disable"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Versi berikut add-on ini"
 
 msgid "Other versions"
-msgstr ""
+msgstr "Versi lain"
 
 msgid "All versions"
-msgstr ""
+msgstr "Semua versi"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Muat naik Versi Baru"
 
 msgid "Delete Version {version}"
 msgstr "Hapus Versi {version}"
@@ -4549,41 +4549,41 @@ msgid "Delete Version"
 msgstr "Hapus Versi"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Nyahdaya Versi"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Sorok Add-on"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Menyorokkan add-on anda akan menghalangnya daripada dipamerkan dalam mana-mana galeri kami dan pengguna tidak lagi menerima kemaskini automatik."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Fail yang menunggu semakan akan dinyahdayakan dan anda perlu memuat naik versi yang baru."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Adakah anda pasti mahu sorok add-on anda?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Membatalkan permintaan semakan anda akan mengakibatkan add-on anda ditanda sebagai tidak lengkap, dan yang menunggu semakan akan dinyahdayakan."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Adakah anda pasti mahu membatalkan permintaan semakan anda?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Dokumentasi Add-on :: Hab Pembangun"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} ralat"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} amaran"
 
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Hentikan penjejak pengintip {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
