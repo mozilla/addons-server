@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 06:50+0000\n"
+"PO-Revision-Date: 2017-07-30 07:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5466,55 +5466,55 @@ msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Nama fail tidak sah dalam arkib: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Saiz fail melebihi had dalam arkib: {0}"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Arkib tidak sah."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Tidak dapat menghuraikan manifes fail."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Tidak dapat menemukan ID add-on."
 
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID Add-on mesti 64 aksara atau kurang."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID add-on dalam manifest.json anda atau install.rdf (%s) tidak sepadan ID anda dalam AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Duplikasi ID add-on ditemukan."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Nombor versi mesti kurang daripada 32 aksara."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Nombor versi perlu mengandungi hanya huruf, nombor, dan karakter tanda baca berikut: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Tema WebExtension yang dimuat tidak disokong buat masa ini."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> dalam install.rdf (%s) anda tidak sepadan dengan jenis add-on anda dalam AMO (%s)"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Kembali ke semakan"
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Kembali ke add-on"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Versi: %(version)s &bull; Saiz: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Banding Fail :: Alatan Penyemak"
 
 msgid "File Viewer :: Reviewer tools"
 msgstr ""
