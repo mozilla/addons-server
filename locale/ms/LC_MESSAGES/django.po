@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 03:50+0000\n"
+"PO-Revision-Date: 2017-07-30 04:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4990,54 +4990,54 @@ msgid "Event"
 msgstr "Acara"
 
 msgid "More details."
-msgstr ""
+msgstr "Butiran lanjut."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Tiada acara dalam tempoh ini."
 
 msgid "Log details"
-msgstr ""
+msgstr "Butiran log"
 
 msgid "Review Author"
-msgstr ""
+msgstr "Pengarang Semakan"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "Tajuk Add-on"
 
 msgid "Review Title"
-msgstr ""
+msgstr "Tajuk Semakan"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Teks Semakan"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Semakan telah ditandakan sebelum dihapuskan."
 
 msgid "Undelete"
 msgstr "Nyah-hapus"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
+msgstr[0] "Add-ons Baru ({num})"
 
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] ""
+msgstr[0] "Kemaskini ({num})"
 
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Tempoh menunggu semasa:"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
+msgstr[0] "{0} add-ons"
 
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 msgid "Total Reviews"
 msgstr "Bilangan Semakan"
@@ -5046,7 +5046,7 @@ msgid "Reviews This Month"
 msgstr "Semakan Bulan Ini"
 
 msgid "New Reviewers"
-msgstr ""
+msgstr "Penyemak Baru"
 
 msgid "You're #{0} with {1} reviews"
 msgstr "Anda #{0} dengan {1} semakan"
@@ -5057,64 +5057,64 @@ msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "Semakan Moderat ({num})"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Carta-kedudukan Penyemak"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Belum ada markah yang diberikan."
 
 msgid "Rank"
-msgstr ""
+msgstr "Kedudukan"
 
 msgid "Score"
-msgstr ""
+msgstr "Markah"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Kemaskini mesej penting hari ini"
 
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 msgid "Add-on Reviewer Performance"
-msgstr ""
+msgstr "Prestasi Penyemak Add-on"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Papar statistik untuk pengguna"
 
 msgid "Range"
-msgstr ""
+msgstr "Julat"
 
 msgid "Your Reviews"
 msgstr "Semakan Anda"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "Mengikut {user_name}"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "Penyumbang Aktif"
 
 msgid "This Month"
-msgstr ""
+msgstr "Bulan Ini"
 
 msgid "This Year"
-msgstr ""
+msgstr "Tahun Ini"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Prestasi Bulanan"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Pecahan Poin Sepanjang-masa mengikut Jenis"
 
 msgid "Total"
-msgstr ""
+msgstr "Jumlah"
 
 msgid "Month"
-msgstr ""
+msgstr "Bulan"
 
 msgid "Year"
-msgstr ""
+msgstr "Tahun"
 
 msgid "All-Time"
-msgstr ""
+msgstr "Sepanjang-Masa"
 
 msgid "Advanced Search"
 msgstr ""
