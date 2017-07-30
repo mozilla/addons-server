@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 06:12+0000\n"
+"PO-Revision-Date: 2017-07-30 06:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5362,71 +5362,71 @@ msgid "{0} out of {1} reviewed"
 msgstr "{0} daripada {1} disemak"
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Masih tiada Tema untuk semakan buat masa ini."
 
 msgid "Clear Search"
-msgstr ""
+msgstr "Buang Carian"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Buka Kunci Tema Saya"
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Giliran Tema Interaktif"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Panduan Penyemak"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Semakan Tema untuk {0}"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(Kemungkinan Duplikasi Serahan)"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Nota Semakan Terdahulu"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Minta Info Lanjut: {0}"
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Ditandai: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Luluskan Tema"
 
 msgid "Field required"
-msgstr ""
+msgstr "Medan diperlukan"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Masukkan ID atau URL duplikasi"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Pilih alasan untuk penolakan"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Jelaskan alasan anda untuk penolakan"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Tanya soalan kepada artis"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Jelaskab alasan anda untuk penandaan"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Ditolak atau Tidak-disemak"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[status:%s]"
 
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "Add-ons Baru ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
+msgstr[0] "Kemaskini ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
@@ -5434,35 +5434,35 @@ msgstr[0] "Semakan Moderat ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "Add-on Automatik Diluluskan ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Ditandai"
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Tidak dapat membezakan versi ini dengan versi sendiri"
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Akses data anda untuk {name}"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Akses data anda dalam laman web berikut:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Akses data anda untuk semua laman web"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID diperlukan untuk Firefox 47 dan ke bawah."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Tidak dapat menemukan versi min/max. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandungi versi yang tidak disokong?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Tidak dapat menghuraikan fail dimuat naik, elemen  <%s> hilang atau kosong"
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
