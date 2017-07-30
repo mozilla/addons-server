@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 11:10+0000\n"
+"PO-Revision-Date: 2017-07-30 11:17+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6171,67 +6171,67 @@ msgid "Seborga Luigino"
 msgstr "Luigino Seborga"
 
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Dollar Suriname"
 
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Dobra São Tomé and Príncipe"
 
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Colon El Salvador"
 
 msgid "Syria Pound"
-msgstr ""
+msgstr "Pound Syria"
 
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Lilangeni Swaziland"
 
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Baht Thailand"
 
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Somoni Tajikistan"
 
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Manat Turkmenistan"
 
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Dinar Tunisia"
 
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Pa'anga Tonga"
 
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Lira Turki"
 
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dolar Trinidad dan Tobago"
 
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Dollar Tuvalu"
 
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "New Dollar Taiwan"
 
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Shilling Tanzania"
 
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Hryvna Ukraine"
 
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Shilling Uganda"
 
 msgid "United States Dollar"
-msgstr ""
+msgstr "Dolar Amerika Syarikat"
 
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Peso Uruguay"
 
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Som Uzbekistan"
 
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Bolivar Venezuela"
 
 msgid "Viet Nam Dong"
 msgstr ""
