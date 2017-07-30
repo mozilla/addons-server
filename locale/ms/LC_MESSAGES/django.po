@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 00:11+0000\n"
+"PO-Revision-Date: 2017-07-30 00:24+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4586,25 +4586,25 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Hentikan penjejak pengintip {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Sekat penjejak halimunan dan iklan mengintip yang mengikuti anda di seluruh Web."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tingkatkan penulisan anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Menyokong 25+ bahasa, ekstensi ini menyediakan pembaca pruf terus dari dalam pelayar anda."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "Bukan sekadar skrinsyot, Awesome Screenshot Plus membolehkan anda menganotasi imej dengan teks dan grafik. Menyimpan dan berkongsi fail dengan lancar."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Nikmati satu set ciri YouTube yang baru, seperti mod sinema, menyekat iklan, kawalan auto-main dan banyak lagi."
 
 msgid "Approved reviews"
 msgstr "Semakan diluluskan"
@@ -4613,44 +4613,44 @@ msgid "Deleted reviews"
 msgstr "Semakan dihapuskan"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Papar entri antara"
 
 msgid "and"
-msgstr ""
+msgstr "dan"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Saring mengikut jenis/action"
 
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Pengesahan automatik diluluskan"
 
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Pengesahan automatik gagal"
 
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Saring mengikut pengesahan automatik"
 
 msgid "containing"
-msgstr ""
+msgstr "mengandungi"
 
 msgid "start"
-msgstr ""
+msgstr "mula"
 
 msgid "end"
-msgstr ""
+msgstr "akhir"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "add-on, editor atau komen"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Cari mengikut nama add-on / e-mel pengarang"
 
 msgid "yes"
-msgstr ""
+msgstr "ya"
 
 msgid "no"
-msgstr ""
+msgstr "tidak"
 
 msgid "Admin Flag"
 msgstr ""
