@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 13:31+0000\n"
+"PO-Revision-Date: 2017-07-30 13:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6409,88 +6409,96 @@ msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
+"Beribu-ribu add-ons dibina oleh komuniti kami setiap tahun, dam bantuan anda dengan ujian keserasian membantu kami memastikan add-on ini kekal berguna kerana kami berusaha untuk menyediakan "
+"pengalaman pengguna yang hebat."
 
 msgid "Thank you!"
-msgstr ""
+msgstr "Terima kasih!"
 
 msgid "Site Credits"
-msgstr ""
+msgstr "Laman Penghargaan"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ""
+msgstr "Mozilla ingin mengucapkan terima kasih kepada para penyumbang berikut kerana sumbangan mereka untuk projek addons.mozilla.org selama ini:"
 
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Pembangun &amp; Pentadbir"
 
 msgid "Localizers"
-msgstr ""
+msgstr "Penterjemah"
 
 msgid "Reviewers"
-msgstr ""
+msgstr "Penyemak"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
 msgstr "Lebih daripada {0} semakan add-on"
 
 msgid "Other Contributors"
-msgstr ""
+msgstr "Penyumbang Lain"
 
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Mantan Pembangun &amp; Pentadbir"
 
 msgid "Software and Images"
-msgstr ""
+msgstr "Perisian dan Imej"
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"Beberapa ikon yang digunakan adalah daripada<a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, dilesenkan dibawah <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 License</a>."
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"Beberapa ikon yang digunakan adalah daripada <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, dilesenkan di bawah <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Beberapa halaman menggunakan elemen <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (bukan-komersial), dilesenkan dibaeah <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ""
+msgstr "Untuk maklumat perihal menyumbang, sila lihat <a href=\"%(url)s\">halaman wiki</a> kami."
 
 msgid "Developer FAQ"
-msgstr ""
+msgstr "FAQ Pembangun"
 
 msgid "Sections"
-msgstr ""
+msgstr "Bahagian"
 
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Membangunkan Add-on"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
-msgstr ""
+msgstr "Sumber Sokongan"
 
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Menyumbang Add-on anda"
 
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Proses Semakan Add-on"
 
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Menguruskan Add-on Anda"
 
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Rujukan untuk Lesen Sumber Terbuka"
 
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "FAQ Pembangun Add-on"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr ""
+msgstr "<h3>Bagaimana saya boleh membina Add-on?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana untuk membina add-on melalui <a href=\"%(url)s\">Rangkaian Pembangun Mozilla</a>. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr ""
