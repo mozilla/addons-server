@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 07:10+0000\n"
+"PO-Revision-Date: 2017-07-30 07:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5517,35 +5517,35 @@ msgid "File Compare :: Reviewer tools"
 msgstr "Banding Fail :: Alatan Penyemak"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Pemerhati Fail :: Alatan penyemak"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "Pengesahan gagal:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Kandungan fail tidak disokong untuk serlahan sintaks"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Output boleh rosak, sila berhati-hati dan %(link_start)slaporkan isu%(link_end)s serta-merta!"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Fail add-on sedang diproses, sila tunggu."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Mendapatkan hasil pengesahan..."
 
 msgid "Deleted files:"
 msgstr "Fail dihapuskan:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "Sorok fail yang diketahui"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Versi SDK Add-on:"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tab berhenti:"
 
 msgid "Up file"
 msgstr ""
@@ -5554,39 +5554,39 @@ msgid "Down file"
 msgstr ""
 
 msgid "Previous diff"
-msgstr ""
+msgstr "Perbezaan dahulu"
 
 msgid "Previous note"
-msgstr ""
+msgstr "Nota dahulu"
 
 msgid "Next diff"
-msgstr ""
+msgstr "Perbezaan berikut"
 
 msgid "Next note"
-msgstr ""
+msgstr "Nota berikut"
 
 msgid "Expand all"
-msgstr ""
+msgstr "Papar semua"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Sorok atau nyah-sorok pepohon"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Balut atau buka teks"
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Tiada fail yang dimuat naik."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Mendapatkan fail."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Pemerhati fail dikunci, mengekstrak %s mungkin sedang dilaksanakan. Sila cuba lagi dalam kira-kira 5 minit."
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Ada ralat mengakses fail %s."
 
 msgid "That file no longer exists."
 msgstr ""
