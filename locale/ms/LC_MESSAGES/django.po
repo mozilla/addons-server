@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 10:05+0000\n"
+"PO-Revision-Date: 2017-07-30 10:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5790,169 +5790,169 @@ msgid "Armenia Dram"
 msgstr "Dram Armenia"
 
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Antilles Guilder Belanda"
 
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Kwanza Angola"
 
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Peso Argentina"
 
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Dollar Australia"
 
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Guilder Aruba"
 
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "New Manat Azerbaijan"
 
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Convertible Marka Bosnia dan Herzegovina"
 
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Dollar Barbados"
 
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Taka Bangladesh"
 
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Lev Bulgaria"
 
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Dinar Bahrain"
 
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Franc Burundi"
 
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Dollar Bermuda"
 
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Dollar Brunei Darussalam"
 
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Boliviano Bolivia"
 
 msgid "Brazil Real"
-msgstr ""
+msgstr "Real Brazil"
 
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Dollar Bahamas"
 
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Ngultrum Bhutan"
 
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Pula Botswana"
 
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Ruble Belarus"
 
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Dollar Belize"
 
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Dollar Kanada"
 
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Franc Congo/Kinshasa"
 
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Franc Switzerland"
 
 msgid "Chile Peso"
-msgstr ""
+msgstr "Peso Chile"
 
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Yuan Renminbi China"
 
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Peso Colombia"
 
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Colon Costa Rica"
 
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "Convertible Peso Cuba"
 
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Peso Cuba"
 
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Escudo Cape Verde"
 
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Koruna Republik Czech"
 
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Franc Djibouti"
 
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Krone Denmark"
 
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Peso Republik Dominika"
 
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Dinar Algeria"
 
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Pound Mesir"
 
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Nakfa Eritrea"
 
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Birr Ethiopia"
 
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Euro Negara Anggota"
 
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Dollar Fiji"
 
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Pound Falkland Islands (Malvinas)"
 
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Pound United Kingdom"
 
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Lari Georgia"
 
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Pound Guernsey"
 
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Cedi Ghana"
 
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Pound Gibraltar"
 
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Dalasi Gambia"
 
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Franc Guinea"
 
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Quetzal Guatemala"
 
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Dollar Guyana"
 
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Dolar Hong Kong"
 
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Lempira Honduras"
 
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Kuna Croatia"
 
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Gourde Haiti"
 
 msgid "Hungary Forint"
 msgstr ""
