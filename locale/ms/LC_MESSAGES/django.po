@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 04:53+0000\n"
+"PO-Revision-Date: 2017-07-31 05:19+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7288,23 +7288,23 @@ msgid "All Shield Studies"
 msgstr "Semua Shield Study"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Setiap Shield Study mengumpulkan data acara penting, seperti pemasangan, nyah-pemasangan, penggunaan harian, dan penamatan. Kajian juga disertakan kaji selidik pilihan."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Data ini dihubungkan dengan <a href=\"%(url)s\">pengumpulan Telemetri Firefox</a>."
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Dalam Kajian ini"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Sebagai tambahan kepada data yang dikumpulkan oleh semua Shield Study, Mozilla akan mengumpulkan maklumat perihal:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Laman web yang anda lawati yang cuba menggunakan plugin, dan apa kandungan dalam laman web ini yang memerlukan plugin;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Cara anda berinteraksi dengan kandungan plugin dalam laman tersebut, termasuk samada dan bagaimana anda pilih plugin itu untuk dilaksanakan."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 msgstr ""
