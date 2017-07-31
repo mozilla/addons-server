@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 05:47+0000\n"
+"PO-Revision-Date: 2017-07-17 17:11+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -370,8 +370,8 @@ msgstr[1] ""
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} వాడుకరి"
+msgstr[1] "{0} వాడుకరులు"
 
 msgid "Payment cancelled"
 msgstr ""
@@ -383,7 +383,7 @@ msgid "Return to the addon."
 msgstr ""
 
 msgid "by"
-msgstr ""
+msgstr "ద్వారా"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
@@ -406,16 +406,16 @@ msgid "Updated"
 msgstr ""
 
 msgid "Artist"
-msgstr ""
+msgstr "కళాకారుడు"
 
 msgid "Rating"
-msgstr ""
+msgstr "శ్రేష్టత"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "రోజువారీ వాడుకరులు"
 
 msgid "License"
-msgstr ""
+msgstr "లైసెన్సు"
 
 msgid "Awaiting Review"
 msgstr ""
