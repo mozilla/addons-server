@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 10:50+0000\n"
+"PO-Revision-Date: 2017-07-31 11:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -8322,101 +8322,101 @@ msgid "Unsubscribe"
 msgstr "Nyahlanggan"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Anda berjaya nyahlanggan!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Alamat e-mel <strong>%(email)s</strong> tidak akan menerima mesej lagi apabila:"
 
 msgid "More Actions:"
-msgstr ""
+msgstr "Tindakan Lanjutan:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "edit tetapan notifikasi anda"
 
 msgid "edit your profile"
-msgstr ""
+msgstr "edit profil anda"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Kami tidak dapat membatalkan langganan anda"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Malangnya, kami tidak dapat membatalkan langganan anda. Pautan yang anda klik tidak sah. Tapi, anda masih boleh membatalkan langganan anda dalam <a href=\"%(edit_url)s\">halaman edit profil</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Maklumat Pembangun"
 
 msgid "User since"
-msgstr ""
+msgstr "Pengguna semenjak"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Masa log masuk terakhir"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "Alamat IP log masuk terakhir"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Bilangan add-ons yang dibangunkan"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-ons"
 
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s tema"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s add-ons"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Penarafan purata pembangun add-ons"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "lain-lain"
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Sejarah Versi"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Sejarah Versi dengan Changelogs"
 
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Add-on menggunakan komponen binari."
 
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Add-on memilih semakan keserasian yang teliti."
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} dan kemudian"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Pautan kekal ke versi ini"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Dikeluarkan {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Kod sumber dikeluarkan di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "Sejarah Versi {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> versi"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Berhati-hati dengan versi lama!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
@@ -8438,7 +8438,7 @@ msgid "Deleted versions can`t be changed."
 msgstr "Versi yang dihapuskan tidak boleh diubah."
 
 msgid "Binary"
-msgstr ""
+msgstr "Binari"
 
 msgid "Non-binary"
 msgstr ""
