@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-05 22:42+0000\n"
+"PO-Revision-Date: 2017-07-31 13:21+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -515,11 +515,11 @@ msgstr "შემოწირულობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "ვებ-გვერდის სტატისტიკა, ბოლო {0} დღეში"
+msgstr "ვებგვერდის სტატისტიკა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "ვებ-გვერდის სტატისტიკა {0}-დან {1}-მდე"
+msgstr "ვებგვერდის სტატისტიკა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -750,7 +750,7 @@ msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
 
 msgid "Enter a new author's email address"
-msgstr "შეიყვანეთ ავტორის ახალი ელ-ფოსტის მისამართი"
+msgstr "შეიყვანეთ ავტორის ახალი ელფოსტის მისამართი"
 
 msgid "There was an error uploading your file."
 msgstr "ფაილის ატვირთვისას წარმოიშვა შეცდომა."
@@ -770,7 +770,7 @@ msgid "Image changes being processed"
 msgstr "სურათის ცვლილებები მუშავდება"
 
 msgid "Must be a valid e-mail address."
-msgstr "ელ-ფოსტის მისამართი უნდა იყოს ნამდვილი"
+msgstr "ელფოსტის მისამართი უნდა იყოს ნამდვილი"
 
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
@@ -820,7 +820,7 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ვებ-საიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, შემოიარეთ მოგვიანებით."
+msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, სცადოთ მოგვიანებით."
 
 msgid "Remove this localization"
 msgstr "ამ ლოკალიზაციის წაშლა"
