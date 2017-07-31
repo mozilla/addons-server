@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 08:10+0000\n"
+"PO-Revision-Date: 2017-07-31 08:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7729,101 +7729,101 @@ msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: Papan pemuka Statistik :: Add-ons untuk {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Papan pemuka Statistik"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Papan pemuka Statistik :: Add-ons untuk {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistik untuk {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Papan pemuka Statistik"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Kawalan:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "set semula zum"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Kumpulan mengikut:"
 
 msgid "day"
-msgstr ""
+msgstr "hari"
 
 msgid "week"
-msgstr ""
+msgstr "minggu"
 
 msgid "month"
-msgstr ""
+msgstr "bulan"
 
 msgid "For last:"
-msgstr ""
+msgstr "Untuk tempoh:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 hari"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 hari"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 hari"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 hari"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Penyesuaian..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Pemprosesan statistik dinyahdayakan buat masa ini, jadi tidak ada data terkini. Statistik masih sedang dikumpulkan dan halaman ini akan dikemaskini tidak lama lagi dengan data yang hilang."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Memuatkan data&hellip; terkini"
 
 msgid "No data available."
-msgstr ""
+msgstr "Tiada data tersedia."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Papan pemuka ini kini<b>umum</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Statistik sumbangan ini kini<b>peribadi</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Papan pemuka ini kini<b>peribadi</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Tukar tetapan."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Add-ons Dicipta mengikut Tarikh"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Add-ons Dimuat turun mengikut Tarikh"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Add-ons Digunakan mengikut Tarikh"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Add-ons Dikemaskini mengikut Tarikh"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Penggunaan Aplikasi mengikut Tarikh"
 
 msgid "Collections Created by Date"
 msgstr "Koleksi Dicipta mengikut Tarikh"
 
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Sumbangan mengikut Tarikh"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Dimuat turun mengikut Tarikh"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Bagaimana muat turun dikira?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
