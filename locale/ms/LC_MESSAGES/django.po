@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 00:11+0000\n"
+"PO-Revision-Date: 2017-07-31 00:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6570,40 +6570,46 @@ msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
+"Ya. Anda boleh bertemu pembangun pihak ke-3 via <a href=\"%(forum_url)s\">Forum add-ons</a>, <a href=\"%(list_url)s\">senarai mozilla.jobs</a>, <a href=\"%(mz_url)s\">mozillaZine forum</a> atau <a "
+"href=\"%(wiki_url)s\">Wiki Mozilla</a>. Sila ambil perhatian bahawa Mozilla tidak ada mensyorkan mana-mana pembangun."
 
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Bolehkah saya hos sendiri add-on saya?"
 
 #, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
+"Ya. Ramai pembangun memilih untuk hos sendiri add-ons mereka. Memilih untuk hos add-on anda dalam <a href=\"%(amo_url)s\">laman add-on Mozilla</a>, walau bagaimanapun, memberikan lebih pendedahan "
+"kepada add-on anda kerana ada jumlah pengunjung laman yang besar."
 
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Bolehkah Mozilla hos add-on saya?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Ya. Anda boleh hos add-on anda dalam <a href=\"%(url)s\">laman web add-on Mozilla</a>."
 
 msgid "What is AMO?"
-msgstr ""
+msgstr "Apakah AMO?"
 
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
+"AMO Mozilla (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) ialah inkubator yang membantu pembangun membina, mengedar dan menyokong produk pelanggan yang dikuasakan oleh "
+"Mozilla. Di sini anda disediakan dengan alatan dan infrastuktur yang perlu untuk mengurus, mengehos dan mendedahkan add-on anda kepada pangkalan pengguna Mozzila yang amat besar."
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Adakah Mozilla memastikan maklumat akaun saya peribadi?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Ya. <a href=\"%(url)s\">Polisi Privasi</a> kami ada menjelaskan cara maklumat anda diuruskan oleh Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Apakah \"alatan pembangun\" yang disenaraikan dalam AMO?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
