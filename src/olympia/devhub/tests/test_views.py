@@ -313,7 +313,12 @@ class TestUpdateCompatibility(TestCase):
 
     def test_compat(self):
         addon = Addon.objects.get(pk=3615)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
+        assert not cu
 
+        addon.current_version.files.update(strict_compatibility=True)
         response = self.client.get(self.url)
         doc = pq(response.content)
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
@@ -330,6 +335,8 @@ class TestUpdateCompatibility(TestCase):
         assert doc('.item[data-addonid="3615"] .compat-update-modal')
 
     def test_incompat_firefox(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.current_version.files.update(strict_compatibility=True)
         versions = ApplicationsVersions.objects.all()[0]
         versions.max = AppVersion.objects.get(version='2.0')
         versions.save()
@@ -337,6 +344,8 @@ class TestUpdateCompatibility(TestCase):
         assert doc('.item[data-addonid="3615"] .tooltip.compat-error')
 
     def test_incompat_android(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.current_version.files.update(strict_compatibility=True)
         appver = AppVersion.objects.get(version='2.0')
         appver.update(application=amo.ANDROID.id)
         av = ApplicationsVersions.objects.all()[0]
