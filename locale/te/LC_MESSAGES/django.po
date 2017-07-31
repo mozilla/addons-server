@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-17 17:11+0000\n"
+"PO-Revision-Date: 2017-07-18 06:40+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -418,34 +418,34 @@ msgid "License"
 msgstr "లైసెన్సు"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "సమీక్ష కోసం వేచి ఉంది"
 
 msgid "Rejected"
-msgstr ""
+msgstr "తిరస్కరించబడినది"
 
 msgid "Approved"
-msgstr ""
+msgstr "ఆమోదించబడింది"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> వాడుకరి"
+msgstr[1] "<strong>{0}</strong> వాడుకరులు"
 
 msgid "Hover to Preview"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "జోడించు"
 
 msgid "Edit"
-msgstr ""
+msgstr "సవరణ"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 msgid "by {0} on {1}"
 msgstr ""
@@ -454,10 +454,10 @@ msgid "Not yet rated"
 msgstr ""
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> వాడుకరులు"
 
 msgid "{0} Daily Users"
-msgstr ""
+msgstr "{0} రోజువారీ వాడుకరులు"
 
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
