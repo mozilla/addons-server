@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 01:07+0000\n"
+"PO-Revision-Date: 2017-07-31 01:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6700,12 +6700,14 @@ msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
+"Pasukan Penyemak Add-on mengikuti <a href=\"%(url)s\">Panduan Semakan Add-on</a> apabila menguji add-on. Penting untuk pembangun meneliti panduan ini bagi memastikan permasalahan lazim dapat "
+"ditangani sebelum menyerahkan add-on mereka. Ini akan membantu mengelakkan isu semasa semakan."
 
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Berapa lama tempoh add-on saya akan disemak?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "Kami tidak dapat memberikan anggaran tempoh sebelum add-on anda disemak. Banyak faktor masa yang terlibat termasuk:"
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
@@ -6713,62 +6715,64 @@ msgstr "bilangan serahan add-on"
 
 #. part of a list (<li>)
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "kerumitan kod add-on"
 
 #. part of a list (<li>)
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "bilangan permasalahan yang ditemukan"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Inilah sebabnya kenapa amat penting untuk anda baca <a href=\"%(g_url)s\">Panduan Semakan Add-on</a> bagi memastikan add-on anda dibina seperti yang dijangkakan."
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Bagaimana boleh saya tahu bilangan muat turun add-on saya?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
+msgstr "Papan pemuka Statistik yang ada dalam papan pemuka Alatan Pembangun menyediakan maklumat yang boleh membantu anda melihat bilangan muat turun add-on semenjak diserahkan ke AMO."
 
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Bagaimana boleh saya tahu pengguna aktif yang menggunakan add-on saya?"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
+"Papan pemuka Statistik yang ada dalam papan pemuka Alatan Pembangun menyediakan maklumat yang boleh membantu anda melihat bilangan pengguna yang aktif menggunakan add-on semenjak anda serahkan ke "
+"AMO."
 
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Bagaimana boleh saya serahkan kemaskini untuk add-on saya?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "Anda boleh serahkan kemaskini add-on anda via papan pemuka Alatan Pembangun dengan memilih pilihan \"Muat naik versi baru\" dan memuat naik fail .xpi baru untuk add-on anda."
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
+msgstr "Adakah kemaskini saya perlu disemak oleh penyemak?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr "Add-on yang dikemaskini juga tertakluk kepada semakan sama seperti serahan yang baru."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Bagaimana boleh saya menjawab ulasan negatif pengguna add-on saya?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
+msgstr "Pembangun boleh menjawab ulasan yang disiarkan untuk add-on mereka apabila sudah mendaftar masuk ke AMO. Tambahan pula, mana-mana pengguna boleh menandakan ulasan sebagai:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam atau kandungan lain yang tiada kaitan"
 
 #. part of a list (<li>)
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Bahasa//dialog tidak sesuai"
 
 #. part of a list (<li>)
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Laporan atau sokongan pepijat yang tersalah tempat"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Lain-lain (menyediakan pop-up untuk meminta maklumat)"
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 msgstr "Pada masa ini, AMO tidak menyediakan mekanisme perhubungan terus antara pengarang terhadap ulasan pengguna."
