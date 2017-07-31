@@ -545,7 +545,6 @@ MINIFY_BUNDLES = {
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
             'css/legacy/jquery-lightbox.css',
-            'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
