@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 08:50+0000\n"
+"PO-Revision-Date: 2017-07-31 08:51+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7935,13 +7935,13 @@ msgid "Footer logo"
 msgstr "Logo pembawah"
 
 msgid "Choose a category"
-msgstr ""
+msgstr "Pilih kategori"
 
 msgid "View Mobile Site"
 msgstr ""
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Laporkan pepijat"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -7952,10 +7952,10 @@ msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>add-ons</b>"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Bahasa lain"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Kembali ke halaman utama Add-ons {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
