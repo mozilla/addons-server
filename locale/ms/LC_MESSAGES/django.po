@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 11:10+0000\n"
+"PO-Revision-Date: 2017-07-31 11:16+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -8423,16 +8423,16 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr ""
 
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Versi Max. Semasa"
 
 msgid "Target Version"
-msgstr ""
+msgstr "Versi Sasaran"
 
 msgid "Email when finished"
-msgstr ""
+msgstr "E-mel apabila selesai"
 
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Log e-mel bukan menghantar"
 
 msgid "Deleted versions can`t be changed."
 msgstr "Versi yang dihapuskan tidak boleh diubah."
@@ -8441,22 +8441,22 @@ msgid "Binary"
 msgstr "Binari"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "Bukan-binari"
 
 msgid "Message ID"
-msgstr ""
+msgstr "ID Mesej"
 
 msgid "Message"
-msgstr ""
+msgstr "Mesej"
 
 msgid "Compat Type"
-msgstr ""
+msgstr "Jenis Padat"
 
 msgid "Addons Affected"
-msgstr ""
+msgstr "Add-ons Terkesan"
 
 msgid "Addon"
-msgstr ""
+msgstr "Add-on"
 
 msgid "Validation Result"
-msgstr ""
+msgstr "Keputusan Pengesahan"
