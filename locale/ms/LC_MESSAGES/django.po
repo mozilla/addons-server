@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 09:31+0000\n"
+"PO-Revision-Date: 2017-07-31 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7989,102 +7989,102 @@ msgstr "Untuk mencuba beribu-ribu ads-ons yang tersedia di sini, muat turun <a h
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Selamat datang ke Add-ons {0}."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Pilih satu daripada ribuan ciri dan gaya tambahan untuk menjadikan Firefox milik anda."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Tambah ciri dan gaya tambahan untuk menjadikan %(app)s milik anda."
 
 msgid "On the go?"
-msgstr ""
+msgstr "Di mana-mana sahaja?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Tinjau <a class=\"mobile-link\" href=\"#\">laman Add-ons Mobile</a> kami."
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Add-ons Android"
 
 msgid "required"
-msgstr ""
+msgstr "diperlukan"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Medan diperlukan"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Terjemahkan ke: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Lokaliti Sedia Ada"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Lokaliti Baru"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Anda ada perubahan yang belum disimpan dalam lokaliti <b>{0}</b>. Adakah anda mahu simpan perubahan ini sebelum menukar lokaliti?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Buang Perubahan"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Adakah anda pasti mahu menghapuskan semua terjemahan <b>{0}</b>? Ini tidak boleh dibatalkan."
 
 msgid "Delete Locale"
 msgstr "Hapus Lokaliti"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mel hendaklah {email}."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Papar Nama"
 
 msgid "Location"
-msgstr ""
+msgstr "Lokasi"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Pekerjaan"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Pengguna Akaun Firefox buat masa sekarang tidak boleh menukar alamat e-mel mereka."
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Foto Profil"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "URL ini mempunyai format yang tidak sah. URL yang sah seperti ini http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Untuk menjadi anonimus, masukkan alasan untuk mengubahnya tapi jangan ubah medan yang lain."
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "Sila masukkan sekurang-kurangnya satu nama untuk ditolak."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Tiada pengguna dengan e-mel berkenaan."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Pengguna anonimus {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Add-ons Mobile Saya"
 
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "pembangun add-on mengucapkan terima kasih kepada saya atas sumbangan"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "pembangun add-on membalas ulasan saya"
 
 msgid "new add-ons or Firefox features are available"
 msgstr ""
