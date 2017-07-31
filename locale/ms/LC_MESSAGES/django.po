@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 02:10+0000\n"
+"PO-Revision-Date: 2017-07-31 02:26+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6857,13 +6857,17 @@ msgid ""
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
+"Add-ons yang disenaraikan dalam galeri ini hanya berfungsi dengan aplikasi berasaskan-Mozilla, seperti <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox untuk "
+"Android</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dan <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Walaupun begitu, tidak semua add-ons berfungsi dengan setiap aplikasi atau setiap"
+" versi aplikasi berkenaan. Setiap add-on ditentukan keupayaannya untuk berfungsi dalam aplikasi dan versi tertentu, seperti Firefox 50.0 - 52.*. Untuk add-ons Firefox, butang pasang akan menandakan "
+"samada sesuatu add-on itu serasi atau tidak."
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Apakah jenis lain add-ons?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ""
+msgstr "Ada beberapa jenis add-ons yang menyesuaikan %(app_name)s dengan beberapa cara:"
 
 #, python-format
 msgid ""
@@ -6875,22 +6879,23 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Tema Lengkap</a></strong> mengubah penampilan keseluruhan %(app_name)s, biasanya termasuk ikon, warna, dialog, dan gaya visual lain."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Tema</a></strong> ialah tema ringan yang menggunakan imej latarbelakang untuk menyesuaikan bar alatan %(app_name)s anda."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Penyedia Carian</a> </strong> menyediakan pilihan tambahan untuk carian kotak juntai bawah. Penyedia ini membolehkan anda membuat carian laman web dengan pantas."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Kamus & Pek Bahasa</a></strong> menyediakan sokongan bahasa tambahan untuk %(app_name)s."
 
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Bagaimana boleh saya pasang, urus dan buang add-on?"
 
 #, python-format
 msgid ""
