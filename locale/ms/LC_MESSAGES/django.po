@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 10:10+0000\n"
+"PO-Revision-Date: 2017-07-31 10:19+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -8207,17 +8207,17 @@ msgid "This URL will only be visible if you are a developer."
 msgstr "URL ini hanya dapat dilihat jika anda seorang pembangun."
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Pilih Foto&hellip;"
 
 msgid "Delete current photo"
 msgstr "Hapus foto semasa"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Kenalkan diri anda kepada komuniti, jika anda mahu! Teks ini akan dipamerkan kepada umum dalam halaman info pengguna anda."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "HTML dizinkan: %(html)s. Pautan dilarang."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Tentukan koleksi yang patut dipaparkan dalam profil anda."
@@ -8229,13 +8229,13 @@ msgid "Display collections I'm following"
 msgstr "Papar koleksi yang saya ikuti"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Notifikasi"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Dari masa ke semasa, Mozilla akan menghantar e-mel kepada anda perihal keluaran dan acara add-on akan datang. Sila pilih topik yang anda minati."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla ada hak untuk menghubungi anda secara individu perihal keprihatinan tertentu terhadap pengehosan add-on anda."
 
 msgid "Admin"
 msgstr ""
