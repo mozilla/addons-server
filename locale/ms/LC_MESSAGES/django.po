@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 07:50+0000\n"
+"PO-Revision-Date: 2017-07-31 08:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7501,10 +7501,10 @@ msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>Purata</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Tulis Ulasan Baru"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Jadi orang pertama menulis ulasan."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -7518,16 +7518,16 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Tahap %(rating)s daripada 5 bintang"
 
 msgid "Most popular this week"
-msgstr ""
+msgstr "Paling popular minggu ini"
 
 msgid "Most popular this month"
-msgstr ""
+msgstr "Paling popular bulan ini"
 
 msgid "Most popular all time"
-msgstr ""
+msgstr "Paling popular sepanjang masa"
 
 msgid "Highest Rated"
-msgstr ""
+msgstr "Penarafan Tertinggi"
 
 msgid "search for add-ons"
 msgstr "cari add-ons"
@@ -7574,128 +7574,128 @@ msgid "Search Unavailable"
 msgstr "Carian Tidak Disediakan"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Carian tidak tersedia buat sementara waktu. Sila cuba lagi dalam beberapa minit."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Hasil Carian Tema untuk {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Hasil Carian Tema"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "Cari :: {0}"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Hasil Carian untuk \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "Tag :: {0}"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Hasil Carian untuk tag \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> hasil sepadan"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Saring Hasil"
 
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Memaparkan {0} - {1} daripada {2} carian untuk <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Memaparkan {0} - {1} daripada {2} hasil"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Beberapa ciri dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Kami akan kembali ke kapasiti penuh tidak lama lagi."
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Tidak dapat menemukan add-on dengan id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Anda bukan pemilik add-on ini."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Kehilangan kekunci \"muat naik\" dalam berbilang bahagian data fail."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Anda tidak boleh tambah versi ke add-on yang ada status: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versi tidak sepadan dengan fail manifes."
 
 msgid "Version already exists."
-msgstr ""
+msgstr "Versi sudah wujud."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Hanya WebExtensions dibenarkan untuk mengabaikan GUID"
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID tidak sah dalam URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Anda tidak boleh tambah versi yang tersenarai ke add-on ini via API kerana hilang metadata. Sila serahkan via laman web"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Tiada fail dimuat naik untuk add-on dan versi tersebut."
 
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Terima kasih kerana menyumbangkan {addon_name}"
 
 msgid "Overview"
-msgstr ""
+msgstr "Intisari"
 
 msgid "by Source"
-msgstr ""
+msgstr "mengikut Sumber"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "mengikut Versi Add-on"
 
 msgid "by Application"
-msgstr ""
+msgstr "mengikut Aplikasi"
 
 msgid "by Language"
-msgstr ""
+msgstr "mengikut Bahasa"
 
 msgid "by Platform"
-msgstr ""
+msgstr "mengikut Platform"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "mengikut Status Add-on"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Pelanggan"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Penarafan"
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistik Add-on"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Add-on Digunakan"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Add-ons Dicipta"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Add-ons Dimuat turun"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Add-ons Dikemaskini"
 
 msgid "Collections Created"
 msgstr "Koleksi Dicipta"
@@ -7704,29 +7704,29 @@ msgid "Reviews Written"
 msgstr "Ulasan Ditulis"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Pendaftaran Pengguna"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Data Diarkib"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Julat Data Lazim"
 
 msgid "From"
-msgstr ""
+msgstr "Daripada"
 
 msgid "To"
-msgstr ""
+msgstr "Hingga"
 
 msgid "Update"
-msgstr ""
+msgstr "Kemaskini"
 
 msgid "Export"
-msgstr ""
+msgstr "Eksport"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Papan pemuka Statistik :: Add-ons untuk {1}"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr ""
