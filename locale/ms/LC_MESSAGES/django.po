@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 00:50+0000\n"
+"PO-Revision-Date: 2017-07-31 01:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6669,7 +6669,7 @@ msgid "Yes. You can specify a privacy policy when submitting your add-on. You ca
 msgstr "Ya. Anda boleh tentukan polisi privasi semasa menyerahkan add-on. Anda juga boleh tambah atau kemaskini lesen perjanjian via papan pemuka Alatan Pembangun selepas add-on diserahkan."
 
 msgid "Must my add-on be reviewed?"
-msgstr ""
+msgstr "Adakah add-on saya perlu disemak?"
 
 #, python-format
 msgid ""
@@ -6688,9 +6688,12 @@ msgid ""
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
+"Add-ons disemak oleh Penyemak Add-on, sekumpulan pembangun berbakat yang sukarela membantu projek Mozilla dengan menyemak add-ons bagi memastikannya stabil dan selamat digunakan oleh pengguna "
+"Mozilla. Apabila berhubungan dengan penyemak, sila sopan, sabar dan hormat kerana mereka bekerja keras untuk memastikan add-on anda dibina dengan betul dan mematuhi garis panduan dalam <a "
+"href=\"%(url)s\">Panduan Semakan Add-on</a>."
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Apakah garis panduan yang digunakan untuk menyemak add-on saya?"
 
 #, python-format
 msgid ""
