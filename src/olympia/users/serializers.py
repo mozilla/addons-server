@@ -15,17 +15,17 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         def is_developer():
-            return (self.context['is_developer']
-                    if 'is_developer' in self.context
-                    else obj.is_developer)
+            return (
+                self.context['is_developer'] if 'is_developer' in self.context
+                else obj.is_developer)
 
         def is_adminish(user):
-            return user and acl.action_allowed_user(user,
-                                                    amo.permissions.USERS_EDIT)
+            return (user and
+                    acl.action_allowed_user(user, amo.permissions.USERS_EDIT))
 
+        request = self.context.get('request', None)
+        current_user = getattr(request, 'user', None) if request else None
         # Only return your own profile url, and for developers.
-        current_user = getattr(
-            self.context.get('request', object()), 'user', None)
         if obj == current_user or is_adminish(current_user) or is_developer():
             return absolutify(obj.get_url_path())
 
