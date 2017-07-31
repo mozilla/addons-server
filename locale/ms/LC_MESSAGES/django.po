@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 02:26+0000\n"
+"PO-Revision-Date: 2017-07-31 02:42+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6903,25 +6903,30 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"Dalam kebanyakan hal, add-ons boleh dipasang dengan hanya klik butang pasang yang disediakan. Add-ons boleh diurus, dinyahdayakan, atau dibuang oleh Pengurus Add-ons dalam %(app_name)s. Untuk arahan"
+" yang lebih terperinci, baca <a href=\"%(extension_url)s\">artikel perihal ekstensi</a> atau <a href=\"%(theme_url)s\">artikel untuk Tema dan Tema Lengkap</a>. Jika anda ada masalah memasang add-"
+"ons, lihat <a href=\"%(troubleshooting_url)s\">Pencarisilapan Ekstensi dan Tema</a>."
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Bagaimana boleh saya ikuti kemaskini add-ons?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Add-ons disemak secara atomatik sekali pada setiap hari. Di Firefox, kemaskini dipasang secara automatik mengikut piawai. "
 
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Adakah add-ons selamat untuk dipasang?"
 
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Sila berhati-hati apabila memasang add-ons, kerana mungkin boleh membahayakan komputer atau menyalahi privasi anda. Add-ons yang tersedia dalam laman ini tertakluk kepada semakan pasukan penyemak "
+"Mozilla, dan maklum balas pengguna dipantau dengan teliti, maka secara umumnya selamat untuk dipasang. <a href=\"%(learnmore_url)s\">Ketahui selanjutnya perihal proses semakan kami</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Bolehkan add-ons menyebabkan %(app_name)s menjadi perlahan?"
 
 #, python-format
 msgid ""
