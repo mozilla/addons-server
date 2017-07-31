@@ -24,7 +24,7 @@ class AddonIndexer(BaseSearchIndexer):
     hidden_fields = (
         'name_sort',
         'boost',
-        'hotness'
+        'hotness',
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
         # - One field with all translations (e.g., "name").

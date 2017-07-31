@@ -766,7 +766,7 @@ class AddonSearchView(ListAPIView):
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'exclude': AddonIndexer.hidden_fields})
+                _source={'excludes': AddonIndexer.hidden_fields})
 
     @classmethod
     def as_view(cls, **kwargs):
@@ -797,7 +797,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'include': included_fields})
+                _source={'includes': included_fields})
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (slice directly) but do wrap the data in a
