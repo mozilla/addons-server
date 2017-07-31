@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 09:50+0000\n"
+"PO-Revision-Date: 2017-07-31 10:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -8087,40 +8087,40 @@ msgid "an add-on developer replies to my review"
 msgstr "pembangun add-on membalas ulasan saya"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "add-ons atau ciri baru Firefox sudah tersedia"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "keserasian add-on saya berjaya dipertingkatkan"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "add-on berasaskan-sdk saya berjaya dipertingkatkan"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "seseorang menulis ulasan untuk add-on saya"
 
 msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr ""
+msgstr "sentiasa dimaklumkan dengan berita dan acara berkaitan pembangun add-on"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "keserasian add-on saya tidak boleh dipertingkatkan"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "add-on berasaskan-sdk saya tidak boleh dipertingkatkan"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "add-on saya diulas oleh penyemak"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla perlu menghubungi saya perihal add-on individu saya"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Notifikasi Pengguna"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Alamat e-mel diperlukan."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Pengguna dengan alamat e-mel ini tidak wujud."
 
 msgid "Profile Deleted"
 msgstr "Profil Dihapuskan"
@@ -8129,19 +8129,19 @@ msgid "Photo Deleted"
 msgstr "Foto Dihapuskan"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil Dikemaskini"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Ada Ralat"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Ada ralat dalam perubahan yang anda buat. Sila betulkannya dan hantar semula."
 
 msgid "User reported."
-msgstr ""
+msgstr "Pengguna dilaporkan."
 
 msgid "new"
-msgstr ""
+msgstr "baru"
 
 msgid "Delete User Account"
 msgstr "Hapus Akaun Pengguna"
@@ -8159,16 +8159,16 @@ msgstr "Dengan mengklik \"hapus\" akaun anda akan <strong>dihapuskan secara keka
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Anda tidak boleh lagi log masuk ke %(site)s."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan penarafan tidak akan dihapuskan, tapi tidak akan dikaitkan lagi dengan anda."
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Sahkan penghapusan akaun"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Saya faham bahawa langkah ini tidak boleh dibatalkan."
 
 msgid "Delete my user account now"
 msgstr "Hapus akaun pengguna saya sekarang"
@@ -8180,31 +8180,31 @@ msgid "Delete my user picture now"
 msgstr "Hapus foto pengguna saya sekarang"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Sila tetapkan nama paparan anda"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Sila tetapkan nama paparan atau nama pengguna anda untuk melengkapkan proses pendaftaran."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Urus maklumat asas akaun, seperti nama pengguna dan tetapan Akaun Firefox anda."
 
 msgid "Username"
-msgstr ""
+msgstr "Nama pengguna"
 
 msgid "Email Address"
-msgstr ""
+msgstr "Alamat E-mel"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Urus Akaun Firefox..."
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "Berikan kami sedikit maklumat diri anda. Semua medan ini adalah pilihan, tetapi akan dapat membantu pengguna lain mengenali anda dengan lebih baik."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "URL ini hanya dapat dilihat jika anda seorang pembangun."
 
 msgid "Choose Photo&hellip;"
 msgstr ""
