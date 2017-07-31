@@ -99,7 +99,10 @@
       </div>
     </h4>
     <h4>
-      {{ _('{0} Daily Users')|format_html(addon.persona.popularity|numberfmt) }}
+      {# L10n: {0} is the number of users. #}
+      {{ ngettext("{0} Daily User",
+                "{0} Daily Users",
+                addon.persona.popularity)|format_html(addon.persona.popularity|numberfmt) }}
     </h4>
 
     {% if linked %}
