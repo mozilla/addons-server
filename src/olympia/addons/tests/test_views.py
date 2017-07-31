@@ -1731,7 +1731,7 @@ class AddonAndVersionViewSetDetailMixin(object):
 
     def test_get_deleted_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'Addons:ViewDeleted,Addons:Review')
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)

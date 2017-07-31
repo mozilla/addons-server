@@ -19,6 +19,8 @@ THEME_ADMIN_TOOLS_VIEW = AclPermission('SeniorPersonasTools', 'View')
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can configure some settings of an add-on.
 ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
+# Can view deleted add-ons in the API.
+ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer (editor) tools.
 REVIEWER_TOOLS_VIEW = AclPermission('ReviewerTools', 'View')
 
