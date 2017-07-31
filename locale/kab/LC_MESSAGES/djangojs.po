@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-01-27 12:24+0000\n"
-"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2017-07-31 12:03+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "Validating {0}"
 msgstr "Asentem {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Azegrir-ik iɛedda tilas n tuγzi n {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Irmes-d tiririt tilemnt seg uqeddac; addad: {0}"
