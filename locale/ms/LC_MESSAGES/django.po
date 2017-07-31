@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 01:50+0000\n"
+"PO-Revision-Date: 2017-07-31 02:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6817,33 +6817,38 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
+"Free Software Foundation menyediakan ringkasan lesen sumber terbuka, termasuk samada lesen itu layak sebagai lesen perisian percuma atau lesen copyleft. Juga disertakan perbincangan mengenai apa "
+"yang menjadikan sesuatu lesen perisian itu percuma atau lesen copyleft (contoh, lesen Copyleft ialah kaedah umum untuk membuatkan program atau kerja lain jadi percuma, dan semua versi yang "
+"diubahsuai dan versi panjang program tersebut perlulah juga percuma.)"
 
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ""
+msgstr "Open Source Initiative ada menyediakan terma beberapa lesen sumber terbuka yang utama."
 
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Perbandingan sumber lesen terbuka yang diketahui dalam Wikipedia."
 
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "Sebuah laman web yang menyediakan panduan tanpa-penilaian untuk memilih lesen bagi projek sumber terbuka anda."
 
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Soalan Lazim"
 
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Menggunakan Add-ons"
 
 msgid "What is an add-on?"
-msgstr ""
+msgstr "Apakah add-on?"
 
 #, python-format
 msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
+"Add-ons ialah perisian kecil yang ditambah ciri atau fungsi baru ke %(app_name)s yang anda pasang. Add-ons boleh meningkatkan %(app_name)s dengan ciri baru, kamus bahasa asing, atau menukar "
+"penampilan visual. Dengan add-ons, anda boleh menyesuaikan %(app_name)s untuk memenuhi keperluan dan citarasa anda. <a href=\"%(learnmore_url)s\">Ketahui lebih lanjut perihal penyesuaian</a>"
 
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Adakah add-ons berfungsi dengan pelayar atau aplikasi saya?"
 
 #, python-format
 msgid ""
