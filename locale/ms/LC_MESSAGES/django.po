@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 00:28+0000\n"
+"PO-Revision-Date: 2017-07-31 00:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6615,6 +6615,8 @@ msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
+"Papan pemuka \"Alatan Pembangun\" ialah tempat yang disediakan untuk anda dengan alatan supaya dapat menguruskan add-ons anda. Di sini disediakan alatan yang perlu untuk fungsi menyerahkan add-ons "
+"anda ke AMO, menguruskan maklumat -add-on, dan menyemak statistik."
 
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Mozilla ada menetapkan polisi berkenaan serahan yang diterima?"
@@ -6628,7 +6630,7 @@ msgstr ""
 "Penyemak Add-on menggunakan <a href=\"%(g_url)s\">Panduan Semakan Add-on</a> untuk memastikan bahawa add-on anda memenuhi garis panduan khusus untuk fungsi dan Keselamatan."
 
 msgid "How do I submit my add-on?"
-msgstr ""
+msgstr "Bagaimana boleh saya serahkan add-on saya?"
 
 #, python-format
 msgid ""
@@ -6639,30 +6641,32 @@ msgstr ""
 "anda sudah membaca <a href=\"%(url)s\">Polisi Semakan Add-on</a> untuk memastikan add-on anda dibuat dengan mematuhi garis panduan kami."
 
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Apakah sistem pengoperasian yang saya pilih untuk add-on saya?"
 
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "Anda perlu pilih sistem pengoperasian yang boleh add-on anda berfungsi dengan baik."
 
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Apakah kategori yang saya pilih untuk add-on saya?"
 
 msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
 "\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
+"Pilihan kategori bergantung pada jenis pengguna yang anda sasar dan fungsi add-on anda. Jika anda tidak pasti jenis kategori untuk add-on anda, sila pilih \"Lain-lain\". Pasukan AMO boleh "
+"mengkategorikan semula add-on anda jika didapati lebih sesuai dalam kategori lain."
 
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Bolehkan saya tentukan lesen perjanjian untuk menggunakan add-on saya?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "Ya. Anda boleh tentukan lesen perjanjian semasa menyerahkan add-on. Anda juga boleh tambah atau kemaskini lesen perjanjian via papan pemuka Alatan Pembangun selepas add-on diserahkan."
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Bolehkah saya sertakan polisi privasi untuk add-on saya?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "Ya. Anda boleh tentukan polisi privasi semasa menyerahkan add-on. Anda juga boleh tambah atau kemaskini lesen perjanjian via papan pemuka Alatan Pembangun selepas add-on diserahkan."
 
 msgid "Must my add-on be reviewed?"
 msgstr ""
