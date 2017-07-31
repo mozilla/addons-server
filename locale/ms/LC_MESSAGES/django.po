@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 07:30+0000\n"
+"PO-Revision-Date: 2017-07-31 07:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7397,13 +7397,13 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Anda tidak boleh semak add-on anda sendiri."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr ""
+msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan editor."
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Beri ulasan untuk {0}"
 
 #, python-format
 msgid ""
@@ -7421,29 +7421,29 @@ msgstr ""
 "penggunaan bahasa kurang sopan dan menyiarkan makumat peribadi. </li> </ul> <p> Sila baca <a href=\"%(guide)s\">Garis Panduan Ulasan</a> untuk maklumat lanjut perihal ulasan add-on.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Balasan untuk ulasan oleh {0}"
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "Tulis Balasan"
 
 msgid "Submit"
-msgstr ""
+msgstr "Hantar"
 
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "atau <a href=\"%(url)s\">Batal</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Sila pilih alasan:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "oleh %(user)s <b>(Pembangun)</b> pada %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Ulasan ini untuk add-on ({0}) versi terdahulu."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -7455,19 +7455,19 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ditanda untuk semakan"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Lapor ulasan ini"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Balasan untuk ulasan"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Edit balasan"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Edit ulasan"
 
 msgid "Delete reply"
 msgstr "Hapus balasan"
@@ -7486,7 +7486,7 @@ msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Balasan pembangun oleh {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
@@ -7498,7 +7498,7 @@ msgstr "Belum ada ulasan."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Purata</strong> (%(total)s)"
 
 msgid "Write a New Review"
 msgstr ""
@@ -7530,35 +7530,35 @@ msgid "Highest Rated"
 msgstr ""
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "cari add-ons"
 
 msgid "search for collections"
 msgstr "cari koleksi"
 
 msgid "search for themes"
-msgstr ""
+msgstr "cari tema"
 
 msgid "search for apps"
-msgstr ""
+msgstr "cari aplikasi"
 
 msgid "Sort By"
 msgstr "Susun Mengikut"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Kaitan"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "Semua Add-ons"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Mana-mana {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Semua Sistem"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Semua Tag"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7568,10 +7568,10 @@ msgid "Collection Search Results"
 msgstr "Hasil Carian Koleksi"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Carian"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Carian Tidak Disediakan"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
