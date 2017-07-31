@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 04:09+0000\n"
+"PO-Revision-Date: 2017-07-31 04:29+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7123,7 +7123,7 @@ msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support w
 msgstr "Untuk sokongan Firefox umum, lawati <a href=\"%(sumo_url)s\">laman web sokongan</a> kami. Untuk soalan add-on dan laman web umum, lawati <a href=\"%(forum_url)s\">forum</a> kami."
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Beberapa petua menulis ulasan yang bagus"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Soalan Lazim perihal Ulasan"
@@ -7136,37 +7136,37 @@ msgstr ""
 "garis panduan ini."
 
 msgid "Do:"
-msgstr ""
+msgstr "Buat:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Tulis seperti anda bercerita kepada rakan perihal pengalaman menggunakan add-on."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "Pastikan ulasan ringkas dan mudah difahami."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Beri butiran tertentu dan membantu. Sebagai contoh:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Adakah add-on berfungsi seperti yang anda jangkakan?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Ciri apa yang anda suka atau tidak suka?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Adakah add-on itu berguna?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Adakah mudah untuk digunakan?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Adakah anda akan terus menggunakan add-on ini?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Luangkan masa membaca ulasan anda sebelum menghantarnya bagi meminimumkan kesilapan menaip."
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Jangan:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Hantar ulasan satu-perkataan seperti \"Hebat!\", \"mengagumkan\" atau \"buruk.\""
@@ -7175,21 +7175,23 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Post isu teknikal, meminta sokongan atau mencadangan ciri. Gunakan pilihan sokongan yang disediakan untuk setiap add-on, jika ada. Anda boleh mencarinya pada jalur sisi bersebelahan bahagian Perihal"
+" Add-on ini."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Tulis ulasan add-on yang anda tidak menggunakannya secara peribadi."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Gunakan bahasa yang boleh ditafsirkan sebagai kebencian, kelakuan tidak senonoh atau bahasa seksual."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Sertakan HTML, pautan, kod sumber atau coretan kod. Ulasan bukan hanya dalam bentuk teks."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Membuat kenyataan palsu, memperkecilkan pengarang add-on atau secara peribadi menghina mereka."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Memasukkan e-mel anda sendiri atau orang lain, nombor telefon, atau butiran peribadi yang lain."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Siarkan ulasan add-on yang anda atau organisasi anda tulis atau wakili."
@@ -7198,9 +7200,11 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Kritik add-on atas alasan tujuan yang sepatutnya dilakukan. Sebagai contoh, beri ulasan negatif kepada add-on kerana memaparkan iklan atau pengumpulan data, samada itu adalah tujuan add-on, atau "
+"memang perlu data yang dikumpulkan untuk berfungsi."
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Bagaimana saya boleh melaporkan ulasan yang bermasalah?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
