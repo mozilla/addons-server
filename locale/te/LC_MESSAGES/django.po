@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-19 11:51+0000\n"
-"Last-Translator: రంజిత్ రాజ్ | Ranjith Raj <ranjithraj@swecha.net>\n"
+"PO-Revision-Date: 2017-07-31 05:47+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -59,13 +59,13 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 
 msgid "Review"
-msgstr ""
+msgstr "సమీక్ష"
 
 msgid "Version {0}"
-msgstr ""
+msgstr "వెర్షన్ {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "గమనికను సమీక్షించండి"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -81,18 +81,18 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr ""
 
 msgid "Featured"
-msgstr ""
+msgstr "విశేషత పొందినవి"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "సమీక్షించబడలేదు"
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "ప్రయోగాత్మకం"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} కు జోడించండి"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -144,7 +144,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr ""
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "లైసెన్సు తప్పక ఎంచుకోవాలి."
 
 msgid "Give Your Theme a Name."
 msgstr ""
@@ -162,14 +162,14 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 msgid "Listed"
-msgstr ""
+msgstr "జాబితాచేయబడినవి"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "పొడిగింతల మరియు సేకరణ మార్గాలను \"/\"తో ముగించాలి"
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "{0} కోసం సహకారం"
 
 msgid "Abuse reported."
 msgstr ""
@@ -182,23 +182,23 @@ msgstr ""
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
-msgstr ""
+msgstr "{0} కోసం"
 
 msgid "View privacy policy"
-msgstr ""
+msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందాన్ని వీక్షించండి"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "ఈ పొడిగింతలను Mozilla సమీక్షించలేదు. <a href=\"%(url)s\">ఇంకా తెలుసుకోండి</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "ఈ పొడిగింతను దాని డెవలపర్లు ప్రయోగాత్మకంగా గుర్తించారు."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "ఈ జోడింపు తరువాతి అభివృద్ది కొనసాగింపు కోసం దాని డెవలపర్ మీ నుండి కొద్ది మొత్తంలో సహాయం కోరుతున్నారు."
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -209,17 +209,17 @@ msgid "The developer of this add-on asks that you show your support by making a 
 msgstr ""
 
 msgid "Contribute"
-msgstr ""
+msgstr "తోడ్పడండి"
 
 #. Click Contribute button OR Install button
 msgid "or"
-msgstr ""
+msgstr "లేదా"
 
 msgid "Suggested Contribution: {0}"
 msgstr ""
 
 msgid "What's this?"
-msgstr ""
+msgstr "ఏమిటిది?"
 
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
@@ -248,16 +248,16 @@ msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that y
 msgstr ""
 
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "మీరు ఎంత సహాయం చేయాలనుకుంటున్నారు?"
 
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "గరిష్ట సహకార మొత్తం {0}."
 
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "కనీస సహకార మొత్తం {0}."
 
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "సహకార మొత్తం ఒక సంఖ్యగా ఉండాలి."
 
 #. {0} is a currency amount (e.g., $5.00)
 msgid "A one-time suggested contribution of {0}"
@@ -272,16 +272,16 @@ msgid "Leave a comment or request with your contribution."
 msgstr ""
 
 msgid "(optional)"
-msgstr ""
+msgstr "(ఇష్ట ప్రకారమైన)"
 
 msgid "Make Contribution"
-msgstr ""
+msgstr "సహకారం చేయండి"
 
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "సంప్రదించండి PayPal"
 
 msgid "No Thanks"
-msgstr ""
+msgstr "ఫరవాలేదు"
 
 msgid "Contribution made, thank you."
 msgstr ""
@@ -289,10 +289,10 @@ msgstr ""
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "{0} కోసం అంతిమ-వాడుకరి లైసెన్సు ఒప్పందపత్రం"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "అంతిమ-వాడుకరి లైసెన్సు ఒప్పందపత్రం"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
@@ -314,10 +314,10 @@ msgid "Most Popular"
 msgstr ""
 
 msgid "All »"
-msgstr ""
+msgstr "అన్నీ »"
 
 msgid "See all »"
-msgstr ""
+msgstr "అన్నీ చూడండి »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
