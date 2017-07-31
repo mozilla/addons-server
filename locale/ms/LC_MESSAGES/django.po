@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 04:29+0000\n"
+"PO-Revision-Date: 2017-07-31 04:49+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7219,6 +7219,8 @@ msgstr "Saya seorang pengarang add-on, bolehkah saya respons kepada ulasan?"
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
+"Ya, pengarang add-on boleh memberi respons kepada ulasan. Anda boleh tetapkan topik perbincangan dalam <a href=\"%(forum_url)s\">forum</a> untuk melibatkan diri dalam perbincangan tambahan atau "
+"susulan."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Saya seorang pengarang add-on, bolehkah saya menghapuskan ulasan atau penarafan yang tidak menyebelahi saya?"
@@ -7227,45 +7229,49 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
+"Secara umum, tidak. Tetapi jika ulasan itu tidak mematuhi garis panduan di atas, anda boleh klik \"Lapor ulasan ini\" dan akan dipertimbangkan. Jika ulasan itu memasukkan aduan yang tidak lagi sah "
+"kerana ada add-on keluaran baru, kami akan mempertimbangkan untuk membuangnya."
 
 msgid "Start Now"
-msgstr ""
+msgstr "Mulakan Sekarang"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla mahu mencari cara terbaik untuk memastikan pengguna kami selamat jika mereka pilih untuk menggunakan perisian pihak ketiga, seperti plugin. Penglibatan anda dalam kajian ini akan membantu "
+"kami mengetahuinya!"
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Apa yang akan terjadi seterusnya"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Jika anda setuju</strong> untuk melibatkan diri:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Kita akan tambah ciri kawalan keselamatan dan plugin untuk Firefox bagi membantu keselamatan dan prestasi dalam talian."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Terus gunakan Firefox seperti kebiasaan. Bergantung pada cara anda menggunakan Web, anda mungkin tidak perasan perubahannya."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Selepas beberapa minggu, kajian ini tamat dengan sendirinya. Firefox akan kembali normal."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Kami akan minta anda isikan kaji selidik ringkas untuk memaklumkan pengalaman anda. Kaji selidik ini mengambil tempoh kurang daripada 5 minit untuk disiapkan."
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Meninggalkan kajian"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Kajian ini akan tamat dengan sendirinya dalam tempoh beberapa minggu. Anda boleh tinggalkan kajian ini lebih awal. Untuk berbuat demikian, ikuti langkah berikut:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Taip about:addons di dalam bar lokasi, dan tekan masuk."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Cari Keselamatan Plugin dalam senarai add-ons."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klik butang buang."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
