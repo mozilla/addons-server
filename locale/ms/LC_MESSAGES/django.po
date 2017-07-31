@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 03:46+0000\n"
+"PO-Revision-Date: 2017-07-31 04:09+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7033,6 +7033,8 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
+"Add-ons beta ialah versi yang belum disemak yang mewakili kerja terbaru pengarang add-on. Walaupun setiap pengarang menetapkan piawaian kualiti kod beta yang berbeza, anda perlu sentiasa ingat "
+"bahawa add-ons ini kurang stabil berbanding add-on yang dikeluarkan kepada umum."
 
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
@@ -7052,14 +7054,14 @@ msgstr ""
 "menyiasat ulasan tersebut dan mengambil tindakan sewajarnya."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Bagaimana boleh saya lapor pepijat atau menghubungi pasukan Add-ons Mozilla?"
 
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "Sila lawati <a href=\"%(contact_url)s\">Halaman Perhubungan</a> kami."
 
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Apakah Lesen Kod Sumber?"
 
 #, python-format
 msgid ""
@@ -7067,10 +7069,13 @@ msgid ""
 "lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
 "like the GPL or BSD licenses instead of making up their own."
 msgstr ""
+"Kod sumber yang digunakan untuk mencipta add-on adalah hak eksklusif pengarang add-on, kecuali dinyatakan sebaliknya dalam lesen kod sumber. Banyak add-on dalam laman ini ada <a href=\"%(url)s\" "
+"lang=\"en\">lesen sumber terbuka</a> yang membuatkan kod sumber terbuka tersedia untuk salinan dan penggunaan semula di bawah syarat yang ditentukan oleh pengarang. Kebanyakan pengarang cenderung "
+"memilih lesen sumber terbuka yang terkenal seperti lesen GPL atau BSD daripada membuatnya sendiri."
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "Perisian Firefox dan perisian Mozilla lain adalah <a href=\"%(url)s\">sumber terbuka</a>."
 
 msgid "Collections and Favorites"
 msgstr "Koleksi dan Kegemaran"
@@ -7090,30 +7095,32 @@ msgstr ""
 "butirannya."
 
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "Add-ons Mobile"
 
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Apakah add-ons mobile?"
 
 #, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
+"Add-ons mobile berfungsi dengan <a href=\"%(mobile_url)s\">Firefox untuk Android</a> dan menambah atau mengubah fungsi seperti add-ons dekstop, Anda boleh cari add-ons yang berfungsi dengan Firefox "
+"untuk Android dalam <a href=\"%(gallery_url)s\">galeri</a> kami."
 
 msgid "Developer Topics"
-msgstr ""
+msgstr "Topik Pembangun"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "Sila lihat <a href=\"%(faq_url)s\">FAQ Pembangun</a> dan<a href=\"%(hub_url)s\">Hab Pembangun</a> untuk jawapan kepada soalan berkaitan-pembangun."
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Masih ada soalan?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
+msgstr "Untuk sokongan Firefox umum, lawati <a href=\"%(sumo_url)s\">laman web sokongan</a> kami. Untuk soalan add-on dan laman web umum, lawati <a href=\"%(forum_url)s\">forum</a> kami."
 
 msgid "Some tips for writing a great review"
 msgstr ""
