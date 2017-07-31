@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 10:19+0000\n"
+"PO-Revision-Date: 2017-07-31 10:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -8238,70 +8238,70 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr "Mozilla ada hak untuk menghubungi anda secara individu perihal keprihatinan tertentu terhadap pengehosan add-on anda."
 
 msgid "Admin"
-msgstr ""
+msgstr "Pentadbir"
 
 msgid "Delete Account"
 msgstr "Hapus Akaun"
 
 msgid "Update Account"
-msgstr ""
+msgstr "Kemaskini Akaun"
 
 msgid "none"
-msgstr ""
+msgstr "nol"
 
 msgid "all"
-msgstr ""
+msgstr "semua"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Add-ons Mozilla dalam peralihan ke Akaun Firefox untuk log masuk. Meneruskan proses log masuk lengkap yang mudah."
 
 msgid "User Login"
-msgstr ""
+msgstr "Log Masuk Pengguna"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Log masuk dengan Akaun Firefox"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Set semula Kata laluan"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Info pengguna untuk {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Edit profil"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Urus pengguna"
 
 msgid "Report user"
-msgstr ""
+msgstr "Lapor pengguna"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Pembangun Add-ons"
 
 msgid "Themes Artist"
-msgstr ""
+msgstr "Artis Tema"
 
 msgid "About me"
 msgstr "Perihal diri saya"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Agak lebih terperinci..."
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Add-ons yang saya cipta"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Tema Saya Paling Popular"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Tema yang saya cipta"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Yang Saya Ikuti"
 
 msgid "Created by Me"
-msgstr ""
+msgstr "Yang Saya Cipta"
 
 msgid "My Reviews"
 msgstr "Ulasan Saya"
@@ -8310,16 +8310,16 @@ msgid "No add-on reviews yet."
 msgstr "Masih tiada ulasan add-on."
 
 msgid "Report User"
-msgstr ""
+msgstr "Lapor Pengguna"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Sila jelaskan kenapa anda melaporkan pengguna ini seperti spam atau gambar tidak sesuai."
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Lapor pengguna {0}"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Nyahlanggan"
 
 msgid "You are successfully unsubscribed!"
 msgstr ""
