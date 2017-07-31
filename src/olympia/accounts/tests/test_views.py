@@ -940,6 +940,7 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_profile_url_404(self):
         response = self.client.get(reverse('account-profile'))  # No auth.
@@ -962,12 +963,25 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_no_private_data_without_auth(self):
+        assert not self.user.is_developer
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert 'email' not in response.data
+        # Not a developer so no account profile url
+        assert response.data['url'] is None
+
+    def test_is_developer_no_auth(self):
+        addon_factory(users=[self.user])
+        response = self.client.get(self.url)  # No auth.
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert 'email' not in response.data
+        # They are a developer so we should link to account profile url
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_admin_view(self):
         self.grant_permission(self.user, 'Users:Edit')
@@ -979,6 +993,8 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+        assert response.data['url'] == absolutify(
+            self.random_user.get_url_path())
 
     def test_self_view_slug(self):
         # Check it works the same with an account slug rather than pk.
@@ -1003,6 +1019,8 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+        assert response.data['url'] == absolutify(
+            self.random_user.get_url_path())
 
 
 class TestProfileViewWithJWT(APIKeyAuthTestCase):
