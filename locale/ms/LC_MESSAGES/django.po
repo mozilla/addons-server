@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 08:30+0000\n"
+"PO-Revision-Date: 2017-07-31 08:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7829,51 +7829,53 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Bagaimana muat turun dikira?</h2> <p> Bilangan muat turun dikemaskini setiap petang dan hanya mengira muat turun yang asal, bukan kemaskini. Muat turun boleh diasingkan mengikut sumber tertentu "
+"yang merujuk kepada muat turun. </p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Bahasa pengguna mengikut Tarikh"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Penggunaan platform mengikut Tarikh"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Muat turun"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Memuatkan..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Purata Pengguna Harian"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Aplikasi Teratas"
 
 msgid "See more applications&hellip;"
 msgstr "Lihat lebih banyak aplikasi&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Bahasa Teratas"
 
 msgid "See more languages&hellip;"
 msgstr "Lihat lebih banyak bahasa&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Platform Teratas"
 
 msgid "See more platforms&hellip;"
 msgstr "Lihat lebih banyak platform&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Penarafan mengikut Tarikh"
 
 msgid "Reviews Created by Date"
 msgstr "Ulasan Dibuat mengikut Tarikh"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Sumber muat turun mengikut Tarikh"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Perihal menjejak sumber luar..."
 
 #, python-format
 msgid ""
@@ -7883,18 +7885,23 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Menjejak sumber luar</h2> <p> Jika anda pautkan halaman butiran add-on anda atau terus ke fail daripada laman luar, seperti blog atau laman web, anda boleh tambah parameter yang akan dikesan "
+"sebagai sumber muat turun tambahan dalam laman ini. Sebagai contoh, pautan berikut akan muncul sebagai sumber daripada blog anda: <dl> <dt>Halaman Butiran Add-on</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Pautan Fail Terus</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Hanya parameter src yang mula dengan \"external-\" akan dikesan, sehingga 61 aksara tambahan. Teks lain selepas \"external-\" boleh digunakan untuk menjelaskan sumber, "
+"seperti \"external-blog\", \"external-sidebar\", \"external-campaign225\", dsb. Aksara URL-selamat berikut juga dibenarkan: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Status Add-ons mengikut Tarikh"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Pelanggan mengikut Tarikh"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Pengguna Harian mengikut Tarikh"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Siapakah pengguna harian?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7907,13 +7914,13 @@ msgid ""
 msgstr ""
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Pendaftaran Pengguna mengikut Tarikh"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Versi Aplikasi mengikut Tarikh"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Add-ons Mozilla"
 
 msgid "Find add-ons for other applications"
 msgstr "Cari add-ons untuk aplikasi lain"
@@ -7925,7 +7932,7 @@ msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Untuk mencipta koleksi anda sendiri, anda mesti ada akaun Add-ons Mozilla."
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo pembawah"
 
 msgid "Choose a category"
 msgstr ""
