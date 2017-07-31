@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 08:51+0000\n"
+"PO-Revision-Date: 2017-07-31 09:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5548,10 +5548,10 @@ msgid "Tab stops:"
 msgstr "Tab berhenti:"
 
 msgid "Up file"
-msgstr ""
+msgstr "Naikkan fail"
 
 msgid "Down file"
-msgstr ""
+msgstr "Turunkan fail"
 
 msgid "Previous diff"
 msgstr "Perbezaan dahulu"
@@ -7907,11 +7907,15 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Siapakah pengguna harian?</h2> <p> Tema yang dipasang dari laman ini diperiksa untuk dikemaskini sekali pada setiap hari. Bilangan ping kemaskini ini dikenali sebagai Pengguna Aktif Harian, atau"
+" bilangan pengguna tema anda mengikut hari. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Siapakah pengguna harian?</h2> <p> Add-ons yang dimuat turun dari laman ini diperiksa untuk dikemaskini sekali pada setiap hari. Bilangan ping kemaskini ini dikenali sebagai Pengguna Aktif "
+"Harian. Pengguna harian boleh dipecahkan mengikut versi add-on, sistem operasi, status add-on, aplikasi dan lokaliti. </p>"
 
 msgid "User Signups by Date"
 msgstr "Pendaftaran Pengguna mengikut Tarikh"
@@ -7938,7 +7942,7 @@ msgid "Choose a category"
 msgstr "Pilih kategori"
 
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Papar Laman Mobile"
 
 msgid "Report a bug"
 msgstr "Laporkan pepijat"
@@ -7958,22 +7962,22 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Kembali ke halaman utama Add-ons {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"\" src=\"{0}\">"
 
 msgid "My Account"
-msgstr ""
+msgstr "Akaun Saya"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Selamat datang, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7981,7 +7985,7 @@ msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Log masuk</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Untuk mencuba beribu-ribu ads-ons yang tersedia di sini, muat turun <a href=\"%(url)s\">Firefox Mozilla</a>, pelayar Web yang pantas dan percuma!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
