@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 07:07+0000\n"
+"PO-Revision-Date: 2017-07-31 07:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7333,37 +7333,39 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
+"Pembangunan projek Sunbird telah dihentikan dan keluaran terakhirnya pada 30 Mac 2010. Kami bangga kerana menjadi hos add-ons Sunbird dalam laman ini tapi oleh kerana projek ini sudah tidak "
+"diuruskan lagi, kami telah menyahdayakan sokongan kepada add-ons ini."
 
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ""
+msgstr "Kami mengesyorkan menaik taraf ke <a href=\"%(tb_url)s\">Thunderbird</a> dan <a href=\"%(lightning_url)s\">Lightning</a>."
 
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Ketahui selanjutnya perihal Sunbird"
 
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "Ada ralat semasa menghubungi PayPal. Sila cuba lagi nanti."
 
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Ada ralat dengan matawang ini."
 
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Nilai terlalu kecil apabila ditukarkan kepada matawang penerima."
 
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Pembeli dan penjual mesti ada akaun PayPal yang berlainan."
 
 #. L10n: {0} is the currency.
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Penjual tidak menerima bayaran dalam %s."
 
 #, python-format
 msgid "Reviews for %s"
 msgstr "Ulasan untuk %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Sejarah Semakan Add-on ini"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -7371,28 +7373,28 @@ msgid "Rated %d out of 5 stars"
 msgstr "Tahap %d daripada 5 bintang"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Penjelasan ringkas mesti disertakan apabila memilih \"Lain-lain\" sebagai alasan tandaan."
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Lain-lain (sila nyatakan)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Medan ini diperlukan."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Anda tidak boleh tukar add-on sebaik sahaja semakan telah dibuat."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Anda tidak boleh membalas semakan yang sudah dijawab."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Anda tidak boleh tukar versi add-on sebaik sahaja semakan sudah dibuat."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Versi add-on ini tidak wujud atau bukan kegunaan umum."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Anda tidak boleh semak add-on anda sendiri."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
