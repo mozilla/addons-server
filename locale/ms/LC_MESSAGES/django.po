@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 05:19+0000\n"
+"PO-Revision-Date: 2017-07-31 06:44+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7307,14 +7307,14 @@ msgid "How you interact with plugin content on those sites, including whether an
 msgstr "Cara anda berinteraksi dengan kandungan plugin dalam laman tersebut, termasuk samada dan bagaimana anda pilih plugin itu untuk dilaksanakan."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla akan pastikan maklumat ini peribadi; apa-apa data hanya akan dikongsi dalam bentuk agregat anonimus."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Anda boleh ketahui selanjutnya perihal pengumpulan data untuk kajian ini <a href=\"%(url)s\">di sini</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Anda Bantu Membuatkan Firefox Lebih Baik"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
