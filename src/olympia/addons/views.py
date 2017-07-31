@@ -572,7 +572,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated() and self.request.user.is_staff:
+        if (self.request.user.is_authenticated() and
+                acl.action_allowed(self.request,
+                                   amo.permissions.ADDONS_VIEW_DELETED)):
             return Addon.unfiltered.all()
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
@@ -661,9 +663,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         requested = self.request.GET.get('filter')
         if self.action == 'list':
             if requested == 'all_with_deleted':
-                # To see deleted versions, you need Admin:%.
+                # To see deleted versions, you need Addons:ViewDeleted.
                 self.permission_classes = [
-                    GroupPermission(amo.permissions.ADMIN)]
+                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)]
             elif requested == 'all_with_unlisted':
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
@@ -688,8 +690,8 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if (obj.deleted and
-            not GroupPermission(amo.permissions.ADMIN).has_object_permission(
-                request, self, obj)):
+                not GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(request, self, obj)):
             raise http.Http404
 
         if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -705,7 +707,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                 AllowRelatedObjectPermissions(
                     'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
             ]
-
         super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
     def get_queryset(self):
