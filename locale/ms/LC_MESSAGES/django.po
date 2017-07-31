@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 06:44+0000\n"
+"PO-Revision-Date: 2017-07-31 07:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -7314,18 +7314,20 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr "Anda boleh ketahui selanjutnya perihal pengumpulan data untuk kajian ini <a href=\"%(url)s\">di sini</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr "Anda Bantu Membuatkan Firefox Lebih Baik"
+msgstr "Anda Bantu Firefox Menjadi Lebih Baik"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Di Mozilla, kami bangga kerana membina produk untuk anda, iaitu pengguna. Inilah sebabnya kami perlukan bantuan anda. Dengan melibatkan diri dalam kajian ini, anda akan membantu kami membuat pilihan"
+" bagi pihak anda dan secara langsung membentuk masa depan Firefox!"
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Dibawakan untuk anda oleh:"
 
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird sudah berakhir"
 
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
