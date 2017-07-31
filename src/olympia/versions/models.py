@@ -6,6 +6,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
@@ -317,7 +318,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def compatible_apps(self):
-        """Get a mapping of {APP: ApplicationVersion}."""
+        """Get a mapping of {APP: ApplicationsVersions}."""
         avs = self.apps.select_related('version')
         return self._compat_map(avs)
 
@@ -342,32 +343,11 @@ class Version(OnChangeMixin, ModelBase):
         return all_plats
 
     @cached_property
-    def is_compatible(self):
-        """Returns tuple of compatibility and reasons why if not.
-
-        Server side conditions for determining compatibility are:
-            * The add-on is an extension (not a theme, app, etc.)
-            * Has not opted in to strict compatibility.
-            * Does not use binary_components in chrome.manifest.
-
-        Note: The lowest maxVersion compat check needs to be checked
-              separately.
-        Note: This does not take into account the client conditions.
-        """
-        compat = True
-        reasons = []
-        if self.addon.type != amo.ADDON_EXTENSION:
-            compat = False
-            # TODO: We may want this. For now we think it may be confusing.
-            # reasons.append(ugettext('Add-on is not an extension.'))
-        if self.files.filter(binary_components=True).exists():
-            compat = False
-            reasons.append(ugettext('Add-on uses binary components.'))
-        if self.files.filter(strict_compatibility=True).exists():
-            compat = False
-            reasons.append(ugettext(
-                'Add-on has opted into strict compatibility checking.'))
-        return (compat, reasons)
+    def is_compatible_by_default(self):
+        """Returns whether or not the add-on is considered compatible by
+        default."""
+        return not self.files.filter(
+            Q(binary_components=True) | Q(strict_compatibility=True)).exists()
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
@@ -766,7 +746,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         return unicode(amo.APPS_ALL[self.application].pretty)
 
     def __unicode__(self):
-        if (self.version.is_compatible[0] and
+        if (self.version.is_compatible_by_default and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return ugettext(u'{app} {min} and later').format(
                 app=self.get_application_display(),

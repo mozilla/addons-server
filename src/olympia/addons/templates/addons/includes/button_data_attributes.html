@@ -8,7 +8,7 @@
 {% if compat %}
   data-min="{{ compat.min.version }}"
   data-max="{{ compat.max.version }}"
-  data-is-compatible="{{ version.is_compatible[0]|json }}"
+  data-is-compatible-by-default="{{ version.is_compatible_by_default|json }}"
   data-is-compatible-app="{{ version.is_compatible_app(APP)|json }}"
   data-compat-overrides="{{ version.compat_override_app_versions()|json }}"
 {% endif %}
