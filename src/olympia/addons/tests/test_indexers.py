@@ -178,7 +178,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_theme_rereview'] is None
         assert extracted['latest_unlisted_version'] is None
         assert extracted['listed_authors'] == [
-            {'name': u'55021 التطب', 'id': 55021, 'username': '55021'}]
+            {'name': u'55021 التطب', 'id': 55021, 'username': '55021',
+             'is_public': True}]
         assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,

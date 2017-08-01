@@ -731,6 +731,9 @@ def addon_factory(
     # Save 4.
     addon.save()
 
+    # Potentially update is_public on authors
+    [user.update_is_public() for user in users]
+
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()

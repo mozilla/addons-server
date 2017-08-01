@@ -322,36 +322,7 @@ class SearchMixin(object):
         return cls._meta.db_table
 
 
-class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
-    """
-    Base class for AMO models to abstract some common features.
-
-    * Adds automatic created and modified fields to the model.
-    * Fetches all translations in one subsequent query during initialization.
-    """
-
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
-
-    objects = ManagerBase()
-
-    class Meta:
-        abstract = True
-        get_latest_by = 'created'
-
-    def get_absolute_url(self, *args, **kwargs):
-        return self.get_url_path(*args, **kwargs)
-
-    @classmethod
-    def _cache_key(cls, pk, db):
-        """
-        Custom django-cache-machine cache key implementation that avoids having
-        the real db in the key, since we are only using master-slaves we don't
-        need it and it avoids invalidation bugs with FETCH_BY_ID.
-        """
-        key_parts = ('o', cls._meta, pk, 'default')
-        return ':'.join(map(force_text, key_parts))
-
+class SaveUpdateMixin(object):
     def reload(self):
         """Reloads the instance from the database."""
         from_db = self.__class__.get_unfiltered_manager().get(pk=self.pk)
@@ -404,7 +375,39 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
         # https://docs.djangoproject.com/en/1.9/topics/db/examples/one_to_one/
         if hasattr(self._meta, 'translated_fields'):
             save_translations(id(self))
-        return super(ModelBase, self).save(**kwargs)
+        return super(SaveUpdateMixin, self).save(**kwargs)
+
+
+class ModelBase(SearchMixin, caching.base.CachingMixin, SaveUpdateMixin,
+                models.Model):
+    """
+    Base class for AMO models to abstract some common features.
+
+    * Adds automatic created and modified fields to the model.
+    * Fetches all translations in one subsequent query during initialization.
+    """
+
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    objects = ManagerBase()
+
+    class Meta:
+        abstract = True
+        get_latest_by = 'created'
+
+    def get_absolute_url(self, *args, **kwargs):
+        return self.get_url_path(*args, **kwargs)
+
+    @classmethod
+    def _cache_key(cls, pk, db):
+        """
+        Custom django-cache-machine cache key implementation that avoids having
+        the real db in the key, since we are only using master-slaves we don't
+        need it and it avoids invalidation bugs with FETCH_BY_ID.
+        """
+        key_parts = ('o', cls._meta, pk, 'default')
+        return ':'.join(map(force_text, key_parts))
 
 
 def manual_order(qs, pks, pk_name='id'):

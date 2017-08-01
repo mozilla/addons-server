@@ -122,6 +122,7 @@ class AddonIndexer(BaseSearchIndexer):
                             'id': {'type': 'long', 'index': False},
                             'name': {'type': 'text'},
                             'username': {'type': 'keyword'},
+                            'is_public': {'type': 'boolean', 'index': False},
                         },
                     },
                     'modified': {'type': 'date', 'index': False},
@@ -284,7 +285,8 @@ class AddonIndexer(BaseSearchIndexer):
         data['current_beta_version'] = cls.extract_version(
             obj, obj.current_beta_version)
         data['listed_authors'] = [
-            {'name': a.name, 'id': a.id, 'username': a.username}
+            {'name': a.name, 'id': a.id, 'username': a.username,
+             'is_public': a.is_public}
             for a in obj.listed_authors
         ]
 

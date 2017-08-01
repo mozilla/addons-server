@@ -89,10 +89,8 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer):
 
     def test_basic(self):
         # Have to update these separately as dates as tricky.  As are bools.
-        self.user.update(last_login=self.now, read_dev_agreement=self.now,
-                         is_verified=True)
+        self.user.update(last_login=self.now, read_dev_agreement=self.now)
         data = super(TestUserProfileSerializer, self).test_basic()
-        assert data['is_verified'] is True
         assert data['last_login'] == (
             self.now.replace(microsecond=0).isoformat() + 'Z')
         assert data['read_dev_agreement'] == data['last_login']

@@ -12,7 +12,12 @@ Account
 .. _`account`:
 
 This endpoint returns information about a user's account, by the account id.
+Only :ref:`developer <developer_account>` accounts are publicly viewable - other user's accounts will return a 404 not found response code.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
+
+.. _`developer_account`:
+A developer is defined as a user who is listed as a developer or owner of more approved add-ons.
+
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
@@ -35,6 +40,7 @@ Most of the information is optional and provided by the user so may be missing o
 
 
 If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.
+You can always access your account, regardless of whether you are a developer or not.
 If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/

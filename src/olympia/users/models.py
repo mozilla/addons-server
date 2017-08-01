@@ -142,7 +142,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
 
-    is_verified = models.BooleanField(default=True)
+    # Is the profile page for this account publicly viewable?
+    # Note: this isn't applicable to legacy frontend pages.
+    is_public = models.BooleanField(default=False, db_column='public')
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
@@ -286,6 +288,17 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """Is this user a Personas Artist?"""
         return self.addonuser_set.filter(
             addon__type=amo.ADDON_PERSONA).exists()
+
+    def update_is_public(self):
+        pre = self.is_public
+        is_public = (
+            self.addonuser_set.filter(
+                role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+                listed=True,
+                addon__status=amo.STATUS_PUBLIC).exists())
+        log.info('Updating %s.is_public from %s to %s' % (
+            self.pk, pre, is_public))
+        self.update(is_public=is_public)
 
     @property
     def name(self):

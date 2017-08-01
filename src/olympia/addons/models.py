@@ -26,7 +26,8 @@ from jinja2.filters import do_dictsort
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.amo.models import (
-    SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
+    manual_order, ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin,
+    SlugField)
 from olympia.access import acl
 from olympia.addons.utils import (
     get_creatured_ids, get_featured_ids, generate_addon_guid)
@@ -1420,6 +1421,10 @@ def watch_status(old_attr=None, new_attr=None, instance=None,
     latest_version = instance.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
 
+    # Update the author's account profile visibility
+    if new_status != old_status:
+        [author.update_is_public() for author in instance.authors.all()]
+
     if (new_status not in amo.VALID_ADDON_STATUSES or
             not new_status or not latest_version):
         return
@@ -1679,7 +1684,8 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return get_creatured_ids(category, lang)
 
 
-class AddonUser(caching.CachingMixin, models.Model):
+class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
+                models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
@@ -1696,6 +1702,14 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
+
+
+@AddonUser.on_change
+def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
+                     **kwargs):
+    # Update ES because authors is included.
+    update_search_index(sender=sender, instance=instance.addon, **kwargs)
+    instance.user.update_is_public()
 
 
 class AddonDependency(models.Model):
