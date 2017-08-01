@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -100,7 +100,7 @@ msgstr "Isem-agi n yettwaseqdec yakan. Ma ulac aγilif ɛreḍ wayeḍ."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Anegzum-agi ur yizmir ara ad yili d \"%s\". Ma ulac aγilif fren wayeḍ."
+msgstr "Anegzum-agi ur yizmir ara ad yili d \"%(slug)s\". Ma ulac aγilif fren wayeḍ."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
