@@ -357,8 +357,8 @@ natsort==5.0.3 \
     --hash=sha256:d57b7a0156f16f49c6c010c9ce97e2125956697846f31bba7cd544cd24b007c1
 ndg-httpsclient==0.4.2 \
     --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
-newrelic==2.88.1.73 \
-    --hash=sha256:93452f678b63a537f63a2b8d6caccc3506f5db72586f12a1673cfc16bbe3147b
+newrelic==2.90.0.75 \
+    --hash=sha256:c57b89b170b208567989f4ff8066aa2a3abd22e9b95e765cfbef3b950f9f0040
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
