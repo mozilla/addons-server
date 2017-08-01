@@ -35,7 +35,7 @@
         You should always use the <a href="{{ url }}">latest version</a> of an add-on.
       {% endtrans %}</p>
     </div>
-    <div class="items">
+    <div class="items versions-list">
       {% for version in versions.object_list %}
         {#
            We pass skip_contrib=False on purpose, to display the direct link.
