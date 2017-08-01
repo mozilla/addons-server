@@ -376,10 +376,15 @@ class TestReviewLog(EditorTest):
         link = pq(r.content)('#log-listing tbody tr[data-addonid] a').eq(1)
         assert link.attr('href') == url
 
-        ActivityLog.create(
+        entry = ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon,
             unlisted_version,
             user=self.get_user(), details={'comments': 'foo'})
+
+        # Force the latest entry to be at the top of the list so that we can
+        # pick it more reliably later from the HTML
+        entry.update(created=datetime.now() + timedelta(days=1))
+
         r = self.client.get(self.url)
         url = reverse(
             'editors.review',
