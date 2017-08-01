@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-29 17:41+0000\n"
+"PO-Revision-Date: 2017-08-01 18:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4864,7 +4864,7 @@ msgid "Has too few consecutive human-approved updates."
 msgstr "A été trop peu de fois approuvé par un être humain."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Possède une demande d’informations en attente."
 
 #, fuzzy
 msgid "Is flagged for admin review."
@@ -5062,9 +5062,8 @@ msgstr "Dernière date d’approbation"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Approbations depuis la dernière révision automatique"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Rapports d’abus pour {addon} ({num})"
+msgstr "Signalements d’abus ({num})"
 
 msgid "Bad User Reviews ({num})"
 msgstr "Avis négatifs d’utilisateurs ({num})"
