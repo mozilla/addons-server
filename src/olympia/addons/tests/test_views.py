@@ -28,7 +28,6 @@ from olympia.addons.models import (
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
     AddonSearchView, AddonAutoCompleteSearchView)
-from olympia.addons.indexers import AddonIndexer
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
@@ -2302,19 +2301,17 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
     def test_get_queryset_excludes(self):
-        request = APIRequestFactory().get('/')
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666)
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                               weekly_downloads=555)
+        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                      weekly_downloads=555)
         self.refresh()
 
         qset = AddonSearchView().get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
             ('name_sort', 'boost', 'hotness', 'name', 'description',
-             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*'
-        ))
+             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
+        )
 
         response = qset.execute()
 
@@ -2763,11 +2760,10 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_get_queryset_excludes(self):
-        request = APIRequestFactory().get('/')
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666)
-        persona = addon_factory(slug='my-persona', name=u'My Persona',
-                              type=amo.ADDON_PERSONA)
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      weekly_downloads=666)
+        addon_factory(slug='my-persona', name=u'My Persona',
+                      type=amo.ADDON_PERSONA)
         self.refresh()
 
         qset = AddonAutoCompleteSearchView().get_queryset()
