@@ -25,7 +25,8 @@ from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
     Charity, Persona, ReplacementAddon)
 from olympia.addons.views import (
-    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
+    AddonSearchView, AddonAutoCompleteSearchView)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
@@ -2298,6 +2299,42 @@ class TestAddonSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                      weekly_downloads=555)
+        self.refresh()
+
+        qset = AddonSearchView().get_queryset()
+
+        assert set(qset.to_dict()['_source']['excludes']) == set(
+            ('name_sort', 'boost', 'hotness', 'name', 'description',
+             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
+        )
+
+        response = qset.execute()
+
+        source_keys = response.hits.hits[0]['_source'].keys()
+
+        # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
+        # for some reason I don't yet understand... (cgrebs 0717)
+        # maybe because they're used for boosting or filtering or so?
+        assert not any(key in source_keys for key in (
+            'name_sort', 'boost',
+        ))
+
+        assert not any(
+            key.startswith('name_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('description_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('summary_l10n_') for key in source_keys
+        )
+
     def perform_search(self, url, data=None, expected_status=200, **headers):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
@@ -2720,6 +2757,28 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         data = self.perform_search(self.url)
         assert 'count' not in data
         assert len(data['results']) == 0
+
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      weekly_downloads=666)
+        addon_factory(slug='my-persona', name=u'My Persona',
+                      type=amo.ADDON_PERSONA)
+        self.refresh()
+
+        qset = AddonAutoCompleteSearchView().get_queryset()
+
+        includes = set((
+            'icon_type', 'id', 'modified', 'name_translations', 'persona',
+            'slug', 'type'))
+
+        assert set(qset.to_dict()['_source']['includes']) == includes
+
+        response = qset.execute()
+
+        # Sort by type to avoid sorting problems before picking the
+        # first result. (We have a theme and an add-on)
+        hit = sorted(response.hits.hits, key=lambda x: x['_source']['type'])
+        assert set(hit[1]['_source'].keys()) == includes
 
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
