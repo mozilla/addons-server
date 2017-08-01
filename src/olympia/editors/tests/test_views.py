@@ -356,14 +356,25 @@ class TestReviewLog(EditorTest):
         unlisted_version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        al = ActivityLog.create(
+        invisible_al = ActivityLog.create(
+            amo.LOG.APPROVE_VERSION, addon, addon.current_version,
+            user=self.get_user(), details={'comments': 'foo'})
+        invisible_al.update(created=self.days_ago(1))
+
+        # This one is visible, we are filtering the logs by created>=today
+        # if no other filters are given.
+        ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon, addon.current_version,
             user=self.get_user(), details={'comments': 'foo'})
 
-        al.update(created=self.days_ago(1))
         r = self.client.get(self.url)
         url = reverse('editors.review', args=[addon.slug])
-        assert pq(r.content)('#log-listing tr td a').eq(1).attr('href') == url
+
+        # Only one entry in the log listing
+        assert pq(r.content)('#log-listing tbody tr[data-addonid]').length == 1
+
+        link = pq(r.content)('#log-listing tbody tr[data-addonid] a').eq(1)
+        assert link.attr('href') == url
 
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon,
