@@ -13,7 +13,6 @@ import waffle
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
-from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
