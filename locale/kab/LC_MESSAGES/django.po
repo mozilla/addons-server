@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 14:56+0000\n"
+"PO-Revision-Date: 2017-08-01 05:49+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -20,13 +20,13 @@ msgid "No links are allowed."
 msgstr "Iseɣwan gelden."
 
 msgid "This display name cannot be used."
-msgstr "Isem agi ur yettwaseqdac ara."
+msgstr "Isem-agi ur yettwaseqdac ara."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Ur issefk ara isem n useqdac ad yegber aweẓlu."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Sekcem isem useqdac ameγtu isεan iskilen, uṭṭunen, ijeriden."
 
 msgid "This username cannot be used."
 msgstr "Isem-agi n useqdac ur izmir ara ad ittuseqdec."
@@ -66,7 +66,7 @@ msgid "Version {0}"
 msgstr "Lqem {0}"
 
 msgid "Review note"
-msgstr "Tazmilt n uɛawed n tuɣli"
+msgstr "Tazmilt n uɛawed n tmuɣli"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Ala ileqman ineggura n izegrar i yezemren ad gebren tizmilin."
@@ -86,7 +86,7 @@ msgstr "Ifaz"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Ur tɛawed ara degs tmuɣli"
+msgstr "Ur ttɛawed ara deg-s tmuɣli"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -96,11 +96,11 @@ msgid "Add to {0}"
 msgstr "Rnu γer {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Isem agi n yettwaseqdac yakan. Ma ulac aγilif ɛreḍ wayeḍ."
+msgstr "Isem-agi n yettwaseqdec yakan. Ma ulac aγilif ɛreḍ wayeḍ."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Anegzum agi yezmer ad yili d \"%s\". Ma ulac aγili ɛred wayeḍ."
+msgstr "Anegzum-agi ur yizmir ara ad yili d \"%s\". Ma ulac aγilif fren wayeḍ."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -117,7 +117,7 @@ msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwase
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Γur-k {0} ugar n tebzimin."
-msgstr[1] "Ɣurk {0} ugar n tebzimin."
+msgstr[1] "Γur-wen {0} ugar n tebzimin."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -154,7 +154,7 @@ msgid "Describe your Theme."
 msgstr "Glem asentel inek."
 
 msgid "Enter a new author's email address"
-msgstr "Mud tansa imayl n ueskar amaynut"
+msgstr "Mud tansa imayl n umeskar amaynut"
 
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Iseqdacen zemred ad ttekkin s wayen nniḍen ama ugar neɣ drus γef aya."
@@ -166,7 +166,7 @@ msgid "Listed"
 msgstr "Yettwabder"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Abrid n uzegrir akked taggayt isra ad ifak s \"/\""
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -176,7 +176,7 @@ msgid "Abuse reported."
 msgstr "Yir aseqdec yettwammel."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "Izegrar inu ur d-uzgin ula deg iwet n taggayt"
+msgstr "Izegrar inu ur d-uzgin ula deg yiwet n taggayt"
 
 msgid "No compatible versions"
 msgstr "Ulac ileqman yemṣadan"
@@ -193,7 +193,7 @@ msgstr "Wali amtawa n turagt n useqdac aneggaru"
 
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Azegrir-agi tɛawed degs tmuγli Mozilla. <a href=\"%(url)s\">Issin ugar</a>"
+msgstr "Azegrir-agi ur tales ara degs tmuγli Mozilla. <a href=\"%(url)s\">Issin ugar</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Azegrir-agi yettwacreḍ d armitan sɣur ineflayen-ines."
@@ -357,7 +357,7 @@ msgid "Requires Restart"
 msgstr "Yesra asenker tikelt nniden"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Azegrir_agi ittwabna s tiknulujit imṣadan akked Firefox 57 akked imaynuten."
 
 msgid "Compatible with Firefox 57+"
 msgstr "Imṣada d Firefox 57+"
@@ -473,7 +473,7 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Amke ara tesbeddeḍ di Thunderbird</strong> <ol> <li>Sider sakin sekles afaylu ɣef udebṣi yinek.</li> <li>Di Mozilla Thunderbird, kcem ar umuɣ n izegrar seg umuɣ n ifecka.</li> <li>S useqdec "
+"<strong>Amek ara tesbeddeḍ di Thunderbird</strong> <ol> <li>Sider sakin sekles afaylu ɣef udebṣi yinek.</li> <li>Di Mozilla Thunderbird, kcem ar umuɣ n izegrar seg umuɣ n ifecka.</li> <li>S useqdec "
 "n tqeffalt yellan rrif n wurti n unadin izegrar, fren \"Sebded azegrir seg ufaylu\" sakin fren azegrir i d-sidreḍ</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -2773,7 +2773,6 @@ msgstr "Lqem ur imṣada ara"
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Lqem {version} yella yakan, neɣ yuli-d yakan."
 
-#, fuzzy
 msgid "Version {version} already exists."
 msgstr "Lqem {version} yella yakan."
 

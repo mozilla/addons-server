@@ -223,6 +223,8 @@ class AddonSerializer(serializers.ModelSerializer):
         )
 
     def to_representation(self, obj):
+        # Set this so BaseUserSerializer doesn't need to do a query
+        self.context['is_developer'] = True
         data = super(AddonSerializer, self).to_representation(obj)
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')

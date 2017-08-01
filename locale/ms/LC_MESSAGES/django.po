@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 07:30+0000\n"
+"PO-Revision-Date: 2017-07-31 12:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5548,10 +5548,10 @@ msgid "Tab stops:"
 msgstr "Tab berhenti:"
 
 msgid "Up file"
-msgstr ""
+msgstr "Naikkan fail"
 
 msgid "Down file"
-msgstr ""
+msgstr "Turunkan fail"
 
 msgid "Previous diff"
 msgstr "Perbezaan dahulu"
@@ -7397,13 +7397,13 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Anda tidak boleh semak add-on anda sendiri."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr ""
+msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan editor."
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Beri ulasan untuk {0}"
 
 #, python-format
 msgid ""
@@ -7421,29 +7421,29 @@ msgstr ""
 "penggunaan bahasa kurang sopan dan menyiarkan makumat peribadi. </li> </ul> <p> Sila baca <a href=\"%(guide)s\">Garis Panduan Ulasan</a> untuk maklumat lanjut perihal ulasan add-on.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Balasan untuk ulasan oleh {0}"
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "Tulis Balasan"
 
 msgid "Submit"
-msgstr ""
+msgstr "Hantar"
 
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "atau <a href=\"%(url)s\">Batal</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Sila pilih alasan:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "oleh %(user)s <b>(Pembangun)</b> pada %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Ulasan ini untuk add-on ({0}) versi terdahulu."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -7455,19 +7455,19 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "Pengguna ini ada<a href=\"%(user_review_url)s\">ulasan lain</a> perihal add-on ini."
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ditanda untuk semakan"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Lapor ulasan ini"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Balasan untuk ulasan"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Edit balasan"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Edit ulasan"
 
 msgid "Delete reply"
 msgstr "Hapus balasan"
@@ -7486,7 +7486,7 @@ msgstr[0] "<b>{0}</b> ulasan untuk add-ons ini"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Balasan pembangun oleh {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
@@ -7498,13 +7498,13 @@ msgstr "Belum ada ulasan."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Purata</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Tulis Ulasan Baru"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Jadi orang pertama menulis ulasan."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -7518,47 +7518,47 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Tahap %(rating)s daripada 5 bintang"
 
 msgid "Most popular this week"
-msgstr ""
+msgstr "Paling popular minggu ini"
 
 msgid "Most popular this month"
-msgstr ""
+msgstr "Paling popular bulan ini"
 
 msgid "Most popular all time"
-msgstr ""
+msgstr "Paling popular sepanjang masa"
 
 msgid "Highest Rated"
-msgstr ""
+msgstr "Penarafan Tertinggi"
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "cari add-ons"
 
 msgid "search for collections"
 msgstr "cari koleksi"
 
 msgid "search for themes"
-msgstr ""
+msgstr "cari tema"
 
 msgid "search for apps"
-msgstr ""
+msgstr "cari aplikasi"
 
 msgid "Sort By"
 msgstr "Susun Mengikut"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Kaitan"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "Semua Add-ons"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Mana-mana {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Semua Sistem"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Semua Tag"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7568,134 +7568,134 @@ msgid "Collection Search Results"
 msgstr "Hasil Carian Koleksi"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Carian"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Carian Tidak Disediakan"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Carian tidak tersedia buat sementara waktu. Sila cuba lagi dalam beberapa minit."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Hasil Carian Tema untuk {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Hasil Carian Tema"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "Cari :: {0}"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Hasil Carian untuk \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "Tag :: {0}"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Hasil Carian untuk tag \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> hasil sepadan"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Saring Hasil"
 
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Memaparkan {0} - {1} daripada {2} carian untuk <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Memaparkan {0} - {1} daripada {2} hasil"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Beberapa ciri dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Kami akan kembali ke kapasiti penuh tidak lama lagi."
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Tidak dapat menemukan add-on dengan id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Anda bukan pemilik add-on ini."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Kehilangan kekunci \"muat naik\" dalam berbilang bahagian data fail."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Anda tidak boleh tambah versi ke add-on yang ada status: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versi tidak sepadan dengan fail manifes."
 
 msgid "Version already exists."
-msgstr ""
+msgstr "Versi sudah wujud."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Hanya WebExtensions dibenarkan untuk mengabaikan GUID"
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID tidak sah dalam URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Anda tidak boleh tambah versi yang tersenarai ke add-on ini via API kerana hilang metadata. Sila serahkan via laman web"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Tiada fail dimuat naik untuk add-on dan versi tersebut."
 
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Terima kasih kerana menyumbangkan {addon_name}"
 
 msgid "Overview"
-msgstr ""
+msgstr "Intisari"
 
 msgid "by Source"
-msgstr ""
+msgstr "mengikut Sumber"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "mengikut Versi Add-on"
 
 msgid "by Application"
-msgstr ""
+msgstr "mengikut Aplikasi"
 
 msgid "by Language"
-msgstr ""
+msgstr "mengikut Bahasa"
 
 msgid "by Platform"
-msgstr ""
+msgstr "mengikut Platform"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "mengikut Status Add-on"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Pelanggan"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Penarafan"
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistik Add-on"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Add-on Digunakan"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Add-ons Dicipta"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Add-ons Dimuat turun"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Add-ons Dikemaskini"
 
 msgid "Collections Created"
 msgstr "Koleksi Dicipta"
@@ -7704,176 +7704,178 @@ msgid "Reviews Written"
 msgstr "Ulasan Ditulis"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Pendaftaran Pengguna"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Data Diarkib"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Julat Data Lazim"
 
 msgid "From"
-msgstr ""
+msgstr "Daripada"
 
 msgid "To"
-msgstr ""
+msgstr "Hingga"
 
 msgid "Update"
-msgstr ""
+msgstr "Kemaskini"
 
 msgid "Export"
-msgstr ""
+msgstr "Eksport"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Papan pemuka Statistik :: Add-ons untuk {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Papan pemuka Statistik"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Papan pemuka Statistik :: Add-ons untuk {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistik untuk {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Papan pemuka Statistik"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Kawalan:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "set semula zum"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Kumpulan mengikut:"
 
 msgid "day"
-msgstr ""
+msgstr "hari"
 
 msgid "week"
-msgstr ""
+msgstr "minggu"
 
 msgid "month"
-msgstr ""
+msgstr "bulan"
 
 msgid "For last:"
-msgstr ""
+msgstr "Untuk tempoh:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 hari"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 hari"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 hari"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 hari"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Penyesuaian..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Pemprosesan statistik dinyahdayakan buat masa ini, jadi tidak ada data terkini. Statistik masih sedang dikumpulkan dan halaman ini akan dikemaskini tidak lama lagi dengan data yang hilang."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Memuatkan data&hellip; terkini"
 
 msgid "No data available."
-msgstr ""
+msgstr "Tiada data tersedia."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Papan pemuka ini kini<b>umum</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Statistik sumbangan ini kini<b>peribadi</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Papan pemuka ini kini<b>peribadi</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Tukar tetapan."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Add-ons Dicipta mengikut Tarikh"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Add-ons Dimuat turun mengikut Tarikh"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Add-ons Digunakan mengikut Tarikh"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Add-ons Dikemaskini mengikut Tarikh"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Penggunaan Aplikasi mengikut Tarikh"
 
 msgid "Collections Created by Date"
 msgstr "Koleksi Dicipta mengikut Tarikh"
 
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Sumbangan mengikut Tarikh"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Dimuat turun mengikut Tarikh"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Bagaimana muat turun dikira?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Bagaimana muat turun dikira?</h2> <p> Bilangan muat turun dikemaskini setiap petang dan hanya mengira muat turun yang asal, bukan kemaskini. Muat turun boleh diasingkan mengikut sumber tertentu "
+"yang merujuk kepada muat turun. </p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Bahasa pengguna mengikut Tarikh"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Penggunaan platform mengikut Tarikh"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Muat turun"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Memuatkan..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Purata Pengguna Harian"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Aplikasi Teratas"
 
 msgid "See more applications&hellip;"
 msgstr "Lihat lebih banyak aplikasi&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Bahasa Teratas"
 
 msgid "See more languages&hellip;"
 msgstr "Lihat lebih banyak bahasa&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Platform Teratas"
 
 msgid "See more platforms&hellip;"
 msgstr "Lihat lebih banyak platform&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Penarafan mengikut Tarikh"
 
 msgid "Reviews Created by Date"
 msgstr "Ulasan Dibuat mengikut Tarikh"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Sumber muat turun mengikut Tarikh"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Perihal menjejak sumber luar..."
 
 #, python-format
 msgid ""
@@ -7883,37 +7885,46 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Menjejak sumber luar</h2> <p> Jika anda pautkan halaman butiran add-on anda atau terus ke fail daripada laman luar, seperti blog atau laman web, anda boleh tambah parameter yang akan dikesan "
+"sebagai sumber muat turun tambahan dalam laman ini. Sebagai contoh, pautan berikut akan muncul sebagai sumber daripada blog anda: <dl> <dt>Halaman Butiran Add-on</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Pautan Fail Terus</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Hanya parameter src yang mula dengan \"external-\" akan dikesan, sehingga 61 aksara tambahan. Teks lain selepas \"external-\" boleh digunakan untuk menjelaskan sumber, "
+"seperti \"external-blog\", \"external-sidebar\", \"external-campaign225\", dsb. Aksara URL-selamat berikut juga dibenarkan: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Status Add-ons mengikut Tarikh"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Pelanggan mengikut Tarikh"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Pengguna Harian mengikut Tarikh"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Siapakah pengguna harian?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Siapakah pengguna harian?</h2> <p> Tema yang dipasang dari laman ini diperiksa untuk dikemaskini sekali pada setiap hari. Bilangan ping kemaskini ini dikenali sebagai Pengguna Aktif Harian, atau"
+" bilangan pengguna tema anda mengikut hari. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Siapakah pengguna harian?</h2> <p> Add-ons yang dimuat turun dari laman ini diperiksa untuk dikemaskini sekali pada setiap hari. Bilangan ping kemaskini ini dikenali sebagai Pengguna Aktif "
+"Harian. Pengguna harian boleh dipecahkan mengikut versi add-on, sistem operasi, status add-on, aplikasi dan lokaliti. </p>"
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Pendaftaran Pengguna mengikut Tarikh"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Versi Aplikasi mengikut Tarikh"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Add-ons Mozilla"
 
 msgid "Find add-ons for other applications"
 msgstr "Cari add-ons untuk aplikasi lain"
@@ -7925,48 +7936,50 @@ msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Untuk mencipta koleksi anda sendiri, anda mesti ada akaun Add-ons Mozilla."
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo pembawah"
 
 msgid "Choose a category"
-msgstr ""
+msgstr "Pilih kategori"
 
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Papar Laman Mobile"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Laporkan pepijat"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Kecuali sebaliknya <a href=\"https://www.mozilla.org/about/legal/\">dijelaskan</a>, kandungan laman ini dilesenkan di bawah <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> atau versi yang kemudian."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>add-ons</b>"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Bahasa lain"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Kembali ke halaman utama Add-ons {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "Add-ons <img alt=\"\" src=\"{0}\">"
 
 msgid "My Account"
-msgstr ""
+msgstr "Akaun Saya"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Selamat datang, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7974,142 +7987,142 @@ msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Log masuk</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Untuk mencuba beribu-ribu ads-ons yang tersedia di sini, muat turun <a href=\"%(url)s\">Firefox Mozilla</a>, pelayar Web yang pantas dan percuma!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Selamat datang ke Add-ons {0}."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Pilih satu daripada ribuan ciri dan gaya tambahan untuk menjadikan Firefox milik anda."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Tambah ciri dan gaya tambahan untuk menjadikan %(app)s milik anda."
 
 msgid "On the go?"
-msgstr ""
+msgstr "Di mana-mana sahaja?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Tinjau <a class=\"mobile-link\" href=\"#\">laman Add-ons Mobile</a> kami."
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Add-ons Android"
 
 msgid "required"
-msgstr ""
+msgstr "diperlukan"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Medan diperlukan"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Terjemahkan ke: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Lokaliti Sedia Ada"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Lokaliti Baru"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Anda ada perubahan yang belum disimpan dalam lokaliti <b>{0}</b>. Adakah anda mahu simpan perubahan ini sebelum menukar lokaliti?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Buang Perubahan"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Adakah anda pasti mahu menghapuskan semua terjemahan <b>{0}</b>? Ini tidak boleh dibatalkan."
 
 msgid "Delete Locale"
 msgstr "Hapus Lokaliti"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mel hendaklah {email}."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Papar Nama"
 
 msgid "Location"
-msgstr ""
+msgstr "Lokasi"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Pekerjaan"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Pengguna Akaun Firefox buat masa sekarang tidak boleh menukar alamat e-mel mereka."
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Foto Profil"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "URL ini mempunyai format yang tidak sah. URL yang sah seperti ini http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Untuk menjadi anonimus, masukkan alasan untuk mengubahnya tapi jangan ubah medan yang lain."
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "Sila masukkan sekurang-kurangnya satu nama untuk ditolak."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Tiada pengguna dengan e-mel berkenaan."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Pengguna anonimus {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Add-ons Mobile Saya"
 
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "pembangun add-on mengucapkan terima kasih kepada saya atas sumbangan"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "pembangun add-on membalas ulasan saya"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "add-ons atau ciri baru Firefox sudah tersedia"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "keserasian add-on saya berjaya dipertingkatkan"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "add-on berasaskan-sdk saya berjaya dipertingkatkan"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "seseorang menulis ulasan untuk add-on saya"
 
 msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr ""
+msgstr "sentiasa dimaklumkan dengan berita dan acara berkaitan pembangun add-on"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "keserasian add-on saya tidak boleh dipertingkatkan"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "add-on berasaskan-sdk saya tidak boleh dipertingkatkan"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "add-on saya diulas oleh penyemak"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla perlu menghubungi saya perihal add-on individu saya"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Notifikasi Pengguna"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Alamat e-mel diperlukan."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Pengguna dengan alamat e-mel ini tidak wujud."
 
 msgid "Profile Deleted"
 msgstr "Profil Dihapuskan"
@@ -8118,19 +8131,19 @@ msgid "Photo Deleted"
 msgstr "Foto Dihapuskan"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil Dikemaskini"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Ada Ralat"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Ada ralat dalam perubahan yang anda buat. Sila betulkannya dan hantar semula."
 
 msgid "User reported."
-msgstr ""
+msgstr "Pengguna dilaporkan."
 
 msgid "new"
-msgstr ""
+msgstr "baru"
 
 msgid "Delete User Account"
 msgstr "Hapus Akaun Pengguna"
@@ -8148,16 +8161,16 @@ msgstr "Dengan mengklik \"hapus\" akaun anda akan <strong>dihapuskan secara keka
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Anda tidak boleh lagi log masuk ke %(site)s."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Ulasan dan penarafan tidak akan dihapuskan, tapi tidak akan dikaitkan lagi dengan anda."
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Sahkan penghapusan akaun"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Saya faham bahawa langkah ini tidak boleh dibatalkan."
 
 msgid "Delete my user account now"
 msgstr "Hapus akaun pengguna saya sekarang"
@@ -8169,44 +8182,44 @@ msgid "Delete my user picture now"
 msgstr "Hapus foto pengguna saya sekarang"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Sila tetapkan nama paparan anda"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Sila tetapkan nama paparan atau nama pengguna anda untuk melengkapkan proses pendaftaran."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Urus maklumat asas akaun, seperti nama pengguna dan tetapan Akaun Firefox anda."
 
 msgid "Username"
-msgstr ""
+msgstr "Nama pengguna"
 
 msgid "Email Address"
-msgstr ""
+msgstr "Alamat E-mel"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Urus Akaun Firefox..."
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "Berikan kami sedikit maklumat diri anda. Semua medan ini adalah pilihan, tetapi akan dapat membantu pengguna lain mengenali anda dengan lebih baik."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "URL ini hanya dapat dilihat jika anda seorang pembangun."
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Pilih Foto&hellip;"
 
 msgid "Delete current photo"
 msgstr "Hapus foto semasa"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Kenalkan diri anda kepada komuniti, jika anda mahu! Teks ini akan dipamerkan kepada umum dalam halaman info pengguna anda."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "HTML dizinkan: %(html)s. Pautan dilarang."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Tentukan koleksi yang patut dipaparkan dalam profil anda."
@@ -8218,79 +8231,79 @@ msgid "Display collections I'm following"
 msgstr "Papar koleksi yang saya ikuti"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Notifikasi"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Dari masa ke semasa, Mozilla akan menghantar e-mel kepada anda perihal keluaran dan acara add-on akan datang. Sila pilih topik yang anda minati."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla ada hak untuk menghubungi anda secara individu perihal keprihatinan tertentu terhadap pengehosan add-on anda."
 
 msgid "Admin"
-msgstr ""
+msgstr "Pentadbir"
 
 msgid "Delete Account"
 msgstr "Hapus Akaun"
 
 msgid "Update Account"
-msgstr ""
+msgstr "Kemaskini Akaun"
 
 msgid "none"
-msgstr ""
+msgstr "nol"
 
 msgid "all"
-msgstr ""
+msgstr "semua"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Add-ons Mozilla dalam peralihan ke Akaun Firefox untuk log masuk. Meneruskan proses log masuk lengkap yang mudah."
 
 msgid "User Login"
-msgstr ""
+msgstr "Log Masuk Pengguna"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Log masuk dengan Akaun Firefox"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Set semula Kata laluan"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Info pengguna untuk {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Edit profil"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Urus pengguna"
 
 msgid "Report user"
-msgstr ""
+msgstr "Lapor pengguna"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Pembangun Add-ons"
 
 msgid "Themes Artist"
-msgstr ""
+msgstr "Artis Tema"
 
 msgid "About me"
 msgstr "Perihal diri saya"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Agak lebih terperinci..."
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Add-ons yang saya cipta"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Tema Saya Paling Popular"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Tema yang saya cipta"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Yang Saya Ikuti"
 
 msgid "Created by Me"
-msgstr ""
+msgstr "Yang Saya Cipta"
 
 msgid "My Reviews"
 msgstr "Ulasan Saya"
@@ -8299,153 +8312,153 @@ msgid "No add-on reviews yet."
 msgstr "Masih tiada ulasan add-on."
 
 msgid "Report User"
-msgstr ""
+msgstr "Lapor Pengguna"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Sila jelaskan kenapa anda melaporkan pengguna ini seperti spam atau gambar tidak sesuai."
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Lapor pengguna {0}"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Nyahlanggan"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Anda berjaya nyahlanggan!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Alamat e-mel <strong>%(email)s</strong> tidak akan menerima mesej lagi apabila:"
 
 msgid "More Actions:"
-msgstr ""
+msgstr "Tindakan Lanjutan:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "edit tetapan notifikasi anda"
 
 msgid "edit your profile"
-msgstr ""
+msgstr "edit profil anda"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Kami tidak dapat membatalkan langganan anda"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Malangnya, kami tidak dapat membatalkan langganan anda. Pautan yang anda klik tidak sah. Tapi, anda masih boleh membatalkan langganan anda dalam <a href=\"%(edit_url)s\">halaman edit profil</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Maklumat Pembangun"
 
 msgid "User since"
-msgstr ""
+msgstr "Pengguna semenjak"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Masa log masuk terakhir"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "Alamat IP log masuk terakhir"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Bilangan add-ons yang dibangunkan"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-ons"
 
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s tema"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s add-ons"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Penarafan purata pembangun add-ons"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "lain-lain"
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Sejarah Versi"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Sejarah Versi dengan Changelogs"
 
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Add-on menggunakan komponen binari."
 
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Add-on memilih semakan keserasian yang teliti."
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} dan kemudian"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Pautan kekal ke versi ini"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Dikeluarkan {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Kod sumber dikeluarkan di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "Sejarah Versi {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> versi"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Berhati-hati dengan versi lama!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Versi ini dipaparkan bagi tujuan rujukan dan ujian. Anda perlu sentiasa gunakan add-on <a href=\"%(url)s\">versi terkini</a>."
 
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Versi Max. Semasa"
 
 msgid "Target Version"
-msgstr ""
+msgstr "Versi Sasaran"
 
 msgid "Email when finished"
-msgstr ""
+msgstr "E-mel apabila selesai"
 
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Log e-mel bukan menghantar"
 
 msgid "Deleted versions can`t be changed."
 msgstr "Versi yang dihapuskan tidak boleh diubah."
 
 msgid "Binary"
-msgstr ""
+msgstr "Binari"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "Bukan-binari"
 
 msgid "Message ID"
-msgstr ""
+msgstr "ID Mesej"
 
 msgid "Message"
-msgstr ""
+msgstr "Mesej"
 
 msgid "Compat Type"
-msgstr ""
+msgstr "Jenis Padat"
 
 msgid "Addons Affected"
-msgstr ""
+msgstr "Add-ons Terkesan"
 
 msgid "Addon"
-msgstr ""
+msgstr "Add-on"
 
 msgid "Validation Result"
-msgstr ""
+msgstr "Keputusan Pengesahan"

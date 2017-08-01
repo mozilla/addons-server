@@ -199,7 +199,6 @@
     {% block site_js %}
       <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
       {{ js('impala') }}
-      <script async defer src="{{ CDN_HOST }}{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block js_extras %}{% endblock %}

@@ -67,7 +67,7 @@ class announcements(_NOTIFICATION):
     group = 'dev'
     short = 'announcements'
     label = _('stay up-to-date with news and events relevant to add-on '
-              'developers')
+              'developers (including the about:addons newsletter)')
     mandatory = False
     default_checked = False
 

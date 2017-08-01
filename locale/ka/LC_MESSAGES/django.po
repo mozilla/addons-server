@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-26 16:35+0000\n"
+"PO-Revision-Date: 2017-07-31 13:22+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -149,7 +149,7 @@ msgid "Describe your Theme."
 msgstr "აღწერეთ თქვენი თემა."
 
 msgid "Enter a new author's email address"
-msgstr "შეიყვანეთ ავტორის ახალი ელ-ფოსტის მისამართი"
+msgstr "შეიყვანეთ ავტორის ახალი ელფოსტის მისამართი"
 
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "მომხმარებლებს შეუძლიათ ამ რაოდენობაზე მეტი ან ნაკლები თანხის შემოწირვა."
@@ -455,7 +455,7 @@ msgid "{0} Daily Users"
 msgstr "{0} მომხმარებელი დღეში"
 
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ამ და სხვა ათასობით დამატების დასაყენებლად, <b>ჩამოტვირთეთ Firefox</b>, უფასო და ღია ვებ-ბრაუზერი Mozilla-სგან."
+msgstr "ამ და სხვა ათასობით დამატების დასაყენებლად, <b>ჩამოტვირთეთ Firefox</b>, უფასო და ღია ბრაუზერი Mozilla-სგან."
 
 msgid "Learn more about Firefox"
 msgstr "გაიგეთ მეტი Firefox-ის შესახებ"
@@ -471,13 +471,13 @@ msgstr ""
 " ველის გვერდზე, პარამეტრების ღილაკით აირჩიეთ \"დამატების დაყენება ფაილიდან...\" და მიუთითეთ ჩამოტვირთული დამატების მდებარეობა.</li></ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "ამ თემის დასაყენებლად, <b>ჩამოტვირთეთ Thunderbird</b>, უფასო და ღია ელ-ფოსტის კლიენტი პროგრამა Mozilla Messaging-სგან და ჩააყენეთ Personas Plus დამატება."
+msgstr "ამ თემის დასაყენებლად, <b>ჩამოტვირთეთ Thunderbird</b>, უფასო და ღია ელფოსტის კლიენტი პროგრამა Mozilla Messaging-სგან და ჩააყენეთ Personas Plus დამატება."
 
 msgid "Learn more about Thunderbird"
 msgstr "გაიგეთ მეტი Thunderbird-ის შესახებ"
 
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ამ და სხვა ათასობით თემის დასაყენებლად, <b>ჩამოტვირთეთ Firefox</b>, უფასო და ღია ვებ-ბრაუზერი Mozilla-სგან."
+msgstr "ამ და სხვა ათასობით თემის დასაყენებლად, <b>ჩამოტვირთეთ Firefox</b>, უფასო და ღია ბრაუზერი Mozilla-სგან."
 
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
@@ -574,7 +574,7 @@ msgid "Submit review"
 msgstr "შეფასების გაგზავნა"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "გთხოვთ, ხარვეზების შესახებ აქ არ დაწეროთ. შემმუშავებლებისთვის თქვენი ელ-ფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ."
+msgstr "გთხოვთ, ხარვეზების შესახებ აქ არ დაწეროთ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ."
 
 #, python-format
 msgid ""
@@ -703,7 +703,7 @@ msgid "Support site"
 msgstr "მხარდაჭერის საიტი"
 
 msgid "Support E-mail"
-msgstr "მხარდაჭერის ელ-ფოსტა"
+msgstr "მხარდაჭერის ელფოსტა"
 
 msgid "Info"
 msgstr "ინფორმაცია"
@@ -982,10 +982,10 @@ msgid "Maintenance in progress"
 msgstr "მიმდინარეობს ტექნიკური სამუშაოები"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "ვებ-საიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "ვებ-საიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გთხოვთ, სცადოთ ხელახლა, ცოტა მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
 
 msgid "Are you human?"
 msgstr "ადამიანი ხართ?"
@@ -2019,7 +2019,7 @@ msgid "Application max version for {version} updated."
 msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელ-ფოსტით."
+msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელფოსტით."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr "დამატების თავსებადობის შესახებ შეტყობინება გაეგზავნა ავტორს."
@@ -2363,7 +2363,7 @@ msgid "Tabs"
 msgstr "ჩანართები"
 
 msgid "Web Development"
-msgstr "ვებ-შემუშავება"
+msgstr "ვებშემუშავება"
 
 msgid "Animals"
 msgstr ""
@@ -2417,7 +2417,7 @@ msgid "Photos & Images"
 msgstr ""
 
 msgid "Shopping & E-Commerce"
-msgstr "ვაჭრობა და ელ-კომერცია"
+msgstr "ვაჭრობა და ელკომერცია"
 
 msgid "Social & People"
 msgstr ""
@@ -2456,7 +2456,7 @@ msgid "Solid"
 msgstr ""
 
 msgid "Websites"
-msgstr "ვებ-გვერდები"
+msgstr "ვებგვერდები"
 
 msgid "Device Features & Location"
 msgstr "მოწყობილობის შესაძლებლობები & ადგილმდებარეობა"
@@ -3219,7 +3219,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"თუ თქვენს დამატებას აქვს საკუთარი ვებ-გვერდი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+"თუ თქვენს დამატებას აქვს საკუთარი ვებგვერდი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Images"
 msgstr ""
@@ -3235,7 +3235,7 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"თუ გსურთ, ელ-ფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა.შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
+"თუ გსურთ, ელფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა.შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
 "გამოქვეყნებულ დამატებებს."
 
 msgid "Website"
@@ -3245,7 +3245,7 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"თუ თქვენს დამატებას აქვს განსახილველი საიტი ან ფორუმი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ "
+"თუ თქვენს დამატებას აქვს განსახილველი საიტი ან ფორუმი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებგვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ "
 "დამატებებს."
 
 msgid "Technical Details"
@@ -3284,7 +3284,7 @@ msgid "View Source?"
 msgstr ""
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებ-მნახველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებმიმომხილველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr ""
@@ -3296,7 +3296,7 @@ msgid "Public Stats?"
 msgstr ""
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "თქვენი დამატების ჩამოტვირთვების და გამოყენების სტატისტიკის ჩვენება ვებ-მნახველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+msgstr "თქვენი დამატების ჩამოტვირთვების და გამოყენების სტატისტიკის ჩვენება ვებმიმომხილველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr ""
@@ -3552,7 +3552,7 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 msgid "Support email:"
-msgstr "მხარდაჭერის ელ-ფოსტა:"
+msgstr "მხარდაჭერის ელფოსტა:"
 
 msgid "Support website:"
 msgstr "მხარდაჭერის საიტი:"
@@ -7774,7 +7774,7 @@ msgstr ""
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "აქ ხელმისაწვდომი ათასობით დამატების გამოსაცდელად, ჩამოტვირთეთ <a href=\"%(url)s\">Mozilla Firefox</a>, სწრაფი, უფაზო საშუალება ვებ-სერფინგისთვის!"
+msgstr "აქ ხელმისაწვდომი ათასობით დამატების გამოსაცდელად, ჩამოტვირთეთ <a href=\"%(url)s\">Mozilla Firefox</a>, სწრაფი და უფასო საშუალება ინტერნეტში სამოგზაუროდ!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."

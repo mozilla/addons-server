@@ -298,7 +298,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
 
     # Django specific templates
-    r'^registration\/password_reset_subject.txt'
+    r'^registration\/',
 )
 
 TEMPLATES = [
