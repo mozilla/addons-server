@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-30 16:37+0000\n"
+"PO-Revision-Date: 2017-08-02 17:08+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1137,7 +1137,7 @@ msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applic
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "Tenk på at WebExtensions ikkje kjem å godta ein \"*\" i <a href=\"%(version_url)s\">strict_min_version</a>."
 
 msgid "GUID"
 msgstr "GUID"
