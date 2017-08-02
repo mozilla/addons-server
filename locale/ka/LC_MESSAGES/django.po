@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-31 13:22+0000\n"
+"PO-Revision-Date: 2017-08-02 01:15+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -326,7 +326,7 @@ msgid "Featured Themes"
 msgstr "გამორჩეული თემები"
 
 msgid "Featured Collections"
-msgstr "რეკლამირებული კოლექციები"
+msgstr "რჩეული კრებულები"
 
 msgid "Sort by:"
 msgstr "დალაგება:"
@@ -870,7 +870,7 @@ msgid "Account Settings"
 msgstr "ანგარიშის პარამეტრები"
 
 msgid "My Collections"
-msgstr "ჩემი კოლექციები"
+msgstr "ჩემი კრებულები"
 
 msgid "My Favorites"
 msgstr "ჩემი რჩეულები"
@@ -1018,10 +1018,10 @@ msgid "Most Followers"
 msgstr "ყველაზე მეტი მიმდევარი"
 
 msgid "Collections"
-msgstr "კოლექციები"
+msgstr "კრებულები"
 
 msgid "Collections I've Made"
-msgstr "ჩემ მიერ შექმნილი კოლექციები"
+msgstr "ჩემ მიერ შექმნილი კრებულები"
 
 msgid "Collections I'm Following"
 msgstr ""
@@ -1273,7 +1273,7 @@ msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> მიმდევარი"
 
 msgid "About this Collection"
-msgstr "ამ კოლექციის შესახებ"
+msgstr "კრებულის შესახებ"
 
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr "ჩემს მობილურ Firefox-ზე სინქრონირებული დამატებები"
