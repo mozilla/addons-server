@@ -2,7 +2,7 @@ language: python
 sudo: false
 
 python:
-  - "pypy-5.8.0"
+  - "pypy"
 
 env:
   global:
