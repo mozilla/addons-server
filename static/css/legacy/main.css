@@ -2299,6 +2299,11 @@ ol.pagination + .num-results {
     float: left;
 }
 
+.html-rtl .separated-listing .collector-note strong {
+  float: right;
+  margin-left: 1px;
+}
+
 .separated-listing .item img.icon {
     overflow: hidden;
 }
