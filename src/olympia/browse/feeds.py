@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed
@@ -89,7 +89,7 @@ class ExtensionCategoriesRss(CategoriesRss):
     category = None
     request = None
     TYPE = amo.ADDON_EXTENSION
-    title = ugettext('Extensions')
+    title = _('Extensions')
 
     def description(self, category):
         """Description for the feed as a whole."""
@@ -104,7 +104,7 @@ class ThemeCategoriesRss(CategoriesRss):
     category = None
     request = None
     TYPE = amo.ADDON_THEME
-    title = ugettext('Themes')
+    title = _('Themes')
 
     def description(self, category):
         """Description for the feed as a whole."""
@@ -116,7 +116,6 @@ class ThemeCategoriesRss(CategoriesRss):
 
 
 class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
-
     request = None
 
     def get_object(self, request):
@@ -145,7 +144,6 @@ class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
 
 
 class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
-
     category = None
     request = None
     TYPES = None
