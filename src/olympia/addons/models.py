@@ -1129,7 +1129,9 @@ class Addon(OnChangeMixin, ModelBase):
         latest_version = self.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
 
-        return latest_version is not None and latest_version.files.exists()
+        return (latest_version is not None and
+                latest_version.files.exists() and
+                not any(file.reviewed for file in latest_version.all_files))
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
