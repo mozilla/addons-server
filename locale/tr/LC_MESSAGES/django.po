@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-05-18 14:57+0000\n"
-"Last-Translator: ilkeryus <ilkeryus@gmail.com>\n"
+"PO-Revision-Date: 2017-08-02 10:00+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -171,8 +171,8 @@ msgstr "Listelenen"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 msgid "Contribution for {0}"
 msgstr "{0} için bağış"
 
@@ -216,9 +216,9 @@ msgstr "Bu eklentinin geliştiricisi, <a href=\"%(charity_url)s\">%(charity_name
 msgid "Contribute"
 msgstr "Bağışta Bulun"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 msgid "or"
 msgstr "veya"
 
@@ -248,16 +248,13 @@ msgid "Help support the continued development of <strong>%(addon_name)s</strong>
 msgstr "<strong>%(addon_name)s</strong> eklentisinin süren gelişimini desteklemek için <a href=\"%(paypal_url)s\">PayPal</a> üzerinden küçük bir katkıda bulunun."
 
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 "<b>%(addon_name)s</b> eklentisine desteğinizi göstermeniz için, geliştirici, <a href=\"%(paypal_url)s\">PayPal</a> üzerinden <a href=\"%(charity_url)s\">%(charity_name)s</a> kurumuna bağışta "
 "bulunmanızı rica ediyor."
 
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 "<b>%(addon_name)s</b> eklentisine desteğinizi göstermeniz için, geliştirici, <a href=\"%(paypal_url)s\">PayPal</a> üzerinden <a href=\"%(charity_url)s\">%(charity_name)s</a> kurumuna küçük bir "
 "bağışta bulunmanızı rica ediyor."
@@ -301,10 +298,10 @@ msgstr "Şimdilik kalsın"
 msgid "Contribution made, thank you."
 msgstr "Katkıda bulunuldu, teşekkürler."
 
-# 76%
-# 100%
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
+# 76%
+# 100%
 msgid "End-User License Agreement for {0}"
 msgstr "{0} Son Kullanıcı Lisans Anlaşması"
 
@@ -532,8 +529,8 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Bu Persona %(app)s %(new_version)s gerektiriyor. Siz şu anda %(app)s {old_version} kullanıyorsunuz."
 
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 "<strong>Dikkat:</strong> Bu eklenti Mozilla tarafından incelenmemiştir. Bu yüzden Firefox 43 ve üstü sürümlere yüklenemez.  Bilgisayarınıza zarar verebilecek üçüncü parti yazılımları kurarken "
 "dikkatli olun."
@@ -605,8 +602,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Hazırda yardım olup olmadığını öğrenmek için bu eklentinin <a href=\"%(support)s\">destek bölümüne</a> bakın. Ayrıca <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support"
-"\">eklenti topluluğundan</a> yardım istemeyi deneyebilirsiniz."
+"Hazırda yardım olup olmadığını öğrenmek için bu eklentinin <a href=\"%(support)s\">destek bölümüne</a> bakın. Ayrıca <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">eklenti topluluğundan</a> yardım istemeyi deneyebilirsiniz."
 
 msgid "Review Guidelines"
 msgstr "İnceleme Yönergesi"
@@ -781,8 +778,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. (Örneğin, sekme yönetimi yapan bir eklenti, tarayıcınızın sekme sistemine erişmek için izin isteyecektir.)"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 "Firefox’unuzu siz kontrol ettiğiniz için, bu istekleri kabul veya reddetmek sizin seçiminizdir. İzinleri kabul etmek, tarayıcınızın performansını veya güvenliğini normal koşullarda tehlikeye atmaz "
 "ama bazı ender durumlarda risk olabilir."
@@ -796,8 +793,8 @@ msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
 msgid "Thank you for installing {0}"
 msgstr "{0} eklentisini kurduğunuz için teşekkürler"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 msgid "Meet the {0} Developer"
 msgstr "{0} Geliştiricisiyle Tanışın"
 
@@ -994,8 +991,8 @@ msgstr "Bulunamadı"
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
@@ -1403,8 +1400,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 
 msgid "My favorite add-ons"
@@ -1894,8 +1891,8 @@ msgstr "Eklenti Uyumluluk Raporları"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> <a href=\"%(url_)s\">Eklenti Uyumluluk Bildirici</a> aracılığıyla bize gönderilen raporlar geliştiricilerin değerlendirmesi için toplanır. Bu raporlar bize hangi eklentilerin gelecek Firefox "
 "sürümünü destekleyeceğine karar vermemize yardımcı olur. </p>"
@@ -2541,7 +2538,7 @@ msgid "Abstract"
 msgstr "Soyut"
 
 msgid "Causes"
-msgstr ""
+msgstr "Gayeler"
 
 msgid "Fashion"
 msgstr "Moda"
@@ -2604,7 +2601,7 @@ msgid "Calendar and Date/Time"
 msgstr "Takvim ve Tarih/Saat"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "Sohbet ve anlık ileti"
 
 msgid "Message Composition"
 msgstr "İleti Yazımı"
@@ -2765,7 +2762,7 @@ msgid "What is your license's name?"
 msgstr "Lisansınızın ismi ne?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Lisans metninizi sağlayın."
 
 msgid "License text is required when choosing Other."
 msgstr "Diğer seçeneği seçildiğinde sözleşme metni girilmesi gerekir."
@@ -2833,7 +2830,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Yüklemenizde bir sorun oluştu. Lütfen tekrar deneyin."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Başarısız doğrulamayı geçersiz kıl"
 
 msgid "Submit my add-on for manual review."
 msgstr ""
@@ -2888,8 +2885,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -3037,8 +3033,8 @@ msgid "API key revoked"
 msgstr "API anahtarı iptal edildi"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 #, fuzzy
@@ -3200,9 +3196,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges."
@@ -3347,16 +3341,15 @@ msgstr ""
 "geçerlidir."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Eklentiniz bu uygulama için öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine e-"
-"posta gönderin."
+"Eklentiniz bu uygulama için öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine "
+"e-posta gönderin."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
-"Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve sekmeler, araç çubuğu veya twitter gibi kısa açıklamalar olmalıdır. En fazla {0} etiketiniz olabilir. Yalnızca listelenen "
-"eklentiler için geçerlidir."
+"Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve sekmeler, araç çubuğu veya twitter gibi kısa açıklamalar olmalıdır. En fazla {0} etiketiniz olabilir. Yalnızca listelenen eklentiler"
+" için geçerlidir."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3408,8 +3401,8 @@ msgid "Support Information for {0}"
 msgstr "{0} Eklenti Bilgileri"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3937,21 +3930,21 @@ msgstr "JWT sırrı"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
 msgstr "Hiçbir API kimlik bilginiz yok."
 
 msgid "Revoke"
-msgstr ""
+msgstr "İptal Et"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Kimlik bilgilerini iptal et ve yeniden oluştur"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Yeni kimlik bilgileri oluştur"
 
 msgid "Invisible"
 msgstr "Görünmez"
@@ -4301,8 +4294,8 @@ msgstr "Firefox için kullanımı kolay temalar"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
-"a>, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
+" you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 #, fuzzy
@@ -4497,8 +4490,8 @@ msgstr "Lisans sahibi; bu çalışmayı temel alacak çalışmaların yalnızca 
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
-"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka "
-"çalışmalara izin vermiyor."
+"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka çalışmalara"
+" izin vermiyor."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Temanız şu lisansla yayımlanacaktır:"
@@ -5407,10 +5400,10 @@ msgid "Reviewer Leaderboard"
 msgstr ""
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Henüz bir değerlendirme puanı verilmemiş."
 
 msgid "Rank"
-msgstr ""
+msgstr "Sıra"
 
 msgid "Score"
 msgstr "Puan"
@@ -5771,7 +5764,7 @@ msgid "Clear Search"
 msgstr "Aramayı Temizle"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Tema kilitlerimi serbest bırak"
 
 msgid "Interactive Theme Queue"
 msgstr "Etkinleşimli Tema Sırası"
@@ -6102,16 +6095,16 @@ msgid "Add some romance to your Firefox."
 msgstr "Mobile Firefox'la eşleştirilen eklentiler"
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Kalk ve hareket et!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Kendinizi aktif ve sağlıklı tutmak için bu fitness eklentilerini yükleyin."
 
 msgid "New &amp; Now"
 msgstr "Yeni Çıkanlar"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "En yeni, şu an sahip olunması gereken eklentileri edinin."
 
 msgid "Worry-free browsing"
 msgstr "Dertsiz tasasız gezinti"
@@ -6213,7 +6206,7 @@ msgid "Become a Test Pilot"
 msgstr "Test Pilotu olun"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
 
 msgid "Get Started"
 msgstr "Başlarken"
@@ -6231,7 +6224,7 @@ msgid "Armenia Dram"
 msgstr "Ermeni Dramı"
 
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Hollanda Antilleri Guldeni"
 
 msgid "Angola Kwanza"
 msgstr "Angola Kwanzası"
@@ -6752,10 +6745,10 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Harikaymış! Nasıl katkıda bulunabilirim?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Katkıda bulunmanın birçok yolu var. Eğer işin teknik tarafındaysanız:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -6768,15 +6761,14 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr ""
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Arkadaşlarına söyleyin! İnsanlara hangi eklentileri kullandığınızı gösterin."
 
 #, fuzzy, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -6790,9 +6782,7 @@ msgid "I have a question"
 msgstr "Geliştiriciye soru sorun"
 
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 
 #, python-format
@@ -6804,8 +6794,8 @@ msgstr "Bu sitede kim çalışıyor?"
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 #, fuzzy
@@ -7007,8 +6997,8 @@ msgstr "Eklentimi geliştirmek için tutabileceğim 3. şahıs geliştiriciler v
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 msgid "Can I host my own add-on?"
@@ -7057,8 +7047,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
-"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
+" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
 #, fuzzy
@@ -7067,8 +7057,8 @@ msgstr "Eklentimi incelenmek üzere nasıl gönderirim?"
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
+" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -7081,8 +7071,8 @@ msgid "What category do I choose for my add-on?"
 msgstr "Eklentim için hangi kategoriyi seçmeliyim?"
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
@@ -7115,9 +7105,9 @@ msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
+" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
+" href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
@@ -7214,10 +7204,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr ""
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 msgid ""
@@ -7265,9 +7255,10 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
 
 msgid "What are the different types of add-ons?"
@@ -7413,8 +7404,8 @@ msgid "What are beta add-ons?"
 msgstr "Koleksiyon nedir?"
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr ""
 
 msgid ""
@@ -7443,9 +7434,9 @@ msgstr "Kaynak Kodu Lisansı"
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
 
 #, fuzzy, python-format
@@ -7509,8 +7500,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -7757,7 +7748,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
 
 #, fuzzy
 msgid "You can't leave a review on your own add-on."
@@ -7781,10 +7772,10 @@ msgstr "{0} Eklentileri"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -7804,7 +7795,7 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Lütfen bir neden seçin:"
 
 #, fuzzy, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -8133,7 +8124,7 @@ msgid "User Signups"
 msgstr "Kullanıcı kayıtları"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Arşivlenmiş Veri"
 
 #, fuzzy
 msgid "Custom Date Range"
@@ -8163,8 +8154,8 @@ msgstr ""
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr ""
 
-# %1 is an add-on name.
 #. {0} is an add-on name
+# %1 is an add-on name.
 #, fuzzy
 msgid "Statistics for {0}"
 msgstr "{0} eklentisini gelecekte neler bekliyor?"
@@ -8219,7 +8210,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "Veri yok."
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
@@ -8328,11 +8319,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -8482,7 +8473,7 @@ msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Mevcut diller"
 
 #, fuzzy
 msgid "New Locales"
@@ -8521,7 +8512,7 @@ msgid "Occupation"
 msgstr "İstisna"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Firefox Hesapları kullanıcıları şu anda e-posta adreslerini değiştiremezler."
 
 #, fuzzy
 msgid "Profile Photo"
@@ -8534,7 +8525,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "Lütfen reddedilecek en az bir ad girin."
 
 msgid "No user with that email."
 msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
@@ -8542,7 +8533,7 @@ msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Adsız kullanıcı {id}"
 
 #, fuzzy
 msgid "My Mobile Add-ons"
@@ -8791,7 +8782,7 @@ msgid "My Most Popular Themes"
 msgstr "En Popüler"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Oluşturduğum temalar"
 
 msgid "Followed by Me"
 msgstr ""
@@ -8842,7 +8833,7 @@ msgid "edit your profile"
 msgstr "profilinizi düzenleyin"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Aboneliğinizi iptal edemedik"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -8863,7 +8854,7 @@ msgid "IP address of last login"
 msgstr "Son girilen IP adresi"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Geliştirilen eklentilerin sayısı"
 
 #, fuzzy
 msgid "{0} add-ons"
@@ -8960,7 +8951,7 @@ msgid "Non-binary"
 msgstr "İkili olmayan"
 
 msgid "Message ID"
-msgstr ""
+msgstr "Mesaj ID"
 
 msgid "Message"
 msgstr "Mesaj"
