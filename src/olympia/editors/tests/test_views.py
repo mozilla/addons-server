@@ -16,6 +16,7 @@ from lxml.html import fromstring, HTMLParser
 import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from freezegun import freeze_time
 
 from olympia import amo, core, reviews
 from olympia.amo.tests import (
@@ -240,6 +241,42 @@ class TestReviewLog(EditorTest):
         assert r.status_code == 200
         assert pq(r.content)('#log-listing tr:not(.hide)').length == 3
 
+    def test_start_filter(self):
+        with freeze_time('2017-08-01 10:00'):
+            self.make_approvals()
+
+        # Make sure we show the stuff we just made.
+        r = self.client.get(self.url, {'start': '2017-07-31'})
+
+        assert r.status_code == 200
+
+        doc = pq(r.content)('#log-listing tbody')
+
+        assert doc('tr:not(.hide)').length == 2
+        assert doc('tr.hide').eq(0).text() == 'youwin'
+
+    def test_start_default_filter(self):
+        with freeze_time('2017-07-31 10:00'):
+            self.make_approvals()
+
+        with freeze_time('2017-08-01 10:00'):
+            addon = Addon.objects.first()
+
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION, addon, addon.current_version,
+                user=self.get_user(), details={'comments': 'youwin'})
+
+        # Make sure the default 'start' to the 1st of a month works properly
+        with freeze_time('2017-08-03 11:00'):
+            r = self.client.get(self.url)
+
+            assert r.status_code == 200
+
+            doc = pq(r.content)('#log-listing tbody')
+
+            assert doc('tr:not(.hide)').length == 1
+            assert doc('tr.hide').eq(0).text() == 'youwin'
+
     def test_search_comment_exists(self):
         """Search by comment."""
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
@@ -350,28 +387,19 @@ class TestReviewLog(EditorTest):
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
             'commented')
 
+    @freeze_time('2017-08-03')
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
         unlisted_version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        invisible_al = ActivityLog.create(
-            amo.LOG.APPROVE_VERSION, addon, addon.current_version,
-            user=self.get_user(), details={'comments': 'foo'})
-        invisible_al.update(created=self.days_ago(1))
-
-        # This one is visible, we are filtering the logs by created>=today
-        # if no other filters are given.
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon, addon.current_version,
             user=self.get_user(), details={'comments': 'foo'})
 
         r = self.client.get(self.url)
         url = reverse('editors.review', args=[addon.slug])
-
-        # Only one entry in the log listing
-        assert pq(r.content)('#log-listing tbody tr[data-addonid]').length == 1
 
         link = pq(r.content)('#log-listing tbody tr[data-addonid] a').eq(1)
         assert link.attr('href') == url
