@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 14:48+0000\n"
+"PO-Revision-Date: 2017-08-03 03:23+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -677,7 +677,7 @@ msgstr "Não está disponível para a sua plataforma"
 
 #. L10n: {0} is an app name, {1} is the app version.
 msgid "Not available for {0} {1}"
-msgstr "Não está disponível para {0} {1}"
+msgstr "Não está disponível para o {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona com {app} {min} - {max}"
