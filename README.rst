@@ -44,7 +44,7 @@ You can join our mailing list at: https://mail.mozilla.org/listinfo/dev-addons
 Security Bug Reports
 --------------------
 
-This code and it’s associated production website are included in
+This code and its associated production website are included in
 Mozilla’s web and services `bug bounty program`_. If you find a security
 vulnerability, please submit it via the process outlined in the program
 and `FAQ pages`_. Further technical details about this application are
