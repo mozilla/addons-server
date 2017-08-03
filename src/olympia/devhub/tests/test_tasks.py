@@ -107,20 +107,29 @@ def _uploader(resize_size, final_size):
 
 class ValidatorTestCase(TestCase):
     def setUp(self):
+        # Because the validator calls dump_apps() once and then uses the json
+        # file to find out which appversions are valid, all tests running the
+        # validator need to create *all* possible appversions all tests using
+        # this class might need.
+
         # 3.7a1pre is somehow required to exist by
         # amo-validator.
         # The other ones are app-versions we're using in our
-        # tests
+        # tests.
         self.create_appversion('firefox', '2.0')
         self.create_appversion('firefox', '3.7a1pre')
         self.create_appversion('firefox', '38.0a1')
 
-        # Required for WebExtensions
+        # Required for WebExtensions tests.
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
+        self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '43.0')
 
-        # Required for Thunderbird tests
+        # Required for 57-specific tests.
+        self.create_appversion('firefox', '57.0')
+
+        # Required for Thunderbird tests.
         self.create_appversion('thunderbird', '42.0')
         self.create_appversion('thunderbird', '45.0')
 
@@ -801,6 +810,79 @@ class TestNewLegacyAddonRestrictions(ValidatorTestCase):
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_extensions_restricted']
+
+
+class TestUpgradeLegacyAddonRestrictions(ValidatorTestCase):
+    def setUp(self):
+        super(TestUpgradeLegacyAddonRestrictions, self).setUp()
+        self.create_switch('restrict-new-legacy-submissions')
+
+    def test_submit_legacy_upgrade(self):
+        # Works because it's not targeting >= 57.
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_legacy_upgrade_targeting_firefox_57(self):
+        # Should error since it's a legacy extension targeting 57.
+        file_ = get_addon_file('valid_firefox_addon_targeting_57.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        assert len(upload.processed_validation['messages']) == 1
+        assert upload.processed_validation['messages'][0]['type'] == 'error'
+        assert upload.processed_validation['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_extensions_max_version']
+        assert not upload.valid
+
+    def test_submit_legacy_upgrade_targeting_57_strict_compatibility(self):
+        # Should error just like if it didn't have strict compatibility, that
+        # does not matter: it's a legacy extension, it should not target 57.
+        file_ = get_addon_file(
+            'valid_firefox_addon_targeting_57_strict_compatibility.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        assert len(upload.processed_validation['messages']) == 1
+        assert upload.processed_validation['messages'][0]['type'] == 'error'
+        assert upload.processed_validation['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_extensions_max_version']
+        assert not upload.valid
+
+    def test_submit_webextension_upgrade_targeting_firefox_57(self):
+        # Should not error: it's targeting 57 but it's a webextension.
+        file_ = get_addon_file('valid_webextension_targeting_57.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'},
+                              file_kw={'is_webextension': True})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_dictionary_upgrade_targeting_firefox_57(self):
+        # Should not error: non-extensions types are not affected by the
+        # restriction, even if they target 57.
+        # FIXME
+        pass
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')

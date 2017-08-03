@@ -191,10 +191,15 @@ class RDFExtractor(object):
             'is_restart_required': (
                 self.find('bootstrap') != 'true' and
                 self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
-            'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',
         }
+        # We used to simply use the value of 'strictCompatibility' in the rdf
+        # to set strict_compatibility, but now we enable it or not for all
+        # legacy add-ons depending on their type. This will prevent them from
+        # being marked as compatible with Firefox 57.
+        self.data['strict_compatibility'] = (
+            self.data['type'] not in amo.NO_COMPAT)
         # `experiment` is detected in in `find_type`.
         self.data['is_experiment'] = self.is_experiment
         multiprocess_compatible = self.find('multiprocessCompatible')

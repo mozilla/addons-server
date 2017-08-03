@@ -531,6 +531,7 @@ class TestParseXpi(TestCase):
         # We detected it as a dictionary but it's not using the explicit
         # dictionary type, so it will require a restart.
         assert result['is_restart_required']
+        assert not result['strict_compatibility']
 
     def test_parse_dictionary_explicit_type(self):
         result = self.parse(filename='dictionary-explicit-type-test.xpi')
@@ -587,7 +588,9 @@ class TestParseXpi(TestCase):
 
     def test_strict_compat_undefined(self):
         result = self.parse()
-        assert not result['strict_compatibility']
+        # It's a legacy extension so it will always have strict compatibility
+        # enabled no matter what.
+        assert result['strict_compatibility']
 
     def test_strict_compat_enabled(self):
         result = self.parse(filename='strict-compat.xpi')
