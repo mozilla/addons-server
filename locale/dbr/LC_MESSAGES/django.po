@@ -164,7 +164,7 @@ msgid "Listed"
 msgstr "pǝʇsı⅂"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "„/„ ɥʇıʍ puǝ oʇ pǝǝu sɥʇɐd uoıʇɔǝʅʅoɔ puɐ uopp∀"
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -1534,9 +1534,9 @@ msgstr ".<a href=\"%(url)s\">uʍo ɹnoʎ ǝʇɐǝɹɔ</a> ɹo sɹǝsn ɹǝɥʇo 
 msgid "Subscribe"
 msgstr "ǝqıɹɔsqnS"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "%(users)s ʎq"
+msgstr "%(author_link)s ʎq"
 
 msgid "Following"
 msgstr "ƃuıʍoʅʅoℲ"
@@ -2900,7 +2900,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "„ƃɹo.ɐʅʅızoɯ@„ ƃuıpuǝ pınƃ ɐ ɥʇıʍ uo-ppɐ uɐ ʇıɯqns ʇouuɐɔ no⅄"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "uoısuǝʇxƎ pǝuƃıS ɐʅʅızoW ɐ ʇıɯqns ʇouuɐɔ no⅄"
 
 msgid "Icons cannot be animated."
 msgstr ".pǝʇɐɯıuɐ ǝq ʇouuɐɔ suoɔI"
@@ -2952,23 +2952,21 @@ msgstr "pǝʇɐǝɹɔ ʎǝʞ IԀ∀ ʍǝN"
 msgid "API key revoked"
 msgstr "pǝʞoʌǝɹ ʎǝʞ IԀ∀"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
-msgstr ".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇI .ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
+msgstr ""
+".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ǝɥ⊥ .sǝʅnᴚ puɐ sǝıɔıʅoԀ ʍǝıʌǝᴚ ɹno sɐ ʅʅǝʍ sɐ ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ "
+"xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀"
+msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "sǝıɔıʅoԀ ʍǝıʌǝᴚ"
+msgstr "ʎɔıʅoԀ ʍǝıʌǝᴚ"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "sɹǝʍǝıʌǝᴚ"
+msgstr "sǝʅnᴚ ʍǝıʌǝᴚ"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇI .ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
@@ -2977,7 +2975,7 @@ msgid "Printable Version"
 msgstr "uoısɹǝɅ ǝʅqɐʇuıɹԀ"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "sǝıɔıʅoԀ puɐ sǝʅnᴚ ǝɥʇ puɐ ʇuǝɯǝǝɹƃ∀ sıɥʇ ʇdǝɔɔɐ puɐ pɐǝɹ ǝʌɐɥ I"
 
 msgid "I Accept this Agreement"
 msgstr "ʇuǝɯǝǝɹƃ∀ sıɥʇ ʇdǝɔɔ∀ I"
@@ -3222,18 +3220,17 @@ msgstr ".ʅɐʇuǝɯıɹǝdxǝ sı uo-ppɐ sıɥ⊥"
 msgid "This add-on is ready for general use."
 msgstr ".ǝsn ʅɐɹǝuǝƃ ɹoɟ ʎpɐǝɹ sı uo-ppɐ sıɥ⊥"
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "ʇɹɐʇsǝᴚ sǝɹınbǝᴚ"
+msgstr "¿ʇuǝɯʎɐԀ sǝɹınbǝᴚ"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr ".ʞɹoʍ oʇ ɹǝpɹo uı poıɹǝd ʅɐıɹʇ ɐ ɹǝʇɟɐ ɹo ʇuoɹɟdn ʇuǝɯʎɐd ɟo ɯɹoɟ ǝɯos ǝɹınbǝɹ sǝɹnʇɐǝɟ ǝɹoɔ s,uo-ppɐ sıɥʇ ɟı xoq sıɥʇ ʞɔǝɥↃ"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr ".ǝɹɐʍpɹɐɥ ʅɐuoıʇıppɐ ɹo ´ǝɹɐʍʇɟos ɹo sǝɔıʌɹǝs ǝǝɹɟ-uou ´ʇuǝɯʎɐd sǝɹınbǝɹ uo-ppɐ sıɥ⊥"
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr ".ǝɹɐʍpɹɐɥ ʅɐuoıʇıppɐ ɹo ǝɹɐʍʇɟos ɹo sǝɔıʌɹǝs pıɐd ´sʇuǝɯʎɐd ʅɐuoıʇıppɐ ʎuɐ ǝɹınbǝɹ ʇ,usǝop sı uo-ppɐ sıɥ⊥"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ǝɹnsodxǝ ʇsoɯ ǝɥʇ ɹoɟ ʎʇıʅɐuoıʇɔunɟ s,uo-ppɐ ɹnoʎ ʇıɟ ʇɐɥʇ ʎuɐ ǝsooɥↃ .suo-ppɐ ɥƃnoɹɥʇ ǝsʍoɹq sɹǝsn ʎɐʍ ʎɹɐɯıɹd ǝɥʇ ǝɹɐ sǝıɹoƃǝʇɐↃ"
@@ -3644,16 +3641,14 @@ msgstr "¿uo-ppɐ sıɥʇ ƃuıʍǝıʌǝɹ uǝɥʍ puıɯ uı ɹɐǝq pʅnoɥs 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ".sɹǝʍǝıʌǝɹ ɹno puɐ noʎ oʇ ǝʅqısıʌ ǝq ʎʅuo ʅʅıʍ sǝʇou ǝsǝɥ⊥"
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "uoısɹǝɅ ǝʅqɐsıᗡ puɐ ʍǝıʌǝᴚ ʅǝɔuɐↃ"
+msgstr "uoısɹǝɅ ǝʅqɐsıᗡ puɐ ʅǝɔuɐↃ"
 
 msgid "Cancel Review and Disable Version"
 msgstr "uoısɹǝɅ ǝʅqɐsıᗡ puɐ ʍǝıʌǝᴚ ʅǝɔuɐↃ"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "uoısɹǝɅ ʍǝN ɐ ʇıɯqnS"
+msgstr "uoısɹǝɅ ʇıɯqnS"
 
 msgid "Submit Version for Review"
 msgstr "ʍǝıʌǝᴚ ɹoɟ uoısɹǝɅ ʇıɯqnS"
@@ -3682,12 +3677,11 @@ msgstr "ǝʇǝʅdɯoↃ uoıssıɯqnS"
 msgid "You’re done!"
 msgstr "¡ǝuop ǝɹ’no⅄"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "pǝuƃıS uoısɹǝɅ"
+msgstr "pǝʇʇıɯqnS uoısɹǝɅ"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr ".ʎʅʇɹoɥs ǝʇıs ɹno uo ǝʅqɐʅıɐʌɐ ǝq ʅʅıʍ uoısɹǝʌ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
 
 msgid "Version Submitted for Review"
 msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
@@ -3934,7 +3928,7 @@ msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ǝpoɔ ǝɔɹ
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "%(allowed_html)s :⅂W⊥H pǝʍoʅʅ∀"
 
 msgid "Some HTML supported."
 msgstr ".pǝʇɹoddns ⅂W⊥H ǝɯoS"
@@ -3977,9 +3971,8 @@ msgstr "ƃoʅԐ ɹno uı ǝɹoɯ pɐǝᴚ"
 msgid "Resources"
 msgstr "sǝɔɹnosǝᴚ"
 
-#, fuzzy
 msgid "Porting"
-msgstr "ƃuıʇɐᴚ"
+msgstr "ƃuıʇɹoԀ"
 
 msgid "Community"
 msgstr "ʎʇıunɯɯoↃ"
@@ -3996,9 +3989,8 @@ msgstr "ƃoʅԐ"
 msgid "Contact Us"
 msgstr "s∩ ʇɔɐʇuoↃ"
 
-#, fuzzy
 msgid "Policies"
-msgstr "sǝıɔıʅoԀ uo-pp∀"
+msgstr "sǝıɔıʅoԀ"
 
 msgid "FAQ"
 msgstr "Ò∀Ⅎ"
@@ -4066,13 +4058,11 @@ msgstr "uo-pp∀ ɹno⅄ ǝƃɐuɐW"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "uo-pp∀ ɹno⅄ ǝʇɐpd∩ puɐ ʇıpƎ oʇ uI uƃıS"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "suoısuǝʇxƎ pǝɹnʇɐǝℲ"
+msgstr "uoısuǝʇxƎ ʎɔɐƃǝ⅂ ɹno⅄ ǝʇɐpd∩"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ".ǝʅqıʇɐdɯoɔ ʎɐʇs oʇ suo-ppɐ ʎɔɐƃǝʅ ɹnoʎ ǝʇɐpdn oʇ pǝǝu ʅʅ,no⅄ .xoɟǝɹıℲ uı ʇuǝɯdoʅǝʌǝp uo-ppɐ ɹoɟ pɹɐpuɐʇs ǝɥʇ ʍou ǝɹɐ suoısuǝʇxƎqǝＭ"
+msgstr ".ǝʅqıʇɐdɯoɔ ʎɐʇs oʇ suoısuǝʇxǝ ʎɔɐƃǝʅ ɹnoʎ ǝʇɐpdn oʇ pǝǝu ʅʅ,no⅄ .xoɟǝɹıℲ uı suoısuǝʇxǝ ƃuıdoʅǝʌǝp ɹoɟ pɹɐpuɐʇs ɹǝsʍoɹq-ssoɹɔ ´ʍǝu ɐ sı ǝɹǝɥ⊥"
 
 msgid "Learn How"
 msgstr "ʍoH uɹɐǝ⅂"
@@ -4081,11 +4071,10 @@ msgid "What's New"
 msgstr "ʍǝN s,ʇɐɥＭ"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr ".ssǝɔoɹd uoıssıɯqns ǝɥʇ uo ʅɐıɹoʇnʇ dǝʇs-ʎq-dǝʇs ɹno pɐǝᴚ ¿uo-ppɐ uɐ ʇıɯqns oʇ ʎpɐǝᴚ"
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "ʅʅɐ ǝǝS"
+msgstr "ʅɐıɹoʇn⊥ ǝǝS"
 
 msgid "View All Submissions"
 msgstr "suoıssıɯqnS ʅʅ∀ ʍǝıɅ"
@@ -4621,19 +4610,17 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sɹǝʞɔɐɹʇ ʎʞɐǝus doʇS"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr ".qǝＭ ǝɥʇ punoɹɐ noʎ ʍoʅʅoɟ ʇɐɥʇ spɐ ƃuıʎds puɐ sɹǝʞɔɐɹʇ ǝʅqısıʌuı ʞɔoʅԐ"
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʇıɹʍ ɹnoʎ ǝʌoɹdɯI"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr ".ɹǝsʍoɹq ɹnoʎ uı ʇɥƃıɹ ɹǝpɐǝɹɟooɹd ɐ sʇnd uoısuǝʇxǝ sıɥʇ ´sǝƃɐnƃuɐʅ +52 ƃuıʇɹoddnS"
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
@@ -4957,9 +4944,8 @@ msgstr "sʇɹodǝᴚ ǝsnq∀"
 msgid "View Privacy Policy"
 msgstr "ʎɔıʅoԀ ʎɔɐʌıɹԀ ʍǝıɅ"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "ʇɹɐʇsǝᴚ sǝɹınbǝᴚ"
+msgstr "ʇuǝɯʎɐԀ sǝɹınbǝᴚ"
 
 msgid "EULA"
 msgstr "∀⅂∩Ǝ"
@@ -8263,9 +8249,9 @@ msgstr "oʇoɥd ʇuǝɹɹnɔ ǝʇǝʅǝᗡ"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ".ǝƃɐd oɟuı ɹǝsn ɹnoʎ uo ʎʅɔıʅqnd ɹɐǝddɐ ʅʅıʍ ʇxǝʇ sıɥ⊥ ¡ǝʞıʅ noʎ ɟı ´ʎʇıunɯɯoɔ ǝɥʇ oʇ ɟʅǝsɹnoʎ ǝɔnpoɹʇuI"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ".uǝppıqɹoɟ ǝɹɐ sʞuı⅂ .{0} :⅂W⊥H pǝʍoʅʅ∀"
+msgstr ".uǝppıqɹoɟ ǝɹɐ sʞuı⅂ .%(html)s :⅂W⊥H pǝʍoʅʅ∀"
 
 msgid "Decide what collections should be shown in your profile."
 msgstr ".ǝʅıɟoɹd ɹnoʎ uı uʍoɥs ǝq pʅnoɥs suoıʇɔǝʅʅoɔ ʇɐɥʍ ǝpıɔǝᗡ"
