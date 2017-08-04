@@ -881,8 +881,17 @@ class TestUpgradeLegacyAddonRestrictions(ValidatorTestCase):
     def test_submit_dictionary_upgrade_targeting_firefox_57(self):
         # Should not error: non-extensions types are not affected by the
         # restriction, even if they target 57.
-        # FIXME
-        pass
+        file_ = get_addon_file('dictionary_targeting_57.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'},
+                              type=amo.ADDON_DICT)
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
