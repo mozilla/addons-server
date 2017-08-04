@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 22:49+0000\n"
+"PO-Revision-Date: 2017-08-04 23:01+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4697,7 +4697,7 @@ msgid "Uses nativeMessaging permission."
 msgstr "Brukar nativeMessaging-rettar."
 
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Brukar eit innhaldsskript for alle URL-ar."
 
 msgid "Has too many daily users."
 msgstr "Har for mange daglege brukarar."
@@ -4706,7 +4706,7 @@ msgid "Has too few consecutive human-approved updates."
 msgstr ""
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Har ein ventande informasjonsførespurnad."
 
 msgid "Is flagged for admin review."
 msgstr "Er flagga for vurdering av admin."
@@ -4973,7 +4973,7 @@ msgstr "Vurderar"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Tittel på utviding"
@@ -4985,15 +4985,15 @@ msgid "Review Text"
 msgstr "Vureringstekst"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Vurderinga var flagga før sleting."
 
 msgid "Undelete"
-msgstr ""
+msgstr "Angre sletting"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ny utviding ({num})"
+msgstr[1] "Nye utvidingar ({num})"
 
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
@@ -5043,13 +5043,13 @@ msgid "Score"
 msgstr "Poeng"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Oppdater dagens melding"
 
 msgid "Save"
 msgstr "Lagre"
 
 msgid "Add-on Reviewer Performance"
-msgstr ""
+msgstr "Vurderingsyting for utvidingar"
 
 msgid "View statistics for user"
 msgstr "Vis statistikk for brukar"
@@ -5111,10 +5111,10 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagga av %(user)s den %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Alle vurderingane er modererte. Bra jobba!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Det finst for tida ingen tillegg av denne typen å vurdere."
 
 msgid "Helpful Links:"
 msgstr "Nyttige lenker:"
@@ -5130,7 +5130,7 @@ msgid "Review {0}"
 msgstr "Vurder {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Brukarendrings-historikk for utvidingar"
 
 msgid "Add-on History"
 msgstr "Utvidingshistorikk"
@@ -5379,16 +5379,16 @@ msgid "Enter the ID or URL of the duplicate"
 msgstr ""
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Vel ein grunn for avslag"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Beskriv grunnen dine for avslag"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Still eit spørsmål til artisten"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Beskriv grunnen din for flaggning"
 
 msgid "Rejected or Unreviewed"
 msgstr "Avvist og ikkje vurdert"
@@ -5570,11 +5570,11 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Fila finst ikkje lengre."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Filstørrelsen er over grensa på {0}."
 
 msgid "Problems decoding {0}."
 msgstr "Problem med dekodinga av {0}."
@@ -5622,7 +5622,7 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ""
 
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Len deg tilbake og slapp av"
 
 msgid "Add-ons that help you on your travels!"
 msgstr ""
