@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-02-12 09:07+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2017-08-04 07:28+0000\n"
+"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgid "Validating {0}"
 msgstr "Перевірка {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ваш додаток перевищує максимально допустимий розмір {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Отримано порожню відповідь від сервера; стан: {0}"
@@ -140,7 +140,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип вивантаженого вами файлу нерозпізнаний."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ваш файл перевищує максимально допустимий розмір {0}."
 
 msgid "You cancelled the upload."
 msgstr "Ви скасували вивантаження."
