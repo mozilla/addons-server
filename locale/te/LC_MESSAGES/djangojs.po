@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-04 09:50+0000\n"
+"PO-Revision-Date: 2017-08-04 09:52+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -801,7 +801,7 @@ msgid "Notes for Reviewers"
 msgstr "సమీక్షకుల కోసం గమనికలు"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "వెర్షన్ గమనికలు కనుగొనబడలేదు"
 
 msgid "Review Text"
 msgstr ""
@@ -837,65 +837,65 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "నకిలీ"
 
 msgid "Rejected"
-msgstr ""
+msgstr "తిరస్క్రించబదింది"
 
 msgid "Approved"
-msgstr ""
+msgstr "ఆమోదించబడింది"
 
 msgid "No results found"
-msgstr ""
+msgstr "ఎటువంటి ఫలితాలు లభించలేదు"
 
 msgid "Theme"
-msgstr ""
+msgstr "అలంకారం"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "సమీక్షకుడు"
 
 msgid "Status"
-msgstr ""
+msgstr "స్థితి"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "అన్ని పరీక్షలు విజయవంతంగా ఆమోదించబడ్డాయి."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "ఈ పరీక్షలు అమలు కాలేదు."
 
 msgid "Tests"
-msgstr ""
+msgstr "పరీక్షలు"
 
 msgid "Error"
-msgstr ""
+msgstr "లోపం"
 
 msgid "Warning"
-msgstr ""
+msgstr "హెచ్చరిక"
 
 msgid "{0} line {1} column {2}"
 msgstr ""
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} వరుస {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "అనుకూలత పరీక్షలు"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "పొడిగింత ధ్రువీకరణ విఫలమైంది."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "పొడిగింత ధ్రువీకరణను ఆమోదించింది."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} లోపం"
+msgstr[1] "{0} లోపాలు"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} హెచ్చరిక"
+msgstr[1] "{0} హెచ్చరికలు"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
