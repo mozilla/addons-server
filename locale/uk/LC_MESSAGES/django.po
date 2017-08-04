@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 07:50+0000\n"
+"PO-Revision-Date: 2017-08-04 07:56+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2993,13 +2993,12 @@ msgstr "Новий ключ API створено"
 msgid "API key revoked"
 msgstr "API ключ відкликано"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Перед початком, будь ласка, прочитайте та погодьтеся з умовами нашої угоди розповсюдження додатків Firefox. Вона також посилається на наше повідомлення про приватність, в якому пояснюється як ми "
-"обробляємо вашу інформацію."
+"Перш ніж почати, будь ласка прочитайте і прийміть нашу Угода про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
+"посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
 
 msgid "Distribution Agreement"
 msgstr "Угода про розповсюдження"
@@ -4683,16 +4682,14 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Блокуйте підлі трекери {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr "Блокуйте невидимі трекери і шпигунську рекламу, яка стежить за вами в Інтернеті."
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Підтримуючи більше 25 мов, це розширення перевіряє граматику прямо у вашому браузері."
