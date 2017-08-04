@@ -2014,7 +2014,7 @@ msgid "{addon} icon changed."
 msgstr ""
 
 msgid "{review} for {addon} approved."
-msgstr "{జత చేయు} కోసం {సమీక్ష} ఆమోదించబడింది."
+msgstr "{review} కోసం {addon} ఆమోదించబడింది."
 
 msgid "{user} approved {review} for {addon}."
 msgstr "{addon} కోసం {user} {review}ను ఆమోదించారు."
