@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 04:21+0000\n"
-"Last-Translator: Sairam Raavi <sairam@riseup.net>\n"
+"PO-Revision-Date: 2017-08-04 09:09+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -42,10 +42,10 @@ msgid "Cancel"
 msgstr "రద్దుచేయి"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} ఎగుమతి అవుతోంది"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} లోపంతో"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "మీ పొడిగింతను ప్రాసెస్ చేయడానికి మేము ఒక క్రొత్త లింటర్ను ప్రారంభించాము. దయచేసి ఏదైనా సమస్యలను GitHub లో నివేదించారో లేదో నిర్ధారించుకోండి"
@@ -58,19 +58,19 @@ msgstr[1] "మీ పొడిగింత {0} లోపాలతో ధృవ�
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "&hellip;మరియు {0} మరింత"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "పూర్తి ధ్రువీకరణ నివేదికను చూడండి"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} ద్రువీకరిస్తోంది"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr ""
@@ -98,7 +98,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension నవీకరణ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -136,22 +136,22 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "మీరు ఎగుమతిని రద్దు చేసారు."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "ఈ సేకరణను అనుసరించండి"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "అనుసరించడం ఆపండి"
 
 msgid "Following"
-msgstr ""
+msgstr "అనుసరించండి"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -161,7 +161,7 @@ msgid "All Rights Reserved"
 msgstr ""
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
@@ -194,7 +194,7 @@ msgid "Updating results&hellip;"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "వర్గం"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
@@ -212,104 +212,104 @@ msgid "Week of {0}"
 msgstr ""
 
 msgid " downloads"
-msgstr ""
+msgstr " దిగుమతులు"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} వాడుకరులు"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} పొడిగింతలు"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} సేకరణలు"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} సమీక్షలు"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} అమ్మకాలు"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} వాపసులు"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} స్థాపనలు"
 
 msgid "Downloads"
-msgstr ""
+msgstr "దిగుమతులు"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "రోజువారీ వాడుకరులు"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "మొత్తం, USD లో"
 
 msgid "Number of Contributions"
 msgstr ""
 
 msgid "More Info..."
-msgstr ""
+msgstr "మరింత సమాచారం..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} వివరాలు"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "సేకరణలు సృష్టించబడ్డాయి"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "పొడిగింతలు వాడుకలో ఉన్నాయి"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "పొడిగింతలు రూపొందించబడ్డాయి"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "పొడిగింతలు దిగుమతిచేయబడ్డాయి"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "పొడిగింతలు నవీకరించబడ్డాయి"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "సమీక్షలు వ్రాయబడ్డాయి"
 
 msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "చందాచేరు"
 
 msgid "Ratings"
 msgstr ""
 
 msgid "Sales"
-msgstr ""
+msgstr "అమ్మకాలు"
 
 msgid "Installs"
-msgstr ""
+msgstr "స్థాపనలు"
 
 msgid "Unknown"
-msgstr ""
+msgstr "తెలియని"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకుడు"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకుడి ప్రోమో"
 
 msgid "Add-ons Manager Featured"
 msgstr ""
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకులు ఇంకా నేర్చుకొండి"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "శోధన సలహాలు"
 
 msgid "Search Results"
-msgstr ""
+msgstr "శోధన ఫలితాలు"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "హోమ్పేజీ ప్రోమో"
 
 msgid "Homepage Featured"
 msgstr ""
@@ -321,43 +321,43 @@ msgid "Homepage Most Popular"
 msgstr ""
 
 msgid "Detail Page"
-msgstr ""
+msgstr "వివరాల పేజీ"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "వివరాల పేజీ (అట్టడుగు)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "వివరాల పేజీ (అభివృద్ధి వాహిక)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "తరచూ దినితో వాడబడుతోంది"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "రచయిత ద్వారా ఇతర రచనలు"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "ఆధారితాలు"
 
 msgid "Upsell"
-msgstr ""
+msgstr "అధిక అమ్మకాలు"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "డెవలపర్ను కలవండి"
 
 msgid "User Profile"
-msgstr ""
+msgstr "వాడుకరి ప్రొఫైల్"
 
 msgid "Version History"
-msgstr ""
+msgstr "వెర్షన్ల చరిత్ర"
 
 msgid "Sharing"
-msgstr ""
+msgstr "పంచుకోండి"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "వర్గం పేజీలు"
 
 msgid "Collections"
-msgstr ""
+msgstr "సేకరణలు"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
@@ -402,22 +402,22 @@ msgid "Average Contribution"
 msgstr ""
 
 msgid "Usage"
-msgstr ""
+msgstr "వాడుక"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
 msgstr ""
