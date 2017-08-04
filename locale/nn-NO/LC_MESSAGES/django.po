@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 22:30+0000\n"
+"PO-Revision-Date: 2017-08-04 22:49+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3186,7 +3186,7 @@ msgid "This add-on is experimental."
 msgstr "Denne utvidinga er eksperimentell."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Denne utvidinga er klar for generell bruk."
 
 msgid "Requires Payment?"
 msgstr "Krev betaling?"
@@ -3318,10 +3318,10 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statistikken for denne utvidinga er offentleg."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Nei, statistikken for denne utvidinga er ikkje offentleg."
 
 msgid "Upgrade SDK?"
 msgstr "Oppgradere SDK?"
@@ -3384,7 +3384,7 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Vert nytta i detaljsider for utvidingar."
 
 msgid "Upload a Custom Icon..."
 msgstr "Last opp eit tilpassa ikon…"
@@ -3396,7 +3396,7 @@ msgid "Screenshots"
 msgstr "Skjermbilde"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Du må minst ha eitt skjermbilde av utvidinga di:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Spesifiser ein bildetekst for dette skjermbildet:"
@@ -3426,7 +3426,7 @@ msgid "Hide messages not required for automated signing"
 msgstr "Gøuym meldingar som ikkje krevst for automatisk signering"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Skjul meldingar som finst i tidlegare versjon og ignorerte"
 
 msgid "Top"
 msgstr "Øvst"
@@ -3438,7 +3438,7 @@ msgid "Delete Add-on"
 msgstr "Slett utviding"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Slettar du temaet ditt vil det permanent verte fjerna frå nettsida."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -3446,7 +3446,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Skriv inn følgjande tekst for å stadfeste avgjerda di: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Fortel oss gjerne kvifor du slettar temaet ditt:"
@@ -3458,7 +3458,7 @@ msgid "Actions"
 msgstr "Handlingar"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Ta oppatt insendingsprosessen for dette innlegget."
 
 msgid "Resume"
 msgstr "Fortset"
@@ -3479,7 +3479,7 @@ msgid "New Version"
 msgstr "Ny versjon"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Dagleg statistikk for nedlastingar og brukarar."
 
 msgid "Statistics"
 msgstr "Statistikk"
@@ -3615,13 +3615,13 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Desse merknadane vil visast på detaljsida."
 
 msgid "How to Distribute this Version"
 msgstr "Korleis du distribuerer denne versjonen"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Meir informasjon om distribusjon og signering av utvidingar"
 
 msgid "Submission Complete"
 msgstr "Innsendinga fullført"
@@ -3633,7 +3633,7 @@ msgid "Version Submitted"
 msgstr "Versjonen sendt inn"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Du er klar! Denne versjon vert snart tilgjengeleg på heimesida vår."
 
 msgid "Version Submitted for Review"
 msgstr "Versjon sendt inn for vurdering"
@@ -3696,10 +3696,10 @@ msgid "Use the fields below to upload your add-on package and select any platfor
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Kva for plattformer er denne fila kompatibel med?"
 
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publiser denne versjonen berre på betakanalen min."
 
 msgid "Administrative overrides"
 msgstr "Administrative overstyringar"
@@ -4112,7 +4112,7 @@ msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
 
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Vel når og korleis brukarane vert oppmoda til å bidra"
 
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
 msgstr ""
@@ -4227,7 +4227,7 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr ""
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ja, så lenge dei deler likt"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
@@ -4236,7 +4236,7 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Temaet ditt vert sleppt under følgjande lisens:"
 
 msgid "Select a different license."
 msgstr "Vel ein annan lisens."
@@ -4444,7 +4444,7 @@ msgid "Loading Review History..."
 msgstr "Lastar vurderingshistorikk…"
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Vi hadde eit problem med å hente vurderingsnotat"
 
 msgid "Load older..."
 msgstr "Last eldre…"
@@ -4526,13 +4526,13 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Er du sikker på at du vil gøyme utvidinga di?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Er du sikker på at du vil avbryte vurderingsførespurnaden din?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Utvidingsdokumentasjon :: Utviklarhubb"
