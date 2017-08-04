@@ -268,17 +268,20 @@ def handle_file_validation_result(results, file_id, *args):
     return FileValidation.from_json(file_, results)
 
 
-def insert_error_message(results, msg, msg_id):
+def insert_validation_message(results, type_='error', message='', msg_id='',
+                              compatibility_type=None):
     messages = results['messages']
     messages.insert(0, {
         'tier': 1,
-        'type': 'error',
+        'type': type_,
         'id': ['validation', 'messages', msg_id],
-        'message': msg,
+        'message': message,
         'description': [],
-        'compatibility_type': None
+        'compatibility_type': compatibility_type,
     })
-    results['errors'] += 1
+    # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
+    # the type_ to increment the right entry.
+    results['{}s'.format(type_)] += 1
 
 
 def annotate_new_legacy_addon_restrictions(results):
@@ -318,7 +321,8 @@ def annotate_new_legacy_addon_restrictions(results):
             u'Starting with Firefox 53, new extensions on this site can '
             u'only be WebExtensions.')
 
-        insert_error_message(results, msg, 'legacy_extensions_restricted')
+        insert_validation_message(
+            results, message=msg, msg_id='legacy_extensions_restricted')
 
     return results
 
@@ -347,7 +351,8 @@ def annotate_legacy_addon_upgrade_restrictions(results):
             u'Legacy extensions are not compatible with Firefox 57 or higher. '
             u'Use a maxVersion of 56.* or lower.')
 
-        insert_error_message(results, msg, 'legacy_extensions_max_version')
+        insert_validation_message(
+            results, message=msg, msg_id='legacy_extensions_max_version')
 
     return results
 
