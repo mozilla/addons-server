@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 07:30+0000\n"
+"PO-Revision-Date: 2017-08-04 07:50+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1569,9 +1569,9 @@ msgstr "Збірки - це групи відповідних додатків, 
 msgid "Subscribe"
 msgstr "Підписатись"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "від %(users)s"
+msgstr "від %(author_link)s"
 
 msgid "Following"
 msgstr "Слідую"
@@ -3001,17 +3001,14 @@ msgstr ""
 "Перед початком, будь ласка, прочитайте та погодьтеся з умовами нашої угоди розповсюдження додатків Firefox. Вона також посилається на наше повідомлення про приватність, в якому пояснюється як ми "
 "обробляємо вашу інформацію."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Угода про розповсюдження додатків"
+msgstr "Угода про розповсюдження"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Правила перевірки"
+msgstr "Політика перевірки"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Редактори"
+msgstr "Правила перевірки"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -3269,18 +3266,17 @@ msgstr "Цей додаток є експериментальним."
 msgid "This add-on is ready for general use."
 msgstr "Цей додаток готовий до загального використання."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Потрібен перезапуск"
+msgstr "Вимагає оплати?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Встановіть цей прапорець, якщо робота основних функцій додатка потребує певної форми оплати зразу, чи після випробувального періоду."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Цей додаток потребує оплати, платних послуг або програмного забезпечення, чи додаткового обладнання."
 
 msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgstr "Цей додаток не потребує жодної оплати, платних послуг або програмного забезпечення, чи додаткового обладнання."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3710,16 +3706,14 @@ msgstr "Чи є щось, на що наші редактори повинні �
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ці примітки зможуть бачити лише ви і наші редактори."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Скасувати перевірку і вимкнути версію"
+msgstr "Скасувати та вимкнути версію"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Скасувати перевірку і вимкнути версію"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Відправити нову версію"
+msgstr "Надіслати версію"
 
 msgid "Submit Version for Review"
 msgstr "Подати версію на перевірку"
@@ -3748,12 +3742,11 @@ msgstr "Відправлення завершене"
 msgid "You’re done!"
 msgstr "Все готово!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Версія підписана"
+msgstr "Версія надіслана"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Готово! Ця версія скоро з'явиться на нашому сайті."
 
 msgid "Version Submitted for Review"
 msgstr "Версія подана для перевірки"
@@ -4005,7 +3998,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Дозволений HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Дещо з HTML підтримується."
@@ -4051,9 +4044,8 @@ msgstr "Дізнатися більше в нашому блозі"
 msgid "Resources"
 msgstr "Ресурси"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Оцінка"
+msgstr "Портування"
 
 msgid "Community"
 msgstr "Спільнота"
@@ -4070,9 +4062,8 @@ msgstr "Блог"
 msgid "Contact Us"
 msgstr "Зв'язатися з нами"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Правила додатків"
+msgstr "Политіки"
 
 msgid "FAQ"
 msgstr "ЧАП"
@@ -4140,13 +4131,11 @@ msgstr "Керуйте своїм додатком"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Увійдіть, щоб змінювати й оновлювати свій додаток"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Відібрані розширення"
+msgstr "Оновіть ваше застаріле розширення"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions тепер є стандартом в розробці додатків для Firefox. Для подальшої сумісності вам знадобиться оновити свої попередні додатки."
+msgstr "З'явився новий, крос-браузерний стандарт для розробки розширень для Firefox. Вам необхідно оновити ваші застарілі розширення для забезпечення сумісності."
 
 msgid "Learn How"
 msgstr "Дізнайтеся як"
@@ -4155,11 +4144,10 @@ msgid "What's New"
 msgstr "Що нового"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Готові надіслати додаток? Прочитайте нашу покрокову інструкцію про процес надсилання."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Дивитися всі"
+msgstr "Дивитися посібник"
 
 msgid "View All Submissions"
 msgstr "Переглянути всі подання"
@@ -4700,14 +4688,14 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Блокуйте невидимі трекери і шпигунську рекламу, яка стежить за вами в Інтернеті."
 
 #, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Підтримуючи більше 25 мов, це розширення перевіряє граматику прямо у вашому браузері."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -5035,9 +5023,8 @@ msgstr "Скарги"
 msgid "View Privacy Policy"
 msgstr "Переглянути політику приватності"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Потрібен перезапуск"
+msgstr "Вимагає оплати"
 
 msgid "EULA"
 msgstr "EULA"
@@ -8379,9 +8366,9 @@ msgstr "Видалити поточну світлину"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Представтесь спільноті, якщо хочете! Цей текст стане загальнодоступним на вашій сторінці користувача."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Дозволено HTML: {0}. Посилання заборонені."
+msgstr "Дозволений HTML: %(html)s. Посилання заборонені."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Вирішіть, які збірки повинні бути показані у вашому профілі."
