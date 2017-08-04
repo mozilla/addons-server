@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-04 09:52+0000\n"
+"PO-Revision-Date: 2017-07-19 05:23+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -57,7 +57,7 @@ msgstr[1] "మీ పొడిగింత {0} లోపాలతో ధృవ�
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip;మరియు {0} మరింత"
 msgstr[1] "&hellip;మరియు {0} మరింత"
 
 msgid "See full validation report"
@@ -191,7 +191,7 @@ msgid "Marked for deletion"
 msgstr ""
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "ఫలితాలను నవీకరిస్తోంది&hellip;"
 
 msgid "Category"
 msgstr "వర్గం"
@@ -209,7 +209,7 @@ msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "వారం {0}"
 
 msgid " downloads"
 msgstr " దిగుమతులు"
