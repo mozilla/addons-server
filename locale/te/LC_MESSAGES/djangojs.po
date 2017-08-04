@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-04 09:09+0000\n"
+"PO-Revision-Date: 2017-08-04 09:23+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -420,42 +420,42 @@ msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దిగుమతులు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దిగుమతులు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల స్థాపనలు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు స్థాపనలు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దిగుమతులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దిగుమతులు"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -467,23 +467,23 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల వేదికలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు వేదికలు"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల భాషలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు భాషలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "చివరి {0} రోజులు, పొడిగింత వెర్షన్ల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
