@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 10:43+0000\n"
+"PO-Revision-Date: 2017-08-04 11:01+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -920,7 +920,7 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr ""
 
 msgid "Page Not Found"
-msgstr ""
+msgstr "పేజీ కనుగొనబడలేదు"
 
 msgid "Firefox Add-ons"
 msgstr "Firefox పొడిగింతలు"
@@ -1338,13 +1338,13 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "నాకు ఇష్టమైన పొడిగింతలు"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> పొడిగింత"
+msgstr[1] "<span>%(addons)s</span> పొడిగింతలు"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
@@ -1381,7 +1381,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "by {0}"
-msgstr ""
+msgstr "{0} ద్వారా"
 
 msgid "Stop Following"
 msgstr ""
@@ -1394,32 +1394,32 @@ msgstr ""
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr ""
+msgstr "{0}ను తొలగించు"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "మీరు నిశ్చయంగా వున్నారా?"
 
 msgid "Yes"
-msgstr ""
+msgstr "అవును"
 
 msgid "No"
-msgstr ""
+msgstr "కాదు"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0}ను సవరించండి"
 
 msgid "Description"
-msgstr ""
+msgstr "వివరణ"
 
 msgid "Contributors & More"
 msgstr ""
 
 msgid "Save Changes"
-msgstr ""
+msgstr "మార్పులను భద్రపరచు"
 
 msgid "Owner"
-msgstr ""
+msgstr "యజమాని"
 
 msgid "Make Owner"
 msgstr ""
@@ -1428,7 +1428,7 @@ msgid "Remove this user as a contributor"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "తీసివేయి"
 
 msgid "Collection Contributors"
 msgstr ""
@@ -1439,22 +1439,22 @@ msgid ""
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "వాడుకరి"
 
 msgid "Email"
-msgstr ""
+msgstr "ఇమెయిల్"
 
 msgid "Role"
-msgstr ""
+msgstr "పాత్ర"
 
 msgid "Enter the email address of the contributor to add"
 msgstr ""
 
 msgid "Add Contributor"
-msgstr ""
+msgstr "సహాయకులని జోడించండి"
 
 msgid "Contributor"
-msgstr ""
+msgstr "సహాయకుడు"
 
 msgid "Admin Settings"
 msgstr ""
@@ -1463,7 +1463,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr ""
 
 msgid "Continue"
-msgstr ""
+msgstr "కొనసాగించు"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1501,7 +1501,7 @@ msgid "Collections are groups of related add-ons that anyone can create and shar
 msgstr ""
 
 msgid "Subscribe"
-msgstr ""
+msgstr "సభ్యత్వం పొందండి"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1529,31 +1529,31 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "మీ సేకరణలోని పొడిగింతలు"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "పొడగింతలు"
 
 msgid "Comment"
-msgstr ""
+msgstr "వ్యాఖ్య"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "చేర్చడానికి పొడిగింత యొక్క పేరును నమోదు చేయండి"
 
 msgid "Add to Collection"
 msgstr ""
 
 msgid "Pending"
-msgstr ""
+msgstr "వాయిదావేయబడింది"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "వ్యాఖ్యను జోడించు"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "సేకరణ నుండి ఈ పొడిగింతను తీసివేయండి"
 
 msgid "Add a positive vote for this collection"
 msgstr ""
@@ -1568,17 +1568,17 @@ msgid "Log in to vote for this collection"
 msgstr ""
 
 msgid "Favorite"
-msgstr ""
+msgstr "ఇష్టాంశము"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s పొడిగింతలు"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s అలంకారాలు"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1598,7 +1598,7 @@ msgid "Search tools and search-related extensions"
 msgstr ""
 
 msgid "Search tools"
-msgstr ""
+msgstr "శోధన సాధనాలు"
 
 msgid "Most Users"
 msgstr ""
@@ -1610,10 +1610,10 @@ msgid "Up & Coming"
 msgstr ""
 
 msgid "Recently Added"
-msgstr ""
+msgstr "ఇటీవల జోడించినవి"
 
 msgid "Created"
-msgstr ""
+msgstr "నిర్మించబడినది"
 
 msgid "Downloads"
 msgstr ""
@@ -1652,16 +1652,16 @@ msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "భాష"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "నిఘంటువు"
 
 msgid "Language Pack"
 msgstr ""
 
 msgid "All locales"
-msgstr ""
+msgstr "అన్ని స్థానికీకరణలు"
 
 msgid "List of language packs and dictionaries."
 msgstr ""
@@ -1673,8 +1673,8 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> పొడిగింత"
+msgstr[1] "<b>{0}</b> పొడిగింతలు"
 
 msgid "Search Extensions"
 msgstr ""
@@ -1699,7 +1699,7 @@ msgid "Browse through even more search providers at <a href=\"http://mycroftproj
 msgstr ""
 
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">మీ స్వంత </a> శోధన సాధనాన్ని రూపొందించండి"
 
 msgid "Most Popular Extensions"
 msgstr ""
@@ -1755,14 +1755,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} అలంకారాలు"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
 msgstr ""
 
 msgid "View Profile"
-msgstr ""
+msgstr "ప్రొఫైల్‌ను వీక్షించు"
 
 msgid "Create Your Own Theme"
 msgstr ""
@@ -1771,7 +1771,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "View All Recently Added"
 msgstr ""
@@ -1805,7 +1805,7 @@ msgid "No themes found"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "అన్నీ"
 
 msgid "Add-on Compatibility Reports"
 msgstr ""
@@ -1836,16 +1836,16 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View all"
-msgstr ""
+msgstr "అన్నిటినీ వీక్షించు"
 
 msgid "Filter by Application"
 msgstr ""
 
 msgid "Report Type"
-msgstr ""
+msgstr "నివేదిక రకం"
 
 msgid "Version"
-msgstr ""
+msgstr "వర్షన్"
 
 msgid "Application Version"
 msgstr ""
@@ -1854,7 +1854,7 @@ msgid "Application Build"
 msgstr ""
 
 msgid "Platform"
-msgstr ""
+msgstr "వేదిక"
 
 msgid "e10s Enabled"
 msgstr ""
@@ -1863,19 +1863,19 @@ msgid "e10s Compatible"
 msgstr ""
 
 msgid "Submitted"
-msgstr ""
+msgstr "సమర్పించిన"
 
 msgid "Success"
-msgstr ""
+msgstr "సఫలంమైంది"
 
 msgid "Problem"
-msgstr ""
+msgstr "సమస్య"
 
 msgid "No reports found."
-msgstr ""
+msgstr "ఫలితాలు కనుగొనబడలేదు."
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} సృష్టించబడింది."
 
 msgid "{addon} properties edited."
 msgstr ""
@@ -1884,17 +1884,17 @@ msgid "{addon} description edited."
 msgstr ""
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon} కోసం వర్గం సవరించబడింది."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{addon}కు {0.name} ({1}) జోడించబడింది."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{addon} నుండి {0.name} ({1}) తొలగించబడింది."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "{addon} కోసం సహకారాలు."
 
 msgid "{addon} disabled."
 msgstr ""
@@ -1904,7 +1904,7 @@ msgstr ""
 
 #. L10n: {0} is the status
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} స్థితి {0}కు మార్చబడింది."
 
 msgid "{version} added to {addon}."
 msgstr ""
@@ -1914,25 +1914,25 @@ msgstr ""
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "{addon} నుండి వెర్షన్ {0} తొలగించబడింది."
 
 msgid "File {0.name} added to {version} of {addon}."
 msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు తొలగించబడింది."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} ఆమోదం."
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} ఇచ్చిన ప్రాథమిక సమీక్ష."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "ప్రాథమిక సమీక్ష"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} తిరస్కరించబడింది."
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -1947,16 +1947,16 @@ msgid "Super review requested"
 msgstr ""
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
 msgid "Review requested"
 msgstr ""
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} మరింత సమాచారం అభ్యర్ధించబడింది."
 
 msgid "More information requested"
-msgstr ""
+msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
 
 msgid "{addon} {version} super review requested."
 msgstr ""
@@ -1968,37 +1968,37 @@ msgid "Comment on {addon} {version}."
 msgstr ""
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{addon}కు {tag} జోడించబడింది."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{addon} నుండి {tag} తొలగించబడింది."
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} {collection}లో జోడించబడింది."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} {collection} నుండి తొలగించబడింది."
 
 msgid "{review} for {addon} written."
 msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} {0}లో ఫీచరయినది."
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} ఇకపై {0}లో ఫీచర్ అవ్వదు."
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
 
 msgid "{addon} is no longer featured."
 msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} జోడించబడింది."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -2008,22 +2008,22 @@ msgid "{addon} is now licensed under {0.name}."
 msgstr ""
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} విధానం మార్చబడింది."
 
 msgid "{addon} icon changed."
 msgstr ""
 
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{జత చేయు} కోసం {సమీక్ష} ఆమోదించబడింది."
 
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{addon} కోసం {user} {review}ను ఆమోదించారు."
 
 msgid "Review {review} for {addon} deleted."
 msgstr ""
 
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{addon} కోసం {user} {review}ను తొలగించారు."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -2041,7 +2041,7 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "ఆమోదించబడింది కానీ వేచి ఉంది"
 
 msgid "Account updated."
 msgstr ""
@@ -2071,10 +2071,10 @@ msgid "{review} for {addon} updated."
 msgstr ""
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} సమీక్షించారు."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "వాడుకరి {0.name} {group}కు జోడించబడింది."
 
 msgid "User {0.name} removed from {group}."
 msgstr ""
@@ -2090,7 +2090,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} ప్రాధమిక నుండి వలసపోయింది."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
@@ -2123,37 +2123,37 @@ msgid "Auto-Approval confirmed"
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "మొబైల్"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Android కోసం Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "తెలియని"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "అసంపూర్తి"
 
 msgid "Disabled by Mozilla"
 msgstr ""
 
 msgid "Deleted"
-msgstr ""
+msgstr "తొలగించబడింది"
 
 msgid "Pending approval"
 msgstr ""
@@ -2162,28 +2162,28 @@ msgid "Flagged for further review"
 msgstr ""
 
 msgid "Beta"
-msgstr ""
+msgstr "బీటా"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "జాబితాచేయని"
 
 msgid "Developer"
-msgstr ""
+msgstr "డెవలపర్"
 
 msgid "Viewer"
 msgstr ""
 
 msgid "Support"
-msgstr ""
+msgstr "మద్దతు"
 
 msgid "Extension"
-msgstr ""
+msgstr "పొడిగింత"
 
 msgid "Complete Theme"
 msgstr ""
 
 msgid "Search Engine"
-msgstr ""
+msgstr "శోధన యంత్రం"
 
 msgid "Language Pack (Application)"
 msgstr ""
@@ -2192,74 +2192,74 @@ msgid "Language Pack (Add-on)"
 msgstr ""
 
 msgid "Plugin"
-msgstr ""
+msgstr "ప్లగిన్"
 
 msgid "Theme"
-msgstr ""
+msgstr "అలంకారం"
 
 msgid "Complete Themes"
 msgstr ""
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "నిఘంటువులు"
 
 msgid "Language Packs (Application)"
 msgstr ""
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "భాషా ప్యాక్లు (పొడిగింత)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "ప్లగిన్లు"
 
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "ఈ పొడిగింత యొక్క పేజీ మరియు అభివృద్దికారి ప్రొఫైలులో మాత్రమే అడగండి"
 
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "వాడుకరి ఈ పొడిగింతను దిగుమతి చేయడం ప్రారంభించిన తర్వాత అడుగు"
 
 msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "ఇతర"
 
 msgid "Exception"
-msgstr ""
+msgstr "మినహాయింపు"
 
 msgid "Release"
-msgstr ""
+msgstr "విడుదల"
 
 msgid "Change"
-msgstr ""
+msgstr "మార్చు"
 
 msgid "App"
-msgstr ""
+msgstr "అనువర్తనం"
 
 msgid "Persona"
-msgstr ""
+msgstr "పెర్సోనా"
 
 msgid "Manual Reviewer Points"
 msgstr ""
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "కొత్త పొడిగింత సమీక్ష"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "నవీకరించబడిన పొడిగింత సమీక్ష"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "కొత్త నిఘంటువు సమీక్ష"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "ప్రాథమిక నిఘంటువు సమీక్ష"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "నవీకరించబడిన నిఘంటువు సమీక్ష"
 
 msgid "New Language Pack Review"
 msgstr ""
@@ -2304,46 +2304,46 @@ msgid "Addon Review Moderation Reverted"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "స్థాయి 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "స్థాయి 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "స్థాయి 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "స్థాయి 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "స్థాయి 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "స్థాయి 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "స్థాయి 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "స్థాయి 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "స్థాయి 9"
 
 msgid "Compatible"
-msgstr ""
+msgstr "అనుకూలత"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "అననుకూల"
 
 msgid "Alerts & Updates"
 msgstr ""
 
 msgid "Appearance"
-msgstr ""
+msgstr "రూపురేఖలు"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "ఇష్టాంశములు"
 
 msgid "Download Management"
 msgstr ""
@@ -2352,79 +2352,79 @@ msgid "Feeds, News & Blogging"
 msgstr ""
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "ఆటలు మరియు వినోదం"
 
 msgid "Language Support"
-msgstr ""
+msgstr "భాషా మద్దతు"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "ఫోటోలు, సంగీతం & వీడియోలు"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "గోప్యత మరియు భద్రతా"
 
 msgid "Shopping"
-msgstr ""
+msgstr "కొనుగోలు"
 
 msgid "Social & Communication"
 msgstr ""
 
 msgid "Tabs"
-msgstr ""
+msgstr "ట్యాబులు"
 
 msgid "Web Development"
 msgstr ""
 
 msgid "Animals"
-msgstr ""
+msgstr "జంతువులు"
 
 msgid "Compact"
-msgstr ""
+msgstr "కుదించు"
 
 msgid "Large"
-msgstr ""
+msgstr "పెద్దది"
 
 msgid "Miscellaneous"
 msgstr ""
 
 msgid "Modern"
-msgstr ""
+msgstr "ఆధునిక"
 
 msgid "Nature"
-msgstr ""
+msgstr "ప్రకృతి"
 
 msgid "OS Integration"
 msgstr ""
 
 msgid "Retro"
-msgstr ""
+msgstr "రెట్రో"
 
 msgid "Sports"
-msgstr ""
+msgstr "క్రీడలు"
 
 msgid "General"
-msgstr ""
+msgstr "సాధారణం"
 
 msgid "Business"
-msgstr ""
+msgstr "వ్యాపారం"
 
 msgid "Dictionaries & Encyclopedias"
 msgstr ""
 
 msgid "Kids"
-msgstr ""
+msgstr "చిన్న పిల్లలు"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "బహుళ శోధన"
 
 msgid "Music"
-msgstr ""
+msgstr "సంగీతము"
 
 msgid "News & Blogs"
 msgstr ""
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "ఫోటోలు మరియు చిత్రాలు"
 
 msgid "Shopping & E-Commerce"
 msgstr ""
@@ -2433,37 +2433,37 @@ msgid "Social & People"
 msgstr ""
 
 msgid "Travel"
-msgstr ""
+msgstr "ప్రయాణం"
 
 msgid "Video"
-msgstr ""
+msgstr "వీడియో"
 
 msgid "Abstract"
-msgstr ""
+msgstr "సంక్షిప్తము"
 
 msgid "Causes"
-msgstr ""
+msgstr "కారణం"
 
 msgid "Fashion"
-msgstr ""
+msgstr "ఫ్యాషన్"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "సినిమా మరియు టీవీ"
 
 msgid "Foxkeh"
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "సెలవు"
 
 msgid "Scenery"
-msgstr ""
+msgstr "దృశ్యం"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "రుతువు"
 
 msgid "Solid"
-msgstr ""
+msgstr "ముదురు"
 
 msgid "Websites"
 msgstr ""
@@ -2472,49 +2472,49 @@ msgid "Device Features & Location"
 msgstr ""
 
 msgid "Experimental"
-msgstr ""
+msgstr "ప్రయోగాత్మకం"
 
 msgid "Feeds, News, & Blogging"
 msgstr ""
 
 msgid "Performance"
-msgstr ""
+msgstr "పనితనం"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "ఫోటోలు మరియు మీడియా"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "భద్రత మరియు గోప్యత"
 
 msgid "Social Networking"
 msgstr ""
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "క్రీడలు మరియు ఆటలు"
 
 msgid "User Interface"
-msgstr ""
+msgstr "వాడుకరి అంతరవర్తి"
 
 msgid "Appearance and Customization"
 msgstr ""
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "క్యాలెండర్ మరియు తేదీ/Time"
 
 msgid "Chat and IM"
 msgstr ""
 
 msgid "Message Composition"
-msgstr ""
+msgstr "సందేశ కూర్పు"
 
 msgid "Contacts"
-msgstr ""
+msgstr "పరిచయాలు"
 
 msgid "Folders and Filters"
 msgstr ""
 
 msgid "Import/Export"
-msgstr ""
+msgstr "దిగుమతి/Export"
 
 msgid "Message and News Reading"
 msgstr ""
@@ -2529,10 +2529,10 @@ msgid "Interface Customizations"
 msgstr ""
 
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "భాషా మద్దతు మరియు అనువాదం"
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "ఫోటోలు మరియు మీడియా"
 
 msgid "RSS, News and Blogging"
 msgstr ""
@@ -2544,7 +2544,7 @@ msgid "Web and Developer Tools"
 msgstr ""
 
 msgid "Request More Info"
-msgstr ""
+msgstr "మరింత సమాచారం కోసం అభ్యర్థన"
 
 msgid "Flag"
 msgstr ""
@@ -2553,13 +2553,13 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Reject"
-msgstr ""
+msgstr "తిరస్కరించు"
 
 msgid "Approve"
-msgstr ""
+msgstr "ఆమోదించు"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "లైంగిక లేదా అశ్లీల కంటెంట్"
 
 msgid "Inappropriate or offensive content"
 msgstr ""
@@ -2589,53 +2589,53 @@ msgid "All Rights Reserved"
 msgstr ""
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "ఏదైనా"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "అన్ని వేదికలు"
 
 msgid "Linux"
-msgstr ""
+msgstr "లైనక్స్"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Core"
-msgstr ""
+msgstr "అంర్భాగం"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "%s కోసం ఇటీవలి మార్పులు"
 
 msgid "Recent Changes for My Add-ons"
 msgstr ""
