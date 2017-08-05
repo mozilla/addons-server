@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-04 23:01+0000\n"
+"PO-Revision-Date: 2017-08-05 20:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5492,7 +5492,7 @@ msgstr "Tilbake til utvidinga"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Versjon: %(version)s &bull; Storleik: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Filsamanlikning :: Vurderingsverktøy"
@@ -5556,7 +5556,7 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Ingen filer i den opplasta fila."
 
 msgid "Fetching file."
 msgstr "Hentar fil."
@@ -5583,7 +5583,7 @@ msgid "This file is not viewable online. Please download the file to view the co
 msgstr ""
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Fila er ein katalog."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -5625,7 +5625,7 @@ msgid "Sit Back and Relax"
 msgstr "Len deg tilbake og slapp av"
 
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Utvidingar som hjelper deg på reisene dine!"
 
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr ""
@@ -5637,7 +5637,7 @@ msgid "Automatically get the lowest price when you shop online or search for fli
 msgstr ""
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ utvidingar for skulen"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr ""
@@ -5796,7 +5796,7 @@ msgid "Bangladesh Taka"
 msgstr ""
 
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Bulgarsk Leva"
 
 msgid "Bahrain Dinar"
 msgstr ""
@@ -5805,7 +5805,7 @@ msgid "Burundi Franc"
 msgstr ""
 
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Bermudiske Dollar"
 
 msgid "Brunei Darussalam Dollar"
 msgstr ""
@@ -5826,28 +5826,28 @@ msgid "Botswana Pula"
 msgstr ""
 
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Kviterussisk Rubel"
 
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Belize-Dollar"
 
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Kanadisk Dollar"
 
 msgid "Congo/Kinshasa Franc"
 msgstr ""
 
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Sveitsiske Franc"
 
 msgid "Chile Peso"
-msgstr ""
+msgstr "Chilenske Peso"
 
 msgid "China Yuan Renminbi"
 msgstr ""
 
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Colombianske Pesos"
 
 msgid "Costa Rica Colon"
 msgstr ""
@@ -5856,7 +5856,7 @@ msgid "Cuba Convertible Peso"
 msgstr ""
 
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Kubanske Peso"
 
 msgid "Cape Verde Escudo"
 msgstr ""
@@ -5874,10 +5874,10 @@ msgid "Dominican Republic Peso"
 msgstr ""
 
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Algerisk Dinar"
 
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Egyptisk Pund"
 
 msgid "Eritrea Nakfa"
 msgstr ""
@@ -5898,7 +5898,7 @@ msgid "United Kingdom Pound"
 msgstr ""
 
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Georgiske Lari"
 
 msgid "Guernsey Pound"
 msgstr ""
@@ -5922,13 +5922,13 @@ msgid "Guyana Dollar"
 msgstr ""
 
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Hongkong dollar"
 
 msgid "Honduras Lempira"
 msgstr ""
 
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Kroatisk Kuna"
 
 msgid "Haiti Gourde"
 msgstr ""
@@ -5940,22 +5940,22 @@ msgid "Indonesia Rupiah"
 msgstr ""
 
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Israelske Shekel"
 
 msgid "Isle of Man Pound"
 msgstr ""
 
 msgid "India Rupee"
-msgstr ""
+msgstr "Indisk Rupie"
 
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Irakisk Dinar"
 
 msgid "Iran Rial"
 msgstr ""
 
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Islandsk krona"
 
 msgid "Jersey Pound"
 msgstr ""
@@ -6111,7 +6111,7 @@ msgid "Romania New Leu"
 msgstr ""
 
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Serbisk Dinar"
 
 msgid "Russia Ruble"
 msgstr ""
@@ -6159,7 +6159,7 @@ msgid "El Salvador Colon"
 msgstr ""
 
 msgid "Syria Pound"
-msgstr ""
+msgstr "Syrisk Pund"
 
 msgid "Swaziland Lilangeni"
 msgstr ""
@@ -6180,7 +6180,7 @@ msgid "Tonga Pa'anga"
 msgstr ""
 
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Turkisk Lira"
 
 msgid "Trinidad and Tobago Dollar"
 msgstr ""
@@ -6201,7 +6201,7 @@ msgid "Uganda Shilling"
 msgstr ""
 
 msgid "United States Dollar"
-msgstr ""
+msgstr "Amerikanske dollar"
 
 msgid "Uruguay Peso"
 msgstr ""
@@ -6237,7 +6237,7 @@ msgid "Comptoirs Français du Pacifique (CFP) Franc"
 msgstr ""
 
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenittisk Rial"
 
 msgid "South Africa Rand"
 msgstr ""
