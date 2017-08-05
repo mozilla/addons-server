@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-05 20:30+0000\n"
+"PO-Revision-Date: 2017-08-05 20:31+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5889,13 +5889,13 @@ msgid "Euro Member Countries"
 msgstr ""
 
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Fiji-dollar"
 
 msgid "Falkland Islands (Malvinas) Pound"
 msgstr ""
 
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Brittisk Pund"
 
 msgid "Georgia Lari"
 msgstr "Georgiske Lari"
@@ -5907,7 +5907,7 @@ msgid "Ghana Cedi"
 msgstr ""
 
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Gibraltar-pund"
 
 msgid "Gambia Dalasi"
 msgstr ""
@@ -5934,7 +5934,7 @@ msgid "Haiti Gourde"
 msgstr ""
 
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Ungarsk Forint"
 
 msgid "Indonesia Rupiah"
 msgstr ""
