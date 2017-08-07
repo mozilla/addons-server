@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-07 07:33+0000\n"
+"PO-Revision-Date: 2017-08-07 09:30+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -24,7 +24,7 @@ msgid "There was a problem contacting the server."
 msgstr ""
 
 msgid "Select a file..."
-msgstr ""
+msgstr "ఫైలు ఎంచుకోండి..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
@@ -32,7 +32,7 @@ msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేద�
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% పూర్తి"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -200,10 +200,10 @@ msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "అనువర్తనల కోసం శోధించండి <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "పొడిగింతల కోసం శోధించండి<b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
@@ -399,7 +399,7 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "సగటు సహకారం"
 
 msgid "Usage"
 msgstr "వాడుక"
@@ -459,11 +459,11 @@ msgstr "{0} నుండి {1} వరకు రోజువారీ వాడ�
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల అనువర్తనలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు అనువర్తనలు"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -487,31 +487,31 @@ msgstr "చివరి {0} రోజులు, పొడిగింత వె�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు పొడిగింత వెర్షన్లు"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల, పొడిగింత స్థితి"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు పొడిగింత స్థితి"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దిగుమతుల మూలాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} నుంచి {1} వరకు దిగుమతుల మూలాలు"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "చివరి {0} రోజులుగా సహాయములు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సహాయములు"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -523,15 +523,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులుగా వాడుకలో ఉన్న పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} కు వరకు వాడుకలో ఉన్న పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల, పొడిగింతల దిగుమతుల వివరాలు."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -539,27 +539,27 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, సృష్టించబడిన పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సృష్టించబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, నవీకరించబడిన పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు నవీకరించబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, రాయబడిన సమీక్షలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రాయబడిన సమీక్షలు"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -571,11 +571,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, సృష్టించబడిన సేకరణలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సృష్టించబడిన సేకరణలు"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
