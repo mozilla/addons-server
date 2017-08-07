@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-07 23:32+0000\n"
+"PO-Revision-Date: 2017-08-07 23:48+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1477,7 +1477,7 @@ msgid "Most-Followed Collections"
 msgstr "კრებულები ყველაზე მეტი გამომწერით"
 
 msgid "Newest Collections"
-msgstr ""
+msgstr "უახლესი კრებულები"
 
 msgid "Collections by Name"
 msgstr ""
@@ -2467,7 +2467,7 @@ msgid "Experimental"
 msgstr ""
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "არხები, სიახლეები & სვეტები"
 
 msgid "Performance"
 msgstr ""
@@ -2527,7 +2527,7 @@ msgid "Photos and Media"
 msgstr ""
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, სიახლეები და სვეტები"
 
 msgid "Site-specific"
 msgstr ""
@@ -5575,7 +5575,7 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr ""
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "სწრაფად გაეცანით და შეადარეთ ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
 
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr ""
@@ -5596,7 +5596,7 @@ msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr ""
 
 msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
+msgstr "ავტომატურად მონახეთ ყველაზე დაბალი ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
 
 msgid "A+ add-ons for School"
 msgstr ""
@@ -6237,7 +6237,7 @@ msgstr ""
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "ჩვენი <a href=\"%(url)s\">დამატებების სვეტი</a> მუდმივად ახლდება საინტერესო სიახლეებით როგორც მოყვარულთათვის, ასევე შემმუშავებლებისთვის."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -7332,16 +7332,16 @@ msgid "Highest Rated"
 msgstr "უმაღლესი შეფასების მქონე"
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "დამატებების ძიება"
 
 msgid "search for collections"
-msgstr ""
+msgstr "კრებულების ძიება"
 
 msgid "search for themes"
-msgstr ""
+msgstr "თემების ძიება"
 
 msgid "search for apps"
-msgstr ""
+msgstr "პროგრამების ძიება"
 
 msgid "Sort By"
 msgstr ""
