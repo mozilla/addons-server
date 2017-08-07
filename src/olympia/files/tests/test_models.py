@@ -25,7 +25,8 @@ from olympia.files.models import (
     track_file_status_change, WebextPermission, WebextPermissionDescription,
 )
 from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.utils import check_xpi_info, parse_addon, parse_xpi
+from olympia.files.utils import (
+    check_xpi_info, Extractor, parse_addon, parse_xpi)
 from olympia.versions.models import Version
 
 
@@ -420,11 +421,39 @@ class TestParseXpi(TestCase):
             u'https://google.com/']
 
     def test_parse_apps(self):
-        exp = (amo.FIREFOX,
-               amo.FIREFOX.id,
-               AppVersion.objects.get(version='3.0'),
-               AppVersion.objects.get(version='3.6.*'))
-        assert self.parse()['apps'] == [exp]
+        expected = [Extractor.App(
+            amo.FIREFOX, amo.FIREFOX.id,
+            AppVersion.objects.get(version='3.0'),
+            AppVersion.objects.get(version='3.6.*'))]
+        assert self.parse()['apps'] == expected
+
+    def test_parse_max_star(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='38.0a1')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='*')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='56.*')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='38.0a1')
+
+        # The install.rdf in jetpack_star.xpi is using '*' as the max version,
+        # but it should be rewritten to '56.*'.
+        expected = [
+            Extractor.App(
+                amo.FIREFOX, amo.FIREFOX.id,
+                AppVersion.objects.get(
+                    application=amo.FIREFOX.id, version='38.0a1'),
+                AppVersion.objects.get(
+                    application=amo.FIREFOX.id, version='*')),
+
+            Extractor.App(
+                amo.ANDROID, amo.ANDROID.id,
+                AppVersion.objects.get(
+                    application=amo.ANDROID.id, version='38.0a1'),
+                AppVersion.objects.get(
+                    application=amo.ANDROID.id, version='*'))]
+        assert (
+            set(self.parse(filename='jetpack_star.xpi')['apps']) ==
+            set(expected))
 
     def test_parse_apps_bad_appver(self):
         AppVersion.objects.all().delete()

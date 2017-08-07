@@ -268,10 +268,16 @@ class RDFExtractor(object):
                 continue
             seen_apps.add(app.id)
             try:
+                min_appver_text = self.find('minVersion', ctx)
+                max_appver_text = self.find('maxVersion', ctx)
+
+                if (app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
+                        max_appver_text == '*'):
+                    # Rewrite '*' as '56.*' in legacy extensions, since they
+                    # are not compatible with higher versions.
+                    max_appver_text = '*'
                 min_appver, max_appver = get_appversions(
-                    app,
-                    self.find('minVersion', ctx),
-                    self.find('maxVersion', ctx))
+                    app, min_appver_text, max_appver_text)
             except AppVersion.DoesNotExist:
                 continue
             rv.append(Extractor.App(

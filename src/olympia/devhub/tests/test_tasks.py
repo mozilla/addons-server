@@ -127,6 +127,8 @@ class ValidatorTestCase(TestCase):
         self.create_appversion('firefox', '43.0')
 
         # Required for 57-specific tests.
+        self.create_appversion('android', '38.0a1')
+        self.create_appversion('android', '*')
         self.create_appversion('firefox', '57.0')
 
         # Required for Thunderbird tests.
@@ -863,6 +865,20 @@ class TestUpgradeLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_extensions_max_version']
         assert not upload.valid
+
+    def test_submit_legacy_upgrade_targeting_star(self):
+        # Should not error: extensions with a maxversion of '*' don't get the
+        # error, the manifest parsing code will rewrite it as '56.*' instead.
+        file_ = get_addon_file('valid_firefox_addon_targeting_star.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
 
     def test_submit_webextension_upgrade_targeting_firefox_57(self):
         # Should not error: it's targeting 57 but it's a webextension.

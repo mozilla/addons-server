@@ -342,7 +342,12 @@ def annotate_legacy_addon_upgrade_restrictions(results):
     is_webextension = metadata.get('is_webextension') is True
     is_extension_type = metadata.get('is_extension') is True
     is_targeting_firefox_higher_or_equal_than_57 = (
-        max_target_firefox_version >= 57000000000000)
+        max_target_firefox_version >= 57000000000000 and
+        max_target_firefox_version < 99000000000000)
+
+    # Note: legacy extensions targeting '*' (which is the default for sdk
+    # add-ons) are excluded from this error, and instead are silently rewritten
+    # as supporting '56.*' in the manifest parsing code.
 
     if (is_extension_type and
             not is_webextension and
