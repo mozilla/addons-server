@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-19 05:23+0000\n"
+"PO-Revision-Date: 2017-08-07 07:33+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -309,16 +309,16 @@ msgid "Search Results"
 msgstr "శోధన ఫలితాలు"
 
 msgid "Homepage Promo"
-msgstr "హోమ్పేజీ ప్రోమో"
+msgstr "నివాసపేజీ ప్రోమో"
 
 msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "నివాసపేజీ రాబోతోంది"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "అత్యంత ప్రజాదరణ కలిగిన నివాసపేజీ"
 
 msgid "Detail Page"
 msgstr "వివరాల పేజీ"
