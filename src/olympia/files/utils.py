@@ -191,10 +191,15 @@ class RDFExtractor(object):
             'is_restart_required': (
                 self.find('bootstrap') != 'true' and
                 self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
-            'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',
         }
+        # We used to simply use the value of 'strictCompatibility' in the rdf
+        # to set strict_compatibility, but now we enable it or not for all
+        # legacy add-ons depending on their type. This will prevent them from
+        # being marked as compatible with Firefox 57.
+        self.data['strict_compatibility'] = (
+            self.data['type'] not in amo.NO_COMPAT)
         # `experiment` is detected in in `find_type`.
         self.data['is_experiment'] = self.is_experiment
         multiprocess_compatible = self.find('multiprocessCompatible')
@@ -263,10 +268,16 @@ class RDFExtractor(object):
                 continue
             seen_apps.add(app.id)
             try:
+                min_appver_text = self.find('minVersion', ctx)
+                max_appver_text = self.find('maxVersion', ctx)
+
+                if (app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
+                        max_appver_text == '*'):
+                    # Rewrite '*' as '56.*' in legacy extensions, since they
+                    # are not compatible with higher versions.
+                    max_appver_text = '56.*'
                 min_appver, max_appver = get_appversions(
-                    app,
-                    self.find('minVersion', ctx),
-                    self.find('maxVersion', ctx))
+                    app, min_appver_text, max_appver_text)
             except AppVersion.DoesNotExist:
                 continue
             rv.append(Extractor.App(
