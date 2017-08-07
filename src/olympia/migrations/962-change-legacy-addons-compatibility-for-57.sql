@@ -27,7 +27,7 @@ CREATE PROCEDURE set_min_and_max_compatibility() BEGIN
         INNER JOIN `files` ON ( `versions`.`id` = `files`.`version_id` )
         SET `applications_versions`.`min` = @firefox_56
         WHERE (`applications_versions`.`application_id` = 1
-            AND `files`.`is_webextension` = False
+            AND `files`.`is_webextension` = FALSE
             AND `appversions`.`version_int` >= 57000000000000);
     END IF;
 
@@ -38,7 +38,7 @@ CREATE PROCEDURE set_min_and_max_compatibility() BEGIN
         INNER JOIN `files` ON ( `versions`.`id` = `files`.`version_id` )
         SET `applications_versions`.`min` = @firefox_for_android_56
         WHERE (`applications_versions`.`application_id` = 61
-            AND `files`.`is_webextension` = False
+            AND `files`.`is_webextension` = FALSE
             AND `appversions`.`version_int` >= 57000000000000);
     END IF;
 
@@ -50,7 +50,7 @@ CREATE PROCEDURE set_min_and_max_compatibility() BEGIN
         INNER JOIN `files` ON ( `versions`.`id` = `files`.`version_id` )
         SET `applications_versions`.`max` = @firefox_56_and_higher
         WHERE (`applications_versions`.`application_id` = 1
-            AND `files`.`is_webextension` = False
+            AND `files`.`is_webextension` = FALSE
             AND `appversions`.`version_int` >= 57000000000000);
     END IF;
 
@@ -61,7 +61,7 @@ CREATE PROCEDURE set_min_and_max_compatibility() BEGIN
         INNER JOIN `files` ON ( `versions`.`id` = `files`.`version_id` )
         SET `applications_versions`.`max` = @firefox_for_android_56_and_higher
         WHERE (`applications_versions`.`application_id` = 61
-            AND `files`.`is_webextension` = False
+            AND `files`.`is_webextension` = FALSE
             AND `appversions`.`version_int` >= 57000000000000);
     END IF;
 END;;
