@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-02 01:13+0000\n"
+"PO-Revision-Date: 2017-08-07 23:21+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -148,10 +148,10 @@ msgid "Follow this Collection"
 msgstr "კრებულის გამოწერა"
 
 msgid "Stop Following"
-msgstr "გაყოლის შეჩერება"
+msgstr "გამოწერის გაუქმება"
 
 msgid "Following"
-msgstr "მიჰყვებით"
+msgstr "გამოწერა"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -741,7 +741,7 @@ msgid "Remove from favorites"
 msgstr "რჩეულებიდან ამოღება"
 
 msgid "Stop following"
-msgstr "ადევნების შეწყვეტა"
+msgstr "გამოწერის გაუქმება"
 
 msgid "Your browser does not support the video tag"
 msgstr "თქვენი ბრაუზერს არ აქვს ვიდეო ნაჭდევების მხარდაჭერა"
