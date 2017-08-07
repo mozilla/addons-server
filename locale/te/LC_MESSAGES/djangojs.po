@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-07 09:30+0000\n"
+"PO-Revision-Date: 2017-07-17 16:58+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -499,11 +499,11 @@ msgstr "{0} నుండి {1} వరకు పొడిగింత స్థ�
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "గత {0} రోజుల దిగుమతుల మూలాలు"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} నుంచి {1} వరకు దిగుమతుల మూలాలు"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -764,8 +764,8 @@ msgstr[1] "{files} ఫైళ్లు"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} వనరుని సమీక్ష"
+msgstr[1] "{reviews} వనరుని సమీక్షలు"
 
 msgid "Learn more"
 msgstr "ఇంకా తెలుసుకోండి"
@@ -777,7 +777,7 @@ msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "ఎటువంటి ఫలితాలు లభించలేదు."
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -899,8 +899,8 @@ msgstr[1] "{0} హెచ్చరికలు"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} నోటీసు"
+msgstr[1] "{0} నోటీసులు"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
