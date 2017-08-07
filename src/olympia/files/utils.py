@@ -275,7 +275,7 @@ class RDFExtractor(object):
                         max_appver_text == '*'):
                     # Rewrite '*' as '56.*' in legacy extensions, since they
                     # are not compatible with higher versions.
-                    max_appver_text = '*'
+                    max_appver_text = '56.*'
                 min_appver, max_appver = get_appversions(
                     app, min_appver_text, max_appver_text)
             except AppVersion.DoesNotExist:

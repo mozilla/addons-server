@@ -443,14 +443,14 @@ class TestParseXpi(TestCase):
                 AppVersion.objects.get(
                     application=amo.FIREFOX.id, version='38.0a1'),
                 AppVersion.objects.get(
-                    application=amo.FIREFOX.id, version='*')),
+                    application=amo.FIREFOX.id, version='56.*')),
 
             Extractor.App(
                 amo.ANDROID, amo.ANDROID.id,
                 AppVersion.objects.get(
                     application=amo.ANDROID.id, version='38.0a1'),
                 AppVersion.objects.get(
-                    application=amo.ANDROID.id, version='*'))]
+                    application=amo.ANDROID.id, version='56.*'))]
         assert (
             set(self.parse(filename='jetpack_star.xpi')['apps']) ==
             set(expected))
