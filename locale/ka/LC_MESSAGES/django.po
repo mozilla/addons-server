@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 05:50+0000\n"
+"PO-Revision-Date: 2017-08-08 06:02+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -320,7 +320,7 @@ msgid "See all »"
 msgstr "ყველას ნახვა »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr "პერსპექტიული გაფართოებები"
+msgstr "გაფართოებები ზრდადი მოთხოვნით"
 
 msgid "Featured Themes"
 msgstr "გამორჩეული თემები"
@@ -1015,7 +1015,7 @@ msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "გსურთ მეტად მორგება? სცადეთ <b>სრული თემები</b>"
 
 msgid "Most Followers"
-msgstr "ყველაზე მეტი გამომწერი"
+msgstr "ბევრი გამომწერით"
 
 msgid "Collections"
 msgstr "კრებულები"
@@ -1529,7 +1529,7 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "დამატება"
 
 msgid "Comment"
 msgstr "კომენტარი"
@@ -1567,7 +1567,7 @@ msgstr "რჩეული"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s დამატება"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1576,7 +1576,7 @@ msgstr ""
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "რჩეული დამატებები :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1614,14 +1614,14 @@ msgstr "ჩამოტვირთვები"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: რჩეული დამატებები"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "რჩეული დამატებები {0}-ში არ არის."
 
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "რჩეული დამატებები"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -1800,7 +1800,7 @@ msgid "All"
 msgstr ""
 
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "მოხსენებები დამატებების თავსებადობაზე"
 
 #, python-format
 msgid ""
