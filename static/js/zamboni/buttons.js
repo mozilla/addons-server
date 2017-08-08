@@ -199,7 +199,7 @@ var installButton = function() {
             var msg = format(gettext('This add-on is not compatible with your version of {0}.'),
                         [z.appName, z.browserVersion]);
             var tpl = template(msg +
-                '<br/><span class="more-versions"><a href="{versions_url}">' +
+                ' <br/><span class="more-versions"><a href="{versions_url}">' +
                 gettext('View other versions') + '</a></span>');
             warn(tpl({'versions_url': versions_url}));
 
