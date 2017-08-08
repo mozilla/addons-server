@@ -296,9 +296,9 @@ html5lib==0.9999999 \
 httplib2==0.10.3 \
     --hash=sha256:e404d3b7bd86c1bc931906098e7c1305d6a3a6dcef141b8bb1059903abb3ceeb
 # idna is required by cryptography
-idna==2.5 \
-    --hash=sha256:cc19709fd6d0cbfed39ea875d29ba6d4e22c0cebc510a76d6302a28385e8bb70 \
-    --hash=sha256:3cb5ce08046c4e3a560fc02f138d0ac63e00f8ce5901a56b32ec8b7994082aab
+idna==2.6 \
+    --hash=sha256:8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4 \
+    --hash=sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f
 # ipaddress is required by cryptography, docker-py
 ipaddress==1.0.18 \
     --hash=sha256:d34cf15d95ce9a734560f7400a8bd2ac2606f378e2a1d0eadbf1c98707e7c74a \
