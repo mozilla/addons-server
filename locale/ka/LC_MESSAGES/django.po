@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 06:49+0000\n"
+"PO-Revision-Date: 2017-08-08 07:04+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -592,7 +592,7 @@ msgstr "მიმოხილვები"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr "%(date)s-ს %(user)s-ის მიერ "
+msgstr "%(date)s %(user)s-ის მიერ "
 
 msgid "Show the developer's reply to this review"
 msgstr "შემქმნელის პასუხის ჩვენება, ამ მიმოხილვაზე"
@@ -1499,7 +1499,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr "%(author_link)s-ის მიერ"
+msgstr "ავტორი %(author_link)s"
 
 msgid "Following"
 msgstr "გამოწერილი"
@@ -1508,7 +1508,7 @@ msgid "Create a Collection"
 msgstr "კრებულის შექმნა"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "კრებულები აადვილებს რჩეულ დამატებების სიახლეებზე თვალის დევნებას და სრულყოფილად მორგებული ბრაუზერის, სხვებისთვის გაზიარებას."
+msgstr "კრებულები აადვილებს რჩეული დამატებების სიახლეებზე თვალის მიდევნებას და სრულყოფილად მორგებული ბრაუზერის, სხვებისთვის გაზიარებას."
 
 msgid "Collection Icon"
 msgstr ""
@@ -3215,7 +3215,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr "დამატების შესახებ ინფორმაცია გამოჩნდება ამ ენაზე, სანამ არ ჩაანაცვლებთ განსაზღვრულ ენაზე თარგმანით. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Homepage"
-msgstr ""
+msgstr "მთავარი გვერდი"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -3638,13 +3638,13 @@ msgid "Edit version {0}"
 msgstr "{0} ვერსიის ჩასწორება"
 
 msgid "File Signed"
-msgstr "ფაილი ხელმოწერილია"
+msgstr "ფაილი დამოწმებულია"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 msgid "Version Signed"
-msgstr "ვერსია ხელმოწერილია"
+msgstr "ვერსია დამოწმებულია"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -8065,10 +8065,10 @@ msgid "Manage user"
 msgstr ""
 
 msgid "Report user"
-msgstr ""
+msgstr "მოხსენება ამ მომხმარებელზე"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "დამატების შემმუშავებელი"
 
 msgid "Themes Artist"
 msgstr "თემების მხატვარი"
@@ -8101,13 +8101,13 @@ msgid "No add-on reviews yet."
 msgstr ""
 
 msgid "Report User"
-msgstr ""
+msgstr "მოხსენება ამ მომხმარებელზე"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "მოხსენება {0} მომხმარებელზე"
 
 msgid "Unsubscribe"
 msgstr ""
@@ -8207,11 +8207,11 @@ msgid_plural "<b>{0}</b> versions"
 msgstr[0] ""
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "ყურადღებით იყავით, ძველ ვერსიებთან!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "ქვემოთ მოცემული ვერსიები განსახილველად და შესამოწმებლადაა განკუთვნილი. ყოველდღიური მოხმარებისთვის კი მხოლოდ, <a href=\"%(url)s\">უახლესი ვერსია</a> უნდა გამოიყენოთ, დამატებების."
 
 msgid "Current Max. Version"
 msgstr ""
