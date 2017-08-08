@@ -80,7 +80,7 @@
     {% if latest_listed_version and latest_listed_version != addon.current_version %}
       <li>
         <strong>{{ _('Next Listed Version:') }}</strong>
-        <a href="{{ latest_listed_version.get_url_path() }}">{{ latest_listed_version.version }}</a>
+        <a href="{{ addon.get_dev_url('versions') }}">{{ latest_listed_version.version }}</a>
         <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
       </li>
     {% endif %}
