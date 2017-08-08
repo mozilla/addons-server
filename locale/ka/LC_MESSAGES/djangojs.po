@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-08 16:15+0000\n"
+"PO-Revision-Date: 2017-08-08 17:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -427,11 +427,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
+msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვების და ღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -451,11 +451,11 @@ msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "ყოველდღიური მომხმარებლები, ბოლო {0} დღეში"
+msgstr "დღიური მომხმარებლები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "ყოველდღიური მომხმარებლები {0}-იდან {1}-მდე"
+msgstr "დღიური მომხმარებლები {0}-იდან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"

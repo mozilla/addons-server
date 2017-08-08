@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 16:40+0000\n"
+"PO-Revision-Date: 2017-08-08 17:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -351,13 +351,13 @@ msgid_plural "%(num)s users"
 msgstr[0] "%(num)s მომხმარებელი"
 
 msgid "Requires Restart"
-msgstr "საჭიროა გადატვირთვა"
+msgstr "საჭიროებს გადატვირთვას"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "თავსებადია Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -592,7 +592,7 @@ msgstr "მიმოხილვები"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr "%(date)s %(user)s-ის მიერ "
+msgstr "%(date)s მიმოხილვის ავტორი: %(user)s"
 
 msgid "Show the developer's reply to this review"
 msgstr "შემქმნელის პასუხის ჩვენება, ამ მიმოხილვაზე"
@@ -802,7 +802,7 @@ msgid "Source Code License"
 msgstr "პირველწყარო კოდის ლიცენზია"
 
 msgid "permalink"
-msgstr "permalink"
+msgstr "პირდაპირი ბმული"
 
 #, python-format
 msgid "See all user reviews"
@@ -1049,7 +1049,7 @@ msgstr "ძიების ხელსაწყოები"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "გვერდი <a href=\"%(current_pg_url)s\">%(current_pg)s</a> <a href=\"%(last_pg_url)s\">%(last_pg)s</a>-დან"
+msgstr "<a href=\"%(current_pg_url)s\">%(current_pg)s</a> გვერდი <a href=\"%(last_pg_url)s\">%(last_pg)s</a>-დან"
 
 msgid "Jump to first page"
 msgstr "გადახტომა პირველ გვერდზე"
@@ -1577,7 +1577,7 @@ msgstr "%s დამატება"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s თემები"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1756,10 +1756,10 @@ msgstr ""
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0}-ის თემები"
 
 msgid "View Profile"
-msgstr ""
+msgstr "პროფილის ნახვა"
 
 msgid "Create Your Own Theme"
 msgstr ""
@@ -1855,7 +1855,7 @@ msgid "e10s Enabled"
 msgstr ""
 
 msgid "e10s Compatible"
-msgstr ""
+msgstr "e10s-სთან თავსებადი"
 
 msgid "Submitted"
 msgstr ""
@@ -2328,10 +2328,10 @@ msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
-msgstr ""
+msgstr "თავსებადი"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "არათავსებადი"
 
 msgid "Alerts & Updates"
 msgstr "უწყებები და განახლებები"
@@ -2881,7 +2881,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "%s ვერსია გამორთულია."
 
 #, python-format
 msgid "Version %s deleted."
@@ -2986,7 +2986,7 @@ msgid "Add-ons Blog"
 msgstr "დამატებების სვეტი"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "დამატებების ფორუმი"
 
 msgid "More Resources"
 msgstr ""
@@ -4682,7 +4682,7 @@ msgid "Uses a content script for all URLs."
 msgstr ""
 
 msgid "Has too many daily users."
-msgstr ""
+msgstr "ზედმეტად ბევრი დღიური მომხმარებელი."
 
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
@@ -5595,7 +5595,7 @@ msgid "Add-ons that help you on your travels!"
 msgstr ""
 
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "ქვეყნის დროშის ჩვენება, არსებული ვებსაიტის სერვერის ადგილმდებარეობის მიხედვით და ა.შ."
 
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr ""
@@ -5649,7 +5649,7 @@ msgid "Games!"
 msgstr "თამაშები!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "შემატეთ მხიარულება თქვენს Firefox. ითამაშეთ ათასობით თამაში, პირდაპირ თქვენი ბრაუზერიდან—თავსატეხები, სამაგიდო, მოქმედებითი და ა.შ!"
 
 msgid "Must-Have Media"
 msgstr ""
@@ -5700,7 +5700,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr ""
 
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "ჩამოტვირთული დამატებები:"
 
 msgid "Active Users"
 msgstr ""
@@ -6405,7 +6405,7 @@ msgid "Contributing your Add-on"
 msgstr ""
 
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "დამატების მიმოხილვის მიმდინარეობა"
 
 msgid "Managing Your Add-on"
 msgstr ""
@@ -6466,7 +6466,7 @@ msgid "#webextensions (for discussions about developing and porting to WebExtens
 msgstr ""
 
 msgid "Add-ons forum"
-msgstr ""
+msgstr "დამატებების ფორუმი"
 
 msgid "Does Mozilla offer development services?"
 msgstr ""
@@ -6782,7 +6782,7 @@ msgid "Add-ons are automatically checked for updates once every day. In Firefox,
 msgstr ""
 
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "უსაფრთხოა დამატებების დაყენება?"
 
 #, python-format
 msgid ""
@@ -6792,7 +6792,7 @@ msgstr ""
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "დამატებებს შეუძლია შეანელოს %(app_name)s?"
 
 #, python-format
 msgid ""
@@ -7085,7 +7085,7 @@ msgid "The study will expire on its own in a few weeks. You may leave the study 
 msgstr ""
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "აკრიფეთ about:addons მისამართების ზოლში და დააჭირეთ Enter ღილაკს."
 
 msgid "Find Plugin Safety in the addons list."
 msgstr ""
@@ -7652,7 +7652,7 @@ msgid "Loading..."
 msgstr ""
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> საშუალო დღიური მომხმარებელი"
 
 msgid "Top Applications"
 msgstr ""
@@ -7700,10 +7700,10 @@ msgid "Subscribers by Date"
 msgstr ""
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "დღიური მომხმარებელი თარიღის მიხედვით"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "რა არის დღიური მომხმარებელი?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7847,10 +7847,10 @@ msgid "Display Name"
 msgstr ""
 
 msgid "Location"
-msgstr ""
+msgstr "მდებარეობა"
 
 msgid "Occupation"
-msgstr ""
+msgstr "საქმიანობა"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
@@ -8100,7 +8100,7 @@ msgid "Created by Me"
 msgstr "ჩემ მიერ შექმნილი"
 
 msgid "My Reviews"
-msgstr ""
+msgstr "ჩემი მიმოხილვები"
 
 msgid "No add-on reviews yet."
 msgstr ""
@@ -8161,12 +8161,12 @@ msgstr ""
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s თემა"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s დამატება"
 
 msgid "Average rating of developer's add-ons"
 msgstr "დამატებების საშუალო შეფასება"
