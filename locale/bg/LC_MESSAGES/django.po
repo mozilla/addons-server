@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-07 10:41+0000\n"
+"PO-Revision-Date: 2017-08-08 07:23+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -434,7 +434,7 @@ msgid "Rejected"
 msgstr "Отказан"
 
 msgid "Approved"
-msgstr "Одобрен"
+msgstr "Одобрена"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -534,7 +534,7 @@ msgid "This add-on is not compatible with your version of %(app)s because of the
 msgstr "Тази добавка не е съвместима с вашата версия на %(app)s поради следните причини:"
 
 msgid "View other versions"
-msgstr "Виж други версии"
+msgstr "Други версии"
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -858,7 +858,7 @@ msgid "Edit Theme"
 msgstr "Редактиране на темата"
 
 msgid "Approve / Reject"
-msgstr "Одобрение / отхвърляне"
+msgstr "Одобряване / отхвърляне"
 
 msgid "Review History"
 msgstr "История на рецензиите"
@@ -1952,7 +1952,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} получи предварителен преглед."
 
 msgid "Preliminarily approved"
-msgstr "Предварително одобрен"
+msgstr "Предварително одобрена"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} отказана."
@@ -2037,7 +2037,7 @@ msgid "{addon} icon changed."
 msgstr "Иконката на {addon} променена."
 
 msgid "{review} for {addon} approved."
-msgstr "{review} за {addon} одобрен."
+msgstr "{review} за {addon} одобрена."
 
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} одобри {review} за {addon}."
@@ -2061,10 +2061,10 @@ msgid "Password changed."
 msgstr "Паролата смененеа."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} одобрен, но изчаква да бъде направен публичен."
+msgstr "{addon} {version} одобрена, но изчаква да бъде направена публична."
 
 msgid "Approved but waiting"
-msgstr "Одобрен, но изчакващ"
+msgstr "Одобрена, но изчакваща"
 
 msgid "Account updated."
 msgstr "Сметката е обновена."
@@ -2093,7 +2093,7 @@ msgstr ""
 # 83%
 # 100%
 msgid "{review} for {addon} updated."
-msgstr "{review} за {addon} одобрен."
+msgstr "{review} за {addon} одобрена."
 
 msgid "{addon} reviewed."
 msgstr ""
@@ -2181,7 +2181,7 @@ msgid "Deleted"
 msgstr "Изтрит"
 
 msgid "Pending approval"
-msgstr "Очакваща одобрение"
+msgstr "Очакваща одобряване"
 
 msgid "Flagged for further review"
 msgstr ""
@@ -2359,7 +2359,7 @@ msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
-msgstr "Свместима"
+msgstr "Съвместима"
 
 msgid "Incompatible"
 msgstr "Несъвместима"
@@ -3775,7 +3775,7 @@ msgid "Generate new credentials"
 msgstr "Създаване на ново удостоверение"
 
 msgid "Invisible"
-msgstr "Невидим"
+msgstr "Скрита"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -4489,35 +4489,35 @@ msgid "Reply"
 msgstr "Отговаряне"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Състояние на видимост"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Публикувана:{label_close} Видима за всички на {site_url} и се показва при търсене в категориите."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}Скрита:{label_close} Няма да бъде включена в резултатите от търсене, а страницата ѝ ще показва, че сте я изключили. Добавката оставена в това състояние няма да приема нови версии."
 
 msgid "Listed versions"
 msgstr "Публикувани версии"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Публикувана на AMO"
 
 msgid "Status"
 msgstr "Състояние"
 
 msgid "Validation"
-msgstr ""
+msgstr "Проверка"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Изтриване/спиране"
 
 msgid "Next version of this add-on"
 msgstr ""
 
 msgid "Other versions"
-msgstr ""
+msgstr "Други версии"
 
 msgid "All versions"
 msgstr "Всички версии"
@@ -4909,7 +4909,7 @@ msgid "Visibility"
 msgstr "Видимост"
 
 msgid "Visible"
-msgstr ""
+msgstr "Публикувана"
 
 msgid "Average Daily Users"
 msgstr "Средно потребителия дневно"
