@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 10:53+0000\n"
+"PO-Revision-Date: 2017-08-08 10:55+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3155,14 +3155,14 @@ msgstr "Профила на разработчика"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "В момента вашият <a href=\"%(url)s\">профил на разработчик</a> е <strong>публичен</strong> и е <strong>нужен</strong> за дарения."
+msgstr "В момента вашият <a href=\"%(url)s\">профил на разработчика</a> е <strong>публичен</strong> и е <strong>задължителен</strong> за дарения."
 
 msgid "Remove Both"
-msgstr "Премахни и двете"
+msgstr "Премахване и на двете"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "В момента вашият <a href=\"%(url)s\">профил на разработчик</a> е <strong>публичен</strong>."
+msgstr "В момента вашият <a href=\"%(url)s\">профил на разработчика</a> е <strong>публичен</strong>."
 
 msgid "Remove Profile"
 msgstr "Премахни профила"
