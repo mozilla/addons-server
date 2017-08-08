@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-07 23:48+0000\n"
+"PO-Revision-Date: 2017-08-08 05:27+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -82,7 +82,7 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "&nbsp;&rarr;-ის ჩამოტვირთვის გაგრძელება"
 
 msgid "Featured"
-msgstr "რეკომენდებული"
+msgstr "რჩეული"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
@@ -3066,7 +3066,7 @@ msgid "Supported Versions"
 msgstr ""
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "სხვა პროგრამის დამატება&hellip;"
 
 msgid "Close"
 msgstr ""
@@ -3907,7 +3907,7 @@ msgid "Community"
 msgstr "ერთობა"
 
 msgid "About"
-msgstr "ჩვენს შესახებ"
+msgstr "ჩვენ შესახებ"
 
 msgid "Forum"
 msgstr ""
@@ -4031,7 +4031,7 @@ msgstr "მომხმარებლის სურათი"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">რეგისტრაცია</a> ან <a href=\"%(login)s\">შესვლა</a>"
 
 msgid "Customize Firefox"
 msgstr "Firefox-ის მორგება"
@@ -6741,6 +6741,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong>შემატეთ ახალი შესაძლებლობები %(app_name)s-ს, ან შეცვალეთ მისი არსებული ფუნქციონალი. გაფართოებები შეგიძლიათ გამოიყენოთ რეკლამების "
+"შეზღუდვისთვის, საიტებიდან ვიდეოების ჩამოტვირთვისთვის, სოციალურ ქსელებთან მჭიდროდ დასაკავშირებლად და იმ შესაძლებლობების დასამატებლად, რაც სხვა პროგრამებში გხვდებათ."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -7718,10 +7720,10 @@ msgid "Mozilla Add-ons"
 msgstr ""
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "დამატებების მოძიება სხვა პროგრამებისთვის"
 
 msgid "Other Applications"
-msgstr ""
+msgstr "სხვა პროგრამები"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
@@ -7772,7 +7774,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">რეგისტრაცია</a> ან <a href=\"%(login)s\">შესვლა</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -7780,10 +7782,10 @@ msgstr "აქ ხელმისაწვდომი ათასობით 
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "მოგესალმებით, {0} დამატებების გვერდზე."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "აირჩიეთ ათასობით დამატებითი შესაძლებლობებისა და გაფორმებებიდან სასურველი, Firefox-ის უკეთ მოსარგებად."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
