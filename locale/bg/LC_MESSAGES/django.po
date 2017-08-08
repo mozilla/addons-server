@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 07:50+0000\n"
+"PO-Revision-Date: 2017-08-08 08:03+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -113,8 +113,8 @@ msgstr[1] "Невалидни етикети: {0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" е запазен и не може да се използва."
-msgstr[1] "\"{0}\" са запазени и не могат да се използват."
+msgstr[0] "„{0}“ е запазен и не може да бъде използван."
+msgstr[1] "„{0}“ са запазени и не може да бъдат използвани."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1930,7 +1930,7 @@ msgid "{addon} status changed to {0}."
 msgstr "състоянието на {addon} сменено на {0}."
 
 msgid "{version} added to {addon}."
-msgstr "{version} добавен към {addon}."
+msgstr "{version} добавена към {addon}."
 
 msgid "{version} edited for {addon}."
 msgstr "{version} редактирана за {addon}."
@@ -2003,7 +2003,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} премахнат от {collection}."
 
 msgid "{review} for {addon} written."
-msgstr "{review} за {addon} написана."
+msgstr "Написан {review} за {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -2838,7 +2838,7 @@ msgid "All Activity"
 msgstr "Пълен журнал"
 
 msgid "Add-on Updates"
-msgstr "Актуализация на добавка"
+msgstr "Обновявания на добавката"
 
 msgid "Add-on Status"
 msgstr "Състояние на добавка"
@@ -3325,7 +3325,7 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr ""
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "Изходният код на тази добавка е видим публично."
+msgstr "Изходният код на добавката е публично достъпен."
 
 msgid "No, this add-on's source code is not publicly viewable."
 msgstr "Не, изходният код на тази добавка не е видим публично."
@@ -3337,7 +3337,7 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr "Статистиките на тази добава са публични."
+msgstr "Статистиките на тази добавка са публично достъпни."
 
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Не, статистиките на тази добавка не са публични."
@@ -3772,7 +3772,7 @@ msgid "Revoke and regenerate credentials"
 msgstr "Отменяне или създаване на удостоверение"
 
 msgid "Generate new credentials"
-msgstr "Създаване на ново удостоверение"
+msgstr "Създаване на удостоверение"
 
 msgid "Invisible"
 msgstr "Скрита"
