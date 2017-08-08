@@ -674,9 +674,9 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'error'
 
 
-class TestNewLegacyAddonRestrictions(ValidatorTestCase):
+class TestLegacyAddonRestrictions(ValidatorTestCase):
     def setUp(self):
-        super(TestNewLegacyAddonRestrictions, self).setUp()
+        super(TestLegacyAddonRestrictions, self).setUp()
         self.create_switch('restrict-new-legacy-submissions')
 
     def test_submit_legacy_addon_restricted(self):
@@ -807,17 +807,12 @@ class TestNewLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_new_legacy_addon_restrictions(data)
+        results = tasks.annotate_legacy_addon_restrictions(
+            data, is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_extensions_restricted']
-
-
-class TestUpgradeLegacyAddonRestrictions(ValidatorTestCase):
-    def setUp(self):
-        super(TestUpgradeLegacyAddonRestrictions, self).setUp()
-        self.create_switch('restrict-new-legacy-submissions')
 
     def test_submit_legacy_upgrade(self):
         # Works because it's not targeting >= 57.
@@ -908,6 +903,40 @@ class TestUpgradeLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['errors'] == 0
         assert upload.processed_validation['messages'] == []
         assert upload.valid
+
+    def test_submit_legacy_targeting_multiple_including_firefox_57(self):
+        # By submitting a legacy extension targeting multiple apps, this add-on
+        # avoids the restriction for new uploads, but it should still trigger
+        # the one for legacy extensions targeting 57 or higher.
+        data = {
+            'messages': [],
+            'errors': 0,
+            'metadata': {
+                'is_webextension': False,
+                'is_extension': True,
+                'applications': {
+                    'firefox': {
+                        'max': '57.0'
+                    },
+                    'thunderbird': {
+                        'max': '45.0'
+                    }
+                }
+            }
+        }
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=True)
+        assert results['errors'] == 1
+        assert len(results['messages']) > 0
+        assert results['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_extensions_max_version']
+
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=False)
+        assert results['errors'] == 1
+        assert len(results['messages']) > 0
+        assert results['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_extensions_max_version']
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
