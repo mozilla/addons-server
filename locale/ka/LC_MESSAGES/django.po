@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 23:32+0000\n"
+"PO-Revision-Date: 2017-08-08 23:43+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3915,7 +3915,7 @@ msgid "About"
 msgstr "ჩვენ შესახებ"
 
 msgid "Forum"
-msgstr ""
+msgstr "ფორუმი"
 
 msgid "Blog"
 msgstr "სვეტი"
@@ -4320,7 +4320,7 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "ჩაერთეთ საუბრებში ჩვენს <a href=\"%(forum_url)s\">ფორუმებზე</a>."
 
 msgid "Select a header image for your Theme."
 msgstr ""
@@ -6280,7 +6280,7 @@ msgstr ""
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "მიიღეთ მონაწილეობა ჩვენს <a href=\"%(url)s\">ფორუმებში</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
@@ -6291,6 +6291,8 @@ msgstr ""
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"დასაწყებად, საუკეთესო ადგილია ჩვენი <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">ხდკ</abbr></a> გვერდი. თუ თქვენს კითხვაზე მანდ ვერ იპოვით პასუხს, შეგიძლიათ <a "
+"href=\"%(forum_url)s\">ჩვენს ფორუმებზე დასვათ კითხვა</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6414,7 +6416,7 @@ msgid "References for Open Source Licenses"
 msgstr ""
 
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "დამატების შემმუშავებელთა ხდკ"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
@@ -7751,7 +7753,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "გაეცანით <b>დამატებებს</b>"
 
 msgid "Other languages"
 msgstr "სხვა ენები"
@@ -7997,7 +7999,7 @@ msgid "Profile"
 msgstr ""
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "მოგვაწოდეთ ცოტა უფრო მეტი ინფორმაცია თქვენზე. ყველა ამ ველის შევსება, არაა სავალდებულო, თუმცა დაეხმარება სხვა მომხმარებლებს, უკეთ გაგიცნონ."
 
 msgid "This URL will only be visible if you are a developer."
 msgstr ""
