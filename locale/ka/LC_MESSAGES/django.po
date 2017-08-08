@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 05:27+0000\n"
+"PO-Revision-Date: 2017-08-08 05:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -181,7 +181,7 @@ msgid "for {0}"
 msgstr "{0} -სთვის"
 
 msgid "View privacy policy"
-msgstr "პრივატულობის პოლიტიკის ნახვა"
+msgstr "გაეცანით პირადი მონაცემების დაცვის დებულებას"
 
 msgid "View End-User License Agreement"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმების ნახვა"
@@ -338,7 +338,7 @@ msgstr "განახლებული {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr "დამატებულია {0}"
+msgstr "დამატების თარიღი {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -535,7 +535,7 @@ msgstr "{0}-ის პირადი მონაცემების და�
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr "პრივატულობის პოლიტიკა"
+msgstr "პირადი მონაცემების დაცვის დებულება"
 
 msgid "Report Abuse"
 msgstr "შეტყობინება უკანონო გამოყენების შესახებ"
@@ -1354,14 +1354,14 @@ msgstr[0] "<span>%(followers)s</span> გამომწერი"
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s გამომწერი კვირაში"
+msgstr[0] "%(num)s ყოველკვირეული გამომწერი"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s გამომწერი ყოველთვიურად"
+msgstr[0] "%(num)s ყოველთვიური გამომწერი"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1586,10 +1586,10 @@ msgstr ""
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "%s-თან დაკავშირებული ძიების ხელსაწყოები"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "ძიების ხელსაწყოები და საძიებო სისტემები"
 
 msgid "Search tools"
 msgstr "ძიების ხელსაწყოები"
@@ -2347,13 +2347,13 @@ msgid "Games & Entertainment"
 msgstr "თამაშები და გართობა"
 
 msgid "Language Support"
-msgstr "ენის ინსტრუმენტები"
+msgstr "ენის ხელსაწყოები"
 
 msgid "Photos, Music & Videos"
 msgstr "ფოტო, მუსიკა და ვიდეო"
 
 msgid "Privacy & Security"
-msgstr "პრივატულობა და დაცვა"
+msgstr "პირადულობა და უსაფრთხოება"
 
 msgid "Shopping"
 msgstr "ვაჭრობა"
@@ -2533,7 +2533,7 @@ msgid "Site-specific"
 msgstr ""
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "ვებშემმუშავებლის ხელსაწყოები"
 
 msgid "Request More Info"
 msgstr ""
@@ -3029,7 +3029,7 @@ msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "შედეგები ვერ მოიძებნა."
 
 msgid "Refine Activity"
 msgstr ""
@@ -4854,7 +4854,7 @@ msgid "Abuse Reports"
 msgstr "დარღვევების მოხსენებები"
 
 msgid "View Privacy Policy"
-msgstr "პრივატულობის პოლიტიკა"
+msgstr "გაეცანით პირადი მონაცემების დაცვის დებულებას"
 
 msgid "Requires Payment"
 msgstr "გადახდა სავალდებულოა"
@@ -7366,10 +7366,10 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "კრებულის ძიების შედეგები {0} ფრაზისთვის"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "კრებულის ძიების შედეგები"
 
 msgid "Search Results"
 msgstr ""
@@ -7382,10 +7382,10 @@ msgstr ""
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "თემების ძიების შედეგები {0} ფრაზისთვის"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "თემების ძიების შედეგები"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
@@ -7393,7 +7393,7 @@ msgstr ""
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "ძიების შედეგები \"{0}\" ფრაზისთვის"
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7401,7 +7401,7 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "ძიების შედეგები \"{0}\" ნაჭდევისთვის"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
@@ -7417,7 +7417,7 @@ msgid "Tag"
 msgstr ""
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "{0} - {1} შედეგი {2}-იდან <strong>{3}</strong> ფრაზისთვის"
 
 msgid "Showing {0} - {1} of {2} results"
 msgstr ""
