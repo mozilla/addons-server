@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 17:26+0000\n"
+"PO-Revision-Date: 2017-08-08 23:32+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -661,7 +661,7 @@ msgstr "ამ კრებულების ნაწილი"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "ამ ავტორის სხვა დამატებები"
+msgstr[0] "ავტორის სხვა დამატებები"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -719,7 +719,7 @@ msgid "Custom License"
 msgstr "საკუთარი ლიცენზიით"
 
 msgid "About this Add-on"
-msgstr "ამ დამატების შესახებ"
+msgstr "დამატების შესახებ"
 
 msgid "Developer’s Comments"
 msgstr "განმვითარებლის კომენტარები"
@@ -888,7 +888,7 @@ msgid "Submit a New Theme"
 msgstr "ახალი თემის წარდგენა"
 
 msgid "Developer Hub"
-msgstr "დეველოპერთა ბაზა"
+msgstr "შემმუშავებლები"
 
 msgid "Manage API Keys"
 msgstr "API გასაღებების მართვა"
@@ -1241,7 +1241,7 @@ msgid "Create Collection"
 msgstr "კრებულის შექმნა"
 
 msgid "View this collection"
-msgstr "ამ კრებულის ნახვა"
+msgstr "კრებულის ნახვა"
 
 msgid "Start a new collection..."
 msgstr "ახალი კრებულის შექმნა..."
@@ -1287,7 +1287,7 @@ msgid "Make this Collection Private"
 msgstr "კრებულის დამალვა"
 
 msgid "Make this Collection Public"
-msgstr "ამ კრებულის გასაჯაროება"
+msgstr "კრებულის გასაჯაროება"
 
 msgid "Learn about collections"
 msgstr "გაიგეთ კრებულების შესახებ"
@@ -1387,7 +1387,7 @@ msgid "Follow this Collection"
 msgstr "კრებულის გამოწერა"
 
 msgid "Edit this Collection"
-msgstr "ამ კრებულის რედაქტირება"
+msgstr "კრებულის რედაქტირება"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
@@ -1422,7 +1422,7 @@ msgid "Make Owner"
 msgstr "მფლობელობის გადაცემა"
 
 msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის დამხმარეებიდან ამოღება"
+msgstr "ამ მომხმარებლის მოხალისეებიდან ამოღება"
 
 msgid "Remove"
 msgstr "ამოღება"
@@ -1723,16 +1723,16 @@ msgstr "გაფართოებები ზრდადი მოთხო�
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "რჩეული სრული გაფორმებები"
 
 msgid "Most Popular Complete Themes"
 msgstr "ყველაზე ხშირად ჩამოტვირთული გაფორმებები"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "საუკეთესოდ შეფასებული სრული გაფორმებები"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "უახლესი სრული გაფორმებები"
 
 msgid "Complete Themes by Name"
 msgstr "სრული გაფორმებები სახელის მიხედვით"
@@ -1741,7 +1741,7 @@ msgid "Complete Themes by Weekly Downloads"
 msgstr "სრული გაფორმებები ყოველკვირეული ჩამოტვირთვების მიხედვით"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "ახალი განახლებული სრული გაფორმებები"
 
 msgid "Up & Coming Complete Themes"
 msgstr "სრული თემები ზრდადი მოთხოვნით"
@@ -1790,7 +1790,7 @@ msgstr ""
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "სრული თემები გარდაქმნის თქვენი ბრაუზერის იერსახეს, ფანჯრების ჩარჩოს, მისამართების ზოლს, ღილაკებს, ჩანართებსა და მენიუს. <a href=\"%(url)s\" class=\"more-info\">გამოცადეთ</a>"
 
 msgid "Up & Coming Themes"
 msgstr "თემები ზრდადი მოთხოვნით"
@@ -2144,7 +2144,7 @@ msgid "Unknown"
 msgstr ""
 
 msgid "Incomplete"
-msgstr ""
+msgstr "დაუსრულებელი"
 
 msgid "Disabled by Mozilla"
 msgstr "გამორთულია Mozilla-ს მიერ"
@@ -2177,7 +2177,7 @@ msgid "Extension"
 msgstr ""
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "სრული თემა"
 
 msgid "Search Engine"
 msgstr ""
@@ -2195,7 +2195,7 @@ msgid "Theme"
 msgstr ""
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "სრული თემები"
 
 msgid "Dictionaries"
 msgstr ""
@@ -2286,13 +2286,13 @@ msgid "Updated Search Provider Review"
 msgstr ""
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "ახალი სრული თემის მიმოხილვა"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "სრული თემის წინასწარი მიმოხილვა"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "განახლებული სრული თემის მიმოხილვა"
 
 msgid "Moderated Addon Review"
 msgstr ""
@@ -2364,7 +2364,7 @@ msgid "Shopping"
 msgstr "ვაჭრობა"
 
 msgid "Social & Communication"
-msgstr "ურთიერთობა და კომუნიკაცია"
+msgstr "სოციალური ქსელები"
 
 msgid "Tabs"
 msgstr "ჩანართები"
@@ -3927,7 +3927,7 @@ msgid "Policies"
 msgstr "დებულებები"
 
 msgid "FAQ"
-msgstr ""
+msgstr "ხდკ"
 
 msgid "Report Bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
@@ -6389,7 +6389,7 @@ msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki 
 msgstr ""
 
 msgid "Developer FAQ"
-msgstr ""
+msgstr "შემმუშავებლების ხდკ"
 
 msgid "Sections"
 msgstr ""
@@ -7354,20 +7354,20 @@ msgid "Sort By"
 msgstr ""
 
 msgid "Relevance"
-msgstr ""
+msgstr "შესაბამისობა"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "ყველა დამატება"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "ნებისმიერ {0}-ზე"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "ყველა სისტემაზე"
 
 msgid "All Tags"
-msgstr ""
+msgstr "ყველა ჭდე"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7402,7 +7402,7 @@ msgstr "ძიების შედეგები \"{0}\" ფრაზის�
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: ჭდე"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7410,16 +7410,16 @@ msgstr "ძიების შედეგები \"{0}\" ნაჭდევ�
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> შედეგი"
 
 msgid "Filter Results"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "კატეგორია"
 
 msgid "Tag"
-msgstr ""
+msgstr "ჭდე"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "{0} - {1} შედეგი {2}-იდან <strong>{3}</strong> ფრაზისთვის"
@@ -7737,7 +7737,7 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr ""
+msgstr "კატეგორიის არჩევა"
 
 msgid "View Mobile Site"
 msgstr ""
