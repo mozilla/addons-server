@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 10:55+0000\n"
+"PO-Revision-Date: 2017-08-08 13:38+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -255,7 +255,7 @@ msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that y
 msgstr ""
 
 msgid "How much would you like to contribute?"
-msgstr "Каква сума искате да дарите?"
+msgstr "Каква сума желаете да дарите?"
 
 msgid "The maximum contribution amount is {0}."
 msgstr "Максималната сума за дарение е {0}."
