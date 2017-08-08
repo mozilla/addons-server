@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 08:03+0000\n"
+"PO-Revision-Date: 2017-08-08 10:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2955,13 +2955,11 @@ msgstr ""
 msgid "Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "История на рецензиите"
+msgstr "Политика на рецензиите"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Преглед на насоки"
+msgstr "Правила на рецензиите"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -2983,7 +2981,7 @@ msgstr "Назад към добавките"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "Добавки за {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -3048,7 +3046,7 @@ msgstr "Искате ли добавката да бъде разпростра�
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Резултати от проверката на {0}"
 
 msgid "Validation Results"
 msgstr "Резултати от валидацията"
@@ -3455,7 +3453,7 @@ msgid "Top"
 msgstr "Нагоре"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Изтриване на темата"
 
 msgid "Delete Add-on"
 msgstr "Изтриване на добавка"
@@ -3608,7 +3606,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Бележка към рецензента:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3616,9 +3614,8 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Отказ от инсталация"
+msgstr "Отказ и изключване на версията"
 
 msgid "Cancel Review and Disable Version"
 msgstr ""
@@ -3653,9 +3650,8 @@ msgstr "Пращането завърши"
 msgid "You’re done!"
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Версията е подписана"
+msgstr "Версията е изпратена"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3676,7 +3672,7 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr ""
 
 msgid "Edit version {0}"
-msgstr ""
+msgstr "Редактиране на версия {0}"
 
 msgid "File Signed"
 msgstr "Файлът е подписан"
@@ -3751,10 +3747,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr "Пазете вашите ключове за ППИ в тайна и <strong>никога не ги споделяйте с никого</strong>, включително и със сътрудници на Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT issuer"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT secret"
 
 #, python-format
 msgid ""
@@ -3766,7 +3762,7 @@ msgid "You don't have any API credentials."
 msgstr "Нямате удостоверителни данни за ППИ."
 
 msgid "Revoke"
-msgstr ""
+msgstr "Анулиране"
 
 msgid "Revoke and regenerate credentials"
 msgstr "Отменяне или създаване на удостоверение"
@@ -3946,9 +3942,8 @@ msgstr ""
 msgid "Resources"
 msgstr ""
 
-#, fuzzy
 msgid "Porting"
-msgstr "Оценка"
+msgstr "Мигриране"
 
 msgid "Community"
 msgstr "Общност"
@@ -4034,9 +4029,8 @@ msgstr ""
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Препоръчани добавки"
+msgstr "Обновете вашето остаряло разширение"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
@@ -4071,13 +4065,13 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Docs"
-msgstr ""
+msgstr "Документация"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Изход"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Снимка на потребителя"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4109,7 +4103,7 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 msgid "Sign In"
-msgstr ""
+msgstr "Вписване"
 
 msgid "Validator"
 msgstr ""
@@ -4143,7 +4137,7 @@ msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
 
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Изберете кога и как от потребителите биват подканени да дарят"
 
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
 msgstr "Получавайте дарения във вашата сметка в PayPal или ги изпращайте към организация по ваш избор"
