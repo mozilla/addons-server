@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 07:04+0000\n"
+"PO-Revision-Date: 2017-08-08 07:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -140,7 +140,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "ნაგულისხმევი ლოკალის შეცვლამდე, სახელი, შეჯამება და აღწერა ამ ლოკალზე უნდა გქონდეთ. ახლა გაკლიათ %s."
 
 msgid "A license must be selected."
-msgstr "ლიცენზიის არჩევა აუცილებელია."
+msgstr "ლიცენზიის მითითება აუცილებელია."
 
 msgid "Give Your Theme a Name."
 msgstr "დაარქვით თემას სახელი."
@@ -292,7 +292,7 @@ msgid "End-User License Agreement for {0}"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმება {0}-სთვის"
 
 msgid "End-User License Agreement"
-msgstr "საბოლოო მომხმარებლის სალიცენზიო შეთანხმება"
+msgstr "მომხმარებლის სალიცენზიო შეთანხმება"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
@@ -610,7 +610,7 @@ msgstr "ხატულა {0}-სთვის"
 
 #, python-format
 msgid "by %(users)s"
-msgstr "%(users)s-ის მიერ"
+msgstr "ავტორი: %(users)s"
 
 msgid "[Warning]"
 msgstr ""
@@ -716,7 +716,7 @@ msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "გამოშვებულია <a href=\"%(url)s\">%(name)s</a>-ის თანახმად"
 
 msgid "Custom License"
-msgstr "საკუთარი ლიცენზია"
+msgstr "საკუთარი ლიცენზიით"
 
 msgid "About this Add-on"
 msgstr "ამ დამატების შესახებ"
@@ -799,7 +799,7 @@ msgstr "{addon}-ის საწყისი კოდის ლიცენზ�
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr "საწყისი კოდის ლიცენზია"
+msgstr "პირველწყარო კოდის ლიცენზია"
 
 msgid "permalink"
 msgstr "permalink"
@@ -1468,7 +1468,7 @@ msgstr "რჩეულებში დამატება"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "{0}-ის მიერ შექმნილი კრებულები"
+msgstr "კრებულების შემქმნელი: {0}"
 
 msgid "No collections found."
 msgstr ""
@@ -1499,7 +1499,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr "ავტორი %(author_link)s"
+msgstr "ავტორი: %(author_link)s"
 
 msgid "Following"
 msgstr "გამოწერილი"
@@ -1604,7 +1604,7 @@ msgid "Up & Coming"
 msgstr ""
 
 msgid "Recently Added"
-msgstr "ბოლოს დამატებული"
+msgstr "ახალი დამატებული"
 
 msgid "Created"
 msgstr ""
@@ -1744,7 +1744,7 @@ msgstr ""
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში %(name)s &raquo;"
 
 msgid "{0} Themes"
 msgstr ""
@@ -2106,7 +2106,7 @@ msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version}-ის საწყისი კოდი ატვირთულია."
 
 msgid "Source code uploaded"
-msgstr "საწყისი კოდი ატვირთულია"
+msgstr "პირველწყარო კოდი ატვირთულია"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "{addon} {version}-ის ავტომატურად მიღება დაშვებულია."
@@ -2332,7 +2332,7 @@ msgid "Alerts & Updates"
 msgstr "უწყებები და განახლებები"
 
 msgid "Appearance"
-msgstr "შესახედაობა"
+msgstr "იერსახე"
 
 msgid "Bookmarks"
 msgstr "სანიშნეები"
@@ -2353,7 +2353,7 @@ msgid "Photos, Music & Videos"
 msgstr "ფოტო, მუსიკა და ვიდეო"
 
 msgid "Privacy & Security"
-msgstr "პირადულობა და უსაფრთხოება"
+msgstr "პირადულობა & უსაფრთხოება"
 
 msgid "Shopping"
 msgstr "ვაჭრობა"
@@ -5669,7 +5669,7 @@ msgid "Learn More About Add-ons"
 msgstr ""
 
 msgid "See all"
-msgstr ""
+msgstr "ყველას ნახვა"
 
 msgid "More ways to customize"
 msgstr ""
@@ -5678,7 +5678,7 @@ msgid "Browse all add-ons"
 msgstr ""
 
 msgid "See all complete themes"
-msgstr ""
+msgstr "ყველა სრული გაფორმების ნახვა"
 
 msgid "Close Video"
 msgstr ""
@@ -8195,7 +8195,7 @@ msgstr ""
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "პირველწყარო კოდი გამოშვებულია <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
