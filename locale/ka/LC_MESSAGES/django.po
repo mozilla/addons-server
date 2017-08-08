@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 16:33+0000\n"
+"PO-Revision-Date: 2017-08-08 16:40+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1211,7 +1211,7 @@ msgid "Added"
 msgstr "დამატებული"
 
 msgid "Popularity"
-msgstr "მოთხოვნადობა"
+msgstr "სასურველობა"
 
 msgid "Collection created!"
 msgstr "კრებული შეიქმნა!"
@@ -1491,7 +1491,7 @@ msgid "Recently Updated Collections"
 msgstr ""
 
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "ბოლო დროს სასურველი კრებულები"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -1700,7 +1700,7 @@ msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_fo
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "ყველაზე მეტად სასურველი გაფართოებები"
 
 msgid "Top-Rated Extensions"
 msgstr ""
@@ -1726,7 +1726,7 @@ msgid "Featured Complete Themes"
 msgstr ""
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "ყველაზე მეტად სასურველი სრული გაფორმებები"
 
 msgid "Top-Rated Complete Themes"
 msgstr ""
@@ -1774,7 +1774,7 @@ msgid "View All Recently Added"
 msgstr ""
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "ყველა სასურველის ნახვა"
 
 msgid "View All Top Rated"
 msgstr ""
@@ -3493,7 +3493,7 @@ msgid "Edit Listing"
 msgstr ""
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "ყველა დროის სასურველი გაფორმებების ნახვა."
 
 msgid "View Statistics"
 msgstr "სტატისტიკის ნახვა"
@@ -3975,7 +3975,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr "სამუშაოს დაწყება"
+msgstr "მუშაობის დაწყება"
 
 msgid "More Ways to Participate"
 msgstr "სხვა გზები მონაწილეობის მისაღებად"
@@ -5646,7 +5646,7 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr ""
 
 msgid "Games!"
-msgstr ""
+msgstr "თამაშები!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
@@ -5715,13 +5715,13 @@ msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla — თვის დამატება!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "გახდით გამომცდელი მფრინავი"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "მიიღეთ წვდომა ბრაუზერის უახლესს, საცდელ შესაძლებლობებზე."
 
 msgid "Get Started"
-msgstr "სამუშაოს დაწყება"
+msgstr "მუშაობის დაწყება"
 
 msgid "United Arab Emirates Dirham"
 msgstr ""
@@ -7327,13 +7327,13 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Most popular this week"
-msgstr ""
+msgstr "ყველაზე მეტად სასურველი ამ კვირაში"
 
 msgid "Most popular this month"
-msgstr ""
+msgstr "ყველაზე მეტად სასურველი ამ თვეში"
 
 msgid "Most popular all time"
-msgstr ""
+msgstr "ყველა დროის ყველაზე მეტად სასურველი"
 
 msgid "Highest Rated"
 msgstr "უმაღლესი შეფასების მქონე"
@@ -8209,14 +8209,14 @@ msgstr ""
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> ვერსია"
 
 msgid "Be careful with old versions!"
 msgstr "ყურადღებით იყავით, ძველ ვერსიებთან!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "ქვემოთ მოცემული ვერსიები განსახილველად და შესამოწმებლადაა განკუთვნილი. ყოველდღიური მოხმარებისთვის კი მხოლოდ, <a href=\"%(url)s\">უახლესი ვერსია</a> უნდა გამოიყენოთ, დამატებების."
+msgstr "ქვემოთ მოცემული ვერსიები განსახილველად და შესამოწმებლადაა განკუთვნილი. ყოველდღიური მოხმარებისთვის კი მხოლოდ, დამატებების <a href=\"%(url)s\">უახლესი ვერსია</a> უნდა გამოიყენოთ."
 
 msgid "Current Max. Version"
 msgstr ""
