@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 17:10+0000\n"
+"PO-Revision-Date: 2017-08-08 17:26+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -118,7 +118,7 @@ msgstr[0] "თქვენ {0}-ით მეტი იარლიყი გა�
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "შეუსატყვისი ასოების მოშორების შემდეგ ყველა იარლიყი %s ან ნაკლები ასოსგან უნდა შედგებოდეს"
+msgstr "შეუსაბამო სიმბოლოების მოშორების შემდეგ, მათი რაოდენობა %s-ს არ უნდა აღემატებოდეს, ჭდეების სახელში."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
@@ -1586,7 +1586,7 @@ msgstr "რჩეული დამატებები :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "აგერ, რამდენიმე რჩეული დამატება, რომელიც დაგეხმარებათ %s-ის მორგების დაწყებაში."
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1606,7 +1606,7 @@ msgid "Weekly Downloads"
 msgstr "ყოველკვირეული ჩამოტვირთვები"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "ზრდადი მოთხოვნის"
 
 msgid "Recently Added"
 msgstr "ახალი დამატებული"
@@ -1700,7 +1700,7 @@ msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_fo
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr "ყველაზე მეტად სასურველი გაფართოებები"
+msgstr "ყველაზე ხშირად ჩამოტვირთული გაფართოებები"
 
 msgid "Top-Rated Extensions"
 msgstr ""
@@ -1718,7 +1718,7 @@ msgid "Recently Updated Extensions"
 msgstr ""
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "გაფართოებები ზრდადი მოთხოვნით"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1726,7 +1726,7 @@ msgid "Featured Complete Themes"
 msgstr ""
 
 msgid "Most Popular Complete Themes"
-msgstr "ყველაზე მეტად სასურველი სრული გაფორმებები"
+msgstr "ყველაზე ხშირად ჩამოტვირთული გაფორმებები"
 
 msgid "Top-Rated Complete Themes"
 msgstr ""
@@ -1744,7 +1744,7 @@ msgid "Recently Updated Complete Themes"
 msgstr ""
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "სრული თემები ზრდადი მოთხოვნით"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1793,10 +1793,10 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr ""
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "თემები ზრდადი მოთხოვნით"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "ყველა ზრდადი მოთხოვნის მქონე"
 
 msgid "No themes found"
 msgstr ""
@@ -2885,11 +2885,11 @@ msgstr "%s ვერსია გამორთულია."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "%s ვერსია წაშლილია."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "%s ვერსია ხელახლაა ჩართული."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -3865,7 +3865,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "ნებადართული HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
@@ -8177,7 +8177,7 @@ msgstr ""
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s ვერსიის ისტორია"
 
 msgid "Version History with Changelogs"
 msgstr ""
