@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-08 06:30+0000\n"
+"PO-Revision-Date: 2017-08-08 06:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -79,7 +79,7 @@ msgstr "ჩამოტვირთვა"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "&nbsp;&rarr;-ის ჩამოტვირთვის გაგრძელება"
+msgstr "ჩამოტვირთვის გაგრძელება&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "რჩეული"
@@ -334,7 +334,7 @@ msgstr "დალაგება:"
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr "განახლებული {0}"
+msgstr "განახლების თარიღი {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
@@ -1373,7 +1373,7 @@ msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s გამომწერი"
 
 msgid "by {0}"
-msgstr ""
+msgstr "ავტორი {0}"
 
 msgid "Stop Following"
 msgstr "გამოწერის გაუქმება"
@@ -1468,7 +1468,7 @@ msgstr "რჩეულებში დამატება"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "{0}-ის მიერ შექმნილი კრებულები"
 
 msgid "No collections found."
 msgstr ""
@@ -1480,7 +1480,7 @@ msgid "Newest Collections"
 msgstr "უახლესი კრებულები"
 
 msgid "Collections by Name"
-msgstr ""
+msgstr "კრებულები სახელის მიხედვით"
 
 msgid "Recently Updated Collections"
 msgstr ""
@@ -1559,7 +1559,7 @@ msgid "Remove my vote for this collection"
 msgstr ""
 
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "კრებულისთვის ხმის მისაცემად, შედით ანგარიშზე"
 
 msgid "Favorite"
 msgstr "რჩეული"
@@ -1704,10 +1704,10 @@ msgid "Newest Extensions"
 msgstr ""
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "გაფართოებები სახელის მიხედვით"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "გაფართოებები ყოველკვირეული ჩამოტვირთვების მიხედვით"
 
 msgid "Recently Updated Extensions"
 msgstr ""
@@ -1730,10 +1730,10 @@ msgid "Newest Complete Themes"
 msgstr ""
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "სრული გაფორმებები სახელის მიხედვით"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "სრული გაფორმებები ყოველკვირეული ჩამოტვირთვების მიხედვით"
 
 msgid "Recently Updated Complete Themes"
 msgstr ""
@@ -1829,7 +1829,7 @@ msgid "View all"
 msgstr ""
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "პროგრამების მიხედვით"
 
 msgid "Report Type"
 msgstr ""
@@ -2142,7 +2142,7 @@ msgid "Incomplete"
 msgstr ""
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "გამორთულია Mozilla-ს მიერ"
 
 msgid "Deleted"
 msgstr ""
@@ -2807,7 +2807,7 @@ msgid "User Collections"
 msgstr ""
 
 msgid "User Reviews"
-msgstr ""
+msgstr "მომხმარებელთა მიმოხილვები"
 
 msgid "Changes successfully saved."
 msgstr ""
@@ -3076,7 +3076,7 @@ msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s %(user)s-ის მიერ"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -7247,7 +7247,7 @@ msgstr ""
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "ეს მიმოხილვა გაკეთებულია დამატების წინა ვერსიის შესახებ ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
@@ -7278,7 +7278,7 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: მიმოხილვა"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -8056,7 +8056,7 @@ msgid "Password Reset"
 msgstr ""
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "{0} მომხმარებლის მონაცემები"
 
 msgid "Edit profile"
 msgstr ""
@@ -8077,10 +8077,10 @@ msgid "About me"
 msgstr "ჩემ შესახებ"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "ცოტა უფრო ვრცლად..."
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "ჩემ მიერ შექმნილი დამატებები"
 
 msgid "My Most Popular Themes"
 msgstr ""
@@ -8092,7 +8092,7 @@ msgid "Followed by Me"
 msgstr "ჩემი გამომწერები"
 
 msgid "Created by Me"
-msgstr ""
+msgstr "ჩემ მიერ შექმნილი"
 
 msgid "My Reviews"
 msgstr ""
@@ -8164,7 +8164,7 @@ msgid_plural "%(num)s add-ons"
 msgstr[0] ""
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "დამატებების საშუალო შეფასება"
 
 msgctxt "user_list_others"
 msgid "others"
