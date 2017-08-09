@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-09 08:50+0000\n"
+"PO-Revision-Date: 2017-08-09 09:04+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -253,6 +253,8 @@ msgstr ""
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"За да покажете подкрепата си към <b>%(addon_name)s</b>, разработчикът ѝ ви приканва да направите скромно дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a> през <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 msgid "How much would you like to contribute?"
 msgstr "Каква сума желаете да дарите?"
@@ -3621,7 +3623,7 @@ msgid "Cancel Review and Disable Version"
 msgstr ""
 
 msgid "Submit Version"
-msgstr "Качване на версия"
+msgstr "Изпращане"
 
 msgid "Submit Version for Review"
 msgstr ""
@@ -4124,16 +4126,16 @@ msgstr "В момента искате <b>дарения</b> от потреби
 
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Вашата страница за дарения: <a href=\"%(url)s\">%(url_full)s</a>"
 
 msgid "Disable Contributions"
 msgstr "Изключване на даренията"
 
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Доброволни дарения"
 
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr ""
+msgstr "Добавките, включени в нашата програма за дарения може да искат доброволна финансова подкрепа от страна на потребителите."
 
 msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
@@ -4145,14 +4147,14 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Получавайте дарения във вашата сметка в PayPal или ги изпращайте към организация по ваш избор"
 
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr ""
+msgstr "Даренията са достъпни само за публикувани добавки."
 
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "Даренията са достъпни само за добавки със <a href=\"%(url)s\">завършен профил на разработчика</a>."
 
 msgid "Contributions are only available for approved add-ons."
-msgstr ""
+msgstr "Даренията са достъпни само за одобрени добавки."
 
 msgid "Set up Contributions"
 msgstr "Настройка на даренията"
@@ -7695,7 +7697,7 @@ msgid "This dashboard is currently <b>public</b>."
 msgstr "Таблото в момента е <b>публично</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Статистиката за дарения в момента е <b>лична</b>."
 
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Таблото в момента е <b>лично</b>."
