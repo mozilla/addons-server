@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-09 07:57+0000\n"
+"PO-Revision-Date: 2017-08-09 08:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -203,7 +203,7 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Добавката е отбелязана като изпитателна от разработчиците ѝ."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Разработчикът на тази добавка ви приканва да помогнете развитието ѝ, като направите скромно дарение."
+msgstr "Разработчикът на добавката ви приканва да допринесете за бъдещото ѝ развитие, като направите скромно дарение."
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -211,7 +211,7 @@ msgstr "Разработчикът на тази добавка моли да п
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Разработчикът на тази добавка моли да покажете подкрепата си като направите малко дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "Разработчикът на добавката ви приканва да покажете своята подкрепа като направите скромно дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "Contribute"
 msgstr "Даряване"
@@ -237,14 +237,14 @@ msgid "The developer of this add-on would like you to consider making a small co
 msgstr "Ако ви харесва да използвате тази добавка, разработчикът ѝ би желал да помислите за скромно дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla се ангажира да поддържа жизнена и здравословна екосистема за разработка. Вашето незадължително дарение помага да се поддържа по-нататъшното развитие на добавката."
+msgstr "Mozilla се ангажира да поддържа жизнена и здравословна екосистема за разработка. Вашето незадължително дарение помага да бъде поддържано по-нататъшното развитие на добавката."
 
 msgid "Make a Contribution"
 msgstr "Дарение"
 
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Подпомогнете развитието на <strong>%(addon_name)s</strong> като направите скромно дарение през <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Допринесете за развитието на <strong>%(addon_name)s</strong> като направите скромно дарение през <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
@@ -644,7 +644,7 @@ msgstr "Харесвате ли тази добавка?"
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Разработчикът на добавката</a> ви приканва да помогнете развитието ѝ като направите скромно дарение."
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на добавката</a> ви приканва да допринесете за бъдещото ѝ развитие като направите скромно дарение."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -652,7 +652,7 @@ msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази доб
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> моли да покажете подкрепата си като направите дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на добавката</a> ви приканва да покажете подкрепата си като направите скромно дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Тази добавка се нуждае от следните добавки, за да работи правилно:"
@@ -786,7 +786,7 @@ msgid "Meet the {0} Developer"
 msgstr "Запознайте се с разработчика на {0}"
 
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Преди да свалите тази добавка, моля обмислете подкрепата на развитието ѝ като допринесете."
+msgstr "Преди да изтеглите добавката, моля помислете за допринасяне на развитието ѝ като изпратите скромно дарение."
 
 # %1 is an add-on name.
 msgid "Why was {0} created?"
@@ -2730,7 +2730,7 @@ msgid "Please enter a suggested amount less than ${0}."
 msgstr "Моля, въведете сума по-малка от ${0}."
 
 msgid "PayPal ID required to accept contributions."
-msgstr "Нужно в PayPal ID, за да се приемат дарения."
+msgstr "За да приемате дарения, PayPal ID е задължително."
 
 msgid "Could not validate PayPal id."
 msgstr "Не можах да валидирам PayPal id."
@@ -7692,13 +7692,13 @@ msgid "No data available."
 msgstr "Няма данни"
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "Това табло в момента е <b>публично</b>."
+msgstr "Таблото в момента е <b>публично</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
 msgstr ""
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr "Това табло в момента е <b>лично</b>."
+msgstr "Таблото в момента е <b>лично</b>."
 
 msgid "Change settings."
 msgstr "Промяна на настройките."
@@ -7722,7 +7722,7 @@ msgid "Collections Created by Date"
 msgstr ""
 
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Допринасяне по дата"
 
 msgid "Downloaded by Date"
 msgstr ""
