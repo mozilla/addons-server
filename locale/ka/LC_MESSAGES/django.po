@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-09 00:30+0000\n"
+"PO-Revision-Date: 2017-08-09 00:46+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1064,7 +1064,7 @@ msgstr "გადახტომა ბოლო გვერდზე"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "ნაჩვენებია <b>%(begin)s</b>&ndash;<b>%(end)s</b> <b>%(count)s</b>-დან"
+msgstr "ნაჩვენებია <b>%(begin)s</b>&ndash;<b>%(end)s</b> შედეგი <b>%(count)s</b>-დან"
 
 msgid "Add-ons"
 msgstr "დამატებები"
@@ -4222,7 +4222,7 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "თქვენი თემა გამოშვებული იქნება, მოცემული ლიცენზიის ქვეშ:"
 
 msgid "Select a different license."
 msgstr ""
@@ -4834,7 +4834,7 @@ msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total).
 msgstr[0] ""
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
+msgstr "თქვენი დაყოვნებული თემა, წარმატებით გაეშვა. სხვა მიმომხილველებს, შეეძლებათ ამ ახალი გამოშვებების ნახვა. ქვემოთ მოცემულ ცხრილში ცვლილებების ასახვისთვის, გვერდის განახლებაა საჭირო."
 
 msgid "{addon} :: Abuse Reports"
 msgstr ""
@@ -6714,10 +6714,10 @@ msgid "Frequently Asked Questions"
 msgstr "ხშირად დასმული კითხვები"
 
 msgid "Using Add-ons"
-msgstr ""
+msgstr "დამატებებით სარგებლობა"
 
 msgid "What is an add-on?"
-msgstr ""
+msgstr "რა არის დამატებები?"
 
 #, python-format
 msgid ""
@@ -6748,7 +6748,7 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong>შემატეთ ახალი შესაძლებლობები %(app_name)s-ს, ან შეცვალეთ მისი არსებული ფუნქციონალი. გაფართოებები შეგიძლიათ გამოიყენოთ რეკლამების "
+"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong> შემატეთ ახალი შესაძლებლობები %(app_name)s-ს, ან შეცვალეთ მისი არსებული ფუნქციონალი. გაფართოებები შეგიძლიათ გამოიყენოთ რეკლამების "
 "შეზღუდვისთვის, საიტებიდან ვიდეოების ჩამოტვირთვისთვის, სოციალურ ქსელებთან მჭიდროდ დასაკავშირებლად და იმ შესაძლებლობების დასამატებლად, რაც სხვა პროგრამებში გხვდებათ."
 
 #, python-format
@@ -8200,7 +8200,7 @@ msgstr ""
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "გამოშვების თარიღი: {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
