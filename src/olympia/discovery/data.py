@@ -15,8 +15,8 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Summer Fractal' theme.
-    DiscoItem(addon_id=25542),
+    # 'c o l o r s' theme.
+    DiscoItem(addon_id=61230, addon_name='Colors'),
 
     # Privacy Badger
     DiscoItem(
@@ -40,8 +40,8 @@ discopane_items = [
               u'right in your browser.'),
             '</blockquote>')),
 
-    # 'Romantic Firefox' theme.
-    DiscoItem(addon_id=319259, addon_name='Romantic Firefox'),
+    # 'ibbis persona' theme.
+    DiscoItem(addon_id=20628, addon_name='Ibbis Persona'),
 
     # Awesome Screenshot Plus
     DiscoItem(
@@ -66,6 +66,6 @@ discopane_items = [
               u'ad blocking, auto-play control, and more.'),
             '</blockquote>')),
 
-    # 'Space Stars' theme.
-    DiscoItem(addon_id=211644, addon_name='Space Stars'),
+    # 'two fireflies' theme.
+    DiscoItem(addon_id=625990, addon_name='Two Fireflies'),
 ]

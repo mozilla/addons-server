@@ -13,18 +13,18 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = {
-            25542: addon_factory(
-                id=25542, type=amo.ADDON_PERSONA,
+            61230: addon_factory(
+                id=61230, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
             506646: addon_factory(id=506646, type=amo.ADDON_EXTENSION),
             708770: addon_factory(id=708770, type=amo.ADDON_EXTENSION),
-            319259: addon_factory(
-                id=319259, type=amo.ADDON_PERSONA,
+            20628: addon_factory(
+                id=20628, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
             287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
             700308: addon_factory(id=700308, type=amo.ADDON_EXTENSION),
-            211644: addon_factory(
-                id=211644, type=amo.ADDON_PERSONA,
+            625990: addon_factory(
+                id=625990, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
         }
 
@@ -91,7 +91,7 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_deleted = self.addons[25542]
+        addon_deleted = self.addons[61230]
         addon_deleted.delete()
 
         disabled_by_user = self.addons[506646]
