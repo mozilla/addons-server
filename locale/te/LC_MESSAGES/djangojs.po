@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 16:58+0000\n"
+"PO-Revision-Date: 2017-08-10 05:43+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -212,7 +212,7 @@ msgid "Week of {0}"
 msgstr "వారం {0}"
 
 msgid " downloads"
-msgstr " దిగుమతులు"
+msgstr " దింపుకోళ్ళు"
 
 msgid "{0} users"
 msgstr "{0} వాడుకరులు"
@@ -236,7 +236,7 @@ msgid "{0} installs"
 msgstr "{0} స్థాపనలు"
 
 msgid "Downloads"
-msgstr "దిగుమతులు"
+msgstr "దింపుకోళ్ళు"
 
 msgid "Daily Users"
 msgstr "రోజువారీ వాడుకరులు"
@@ -264,7 +264,7 @@ msgid "Add-ons Created"
 msgstr "పొడిగింతలు రూపొందించబడ్డాయి"
 
 msgid "Add-ons Downloaded"
-msgstr "పొడిగింతలు దిగుమతిచేయబడ్డాయి"
+msgstr "పొడిగింతల దింపుకోళ్ళైనది"
 
 msgid "Add-ons Updated"
 msgstr "పొడిగింతలు నవీకరించబడ్డాయి"
@@ -427,11 +427,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "గత {0} రోజుల దిగుమతులు మరియు రోజువారీ వాడుకరుల వివరాలు"
+msgstr "గత {0} రోజుల దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు దిగుమతులు మరియు రోజువారీ వాడుకరుల వివరాలు"
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
