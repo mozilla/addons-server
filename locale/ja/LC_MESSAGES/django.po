@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 12:31+0000\n"
+"PO-Revision-Date: 2017-08-10 12:40+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -692,10 +692,10 @@ msgid "This add-on can:"
 msgstr "このアドオンの許可設定:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "一部のアドオンは特定の機能を実行するための許可設定を求めます。Firefox はあなた自身が管理者なので、そうしたリクエストを受け入れるかどうかはあなたが決められます。"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "このアドオンは従来の技術を使用しているため、あなたに許可設定を求めることなくブラウザーのすべての機能やデータにアクセスできることに注意してください。"
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -2715,7 +2715,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
@@ -2945,7 +2945,7 @@ msgstr "下のフォームからアドオンのパッケージをアップロー
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "このツールは旧式アドオンにのみ対応しています。WebExtension API は <a href=\"%(webext_doc_url)s\">こちらで詳しく説明</a> されています。"
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "アップロード完了後、以下のアプリケーションのバージョンと互換性があるかを調べる一連の自動検証テストが実施されます:"
