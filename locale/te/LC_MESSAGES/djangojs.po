@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-08-10 05:43+0000\n"
+"PO-Revision-Date: 2017-08-10 06:02+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -443,11 +443,11 @@ msgstr "{0} నుండి {1} వరకు స్థాపనలు మరి�
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "గత {0} రోజుల దిగుమతులు"
+msgstr "గత {0} రోజుల దింపుకోళ్ళు "
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు దిగుమతులు"
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -499,11 +499,11 @@ msgstr "{0} నుండి {1} వరకు పొడిగింత స్థ�
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} నుంచి {1} వరకు దింపుకోళ్ళ మూలాలు"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -531,7 +531,7 @@ msgstr "{0} నుండి {1} కు వరకు వాడుకలో ఉన
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "గత {0} రోజుల, పొడిగింతల దిగుమతుల వివరాలు."
+msgstr "గత {0} రోజుల, పొడిగింతల దింపుకోళ్ళ వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -651,7 +651,7 @@ msgid "Add to {0}"
 msgstr "{0} కు జోడించండి"
 
 msgid "Download Now"
-msgstr "ఇప్పుడు దిగుమతి చెయ్యి"
+msgstr "ఇప్పుడే దింపుకోండి"
 
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
@@ -667,7 +667,7 @@ msgid "Install for {0} anyway"
 msgstr "ఏమైనప్పటికీ {0} కోసం స్థాపన చేయండి"
 
 msgid "Download for {0} anyway"
-msgstr "ఏమైనప్పటికి {0} కోసం దిగుమతి చేయండి"
+msgstr "ఏమైనప్పటికి {0} కోసం దింపుకోళ్ళు చేయండి"
 
 msgid "Not available for your platform"
 msgstr "మీ వేదికకు అందుబాటులో లేదు"
@@ -689,7 +689,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox తో మాత్రమే — ఇప్పుడు Firefox పొందండి!"
 
 msgid "Download now"
-msgstr "ఇప్పుడే దిగుమతి చేయండి"
+msgstr "ఇప్పుడే దింపుకోళ్ళు చేయండి"
 
 msgid "Only available on Firefox Desktop"
 msgstr "Firefox డెస్క్టాప్లో మాత్రమే అందుబాటులో ఉంది"

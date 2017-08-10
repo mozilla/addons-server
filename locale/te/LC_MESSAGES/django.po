@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-08-07 09:50+0000\n"
+"PO-Revision-Date: 2017-08-10 06:06+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -71,14 +71,14 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Download Now"
-msgstr "ఇప్పుడే దిగుమతి చేయండి"
+msgstr "ఇప్పుడే దింపుకోళ్ళు చేయండి"
 
 msgid "Download"
-msgstr "దిగుమతి"
+msgstr " దింపుకోళ్ళు"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "దిగుమతి కొనసాగించు&nbsp;&rarr;"
+msgstr " దింపుకోళ్ళు కొనసాగించు&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "విశేషత పొందినవి"
@@ -343,7 +343,7 @@ msgstr "చేర్చబడింది {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s వారపు దిగుమతి"
+msgstr[0] "%(num)s వారపు దింపుకోళ్ళు"
 msgstr[1] "%(num)s వారపు దిగుమతులు"
 
 #, python-format
@@ -364,7 +364,7 @@ msgstr "Firefox 57+ తో అనుకూలమైనది"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} వారపు దిగుమతి"
+msgstr[0] "{0} వారపు దింపుకోళ్ళు"
 msgstr[1] "{0} వారపు దిగుమతులు"
 
 #. {0} is the number of users.
@@ -620,7 +620,7 @@ msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
 
 msgid "Download Anyway"
-msgstr "ఏమైనా దిగుమతి చేయండి"
+msgstr "ఏమైనా దింపుకోళ్ళు చేయండి"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -1604,7 +1604,7 @@ msgid "Most Users"
 msgstr ""
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "వారపు దింపుకోళ్ళు"
 
 msgid "Up & Coming"
 msgstr ""
@@ -1616,7 +1616,7 @@ msgid "Created"
 msgstr "నిర్మించబడినది"
 
 msgid "Downloads"
-msgstr "దిగుమతులు"
+msgstr "దింపుకోళ్ళు "
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1640,10 +1640,10 @@ msgid "Install Language Pack"
 msgstr ""
 
 msgid "Download Dictionary"
-msgstr ""
+msgstr "నిఘంటువు దింపుకొను"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "బాషా ప్యక్ ను దింపుకోళ్ళు చేయి"
 
 msgid "Available in your locale"
 msgstr ""
@@ -2216,10 +2216,10 @@ msgid "Only ask on this add-on's page and developer profile"
 msgstr "ఈ పొడిగింత యొక్క పేజీ మరియు అభివృద్దికారి ప్రొఫైలులో మాత్రమే అడగండి"
 
 msgid "Ask after users start downloading this add-on"
-msgstr "వాడుకరి ఈ పొడిగింతను దిగుమతి చేయడం ప్రారంభించిన తర్వాత అడుగు"
+msgstr "వాడుకరి ఈ పొడిగింతను దింపుకోళ్ళు చేయడం ప్రారంభించిన తర్వాత అడుగు"
 
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "వాడుకర్లు ఈ అనుబంధాన్ని దింపుకొను చేసుకోవటానికి ముందు అడుగు"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2523,7 +2523,7 @@ msgid "Privacy and Security"
 msgstr ""
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "దింపుకోళ్ళు అవుతున్నది మరియు ఫైల్ నిర్వహణ"
 
 msgid "Interface Customizations"
 msgstr ""
@@ -5125,7 +5125,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -7516,7 +7516,7 @@ msgid "Add-ons Created"
 msgstr ""
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "పొడిగింతల దింపుకోళ్ళైనది"
 
 msgid "Add-ons Updated"
 msgstr ""
