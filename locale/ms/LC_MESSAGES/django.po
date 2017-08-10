@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-31 12:07+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,83 +454,11 @@ msgstr "Belum lagi dinilai"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> pengguna"
 
-msgid "{0} Daily Users"
-msgstr "{0} Pengguna Harian"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Untuk pasang add-on ini dan beribu lagi, <b>dapatkan Firefox</b>, sebuah pelayar web yang percuma dan terbuka dari Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Ketahui selanjutnya perihal Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "atau <b><a class=\"button installer\" href=\"{url}\">teruskan muat turun</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Cara untuk Pasang dalam Thunderbird</strong> <ol> <li>Muat turun dan simpan fail dalam cakera keras anda.</li> <li>Dalam Mozilla Thunderbird, buka Add-ons dalam menu Alatan.</li> <li>Dari "
-"butang pilihan di sebelah medan carian add-on, pilih \"Pasang Add-on Daripada Fail...\" dan cari lokasi add-on yang telah dimuat turun.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Untuk pasang Tema ini, <b>dapatkan Thunderbird</b>, klien e-mel percuma dan sumber terbuka daripada Mozilla Messaging dan Pasang add-on Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Ketahu selanjutnya perihal Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Untuk pasang Tema ini serta ribuan yang lain, <b>dapatkan Firefox</b>, sebuah pelayar web yang percuma dan terbuka daripada Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Add-on ini tidak dikemaskini supaya berfungsi dengan versi %(app)s anda."
-
-msgid "Install Anyway"
-msgstr "Pasang Jua"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Add-on ini memerlukan versi Firefox yang masih belum dikeluarkan lagi."
-
-msgid "Help test new Firefox Versions"
-msgstr "Bantu menguji Versi Firefox baru"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Add-on ini memerlukan %(app)s {new_version}. Anda kini menggunakan %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Naik taraf {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "atau lihat <a href=\"%(href)s\">versi lebih lama add-on ini</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Persona ini memerlukan %(app)s %(new_version)s. Anda kini menggunakan %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Amaran:</strong> Add-on ini masih belum disemak oleh Mozilla dan tidak boleh dipasang dalam keluaran versi Firefox 43 dan ke atas.  Berhati-hati apabila memasang perisian pihak ketiga yang "
-"mungkin membahayakan komputer anda."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Sila ambil perhatian:</strong> Add-on ini adalah tidak serasi dengan sistem operasi anda."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Add-on ini tidak serasi dengan versi %(app)s anda kerana yang berikut:"
-
-msgid "View other versions"
-msgstr "Lihat versi lain"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Add-on ini tidak serasi dengan versi %(app)s anda."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} Pengguna Harian"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -765,6 +693,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Add-on ini boleh:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Beberapa add-ons meminta izin untuk melaksanakan fungsi tertentu (contoh: add-on pengurusan tab akan meminta izin mengakses sistem pelayar tab anda)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1134,7 +1069,8 @@ msgstr ""
 "Add-ons yang dikemukakan ke Add-ons Mozilla mesti mengandungi satu fail manifes dengan sekurang-kurangnya disokong oleh salah satu aplikasi di bawah. Hanya versi yang disenaraikan di bawah "
 "dibenarkan bagi aplikasi tersebut."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1710,7 +1646,8 @@ msgstr "Ketahui selanjutnya perihal <a href=\"http://support.mozilla.com/kb/Sear
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Buat sendiri</a> alatan carian"
 
 msgid "Most Popular Extensions"
@@ -2792,6 +2729,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Bermula Firefox 53, ekstensi baru dalam laman web ini hanyalah WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
@@ -3020,6 +2960,10 @@ msgstr "Cari"
 msgid "Use the field below to upload your add-on package."
 msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Selepas muat naik, satu siri ujian pengesahan automatik akan berjalan untuk menyemak keserasian dengan versi aplikasi berikut:"
 
@@ -3207,7 +3151,8 @@ msgstr "Tandakan kotak ini jika ciri teras add-on perlu dibayar dahulu atau sele
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Add-on ini perlu dibayar, perkhidmatan, perisian atau perkakasan tambahan bukan-percuma."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Add-on ini tidak perlu apa-apa bayaran tambahan, perkhidmatan, perisian atau perkakasan tambahan berbayar."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8109,7 +8054,8 @@ msgstr "add-on berasaskan-sdk saya berjaya dipertingkatkan"
 msgid "someone writes a review of my add-on"
 msgstr "seseorang menulis ulasan untuk add-on saya"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "sentiasa dimaklumkan dengan berita dan acara berkaitan pembangun add-on"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8397,12 +8343,6 @@ msgstr "%s Sejarah Versi"
 
 msgid "Version History with Changelogs"
 msgstr "Sejarah Versi dengan Changelogs"
-
-msgid "Add-on uses binary components."
-msgstr "Add-on menggunakan komponen binari."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Add-on memilih semakan keserasian yang teliti."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dan kemudian"

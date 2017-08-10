@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -475,84 +475,12 @@ msgstr "Not yet rated"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> users"
 
+#. {0} is the number of users.
 #, fuzzy
-msgid "{0} Daily Users"
-msgstr "Daily Users"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Learn more about Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-
-msgid "Learn more about Thunderbird"
-msgstr "Learn more about Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "This add-on has not been updated to work with your version of %(app)s."
-
-msgid "Install Anyway"
-msgstr "Install Anyway"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "This add-on requires a version of Firefox that has not been released yet."
-
-msgid "Help test new Firefox Versions"
-msgstr "Help test new Firefox Versions"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Upgrade {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "This add-on is not compatible with your version of %(app)s because of the following:"
-
-msgid "View other versions"
-msgstr "View other versions"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "This add-on is not compatible with your version of %(app)s."
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Daily Users"
+msgstr[1] "Daily Users"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -801,6 +729,13 @@ msgstr ""
 #, fuzzy
 msgid "This add-on can:"
 msgstr "This add-on requires external software."
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1180,7 +1115,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1772,7 +1707,8 @@ msgstr "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 
 msgid "Most Popular Extensions"
@@ -2908,6 +2844,9 @@ msgstr "This version will be immediately signed for self-distribution. Updates a
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 
@@ -3140,6 +3079,10 @@ msgstr "Search"
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 
@@ -3332,7 +3275,8 @@ msgstr "Check this box if this add-on's core features require some form of payme
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "This add-on requires payment, non-free services or software, or additional hardware."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8416,7 +8360,8 @@ msgstr "my sdk-based add-on is upgraded successfully"
 msgid "someone writes a review of my add-on"
 msgstr "someone writes a review of my add-on"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "stay up-to-date with news and events relevant to add-on developers"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8712,12 +8657,6 @@ msgstr "%s Version History"
 
 msgid "Version History with Changelogs"
 msgstr "Version History with Changelogs"
-
-msgid "Add-on uses binary components."
-msgstr "Add-on uses binary components."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Add-on has opted into strict compatibility checking."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"

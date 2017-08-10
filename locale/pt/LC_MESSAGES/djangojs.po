@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,18 +651,6 @@ msgstr "Aceitar e Instalar"
 msgid "Add to {0}"
 msgstr "Adicionar a {0}"
 
-msgid "Download Now"
-msgstr "Descarregar agora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "O extra não foi atualizado para suportar default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Precisa de estar a utilizar o Firefox 10.0 ou mais recente."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instalar para {0} mesmo assim"
@@ -673,9 +661,13 @@ msgstr "Descarregar para {0} mesmo assim"
 msgid "Not available for your platform"
 msgstr "Não disponível para a sua plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Não disponível para {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Este tema é incompatível com a sua versão de {0}"
+
+msgid "View other versions"
+msgstr "Ver outras versões"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona com {app} {min} - {max}"
@@ -684,18 +676,8 @@ msgstr "Funciona com {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funciona com {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Ver outras versões"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Apenas com o Firefox — Obter o Firefox agora!"
-
-#, fuzzy
-msgid "Download now"
-msgstr "Descarregar agora"
-
-msgid "Only available on Firefox Desktop"
-msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Lamentamos, mas precisa de ter um navegador da Mozilla (como o Firefox) para instalar uma extensão de pesquisa."

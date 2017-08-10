@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-17 16:43+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -656,18 +656,6 @@ msgstr "Akzeptieren und installieren"
 msgid "Add to {0}"
 msgstr "Zu {0} hinzufügen"
 
-msgid "Download Now"
-msgstr "Jetzt herunterladen"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on wurde nicht aktualisiert, um standardmäßige Kompatibilität zu unterstützen."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Sie müssen Firefox 10.0 oder höher verwenden."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla hat diese Version als mit Ihrer Firefox-Version inkompatibel markiert."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Trotzdem für {0} installieren"
@@ -678,9 +666,13 @@ msgstr "Trotzdem für {0} herunterladen"
 msgid "Not available for your platform"
 msgstr "Nicht verfügbar für Ihre Plattform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nicht verfügbar für {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dieses Theme ist mit Ihrer Version von {0} nicht kompatibel"
+
+msgid "View other versions"
+msgstr "Andere Versionen ansehen"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Kompatibel mit {app} {min} - {max}"
@@ -688,17 +680,8 @@ msgstr "Kompatibel mit {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Kompatibel mit {app}"
 
-msgid "View other versions"
-msgstr "Andere Versionen ansehen"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Nur in Firefox – Laden Sie Firefox jetzt herunter!"
-
-msgid "Download now"
-msgstr "Jetzt herunterladen"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Nur verfügbar für Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Es tut uns leid, Sie benötigen einen Mozilla-basierten Browser (wie Firefox), um ein Such-Plugin zu installieren."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -651,18 +651,6 @@ msgstr "Onartu eta instalatu"
 msgid "Add to {0}"
 msgstr "Gehitu {0}(e)ra"
 
-msgid "Download Now"
-msgstr "Deskargatu orain"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instalatu {0}(e)rako halare"
@@ -673,9 +661,13 @@ msgstr "Deskargatu {0}(e)rako halere"
 msgid "Not available for your platform"
 msgstr "Ez dago eskuragarri zure plataformarako"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ez dago eskuragarri {0} {1} bertsiorako"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Gai hau bateraezina da {0}(r)en zure bertsioarekin"
+
+msgid "View other versions"
+msgstr ""
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
@@ -684,17 +676,7 @@ msgstr ""
 msgid "Works with {app}"
 msgstr "Errorea {0}(r)ekin"
 
-msgid "View other versions"
-msgstr ""
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Deskargatu orain"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

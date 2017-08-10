@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Marked for deletion"
 msgstr ""
 
-#: static/js/impala/search.js:103
+#: static/js/impala/search.js:108
 msgid "Updating results&hellip;"
 msgstr ""
 
@@ -845,73 +845,49 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:73
+#: static/js/zamboni/buttons.js:67
 msgid "Accept and Install"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:73
+#: static/js/zamboni/buttons.js:67
 msgid "Add to {0}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:78
-msgid "Download Now"
-msgstr ""
-
-#: static/js/zamboni/buttons.js:121
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-#: static/js/zamboni/buttons.js:126
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-#: static/js/zamboni/buttons.js:138
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:219
+#: static/js/zamboni/buttons.js:175
 msgid "Install for {0} anyway"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:219
+#: static/js/zamboni/buttons.js:175
 msgid "Download for {0} anyway"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:276
+#: static/js/zamboni/buttons.js:191
 msgid "Not available for your platform"
 msgstr ""
 
-#. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:288 static/js/zamboni/buttons.js:326
-msgid "Not available for {0} {1}"
+#. L10n: {0} is an app name.
+#: static/js/zamboni/buttons.js:199
+msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
-#: static/js/zamboni/buttons.js:354
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-#: static/js/zamboni/buttons.js:355
-msgid "Works with {app}"
-msgstr ""
-
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:203 static/js/zamboni/buttons.js:221
 msgid "View other versions"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:406
+#: static/js/zamboni/buttons.js:217
+msgid "Works with {app} {min} - {max}"
+msgstr ""
+
+#: static/js/zamboni/buttons.js:218
+msgid "Works with {app}"
+msgstr ""
+
+#: static/js/zamboni/buttons.js:257
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:413
-msgid "Download now"
-msgstr ""
-
-#: static/js/zamboni/buttons.js:415
-msgid "Only available on Firefox Desktop"
-msgstr ""
-
-#: static/js/zamboni/buttons.js:529
+#: static/js/zamboni/buttons.js:301
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."

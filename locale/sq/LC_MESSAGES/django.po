@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -473,83 +473,12 @@ msgstr "Ende e pavlerësuar"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> përdorues"
 
-msgid "{0} Daily Users"
-msgstr "{0} Përdorues të Përditshëm"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Për instalimin e kësaj shtese dhe mijëra të tjerave, <b>merrni Firefox-in</b>, një shfletues web i lirë dhe i hapur, krijuar nga Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Mësoni më tepër rreth Firefox-it"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ose <b><a class=\"button installer\" href=\"{url}\">shkarkojeni, sido qoftë</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Si të Instalohet në Thunderbird</strong> <ol> <li>Shkarkojeni dhe ruajeni kartelën te hard disku juaj.</li> <li>Që nga Mozilla Thunderbird, hapni Shtesat, prej menusë Mjete.</li> <li>Nga "
-"butoni i mundësive, ngjitur me fushën e kërkimit të shtesave, përzgjidhni \"Instaloni Shtesë prej Kartele...\" dhe shihni për shtesën e shkarkuar.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Për ta instaluar këtë Temë, <b>merrni Thunderbird-in</b>, një klient email-esh i lirë dhe me burim të hapur, i krijuar nga Mozilla Messaging dhe instaloni shtesën Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Mësoni më tepër rreth Thunderbird-it"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Që të instaloni këtë Temë dhe mijëra të tjera, <b>merrni Firefox-in</b>, një shfletues web i lirë dhe i hapur, krijuar nga Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Kjo shtesë s’është përditësuar të punojë me versionin tuaj të %(app)s."
-
-msgid "Install Anyway"
-msgstr "Instaloje Sidoqoftë"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Kjo shtesë lyp një version Firefox-i që s’është hedhur ende në qarkullim."
-
-msgid "Help test new Firefox Versions"
-msgstr "Ndihmoni testimin e Versioneve të reja të Firefox-it"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Kjo shtesë lyp %(app)s {new_version}. Jeni duke përdorur %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Përmirësoni {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ose shihni <a href=\"%(href)s\">versione më të vjetër të kësaj shtese</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Kjo Persona lyp %(app)s %(new_version)s. Jeni duke përdorur %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Kujdes:</strong> Kjo shtesë nuk është shqyrtuar nga Mozilla dhe s’mund të instalohet në versione të Firefox-it nga 43 e sipër.  Bëni kujdes kur instaloni software palësh të treta që mund të "
-"dëmtojnë kompjuterin tuaj."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Ju lutemi, kini parasysh që:</strong> Kjo shtesë s’është e përputhshme me sistemin tuaj operativ."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të %(app)s, për shkak të sa vijon:"
-
-msgid "View other versions"
-msgstr "Shihni versione të tjerë"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} Përdorues të Përditshëm"
+msgstr[1] "{0} Përdorues të Përditshëm"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -790,6 +719,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Kjo shtesë mund:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Disa shtesa kërkojnë leje të kryejnë disa funksione (për shembull: një shtesë për administrim skedash do të kërkojë leje të hyjë në sistemin e skedave të shfletuesit)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1164,7 +1100,8 @@ msgstr ""
 "Shtesat e parashtruara te Shtesat Mozilla duhet të kenë një kartelë manifest me mbulim për të paktën një nga aplikacionet më poshtë. Lejohen vetëm versionet e radhitur më poshtë për këta "
 "aplikacione."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1757,7 +1694,8 @@ msgstr "Mësoni më tepër rreth <a href=\"http://support.mozilla.com/kb/Search+
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Shihni për më shumë furnizues kërkimesh, te <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Krijoni mjetin tuaj të kërkimeve</a>"
 
 msgid "Most Popular Extensions"
@@ -2851,6 +2789,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Duke filluar me Firefox 53-shin, zgjerimet e reja në këtë sajt mund të jenë vetëm të llojit WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
@@ -3089,6 +3030,10 @@ msgstr "Kërkoni"
 msgid "Use the field below to upload your add-on package."
 msgstr "Përdorni fushën më poshtë për të ngarkuar paketën e shtesës suaj."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Pas ngarkimit, do të kryhen një varg provash të automatizuara vleftësimi, për t’i kontrolluar përputhshmërinë me versionin vijues të aplikacionit:"
 
@@ -3276,7 +3221,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8272,7 +8217,7 @@ msgstr "shtesa sime e bazuar në sdk është përmirësuar me sukses"
 msgid "someone writes a review of my add-on"
 msgstr "dikush shkruan një shqyrtim të shtesës sime"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8564,12 +8509,6 @@ msgstr "Historik Versionesh për %s"
 
 msgid "Version History with Changelogs"
 msgstr "Historik Versionesh me Regjistrime Ndryshimesh"
-
-msgid "Add-on uses binary components."
-msgstr "Shtesa përdor përbërës dyorë."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Shtesa ka zgjedhur të bëjë kontroll strikt të përputhshmërisë."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dhe më të vonshëm"

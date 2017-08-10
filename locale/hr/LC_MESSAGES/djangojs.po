@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -662,18 +662,6 @@ msgstr "Prihvati i instaliraj"
 msgid "Add to {0}"
 msgstr "Dodaj u {0}"
 
-msgid "Download Now"
-msgstr "Preuzmi sada"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Dodatak nije ažuriran kako bi podržavao zadano-do-kompatibilno."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Trebali bi koristiti Firefox 10.0 ili više."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla je obilježila ovu verziju kao nekompatibilnu sa Vašom Firefox verzijom."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instaliraj na {0} svejedno"
@@ -684,9 +672,13 @@ msgstr "Preuzmi za {0} svejedno"
 msgid "Not available for your platform"
 msgstr "Nije dostupno za vašu platformu"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nije dostupno za {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Tema nije kompatibilna sa vašom verzijom {0}"
+
+msgid "View other versions"
+msgstr "Pogledaj ostale verzije"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Radi sa {app} {min} - {max}"
@@ -694,17 +686,8 @@ msgstr "Radi sa {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Radi sa {app}"
 
-msgid "View other versions"
-msgstr "Pogledaj ostale verzije"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Samo sa Firefoxom — Nabavite Firefox odmah!"
-
-msgid "Download now"
-msgstr "Preuzmi sada"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Dostupno samo za Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Žao nam je, potreban vam je Mozillin preglednik (kao što je Firefox) da biste instalirali priključak za tražilicu."

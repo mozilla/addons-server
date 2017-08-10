@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-08-01 10:38+0000\n"
 "Last-Translator: kilincer98 <kilincer98@mynet.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,8 +117,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
-" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
+"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -645,18 +645,6 @@ msgstr "Kabul et ve kur"
 msgid "Add to {0}"
 msgstr "{0}'a Ekle"
 
-msgid "Download Now"
-msgstr "Şimdi İndir"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 ve üstü bir sürüm kullanmanız gerek."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla bu sürümü Firefox sürümünüz ile uyumsuz olarak işaretledi."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Yine de {0} için yükle"
@@ -667,9 +655,13 @@ msgstr "Yine de {0} için indir"
 msgid "Not available for your platform"
 msgstr "Sizin platformunuz için mevcut değil"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} için mevcut değil"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
+
+msgid "View other versions"
+msgstr "Diğer sürümleri görüntüle"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ile çalışır"
@@ -677,17 +669,8 @@ msgstr "{app} {min} - {max} ile çalışır"
 msgid "Works with {app}"
 msgstr "{app} ile çalışır"
 
-msgid "View other versions"
-msgstr "Diğer sürümleri görüntüle"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
-
-msgid "Download now"
-msgstr "Hemen indir"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Yalnızca masaüstü Firefox'ta kullanılabilir"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."

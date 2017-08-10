@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-26 22:39+0000\n"
 "Last-Translator: Bente <fox@frkolsen.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -650,18 +650,6 @@ msgstr "Accepter og installer"
 msgid "Add to {0}"
 msgstr "Føj til {0}"
 
-msgid "Download Now"
-msgstr "Hent nu"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Du nødt til at bruge Firefox 10.0 eller højere."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markeret denne version som værende inkompatibel med din Firefox-version."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installer til {0} alligevel"
@@ -672,9 +660,13 @@ msgstr "Hent til {0} alligevel"
 msgid "Not available for your platform"
 msgstr "Er ikke tilgængelig til din platform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Er ikke tilgængelig til {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dette tema er ikke kompatibelt med din version af {0}"
+
+msgid "View other versions"
+msgstr "Vis andre versioner"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
@@ -682,17 +674,8 @@ msgstr "Virker med {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Virker med {app}"
 
-msgid "View other versions"
-msgstr "Vis andre versioner"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Kun med Firefox — Hent Firefox nu!"
-
-msgid "Download now"
-msgstr "Hent nu"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Kun tilgængelig på Firefox til computer"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."

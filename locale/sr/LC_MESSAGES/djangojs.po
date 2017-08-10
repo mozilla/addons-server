@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -652,18 +652,6 @@ msgstr "Прихвати и инсталирај"
 msgid "Add to {0}"
 msgstr "Додај у {0}"
 
-msgid "Download Now"
-msgstr "Преузми одмах"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Додатак није ажуриран да подржава default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Морате користити Firefox 10.0 или новије."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla је означила ову верзију као некомпатабилну са Вашом верзијом Firefox-а."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Инсталирај за {0} у сваком случају"
@@ -674,9 +662,13 @@ msgstr "Преузми за {0} у сваком случају"
 msgid "Not available for your platform"
 msgstr "Није доступно за Вашу платформу"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Није доступно за {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
+
+msgid "View other versions"
+msgstr "Погледај остале верзије"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Ради са {app} {min} - {max}"
@@ -685,17 +677,7 @@ msgstr "Ради са {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Ради са {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Погледај остале верзије"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Преузми одмах"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

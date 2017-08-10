@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-05-25 11:21+0000\n"
 "Last-Translator: Amin Mahmudian <amin.mahmudian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -644,18 +644,6 @@ msgstr "قبول و نصب"
 msgid "Add to {0}"
 msgstr "افزودن به {0}"
 
-msgid "Download Now"
-msgstr "هم‌اکنون بارگیری کن"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr ""
@@ -666,9 +654,12 @@ msgstr ""
 msgid "Not available for your platform"
 msgstr "برای سیستم عامل شما موجود نیست"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "برای {0} {1} موجود نیست"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr ""
+
+msgid "View other versions"
+msgstr "نمایش سایر نسخه‌ها"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "با {app} {min} - {max} کار می‌کند"
@@ -677,17 +668,7 @@ msgstr "با {app} {min} - {max} کار می‌کند"
 msgid "Works with {app}"
 msgstr "با {app} {min} - {max} کار می‌کند"
 
-msgid "View other versions"
-msgstr "نمایش سایر نسخه‌ها"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "هم‌اکنون بارگیری کن"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

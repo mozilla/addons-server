@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-29 00:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -648,18 +648,6 @@ msgstr "Terima dan Pasang"
 msgid "Add to {0}"
 msgstr "Tambah ke {0}"
 
-msgid "Download Now"
-msgstr "Muat Turun Sekarang"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on tidak dikemaskini untuk menyokong piawai-ke-serasi."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Anda perlu gunakan Firefox 10.0 atau lebih baru."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla telah tandakan versi ini sebagai tidak serasi dengan versi Firefox anda."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Teruskan sahaja pasang untuk {0}"
@@ -670,9 +658,13 @@ msgstr "Teruskan sahaja muat turun untuk {0}"
 msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform anda"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Tidak tersedia untuk {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Tema ini tidak serasi dengan versi {0} anda"
+
+msgid "View other versions"
+msgstr "Papar versi lain"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Berfungsi dengan {app} {min} - {max}"
@@ -680,17 +672,8 @@ msgstr "Berfungsi dengan {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Berfungsi dengan {app}"
 
-msgid "View other versions"
-msgstr "Papar versi lain"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
-
-msgid "Download now"
-msgstr "Muat turun sekarang"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Hanya terdapat dalam Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Maaf, anda perlukan pelayar berasaskan-Mozilla (seperti Firefox) untuk memasang plugin carian."

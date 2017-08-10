@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-18 19:51+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -469,83 +469,12 @@ msgstr "Ikke bedømt endnu"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> brugere"
 
-msgid "{0} Daily Users"
-msgstr "{0} daglige brugere"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "For at installere denne og tusindvis andre tilføjelser, <b>hent Firefox</b>, en gratis og åben browser fra Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Læs mere om Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "eller <b><a class=\"button installer\" href=\"{url}\">hent alligevel</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Sådan installeres i Thunderbird</strong> <ol> <li>Hent og gem filen på din harddisk.</li> <li>Åbn fanebladet Tilføjelser fra menuen Funktioner i Thunderbird.</li> <li>Klik på Udvidelser.</"
-"li><li>Klik på knappen indstillinger (tandhjul) ved siden af søgefeltet, og vælg \"Installer tilføjelse fra fil...\". Find den hentede tilføjelse.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-
-msgid "Learn more about Thunderbird"
-msgstr "Læs mere om Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Hvis du vil installere dette og tusindvis andre temaer, <b>hent Firefox</b>, en gratis og åben browser fra Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Denne tilføjelse er ikke blevet opdateret til at virke med din version af %(app)s."
-
-msgid "Install Anyway"
-msgstr "Installér alligevel"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Denne tilføjelse kræver en version af Firefox, der endnu ikke er blevet udgivet."
-
-msgid "Help test new Firefox Versions"
-msgstr "Hjælp med at teste nye Firefox-versioner"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Denne tilføjelse kræver %(app)s {new_version}. Du anvender i øjeblikket %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Opdatér {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "eller vis <a href=\"%(href)s\">ældre versioner af denne tilføjelse</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Denne Persona kræver %(app)s %(new_version)s. Du anvender i øjeblikket %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Advarsel:</strong> Denne tilføjelse er ikke blevet godkendt af Mozilla, og kan ikke installeres på release-versioner af Firefox 43 eller nyere.  Vær forsigtig, når du installerer "
-"tredjeparts software, der kan skade din computer."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Bemærk:</strong> Denne tilføjelse er ikke kompatibel med dit styresystem."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Denne tilføjelse er ikke kompatibel med din version af %(app)s på grund af følgende:"
-
-msgid "View other versions"
-msgstr "Vis andre versioner"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Denne tilføjelse er ikke kompatibel med din version af %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} daglige brugere"
+msgstr[1] "{0} daglige brugere"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -786,6 +715,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Denne tilføjelse kan:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner (Fx: En tilføjelse, der håndterer faneblade, vil bede om lov til at tilgå din browsers fanebladssystem)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1158,7 +1094,8 @@ msgstr "Gyldige programversioner"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1745,7 +1682,7 @@ msgstr "Læs mere om <a href=\"http://support.mozilla.com/kb/Search+bar\">søgef
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Gennemse endnu flere søgetjenester på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2831,6 +2768,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3059,6 +2999,10 @@ msgstr "Søg"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr ""
 
@@ -3239,7 +3183,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8105,7 +8049,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8395,12 +8339,6 @@ msgstr "%s versionshistorik"
 
 msgid "Version History with Changelogs"
 msgstr "Versionshistorik med beskrivelse af ændringer"
-
-msgid "Add-on uses binary components."
-msgstr ""
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} og nyere"

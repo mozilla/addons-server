@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-08-04 07:28+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -659,18 +659,6 @@ msgstr "Прийняти та встановити"
 msgid "Add to {0}"
 msgstr "Додати до {0}"
 
-msgid "Download Now"
-msgstr "Завантажити зараз"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Додаток не було оновлено для типової підтримки сумісності."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Вам необхідно використовувати Firefox 10.0 або новіший."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla відмітила цю версію, як несумісну з вашою версією Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Все одно встановити для {0}"
@@ -681,9 +669,13 @@ msgstr "Все одно завантажити для {0}"
 msgid "Not available for your platform"
 msgstr "Недоступно для вашої платформи"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Недоступно для {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ця тема несумісна з вашою версією {0}"
+
+msgid "View other versions"
+msgstr "Дивитись інші версії"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Працює з {app} {min} - {max}"
@@ -691,17 +683,8 @@ msgstr "Працює з {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Працює з {app}"
 
-msgid "View other versions"
-msgstr "Дивитись інші версії"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Лише з Firefox — Отримайте Firefox зараз!"
-
-msgid "Download now"
-msgstr "Завантажити зараз"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Доступно лише для Firefox для Робочого столу"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-21 20:35+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -486,83 +486,14 @@ msgstr "Še ni ocenjeno"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> uporabnikov"
 
-msgid "{0} Daily Users"
-msgstr "{0} dnevnih uporabnikov"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Če želite namestiti ta dodatek in na tisoče drugih, <b>si prenesite Firefox</b>, brezplačen in odprtokodni brskalnik Mozille."
-
-msgid "Learn more about Firefox"
-msgstr "Izvedite več o Firefoxu"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ali <b><a class=\"button installer\" href=\"{url}\">prenesite vseeno</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Kako namestiti v Thunderbirdu</strong> <ol> <li>Prenesite datoteko in jo shranite na disk.</li> <li>V Mozilla Thunderbirdu v meniju Orodja odprite Dodatke.</li> <li>Z gumbom za možnosti "
-"poleg polja za iskanje izberite \"Namesti dodatek iz datoteke...\" in nato poiščite dodatek, ki ste ga prenesli.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Če želite namestiti to temo, <b>si prenesite Thunderbird</b>, brezplačen in odprtokodni program za pošto Mozille Messaging in namestite dodatek Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Več o Thunderbirdu"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Če želite namestiti to temo in na tisoče drugih, <b>si prenesite Firefox</b>, brezplačen in odprtokodni brskalnik Mozille."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Ta dodatek ni bil posodobljen za delovanje v vaši različici %(app)sa."
-
-msgid "Install Anyway"
-msgstr "Namesti vseeno"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "To razširitev zahteva različico Firefoxa, ki je še ni objavljena."
-
-msgid "Help test new Firefox Versions"
-msgstr "Pomagajte testirati nove različice Firefoxa"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Ta dodatek zahteva %(app)s {new_version}. Trenutno uporabljate %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Nadgradite {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ali pa si oglejte <a href=\"%(href)s\">starejše različice tega dodatka</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Ta Persona zahteva %(app)s %(new_version)s. Trenutno uporabljate %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Pozor:</strong> tega dodatka Mozilla ni pregledala in ga ni mogoče namestiti v Firefox 43 ter novejše.  Bodite pazljivi pri nameščanju programske opreme tretjih oseb, ki lahko poškoduje vaš "
-"računalnik."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Pomnite prosim:</strong> Ta razširitev ni združljiva z vašim operacijskim sistemom."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Ta dodatek ni združljiv z vašo različico %(app)sa iz naslednjega razloga:"
-
-msgid "View other versions"
-msgstr "Prikaži druge različice"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ta dodatek ni združljiv z vašo različico %(app)sa."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} dnevnih uporabnikov"
+msgstr[1] "{0} dnevnih uporabnikov"
+msgstr[2] "{0} dnevnih uporabnikov"
+msgstr[3] "{0} dnevnih uporabnikov"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -811,6 +742,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ta dodatek lahko:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Nekateri dodatki potrebujejo vaše dovoljenje za opravljanje določenih funkcij (na primer, dodatek za upravljanje zavihkov bo vprašal za dovoljenje za dostop do sistema zavihkov brskalnika)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1189,7 +1127,8 @@ msgstr "Veljavne različice aplikacije"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Dodatki poslani v dodatke Mozilla morajo meti datoteko manifesta s podporo za vsaj eno od spodnjih aplikacij. Za te aplikacije so dovoljene damo spodnje različice."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1794,7 +1733,8 @@ msgstr "Preberite več o <a href=\"http://support.mozilla.com/kb/Search+bar\">is
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Brskajte po še več iskalnikih na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ustvarite svoj</a> iskalnik"
 
 msgid "Most Popular Extensions"
@@ -2896,6 +2836,9 @@ msgstr "Po svoje. <span class=\"helptext\">Vaš prispevek bo takoj podpisan za o
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Razširitve za Firefox 53 in novejše so lahko samo WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
 
@@ -3124,6 +3067,10 @@ msgstr "Iskanje"
 msgid "Use the field below to upload your add-on package."
 msgstr "Uporabite polje spodaj, da prenesete paket za svojo aplikacijo."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po zaključenem prenosu se bo zagnal niz samodejnih preskusov za preverjanje veljavnosti, da se preveri združljivost z naslednjo različico programa:"
 
@@ -3311,7 +3258,8 @@ msgstr "Potrdite to polje, če glavne funkcije tega dodatka za delovanje zahteva
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Ta dodatek zahteva plačilo, plačljive storitve ali programsko opremo ali dodatno strojno opremo."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ta dodatek ne zahteva dodatnih plačil, plačljivih storitev ali programske opreme ali dodatne strojne opreme."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8352,7 +8300,8 @@ msgstr "moj na osnovi sdk zgrajen dodatek je uspešno nadgrajen"
 msgid "someone writes a review of my add-on"
 msgstr "nekdo oceni moj dodatek"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "ostanite na tekočem z novicami in dogodki, zanimivimi za razvijalce dodatkov"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8648,12 +8597,6 @@ msgstr "Zgodovina različice %s"
 
 msgid "Version History with Changelogs"
 msgstr "Zgodovina različic z dnevniki sprememb"
-
-msgid "Add-on uses binary components."
-msgstr "Dodarek vsebuje binarne komponente."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Dodatek je vključen v strogo preverjanje združljivosti."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} in kasneje"

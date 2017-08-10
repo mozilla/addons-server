@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-18 20:40+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -460,83 +460,12 @@ msgstr "Inte betygsatt än"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> användare"
 
-msgid "{0} Daily Users"
-msgstr "{0} dagliga användare"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "För att installera tillägget och tusentals andra, <b>hämta Firefox</b>, en gratis och öppen webbläsare från Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Lär dig mer om Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "eller <b><a class=\"button installer\" href=\"{url}\">hämta ändå</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Hur man installerar i Thunderbird</strong> <ol> <li>Hämta och spara filen på din hårddisk.</li> <li>I Mozilla Thunderbird, öppna tillägg från verktygsmenyn.</li> <li>Från alternativknappen "
-"bredvid tilläggssökfältet, välj \"Installera tillägg från fil...\" och leta reda på det nedladdade tillägget.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "För att installera detta tema, <b>hämta Thunderbird</b> en gratis e-postklient med öppen källkod från Mozilla Messaging och installera tillägget Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Lär dig mer om Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "För att installera tillägget och tusentals andra, <b>hämta Firefox</b>, en gratis och öppen webbläsare från Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Detta tillägg är inte uppdaterat för att fungera med din version av %(app)s."
-
-msgid "Install Anyway"
-msgstr "Installera ändå"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Detta tillägg kräver en version av Firefox som inte har släppts ännu."
-
-msgid "Help test new Firefox Versions"
-msgstr "Hjälpa till att testa nya versioner av Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Detta tillägg kräver %(app)s {new_version}. Du använder för närvarande %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Uppgradera {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "eller visa <a href=\"%(href)s\"> äldre versioner av detta tillägg</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Denna Persona kräver %(app)s %(new_version)s. Du använder för närvarande %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Varning:</strong> Detta tillägg har inte granskats av Mozilla och kan inte installeras på utgivna versioner av Firefox 43 och uppåt.   Var försiktig när du installerar programvara från "
-"tredje part som kan skada din dator."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Observera:</strong>Detta tillägg är ej kompatibelt med ditt operativsystem"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Detta tillägg är inte kompatibel med din version av %(app)s på grund av följande:"
-
-msgid "View other versions"
-msgstr "Visa andra versioner"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Detta tillägg är inte kompatibel med din version av %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} dagliga användare"
+msgstr[1] "{0} dagliga användare"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -775,6 +704,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Detta tillägg kan:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1144,7 +1080,8 @@ msgstr "Giltiga applikationsversioner"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Tillägg inlämnat till Mozilla Add-ons måste ha en manifest-fil med support för minst ett av nedanstående program. Enbart de versioner som angetts nedan är tillåtna för dessa applikationer."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1729,7 +1666,8 @@ msgstr "Läs mer om <a href=\"http://support.mozilla.com/kb/Search+bar\">sökfä
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Bläddra igenom ännu fler sökleverantörer på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Gör din eget</a> sökverktyg"
 
 msgid "Most Popular Extensions"
@@ -2817,6 +2755,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Från och med Firefox 53, kan nya tillägg på denna webbplats endast vara WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denna process. När användarna har WebExtension installerad, kommer de inte att kunna installera ett tillägg med arv."
 
@@ -3045,6 +2986,10 @@ msgstr "Sök"
 msgid "Use the field below to upload your add-on package."
 msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester körs för att kontrollera kompatibilitet med följande programversionen:"
 
@@ -3235,7 +3180,8 @@ msgstr "Markera den här rutan om det här tillägget kärnfunktioner kräver n�
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Detta tillägg kräver betalning, icke-gratis tjänster eller programvara eller extra maskinvara."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Detta tillägg kräver inga ytterligare betalningar, betalda tjänster eller programvara eller extra hårdvara."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8226,7 +8172,8 @@ msgstr "mitt sdk-baserade tillägg har uppgraderats"
 msgid "someone writes a review of my add-on"
 msgstr "någon skriver en recension av mitt tillägg"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "håll dig uppdaterad med nyheter och händelser som är relevanta för tilläggsutvecklare"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8517,12 +8464,6 @@ msgstr "%s versionshistorik"
 
 msgid "Version History with Changelogs"
 msgstr "Versionshistorik med ändringsloggar"
-
-msgid "Add-on uses binary components."
-msgstr "Tillägget använder binära komponenter."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Tillägg har valt in i strikt kompatibilitetskontroll."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"

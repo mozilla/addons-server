@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-08-10 06:02+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
@@ -650,18 +650,6 @@ msgstr "ఆమోదించు మరియు సంస్థాపించ�
 msgid "Add to {0}"
 msgstr "{0} కు జోడించండి"
 
-msgid "Download Now"
-msgstr "ఇప్పుడే దింపుకోండి"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "మీరు Firefox 10.0 లేదా అంతకంటే ఎక్కువ వెర్షన్ను వాడాలి."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "ఏమైనప్పటికీ {0} కోసం స్థాపన చేయండి"
@@ -672,9 +660,12 @@ msgstr "ఏమైనప్పటికి {0} కోసం దింపుకో
 msgid "Not available for your platform"
 msgstr "మీ వేదికకు అందుబాటులో లేదు"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} కోసం అందుబాటులో లేదు"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr ""
+
+msgid "View other versions"
+msgstr "ఇతర వెర్షన్లను వీక్షించండి"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} తో పనిచేస్తుంది"
@@ -682,17 +673,8 @@ msgstr "{app} {min} - {max} తో పనిచేస్తుంది"
 msgid "Works with {app}"
 msgstr "{app} తో పనిచేస్తుంది"
 
-msgid "View other versions"
-msgstr "ఇతర వెర్షన్లను వీక్షించండి"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox తో మాత్రమే — ఇప్పుడు Firefox పొందండి!"
-
-msgid "Download now"
-msgstr "ఇప్పుడే దింపుకోళ్ళు చేయండి"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Firefox డెస్క్టాప్లో మాత్రమే అందుబాటులో ఉంది"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""

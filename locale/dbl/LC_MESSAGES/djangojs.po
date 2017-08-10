@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid "Validating {0}"
 msgstr "Ṽȧŀīḓȧŧīƞɠ {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ḗẋƈḗḗḓş ŧħḗ ḿȧẋīḿŭḿ şīẑḗ ǿƒ {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Řḗƈḗīṽḗḓ ȧƞ ḗḿƥŧẏ řḗşƥǿƞşḗ ƒřǿḿ ŧħḗ şḗřṽḗř; şŧȧŧŭş: {0}"
@@ -134,7 +134,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗƈǿɠƞīẑḗḓ."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Ẏǿŭř ƒīŀḗ ḗẋƈḗḗḓş ŧħḗ ḿȧẋīḿŭḿ şīẑḗ ǿƒ {0}."
 
 msgid "You cancelled the upload."
 msgstr "Ẏǿŭ ƈȧƞƈḗŀŀḗḓ ŧħḗ ŭƥŀǿȧḓ."
@@ -651,18 +651,6 @@ msgstr "Aƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
 msgid "Add to {0}"
 msgstr "Aḓḓ ŧǿ {0}"
 
-msgid "Download Now"
-msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Aḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Ḿǿẑīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Īƞşŧȧŀŀ ƒǿř {0} ȧƞẏẇȧẏ"
@@ -673,9 +661,12 @@ msgstr "Ḓǿẇƞŀǿȧḓ ƒǿř {0} ȧƞẏẇȧẏ"
 msgid "Not available for your platform"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}."
+
+msgid "View other versions"
+msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Ẇǿřķş ẇīŧħ {app} {min} - {max}"
@@ -683,17 +674,8 @@ msgstr "Ẇǿřķş ẇīŧħ {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Ẇǿřķş ẇīŧħ {app}"
 
-msgid "View other versions"
-msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
-
-msgid "Download now"
-msgstr "Ḓǿẇƞŀǿȧḓ ƞǿẇ"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ Ḓḗşķŧǿƥ"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿẑīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."

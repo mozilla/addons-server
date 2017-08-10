@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-08-09 08:39+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -653,18 +653,6 @@ msgstr "Приемане и инсталиране"
 msgid "Add to {0}"
 msgstr "Добавяне към {0}"
 
-msgid "Download Now"
-msgstr "Изтегляне"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Добавката не е обновена да поддържа default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Трябва да използвате Firefox 10.0 или по-нов."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla маркира тази версия като несъвместима с Вашата версия на Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Инсталиране за {0} така или иначе"
@@ -675,9 +663,13 @@ msgstr "Изтегляне за {0} въпреки това"
 msgid "Not available for your platform"
 msgstr "Не е налично за платформата ви"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Не е налично за {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Тази тема е несъвместима с вашата версия на {0}"
+
+msgid "View other versions"
+msgstr "Други версии"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Работи с {app} {min} - {max}"
@@ -685,17 +677,8 @@ msgstr "Работи с {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Работи с {app}"
 
-msgid "View other versions"
-msgstr "Други версии"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Само с Firefox — Изтеглете Firefox сега!"
-
-msgid "Download now"
-msgstr "Изтегляне"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Достъпна само за настолната версия на Firefox"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Съжаляваме, трябва да имате Mozilla-базиран браузър (като Firefox), за да инсталирате търсеща добавка."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-19 21:11+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -472,83 +472,12 @@ msgstr "Δεν έχει βαθμολογηθεί ακόμα"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> χρήστες"
 
-msgid "{0} Daily Users"
-msgstr "{0} καθημερινοί χρήστες"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Για να εγκαταστήσετε αυτό το πρόσθετο και χιλιάδες άλλα, <b>κάντε λήψη του Firefox</b>, του δωρεάν και ανοικτού κώδικα περιηγητή του Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Μάθετε περισσότερα για τον Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ή <b><a class=\"button installer\" href=\"{url}\">λήψη ούτως ή άλλως</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Πως θα εγκαταστήσετε το Thunderbird</strong> <ol> <li>Κατεβάστε και αποθηκεύστε το αρχείο στο σκληρό σας δίσκο.</li> <li>Στο Mozilla Thunderbird, ανοίξτε τα Πρόσθετα από το μενού Εργαλεία.</"
-"li> <li>Από το κουμπί επιλογές δίπλα στο πεδίο αναζήτησης προσθέτου, επιλέξτε \"Εγκατάσταση προσθέτου από αρχείο...\" και εντοπίστε το πρόσθετο που έχετε κατεβάσει.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Για να εγκαταστήσετε αυτό το Θέμα, <b>λάβετε τον Thunderbird</b>, έναν ελεύθερο και ανοιχτού κώδικα email client από το Mozilla Messaging και εγκαταστήστε το πρόσθετο Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Μάθετε περισσότερα για τον Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Για να εγκαταστήσετε αυτό το Θέμα και χιλιάδες ακόμη, <b>λάβετε τον Firefox</b>, έναν ελεύθερο και δωρεάν περιηγητή του web από το Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Αυτό το πρόσθετο δεν έχει ενημερωθεί για να είναι συμβατό με την έκδοση του %(app)s που έχετε."
-
-msgid "Install Anyway"
-msgstr "Εγκατάσταση οπωσδήποτε"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Αυτό το πρόσθετο απαιτεί μια έκδοση του Firefox που δεν έχει εκδοθεί επίσημα ακόμα."
-
-msgid "Help test new Firefox Versions"
-msgstr "Βοηθήστε στη δοκιμή των νέων εκδόσεων του Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Αυτό το πρόσθετο απαιτεί τον %(app)s {new_version}. Εσείς χρησιμοποιείτε τον %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Ενημέρωση {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ή δείτε <a href=\"%(href)s\">παλιότερες εκδόσεις αυτού του πρόσθετου</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Αυτό το Persona απαιτεί τον %(app)s %(new_version)s. Εσείς έχετε τον %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Προσοχή:</strong> Αυτό το πρόσθετο δεν έχει αξιολογηθεί από τη Mozilla και δεν μπορεί να εγκατασταθεί στις κανονικές εκδόσεις του Firefox 43 και νεότερες. Να προσέχετε κατά την εγκατάσταση "
-"λογισμικού τρίτων που ενδέχεται να βλάψει τον υπολογιστή σας."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Παρακαλούμε σημειώστε ότι:</strong> Αυτό το πρόσθετο δεν είναι συμβατό με το λειτουργικό σας σύστημα."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app)s εξαιτίας των παρακάτω:"
-
-msgid "View other versions"
-msgstr "Προβολή άλλων εκδόσεων"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} καθημερινοί χρήστες"
+msgstr[1] "{0} καθημερινοί χρήστες"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -793,6 +722,15 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Αυτό το πρόσθετο μπορεί να:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+"Μερικά πρόσθετα ζητούν το δικαίωμα για την εκτέλεση ορισμένων λειτουργιών (παράδειγμα: ένα πρόσθετο διαχείρισης καρτελών θα ζητήσει το δικαίωμα για πρόσβαση στο σύστημα καρτελών του προγράμματος "
+"περιήγησής σας)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1174,7 +1112,8 @@ msgstr ""
 "Τα πρόσθετα που υποβάλλονται στα Πρόσθετα Mozilla πρέπει να έχουν ένα αρχείο manifest με τουλάχιστον ένα από τις παρακάτω υποστηριζόμενες εφαρμογές. Μόνο οι παρακάτω εκδόσεις επιτρέπονται για αυτές "
 "τις εφαρμογές."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1764,7 +1703,8 @@ msgstr "Μάθετε περισσότερα για την <a href=\"http://suppo
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Περιηγηθείτε σε ακόμη περισσότερους παρόχους αναζήτησης στο <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Δημιουργήστε το δικό σας</a> εργαλείο αναζήτησης"
 
 msgid "Most Popular Extensions"
@@ -2857,6 +2797,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3083,6 +3026,10 @@ msgstr "Αναζήτηση"
 msgid "Use the field below to upload your add-on package."
 msgstr "Χρησιμοποιήστε το πεδίο παρακάτω για να μεταφορτώσετε τη συσκευασία προσθέτου σας."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτόματους ελέγχους εγκυρότητας θα εκτελεστεί για να ελεγχθεί η συμβατότητα με την ακόλουθη έκδοση της εφαρμογής:"
 
@@ -3273,7 +3220,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8105,7 +8052,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8397,12 +8344,6 @@ msgstr "Ιστορικό εκδόσεων %s"
 
 msgid "Version History with Changelogs"
 msgstr "Ιστορικό αλλαγών εκδόσεων "
-
-msgid "Add-on uses binary components."
-msgstr ""
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} και νεότερα"

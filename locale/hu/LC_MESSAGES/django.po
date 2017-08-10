@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-19 13:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -478,83 +478,12 @@ msgstr "Még nem osztályozott"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> felhasználó"
 
-msgid "{0} Daily Users"
-msgstr "{0} napi felhasználó"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "A kiegészítő telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla ingyenes és nyílt böngészőjét."
-
-msgid "Learn more about Firefox"
-msgstr "Tudjon meg többet a Firefox böngészőről."
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "vagy <b><a class=\"button installer\" href=\"{url}\">letöltés mindenképp</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Hogyan telepítse Thunderbirdben</strong> <ol> <li>Töltse le és mentse a fájlt merevlemezére.</li> <li>A Mozilla Thunderbirdben nyissa meg a Kiegészítők pontot az Eszközök menüből.</li> "
-"<li>A kiegészítőkereső mező melletti beállítások gomb menüjéből válassza a „Kiegészítő telepítése fájlból” pontot, és keresse meg a letöltött kiegészítőt.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "A téma telepítéséhez <b>töltse le a Thunderbird</b>öt, a Mozilla ingyenes és nyílt forrású levelezőprogramját és telepítse a Personas Plus kiegészítőt."
-
-msgid "Learn more about Thunderbird"
-msgstr "Tudjon meg többet a Thunderbird levelezőprogramról"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "A téma telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla ingyenes és nyílt böngészőjét."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "A kiegészítő nem lett frissítve, hogy ezzel a %(app)s verzióval használni lehessen."
-
-msgid "Install Anyway"
-msgstr "Telepítés mindenképpen"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Ennek a kiegészítőnek olyan Firefox verzióra van szüksége, amely még nem jelent meg."
-
-msgid "Help test new Firefox Versions"
-msgstr "Segítsen az új Firefox verzió tesztelésében"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "A kiegészítő számára a %(app)s {new_version} verzióra van szükség. Jelenleg a %(app)s {old_version} verzióját használja."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} frissítése"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "vagy nézze meg a <a href=\"%(href)s\">kiegészítő régebbi verzióit</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "A persona számára a %(app)s %(new_version)s verzióra van szükség. Jelenleg a %(app)s  {old_version} verzióját használja."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Figyelmeztetés:</strong> Ezt a kiegészítőt a Mozilla nem értékelte, és Firefox 43 és újabb verziókhoz nem telepíthető. Legyen óvatos, mikor harmadik féltől származó szoftvert telepít, mert "
-"ezek kárt okozhatnak számítógépében."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Megjegyzés:</strong> Ez a kiegészítő nem kompatibilis az operációs rendszerével."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Ez a kiegészítő az alábbi okok miatt nem kompatibilis ezzel a %(app)s verzióval:"
-
-msgid "View other versions"
-msgstr "Egyéb verziók megtekintése"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ez a kiegészítő nem kompatibilis ezzel a %(app)s verzióval."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} napi felhasználó"
+msgstr[1] "{0} napi felhasználó"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -794,6 +723,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ez a kiegészítő ezeket teheti:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz (például: egy lapkezelő kiegészítő engedélyt fog kérni, hogy hozzáférjen a böngésző lapkezelő rendszeréhez)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1167,7 +1103,8 @@ msgstr ""
 "Mozilla Kiegészítők közé benyújtott kiegészítőnek kell legyen egy jegyzékfájlja, mely legalább egyet támogat az alábbi alkalmazások közül. Ezeknek az alkalmazásoknak csak az alább felsorolt verziói "
 "engedélyezettek."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1756,7 +1693,8 @@ msgstr "Tudjon meg többet a {0} <a href=\"http://support.mozilla.com/kb/Search+
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Tallózzon még több keresési szolgáltató között a <a href=\"http://mycroftproject.com/\">mycroftproject.com</a> oldalon"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Készítse el saját</a> keresőjét"
 
 msgid "Most Popular Extensions"
@@ -2847,6 +2785,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
 
@@ -3076,6 +3017,10 @@ msgstr "Keresés"
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "A feltöltést követően számos automatikus ellenőrzés fut le a kompatibilitás vizsgálatához az alábbi alkalmazásverzióhoz:"
 
@@ -3266,7 +3211,8 @@ msgstr "Jelölje be a négyzetet, ha a kiegészítő fő funkcionalitásához va
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Ehhez a kiegészítőhöz fizetés, fizetős szolgáltatások vagy szoftver, vagy további hardver szükséges."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ehhez a kiegészítőhöz nem szükséges fizetés, fizetős szolgáltatás vagy szoftver, vagy további hardver."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8238,7 +8184,8 @@ msgstr "az sdk-alapú kiegészítő frissítése sikeres"
 msgid "someone writes a review of my add-on"
 msgstr "valaki értékelést ír a kiegészítőmhöz"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára releváns eseményekkel"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8530,12 +8477,6 @@ msgstr "%s verziótörténet"
 
 msgid "Version History with Changelogs"
 msgstr "Verziótörténet a módosítások naplójával"
-
-msgid "Add-on uses binary components."
-msgstr "A kiegészítő bináris komponenseket használ."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "A kiegészítő feliratkozott a szigorú kompatibilitás-ellenőrzésre."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} és frissebbek"

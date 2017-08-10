@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2016-07-07 16:14+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -653,18 +653,6 @@ msgstr "Hyväksy ja asenna"
 msgid "Add to {0}"
 msgstr "Lisää {0}iin"
 
-msgid "Download Now"
-msgstr "Lataa nyt"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Sinun on käytettävä Firefoxin versiota 10.0 tai uudempaa."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla on merkinnyt tämän version yhteensopimattomaksi Firefox-versiosi kanssa."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Asenna silti {0}ille"
@@ -675,9 +663,13 @@ msgstr "Lataa silti {0}ille"
 msgid "Not available for your platform"
 msgstr "Ei saatavilla alustallesi"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ei saatavilla sovellukselle {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Tämä teema ei ole yhteensopiva tämän {0} -version kanssa"
+
+msgid "View other versions"
+msgstr "Näytä muut versiot"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Toimii {app} versioiden {min} - {max} kanssa"
@@ -686,18 +678,8 @@ msgstr "Toimii {app} versioiden {min} - {max} kanssa"
 msgid "Works with {app}"
 msgstr "Toimii {app} versioiden {min} - {max} kanssa"
 
-msgid "View other versions"
-msgstr "Näytä muut versiot"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Vain Firefoxissa — Hanki Firefox nyt!"
-
-#, fuzzy
-msgid "Download now"
-msgstr "Lataa nyt"
-
-msgid "Only available on Firefox Desktop"
-msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Pahoittelut, voit asentaa hakulisäosan vain Mozilla-pohjaisiin selaimiin (kuten Firefox)."

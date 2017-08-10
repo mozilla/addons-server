@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -461,83 +461,11 @@ msgstr "Ƞǿŧ ẏḗŧ řȧŧḗḓ"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ŭşḗřş"
 
-msgid "{0} Daily Users"
-msgstr "{0} Ḓȧīŀẏ Ŭşḗřş"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Ŧǿ īƞşŧȧŀŀ ŧħīş ȧḓḓ-ǿƞ ȧƞḓ ŧħǿŭşȧƞḓş ḿǿřḗ, <b>ɠḗŧ Ƒīřḗƒǿẋ</b>, ȧ ƒřḗḗ ȧƞḓ ǿƥḗƞ ẇḗƀ ƀřǿẇşḗř ƒřǿḿ Ḿǿẑīŀŀȧ."
-
-msgid "Learn more about Firefox"
-msgstr "Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ Ƒīřḗƒǿẋ"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ǿř <b><a class=\"button installer\" href=\"{url}\">ḓǿẇƞŀǿȧḓ ȧƞẏẇȧẏ</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Ħǿẇ ŧǿ Īƞşŧȧŀŀ īƞ Ŧħŭƞḓḗřƀīřḓ</strong> <ol> <li>Ḓǿẇƞŀǿȧḓ ȧƞḓ şȧṽḗ ŧħḗ ƒīŀḗ ŧǿ ẏǿŭř ħȧřḓ ḓīşķ.</li> <li>Īƞ Ḿǿẑīŀŀȧ Ŧħŭƞḓḗřƀīřḓ, ǿƥḗƞ Aḓḓ-ǿƞş ƒřǿḿ ŧħḗ Ŧǿǿŀş ḿḗƞŭ.</li> <li>Ƒřǿḿ ŧħḗ ǿƥŧīǿƞş "
-"ƀŭŧŧǿƞ ƞḗẋŧ ŧǿ ŧħḗ ȧḓḓ-ǿƞ şḗȧřƈħ ƒīḗŀḓ, şḗŀḗƈŧ \"Īƞşŧȧŀŀ Aḓḓ-ǿƞ Ƒřǿḿ Ƒīŀḗ...\" ȧƞḓ ŀǿƈȧŧḗ ŧħḗ ḓǿẇƞŀǿȧḓḗḓ ȧḓḓ-ǿƞ.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Ŧǿ īƞşŧȧŀŀ ŧħīş Ŧħḗḿḗ, <b>ɠḗŧ Ŧħŭƞḓḗřƀīřḓ</b>, ȧ ƒřḗḗ ȧƞḓ ǿƥḗƞ şǿŭřƈḗ ḗḿȧīŀ ƈŀīḗƞŧ ƒřǿḿ Ḿǿẑīŀŀȧ Ḿḗşşȧɠīƞɠ ȧƞḓ īƞşŧȧŀŀ ŧħḗ Ƥḗřşǿƞȧş Ƥŀŭş ȧḓḓ-ǿƞ."
-
-msgid "Learn more about Thunderbird"
-msgstr "Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ Ŧħŭƞḓḗřƀīřḓ"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Ŧǿ īƞşŧȧŀŀ ŧħīş Ŧħḗḿḗ ȧƞḓ ŧħǿŭşȧƞḓş ḿǿřḗ, <b>ɠḗŧ Ƒīřḗƒǿẋ</b>, ȧ ƒřḗḗ ȧƞḓ ǿƥḗƞ ẇḗƀ ƀřǿẇşḗř ƒřǿḿ Ḿǿẑīŀŀȧ."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ ẇǿřķ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app)s."
-
-msgid "Install Anyway"
-msgstr "Īƞşŧȧŀŀ Aƞẏẇȧẏ"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧ ṽḗřşīǿƞ ǿƒ Ƒīřḗƒǿẋ ŧħȧŧ ħȧş ƞǿŧ ƀḗḗƞ řḗŀḗȧşḗḓ ẏḗŧ."
-
-msgid "Help test new Firefox Versions"
-msgstr "Ħḗŀƥ ŧḗşŧ ƞḗẇ Ƒīřḗƒǿẋ Ṽḗřşīǿƞş"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ řḗɋŭīřḗş %(app)s {new_version}. Ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ŭşīƞɠ %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Ŭƥɠřȧḓḗ {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ǿř ṽīḗẇ <a href=\"%(href)s\">ǿŀḓḗř ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Ŧħīş Ƥḗřşǿƞȧ řḗɋŭīřḗş %(app)s %(new_version)s. Ẏǿŭ ȧřḗ ƈŭřřḗƞŧŀẏ ŭşīƞɠ %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Ƈȧŭŧīǿƞ:</strong> Ŧħīş ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ Ḿǿẑīŀŀȧ ȧƞḓ ƈȧƞ'ŧ ƀḗ īƞşŧȧŀŀḗḓ ǿƞ řḗŀḗȧşḗ ṽḗřşīǿƞş ǿƒ Ƒīřḗƒǿẋ 43 ȧƞḓ ȧƀǿṽḗ.  Ɓḗ ƈȧřḗƒŭŀ ẇħḗƞ īƞşŧȧŀŀīƞɠ ŧħīřḓ-ƥȧřŧẏ şǿƒŧẇȧřḗ ŧħȧŧ "
-"ḿīɠħŧ ħȧřḿ ẏǿŭř ƈǿḿƥŭŧḗř."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Ƥŀḗȧşḗ ƞǿŧḗ:</strong> Ŧħīş ȧḓḓ-ǿƞ īş ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ǿƥḗřȧŧīƞɠ şẏşŧḗḿ."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app)s ƀḗƈȧŭşḗ ǿƒ ŧħḗ ƒǿŀŀǿẇīƞɠ:"
-
-msgid "View other versions"
-msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ %(app)s."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} Ḓȧīŀẏ Ŭşḗř"
+msgstr[1] "{0} Ḓȧīŀẏ Ŭşḗřş"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -776,6 +704,12 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ƈȧƞ:"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Şǿḿḗ ȧḓḓ-ǿƞş ȧşķ ƒǿř ƥḗřḿīşşīǿƞ ŧǿ ƥḗřƒǿřḿ ƈḗřŧȧīƞ ƒŭƞƈŧīǿƞş. Şīƞƈḗ ẏǿŭ’řḗ īƞ ƈǿƞŧřǿŀ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ, ŧħḗ ƈħǿīƈḗ ŧǿ ɠřȧƞŧ ǿř ḓḗƞẏ ŧħḗşḗ řḗɋŭḗşŧş īş ẏǿŭřş."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Ƥŀḗȧşḗ ƞǿŧḗ ŧħīş ȧḓḓ-ǿƞ ŭşḗş ŀḗɠȧƈẏ ŧḗƈħƞǿŀǿɠẏ, ẇħīƈħ ɠīṽḗş īŧ ȧƈƈḗşş ŧǿ ȧŀŀ ƀřǿẇşḗř ƒŭƞƈŧīǿƞş ȧƞḓ ḓȧŧȧ ẇīŧħǿŭŧ řḗɋŭḗşŧīƞɠ ẏǿŭř ƥḗřḿīşşīǿƞ."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1143,8 +1077,8 @@ msgstr "Ṽȧŀīḓ Aƥƥŀīƈȧŧīǿƞ Ṽḗřşīǿƞş"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Aḓḓ-ǿƞş şŭƀḿīŧŧḗḓ ŧǿ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş ḿŭşŧ ħȧṽḗ ȧ ḿȧƞīƒḗşŧ ƒīŀḗ ẇīŧħ ȧŧ ŀḗȧşŧ ǿƞḗ ǿƒ ŧħḗ ƀḗŀǿẇ ȧƥƥŀīƈȧŧīǿƞş şŭƥƥǿřŧḗḓ. Ǿƞŀẏ ŧħḗ ṽḗřşīǿƞş ŀīşŧḗḓ ƀḗŀǿẇ ȧřḗ ȧŀŀǿẇḗḓ ƒǿř ŧħḗşḗ ȧƥƥŀīƈȧŧīǿƞş."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "ħŧŧƥş://ḓḗṽḗŀǿƥḗř.ḿǿẑīŀŀȧ.ǿřɠ/Aḓḓ-ǿƞş/ẆḗƀḖẋŧḗƞşīǿƞş/ḿȧƞīƒḗşŧ.ĵşǿƞ/ȧƥƥŀīƈȧŧīǿƞş"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "ħŧŧƥş://ḓḗṽḗŀǿƥḗř.ḿǿẑīŀŀȧ.ǿřɠ/ḗƞ-ŬŞ/Aḓḓ-ǿƞş/ẆḗƀḖẋŧḗƞşīǿƞş/ḿȧƞīƒḗşŧ.ĵşǿƞ/ȧƥƥŀīƈȧŧīǿƞş"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1728,8 +1662,8 @@ msgstr "Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ŧħḗ <a href=\"http://support.mozil
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Ɓřǿẇşḗ ŧħřǿŭɠħ ḗṽḗƞ ḿǿřḗ şḗȧřƈħ ƥřǿṽīḓḗřş ȧŧ <a href=\"http://mycroftproject.com/\">ḿẏƈřǿƒŧƥřǿĵḗƈŧ.ƈǿḿ</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> şḗȧřƈħ ŧǿǿŀ"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> şḗȧřƈħ ŧǿǿŀ"
 
 msgid "Most Popular Extensions"
 msgstr "Ḿǿşŧ Ƥǿƥŭŀȧř Ḗẋŧḗƞşīǿƞş"
@@ -2813,6 +2747,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Şŧȧřŧīƞɠ ẇīŧħ Ƒīřḗƒǿẋ 53, ƞḗẇ ḗẋŧḗƞşīǿƞş ǿƞ ŧħīş şīŧḗ ƈȧƞ ǿƞŀẏ ƀḗ ẆḗƀḖẋŧḗƞşīǿƞş."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Ŀḗɠȧƈẏ ḗẋŧḗƞşīǿƞş ȧřḗ ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57 ǿř ħīɠħḗř. Ŭşḗ ȧ ḿȧẋṼḗřşīǿƞ ǿƒ 56.* ǿř ŀǿẇḗř."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀŭŧ ẏǿŭ ƈȧƞƞǿŧ řḗṽḗřşḗ ŧħīş ƥřǿƈḗşş. Ǿƞƈḗ ẏǿŭř ŭşḗřş ħȧṽḗ ŧħḗ ẆḗƀḖẋŧḗƞşīǿƞ īƞşŧȧŀŀḗḓ, ŧħḗẏ ẇīŀŀ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ īƞşŧȧŀŀ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ."
 
@@ -3041,6 +2978,10 @@ msgstr "Şḗȧřƈħ"
 msgid "Use the field below to upload your add-on package."
 msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓ ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Ƞǿŧḗ ŧħȧŧ ŧħīş ŧǿǿŀ ǿƞŀẏ ẇǿřķş ẇīŧħ ŀḗɠȧƈẏ ȧḓḓ-ǿƞş. ẆḗƀḖẋŧḗƞşīǿƞ AƤĪş ȧřḗ ŧħǿřǿŭɠħŀẏ <a href=\"%(webext_doc_url)s\">ḓǿƈŭḿḗƞŧḗḓ ħḗřḗ</a>."
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ řŭƞ ŧǿ ƈħḗƈķ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ ŧħḗ ƒǿŀŀǿẇīƞɠ ȧƥƥŀīƈȧŧīǿƞ ṽḗřşīǿƞ:"
 
@@ -3228,8 +3169,8 @@ msgstr "Ƈħḗƈķ ŧħīş ƀǿẋ īƒ ŧħīş ȧḓḓ-ǿƞ'ş ƈǿřḗ ƒ
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Ŧħīş ȧḓḓ-ǿƞ řḗɋŭīřḗş ƥȧẏḿḗƞŧ, ƞǿƞ-ƒřḗḗ şḗřṽīƈḗş ǿř şǿƒŧẇȧřḗ, ǿř ȧḓḓīŧīǿƞȧŀ ħȧřḓẇȧřḗ."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ḓǿḗşƞ'ŧ řḗɋŭīřḗ ȧƞẏ ȧḓḓīŧīǿƞȧŀ ƥȧẏḿḗƞŧş, ƥȧīḓ şḗřṽīƈḗş ǿř şǿƒŧẇȧřḗ ǿř ȧḓḓīŧīǿƞȧŀ ħȧřḓẇȧřḗ."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr "Ŧħīş ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ řḗɋŭīřḗ ȧƞẏ ȧḓḓīŧīǿƞȧŀ ƥȧẏḿḗƞŧş, ƥȧīḓ şḗřṽīƈḗş ǿř şǿƒŧẇȧřḗ, ǿř ȧḓḓīŧīǿƞȧŀ ħȧřḓẇȧřḗ."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "Ƈȧŧḗɠǿřīḗş ȧřḗ ŧħḗ ƥřīḿȧřẏ ẇȧẏ ŭşḗřş ƀřǿẇşḗ ŧħřǿŭɠħ ȧḓḓ-ǿƞş. Ƈħǿǿşḗ ȧƞẏ ŧħȧŧ ƒīŧ ẏǿŭř ȧḓḓ-ǿƞ'ş ƒŭƞƈŧīǿƞȧŀīŧẏ ƒǿř ŧħḗ ḿǿşŧ ḗẋƥǿşŭřḗ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
@@ -8132,8 +8073,8 @@ msgstr "ḿẏ şḓķ-ƀȧşḗḓ ȧḓḓ-ǿƞ īş ŭƥɠřȧḓḗḓ şŭ�
 msgid "someone writes a review of my add-on"
 msgstr "şǿḿḗǿƞḗ ẇřīŧḗş ȧ řḗṽīḗẇ ǿƒ ḿẏ ȧḓḓ-ǿƞ"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr "şŧȧẏ ŭƥ-ŧǿ-ḓȧŧḗ ẇīŧħ ƞḗẇş ȧƞḓ ḗṽḗƞŧş řḗŀḗṽȧƞŧ ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr "şŧȧẏ ŭƥ-ŧǿ-ḓȧŧḗ ẇīŧħ ƞḗẇş ȧƞḓ ḗṽḗƞŧş řḗŀḗṽȧƞŧ ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş (īƞƈŀŭḓīƞɠ ŧħḗ ȧƀǿŭŧ:ȧḓḓǿƞş ƞḗẇşŀḗŧŧḗř)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "ḿẏ ȧḓḓ-ǿƞ'ş ƈǿḿƥȧŧīƀīŀīŧẏ ƈȧƞƞǿŧ ƀḗ ŭƥɠřȧḓḗḓ"
@@ -8421,12 +8362,6 @@ msgstr "%s Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 
 msgid "Version History with Changelogs"
 msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ ẇīŧħ Ƈħȧƞɠḗŀǿɠş"
-
-msgid "Add-on uses binary components."
-msgstr "Aḓḓ-ǿƞ ŭşḗş ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Aḓḓ-ǿƞ ħȧş ǿƥŧḗḓ īƞŧǿ şŧřīƈŧ ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķīƞɠ."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ȧƞḓ ŀȧŧḗř"

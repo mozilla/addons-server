@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2015-09-13 20:11+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -647,18 +647,6 @@ msgstr "Chấp nhận và cài đặt"
 msgid "Add to {0}"
 msgstr "Thêm vào {0}"
 
-msgid "Download Now"
-msgstr "Tải về ngay"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Bạn cần phải sử dụng Firefox 10.0 trở lên."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla đã đánh dấu phiên bản này là không tương thích với phiên bản Firefox của bạn."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Vẫn cứ cài đặt vào {0}"
@@ -669,9 +657,13 @@ msgstr "Cứ tải về cho {0}"
 msgid "Not available for your platform"
 msgstr "Không có sẵn cho nền của bạn"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Không có sẵn cho {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Mozilla đã đánh dấu phiên bản này là không tương thích với phiên bản Firefox của bạn."
+
+msgid "View other versions"
+msgstr "Xem các phiên bản khác"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Hoạt động trên {app} {min} – {max}"
@@ -680,17 +672,7 @@ msgstr "Hoạt động trên {app} {min} – {max}"
 msgid "Works with {app}"
 msgstr "Hoạt động trên {app} {min} – {max}"
 
-msgid "View other versions"
-msgstr "Xem các phiên bản khác"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Tải về ngay"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

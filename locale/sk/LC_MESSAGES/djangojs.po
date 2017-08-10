@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-24 16:21+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -661,18 +661,6 @@ msgstr "Prijať a nainštalovať"
 msgid "Add to {0}"
 msgstr "Pridať do programu {0}"
 
-msgid "Download Now"
-msgstr "Prevziať teraz"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Doplnok nebol aktualizovaný tak, aby bol v predvolenom nastavení kompatibilný."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Musíte používať Firefox 10.0 alebo novší."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla označila túto verziu ako nekompatibilnú s vašou verziou Firefoxu."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Napriek tomu nainštalovať pre {0}"
@@ -683,9 +671,13 @@ msgstr "Napriek tomu prevziať pre {0}"
 msgid "Not available for your platform"
 msgstr "Nie je dostupné pre vašu platformu."
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nie je dostupné pre {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Táto téma nie je kompatibilná s vašou verziou aplikácie {0}"
+
+msgid "View other versions"
+msgstr "Zobraziť ďalšie verzie"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funguje s {app} {min} - {max}"
@@ -693,17 +685,8 @@ msgstr "Funguje s {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funguje s {app}"
 
-msgid "View other versions"
-msgstr "Zobraziť ďalšie verzie"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Len pre Firefox — získajte Firefox teraz!"
-
-msgid "Download now"
-msgstr "Prevziať teraz"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Dostupné len vo Firefoxe pre počítače"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."

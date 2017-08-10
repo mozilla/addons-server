@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-29 14:26+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -485,83 +485,13 @@ msgstr "Пока не оценено"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> пользователя"
 
-msgid "{0} Daily Users"
-msgstr "{0} ежедневных пользователей"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Чтобы установить это дополнение и тысячи других, <b>загрузите Firefox</b>, свободный и открытый веб-браузер от Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Узнать больше о Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "или <b><a class=\"button installer\" href=\"{url}\">всёравно загрузить</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Как установить в Thunderbird</strong> <ol> <li>Загрузите и сохраните файл на ваш жёсткий диск.</li> <li>В Mozilla Thunderbird откройте меню Инструменты и выберите пункт Дополнения.</li> "
-"<li>Из меню кнопки настроек, расположенной рядом с полем поиска дополнений, выберите \"Установить дополнение из файла...\" и найдите загруженное дополнение.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Чтобы установить эту тему, <b>загрузите Thunderbird</b>, свободный и открытый почтовый клиент от Mozilla Messaging и установите в него дополнение Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Узнайте больше о Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Чтобы установить эту тему и тысячи других, <b>загрузите Firefox</b>, свободный и открытый веб-браузер от Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Это дополнение не было обновлено для работы с вашей версией %(app)s."
-
-msgid "Install Anyway"
-msgstr "Всё равно установить"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Это дополнение требует версию Firefox, которая ещё не была выпущена."
-
-msgid "Help test new Firefox Versions"
-msgstr "Помогите протестировать новые версии Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Это дополнение требует %(app)s {new_version}. В данный момент вы используете %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Обновите {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "или посмотрите на <a href=\"%(href)s\">старые версии этого дополнения</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Эти обои требуют %(app)s %(new_version)s. В данный момент вы используете %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Внимание:</strong> Это обновление не было проверено Mozilla и не может быть установлено на версию Firefox 43 и выше.  Будьте осторожны при установке ПО от третьих сторон, оно может "
-"повредить ваш компьютер."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Обратите внимание:</strong> Это дополнение несовместимо с вашей операционной системой."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Это дополнение не совместимо с вашей версией %(app)s так как:"
-
-msgid "View other versions"
-msgstr "Просмотреть другие версии"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Это дополнение не совместимо с вашей версией %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} ежедневных пользователей"
+msgstr[1] "{0} ежедневных пользователей"
+msgstr[2] "{0} ежедневных пользователей"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -806,6 +736,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Это дополнение может:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций (например, дополнение управления вкладками может запросить доступ к системе вкладок вашего браузера)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1184,7 +1121,8 @@ msgstr ""
 "Дополнения, представляемые на сайт дополнений Mozilla, должны иметь файл манифеста с по крайней мере одним из поддерживаемых приложений. Для этих приложений разрешены только перечисленные ниже "
 "версии."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1782,7 +1720,8 @@ msgstr "Узнайте больше о <a href=\"http://support.mozilla.com/kb/S
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Найдите ещё больше провайдеров поиска на <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/ru/docs/Creating_OpenSearch_plugins_for_Firefox\">Создайте свой</a> поисковый инструмент"
 
 msgid "Most Popular Extensions"
@@ -2875,6 +2814,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Начиная с Firefox 53, новыми дополнениями на этом сайте могут быть только WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Мы позволяем и поощряем обновления, но вы не сможете обратить этот процесс вспять. После того, как ваши пользователи установят WebExtension, они больше не смогут установить устаревшее дополнение."
@@ -3106,6 +3048,10 @@ msgstr "Поиск"
 msgid "Use the field below to upload your add-on package."
 msgstr "Используйте расположенное ниже поле, чтобы загрузить свой пакет дополнения."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "После загрузки будет запущена серия автоматических валидирующих тестов, которые проверят совместимость со следующей версией приложения:"
 
@@ -3297,7 +3243,8 @@ msgstr "Установите этот флажок, если вашему доп
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Это дополнение требует оплаты, платных услуг или программного обеспечения, или дополнительного оборудования."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Это дополнение не требует никаких дополнительных платежей, платных услуг или программного обеспечения, или дополнительного оборудования."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8324,7 +8271,8 @@ msgstr "моё основанное на SDK дополнение успешно
 msgid "someone writes a review of my add-on"
 msgstr "кто-то пишет отзыв на моё дополнение"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "будьте в курсе новостей и событий, имеющих отношение к разработчикам дополнений"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8618,12 +8566,6 @@ msgstr "История версий %s"
 
 msgid "Version History with Changelogs"
 msgstr "История версий со списком изменений"
-
-msgid "Add-on uses binary components."
-msgstr "Дополнение содержит бинарные компоненты."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Дополнение выбрало строгую проверку совместимости."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"

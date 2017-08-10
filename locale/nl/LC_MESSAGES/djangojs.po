@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-19 21:47+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -443,8 +443,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 # why not localize the date format?
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
 
@@ -524,8 +524,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 # why not localize the date format?
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
 
@@ -658,18 +658,6 @@ msgstr "Accepteren en installeren"
 msgid "Add to {0}"
 msgstr "Toevoegen aan {0}"
 
-msgid "Download Now"
-msgstr "Nu downloaden"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on is niet bijgewerkt om standaard-compatibel te ondersteunen."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "U dient Firefox 10.0 of hoger te gebruiken."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla heeft deze versie als niet compatibel met uw Firefox-versie gemarkeerd."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Toch installeren voor {0}"
@@ -680,9 +668,13 @@ msgstr "Toch downloaden voor {0}"
 msgid "Not available for your platform"
 msgstr "Niet beschikbaar voor uw platform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Niet beschikbaar voor {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dit thema is niet compatibel met uw versie van {0}"
+
+msgid "View other versions"
+msgstr "Overige versies bekijken"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Werkt met {app} {min} - {max}"
@@ -690,17 +682,8 @@ msgstr "Werkt met {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Werkt met {app}"
 
-msgid "View other versions"
-msgstr "Overige versies bekijken"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Alleen bij Firefox – Download Firefox nu!"
-
-msgid "Download now"
-msgstr "Nu downloaden"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Alleen beschikbaar in Firefox voor desktops"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een zoekplug-in te kunnen installeren."

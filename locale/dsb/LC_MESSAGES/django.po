@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-18 20:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -481,83 +481,14 @@ msgstr "Hyšći njepógódnośone"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> wužywarjow"
 
-msgid "{0} Daily Users"
-msgstr "{0} wšednych wužywarjow"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Aby toś ten dodank a tysace dalšne instalěrował, <b>wobstarajśo se Firefox</b>, dermotny a wótwórjony webwobglědowak wót Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Zgóńśo wěcej wó Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "abo <b><a class=\"button installer\" href=\"{url}\">weto ześěgnuś</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Instalacija w Thunderbird</strong> <ol> <li>Ześěgniśo a składujśo dataju na swójej twardej plaśe.</li> <li>Wócyńśo zastojnik dodankow pśez meni „Rědy“ w Mozilla Thunderbird.</li> "
-"<li>Wubjeŕśo z tłocaškom ze zubkatym kólaskom pódla pytańskego póla dodanka zapisk „Dodank z dataje instalěrowas...“ a wubjeŕśo ześěgnjony dodank.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Aby toś tu drastwu instalěrował, <b>wobstarajśo se Thunderbird</b>, dermotny e-mailowy program wótwórjonego žrědła wót Mozilla Messaging a instalujěrśo dodank Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Zgóńśo wěcej wó Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Aby toś tu drastwu a tysace dalšne instalěrował, <b>wobstarajśo se Firefox</b>, dermotny a wótwórjony webwobgladowak wót Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Toś ten dodank njejo se hyšći aktualizěrował, aby z wašeju wersiju %(app)s funkcioněrował."
-
-msgid "Install Anyway"
-msgstr "Weto instalěrowaś"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Toś ten dodank pomina se wersiju Firefox, kótaraž hyšći njejo wujšła."
-
-msgid "Help test new Firefox Versions"
-msgstr "Pomagajśo, nowe wersije Firefox testowaś"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Toś ten dodank pomina se %(app)s {new_version}. Wužywaśo tuchylu %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} aktualizěrowaś"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "abo <a href=\"%(href)s\">starše wersije toś togo dodanka</a> pokazaś."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Toś ten Persona pomina se %(app)s %(new_version)s. Wužywaśo tuchylu %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Glědajśo:</strong> Toś ten dodank njejo pśeglědany wót Mozilla a njedajo se do wersije Firefox 43 a nowšych instalěrowaś. Buźćo wobglědniwy, gaž programy tśeśich póbitowarjow instalěrujośo, "
-"kótarež by mógli wašomu licadłoju škódowaś."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Glědajśo:</strong> Toś ten dodank njejo kompatibelny z wašym źěłowym systemom."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Toś ten dodank njejo kompatibelny ze slědujuceje pśicyny z wašeju wersiju %(app)s:"
-
-msgid "View other versions"
-msgstr "Druge wersije pokazaś"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Toś ten dodank njejo kompatibelny z wašeju wersiju %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} wšednych wužywarjow"
+msgstr[1] "{0} wšednych wužywarjow"
+msgstr[2] "{0} wšednych wužywarjow"
+msgstr[3] "{0} wšednych wužywarjow"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -804,6 +735,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Toś ten dodank móžo:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli (na pśikład: dodank za zastojanje rejtarkow pšosy wó pśistup na rejtarkowy system wašogo wobglědowaka)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1181,7 +1119,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 "Dodanki zapódane pla Mozilla Add-ons muse manifestowu dataju měś, pśi comž nanejmjenjej jadno ze slědujucych nałoženjow se pódpěra. Jano dołojce pódane wersije su za toś te nałoženja dowólone."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1784,7 +1723,8 @@ msgstr "Zgóńśo wěcej wó <a href=\"http://support.mozilla.com/kb/Search+bar\
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Pśepytujśo dalšne pytańske póbitowarje na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Napórajśo swójski</a> pytański rěd"
 
 msgid "Most Popular Extensions"
@@ -2877,6 +2817,9 @@ msgstr "Samostatny. <span class=\"helptext\">Wašo zapódaśe buźo se ned za sa
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Wót Firefox 53 mógu nowe rozšyrjenja jano WebExtensions byś."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten proces pśewobrośiś. Gaž waše wužywarje su WebExtension zainstalěrowali, njamógu wěcej dodank starego typa instalěrowaś."
 
@@ -3107,6 +3050,10 @@ msgstr "Pytaś"
 msgid "Use the field below to upload your add-on package."
 msgstr "Wužywajśo slědujuce pólo, aby swój dodankowy pakśik nagrał."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Pó nagrawanju se rěd awtomatiskich pśeglědowańskich testow pśewjeźo, aby komptatibelnosć ze slědujuceju wersiju nałoženja pśeglědowali:"
 
@@ -3297,7 +3244,8 @@ msgstr "Stajśo kokulku do kašćika, jolic se głowne funkcije toś togo doanka
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Toś ten dodank se płaśenje, słužby, softwaru abo pśidatnu hardwaru z płaśenim pomina."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Toś ten dodank se pśidatne płaśenja, słužby, softwaru abo pśidatnu hardwaru z płaśenim njepomina."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8285,7 +8233,8 @@ msgstr "mój dodank, kótaryž bazěrujo na SDK, jo se wuspěšnje aktualizěrow
 msgid "someone writes a review of my add-on"
 msgstr "něchten pišo pógódnośenje mójogo dodanka"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "wostańśo aktualny z powěsćami a tšojenjami, kótarež su relewantne za wuwijarje"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8580,12 +8529,6 @@ msgstr "Wersijowa historija %s"
 
 msgid "Version History with Changelogs"
 msgstr "Wersijowa historija ze změnowymi protokolami"
-
-msgid "Add-on uses binary components."
-msgstr "Dodank wužywa binarne komponenty."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Dodank jo striktny test kompatibelnosći aktiwěrował."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowše"

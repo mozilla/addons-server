@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-17 14:06+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -643,18 +643,6 @@ msgstr "接受並安裝"
 msgid "Add to {0}"
 msgstr "新增至 {0}"
 
-msgid "Download Now"
-msgstr "立刻下載"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "附加元件未被更新為預設相容版本。"
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "您必須使用 Firefox 10.0 或更新版本。"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla 已將此版本標示為與您的 Firefox 版本不相容。"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "繼續安裝 {0} 版本"
@@ -665,9 +653,13 @@ msgstr "仍然下載 {0}"
 msgid "Not available for your platform"
 msgstr "與您的作業系統不相容"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "無法使用於 {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
+
+msgid "View other versions"
+msgstr "檢視其他版本"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "可於 {app} {min} - {max} 使用"
@@ -675,17 +667,8 @@ msgstr "可於 {app} {min} - {max} 使用"
 msgid "Works with {app}"
 msgstr "可於 {app} 使用"
 
-msgid "View other versions"
-msgstr "檢視其他版本"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只在 Firefox 上才有，快來安裝！"
-
-msgid "Download now"
-msgstr "立刻下載"
-
-msgid "Only available on Firefox Desktop"
-msgstr "僅在 Firefox 桌面版可用"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"

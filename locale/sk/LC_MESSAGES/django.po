@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-30 18:39+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -482,85 +482,13 @@ msgstr "Nehodnotené"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> používateľov"
 
-msgid "{0} Daily Users"
-msgstr "{0} denných používateľov"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Ak si chcete nainštalovať tento doplnok a tisíce ďalších, <b>nainštalujte si Firefox</b>, voľne dostupný a otvorený webový prehliadač od Mozilly."
-
-msgid "Learn more about Firefox"
-msgstr "Ďalšie informácie o Firefoxe"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "alebo <b><a class=\"button installer\" href=\"{url}\">napriek tomu prevziať</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Ako na inštaláciu v Thunderbirde</strong> <ol> <li>Prevezmite a uložte si súbor na vašom disku.</li> <li>V programe Mozilla Thunderbird rozbaľte ponuku Nástroje a zvoľte položku.</li> <li>Z "
-"ponuky vedľa vyhľadávacieho poľa zvoľte položku \"Nainštalovať doplnok zo súboru...\" a vyhľadajte svoj doplnok na disku.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-"Ak chcete nainštalovať túto tému, <b>nainštalujte si Thunderbird</b>, voľne dostupný e-amilový klient s otvoreným zdrojovým kódom od Mozilla Messaging a do neho si nainštalujte doplnok Personas "
-"Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Ďalšie informácie o Thunderbirde"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Ak si chcete nainštalovať túto tému, <b>nainštalujte si Firefox</b>, voľne dostupný webový prehliadač od Mozilly."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Tento doplnok nebol aktualizovaný, aby pracoval správne s vašou verziou aplikácie %(app)s."
-
-msgid "Install Anyway"
-msgstr "Napriek tomu nainštalovať"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Tento doplnok vyžaduje verziu Firefoxu, ktorá ešte nebola sprístupnená."
-
-msgid "Help test new Firefox Versions"
-msgstr "Pomôžte otestovať nové verzie Firefoxu"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Tento doplnok vyžaduje %(app)s {new_version}. Aktuálne používate %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Aktualizovať na {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "alebo zobraziť <a href=\"%(href)s\">staršie verzie tohto doplnku</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Táto téma Personas vyžaduje %(app)s %(new_version)s. Vy používate %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Výstraha:</strong> Tento doplnok nebol skontrolovaný Mozillou a nemôže byť nainštalovaný do Firefoxu verzie 43 a vyššej. Dávajte pozor pri inštalácii softvéru tretích strán, ktorý by mohol "
-"poškodiť váš počítač."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Upozornenie:</strong> Tento doplnok nie je kompatibilný s vašim operačným systémom."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Tento doplnok nie je kompatibilný s vašou verziou aplikácie %(app)s z nasledujúceho dôvodu:"
-
-msgid "View other versions"
-msgstr "Zobraziť ďalšie verzie"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Tento doplnok nie je kompatibilný s vašou verziou aplikácie %(app)s."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} denných používateľov"
+msgstr[1] "{0} denných používateľov"
+msgstr[2] "{0} denných používateľov"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -806,6 +734,13 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Tento doplnok môže:"
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie (napríklad doplnok na správu kariet požiada o povolenie na prístup k systému kariet prehliadača)."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1183,7 +1118,8 @@ msgstr "Platné verzie aplikácie"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1783,7 +1719,8 @@ msgstr "Ďalšie informácie o <a href=\"http://support.mozilla.com/kb/Search+ba
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Objavte ešte viac vyhľadávacích modulov na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/sk/Add-ons/Creating_OpenSearch_plugins_for_Firefox\">Vytvorte si vlastný</a> vyhľadávací modul"
 
 msgid "Most Popular Extensions"
@@ -2881,6 +2818,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3113,6 +3053,10 @@ msgstr "Hľadať"
 msgid "Use the field below to upload your add-on package."
 msgstr "Pre načítanie vášho doplnku použite pole nižšie."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po načítaní bude spustená sada automatizovaných testov, ktoré skontrolujú kompatibilitu s nasledujúcou verziou aplikácie:"
 
@@ -3300,7 +3244,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8308,7 +8252,7 @@ msgstr "môj doplnok vytvorený pomocou SDK bol úspešne aktualizovaný"
 msgid "someone writes a review of my add-on"
 msgstr "niekto napíše recenziu na môj doplnok"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8605,12 +8549,6 @@ msgstr "História verzií %s"
 
 msgid "Version History with Changelogs"
 msgstr "História verzií s denníkmi zmien"
-
-msgid "Add-on uses binary components."
-msgstr "Doplnok obsahuje binárne komponenty."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Doplnok má nastavenú striktnú kontrolu kompatibility."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"

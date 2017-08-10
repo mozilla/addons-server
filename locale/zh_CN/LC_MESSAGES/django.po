@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-29 21:22+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -456,81 +456,11 @@ msgstr "尚无评分"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> 位用户"
 
-msgid "{0} Daily Users"
-msgstr "今日用户 {0} 名"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "要安装这与其他（成千上万）的附加组件，<b>下载 Firefox</b> —— 自由、开放的网页浏览器，Mozilla 出品。"
-
-msgid "Learn more about Firefox"
-msgstr "进一步了解 Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "或者<b><a class=\"button installer\" href=\"{url}\">继续下载</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>如何在 Thunderbird 中安装</strong> <ol> <li>将文件下载并保存到您的硬盘上。</li> <li>在 Mozilla Thunderbird 中，从 工具 菜单中打开 附加组件。</li> <li>从附加组件搜索框旁边的选项按钮中，选"
-"择“从文件中安装附加组件...”选项，然后找到并打开已经下载的附加组件。</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "要安装这个主题，<b>请下载 Thunderbird</b>，一个由 Mozilla Messaging 开发的免费并开放源代码的电子邮件客户端程序，然后安装 Personas Plus 附加组件。"
-
-msgid "Learn more about Thunderbird"
-msgstr "进一步了解 Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "要安装这与其他（成千上万）的主题，<b>下载 Firefox</b> —— 自由、开放的网页浏览器，Mozilla 出品。"
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "这个附加组件尚未更新以兼容您的 %(app)s 版本。"
-
-msgid "Install Anyway"
-msgstr "继续安装"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "此附加组件需要一个尚未发布的 Firefox 版本。"
-
-msgid "Help test new Firefox Versions"
-msgstr "帮忙测试新的 Firefox 版本"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "此附加组件需要 %(app)s {new_version}，您目前使用的是 %(app)s {old_version}。"
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "升级 {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "或者查看<a href=\"%(href)s\">此附加组件的早期版本</a>。"
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "此炫彩风格需要 %(app)s %(new_version)s，您目前使用的是 %(app)s {old_version}。"
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr "<strong>注意：</strong>此附加组件尚未经过 Mozilla 审核，不能在 Firefox 43 及以上的发布版本上安装。安装第三方软件可能损害您的计算机，请小心。"
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>请注意：</strong>此附加组件与您的操作系统不兼容。"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "因为以下原因，此附加组件与您的 %(app)s 版本不兼容："
-
-msgid "View other versions"
-msgstr "查看其他版本"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "此附加组件与您的 %(app)s 的版本不兼容。"
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "今日用户 {0} 名"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -760,6 +690,13 @@ msgstr "作为 Firefox 使用者，您可以选择接受或者拒绝这些请求
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "这个附加组件可以："
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "部分附加组件需要某些权限才能执行特定功能（例如：管理标签页的附加组件需要访问浏览器标签页系统的权限）。"
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1127,7 +1064,8 @@ msgstr "有效应用程序版本"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "提交到 Mozilla 附加组件的附加组件的清单文件必须支持下面的至少一个应用程序。只允许下面列出的这些应用程序版本。"
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+#, fuzzy
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1700,7 +1638,8 @@ msgstr "详细了解关于 {0} 中的<a href=\"http://support.mozilla.com/kb/Sea
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览更多的搜索引擎"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/zh-CN/docs/Mozilla/Add-ons/Creating_OpenSearch_plugins_for_Firefox\">制作你自己的</a>搜索工具"
 
 msgid "Most Popular Extensions"
@@ -2782,6 +2721,9 @@ msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签�
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，本网站只接受 WebExtension 形式的新扩展。"
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的用户已安装 WebExtension 版本，他们将不能再安装旧式附加组件。"
 
@@ -3008,6 +2950,10 @@ msgstr "搜索"
 msgid "Use the field below to upload your add-on package."
 msgstr "使用下面的按钮上传您的附加组件包。"
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "在上传完成后，将会针对下列应用程序版本执行一系列的自动化验证测试："
 
@@ -3189,7 +3135,8 @@ msgstr "如果该附加组件的核心功能或试用期后需要某种形式的
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "此附加组件需要付费，非免费服务或软件，或需额外硬件。"
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+#, fuzzy
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "此附加组件不需要任何形式的支付、付费服务、付费软件或额外硬件。"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -7982,7 +7929,8 @@ msgstr "我的基于SDK的附加组件升级成功"
 msgid "someone writes a review of my add-on"
 msgstr "有人对我的附加组件写了评价"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+#, fuzzy
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "关注最新的附加组件开发者消息和事件"
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8270,12 +8218,6 @@ msgstr "%s 版本历史"
 
 msgid "Version History with Changelogs"
 msgstr "版本历史记录"
-
-msgid "Add-on uses binary components."
-msgstr "添加使用二进制的附加组件。"
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "附加组件选择采用严格的兼容性检查。"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"

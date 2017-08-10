@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -460,82 +460,12 @@ msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ਉਪਭੋਗੀ"
 
+#. {0} is the number of users.
 #, fuzzy
-msgid "{0} Daily Users"
-msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ਇਹ ਐਡ-ਆਨ ਅਤੇ ਹਜ਼ਾਰਾਂ ਹੋਰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ, <b>ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਵੋ</b>, ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਇੱਕ ਮੁਫ਼ਤ ਅਤੇ ਓਪਨ ਵੈਬ ਬਰਾਊਜ਼ਰ।"
-
-msgid "Learn more about Firefox"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>ਥੰਡਰਬਰਡ ਵਿੱਚ ਕਿਵੇਂ ਇੰਸਟਾਲ ਕਰੀਏ</strong> <ol> <li>ਫ਼ਾਈਲ ਨੂੰ ਆਪਣੀ ਹਾਰਡ ਡਿਸਕ ਤੇ ਡਾਊਨਲੋਡ ਕਰੋ ਅਤੇ ਸੰਭਾਲ੍ਹੋ।</li> <li>ਮੌਜ਼ੀਲਾ ਥੰਡਰਬਰਡ ਵਿੱਚ, ਟੂਲ ਮੀਨੂੰ ਤੋਂ ਐਡ-ਆਨ ਨੂੰ ਖੋਲ੍ਹੋ।</li> <li>ਐਡ-ਆਨ ਖੋਜ ਖੇਤਰ ਦੇ ਅੱਗੇ ਦਿੱਤੇ ਚੋਣ ਬਦਨ ਤੋਂ, ਚੋਣ ਕਰੋ "
-"\"ਫ਼ਾਈਲ ਤੋਂ ਐਡ-ਆਨ ਇੰਸਟਾਲ...\" ਅਤੇ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦੀ ਜਗ੍ਹਾ ਦੱਸੋ</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "ਇਹ ਥੀਮ ਇੰਸਟਾਲ ਕਰਨ ਲਈ, <b>ਥੰਡਰਬਰਡ ਲਵੋ</b>, ਮੌਜ਼ੀਲਾ ਸੁਨੇਹੇ ਵੱਲੋਂ ਇੱਕ ਮੁਫ਼ਤ ਅਤੇ ਓਪਨ ਸੋਰਸ ਈਮੇਲ ਕਲਾਇਟ ਅਤੇ ਪਰਸੋਨਾ ਪਲੱਸ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰੋ।"
-
-msgid "Learn more about Thunderbird"
-msgstr "ਥੰਡਰਬਰਡ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ਇਹ ਥੀਮ ਅਤੇ ਹਜ਼ਾਰਾਂ ਹੋਰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ, <b>ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਵੋ</b>, ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਇੱਕ ਮੁਫ਼ਤ ਅਤੇ ਓਪਨ ਵੈਬ ਬਰਾਊਜ਼ਰ।"
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "ਇਹ ਐਡ-ਆਨ %(app)s ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਕੰਮ ਕਰਨ ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ।"
-
-msgid "Install Anyway"
-msgstr "ਠੀਕ ਹੈ ਇੰਸਟਾਲ ਕਰੋ"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ ਦੇ ਉਸ ਵਰਜਨ ਦੀ ਲੋੜ ਹੈ ਜਿਹੜਾ ਅਜੇ ਤੱਕ ਪੇਸ਼ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
-
-msgid "Help test new Firefox Versions"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਦੇ ਨਵੇਂ ਵਰਜਨਾਂ ਦੀ ਪਰਖ ਲਈ ਮਦਦ"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ %(app)s {new_version}ਦੀ ਲੋੜ ਹੈ। ਤੁਸੀਂ ਮੌਜੂਦਾ ਤੌਰ ਤੇ %(app)s {old_version}ਵਰਤ ਰਹੇ ਹੋ।"
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "ਅੱਪਗਰੇਡ {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ਜਾਂ ਵੇਖੋ <a href=\"%(href)s\"ਇਸ ਐਡ-ਆਨ ਦੇ ਪੁਰਾਣੇ ਵਰਜਨ</a>।"
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "ਇਸ ਪਰਸੋਨਾ ਨੂੰ %(app)s %(new_version)s ਦੀ ਲੋੜ ਹੈ। ਤੁਸੀਂ ਮੌਜੂਦਾ ਤੌਰ ਤੇ %(app)s {old_version}ਵਰਤ ਰਹੇ ਹੋ।"
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਓ:</strong> ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "ਇਹ ਐਡ-ਆਨ %(app)s ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ ਕਿਉਂ ਕਿ ਹੇਠ ਦਿੱਤੇ ਅਨੁਸਾਰ:"
-
-msgid "View other versions"
-msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
+msgstr[1] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -777,6 +707,12 @@ msgstr ""
 #, fuzzy
 msgid "This add-on can:"
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1151,7 +1087,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1743,7 +1679,7 @@ msgstr "{0} ਵਿੱਚ <a href=\"http://support.mozilla.com/kb/Search+bar\">�
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2870,6 +2806,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3100,6 +3039,10 @@ msgstr "ਖੋਜ"
 msgid "Use the field below to upload your add-on package."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਹੇਠ ਦਿੱਤੇ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਲਈ ਸਵੈਚਾਲਿਤ ਪ੍ਰਮਾਣਿਕਤਾ ਟੈਸਟਾਂ ਦੀ ਇੱਕ ਲੜੀ ਚਲਾਈ ਜਾਵੇਗੀ:"
 
@@ -3287,7 +3230,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8277,7 +8220,7 @@ msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਸਫ਼ਲਤਾਪੂ�
 msgid "someone writes a review of my add-on"
 msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8568,12 +8511,6 @@ msgstr "%s ਵਰਜਨ ਇਤਿਹਾਸ"
 
 msgid "Version History with Changelogs"
 msgstr "ਤਬਦੀਲੀ-ਉਲੇਖਾਂ ਨਾਲ ਵਰਜਨ ਇਤਿਹਾਸ"
-
-msgid "Add-on uses binary components."
-msgstr "ਐਡ-ਆਨ ਬਾਇਨਰੀ ਹਿੱਸੇ ਵਰਤਦਾ ਹੈ।"
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "ਐਡ-ਆਨ ਸ਼ਖਤ ਅਨੁਕੂਲਤਾ ਪੜਤਾਲ ਲਈ ਚੁਣਿਆ ਗਿਆ।"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
