@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 09:49+0000\n"
+"PO-Revision-Date: 2017-08-10 09:55+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -690,9 +690,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Add-on ini boleh:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Beberapa add-ons meminta izin untuk melaksanakan fungsi tertentu (contoh: add-on pengurusan tab akan meminta izin mengakses sistem pelayar tab anda)."
+msgstr "Sesetengah add-ons meminta izin untuk melaksanakan fungsi tertentu. Oleh kerana anda yang mengawal Firefox, anda yang membuat keputusan samada mahu mengizinkan atau tidak."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Sila ambil perhatian bahawa add-on ini menggunakan teknologi legasi, yang memberikannya akses kepada semua fungsi dan data pelayar tanpa meminta kebenaran anda."
@@ -1065,9 +1064,8 @@ msgstr ""
 "Add-ons yang dikemukakan ke Add-ons Mozilla mesti mengandungi satu fail manifes dengan sekurang-kurangnya disokong oleh salah satu aplikasi di bawah. Hanya versi yang disenaraikan di bawah "
 "dibenarkan bagi aplikasi tersebut."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1642,9 +1640,8 @@ msgstr "Ketahui selanjutnya perihal <a href=\"http://support.mozilla.com/kb/Sear
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Buat sendiri</a> alatan carian"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Cipta sendiri</a> alatan carian"
 
 msgid "Most Popular Extensions"
 msgstr "Ekstensi Paling Popular"
@@ -3144,9 +3141,8 @@ msgstr "Tandakan kotak ini jika ciri teras add-on perlu dibayar dahulu atau sele
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Add-on ini perlu dibayar, perkhidmatan, perisian atau perkakasan tambahan bukan-percuma."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Add-on ini tidak perlu apa-apa bayaran tambahan, perkhidmatan, perisian atau perkakasan tambahan berbayar."
+msgstr "Add-on ini tidak perlu apa-apa bayaran, perkhidmatan, perisian atau perkakasan tambahan."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -8044,9 +8040,8 @@ msgstr "add-on berasaskan-sdk saya berjaya dipertingkatkan"
 msgid "someone writes a review of my add-on"
 msgstr "seseorang menulis ulasan untuk add-on saya"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "sentiasa dimaklumkan dengan berita dan acara berkaitan pembangun add-on"
+msgstr "sentiasa dimaklumkan dengan berita dan acara berkaitan pembangun add-on (termasuk surat berita about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "keserasian add-on saya tidak boleh dipertingkatkan"
