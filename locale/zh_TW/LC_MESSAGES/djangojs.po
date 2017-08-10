@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-07-17 14:06+0000\n"
+"PO-Revision-Date: 2017-08-10 15:01+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -654,9 +654,8 @@ msgid "Not available for your platform"
 msgstr "與您的作業系統不相容"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
+msgstr "這個附加元件與您所使用的 {0} 版本不相容。"
 
 msgid "View other versions"
 msgstr "檢視其他版本"
