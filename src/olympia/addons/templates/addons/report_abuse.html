@@ -7,10 +7,13 @@
     {% endif %}
     <ol {% if hide %}style="display: none"{% endif %}>
       <li>
-        <p>{% trans url='https://developer.mozilla.org/en-US/Add-ons/AMO/Policy' %}
-          If you suspect this add-on violates <a href="{{ url }}">our policies</a> or
-          has security or privacy issues, please use the form below to describe your
-          concerns. Please do not use this form for any other reason.{% endtrans %}</p>
+        <p>{% trans amo_policy_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy">'|safe,
+                    link_close='</a>'|safe %}
+              If you suspect this add-on violates {{ amo_policy_link_open }}our policies{{ link_close }} or
+              has security or privacy issues, please use the form below to describe your
+              concerns. Please do not use this form for any other reason.
+           {% endtrans %}
+        </p>
       </li>
       <li>
         {{ abuse_form.text }}

@@ -44,11 +44,12 @@
 
     <h2 id="developing">{{ _('Developing an Add-on') }}</h2>
 
-    {% trans url='https://developer.mozilla.org/en-US/Add-ons' %}
+    {% trans addons_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons">'|safe,
+             link_close='</a>'|safe %}
       <h3>How do I build an Add-on?</h3>
       <p>
         Mozilla provides documentation on how to build an add-on via the
-        <a href="{{ url }}">Mozilla Developer Network</a>.
+        {{ addons_link_open }}Mozilla Developer Network{{ link_close }}.
       </p>
     {% endtrans %}
 
@@ -71,12 +72,13 @@
       {% endtrans %}
     </p>
     <p>
-      {% trans webext_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions",
-               portlegacy_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on"%}
+      {% trans webext_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions">'|safe,
+               portlegacy_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on">'|safe,
+               link_close='</a>'|safe %}
       <strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from 
-      Firefox 57. Please use <a href="{{ webext_url }}">WebExtensions</a> APIs to develop new add-ons. If you have a legacy add-on, 
+      Firefox 57. Please use {{ webext_link_open}}WebExtensions{{ link_close }} APIs to develop new add-ons. If you have a legacy add-on,
       consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit
-      <a href="{{ portlegacy_url }}">Porting a legacy Firefox add-on</a>. 
+      {{ portlegacy_link_open }}Porting a legacy Firefox add-on{{ link_close }}.
       {% endtrans %}
     </p>
 
@@ -180,23 +182,24 @@
 
     <h3>{{ _('Does Mozilla have a policy in place as to what is an acceptable submission?') }}</h3>
     <p>
-      {% trans p_url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews",
-               g_url="https://wiki.mozilla.org/Add-ons/Reviewers/Guide" %}
-        Yes. Mozilla's <a href="{{ p_url }}">Add-on Review Policies</a> describe what is
+      {% trans policy_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews">'|safe,
+               guide_link_open='<a href="https://wiki.mozilla.org/Add-ons/Reviewers/Guide">'|safe, link_close='</a>'|safe %}
+        Yes. Mozilla's {{ policy_link_open }}Add-on Review Policies{{ link_close }} describe what is
         an acceptable submission. This policy is subject to change without
         notice. In addition, the Add-on Reviewer Team uses the
-        <a href="{{ g_url }}">Add-on Review Guide</a> to ensure that your add-on meets
+        {{ guide_link_open }}Add-on Review Guide{{ link_close}} to ensure that your add-on meets
         specific guidelines for functionality and security.
       {% endtrans %}
     </p>
 
     <h3>{{ _('How do I submit my add-on?') }}</h3>
     <p>
-      {% trans url='https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews' %}
+      {% trans review_policy_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews">'|safe,
+               link_close='</a>'|safe %}
         The Developer Tools dashboard will allow you to upload and submit
         add-ons to AMO. You must be a registered AMO user before you can
         submit an add-on. Before submitting your add-on be sure to you have
-        read the <a href="{{ url }}">Add-on Review Policies</a> to
+        read the {{ review_policy_link_open }}Add-on Review Policies{{ link_close }} to
         ensure that your add-on has met our guidelines.
       {% endtrans %}
     </p>
