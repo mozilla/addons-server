@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 08:50+0000\n"
+"PO-Revision-Date: 2017-08-10 08:54+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -476,7 +476,6 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> felhasználó"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "{0} napi felhasználó"
@@ -721,9 +720,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Ez a kiegészítő ezeket teheti:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz (például: egy lapkezelő kiegészítő engedélyt fog kérni, hogy hozzáférjen a böngésző lapkezelő rendszeréhez)."
+msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz. Mivel Öné a Firefox irányítása, így az Ön döntése ezen kérések engedélyezése vagy elutasítása."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Vegye figyelembe, hogy ez a kiegészítő örökölt technológiát használ, amely engedély kérése nélkül ad hozzáférést a böngésző funkcióihoz."
@@ -1100,9 +1098,8 @@ msgstr ""
 "Mozilla Kiegészítők közé benyújtott kiegészítőnek kell legyen egy jegyzékfájlja, mely legalább egyet támogat az alábbi alkalmazások közül. Ezeknek az alkalmazásoknak csak az alább felsorolt verziói "
 "engedélyezettek."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1690,9 +1687,8 @@ msgstr "Tudjon meg többet a {0} <a href=\"http://support.mozilla.com/kb/Search+
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Tallózzon még több keresési szolgáltató között a <a href=\"http://mycroftproject.com/\">mycroftproject.com</a> oldalon"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Készítse el saját</a> keresőjét"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Készítse el saját</a> keresőeszközét"
 
 msgid "Most Popular Extensions"
 msgstr "Legnépszerűbb kiterjesztések"
@@ -3015,7 +3011,7 @@ msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Ez az eszköz csak örököl kiegészítőkkel működik. A WebExtension API-k részletesen <a href=\"%(webext_doc_url)s\">dokumentáltak itt</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "A feltöltést követően számos automatikus ellenőrzés fut le a kompatibilitás vizsgálatához az alábbi alkalmazásverzióhoz:"
@@ -3205,7 +3201,6 @@ msgstr "Jelölje be a négyzetet, ha a kiegészítő fő funkcionalitásához va
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Ehhez a kiegészítőhöz fizetés, fizetős szolgáltatások vagy szoftver, vagy további hardver szükséges."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ehhez a kiegészítőhöz nem szükséges fizetés, fizetős szolgáltatás vagy szoftver, vagy további hardver."
 
@@ -8173,9 +8168,8 @@ msgstr "az sdk-alapú kiegészítő frissítése sikeres"
 msgid "someone writes a review of my add-on"
 msgstr "valaki értékelést ír a kiegészítőmhöz"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára releváns eseményekkel"
+msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára releváns eseményekkel (köztük az about:addons hírlevéllel)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a kiegészítő kompatibilitása nem frissíthető"
