@@ -38,9 +38,9 @@ py==1.4.34 \
 pyinotify==0.9.6 \
     --hash=sha256:9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4
 # pytest is required by amo-validator, pytest-base-url, pytest-cache, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
-pytest==3.2.0 \
-    --hash=sha256:d994b4f28c6d449a467ad3d336544945a0dcf350e3b7b301219547ef5aa8125e \
-    --hash=sha256:0225cf10b9e173f84729d5f4648211458a222c6e53a77a85e104bc5f31c244ee
+pytest==3.2.1 \
+    --hash=sha256:82c1e44a964ec5922c7c3891787df31c8c4f18b6c97a722df56b6cf20bb38c8a \
+    --hash=sha256:4c2159d2be2b4e13fa293e7a72bdf2f06848a017150d5c6d35112ce51cfd74ce
 pytest-cache==1.0 \
     --hash=sha256:be7468edd4d3d83f1e844959fd6e3fd28e77a481440a7118d430130ea31b07a9
 pytest-django==3.1.2 \
@@ -53,6 +53,6 @@ freezegun==0.3.9 \
     --hash=sha256:783ccccd7f60968bfe49ad9e114c18ea2b63831faaaf61c1f1f71ddfde1c0eee
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
-responses==0.6.1 \
-    --hash=sha256:6669409d475fb439577dd10d9e40389fd00ee074cb4fe2b829d0ac223324815f \
-    --hash=sha256:f9485ab2c9380b85f98ee15ed28fc9f6e4911082acec28b1e42c60f19935bf19
+responses==0.7.0 \
+    --hash=sha256:860f2ac3aed6954b6dfc79ee27a229d423c77ad7a4c242f26c1489bdd702d8e4 \
+    --hash=sha256:912da86d9d9ca6e02f00e5ecd61d08992ab1511858260bd5df8b2b1e51a6dc9f

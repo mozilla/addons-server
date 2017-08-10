@@ -395,9 +395,9 @@ pyquery==1.2.17 \
     --hash=sha256:554335a65570b4871051320a30919836f7548dbb2f2616d6e1f7c3f887096ef3 \
     --hash=sha256:6aa0133b30d9a0229ad65d3a7708c4e853bf46808fb359d06ca56f5039102af6
 # pytest is required by amo-validator
-pytest==3.2.0 \
-    --hash=sha256:d994b4f28c6d449a467ad3d336544945a0dcf350e3b7b301219547ef5aa8125e \
-    --hash=sha256:0225cf10b9e173f84729d5f4648211458a222c6e53a77a85e104bc5f31c244ee
+pytest==3.2.1 \
+    --hash=sha256:82c1e44a964ec5922c7c3891787df31c8c4f18b6c97a722df56b6cf20bb38c8a \
+    --hash=sha256:4c2159d2be2b4e13fa293e7a72bdf2f06848a017150d5c6d35112ce51cfd74ce
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.1 \
     --hash=sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c \
