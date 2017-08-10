@@ -5,5 +5,5 @@ pytest==3.2.1
 pytest-instafail==0.3.0
 pytest-selenium==1.11.0
 pytest-variables==1.7.0
-pytest-xdist==1.18.2
+pytest-xdist==1.19.1
 selenium==3.4.3
