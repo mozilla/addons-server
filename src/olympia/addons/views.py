@@ -42,7 +42,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
-from olympia.api.paginator import ESPageNumberPagination
+from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
