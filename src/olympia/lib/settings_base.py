@@ -1646,7 +1646,7 @@ REST_FRAMEWORK = {
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
-        'olympia.api.paginator.CustomPageNumberPagination'),
+        'olympia.api.pagination.CustomPageNumberPagination'),
 
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',

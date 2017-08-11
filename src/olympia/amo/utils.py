@@ -46,10 +46,10 @@ from rest_framework.utils.encoders import JSONEncoder
 from olympia.amo import search
 from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
+from olympia.amo.pagination import ESPaginator
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
-from olympia.api.paginator import ESPaginator
 
 from . import logger_log as log
 
