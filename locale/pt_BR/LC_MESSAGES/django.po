@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 23:17+0000\n"
+"PO-Revision-Date: 2017-08-11 10:49+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -733,9 +733,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Esta extensão pode:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Algumas extensões pedem permissão para desempenhar certas funções (exemplo: uma extensão de gerenciamento de abas irá pedir permissão para acessar o sistema de abas do seu navegador)."
+msgstr "Algumas extensões pedem permissão para desempenhar certas funções. Como está no controle do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
@@ -1117,9 +1116,8 @@ msgstr "Versões válidas da aplicação"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Extensões submetidas necessitam ter um arquivo manifest com pelo menos um dos aplicativos suportados abaixo. Apenas as versões listadas abaixo são permitidas para estes aplicativos."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/pt-BR/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1718,9 +1716,8 @@ msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Explore mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Faça a sua própria</a> ferramenta de pesquisa"
+msgstr "<a href=\"https://developer.mozilla.org/pt-BR/Creating_OpenSearch_plugins_for_Firefox\">Faça a sua própria</a> ferramenta de pesquisa"
 
 msgid "Most Popular Extensions"
 msgstr "Extensões mais populares"
@@ -3260,9 +3257,8 @@ msgstr "Marque essa opção se a principal funcionalidade dessa extensão necess
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Essa extensão requer pagamento, serviços ou software pagos ou hardware adicional."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Essa extensão não precisa de nenhum pagamento, serviços ou softwares pagos ou hardware adicional."
+msgstr "Esta extensão não precisa de nenhum pagamento, serviços ou softwares pagos ou hardware adicional."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -8360,9 +8356,8 @@ msgstr "meu complemento baseado no SDK foi atualizado com sucesso"
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreveu uma análise para o meu complemento"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "fique atualizado com notícias e eventos relevantes para desenvolvedores de extensões"
+msgstr "fique atualizado com notícias e eventos relevantes a desenvolvedores de extensões (incluindo a newsletter about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu complemento não pôde ser atualizada"
