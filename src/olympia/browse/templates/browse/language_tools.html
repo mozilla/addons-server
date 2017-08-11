@@ -28,6 +28,11 @@
 {% block content %}
 <header>
   <h1>{{ title }}</h1>
+  <h3>{% trans app_name=request.APP.pretty %}
+  Installing a dictionary add-on will add a new language option to your
+  {{ app_name }} spell-checker, which checks your spelling when you fill out Web
+  forms. Language pack add-ons change the language of the entire application.
+  {% endtrans %}</h3>
 </header>
 <section class="island full">
   {% if this_locale_addons %}
