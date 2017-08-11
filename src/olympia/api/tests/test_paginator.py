@@ -7,10 +7,12 @@ from rest_framework import serializers
 from rest_framework import status
 from rest_framework.test import APIRequestFactory
 
-from olympia.amo.tests import TestCase
+from olympia.amo.utils import paginate
+from olympia.amo.tests import TestCase, ESTestCaseWithAddons
 from olympia.api.paginator import (
     CustomPageNumberPagination, ESPaginator, OneOrZeroPageNumberPagination,
     Paginator)
+from olympia.addons.models import Addon
 
 
 class PassThroughSerializer(serializers.BaseSerializer):
@@ -53,6 +55,24 @@ class TestSearchPaginator(TestCase):
 
         with self.assertRaises(PageNotAnInteger):
             paginator.page('lol')
+
+    def test_paginate_returns_this_paginator(self):
+        request = MagicMock()
+        request.GET.get.return_value = 1
+        request.GET.urlencode.return_value = ''
+        request.path = ''
+
+        qs = Addon.search()
+        pager = paginate(request, qs)
+        assert isinstance(pager.paginator, ESPaginator)
+
+    def test_count_legacy_compat_mode(self):
+        p = ESPaginator(Addon.search(), 20, force_legacy_compat=True)
+
+        assert p._count is None
+
+        p.page(1)
+        assert p.count == Addon.search().count()
 
 
 class TestCustomPageNumberPagination(TestCase):

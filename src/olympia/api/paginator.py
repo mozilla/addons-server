@@ -21,6 +21,10 @@ class ESPaginator(Paginator):
     # paginating through all results.
     max_result_window = 25000
 
+    def __init__(self, *args, **kwargs):
+        self.force_legacy_compat = kwargs.pop('force_legacy_compat', False)
+        Paginator.__init__(self, *args, **kwargs)
+
     def validate_number(self, number):
         """
         Validates the given 1-based page number.
@@ -51,13 +55,21 @@ class ESPaginator(Paginator):
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
         # directly fetch the count from hits.
-        # Overwrite `object_list` with the list of ES results.
+        if self.force_legacy_compat:
+            results = self.object_list[bottom:top]
 
-        result = self.object_list[bottom:top].execute()
+            page = Page(self.object_list[bottom:top], number, self)
 
-        page = Page(result.hits, number, self)
-        # Update the `_count`.
-        self._count = page.object_list.total
+            # Force the search to evaluate and then attach the count.
+            list(page.object_list)
+            self._count = page.object_list.count()
+        else:
+            result = self.object_list[bottom:top].execute()
+
+            # Overwrite `object_list` with the list of ES results.
+            page = Page(result.hits, number, self)
+            # Update the `_count`.
+            self._count = page.object_list.total
 
         # Now that we have the count validate that the page number isn't higher
         # than the possible number of pages and adjust accordingly.

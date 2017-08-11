@@ -19,7 +19,8 @@ import urlparse
 import django.core.mail
 from django.http import HttpResponse
 from django.conf import settings
-from django.core import paginator
+from django.core.paginator import (
+    EmptyPage, InvalidPage, Paginator as DjangoPaginator)
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
@@ -48,6 +49,7 @@ from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
+from olympia.api.paginator import ESPaginator
 
 from . import logger_log as log
 
@@ -133,11 +135,13 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = (ESPaginator if isinstance(queryset, search.ES)
-         else paginator.Paginator)(queryset, per_page)
+    if isinstance(queryset, search.ES):
+        paginator = ESPaginator(queryset, per_page, force_legacy_compat=True)
+    else:
+        paginator = DjangoPaginator(queryset, per_page)
 
     if count is not None:
-        p._count = count
+        paginator._count = count
 
     # Get the page from the request, make sure it's an int.
     try:
@@ -147,9 +151,9 @@ def paginate(request, queryset, per_page=20, count=None):
 
     # Get a page of results, or the first page if there's a problem.
     try:
-        paginated = p.page(page)
-    except (paginator.EmptyPage, paginator.InvalidPage):
-        paginated = p.page(1)
+        paginated = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        paginated = paginator.page(1)
 
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
@@ -644,27 +648,6 @@ def get_email_backend(real_email=False):
     else:
         backend = 'olympia.amo.mail.DevEmailBackend'
     return django.core.mail.get_connection(backend)
-
-
-class ESPaginator(paginator.Paginator):
-    """A better paginator for search results."""
-    # The normal Paginator does a .count() query and then a slice. Since ES
-    # results contain the total number of results, we can take an optimistic
-    # slice and then adjust the count.
-    def page(self, number):
-        # Fake num_pages so it looks like we can have results.
-        self._num_pages = float('inf')
-        number = self.validate_number(number)
-        self._num_pages = None
-
-        bottom = (number - 1) * self.per_page
-        top = bottom + self.per_page
-        page = paginator.Page(self.object_list[bottom:top], number, self)
-
-        # Force the search to evaluate and then attach the count.
-        list(page.object_list)
-        self._count = page.object_list.count()
-        return page
 
 
 @contextlib.contextmanager
