@@ -1,21 +1,23 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2015-09-13 20:11+0000\n"
-"Last-Translator: 1ec5 <mxn@1ec5.org>\n"
+"PO-Revision-Date: 2017-08-11 21:11+0000\n"
+"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} sao{0} sao"
-msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -29,17 +31,17 @@ msgstr ""
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% hoàn thành"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} của {1}"
 
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Đang tải lên {0}"
 
 msgid "Error with {0}"
 msgstr ""
@@ -50,18 +52,16 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "See full validation report"
 msgstr ""
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Xác nhận {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
@@ -81,12 +81,10 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
@@ -95,7 +93,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Nâng cấp WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -142,13 +140,13 @@ msgid "Videos must be in WebM."
 msgstr "Các video phải dưới dạng WebM."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Theo dõi bộ sưu tập này"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "Dừng dõi theo"
 
 msgid "Following"
-msgstr ""
+msgstr "Đang dõi theo"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -209,7 +207,7 @@ msgid "Week of {0}"
 msgstr "Tuần {0}"
 
 msgid " downloads"
-msgstr ""
+msgstr " tải xuống"
 
 msgid "{0} users"
 msgstr "{0} người dùng"
@@ -633,12 +631,10 @@ msgstr "Chọn một ứng dụng trước tiên"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -685,7 +681,7 @@ msgid "Removing Favorite&hellip;"
 msgstr ""
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Thêm vào ưa thích"
 
 msgid "Remove from Favorites"
 msgstr ""
@@ -703,7 +699,7 @@ msgid "Remove this add-on from the collection"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "Gỡ bỏ"
 
 msgid "Remove this user as a contributor"
 msgstr ""
@@ -715,16 +711,16 @@ msgid "You cannot add yourself as a contributor."
 msgstr ""
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "Bạn đã thêm người dùng đó rồi."
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Thêm vào ưa thích"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Xoá khỏi ưa thích"
 
 msgid "Stop following"
-msgstr ""
+msgstr "Ngừng dõi theo"
 
 msgid "Your browser does not support the video tag"
 msgstr "Trình duyệt của bạn không hỗ trợ thẻ video"
@@ -741,12 +737,10 @@ msgstr ""
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} đánh giá của người dùng{reviews} đánh giá của người dùng"
-msgstr[1] ""
 
 msgid "Learn more"
 msgstr ""
@@ -803,7 +797,6 @@ msgstr ""
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tôi đang bảo trì trang web. Vui lòng kiểm tra lại sau. "
@@ -871,17 +864,14 @@ msgstr ""
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} chú ý{0} chú ý"
-msgstr[1] ""
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
