@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-07-26 22:39+0000\n"
-"Last-Translator: Bente <fox@frkolsen.dk>\n"
+"PO-Revision-Date: 2017-08-11 13:21+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Valideringen af din tilføjelse udløb, den vil blive manuelt bedømt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Din tilføjelse er valideret som fejlfri og med {0} advarsel(-ler)."
+msgstr[0] "Din tilføjelse er valideret som fejlfri og med {0} advarsel."
 msgstr[1] ""
 
 msgid "Your add-on was validated with no errors and {0} message."
