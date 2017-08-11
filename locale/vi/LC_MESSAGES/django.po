@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 11:07+0000\n"
-"Last-Translator: dogeblossom <dogeblossom@gmail.com>\n"
+"PO-Revision-Date: 2017-08-11 21:26+0000\n"
+"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Bạn không thể đăng nhập. Vui lòng thử lại."
 
 msgid "Need help?"
 msgstr "Cần trợ giúp?"
@@ -64,22 +64,21 @@ msgstr "Đánh giá"
 msgid "Version {0}"
 msgstr ""
 
-#, fuzzy
 msgid "Review note"
-msgstr "Ngày Duyệt"
+msgstr "Ghi chú review"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Download Now"
-msgstr "Tải xuống Ngay"
+msgstr "Tải xuống ngay"
 
 msgid "Download"
 msgstr "Tải xuống"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Tiếp tục để Tải xuống&nbsp;&rarr;"
+msgstr "Tiếp tục tải xuống&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Nên dùng"
@@ -143,10 +142,10 @@ msgid "A license must be selected."
 msgstr ""
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Đặt tên cho chủ đề của bạn."
 
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Mô tả chủ đề của bạn"
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -352,9 +351,8 @@ msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s người dùng%(num)s người dùng"
 
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Trường bắt buộc"
+msgstr "Bắt buộc khởi động lại"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
 msgstr ""
@@ -455,10 +453,9 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> người dùng"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "Người dùng Hàng ngày"
+msgstr[0] "{0} Người dùng mỗi ngày"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -589,10 +586,10 @@ msgstr "Phân mục có Liên quan"
 msgid "Part of these Collections"
 msgstr "Thuộc về các Bộ sưu tập này"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Tiện ích khác bởi %(author)s"
+msgstr[0] "Các tiện ích khác bởi các tác giả này"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"

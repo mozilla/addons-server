@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 21:11+0000\n"
+"PO-Revision-Date: 2017-08-11 21:24+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -201,7 +201,7 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Tìm <b>{0}</b> trong các tiện ích"
 
 msgid "Use original"
-msgstr ""
+msgstr "Sử dụng bản gốc"
 
 msgid "Week of {0}"
 msgstr "Tuần {0}"
@@ -231,7 +231,7 @@ msgid "{0} installs"
 msgstr "{0} lần cài đặt"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Tải xuống"
 
 msgid "Daily Users"
 msgstr "Người dùng Hàng ngày"
@@ -247,10 +247,10 @@ msgstr "Thêm thông tin…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Các chi tiết của {0}"
 
 msgid "Collections Created"
-msgstr "Bộ sưu tập được Tạo ra"
+msgstr "Bộ sưu tập đã được tạo"
 
 msgid "Add-ons in Use"
 msgstr "Số Tiện ích được Sử dụng"
@@ -280,13 +280,13 @@ msgid "Sales"
 msgstr ""
 
 msgid "Installs"
-msgstr "Lần Cài đặt"
+msgstr "Cài đặt"
 
 msgid "Unknown"
 msgstr "Không rõ"
 
 msgid "Add-ons Manager"
-msgstr "Trình Quản lý Tiện ích"
+msgstr "Trình quản lý tiện ích"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -298,7 +298,7 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Gợi ý tìm kiếm"
 
 msgid "Search Results"
 msgstr "Kết quả tìm kiếm"
@@ -337,19 +337,19 @@ msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Gặp lập trình viên"
 
 msgid "User Profile"
 msgstr ""
 
 msgid "Version History"
-msgstr ""
+msgstr "Lịch sử phiên bản"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Chia sẻ"
 
 msgid "Category Pages"
-msgstr "Trang Phân mục"
+msgstr "Các thể loại"
 
 msgid "Collections"
 msgstr "Bộ sưu tập"
@@ -400,29 +400,29 @@ msgid "Usage"
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Lượt tải và Người dùng Hàng ngày, {0} ngày trước"
+msgstr "Số lượt tải về và người dùng hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
@@ -438,7 +438,7 @@ msgstr "Lần Cài đặt và Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Lượt tải, {0} ngày trước"
+msgstr "Lượt tải về, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -645,7 +645,7 @@ msgstr "Thêm vào {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "Vẫn cứ cài đặt vào {0}"
+msgstr "Vẫn cứ cài đặt {0}"
 
 msgid "Download for {0} anyway"
 msgstr "Cứ tải về cho {0}"
@@ -664,12 +664,11 @@ msgstr "Xem các phiên bản khác"
 msgid "Works with {app} {min} - {max}"
 msgstr "Hoạt động trên {app} {min} – {max}"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Hoạt động trên {app} {min} – {max}"
+msgstr "Hoạt động với {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Chỉ hoạt động với Firefox — Tải Firefox ngay!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Rất tiếc, bạn cần phải sử dụng một trình duyệt gốc Mozilla (ví dụ như Firefox) để cài đặt một công cụ tìm kiếm."
@@ -743,7 +742,7 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} đánh giá của người dùng{reviews} đánh giá của người dùng"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Xem thêm"
 
 msgid "Image changes being processed"
 msgstr ""
@@ -788,10 +787,10 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Số lượng review"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Đang tải..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
@@ -829,7 +828,7 @@ msgid "Reviewer"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Trạng thái"
 
 msgid "All tests passed successfully."
 msgstr ""
@@ -871,7 +870,7 @@ msgstr[0] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] "{0} chú ý{0} chú ý"
+msgstr[0] "{0} chú ý"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
