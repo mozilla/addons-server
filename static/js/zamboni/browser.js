@@ -6,16 +6,16 @@ function BrowserUtils() {
     "use strict";
 
     var userAgentStrings = {
-            'firefox' : /Mozilla.*(Firefox|Minefield|Namoroka|Shiretoko|GranParadiso|BonEcho|Iceweasel|Fennec|MozillaDeveloperPreview)\/([^\s]*).*$/,
-            'seamonkey': /Mozilla.*(SeaMonkey|Iceape)\/([^\s]*).*$/,
-            'mobile': /Mozilla.*(Fennec|Mobile)\/([^\s]*)$/,
-            'thunderbird': /Mozilla.*(Thunderbird|Shredder|Lanikai)\/([^\s*]*).*$/
+            'firefox' : /^Mozilla.*(Firefox|Minefield|Namoroka|Shiretoko|GranParadiso|BonEcho|Iceweasel|Fennec|MozillaDeveloperPreview)\/([^\s]*).*$/,
+            'seamonkey': /^Mozilla.*(SeaMonkey|Iceape)\/([^\s]*).*$/,
+            'mobile': /^Mozilla.*(Fennec|Mobile)\/([^\s]*)$/,
+            'thunderbird': /^Mozilla.*(Thunderbird|Shredder|Lanikai)\/([^\s*]*).*$/
         },
         osStrings = {
-            'windows': 'Windows',
-            'mac': 'Mac',
-            'linux': 'Linux',
-            'android': 'Android'
+            'windows': /Windows/,
+            'mac': /Mac/,
+            'linux': /Linux|BSD/,
+            'android': /Android/,
         };
 
     // browser detection
@@ -46,7 +46,7 @@ function BrowserUtils() {
     for (i in osStrings) {
         if (osStrings.hasOwnProperty(i)) {
             pattern = osStrings[i];
-            os[i] = navigator.userAgent.indexOf(pattern) != -1;
+            os[i] = pattern.test(navigator.userAgent);
             if (os[i]) {
                 platform = i;
             }
@@ -63,7 +63,6 @@ function BrowserUtils() {
         "badBrowser": badBrowser,
         "os": os,
         "platform": platform,
-        "platformName": gettext(osStrings[platform])
     };
 }
 
