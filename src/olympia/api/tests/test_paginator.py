@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.utils import paginate
-from olympia.amo.tests import TestCase, ESTestCaseWithAddons
+from olympia.amo.tests import TestCase
 from olympia.api.paginator import (
     CustomPageNumberPagination, ESPaginator, OneOrZeroPageNumberPagination,
     Paginator)

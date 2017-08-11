@@ -56,8 +56,6 @@ class ESPaginator(Paginator):
         # avoid an extra useless query even if there are no results, so we
         # directly fetch the count from hits.
         if self.force_legacy_compat:
-            results = self.object_list[bottom:top]
-
             page = Page(self.object_list[bottom:top], number, self)
 
             # Force the search to evaluate and then attach the count.

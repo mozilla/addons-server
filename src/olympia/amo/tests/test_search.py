@@ -1,6 +1,3 @@
-
-from django.core import paginator
-
 import mock
 
 from olympia import amo
