@@ -450,7 +450,7 @@ class CompatForm(happyforms.ModelForm):
         # Firefox and Firefox for Android.
         if (self.app in (amo.FIREFOX, amo.ANDROID) and
                 not version.is_webextension and
-                version.addon.type not in amo.NO_COMPAT):
+                version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)):
             qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
