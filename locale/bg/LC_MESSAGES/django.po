@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 13:51+0000\n"
+"PO-Revision-Date: 2017-08-11 14:03+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -430,7 +430,7 @@ msgid "License"
 msgstr "Лиценз"
 
 msgid "Awaiting Review"
-msgstr "Очакваща рецензия"
+msgstr "Очаква рецензия"
 
 msgid "Rejected"
 msgstr "Отказан"
@@ -3106,7 +3106,7 @@ msgid ""
 msgstr ""
 
 msgid "Manage Developer Profile"
-msgstr "Профила на разработчика"
+msgstr "Профил на разработчика"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
@@ -3170,7 +3170,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Добавката изисква плащане, платени услуги или софтуер или допълнителен хардуер."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Добавката не изисква допълнително заплащане, платени услуги или софтуер или допълнителен хардуер."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3615,7 +3615,7 @@ msgid "Version Submitted for Review"
 msgstr "Версията е изпратена за рецензия"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Готово! Версията е изпратена за рецензия. Ще бъдете уведомени когато тя завърши или ако у рецензента възникнат въпроси."
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
