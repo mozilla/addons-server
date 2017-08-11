@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2016-07-07 16:14+0000\n"
-"Last-Translator: Jarmo <jarmo@juslin.me>\n"
+"PO-Revision-Date: 2017-08-11 17:40+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -664,9 +664,8 @@ msgid "Not available for your platform"
 msgstr "Ei saatavilla alustallesi"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tämä teema ei ole yhteensopiva tämän {0} -version kanssa"
+msgstr "Tämä lisäosa ei ole yhteensopiva tämän {0}'-version kanssa."
 
 msgid "View other versions"
 msgstr "Näytä muut versiot"
