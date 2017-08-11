@@ -687,7 +687,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         upload.refresh_from_db()
 
         assert upload.processed_validation['errors'] == 1
-        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        expected = ['validation', 'messages', 'legacy_addons_restricted']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert not upload.valid
 
@@ -729,7 +729,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         upload.refresh_from_db()
 
         assert upload.processed_validation['errors'] == 1
-        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        expected = ['validation', 'messages', 'legacy_addons_restricted']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert not upload.valid
 
@@ -744,7 +744,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         upload.refresh_from_db()
 
         assert upload.processed_validation['errors'] == 1
-        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        expected = ['validation', 'messages', 'legacy_addons_restricted']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert not upload.valid
 
@@ -796,6 +796,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         data = {
             'messages': [],
             'errors': 0,
+            'detected_type': 'extension',
             'metadata': {
                 'is_webextension': False,
                 'is_extension': True,
@@ -812,7 +813,29 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
-            'validation', 'messages', 'legacy_extensions_restricted']
+            'validation', 'messages', 'legacy_addons_restricted']
+
+    def test_restrict_themes(self):
+        data = {
+            'messages': [],
+            'errors': 0,
+            'detected_type': 'theme',
+            'metadata': {
+                'is_extension': False,
+                'strict_compatibility': False,
+                'applications': {
+                    'firefox': {
+                        'max': '54.0'
+                    }
+                }
+            }
+        }
+        results = tasks.annotate_legacy_addon_restrictions(
+            data, is_new_upload=True)
+        assert results['errors'] == 1
+        assert len(results['messages']) > 0
+        assert results['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_addons_restricted']
 
     def test_submit_legacy_upgrade(self):
         # Works because it's not targeting >= 57.
@@ -840,7 +863,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert len(upload.processed_validation['messages']) == 1
         assert upload.processed_validation['messages'][0]['type'] == 'error'
         assert upload.processed_validation['messages'][0]['id'] == [
-            'validation', 'messages', 'legacy_extensions_max_version']
+            'validation', 'messages', 'legacy_addons_max_version']
         assert not upload.valid
 
     def test_submit_legacy_upgrade_targeting_57_strict_compatibility(self):
@@ -858,7 +881,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert len(upload.processed_validation['messages']) == 1
         assert upload.processed_validation['messages'][0]['type'] == 'error'
         assert upload.processed_validation['messages'][0]['id'] == [
-            'validation', 'messages', 'legacy_extensions_max_version']
+            'validation', 'messages', 'legacy_addons_max_version']
         assert not upload.valid
 
     def test_submit_legacy_upgrade_targeting_star(self):
@@ -911,6 +934,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         data = {
             'messages': [],
             'errors': 0,
+            'detected_type': 'extension',
             'metadata': {
                 'is_webextension': False,
                 'is_extension': True,
@@ -929,14 +953,14 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
-            'validation', 'messages', 'legacy_extensions_max_version']
+            'validation', 'messages', 'legacy_addons_max_version']
 
         results = tasks.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
-            'validation', 'messages', 'legacy_extensions_max_version']
+            'validation', 'messages', 'legacy_addons_max_version']
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
