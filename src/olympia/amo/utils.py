@@ -136,7 +136,8 @@ def paginate(request, queryset, per_page=20, count=None):
     produce an expensive count query.
     """
     if isinstance(queryset, search.ES):
-        paginator = ESPaginator(queryset, per_page, force_legacy_compat=True)
+        paginator = ESPaginator(
+            queryset, per_page, use_elasticsearch_dsl=False)
     else:
         paginator = DjangoPaginator(queryset, per_page)
 

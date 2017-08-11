@@ -67,7 +67,7 @@ class TestSearchPaginator(TestCase):
         assert isinstance(pager.paginator, ESPaginator)
 
     def test_count_legacy_compat_mode(self):
-        p = ESPaginator(Addon.search(), 20, force_legacy_compat=True)
+        p = ESPaginator(Addon.search(), 20, use_elasticsearch_dsl=False)
 
         assert p._count is None
 
