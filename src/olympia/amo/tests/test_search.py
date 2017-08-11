@@ -4,7 +4,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo import search
 from olympia.amo.tests import TestCase, ESTestCaseWithAddons
-from olympia.api.search import ESPaginator
 from olympia.tags.models import Tag
 
 
