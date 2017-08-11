@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 13:30+0000\n"
+"PO-Revision-Date: 2017-08-11 13:51+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2647,7 +2647,7 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Моля, задайте декларацията на крайния потребител:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Тази добавка има декларация за поверителност"
+msgstr "Добавката има декларация за поверителност"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Моля посочете Декларацията за поверителност на добавката си:"
@@ -2746,12 +2746,16 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"От тази страница. <span class=\"helptext\">Добавката ще бъде публикувана на страницата и в Управление на добавки на Firefox и бъде достъпна за милиони потребители след като премине преглед на кода. "
+"Автоматичните обновявания ще бъдат извършвани от страницата. Добавката ще може да участва в промоции и състезания организирани от Mozilla. Също така ще може да я разпространявате и сами.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"Самостоятелно. <span class=\"helptext\">Добавката ще бъде подписана за самостоятелно разпространение. Вие ще се грижите за обновяванията посредством updateURL или обновявания на външно "
+"приложение.</span>"
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "Започвайки с Firefox 53 новите разширения на страницата може да са само WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
@@ -3163,7 +3167,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr ""
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Добавката изисква плащане, платени услуги или софтуер или допълнителен хардуер."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
@@ -3593,7 +3597,7 @@ msgid "How to Distribute this Version"
 msgstr "Как версията ще бъде разпространявана"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Повече информация за подписване и разпространение на добавките"
 
 msgid "Submission Complete"
 msgstr "Пращането завърши"
@@ -3608,7 +3612,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Версията е изпратена за рецензия"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -3664,7 +3668,7 @@ msgstr ""
 # 90%
 # 100%
 msgid "Upload Version"
-msgstr ""
+msgstr "Качване на версия"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Използвайте полетата, за да качите своята добавка и да изберете ограничения на платформите ако има. След качване, върху нея ще бъдат извършени серия от валидации."
