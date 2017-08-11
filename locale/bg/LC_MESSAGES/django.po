@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 14:03+0000\n"
+"PO-Revision-Date: 2017-08-11 14:12+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -4091,7 +4091,7 @@ msgid "Add-ons enrolled in our contributions program can request voluntary finan
 msgstr "Добавките, включени в нашата програма за дарения може да искат доброволна финансова подкрепа от страна на потребителите."
 
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Насърчава потребителите да подкрепят добавка, чрез вашия профил на разработчика"
 
 msgid "Choose when and how users are asked to contribute"
 msgstr "Изберете кога и как от потребителите биват подканени да дарят"
