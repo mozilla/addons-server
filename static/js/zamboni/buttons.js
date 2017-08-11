@@ -217,7 +217,7 @@ var installButton = function() {
               gettext('Works with {app} {min} - {max}') :
               gettext('Works with {app}'));
             var tpl = template(msg +
-                '<span class="more-versions"><a href="{versions_url}">' +
+                '<br/><span class="more-versions"><a href="{versions_url}">' +
                 gettext('View other versions') + '</a></span>');
             var context = {'app': z.appName, 'min': min, 'max': max,
                 'versions_url': versions_url};

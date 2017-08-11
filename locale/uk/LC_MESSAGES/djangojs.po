@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-04 07:28+0000\n"
+"PO-Revision-Date: 2017-08-10 17:34+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -670,9 +670,8 @@ msgid "Not available for your platform"
 msgstr "Недоступно для вашої платформи"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ця тема несумісна з вашою версією {0}"
+msgstr "Цей додаток несумісний з вашою версією {0}."
 
 msgid "View other versions"
 msgstr "Дивитись інші версії"

@@ -548,6 +548,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
+            'css/impala/buttons.less',
             'css/impala/formset.less',
             'css/impala/suggestions.less',
             'css/impala/header.less',
@@ -1646,7 +1647,7 @@ REST_FRAMEWORK = {
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
-        'olympia.api.paginator.CustomPageNumberPagination'),
+        'olympia.api.pagination.CustomPageNumberPagination'),
 
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',

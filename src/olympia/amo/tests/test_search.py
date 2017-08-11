@@ -1,6 +1,3 @@
-
-from django.core import paginator
-
 import mock
 
 from olympia import amo
@@ -419,33 +416,3 @@ class TestES(ESTestCaseWithAddons):
                 {u'doc_count': 3, u'key': u'sky'},
                 {u'doc_count': 2, u'key': u'earth'},
                 {u'doc_count': 1, u'key': u'ocean'}]}
-
-
-class TestPaginator(ESTestCaseWithAddons):
-
-    def setUp(self):
-        super(TestPaginator, self).setUp()
-        self.request = request = mock.Mock()
-        request.GET.get.return_value = 1
-        request.GET.urlencode.return_value = ''
-        request.path = ''
-
-    def test_es_paginator(self):
-        qs = Addon.search()
-        pager = amo.utils.paginate(self.request, qs)
-        assert isinstance(pager.paginator, amo.utils.ESPaginator)
-
-    def test_validate_number(self):
-        p = amo.utils.ESPaginator(Addon.search(), 20)
-        # A bad number raises an exception.
-        with self.assertRaises(paginator.PageNotAnInteger):
-            p.page('a')
-
-        # A large number is ignored.
-        p.page(99)
-
-    def test_count(self):
-        p = amo.utils.ESPaginator(Addon.search(), 20)
-        assert p._count is None
-        p.page(1)
-        assert p.count == Addon.search().count()

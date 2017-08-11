@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-07-18 11:01+0000\n"
+"PO-Revision-Date: 2017-08-11 02:24+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -654,9 +654,8 @@ msgid "Not available for your platform"
 msgstr "不适用于您的操作系统"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "这个主题与您所使用的 {0} 版本不兼容"
+msgstr "此主题与您所使用的 {0} 版本不兼容。"
 
 msgid "View other versions"
 msgstr "查看其他版本"

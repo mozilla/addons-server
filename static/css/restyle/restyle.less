@@ -895,6 +895,7 @@ a.delete-button.delete-addon,
 #upload-file-widget .button.prominent,
 #promos .view-button a,
 .cta a.button:link,
+.cta a.button:visited,
 .theme-queue a.button,
 .theme-queue button,
 .theme .choices button,
@@ -902,6 +903,7 @@ button,
 button.button,
 .button,
 a.button:link,
+a.button:visited,
 input:not(.upvotes):not(.downvotes)[type="submit"],
 .persona-install button {
   background: #5784bf;
@@ -973,6 +975,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     background: #ccc;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
           inset 0 -2px 0 0 rgba(136, 136, 136, 0.50);
+    color: #919497;
     text-shadow: none;
 
     &:hover {
@@ -982,6 +985,14 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
 
     &:active {
       top: 0;
+    }
+
+    span:not(.os) {
+      background-position: 0 -253px;
+
+      .html-rtl & {
+        .sprite-pos-right(4, 64, 3px);
+      }
     }
   }
 
@@ -1017,11 +1028,6 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
            .sprite-pos-right(5, 64, 3px);
        }
     }
-  }
-
-  &.caution.concealed,
-  &.warning.concealed {
-    pointer-events: all;
   }
 }
 
