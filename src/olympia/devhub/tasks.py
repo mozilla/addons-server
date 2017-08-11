@@ -299,7 +299,10 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
     )
 
     is_webextension = metadata.get('is_webextension') is True
-    is_extension_type = metadata.get('is_extension') is True
+    is_extension_or_complete_theme = (
+        # Note: annoyingly, `detected_type` is at the root level, not under
+        # `metadata`.
+        results.get('detected_type') in ('theme', 'extension'))
     is_targeting_firefoxes_only = (
         set(target_apps.keys()).intersection(('firefox', 'android')) ==
         set(target_apps.keys())
@@ -316,37 +319,37 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         max_target_firefox_version >= 57000000000000 and
         max_target_firefox_version < 99000000000000)
 
-    # New legacy extensions targeting Firefox only must target Firefox 53 or
+    # New legacy add-ons targeting Firefox only must target Firefox 53 or
     # lower, strictly. Extensions targeting multiple other apps are exempt from
     # this.
     if (is_new_upload and
-        is_extension_type and
+        is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefoxes_only and
             not is_targeting_firefox_lower_than_53_only and
             waffle.switch_is_active('restrict-new-legacy-submissions')):
 
         msg = ugettext(
-            u'Starting with Firefox 53, new extensions on this site can '
+            u'Starting with Firefox 53, new add-ons on this site can '
             u'only be WebExtensions.')
 
         insert_validation_message(
-            results, message=msg, msg_id='legacy_extensions_restricted')
+            results, message=msg, msg_id='legacy_addons_restricted')
 
-    # All legacy extensions (new or upgrades) targeting Firefox must target
+    # All legacy add-ons (new or upgrades) targeting Firefox must target
     # Firefox 56.* or lower, even if they target multiple apps.
-    elif (is_extension_type and
+    elif (is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefox_higher_or_equal_than_57):
-        # Note: legacy extensions targeting '*' (which is the default for sdk
+        # Note: legacy add-ons targeting '*' (which is the default for sdk
         # add-ons) are excluded from this error, and instead are silently
         # rewritten as supporting '56.*' in the manifest parsing code.
         msg = ugettext(
-            u'Legacy extensions are not compatible with Firefox 57 or higher. '
+            u'Legacy add-ons are not compatible with Firefox 57 or higher. '
             u'Use a maxVersion of 56.* or lower.')
 
         insert_validation_message(
-            results, message=msg, msg_id='legacy_extensions_max_version')
+            results, message=msg, msg_id='legacy_addons_max_version')
 
     return results
 
