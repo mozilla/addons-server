@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-04-23 09:07+0000\n"
-"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
+"PO-Revision-Date: 2017-08-12 03:38+0000\n"
+"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -680,12 +680,12 @@ msgid "close"
 msgstr "閉じる"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "特定の機能を実行するため、許可を要求するアドオンがあります (例: タブを管理するアドオンは、ブラウザーのタブシステムへのアクセス許可を要求します)。"
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
-msgstr ""
+msgstr "Firefox を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することではありません。しかし、リスクを伴う場合もあります。"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -863,10 +863,10 @@ msgid "Firefox Add-ons"
 msgstr "Firefox Add-ons"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "申し訳ありませんが、入力したアドレスには何も見つかりませんでした。アドオンへのリンクにアクセスしたのであれば、アドオンが作者によって削除された可能性があります。"
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "こちらのページもご覧ください"
 
 msgid "Browse all extensions"
 msgstr "すべての拡張機能を見る"
@@ -879,7 +879,7 @@ msgstr "Add-ons ホームページ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "別の場所のリンクから移動してきた場合は、%(open_bug_link)s issue を登録%(close_bug_link)sし、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。"
 
 msgid "Not Found"
 msgstr "見つかりませんでした"
@@ -3444,7 +3444,7 @@ msgid "Delete this theme."
 msgstr "このテーマを削除します。"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "このアドオンは、公開のために必要な情報が不足しています。"
 
 msgid "This add-on doesn't have any versions."
 msgstr "このアドオンには一切バージョンがありません。"
@@ -3673,7 +3673,7 @@ msgid "Generate new credentials"
 msgstr "新しい認証情報を生成"
 
 msgid "Invisible"
-msgstr ""
+msgstr "非表示"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "バージョンあるいは漏れているメタデータを追加してアドオンを完成させてください。"
@@ -3880,7 +3880,7 @@ msgid "Compatibility Reporter"
 msgstr "互換性レポーター"
 
 msgid "Promote"
-msgstr ""
+msgstr "宣伝"
 
 msgid "Get Your Add-on Featured"
 msgstr "自分のアドオンをおすすめにしてもらう"
@@ -5582,7 +5582,7 @@ msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "心配いらずのブラウジング"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
@@ -6200,7 +6200,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr "私たちの <a href=\"%(url)s\">フォーラム</a> では、アドオンのコミュニティと対話できます。ここでは、AMO サイトの改善などについて議論しています。"
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "いいですね！ 参加するにはどうしたらよいですか？"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
@@ -6791,7 +6791,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "探しているアドオンが見つけられないときは？"
 
 #, python-format
 msgid ""
@@ -6953,13 +6953,13 @@ msgid "Will you continue to use this add-on?"
 msgstr "このアドオンを使い続けますか？"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "投稿する前に、入力ミスがないか自分のレビューを読み直してください。"
 
 msgid "Don’t:"
 msgstr "悪いレビュー:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "「よかった！」「すばらしい」「よくなかった」 など、一言だけのレビュー。"
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
@@ -7187,6 +7187,10 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>以下のことにご注意ください:</h2> <ul> <li> アドオンについて友人に伝えるように書いてください。あなたが気に入った/気に入らなかった機能、簡単に使用できた、またはよくない点があったなど、ほかのユーザーへの助けとなることを書いてください。そう書くべきであるという信念がない限り、\"よかった\"、\"よくなかった\" など、一般的な表現は避けてください。</li> <li> "
+"ここにはバグを報告しないでください。。アドオンの開発者にはメールアドレスを公開しません。そのため、開発者はあなたと連絡が取れず、問題を解決できないでしょう。 このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。 </li> <li>レビューは簡潔に書き、不適切な表現の使用は避けてください。また、個人情報も投稿しないでください。 </li> </ul> <p>アドオンのユーザーレビューについての詳細な情報は <a "
+"href=\"%(guide)s\">レビューガイドライン</a> をご覧ください。</p>"
 
 msgid "Reply to review by {0}"
 msgstr "{0} のレビューへの返信"
