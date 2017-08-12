@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 10:26+0000\n"
+"PO-Revision-Date: 2017-08-12 18:21+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5120,7 +5120,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Åtvaring!</strong> Ein annan brukar såg på denne sida før deg."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "Tavla er platsen for å utveksle informasjon som er relevant for dette tillegget (uansett versjon), mellon utviklaren og redaktøren. Dette både sjåast og redigerast av begge."
 
 msgid "Update the whiteboard"
 msgstr ""
@@ -5157,7 +5157,7 @@ msgstr "Fann ingen vurderingar for denne perioden."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] rapporterte %(object)s den %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Avvis denne kunngjeringa"
