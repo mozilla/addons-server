@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 23:30+0000\n"
+"PO-Revision-Date: 2017-08-12 23:46+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3863,7 +3863,7 @@ msgid "Blog"
 msgstr "სვეტი"
 
 msgid "Contact Us"
-msgstr ""
+msgstr "დაგვიკავშირდით"
 
 msgid "Policies"
 msgstr "დებულებები"
@@ -3887,13 +3887,13 @@ msgid "Promote"
 msgstr ""
 
 msgid "Get Your Add-on Featured"
-msgstr "გახადეთ თქვენი დამატება მოთხოვნადი"
+msgstr "გახადეთ თქვენი დამატება რჩეული"
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "სამართლებრივი აქტები"
 
 msgid "Report Trademark Abuse"
 msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
@@ -4007,7 +4007,7 @@ msgid "Publish Your Add-on"
 msgstr "გამოაქვეყნეთ თქვენი დამატება"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "მზად გაქვთ უკვე დამატება? გადააგზავნეთ თქვენი გაფართოება ან თემა, addons.mozilla.org-ზე გამოსაქვეყნებლად, ან დაამოწმეთ და გაავრცელეთ თავად."
 
 msgid "Sign In"
 msgstr "შესვლა"
