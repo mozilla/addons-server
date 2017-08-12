@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 10:49+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2017-08-12 20:33+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -737,7 +737,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Algumas extensões pedem permissão para desempenhar certas funções. Como está no controle do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Observe que esta extensão usa uma tecnologia legada, que dá acesso a todas as funções e informações do navegador sem precisar de sua permissão."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
