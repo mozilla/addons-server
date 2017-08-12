@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 22:50+0000\n"
+"PO-Revision-Date: 2017-08-12 23:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1004,7 +1004,7 @@ msgstr "დამატებები"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr "{0}-ის წინ"
+msgstr "გასულია {0}"
 
 msgid "Title"
 msgstr "სათაური"
@@ -1455,7 +1455,7 @@ msgid "Reset"
 msgstr ""
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG და JPG მხარდაჭერილია.  სურათის ზომა შეიცვლება 32x32-ზე."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr ""
@@ -2104,7 +2104,7 @@ msgid "Viewer"
 msgstr ""
 
 msgid "Support"
-msgstr ""
+msgstr "მხარდაჭერა"
 
 msgid "Extension"
 msgstr ""
@@ -2907,10 +2907,10 @@ msgid "Add-on Policies"
 msgstr ""
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "დამატების შემმოწმებელი"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "დამატების თავსებადობის დამდგენი"
 
 msgid "Development Add-ons"
 msgstr ""
@@ -3008,7 +3008,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "მხარდაჭერილი ვერსიები"
 
 msgid "Add Another Application&hellip;"
 msgstr "სხვა პროგრამის დამატება&hellip;"
@@ -3172,11 +3172,11 @@ msgid "Images"
 msgstr ""
 
 msgid "Support Information"
-msgstr ""
+msgstr "დამხმარე ინფორმაცია"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "დამხმარე ინფორმაცია {0}-ისთვის"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -3837,7 +3837,7 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Latest News"
-msgstr ""
+msgstr "ბოლო სიახლეები"
 
 msgid "Read more in our Blog"
 msgstr "გაიგეთ მეტი ჩვენს სვეტზე"
@@ -3876,7 +3876,7 @@ msgid "Site Status"
 msgstr "საიტის მდგომარეობა"
 
 msgid "Compatibility Checker"
-msgstr ""
+msgstr "თავსებადობის დამდგენი"
 
 msgid "Compatibility Reporter"
 msgstr ""
@@ -3930,13 +3930,13 @@ msgid "Manage Your Add-on"
 msgstr "დამატებების მართვა"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr "შედით ანგარიშზე, თქვენი დამატებების შესწორებისა და განახლებისთვის"
+msgstr "შედით ანგარიშზე, თქვენი დამატებების ჩასასწორებლად და გასაახლებლად"
 
 msgid "Update Your Legacy Extension"
 msgstr "მოძველებული გაფართოების განახლება"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
+msgstr "Firefox-ს უკვე გააჩნია ახალი, მრავალ ბრაუზერთან თავსებადი გაფართოებების შემუშავების სტანდარტი. მოძველებული გაფართოებების განახლება აუცილებელია, თავსებადობის შესანარჩუნებლად."
 
 msgid "Learn How"
 msgstr "გაიგეთ, როგორ"
@@ -4011,13 +4011,13 @@ msgid "Sign In"
 msgstr "შესვლა"
 
 msgid "Validator"
-msgstr ""
+msgstr "შემმოწმებელი"
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "თქვენი დაამტების კოდის ავტომატური შემოწმება."
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "ნახეთ, იმოქმედებს თუ არა თქვენს დამატებაზე, მოსალოდნელი ცვლილებები Firefox-ში."
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
 msgstr ""
@@ -6182,7 +6182,7 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr ""
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "დამატებების სამყაროდან, ბოლო სიახლეების შესატყობად, რამდენიმე გზა არსებობს:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
@@ -6345,7 +6345,7 @@ msgstr ""
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
-msgstr ""
+msgstr "დამხმარე რესურსები"
 
 msgid "Contributing your Add-on"
 msgstr ""
