@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 22:29+0000\n"
+"PO-Revision-Date: 2017-08-12 22:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -692,7 +692,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "დამატებების ნაწილი ითხოვს უფლებებს გარკვეული მოქმედებებისთვის. Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, მისცემთ უფლებას, თუ არა."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა ფუნქციასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1578,10 +1578,10 @@ msgid "Download Language Pack"
 msgstr ""
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "თქვენს ენაზე ხელმისაწვდომი"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "თქვენს ენაზე ხელმისაწვდომი ენის პაკეტების და ლექსიკონების ჩამონათვალი."
 
 msgid "Language"
 msgstr "ენა"
@@ -3873,7 +3873,7 @@ msgid "Report Bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
 
 msgid "Site Status"
-msgstr ""
+msgstr "საიტის მდგომარეობა"
 
 msgid "Compatibility Checker"
 msgstr ""
@@ -3897,7 +3897,7 @@ msgid "Report Trademark Abuse"
 msgstr "მოხსენება სავაჭრო ნიშნების დარღვევის შესახებ"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "სამართლებრივი შენიშვნები"
 
 msgid "Review Add-ons"
 msgstr "დამატებების განხილვა"
@@ -3930,7 +3930,7 @@ msgid "Manage Your Add-on"
 msgstr "დამატებების მართვა"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "შედით ანგარიშზე, თქვენი დამატებების შესწორებისა და განახლებისთვის"
 
 msgid "Update Your Legacy Extension"
 msgstr "მოძველებული გაფართოების განახლება"
@@ -3986,9 +3986,11 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
+"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გაზარდონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> და <a"
+" href=\"%(css_link)s\">CSS</a>-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
 
 msgid "Port a Chrome Extension"
 msgstr "Chrome-ის გაფართოების გადმოტანა"
@@ -3996,9 +3998,11 @@ msgstr "Chrome-ის გაფართოების გადმოტან
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox-ში მხარდაჭერილია WebExtension API-ები, რაც უმეტეს შემთხვევაში თავსებადია Chrome-ის, Opera-სა და Edge-ს API-ებთან, ასე რომ, თქვენი გაფართოება, მცირე ხელის შევლების შედეგად, მარტივად გაეშვება "
+"Firefox-შიც."
 
 msgid "Publish Your Add-on"
-msgstr ""
+msgstr "გამოაქვეყნეთ თქვენი დამატება"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -8053,7 +8057,7 @@ msgid "My Reviews"
 msgstr "ჩემი მიმოხილვები"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "მიმოხილვები, ჯერ არ გაკეთებულა."
 
 msgid "Report User"
 msgstr "მოხსენება ამ მომხმარებელზე"
