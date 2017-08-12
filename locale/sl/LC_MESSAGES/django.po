@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 12:50+0000\n"
+"PO-Revision-Date: 2017-08-12 13:05+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1729,9 +1729,8 @@ msgstr "Preberite več o <a href=\"http://support.mozilla.com/kb/Search+bar\">is
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Brskajte po še več iskalnikih na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ustvarite svoj</a> iskalnik"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Ustvarite svoj</a> iskalnik"
 
 msgid "Most Popular Extensions"
 msgstr "Najbolj priljubljene razširitve"
@@ -2831,7 +2830,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Razširitve za Firefox 53 in novejše so lahko samo WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Stare razširitve niso združljive s Firefoxom 57 in novejšimi. Uporabite maxVersion 56.* ali nižjo."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
@@ -3063,7 +3062,7 @@ msgstr "Uporabite polje spodaj, da prenesete paket za svojo aplikacijo."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Upoštevajte, da to orodje deluje samo s starimi dodatki. API-ji WebExtension so podrobno <a href=\"%(webext_doc_url)s\">dokumentirani tukaj</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po zaključenem prenosu se bo zagnal niz samodejnih preskusov za preverjanje veljavnosti, da se preveri združljivost z naslednjo različico programa:"
@@ -3248,7 +3247,6 @@ msgstr "Potrdite to polje, če glavne funkcije tega dodatka za delovanje zahteva
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Ta dodatek zahteva plačilo, plačljive storitve ali programsko opremo ali dodatno strojno opremo."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ta dodatek ne zahteva dodatnih plačil, plačljivih storitev ali programske opreme ali dodatne strojne opreme."
 
@@ -8284,9 +8282,8 @@ msgstr "moj na osnovi sdk zgrajen dodatek je uspešno nadgrajen"
 msgid "someone writes a review of my add-on"
 msgstr "nekdo oceni moj dodatek"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "ostanite na tekočem z novicami in dogodki, zanimivimi za razvijalce dodatkov"
+msgstr "ostanite na tekočem z novicami in dogodki, zanimivimi za razvijalce dodatkov (vključno z okrožnico about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "združljivosti za moj dodatek ni mogoče nadgraditi"
