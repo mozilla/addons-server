@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 17:39+0000\n"
+"PO-Revision-Date: 2017-08-12 17:59+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -248,7 +248,7 @@ msgid "Number of Contributions"
 msgstr "დამხმარეების რაოდენობა"
 
 msgid "More Info..."
-msgstr "მეტი ინფო..."
+msgstr "დამატებითი მონაცემები..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"

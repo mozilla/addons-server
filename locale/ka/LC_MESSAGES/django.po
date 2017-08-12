@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 17:49+0000\n"
+"PO-Revision-Date: 2017-08-12 18:04+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -105,16 +105,16 @@ msgstr "მისამართის დაბოლოება ვერ ი
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "არასწორი იარლიყი: {0}"
+msgstr[0] "არასწორი ჭდე: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" დაკავებული იარლიყია და მისი გამოყენება არ შეიძლება."
+msgstr[0] "\"{0}\" ნაჭდევი დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "თქვენ {0}-ით მეტი იარლიყი გაქვთ."
+msgstr[0] "თქვენ დაშვებულზე {0} -ით მეტი ჭდე გაქვთ."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -122,7 +122,7 @@ msgstr "შეუსაბამო სიმბოლოების მოშ�
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ყველა იარლიყი მინიმუმ {0} ასოსგან უნდა შედგებოდეს."
+msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან უნდა შედგებოდეს."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "თქვენი დამატების ამ განაცხადში ყოფნისას კატეგორიის შეცვლა შეუძლებელია."
@@ -652,7 +652,7 @@ msgid "Developer’s Comments"
 msgstr "განმვითარებლის კომენტარები"
 
 msgid "Version Information"
-msgstr "ვერსიის ინფორმაცია"
+msgstr "ვერსიის მონაცემები"
 
 msgid "See complete version history"
 msgstr "ვერსიის სრული ისტორია"
@@ -968,7 +968,7 @@ msgid "My Favorite Add-ons"
 msgstr "ჩემი რჩეული დამატებები"
 
 msgid "More&hellip;"
-msgstr "მეტი &hellip;"
+msgstr "სხვა&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "დამატებები მობილურისთვის"
@@ -1254,7 +1254,7 @@ msgid "Explore Collections"
 msgstr "დაათვალიერეთ კრებულები"
 
 msgid "Common Tags"
-msgstr "საერთო იარლიყები"
+msgstr "საერთო ჭდეები"
 
 msgid "More by this User"
 msgstr "მეტი ამ მომხმარებლისგან"
@@ -8059,7 +8059,7 @@ msgid "Report User"
 msgstr "მოხსენება ამ მომხმარებელზე"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ მოხსენების გამოგზავნის მიზეზი, როგორიცაა სპამი, შეუფერებელი სურათი და ა.შ."
 
 msgid "Report user {0}"
 msgstr "მოხსენება {0} მომხმარებელზე"
