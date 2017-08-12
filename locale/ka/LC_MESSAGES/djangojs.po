@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 22:31+0000\n"
+"PO-Revision-Date: 2017-08-12 17:39+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -431,7 +431,7 @@ msgstr "ჩამოტვირთვების და დღიური მ
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "ჩამოტვირთვების და ღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
