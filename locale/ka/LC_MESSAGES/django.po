@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-13 00:50+0000\n"
+"PO-Revision-Date: 2017-08-13 01:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -465,15 +465,15 @@ msgid "Privacy Policy"
 msgstr "პირადი მონაცემების დაცვის დებულება"
 
 msgid "Report Abuse"
-msgstr "შეტყობინება უკანონო გამოყენების შესახებ"
+msgstr "მოხსენება დარღვევის შესახებ"
 
 #, python-format
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"თუ თვლით, რომ ეს დამატება არღვევს <a href=\"%(url)s\">ჩვენს დებულებას</a> ან უსაფთხოებისა და პირადი მონაცემების დაცვის პრობლემები აქვს, ისარგებლეთ ქვემოთ მოცემული ბლანკით და გაგვიზიარეთ თქვენი "
-"დამოკიდებულება. გთხოვთ, ეს ბლანკი სხვა მიზნით არ გამოიყენოთ."
+"თუ მიგაჩნიათ, რომ ეს დამატება არღვევს <a href=\"%(url)s\">ჩვენს დებულებას</a>, ან ხარვეზები აქვს უსაფრთხოებასა და პირადი მონაცემების დაცვაში, ისარგებლეთ ქვემოთ მოცემული ველით და გაგვიზიარეთ თქვენი "
+"მოსაზრება. გთხოვთ, სხვა მიზნით არ გამოიყენოთ ეს ველი."
 
 msgid "Send Report"
 msgstr "შეტყობინების გაგზავნა"
@@ -649,7 +649,7 @@ msgid "About this Add-on"
 msgstr "დამატების შესახებ"
 
 msgid "Developer’s Comments"
-msgstr "განმვითარებლის კომენტარები"
+msgstr "შემმუშავებლის შენიშვნები"
 
 msgid "Version Information"
 msgstr "ვერსიის მონაცემები"
@@ -2347,7 +2347,7 @@ msgid "Kids"
 msgstr "საბავშვო"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "გაერთიანებული საძიებოები"
 
 msgid "Music"
 msgstr "მუსიკა"
@@ -7268,7 +7268,7 @@ msgid "<strong>Average</strong> (%(total)s)"
 msgstr ""
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "დაწერეთ მიმოხილვა"
 
 msgid "Be the first to write a review."
 msgstr ""
@@ -8133,7 +8133,7 @@ msgstr "დამატებების საშუალო შეფას�
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "და სხვები"
 
 #, python-format
 msgid "%s Version History"
