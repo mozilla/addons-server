@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 19:28+0000\n"
+"PO-Revision-Date: 2017-08-13 15:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -731,12 +731,11 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Tutón přidatk móže:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli (na přikład: přidatk za rjadowanje rajtarkow prosy wo přistup na rajtarkowy system wašeho wobhladowaka)."
+msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli. Dokelž wy kontrolu nad swojim Firefox maće, leži pola was, hač tute naprašowanja dopušćeja abo wotpokazuja."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Prošu dźiwajće na to, zo tutón přidatk zestarjenu technologiju wužiwa, kotraž jemu přistup na wšě funkcije wobhladowaka a daty bjez toho, zo by wo wašu dowolnosć prosył."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -2809,7 +2808,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja jenož WebExtensions być."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces přewobroćić. Hdyž waši wužiwarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
@@ -3043,7 +3042,7 @@ msgstr "Wužiwajće slědowace polo, zo byšće swój přidatkowy pakćik nahra�
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Dźiwajće na to, zo tutón nastroj jenož ze zestarjenymi přidatkami funguje. API WebExtension su <a href=\"%(webext_doc_url)s\">tu nadrobnje dokumentowane</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po nahrawanju so rjad awtomatiskich přepruwowanskich testow přewjedźe, zo bychu komptatibelnosć ze slědowacej wersiju nałoženja přepruwowali:"
