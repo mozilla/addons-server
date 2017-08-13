@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 20:33+0000\n"
+"PO-Revision-Date: 2017-08-13 16:31+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2825,7 +2825,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "A partir do Firefox 53, as novas extensões neste site só podem ser WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "As extensões legadas não são compatíveis com o Firefox 57 ou superior. Use o Firefox na versão 56.* ou em alguma outra versão anterior."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -3061,7 +3061,7 @@ msgstr "Use o campo abaixo para enviar o pacote da extensão."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Note que esta ferramenta só funciona com extensões legadas. As APIs WebExtension são completamente <a href=\"%(webext_doc_url)s\">documentadas aqui</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Depois do envio, uma série de testes automáticos de validação serão executados para verificar a compatibilidade com a seguinte aplicação:"
