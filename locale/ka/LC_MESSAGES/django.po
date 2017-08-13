@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-13 00:31+0000\n"
+"PO-Revision-Date: 2017-08-13 00:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -90,7 +90,7 @@ msgstr "განუხილველია"
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr "ექსპერიმენტული"
+msgstr "საცდელი"
 
 msgid "Add to {0}"
 msgstr "{0}-ში ჩადგმა"
@@ -194,7 +194,7 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "შემმუშავებლების მიერ აღნიშნულია, რომ ეს დამატება არის საცდელი."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "ამ დამატების შემქმნელი ნასიამოვნები დარჩება, თუ მისი დეველოპმენტისთვის მხარის დასაჭერად მცირე წვლილს შეიტანთ."
+msgstr "ამ დამატების შემქმნელი მოხარული იქნება, თუ მისი საქმიანობის მხარდასაჭერად მცირე წვლილს შეიტანთ."
 
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -627,7 +627,7 @@ msgid "Add-on home page"
 msgstr "დამატების მთავარი გვერდი"
 
 msgid "Support site"
-msgstr "მხარდაჭერის საიტი"
+msgstr "მხარდაჭერის გვერდი"
 
 msgid "Support E-mail"
 msgstr "მხარდაჭერის ელფოსტა"
@@ -636,7 +636,7 @@ msgid "Info"
 msgstr "ინფორმაცია"
 
 msgid "Last Updated:"
-msgstr "ბოლო განახლება:"
+msgstr "ბოლო განახლების თარიღი:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
@@ -658,20 +658,20 @@ msgid "See complete version history"
 msgstr "ვერსიის სრული ისტორია"
 
 msgid "Development Channel"
-msgstr "განვითარების არხი"
+msgstr "სამუშაო არხი"
 
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"განვითარების არხი საშუალებას გაძლევთ გასინჯოთ ამ დამატების ახალი ექსპერიმენტალური ვერსიები მათ საჯაროდ გამოშვებამდე. განვითარების ვერსიის დაყენების შემდეგ, განახლებებს მიიღებთ პირდაპირ ამ არხიდან. "
-"განვითარების განახლებების მიღების შესაწყვეტად, ხელახლა დააყენეთ ნაგულისხმევი ვერსია ზემოთ მოცემული ბმულით."
+"სამუშაო არხი საშუალებას გაძლევთ გამოცადოთ ამ დამატების ახალი, საცდელი ვერსიები, მათ გამოქვეყნებამდე. სამუშაო ვერსიის დაყენების შემდეგ, განახლებებს მიიღებთ პირდაპირ ამ არხიდან. სამუშაო ვერსიის "
+"განახლებების მიღების შესაწყვეტად, ხელახლა დააყენეთ ნაგულისხმევი ვერსია, ზემოთ არსებული ბმულიდან."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>გაითვალისწინეთ:</strong> ამ დამატების საცდელი ვერსიები არ არის განხილული Mozilla-ს მიერ."
 
 msgid "See complete development channel history"
-msgstr "იხილეთ განვითარების არხის სრული ისტორია"
+msgstr "იხილეთ სამუშაო არხის სრული ისტორია"
 
 msgid "close"
 msgstr "დახურვა"
@@ -914,7 +914,7 @@ msgstr "შემდეგი"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> შედეგი <strong>%(count)s</strong>-იდან"
 
 msgid "Maintenance in progress"
 msgstr "მიმდინარეობს ტექნიკური სამუშაოები"
@@ -1620,17 +1620,17 @@ msgid "Find new providers for your search bar"
 msgstr "მონახეთ ახალი სისტემები, თქვენი საძიებო ზოლისთვის"
 
 msgid "Additional Resources"
-msgstr ""
+msgstr "დამატებითი ბმულები"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "შეიტყვეთ მეტი {0}-ის <a href=\"http://support.mozilla.com/kb/Search+bar\">საძიებო ველზე</a>"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "მონახეთ კიდევ უფრო მეტი საძიებო სისტემები ბმულზე <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">შექმენით საკუთარი</a> საძიებო სისტემა"
 
 msgid "Most Popular Extensions"
 msgstr "ყველაზე ხშირად ჩამოტვირთული გაფართოებები"
@@ -2353,7 +2353,7 @@ msgid "Music"
 msgstr "მუსიკა"
 
 msgid "News & Blogs"
-msgstr "სეახლეები & სვეტები"
+msgstr "სიახლეები & სვეტები"
 
 msgid "Photos & Images"
 msgstr "ფოტო & სურათები"
@@ -2368,7 +2368,7 @@ msgid "Travel"
 msgstr "მოგზაურობა"
 
 msgid "Video"
-msgstr ""
+msgstr "ვიდეო"
 
 msgid "Abstract"
 msgstr ""
@@ -3504,7 +3504,7 @@ msgid "Support email:"
 msgstr "მხარდაჭერის ელფოსტა:"
 
 msgid "Support website:"
-msgstr "მხარდაჭერის საიტი:"
+msgstr "მხარდაჭერის გვერდი:"
 
 msgid "License:"
 msgstr "ლიცენზია:"
@@ -5538,7 +5538,7 @@ msgid "Sit Back and Relax"
 msgstr ""
 
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "დამატებები, რომელიც დაგეხმარებათ მოგზაურობისას!"
 
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr "ქვეყნის დროშის ჩვენება, არსებული ვებსაიტის სერვერის ადგილმდებარეობის მიხედვით და ა.შ."
@@ -7087,7 +7087,7 @@ msgstr ""
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "მონაცემთა აღრიცხვის შესახებ მეტი ინფორმაციის მისაღებად, გაეცანით ამ <a href=\"%(url)s\">კვლევას</a>."
 
 msgid "You Help Make Firefox Better"
 msgstr ""
