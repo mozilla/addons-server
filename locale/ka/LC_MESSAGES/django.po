@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 23:46+0000\n"
+"PO-Revision-Date: 2017-08-13 00:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -205,7 +205,7 @@ msgid "The developer of this add-on asks that you show your support by making a 
 msgstr "ამ დამატების შემქმნელი ნასიამოვნები დარჩება, თუ თქვენს მხარდაჭერას ამ ორგანიზაციებში მცირე წვლილის შეტანით  გამოხატავთ <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "Contribute"
-msgstr "ხელის შეწყობა"
+msgstr "წვლილის შეტანა"
 
 #. Click Contribute button OR Install button
 msgid "or"
@@ -3845,7 +3845,7 @@ msgid "Read more in our Blog"
 msgstr "გაიგეთ მეტი ჩვენს სვეტზე"
 
 msgid "Resources"
-msgstr ""
+msgstr "სასარგებლო ბმულები"
 
 msgid "Porting"
 msgstr "გადატანა"
@@ -3884,13 +3884,13 @@ msgid "Compatibility Reporter"
 msgstr "თავსებადობის მომხსენებელი"
 
 msgid "Promote"
-msgstr ""
+msgstr "ხელშეწყობა"
 
 msgid "Get Your Add-on Featured"
 msgstr "გახადეთ თქვენი დამატება რჩეული"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "ღილაკი \"გადმოწერეთ დამატება\""
 
 msgid "Legal"
 msgstr "სამართლებრივი აქტები"
@@ -3905,13 +3905,13 @@ msgid "Review Add-ons"
 msgstr "დამატებების განხილვა"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "მოხალისე მიმომხილველები გვეხმარებიან დამატებების უსაფრთხოებისა და საიმედოობის შენარჩუნებაში. რასაკვირველია, სარგებლობენ ბევრი უპირატესობითაც!"
 
 msgid "Join us!"
-msgstr ""
+msgstr "შემოგვიერთდით!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "დაწერეთ კოდი"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
