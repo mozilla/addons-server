@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-13 00:10+0000\n"
+"PO-Revision-Date: 2017-08-13 00:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1566,7 +1566,7 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr ""
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "ლექსიკონის დაყენება"
 
 msgid "Install Language Pack"
 msgstr ""
@@ -1590,7 +1590,7 @@ msgid "Dictionary"
 msgstr "ლექსიკონი"
 
 msgid "Language Pack"
-msgstr "ენის პაკეტები"
+msgstr "ენის პაკეტი"
 
 msgid "All locales"
 msgstr "ყველა ენა"
@@ -1614,10 +1614,10 @@ msgid "Add search-related functionality to Firefox"
 msgstr ""
 
 msgid "Search Providers"
-msgstr ""
+msgstr "საძიებო სისტემები"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "მონახეთ ახალი სისტემები, თქვენი საძიებო ზოლისთვის"
 
 msgid "Additional Resources"
 msgstr ""
@@ -1627,7 +1627,7 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr ""
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "მონახეთ კიდევ უფრო მეტი საძიებო სისტემები ბმულზე <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
@@ -2335,37 +2335,37 @@ msgid "Sports"
 msgstr "სპორტი"
 
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 msgid "Business"
-msgstr ""
+msgstr "საქმიანობა"
 
 msgid "Dictionaries & Encyclopedias"
 msgstr "ლექსიკონები & ენციკლოპედიები"
 
 msgid "Kids"
-msgstr ""
+msgstr "საბავშვო"
 
 msgid "Multiple Search"
 msgstr ""
 
 msgid "Music"
-msgstr ""
+msgstr "მუსიკა"
 
 msgid "News & Blogs"
 msgstr "სეახლეები & სვეტები"
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "ფოტო & სურათები"
 
 msgid "Shopping & E-Commerce"
 msgstr "ვაჭრობა და ელკომერცია"
 
 msgid "Social & People"
-msgstr ""
+msgstr "სოც. ქსელები"
 
 msgid "Travel"
-msgstr ""
+msgstr "მოგზაურობა"
 
 msgid "Video"
 msgstr ""
@@ -2413,7 +2413,7 @@ msgid "Performance"
 msgstr ""
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "ფოტო & მედია"
 
 msgid "Security & Privacy"
 msgstr ""
@@ -3037,7 +3037,7 @@ msgid "Edit Information"
 msgstr "მონაცემების შესწორება"
 
 msgid "None"
-msgstr ""
+msgstr "არაა"
 
 msgid "Manage Authors & License"
 msgstr ""
@@ -3914,7 +3914,7 @@ msgid "Write Some Code"
 msgstr "დაწერეთ კოდი"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "დაგვეხმარეთ დამატებების გაუმჯობესებაში, თქვენი ცოდნის გაზიარებით."
 
 msgid "Get started"
 msgstr "მუშაობის დაწყება"
@@ -3923,10 +3923,10 @@ msgid "More Ways to Participate"
 msgstr "სხვა გზები მონაწილეობის მისაღებად"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "კოდის წერის ცოდნა არაა აუცილებელი, Firefox-ის, მომხმარებელზე ყველაზე მეტად მორგებული ბრაუზერის ხელმისაწვდომობის შესანარჩუნებლად!"
 
 msgid "See how"
-msgstr ""
+msgstr "ნახეთ როგორ"
 
 msgid "Manage Your Add-on"
 msgstr "დამატებების მართვა"
@@ -4022,7 +4022,7 @@ msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "ნახეთ, იმოქმედებს თუ არა თქვენს დამატებაზე, მოსალოდნელი ცვლილებები Firefox-ში."
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "გვაცნობეთ, თუ დამატება მუშაობს Firefox-ის, მხოლოდ გარკვეულ ვერსიებზე."
 
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr ""
@@ -6565,13 +6565,13 @@ msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on 
 msgstr ""
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "როგორ ვნახო, ჩემი დამატების ჩამოტვირთვების რაოდენობა?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
 
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "როგორ ვნახო, ჩემი დამატებების მოქმედი მომხმარებლების რაოდენობა?"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
@@ -6713,7 +6713,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">საძიებო სისტემების</a> </strong> დამატება იძლევა მეტი არჩევანის საშუალებას, ძიების ველის ჩამოშლისას. ეს სისტემები დაგეხმარებათ საიტების სწრაფად მოძიებაში."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
@@ -8003,7 +8003,7 @@ msgid "Update Account"
 msgstr ""
 
 msgid "none"
-msgstr ""
+msgstr "არაა"
 
 msgid "all"
 msgstr ""
