@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 03:22+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2017-08-14 22:04+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -459,7 +459,7 @@ msgstr "<b>{0}</b> användare"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} dagliga användare"
+msgstr[0] "{0} daglig användare"
 msgstr[1] "{0} dagliga användare"
 
 #. {0} is the name of the add-on.
@@ -700,12 +700,11 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Detta tillägg kan:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
+msgstr "Vissa tillägg kräver tillstånd att utföra vissa funktioner. Eftersom du har kontroll över Firefox är valet att bevilja eller neka dessa förfrågningar ditt."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Observera att den här tillägget använder äldre teknik, vilket ger den tillgång till alla webbläsarfunktioner och data utan att begära ditt tillstånd."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1661,7 +1660,7 @@ msgid "Browse through even more search providers at <a href=\"http://mycroftproj
 msgstr "Bläddra igenom ännu fler sökleverantörer på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\"> Gör ditt eget</a> sökverktyg"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Gör ditt eget</a> sökverktyg"
 
 msgid "Most Popular Extensions"
 msgstr "Populäraste utökningarna"
@@ -2748,7 +2747,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Från och med Firefox 53, kan nya tillägg på denna webbplats endast vara WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Äldre tillägg är inte kompatibla med Firefox 57 eller senare. Använd en maxVersion på 56.* eller lägre."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denna process. När användarna har WebExtension installerad, kommer de inte att kunna installera ett tillägg med arv."
@@ -2980,7 +2979,7 @@ msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Observera att det här verktyget bara fungerar med äldre tillägg. WebExtension API:er är grundligt <a href=\"%(webext_doc_url)s\">dokumenterade här</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Efter uppladdning, kommer en rad automatiserade valideringstester körs för att kontrollera kompatibilitet med följande programversionen:"
@@ -3170,7 +3169,6 @@ msgstr "Markera den här rutan om det här tillägget kärnfunktioner kräver n�
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Detta tillägg kräver betalning, icke-gratis tjänster eller programvara eller extra maskinvara."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Detta tillägg kräver inga ytterligare betalningar, betalda tjänster eller programvara eller extra hårdvara."
 
@@ -8159,7 +8157,7 @@ msgid "someone writes a review of my add-on"
 msgstr "någon skriver en recension av mitt tillägg"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "håll dig uppdaterad med nyheter och händelser som är relevanta för tilläggsutvecklare (inkluderar about:addons nyhetsbrevet)"
+msgstr "håll dig uppdaterad med nyheter och händelser som är relevanta för tilläggsutvecklare (inkluderar nyhetsbrevet about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "mitt tilläggs kompatibilitet kan inte uppgraderas"
