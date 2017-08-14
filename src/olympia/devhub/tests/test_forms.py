@@ -128,6 +128,21 @@ class TestCharityForm(TestCase):
 class TestCompatForm(TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        super(TestCompatForm, self).setUp()
+        AppVersion.objects.create(
+            application=amo.THUNDERBIRD.id, version='50.0')
+        AppVersion.objects.create(
+            application=amo.THUNDERBIRD.id, version='58.0')
+        AppVersion.objects.create(
+            application=amo.FIREFOX.id, version='56.0')
+        AppVersion.objects.create(
+            application=amo.FIREFOX.id, version='56.*')
+        AppVersion.objects.create(
+            application=amo.FIREFOX.id, version='57.0')
+        AppVersion.objects.create(
+            application=amo.FIREFOX.id, version='57.*')
+
     def test_forms(self):
         version = Addon.objects.get(id=3615).current_version
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
@@ -147,33 +162,17 @@ class TestCompatForm(TestCase):
         assert form.initial['min'] == current_min.pk
         assert form.initial['max'] == current_max.pk
 
-    def test_form_choices(self):
-        AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='50.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.*')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='57.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='57.*')
-
-        expected_min_choices = [(u'', u'---------')]
-        expected_min_choices.extend(list(
+    def _test_form_choices_expect_all_versions(self, version):
+        expected_min_choices = [(u'', u'---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
                               .exclude(version__contains='*')
                               .values_list('pk', 'version')
-                              .order_by('version_int')))
-        expected_max_choices = [(u'', u'---------')]
-        expected_max_choices.extend(list(
+                              .order_by('version_int'))
+        expected_max_choices = [(u'', u'---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
                               .values_list('pk', 'version')
-                              .order_by('version_int')))
+                              .order_by('version_int'))
 
-        version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=True)
-        del version.all_files
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
         form = formset.forms[0]
@@ -181,70 +180,48 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
+    def test_form_choices(self):
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(is_webextension=True)
+        del version.all_files
+        self._test_form_choices_expect_all_versions(version)
+
     def test_form_choices_no_compat(self):
-        AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='50.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.*')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='57.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='57.*')
-
-        expected_min_choices = [(u'', u'---------')]
-        expected_min_choices.extend(list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-                              .exclude(version__contains='*')
-                              .values_list('pk', 'version')
-                              .order_by('version_int')))
-        expected_max_choices = [(u'', u'---------')]
-        expected_max_choices.extend(list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-                              .values_list('pk', 'version')
-                              .order_by('version_int')))
-
         version = Addon.objects.get(id=3615).current_version
         version.files.all().update(is_webextension=False)
         version.addon.update(type=amo.ADDON_DICT)
         del version.all_files
-        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
-                                      form_kwargs={'version': version})
-        form = formset.forms[0]
-        assert form.app == amo.FIREFOX
-        assert list(form.fields['min'].choices) == expected_min_choices
-        assert list(form.fields['max'].choices) == expected_max_choices
+        self._test_form_choices_expect_all_versions(version)
+
+    def test_form_choices_language_pack(self):
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(is_webextension=False)
+        version.addon.update(type=amo.ADDON_LPAPP)
+        del version.all_files
+        self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_legacy(self):
-        thunderbird_version = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='58.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.0')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id, version='56.*')
-        firefox_57 = AppVersion.objects.create(
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(is_webextension=False)
+        del version.all_files
+
+        firefox_57 = AppVersion.objects.get(
             application=amo.FIREFOX.id, version='57.0')
-        firefox_57_s = AppVersion.objects.create(
+        firefox_57_s = AppVersion.objects.get(
             application=amo.FIREFOX.id, version='57.*')
 
-        expected_min_choices = [(u'', u'---------')]
-        expected_min_choices.extend(list(
+        expected_min_choices = [(u'', u'---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
                               .exclude(version__contains='*')
                               .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
                               .values_list('pk', 'version')
-                              .order_by('version_int')))
-        expected_max_choices = [(u'', u'---------')]
-        expected_max_choices.extend(list(
+                              .order_by('version_int'))
+        expected_max_choices = [(u'', u'---------')] + list(
             AppVersion.objects.filter(application=amo.FIREFOX.id)
                               .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
                               .values_list('pk', 'version')
-                              .order_by('version_int')))
+                              .order_by('version_int'))
 
-        version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=False)
-        del version.all_files
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
         form = formset.forms[0]
@@ -252,11 +229,9 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
-        expected_tb_choices = [
-            (u'', u'---------'),
-            (thunderbird_version.pk, thunderbird_version.version),
-        ]
-        thunderbird_version
+        expected_tb_choices = [(u'', u'---------')] + list(
+            AppVersion.objects.filter(application=amo.THUNDERBIRD.id)
+            .values_list('pk', 'version').order_by('version_int'))
         form = formset.forms[1]
         assert form.app == amo.THUNDERBIRD
         assert list(form.fields['min'].choices) == expected_tb_choices
