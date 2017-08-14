@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-07-17 15:33+0000\n"
+"PO-Revision-Date: 2017-08-14 19:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -133,8 +133,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego "
-"koda, až njeby se wašo zapódaśe wótpokazało."
+"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego koda,"
+" až njeby se wašo zapódaśe wótpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Pśeglědowański proces jo slědujuce problemy namakał, kótarež bymógli k wótpokazanjam wjasć:"
@@ -678,9 +678,8 @@ msgid "Not available for your platform"
 msgstr "Njejo za wašu platformu k dispoziciji"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Toś ta drastwa njejo kompatibelna z wašeju wersiju {0}"
+msgstr "Toś ten dodank njejo kompatibelny z wašeju wersiju {0}."
 
 msgid "View other versions"
 msgstr "Druge wersije pokazaś"
