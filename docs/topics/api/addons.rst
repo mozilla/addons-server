@@ -220,6 +220,10 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
        thunderbird  Thunderbird
     ==============  ==========================================================
 
+    .. note::
+        For possible version values per application, see
+        `valid application versions`_.
+
 .. _addon-detail-platform:
 
     Possible values for the ``current_version.files[].platform`` field:
@@ -322,7 +326,26 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
-    :>json object compatibility: Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
+    :>json object compatibility:
+        Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
+        The exact min/max version numbers in the object correspond to
+        `valid application versions`_. Example:
+
+            .. code-block:: json
+
+                {
+                  "compatibility": {
+                    "android": {
+                      "min": "38.0a1",
+                      "max": "43.0"
+                    },
+                    "firefox": {
+                      "min": "38.0a1",
+                      "max": "43.0"
+                    }
+                  }
+                }
+
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :>json string edit_url: The URL to the developer edit page for the version.
@@ -423,3 +446,5 @@ on AMO.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
+
+.. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
