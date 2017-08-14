@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-14 01:30+0000\n"
+"PO-Revision-Date: 2017-08-14 01:46+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -173,7 +173,7 @@ msgid "Listed"
 msgstr "Listé"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Les chemins d’accès aux modules et aux collections doivent se terminer par « / »"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -473,11 +473,10 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> utilisateurs"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} utilisateurs quotidiens"
-msgstr[1] "{0} utilisateurs quotidiens"
+msgstr[0] "{0} utilisateur quotidien"
+msgstr[1] "{0} utilisateurs quotidiens"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -721,12 +720,11 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Ce module peut :"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches (par exemple, un module de gestion des onglets vous demandera d’accéder à la liste de vos onglets)."
+msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Firefox, c’est vous qui choisissez ou non d’accorder ces permissions."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Ce module complémentaire utilise une technologie obsolète ce qui lui donne accès à l’ensemble des fonctionnalités et des données de votre navigateur sans que cela nécessite votre permission."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1107,7 +1105,6 @@ msgstr ""
 "Les modules soumis au site Mozilla Add-ons doivent être accompagnés d’un fichier manifeste qui contient au moins un des logiciels listés ci-dessous. Seules les versions listées ci-dessous sont "
 "autorisées."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
@@ -1698,9 +1695,8 @@ msgstr "En savoir plus sur la <a href=\"http://support.mozilla.com/kb/Search+bar
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Vous pouvez découvrir d’autres moteurs de recherche sur <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/Creating_OpenSearch_plugins_for_Firefox\">Réalisez votre propre outil de recherche</a>"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Réalisez votre propre outil de recherche</a>"
 
 msgid "Most Popular Extensions"
 msgstr "Extensions les plus populaires"
@@ -2793,7 +2789,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "À partir de la version 53 de Firefox, les nouvelles extensions sur ce site ne pourront être que des WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Les extensions considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2885,7 +2881,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Vous ne pouvez pas proposer un module dont le guid se termine par « @mozilla.org »"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
 
 msgid "Icons cannot be animated."
 msgstr "Les icônes ne peuvent pas être animées."
@@ -2963,7 +2959,7 @@ msgid "Printable Version"
 msgstr "Version imprimable"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
 
 msgid "I Accept this Agreement"
 msgstr "J’accepte cet accord"
@@ -3646,9 +3642,8 @@ msgstr "Y a-t-il quoi que ce soit d’autre que nos testeurs devraient savoir po
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ces notes seront uniquement visibles par vous-même et nos testeurs."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Annuler la revue et désactiver la version"
+msgstr "Annuler et désactiver la version"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Annuler la revue et désactiver la version"
@@ -3939,7 +3934,7 @@ msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhai
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "HTML autorisé : %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Un peu de HTML supporté"
@@ -6703,9 +6698,8 @@ msgstr ""
 " des testeurs d’AMO utilise le <a href=\"%(g_url)s\">guide de revue des testeurs</a> pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
 "sécurité."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Comment puis-je envoyer mon module pour une revue ?"
+msgstr "Comment puis-je soumettre mon module complémentaire ?"
 
 #, fuzzy, python-format
 msgid ""
@@ -6748,9 +6742,8 @@ msgstr ""
 "Oui. Vous pouvez préciser une politique de vie privée lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une politique de vie privée via le tableau de bord outils du "
 "développeur après envoi de votre module."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Pourquoi mon module doit-il être revu ?"
+msgstr "Mon module complémentaire doit-il être revu ?"
 
 #, fuzzy, python-format
 msgid ""
@@ -6937,17 +6930,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Les modules fonctionnent-ils avec mon navigateur web ou mon application ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules ne fonctionnent pas sur chacune de ces applications ou chaque version"
-" de ces dernières. Chaque module spécifie les applications et versions avec lesquelles il fonctionne, comme par exemple Firefox 2.0 - 3.6.*. Pour les modules Firefox, le bouton d’installation "
-"indiquera si le module est compatible ou non."
+"Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox pour Android</a>,"
+" <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, et<a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules peuvent ne pas fonctionner sur une de ces applications ou certaines"
+" versions de ces dernières. Chaque module spécifie les applications et versions pour lesquelles il fonctionne, comme par exemple Firefox 50.0 - 52.*. Pour les modules complémentaires Firefox, le "
+"bouton d’installation indiquera si le module est compatible ou non."
 
 msgid "What are the different types of add-ons?"
 msgstr "Quels sont les différents types de modules ?"
@@ -8329,9 +8322,9 @@ msgstr "Supprimer la photo actuelle"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Présentez-vous à la communauté, si vous le souhaitez ! Ce texte apparaitra publiquement sur votre page."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML autorisé&nbsp;: {0}. Les liens sont interdits."
+msgstr "HTML autorisé : %(html)s. Les liens sont interdits."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Décidez quelles collections doivent apparaître dans votre profil."

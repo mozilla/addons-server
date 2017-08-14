@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2015-10-17 16:04+0000\n"
-"Last-Translator: Anthony <maitre.negi@gmail.com>\n"
+"PO-Revision-Date: 2017-08-14 01:37+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -671,9 +671,8 @@ msgid "Not available for your platform"
 msgstr "Non disponible sur votre plateforme"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ce thème est incompatible avec votre version de {0}"
+msgstr "Ce module est incompatible avec votre version de {0}."
 
 msgid "View other versions"
 msgstr "Voir d’autres versions"
