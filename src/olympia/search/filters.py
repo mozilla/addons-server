@@ -266,12 +266,7 @@ class SearchQueryFilter(BaseFilterBackend):
 
         return should
 
-    def filter_queryset(self, request, qs, view):
-        search_query = request.GET.get('q', '').lower()
-
-        if not search_query:
-            return qs
-
+    def apply_search_query(self, search_query, qs):
         lang = translation.get_language()
         analyzer = get_locale_analyzer(lang)
 
@@ -301,6 +296,14 @@ class SearchQueryFilter(BaseFilterBackend):
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
             functions=functions)
+
+    def filter_queryset(self, request, qs, view):
+        search_query = request.GET.get('q', '').lower()
+
+        if not search_query:
+            return qs
+
+        return self.apply_search_query(search_query, qs)
 
 
 class SearchParameterFilter(BaseFilterBackend):

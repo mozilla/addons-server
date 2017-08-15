@@ -20,7 +20,6 @@ from olympia.amo.utils import paginate, render
 from olympia.editors import forms
 from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from olympia.editors.views import base_context as context
-from olympia.search.views import name_only_query
 from olympia.zadmin.decorators import admin_required
 
 from .decorators import personas_reviewer_required
@@ -202,7 +201,7 @@ def themes_search(request):
             themes = themes.filter(status=(amo.STATUS_REVIEW_PENDING if flagged
                                            else amo.STATUS_PENDING),
                                    has_theme_rereview=False)
-        themes = themes.query(or_=name_only_query(q))[:100]
+        themes = themes.filter_query_string(q)[:100]
 
         now = datetime.datetime.now()
         reviewers = []

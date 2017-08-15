@@ -4,6 +4,7 @@ from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
 from elasticsearch import Elasticsearch
+from elasticsearch_dsl import Search
 
 import olympia.core.logger
 
@@ -69,8 +70,8 @@ class ES(object):
     def source(self, *fields):
         return self._clone(next_step=('source', fields))
 
-    def score(self, function):
-        return self._clone(next_step=('score', function))
+    def filter_query_string(self, query_string):
+        return self._clone(next_step=('filter_query_string', query_string))
 
     def extra(self, **kw):
         new = self._clone()
@@ -108,11 +109,8 @@ class ES(object):
         sort = []
         source = ['id']
         aggregations = {}
-        functions = [
-            # By default, boost results using the field in the index named...
-            # boost.
-            {'field_value_factor': {'field': 'boost', 'missing': 1.0}}
-        ]
+        query_string = None
+
         as_list = as_dict = False
         for action, value in self.steps:
             if action == 'order_by':
@@ -136,8 +134,8 @@ class ES(object):
                 source.extend(value)
             elif action == 'aggregate':
                 aggregations.update(value)
-            elif action == 'score':
-                functions.append(value)
+            elif action == 'filter_query_string':
+                query_string = value
             else:
                 raise NotImplementedError(action)
 
@@ -147,14 +145,6 @@ class ES(object):
             qs = queries[0]
         else:
             qs = {"match_all": {}}
-
-        if functions:
-            qs = {
-                "function_score": {
-                    "query": qs,
-                    "functions": functions
-                }
-            }
 
         if filters:
             if len(filters) > 1:
@@ -167,7 +157,22 @@ class ES(object):
                 }
             }
 
-        body = {"query": qs}
+        query = Search.from_dict({'query': qs})
+
+        # If we have a raw query string we are going to apply all sorts
+        # of boosts and filters to improve relevance scoring.
+        #
+        # We are using the same rules that `search.filters:SearchQueryFilter`
+        # implements to have a single-source of truth for how our
+        # scoring works.
+        from olympia.search.filters import SearchQueryFilter
+
+        if query_string:
+            query = SearchQueryFilter().apply_search_query(
+                query_string, query)
+
+        body = query.to_dict()
+
         if sort:
             body['sort'] = sort
         if self.start:
@@ -252,6 +257,8 @@ class ES(object):
 
     def raw(self):
         build_body = self._build_query()
+        build_body['explain'] = True
+
         es = get_es()
         try:
             with statsd.timer('search.es.timer') as timer:
@@ -263,6 +270,10 @@ class ES(object):
         except Exception:
             log.error(build_body)
             raise
+
+        import json
+
+        print(json.dumps(hits))
         statsd.timing('search.es.took', hits['took'])
         log.debug('[%s] [%s] %s' % (hits['took'], timer.ms, build_body))
         return hits

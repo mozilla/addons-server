@@ -638,6 +638,56 @@ class TestESSearch(SearchBase):
         assert result[0] == web_extension.pk
 
 
+    # * Prefer text matches first, using the standard text analyzer (boost=4).
+    # * Then text matches, using language-specific analyzer (boost=2.5).
+    # * Then try fuzzy matches ("fire bug" => firebug) (boost=2).
+    # * Then look for the query as a prefix of a name (boost=1.5).
+    # * Look for phrase matches inside the summary (boost=0.8).
+    # * Look for phrase matches inside the summary using language specific
+    #   analyzer (boost=0.6).
+    # * Look for phrase matches inside the description (boost=0.3).
+    # * Look for phrase matches inside the description using language
+    #   specific analyzer (boost=0.1).
+    # * Look for matches inside tags (boost=0.1).
+
+    def test_score_boost_name_match(self):
+        addons = [
+            amo.tests.addon_factory(
+                name='Merge Windows', type=amo.ADDON_EXTENSION),
+            amo.tests.addon_factory(
+                name='Merge All Windows', type=amo.ADDON_EXTENSION),
+            amo.tests.addon_factory(
+                name='All Downloader Professional', type=amo.ADDON_EXTENSION),
+        ]
+
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': 'merge windows'})
+        result = self.get_results(response, sort=False)
+
+        # Doesn't match "All Downloader Professional"
+        assert addons[2].pk not in result
+
+        # Matches both "Merge Windows" and "Merge All Windows" but can't
+        # correctly predict their exact scoring since we don't have
+        # an exact match that would prefer 'merge windows'. Both should be
+        # the first two matches though.
+        assert addons[1].pk in result[:2]
+        assert addons[0].pk in result[:2]
+
+        response = self.client.get(self.url, {'q': 'merge all windows'})
+        result = self.get_results(response, sort=False)
+
+        # Make sure we match 'All Downloader Professional' but it's
+        # term match frequency is much lower than the other two so it's
+        # last.
+        assert addons[2].pk == result[-1]
+
+        # Other two are first rank again.
+        assert addons[1].pk in result[:2]
+        assert addons[0].pk in result[:2]
+
+
 class TestPersonaSearch(SearchBase):
 
     def setUp(self):

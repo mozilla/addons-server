@@ -30,7 +30,7 @@ from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import (
     addon_to_dict, extract_filters, find_compatible_version)
 from olympia.search.views import (
-    AddonSuggestionsAjax, PersonaSuggestionsAjax, name_query)
+    AddonSuggestionsAjax, PersonaSuggestionsAjax)
 from olympia.versions.compare import version_int
 
 
@@ -370,7 +370,8 @@ class SearchView(APIView):
 
         query, qs_filters, params = extract_filters(query, opts)
 
-        qs = Addon.search().query(or_=name_query(query))
+        qs = Addon.search().filter_query_string(query)
+
         filters.update(qs_filters)
         if 'type' not in filters:
             # Filter by ALL types, which is really all types except for apps.
@@ -382,10 +383,9 @@ class SearchView(APIView):
 
         results = []
         for addon in qs:
-            compat_version = find_compatible_version(addon, app_id,
-                                                     params['version'],
-                                                     params['platform'],
-                                                     compat_mode)
+            compat_version = find_compatible_version(
+                addon, app_id, params['version'], params['platform'],
+                compat_mode)
             # Specific case for Personas (bug 990768): if we search providing
             # the Persona addon type (9), then don't look for a compatible
             # version.
