@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 21:26+0000\n"
+"PO-Revision-Date: 2017-08-15 11:59+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1792,9 +1792,8 @@ msgstr ""
 msgid "Version"
 msgstr "Phiên bản"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "Phiên bản Ứng dụng"
+msgstr "Phiên bản ứng dụng"
 
 msgid "Application Build"
 msgstr ""
@@ -2444,13 +2443,8 @@ msgstr "Thử nghiệm"
 msgid "Feeds, News, & Blogging"
 msgstr "Feed, Tin tức & Blog"
 
-#, fuzzy
 msgid "Performance"
-msgstr ""
-"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
-"Hiệu suất\n"
-"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
-"Hiệu năng"
+msgstr "Hiệu suất"
 
 msgid "Photos & Media"
 msgstr "Hình ảnh & Đa phương tiện"
@@ -3562,9 +3556,8 @@ msgstr "Trợ giúp qua Thư điện tử"
 msgid "Support website:"
 msgstr "Trang trợ giúp"
 
-#, fuzzy
 msgid "License:"
-msgstr "Giấy phép"
+msgstr "Giấy phép:"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code."
 msgstr ""
@@ -3673,9 +3666,8 @@ msgstr ""
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
-#, fuzzy
 msgid "Upload File"
-msgstr "Tải lên Tập tin Khác"
+msgstr "Tải lên tập tin"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -4015,7 +4007,6 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
 msgstr "Bắt đầu"
 
