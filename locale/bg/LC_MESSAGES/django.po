@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 11:31+0000\n"
+"PO-Revision-Date: 2017-08-15 11:45+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -469,10 +469,9 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> потребители"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} потребителя дневно"
+msgstr[0] "{0} потребител дневно"
 msgstr[1] "{0} потребителя дневно"
 
 #. {0} is the name of the add-on.
@@ -647,10 +646,10 @@ msgid "Add-on screenshot #{0}"
 msgstr "Снимка №{0} на добавката"
 
 msgid "Add-on home page"
-msgstr "Страница на добавката"
+msgstr "Страница"
 
 msgid "Support site"
-msgstr "Страница за поддръжка"
+msgstr "Поддръжка"
 
 msgid "Support E-mail"
 msgstr "Имейл за поддръжка"
@@ -704,16 +703,15 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
-"Тъй като държите контрола над вашия Firefox, изборът да разрешите или забраните тези заявки е ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в"
-" редки случаи може да бъде замесен и риск."
+"Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в "
+"редки случаи може да бъде замесен и риск."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Добавката иска следните права:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Някои добавки искат разрешение, за да извършат определени действия (например, добавка която управлява раздели би поискала право на достъп до системата от раздели на четеца)."
+msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
@@ -899,7 +897,7 @@ msgid "Browse all themes"
 msgstr "Преглед на всички теми"
 
 msgid "Add-ons Home Page"
-msgstr "Страница на добавката"
+msgstr "Страница"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -1082,9 +1080,8 @@ msgstr "Валидни версии на приложения"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -3548,7 +3545,7 @@ msgid "Support email:"
 msgstr "Имейл за поддръжка:"
 
 msgid "Support website:"
-msgstr "Страница за поддръжка:"
+msgstr "Поддръжка:"
 
 msgid "License:"
 msgstr "Лиценз:"
@@ -7810,7 +7807,7 @@ msgstr "Други езици"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Върни се към началната страница на {0}"
+msgstr "Назад към страницата на {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
