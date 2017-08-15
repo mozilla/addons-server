@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 13:45+0000\n"
+"PO-Revision-Date: 2017-08-15 07:54+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -664,9 +664,8 @@ msgid "Not available for your platform"
 msgstr "Не е налично за платформата ви"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Тази тема е несъвместима с вашата версия на {0}"
+msgstr "Добавката а несъвместима с тази версия на {0}."
 
 msgid "View other versions"
 msgstr "Други версии"

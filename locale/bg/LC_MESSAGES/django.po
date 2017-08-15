@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 07:36+0000\n"
+"PO-Revision-Date: 2017-08-15 08:01+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2757,7 +2757,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Започвайки с Firefox 53 новите разширения на страницата може да са само WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Остарелите разширения са несъвместими с Firefox 57 и по-нов. Използвайте maxVersion 56.* или по-малка."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
