@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 09:10+0000\n"
+"PO-Revision-Date: 2017-08-15 09:14+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -475,10 +475,9 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> usuarios"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Usuarios diarios"
+msgstr[0] "{0} Usuario diario"
 msgstr[1] "{0} Usuarios diarios"
 
 #. {0} is the name of the add-on.
@@ -721,10 +720,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Este complemento puede:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
-"Algunos complementos piden permiso para realizar determinadas funciones (por ejemplo, un complemento de gestión de pestañas pedirá permiso para acceder al sistema de pestañas de tu navegador)."
+msgstr "Algunos complementos solicitan permiso para realizar determinadas funciones. Como tú controlas tu propio Firefox, la decisión es solo tuya."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ten en cuenta que este complemento utiliza tecnología heredada, permitiendo el acceso a todas las funciones del navegador y a la información sin solicitar permiso."
@@ -1104,9 +1101,8 @@ msgstr ""
 "Los complementos enviados a Mozilla Add-ons deben tener un archivo de manifiesto con al menos una de las siguientes aplicaciones compatibles. Sólo se admiten las versiones listadas a continuación "
 "para estas aplicaciones."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1696,9 +1692,8 @@ msgstr "Más información acerca de la <a href=\"http://support.mozilla.com/kb/S
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Explora aún más proveedores de búsqueda en <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Crea tu propia</a> herramienta de búsqueda"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Crea tu propia</a> herramienta de búsqueda"
 
 msgid "Most Popular Extensions"
 msgstr "Extensiones más populares"
@@ -2791,7 +2786,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "A partir de la versión 53 de Firefox, las nuevas extensiones de este sitio solo pueden ser WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Las extensiones heredadas no son compatibles con Firefox 57 o superior. Utiliza una maxVersion de 56.* o inferior."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
@@ -3025,7 +3020,7 @@ msgstr "Usa el campo de debajo para subir tu paquete de complemento."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Te en cuenta que esta herramienta solo funciona con complementos heredados. <a href=\"%(webext_doc_url)s\">Aquí</a> encontrarás información muy detallada sobre las APIs de WebExtension."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Tras la subida, se ejecuta una serie de pruebas de validación automáticas para comprobar la compatibilidad con la siguiente versión de la aplicación:"
@@ -3215,7 +3210,6 @@ msgstr "Marca esta casilla si la función principal de tu complemento requiere c
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Este complemento necesita pago, servicios o software de pago o hardware adicional."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Este complemento no requiere ningún pago adicional, servicios de pago o software ni ningún hardware extra."
 
@@ -8275,9 +8269,8 @@ msgstr "mi complemento basado en el SDK está actualizado con éxito"
 msgid "someone writes a review of my add-on"
 msgstr "alguien escribe una valoración de mi complemento"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "mantente al día de las noticias y eventos relacionados con los desarrolladores de complementos"
+msgstr "mantente al día de las noticias y eventos relacionados con los desarrolladores de complementos (incluido el boletín de noticias de about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilidad de mi complemento no puede ser actualizada"
