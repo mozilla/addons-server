@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 14:12+0000\n"
+"PO-Revision-Date: 2017-08-15 07:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1664,9 +1664,8 @@ msgstr "Научете повече за <a href=\"http://support.mozilla.com/kb
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Разгледайте още повече търсещи машини на <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Направете собствен</a> инструмент за търсене"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Направете собствен</a> инструмент за търсене"
 
 msgid "Most Popular Extensions"
 msgstr "Най-известните разширения"
