@@ -1,18 +1,14 @@
 from django import http
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.utils import translation
 from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
-
-import waffle
 
 import olympia.core.logger
 from olympia import amo
 from olympia.bandwagon.views import get_filter as get_filter_view
 from olympia.browse.views import personas_listing as personas_listing_view
-from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
 from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
@@ -21,7 +17,6 @@ from olympia.bandwagon.models import Collection
 from olympia.versions.compare import dict_from_int, version_dict, version_int
 
 from .forms import ESSearchForm, SecondarySearchForm
-from .filters import get_locale_analyzer
 
 
 DEFAULT_NUM_COLLECTIONS = 20
