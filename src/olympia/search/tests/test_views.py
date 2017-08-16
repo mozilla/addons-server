@@ -622,21 +622,21 @@ class TestESSearch(SearchBase):
         assert addon.pk not in self.get_results(response)
 
     def test_webextension_boost(self):
-        web_extension = self.addons[1]
+        web_extension = list(sorted(
+            self.addons, key=lambda x: x.name, reverse=True))[0]
         web_extension.current_version.files.update(is_webextension=True)
         web_extension.save()
         self.refresh()
 
-        response = self.client.get(self.url, {'q': 'addon'})
+        response = self.client.get(self.url, {'q': 'Addon'})
         result = self.get_results(response, sort=False)
         assert result[0] != web_extension.pk
 
         create_switch('boost-webextensions-in-search')
         # The boost chosen should have made that addon the first one.
-        response = self.client.get(self.url, {'q': 'addon'})
+        response = self.client.get(self.url, {'q': 'Addon'})
         result = self.get_results(response, sort=False)
         assert result[0] == web_extension.pk
-
 
     # * Prefer text matches first, using the standard text analyzer (boost=4).
     # * Then text matches, using language-specific analyzer (boost=2.5).
@@ -1227,17 +1227,17 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
     def test_webextension_boost(self):
         public_addons = Addon.objects.public().all()
-        web_extension = public_addons[1]
+        web_extension = public_addons.order_by('name')[0]
         web_extension.current_version.files.update(is_webextension=True)
         web_extension.save()
         self.refresh()
 
-        data = self.search_addons('q=addon', public_addons)
+        data = self.search_addons('q=Addon', public_addons)
         assert int(data[0]['id']) != web_extension.id
 
         create_switch('boost-webextensions-in-search')
         # The boost chosen should have made that addon the first one.
-        data = self.search_addons('q=addon', public_addons)
+        data = self.search_addons('q=Addon', public_addons)
         assert int(data[0]['id']) == web_extension.id
 
 
