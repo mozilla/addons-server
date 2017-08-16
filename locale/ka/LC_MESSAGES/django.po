@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 13:50+0000\n"
+"PO-Revision-Date: 2017-08-16 13:59+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -543,7 +543,7 @@ msgid "[Warning]"
 msgstr ""
 
 msgid "Permissions"
-msgstr "უფლებები"
+msgstr "ნებართვები"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "შემმუშავებლების მიერ აღნიშნულია, რომ ეს დამატება არის საცდელი"
@@ -677,7 +677,7 @@ msgid "close"
 msgstr "დახურვა"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "დამატებების ნაწილი ითხოვს უფლებებს გარკვეული მოქმედებებისთვის (მაგალითად: ჩანართების მმართველი დამატება, მოითხოვს ბრაუზერის ჩანართების სისტემასთან წვდომას და ა.შ.)."
+msgstr "დამატებების ნაწილი ითხოვს ნებართვებს, გარკვეული მოქმედებებისთვის (მაგალითად: ჩანართების მმართველი დამატება, მოითხოვს ბრაუზერის ჩანართების სისტემასთან წვდომას და ა.შ.)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -689,7 +689,7 @@ msgid "This add-on can:"
 msgstr "ეს დამატება შეიძლება:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "დამატებების ნაწილი ითხოვს უფლებებს გარკვეული მოქმედებებისთვის. Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, მისცემთ უფლებას, თუ არა."
+msgstr "დამატებების ნაწილი ითხოვს ნებართვებს, გარკვეული მოქმედებებისთვის. Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, დართავთ ნებას, თუ არა."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "გაითვალისწინეთ, რომ ეს დამატება იყენებს მოძველებულ ტექნოლოგიებს, რაც აძლევს წვდომის საშუალებას ბრაუზერის ყველა ფუნქციასა და მონაცემზე, ნებართვის მოთხოვნის გარეშე."
@@ -2281,7 +2281,7 @@ msgid "Download Management"
 msgstr "ჩამოტვირთვების მართვა"
 
 msgid "Feeds, News & Blogging"
-msgstr "სიახლეების ლენტები და ბლოგები"
+msgstr "სიახლეების არხები & სვეტები"
 
 msgid "Games & Entertainment"
 msgstr "თამაშები და გართობა"
@@ -2371,7 +2371,7 @@ msgid "Video"
 msgstr "ვიდეო"
 
 msgid "Abstract"
-msgstr ""
+msgstr "აბსტრაქტული"
 
 msgid "Causes"
 msgstr ""
@@ -5151,7 +5151,7 @@ msgid "Compare"
 msgstr ""
 
 msgid "Permissions:"
-msgstr "უფლებები:"
+msgstr "ნებართვები:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6869,7 +6869,7 @@ msgstr ""
 "განახლებებს ამოწმებს და განუხილველმა დამატებებმა, შესაძლოა დააზიანოს თქვენი სისტემა."
 
 msgid "How do I report an inappropriate or spam user review?"
-msgstr "როგორ უნდა გავგზავნო მოხსენება, მომხმარებლების მიერ დაწერილი შეუფერებელი, ან სარეკლამო ხასიათის მიმოხილვების შესახებ?"
+msgstr "როგორ უნდა გამოვგზავნო მოხსენება, მომხმარებლის მიერ დაწერილი შეუფერებელი, ან სარეკლამო ხასიათის მიმოხილვის შესახებ?"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
