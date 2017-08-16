@@ -1564,7 +1564,7 @@ msgstr "რჩეული დამატებები"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "აგერ, რამდენიმე რჩეული დამატება, რომელიც დაგეხმარებათ %s-ის მორგების დაწყებაში."
+msgstr "აგერ, რამდენიმე რჩეული დამატება, რომელიც დაგეხმარებათ %(app)s-ის მორგების დაწყებაში."
 
 msgid "Install Dictionary"
 msgstr "ლექსიკონის დაყენება"
