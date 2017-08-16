@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 19:23+0000\n"
+"PO-Revision-Date: 2017-08-16 19:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6939,7 +6939,7 @@ msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(
 msgstr "გთხოვთ გაეცნოთ ჩვენს <a href=\"%(faq_url)s\">შემმუშავებელთა ხდკ</a> და <a href=\"%(hub_url)s\">შემმუშავებლების</a> გვერდებს, დამატებების შემუშავებასთან დაკავშირებულ კითხვებზე პასუხის მისაღებად."
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "კიდევ გაქვთ კითხვები?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
