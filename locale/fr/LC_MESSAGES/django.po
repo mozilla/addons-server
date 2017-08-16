@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-14 01:46+0000\n"
+"PO-Revision-Date: 2017-08-16 15:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1170,9 +1170,8 @@ msgstr "Cette adresse est déjà utilisée par une autre collection"
 msgid "Icons must be either PNG or JPG."
 msgstr "Les icônes doivent être en PNG ou JPG."
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Cette adresse est déjà utilisée par une autre collection"
+msgstr "Cette adresse est déjà utilisée par une autre collection."
 
 #, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
@@ -4930,9 +4929,8 @@ msgstr "besoin d’une super-revue"
 msgid "commented"
 msgstr "a été commenté"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "a été approuvé"
+msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6594,16 +6592,11 @@ msgstr ""
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Comment puis-je tester la compatibilité avec la dernière version du logiciel Mozilla ?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Afin d’assurer la compatibilité avec les derniers logiciels Mozilla, il est important de télécharger les mises à jour dès qu’elles sont disponibles et de tester votre module pour vous assurez qu’il "
-"continue de fonctionner correctement. Dans de nombreux cas, la version la plus récente est la version beta. Parfois, des modifications importantes sont introduites et impactent les fonctionnalités "
-"de votre module, il est donc important de s’impliquer activement dans les tests des versions beta afin que les utilisateurs de votre module ne soient pas impactés de façon négative lors du lancement"
-" de la version finale du logiciel Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "J’ai besoin d’aide pour construire mon module. Où puis-je en trouver ?"
