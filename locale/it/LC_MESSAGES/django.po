@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-14 08:21+0000\n"
+"PO-Revision-Date: 2017-08-14 08:27+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -477,7 +477,7 @@ msgstr "<b>{0}</b> utenti"
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "{0} utente giornaliero"
-msgstr[1] ""
+msgstr[1] "{0} utenti giornalieri"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -1106,9 +1106,8 @@ msgstr ""
 "Nel file manifesto dei componenti aggiuntivi caricati su Mozilla Add-ons deve essere indicata la compatibilità con almeno una delle applicazioni riportate qui di seguito. Non segnalare compatibilità"
 " con versioni diverse da quelle indicate."
 
-#, fuzzy
 msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -3224,9 +3223,8 @@ msgstr "Spunta la casella in caso le funzionalità principali del componente sia
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Il componente aggiuntivo è a pagamento, contiene servizi o software a pagamento oppure richiede hardware aggiuntivo per funzionare."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Il componente aggiuntivo non addebita pagamenti aggiuntivi, non contiene servizi o software a pagamento né necessita di hardware aggiuntivi per funzionare."
+msgstr "Il componente aggiuntivo non richiede pagamenti supplementari, non contiene servizi o software a pagamento né necessita di hardware aggiuntivi per funzionare."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -8237,9 +8235,8 @@ msgstr "il mio componente aggiuntivo basato su SDK si è aggiornato correttament
 msgid "someone writes a review of my add-on"
 msgstr "qualcuno scrive una recensione del mio componente aggiuntivo"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "Rimani aggiornato su notizie e eventi di rilievo per gli sviluppatori di componenti aggiuntivi"
+msgstr "Rimani aggiornato su notizie e eventi di rilievo per gli sviluppatori di componenti aggiuntivi (inclusa la newsletter about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilità del mio componente aggiuntivo non può essere aggiornata"
