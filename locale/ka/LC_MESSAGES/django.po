@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 17:31+0000\n"
+"PO-Revision-Date: 2017-08-16 17:35+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3236,10 +3236,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებმიმომხილველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "ამ დამატების პირველწყარო კოდი საჯაროდ ხელმისაწვდომია."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "არა, ამ დამატების პირველწყარო კოდი არაა საჯაროდ ხელმისაწვდომი."
 
 msgid "Public Stats?"
 msgstr ""
