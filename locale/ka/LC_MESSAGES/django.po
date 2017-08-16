@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 03:10+0000\n"
+"PO-Revision-Date: 2017-08-16 03:17+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -133,7 +133,7 @@ msgid_plural "You can have only {0} categories."
 msgstr[0] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "სხვადასხვა კატეგორიის დამატებით კატეგორიებთან გაერთიანება შეუძლებელია."
+msgstr "კატეგორია \"სხვადასხვა\", ვერ გაერთიანდება სხვა კატეგორიებთან."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -2317,7 +2317,7 @@ msgid "Large"
 msgstr ""
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "სხვადასხვა"
 
 msgid "Modern"
 msgstr ""
@@ -2437,7 +2437,7 @@ msgid "Chat and IM"
 msgstr "საუბარი და შეტყობინებები"
 
 msgid "Message Composition"
-msgstr "შეტყობინების შემადგენლობა"
+msgstr "შეტყობინების გაგზავნა"
 
 msgid "Contacts"
 msgstr "კონტაქტები"
@@ -2446,13 +2446,13 @@ msgid "Folders and Filters"
 msgstr "საქაღალდეები და ფილტრები"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "შეტანა/გატანა"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "სიახლეების და ცნობების წამკითხველი"
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "პირადულობა და უსაფრთხოება"
 
 msgid "Downloading and File Management"
 msgstr ""
@@ -4514,7 +4514,7 @@ msgid "and"
 msgstr ""
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "გაფილტვრა ტიპის/მოქმედების მიხედვით"
 
 msgid "Passed automatic validation"
 msgstr ""
@@ -4790,7 +4790,7 @@ msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr "მუშაობს"
+msgstr "თავსებადია"
 
 msgid "Visibility"
 msgstr "ხილულობა"
@@ -7489,7 +7489,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "გატანა"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
