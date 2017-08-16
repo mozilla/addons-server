@@ -204,16 +204,13 @@ class SearchQueryFilter(BaseFilterBackend):
             (query.MatchPhrase, {
                 'query': search_query, 'boost': 4,
                 'slop': 1}),
+            (query.Fuzzy, {
+                'value': search_query, 'boost': 2,
+                'prefix_length': 4}),
             (query.Prefix, {
                 'value': search_query, 'boost': 1.5}),
         ]
 
-        # Only add fuzzy queries if the search query is a single word.
-        # It doesn't make sense to do a fuzzy query for multi-word queries.
-        if ' ' not in search_query:
-            rules.append(
-                (query.Fuzzy, {'value': search_query, 'boost': 2,
-                               'prefix_length': 4}))
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
