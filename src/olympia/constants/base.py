@@ -346,7 +346,11 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {"requires_chrome": False, "listed": True},
+    "metadata": {
+        "requires_chrome": False,
+        "listed": True,
+        "is_webextension": True
+    },
     "messages": [
         {"id": ["validator", "unexpected_exception"],
          "message": "Sorry, we couldn't load your WebExtension.",

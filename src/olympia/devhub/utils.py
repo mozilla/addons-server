@@ -241,7 +241,6 @@ class Validator(object):
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
-
             validate = self.validate_upload(file_, channel, is_webextension)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from

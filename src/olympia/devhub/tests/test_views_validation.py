@@ -15,6 +15,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.devhub.tasks import compatibility_check
+from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
@@ -23,7 +24,7 @@ from olympia.users.models import UserProfile
 from olympia.zadmin.models import ValidationResult
 
 
-class TestUploadValidation(BaseUploadTest):
+class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
     fixtures = ['base/users', 'devhub/invalid-id-uploaded-xpi.json']
 
     def setUp(self):
@@ -50,7 +51,7 @@ class TestUploadValidation(BaseUploadTest):
         doc = pq(resp.content)
         assert doc('td').text() == 'December  6, 2010'
 
-    def test_upload_processed_validation(self):
+    def test_upload_processed_validation_error(self):
         addon_file = open(
             'src/olympia/files/fixtures/files/validation-error.xpi')
         response = self.client.post(reverse('devhub.upload'),
@@ -58,7 +59,12 @@ class TestUploadValidation(BaseUploadTest):
                                      'upload': addon_file})
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
-        assert upload.processed_validation['errors'] == 1
+        assert upload.processed_validation['errors'] == 2
+        assert upload.processed_validation['messages'][0]['id'] == [
+            u'validation', u'messages', u'legacy_addons_restricted']
+        assert upload.processed_validation['messages'][1]['id'] == [
+            u'testcases_content', u'test_packed_packages',
+            u'jar_subpackage_corrupt']
 
     def test_login_required(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
