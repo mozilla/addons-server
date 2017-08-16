@@ -211,7 +211,6 @@ class SearchQueryFilter(BaseFilterBackend):
                 'value': search_query, 'boost': 1.5}),
         ]
 
-
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for k, v in rules:

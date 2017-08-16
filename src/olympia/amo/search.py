@@ -4,7 +4,7 @@ from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search
+from elasticsearch_dsl import Search, Q
 
 import olympia.core.logger
 
@@ -104,14 +104,15 @@ class ES(object):
             return list(new)[0]
 
     def _build_query(self):
-        filters = []
-        queries = []
-        sort = []
+        query = Search()
+
         source = ['id']
+        sort = []
+
         aggregations = {}
         query_string = None
-
         as_list = as_dict = False
+
         for action, value in self.steps:
             if action == 'order_by':
                 for key in value:
@@ -127,9 +128,9 @@ class ES(object):
                     source.extend(value)
                 as_list, as_dict = False, True
             elif action == 'query':
-                queries.extend(self._process_queries(value))
+                query = self._process_queries(query, value)
             elif action == 'filter':
-                filters.extend(self._process_filters(value))
+                query = self._process_filters(query, value)
             elif action == 'source':
                 source.extend(value)
             elif action == 'aggregate':
@@ -139,25 +140,7 @@ class ES(object):
             else:
                 raise NotImplementedError(action)
 
-        if len(queries) > 1:
-            qs = {'bool': {'must': queries}}
-        elif queries:
-            qs = queries[0]
-        else:
-            qs = {"match_all": {}}
-
-        if filters:
-            if len(filters) > 1:
-                filters = {'bool': {'must': filters}}
-
-            qs = {
-                "bool": {
-                    "must": qs,
-                    "filter": filters
-                }
-            }
-
-        query = Search.from_dict({'query': qs})
+        print(query.to_dict())
 
         # If we have a raw query string we are going to apply all sorts
         # of boosts and filters to improve relevance scoring.
@@ -171,19 +154,22 @@ class ES(object):
             query = SearchQueryFilter().apply_search_query(
                 query_string, query)
 
+        if sort:
+            query.sort(sort)
+
+        if source:
+            query.source(source)
+
         body = query.to_dict()
 
-        if sort:
-            body['sort'] = sort
+        # These are manually added for now to simplify a partial port to
+        # elasticsearch-dsl
         if self.start:
             body['from'] = self.start
         if self.stop is not None:
             body['size'] = self.stop - self.start
         if aggregations:
             body['aggs'] = aggregations
-
-        if source:
-            body['_source'] = source
 
         self.source, self.as_list, self.as_dict = source, as_list, as_dict
         return body
@@ -194,54 +180,53 @@ class ES(object):
         else:
             return string, None
 
-    def _process_filters(self, value):
-        rv = []
+    def _process_filters(self, query, value):
         value = dict(value)
         or_ = value.pop('or_', [])
+
         for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
-                rv.append({'term': {key: val}})
+                query = query.filter('term', **{key: val})
             elif field_action == 'exists':
                 if val is not True:
                     raise NotImplementedError(
                         '<field>__exists only works with a "True" value.')
-                rv.append({'exists': {'field': key}})
+                query = query.filter('exists', **{'field': key})
             elif field_action == 'in':
-                rv.append({'terms': {key: val}})
+                query = query.filter('terms', **{key: val})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
-                rv.append({'range': {key: {field_action: val}}})
+                query = query.filter('range', **{key: {field_action: val}})
             elif field_action == 'range':
                 from_, to = val
-                rv.append({'range': {key: {'gte': from_, 'lte': to}}})
-        if or_:
-            rv.append({'should': self._process_filters(or_.items())})
-        return rv
+                query = query.filter('range', **{key: {'gte': from_, 'lte': to}})
 
-    def _process_queries(self, value):
-        rv = []
+        if or_:
+            query = query | self._process_filters(Search(), or_.items())
+
+        return query
+
+    def _process_queries(self, query, value):
         value = dict(value)
         or_ = value.pop('or_', {})
-        extend = value.pop('extend_', [])
 
         for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
-                rv.append({'term': {key: val}})
+                query &= Q('term', **{key: val})
             elif field_action in ('text', 'match'):
-                rv.append({'match': {key: val}})
+                query &= Q('match', **{key: val})
             elif field_action in ('prefix', 'startswith'):
-                rv.append({'prefix': {key: val}})
+                query &= Q('prefix', **{key: val})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
-                rv.append({'range': {key: {field_action: val}}})
+                query &= Q('range', **{key: {field_action: val}})
             elif field_action == 'fuzzy':
-                rv.append({'fuzzy': {key: val}})
-        if or_:
-            rv.append({'bool': {'should': self._process_queries(or_.items())}})
-        if extend:
-            rv.extend(extend)
+                query &= Q('fuzzy', **{key: val})
 
-        return rv
+        if or_:
+            query = query | self._process_queries(Search(), or_.items())
+
+        return query
 
     def _do_search(self):
         if not self._results_cache:
@@ -271,9 +256,6 @@ class ES(object):
             log.error(build_body)
             raise
 
-        import json
-
-        print(json.dumps(hits))
         statsd.timing('search.es.took', hits['took'])
         log.debug('[%s] [%s] %s' % (hits['took'], timer.ms, build_body))
         return hits
