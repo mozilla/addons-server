@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 02:50+0000\n"
+"PO-Revision-Date: 2017-08-16 03:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -640,7 +640,7 @@ msgstr "ბოლო განახლების თარიღი:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "გამოშვებულია <a href=\"%(url)s\">%(name)s</a>-ის თანახმად"
+msgstr "გამოშვებულია <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "საკუთარი ლიცენზიით"
@@ -2428,22 +2428,22 @@ msgid "User Interface"
 msgstr ""
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "იერსახე და მორგება"
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "კალენდარი, თარიღი/დრო"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "საუბარი და შეტყობინებები"
 
 msgid "Message Composition"
 msgstr "შეტყობინების შემადგენლობა"
 
 msgid "Contacts"
-msgstr ""
+msgstr "კონტაქტები"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "საქაღალდეები და ფილტრები"
 
 msgid "Import/Export"
 msgstr ""
@@ -4847,7 +4847,7 @@ msgid "Updates"
 msgstr ""
 
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "შემოწმებული მიმოხილვები"
 
 msgid "Auto Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
@@ -4875,7 +4875,7 @@ msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "ფილტრი"
 
 msgid "Date"
 msgstr ""
@@ -4934,21 +4934,21 @@ msgid "{0}%%"
 msgstr ""
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "სულ მიმოხილვები"
 
 msgid "Reviews This Month"
-msgstr ""
+msgstr "მიმოხილვები ამ თვეში"
 
 msgid "New Reviewers"
 msgstr "ახალი მიმომხილველები"
 
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "თქვენ ხართ #{0} ადგილზე, {1} მიმოხილვით"
 
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
+msgstr[0] "შემოწმებული მიმოხილვები ({num})"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -4978,7 +4978,7 @@ msgid "Range"
 msgstr ""
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "თქვენი მიმოხილვები"
 
 msgid "By {user_name}"
 msgstr ""
@@ -5017,7 +5017,7 @@ msgid "clear search"
 msgstr ""
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "მიმოხილვების დამუშავება"
 
 msgid "Moderation actions:"
 msgstr ""
@@ -5031,7 +5031,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
@@ -5132,7 +5132,7 @@ msgid "Hide Comments"
 msgstr ""
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
@@ -5205,15 +5205,15 @@ msgid "Reason"
 msgstr ""
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "ამ დროისთვის მიმოხილვები არაა."
 
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "{num} თემა განსახილველია "
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "{num} შერჩეულია განსახილველად"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
@@ -5324,7 +5324,7 @@ msgstr[0] "განახლებები ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "შემოწმებული მიმოხილვები ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -6306,7 +6306,7 @@ msgstr ""
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "დამატებას გააჩნია {0}-ზე მეტი მიმოხილვა"
 
 msgid "Other Contributors"
 msgstr ""
@@ -6524,7 +6524,7 @@ msgid ""
 msgstr ""
 
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "როგორ ხდება ჩემი დამატების განხილვა?"
 
 #, python-format
 msgid ""
@@ -6618,7 +6618,7 @@ msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
 
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "არა. დამატებაზე უარყოფით მიმოხილვებს არ ვშლით, თუ მცდარი არ აღმოჩნდება."
 
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
@@ -7134,7 +7134,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "%s-ის მიმოხილვები"
 
 msgid "Review History for this Addon"
 msgstr ""
@@ -7371,7 +7371,7 @@ msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "<b>{0}</b> შედეგი"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "გაფილტრული შედეგები"
 
 msgid "Category"
 msgstr "კატეგორია"
@@ -7708,7 +7708,7 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "გარდა მოცემული <a href=\"https://www.mozilla.org/about/legal/\">შენიშვნებისა</a>, ამ საიტზე არსებული შიგთავსი ვრცელდება <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative "
-"Commons Attribution Share-Alike v3.0 ლიცენზიით </a>, ან უფრო ახალი ვერსიით."
+"Commons Attribution Share-Alike v3.0 ლიცენზიით</a>, ან უფრო ახალი ვერსიით."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "გაეცანით <b>დამატებებს</b>"
