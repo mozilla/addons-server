@@ -104,7 +104,7 @@ class ES(object):
             return list(new)[0]
 
     def _build_query(self):
-        query = Search()
+        query = Q()
 
         source = ['id']
         sort = []
@@ -128,9 +128,9 @@ class ES(object):
                     source.extend(value)
                 as_list, as_dict = False, True
             elif action == 'query':
-                query = self._process_queries(query, value)
+                query &= self._process_queries(value)
             elif action == 'filter':
-                query = self._process_filters(query, value)
+                query &= self._process_filters(value)
             elif action == 'source':
                 source.extend(value)
             elif action == 'aggregate':
@@ -140,8 +140,6 @@ class ES(object):
             else:
                 raise NotImplementedError(action)
 
-        print(query.to_dict())
-
         # If we have a raw query string we are going to apply all sorts
         # of boosts and filters to improve relevance scoring.
         #
@@ -150,15 +148,17 @@ class ES(object):
         # scoring works.
         from olympia.search.filters import SearchQueryFilter
 
+        query = Search().query(query)
+
         if query_string:
             query = SearchQueryFilter().apply_search_query(
                 query_string, query)
 
         if sort:
-            query.sort(sort)
+            query = query.sort(*sort)
 
         if source:
-            query.source(source)
+            query = query.source(source)
 
         body = query.to_dict()
 
@@ -180,35 +180,32 @@ class ES(object):
         else:
             return string, None
 
-    def _process_filters(self, query, value):
+    def _process_filters(self, value):
         value = dict(value)
-        or_ = value.pop('or_', [])
+        filters = []
 
         for key, val in value.items():
             key, field_action = self._split(key)
             if field_action is None:
-                query = query.filter('term', **{key: val})
+                filters.append(Q('term', **{key: val}))
             elif field_action == 'exists':
                 if val is not True:
                     raise NotImplementedError(
                         '<field>__exists only works with a "True" value.')
-                query = query.filter('exists', **{'field': key})
+                filters.append(Q('exists', **{'field': key}))
             elif field_action == 'in':
-                query = query.filter('terms', **{key: val})
+                filters.append(Q('terms', **{key: val}))
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
-                query = query.filter('range', **{key: {field_action: val}})
+                filters.append(Q('range', **{key: {field_action: val}}))
             elif field_action == 'range':
                 from_, to = val
-                query = query.filter('range', **{key: {'gte': from_, 'lte': to}})
+                filters.append(Q('range', **{key: {'gte': from_, 'lte': to}}))
 
-        if or_:
-            query = query | self._process_filters(Search(), or_.items())
+        return Q('bool', filter=filters)
 
-        return query
-
-    def _process_queries(self, query, value):
+    def _process_queries(self, value):
         value = dict(value)
-        or_ = value.pop('or_', {})
+        query = Q()
 
         for key, val in value.items():
             key, field_action = self._split(key)
@@ -222,9 +219,6 @@ class ES(object):
                 query &= Q('range', **{key: {field_action: val}})
             elif field_action == 'fuzzy':
                 query &= Q('fuzzy', **{key: val})
-
-        if or_:
-            query = query | self._process_queries(Search(), or_.items())
 
         return query
 
