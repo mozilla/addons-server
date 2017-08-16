@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-14 08:27+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-08-16 08:19+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -720,14 +720,13 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Questo componente aggiuntivo può:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
-"Alcuni componenti aggiuntivi richiedono permessi speciali per svolgere determinate operazioni (ad esempio, un componente per la gestione delle schede chiederà il permesso di accedere alle funzioni e"
-" ai dati interni del browser adibiti alle schede)."
+"Alcuni componenti aggiuntivi richiedono permessi speciali per svolgere determinate operazioni. Avendo tu il pieno controllo su Firefox, la scelta di accordare o negare tali permessi spetta "
+"unicamente a te."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Attenzione: poichè utilizza una tecnologia obsoleta, questo componente aggiuntivo non richiede l’autorizzazione dell’utente per accedere ai dati e alle funzioni del browser."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1696,9 +1695,8 @@ msgstr "Scopri ulteriori informazioni sulla <a href=\"http://support.mozilla.com
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Scopri altri provider di ricerca su <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-#, fuzzy
 msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Crea un plugin di ricerca</a> personalizzato"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Scopri come creare un plugin di ricerca</a> personalizzato"
 
 msgid "Most Popular Extensions"
 msgstr "Estensioni più popolari"
@@ -2793,7 +2791,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettate solo nuove estensioni realizzate con WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Le estensioni che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -3033,7 +3031,7 @@ msgstr "Utilizza il campo sottostante per caricare il pacchetto del tuo componen
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Questo strumento è compatibile unicamente con le estensioni che utilizzano tecnologie obsolete. Per una documentazione esaustiva sulle API <a href=\"%(webext_doc_url)s\">visita questa pagina</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Una volta terminato il caricamento, verrà eseguita una serie di test automatici per verificare la compatibilità con la seguente versione dell’applicazione:"
