@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 13:59+0000\n"
+"PO-Revision-Date: 2017-08-16 17:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -728,7 +728,7 @@ msgid "This add-on has been disabled by an administrator."
 msgstr "ეს დამატება შეზღუდულია ადმინისტრატორის მიერ."
 
 msgid "Source Code License for {addon}"
-msgstr "{addon}-ის საწყისი კოდის ლიცენზია"
+msgstr "{addon}-ის პირველწყარო კოდის ლიცენზია"
 
 #. The License for this add-on.
 msgid "Source Code License"
@@ -2043,7 +2043,7 @@ msgid "Approval notes changed"
 msgstr ""
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr "{addon} {version}-ის საწყისი კოდი ატვირთულია."
+msgstr "{addon} {version}-ის პირველწყარო კოდი ატვირთულია."
 
 msgid "Source code uploaded"
 msgstr "პირველწყარო კოდი ატვირთულია"
@@ -6879,14 +6879,14 @@ msgstr ""
 "მიმოხილვაზე\" და მიუთითეთ მიზეზი. ჩვენი სარედაქციო გუნდი გადახედავს მიმოხილვას და მიიღებს საჭირო ზომებს."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "როგორ გამოვგზავნო მოხსენება ხარვეზის შესახებ, ან როგორ დავუკავშირდე Mozilla-ს დამატებების გუნდს?"
 
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "გთხოვთ, ეწვიოთ ჩვენს <a href=\"%(contact_url)s\">საკონტაქტო გვერდს</a>."
 
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "რა არის პირველწყარო კოდის ლიცენზია?"
 
 #, python-format
 msgid ""
