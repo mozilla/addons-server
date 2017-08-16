@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 18:46+0000\n"
+"PO-Revision-Date: 2017-08-16 19:12+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1273,7 +1273,7 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "ჩემი რჩეული დამატებები"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
@@ -6894,28 +6894,31 @@ msgid ""
 "lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
 "like the GPL or BSD licenses instead of making up their own."
 msgstr ""
+"დამატების პირველწყარო კოდზე, შემქმნელს გააჩნია ექსკლუზიური საავტორო უფლებები, თუ სხვაგვარად არ არის განსაზღვრული პირველწყარო კოდის ლიცენზიაში. ამ საიტზე არსებული დამატებების უმეტესობას გააჩნია <a "
+"href=\"%(url)s\" lang=\"en\">ღია წყაროს ლიცენზია</a>, რაც ნიშნავს, რომ პირველწყარო კოდი საჯაროდაა ხელმისაწვდომი და ავტორის მიერ დადგენილი პირობებით, შესაძლებელია მისი გავრცელება და ხელახლა "
+"გამოყენება. ავტორების უმეტესობა, საკუთარის შექმნის ნაცვლად ირჩევს ხოლმე, უკვე ფართოდ გავრცელებულ ღია წყაროს ლიცენზიებს, როგორიცაა GPL და BSD ლიცენზიები."
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "Firefox და Mozilla-ს სხვა პროგრამები არის <a href=\"%(url)s\">ღია წყაროს კოდით</a>."
 
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "კრებულები და რჩეულები"
 
 msgid "What is a collection?"
-msgstr ""
+msgstr "რა არის კრებული?"
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr "კრებულები არის, ნებისმიერი მომხმარებლის მიერ, გარკვეული ნიშნის მიხედვით დაჯგუფებული დამატებები, სხვებისთვის გასაზიარებლად."
+msgstr "კრებული არის, ნებისმიერი მომხმარებლის მიერ, გარკვეული ნიშნის მიხედვით დაჯგუფებული დამატებები, სხვებისთვის გასაზიარებლად."
 
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "რა იგულისხმება ჩემს რჩეულ კრებულებში?"
 
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
+msgstr "რჩეული დამატებები არის დამატებები, რომელიც ჩანიშნული გაქვთ, მარტივად წვდომისთვის. დამატების რჩეულ კრებულში შეტანა შეგიძლიათ, გაფართოების გვერდზე არსებული ღილაკით \"რჩეულებში დამატება\"."
 
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "დამატებები მობილურისთვის"
 
 msgid "What are mobile add-ons?"
 msgstr ""
