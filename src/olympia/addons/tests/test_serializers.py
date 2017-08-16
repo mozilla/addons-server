@@ -15,7 +15,7 @@ from olympia.addons.serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
-    SimpleVersionSerializer, VersionSerializer)
+    LicenseSerializer, SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
@@ -667,6 +667,33 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license'] is None
+
+    def test_license_no_url(self):
+        addon = addon_factory()
+        self.version = addon.current_version
+        license = self.version.license
+        license.update(url=None)
+        result = self.serialize()
+        assert result['id'] == self.version.pk
+        assert result['license']
+        assert result['license']['id'] == license.pk
+        assert result['license']['url'] == absolutify(
+            self.version.license_url())
+
+    def test_license_serializer_no_url_no_parent(self):
+        # This should not happen (LicenseSerializer should always be called
+        # from a parent VersionSerializer) but we don't want the API to 500
+        # if that does happens.
+        addon = addon_factory()
+        self.version = addon.current_version
+        license = self.version.license
+        license.update(url=None)
+        result = LicenseSerializer(
+            context={'request': self.request}).to_representation(license)
+        assert result['id'] == license.pk
+        # LicenseSerializer is unable to find the Version, so it falls back to
+        # None.
+        assert result['url'] is None
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version
