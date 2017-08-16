@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 03:17+0000\n"
+"PO-Revision-Date: 2017-08-16 03:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6689,7 +6689,7 @@ msgstr ""
 "არა დამატება თავსებადი, მოცემულ ვერსიასთან."
 
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "რა განსხვავებაა სხვადასხვა ტიპის დამატებებს შორის?"
 
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
@@ -6700,12 +6700,12 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong> შემატეთ ახალი შესაძლებლობები %(app_name)s-ს, ან შეცვალეთ მისი არსებული ფუნქციონალი. გაფართოებები შეგიძლიათ გამოიყენოთ რეკლამების "
-"შეზღუდვისთვის, საიტებიდან ვიდეოების ჩამოტვირთვისთვის, სოციალურ ქსელებთან მჭიდროდ დასაკავშირებლად და იმ შესაძლებლობების დასამატებლად, რაც სხვა პროგრამებში გხვდებათ."
+"<strong><a href=\"%(browse_url)s\">გაფართოებები</a></strong> მატებს ახალი შესაძლებლობებს %(app_name)s-ს, ან ცვლის მის არსებულ ფუნქციონალს. გაფართოებები გამოიყენება რეკლამების შეზღუდვისთვის, "
+"საიტებიდან ვიდეოების ჩამოსატვირთად, სოციალურ ქსელებთან მჭირდო კავშირისთვის და იმ შესაძლებლობების დასამატებლად, რაც სხვა პროგრამებში გხვდებათ."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">სრული თემები</a></strong> მთლიანად ცვლის %(app_name)s-ის იერსახეს, ხატულებს, ფერებს, ფანჯრებს და გაფორმების სხვა დეტალებს."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
