@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 20:09+0000\n"
+"PO-Revision-Date: 2017-08-16 20:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5590,7 +5590,7 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "დაიცავით თქვენი პირადი მონაცემების უსაფრთხოება, ამ დამატებების კრებულის საშუალებით."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "საუკეთესო დამატებები სამუშაოდ, გასართობად, პირადულობის დაცვისა და შრომის ნაყოფიერების ზრდისთვის&hellip; ანუ თითქმის ყველაფრისთვის!"
 
 msgid "Games!"
 msgstr "თამაშები!"
@@ -5605,20 +5605,22 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "აღმოაჩინეთ ახალი დამატებები"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "რა არის დამატებები?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"დამატებები პატარა პროგრამებია, რომელიც საშუალებას გაძლევთ შემატოთ %(app)s-ს ახალი შესაძლებლობები და შეუცვალოთ გაფორმება. სცადეთ დროის დასაზოგად, ხელსაწყოების გვერდითი ზოლი, ამინდის პროგნოზის "
+"მომხსენებელი, ან იერსახის შემცვლელი თემები, რომ უფრო მეტად მოარგოთ %(app)s თქვენს გემოვნებას."
 
 msgid "Learn More"
 msgstr "გაიგეთ მეტი"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "შეიტყვეთ მეტი დამატებების შესახებ"
 
 msgid "See all"
 msgstr "ყველას ნახვა"
@@ -5627,7 +5629,7 @@ msgid "More ways to customize"
 msgstr ""
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "დამატებების მოძიება"
 
 msgid "See all complete themes"
 msgstr "ყველა სრული გაფორმების ნახვა"
@@ -5636,7 +5638,7 @@ msgid "Close Video"
 msgstr ""
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "ვიდეოს გაშვებისას, მითითებული დამატებები გამოჩნდება აქ."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
@@ -6163,7 +6165,7 @@ msgid "Zimbabwe Dollar"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-ს დამატების შესახებ"
 
 msgid "What is this website?"
 msgstr ""
@@ -6172,14 +6174,19 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, ცნობილი როგორც \"AMO\", წარმოადგენს Mozilla-ს ოფიციალურ საიტს, სადაც განთავსებულია დამატებები Mozilla-ს პროგრამებისთვის, როგორიცაა Firefox, Thunderbird და SeaMonkey. დამატებები "
+"საშუალებას გაძლევთ ახალი შესაძლებლობები შემატოთ თქვენს ბრაუზერს, ან პროგრამას და შეუცვალოთ არსებული ფუნქციონალი. მიმოიხედეთ და აღმოაჩინეთ ათასობით საშუალება, ინტერნეტში მუშაობის "
+"გამრავალფეროვნებისთვის."
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "ვინ ქმნის დამატებებს?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"აქ გამოქვეყნებული დამატებები შექმნილია ათასობით შემმუშავებლის მიერ, ჩვენი დიდი ერთობიდან, დაწყებული დამოუკიდებელი მოხალისეებიდან, დამთავრებული დიდი კორპორაციებით. აქ მოცემული ყველა დამატება "
+"განხილულია ჩვენი სარედაქციო გუნდის მიერ, მათ გამოქვეყნებამდე. საცდელად მონიშნული დამატებები, ჯერ არაა განხილული და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr ""
@@ -6197,7 +6204,7 @@ msgstr ""
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "ჩვენი <a href=\"%(url)s\">ფორუმი</a> კარგი ადგილია, დამატებების შემმუშავებლებთან ურთიერთობისთვის და AMO-სთან დაკავშირებულ, მოსალოდნელ სიახლეებზე სასაუბროდ."
 
 msgid "This sounds great! How can I get involved?"
 msgstr ""
@@ -6214,16 +6221,18 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
+"თუ გაქვთ დამატებების შექმნის გამოცდილება, <a href=\"%(url)s\">გახდით ჩვენი დამატებების მიმომხილველი</a>! ჩვენი მიმომხილველები არიან დამატებების ქომაგები, ტექნიკური ცოდნით, რომლებიც ამოწმებენ "
+"დამატებების კოდის ხარისხსა და მდგრადობას."
 
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "თუ დაინტერესებული ხართ დამატებებით, მაგრამ არ გაქვთ საკმარისი ტექნიკური ცოდნა, კიდევ არსებობს სხვა გზები დასახმარებლად:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "მოუყევით თქვენს მეგობრებს! გააგებინეთ მათ, თუ რომელ დამატებებს იყენებთ."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
