@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-10 06:02+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"PO-Revision-Date: 2017-07-17 05:44+0000\n"
+"Last-Translator: నితిన్ <sainithin95@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} నక్షత్రము"
 msgstr[1] "{0} నక్షత్రాలు"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "సర్వర్ ని సంప్రదించడంలో సమస్య ఉంది."
 
 msgid "Select a file..."
 msgstr "ఫైలు ఎంచుకోండి..."
