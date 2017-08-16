@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-13 01:03+0000\n"
+"PO-Revision-Date: 2017-08-16 02:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1144,7 +1144,7 @@ msgid "Added"
 msgstr "დამატებული"
 
 msgid "Popularity"
-msgstr "სასურველობა"
+msgstr "სასურველი"
 
 msgid "Collection created!"
 msgstr "კრებული შეიქმნა!"
@@ -4016,7 +4016,7 @@ msgid "Validator"
 msgstr "შემმოწმებელი"
 
 msgid "Automated code tests for your add-on."
-msgstr "თქვენი დაამტების კოდის ავტომატური შემოწმება."
+msgstr "დამატების კოდის ავტომატური შემოწმება."
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "ნახეთ, იმოქმედებს თუ არა თქვენს დამატებაზე, მოსალოდნელი ცვლილებები Firefox-ში."
@@ -4502,10 +4502,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "დამოწმებული მიმოხილვები"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "წაშლილი მიმოხილვები"
 
 msgid "View entries between"
 msgstr ""
@@ -4691,7 +4691,7 @@ msgid "Last Update"
 msgstr ""
 
 msgid "No Reviews"
-msgstr ""
+msgstr "მიმოხილვები არაა"
 
 msgid "Weight"
 msgstr ""
@@ -4742,7 +4742,7 @@ msgid "An unknown error occurred"
 msgstr ""
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "თვითმიმოხილვა არაა ნებადართული."
 
 msgid "Review successfully processed."
 msgstr ""
@@ -4777,7 +4777,7 @@ msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
+msgstr[0] "{0} თემის მიმოხილვები წარმატებით დამუშავდა (+{1} ქულა, ჯამში {2})."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "თქვენი დაყოვნებული თემა, წარმატებით გაეშვა. სხვა მიმომხილველებს, შეეძლებათ ამ ახალი გამოშვებების ნახვა. ქვემოთ მოცემულ ცხრილში ცვლილებების ასახვისთვის, გვერდის განახლებაა საჭირო."
@@ -4823,7 +4823,7 @@ msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
 
 msgid "Bad User Reviews ({num})"
-msgstr ""
+msgstr "მომხმარებლის ცუდი მიმოხილვები ({num})"
 
 msgid "More about this add-on"
 msgstr "მეტი ამ დამატების შესახებ"
