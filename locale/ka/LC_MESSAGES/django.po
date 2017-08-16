@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 19:51+0000\n"
+"PO-Revision-Date: 2017-08-16 20:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -58,6 +58,7 @@ msgstr "გესაჭირეობათ დახმარება?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
+"დამატებების ან თემების შემმუშავებლებს, საკუთარი ანგარიშის წაშლა, არ შეუძლიათ. წინასწარ უნდა წაიშალოს ამ ანგარიშთან დაკავშირებული ყველა დამატება და თემა, ან სხვა მომხმარებლებზე გადამისამართდეს."
 
 msgid "Review"
 msgstr ""
@@ -1461,7 +1462,7 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr ""
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "დამატებები თქვენს კრებულში"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr ""
@@ -1563,7 +1564,7 @@ msgstr "რჩეული დამატებები"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "აგერ, რამდენიმე რჩეული დამატება, რომელიც დაგეხმარებათ %s-ის მორგების დაწყებაში."
 
 msgid "Install Dictionary"
 msgstr "ლექსიკონის დაყენება"
@@ -1749,7 +1750,7 @@ msgstr ""
 "თავსებადობის ხარვეზების დადგენაში, Firefox-ის ახალ ვერსიასთან მიმართებაში. </p>"
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "მოხსენებები, თქვენი დამატებების შესახებ"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
@@ -2570,7 +2571,7 @@ msgid "Recent Changes for %s"
 msgstr ""
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "ბოლო ცვლილებები ჩემს დამატებებში"
 
 msgid "Must have at least one owner."
 msgstr ""
@@ -2696,7 +2697,7 @@ msgid "Select an application first"
 msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "3-ზე მეტი აუცილებელი დამატების მითითება შეუძლებელია."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2884,7 +2885,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} დამატებები"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -2894,7 +2895,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "სხვა დამატებები..."
 
 msgid "Documentation"
 msgstr ""
@@ -2915,7 +2916,7 @@ msgid "Add-on Compatibility Checker"
 msgstr "დამატების თავსებადობის დამდგენი"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "დამატებების შემუშავება"
 
 msgid "Community & Support"
 msgstr "საზოგადოება და მხარდაჭერა"
@@ -4730,7 +4731,7 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "ახალი დამატებები (5 დღეზე ნაკლები)"
 
 msgid "Passable (5 to 10 days)"
 msgstr ""
@@ -4856,7 +4857,7 @@ msgid "Unlisted Queues"
 msgstr ""
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "ყველა გამოუქვეყნებელი დამატება"
 
 msgid "Logs"
 msgstr ""
@@ -4916,7 +4917,7 @@ msgstr ""
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
+msgstr[0] "ახალი დამატებები ({num})"
 
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
@@ -4927,7 +4928,7 @@ msgstr ""
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
+msgstr[0] "{0} დამატება"
 
 #, python-format
 msgid "{0}%%"
@@ -5034,7 +5035,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "ამ სახის არცერთი დამატება არ არის განსახილველად."
 
 msgid "Helpful Links:"
 msgstr ""
@@ -5550,10 +5551,10 @@ msgid "Automatically get the lowest price when you shop online or search for fli
 msgstr "ავტომატურად მონახეთ ყველაზე დაბალი ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "ათიანის მქონე დამატებები სკოლისთვის"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "დამატებები მასწავლებლებისთვის, მშობლებისა და მოსწავლეებისთვის, სკოლისაკენ."
 
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
@@ -5574,19 +5575,19 @@ msgid "Get up and move!"
 msgstr ""
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "დააყენეთ ვარჯიშისთვის განკუთვნილი დამატებები, სიჯანსაღისა და ჯანმრთელობის შესანარჩუნებლად."
 
 msgid "New &amp; Now"
 msgstr ""
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "დააყენეთ ამ დროისთვის უახლესი და აუცილებელი დამატებები."
 
 msgid "Worry-free browsing"
 msgstr ""
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "დაიცავით თქვენი პირადი მონაცემების უსაფრთხოება, ამ დამატებების კრებულის საშუალებით."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
@@ -6944,6 +6945,8 @@ msgstr "კიდევ გაქვთ კითხვები?"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
+"Firefox-თან დაკავშირებით დახმარების მისაღებად, ეწვიეთ <a href=\"%(sumo_url)s\">მხარდაჭერის საიტს</a>. დამატებებთან და საიტთან დაკავშირებით ზოგადი კითხვებისთვის კი გამოიყენეთ ჩვენი <a "
+"href=\"%(forum_url)s\">ფორუმი</a>."
 
 msgid "Some tips for writing a great review"
 msgstr ""
