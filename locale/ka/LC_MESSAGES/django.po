@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 03:50+0000\n"
+"PO-Revision-Date: 2017-08-16 04:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6709,7 +6709,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">სრული თემები</a
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">თემებით</a></strong> გაფორმების მსუბუქი ცვლილება ხდება, ძირითადად ფონის სურათების და %(app_name)s-ის ხელსაწყოთა ზოლის."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -6717,10 +6717,10 @@ msgstr "<strong><a href=\"%(browse_url)s\">საძიებო სისტე
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">ლექსიკონები & ენის პაკეტები</a></strong> %(app_name)s-ს ამატებენ დამატებითი ენების მხარდაჭერას."
 
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "როგორ უნდა დავაყენო, ვმართო და წავშალო დამატებები?"
 
 #, python-format
 msgid ""
@@ -6728,12 +6728,15 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"უმეტეს შემთხვევაში, დამატებების დაყენება ხდება საიტზე მოცემული ჩადგმის ღილაკით. დამატებების მართვა, გათიშვა, ან ამოშლა ხდება %(app_name)s-ში არსებული დამატებების სამართავი გვერდიდან. უფრო ვრცლად, "
+"იხილეთ <a href=\"%(extension_url)s\">სტატია გაფართოებებზე</a>, ან <a href=\"%(theme_url)s\">ეს სტატია, გაფორმებებსა და სრულ თემებზე</a>. თუ დამატებების დაყენებისას სიძნელეებს წააწყდებით, გაეცანით "
+"მითითებებს, <a href=\"%(troubleshooting_url)s\">გაფართოებებსა და თემებთან დაკავშირებული ხარვეზების აღმოსაფხვრელად</a>."
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "როგორც უნდა განვაახლო დამატებები?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "დამატებები თავისთავად მოწმდება განახლებებზე ყოველდღიურად. Firefox-ში ნაგულისხმევად მითითებულია, რომ განახლებები ავტომატურად დაყენდეს. "
 
 msgid "Are add-ons safe to install?"
 msgstr "უსაფრთხოა დამატებების დაყენება?"
@@ -6743,6 +6746,8 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"ყურადღებით იყავით, დამატებების დაყენებისას, რადგან მათი საშუალებით შესაძლებელია სისტემის დაზიანება, ან პირადი მონაცემების ხელყოფა. ამ საიტზე ხელმისაწვდომი დამატებები, Mozilla-ს მიმომხილველთა გუნდისა"
+" და მომხმარებელთა გამოხმაურებების შედეგად, მკაცრად კონტროლდება, ასე რომ უმეტესობა მათგანი უსაფრთხოა დასაყენებლად. <a href=\"%(learnmore_url)s\">შეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6753,10 +6758,12 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
 msgstr ""
+"დამატებების უმეტესობა, არ ამცირებს %(app_name)s-ის წარმადობას, თუმცა ჭარბი რაოდენობით დაყენებამ, შესაძლოა უარყოფითი ზეგავლენა მოახდინოს მუშაობის სისწრაფეზე. თუ ეჭვობთ, რომ დამატება ანელებს "
+"%(app_name)s-ს, სცადეთ მისი დროებით გამორთვა."
 
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
+msgstr "%(app_name)s მეუბნება, რომ დამატება არაა თავსებადი. შემიძლია, მაინც გამოვიყენო?"
 
 #, python-format
 msgid ""
@@ -6767,7 +6774,7 @@ msgstr ""
 "თუ დამატება არაა თავსებადი %(app_name)s-ის თქვენს ვერსიასთან, ჩვეულებრივ იმის შედეგია, რომ %(app_name)s-ის ეგ ვერსია გასაახლებელია, ან დამატების ავტორს, ჯერ არ განუახლებია თავისი დამატება, რომ "
 "თავსებადი ყოფილიყო იმ ახალ ვერსიასთან, რომელსაც იყენებთ. Mozilla არ გირჩევთ უგულებელყოთ ეს შეტყობინება, რადგან ამან შესაძლოა გამოიწვიოს ბრაუზერის არამდგრადობა და ზოგიერთ შემთხვევაში, მონაცემების "
 "დაკარგვაც. მომხმარებლებმა კი, რომლებიც ამოწმებენ Firefox-ის alpha და beta ვერსიებს, სასურველია გამოიყენონ <a href=\"%(acr_url)s\">დამატების თავსებადობის მომხსენებელი</a>, რაც დაეხმარება დამატებების "
-"შემმუშავებლებს, განაახლონ მათი თავსებადობა."
+"შემმუშავებლებს, გამოასწორონ თავსებადობის ხარვეზები."
 
 msgid "What if I have problems with an add-on?"
 msgstr ""
