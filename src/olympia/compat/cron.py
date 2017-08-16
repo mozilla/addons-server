@@ -37,9 +37,10 @@ def compatibility_report(index=None):
     for chunk in chunked(updates.items(), 50):
         chunk = dict(chunk)
         for addon in Addon.objects.filter(id__in=chunk):
-            if amo.FIREFOX not in addon.compatible_apps:
-                # Because the queryset is filtering on appsupport, this should
-                # not happen, let's ignore this add-on.
+            if (amo.FIREFOX not in addon.compatible_apps or
+                    addon.compatible_apps[amo.FIREFOX] is None):
+                # Ignore this add-on if it does not have compat information
+                # for Firefox.
                 continue
 
             current_version = {

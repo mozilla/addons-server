@@ -409,6 +409,22 @@ class TestCompatibilityReportCron(
         assert CompatTotals.objects.count() == 1
         assert CompatTotals.objects.get().total == 10
 
+    def test_with_no_compat_at_all(self):
+        # Test containing an add-on which has `None` as its compat info for
+        # Firefox (https://github.com/mozilla/addons-server/issues/6161).
+        addon = self.populate()
+        self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
+                              app_version=self.app_version)
+
+        addon.update(type=amo.ADDON_DICT)
+        assert AppSupport.objects.filter(
+            addon=addon, app=amo.FIREFOX.id).exists()
+
+        self.run_compatibility_report()
+
+        assert CompatTotals.objects.count() == 1
+        assert CompatTotals.objects.get().total == 10
+
     def test_compat_totals(self):
         assert not CompatTotals.objects.exists()
 
