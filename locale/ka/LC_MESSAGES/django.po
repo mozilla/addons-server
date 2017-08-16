@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 17:35+0000\n"
+"PO-Revision-Date: 2017-08-16 18:46+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -640,10 +640,10 @@ msgstr "ბოლო განახლების თარიღი:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "გამოშვებულია <a href=\"%(url)s\">%(name)s</a>"
+msgstr "ვრცელდება <a href=\"%(url)s\">%(name)s</a> ლიცენზიით"
 
 msgid "Custom License"
-msgstr "საკუთარი ლიცენზიით"
+msgstr "საკუთარი"
 
 msgid "About this Add-on"
 msgstr "დამატების შესახებ"
@@ -3510,7 +3510,7 @@ msgid "License:"
 msgstr "ლიცენზია:"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ შესაბამისი ლიცენზია, თქვენს პირველწყარო კოდზე უფლებების აღნიშვნისთვის."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -4329,7 +4329,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "პირველწყარო კოდი"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
@@ -5069,7 +5069,7 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
 
 msgid "Not Auto Approved Because"
 msgstr "ავტომატურად არაა მიღებული, იმიტომ რომ"
@@ -8180,7 +8180,7 @@ msgstr "გამოშვების თარიღი: {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "პირველწყარო კოდი გამოშვებულია <a href=\"%(url)s\">%(name)s</a>"
+msgstr "პირველწყარო კოდი ვრცელდება <a href=\"%(url)s\">%(name)s</a> ლიცენზიით"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
