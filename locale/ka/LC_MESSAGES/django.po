@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 20:30+0000\n"
+"PO-Revision-Date: 2017-08-16 20:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3365,10 +3365,10 @@ msgid "Top"
 msgstr ""
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "თემის წაშლა"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "დამატების წაშლა"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3377,6 +3377,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"თქვენი დამატების წაშლით, სამუდამოდ წაიშლება ამ დამატებასთან დაკავშირებული ყველა ვერსია და ფაილი, მიუხედავად იმისა, გამოქვეყნებულია თუ არა. დამატების ID დარჩება თქვენს ანგარიშთან დაკავშირებული, ასე "
+"რომ სხვებს არ შეეძლებათ, ამ დამატების ID-ს გამოყენებით ვერსიების გადმოგზავნა."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
@@ -3397,7 +3399,7 @@ msgid "Resume"
 msgstr ""
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "დამატების წაშლა"
 
 msgid "Delete"
 msgstr "წაშლა"
@@ -3448,7 +3450,7 @@ msgid "Transfer Ownership"
 msgstr ""
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "თემის წაშლა"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -4426,11 +4428,13 @@ msgid "Upload a New Version"
 msgstr ""
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "{version} ვერსიის წაშლა"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"თქვენ შლით დამატების მიმდინარე ვერსიას. რის შედეგადაც, შესაძლოა შეიცვალოს თქვენი დამატების მდგომარეობა, ან შეწყდეს მისი საჯარო ხელმისაწვდომობა, იმ შემთხვევაში, თუ დამატების მხოლოდ ეს ვერსია გაქვთ "
+"საჯაროდ გამოქვეყნებული."
 
 msgid "Deleting this version will permanently delete:"
 msgstr ""
@@ -4439,10 +4443,10 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "ნამდვილად გსურთ ამ ვერსიის წაშლა?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "წაშლა"
 
 msgid "Disable Version"
 msgstr ""
@@ -4599,7 +4603,7 @@ msgid "Skip for now"
 msgstr ""
 
 msgid "Delete review"
-msgstr ""
+msgstr "მიმოხილვის წაშლა"
 
 msgid "Admin Review"
 msgstr ""
@@ -6239,7 +6243,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "მიიღეთ მონაწილეობა ჩვენს <a href=\"%(url)s\">ფორუმებში</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "მიმოიხილეთ დამატებები საიტზე. დამატებების ავტორები უფრო მონდომებულად შეეცდებიან გააუმჯობესონ და დახვეწონ დამატებები, როცა იციან, რომ ხალხი სათანადოდ უფასებს მათ მუშაობას."
 
 msgid "I have a question"
 msgstr ""
@@ -7280,7 +7284,7 @@ msgid "Edit review"
 msgstr ""
 
 msgid "Delete reply"
-msgstr ""
+msgstr "პასუხის წაშლა"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
@@ -7496,16 +7500,16 @@ msgid "Add-on Statistics"
 msgstr ""
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "დამატებები, რომლებიც გამოიყენება"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "შექმნილი დამატებები"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "ჩამოტვირთული დამატებები"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "განახლებული დამატებები"
 
 msgid "Collections Created"
 msgstr ""
@@ -7536,13 +7540,13 @@ msgstr "გატანა"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: სტატისტიკური მონაცემები :: {1}-ის დამატებები"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr ""
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "სტატისტიკური მონაცემები :: {0}-ის დამატებები"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
@@ -7609,16 +7613,16 @@ msgid "Change settings."
 msgstr ""
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "დამატებები თარიღის მიხედვით"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "დამატებები, ჩამოტვირთვის თარიღის მიხედვით"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "დამატებები, გამოყენების თარიღის მიხედვით"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "დამატებები, განახლების თარიღის მიხედვით"
 
 msgid "Application usage by Date"
 msgstr ""
@@ -7715,6 +7719,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>რა არის დღიური მომხმარებელი?</h2> <p>საიტიდან ჩამოტვირთული დამატებები, განახლებებზე მოწმდება ყოველდღე. ჯამური რაოდენობა ამ შემოწმების, წარმოადგენს მოქმედ დღიურ მომხმარებლებს. დღიური "
+"მომხმარებლები შეიძლება დაიყოს დამატების ვერსიის, საოპერაციო სისტემის, დამატებების მდგომარეობის, პროგრამის და ენის მიხედვით. </p>"
 
 msgid "User Signups by Date"
 msgstr ""
@@ -7723,7 +7729,7 @@ msgid "Application versions by Date"
 msgstr ""
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-ს დამატებები"
 
 msgid "Find add-ons for other applications"
 msgstr "დამატებების მოძიება სხვა პროგრამებისთვის"
@@ -7732,7 +7738,7 @@ msgid "Other Applications"
 msgstr "სხვა პროგრამები"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "საკუთარი კრებულების შესაქმნელად, საჭიროა Mozilla დამატებების ანგარიში."
 
 msgid "Footer logo"
 msgstr ""
@@ -7763,16 +7769,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} დამატების გვერდზე დაბრუნება"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> დამატებები"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> დამატებები"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> დამატებები"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> დამატებები"
 
 msgid "My Account"
 msgstr ""
@@ -7841,7 +7847,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "ენის წაშლა"
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7888,7 +7894,7 @@ msgid "an add-on developer replies to my review"
 msgstr ""
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "ხელმისაწვდომია ახალი დამატებები, ან Firefox-ის ახალი შესაძლებლობები"
 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
@@ -7945,7 +7951,7 @@ msgid "new"
 msgstr ""
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "მომხმარებლის ანგარიშის წაშლა"
 
 #, python-format
 msgid ""
@@ -7970,13 +7976,13 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "ანგარიშის წაშლა ახლავე"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "მომხმარებლის სურათის წაშლა"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "სურათის წაშლა ახლავე"
 
 msgid "Please set your display name"
 msgstr ""
@@ -8009,7 +8015,7 @@ msgid "Choose Photo&hellip;"
 msgstr ""
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "მიმდინარე სურათის წაშლა"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
@@ -8040,7 +8046,7 @@ msgid "Admin"
 msgstr ""
 
 msgid "Delete Account"
-msgstr ""
+msgstr "ანგარიშის წაშლა"
 
 msgid "Update Account"
 msgstr ""
@@ -8159,7 +8165,7 @@ msgid "Number of add-ons developed"
 msgstr "შემუშავებული დამატებების რაოდენობა"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} დამატებები"
 
 #, python-format
 msgid "%(num)s theme"
