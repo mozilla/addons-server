@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 04:50+0000\n"
+"PO-Revision-Date: 2017-08-16 04:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6825,7 +6825,7 @@ msgstr ""
 "გამოიჩინეთ, როცა საცდელ დამატებას აყენებთ და დაუყოვნებლივ ამოშალეთ, თუკი შეამჩნევთ ხარვეზებს. <a href=\"%(url)s\">შეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "რას ნიშნავს, როცა დამატება \"განუხილველია\"?"
 
 #, python-format
 msgid ""
