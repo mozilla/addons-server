@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 20:33+0000\n"
+"PO-Revision-Date: 2017-08-17 20:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -344,7 +344,7 @@ msgstr "დამატების თარიღი {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s ყოველკვირეული ჩამოტვირთვები"
+msgstr[0] "%(num)s ყოველკვირეული ჩამოტვირთვა"
 
 #, python-format
 msgid "%(num)s user"
@@ -363,7 +363,7 @@ msgstr "თავსებადია Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} ყოველკვირეული ჩამოტვირთვები"
+msgstr[0] "{0} ყოველკვირეული ჩამოტვირთვა"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -1572,7 +1572,7 @@ msgid "Install Dictionary"
 msgstr "ლექსიკონის დაყენება"
 
 msgid "Install Language Pack"
-msgstr "ენის პაკეტის დაყენება"
+msgstr "ენის დაყენება"
 
 msgid "Download Dictionary"
 msgstr ""
@@ -2311,7 +2311,7 @@ msgid "Web Development"
 msgstr "ვებშემუშავება"
 
 msgid "Animals"
-msgstr ""
+msgstr "ცხოველები"
 
 msgid "Compact"
 msgstr ""
@@ -2419,16 +2419,16 @@ msgid "Photos & Media"
 msgstr "ფოტო & მედია"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "უსაფრთხოება & პირადულობა"
 
 msgid "Social Networking"
-msgstr ""
+msgstr "სოციალური ქსელები"
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "სპორტი & თამაშები"
 
 msgid "User Interface"
-msgstr ""
+msgstr "სამომხმარებლო გარემო"
 
 msgid "Appearance and Customization"
 msgstr "იერსახე და მორგება"
@@ -5530,7 +5530,7 @@ msgid "Translate content on the web from and into over 40 languages."
 msgstr ""
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "მარტივად დაუკავშირდით სოციალურ ქსელებს და გააზიარეთ, ან დაწერეთ გამოხმაურება პირდაპირ იმ გვერდზე, რომელზეც იმყოფებით."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "სწრაფად გაეცანით და შეადარეთ ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
@@ -6401,6 +6401,8 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML სამომხმარებლო გარემოს დაპროგრამების ენა) არის Mozilla-ს XML-ზე დაფუძნებული ენა, რომელიც საშუალებას გაძლევთ შექმნათ მრავალი შესაძლებლობის მქონე, მრავალპლატფორმული პროგრამები. მისი მეშვეობით "
+"შესაძლებელია სამომხმარებლო გარემოს ისეთი ელემენტების შეცვლა, როგორიცაა ღილაკები, მენიუები, ხელსაწყოთა ზოლები, ფორმები და ა.შ. რაც გაზრდის დამატებების შესაძლებლობებს, ბრაუზერის იერსახის შესაცვლელად."
 
 #, python-format
 msgid ""
