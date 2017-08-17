@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 21:04+0000\n"
+"PO-Revision-Date: 2017-08-17 17:32+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -625,7 +625,7 @@ msgid "Add-on screenshot #{0}"
 msgstr "დამატების სურათი #{0}"
 
 msgid "Add-on home page"
-msgstr "დამატების მთავარი გვერდი"
+msgstr "მთავარი გვერდი"
 
 msgid "Support site"
 msgstr "მხარდაჭერის გვერდი"
@@ -1570,7 +1570,7 @@ msgid "Install Dictionary"
 msgstr "ლექსიკონის დაყენება"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "ენის პაკეტის დაყენება"
 
 msgid "Download Dictionary"
 msgstr ""
@@ -1612,7 +1612,7 @@ msgid "Search Extensions"
 msgstr "ძიების გაფართოებები"
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "დაამატეთ საძიებო სისტემები Firefox-ს"
 
 msgid "Search Providers"
 msgstr "საძიებო სისტემები"
@@ -2405,7 +2405,7 @@ msgid "Device Features & Location"
 msgstr "მოწყობილობის შესაძლებლობები & ადგილმდებარეობა"
 
 msgid "Experimental"
-msgstr ""
+msgstr "საცდელი"
 
 msgid "Feeds, News, & Blogging"
 msgstr "არხები, სიახლეები & სვეტები"
@@ -3103,7 +3103,7 @@ msgid "Experimental?"
 msgstr "საცდელია?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "თუ თქვენი დამატება საცდელია, ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი. "
 
 msgid "This add-on is experimental."
 msgstr "ეს დამატება საცდელია"
@@ -6935,7 +6935,7 @@ msgid "Mobile Add-ons"
 msgstr "დამატებები მობილურისთვის"
 
 msgid "What are mobile add-ons?"
-msgstr "რას გულისხმობს დამატებები მობილურისთვის?"
+msgstr "რას არის დამატებები მობილურისთვის?"
 
 #, python-format
 msgid ""
