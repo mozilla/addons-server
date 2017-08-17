@@ -236,13 +236,9 @@ var installButton = function() {
     // Drive the install button based on its type.
     if (eula || contrib) {
         versionsAndPlatforms();
-    } else if (persona) {
+    } else if (persona && $.hasPersonas()) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
-        if ($.hasPersonas()) {
-            $button.personasButton();
-        } else {
-            $button.addClass('concealed');
-        }
+        $button.personasButton();
     } else if (z.appMatchesUserAgent) {
         clickHijack();
         addToApp();
