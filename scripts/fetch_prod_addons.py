@@ -149,6 +149,12 @@ def fetch_addons(options):
                 CATEGORIES[amo.FIREFOX.id][addon_type][category],
                 True)
 
+        default_locale = addon_data['default_locale']
+        name = addon_data['name'][default_locale]
+        summary = addon_data['summary'][default_locale]
+
+        print('create add-on %s' % name)
+
         addon = addon_factory(
             users=users,
             average_daily_users=addon_data['average_daily_users'],
@@ -156,8 +162,8 @@ def fetch_addons(options):
             type=addon_type,
             guid=addon_data['guid'],
             slug=addon_data['slug'],
-            name=addon_data['name'].get('en-US', None),
-            summary=addon_data['summary'].get('en-US', None),
+            name=name,
+            summary=summary,
             file_kw={
                 'hash': file['hash'],
                 'status': amo.STATUS_CHOICES_API_LOOKUP[file['status']],
@@ -170,7 +176,7 @@ def fetch_addons(options):
                 'max_app_version': version['compatibility']['firefox']['max'],
             },
             weekly_downloads=addon_data['weekly_downloads'],
-            default_locale=addon_data['default_locale'],
+            default_locale=default_locale
         )
 
 
