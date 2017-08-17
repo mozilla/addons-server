@@ -1,15 +1,30 @@
 #!/usr/bin/env python
 
 import os
+import uuid
+import sys
 import requests
 import argparse
-import re
 from multiprocessing.pool import ThreadPool as Pool
 
-import requests
-import bs4
+# Import olympia before bs4 to apply our safe xml monkey patch
+sys.path.insert(
+    0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+import django
+
+django.setup()
+
+from olympia import amo
+from olympia.amo.tests import addon_factory, user_factory
+from olympia.constants.categories import CATEGORIES
+from olympia.versions.models import ApplicationsVersions
+from olympia.addons.models import Addon, Category
+from olympia.users.models import UserProfile
+
+import bs4
+
 
 ROOT_URL = 'https://addons.mozilla.org/en-US/firefox/'
 INDEX_URL = ROOT_URL + '/extensions/'
@@ -46,7 +61,7 @@ def get_addon_ids(options):
     if options.max:
         pages = pages[:options.max]
 
-    print('fetch pages from 1 to %s' % max(pages), get_max_pages())
+    print('fetch pages from 1 to %s' % max(pages))
     pool = Pool(options.workers)
 
     addon_ids = []
@@ -63,6 +78,7 @@ def get_addon_ids(options):
 
 def get_addon_data(options, addon_ids):
     print('fetch addon data')
+
     def _fetch_addon(id):
         print('fetch %s' % id)
         return requests.get(ROOT_URL + '/api/v3/addons/addon/{}'.format(id)).json()
@@ -92,11 +108,70 @@ def parse_args():
     return parser.parse_args()
 
 
-
 def fetch_addons(options):
     ids = get_addon_ids(options)
 
-    addon_data = get_addon_data(options, ids)
+    addons_data = get_addon_data(options, ids)
+    reversed_type_choies = {v: k for k, v in amo.ADDON_TYPE_CHOICES_API.items()}
+
+    for addon_data in addons_data:
+        version = addon_data['current_version']
+        file = version['files'][0]
+        # TODO:
+        # * license
+        # * ratings
+        # * tags
+        # * previous
+        # * android compat data
+
+        if Addon.objects.filter(guid=addon_data['guid']).exists():
+            continue
+
+        users = []
+
+        for user in addon_data['authors']:
+            try:
+                users.append(UserProfile.objects.get(username=user['name']))
+            except UserProfile.DoesNotExist:
+                email = 'fake-prod-data%s@mozilla.com' % str(uuid.uuid4()).split('-')[0]
+                users.append(user_factory(
+                    username=user['name'],
+                    email=email))
+
+        addon_type = reversed_type_choies[addon_data['type']]
+        category = addon_data['categories']['firefox'][0]
+
+        if category not in CATEGORIES[amo.FIREFOX.id][addon_type]:
+            category = None
+            print('category %s' % category, 'not found')
+        else:
+            category = Category.from_static_category(
+                CATEGORIES[amo.FIREFOX.id][addon_type][category],
+                True)
+
+        addon = addon_factory(
+            users=users,
+            average_daily_users=addon_data['average_daily_users'],
+            category=category,
+            type=addon_type,
+            guid=addon_data['guid'],
+            slug=addon_data['slug'],
+            name=addon_data['name'].get('en-US', None),
+            summary=addon_data['summary'].get('en-US', None),
+            file_kw={
+                'hash': file['hash'],
+                'status': amo.STATUS_CHOICES_API_LOOKUP[file['status']],
+                'platform': amo.PLATFORM_DICT[file['platform']].id,
+                'size': file['size'],
+                'is_webextension': file['is_webextension'],
+            },
+            version_kw={
+                'min_app_version': version['compatibility']['firefox']['min'],
+                'max_app_version': version['compatibility']['firefox']['max'],
+            },
+            weekly_downloads=addon_data['weekly_downloads'],
+            default_locale=addon_data['default_locale'],
+        )
 
 
 if __name__ == '__main__':

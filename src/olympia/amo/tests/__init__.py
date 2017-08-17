@@ -722,7 +722,6 @@ def addon_factory(
         static_category = random.choice(
             CATEGORIES[application][type_].values())
         category = Category.from_static_category(static_category, True)
-
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
@@ -813,9 +812,6 @@ user_factory_counter = 0
 
 def user_factory(**kw):
     global user_factory_counter
-    user_factory_counter = UserProfile.objects.filter(
-        email__startswith='factoryuser').count() + 1
-
     username = kw.pop('username', u'factoryûser%d' % user_factory_counter)
     email = kw.pop(
         'email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
