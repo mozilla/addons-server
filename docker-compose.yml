@@ -45,6 +45,8 @@ mysqld:
   environment:
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_DATABASE=olympia
+  volumes:
+    - ./docker/etc/mysql/conf.d/:/etc/mysql/conf.d/
 
 elasticsearch:
   image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
