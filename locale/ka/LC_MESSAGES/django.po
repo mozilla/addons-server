@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 21:17+0000\n"
+"PO-Revision-Date: 2017-08-17 22:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1707,7 +1707,7 @@ msgid "Learn more"
 msgstr ""
 
 msgid "View All Recently Added"
-msgstr "ყველა ბოლოს დამატებულის ნახვა"
+msgstr "ყველა ახალი დამატებულის ნახვა"
 
 msgid "View All Most Popular"
 msgstr "ყველა სასურველის ნახვა"
@@ -2377,7 +2377,7 @@ msgid "Abstract"
 msgstr "აბსტრაქტული"
 
 msgid "Causes"
-msgstr ""
+msgstr "მრწამსი"
 
 msgid "Fashion"
 msgstr "მოდა"
@@ -2719,7 +2719,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "WebExtensions დამატების მოძველებული დამატებით განახლება, არ შეგიძლიათ. თქვენი მომხმარებლები ვერ ისარგებლებენ ახალი ვერსიით, რადგან Firefox-ში არაა მხარდაჭერილი, ასეთი სახის განახლება."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -6181,7 +6181,7 @@ msgid ""
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
 "addons.mozilla.org, ცნობილი როგორც \"AMO\", წარმოადგენს Mozilla-ს ოფიციალურ საიტს, სადაც განთავსებულია დამატებები Mozilla-ს პროგრამებისთვის, როგორიცაა Firefox, Thunderbird და SeaMonkey. დამატებები "
-"საშუალებას გაძლევთ ახალი შესაძლებლობები შემატოთ თქვენს ბრაუზერს, ან პროგრამას და შეუცვალოთ არსებული ფუნქციონალი. მიმოიხედეთ და აღმოაჩინეთ ათასობით საშუალება, ინტერნეტში მუშაობის "
+"საშუალებას გაძლევთ ახალი შესაძლებლობები შემატოთ თქვენს ბრაუზერს, ან პროგრამას და შეუცვალოთ არსებული ფუნქციონალი. დაათვალიერეთ და აღმოაჩინეთ ათასობით საშუალება, ინტერნეტში მუშაობის "
 "გამრავალფეროვნებისთვის."
 
 msgid "Who creates these add-ons?"
@@ -6192,7 +6192,7 @@ msgid ""
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "აქ გამოქვეყნებული დამატებები შექმნილია ათასობით შემმუშავებლის მიერ, ჩვენი დიდი ერთობიდან, დაწყებული დამოუკიდებელი მოხალისეებიდან, დამთავრებული დიდი კორპორაციებით. აქ მოცემული ყველა დამატება "
-"განხილულია ჩვენი სარედაქციო გუნდის მიერ, მათ გამოქვეყნებამდე. საცდელად მონიშნული დამატებები, ჯერ არაა განხილული და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
+"შემოწმებულია ჩვენი სარედაქციო გუნდის მიერ, მათ გამოქვეყნებამდე. გარდა საცდელად მონიშნული დამატებებისა, რომელთა განხილვაც არ ხდება და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "როგორ მივადევნო თვალი, AMO-სთან დაკავშირებულ სიახლეებს?"
