@@ -251,7 +251,6 @@ var installButton = function() {
     } else if (z.app == 'firefox') {
         $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
         $('#downloadAnyway').show();
-        $button.addClass('concealed');
         versionsAndPlatforms();
         $button.addClass('CTA');
         $button.text(gettext('Only with Firefox \u2014 Get Firefox Now!'));
