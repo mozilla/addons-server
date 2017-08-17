@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 20:50+0000\n"
+"PO-Revision-Date: 2017-08-17 21:13+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1698,22 +1698,22 @@ msgid "View Profile"
 msgstr "პროფილის ნახვა"
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "შექმენით საკუთარი თემა"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "გააფორმეთ თქვენი ბრაუზერი, თქვენებურად! შემოსეთ საკუთარი გემოვნებით!"
 
 msgid "Learn more"
 msgstr ""
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "ყველა ბოლოს დამატებულის ნახვა"
 
 msgid "View All Most Popular"
 msgstr "ყველა სასურველის ნახვა"
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "ყველა საუკეთესოდ შეფასებულის ნახვა"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
@@ -2206,7 +2206,7 @@ msgid "Updated Language Pack Review"
 msgstr ""
 
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "შეღავათი, ვადაგადაცილებული მიმოხილვებისთვის"
 
 msgid "Days Before Bonus Points Applied"
 msgstr ""
@@ -2314,10 +2314,10 @@ msgid "Animals"
 msgstr "ცხოველები"
 
 msgid "Compact"
-msgstr ""
+msgstr "კომპაქტური"
 
 msgid "Large"
-msgstr ""
+msgstr "ფართო"
 
 msgid "Miscellaneous"
 msgstr "სხვადასხვა"
@@ -2380,16 +2380,16 @@ msgid "Causes"
 msgstr ""
 
 msgid "Fashion"
-msgstr ""
+msgstr "მოდა"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "ფილმები და ტელევიზია"
 
 msgid "Foxkeh"
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "დღესასწაული"
 
 msgid "Scenery"
 msgstr ""
@@ -2811,7 +2811,7 @@ msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "სურათის ზომა არ უნდა აღემატებოდეს %dKB-ს."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
@@ -3325,7 +3325,7 @@ msgid "Upload a Custom Icon..."
 msgstr ""
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG და JPG მხარდაჭერილია. ხატულის სიგრძე/სიგანე, შემცირდება 64x64 პიქსელამდე, თუ მეტი ზომის იქნება."
 
 msgid "Screenshots"
 msgstr ""
@@ -6461,6 +6461,8 @@ msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
+"დიახ. ბევრი შემმუშავებელი არჩევს, რომ საკუთარ საიტზე განათავსოს თავისი დამატებები. <a href=\"%(amo_url)s\">Mozilla-ს დამატებების საიტზე</a> თქვენი დამატებების განთავსებით, გაცილებით მეტი "
+"მომხმარებლისთვის გახდით მას ხელმისაწვდომს, გამომდინარე იქიდან, რომ დიდი რაოდენობით ხალხი შემოდის ამ საიტზე."
 
 msgid "Can Mozilla host my add-on?"
 msgstr ""
@@ -7303,12 +7305,12 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: მიმოხილვა"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "მიმოხილვები {0}-ის შესახებ"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატებაზე"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7317,10 +7319,10 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
+msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "მიმოხილვები ვერ მოიძებნა."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -7334,7 +7336,7 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} მიმოხილვა"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -7527,7 +7529,7 @@ msgid "Collections Created"
 msgstr ""
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "მიმოხილვები დაწერილია"
 
 msgid "User Signups"
 msgstr ""
@@ -7693,7 +7695,7 @@ msgid "Ratings by Date"
 msgstr ""
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "მიმოხილვები შექმნის თარიღის მიხედვით"
 
 msgid "Download sources by Date"
 msgstr ""
@@ -7981,7 +7983,7 @@ msgid "You will not be able to log into %(site)s anymore."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "თქვენი მიმოხილვები და შეფასებები არ წაიშლება, თუმცა აღარ იქნება თქვენს ანგარიშთან დაკავშირებული."
 
 msgid "Confirm account deletion"
 msgstr ""
