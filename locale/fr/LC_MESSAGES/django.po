@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-22 22:49+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-16 15:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -63,7 +63,7 @@ msgid "Need help?"
 msgstr "Besoin d’aide ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Les développeurs de modules ou de thèmes ne peuvent pas supprimer leur compte. Vous devez supprimer tous les modules et thèmes liés à ce compte, ou les transférer à d’autres utilisateurs."
 
 msgid "Review"
 msgstr "Critique"
@@ -173,7 +173,7 @@ msgid "Listed"
 msgstr "Listé"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Les chemins d’accès aux modules et aux collections doivent se terminer par « / »"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -472,84 +472,11 @@ msgstr "Pas encore évalué"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> utilisateurs"
 
-msgid "{0} Daily Users"
-msgstr "{0} utilisateurs quotidiens"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Pour installer ce module et des milliers d’autres, <b>obtenez Firefox</b>, un navigateur web libre et gratuit de Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "En savoir plus à propos de Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ou <b><a class=\"button installer\" href=\"{url}\">télécharger malgré tout</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Comment procéder à l’installation dans Thunderbird</strong> <ol> <li>Télécharger et enregistrer le fichier sur votre disque dur.</li> <li>Dans Mozilla Thunderbird, accédez au menu Modules "
-"complémentaires depuis le menu Outils.</li> <li>Grâce au bouton situé à côté du champ de recherche de modules, sélectionnez « Installer un module depuis un fichier » et sélectionnez le module que "
-"vous venez de télécharger</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Pour installer ce thème, <b>installez Thunderbird</b>, un client de courriel libre et gratuit de Mozilla Messaging et installez le module complémentaire Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "En savoir plus à propos de Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Pour installer ce thème et des milliers d’autres, <b>installez Firefox</b>, un navigateur libre et gratuit de Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Ce module n’a pas été mis à jour pour fonctionner avec votre version de %(app)s."
-
-msgid "Install Anyway"
-msgstr "Installer tout de même"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Ce module requiert une version de Firefox qui n’est pas encore sortie."
-
-msgid "Help test new Firefox Versions"
-msgstr "Aidez à tester les nouvelles versions de Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Ce module nécessite %(app)s {new_version}. Actuellement, vous utilisez %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Mettre à jour {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ou afficher <a href=\"%(href)s\">les anciennes versions de ce module</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Cette Persona nécessite %(app)s %(new_version)s. Or, vous utilisez actuellement %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr ""
-"<strong>Attention&nbsp;:</strong> Ce module n’a pas été examiné par Mozilla et ne peut pas être installé sur les versions de Firefox 43 et supérieures.  Soyez prudent lors de l’installation de "
-"logiciels tiers qui pourraient nuire à votre ordinateur."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Attention :</strong> Ce module n’est pas compatible avec votre système d’exploitation."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Ce module n’est pas compatible avec votre version de %(app)s à cause des éléments suivants :"
-
-msgid "View other versions"
-msgstr "Voir d’autres versions"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ce module n’est pas compatible avec votre version de %(app)s."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} utilisateur quotidien"
+msgstr[1] "{0} utilisateurs quotidiens"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -792,6 +719,12 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ce module peut :"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Firefox, c’est vous qui choisissez ou non d’accorder ces permissions."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Ce module complémentaire utilise une technologie obsolète ce qui lui donne accès à l’ensemble des fonctionnalités et des données de votre navigateur sans que cela nécessite votre permission."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1172,7 +1105,7 @@ msgstr ""
 "Les modules soumis au site Mozilla Add-ons doivent être accompagnés d’un fichier manifeste qui contient au moins un des logiciels listés ci-dessous. Seules les versions listées ci-dessous sont "
 "autorisées."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
@@ -1237,9 +1170,8 @@ msgstr "Cette adresse est déjà utilisée par une autre collection"
 msgid "Icons must be either PNG or JPG."
 msgstr "Les icônes doivent être en PNG ou JPG."
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Cette adresse est déjà utilisée par une autre collection"
+msgstr "Cette adresse est déjà utilisée par une autre collection."
 
 #, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
@@ -1762,8 +1694,8 @@ msgstr "En savoir plus sur la <a href=\"http://support.mozilla.com/kb/Search+bar
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Vous pouvez découvrir d’autres moteurs de recherche sur <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/Creating_OpenSearch_plugins_for_Firefox\">Réalisez votre propre outil de recherche</a>"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Réalisez votre propre outil de recherche</a>"
 
 msgid "Most Popular Extensions"
 msgstr "Extensions les plus populaires"
@@ -2186,13 +2118,11 @@ msgstr "Code source mis en ligne pour {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Code source envoyé"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Notes d’approbation changées pour {addon} {version}."
+msgstr "Approbation automatique confirmée pour {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Résumé de l’approbation automatique"
+msgstr "Approbation automatique confirmée"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2829,9 +2759,8 @@ msgstr "La plateforme « Toutes » ne peut être combinée avec des plateformes 
 msgid "A platform can only be chosen once."
 msgstr "Une plateforme ne peut être choisie qu’une fois."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Résolution"
+msgstr "Réputation"
 
 msgid "Application"
 msgstr "Application"
@@ -2857,6 +2786,9 @@ msgstr ""
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "À partir de la version 53 de Firefox, les nouvelles extensions sur ce site ne pourront être que des WebExtensions."
+
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Les extensions considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2948,7 +2880,7 @@ msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Vous ne pouvez pas proposer un module dont le guid se termine par « @mozilla.org »"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
 
 msgid "Icons cannot be animated."
 msgstr "Les icônes ne peuvent pas être animées."
@@ -3008,17 +2940,14 @@ msgstr ""
 "Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique comment"
 " nous gérons les informations vous concernant."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Accord de distribution des modules complémentaires"
+msgstr "Accord de distribution"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Consulter les politiques"
+msgstr "Politique de révision"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Testeurs"
+msgstr "Règles de révision"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -3029,7 +2958,7 @@ msgid "Printable Version"
 msgstr "Version imprimable"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
 
 msgid "I Accept this Agreement"
 msgstr "J’accepte cet accord"
@@ -3095,6 +3024,10 @@ msgstr "Recherche"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
+
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Après un envoi, une série de tests de validation automatiques seront exécutés pour vérifier la compatibilité avec les versions des applications suivantes :"
@@ -3273,9 +3206,8 @@ msgstr "Ce module est expérimental."
 msgid "This add-on is ready for general use."
 msgstr "Ce module est prêt pour une utilisation générale."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Redémarrage nécessaire"
+msgstr "Nécessite un paiement ?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3283,7 +3215,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -3709,16 +3641,14 @@ msgstr "Y a-t-il quoi que ce soit d’autre que nos testeurs devraient savoir po
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ces notes seront uniquement visibles par vous-même et nos testeurs."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Annuler la revue et désactiver la version"
+msgstr "Annuler et désactiver la version"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Annuler la revue et désactiver la version"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Envoyer une nouvelle version"
+msgstr "Soumettre la version"
 
 msgid "Submit Version for Review"
 msgstr "Demander une revue pour cette version"
@@ -3747,12 +3677,11 @@ msgstr "Envoi terminé"
 msgid "You’re done!"
 msgstr "C’est fait !"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Version signée"
+msgstr "Version soumise"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "C’est tout ! Cette version sera bientôt disponible sur notre site."
 
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
@@ -4004,7 +3933,7 @@ msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhai
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "HTML autorisé : %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Un peu de HTML supporté"
@@ -4049,9 +3978,8 @@ msgstr "Apprenez-en davantage sur notre blog"
 msgid "Resources"
 msgstr "Ressources"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Appréciation"
+msgstr "Portage"
 
 msgid "Community"
 msgstr "Communauté"
@@ -4069,9 +3997,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Nous contacter"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Politiques des modules"
+msgstr "Politiques"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4140,9 +4067,8 @@ msgstr "Gérez votre module"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Extensions vedettes"
+msgstr "Mettez à jour votre extension obsolète"
 
 #, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
@@ -4157,9 +4083,8 @@ msgstr "Dernières nouvelles"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Voir tous"
+msgstr "Voir le tutoriel"
 
 msgid "View All Submissions"
 msgstr "Voir toutes les versions"
@@ -4705,19 +4630,17 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
 msgstr[1] "{0} avertissements"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_heading}"
+msgstr "Bloquez les traqueurs {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ""
+msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Faites moins de fautes {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Avec plus de 25 langues prises en charge, cette extension transforme votre navigateur en un véritable correcteur."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -4805,9 +4728,8 @@ msgstr "Me notifier la prochaine fois que ce module est mis à jour. (les mises 
 msgid "Clear Admin Review Flag"
 msgstr "Enlever le drapeau de demande de revue administrateur"
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "Supprimer l’indicateur de demande d’information"
+msgstr "Besoin de plus d’informations ?"
 
 msgid "Choose a canned response..."
 msgstr "Choisissez une réponse enregistrée ..."
@@ -4866,15 +4788,13 @@ msgid "Has too few consecutive human-approved updates."
 msgstr "A été trop peu de fois approuvé par un être humain."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Possède une demande d’informations en attente."
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Marqué pour revue"
+msgstr "Marquée pour revue par un administrateur."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "mon module est en cours de vérification par un testeur"
+msgstr "Verrouillée par un relecteur."
 
 msgid "Duplicate Submission"
 msgstr "Envoi en double"
@@ -4931,7 +4851,7 @@ msgid "No Reviews"
 msgstr "Aucune revue"
 
 msgid "Weight"
-msgstr ""
+msgstr "Poids"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
@@ -4945,13 +4865,11 @@ msgstr "Confirmer l’approbation"
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Réactiver la version"
+msgstr "Rejeter plusieurs versions"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
+msgstr "Cette action rejettera les versions publiques sélectionnées. Les commentaires seront envoyés au développeur."
 
 msgid "Reviewer reply"
 msgstr "Réponse d’un testeur"
@@ -5011,9 +4929,8 @@ msgstr "besoin d’une super-revue"
 msgid "commented"
 msgstr "a été commenté"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "a été approuvé"
+msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5028,9 +4945,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Rapport d’abus"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Rapports d’abus pour {addon} ({num})"
+msgstr "Rapports d’abus pour {addon} et ses développeurs ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5051,9 +4967,8 @@ msgstr "Rapporter un abus"
 msgid "View Privacy Policy"
 msgstr "Voir la politique de vie privée"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Redémarrage nécessaire"
+msgstr "Nécessite un paiement"
 
 msgid "EULA"
 msgstr "CLUF"
@@ -5064,9 +4979,8 @@ msgstr "Dernière date d’approbation"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Approbations depuis la dernière révision automatique"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Rapports d’abus pour {addon} ({num})"
+msgstr "Signalements d’abus ({num})"
 
 msgid "Bad User Reviews ({num})"
 msgstr "Avis négatifs d’utilisateurs ({num})"
@@ -5321,9 +5235,8 @@ msgstr "Télécharger les fichiers"
 msgid "The developer has provided source code."
 msgstr "Le développeur a fourni le code source."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Modules complémentaires approuvés automatiquement"
+msgstr "Non approuvés automatiquement à cause de"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Le script d’approbation automatique n’a pas encore été exécuté pour cette version."
@@ -5332,7 +5245,7 @@ msgid "This version has not been reviewed."
 msgstr "Cette version n’a pas été revue."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Veuillez sélectionner une ou plusieurs versions dans la liste ci-dessus."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Vous pouvez toujours envoyer ce formulaire, cependant ne le faites que si vous savez que cela n’entrera pas en conflit."
@@ -6679,16 +6592,11 @@ msgstr ""
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Comment puis-je tester la compatibilité avec la dernière version du logiciel Mozilla ?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Afin d’assurer la compatibilité avec les derniers logiciels Mozilla, il est important de télécharger les mises à jour dès qu’elles sont disponibles et de tester votre module pour vous assurez qu’il "
-"continue de fonctionner correctement. Dans de nombreux cas, la version la plus récente est la version beta. Parfois, des modifications importantes sont introduites et impactent les fonctionnalités "
-"de votre module, il est donc important de s’impliquer activement dans les tests des versions beta afin que les utilisateurs de votre module ne soient pas impactés de façon négative lors du lancement"
-" de la version finale du logiciel Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "J’ai besoin d’aide pour construire mon module. Où puis-je en trouver ?"
@@ -6783,9 +6691,8 @@ msgstr ""
 " des testeurs d’AMO utilise le <a href=\"%(g_url)s\">guide de revue des testeurs</a> pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
 "sécurité."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Comment puis-je envoyer mon module pour une revue ?"
+msgstr "Comment puis-je soumettre mon module complémentaire ?"
 
 #, fuzzy, python-format
 msgid ""
@@ -6828,9 +6735,8 @@ msgstr ""
 "Oui. Vous pouvez préciser une politique de vie privée lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une politique de vie privée via le tableau de bord outils du "
 "développeur après envoi de votre module."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Pourquoi mon module doit-il être revu ?"
+msgstr "Mon module complémentaire doit-il être revu ?"
 
 #, fuzzy, python-format
 msgid ""
@@ -7017,17 +6923,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Les modules fonctionnent-ils avec mon navigateur web ou mon application ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules ne fonctionnent pas sur chacune de ces applications ou chaque version"
-" de ces dernières. Chaque module spécifie les applications et versions avec lesquelles il fonctionne, comme par exemple Firefox 2.0 - 3.6.*. Pour les modules Firefox, le bouton d’installation "
-"indiquera si le module est compatible ou non."
+"Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox pour Android</a>,"
+" <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, et<a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules peuvent ne pas fonctionner sur une de ces applications ou certaines"
+" versions de ces dernières. Chaque module spécifie les applications et versions pour lesquelles il fonctionne, comme par exemple Firefox 50.0 - 52.*. Pour les modules complémentaires Firefox, le "
+"bouton d’installation indiquera si le module est compatible ou non."
 
 msgid "What are the different types of add-ons?"
 msgstr "Quels sont les différents types de modules ?"
@@ -7081,7 +6987,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Comment garder à jour les modules ?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "La mise à jour des modules est effectuée quotidiennement et de façon automatique. Dans Firefox, les mises à jour sont automatiquement installées par défaut. "
 
 msgid "Are add-ons safe to install?"
 msgstr "Est-ce que les modules sont sûrs à installer ?"
@@ -8292,7 +8198,7 @@ msgstr "la compatibilité de mon module utilisant le sdk a été mise à jour a
 msgid "someone writes a review of my add-on"
 msgstr "quelqu’un a écrit une critique sur mon module"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8409,9 +8315,9 @@ msgstr "Supprimer la photo actuelle"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Présentez-vous à la communauté, si vous le souhaitez ! Ce texte apparaitra publiquement sur votre page."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML autorisé&nbsp;: {0}. Les liens sont interdits."
+msgstr "HTML autorisé : %(html)s. Les liens sont interdits."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Décidez quelles collections doivent apparaître dans votre profil."
@@ -8586,12 +8492,6 @@ msgstr "%s Historique des versions"
 
 msgid "Version History with Changelogs"
 msgstr "Historique des versions et modifications correspondantes"
-
-msgid "Add-on uses binary components."
-msgstr "Module contenant des composants binaires."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Le module a opté pour une vérification de compatibilité stricte."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} et supérieures"

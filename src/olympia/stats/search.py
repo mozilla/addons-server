@@ -1,7 +1,6 @@
 import collections
 
 from django.conf import settings
-from django.core.management import call_command
 
 from olympia import amo
 from olympia.applications.models import AppVersion
@@ -15,7 +14,7 @@ from olympia.stats.models import (
 # can be retrieved with the following command (look for
 # "max_content_length_in_bytes"):
 #  curl http://HOST:PORT/_nodes/?pretty
-CHUNK_SIZE = 10000
+CHUNK_SIZE = 5000
 
 
 def es_dict(items):
@@ -154,7 +153,8 @@ def create_new_index(index_name=None):
 
 
 def reindex(index_name):
-    call_command('index_stats', index=index_name)
+    from olympia.stats.management.commands.index_stats import index_stats
+    index_stats(index_name)
 
 
 def get_mappings():
@@ -167,7 +167,7 @@ def get_mappings():
                 'dynamic': 'true',
                 'properties': {
                     'v': {'type': 'long'},
-                    'k': {'type': 'string'}
+                    'k': {'type': 'keyword'}
                 }
             },
             'date': {

@@ -88,10 +88,25 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 class LicenseSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     text = TranslationSerializerField()
+    url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
         fields = ('id', 'name', 'text', 'url')
+
+    def get_url(self, obj):
+        return obj.url or self.get_version_license_url(obj)
+
+    def get_version_license_url(self, obj):
+        # We need the version associated with the license, because that's where
+        # the license_url() method lives. The problem is, normally we would not
+        # be able to do that, because there can be multiple versions for a
+        # given License. However, since we're serializing through a nested
+        # serializer, we cheat and use `instance.version_instance` which is
+        # set by SimpleVersionSerializer.to_representation() while serializing.
+        if hasattr(obj, 'version_instance'):
+            return absolutify(obj.version_instance.license_url())
+        return None
 
 
 class CompactLicenseSerializer(LicenseSerializer):
@@ -113,6 +128,13 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
         fields = ('id', 'compatibility', 'edit_url', 'files',
                   'is_strict_compatibility_enabled', 'license', 'reviewed',
                   'url', 'version')
+
+    def to_representation(self, instance):
+        # Help the LicenseSerializer find the version we're currently
+        # serializing.
+        if 'license' in self.fields and instance.license:
+            instance.license.version_instance = instance
+        return super(SimpleVersionSerializer, self).to_representation(instance)
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -223,6 +245,8 @@ class AddonSerializer(serializers.ModelSerializer):
         )
 
     def to_representation(self, obj):
+        # Set this so BaseUserSerializer doesn't need to do a query
+        self.context['is_developer'] = True
         data = super(AddonSerializer, self).to_representation(obj)
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
@@ -505,6 +529,7 @@ class StaticCategorySerializer(serializers.Serializer):
     misc = serializers.BooleanField()
     type = serializers.SerializerMethodField()
     weight = serializers.IntegerField()
+    description = serializers.CharField()
 
     def get_application(self, obj):
         return APPS_ALL[obj.application].short

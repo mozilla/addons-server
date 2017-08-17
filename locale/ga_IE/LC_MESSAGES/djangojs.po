@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -671,18 +671,6 @@ msgstr "Glac Leis agus Suiteáil"
 msgid "Add to {0}"
 msgstr "Cuir le {0}"
 
-msgid "Download Now"
-msgstr "Íoslódáil Anois"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Suiteáil ar {0} mar sin féin"
@@ -693,9 +681,13 @@ msgstr "Íoslódáil le haghaidh {0} mar sin féin"
 msgid "Not available for your platform"
 msgstr "Níl sé ar fáil ar d'ardán"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Níl sé ar fáil le haghaidh {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
+
+msgid "View other versions"
+msgstr "Féach ar leaganacha eile"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Feidhmíonn sé le {app} {min} - {max}"
@@ -703,16 +695,7 @@ msgstr "Feidhmíonn sé le {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Feidhmíonn sé le {app}"
 
-msgid "View other versions"
-msgstr "Féach ar leaganacha eile"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Download now"
-msgstr "Íoslódáil anois"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

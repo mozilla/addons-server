@@ -36,7 +36,7 @@
          title="{{ _('Upload a new version of this add-on.') }}">
         {{ _('New Version') }}</a>
     </li>
-    {% if addon.accepts_compatible_apps() and addon.current_version %}
+    {% if addon.current_version and not addon.current_version.is_compatible_by_default %}
       <li class="compat"
           data-src="{{ url('devhub.ajax.compat.status', addon.slug) }}">
         {% include "devhub/addons/ajax_compat_status.html" %}

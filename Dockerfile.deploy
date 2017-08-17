@@ -10,9 +10,11 @@ RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 
 ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
 ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
 
 ADD docker/epel.repo /etc/yum.repos.d/
 ADD docker/git.repo /etc/yum.repos.d/git.repo
+ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
 RUN yum install -y                                          \
         gcc-c++                                             \

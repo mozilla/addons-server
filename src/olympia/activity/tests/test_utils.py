@@ -510,18 +510,24 @@ def test_send_activity_mail():
     user = user_factory()
     recipients = [user, ]
     from_email = 'bob@bob.bob'
+    action = ActivityLog.create(amo.LOG.DEVELOPER_REPLY_VERSION, user=user)
     send_activity_mail(
-        subject, message, latest_version, recipients, from_email)
+        subject, message, latest_version, recipients, from_email, action.id)
 
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
-    reference_header = '{addon}/{version}@{site}'.format(
+    uuid = latest_version.token.get(user=user).uuid.hex
+    reference_header = '<{addon}/{version}@{site}>'.format(
         addon=latest_version.addon.id, version=latest_version.id,
         site=settings.INBOUND_EMAIL_DOMAIN)
+    message_id = '<{addon}/{version}/{action}@{site}>'.format(
+        addon=latest_version.addon.id, version=latest_version.id,
+        action=action.id, site=settings.INBOUND_EMAIL_DOMAIN)
+
     assert mail.outbox[0].extra_headers['In-Reply-To'] == reference_header
     assert mail.outbox[0].extra_headers['References'] == reference_header
+    assert mail.outbox[0].extra_headers['Message-ID'] == message_id
 
-    uuid = latest_version.token.get(user=user).uuid.hex
     reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)
     assert mail.outbox[0].reply_to == [reply_email]

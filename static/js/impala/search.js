@@ -8,7 +8,7 @@
         $('#search', $context).on('autofill', function(e) {
             var $this = $(this);
 
-            // Bail if we're searching within apps.
+            // Bail if search is present but not the appver input somehow.
             if (!appver_input.length) {
                 return;
             }
@@ -21,7 +21,12 @@
             if (!!(gv.appver)) { // Defined in URL parameter
                 appver_input.val(gv.appver);
             } else if (z.appMatchesUserAgent) { // Fallback to detected
-                appver_input.val(z.browserVersion);
+                // Only do this if firefox 57 or higher. Lower versions default
+                // to searching for all add-ons even if they might be
+                // incompatible. https://github.com/mozilla/addons-server/issues/5482
+                if (VersionCompare.compareVersions(z.browserVersion, '57.0') >= 0) {
+                    appver_input.val(z.browserVersion);
+                }
             }
 
             if (!!(gv.platform)) { // Defined in URL parameter

@@ -298,7 +298,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
 
     # Django specific templates
-    r'^registration\/password_reset_subject.txt'
+    r'^registration\/',
 )
 
 TEMPLATES = [
@@ -545,10 +545,10 @@ MINIFY_BUNDLES = {
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
             'css/legacy/jquery-lightbox.css',
-            'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
+            'css/impala/buttons.less',
             'css/impala/formset.less',
             'css/impala/suggestions.less',
             'css/impala/header.less',
@@ -1091,8 +1091,6 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
     'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
-    'olympia.users.tasks.index_users': {'queue': 'priority'},
-    'olympia.users.tasks.unindex_users': {'queue': 'priority'},
 
     # Other queues we prioritize below.
 
@@ -1649,7 +1647,7 @@ REST_FRAMEWORK = {
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
-        'olympia.api.paginator.CustomPageNumberPagination'),
+        'olympia.api.pagination.CustomPageNumberPagination'),
 
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
@@ -1719,5 +1717,4 @@ CRON_JOBS = {
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',
-    'reindex_users': 'olympia.users.cron',
 }

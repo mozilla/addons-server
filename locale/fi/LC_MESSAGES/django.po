@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -479,79 +479,12 @@ msgstr "Ei vielä pisteytetty"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> käyttäjää"
 
-msgid "{0} Daily Users"
-msgstr "{0} päivittäistä käyttäjää"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
-
-msgid "Learn more about Firefox"
-msgstr "Lue lisää Firefoxista"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-
-msgid "Learn more about Thunderbird"
-msgstr ""
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Tätä lisäosaa ei ole päivitetty toimimaan sinun %(app)s-versiosi kanssa."
-
-msgid "Install Anyway"
-msgstr "Asenna kuitenkin"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Tämä lisäosa vaatii Firefox-version, jota ei ole vielä julkaistu."
-
-msgid "Help test new Firefox Versions"
-msgstr ""
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Päivitä {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Huomaa:</strong> Tämä lisäosa ei ole yhteensopiva käyttöjärjestelmäsi kanssa."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
-
-msgid "View other versions"
-msgstr ""
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} päivittäistä käyttäjää"
+msgstr[1] "{0} päivittäistä käyttäjää"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -787,6 +720,12 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
+msgstr ""
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
 
 #. {0} is an add-on name.
@@ -1166,7 +1105,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1801,7 +1740,7 @@ msgstr "Lue lisää {0}-<a href=\"http://support.mozilla.com/kb/Search+bar\">hak
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2930,6 +2869,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3167,6 +3109,10 @@ msgstr "Etsi"
 msgid "Use the field below to upload your add-on package."
 msgstr "Siirrä lisäosapakettisi alla olevan kentän avulla."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr ""
 
@@ -3357,7 +3303,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8325,7 +8271,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8624,12 +8570,6 @@ msgstr "%s versiohistoria"
 
 msgid "Version History with Changelogs"
 msgstr "Versiohistoria muutostiedoilla"
-
-msgid "Add-on uses binary components."
-msgstr ""
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
 
 msgid "{app} {min} and later"
 msgstr ""

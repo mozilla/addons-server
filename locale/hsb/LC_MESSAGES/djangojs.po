@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 12:56+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 19:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -667,18 +667,6 @@ msgstr "Akceptować a instalować"
 msgid "Add to {0}"
 msgstr "K {0} přidać"
 
-msgid "Download Now"
-msgstr "Nětko sćahnyć"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Přidatk njeje so zaktualizował, zo byšće standardnu kompatibelnosć podpěrał."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Dyrbiće Firefox 10.0 abo nowši wužiwać."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla je tutu wersiju jako z wašej wersiju Firefox kompatibelnu markěrował."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Najebać toho za {0} instalować"
@@ -689,9 +677,12 @@ msgstr "Najebać toho za {0} sćahnyć"
 msgid "Not available for your platform"
 msgstr "Njeje za wašu platformu k dispoziciji"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Njeje za {0} {1} k dispoziciji"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Tutón přidatk z wašej wersiju {0} kompatibelna njeje."
+
+msgid "View other versions"
+msgstr "Druhe wersije pokazać"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funguje z {app} {min} - {max}"
@@ -699,17 +690,8 @@ msgstr "Funguje z {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funguje z {app}"
 
-msgid "View other versions"
-msgstr "Druhe wersije pokazać"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Jenož z Firefox – Wobstarajće sej nětko Firefox!"
-
-msgid "Download now"
-msgstr "Nětko sćahnyć"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Jenož za Firefox Desktop k dispoziciji"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski tykač instalował."

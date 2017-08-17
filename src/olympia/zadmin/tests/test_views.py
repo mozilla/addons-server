@@ -76,6 +76,27 @@ class TestHomeAndIndex(TestCase):
         assert response.context['user'].username == 'admin'
         assert response.context['user'].email == 'admin@mozilla.com'
 
+    def test_django_index(self):
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        self.client.logout()
+        response = self.client.get(url)
+        self.assert3xx(response, '/admin/models/login/?'
+                                 'next=/en-US/admin/models/')
+
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email='staffperson@m.c')
+        self.assert3xx(response, '/admin/models/login/?'
+                                 'next=/en-US/admin/models/')
+
+    def test_django_admin_logout(self):
+        url = reverse('admin:logout')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
 
 class TestStaffAdmin(TestCase):
     def test_index(self):

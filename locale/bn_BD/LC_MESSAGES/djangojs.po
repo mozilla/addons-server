@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-06-13 01:18+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -650,18 +650,6 @@ msgstr "গ্রহণ করুন এবং ইন্সটল করুন"
 msgid "Add to {0}"
 msgstr "{0} এখানে যোগ করুন"
 
-msgid "Download Now"
-msgstr "এখন ডাউনলোড করুন"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
@@ -672,9 +660,13 @@ msgstr "{0} এর জন্য যেকোনভাবে ডাউনলো�
 msgid "Not available for your platform"
 msgstr ""
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr ""
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
+
+msgid "View other versions"
+msgstr "অন্যান্য ভার্সনগুলো দেখুন"
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
@@ -682,16 +674,7 @@ msgstr ""
 msgid "Works with {app}"
 msgstr "{app} এর সাথে কাজ করুন"
 
-msgid "View other versions"
-msgstr "অন্যান্য ভার্সনগুলো দেখুন"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Download now"
-msgstr "এখন ডাউনলোড করুন"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

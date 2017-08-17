@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-23 11:06+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 09:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -91,7 +91,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "Add-on anda telah disahkan dengan tiada ralat atau amaran."
 
 msgid "Your submission will be automatically signed."
-msgstr "Penghantaran anda akan didaftarkan secara automatik."
+msgstr "Serahan anda akan ditandatangani secara automatik."
 
 msgid "WebExtension upgrade"
 msgstr "kemaskini WebExtension"
@@ -100,28 +100,28 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Mengalihkan add-on Firefox legasi di MDN"
+msgstr "Pemindahan add-on Firefox legasi di MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Samada anda perlukan akaun untuk masuk ke laman web supaya add-on boleh diuji sepenuhnya, termasuk ujian nama pengguna dan kata laluan dalam Nota kepada Pengulas (ini boleh dilakukan dalam langkah "
+"Samada anda perlukan akaun untuk masuk ke laman web supaya add-on boleh diuji sepenuhnya, termasuk ujian nama pengguna dan kata laluan dalam Nota kepada Penyemak (ini boleh dilakukan dalam langkah "
 "seterusnya)."
 
 msgid "Add-on submission checklist"
-msgstr "Senarai semak penghantaran add-on"
+msgstr "Senarai semak serahan add-on"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Sila sahkan butiran berikut sebelum memuktamadkan penghantaran anda. Ini akan mengurangkan kelewatan atau salah faham semasa proses semakan:"
+msgstr "Sila sahkan butiran berikut sebelum memuktamadkan serahan anda. Ini akan mengurangkan kelewatan atau salah faham semasa proses semakan:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Susunan binari, serta skrip yang diringkaskan atau dikelirukan (tidak termasuk pustaka yang diketahui) perlu ada sumbernya dan dikemukakan secara berasingan untuk semakan. Pastikan anda menggunakan "
-"medan memuat naik kod sumber untuk mengelakkan penghantaran anda ditolak."
+"medan memuat naik kod sumber untuk mengelakkan serahan anda ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proses pengesahan menemukan isu berikut yang boleh menyebabkan penghantaran ditolak:"
@@ -224,7 +224,7 @@ msgid "{0} collections"
 msgstr "{0} koleksi"
 
 msgid "{0} reviews"
-msgstr "{0} ulasan"
+msgstr "{0} semakan"
 
 msgid "{0} sales"
 msgstr "{0} jualan"
@@ -279,7 +279,7 @@ msgid "Subscribers"
 msgstr "Pelanggan"
 
 msgid "Ratings"
-msgstr "Kadaran"
+msgstr "Penarafan"
 
 msgid "Sales"
 msgstr "Jualan"
@@ -297,7 +297,7 @@ msgid "Add-ons Manager Promo"
 msgstr "Promo Pengurus Add-ons"
 
 msgid "Add-ons Manager Featured"
-msgstr "Ciri Pengurus Add-ons"
+msgstr "Sorotan Pengurus Add-ons"
 
 msgid "Add-ons Manager Learn More"
 msgstr "Ketahui Selanjutnya Pengurus Add-ons"
@@ -312,10 +312,10 @@ msgid "Homepage Promo"
 msgstr "Promo Halaman utama"
 
 msgid "Homepage Featured"
-msgstr "Ciri Halaman utama"
+msgstr "Sorotan Halaman utama"
 
 msgid "Homepage Up and Coming"
-msgstr "Akan Muncul dalam Halaman Utama"
+msgstr "Penampilan Halaman Utama"
 
 msgid "Homepage Most Popular"
 msgstr "Paling Popular dalam Halaman utama"
@@ -360,10 +360,10 @@ msgid "Collections"
 msgstr "Koleksi"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Kategori Pelantar Berciri Karusel"
+msgstr "Karusel Sorotan Pelantar Kategori"
 
 msgid "Category Landing Top Rated"
-msgstr "Kategori Pelantar Taraf Teratas"
+msgstr "Kategori Pelantar Tahap Tinggi"
 
 msgid "Category Landing Most Popular"
 msgstr "Kategori Pelantar Paling Popular"
@@ -372,28 +372,28 @@ msgid "Category Landing Recently Added"
 msgstr "Kategori Pelantar Terkini Ditambah"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Senarai Pelayaran Berciri Disisih"
+msgstr "Layari Senarai Isih Sorotan"
 
 msgid "Browse Listing Users Sort"
-msgstr "Senarai Pelayaran Pengguna Disisih"
+msgstr "Layari Senarai Isih Pengguna"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Senarai Pelayaran Penarafan Disisih"
+msgstr "Layari Senarai Isih Tahap"
 
 msgid "Browse Listing Created Sort"
-msgstr "Senarai Pelayaran Dicipta Disisih"
+msgstr "Layari Senarai Isih Dicipta"
 
 msgid "Browse Listing Name Sort"
-msgstr "Senarai Pelayaran Nama Disisih"
+msgstr "Layari Senarai Isih Nama"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Senarai Pelayaran Popular Disisih"
+msgstr "Layari Senarai Isih Popular"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Senarai Pelayaran Dikemas kini Disisih"
+msgstr "Layari Senarai Isih Dikemas kini"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Senarai Pelayaran Akan Muncul Disisih"
+msgstr "Layari Senarai Isih Penampilan"
 
 msgid "Total Amount Contributed"
 msgstr "Jumlah Amaun Disumbangkan"
@@ -648,18 +648,6 @@ msgstr "Terima dan Pasang"
 msgid "Add to {0}"
 msgstr "Tambah ke {0}"
 
-msgid "Download Now"
-msgstr "Muat Turun Sekarang"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on tidak dikemaskini untuk menyokong piawai-ke-serasi."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Anda perlu gunakan Firefox 10.0 atau lebih baru."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla telah tandakan versi ini sebagai tidak serasi dengan versi Firefox anda."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Teruskan sahaja pasang untuk {0}"
@@ -670,9 +658,12 @@ msgstr "Teruskan sahaja muat turun untuk {0}"
 msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform anda"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Tidak tersedia untuk {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Add-on ini tidak serasi dengan versi {0}."
+
+msgid "View other versions"
+msgstr "Papar versi lain"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Berfungsi dengan {app} {min} - {max}"
@@ -680,17 +671,8 @@ msgstr "Berfungsi dengan {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Berfungsi dengan {app}"
 
-msgid "View other versions"
-msgstr "Tinjau versi lain"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
-
-msgid "Download now"
-msgstr "Muat turun sekarang"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Hanya terdapat dalam Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Maaf, anda perlukan pelayar berasaskan-Mozilla (seperti Firefox) untuk memasang plugin carian."
@@ -794,16 +776,16 @@ msgid "Version Notes"
 msgstr "Nota Versi"
 
 msgid "Notes for Reviewers"
-msgstr "Nota untuk Pengulas"
+msgstr "Nota kepada Penyemak"
 
 msgid "No version notes found"
 msgstr "Tiada nota versi ditemui"
 
 msgid "Review Text"
-msgstr "Teks Ulasan"
+msgstr "Teks Semakan"
 
 msgid "Review notes found"
-msgstr "Nota ulasan ditemui"
+msgstr "Nota semakan ditemui"
 
 msgid "Average Reviews"
 msgstr "Purata Ulasan"

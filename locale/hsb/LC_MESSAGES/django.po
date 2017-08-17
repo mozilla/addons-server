@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-18 20:12+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-16 20:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -477,83 +477,13 @@ msgstr "Hišće njepohódnoćeny"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> wužiwarjow"
 
-msgid "{0} Daily Users"
-msgstr "{0} wšědnych wužiwarjow"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Zo byšće tutón přidatk a tysacy dalše instalował, <b>wobstarajće sej Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Dalše informacije wo Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "abo <b><a class=\"button installer\" href=\"{url}\">najebać toho sćahnyć</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Instalacija w Thunderbird</strong> <ol> <li>Sćehńće a składujće dataju na swojej krutej tačeli. </li> <li>Wočińće zrjadowak přidatkow přez meni „Nastroje“ w Mozilla Thunderbird.</li> "
-"<li>Wubjerće z tłóčatkom ze zubatym koleskom pódla pytanskeho pola přidatka zapisk „Přidatk z dataje instalować...“ a wubjerće sćehnjeny přidatk.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Zo byšće tutu drastu instalował, <b>wobstarajće sej Thunderbird</b>, darmotny e-mejlowy program wotewrjeneho žórła wot Mozilla Messaging a instalujće přidatk Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Dalše informacije wo Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Zo byšće tutu drastu a tysacy dalše instalował, <b>wobstarajće sej Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Tutón přidatk njeje so hišće zaktualizował, zo by z wašej wersiju %(app)s fungował."
-
-msgid "Install Anyway"
-msgstr "Najebać toho instalować"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotraž hišće njeje wušła."
-
-msgid "Help test new Firefox Versions"
-msgstr "Pomhajće, nowe wersije Firefox testować"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Tutón přidatk sej %(app)s {new_version} wužaduje. Wužiwaće tuchwilu %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} aktualizować"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "abo <a href=\"%(href)s\">starše wersije tutoho přidatka</a> pokazać."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Tutón Persona sej %(app)s %(new_version)s wužaduje. Wužiwaće tuchwilu %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr ""
-"<strong>Kedźbu:</strong> Tutón přidatk njeje přepruwowany wot Mozilla a njeda so do wersije Firefox 43 a nowšich instalować. Budźće kedźbliwy, hdyž programy třećich poskićowarjow instalujeće, kotrež"
-" móhli wašemu ličakej škodu činić."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Kedźbu:</strong> Tutón přidatk z wašim dźěłowym systemom kompatibelny njeje."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Tutón přidatk ze slědowaceje přičiny z wašej wersiju %(app)s kompatibelny njeje:"
-
-msgid "View other versions"
-msgstr "Druhe wersije pokazać"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Tutón přidatk z wašej wersiju %(app)s kompatibelny njeje."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} wšědny wužiwar"
+msgstr[1] "{0} wšědnaj wužiwarjej"
+msgstr[2] "{0} wšědni wužiwarjo"
+msgstr[3] "{0} wšědnych wužiwarjow"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -800,6 +730,12 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Tutón přidatk móže:"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli. Dokelž wy kontrolu nad swojim Firefox maće, leži pola was, hač tute naprašowanja dopušćeće abo wotpokazujeće."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Prošu dźiwajće na to, zo tutón přidatk zestarjenu technologiju wužiwa, kotraž jemu přistup na wšě funkcije wobhladowaka a daty bjez toho, zo by wo wašu dowolnosć prosył."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1177,8 +1113,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 "Přidatki zapodate pola Mozilla Add-ons dyrbja manifestowu dataju měć, při čimž so znajmjeńša jednej ze slědowacych nałoženjow podpěruje. Jenož deleka podate wersije su za tute nałoženja dowolene."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1780,8 +1716,8 @@ msgstr "Zhońće wjace wo <a href=\"http://support.mozilla.com/kb/Search+bar\">p
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Přepytujće dalše pytanskich poskićowarjow na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Wutworće swójski</a> pytanski nastroj"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Wutworće swójski</a> pytanski nastroj"
 
 msgid "Most Popular Extensions"
 msgstr "Najbóle woblubowane rozšěrjenja"
@@ -2871,6 +2807,9 @@ msgstr "Samostatny. <span class=\"helptext\">Waše zapodaće budźe so hnydom za
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja jenož WebExtensions być."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces přewobroćić. Hdyž waši wužiwarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
 
@@ -3101,6 +3040,10 @@ msgstr "Pytać"
 msgid "Use the field below to upload your add-on package."
 msgstr "Wužiwajće slědowace polo, zo byšće swój přidatkowy pakćik nahrał."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Dźiwajće na to, zo tutón nastroj jenož ze zestarjenymi přidatkami funguje. API WebExtension su <a href=\"%(webext_doc_url)s\">tu nadrobnje dokumentowane</a>."
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po nahrawanju so rjad awtomatiskich přepruwowanskich testow přewjedźe, zo bychu komptatibelnosć ze slědowacej wersiju nałoženja přepruwowali:"
 
@@ -3289,7 +3232,7 @@ msgstr "Stajće hóčku do kašćika, jeli sej hłowne funkcije tutoho přidatka
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Tutón přidatk sej płaćenje, płaćomne słužby, softwaru abo přidatnu hardwaru wužaduje."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Tutón přidatk sej přidatne płaćenja, płaćomne słužby, softwaru abo přidatnu hardwaru njewužaduje."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8275,8 +8218,8 @@ msgstr "mój přidatk, kotryž na SDK bazuje, je so wuspěšnje zaktualizował"
 msgid "someone writes a review of my add-on"
 msgstr "něchtó pohódnoćenje mojeho přidatka pisa"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr "wostańće aktualny z powěsćemi a podawkami, kotrež su relewantne za wuwiwarjow"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr "wostańće aktualny z powěsćemi a podawkami, kotrež su relewantne za wuwiwarjow přidatkow (inkluziwnje powěsćowy list about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatibelnosć mojeho přidatka njeda so aktualizować"
@@ -8570,12 +8513,6 @@ msgstr "Wersijowa historija %s"
 
 msgid "Version History with Changelogs"
 msgstr "Wersijowa historija ze změnowymi protokolemi"
-
-msgid "Add-on uses binary components."
-msgstr "Přidatk binarne komponenty wužiwa."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "Přidatk je striktny test kompatibelnosće aktiwizował."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowše"

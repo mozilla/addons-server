@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 11:33+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 08:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -655,18 +655,6 @@ msgstr "Elfogadás és telepítés"
 msgid "Add to {0}"
 msgstr "Hozzáadás ehhez: {0}"
 
-msgid "Download Now"
-msgstr "Letöltés most"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett kompatibilitást."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 vagy annál frissebb verziót kell használnia."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla szerint ez a verzió nem működik a Firefox verziójával."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Telepítés mindenképpen erre: {0}"
@@ -677,9 +665,12 @@ msgstr "Letöltés mindenképpen erre: {0}"
 msgid "Not available for your platform"
 msgstr "Nem érhető el ezen a platformon"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nem érhető el a(z) {0} {1} verzióhoz"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ez a kiegészítő nem kompatibilis ezzel a {0} verzióval."
+
+msgid "View other versions"
+msgstr "További verziók megtekintése"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Ezzel működik: {app} {min} - {max}"
@@ -687,17 +678,8 @@ msgstr "Ezzel működik: {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Ezzel működik: {app}"
 
-msgid "View other versions"
-msgstr "További verziók megtekintése"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Csak a Firefoxszal – szerezze be a Firefoxot most!"
-
-msgid "Download now"
-msgstr "Letöltés most"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Csak a Firefox asztali változatán érhető el"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."

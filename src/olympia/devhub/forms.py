@@ -6,6 +6,7 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
+from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -432,14 +433,25 @@ class CompatForm(happyforms.ModelForm):
         model = ApplicationsVersions
         fields = ('application', 'min', 'max')
 
-    def __init__(self, *args, **kw):
-        super(CompatForm, self).__init__(*args, **kw)
+    def __init__(self, *args, **kwargs):
+        # 'version' should always be passed as a kwarg to this form. If it's
+        # absent, it probably means form_kwargs={'version': version} is missing
+        # from the instantiation of the formset.
+        version = kwargs.pop('version')
+        super(CompatForm, self).__init__(*args, **kwargs)
         if self.initial:
             app = self.initial['application']
         else:
             app = self.data[self.add_prefix('application')]
         self.app = amo.APPS_ALL[int(app)]
         qs = AppVersion.objects.filter(application=app).order_by('version_int')
+
+        # Legacy extensions can't set compatibility higher than 56.* for
+        # Firefox and Firefox for Android.
+        if (self.app in (amo.FIREFOX, amo.ANDROID) and
+                not version.is_webextension and
+                version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)):
+            qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
 
@@ -453,11 +465,14 @@ class CompatForm(happyforms.ModelForm):
 
 class BaseCompatFormSet(BaseModelFormSet):
 
-    def __init__(self, *args, **kw):
-        super(BaseCompatFormSet, self).__init__(*args, **kw)
+    def __init__(self, *args, **kwargs):
+        # form_kwargs is only present in Django 1.9 and newer, so we
+        # re-implement it.
+        self.form_kwargs = kwargs.pop('form_kwargs', {})
+        super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
-        qs = kw['queryset'].values_list('application', flat=True)
+        qs = kwargs['queryset'].values_list('application', flat=True)
         apps = [a for a in amo.APP_USAGE if a.id not in qs]
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
@@ -479,6 +494,27 @@ class BaseCompatFormSet(BaseModelFormSet):
         if not apps:
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
+
+    # The 2 methods below, forms() and get_form_kwargs(), are lifted from
+    # Django 1.9, because we need form_kwargs to work.
+    @cached_property
+    def forms(self):
+        """
+        Instantiate forms at first property access.
+        """
+        # DoS protection is included in total_form_count()
+        forms = [self._construct_form(i, **self.get_form_kwargs(i))
+                 for i in range(self.total_form_count())]
+        return forms
+
+    def get_form_kwargs(self, index):
+        """
+        Return additional keyword arguments for each individual formset form.
+
+        index will be None if the form being constructed is a new empty
+        form.
+        """
+        return self.form_kwargs.copy()
 
 
 CompatFormSet = modelformset_factory(

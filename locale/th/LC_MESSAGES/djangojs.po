@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2016-10-17 14:02+0000\n"
 "Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -645,18 +645,6 @@ msgstr "ยอมรับและติดตั้ง"
 msgid "Add to {0}"
 msgstr "เพิ่มไปยัง {0}"
 
-msgid "Download Now"
-msgstr "ดาวน์โหลดตอนนี้"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "คุณจำเป็นต้องใช้ Firefox 10.0 หรือสูงกว่า"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla ทำเครื่องหมายว่ารุ่นนี้ไม่เข้ากันกับรุ่น Firefox ของคุณ"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "ติดตั้ง {0} ต่อไป"
@@ -667,9 +655,13 @@ msgstr "ดาวน์โหลด {0} ต่อไป"
 msgid "Not available for your platform"
 msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "ไม่พร้อมใช้งานสำหรับ {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
+
+msgid "View other versions"
+msgstr "ดูรุ่นอื่น"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "ทำงานได้กับ {app} {min} - {max}"
@@ -678,17 +670,7 @@ msgstr "ทำงานได้กับ {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "ทำงานได้กับ {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "ดูรุ่นอื่น"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "ดาวน์โหลดเดี๋ยวนี้"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

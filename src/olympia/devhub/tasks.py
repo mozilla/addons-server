@@ -186,13 +186,18 @@ def handle_upload_validation_result(results, upload_pk, channel):
     """Annotate a set of validation results and save them to the given
     FileUpload instance."""
     upload = FileUpload.objects.get(pk=upload_pk)
+    # Restrictions applying to new legacy submissions apply if:
+    # - It's the very first upload (there is no addon id yet)
+    # - It's the first upload in that channel
+    is_new_upload = (
+        not upload.addon_id or
+        not upload.addon.find_latest_version(channel=channel, exclude=()))
 
-    if (not upload.addon_id or
-            not upload.addon.find_latest_version(channel=channel, exclude=())):
-        # Legacy submission restrictions apply if:
-        # - It's the very first upload (there is no addon id yet)
-        # - It's the first upload in that channel
-        results = annotate_new_legacy_addon_restrictions(results=results)
+    # Annotate results with potential legacy add-ons restrictions.
+    results = annotate_legacy_addon_restrictions(
+        results=results, is_new_upload=is_new_upload)
+
+    # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
         results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
@@ -265,9 +270,25 @@ def handle_file_validation_result(results, file_id, *args):
     return FileValidation.from_json(file_, results)
 
 
-def annotate_new_legacy_addon_restrictions(results):
+def insert_validation_message(results, type_='error', message='', msg_id='',
+                              compatibility_type=None):
+    messages = results['messages']
+    messages.insert(0, {
+        'tier': 1,
+        'type': type_,
+        'id': ['validation', 'messages', msg_id],
+        'message': message,
+        'description': [],
+        'compatibility_type': compatibility_type,
+    })
+    # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
+    # the type_ to increment the right entry.
+    results['{}s'.format(type_)] += 1
+
+
+def annotate_legacy_addon_restrictions(results, is_new_upload):
     """
-    Annotate validation results to restrict uploads of new legacy
+    Annotate validation results to restrict uploads of legacy
     (non-webextension) add-ons if specific conditions are met.
     """
     metadata = results.get('metadata', {})
@@ -278,7 +299,10 @@ def annotate_new_legacy_addon_restrictions(results):
     )
 
     is_webextension = metadata.get('is_webextension') is True
-    is_extension_type = metadata.get('is_extension') is True
+    is_extension_or_complete_theme = (
+        # Note: annoyingly, `detected_type` is at the root level, not under
+        # `metadata`.
+        results.get('detected_type') in ('theme', 'extension'))
     is_targeting_firefoxes_only = (
         set(target_apps.keys()).intersection(('firefox', 'android')) ==
         set(target_apps.keys())
@@ -291,27 +315,42 @@ def annotate_new_legacy_addon_restrictions(results):
         max_target_firefox_version > 200100 and
         max_target_firefox_version < 53000000000000
     )
+    is_targeting_firefox_higher_or_equal_than_57 = (
+        max_target_firefox_version >= 57000000000000 and
+        max_target_firefox_version < 99000000000000)
 
-    if (is_extension_type and
+    # New legacy add-ons targeting Firefox only must target Firefox 53 or
+    # lower, strictly. Extensions targeting multiple other apps are exempt from
+    # this.
+    if (is_new_upload and
+        is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefoxes_only and
             not is_targeting_firefox_lower_than_53_only and
             waffle.switch_is_active('restrict-new-legacy-submissions')):
 
         msg = ugettext(
-            u'Starting with Firefox 53, new extensions on this site can '
+            u'Starting with Firefox 53, new add-ons on this site can '
             u'only be WebExtensions.')
 
-        messages = results['messages']
-        messages.insert(0, {
-            'tier': 1,
-            'type': 'error',
-            'id': ['validation', 'messages', 'legacy_extensions_restricted'],
-            'message': msg,
-            'description': [],
-            'compatibility_type': None
-        })
-        results['errors'] += 1
+        insert_validation_message(
+            results, message=msg, msg_id='legacy_addons_restricted')
+
+    # All legacy add-ons (new or upgrades) targeting Firefox must target
+    # Firefox 56.* or lower, even if they target multiple apps.
+    elif (is_extension_or_complete_theme and
+            not is_webextension and
+            is_targeting_firefox_higher_or_equal_than_57):
+        # Note: legacy add-ons targeting '*' (which is the default for sdk
+        # add-ons) are excluded from this error, and instead are silently
+        # rewritten as supporting '56.*' in the manifest parsing code.
+        msg = ugettext(
+            u'Legacy add-ons are not compatible with Firefox 57 or higher. '
+            u'Use a maxVersion of 56.* or lower.')
+
+        insert_validation_message(
+            results, message=msg, msg_id='legacy_addons_max_version')
+
     return results
 
 

@@ -25,9 +25,10 @@ from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
     Charity, Persona, ReplacementAddon)
 from olympia.addons.views import (
-    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC)
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
+    AddonSearchView, AddonAutoCompleteSearchView)
 from olympia.bandwagon.models import Collection
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
@@ -1731,7 +1732,7 @@ class AddonAndVersionViewSetDetailMixin(object):
 
     def test_get_deleted_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'Addons:ViewDeleted,Addons:Review')
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -2298,6 +2299,42 @@ class TestAddonSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                      weekly_downloads=555)
+        self.refresh()
+
+        qset = AddonSearchView().get_queryset()
+
+        assert set(qset.to_dict()['_source']['excludes']) == set(
+            ('name_sort', 'boost', 'hotness', 'name', 'description',
+             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
+        )
+
+        response = qset.execute()
+
+        source_keys = response.hits.hits[0]['_source'].keys()
+
+        # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
+        # for some reason I don't yet understand... (cgrebs 0717)
+        # maybe because they're used for boosting or filtering or so?
+        assert not any(key in source_keys for key in (
+            'name_sort', 'boost',
+        ))
+
+        assert not any(
+            key.startswith('name_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('description_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('summary_l10n_') for key in source_keys
+        )
+
     def perform_search(self, url, data=None, expected_status=200, **headers):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
@@ -2588,8 +2625,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_category(self):
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
         addon = addon_factory(
             slug='my-addon', name=u'My Addôn', category=category)
 
@@ -2598,9 +2634,10 @@ class TestAddonSearchView(ESTestCase):
         # Create an add-on in a different category.
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs'])
-        other_category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        other_category = Category.from_static_category(static_category, True)
         addon_factory(slug='different-addon', category=other_category)
+
+        self.refresh()
 
         # Search for add-ons in the first category. There should be only one.
         data = self.perform_search(self.url, {'app': 'firefox',
@@ -2720,6 +2757,28 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         data = self.perform_search(self.url)
         assert 'count' not in data
         assert len(data['results']) == 0
+
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      weekly_downloads=666)
+        addon_factory(slug='my-persona', name=u'My Persona',
+                      type=amo.ADDON_PERSONA)
+        self.refresh()
+
+        qset = AddonAutoCompleteSearchView().get_queryset()
+
+        includes = set((
+            'icon_type', 'id', 'modified', 'name_translations', 'persona',
+            'slug', 'type'))
+
+        assert set(qset.to_dict()['_source']['includes']) == includes
+
+        response = qset.execute()
+
+        # Sort by type to avoid sorting problems before picking the
+        # first result. (We have a theme and an add-on)
+        hit = sorted(response.hits.hits, key=lambda x: x['_source']['type'])
+        assert set(hit[1]['_source'].keys()) == includes
 
     def test_no_unlisted(self):
         addon_factory(slug='my-addon', name=u'My Addôn',
@@ -2907,6 +2966,32 @@ class TestStaticCategoryView(TestCase):
             u'misc': False,
             u'id': 1,
             u'application': u'firefox',
+            u'description': None,
+            u'type': u'extension',
+            u'slug': u'feeds-news-blogging'
+        }
+
+    def test_with_description(self):
+        # StaticCategory is immutable, so avoid calling it's __setattr__
+        # directly.
+        object.__setattr__(CATEGORIES_BY_ID[1], 'description', u'does stuff')
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+
+        assert len(data) == 97
+
+        # some basic checks to verify integrity
+        entry = data[0]
+
+        assert entry == {
+            u'name': u'Feeds, News & Blogging',
+            u'weight': 0,
+            u'misc': False,
+            u'id': 1,
+            u'application': u'firefox',
+            u'description': u'does stuff',
             u'type': u'extension',
             u'slug': u'feeds-news-blogging'
         }

@@ -32,6 +32,7 @@ using the API.
    overview
    auth
    auth_internal
+   abuse
    accounts
    activity
    addons

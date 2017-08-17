@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 11:49+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-14 21:59+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -652,18 +652,6 @@ msgstr "Godkänn och installera"
 msgid "Add to {0}"
 msgstr "Lägg till i {0}"
 
-msgid "Download Now"
-msgstr "Hämta nu"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Tillägg har inte uppdaterats för att stödja kompatibel-till-standard."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Du måste använda Firefox 10.0 eller senare."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markerat denna version som inkompatibel med din Firefox-version."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installera för {0} ändå"
@@ -674,9 +662,12 @@ msgstr "Hämta för {0} ändå"
 msgid "Not available for your platform"
 msgstr "Ej tillgänglig för din plattform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ej tillgänglig för {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Den här tillägget är inte kompatibel med din version av {0}."
+
+msgid "View other versions"
+msgstr "Visa andra versioner"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Fungerar med {app} {min} - {max}"
@@ -684,17 +675,8 @@ msgstr "Fungerar med {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Fungerar med {app}"
 
-msgid "View other versions"
-msgstr "Visa andra versioner"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Endast med Firefox — Hämta Firefox nu!"
-
-msgid "Download now"
-msgstr "Hämta nu"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Endast tillgängligt på Firefox skrivbord"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tyvärr, du behöver en Mozillabaserad webbläsare (som Firefox) för att installera ett söktillägg."

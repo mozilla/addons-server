@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-20 06:56+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-15 09:14+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -474,83 +474,11 @@ msgstr "Sin puntuar aún"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> usuarios"
 
-msgid "{0} Daily Users"
-msgstr "{0} Usuarios diarios"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Para instalar este complemento y muchos más, <b>descarga Firefox</b>, un navegador libre y gratuito de Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Más información acerca de Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "o <b><a class=\"button installer\" href=\"{url}\">déscargalo ya</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Cómo instalar en Thunderbird</strong> <ol> <li>Descarga y guarda el archivo en tu disco duro.</li> <li>En Mozilla Thunderbird, abre Complementos desde el menú Herramientas.</li> <li>Desde el"
-" botón de opciones que hay junto al campo de búsqueda de complementos, selecciona \"Instalar complemento desde archivo...\" y localiza el complemento descargado.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Para instalar este tema, <b>obtén Thunderbird</b>, un cliente de correo electrónico gratuito y de código abierto de Mozilla Messaging e instala el complemento Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Más información sobre Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Para instalar ese tema y miles más, <b>obtén Firefox</b>, un navegador gratuito y de código abierto de Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Este complemento no ha sido actualizado para funcionar con tu versión de %(app)s."
-
-msgid "Install Anyway"
-msgstr "Instalar de todos modos"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Este complemento requiere una versión de Firefox que aún no ha sido publicada."
-
-msgid "Help test new Firefox Versions"
-msgstr "Ayuda a probar las nuevas versiones de Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Este complemento requiere %(app)s {new_version}. Estás usado %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Actualizar {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "o revisa las <a href=\"%(href)s\">versiones anteriores de este complemento</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Esta Persona requiere %(app)s %(new_version)s. Actualmente estás usando %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr ""
-"<strong>Atención:</strong> Mozilla no ha revisado este complemento y no se puede instalar en la versión 43 de Firefox o posteriores. Ten cuidado cuando instales software de terceros, puede dañar tu "
-"equipo."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Ten en cuenta que</strong> este complemento no es compatible con tu sistema operativo."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Este complemento no es compatible con tu versión de %(app)s por lo siguiente:"
-
-msgid "View other versions"
-msgstr "Ver otras versiones"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Este complemento no es compatible con tu versión de %(app)s."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} Usuario diario"
+msgstr[1] "{0} Usuarios diarios"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -791,6 +719,12 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Este complemento puede:"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Algunos complementos solicitan permiso para realizar determinadas funciones. Como tú controlas tu propio Firefox, la decisión es solo tuya."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Ten en cuenta que este complemento utiliza tecnología heredada, permitiendo el acceso a todas las funciones del navegador y a la información sin solicitar permiso."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1167,8 +1101,8 @@ msgstr ""
 "Los complementos enviados a Mozilla Add-ons deben tener un archivo de manifiesto con al menos una de las siguientes aplicaciones compatibles. Sólo se admiten las versiones listadas a continuación "
 "para estas aplicaciones."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1758,8 +1692,8 @@ msgstr "Más información acerca de la <a href=\"http://support.mozilla.com/kb/S
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Explora aún más proveedores de búsqueda en <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Crea tu propia</a> herramienta de búsqueda"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Crea tu propia</a> herramienta de búsqueda"
 
 msgid "Most Popular Extensions"
 msgstr "Extensiones más populares"
@@ -2851,6 +2785,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "A partir de la versión 53 de Firefox, las nuevas extensiones de este sitio solo pueden ser WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Las extensiones heredadas no son compatibles con Firefox 57 o superior. Utiliza una maxVersion de 56.* o inferior."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
 
@@ -2989,24 +2926,21 @@ msgstr "Nueva clave API creada"
 msgid "API key revoked"
 msgstr "Clave API revocada"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
-"manejaremos tu información."
+"Antes de comenzar, lee y acepta nuestro Acuerdo de distribución de complementos de Firefox y nuestras Reglas y políticas de revisión. En el acuerdo también encontrarás un enlace a nuestro Aviso de "
+"privacidad, donde se explica cómo administraremos tu información."
 
 msgid "Distribution Agreement"
 msgstr "Acuerdo de distribución"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Ver las notas"
+msgstr "Política de revisión"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Revisores"
+msgstr "Reglas de revisión"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -3017,7 +2951,7 @@ msgid "Printable Version"
 msgstr "Versión para imprimir"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "He leído y acepto el Acuerdo y las Normas y políticas"
 
 msgid "I Accept this Agreement"
 msgstr "Acepto la licencia"
@@ -3083,6 +3017,10 @@ msgstr "Buscar"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Usa el campo de debajo para subir tu paquete de complemento."
+
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Te en cuenta que esta herramienta solo funciona con complementos heredados. <a href=\"%(webext_doc_url)s\">Aquí</a> encontrarás información muy detallada sobre las APIs de WebExtension."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Tras la subida, se ejecuta una serie de pruebas de validación automáticas para comprobar la compatibilidad con la siguiente versión de la aplicación:"
@@ -3272,8 +3210,8 @@ msgstr "Marca esta casilla si la función principal de tu complemento requiere c
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Este complemento necesita pago, servicios o software de pago o hardware adicional."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr ""
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr "Este complemento no requiere ningún pago adicional, servicios de pago o software ni ningún hardware extra."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -4064,9 +4002,8 @@ msgstr "Leer más en nuestro Blog"
 msgid "Resources"
 msgstr "Recursos"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Calificación"
+msgstr "Transferencia"
 
 msgid "Community"
 msgstr "Comunidad"
@@ -4156,13 +4093,11 @@ msgstr "Administrar tu complemento"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Inicia sesión para editar y actualizar tu complemento"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Extensiones destacadas"
+msgstr "Actualizar la extensión"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions es ahora la referencia para el desarrollo de complementos en Firefox. Tendrás que actualizar tus complementos de enseñanza para que sean compatibles."
+msgstr "Existe un nuevo estándar para desarrollar extensiones en Firefox. Tendrás que actualizar tus extensiones educativas para que sean compatibles."
 
 msgid "Learn How"
 msgstr "Descubre cómo"
@@ -4741,9 +4676,8 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad engañosa {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr "Bloquea rastreadores invisibles y espías que te siguen por toda la Web."
@@ -4752,7 +4686,7 @@ msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Mejora la escritura {start_sub_heading} con {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "Al admitir más de 25 idiomas, es como si esta extensión te ofreciera un corrector integrado en el navegador."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Haz capturas de pantalla {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -8335,8 +8269,8 @@ msgstr "mi complemento basado en el SDK está actualizado con éxito"
 msgid "someone writes a review of my add-on"
 msgstr "alguien escribe una valoración de mi complemento"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr "mantente al día de las noticias y eventos relacionados con los desarrolladores de complementos"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr "mantente al día de las noticias y eventos relacionados con los desarrolladores de complementos (incluido el boletín de noticias de about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilidad de mi complemento no puede ser actualizada"
@@ -8627,12 +8561,6 @@ msgstr "Historial de versiones de %s"
 
 msgid "Version History with Changelogs"
 msgstr "Historial de la versión con las listas de cambios"
-
-msgid "Add-on uses binary components."
-msgstr "El complemento usa componentes binarios."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "El complemento ha optado por la comprobación estricta de compatibilidad."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"

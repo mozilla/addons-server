@@ -6,7 +6,7 @@
 {% set title = _('Themes') if is_homepage else _('{0} Themes')|format_html(name) %}
 {% set url_base = request.path %}
 {% if category %}
-  {% set url_base = profile.get_user_url('themes', args=[category.slug]) if profile else url('browse.personas', category.slug) %}
+  {% set url_base = profile.get_themes_url_path(args=[category.slug]) if profile else url('browse.personas', category.slug) %}
 {% endif %}
 
 {% block title %}

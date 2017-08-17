@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -460,84 +460,11 @@ msgstr "아직 별점 없음"
 msgid "<b>{0}</b> users"
 msgstr "사용자 <b>{0}</b>명"
 
+#. {0} is the number of users.
 #, fuzzy
-msgid "{0} Daily Users"
-msgstr "일일 사용자"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "이 부가 기능은 물론 수천가지 다른 부가 기능을 설치하고 싶으시면 <b>Firefox를 다운로드 받으세요</b>. Mozilla에서 개발한 무료 오픈소스 웹브라우저 입니다."
-
-msgid "Learn more about Firefox"
-msgstr "Firefox에 대해 자세히 알아보기"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "또는 <b><a class=\"button installer\" href=\"{url}\">일단 다운로드 받기</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Thunderbird에서 설치 방법</strong> <ol> <li>하드 디스크에 파일을 다운받습니다.</li> <li>Mozilla Thunderbird의 도구 메뉴에서 부가 기능을 엽니다.</li> <li>부가 기능 검색창 옆에 옵션 버튼을 눌"
-"러 \"파일에서 부가 기능 설치...\"를 선택한 다음 다운받은 부가 기능을 선택합니다.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "이 테마를 설치하려면, <b>Thunderbird와</b>, Mozilla 메시징에서 무료 오픈 소스 이메일 클라이언트를 구하시고 Personas Plus 애드온을 설치하세요."
-
-msgid "Learn more about Thunderbird"
-msgstr "Thunderbird에 대해 자세히 알아보기"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "이 테마와 수 천 가지 다른 것들을 설치하려면, Mozilla의 무료 오픈 웹 브라우저인, <b>Firefox를 다운로드 받으세요</b>."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "이 부가 기능은 현재 사용중인 %(app)s 버전에서 작동할 수 있도록 업데이트 되지 않았습니다."
-
-msgid "Install Anyway"
-msgstr "무조건 설치하기"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "이 부가 기능은 아직 공개되지 않은 Firefox 버전을 필요로 합니다."
-
-msgid "Help test new Firefox Versions"
-msgstr "새 Firefox 버전 테스트 돕기"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "이 부가 기능은 %(app)s {new_version}이(가) 필요합니다. 현재 사용중인 버전은 %(app)s {old_version}입니다."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} 업그레이드"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "또는 <a href=\"%(href)s\">이 부가 기능의 구버전</a> 보기."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "이 페르소나는 %(app)s %(new_version)s을(를) 필요로 합니다. 현재 사용중인 버전은 %(app)s {old_version} 입니다."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>주의:</strong> 이 부가 기능은 Mozilla에 의해 검토 되지 않았으며 Firefox 43과 그 이상의 출시 버전에서 설치되지 않습니다.  제 3자 소프트웨어는 컴퓨터를 손상 시킬 수 있으므로 설치하실 때 주의 "
-"하십시오."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>알림:</strong> 이 부가 기능은 사용중인 운영 체제와 호환되지 않습니다."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "이 부가 기능은 다음 이유로 인해 사용중인 %(app)s와 호환되지 않습니다:"
-
-msgid "View other versions"
-msgstr "다른 버전 보기"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "이 부가 기능은 현재 사용중인 %(app)s 버전과 호환되지 않습니다."
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "일일 사용자"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -779,6 +706,12 @@ msgstr ""
 #, fuzzy
 msgid "This add-on can:"
 msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1155,7 +1088,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr "모질라 부가 기능에 제출할 부가 기능은 아래 지원하는 어플리케이션들 중 적어도 하나의 매니페스트 파일을 가져야 합니다. 아래에 나열된 매니페스트 버전들만을 어플리케이션이 허용합니다."
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1741,7 +1674,8 @@ msgstr "{0}의 <a href=\"http://support.mozilla.com/kb/Search+bar\">검색 바</
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "<a href=\"http://mycroftproject.com/\">mycroftproject.com</a>에서 더 많은 검색 도구를 찾아보실 수 있습니다"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "나만의 검색 도구 <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">만들기</a>"
 
 msgid "Most Popular Extensions"
@@ -2848,6 +2782,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를 거꾸로 할 수는 없습니다. 당신의 사용자들이 WebExtension을 설치하였다면, 그들은 레거시 부가 기능을 설치할 수 없을 것입니다."
 
@@ -3078,6 +3015,10 @@ msgstr "검색"
 msgid "Use the field below to upload your add-on package."
 msgstr "부가 기능 패키지를 업로드 하려면 아래 항목을 입력해 주세요."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "업로드 후엔 여러 자동 검사기가 다음 애플리케이션 버전들과의 호환성을 점검하게 됩니다:"
 
@@ -3264,7 +3205,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8276,7 +8217,7 @@ msgstr "sdk 기반 부가 기능이 업그레이 되었습니다"
 msgid "someone writes a review of my add-on"
 msgstr "누군가 부가 기능에 평가를 작성했습니다"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8568,12 +8509,6 @@ msgstr "%s의 판올림 내역"
 
 msgid "Version History with Changelogs"
 msgstr "각 버전별 변경 사항"
-
-msgid "Add-on uses binary components."
-msgstr "부가 기능이 이진 콤포넌트를 사용하고 있습니다."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "부가 기능이 엄격한 호환성 검사 방식을 채택했습니다."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, BaseTestCase, days_ago, user_factory)
+    addon_factory, days_ago, TestCase, user_factory)
 from olympia.accounts.serializers import (
     PublicUserProfileSerializer, LoginUserProfileSerializer,
     UserNotificationSerializer, UserProfileSerializer)
@@ -11,7 +13,7 @@ from olympia.users.models import UserNotification
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 
 
-class TestPublicUserProfileSerializer(BaseTestCase):
+class TestPublicUserProfileSerializer(TestCase):
     serializer = PublicUserProfileSerializer
     user_kwargs = {
         'username': 'amo',
@@ -19,10 +21,12 @@ class TestPublicUserProfileSerializer(BaseTestCase):
         'location': 'everywhere', 'occupation': 'job'}
 
     def setUp(self):
+        self.request = APIRequestFactory().get('/')
         self.user = user_factory(**self.user_kwargs)
 
     def serialize(self):
-        return self.serializer(self.user).data
+        return (self.serializer(context={'request': self.request})
+                .to_representation(self.user))
 
     def test_picture(self):
         serial = self.serialize()
@@ -52,6 +56,24 @@ class TestPublicUserProfileSerializer(BaseTestCase):
         assert data['num_addons_listed'] == 2  # only public addons.
         assert data['average_addon_rating'] == '3.6'
 
+    def test_url_for_non_developers(self):
+        result = self.serialize()
+        assert result['url'] is None
+
+    def test_url_for_developers(self):
+        # should include the account profile url for a developer
+        addon_factory(users=[self.user])
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_admins(self):
+        # should include account profile url for admins
+        admin = user_factory()
+        self.grant_permission(admin, 'Users:Edit')
+        self.request.user = admin
+        result = self.serialize()
+        assert result['url'] == absolutify(self.user.get_url_path())
+
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer):
     serializer = UserProfileSerializer
@@ -76,7 +98,7 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer):
         assert data['read_dev_agreement'] == data['last_login']
 
 
-class TestUserNotificationSerializer(BaseTestCase):
+class TestUserNotificationSerializer(TestCase):
 
     def setUp(self):
         self.user = user_factory()
@@ -91,7 +113,7 @@ class TestUserNotificationSerializer(BaseTestCase):
         assert data['mandatory'] == user_notification.notification.mandatory
 
 
-class TestLoginUserProfileSerializer(BaseTestCase):
+class TestLoginUserProfileSerializer(TestCase):
     serializer = LoginUserProfileSerializer
     user_kwargs = {
         'username': 'amo', 'email': 'amo@amo.amo', 'display_name': u'Ms. Amó'}

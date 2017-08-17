@@ -102,5 +102,4 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
   {% if request.LANG == 'en-US' %}
     {{ js('zamboni/discovery-video', defer=True) }}
   {% endif %}
-  <script async defer src="{{ CDN_HOST }}{{ cache_buster(url('addons.buttons.js')) }}"></script>
 {% endblock %}

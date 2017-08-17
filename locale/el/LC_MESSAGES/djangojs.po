@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-19 19:59+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-11 21:28+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -656,18 +656,6 @@ msgstr "Αποδοχή και εγκατάσταση"
 msgid "Add to {0}"
 msgstr "Προσθήκη στον {0}"
 
-msgid "Download Now"
-msgstr "Λήψη τώρα"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Το πρόσθετο δεν έχει ενημερωθεί ώστε να υποστηρίζει την προεπιλογή σε συμβατό."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Χρειάζεται να χρησιμοποιείτε την έκδοση 10.0 του Firefox ή υψηλότερη."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Ο Mozilla έχει σημειώσει αυτή την έκδοση ως μη συμβατή με την έκδοση του Firefox που έχετε."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Εγκατάσταση σε {0} οπωσδήποτε"
@@ -678,9 +666,12 @@ msgstr "Λήψη για {0} οπωσδήποτε"
 msgid "Not available for your platform"
 msgstr "Δεν διατίθεται για το λειτουργικό σας"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Δεν διατίθεται για τον {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του {0} σας."
+
+msgid "View other versions"
+msgstr "Προβολή άλλων εκδόσεων"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Συμβατό με {app} {min} - {max}"
@@ -688,17 +679,8 @@ msgstr "Συμβατό με {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Λειτουργεί με {app}"
 
-msgid "View other versions"
-msgstr "Προβολή άλλων εκδόσεων"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
-
-msgid "Download now"
-msgstr "Λήψη τώρα"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Διαθέσιμο μόνο στο Firefox για υπολογιστές"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2016-11-23 15:22+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -652,18 +652,6 @@ msgstr "Aceutar ya instalar"
 msgid "Add to {0}"
 msgstr "Amestar a {0}"
 
-msgid "Download Now"
-msgstr "Baxar agora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Nun s'anovó l'add-on pa sofitar default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Precises usar Firefox 10.0 o mayor."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla conseñó esta versión como incompatible cola to versión de Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instalar pa {0} de toes toes"
@@ -674,9 +662,13 @@ msgstr "Baxar pa {0} de toes toes"
 msgid "Not available for your platform"
 msgstr "Nun ta disponible pa la to plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nun ta disponible pa {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Esti tema nun ye compatible cola to versión de {0}"
+
+msgid "View other versions"
+msgstr "Ver otres versiones"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Furrula con {app} {min} - {max}"
@@ -684,18 +676,8 @@ msgstr "Furrula con {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Furrula con {app}"
 
-msgid "View other versions"
-msgstr "Ver otres versiones"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Namái con Firefox — ¡Consíguilu agora!"
-
-#, fuzzy
-msgid "Download now"
-msgstr "Baxar agora"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Namái disponible pa Firefox d'escritoriu"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Perdón, precises tener un restolador basáu en Mozilla (como Firefox) pa instalar un complementu de gueta."

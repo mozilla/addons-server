@@ -381,19 +381,23 @@ def compat_stats(request, version, minimum, ratio, binary):
     # greater than 10 incompatible reports and whose average exceeds 80%.
     version_int = str(vint(version))
     prefix = 'works.%s' % version_int
+    fields_to_retrieve = (
+        'guid', 'slug', 'name', 'current_version', 'max_version', 'works',
+        'usage', 'has_override', 'overrides', 'id')
+
     qs = (AppCompat.search()
           .filter(**{'%s.failure__gt' % prefix: minimum,
                      '%s.failure_ratio__gt' % prefix: ratio,
                      'support.max__gte': 0})
           .order_by('-%s.failure_ratio' % prefix,
                     '-%s.total' % prefix)
-          .values_dict())
+          .values_dict(*fields_to_retrieve))
+
     if binary is not None:
         qs = qs.filter(binary=binary)
     addons = amo.utils.paginate(request, qs)
+
     for obj in addons.object_list:
-        obj['usage'] = obj['usage']
-        obj['max_version'] = obj['max_version']
         obj['works'] = obj['works'].get(version_int, {})
         # Get all overrides for this add-on.
         obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])

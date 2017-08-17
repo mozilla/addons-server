@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-17 14:48+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 16:57+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -158,7 +158,7 @@ msgstr "A seguir"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Este tema é incompatível com a sua versão do {0}"
+msgstr "Este tema não é compatível com a sua versão do {0}"
 
 msgid "All Rights Reserved"
 msgstr "Todos os direitos reservados"
@@ -366,7 +366,7 @@ msgid "Category Landing Featured Carousel"
 msgstr "Categoria de funcionalidades carousel"
 
 msgid "Category Landing Top Rated"
-msgstr "Categoria dos mais avaliados"
+msgstr "Categoria do top de avaliações"
 
 msgid "Category Landing Most Popular"
 msgstr "Categoria mais populares"
@@ -653,18 +653,6 @@ msgstr "Aceitar e instalar"
 msgid "Add to {0}"
 msgstr "Adicionar ao {0}"
 
-msgid "Download Now"
-msgstr "Descarregar agora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "O extra não foi atualizado para suportar a compatibilidade predefinida."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Precisa de estar a utilizar o Firefox 10.0 ou superior."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Mesmo assim, instalar para o {0}"
@@ -675,9 +663,12 @@ msgstr "Mesmo assim, descarregar para {0}"
 msgid "Not available for your platform"
 msgstr "Não está disponível para a sua plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Não está disponível para {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Este extra não é compatível com a sua versão do {0}."
+
+msgid "View other versions"
+msgstr "Ver outras versões"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona com {app} {min} - {max}"
@@ -685,17 +676,8 @@ msgstr "Funciona com {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funciona com {app}"
 
-msgid "View other versions"
-msgstr "Ver outras versões"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Apenas com o Firefox — Obter o Firefox agora!"
-
-msgid "Download now"
-msgstr "Descarregar agora"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Apenas disponível no Firefox para Computador"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."

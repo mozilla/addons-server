@@ -1,10 +1,8 @@
 from django.conf.urls import include, url
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
-from django.views.decorators.cache import cache_page
 
 from olympia.stats.urls import stats_patterns
-from . import buttons
 from . import views
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
@@ -55,12 +53,6 @@ urlpatterns = [
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-
-    # Button messages to be used by JavaScript.
-    # Should always be called with a cache-busting querystring.
-    url('^addons/buttons\.js$',
-        cache_page(60 * 60 * 24 * 365)(buttons.js),
-        name='addons.buttons.js'),
 
     # Remora EULA and Privacy policy URLS
     url('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',

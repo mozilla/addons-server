@@ -1,4 +1,5 @@
 import datetime
+import random
 from collections import OrderedDict
 
 from django.conf import settings
@@ -412,7 +413,7 @@ class ReviewBase(object):
 
         kwargs = {'user': self.user, 'created': datetime.datetime.now(),
                   'details': details}
-        ActivityLog.create(action, *args, **kwargs)
+        self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
     def notify_email(self, template, subject,
                      perm_setting='editor_reviewed', version=None):
@@ -431,12 +432,14 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % app
         subject = subject % (data['name'],
                              self.version.version if self.version else '')
+        unique_id = (self.log_entry.id if hasattr(self, 'log_entry')
+                     else random.randrange(100000))
 
         message = loader.get_template(
             'editors/emails/%s.ltxt' % template).render(data)
         send_activity_mail(
             subject, message, version, self.addon.authors.all(),
-            settings.EDITORS_EMAIL, perm_setting=perm_setting)
+            settings.EDITORS_EMAIL, unique_id, perm_setting=perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)

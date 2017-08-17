@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-05-18 14:57+0000\n"
-"Last-Translator: ilkeryus <ilkeryus@gmail.com>\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-02 10:00+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -474,83 +474,11 @@ msgstr "Henüz puanlanmamış"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> kullanıcı"
 
-msgid "{0} Daily Users"
-msgstr "Günlük {0} kullanıcı"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Bu eklentiyi ve daha binlercesini yüklemek için, Mozilla'nın ücretsiz ve açık web tarayıcısı <b>Firefox'u edinin</b>."
-
-msgid "Learn more about Firefox"
-msgstr "Firefox hakkında daha fazla bilgi alın"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ya da <b><a class=\"button installer\" href=\"{url}\">yine de indir</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Thunderbird'de Kurulum</strong> <ol> <li>Dosyayı sabit diskinize indirip kaydedin.</li> <li>Mozilla Thunderbird'de Araçlar menüsünü ve ardından Eklentiler'i açın.</li> <li>Eklenti arama "
-"sahasının yanındaki seçenek düğmesine basın, \"Dosyadan eklenti kur...\" seçeneğine tıklayın ve indirilen eklenti dosyasını seçin.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Bu temayı kurmak için Mozilla Messaging tarafından geliştirilen ücretsiz ve açık kaynaklı e-posta istemcisi <b>Thunderbird'ü indirin</b> ve Personas Plus eklentisini kurun."
-
-msgid "Learn more about Thunderbird"
-msgstr "Thunderbird hakkında daha fazla bilgi alın"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Bu temayı ve daha binlercesini kurmak için Mozilla tarafından geliştirilen ücretsiz ve açık tarayıcı <b>Firefox'u indirin</b>."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Bu eklenti, %(app)s sürümünüzle çalışması için güncellenmemiş."
-
-msgid "Install Anyway"
-msgstr "Yine de yükle"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Bu eklenti, henüz yayımlanmamış bir Firefox sürümünü gerektiriyor."
-
-msgid "Help test new Firefox Versions"
-msgstr "Yeni Firefox sürümlerini test etmemize yardımcı olun"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Bu eklenti %(app)s {new_version} gerektiriyor. Şu anda %(app)s {old_version} kullanıyorsunuz."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} uygulamasını yükseltin"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "veya <a href=\"%(href)s\">bu eklentinin eski sürümlerini</a> görün."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Bu Persona %(app)s %(new_version)s gerektiriyor. Siz şu anda %(app)s {old_version} kullanıyorsunuz."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-"<strong>Dikkat:</strong> Bu eklenti Mozilla tarafından incelenmemiştir. Bu yüzden Firefox 43 ve üstü sürümlere yüklenemez.  Bilgisayarınıza zarar verebilecek üçüncü parti yazılımları kurarken "
-"dikkatli olun."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Dikkat:</strong> Bu eklenti, işletim sisteminizle uyumlu değildir."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Bu eklenti %(app)s sürümünüzle bu nedenlerden ötürü uyumlu değil:"
-
-msgid "View other versions"
-msgstr "Diğer sürümleri görün"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Bu eklenti %(app)s sürümünüzle uyumlu değil."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Günlük {0} kullanıcı"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -791,6 +719,13 @@ msgstr ""
 #, fuzzy
 msgid "This add-on can:"
 msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
+
+#, fuzzy
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. (Örneğin, sekme yönetimi yapan bir eklenti, tarayıcınızın sekme sistemine erişmek için izin isteyecektir.)"
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1171,7 +1106,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1781,7 +1716,8 @@ msgstr ""
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, fuzzy
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Kendi arama aracınızı</a> yapın"
 
 msgid "Most Popular Extensions"
@@ -2541,7 +2477,7 @@ msgid "Abstract"
 msgstr "Soyut"
 
 msgid "Causes"
-msgstr ""
+msgstr "Gayeler"
 
 msgid "Fashion"
 msgstr "Moda"
@@ -2604,7 +2540,7 @@ msgid "Calendar and Date/Time"
 msgstr "Takvim ve Tarih/Saat"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "Sohbet ve anlık ileti"
 
 msgid "Message Composition"
 msgstr "İleti Yazımı"
@@ -2765,7 +2701,7 @@ msgid "What is your license's name?"
 msgstr "Lisansınızın ismi ne?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Lisans metninizi sağlayın."
 
 msgid "License text is required when choosing Other."
 msgstr "Diğer seçeneği seçildiğinde sözleşme metni girilmesi gerekir."
@@ -2833,7 +2769,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "Yüklemenizde bir sorun oluştu. Lütfen tekrar deneyin."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Başarısız doğrulamayı geçersiz kıl"
 
 msgid "Submit my add-on for manual review."
 msgstr ""
@@ -2893,6 +2829,9 @@ msgid ""
 msgstr ""
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgstr ""
+
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3145,6 +3084,10 @@ msgstr "Arama"
 msgid "Use the field below to upload your add-on package."
 msgstr "Eklenti paketinizi yüklemek için aşağıdaki alanı kullanın."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr ""
 
@@ -3338,7 +3281,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -3945,13 +3888,13 @@ msgid "You don't have any API credentials."
 msgstr "Hiçbir API kimlik bilginiz yok."
 
 msgid "Revoke"
-msgstr ""
+msgstr "İptal Et"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Kimlik bilgilerini iptal et ve yeniden oluştur"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Yeni kimlik bilgileri oluştur"
 
 msgid "Invisible"
 msgstr "Görünmez"
@@ -5407,10 +5350,10 @@ msgid "Reviewer Leaderboard"
 msgstr ""
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Henüz bir değerlendirme puanı verilmemiş."
 
 msgid "Rank"
-msgstr ""
+msgstr "Sıra"
 
 msgid "Score"
 msgstr "Puan"
@@ -5771,7 +5714,7 @@ msgid "Clear Search"
 msgstr "Aramayı Temizle"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Tema kilitlerimi serbest bırak"
 
 msgid "Interactive Theme Queue"
 msgstr "Etkinleşimli Tema Sırası"
@@ -6102,16 +6045,16 @@ msgid "Add some romance to your Firefox."
 msgstr "Mobile Firefox'la eşleştirilen eklentiler"
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Kalk ve hareket et!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Kendinizi aktif ve sağlıklı tutmak için bu fitness eklentilerini yükleyin."
 
 msgid "New &amp; Now"
 msgstr "Yeni Çıkanlar"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "En yeni, şu an sahip olunması gereken eklentileri edinin."
 
 msgid "Worry-free browsing"
 msgstr "Dertsiz tasasız gezinti"
@@ -6213,7 +6156,7 @@ msgid "Become a Test Pilot"
 msgstr "Test Pilotu olun"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
 
 msgid "Get Started"
 msgstr "Başlarken"
@@ -6231,7 +6174,7 @@ msgid "Armenia Dram"
 msgstr "Ermeni Dramı"
 
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Hollanda Antilleri Guldeni"
 
 msgid "Angola Kwanza"
 msgstr "Angola Kwanzası"
@@ -6752,10 +6695,10 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Harikaymış! Nasıl katkıda bulunabilirim?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Katkıda bulunmanın birçok yolu var. Eğer işin teknik tarafındaysanız:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -6776,7 +6719,7 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr ""
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Arkadaşlarına söyleyin! İnsanlara hangi eklentileri kullandığınızı gösterin."
 
 #, fuzzy, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -7757,7 +7700,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
 
 #, fuzzy
 msgid "You can't leave a review on your own add-on."
@@ -7804,7 +7747,7 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Lütfen bir neden seçin:"
 
 #, fuzzy, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -8133,7 +8076,7 @@ msgid "User Signups"
 msgstr "Kullanıcı kayıtları"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Arşivlenmiş Veri"
 
 #, fuzzy
 msgid "Custom Date Range"
@@ -8219,7 +8162,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "Veri yok."
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
@@ -8482,7 +8425,7 @@ msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Mevcut diller"
 
 #, fuzzy
 msgid "New Locales"
@@ -8521,7 +8464,7 @@ msgid "Occupation"
 msgstr "İstisna"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Firefox Hesapları kullanıcıları şu anda e-posta adreslerini değiştiremezler."
 
 #, fuzzy
 msgid "Profile Photo"
@@ -8534,7 +8477,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "Lütfen reddedilecek en az bir ad girin."
 
 msgid "No user with that email."
 msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
@@ -8542,7 +8485,7 @@ msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Adsız kullanıcı {id}"
 
 #, fuzzy
 msgid "My Mobile Add-ons"
@@ -8568,7 +8511,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 #, fuzzy
@@ -8791,7 +8734,7 @@ msgid "My Most Popular Themes"
 msgstr "En Popüler"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Oluşturduğum temalar"
 
 msgid "Followed by Me"
 msgstr ""
@@ -8842,7 +8785,7 @@ msgid "edit your profile"
 msgstr "profilinizi düzenleyin"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Aboneliğinizi iptal edemedik"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -8863,7 +8806,7 @@ msgid "IP address of last login"
 msgstr "Son girilen IP adresi"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Geliştirilen eklentilerin sayısı"
 
 #, fuzzy
 msgid "{0} add-ons"
@@ -8892,12 +8835,6 @@ msgid "%s Version History"
 msgstr "İnceleme Geçmişi"
 
 msgid "Version History with Changelogs"
-msgstr ""
-
-msgid "Add-on uses binary components."
-msgstr ""
-
-msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
 msgid "{app} {min} and later"
@@ -8960,7 +8897,7 @@ msgid "Non-binary"
 msgstr "İkili olmayan"
 
 msgid "Message ID"
-msgstr ""
+msgstr "Mesaj ID"
 
 msgid "Message"
 msgstr "Mesaj"

@@ -985,32 +985,6 @@ form.favorite {
 
 /* @end */
 
-/* @group Brand */
-
-#brand {
-    position: absolute;
-    top: 4px;
-    left: 0;
-    margin: 0;
-}
-
-#brand a:link,
-#brand a:visited,
-#brand a:hover,
-#brand a:focus,
-#brand a:active {
-    background-image: url(../../img/tab-mozilla.png);
-    background-position: top left;
-    background-repeat: no-repeat;
-    width: 90px;
-    height: 31px;
-    overflow: hidden;
-    display: block;
-    text-indent: -5000px;
-}
-
-/* @end */
-
 /* @group Stats */
 
 .stats {

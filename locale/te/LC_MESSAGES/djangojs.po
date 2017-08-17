@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-18 10:15+0000\n"
-"Last-Translator: Dinesh <dineshmv38@gmail.com>\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-07-17 05:44+0000\n"
+"Last-Translator: నితిన్ <sainithin95@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -21,10 +21,10 @@ msgstr[0] "{0} నక్షత్రము"
 msgstr[1] "{0} నక్షత్రాలు"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "సర్వర్ ని సంప్రదించడంలో సమస్య ఉంది."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "ఫైలు ఎంచుకోండి..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
@@ -32,20 +32,20 @@ msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేద�
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% పూర్తి"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{1} యొక్క {0}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "రద్దుచేయి"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} ఎగుమతి అవుతోంది"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} లోపంతో"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "మీ పొడిగింతను ప్రాసెస్ చేయడానికి మేము ఒక క్రొత్త లింటర్ను ప్రారంభించాము. దయచేసి ఏదైనా సమస్యలను GitHub లో నివేదించారో లేదో నిర్ధారించుకోండి"
@@ -57,20 +57,20 @@ msgstr[1] "మీ పొడిగింత {0} లోపాలతో ధృవ�
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;మరియు {0} మరింత"
+msgstr[1] "&hellip;మరియు {0} మరింత"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "పూర్తి ధ్రువీకరణ నివేదికను చూడండి"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} ద్రువీకరిస్తోంది"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr ""
@@ -98,7 +98,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension నవీకరణ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -136,22 +136,22 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "మీరు ఎగుమతిని రద్దు చేసారు."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "ఈ సేకరణను అనుసరించండి"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "అనుసరించడం ఆపండి"
 
 msgid "Following"
-msgstr ""
+msgstr "అనుసరించండి"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -161,7 +161,7 @@ msgid "All Rights Reserved"
 msgstr ""
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
@@ -191,173 +191,173 @@ msgid "Marked for deletion"
 msgstr ""
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "ఫలితాలను నవీకరిస్తోంది&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "వర్గం"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "అనువర్తనల కోసం శోధించండి <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "పొడిగింతల కోసం శోధించండి<b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "వారం {0}"
 
 msgid " downloads"
-msgstr ""
+msgstr " దింపుకోళ్ళు"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} వాడుకరులు"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} పొడిగింతలు"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} సేకరణలు"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} సమీక్షలు"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} అమ్మకాలు"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} వాపసులు"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} స్థాపనలు"
 
 msgid "Downloads"
-msgstr ""
+msgstr "దింపుకోళ్ళు"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "రోజువారీ వాడుకరులు"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "మొత్తం, USD లో"
 
 msgid "Number of Contributions"
 msgstr ""
 
 msgid "More Info..."
-msgstr ""
+msgstr "మరింత సమాచారం..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} వివరాలు"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "సేకరణలు సృష్టించబడ్డాయి"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "పొడిగింతలు వాడుకలో ఉన్నాయి"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "పొడిగింతలు రూపొందించబడ్డాయి"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "పొడిగింతల దింపుకోళ్ళైనది"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "పొడిగింతలు నవీకరించబడ్డాయి"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "సమీక్షలు వ్రాయబడ్డాయి"
 
 msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "చందాచేరు"
 
 msgid "Ratings"
 msgstr ""
 
 msgid "Sales"
-msgstr ""
+msgstr "అమ్మకాలు"
 
 msgid "Installs"
-msgstr ""
+msgstr "స్థాపనలు"
 
 msgid "Unknown"
-msgstr ""
+msgstr "తెలియని"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకుడు"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకుడి ప్రోమో"
 
 msgid "Add-ons Manager Featured"
 msgstr ""
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "పొడిగింతల నిర్వాహకులు ఇంకా నేర్చుకొండి"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "శోధన సలహాలు"
 
 msgid "Search Results"
-msgstr ""
+msgstr "శోధన ఫలితాలు"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "నివాసపేజీ ప్రోమో"
 
 msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "నివాసపేజీ రాబోతోంది"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "అత్యంత ప్రజాదరణ కలిగిన నివాసపేజీ"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "వివరాల పేజీ"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "వివరాల పేజీ (అట్టడుగు)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "వివరాల పేజీ (అభివృద్ధి వాహిక)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "తరచూ దినితో వాడబడుతోంది"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "రచయిత ద్వారా ఇతర రచనలు"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "ఆధారితాలు"
 
 msgid "Upsell"
-msgstr ""
+msgstr "అధిక అమ్మకాలు"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "డెవలపర్ను కలవండి"
 
 msgid "User Profile"
-msgstr ""
+msgstr "వాడుకరి ప్రొఫైల్"
 
 msgid "Version History"
-msgstr ""
+msgstr "వెర్షన్ల చరిత్ర"
 
 msgid "Sharing"
-msgstr ""
+msgstr "పంచుకోండి"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "వర్గం పేజీలు"
 
 msgid "Collections"
-msgstr ""
+msgstr "సేకరణలు"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
@@ -399,119 +399,119 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "సగటు సహకారం"
 
 msgid "Usage"
-msgstr ""
+msgstr "వాడుక"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల స్థాపనలు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు స్థాపనలు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దింపుకోళ్ళు "
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల అనువర్తనలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు అనువర్తనలు"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల వేదికలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు వేదికలు"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల భాషలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు భాషలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "చివరి {0} రోజులు, పొడిగింత వెర్షన్ల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు పొడిగింత వెర్షన్లు"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల, పొడిగింత స్థితి"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు పొడిగింత స్థితి"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} నుంచి {1} వరకు దింపుకోళ్ళ మూలాలు"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "చివరి {0} రోజులుగా సహాయములు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సహాయములు"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -523,15 +523,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులుగా వాడుకలో ఉన్న పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} కు వరకు వాడుకలో ఉన్న పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజుల, పొడిగింతల దింపుకోళ్ళ వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -539,27 +539,27 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, సృష్టించబడిన పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సృష్టించబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, నవీకరించబడిన పొడిగింతలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు నవీకరించబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, రాయబడిన సమీక్షలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు రాయబడిన సమీక్షలు"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -571,11 +571,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "గత {0} రోజులలో, సృష్టించబడిన సేకరణలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు సృష్టించబడిన సేకరణలు"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -607,31 +607,31 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు స్థాపనలు"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "గత {1} రోజులలో <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "{1} నుండి {2} వరకు<b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "గత {1} రోజుల్లో సగటు <b>{0}</b>"
 
 msgid "No data available."
-msgstr ""
+msgstr "ఏ డేటా అందుబాటులో లేదు."
 
 msgid "Date"
-msgstr ""
+msgstr "తేదీ"
 
 msgid "Other"
-msgstr ""
+msgstr "ఇతర"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -645,130 +645,112 @@ msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "ఆమోదించు మరియు సంస్థాపించు"
 
 msgid "Add to {0}"
-msgstr ""
-
-msgid "Download Now"
-msgstr ""
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "{0} కు జోడించండి"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "ఏమైనప్పటికీ {0} కోసం స్థాపన చేయండి"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "ఏమైనప్పటికి {0} కోసం దింపుకోళ్ళు చేయండి"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "మీ వేదికకు అందుబాటులో లేదు"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
 msgid "View other versions"
-msgstr ""
+msgstr "ఇతర వెర్షన్లను వీక్షించండి"
+
+msgid "Works with {app} {min} - {max}"
+msgstr "{app} {min} - {max} తో పనిచేస్తుంది"
+
+msgid "Works with {app}"
+msgstr "{app} తో పనిచేస్తుంది"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Download now"
-msgstr ""
-
-msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Firefox తో మాత్రమే — ఇప్పుడు Firefox పొందండి!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "ఇష్టాంశాలకు జొదించి &hellip;"
 
 msgid "Removing Favorite&hellip;"
 msgstr ""
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "ఇష్టాంశాలకు జోడించు"
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "ఇష్టాంశాల నుంచి తీసివేయి"
 
 msgid "Pending"
-msgstr ""
+msgstr "వాయిదావున్న"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "వ్యాఖ్యను జోడించండి"
 
 msgid "Comment"
-msgstr ""
+msgstr "వ్యాఖ్య"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "సేకరణ నుండి ఈ పొడిగింతను తీసివేయండి"
 
 msgid "Remove"
-msgstr ""
+msgstr "తొలగించు"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "సహాయకుల నుండి వాడుకరిని తీసివేయి"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "ఒక ఇమెయిల్ చిరునామా అవసరం."
 
 msgid "You cannot add yourself as a contributor."
 msgstr ""
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "మీరు ఇప్పటికే ఆ వాడుకరిని జోడించారు."
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "ఇష్టాంశాలకు జోడించు"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "ఇష్టాంశాల నుంచి తీసివేయి"
 
 msgid "Stop following"
-msgstr ""
+msgstr "అనుసరించడం ఆపివేయండి"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "మీ విహారిణి వీడియో ట్యాగ్కు మద్దతు ఇవ్వదు"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "మార్పులు భద్రపరచండి"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "కొత్త రచయిత యొక్క ఇమెయిల్ చిరునామాను నమోదు చేయండి"
 
 msgid "There was an error uploading your file."
 msgstr ""
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} ఫైలు"
+msgstr[1] "{files} ఫైళ్లు"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} వనరుని సమీక్ష"
+msgstr[1] "{reviews} వనరుని సమీక్షలు"
 
 msgid "Learn more"
-msgstr ""
+msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "Image changes being processed"
 msgstr ""
@@ -777,7 +759,7 @@ msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "ఎటువంటి ఫలితాలు లభించలేదు."
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -795,13 +777,13 @@ msgid "Loading&hellip;"
 msgstr ""
 
 msgid "Version Notes"
-msgstr ""
+msgstr "వెర్షన్ గమనికలు"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "సమీక్షకుల కోసం గమనికలు"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "వెర్షన్ గమనికలు కనుగొనబడలేదు"
 
 msgid "Review Text"
 msgstr ""
@@ -813,16 +795,16 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "సమీక్షల సంఖ్య"
 
 msgid "Loading..."
-msgstr ""
+msgstr "లోడవుతున్నది..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
+msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
@@ -837,70 +819,70 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "నకిలీ"
 
 msgid "Rejected"
-msgstr ""
+msgstr "తిరస్క్రించబదింది"
 
 msgid "Approved"
-msgstr ""
+msgstr "ఆమోదించబడింది"
 
 msgid "No results found"
-msgstr ""
+msgstr "ఎటువంటి ఫలితాలు లభించలేదు"
 
 msgid "Theme"
-msgstr ""
+msgstr "అలంకారం"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "సమీక్షకుడు"
 
 msgid "Status"
-msgstr ""
+msgstr "స్థితి"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "అన్ని పరీక్షలు విజయవంతంగా ఆమోదించబడ్డాయి."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "ఈ పరీక్షలు అమలు కాలేదు."
 
 msgid "Tests"
-msgstr ""
+msgstr "పరీక్షలు"
 
 msgid "Error"
-msgstr ""
+msgstr "లోపం"
 
 msgid "Warning"
-msgstr ""
+msgstr "హెచ్చరిక"
 
 msgid "{0} line {1} column {2}"
 msgstr ""
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} వరుస {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "అనుకూలత పరీక్షలు"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "పొడిగింత ధ్రువీకరణ విఫలమైంది."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "పొడిగింత ధ్రువీకరణను ఆమోదించింది."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} లోపం"
+msgstr[1] "{0} లోపాలు"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} హెచ్చరిక"
+msgstr[1] "{0} హెచ్చరికలు"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} నోటీసు"
+msgstr[1] "{0} నోటీసులు"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""

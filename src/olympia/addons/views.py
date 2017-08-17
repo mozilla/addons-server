@@ -42,7 +42,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
-from olympia.api.paginator import ESPageNumberPagination
+from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
@@ -572,7 +572,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated() and self.request.user.is_staff:
+        if (self.request.user.is_authenticated() and
+                acl.action_allowed(self.request,
+                                   amo.permissions.ADDONS_VIEW_DELETED)):
             return Addon.unfiltered.all()
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
@@ -626,7 +628,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 
 
 class AddonChildMixin(object):
-    """Mixin containing method to retrive the parent add-on object."""
+    """Mixin containing method to retrieve the parent add-on object."""
 
     def get_addon_object(self, permission_classes=None, lookup='addon_pk'):
         """Return the parent Addon object using the URL parameter passed
@@ -661,9 +663,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         requested = self.request.GET.get('filter')
         if self.action == 'list':
             if requested == 'all_with_deleted':
-                # To see deleted versions, you need Admin:%.
+                # To see deleted versions, you need Addons:ViewDeleted.
                 self.permission_classes = [
-                    GroupPermission(amo.permissions.ADMIN)]
+                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)]
             elif requested == 'all_with_unlisted':
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
@@ -688,8 +690,8 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if (obj.deleted and
-            not GroupPermission(amo.permissions.ADMIN).has_object_permission(
-                request, self, obj)):
+                not GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(request, self, obj)):
             raise http.Http404
 
         if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -705,7 +707,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                 AllowRelatedObjectPermissions(
                     'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
             ]
-
         super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
     def get_queryset(self):
@@ -766,7 +767,7 @@ class AddonSearchView(ListAPIView):
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'exclude': AddonIndexer.hidden_fields})
+                _source={'excludes': AddonIndexer.hidden_fields})
 
     @classmethod
     def as_view(cls, **kwargs):
@@ -797,7 +798,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             using=amo.search.get_es(),
             index=AddonIndexer.get_index_alias(),
             doc_type=AddonIndexer.get_doctype_name()).extra(
-                _source={'include': included_fields})
+                _source={'includes': included_fields})
 
     def list(self, request, *args, **kwargs):
         # Ignore pagination (slice directly) but do wrap the data in a

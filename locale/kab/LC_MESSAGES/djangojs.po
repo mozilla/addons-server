@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-01-27 12:24+0000\n"
-"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-04 05:53+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "Validating {0}"
 msgstr "Asentem {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Azegrir-ik iɛedda tilas n tuγzi n {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Irmes-d tiririt tilemnt seg uqeddac; addad: {0}"
@@ -136,7 +136,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Anaw n ufaylu i tuzned ur yettwassen ara."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Afaylu-ik iɛedda tilas n tuγzi n {0}."
 
 msgid "You cancelled the upload."
 msgstr "Tesfesxeḍ tuzna."
@@ -653,18 +653,6 @@ msgstr "Qbel udiɣ sebded"
 msgid "Add to {0}"
 msgstr "Rnu ɣer {0}"
 
-msgid "Download Now"
-msgstr "Sider tura"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Azegrir ur yettwalqem ara akken ad imṣada akked default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Tesriḍ aseqdec n Firefox 10.0 neɣ ugar."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla yecreḍ lqem agi d akken ur imṣada ara akked lqem n Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Sebded i {0} akken yebɣu yili"
@@ -675,9 +663,13 @@ msgstr "Sideri {0} akken yebɣu yili"
 msgid "Not available for your platform"
 msgstr "Ulac i twennaṭ inek"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ulac i {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Asentel agi ur imṣada ara kked lqem inek n {0}"
+
+msgid "View other versions"
+msgstr "Wali ileqman nniḍen"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Iteddu s {app} {min} - {max}"
@@ -685,17 +677,8 @@ msgstr "Iteddu s {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Iteddu s {app}"
 
-msgid "View other versions"
-msgstr "Wali ileqman nniḍen"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ala s Firefox — Awi-d Firefox tura!"
-
-msgid "Download now"
-msgstr "Sider tura"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Yella kan di Firefox i uselkim"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."

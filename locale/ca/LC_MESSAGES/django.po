@@ -8,17 +8,19 @@
 # Toni <toniher@softcatala.org>, 2007, 2010, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version:  c\n"
+"Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2013-10-23 18:28+0000\n"
-"Last-Translator: Toni <toniher@softcatala.org>\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-08 19:23+0000\n"
+"Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
 msgstr ""
@@ -486,83 +488,12 @@ msgstr "Encara no s'ha valorat"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> usuaris"
 
+#. {0} is the number of users.
 #, fuzzy
-msgid "{0} Daily Users"
-msgstr "Usuaris diaris"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Per instal·lar aquest complement i milers d'altres, <b>instaŀleu-vos el Firefox</b>, un navegador web gratuït, lliure i obert de Mozilla."
-
-# %1 is the add-on name
-msgid "Learn more about Firefox"
-msgstr "Més informació sobre el Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Com instal·lar-ho al Thunderbird</strong> <ol> <li>Baixa i desa el fitxer al disc dur.</li> <li>Al Mozilla Thunderbird obriu «Complements» del menú d'Eines.</li> <li>Del botó d'opcions al "
-"costat del camp de cerca de complement, seleccioneu «Instal·la un complement d'un fitxer...» i trobeu on s'ha baixat el complement.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-
-msgid "Learn more about Thunderbird"
-msgstr "Més informació sobre el Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Aquest complement no s'ha actualitzat perquè pugui funcionar amb la vostra versió de %(app)s"
-
-msgid "Install Anyway"
-msgstr "Instal·la-ho igualment"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Aquest complement requereix una versió del Firefox que encara no s'ha alliberat."
-
-msgid "Help test new Firefox Versions"
-msgstr "Ajudeu a provar versions noves del Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Aquest complement requereix %(app)s {new_version}. Però actualment esteu utilitzant %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Actualitza {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "o mostra <a href=\"%(href)s\">versions antigues d'aquest complement</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Aquest Persona requereix el %(app)s %(new_version)s. Esteu fent servir el %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Atenció:</strong> Aquest complement no és compatible amb el vostre sistema operatiu."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Aquest complement no és compatible amb la vostra versió del %(app)s per les següents raons:"
-
-msgid "View other versions"
-msgstr "Altres versions"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Aquest complement no és compatible amb la vostra versió del %(app)s."
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "Usuaris diaris"
+msgstr[1] "Usuaris diaris"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -812,6 +743,12 @@ msgstr ""
 #, fuzzy
 msgid "This add-on can:"
 msgstr "Aquest complement requereix un programa extern."
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1192,7 +1129,7 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #, fuzzy
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
 msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
@@ -1786,7 +1723,7 @@ msgstr "Més informació sobre la <a href=\"http://support.mozilla.com/kb/Search
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2329,13 +2266,8 @@ msgid "Ask before users can download this add-on"
 msgstr "Demana-ho abans que els usuaris puguin baixar aquest complement"
 
 #. Review points sources other than add-ons and themes.
-#, fuzzy
 msgid "Other"
-msgstr ""
-"#-#-#-#-#  django.po (c)  #-#-#-#-#\n"
-"Altre\n"
-"#-#-#-#-#  django.po (c)  #-#-#-#-#\n"
-"Altres complements"
+msgstr "Altres"
 
 msgid "Exception"
 msgstr "Excepció"
@@ -2594,13 +2526,8 @@ msgstr "Experimental"
 msgid "Feeds, News, & Blogging"
 msgstr "Canals, notícies i blogs"
 
-#, fuzzy
 msgid "Performance"
-msgstr ""
-"#-#-#-#-#  django.po (c)  #-#-#-#-#\n"
-"Eficiència\n"
-"#-#-#-#-#  django.po (c)  #-#-#-#-#\n"
-"Rendiment"
+msgstr "Rendiment"
 
 msgid "Photos & Media"
 msgstr "Fotos i multimèdia"
@@ -2902,6 +2829,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3132,6 +3062,10 @@ msgstr "Cerca"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr ""
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr ""
 
@@ -3322,7 +3256,7 @@ msgstr ""
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -8273,7 +8207,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8566,12 +8500,6 @@ msgstr "Històric de versions del %s"
 
 msgid "Version History with Changelogs"
 msgstr "Historial de versions amb el registre de canvis"
-
-msgid "Add-on uses binary components."
-msgstr ""
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
 
 msgid "{app} {min} and later"
 msgstr ""

@@ -162,7 +162,8 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         raise http.Http404()
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all())
+                                      queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
     if request.method == 'POST' and compat_form.is_valid():
         for compat in compat_form.save(commit=False):
             compat.version = version
@@ -1112,7 +1113,9 @@ def version_edit(request, addon_id, addon, version_id):
         # We should be in no-caching land but this one stays cached for some
         # reason.
         qs = version.apps.all().no_cache()
-        compat_form = forms.CompatFormSet(request.POST or None, queryset=qs)
+        compat_form = forms.CompatFormSet(
+            request.POST or None, queryset=qs,
+            form_kwargs={'version': version})
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and

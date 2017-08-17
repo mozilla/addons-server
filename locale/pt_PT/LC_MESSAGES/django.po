@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-18 17:53+0000\n"
-"PO-Revision-Date: 2017-07-18 19:33+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 17:03+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -56,7 +56,7 @@ msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Programadores de extras ou temas não podem apagar as suas contas. Tem de apagar todos os extras e temas ligados a esta conta, ou transferi-los para outros utilizadores."
+msgstr "Os programadores de extras ou temas não podem apagar as suas contas. Você tem de apagar todos os extras e temas ligados a esta conta, ou transferi-los para outros utilizadores."
 
 msgid "Review"
 msgstr "Análise"
@@ -396,11 +396,11 @@ msgstr "por"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "Mais {0} temas"
+msgstr "Mais temas de {0}"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr "Ver todos os {0} temas"
+msgstr "Ver todos os temas de {0}"
 
 msgid "More by this Artist"
 msgstr "Mais deste artista"
@@ -465,83 +465,11 @@ msgstr "Ainda sem avaliação"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> utilizadores"
 
-msgid "{0} Daily Users"
-msgstr "{0} utilizadores diários"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Para instalar este extra e muitos mais, <b>obtenha o Firefox</b>, o navegador grátis da Mozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Saber mais acerca do Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "ou <b><a class=\"button installer\" href=\"{url}\">descarregar ainda assim</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Como instalar no Thunderbird</strong> <ol> <li>Descarregue e guarde o ficheiro no seu disco.</li> <li>No Mozilla Thunderbird, abra o Extras a partir do menu Ferramentas.</li> <li>A partir do"
-" botão opções a seguir ao campo da pesquisa, selecione \"Instalar extra a partir de ficheiro...\" e localize o extra descarregado.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de email gratuito e de código aberto da Mozilla, e instale o extra Personas Plus."
-
-msgid "Learn more about Thunderbird"
-msgstr "Saber mais acerca do Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Para instalar este tema e muitos mais, <b>obtenha o Firefox</b>, um navegador grátis e aberto da Mozilla."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Este extra não foi atualizado para funcionar com a sua versão do %(app)s."
-
-msgid "Install Anyway"
-msgstr "Instalar de qualquer maneira"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Este extra necessita de uma versão do Firefox que ainda não foi lançada."
-
-msgid "Help test new Firefox Versions"
-msgstr "Ajude a testar novas versões do Firefox"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Este extra necessita o %(app)s {new_version}. Está a utilizar o %(app)s {old_version}."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Atualizar {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ou veja <a href=\"%(href)s\">versões antigas deste extra</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Este Persona necessita %(app)s %(new_version)s. Está a usar %(app)s {old_version}."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr ""
-"<strong>Cuidado:</strong> Este extra não foi revisto pela Mozilla e não pode ser instalado em versões finais do Firefox 43 e mais acima.  Tenha cuidado ao instalar software de terceiros que possa "
-"danificar o seu computador."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Por favor note:</strong> Este extra não é compatível com o seu sistema operativo."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Este extra não é compatível com a sua versão do %(app)s devido ao seguinte:"
-
-msgid "View other versions"
-msgstr "Ver outras versões"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Este extra não é compatível com a sua versão do %(app)s."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} utilizador diário"
+msgstr[1] "{0} utilizadores diários"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -781,6 +709,12 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Este extra pode:"
+
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Alguns extras pedem permissão para desempenhar certas funções. Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Por favor note que este extra utiliza tecnologia de legado, que dá acesso a funções do navegador e dados sem solicitar a sua permissão."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1034,7 +968,7 @@ msgid "Top Rated"
 msgstr "Top de avaliações"
 
 msgid "Newest"
-msgstr "Mais recente"
+msgstr "Mais recentes"
 
 msgid "Explore"
 msgstr "Explorar"
@@ -1155,8 +1089,8 @@ msgstr ""
 "Extras submetidos no Extras da Mozilla necessitam de ter um ficheiro manifest com pelo menos uma das aplicações suportadas abaixo. Apenas as versões listadas abaixo são permitidas para estas "
 "aplicações."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/pt-PT/Add-ons/WebExtensions/manifest.json/applications"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
@@ -1622,7 +1556,7 @@ msgstr "%s Extras"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr "%s Temas"
+msgstr "Temas %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1654,7 +1588,7 @@ msgid "Up & Coming"
 msgstr "Futuramente"
 
 msgid "Recently Added"
-msgstr "Adicionado recentemente"
+msgstr "Adicionados recentemente"
 
 msgid "Created"
 msgstr "Criado"
@@ -1742,14 +1676,14 @@ msgstr "Saiba mais acerca da <a href=\"http://support.mozilla.com/kb/Search+bar\
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Navegue entre, ainda mais, fornecedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Faça a sua própria</a> ferramenta de pesquisa"
+msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Faça a sua própria</a> ferramenta de pesquisa"
 
 msgid "Most Popular Extensions"
 msgstr "Extensões mais populares"
 
 msgid "Top-Rated Extensions"
-msgstr "Extensões mais votadas"
+msgstr "Extensões do top de avaliações"
 
 msgid "Newest Extensions"
 msgstr "Extensões mais recentes"
@@ -1775,7 +1709,7 @@ msgid "Most Popular Complete Themes"
 msgstr "Temas completos mais populares"
 
 msgid "Top-Rated Complete Themes"
-msgstr "Temas completos melhor classificados"
+msgstr "Temas completos do top de avaliações"
 
 msgid "Newest Complete Themes"
 msgstr "Temas completos mais recentes"
@@ -1803,7 +1737,7 @@ msgstr "{0} Temas"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr "Temas {0}"
+msgstr "Temas de {0}"
 
 msgid "View Profile"
 msgstr "Ver perfil"
@@ -2836,6 +2770,9 @@ msgstr ""
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr "Começando com o Firefox 53, novas extensões neste site só podem ser WebExtensions."
 
+msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "As extensões de legado não são compatíveis com o Firefox 57 ou superior. Utilize o maxVersion de 56.* ou inferior."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
 
@@ -3066,6 +3003,10 @@ msgstr "Pesquisa"
 msgid "Use the field below to upload your add-on package."
 msgstr "Use o campo em baixo para carregar o seu pacote do extra."
 
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Note que esta ferramenta apenas funciona com extras de legado. As APIs WebExtension estão completamente <a href=\"%(webext_doc_url)s\">documentadas aqui</a>."
+
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Depois de carregar, uma série de testes de validação automáticos serão executados para verificar a compatibilidade com a seguinte versão da aplicação:"
 
@@ -3252,8 +3193,8 @@ msgstr "Marque esta caixa se as funcionalidades principais deste extra requerem 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Este extra requer pagamento, serviços não-gratuitos ou software, ou hardware adicional."
 
-msgid "This add-on is doesn't require any additional payments, paid services or software or additional hardware."
-msgstr "Este extra não requer quaisquer pagamentos adicionais, serviços pagos ou software ou hardware adicional."
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr "Este extra não requer quaisquer pagamentos adicionais, serviços pagos ou software, ou hardware adicional."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3891,7 +3832,7 @@ msgid "Latest Version:"
 msgstr "Versão mais recente:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr "Esta é a versão não listada mais recentemente enviada."
+msgstr "Esta é a versão não listada mais recentemente carregada."
 
 msgid "(required since this add-on accepts contributions)"
 msgstr "[necessário uma vez que este extra aceita contribuições)"
@@ -5058,7 +4999,7 @@ msgid "Add-on Review Log"
 msgstr "Registo da revisão do extra"
 
 msgid "Moderated Review Log"
-msgstr "Registo da moderação da revisão "
+msgstr "Registo da moderação da revisão"
 
 msgid "Signed Beta Files Log"
 msgstr "Registo de ficheiros beta assinados"
@@ -5409,8 +5350,8 @@ msgstr "Atualmente não há revisões."
 
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} tema a aguardar revisão"
-msgstr[1] "{num} temas a aguardar revisão"
+msgstr[0] "{num} revisão de tema pendente"
+msgstr[1] "{num} revisões de temas pendentes"
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
@@ -7633,7 +7574,7 @@ msgstr[1] "{num} revisões"
 
 # 87%
 msgid "Rated {0} out of 5 stars"
-msgstr "Avaliado em {0} de 5 estrelas"
+msgstr "Avaliado com {0} de 5 estrelas"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
@@ -8239,8 +8180,8 @@ msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreve uma análise sobre o meu extra"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr "fique atualizado(a) com notícias e eventos relevantes a programadores de extras"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr "fique atualizado(a) com notícias e eventos relevantes a programadores de extras (incluindo a newsletter about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu extra não pode ser atualizada"
@@ -8437,7 +8378,7 @@ msgid "My Most Popular Themes"
 msgstr "Os meus temas mais populares"
 
 msgid "Themes I've created"
-msgstr "Temas que criei"
+msgstr "Temas que eu criei"
 
 msgid "Followed by Me"
 msgstr "Seguido por mim"
@@ -8533,12 +8474,6 @@ msgstr "Histórico de versões de %s"
 
 msgid "Version History with Changelogs"
 msgstr "Histórico de versões com registo de alterações"
-
-msgid "Add-on uses binary components."
-msgstr "O extra usa componentes binários."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "O extra optou pela verificação estrita de compatibilidade."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"

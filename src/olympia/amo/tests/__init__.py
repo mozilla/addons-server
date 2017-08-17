@@ -68,6 +68,68 @@ from . import dynamic_urls
 # rendering templates.
 translation.activate('en-us')
 
+# We need ES indexes aliases to match prod behaviour, but also we need the
+# names need to stay consistent during the whole test run, so we generate
+# them at import time. Note that this works because pytest overrides
+# ES_INDEXES before the test run even begins - if we were using
+# override_settings() on ES_INDEXES we'd be in trouble.
+ES_INDEX_SUFFIXES = {
+    key: timestamp_index('')
+    for key in settings.ES_INDEXES.keys()}
+
+
+def get_es_index_name(key):
+    """Return the name of the actual index used in tests for a given key
+    taken from settings.ES_INDEXES.
+
+    Can be used to check whether aliases have been set properly -
+    ES_INDEXES will give the aliases, and this method will give the indices
+    the aliases point to."""
+    value = settings.ES_INDEXES[key]
+    return '%s%s' % (value, ES_INDEX_SUFFIXES[key])
+
+
+def setup_es_test_data(es):
+    try:
+        es.cluster.health()
+    except Exception, e:
+        e.args = tuple(
+            [u"%s (it looks like ES is not running, try starting it or "
+             u"don't run ES tests: make test_no_es)" % e.args[0]] +
+            list(e.args[1:]))
+        raise
+
+    aliases_and_indexes = set(settings.ES_INDEXES.values() +
+                              es.indices.get_alias().keys())
+
+    for key in aliases_and_indexes:
+        if key.startswith('test_amo'):
+            es.indices.delete(key, ignore=[404])
+
+    # Figure out the name of the indices we're going to create from the
+    # suffixes generated at import time. Like the aliases later, the name
+    # has been prefixed by pytest, we need to add a suffix that is unique
+    # to this test run.
+    actual_indices = {key: get_es_index_name(key)
+                      for key in settings.ES_INDEXES.keys()}
+
+    # Create new search and stats indexes with the timestamped name.
+    # This is crucial to set up the correct mappings before we start
+    # indexing things in tests.
+    search_indexers.create_new_index(index_name=actual_indices['default'])
+    stats_search.create_new_index(index_name=actual_indices['stats'])
+
+    # Alias it to the name the code is going to use (which is suffixed by
+    # pytest to avoid clashing with the real thing).
+    actions = [
+        {'add': {'index': actual_indices['default'],
+                 'alias': settings.ES_INDEXES['default']}},
+        {'add': {'index': actual_indices['stats'],
+                 'alias': settings.ES_INDEXES['stats']}}
+    ]
+
+    es.indices.update_aliases({'actions': actions})
+
 
 def formset(*args, **kw):
     """
@@ -294,7 +356,6 @@ ES_patchers = [
     mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
     mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
     mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
-    mock.patch('olympia.users.tasks.index_users.delay', spec=True),
 ]
 
 
@@ -660,8 +721,7 @@ def addon_factory(
     if not category:
         static_category = random.choice(
             CATEGORIES[application][type_].values())
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
@@ -796,27 +856,13 @@ def version_factory(file_kw=None, **kw):
 
 @pytest.mark.es_tests
 class ESTestCase(TestCase):
-    # We need ES indexes aliases to match prod behaviour, but also we need the
-    # names need to stay consistent during the whole test run, so we generate
-    # them at import time. Note that this works because pytest overrides
-    # ES_INDEXES before the test run even begins - if we were using
-    # override_settings() on ES_INDEXES we'd be in trouble.
-    index_suffixes = {key: timestamp_index('')
-                      for key in settings.ES_INDEXES.keys()}
-
     @classmethod
     def get_index_name(cls, key):
-        """Return the name of the actual index used in tests for a given key
-        taken from settings.ES_INDEXES.
-
-        Can be used to check whether aliases have been set properly -
-        ES_INDEXES will give the aliases, and this method will give the indices
-        the aliases point to."""
-        value = settings.ES_INDEXES[key]
-        return '%s%s' % (value, cls.index_suffixes[key])
+        return get_es_index_name(key)
 
     def setUp(self):
         stop_es_mocks()
+        super(ESTestCase, self).setUp()
 
     @classmethod
     def setUpClass(cls):
@@ -832,43 +878,8 @@ class ESTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         stop_es_mocks()
-        try:
-            cls.es.cluster.health()
-        except Exception, e:
-            e.args = tuple(
-                [u"%s (it looks like ES is not running, try starting it or "
-                 u"don't run ES tests: make test_no_es)" % e.args[0]] +
-                list(e.args[1:]))
-            raise
+        setup_es_test_data(cls.es)
 
-        aliases_and_indexes = set(settings.ES_INDEXES.values() +
-                                  cls.es.indices.get_aliases().keys())
-        for key in aliases_and_indexes:
-            if key.startswith('test_amo'):
-                cls.es.indices.delete(key, ignore=[404])
-
-        # Figure out the name of the indices we're going to create from the
-        # suffixes generated at import time. Like the aliases later, the name
-        # has been prefixed by pytest, we need to add a suffix that is unique
-        # to this test run.
-        actual_indices = {key: cls.get_index_name(key)
-                          for key in settings.ES_INDEXES.keys()}
-
-        # Create new search and stats indexes with the timestamped name.
-        # This is crucial to set up the correct mappings before we start
-        # indexing things in tests.
-        search_indexers.create_new_index(index_name=actual_indices['default'])
-        stats_search.create_new_index(index_name=actual_indices['stats'])
-
-        # Alias it to the name the code is going to use (which is suffixed by
-        # pytest to avoid clashing with the real thing).
-        actions = [
-            {'add': {'index': actual_indices['default'],
-                     'alias': settings.ES_INDEXES['default']}},
-            {'add': {'index': actual_indices['stats'],
-                     'alias': settings.ES_INDEXES['stats']}}
-        ]
-        cls.es.indices.update_aliases({'actions': actions})
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
@@ -890,9 +901,12 @@ class ESTestCase(TestCase):
 
     @classmethod
     def empty_index(cls, index):
+        # Try to make sure that all changes are properly flushed.
+        cls.refresh()
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
-            body={"query": {"match_all": {}}}
+            body={'query': {'match_all': {}}},
+            conflicts='proceed',
         )
 
 
@@ -1026,3 +1040,29 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
         else:
             raise AssertionError('Could not exec %r: %s' % (string.strip(), e))
     return locals_
+
+
+def prefix_indexes(config):
+    """Prefix all ES index names and cache keys with `test_` and, if running
+    under xdist, the ID of the current slave.
+
+    Note that this is a pytest helper that is primarily used in conftest.
+    """
+    if hasattr(config, 'slaveinput'):
+        prefix = 'test_{[slaveid]}'.format(config.slaveinput)
+    else:
+        prefix = 'test'
+
+    # Ideally, this should be a session-scoped fixture that gets injected into
+    # any test that requires ES. This would be especially useful, as it would
+    # allow xdist to transparently group all ES tests into a single process.
+    # Unfurtunately, it's surprisingly difficult to achieve with our current
+    # unittest-based setup.
+
+    for key, index in settings.ES_INDEXES.items():
+        if not index.startswith(prefix):
+            settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
+                prefix=prefix, index=index)
+
+    settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
+    settings.KEY_PREFIX = settings.CACHE_PREFIX

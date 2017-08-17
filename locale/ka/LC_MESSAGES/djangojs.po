@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-05 22:42+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-16 17:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -120,8 +120,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"შედგენილი ბინარები, ისევე როგორც ოპტიმიზებული ან დაცული კოდები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ საწყისი კოდის ასატვირთი ველით, რომ "
-"თავიდან აიცილოთ უარი მიღებაზე."
+"შედგენილი ბინარები, ისევე როგორც ოპტიმიზებული ან დაცული კოდები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი ველით, "
+"რომ თავიდან აიცილოთ უარი მიღებაზე."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
@@ -145,13 +145,13 @@ msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
 
 msgid "Follow this Collection"
-msgstr "კოლექციის გაყოლა"
+msgstr "კრებულის გამოწერა"
 
 msgid "Stop Following"
-msgstr "გაყოლის შეჩერება"
+msgstr "გამოწერის გაუქმება"
 
 msgid "Following"
-msgstr "მიჰყვებით"
+msgstr "გამოწერა"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -221,7 +221,7 @@ msgid "{0} add-ons"
 msgstr "{0} დამატება"
 
 msgid "{0} collections"
-msgstr "{0} კოლექცია"
+msgstr "{0} კრებული"
 
 msgid "{0} reviews"
 msgstr "{0} მიმოხილვა"
@@ -248,7 +248,7 @@ msgid "Number of Contributions"
 msgstr "დამხმარეების რაოდენობა"
 
 msgid "More Info..."
-msgstr "მეტი ინფო..."
+msgstr "დამატებითი მონაცემები..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -318,7 +318,7 @@ msgid "Homepage Up and Coming"
 msgstr "მთავარ გვერდზე მზარდი მოთხოვნის"
 
 msgid "Homepage Most Popular"
-msgstr "მთავარ გვერდზე ყველაზე მოთხოვნადი"
+msgstr "მთავარ გვერდზე ყველაზე სასურველი"
 
 msgid "Detail Page"
 msgstr "აღწერის გვერდი"
@@ -327,13 +327,13 @@ msgid "Detail Page (bottom)"
 msgstr "აღწერის გვერდი (ქვემოთ)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "ინფორმაციის გვერდი (განვითარების არხი)"
+msgstr "ინფორმაციის გვერდი (სამუშაო არხი)"
 
 msgid "Often Used With"
 msgstr "ამასთან, ხშირად იყენებენ"
 
 msgid "Others By Author"
-msgstr "ამ ავტორის სხვა პროდუქტები"
+msgstr "ავტორის სხვა პროდუქტები"
 
 msgid "Dependencies"
 msgstr "დამოკიდებულებები"
@@ -357,7 +357,7 @@ msgid "Category Pages"
 msgstr "კატეგორიის გვერდები"
 
 msgid "Collections"
-msgstr "კოლექციები"
+msgstr "კრებულები"
 
 msgid "Category Landing Featured Carousel"
 msgstr "განთავსება კატეგორიაში რჩეულები"
@@ -366,10 +366,10 @@ msgid "Category Landing Top Rated"
 msgstr "განთავსება კატეგორიაში უმაღლესად შეფასებულები"
 
 msgid "Category Landing Most Popular"
-msgstr "განთავსება კატეგორიაში ყველაზე მოთხოვნადი"
+msgstr "განთავსება კატეგორიაში ყველაზე სასურველი"
 
 msgid "Category Landing Recently Added"
-msgstr "განთავსება კატეგორიაში ბოლოს დამატებულები"
+msgstr "განთავსება კატეგორიაში ახალი დამატებულები"
 
 msgid "Browse Listing Featured Sort"
 msgstr "რჩეულობის მიხედვით დახარისხებულის დათვალიერება"
@@ -427,11 +427,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
+msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -451,11 +451,11 @@ msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "ყოველდღიური მომხმარებლები, ბოლო {0} დღეში"
+msgstr "დღიური მომხმარებლები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "ყოველდღიური მომხმარებლები {0}-იდან {1}-მდე"
+msgstr "დღიური მომხმარებლები {0}-იდან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -515,11 +515,11 @@ msgstr "შემოწირულობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "ვებ-გვერდის სტატისტიკა, ბოლო {0} დღეში"
+msgstr "ვებგვერდის სტატისტიკა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "ვებ-გვერდის სტატისტიკა {0}-დან {1}-მდე"
+msgstr "ვებგვერდის სტატისტიკა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -648,18 +648,6 @@ msgstr "მიღება და ინსტალაცია"
 msgid "Add to {0}"
 msgstr "{0}-ში ჩადგმა"
 
-msgid "Download Now"
-msgstr "ჩამოტვირთვა ახლავე"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "დამატება არ განახლებულა და ვერ იქნება ნაგულისხმევად თავსებადი."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "თქვენ უნდა იყენებდეთ Firefox 10.0-ს ან უფრო მაღალ ვერსიას."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla ეს ვერსია თქვენი Firefox-ის ვერსიასთან შეუთავსებლად მონიშნა."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "{0}-ის დაყენება მიუხედავად ყველაფრისა"
@@ -670,27 +658,21 @@ msgstr "{0}-ის ჩამოტვირთვა მიუხედავა
 msgid "Not available for your platform"
 msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1}-სთვის არაა ხელმისაწვდომი"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "მუშაობს {app} ვერსიებთან: {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "მუშაობს ვერსიასთან {app}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "დამატება, {0}-ის თქვენს ვერსიასთან შეუთავსებელია."
 
 msgid "View other versions"
 msgstr "სხვა ვერსიების ნახვა"
 
+msgid "Works with {app} {min} - {max}"
+msgstr "თავსებადია {app} ვერსიებთან: {min} - {max}"
+
+msgid "Works with {app}"
+msgstr "თავსებადია {app}"
+
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "მხოლოდ Firefox-ზე — ჩამოტვირთეთ Firefox!"
-
-msgid "Download now"
-msgstr "ჩამოტვირთვა ახლავე"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Only available on Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ბოდიში, საძიებო მოდულის დასაინტსტალირებლად გესაჭირეობათ Mozilla-ზე დაფუძნებული ბრაუზერი (მაგალითად Firefox)."
@@ -741,7 +723,7 @@ msgid "Remove from favorites"
 msgstr "რჩეულებიდან ამოღება"
 
 msgid "Stop following"
-msgstr "ადევნების შეწყვეტა"
+msgstr "გამოწერის გაუქმება"
 
 msgid "Your browser does not support the video tag"
 msgstr "თქვენი ბრაუზერს არ აქვს ვიდეო ნაჭდევების მხარდაჭერა"
@@ -750,7 +732,7 @@ msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
 
 msgid "Enter a new author's email address"
-msgstr "შეიყვანეთ ავტორის ახალი ელ-ფოსტის მისამართი"
+msgstr "შეიყვანეთ ავტორის ახალი ელფოსტის მისამართი"
 
 msgid "There was an error uploading your file."
 msgstr "ფაილის ატვირთვისას წარმოიშვა შეცდომა."
@@ -770,7 +752,7 @@ msgid "Image changes being processed"
 msgstr "სურათის ცვლილებები მუშავდება"
 
 msgid "Must be a valid e-mail address."
-msgstr "ელ-ფოსტის მისამართი უნდა იყოს ნამდვილი"
+msgstr "ელფოსტის მისამართი უნდა იყოს ნამდვილი"
 
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
@@ -820,7 +802,7 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ვებ-საიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, შემოიარეთ მოგვიანებით."
+msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, სცადოთ მოგვიანებით."
 
 msgid "Remove this localization"
 msgstr "ამ ლოკალიზაციის წაშლა"

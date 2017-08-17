@@ -55,8 +55,8 @@ class BaseSearchIndexer(object):
                 '%s_translations' % field_name: {
                     'type': 'object',
                     'properties': {
-                        'lang': {'type': 'string', 'index': 'no'},
-                        'string': {'type': 'string', 'index': 'no'}
+                        'lang': {'type': 'text', 'index': False},
+                        'string': {'type': 'text', 'index': False}
                     }
                 }
             })
@@ -76,7 +76,7 @@ class BaseSearchIndexer(object):
             for field in field_names:
                 property_name = '%s_l10n_%s' % (field, analyzer)
                 mapping[doc_name]['properties'][property_name] = {
-                    'type': 'string',
+                    'type': 'text',
                     'analyzer': analyzer,
                 }
 

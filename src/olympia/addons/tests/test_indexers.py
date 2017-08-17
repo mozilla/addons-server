@@ -96,15 +96,15 @@ class TestAddonIndexer(TestCase):
         assert set(mapping_properties.keys()) == set(self.expected_fields())
 
         # Make sure default_locale and translated fields are not indexed.
-        assert mapping_properties['default_locale']['index'] == 'no'
+        assert mapping_properties['default_locale']['index'] is False
         name_translations = mapping_properties['name_translations']
-        assert name_translations['properties']['lang']['index'] == 'no'
-        assert name_translations['properties']['string']['index'] == 'no'
+        assert name_translations['properties']['lang']['index'] is False
+        assert name_translations['properties']['string']['index'] is False
 
         # Make sure nothing inside 'persona' is indexed, it's only there to be
         # returned back to the API directly.
         for field in mapping_properties['persona']['properties'].values():
-            assert field['index'] == 'no'
+            assert field['index'] is False
 
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']
@@ -120,6 +120,35 @@ class TestAddonIndexer(TestCase):
             'is_restart_required', 'platform', 'size', 'status',
             'strict_compatibility', 'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
+
+    def test_index_setting_boolean(self):
+        """Make sure that the `index` setting is a true/false boolean.
+
+        Old versions of ElasticSearch allowed 'no' and 'yes' strings,
+        this changed with ElasticSearch 5.x.
+        """
+        doc_name = self.indexer.get_doctype_name()
+        assert doc_name
+
+        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in mapping_properties.values()
+            if 'index' in prop)
+
+        # Make sure our version_mapping is setup correctly too.
+        props = mapping_properties['current_version']['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props.values() if 'index' in prop)
+
+        # As well as for current_version.files
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props['files']['properties'].values()
+            if 'index' in prop)
 
     def _extract(self):
         qs = Addon.unfiltered.filter(id__in=[self.addon.pk]).no_cache()
@@ -203,10 +232,12 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version']
         assert extracted['current_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 2000000200100L,
-                'max': 4000000200100L,
+                'max': 9999000000200100,
                 'max_human': '4.0',
                 'min_human': '2.0',
             }
@@ -232,10 +263,12 @@ class TestAddonIndexer(TestCase):
         version = current_beta_version
         assert extracted['current_beta_version']
         assert extracted['current_beta_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_beta_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -260,10 +293,12 @@ class TestAddonIndexer(TestCase):
         version = unlisted_version
         assert extracted['latest_unlisted_version']
         assert extracted['latest_unlisted_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['latest_unlisted_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -283,6 +318,22 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert extracted_file['webext_permissions_list'] == []
+
+    def test_version_compatibility_with_strict_compatibility_enabled(self):
+        version = self.addon.current_version
+        file_factory(
+            version=version, platform=PLATFORM_MAC.id,
+            strict_compatibility=True)
+        extracted = self._extract()
+
+        assert extracted['current_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 2000000200100L,
+                'max': 4000000200100L,
+                'max_human': '4.0',
+                'min_human': '2.0',
+            }
+        }
 
     def test_extract_translations(self):
         translations_name = {

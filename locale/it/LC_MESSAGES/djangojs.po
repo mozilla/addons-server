@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-18 14:09+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-14 08:21+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -660,18 +660,6 @@ msgstr "Accetta e installa"
 msgid "Add to {0}"
 msgstr "Aggiungi a {0}"
 
-msgid "Download Now"
-msgstr "Scarica ora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Questo componente aggiuntivo non è stato aggiornato per essere sempre compatibile come impostazione predefinita."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "È necessario utilizzare Firefox 10 o superiore."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla ha contrassegnato questa versione come non compatibile con la versione di Firefox in uso."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installa comunque per {0}"
@@ -682,9 +670,12 @@ msgstr "Scarica comunque per {0}"
 msgid "Not available for your platform"
 msgstr "Non disponibile per la tua piattaforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Non disponibile per {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Questo componente aggiuntivo non è compatibile con la versione di {0} in uso"
+
+msgid "View other versions"
+msgstr "Mostra altre versioni"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Compatibile con {app} {min} - {max}"
@@ -692,17 +683,8 @@ msgstr "Compatibile con {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Compatibile con {app}"
 
-msgid "View other versions"
-msgstr "Mostra altre versioni"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Solo con Firefox — Scaricalo subito!"
-
-msgid "Download now"
-msgstr "Scarica ora"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Disponibile solo per Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bisogna utilizzare un browser, come Firefox, basato su Mozilla per installare un plugin di ricerca."

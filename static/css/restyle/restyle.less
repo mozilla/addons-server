@@ -895,6 +895,7 @@ a.delete-button.delete-addon,
 #upload-file-widget .button.prominent,
 #promos .view-button a,
 .cta a.button:link,
+.cta a.button:visited,
 .theme-queue a.button,
 .theme-queue button,
 .theme .choices button,
@@ -902,6 +903,7 @@ button,
 button.button,
 .button,
 a.button:link,
+a.button:visited,
 input:not(.upvotes):not(.downvotes)[type="submit"],
 .persona-install button {
   background: #5784bf;
@@ -973,6 +975,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     background: #ccc;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
           inset 0 -2px 0 0 rgba(136, 136, 136, 0.50);
+    color: #919497;
     text-shadow: none;
 
     &:hover {
@@ -982,6 +985,14 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
 
     &:active {
       top: 0;
+    }
+
+    span:not(.os) {
+      background-position: 0 -253px;
+
+      .html-rtl & {
+        .sprite-pos-right(4, 64, 3px);
+      }
     }
   }
 
@@ -1017,11 +1028,6 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
            .sprite-pos-right(5, 64, 3px);
        }
     }
-  }
-
-  &.caution.concealed,
-  &.warning.concealed {
-    pointer-events: all;
   }
 }
 
@@ -1203,7 +1209,7 @@ body:not(.developer-hub) section.secondary {
   }
 
   .extra .button.disabled.not-available {
-    padding: 5px 5px 5px 20px;
+    padding: 5px 5px 5px 25px;
   }
 }
 
@@ -1811,7 +1817,8 @@ h3.author .transfer-ownership {
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
-  padding: 5px 0px 5px 25px;
+  padding: 5px 5px 5px 25px;
+  text-align: left;
 
   .addon-description-header &  {
     border: 0;
@@ -1821,12 +1828,8 @@ h3.author .transfer-ownership {
     border: 1px solid #ebebeb;
   }
 
-  .more-versions {
-    margin: 0 0 0 5px;
-
-    a {
-      color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
-    }
+  .more-versions a {
+    color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
   }
 }
 
@@ -1919,10 +1922,6 @@ h3.author .transfer-ownership {
   &:focus .extra .button.not-available,
   &:hover .extra .button.not-available {
     display: block !important;
-
-    span {
-      padding-left: 1rem;
-    }
   }
 
   .install-shell .install {
@@ -1934,16 +1933,12 @@ h3.author .transfer-ownership {
   }
 }
 
-.addon.hovercard,
-.items .item {
-  .more-versions {
-    padding-left: 1rem;
-  }
-}
-
 #addon .more-versions a {
   color: @link-on-white-bg;
-  margin-left: 10px;
+}
+
+.versions-list .more-versions {
+  display: none;  // Hide the more versions link on the versions list page.
 }
 
 // Contribute button fixes

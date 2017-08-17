@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2016-11-02 01:08+0000\n"
-"Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-07-20 06:22+0000\n"
+"Last-Translator: David Weir (satdav) <david.weir@mozilla.org.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "Validating {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Your add-on exceeds the maximum size of {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Received an empty response from the server; status: {0}"
@@ -135,7 +135,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "The filetype you uploaded isn't recognised."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Your file exceeds the maximum size of {0}."
 
 msgid "You cancelled the upload."
 msgstr "You cancelled the upload."
@@ -652,18 +652,6 @@ msgstr "Accept and Install"
 msgid "Add to {0}"
 msgstr "Add to {0}"
 
-msgid "Download Now"
-msgstr "Download Now"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on has not been updated to support default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "You need to be using Firefox 10.0 or higher."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla has marked this version as incompatible with your Firefox version."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Install for {0} anyway"
@@ -674,9 +662,13 @@ msgstr "Download for {0} anyway"
 msgid "Not available for your platform"
 msgstr "Not available for your platform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Not available for {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "This theme is incompatible with your version of {0}"
+
+msgid "View other versions"
+msgstr "View other versions"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Works with {app} {min} - {max}"
@@ -684,17 +676,8 @@ msgstr "Works with {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Works with {app}"
 
-msgid "View other versions"
-msgstr "View other versions"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Only with Firefox — Get Firefox Now!"
-
-msgid "Download now"
-msgstr "Download now"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Only available on Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

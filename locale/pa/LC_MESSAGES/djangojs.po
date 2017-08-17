@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -651,18 +651,6 @@ msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
 msgid "Add to {0}"
 msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
 
-msgid "Download Now"
-msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "ਮੂਲ ਤੌਰ ਤੇ ਅਨੁਕੂਲਤਾ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "ਤੁਹਾਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ 10.0 ਜਾਂ ਅੱਗੇ ਵਰਤੋਂ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ।"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਵਰਜਨ ਤੇ ਤੁਹਾਡੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਨਾ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲੱਗਾ ਦਿੱਤਾ।"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
@@ -673,9 +661,13 @@ msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
 msgid "Not available for your platform"
 msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+
+msgid "View other versions"
+msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
@@ -684,17 +676,7 @@ msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 msgid "Works with {app}"
 msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
-msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

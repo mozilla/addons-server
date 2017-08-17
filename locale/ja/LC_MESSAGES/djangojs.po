@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-07-17 08:37+0000\n"
-"PO-Revision-Date: 2017-07-22 06:52+0000\n"
+"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"PO-Revision-Date: 2017-08-10 12:30+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -643,18 +643,6 @@ msgstr "同意してインストール"
 msgid "Add to {0}"
 msgstr "{0} へ追加"
 
-msgid "Download Now"
-msgstr "今すぐダウンロード"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "アドオンが自動的に互換性を保つバージョンへ更新されていません。"
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10 以上のバージョンを使ってください。"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "このバージョンは、お使いの Firefox のバージョンと互換性がありません。"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "{0} へ強制インストール"
@@ -665,9 +653,12 @@ msgstr "{0} へ強制ダウンロード"
 msgid "Not available for your platform"
 msgstr "お使いの OS には対応していません"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} には対応していません"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "このアドオンはお使いのバージョンの {0} と互換性がありません。"
+
+msgid "View other versions"
+msgstr "他のバージョンを見る"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "動作環境: {app} {min} - {max}"
@@ -675,17 +666,8 @@ msgstr "動作環境: {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "{app} で動作します"
 
-msgid "View other versions"
-msgstr "他のバージョンを見る"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
-
-msgid "Download now"
-msgstr "今すぐダウンロード"
-
-msgid "Only available on Firefox Desktop"
-msgstr "デスクトップ版 Firefox でのみ使用可能"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザーが必要です。"

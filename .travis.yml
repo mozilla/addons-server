@@ -2,7 +2,7 @@ language: python
 sudo: false
 
 python:
-- 2.7
+  - 2.7
 
 env:
   global:
@@ -20,25 +20,29 @@ env:
   - TOXENV=main
   - TOXENV=ui-tests
 
-
 cache:
   pip: true
   directories:
     - node_modules
 
 services:
+  - mysql
   - memcached
+  - elasticsearch
 
 addons:
   apt:
+    sources:
+      - elasticsearch-5.x
     packages:
       - swig
+      - oracle-java8-set-default
+      - elasticsearch
       - gettext
   firefox: latest
 
 before_install:
-  - scripts/travis_es.sh
-  - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
+  - mysql -e 'create database olympia;'
 
 install:
   - nvm current
@@ -48,8 +52,10 @@ install:
   - pip install --upgrade pip wheel setuptools tox==1.8.1
 
 before_script:
-  - mysql -e 'create database olympia;'
+  - mysql --version
   - node --version
+  - java -version
+  - curl -v http://localhost:9200/
   - |
       if [[ $TOXENV == "ui-tests" ]]; then
         wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-linux64.tar.gz

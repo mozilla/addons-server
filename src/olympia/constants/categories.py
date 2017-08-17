@@ -17,7 +17,7 @@ class StaticCategory(object):
     """
 
     def __init__(self, id=None, app=None, type=None, misc=False,
-                 name=None, slug=None, weight=0):
+                 name=None, slug=None, weight=0, description=None):
         # Avoid triggering our own __setattr__ implementation
         # to keep immutability intact but set initial values.
         object.__setattr__(self, 'id', id)
@@ -27,6 +27,7 @@ class StaticCategory(object):
         object.__setattr__(self, 'slug', slug)
         object.__setattr__(self, 'type', type)
         object.__setattr__(self, 'weight', weight)
+        object.__setattr__(self, 'description', description)
 
     def __unicode__(self):
         return unicode(self.name)
