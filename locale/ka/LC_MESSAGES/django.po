@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 17:32+0000\n"
+"PO-Revision-Date: 2017-08-17 17:42+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -684,6 +684,8 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, დათანხმდებით თუ უარყოფთ, მოთხოვნილ უფლებებს. ნებართვებზე თანხმობა, არსებითად არ იმოქმედებს თქვენი ბრაუზერის წარმადობაზე, ან "
+"უსაფრთხოებაზე უარყოფითი კუთხით, მაგრამ იშვიათ შემთხვევებში, შეიძლება არსებობდეს ამის საფრთხეც."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -2411,7 +2413,7 @@ msgid "Feeds, News, & Blogging"
 msgstr "არხები, სიახლეები & სვეტები"
 
 msgid "Performance"
-msgstr ""
+msgstr "წარმადობა"
 
 msgid "Photos & Media"
 msgstr "ფოტო & მედია"
@@ -3501,7 +3503,7 @@ msgid "This add-on is experimental"
 msgstr "ეს დამატება საცდელია"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "მონიშნეთ, თუ თქვენი დამატება საცდელია, ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი.   ამ პარამეტრის შეცვლა, მომავალშიც შეგეძლებათ."
 
 msgid "Support email:"
 msgstr "მხარდაჭერის ელფოსტა:"
@@ -4147,10 +4149,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის მოგების მიზნითაც."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არამომგებიანი დანიშნულებით."
 
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
@@ -4998,7 +5000,7 @@ msgid "This Year"
 msgstr ""
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "წარმადობა ყოველთვიურად"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
