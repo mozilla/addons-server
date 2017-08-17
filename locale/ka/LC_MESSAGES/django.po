@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 22:07+0000\n"
+"PO-Revision-Date: 2017-08-17 22:22+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -20,26 +20,26 @@ msgid "No links are allowed."
 msgstr "ბმულები დაშვებული არაა."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "ამ სახელის გამოყენება შეუძლებელია."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "მეტსახელები არ უნდა შედგებოდეს მხოლოდ ციფრებისგან."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "შეიყვანეთ დაშვებული მეტსახელი რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "ამ მეტსახელის გამოყენება შეუძლებელია."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "ეს მეტსახელი უკვე გამოყენებულია."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "სურათი უნდა იყოს PNG, ან JPG ფორმატში."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "სურათის ზომა არ უნდა აღემატებოდეს %dMB-ს."
 
 msgid "You are already logged in."
 msgstr "თქვენ უკვე შესული ხართ."
@@ -1196,7 +1196,7 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr "კრებულების შესაფასებლად საჭიროა დამატებების ანგარიში."
 
 msgid "Create an Add-ons Account"
-msgstr "შექმენით დამატებების ანგარიში"
+msgstr "ანგარიშის შექმნა"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
@@ -1685,7 +1685,7 @@ msgstr "სრული თემები ზრდადი მოთხოვ
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში %(name)s &raquo;"
+msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში \"%(name)s\" &raquo;"
 
 msgid "{0} Themes"
 msgstr ""
@@ -6247,7 +6247,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "მიიღეთ მონაწილეობა ჩვენს <a href=\"%(url)s\">ფორუმებში</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "მიმოიხილეთ დამატებები საიტზე. დამატებების ავტორები უფრო მონდომებულად შეეცდებიან გააუმჯობესონ და დახვეწონ დამატებები, როცა იციან, რომ ხალხი სათანადოდ უფასებს მათ მუშაობას."
+msgstr "მიმოიხილეთ დამატებები საიტზე. დამატებების ავტორები უფრო მეტად მონდომებულად შეეცდებიან გააუმჯობესონ და დახვეწონ თავიანთი ნამუშევრები, როცა ეცოდინებათ, რომ ხალხი სათანადოდ დაუფასებს მათ შრომას."
 
 msgid "I have a question"
 msgstr "კითხვა მაქვს"
