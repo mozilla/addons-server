@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 11:45+0000\n"
+"PO-Revision-Date: 2017-08-17 19:25+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -639,7 +639,7 @@ msgstr[1] "<a href=\"%(url)s\">Запознай се с разработчици
 
 # {0} is an add-on name.
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Научете защо добавката „{0}“ е създадена и разберете за нейното развитие."
+msgstr "Научете защо е създадена добавката „{0}“ и разберете за нейното развитие."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
