@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 20:09+0000\n"
+"PO-Revision-Date: 2017-08-17 20:33+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2073,7 +2073,7 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox Android"
 
 msgid "Mozilla"
 msgstr ""
@@ -4267,7 +4267,7 @@ msgstr ""
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "გაეცანით და გამოიწერეთ თქვენი თემის <a href=\"%(feed_url)s\">საინფორმაციო არხი</a> და თვალი ადევნეთ მასთან დაკავშირებულ მიმოხილვებს, კრებულებს და ა.შ."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -6195,7 +6195,7 @@ msgstr ""
 "განხილულია ჩვენი სარედაქციო გუნდის მიერ, მათ გამოქვეყნებამდე. საცდელად მონიშნული დამატებები, ჯერ არაა განხილული და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "როგორ მივადევნო თვალი, AMO-სთან დაკავშირებულ სიახლეებს?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr "დამატებების სამყაროდან, ბოლო სიახლეების შესატყობად, რამდენიმე გზა არსებობს:"
@@ -6206,21 +6206,21 @@ msgstr "ჩვენი <a href=\"%(url)s\">დამატებების �
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "ასევე, ხშირად ვდებთ სიახლეებს, რჩევებს და დამხმარე მასალას Twitter-ის ჩვენს ანგარიშზე, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 msgstr "ჩვენი <a href=\"%(url)s\">ფორუმი</a> კარგი ადგილია, დამატებების შემმუშავებლებთან ურთიერთობისთვის და AMO-სთან დაკავშირებულ, მოსალოდნელ სიახლეებზე სასაუბროდ."
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "მშვენიერია! როგორ ჩავერთო ამ ყველაფერში?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "უამრავი გზა არსებობს, მონაწილეობის მისაღებად. თუ, ტექნიკური საკითხებში კარგად ერკვევით:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">შექმენით საკუთარი დამატება</a>. ჩვენ გთავაზობთ უფასო სივრცეს, განახლების შესაძლებლობებს და შეგვიძლია დაგეხმაროთ დიდი რაოდენობით მომხმარებლის მოზიდვაში."
 
 #, python-format
 msgid ""
@@ -6233,6 +6233,8 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"დაგვეხმარეთ ვებსაიტის გაუმჯობესებაში. ეს საიტი ღია წყაროს მქონეა, ასე რომ თავისუფლად შეგიძლიათ ხარვეზების კვლევა და მათი გამოსწორება. მიმდინარე ხარვეზებზე ინფორმაცია ახლდება <a "
+"href=\"%(url)s\">GitHub</a> საიტზე, ხოლო ძველ ხარვეზებზე ინფორმაცია, შეგიძლიათ მოიძიოთ Bugzilla-ზე."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr "თუ დაინტერესებული ხართ დამატებებით, მაგრამ არ გაქვთ საკმარისი ტექნიკური ცოდნა, კიდევ არსებობს სხვა გზები დასახმარებლად:"
@@ -6248,7 +6250,7 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr "მიმოიხილეთ დამატებები საიტზე. დამატებების ავტორები უფრო მონდომებულად შეეცდებიან გააუმჯობესონ და დახვეწონ დამატებები, როცა იციან, რომ ხალხი სათანადოდ უფასებს მათ მუშაობას."
 
 msgid "I have a question"
-msgstr ""
+msgstr "კითხვა მაქვს"
 
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -6261,13 +6263,15 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr "თუ ნამდვილად გესაჭიროებათ Mozilla-ს გუნდის რომელიმე წევრთან დაკავშირება, გთხოვთ გაეცნოთ ჩვენს <a href=\"%(url)s\">საკონტაქტო მონაცემებს</a>."
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "ვინ მუშაობს ამ ვებსაიტზე?"
 
 #, python-format
 msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"წლების განმავლობაში, მრავალ ადამიანს აქვს ამ საიტის სრულყოფაში შეტანილი წვლილი, როგორც მოხალისეებს ჩვენი ერთობიდან, ასევე AMO-ს ცალკეულ გუნდს. ღირსშესანიშნავი მონაწილეების ჩამონათვალი, შეგიძლია "
+"იხილოთ ჩვენს <a href=\"%(url)s\">საიტზე მომუშავეების</a> გვერდზე."
 
 msgid "Add-on Compatibility Reporter"
 msgstr "დამატების თავსებადობის მომხსენებელი"
