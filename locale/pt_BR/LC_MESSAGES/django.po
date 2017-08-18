@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2015-06-19 17:57+0000\n"
-"Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
+"PO-Revision-Date: 2017-08-18 00:44+0000\n"
+"Last-Translator: lcom_flip <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1256,7 +1256,7 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr ""
 
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Crie uma conta de extensões"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
@@ -1543,7 +1543,7 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr "Existem erros no formulário.  Por favor corrija-os abaixo."
 
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Extensões na sua coleção"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr "Para incluir um complemento nesta coleção, digite seu nome na caixa abaixo e aperte enter."
