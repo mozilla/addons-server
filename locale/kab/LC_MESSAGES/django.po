@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-18 13:48+0000\n"
+"PO-Revision-Date: 2017-08-18 13:53+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8245,7 +8245,7 @@ msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked i
 msgstr ""
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Talɣut ɣef uneflay"
 
 msgid "User since"
 msgstr "D aseqdac si"
