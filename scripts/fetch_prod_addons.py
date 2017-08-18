@@ -45,10 +45,10 @@ def get_addon_ids(options):
 
     def _get_ids_from_page(page_number):
         addon_ids = []
-        print('fetching %s' % page_number)
+        print('fetching page %s' % page_number)
         response = requests.get(
             INDEX_URL,
-            data={'sort': options.sort, 'page': page_number})
+            params={'sort': options.sort, 'page': page_number})
 
         soup = bs4.BeautifulSoup(response.text, 'lxml')
 
@@ -64,57 +64,30 @@ def get_addon_ids(options):
     print('fetch pages from 1 to %s' % max(pages))
     pool = Pool(options.workers)
 
-    addon_ids = []
+    addon_ids = set()
 
     results = pool.map_async(_get_ids_from_page, pages)
 
     for result in results.get(20 * 60 * 60):
-        addon_ids.extend(result)
+        addon_ids.update(set(result))
 
     pool.close()
 
     return addon_ids
 
 
-def get_addon_data(options, addon_ids):
+def fetch_addon_data(options, addon_ids):
     print('fetch addon data')
 
     def _fetch_addon(id):
-        print('fetch %s' % id)
-        return requests.get(ROOT_URL + '/api/v3/addons/addon/{}'.format(id)).json()
+        print('fetch add-on %s' % id)
+        addon_data = requests.get(ROOT_URL + '/api/v3/addons/addon/{}'.format(id)).json()
 
-    pool = Pool(options.workers)
+        reversed_type_choies = {v: k for k, v in amo.ADDON_TYPE_CHOICES_API.items()}
 
-    addons = []
+        if 'current_version' not in addon_data or 'files' not in addon_data['current_version']:
+            return
 
-    results = pool.map_async(_fetch_addon, addon_ids)
-
-    for result in results.get(20 * 60 * 60):
-        addons.append(result)
-
-    pool.close()
-
-    return addons
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description='Download and save all AMO add-ons.')
-    parser.add_argument('--sort', metavar='FIELD', choices=['hotness', 'name'],
-                        default='name',
-                        help='sort by the specified field. Options are views, likes and dislikes.')
-    parser.add_argument('--max', metavar='MAX', type=int, help='max amount of pages to fetch.')
-    parser.add_argument('--workers', type=int, default=8,
-                        help='number of workers to use, 8 by default.')
-    return parser.parse_args()
-
-
-def fetch_addons(options):
-    ids = get_addon_ids(options)
-
-    addons_data = get_addon_data(options, ids)
-    reversed_type_choies = {v: k for k, v in amo.ADDON_TYPE_CHOICES_API.items()}
-
-    for addon_data in addons_data:
         version = addon_data['current_version']
         file = version['files'][0]
         # TODO:
@@ -125,7 +98,8 @@ def fetch_addons(options):
         # * android compat data
 
         if Addon.objects.filter(guid=addon_data['guid']).exists():
-            continue
+            print('%s already exists' % addon_data['guid'])
+            return
 
         users = []
 
@@ -139,7 +113,11 @@ def fetch_addons(options):
                     email=email))
 
         addon_type = reversed_type_choies[addon_data['type']]
-        category = addon_data['categories']['firefox'][0]
+
+        if 'firefox' in addon_data['categories']:
+            category = addon_data['categories']['firefox'][0]
+        else:
+            category = None
 
         if category not in CATEGORIES[amo.FIREFOX.id][addon_type]:
             category = None
@@ -179,6 +157,36 @@ def fetch_addons(options):
             default_locale=default_locale
         )
 
+    results = []
+    pool = Pool(options.workers)
+
+    for addon_id in list(addon_ids):
+        results.append(pool.apply_async(_fetch_addon, (addon_id,)))
+
+    for result in results:
+        try:
+            result.get(timeout=60 * 60 * 2)
+        except Exception as exc:
+            print('could not fetch %s' % result, exc)
+
+    pool.close()
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Download and save all AMO add-ons.')
+    parser.add_argument('--sort', metavar='FIELD', choices=['hotness', 'name'],
+                        default='name',
+                        help='sort by the specified field. Options are views, likes and dislikes.')
+    parser.add_argument('--max', metavar='MAX', type=int, help='max amount of pages to fetch.')
+    parser.add_argument('--workers', type=int, default=8,
+                        help='number of workers to use, 8 by default.')
+    return parser.parse_args()
+
+
+def fetch_addons(options):
+    ids = get_addon_ids(options)
+
+    fetch_addon_data(options, ids)
 
 if __name__ == '__main__':
     fetch_addons(parse_args())
