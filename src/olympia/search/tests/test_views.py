@@ -11,9 +11,11 @@ import pytest
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import create_switch, ESTestCaseWithAddons
+from olympia.amo.tests import (
+    create_switch, ESTestCaseWithAddons, ESTestCase)
 from olympia.amo.templatetags.jinja_helpers import (
     locale_url, numberfmt, urlparams, datetime_filter)
+from olympia.addons.tasks import index_addons
 
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
@@ -638,6 +640,22 @@ class TestESSearch(SearchBase):
         result = self.get_results(response, sort=False)
         assert result[0] == web_extension.pk
 
+
+class TestSearchResultScoring(ESTestCase):
+    fixtures = ['base/category']
+
+    def setUp(self):
+        super(TestSearchResultScoring, self).setUp()
+        self.url = reverse('search.search')
+
+    def tearDown(self):
+        self.empty_index('default')
+        super(TestSearchResultScoring, self).tearDown()
+
+    def get_results(self, response):
+        """Return pks of add-ons shown on search results page."""
+        return [a.id for a in response.context['pager'].object_list]
+
     def test_score_boost_name_match(self):
         addons = [
             amo.tests.addon_factory(
@@ -654,7 +672,7 @@ class TestESSearch(SearchBase):
         self.refresh()
 
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response, sort=False)
+        result = self.get_results(response)
 
         # Doesn't match "All Downloader Professional"
         assert addons[2].pk not in result
@@ -667,7 +685,7 @@ class TestESSearch(SearchBase):
         assert addons[0].pk in result[:2]
 
         response = self.client.get(self.url, {'q': 'merge all windows'})
-        result = self.get_results(response, sort=False)
+        result = self.get_results(response)
 
         # Make sure we match 'All Downloader Professional' but it's
         # term match frequency is much lower than the other two so it's
@@ -687,7 +705,7 @@ class TestESSearch(SearchBase):
 
         # direct match
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response, sort=False)
+        result = self.get_results(response)
 
         assert result[0] == addon.pk
 
