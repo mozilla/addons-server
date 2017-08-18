@@ -195,15 +195,22 @@ class SearchQueryFilter(BaseFilterBackend):
 
         These are the ones using the strongest boosts, so they are only applied
         to a specific set of fields like the name, the slug and authors.
+
+        Applied rules:
+
+        * Prefer phrase matches that allows swapped terms (boost=4)
+        * Then text matches, using the standard text analyzer (boost=3)
+        * Then text matches, using a language specific analyzer (boost=2.5)
+        * Then try fuzzy matches ("fire bug" => firebug) (boost=2)
+        * Then look for the query as a prefix of a name (boost=1.5)
         """
         should = []
         rules = [
+            (query.MatchPhrase, {
+                'query': search_query, 'boost': 4, 'slop': 1}),
             (query.Match, {
                 'query': search_query, 'boost': 3,
                 'analyzer': 'standard'}),
-            (query.MatchPhrase, {
-                'query': search_query, 'boost': 4,
-                'slop': 1}),
             (query.Fuzzy, {
                 'value': search_query, 'boost': 2,
                 'prefix_length': 4}),
@@ -237,6 +244,16 @@ class SearchQueryFilter(BaseFilterBackend):
 
         These are the ones using the weakest boosts, they are applied to fields
         containing more text like description, summary and tags.
+
+        Applied rules:
+
+        * Look for phrase matches inside the summary (boost=0.8)
+        * Look for phrase matches inside the summary using language specific
+          analyzer (boost=0.6)
+        * Look for phrase matches inside the description (boost=0.3).
+        * Look for phrase matches inside the description using language
+          specific analyzer (boost=0.1).
+        * Look for matches inside tags (boost=0.1).
         """
         should = [
             query.MatchPhrase(summary={'query': search_query, 'boost': 0.8}),
