@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from django.test.client import RequestFactory
 
 from elasticsearch_dsl import Search
