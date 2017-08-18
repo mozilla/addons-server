@@ -236,7 +236,6 @@ class ES(object):
 
     def raw(self):
         build_body = self._build_query()
-        build_body['explain'] = True
 
         es = get_es()
         try:
