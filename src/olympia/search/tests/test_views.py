@@ -641,11 +641,14 @@ class TestESSearch(SearchBase):
     def test_score_boost_name_match(self):
         addons = [
             amo.tests.addon_factory(
-                name='Merge Windows', type=amo.ADDON_EXTENSION),
+                name='Merge Windows', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
             amo.tests.addon_factory(
-                name='Merge All Windows', type=amo.ADDON_EXTENSION),
+                name='Merge All Windows', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
             amo.tests.addon_factory(
-                name='All Downloader Professional', type=amo.ADDON_EXTENSION),
+                name='All Downloader Professional', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
         ]
 
         self.refresh()
@@ -675,33 +678,18 @@ class TestESSearch(SearchBase):
         assert addons[1].pk in result[:2]
         assert addons[0].pk in result[:2]
 
-    def test_score_boost_name_match_transposed_terms(self):
-        addons = [
-            amo.tests.addon_factory(
-                name='Merge Windows', type=amo.ADDON_EXTENSION),
-            amo.tests.addon_factory(
-                name='Professional Windows', type=amo.ADDON_EXTENSION),
-            amo.tests.addon_factory(
-                name='All Downloader Professional', type=amo.ADDON_EXTENSION),
-        ]
+    def test_score_boost_name_match_slop(self):
+        addon = amo.tests.addon_factory(
+            name='Merge all Windows', type=amo.ADDON_EXTENSION,
+            average_daily_users=0, weekly_downloads=0)
 
         self.refresh()
 
         # direct match
-        response = self.client.get(self.url, {'q': 'all downloader'})
+        response = self.client.get(self.url, {'q': 'merge windows'})
         result = self.get_results(response, sort=False)
 
-        assert result[0] == addons[2].pk
-
-        # Transposed terms
-        response = self.client.get(self.url, {'q': 'downloader all'})
-        result = self.get_results(response, sort=False)
-
-        assert result[0] == addons[2].pk
-
-        response = self.client.get(self.url, {'q': 'all professional'})
-        result = self.get_results(response, sort=False)
-        assert result[0] == addons[2].pk
+        assert result[0] == addon.pk
 
 
 class TestPersonaSearch(SearchBase):
