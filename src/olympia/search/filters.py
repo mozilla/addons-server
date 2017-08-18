@@ -195,25 +195,28 @@ class SearchQueryFilter(BaseFilterBackend):
 
         These are the ones using the strongest boosts, so they are only applied
         to a specific set of fields like the name, the slug and authors.
+
+        Applied rules:
+
+        * Prefer phrase matches that allows swapped terms (boost=4)
+        * Then text matches, using the standard text analyzer (boost=3)
+        * Then text matches, using a language specific analyzer (boost=2.5)
+        * Then try fuzzy matches ("fire bug" => firebug) (boost=2)
+        * Then look for the query as a prefix of a name (boost=1.5)
         """
         should = []
         rules = [
+            (query.MatchPhrase, {
+                'query': search_query, 'boost': 4, 'slop': 1}),
             (query.Match, {
                 'query': search_query, 'boost': 3,
                 'analyzer': 'standard'}),
-            (query.MatchPhrase, {
-                'query': search_query, 'boost': 4,
-                'slop': 1}),
+            (query.Fuzzy, {
+                'value': search_query, 'boost': 2,
+                'prefix_length': 4}),
             (query.Prefix, {
                 'value': search_query, 'boost': 1.5}),
         ]
-
-        # Only add fuzzy queries if the search query is a single word.
-        # It doesn't make sense to do a fuzzy query for multi-word queries.
-        if ' ' not in search_query:
-            rules.append(
-                (query.Fuzzy, {'value': search_query, 'boost': 2,
-                               'prefix_length': 4}))
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
@@ -241,6 +244,16 @@ class SearchQueryFilter(BaseFilterBackend):
 
         These are the ones using the weakest boosts, they are applied to fields
         containing more text like description, summary and tags.
+
+        Applied rules:
+
+        * Look for phrase matches inside the summary (boost=0.8)
+        * Look for phrase matches inside the summary using language specific
+          analyzer (boost=0.6)
+        * Look for phrase matches inside the description (boost=0.3).
+        * Look for phrase matches inside the description using language
+          specific analyzer (boost=0.1).
+        * Look for matches inside tags (boost=0.1).
         """
         should = [
             query.MatchPhrase(summary={'query': search_query, 'boost': 0.8}),
@@ -266,12 +279,7 @@ class SearchQueryFilter(BaseFilterBackend):
 
         return should
 
-    def filter_queryset(self, request, qs, view):
-        search_query = request.GET.get('q', '').lower()
-
-        if not search_query:
-            return qs
-
+    def apply_search_query(self, search_query, qs):
         lang = translation.get_language()
         analyzer = get_locale_analyzer(lang)
 
@@ -301,6 +309,14 @@ class SearchQueryFilter(BaseFilterBackend):
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
             functions=functions)
+
+    def filter_queryset(self, request, qs, view):
+        search_query = request.GET.get('q', '').lower()
+
+        if not search_query:
+            return qs
+
+        return self.apply_search_query(search_query, qs)
 
 
 class SearchParameterFilter(BaseFilterBackend):
