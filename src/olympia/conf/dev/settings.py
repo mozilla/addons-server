@@ -264,13 +264,15 @@ FXA_CONFIG = {
         'scope': 'profile',
         'skip_register_redirect': True,
     },
+    # This configuration supports `yarn amo:dev` in addons-frontend which
+    # lets your local NodeJS server run as a proxy to the hosted dev API.
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
 }
