@@ -186,6 +186,9 @@ var installButton = function() {
         var opts = $.extend({addWarning: true}, options);
             warn = opts.addWarning ? addWarning : _.identity;
 
+        $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
+        $('#downloadAnyway').show();
+
         // Do badPlatform prep out here since we need it in all branches.
         if (badPlatform) {
             warn(gettext('Not available for your platform'));
@@ -249,8 +252,6 @@ var installButton = function() {
         var opts = no_compat_necessary ? {addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
-        $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
-        $('#downloadAnyway').show();
         versionsAndPlatforms();
         $button.addClass('CTA');
         $button.text(gettext('Only with Firefox \u2014 Get Firefox Now!'));
