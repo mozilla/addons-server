@@ -148,19 +148,19 @@ class ES(object):
         # scoring works.
         from olympia.search.filters import SearchQueryFilter
 
-        query = Search().query(query)
+        search = Search().query(query)
 
         if query_string:
-            query = SearchQueryFilter().apply_search_query(
-                query_string, query)
+            search = SearchQueryFilter().apply_search_query(
+                query_string, search)
 
         if sort:
-            query = query.sort(*sort)
+            search = search.sort(*sort)
 
         if source:
-            query = query.source(source)
+            search = search.source(source)
 
-        body = query.to_dict()
+        body = search.to_dict()
 
         # These are manually added for now to simplify a partial port to
         # elasticsearch-dsl
