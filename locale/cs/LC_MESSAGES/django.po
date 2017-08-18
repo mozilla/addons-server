@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-18 09:49+0000\n"
+"PO-Revision-Date: 2017-08-18 09:57+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -716,7 +716,7 @@ msgid "close"
 msgstr "zavřít"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Některé doplňky požadují oprávnění k provádění některých funkcí (příklad: doplněk pro správu panelů bude požadovat oprávnění pro přístup k systému panelů prohlížeče)."
+msgstr "Některé doplňky vyžadují oprávnění k provádění určitých akcí (příklad: doplněk pro správu panelů bude požadovat oprávnění pro přístup k systému panelů prohlížeče)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -729,12 +729,11 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Tento doplněk může:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Některé doplňky požadují oprávnění k provádění některých funkcí (příklad: doplněk pro správu panelů bude požadovat oprávnění pro přístup k systému panelů prohlížeče)."
+msgstr "Některé doplňky vyžadují oprávnění k provádění určitých akcí. Jelikož jste to vy, kdo má kontrolu nad svým Firefoxem, rozhodnutí, zda oprávnění udělit či neudělit, je jen na vás."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Berte prosím na vědomí, že tento doplněk využívá zastaralou technologii, která mu dává přístup ke všem funkcím a datům prohlížeče bez nutnosti žádat vás o svolení."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -2801,7 +2800,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr "Počínaje Firefoxem 53, nová rozšíření na této stránce mohou být pouze typu WebExtensions."
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Zastaralá rozšíření nejsou s Firefoxem verze 57 a novější kompatibilní. Nastavte atribut maxVersion na 56.* nebo nižší."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -3037,7 +3036,7 @@ msgstr "Pro nahrání vašeho doplňku použijte pole níže."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Berte na vědomí, že tento nástroj funguje pouze se zastaralými doplňky. API WebExtension jsou detailně <a href=\"%(webext_doc_url)s\">dokumentována zde</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po nahrání bude spuštěna sada automatizovaných testů, které zkontrolují kompatibilitu s následující verzí aplikace:"
@@ -3224,9 +3223,8 @@ msgstr "Toto políčko zaškrtněte, pokud klíčové funkce tohoto doplňku ke 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Tento doplněk vyžaduje platbu, placené služby nebo software, či dodatečný hardware."
 
-#, fuzzy
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Tento doplněk nevyžaduje platby, placené služby nebo software, ani dodatečný hardware."
+msgstr "Tento doplněk nevyžaduje platby, placené služby či software, ani dodatečný hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -8166,9 +8164,8 @@ msgstr "můj doplněk založený na SDK je úspěšně aktualizován"
 msgid "someone writes a review of my add-on"
 msgstr "někdo napíše recenzi k mému doplňku"
 
-#, fuzzy
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "mějte přehled o novinkách a akcích pro vývojáře doplňků"
+msgstr "mějte přehled o novinkách a akcích pro vývojáře doplňků (včetně newsletteru about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatibilita mého doplňku nemůže být aktualizována"
