@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 21:11+0000\n"
+"PO-Revision-Date: 2017-08-19 21:48+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1146,7 +1146,7 @@ msgid "Recently Popular"
 msgstr "ბოლო დროს სასურველი"
 
 msgid "Added"
-msgstr "დამატებული"
+msgstr "შეტანილი"
 
 msgid "Popularity"
 msgstr "სასურველი"
@@ -1163,7 +1163,7 @@ msgstr "კრებული განახლდა!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">გადადით თქვენი კრებულის ბმულზე</a>, ცვლილებების სანახავად."
 
 msgid "Icon Deleted"
 msgstr "ხატულა წაიშალა"
@@ -1173,7 +1173,7 @@ msgstr "ახალი კრებულის შექმნა"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "ჩვენი <a href=\"%(legal)s\">სამართლებრივი შენიშვნების</a> თანახმად, ცალკეული კრებულების შეთანხმებები რეგულირდება Creative Commons Attribution Share Alike ლიცენზიით"
 
 msgid "Create Collection"
 msgstr "კრებულის შექმნა"
@@ -1271,11 +1271,15 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"დამატებები, რომელიც მონიშნულია ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>საჯაროა</b>, რაც ნიშნავს, რომ ყველასთვის ხილულია. თუ გსურთ დამალოთ, დააწკაპეთ ქვემოთ არსებულ "
+"ღილაკზე და გახადეთ პირადი."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
+"დამატებები, რომელიც მონიშნულია ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>პირადია</b>, რაც ნიშნავს, რომ მხოლოდ თქვენთვისაა ხილული. თუ გსურთ ყველას შეეძლოს მისი ნახვა, "
+"დააწკაპეთ ქვემოთ არსებულ ღილაკზე და გახადეთ საჯარო."
 
 msgid "My favorite add-ons"
 msgstr "ჩემი რჩეული დამატებები"
@@ -1383,7 +1387,7 @@ msgid "Role"
 msgstr "როლი"
 
 msgid "Enter the email address of the contributor to add"
-msgstr "შეიყვანეთ დასამატებელი დამხმარის ელფოსტის მისამართი"
+msgstr "შეიყვანეთ შემომწირველის ელფოსტის მისამართი, დასამატებლად"
 
 msgid "Add Contributor"
 msgstr "დამხმარის დამატება"
@@ -1469,7 +1473,7 @@ msgid "Add-ons in Your Collection"
 msgstr "დამატებები თქვენს კრებულში"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "დამატების კრებულში შესატანად, შეიყვანეთ მისი სახელი ქვემოთ მოცემულ ველში და დააჭირეთ Enter ღილაკს."
 
 msgid "Add-on"
 msgstr "დამატება"
@@ -1478,10 +1482,10 @@ msgid "Comment"
 msgstr "კომენტარი"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "შეიყვანეთ დამატების სახელი, შესატანად"
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "კრებულში დამატება"
 
 msgid "Pending"
 msgstr ""
@@ -2120,7 +2124,7 @@ msgid "Complete Theme"
 msgstr "სრული თემა"
 
 msgid "Search Engine"
-msgstr ""
+msgstr "საძიებო სისტემა"
 
 msgid "Language Pack (Application)"
 msgstr ""
@@ -2217,13 +2221,13 @@ msgid "Theme Review"
 msgstr ""
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "ახალი საძიებო სისტემის მიმოხილვა"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "საძიებო სისტემის წინასწარი მიმოხილვა"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "განახლებული საძიებო სისტემის მიმოხილვა"
 
 msgid "New Complete Theme Review"
 msgstr "ახალი სრული თემის მიმოხილვა"
@@ -2863,7 +2867,7 @@ msgstr ""
 " შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
 
 msgid "Distribution Agreement"
-msgstr ""
+msgstr "შეთანხმება გავრცელების თაობაზე"
 
 msgid "Review Policy"
 msgstr "მიმოხილვის დებულება"
@@ -2880,13 +2884,13 @@ msgid "Printable Version"
 msgstr ""
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "წავიკითხე, ვეთანხმები წესებს და დებულებებს და ვუერთდები შეთანახმებას"
 
 msgid "I Accept this Agreement"
 msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "ან <a href=\"{0}\">გაუქმება</a>"
 
 msgid "Back to Add-ons"
 msgstr ""
@@ -2939,10 +2943,10 @@ msgid "More Resources"
 msgstr ""
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "ძიება შემმუშავებლის საბუთებში"
 
 msgid "Search"
-msgstr ""
+msgstr "ძიება"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "დამატების პაკეტის ასატვირთად გამოიყენეთ ქვემოთ მოცემული ველი."
@@ -3536,10 +3540,10 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "გაუქმება და ვერსიის შეზღუდვა"
 
 msgid "Cancel Review and Disable Version"
-msgstr ""
+msgstr "მიმოხილვის გაუქმება და ვერსიის შეზღუდვა"
 
 msgid "Submit Version"
 msgstr "ვერსიის გადაგზავნა"
@@ -3620,7 +3624,7 @@ msgid "Go to My Submissions"
 msgstr "წარდგენილი ნამუშევრები"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "შეთანხმება, დამატების გავრცელების თაობაზე"
 
 msgid "Upload Add-on"
 msgstr "დამატების ატვირთვა"
@@ -3653,7 +3657,7 @@ msgid "Sign Add-on"
 msgstr "დამატების ხელმოწერა"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
 
 msgid "API Credentials"
 msgstr ""
@@ -4084,7 +4088,7 @@ msgstr ""
 
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "ან <a href=\"%(cancel)s\">გაუქმება</a>"
 
 msgid "Contributions"
 msgstr ""
@@ -4134,7 +4138,7 @@ msgid "Activate Contributions"
 msgstr ""
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "ან <a id=\"setup-cancel\" href=\"#\">გაუქმება</a>"
 
 msgid "Transfer ownership"
 msgstr ""
@@ -4260,6 +4264,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"ვუერთდები <a href=\"%(agreement_url)s\">შეთანხმებას, Firefox დამატებების გავრცელების თაობაზე </a> და თანახმა ვარ ჩემი ინფორმაცია დამუშავდეს, <a href=\"%(privacy_notice_url)s\">პირადი მონაცემების "
+"დაცვის დებულების</a> მიხედვით."
 
 msgid "Submit Theme"
 msgstr ""
@@ -4387,7 +4393,7 @@ msgid "Request Review"
 msgstr "განხილვის მოთხოვნა"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "მიმოხილვის მოთხოვნის გაუქმება"
 
 msgid "Loading Review History..."
 msgstr "განხილვების ისტორიის ჩატვირთვა..."
@@ -4478,10 +4484,10 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "მიმოხილვის მოთხოვნის გაუქმებით, თქვენი დამატება არასრულყოფილად მოინიშნება და ყველა განსახილველი ვერსია შეიზღუდება."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "ნამდვილად გსურთ, მიმოხილვის მოთხოვნის გაუქმება?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
@@ -4555,10 +4561,10 @@ msgstr ""
 
 #. L10n: Description of what can be searched for
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "დამატება, შემსწორებელი ან გამოხმაურება"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
 
 msgid "yes"
 msgstr ""
@@ -4573,7 +4579,7 @@ msgid "Add-on Types"
 msgstr ""
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით / სახელმძღვანელოთი"
 
 msgid "Max. Version"
 msgstr ""
@@ -4601,14 +4607,14 @@ msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "თემის სახელი"
 
 msgid "Someone else is reviewing this theme."
 msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "თემა, მიმომხილველი ან გამოხმაურება"
 
 msgid "Keep review; remove flags"
 msgstr ""
@@ -5030,10 +5036,10 @@ msgid "All-Time"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "გაფართოებული ძებნა"
 
 msgid "clear search"
-msgstr ""
+msgstr "ძიების გასუფთავება"
 
 msgid "Process Reviews"
 msgstr "მიმოხილვების დამუშავება"
@@ -5278,7 +5284,7 @@ msgid "There are currently no Themes to review."
 msgstr ""
 
 msgid "Clear Search"
-msgstr ""
+msgstr "ძიების გასუფთავება"
 
 msgid "Release My Theme Locks"
 msgstr ""
@@ -5676,7 +5682,7 @@ msgid "Last Updated"
 msgstr "ბოლო განახლება"
 
 msgid "Cancel Installation"
-msgstr ""
+msgstr "დაყენების შეწყვეტა"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla — თვის დამატება!"
@@ -7288,7 +7294,7 @@ msgstr ""
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "ან <a href=\"%(url)s\">გაუქმება</a>"
 
 msgid "Please select a reason:"
 msgstr "გთხოვთ მიუთითოთ მიზეზი:"
@@ -7424,10 +7430,10 @@ msgid "Collection Search Results"
 msgstr "კრებულის ძიების შედეგები"
 
 msgid "Search Results"
-msgstr ""
+msgstr "ძიების შედეგები"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "ძიება მიუწვდომელია"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr "ძიება დროებით მიუწვდომელია. გთხოვთ სცადოთ ხელახლა რამდენიმე წუთში."
@@ -7441,7 +7447,7 @@ msgstr "თემების ძიების შედეგები"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: ძიება"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
