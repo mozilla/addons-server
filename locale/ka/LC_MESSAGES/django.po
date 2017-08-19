@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 15:07+0000\n"
+"PO-Revision-Date: 2017-08-19 15:26+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2603,13 +2603,13 @@ msgid "This add-on has an End-User License Agreement"
 msgstr ""
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr ""
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
 
 msgid "Why did you make this add-on?"
 msgstr ""
@@ -2627,10 +2627,10 @@ msgid "An organization of my choice"
 msgstr ""
 
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ შეთავაზებული რაოდენობა, რომელიც აღემატება 0-ს."
 
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ შეთავაზებული რაოდენობა, რომელიც ნაკლებია ${0}-ზე."
 
 msgid "PayPal ID required to accept contributions."
 msgstr ""
@@ -2639,7 +2639,7 @@ msgid "Could not validate PayPal id."
 msgstr ""
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "ფაილის ტიპი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
 
 msgid "View current"
 msgstr ""
@@ -2651,7 +2651,7 @@ msgid "Need at least one compatible application."
 msgstr ""
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "Override failed validation"
 msgstr ""
@@ -2759,7 +2759,7 @@ msgid "Changes successfully saved."
 msgstr ""
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "გთხოვთ შეამოწმოთ ველები შეცდომებზე."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
@@ -7976,20 +7976,20 @@ msgstr ""
 "ავტორთა სიიდან. ამის შემდეგ, უკვე შეგეძლებათ ანგარიშის წაშლა."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "\"წაშლის\" ღილაკზე დაჭერით, თქვენი ანგარიში <strong>სამუდამოდ გაუქმდება</strong>. რაც ნიშნავს, რომ:"
+msgstr "წაშლის ღილაკზე დაჭერით, თქვენი ანგარიში <strong>სამუდამოდ გაუქმდება</strong>. რაც ნიშნავს, რომ:"
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "აღარ შეგეძლებათ %(site)s ანგარიშზე შესვლა."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "თქვენი მიმოხილვები და შეფასებები არ წაიშლება, თუმცა აღარ იქნება თქვენს ანგარიშთან დაკავშირებული."
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "ანგარიშის წაშლის დადასტურება"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "ვაცნობიერებ, რომ ეს ქმედება შეუქცევადია."
 
 msgid "Delete my user account now"
 msgstr "ანგარიშის წაშლა ახლავე"
