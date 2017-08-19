@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 20:35+0000\n"
+"PO-Revision-Date: 2017-08-19 21:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1095,10 +1095,10 @@ msgid "{0} :: Collections :: {1}"
 msgstr "{0} :: კრებულები :: {1}"
 
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "პირადი."
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "საჯაროდ ხილული."
 
 msgid "Give your collection a name."
 msgstr ""
@@ -1414,7 +1414,7 @@ msgid "Collections by {0}"
 msgstr "კრებულების შემქმნელი: {0}"
 
 msgid "No collections found."
-msgstr ""
+msgstr "კრებულები ვერ მოიძებნა."
 
 msgid "Most-Followed Collections"
 msgstr "კრებულები ყველაზე მეტი გამომწერით"
@@ -1719,7 +1719,7 @@ msgstr "ყველა საუკეთესოდ შეფასებუ�
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "300,000-ზე მეტი გაფორმება, თქვენი ბრაუზერის მოსარგებად! გადაატარეთ ისარი თემის ფონს და გამოსცადეთ თქვენს ბრაუზერზე. <a href=\"%(url)s\" class=\"more-info\">დაიწყეთ მოძიება</a>"
 
 msgid "Want more personalization?"
 msgstr ""
@@ -3768,13 +3768,15 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
+"თქვენი შემმუშავებლის პროფილი მომხმარებლებს აცნობებს, თუ რისთვის შექმენით ეს დამატება და რა სიახლეებია მომავალში მოსალოდნელი. ეს პროფილი საჭიროა იმ დამატებებისთვის, რომელიც შემოწირულობებს საჭიროებს, "
+"თუმცა ასევე, გამოსადეგია იმ შემმუშავებლებისთვისაც, რომლებსაც მომხმარებლებთან ურთიერთობა სურთ."
 
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "დარწმუნდით, რომ თქვენი პროფილი განახლებულია."
 
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>განაახლეთ თქვენი პროფილი.</strong></a>"
 
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
 msgstr ""
@@ -4056,7 +4058,7 @@ msgid "Add-ons enrolled in our contributions program can request voluntary finan
 msgstr ""
 
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "შემმუშავებლის პროფილის საშუალებით, სთხოვეთ მომხმარებლებს მხარი დაუჭირონ თქვენს დამატებას"
 
 msgid "Choose when and how users are asked to contribute"
 msgstr ""
@@ -4069,7 +4071,7 @@ msgstr "შემოწირულობები ხელმისაწვ�
 
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "შემოწირულობები ხელმისაწვდომია იმ დამატებებზე, რომელთაც გააჩნია <a href=\"%(url)s\">შემმუშავებლის სრულყოფილი პროფილი</a>."
 
 msgid "Contributions are only available for approved add-ons."
 msgstr "შემოწირულობები ხელმისაწვდომია მხოლოდ მიღებული დამატებებისთვის."
@@ -4150,7 +4152,7 @@ msgid "Add some tags to describe your Theme."
 msgstr ""
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება ძიებაში და ჩამონათვალში, ასევე თქვენი თემის გვერდის თავში."
 
 msgid "Theme License"
 msgstr ""
@@ -4241,7 +4243,7 @@ msgstr ""
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "<a href=\"%(profile_url)s\">%(user)s</a>-ისგან"
 
 msgid "Create a New Theme"
 msgstr ""
@@ -4504,7 +4506,7 @@ msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr ""
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
+msgstr "25+ ენის მხარდაჭერით, მართლწერის შემოწმება თქვენი ბრაუზერისთვის."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -5525,7 +5527,7 @@ msgid "Shopping Made Easy"
 msgstr "მარტივი ვაჭრობა"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "დაზოგეთ თანხები თქვენს საყვარელ ნივთებზე, პირდაპირ ბრაუზერიდან."
 
 msgid "Build the perfect website"
 msgstr ""
@@ -5549,7 +5551,7 @@ msgid "St. Patrick&rsquo;s Day Themes"
 msgstr ""
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "გააფორმეთ თქვენი ბრაუზერი წმ. პატრიკის&rsquo; დღესასწაულისთვის."
 
 msgid "Sit Back and Relax"
 msgstr ""
@@ -6495,7 +6497,7 @@ msgid ""
 msgstr ""
 
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Mozilla ინახავს ჩემი ანგარიშის მონაცემებს საიდუმლოდ?"
 
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
@@ -7821,7 +7823,7 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> დამატებები"
 
 msgid "My Account"
-msgstr ""
+msgstr "ჩემი ანგარიში"
 
 msgid "Welcome, {0}"
 msgstr ""
@@ -7905,7 +7907,7 @@ msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "პროფილის სურათი"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
@@ -7970,13 +7972,13 @@ msgid "A user with that email address does not exist."
 msgstr ""
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "პროფილი წაიშალა"
 
 msgid "Photo Deleted"
 msgstr ""
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "პროფილი განახლდა"
 
 msgid "Errors Found"
 msgstr ""
@@ -8045,7 +8047,7 @@ msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
-msgstr ""
+msgstr "პროფილი"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "მოგვაწოდეთ ცოტა უფრო მეტი ინფორმაცია თქვენზე. ყველა ამ ველის შევსება, არაა სავალდებულო, თუმცა დაეხმარება სხვა მომხმარებლებს, უკეთ გაგიცნონ."
@@ -8067,7 +8069,7 @@ msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "გადაწყვიტეთ, რომელი კრებულები გსურთ გამოჩნდეს, თქვენს პროფილზე."
 
 msgid "Display the collections I have created"
 msgstr ""
@@ -8182,7 +8184,7 @@ msgid "edit your notification settings"
 msgstr ""
 
 msgid "edit your profile"
-msgstr ""
+msgstr "ჩაასწორეთ თქვენი პროფილი"
 
 msgid "We could not unsubscribe you"
 msgstr ""
