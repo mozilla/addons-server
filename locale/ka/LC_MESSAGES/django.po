@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-17 22:22+0000\n"
+"PO-Revision-Date: 2017-08-19 14:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1704,7 +1704,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr "გააფორმეთ თქვენი ბრაუზერი, თქვენებურად! შემოსეთ საკუთარი გემოვნებით!"
 
 msgid "Learn more"
-msgstr ""
+msgstr "ვრცლად"
 
 msgid "View All Recently Added"
 msgstr "ყველა ახალი დამატებულის ნახვა"
@@ -2323,16 +2323,16 @@ msgid "Miscellaneous"
 msgstr "სხვადასხვა"
 
 msgid "Modern"
-msgstr ""
+msgstr "თანამედროვე"
 
 msgid "Nature"
 msgstr "ბუნება"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "სისტემასთან თავსებადი"
 
 msgid "Retro"
-msgstr ""
+msgstr "ძველებური"
 
 msgid "Sports"
 msgstr "სპორტი"
@@ -7976,7 +7976,7 @@ msgstr ""
 "ავტორთა სიიდან. ამის შემდეგ, უკვე შეგეძლებათ ანგარიშის წაშლა."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "\"წაშლის\" ღილაკზე დაჭერით, თქვენი ანგარიში <strong>სამუდამოდ გაუქმდება</strong>. რაც ნიშნავს, რომ:"
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
