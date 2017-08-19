@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 19:22+0000\n"
+"PO-Revision-Date: 2017-08-19 20:35+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2150,7 +2150,7 @@ msgid "Plugins"
 msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "იკითხეთ, მხოლოდ ამ დამატების გვერდზე, ან შემმუშავებლის პროფილში"
 
 msgid "Ask after users start downloading this add-on"
 msgstr ""
@@ -3064,24 +3064,24 @@ msgid ""
 msgstr ""
 
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "შემმუშავებლის პროფილის მართვა"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
+msgstr "თქვენი <a href=\"%(url)s\">შემმუშავებლის პროფილი</a> ამჟამად <strong>საჯაროა</strong> და <strong>საჭიროებს</strong> შემოწირულობას."
 
 msgid "Remove Both"
 msgstr ""
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "თქვენი <a href=\"%(url)s\">შემმუშავებლის პროფილი</a> ამჟამად <strong>საჯაროა</strong>."
 
 msgid "Remove Profile"
-msgstr ""
+msgstr "პროფილის წაშლა"
 
 msgid "Create Profile"
-msgstr ""
+msgstr "პროფილის შექმნა"
 
 msgid "Basic Information"
 msgstr ""
@@ -3759,10 +3759,10 @@ msgid "(required since this add-on accepts contributions)"
 msgstr ""
 
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "თქვენი შემმუშავებლის პროფილის მართვა"
 
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "შემმუშავებლის პროფილის შექმნა"
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
@@ -3962,16 +3962,16 @@ msgid "What's New"
 msgstr "სიახლეების ნახვა"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "მზად ხართ დამატების წარსადგენად? გაეცანით ჩვენს ნაბიჯ-ნაბიჯ მითითებებს, წარდგენის პროცესის შესახებ."
 
 msgid "See Tutorial"
-msgstr ""
+msgstr "მითითებების ნახვა"
 
 msgid "View All Submissions"
 msgstr "ყველა წარდგენილის ნახვა"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "აქ შეგეძლებათ იხილოთ და მართოთ თქვენი დამატებები და თემები. პირველი დამატების გამოსაქვეყნებლად, დააწკაპეთ ღილაკს \"წარადგინეთ თქვენი პირველი დამატება\", ან \"წარადგინეთ თქვენი პირველი თემა\"."
 
 msgid "Submit Your First Add-on"
 msgstr "წარადგინეთ თქვენი პირველი დამატება"
@@ -7267,6 +7267,12 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
+"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან "
+"\"ცუდია\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
+"მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
+"შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
+"გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
 
 msgid "Reply to review by {0}"
 msgstr ""
@@ -7422,7 +7428,7 @@ msgid "Search Unavailable"
 msgstr ""
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "ძიება დროებით მიუწვდომელია. გთხოვთ სცადოთ ხელახლა რამდენიმე წუთში."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7495,7 +7501,7 @@ msgid "Invalid GUID in URL"
 msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "ამ დამატების გამოქვეყნებულ ვერსიაზე API-ის საშუალებით დამატება არ შეგიძლიათ, არასაკმარისი მონაცემების გამო. გთხოვთ გადმოაგზავნოთ საიტის მეშვეობით"
 
 msgid "No uploaded file for that addon and version."
 msgstr ""
@@ -7887,7 +7893,7 @@ msgid "Email must be {email}."
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "გამოსაჩენი სახელი"
 
 msgid "Location"
 msgstr "მდებარეობა"
@@ -7908,7 +7914,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "გთხოვთ შეიყვანოთ სულ მცირე ერთი სახელი, უარყოფილთა სიაში."
 
 msgid "No user with that email."
 msgstr ""
@@ -7916,7 +7922,7 @@ msgstr ""
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "უცნობი მომხმარებელი {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "ჩემი დამატებები მობილურისთვის"
@@ -7976,7 +7982,7 @@ msgid "Errors Found"
 msgstr ""
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "ცვლილებში აღმოჩნდა შეცდომები. გთხოვთ შეასწოროთ და ხელახლა გადმოაგზავნოთ."
 
 msgid "User reported."
 msgstr ""
@@ -8045,10 +8051,10 @@ msgid "Give us a bit more information about yourself. All these fields are optio
 msgstr "მოგვაწოდეთ ცოტა უფრო მეტი ინფორმაცია თქვენზე. ყველა ამ ველის შევსება, არაა სავალდებულო, თუმცა დაეხმარება სხვა მომხმარებლებს, უკეთ გაგიცნონ."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "ეს URL ბმული მხოლოდ იმ შემთხვევაში გამოჩნდება, თუ შემმუშავებელი ხართ."
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "სურათის არჩევა&hellip;"
 
 msgid "Delete current photo"
 msgstr "მიმდინარე სურათის წაშლა"
@@ -8109,7 +8115,7 @@ msgid "User Info for {0}"
 msgstr "{0} მომხმარებლის მონაცემები"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "პროფილის ჩასწორება"
 
 msgid "Manage user"
 msgstr ""
@@ -8184,6 +8190,8 @@ msgstr ""
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"სამწუხაროდ, ჩვენ ვერ ვახერხებთ თქვენი გამოწერის შეჩერებას. ბმული, რომელზეც დააწკაპეთ, არასწორია. თუმცა, თქვენ მაინც შეგიძლიათ გამოწერის შეწყვეტა, <a href=\"%(edit_url)s\">პროფილის ჩასწორების "
+"გვერდიდან</a>."
 
 msgid "Developer Information"
 msgstr ""
@@ -8192,7 +8200,7 @@ msgid "User since"
 msgstr "რეგისტრაციის თარიღი"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "ბოლო შემოსვლის დრო"
 
 msgid "IP address of last login"
 msgstr ""
