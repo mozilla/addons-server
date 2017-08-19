@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 15:49+0000\n"
+"PO-Revision-Date: 2017-08-19 15:59+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2859,6 +2859,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ ჩვენს შეთანხმებას, Firefox დამატებების გავრცელების შესახებ, ისევე როგორც ჩვენი მიმოხილვის დებულებებს და წესებს. შეთანხმებას Firefox დამატებების გავრცელების"
+" შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
 
 msgid "Distribution Agreement"
 msgstr ""
@@ -2871,6 +2873,8 @@ msgstr "მითითებები მიმოხილვის გას�
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ ჩვენს შეთანხმებას, Firefox დამატებების გავრცელების შესახებ. იქვე მოცემულია დანართი, პირადი მონაცემების დაცვის შესახებ, სადაც განმარტებულია, თუ როგორ "
+"ვიყენებთ თქვენს მონაცემებს."
 
 msgid "Printable Version"
 msgstr ""
@@ -2996,7 +3000,7 @@ msgstr ""
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr ""
+msgstr "ეს დამატება არათავსებადია <b>%(app_name)s %(app_version)s</b>-სთან, %(app_name)s-ის უახლესს ვერსიასთან. გთხოვთ განაახლოთ თქვენი დამატების თავსებადობის მონაცემები, ან ატვირთოთ ახალი ვერსია."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -3132,7 +3136,7 @@ msgstr "კატეგორიები, მომხმარებლის�
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "კატეგორიის შეცვლა შეუძლებელია, როცა დამატება რჩეულადაა მიჩნეული. გთხოვთ მოგვწეროთ ელფოსტაზე <a href=\"mailto:%(email)s\">%(email)s</a> მიზეზი, თუ რატომაა საჭირო კატეგორიის შეცვლა."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
@@ -3333,10 +3337,10 @@ msgid "Screenshots"
 msgstr ""
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "გთხოვთ მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ წარწერა, სურათზე:"
 
 msgid "Add a Screenshot..."
 msgstr ""
@@ -3388,10 +3392,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "გთხოვთ გვაცნობოთ მიზეზი, რატომ შლით თქვენს თემას:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "გთხოვთ გვაცნობოთ მიზეზი, რატომ შლით თქვენს დამატებას:"
 
 msgid "Actions"
 msgstr ""
