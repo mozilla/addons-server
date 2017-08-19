@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 14:30+0000\n"
+"PO-Revision-Date: 2017-08-19 14:48+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3593,13 +3593,13 @@ msgid "File Signed"
 msgstr "ფაილი დამოწმებულია"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "მზადაა! ფაილი დამოწმებულია და ამიერიდან შესაძლებელია მისი გავრცელება. ჩამოსატვირთად, დააჭირეთ ქვემოთ მოცემულ ღილაკს."
 
 msgid "Version Signed"
 msgstr "ვერსია დამოწმებულია"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "მზადაა! ეს ვერსია დამოწმებულია და ამიერიდან შესაძლებელია მისი გავრცელება. ჩამოსატვირთად, დააჭირეთ ქვემოთ მოცემულ ღილაკს."
 
 msgid "Download {0}"
 msgstr ""
@@ -7209,7 +7209,7 @@ msgid "A short explanation must be provided when selecting \"Other\" as a flag r
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "სხვა (გთხოვთ, მიუთითოთ)"
 
 msgid "This field is required."
 msgstr ""
@@ -7263,7 +7263,7 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr ""
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ მიზეზი:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -8001,10 +8001,10 @@ msgid "Delete my user picture now"
 msgstr "სურათის წაშლა ახლავე"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ გამოსაჩენი სახელი"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ გამოსაჩენი სახელი და მეტსახელი, რეგისტრაციის დასასრულებლად."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
@@ -8053,7 +8053,7 @@ msgid "Notifications"
 msgstr ""
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "ამიერიდან, Mozilla-მ შესაძლოა გამოგიგზავნოთ ელფოსტაზე სამომავლო გამოშვებების და დამატებების შესახებ ცნობები. გთხოვთ მიუთითოთ ის თემები, რომელიც გაინტერესებთ."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr ""
