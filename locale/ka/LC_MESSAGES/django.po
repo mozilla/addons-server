@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 14:48+0000\n"
+"PO-Revision-Date: 2017-08-19 15:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -45,13 +45,13 @@ msgid "You are already logged in."
 msgstr "თქვენ უკვე შესული ხართ."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "თქვენი შესვლის მცდელობები წარუმატებლად დასრულდა. გთხოვთ, სცადოთ ხელახლა."
+msgstr "თქვენი შესვლის მცდელობები წარუმატებლად დასრულდა. გთხოვთ სცადოთ ხელახლა."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ, ცადეთ ხელახლა."
+msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ სცადოთ ხელახლა."
 
 msgid "You could not be logged in. Please try again."
-msgstr "შესვლა ვერ მოხერხდა. გთხოვთ, ცადეთ ხელახლა."
+msgstr "შესვლა ვერ მოხერხდა. გთხოვთ სცადოთ ხელახლა."
 
 msgid "Need help?"
 msgstr "გესაჭირეობათ დახმარება?"
@@ -101,7 +101,7 @@ msgstr "ეს იდენტიფიკატორი უკვე გამ
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "მისამართის დაბოლოება ვერ იქნება \"%(slug)s\". გთხოვთ, აარჩიოთ სხვა."
+msgstr "მისამართის დაბოლოება ვერ იქნება \"%(slug)s\". გთხოვთ აარჩიოთ სხვა."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -780,7 +780,7 @@ msgid "Review History"
 msgstr "მიმოხილვის ისტორია"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "უკაცრავად, ეს თემა გადის შემოწმებას. გთხოვთ, სცადოთ მოგვიანებით."
+msgstr "უკაცრავად, შესამოწმებლადაა გაგზავნილი. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ეს თემა გადის შემოწმებას. ხილულია მხოლოდ თქვენთვის."
@@ -836,10 +836,10 @@ msgid "Admin Tools"
 msgstr "ადმინის ხელსაწყოები"
 
 msgid "Incorrect, please try again."
-msgstr "არასწორი, გთხოვთ, ცადეთ ხელახლა."
+msgstr "არასწორია, გთხოვთ სცადოთ ხელახლა."
 
 msgid "Error verifying input, please try again."
-msgstr "შენატანის დამოწმების შეცდომა, გთხოვთ, ცადეთ ხელახლა."
+msgstr "შენატანის დამოწმების შეცდომა, გთხოვთ სცადოთ ხელახლა."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "ფერის თექვსმ. კოდი უნდა მითეთოს სწორად, მაგ. #000000."
@@ -1065,7 +1065,7 @@ msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr "გთხოვთ, არ დაგავიწყდეთ, რომ WebExtensions არ მიიღებს \"*\" სიმბოლოს <a href=\"%(version_url)s\">strict_min_version</a>-ში."
+msgstr "გთხოვთ არ დაგავიწყდეთ, რომ WebExtensions არ მიიღებს \"*\" სიმბოლოს <a href=\"%(version_url)s\">strict_min_version</a>-ში."
 
 msgid "GUID"
 msgstr "GUID"
@@ -6907,7 +6907,7 @@ msgstr "როგორ გამოვგზავნო მოხსენე�
 
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "გთხოვთ, ეწვიოთ ჩვენს <a href=\"%(contact_url)s\">საკონტაქტო გვერდს</a>."
+msgstr "გთხოვთ ეწვიოთ ჩვენს <a href=\"%(contact_url)s\">საკონტაქტო გვერდს</a>."
 
 msgid "What is a Source Code License?"
 msgstr "რა არის პირველწყარო კოდის ლიცენზია?"
@@ -7209,7 +7209,7 @@ msgid "A short explanation must be provided when selecting \"Other\" as a flag r
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr "სხვა (გთხოვთ, მიუთითოთ)"
+msgstr "სხვა (გთხოვთ მიუთითოთ)"
 
 msgid "This field is required."
 msgstr ""
@@ -7263,7 +7263,7 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr ""
 
 msgid "Please select a reason:"
-msgstr "გთხოვთ, მიუთითოთ მიზეზი:"
+msgstr "გთხოვთ მიუთითოთ მიზეზი:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -8001,10 +8001,10 @@ msgid "Delete my user picture now"
 msgstr "სურათის წაშლა ახლავე"
 
 msgid "Please set your display name"
-msgstr "გთხოვთ, მიუთითოთ გამოსაჩენი სახელი"
+msgstr "გთხოვთ მიუთითოთ გამოსაჩენი სახელი"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr "გთხოვთ, მიუთითოთ გამოსაჩენი სახელი და მეტსახელი, რეგისტრაციის დასასრულებლად."
+msgstr "გთხოვთ მიუთითოთ გამოსაჩენი სახელი და მეტსახელი, რეგისტრაციის დასასრულებლად."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
@@ -8134,7 +8134,7 @@ msgid "Report User"
 msgstr "მოხსენება ამ მომხმარებელზე"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "გთხოვთ, მიუთითოთ მოხსენების გამოგზავნის მიზეზი, როგორიცაა სპამი, შეუფერებელი სურათი და ა.შ."
+msgstr "გთხოვთ მიუთითოთ მოხსენების გამოგზავნის მიზეზი, როგორიცაა სპამი, შეუფერებელი სურათი და ა.შ."
 
 msgid "Report user {0}"
 msgstr "მოხსენება {0} მომხმარებელზე"
