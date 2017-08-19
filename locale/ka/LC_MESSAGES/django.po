@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 17:11+0000\n"
+"PO-Revision-Date: 2017-08-19 17:14+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5491,7 +5491,7 @@ msgstr ""
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "ფაილის მნახველი შეზღუდულია, მიმდინარეობს %s-იდან მონაცემები ამოღება. გთხოვთ სცადოთ ხელახლა, დაახლოებით 5 წუთში."
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -5508,13 +5508,13 @@ msgid "Problems decoding {0}."
 msgstr ""
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "ამ ფაილის საიტზე ნახვა, ვერ მოხერხდება. გთხოვთ ჩამოტვირთოთ შიგთავსის სანახავად."
 
 msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "API ვერსია, {0:.1f}, რომლითაც სარგებლობთ დაუმოწმებელია. გთხოვთ განაახლოთ მიმდინარე ვერსიამდე {1:.1f} API."
 
 msgid "Not implemented yet."
 msgstr ""
