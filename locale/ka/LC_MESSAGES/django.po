@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 16:30+0000\n"
+"PO-Revision-Date: 2017-08-19 16:37+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2629,10 +2629,10 @@ msgid "An organization of my choice"
 msgstr ""
 
 msgid "Please enter a suggested amount greater than 0."
-msgstr "გთხოვთ მიუთითოთ შეთავაზებული რაოდენობა, რომელიც აღემატება 0-ს."
+msgstr "გთხოვთ მიუთითოთ შესათავაზებელი ოდენობა, რომელიც აღემატება 0-ს."
 
 msgid "Please enter a suggested amount less than ${0}."
-msgstr "გთხოვთ მიუთითოთ შეთავაზებული რაოდენობა, რომელიც ნაკლებია ${0}-ზე."
+msgstr "გთხოვთ მიუთითოთ შესათავაზებელი ოდენობა, რომელიც ნაკლებია ${0}-ზე."
 
 msgid "PayPal ID required to accept contributions."
 msgstr ""
@@ -3702,7 +3702,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr ""
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "თქვენი დამატება შეზღუდულია საიტის ადმინისტრატორის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3813,7 +3813,7 @@ msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 #. %s is a list of HTML tags.
 #, python-format
