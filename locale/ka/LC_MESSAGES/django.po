@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-20 20:09+0000\n"
+"PO-Revision-Date: 2017-08-20 20:18+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1376,6 +1376,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"ამ კრებულზე, მრავალი მოხალისის დამატება შეგიძლიათ. მოხალისეებს, შესაძლებლობა აქვთ კრებულში დამატებების შეტანის და ამოღების, მაგრამ არ შეუძლიათ სახელის ან აღწერის შეცვლა. მოხალისეების დასამატებლად, "
+"შეიყვანეთ ელფოსტის მისამართი ქვემოთ მოცემულ ველში. მოხალისეებს, აუცილებლად უნდა ჰქონდეთ Mozilla დამატებების ანგარიში."
 
 msgid "User"
 msgstr "მომხმარებელი"
@@ -1399,7 +1401,7 @@ msgid "Admin Settings"
 msgstr "ადმინისტრირების პარამეტრები"
 
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>გაფრთხილება:</b> კრებულის მფლობელის შეცვლით, შესაძლოა დაკარგოთ ჩასწორების შესაძლებლობა. მხოლოდ, დამატებების შეტანა ან ამოღება შეგეძლებათ."
 
 msgid "Continue"
 msgstr "გაგრძელება"
@@ -1430,7 +1432,7 @@ msgid "Collections by Name"
 msgstr "კრებულები სახელის მიხედვით"
 
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "ბოლოს განახლებული კრებულები"
 
 msgid "Recently Popular Collections"
 msgstr "ბოლო დროს სასურველი კრებულები"
@@ -1458,7 +1460,7 @@ msgid "Collections make it easy to keep track of favorite add-ons and share your
 msgstr "კრებულები აადვილებს რჩეული დამატებების სიახლეებზე თვალის მიდევნებას და სრულყოფილად მორგებული ბრაუზერის, სხვებისთვის გაზიარებას."
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "კრებულის ხატულა"
 
 msgid "Reset"
 msgstr ""
@@ -1497,13 +1499,13 @@ msgid "Remove this add-on from the collection"
 msgstr "ამ დამატების კრებულიდან ამოღება"
 
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "კრებულისთვის დადებითი ხმის მისაცემა"
 
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "კრებულისთვის უარყოფითი ხმის მიცემა"
 
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "კრებულზე მიცემული ხმის გაუქმება"
 
 msgid "Log in to vote for this collection"
 msgstr "კრებულისთვის ხმის მისაცემად, შედით ანგარიშზე"
@@ -2756,7 +2758,7 @@ msgid "Add-on Status"
 msgstr "დამატების მდგომარეობა"
 
 msgid "User Collections"
-msgstr ""
+msgstr "მომხმარებლის კრებულები"
 
 msgid "User Reviews"
 msgstr "მომხმარებელთა მიმოხილვები"
@@ -7640,7 +7642,7 @@ msgid "Custom..."
 msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "სტატისტიკის დამუშავება ამჟამად შეჩერებულია, ასე რომ, უახლესი მონაცემები მიუწვდომელია. სტატისტიკური აღრიცხვა ჯერ კიდევ მიმდინარეობს და ეს გვერდიც მალე განახლდება გამოტოვებული მონაცემებით."
 
 msgid "Loading the latest data&hellip;"
 msgstr ""
@@ -8078,7 +8080,7 @@ msgid "Decide what collections should be shown in your profile."
 msgstr "გადაწყვიტეთ, რომელი კრებულები გსურთ გამოჩნდეს, თქვენს პროფილზე."
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "ჩემ მიერ შექმნილი კრებულების გამოჩენა"
 
 msgid "Display collections I'm following"
 msgstr "ჩემ მიერ გამოწერილი კრებულების ნახვა"
