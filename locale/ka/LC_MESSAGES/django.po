@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-20 20:18+0000\n"
+"PO-Revision-Date: 2017-08-20 20:44+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1432,7 +1432,7 @@ msgid "Collections by Name"
 msgstr "კრებულები სახელის მიხედვით"
 
 msgid "Recently Updated Collections"
-msgstr "ბოლოს განახლებული კრებულები"
+msgstr "ახალი განახლებული კრებულები"
 
 msgid "Recently Popular Collections"
 msgstr "ბოლო დროს სასურველი კრებულები"
@@ -1659,7 +1659,7 @@ msgid "Extensions by Weekly Downloads"
 msgstr "გაფართოებები ყოველკვირეული ჩამოტვირთვების მიხედვით"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "ახალი განახლებული გაფართოებები"
 
 msgid "Up & Coming Extensions"
 msgstr "გაფართოებები ზრდადი მოთხოვნით"
@@ -2193,7 +2193,7 @@ msgid "Preliminary Add-on Review"
 msgstr ""
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "დამატების განახლებული მიმოხილვა"
 
 msgid "New Dictionary Review"
 msgstr "ახალი ლექსიკონის განხილვა"
@@ -2202,7 +2202,7 @@ msgid "Preliminary Dictionary Review"
 msgstr ""
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "ლექსიკონის განახლებული მიმოხილვა"
 
 msgid "New Language Pack Review"
 msgstr "ენის ახალი პაკეტის განხილვა"
@@ -2211,7 +2211,7 @@ msgid "Preliminary Language Pack Review"
 msgstr ""
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "ენის პაკეტის განახლებული მიმოხილვა"
 
 msgid "Bonus for overdue reviews"
 msgstr "შეღავათი, ვადაგადაცილებული მიმოხილვებისთვის"
@@ -2752,7 +2752,7 @@ msgid "All Activity"
 msgstr "ყველა მოქმედება"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "დამატების განახლებები"
 
 msgid "Add-on Status"
 msgstr "დამატების მდგომარეობა"
@@ -6641,7 +6641,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr ""
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "დამატების განახლებები შესაძლოა განხილული იყოს ისევე, როგორც ახალი წარდგენილი."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
@@ -7156,16 +7156,18 @@ msgstr ""
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
+"თითოეული Shield კვლევა აღრიცხავს მონაცემებს მნიშვნელოვანი საკვლევი მოვლენების შესახებ, როგორიცაა დაყენების რაოდენობა, ამოშლის რაოდენობა, დღიური გამოყენების რაოდენობა და კვლევის დასრულება. კვლევები "
+"შეიძლება მოიცავდეს არასავალდებულო კითხვარებსაც."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "ეს მონაცემები დაკავშირებულია <a href=\"%(url)s\">Firefox ტელემეტრიასთან</a>."
 
 msgid "This particular Study"
 msgstr ""
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Shield კვლევებით აღრიცხული მონაცემების გარდა, Mozilla აგროვებს შემდეგ მონაცემებს:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
 msgstr ""
@@ -7583,7 +7585,7 @@ msgid "To"
 msgstr ""
 
 msgid "Update"
-msgstr ""
+msgstr "განახლება"
 
 msgid "Export"
 msgstr "გატანა"
@@ -8101,7 +8103,7 @@ msgid "Delete Account"
 msgstr "ანგარიშის წაშლა"
 
 msgid "Update Account"
-msgstr ""
+msgstr "ანგარიშის განახლება"
 
 msgid "none"
 msgstr "არაა"
