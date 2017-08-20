@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 20:30+0000\n"
+"PO-Revision-Date: 2017-08-20 21:39+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -27,7 +27,7 @@ msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "თქვენი დამატება უნდა სრულდებოდეს .zip, .xpi, .crx, .jar ან .xml გაფართოებით."
+msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx, .jar ან .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

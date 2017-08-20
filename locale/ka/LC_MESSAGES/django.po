@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-20 21:31+0000\n"
+"PO-Revision-Date: 2017-08-20 21:36+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2668,10 +2668,10 @@ msgid "Submit my add-on for manual review."
 msgstr ""
 
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "არ გამოაქვეყნო ჩემი დამატება ამ საიტზე"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "მონიშნეთ, თუ გსურთ თავად გაავრცელოთ თქვენი დამატება და Mozilla-სგან მხოლოდ დამოწმება გჭირდებათ."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
@@ -2963,10 +2963,10 @@ msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are
 msgstr "გაითვალისწინეთ, რომ ეს ხელსაწყო მუშაობს, მხოლოდ ძველ დამატებებთან. WebExtension API-ებზე, ვრცლად <a href=\"%(webext_doc_url)s\">იხილეთ აქ</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "ატვირთვის შემდეგ, რიგი ავტომატური შესამოწმებელი ტესტები გაეშვება, მოცემული ვერსიის პროგრამასთან თავსებადობის შესამოწმებლად:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "ატვირთვის შემდეგ, რიგი ავტომატური ტესტები გაეშვება, თქვენი ფაილის შესამოწმებლად."
 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "გსურთ თქვენი დამატების გავრცელება ამ საიტით?"
@@ -3136,7 +3136,7 @@ msgid "Requires Payment?"
 msgstr "გადახდა სავალდებულოა?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "მონიშნეთ, თუ თქვენი დამატების ძირითადი შესაძლებლობებით სარგებლობისთვის, ან საცდელი დროის გასვლის შემდეგ, თანხის გადახდაა საჭირო."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
