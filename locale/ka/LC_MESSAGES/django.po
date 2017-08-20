@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-19 21:48+0000\n"
+"PO-Revision-Date: 2017-08-20 20:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -162,7 +162,7 @@ msgid "Listed"
 msgstr "სიაშია"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს \"/\" სიმბოლოთი"
 
 #. l10n: {0} is the addon name
 msgid "Contribution for {0}"
@@ -1101,7 +1101,7 @@ msgid "Anybody can view this collection."
 msgstr "საჯაროდ ხილული."
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "დაარქვით სახელი თქვენს კრებულს."
 
 msgid "URL:"
 msgstr "URL:"
@@ -1156,7 +1156,7 @@ msgstr "კრებული შეიქმნა!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "თქვენი ახალი კრებული ნაჩვენებია ქვემოთ. ასევე, შეგიძლიათ <a href=\"%(url)s\">დამატებითი პარამეტრების შესწორებაც</a>, სურვილის შემთხვევაში."
 
 msgid "Collection updated!"
 msgstr "კრებული განახლდა!"
@@ -2744,16 +2744,16 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "ჩემი ყველა დამატება"
 
 msgid "All Activity"
-msgstr ""
+msgstr "ყველა მოქმედება"
 
 msgid "Add-on Updates"
 msgstr ""
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "დამატების მდგომარეობა"
 
 msgid "User Collections"
 msgstr ""
@@ -2893,7 +2893,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ან <a href=\"{0}\">გაუქმება</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "დამატებების გვერდზე დაბრუნება"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2978,11 +2978,11 @@ msgid "Tested for compatibility against:"
 msgstr "შეთავსებადობაზე შემოწმდა ვერსიით:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "დამატებებთან დაკავშირებული ბოლო მოქმედებები"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "ბოლო მოქმედებები {0}-ზე"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2992,10 +2992,10 @@ msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "მოქმედებების დაზუსტება"
 
 msgid "Activity"
-msgstr ""
+msgstr "მოქმედება"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -3032,14 +3032,14 @@ msgid "Close"
 msgstr ""
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "ბოლო მოქმედებები"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s %(user)s-ის მიერ"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "დამატებებთან დაკავშირებული ადრინდელი მოქმედებები "
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -7536,7 +7536,7 @@ msgid "by Platform"
 msgstr ""
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "დამატების მდგომარეობით"
 
 msgid "Subscribers"
 msgstr ""
@@ -7545,7 +7545,7 @@ msgid "Ratings"
 msgstr ""
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "დამატების სტატისტიკა"
 
 msgid "Add-ons in Use"
 msgstr "დამატებები, რომლებიც გამოიყენება"
@@ -7560,7 +7560,7 @@ msgid "Add-ons Updated"
 msgstr "განახლებული დამატებები"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "შექმნილი კრებულები"
 
 msgid "Reviews Written"
 msgstr "მიმოხილვები დაწერილია"
@@ -7676,7 +7676,7 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "კრებულები შექმნის თარიღის მიხედვით"
 
 msgid "Contributions by Date"
 msgstr ""
@@ -7747,7 +7747,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "დამატების მდგომარეობა თარიღის მიხედვით"
 
 msgid "Subscribers by Date"
 msgstr ""
