@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-20 20:44+0000\n"
+"PO-Revision-Date: 2017-08-20 21:12+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2713,9 +2713,14 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"ამ საიტზე. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება გამოქყვენდება საიტსა და Firefox დამატებების მმართველში, მილიონობით მომხმარებლისთვის კოდის მიმოხილვის გავლის შემდეგ. ავტომატური "
+"განახლებების მართვა, ამ საიტით არის შესაძლებელი. დამატება ასევე ჩაერთვება Mozilla-ს სარეკლამო აქციებსა და შეჯიბრებებში. ამასთან, ნებადართულია განხილული დამატების საკუთარი საშუალებებით "
+"გავრცელებაც.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"თქვენ თვითონ. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება დამოწმებისთანავე, შეგეძლებათ თავად გაავრცელოთ. განახლებების სამართავად საჭირო იქნება updateURL, ან ცალკე პროგრამა "
+"განახლებებისთვის.</span>"
 
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 msgstr ""
@@ -2850,7 +2855,7 @@ msgid "You must provide further details to proceed."
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "თქვენი ძველი მონაცემები გაუქმებულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
@@ -3000,7 +3005,7 @@ msgid "Activity"
 msgstr "მოქმედება"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "არხის გამოწერა"
 
 #, python-format
 msgid ""
@@ -3011,15 +3016,17 @@ msgstr "ეს დამატება არათავსებადია 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">თავსებადობის განახლება</a> <a href=\"%(version_url)s\" class=\"button\">ახალი ვერსიის ატვირთვა</a> ან <a href=\"#\" "
+"class=\"close\">უგულებელყოფა</a>"
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "გაეცანით და განაახლეთ პროგრამის თავსებადობის ხარისხი."
 
 msgid "Compatibility"
 msgstr ""
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "თავსებადობის განახლება"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
@@ -3705,7 +3712,7 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr ""
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "თქვენი დამატება შეტანილია ჩვენს გალერეაში და მომხმარებლები იღებენ ავტომატურ განახლებებს."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "თქვენი დამატება შეზღუდულია საიტის ადმინისტრატორის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
@@ -3728,7 +3735,7 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. ავტომატური განახლებები იმართება ამ საიტით."
 
 msgid "Listed Version:"
 msgstr "გამოქვეყნებული ვერსია:"
@@ -3753,7 +3760,7 @@ msgid "%(position)s of %(total)s"
 msgstr ""
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "დამოწმებულია თვითგავრცელებისთვის. განახლებებიც თავად უნდა მართოთ."
 
 msgid "Latest Version:"
 msgstr ""
@@ -4715,7 +4722,7 @@ msgid "Last Review"
 msgstr ""
 
 msgid "Last Update"
-msgstr ""
+msgstr "ბოლო განახლება"
 
 msgid "No Reviews"
 msgstr "მიმოხილვები არაა"
@@ -4871,7 +4878,7 @@ msgid "New Add-ons"
 msgstr "ახალი დამატებები"
 
 msgid "Updates"
-msgstr ""
+msgstr "განახლებები"
 
 msgid "Moderated Reviews"
 msgstr "შემოწმებული მიმოხილვები"
@@ -4990,7 +4997,7 @@ msgid "Score"
 msgstr ""
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "დღის შეტყობინების განახლება"
 
 msgid "Save"
 msgstr ""
@@ -5129,7 +5136,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr ""
 
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "შენიშვნების განახლება"
 
 msgid "(admin)"
 msgstr ""
@@ -5244,7 +5251,7 @@ msgstr[0] "{num} შერჩეულია განსახილველ�
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num} განახლება"
 
 msgid "Flagged Themes"
 msgstr ""
