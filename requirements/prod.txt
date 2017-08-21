@@ -352,9 +352,9 @@ mock==2.0.0 \
 mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 # natsort is required by amo-validator
-natsort==5.0.3 \
-    --hash=sha256:e479b3951cba4e7946086fb416920fd93ae8aa17180e0c31ef671de13a83111f \
-    --hash=sha256:d57b7a0156f16f49c6c010c9ce97e2125956697846f31bba7cd544cd24b007c1
+natsort==5.1.0 \
+    --hash=sha256:64b702ee943144beea9cc58f4b2893da3bc3dfa9bd31cd216f8bfd6dce6edf57 \
+    --hash=sha256:5db0fd17c9f8ef3d54962a6e46159ce4807c630f0931169cd15ce54f2ac395b9
 ndg-httpsclient==0.4.2 \
     --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
 newrelic==2.90.0.75 \
