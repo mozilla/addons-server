@@ -186,7 +186,7 @@ var installButton = function() {
         var opts = $.extend({addWarning: true}, options);
             warn = opts.addWarning ? addWarning : _.identity;
 
-        $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
+        $('#downloadAnyway').attr('href', escape_($button.filter(':visible').attr('href')));
         $('#downloadAnyway').show();
 
         // Do badPlatform prep out here since we need it in all branches.
