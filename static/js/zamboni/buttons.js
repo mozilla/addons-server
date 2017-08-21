@@ -185,7 +185,6 @@ var installButton = function() {
             var href = $button.filter(':visible').attr('href');
             var pos = href.lastIndexOf('/');
             href = escape_(href.slice(0, pos) + '/type:attachment/' + href.slice(pos + 1));
-            console.log(href);
             var $newParent = $installShell.find('.more-versions');
             $newParent.append(' | ');
             $newParent.append($downloadAnyway);
