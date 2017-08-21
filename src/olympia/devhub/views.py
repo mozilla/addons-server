@@ -302,6 +302,7 @@ def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
+        'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
