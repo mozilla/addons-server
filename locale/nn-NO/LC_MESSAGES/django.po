@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-18 11:59+0000\n"
+"PO-Revision-Date: 2017-08-21 23:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2731,7 +2731,7 @@ msgid "Starting with Firefox 53, new extensions on this site can only be WebExte
 msgstr ""
 
 msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller eldre."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
