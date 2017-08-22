@@ -173,7 +173,7 @@ if os.environ.get('RUNNING_IN_CI'):
                 u'sr-Latn': {
                     u'native': u'Srpski',
                     u'English': u'Serbian'},
-                u'en-US': {
+                u'es': {
                     u'native': u'Español',
                     u'English': u'Spanish'},
                 u'dbg': {
