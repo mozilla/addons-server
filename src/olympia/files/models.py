@@ -131,15 +131,20 @@ class File(OnChangeMixin, ModelBase):
         return posixpath.join(
             *map(force_bytes, [host, self.version.addon.id, self.filename]))
 
-    def get_url_path(self, src):
-        return self._make_download_url('downloads.file', src)
+    def get_url_path(self, src, attachment=False):
+        return self._make_download_url(
+            'downloads.file', src, attachment=attachment)
 
     def get_signed_url(self, src):
         return self._make_download_url('signing.file', src)
 
-    def _make_download_url(self, view_name, src):
-        url = os.path.join(reverse(view_name, args=[self.pk]),
-                           self.filename)
+    def _make_download_url(self, view_name, src, attachment=False):
+        kwargs = {
+            'file_id': self.pk
+        }
+        if attachment:
+            kwargs['type'] = 'attachment'
+        url = os.path.join(reverse(view_name, kwargs=kwargs), self.filename)
         return absolutify(urlparams(url, src=src))
 
     @classmethod
@@ -273,11 +278,13 @@ class File(OnChangeMixin, ModelBase):
         return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
                              m.group('suffix'))
 
-    def latest_xpi_url(self, beta=False):
+    def latest_xpi_url(self, beta=False, attachment=False):
         addon = self.version.addon
         kw = {'addon_id': addon.slug, 'beta': '-beta' if beta else ''}
         if self.platform != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform
+        if attachment:
+            kw['type'] = 'attachment'
         return os.path.join(reverse('downloads.latest', kwargs=kw),
                             'addon-%s-latest%s' % (addon.pk, self.extension))
 

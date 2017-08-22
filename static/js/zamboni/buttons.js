@@ -162,7 +162,6 @@ var installButton = function() {
             var f = _.haskey(z.button.after, after) ? z.button.after[after] : _.identity,
                 callback = _.bind(f, self),
                 install = search ? z.installSearch : z.installAddon;
-
             install(name, installer[0].href, icon, hash, callback);
         });
     };
@@ -179,15 +178,23 @@ var installButton = function() {
         };
     });
 
+    var showDownloadAnyway = function($button) {
+        var $visibleButton = $button.filter(':visible')
+        var $installShell = $visibleButton.parents('.install-shell');
+        var $downloadAnyway = $visibleButton.next('.download-anyway');
+        if ($downloadAnyway.length) {
+            var $newParent = $installShell.find('.more-versions');
+            $newParent.append($downloadAnyway);
+            $downloadAnyway.show();
+        }
+    }
+
     // Add version and platform warnings.  This is one
     // big function since we merge the messaging when bad platform and version
     // occur simultaneously.
     var versionsAndPlatforms = function(options) {
         var opts = $.extend({addWarning: true}, options);
             warn = opts.addWarning ? addWarning : _.identity;
-
-        $('#downloadAnyway').attr('href', escape_($button.filter(':visible').attr('href')));
-        $('#downloadAnyway').show();
 
         // Do badPlatform prep out here since we need it in all branches.
         if (badPlatform) {
@@ -209,6 +216,9 @@ var installButton = function() {
             $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');
             $button.closest('.item.addon').addClass('incompatible');
+            if (!badPlatform) {
+                showDownloadAnyway($button);
+            }
 
             return true;
         } else if (!unreviewed && (appSupported || no_compat_necessary)) {
@@ -225,6 +235,9 @@ var installButton = function() {
             var context = {'app': z.appName, 'min': min, 'max': max,
                 'versions_url': versions_url};
             addWarning(tpl(context), noappsupport);
+            if (!badPlatform) {
+                showDownloadAnyway($button);
+            }
         }
         return false;
     };

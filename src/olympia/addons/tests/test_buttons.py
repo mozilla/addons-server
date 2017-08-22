@@ -11,35 +11,41 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.buttons import big_install_button, install_button
+from olympia.addons.models import Addon
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 class ButtonTest(TestCase):
 
     def setUp(self):
         super(ButtonTest, self).setUp()
-        self.addon = Mock()
+        self.addon = Mock(spec=Addon)
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.is_experimental = False
         self.addon.eula = None
         self.addon.status = amo.STATUS_PUBLIC
-        self.addon.id = 2
-        self.addon.slug = 'slug'
+        self.addon.id = self.addon.pk = 42
+        self.addon.slug = 'a-slug'
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
+        self.addon.annoying = amo.CONTRIB_NONE
 
-        self.version = v = Mock()
+        self.version = v = Mock(spec=Version)
+        self.version.id = 1337
+        self.version.addon = self.addon
         v.is_compatible_by_default = False
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
         v.is_beta = False
-        v.version = 'v1'
+        v.version = '2.0.3.8'
         self.addon.current_version = v
 
         self.file = self.get_file(amo.PLATFORM_ALL.id)
         v.all_files = [self.file]
 
-        self.beta_version = v = Mock()
+        self.beta_version = v = Mock(spec=Version)
         v.is_compatible_by_default = False
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
@@ -77,11 +83,10 @@ class ButtonTest(TestCase):
         return PyQuery(install_button(self.context, self.addon, **kwargs))
 
     def get_file(self, platform):
-        file = Mock()
+        file = File()  # Real object and not a mock to get the true methods.
+        file.version = self.version
+        file.pk = 666
         file.platform = platform
-        file.latest_xpi_url.return_value = 'xpi.latest'
-        file.get_url_path.return_value = 'xpi.url'
-        file.eula_url.return_value = 'eula.url'
         file.status = amo.STATUS_PUBLIC
         file.strict_compatibility = False
         file.binary_components = False
@@ -274,34 +279,46 @@ class TestButton(ButtonTest):
         b = self.get_button()
 
         # Normal.
-        text, url, os = b.file_details(file)
+        text, url, download_url, os = b.file_details(file)
         assert text == 'Download Now'
-        assert url == 'xpi.latest'
+        assert url == '/firefox/downloads/latest/a-slug/addon-42-latest'
+        assert download_url == (
+            '/firefox/downloads/latest/a-slug/type:attachment/addon-42-latest')
         assert os is None
 
         # Platformer.
         file = self.get_file(amo.PLATFORM_MAC.id)
-        _, _, os = b.file_details(file)
+        _, _, _, os = b.file_details(file)
         assert os == amo.PLATFORM_MAC
 
         # Not the latest version.
         b.latest = False
-        _, url, _ = b.file_details(file)
-        assert url == 'xpi.url'
+        _, url, download_url, _ = b.file_details(file)
+        assert url == 'http://testserver/firefox/downloads/file/666/?src='
+        assert download_url == (
+            'http://testserver/firefox/downloads/file/666/type:attachment/'
+            '?src=')
 
         # Contribution roadblock.
         b.show_contrib = True
-        text, url, _ = b.file_details(file)
+        text, url, download_url, _ = b.file_details(file)
         assert text == 'Continue to Download&nbsp;&rarr;'
-        assert url == '/en-US/firefox/addon/2/contribute/roadblock/?version=v1'
+        assert url == (
+            '/en-US/firefox/addon/42/contribute/roadblock/?version=2.0.3.8')
+        assert download_url == (
+            'http://testserver/firefox/downloads/file/666/type:attachment/'
+            '?src=')
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL.id)
         file.status = amo.STATUS_AWAITING_REVIEW
         b = self.get_button()
 
-        _, url, _ = b.file_details(file)
-        assert url == 'xpi.url'
+        _, url, download_url, _ = b.file_details(file)
+        assert url == 'http://testserver/firefox/downloads/file/666/?src='
+        assert download_url == (
+            'http://testserver/firefox/downloads/file/666/type:attachment/'
+            '?src=')
 
     def test_fix_link(self):
         b = self.get_button()
@@ -370,7 +387,8 @@ class TestButtonHtml(ButtonTest):
         button = doc('.button')
         assert ['button', 'download'] == button.attr('class').split()
         assert 'file hash' == button.attr('data-hash')
-        assert 'xpi.latest' == button.attr('href')
+        assert button.attr('href') == (
+            '/firefox/downloads/latest/a-slug/addon-42-latest')
 
     def test_featured(self):
         self.addon.is_featured.return_value = True

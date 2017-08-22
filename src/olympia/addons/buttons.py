@@ -145,8 +145,9 @@ class InstallButton(object):
         files = [f for f in self.version.all_files
                  if f.status in amo.VALID_FILE_STATUSES]
         for file in files:
-            text, url, os = self.file_details(file)
-            rv.append(Link(text, self.fix_link(url), os, file))
+            text, url, download_url, os = self.file_details(file)
+            rv.append(Link(text, self.fix_link(url),
+                           self.fix_link(download_url), os, file))
         return rv
 
     def file_details(self, file):
@@ -154,10 +155,13 @@ class InstallButton(object):
         if self.latest and not self.is_beta and (
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
+            download_url = file.latest_xpi_url(attachment=True)
         elif self.latest and self.is_beta and self.addon.show_beta:
             url = file.latest_xpi_url(beta=True)
+            download_url = file.latest_xpi_url(beta=True, attachment=True)
         else:
             url = file.get_url_path(self.src)
+            download_url = file.get_url_path(self.src, attachment=True)
 
         if platform == amo.PLATFORM_ALL.id:
             text, os = ugettext('Download Now'), None
@@ -170,7 +174,7 @@ class InstallButton(object):
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, version=self.version.version)
 
-        return text, url, os
+        return text, url, download_url, os
 
     def fix_link(self, url):
         if self.src:
@@ -212,5 +216,6 @@ class PersonaInstallButton(InstallButton):
 
 class Link(object):
 
-    def __init__(self, text, url, os=None, file=None):
-        self.text, self.url, self.os, self.file = text, url, os, file
+    def __init__(self, text, url, download_url=None, os=None, file=None):
+        self.text, self.url, self.download_url, self.os, self.file = (
+            text, url, download_url, os, file)

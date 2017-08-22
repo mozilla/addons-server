@@ -1,15 +1,14 @@
-{% set b = button %}
 {% set _obj = version if amo.HAS_COMPAT[addon.type] else addon %}
 {% set compat = _obj.compatible_apps[APP] if _obj else None %}
 
 <div class="install-shell">
-<div class="install {{ b.install_class|join(' ') }}"
+<div class="install {{ button.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
      data-icon="{{ addon.icon_url }}"
      data-developers="{{ addon.meet_the_dev_url() }}"
      data-versions="{{ url('addons.versions', addon.id) }}"
      data-name="{{ addon.name }}"
-     {{ b.attrs()|xmlattr }}
+     {{ button.attrs()|xmlattr }}
   {% if compat %}
      data-min="{{ compat.min.version }}"
      data-max="{{ compat.max.version }}"
@@ -22,16 +21,16 @@
      data-lastupdated-datetime="{{ version.created|datetime }}"
   {% endif %}>
   <p class="install-button">
-    {% set links = b.links() %}
+    {% set links = button.links() %}
     {% if not links %}
       {{ _('No compatible versions') }}
     {% endif %}
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
-      <a class="button {{ b.button_class|join(' ') }} {{ extra }}"
+      <a class="button {{ button.button_class|join(' ') }} {{ extra }}"
          data-hash="{{ link.file.hash }}"
-         {% if b.show_warning %}
-           href="{{ b.addon.get_url_path() }}"
+         {% if button.show_warning %}
+           href="{{ button.addon.get_url_path() }}"
            data-realurl="{{ link.url }}"
          {% else %}
            href="{{ link.url }}"
@@ -41,7 +40,7 @@
           {{ link.text }}
           {% if link.os %}
             <span class="os" data-os="{{ link.os.name }}">
-              {% if not b.show_contrib %}
+              {% if not button.show_contrib %}
                 {# L10n: {0} is a platform name like Windows or Mac OS X. #}
                 {{ _('for {0}')|format_html(link.os.name) }}
               {% endif %}
@@ -51,12 +50,12 @@
       </a>
     {% endfor %}
   </p>
-  {% if b.install_text -%}
-    <strong>{{ b.install_text }}</strong>
+  {% if button.install_text -%}
+    <strong>{{ button.install_text }}</strong>
   {%- endif %}
 </div> {# install #}
 
-{% if b.detailed %}
+{% if button.detailed %}
   {% if addon.privacy_policy %}
     <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
       <strong>{{ _('View privacy policy') }}</strong>
@@ -73,7 +72,7 @@
       This add-on has not been reviewed by Mozilla.
       <a href="{{ url }}">Learn more</a>
     {% endtrans %} </p>
-  {% elif b.experimental %}
+  {% elif button.experimental %}
     <p class="warning">{% trans url=url('pages.faq') + "#experimental" %}
       This add-on has been marked as experimental by its developers.
     {% endtrans %} </p>
