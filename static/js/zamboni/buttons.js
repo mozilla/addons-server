@@ -179,11 +179,11 @@ var installButton = function() {
     });
 
     var showDownloadAnyway = function($button) {
-        var $installShell = $button.parents('.install-shell');
-        var $downloadAnyway = $installShell.find('.download-anyway');
+        var $visibleButton = $button.filter(':visible')
+        var $installShell = $visibleButton.parents('.install-shell');
+        var $downloadAnyway = $visibleButton.next('.download-anyway');
         if ($downloadAnyway.length) {
             var $newParent = $installShell.find('.more-versions');
-            $newParent.append(' | ');
             $newParent.append($downloadAnyway);
             $downloadAnyway.show();
         }
@@ -216,7 +216,9 @@ var installButton = function() {
             $button.closest('div').attr('data-version-supported', false);
             $button.addClass('concealed');
             $button.closest('.item.addon').addClass('incompatible');
-            showDownloadAnyway($button);
+            if (!badPlatform) {
+                showDownloadAnyway($button);
+            }
 
             return true;
         } else if (!unreviewed && (appSupported || no_compat_necessary)) {
@@ -233,7 +235,9 @@ var installButton = function() {
             var context = {'app': z.appName, 'min': min, 'max': max,
                 'versions_url': versions_url};
             addWarning(tpl(context), noappsupport);
-            showDownloadAnyway($button);
+            if (!badPlatform) {
+                showDownloadAnyway($button);
+            }
         }
         return false;
     };

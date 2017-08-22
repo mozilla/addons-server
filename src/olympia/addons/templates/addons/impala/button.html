@@ -13,7 +13,7 @@
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       {% include 'addons/includes/install_button.html' %}
       {% if button.detailed and link.download_url %}
-        <a class="download-anyway" href="{{ link.download_url }}" download>{{ _('Download Anyway') }}</a>
+        <span class="download-anyway {{ extra }}"> | <a href="{{ link.download_url }}" download>{{ _('Download Anyway') }}</a></span>
       {% endif %}
     {% endfor %}
   </p>
