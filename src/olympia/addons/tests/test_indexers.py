@@ -372,7 +372,6 @@ class TestAddonIndexer(TestCase):
     def test_extract_translations_engb_default(self):
         """Make sure we do correctly extract things for en-GB default locale"""
         with self.activate('en-GB'):
-            status = amo.STATUS_PUBLIC
             kwargs = {
                 'status': amo.STATUS_PUBLIC,
                 'type': amo.ADDON_EXTENSION,
@@ -397,7 +396,10 @@ class TestAddonIndexer(TestCase):
         ])
         assert sorted(extracted['description_translations']) == sorted([
             {'lang': u'en-GB', 'string': u'Let your browser eat your bananas'},
-            {'lang': u'es', 'string': u'Deje que su navegador coma sus plátanos'},
+            {
+                'lang': u'es',
+                'string': u'Deje que su navegador coma sus plátanos'
+            },
         ])
         assert extracted['name_l10n_english'] == ['Banana Bonkers']
         assert extracted['name_l10n_spanish'] == [u'Banana Bonkers espanole']

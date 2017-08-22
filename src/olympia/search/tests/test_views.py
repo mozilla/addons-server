@@ -12,8 +12,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import (
-    create_switch, ESTestCaseWithAddons, ESTestCase,
-    addon_factory, version_factory)
+    create_switch, ESTestCaseWithAddons, ESTestCase, addon_factory)
 from olympia.amo.templatetags.jinja_helpers import (
     locale_url, numberfmt, urlparams, datetime_filter)
 
@@ -657,7 +656,8 @@ class TestESSearch(SearchBase):
             addon.summary = {'es': u'resumen banana'}
             addon.save()
 
-        addon_en = addon_factory(slug='English Addon', name=u'My English Addôn')
+        addon_en = addon_factory(
+            slug='English Addon', name=u'My English Addôn')
 
         self.refresh()
 

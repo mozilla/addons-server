@@ -2730,7 +2730,8 @@ class TestAddonSearchView(ESTestCase):
             addon.summary = {'es': u'resumen banana'}
             addon.save()
 
-        addon_en = addon_factory(slug='English Addon', name=u'My English Addôn')
+        addon_factory(
+            slug='English Addon', name=u'My English Addôn')
 
         self.reindex(Addon)
 
