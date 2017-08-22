@@ -1517,10 +1517,6 @@ SIGNING_SERVER_TIMEOUT = 10
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
 HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
                       'thunderbird-hotfix@mozilla.org']
-# Minimum Firefox version for default to compatible addons to be signed.
-MIN_D2C_VERSION = '4'
-# Minimum Firefox version for not default to compatible addons to be signed.
-MIN_NOT_D2C_VERSION = '37'
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
