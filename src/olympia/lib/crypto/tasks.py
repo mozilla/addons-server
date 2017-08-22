@@ -3,7 +3,6 @@ import re
 import shutil
 
 from django.conf import settings
-from django.db.models import Q
 
 import olympia.core.logger
 from olympia import amo
@@ -108,32 +107,15 @@ def sign_addons(addon_ids, force=False, **kw):
     }
     mail_subject, mail_message = reasons[kw.get('reason', 'default')]
 
-    def file_supports_firefox(version):
-        """Return a Q object: files supporting at least a firefox version."""
-        return Q(version__apps__max__application__in=SIGN_FOR_APPS,
-                 version__apps__max__version_int__gte=version_int(version))
-
-    is_default_compatible = Q(binary_components=False,
-                              strict_compatibility=False)
-    # We only want to sign files that are at least compatible with Firefox
-    # MIN_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
-    # to compatible.
-    # The signing feature should be supported from Firefox 40 and above, but
-    # we're still signing some files that are a bit older just in case.
-    ff_version_filter = (
-        (is_default_compatible &
-            file_supports_firefox(settings.MIN_D2C_VERSION)) |
-        (~is_default_compatible &
-            file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
-
     addons_emailed = set()
     # We only care about extensions.
     for version in Version.objects.filter(addon_id__in=addon_ids,
                                           addon__type=amo.ADDON_EXTENSION):
         # We only sign files that have been reviewed and are compatible with
         # versions of Firefox that are recent enough.
-        to_sign = version.files.filter(ff_version_filter,
-                                       status__in=amo.REVIEWED_STATUSES)
+        to_sign = version.files.filter(
+            version__apps__max__application__in=SIGN_FOR_APPS,
+            status__in=amo.REVIEWED_STATUSES)
 
         if force:
             to_sign = to_sign.all()
