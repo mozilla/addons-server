@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from settings import *  # noqa
 
 import atexit
@@ -82,10 +83,10 @@ INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 # These are the default languages. If you want a constrainted set for your
 # tests, you should add those in the tests.
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
-    'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
-    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-CN', 'zh-TW',
+    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'en-GB', 'es',
+    'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
+    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk',
+    'vi', 'zh-CN', 'zh-TW',
 )
 
 # Make sure we run our tests with debug languages.
@@ -149,20 +150,22 @@ if os.environ.get('RUNNING_IN_CI'):
             """
             self.languages.update({
                 u'el': {
-                    u'native':
-                        u'\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac',
+                    u'native': u'Ελληνικά',
                     u'English': u'Greek'},
                 u'hr': {
                     u'native': u'Hrvatski',
                     u'English': u'Croatian'},
                 u'sr': {
-                    u'native': u'\u0421\u0440\u043f\u0441\u043a\u0438',
+                    u'native': u'Dolnoserbšćina',
                     u'English': u'Serbian'},
                 u'en-US': {
                     u'native': u'English (US)',
                     u'English': u'English (US)'},
+                u'en-GB': {
+                    u'native': u'English (GB)',
+                    u'English': u'English (GB)'},
                 u'tr': {
-                    u'native': u'T\xfcrk\xe7e',
+                    u'native': u'Türkçe',
                     u'English': u'Turkish'},
                 u'cy': {
                     u'native': u'Cymraeg',
@@ -170,8 +173,12 @@ if os.environ.get('RUNNING_IN_CI'):
                 u'sr-Latn': {
                     u'native': u'Srpski',
                     u'English': u'Serbian'},
+                u'en-US': {
+                    u'native': u'Español',
+                    u'English': u'Spanish'},
                 u'dbg': {
                     u'English': u'Debug Robot',
-                    u'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167'}})  # noqa
+                    u'native': u'Ḓḗƀŭɠ Řǿƀǿŧ'}
+            })
 
     product_details.product_details = MockProductDetails()

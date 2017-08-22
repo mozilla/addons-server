@@ -664,7 +664,8 @@ class TestESSearch(SearchBase):
         # Make sure we have en-US active
         for locale in ('en-US', 'en-GB', 'es'):
             with self.activate(locale):
-                url = reverse('search.search')
+                url = self.url.replace('en-US', locale)
+
                 response = self.client.get(url, {'q': ''})
                 result = self.get_results(response, sort=False)
 

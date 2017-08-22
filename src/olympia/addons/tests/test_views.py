@@ -2738,14 +2738,13 @@ class TestAddonSearchView(ESTestCase):
             with self.activate(locale):
                 url = reverse('addon-search')
 
-                import ipdb; ipdb.set_trace()
-
-                data = self.perform_search(url)
+                data = self.perform_search(url, {'lang': locale})
 
                 assert data['count'] == 2
                 assert len(data['results']) == 2
 
-                data = self.perform_search(url, {'q': 'Banana'})
+                data = self.perform_search(
+                    url, {'q': 'Banana', 'lang': locale})
 
                 result = data['results'][0]
                 assert result['id'] == addon.pk
