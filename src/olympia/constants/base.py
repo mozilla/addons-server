@@ -457,8 +457,8 @@ REVIEWED_CHOICES = {
     REVIEWED_THEME_FULL: _('New Complete Theme Review'),
     _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
-    REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),
-    REVIEWED_ADDON_REVIEW_POORLY: _('Addon Review Moderation Reverted'),
+    REVIEWED_ADDON_REVIEW: _('Moderated Add-on Review'),
+    REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
 }
 
 REVIEWED_SCORES = {
