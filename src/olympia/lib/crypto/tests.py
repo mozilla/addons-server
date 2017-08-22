@@ -93,7 +93,7 @@ class TestPackaged(TestCase):
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
+        self.assert_signed()
 
     def test_supports_firefox_android_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -106,7 +106,7 @@ class TestPackaged(TestCase):
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
+        self.assert_signed()
 
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -390,7 +390,7 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
-            for app in packaged.SIGN_FOR_APPS:
+            for app in (amo.ANDROID.id, amo.FIREFOX.id):
                 self.max_appversion.update(application=app)
                 tasks.sign_addons([self.addon.pk])
                 mock_sign_file.assert_called_with(
