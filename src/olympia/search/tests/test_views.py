@@ -12,7 +12,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import (
-    create_switch, ESTestCaseWithAddons, ESTestCase)
+    create_switch, ESTestCaseWithAddons, ESTestCase,
+    addon_factory, version_factory)
 from olympia.amo.templatetags.jinja_helpers import (
     locale_url, numberfmt, urlparams, datetime_filter)
 
@@ -638,6 +639,44 @@ class TestESSearch(SearchBase):
         response = self.client.get(self.url, {'q': 'Addon'})
         result = self.get_results(response, sort=False)
         assert result[0] == web_extension.pk
+
+    def test_find_addon_default_non_enus(self):
+        with self.activate('en-GB'):
+            addon = addon_factory(
+                status=amo.STATUS_PUBLIC,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Bonkers',
+                description=u'Let your browser eat your bananas',
+                summary=u'Banana Summary',
+            )
+
+            addon.name = {'es': u'Banana Bonkers espanole'}
+            addon.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es': u'resumen banana'}
+            addon.save()
+
+        addon_en = addon_factory(slug='English Addon', name=u'My English Addôn')
+
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': ''})
+        result = self.get_results(response, sort=False)
+
+        # 3 add-ons in self.addon + the two just created
+        assert addon_en.pk in result
+        assert addon.pk in result
+
+        response = self.client.get(self.url, {'q': 'Banana'})
+        result = self.get_results(response, sort=False)
+
+        assert result[0] == addon.pk
+
+        response = self.client.get(self.url, {'q': 'plátanos'})
+        result = self.get_results(response, sort=False)
+
+        assert result[0] == addon.pk
 
 
 class TestSearchResultScoring(ESTestCase):
