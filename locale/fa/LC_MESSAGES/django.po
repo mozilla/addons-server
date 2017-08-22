@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-22 07:03+0000\n"
+"PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -25,32 +25,32 @@ msgid "Usernames cannot contain only digits."
 msgstr "نام‌کاربری نمی‌تواند تنها شامل اعداد باشد."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "یک نام کاربری معتبر که حاوی حروف، اعداد، زیر‌خط و اشکال باشد وارد کنید."
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "این نام کاربری قابل استفاده نیست."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "این نام کاربری قبلا استفاده شده."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "تصاویر باید PNG یا JPG باشند."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "لطفا از تصاویر کوچکتر از %d مگابایت استفاده کنید."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "شما قبلا وارد شده‌اید."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "امکان ورود شما قابل تجزیه نیست. لطفا دوباره امتحان کنید."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "حساب فایرفاکس شما پیدا نشد. لطفا دوباره امتحان کنید."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "شما نمی‌توانید وارد سیستم شوید. لطفا دوباره امتحان کنید."
 
 msgid "Need help?"
 msgstr "به راهنمایی نیاز دارید؟"
@@ -274,7 +274,7 @@ msgid "Leave a comment or request with your contribution."
 msgstr ""
 
 msgid "(optional)"
-msgstr ""
+msgstr "(اختیاری)"
 
 msgid "Make Contribution"
 msgstr ""
@@ -283,7 +283,7 @@ msgid "Contacting PayPal"
 msgstr ""
 
 msgid "No Thanks"
-msgstr ""
+msgstr "نه ممنون"
 
 msgid "Contribution made, thank you."
 msgstr ""
@@ -439,10 +439,10 @@ msgid "Hover to Preview"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "اضافه کردن"
 
 msgid "Edit"
-msgstr ""
+msgstr "ویرایش"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -495,7 +495,7 @@ msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
 
 msgid "Title:"
-msgstr ""
+msgstr "عنوان:"
 
 msgid "Review:"
 msgstr "بررسی:"
@@ -611,7 +611,7 @@ msgid "View statistics"
 msgstr "آمار مشاهده"
 
 msgid "Manage"
-msgstr ""
+msgstr "مدیریت"
 
 #, fuzzy
 msgid "Add-on Review"
@@ -648,7 +648,7 @@ msgid "Support E-mail"
 msgstr "رایانامه پشتیبانی"
 
 msgid "Info"
-msgstr ""
+msgstr "اطلاعات"
 
 #, fuzzy
 msgid "Last Updated:"
@@ -688,7 +688,7 @@ msgid "See complete development channel history"
 msgstr ""
 
 msgid "close"
-msgstr ""
+msgstr "بستن"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -732,7 +732,7 @@ msgid_plural "About the Developers"
 msgstr[0] "درباره‌ی توسعه دهنده"
 
 msgid "No Photo"
-msgstr ""
+msgstr "بدون عکس"
 
 msgid "Who is {0}?"
 msgstr ""
@@ -784,7 +784,7 @@ msgid "Add-on Information for {0}"
 msgstr ""
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "ویرایش تم"
 
 msgid "Approve / Reject"
 msgstr ""
