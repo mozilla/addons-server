@@ -3,7 +3,6 @@ import re
 import shutil
 
 from django.conf import settings
-from django.db.models import Q
 
 import olympia.core.logger
 from olympia import amo
