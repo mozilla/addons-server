@@ -640,7 +640,7 @@ class TestESSearch(SearchBase):
         result = self.get_results(response, sort=False)
         assert result[0] == web_extension.pk
 
-    def test_find_addon_default_non_enus(self):
+    def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
                 status=amo.STATUS_PUBLIC,
@@ -661,22 +661,26 @@ class TestESSearch(SearchBase):
 
         self.refresh()
 
-        response = self.client.get(self.url, {'q': ''})
-        result = self.get_results(response, sort=False)
+        # Make sure we have en-US active
+        for locale in ('en-US', 'en-GB', 'es'):
+            with self.activate(locale):
+                url = reverse('search.search')
+                response = self.client.get(url, {'q': ''})
+                result = self.get_results(response, sort=False)
 
-        # 3 add-ons in self.addon + the two just created
-        assert addon_en.pk in result
-        assert addon.pk in result
+                # 3 add-ons in self.addon + the two just created
+                assert addon_en.pk in result
+                assert addon.pk in result
 
-        response = self.client.get(self.url, {'q': 'Banana'})
-        result = self.get_results(response, sort=False)
+                response = self.client.get(url, {'q': 'Banana'})
+                result = self.get_results(response, sort=False)
 
-        assert result[0] == addon.pk
+                assert result[0] == addon.pk
 
-        response = self.client.get(self.url, {'q': 'plátanos'})
-        result = self.get_results(response, sort=False)
+                response = self.client.get(url, {'q': 'plátanos'})
+                result = self.get_results(response, sort=False)
 
-        assert result[0] == addon.pk
+                assert result[0] == addon.pk
 
 
 class TestSearchResultScoring(ESTestCase):

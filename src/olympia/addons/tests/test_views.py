@@ -2734,16 +2734,22 @@ class TestAddonSearchView(ESTestCase):
 
         self.reindex(Addon)
 
-        data = self.perform_search(self.url)
+        for locale in ('en-US', 'en-GB', 'es'):
+            with self.activate(locale):
+                url = reverse('addon-search')
 
-        assert data['count'] == 2
-        assert len(data['results']) == 2
+                import ipdb; ipdb.set_trace()
 
-        data = self.perform_search(self.url, {'q': 'Banana'})
+                data = self.perform_search(url)
 
-        result = data['results'][0]
-        assert result['id'] == addon.pk
-        assert result['slug'] == addon.slug
+                assert data['count'] == 2
+                assert len(data['results']) == 2
+
+                data = self.perform_search(url, {'q': 'Banana'})
+
+                result = data['results'][0]
+                assert result['id'] == addon.pk
+                assert result['slug'] == addon.slug
 
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
