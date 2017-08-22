@@ -15,12 +15,11 @@ from signing_clients.apps import get_signer_serial_number, JarExtractor
 
 import olympia.core.logger
 from olympia import amo
-from olympia.versions.compare import version_int
 
 log = olympia.core.logger.getLogger('z.crypto')
 
 
-SIGN_FOR_APPS = [amo.FIREFOX.id, amo.ANDROID.id]
+SIGN_FOR_APPS = (amo.FIREFOX.id, amo.ANDROID.id)
 
 
 class SigningError(Exception):
@@ -28,23 +27,13 @@ class SigningError(Exception):
 
 
 def supports_firefox(file_obj):
-    """Return True if the file support a high enough version of Firefox.
+    """Return True if the file supports Firefox or Firefox for Android.
 
-    We only sign files that are at least compatible with Firefox
-    MIN_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
-    to compatible.
+    We only sign files that are at least compatible with Firefox/Firefox for
+    Android.
     """
     apps = file_obj.version.apps.all()
-    if not file_obj.binary_components and not file_obj.strict_compatibility:
-        # Version is "default to compatible".
-        return apps.filter(
-            max__application__in=SIGN_FOR_APPS,
-            max__version_int__gte=version_int(settings.MIN_D2C_VERSION))
-    else:
-        # Version isn't "default to compatible".
-        return apps.filter(
-            max__application__in=[amo.FIREFOX.id, amo.ANDROID.id],
-            max__version_int__gte=version_int(settings.MIN_NOT_D2C_VERSION))
+    return apps.filter(max__application__in=SIGN_FOR_APPS)
 
 
 def get_endpoint(server):
