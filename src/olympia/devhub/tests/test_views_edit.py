@@ -274,6 +274,14 @@ class BaseTestEditBasic(BaseTestEdit):
 class TestEditBasicListed(BaseTestEditBasic):
     __test__ = True
 
+    def test_edit_page_not_editable(self):
+        # The /edit page is the entry point for the individual edit sections,
+        # and should never display the actual forms, so it should always pass
+        # editable=False to the templates it renders.
+        # See https://github.com/mozilla/addons-server/issues/6208
+        response = self.client.get(self.url)
+        assert response.context['editable'] is False
+
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
         self.tags.insert(0, 'tag4')

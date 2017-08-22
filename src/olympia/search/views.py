@@ -1,18 +1,14 @@
 from django import http
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.utils import translation
 from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
-
-import waffle
 
 import olympia.core.logger
 from olympia import amo
 from olympia.bandwagon.views import get_filter as get_filter_view
 from olympia.browse.views import personas_listing as personas_listing_view
-from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
 from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
@@ -21,7 +17,6 @@ from olympia.bandwagon.models import Collection
 from olympia.versions.compare import dict_from_int, version_dict, version_int
 
 from .forms import ESSearchForm, SecondarySearchForm
-from .filters import get_locale_analyzer
 
 
 DEFAULT_NUM_COLLECTIONS = 20
@@ -177,18 +172,7 @@ class BaseAjaxSearch(object):
             if pk:
                 qs = Addon.objects.public().filter(id=int(q))
             elif len(q) > 2:
-                qs = (Addon.search_public()
-                      .query(or_=name_only_query(q.lower())))
-                if waffle.switch_is_active('boost-webextensions-in-search'):
-                    qs = qs.score({
-                        # Boost webextensions if the waffle switch is enabled.
-                        'weight': WEBEXTENSIONS_WEIGHT,
-                        'filter': {
-                            'term': {
-                                'current_version.files.is_webextension': True
-                            }
-                        }
-                    })
+                qs = Addon.search_public().filter_query_string(q.lower())
             if qs:
                 results = qs.filter(type__in=self.types)
         return results
@@ -314,59 +298,6 @@ def _build_suggestions(request, cat, suggester):
     return results
 
 
-def name_only_query(q):
-    d = {}
-
-    rules = {'match_phrase': {'query': q, 'boost': 4},
-             'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
-             'startswith': {'value': q, 'boost': 1.5}}
-    for k, v in rules.iteritems():
-        for field in ('name', 'slug', 'listed_authors.name'):
-            d['%s__%s' % (field, k)] = v
-
-    analyzer = get_locale_analyzer(translation.get_language())
-    if analyzer:
-        d['name_l10n_%s__match' % analyzer] = {
-            'query': q, 'boost': 2.5, 'analyzer': analyzer
-        }
-    return d
-
-
-def name_query(q):
-    # * Prefer text matches first, using the standard text analyzer (boost=4).
-    # * Then text matches, using language-specific analyzer (boost=2.5).
-    # * Then try fuzzy matches ("fire bug" => firebug) (boost=2).
-    # * Then look for the query as a prefix of a name (boost=1.5).
-    # * Look for phrase matches inside the summary (boost=0.8).
-    # * Look for phrase matches inside the summary using language specific
-    #   analyzer (boost=0.6).
-    # * Look for phrase matches inside the description (boost=0.3).
-    # * Look for phrase matches inside the description using language
-    #   specific analyzer (boost=0.1).
-    # * Look for matches inside tags (boost=0.1).
-    tag_should = []
-
-    for tag in q.split():
-        tag_should.append({'match': {'tags': {'query': tag, 'boost': 0.1}}})
-
-    more = {
-        'summary__match_phrase': {'query': q, 'boost': 0.8},
-        'description__match_phrase': {'query': q, 'boost': 0.3},
-        'extend_': tag_should}
-
-    analyzer = get_locale_analyzer(translation.get_language())
-    if analyzer:
-        more['summary_l10n_%s__match' % analyzer] = {
-            'query': q,
-            'boost': 0.6,
-            'analyzer': analyzer}
-        more['description_l10n_%s__match' % analyzer] = {
-            'query': q,
-            'boost': 0.1,
-            'analyzer': analyzer}
-    return dict(more, **name_only_query(q))
-
-
 def _filter_search(request, qs, query, filters, sorting,
                    sorting_default='-weekly_downloads', types=None):
     """Filter an ES queryset based on a list of filters."""
@@ -377,7 +308,7 @@ def _filter_search(request, qs, query, filters, sorting,
     show = [f for f in filters if query.get(f)]
 
     if query.get('q'):
-        qs = qs.query(or_=name_query(query['q']))
+        qs = qs.filter_query_string(query['q'])
     if 'platform' in show and query['platform'] in amo.PLATFORM_DICT:
         ps = (amo.PLATFORM_DICT[query['platform']].id, amo.PLATFORM_ALL.id)
         # If we've selected "All Systems" don't filter by platform.
@@ -471,12 +402,6 @@ def search(request, tag_name=None):
                      appversions={'terms': {'field': appversion_field}},
                      categories={'terms': {'field': 'category', 'size': 200}})
           )
-    if waffle.switch_is_active('boost-webextensions-in-search'):
-        qs = qs.score({
-            # Boost webextensions if the waffle switch is enabled.
-            'weight': WEBEXTENSIONS_WEIGHT,
-            'filter': {'term': {'current_version.files.is_webextension': True}}
-        })
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',

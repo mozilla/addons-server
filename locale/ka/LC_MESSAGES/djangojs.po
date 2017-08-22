@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-16 17:31+0000\n"
+"PO-Revision-Date: 2017-08-20 21:39+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -27,7 +27,7 @@ msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "თქვენი დამატება უნდა სრულდებოდეს .zip, .xpi, .crx, .jar ან .xml გაფართოებით."
+msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi, .crx, .jar ან .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -114,7 +114,7 @@ msgid "Add-on submission checklist"
 msgstr "საკონტროლო სია დამატების წარსადგენად"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "გთხოვთ, გადაამოწმოთ მოცემული პუნქტები წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას."
+msgstr "გთხოვთ გადაამოწმოთ მოცემული პუნქტები, წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -139,7 +139,7 @@ msgid "You cancelled the upload."
 msgstr "თქვენ გააუქმეთ ატვირთვა."
 
 msgid "Images must be either PNG or JPG."
-msgstr "ნახატი უნდა იყოს PNG ან JPG."
+msgstr "სურათი უნდა იყოს PNG ან JPG."
 
 msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
@@ -802,7 +802,7 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, სცადოთ მოგვიანებით."
+msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "Remove this localization"
 msgstr "ამ ლოკალიზაციის წაშლა"

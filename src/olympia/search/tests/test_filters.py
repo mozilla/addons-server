@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
-
 from django.test.client import RequestFactory
 
 from elasticsearch_dsl import Search
@@ -98,10 +96,17 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert expected in should
 
-    def test_no_fuzzy_multi_word(self):
+    def test_fuzzy_multi_word(self):
         qs = self._filter(data={'q': 'search terms'})
-        qs_str = json.dumps(qs)
-        assert 'fuzzy' not in qs_str
+        should = qs['query']['function_score']['query']['bool']['should']
+        expected = {
+            'fuzzy': {
+                'name': {
+                    'boost': 2, 'prefix_length': 4, 'value': 'search terms'
+                }
+            }
+        }
+        assert expected in should
 
     def test_webextension_boost(self):
         create_switch('boost-webextensions-in-search')

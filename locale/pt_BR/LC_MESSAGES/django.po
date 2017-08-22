@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 14:55+0000\n"
-"Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
+"PO-Revision-Date: 2017-08-18 03:05+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1253,10 +1253,10 @@ msgstr "ou <a id=\"collections-new-cancel\" href=\"#\">Cancelar</a>"
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Para avaliar coleções, você deve ter uma conta de complementos."
+msgstr "Para avaliar coleções, você deve ter uma conta de extensões."
 
 msgid "Create an Add-ons Account"
-msgstr "Crie uma conta de complementos"
+msgstr "Crie uma conta de extensões"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
@@ -1543,7 +1543,7 @@ msgid "There are errors in this form.  Please correct them below."
 msgstr "Existem erros no formulário.  Por favor corrija-os abaixo."
 
 msgid "Add-ons in Your Collection"
-msgstr "Complementos na sua coleção"
+msgstr "Extensões na sua coleção"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
 msgstr "Para incluir um complemento nesta coleção, digite seu nome na caixa abaixo e aperte enter."
@@ -1588,7 +1588,7 @@ msgstr "Favorito"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "Complementos em %s"
+msgstr "Extensões em %s"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1597,12 +1597,12 @@ msgstr "Temas de %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr "Complementos em destaque :: %s"
+msgstr "Extensões em destaque :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Aqui estão alguns dos nossos complementos favoritos para ajudar a começar a personalizar o %s."
+msgstr "Aqui estão algumas das nossas extensões favoritas para ajudar a começar a personalizar o %s."
 
 #. L10n: %s is a category name.
 # %s is the terms the user is searching for (a string)
@@ -1636,7 +1636,7 @@ msgstr "Downloads"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr "{0}: Complementos em destaque"
+msgstr "{0}: Extensões em destaque"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
@@ -1647,7 +1647,7 @@ msgstr "Complementos em destaque"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Aqui estão alguns dos nossos complementos favoritos para ajudar a começar a personalizar o %(app)s."
+msgstr "Aqui estão algumas das nossas extensões favoritas para ajudar a começar a personalizar o %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Instalar dicionário"
@@ -1689,8 +1689,8 @@ msgstr "{0} :: Ferramentas de pesquisa"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> complemento"
-msgstr[1] "<b>{0}</b> complementos"
+msgstr[0] "<b>{0}</b> extensão"
+msgstr[1] "<b>{0}</b> extensões"
 
 # Plural in this context means many of the add-on type
 msgid "Search Extensions"
@@ -1826,7 +1826,7 @@ msgid "All"
 msgstr "Todas"
 
 msgid "Add-on Compatibility Reports"
-msgstr "Relatórios de compatibilidade de complementos"
+msgstr "Relatórios de Compatibilidade de Extensões"
 
 #, python-format
 msgid ""
@@ -1837,10 +1837,10 @@ msgstr ""
 "complementos precisarão de ajuda para suportar uma versão futura do Firefox. </p>"
 
 msgid "Reports for your Add-ons"
-msgstr "Relatórios dos seus complementos"
+msgstr "Relatórios das suas extensões"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Insira o GUID de um complemento abaixo para ver todos os relatórios que recebemos."
+msgstr "Insira o GUID de uma extensão abaixo para ver todos os relatórios que recebemos."
 
 msgid "{addon} Compatibility Reports"
 msgstr "Relatórios de compatibilidade de {addon}"
@@ -2065,7 +2065,7 @@ msgid "Authors emailed about compatibility of {version}."
 msgstr "Os autores foram notificados por e-mail sobre a compatibilidade de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-mail enviado ao autor sobre a compatibilidade do complemento."
+msgstr "E-mail enviado ao autor sobre a compatibilidade da extensão."
 
 msgid "Password changed."
 msgstr "Senha alterada."
@@ -2120,7 +2120,7 @@ msgstr "{file} foi assinado."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Id do complemento {0} com GUID {1} foi excluido"
+msgstr "Id da extensão {0} com GUID {1} foi excluido"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} migrou da preliminar."
@@ -2223,7 +2223,7 @@ msgid "Language Pack (Application)"
 msgstr "Pacote de idioma (Aplicação)"
 
 msgid "Language Pack (Add-on)"
-msgstr "Pacote de idioma (complemento)"
+msgstr "Pacote de idioma (extensão)"
 
 msgid "Plugin"
 msgstr "Plugin"
@@ -2243,7 +2243,7 @@ msgid "Language Packs (Application)"
 msgstr "Pacotes de idioma (Aplicação)"
 
 msgid "Language Packs (Add-on)"
-msgstr "Pacotes de idioma (complemento)"
+msgstr "Pacotes de idioma (extensão)"
 
 # 85%
 # 100%
@@ -2252,15 +2252,15 @@ msgstr "Plugins"
 
 # %1$s is a URL where the user can see an example
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "Pedir somente na página desse complemento e no perfil do desenvolvedor"
+msgstr "Pedir somente na página dessa extensão e no perfil do desenvolvedor"
 
 # %1$s is a URL where the user can see an example
 msgid "Ask after users start downloading this add-on"
-msgstr "Pedir depois que os usuários começarem a baixar esse complemento"
+msgstr "Pedir depois que os usuários começarem a baixar essa extensão"
 
 # %1$s is a URL where the user can see an example
 msgid "Ask before users can download this add-on"
-msgstr "Pedir antes que os usuários possam baixar esse complemento"
+msgstr "Pedir antes que os usuários possam baixar essa extensão"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2339,7 +2339,7 @@ msgid "Updated Complete Theme Review"
 msgstr "Análise atualizada do Tema Completo"
 
 msgid "Moderated Addon Review"
-msgstr "Análise moderada do complemento"
+msgstr "Análise moderada da extensão"
 
 msgid "Addon Review Moderation Reverted"
 msgstr "Moderação de análise de complemento revertida"

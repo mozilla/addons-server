@@ -12,7 +12,6 @@ from django.test.utils import override_settings
 import mock
 import pytest
 from PIL import Image
-from waffle.models import Switch
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -117,6 +116,7 @@ class ValidatorTestCase(TestCase):
         # The other ones are app-versions we're using in our
         # tests.
         self.create_appversion('firefox', '2.0')
+        self.create_appversion('firefox', '3.6')
         self.create_appversion('firefox', '3.7a1pre')
         self.create_appversion('firefox', '38.0a1')
 
@@ -677,7 +677,6 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 class TestLegacyAddonRestrictions(ValidatorTestCase):
     def setUp(self):
         super(TestLegacyAddonRestrictions, self).setUp()
-        self.create_switch('restrict-new-legacy-submissions')
 
     def test_submit_legacy_addon_restricted(self):
         file_ = get_addon_file('valid_firefox_addon.xpi')
@@ -690,21 +689,6 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         expected = ['validation', 'messages', 'legacy_addons_restricted']
         assert upload.processed_validation['messages'][0]['id'] == expected
         assert not upload.valid
-
-    def test_submit_legacy_extension_waffle_is_off(self):
-        switch = Switch.objects.get(name='restrict-new-legacy-submissions')
-        switch.active = False
-        switch.save()
-
-        file_ = get_addon_file('valid_firefox_addon.xpi')
-        upload = FileUpload.objects.create(path=file_)
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-
-        assert upload.processed_validation['errors'] == 0
-        assert upload.processed_validation['messages'] == []
-        assert upload.valid
 
     def test_submit_legacy_extension_not_a_new_addon(self):
         file_ = get_addon_file('valid_firefox_addon.xpi')

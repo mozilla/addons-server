@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-07-20 06:21+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2017-08-12 12:35+0000\n"
+"Last-Translator: Michal Vašíček <michalvasicek@icloud.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -672,9 +672,8 @@ msgid "Not available for your platform"
 msgstr "Není dostupné pro vaši platformu"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní"
+msgstr "Tento doplněk není kompatibilní s vaší verzí aplikace {0}."
 
 msgid "View other versions"
 msgstr "Zobrazit ostatní verze"

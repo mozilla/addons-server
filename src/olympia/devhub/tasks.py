@@ -22,7 +22,6 @@ from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from PIL import Image
 import validator
-import waffle
 
 import olympia.core.logger
 from olympia import amo
@@ -326,8 +325,7 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefoxes_only and
-            not is_targeting_firefox_lower_than_53_only and
-            waffle.switch_is_active('restrict-new-legacy-submissions')):
+            not is_targeting_firefox_lower_than_53_only):
 
         msg = ugettext(
             u'Starting with Firefox 53, new add-ons on this site can '
