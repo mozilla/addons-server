@@ -893,7 +893,10 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         upload.refresh_from_db()
 
         assert upload.processed_validation['errors'] == 0
-        assert upload.processed_validation['messages'] == []
+        messages = upload.processed_validation['messages']
+        assert len(messages) == 1
+        assert messages[0]['message'] == ('&#34;strict_max_version&#34; '
+                                          'not required.')
         assert upload.valid
 
     def test_submit_dictionary_upgrade_targeting_firefox_57(self):
