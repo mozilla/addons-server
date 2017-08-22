@@ -182,13 +182,9 @@ var installButton = function() {
         var $installShell = $button.parents('.install-shell');
         var $downloadAnyway = $installShell.find('.download-anyway');
         if ($downloadAnyway.length) {
-            var href = $button.filter(':visible').attr('href');
-            var pos = href.lastIndexOf('/');
-            href = escape_(href.slice(0, pos) + '/type:attachment/' + href.slice(pos + 1));
             var $newParent = $installShell.find('.more-versions');
             $newParent.append(' | ');
             $newParent.append($downloadAnyway);
-            $downloadAnyway.attr('href', href);
             $downloadAnyway.show();
         }
     }

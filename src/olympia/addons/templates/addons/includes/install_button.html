@@ -1,7 +1,7 @@
-<a class="button {{ b.button_class|join(' ') }} {{ extra }}"
+<a class="button {{ button.button_class|join(' ') }} {{ extra }}"
   data-hash="{{ link.file.hash }}"
-  {% if b.show_warning %}
-    href="{{ b.addon.get_url_path() }}"
+  {% if button.show_warning %}
+    href="{{ button.addon.get_url_path() }}"
     data-realurl="{{ link.url }}"
   {% else %}
     href="{{ link.url }}"
@@ -11,7 +11,7 @@
     {{ link.text }}
     {% if link.os %}
       <span class="os" data-os="{{ link.os.name }}">
-        {% if not b.show_contrib %}
+        {% if not button.show_contrib %}
           {# L10n: {0} is a platform name like Windows or Mac OS X. #}
           {{ _('for {0}')|format_html(link.os.name) }}
         {% endif %}

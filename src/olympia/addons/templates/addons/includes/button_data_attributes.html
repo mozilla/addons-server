@@ -4,7 +4,7 @@
   data-developers="{{ addon.meet_the_dev_url() }}"
   data-versions="{{ url('addons.versions', addon.id) }}"
   data-name="{{ addon.name }}"
-  {{ b.attrs()|xmlattr }}
+  {{ button.attrs()|xmlattr }}
 {% if compat %}
   data-min="{{ compat.min.version }}"
   data-max="{{ compat.max.version }}"

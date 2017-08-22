@@ -1,24 +1,26 @@
-{% set b = button %}
 {% set _obj = version if amo.HAS_COMPAT[addon.type] else addon %}
 {% set compat = _obj.compatible_apps[APP] if _obj else None %}
 
 <div class="install-shell">
-<div class="install {{ b.install_class|join(' ') }}"
+<div class="install {{ button.install_class|join(' ') }}"
      {% include 'addons/includes/button_data_attributes.html' %}>
   <p class="install-button">
-    {% set links = b.links() %}
+    {% set links = button.links() %}
     {% if not links %}
       {{ _('No compatible versions') }}
     {% endif %}
     {% for link in links %}
       {% set extra = "platform " + link.os.shortname if link.os else "" %}
       {% include 'addons/includes/install_button.html' %}
+      {% if button.detailed and link.download_url %}
+        <a class="download-anyway" href="{{ link.download_url }}" download>{{ _('Download Anyway') }}</a>
+      {% endif %}
     {% endfor %}
   </p>
 </div> {# install #}
 
 
-{% if b.detailed %}
+{% if button.detailed %}
   <div class="detailed">
   {% if addon.privacy_policy %}
     <a class="privacy-policy badge" href="{{ url('addons.privacy', addon.slug) }}">
@@ -45,11 +47,10 @@
 	<a href="{{ url }}">Learn more</a>
       {% endtrans %}
     </p>
-  {% elif b.experimental %}
+  {% elif button.experimental %}
     <p class="warning">{% trans url=url('pages.faq') + "#experimental" %}
       This add-on has been marked as experimental by its developers
     {% endtrans %} </p>
   {% endif %}
-  <a class="download-anyway" download>{{ _('Download Anyway') }}</a>
 {% endif %}
 </div> {# install-shell #}

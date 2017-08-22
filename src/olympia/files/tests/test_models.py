@@ -71,6 +71,13 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.get_url_path('src') == \
             file_.get_absolute_url(src='src')
 
+    def test_get_url_path_attachment(self):
+        file_ = File.objects.get(id=67442)
+        expected = ('http://testserver/firefox/downloads/file/67442'
+                    '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+                    '?src=src')
+        assert file_.get_url_path('src', attachment=True) == expected
+
     def test_get_signed_url(self):
         file_ = File.objects.get(id=67442)
         url = file_.get_signed_url('src')
@@ -161,29 +168,47 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_latest_url(self):
         # With platform.
-        f = File.objects.get(id=74797)
-        base = '/firefox/downloads/latest{2}/'
-        expected = base + '{1}/platform:3/addon-{0}-latest.xpi'
+        file_ = File.objects.get(id=74797)
+        actual = file_.latest_xpi_url()
+        assert actual == (
+            '/firefox/downloads/latest/cooliris/platform:3/'
+            'addon-5579-latest.xpi')
 
-        actual = f.latest_xpi_url()
-        assert expected.format(
-            f.version.addon_id, f.version.addon.slug, '') == actual
+        actual = file_.latest_xpi_url(attachment=True)
+        assert actual == (
+            '/firefox/downloads/latest/cooliris/type:attachment/platform:3/'
+            'addon-5579-latest.xpi')
 
-        actual = f.latest_xpi_url(beta=True)
-        assert expected.format(
-            f.version.addon_id, f.version.addon.slug, '-beta') == actual
+        actual = file_.latest_xpi_url(beta=True)
+        assert actual == (
+            '/firefox/downloads/latest-beta/cooliris/platform:3/'
+            'addon-5579-latest.xpi')
 
-        # No platform.
-        f = File.objects.get(id=67442)
-        expected = base + '{1}/addon-{0}-latest.xpi'
+        actual = file_.latest_xpi_url(beta=True, attachment=True)
+        assert actual == (
+            '/firefox/downloads/latest-beta/cooliris/type:attachment/'
+            'platform:3/addon-5579-latest.xpi')
 
-        actual = f.latest_xpi_url()
-        assert expected.format(
-            f.version.addon_id, f.version.addon.slug, '') == actual
+        # Same tests repeated, but now without a platform because that File is
+        # available for all platforms and not just a specific one.
+        file_ = File.objects.get(id=67442)
+        actual = file_.latest_xpi_url()
+        assert actual == (
+            '/firefox/downloads/latest/a3615/addon-3615-latest.xpi')
 
-        actual = f.latest_xpi_url(beta=True)
-        assert expected.format(
-            f.version.addon_id, f.version.addon.slug, '-beta') == actual
+        actual = file_.latest_xpi_url(attachment=True)
+        assert actual == (
+            '/firefox/downloads/latest/a3615/type:attachment/'
+            'addon-3615-latest.xpi')
+
+        actual = file_.latest_xpi_url(beta=True)
+        assert actual == (
+            '/firefox/downloads/latest-beta/a3615/addon-3615-latest.xpi')
+
+        actual = file_.latest_xpi_url(beta=True, attachment=True)
+        assert actual == (
+            '/firefox/downloads/latest-beta/a3615/type:attachment/'
+            'addon-3615-latest.xpi')
 
     def test_eula_url(self):
         f = File.objects.get(id=67442)
