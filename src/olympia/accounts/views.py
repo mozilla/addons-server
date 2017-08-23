@@ -414,9 +414,12 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
         self.kwargs[self.lookup_field] = identifier
         self.instance = super(AccountViewSet, self).get_object()
         # action won't exist for other classes that are using this ViewSet.
-        action = getattr(self, 'action', None)
-        if (not action or self.self_view or self.admin_viewing or
-                self.instance.is_public):
+        can_view_instance = (
+            not getattr(self, 'action', None) or
+            self.self_view or
+            self.admin_viewing or
+            self.instance.is_public)
+        if can_view_instance:
             return self.instance
         else:
             raise Http404

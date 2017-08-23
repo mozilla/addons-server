@@ -16,7 +16,7 @@ Only :ref:`developer <developer_account>` accounts are publicly viewable - other
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
 .. _`developer_account`:
-A developer is defined as a user who is listed as a developer or owner of more approved add-ons.
+A developer is defined as a user who is listed as a developer or owner of one or more approved add-ons.
 
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/

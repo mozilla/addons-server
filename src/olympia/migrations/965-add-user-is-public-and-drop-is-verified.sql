@@ -1,14 +1,14 @@
 ALTER TABLE users
-    ADD COLUMN `public` boolean DEFAULT false,
+    ADD COLUMN `public` boolean DEFAULT FALSE,
     DROP COLUMN `is_verified`;
 
 /* AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
 STATUS_PUBLIC = 4 */
 
-UPDATE users, addons_users, addons SET users.`public`=true
-    WHERE users.`id`=addons_users.`user_id` and
-          addons_users.`role` in (4, 5) and
-          addons_users.`listed`=true and
-          addons_users.`addon_id`=addons.`id` and
-          addons.`status`=4;
+UPDATE users, addons_users, addons SET users.`public` = TRUE
+    WHERE users.`id` = addons_users.`user_id` AND
+          addons_users.`role` IN (4, 5) AND
+          addons_users.`listed` = TRUE AND
+          addons_users.`addon_id` = addons.`id` AND
+          addons.`status` = 4;
