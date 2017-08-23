@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-11 02:30+0000\n"
+"PO-Revision-Date: 2017-08-23 17:03+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -817,7 +817,7 @@ msgid "Manage My Submissions"
 msgstr "管理我的提交"
 
 msgid "Submit a New Add-on"
-msgstr "提交新的附加组件"
+msgstr "提交新附加组件"
 
 msgid "Submit a New Theme"
 msgstr "提交一个新主题"
@@ -1163,7 +1163,7 @@ msgid "Icon Deleted"
 msgstr "图标已删除"
 
 msgid "Create a New Collection"
-msgstr "创建新的收藏集"
+msgstr "创建新收藏集"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
@@ -1176,10 +1176,10 @@ msgid "View this collection"
 msgstr "查看此收藏集"
 
 msgid "Start a new collection..."
-msgstr "创建新的收藏集..."
+msgstr "创建新收藏集..."
 
 msgid "Start a New Collection"
-msgstr "创建新的收藏集"
+msgstr "创建新收藏集"
 
 msgid "Name:"
 msgstr "名称："
