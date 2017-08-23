@@ -2713,6 +2713,44 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['slug'] == addon.slug
 
+    def test_find_addon_default_non_en_us(self):
+        with self.activate('en-GB'):
+            addon = addon_factory(
+                status=amo.STATUS_PUBLIC,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Bonkers',
+                description=u'Let your browser eat your bananas',
+                summary=u'Banana Summary',
+            )
+
+            addon.name = {'es': u'Banana Bonkers espanole'}
+            addon.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es': u'resumen banana'}
+            addon.save()
+
+        addon_factory(
+            slug='English Addon', name=u'My English Addôn')
+
+        self.reindex(Addon)
+
+        for locale in ('en-US', 'en-GB', 'es'):
+            with self.activate(locale):
+                url = reverse('addon-search')
+
+                data = self.perform_search(url, {'lang': locale})
+
+                assert data['count'] == 2
+                assert len(data['results']) == 2
+
+                data = self.perform_search(
+                    url, {'q': 'Banana', 'lang': locale})
+
+                result = data['results'][0]
+                assert result['id'] == addon.pk
+                assert result['slug'] == addon.slug
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient

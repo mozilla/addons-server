@@ -369,6 +369,45 @@ class TestAddonIndexer(TestCase):
         assert (extracted['description_l10n_italian'] ==
                 ['&lt;script&gt;alert(42)&lt;/script&gt;'])
 
+    def test_extract_translations_engb_default(self):
+        """Make sure we do correctly extract things for en-GB default locale"""
+        with self.activate('en-GB'):
+            kwargs = {
+                'status': amo.STATUS_PUBLIC,
+                'type': amo.ADDON_EXTENSION,
+                'default_locale': 'en-GB',
+                'name': 'Banana Bonkers',
+                'description': u'Let your browser eat your bananas',
+                'summary': u'Banana Summary',
+            }
+
+            self.addon = Addon.objects.create(**kwargs)
+            self.addon.name = {'es': u'Banana Bonkers espanole'}
+            self.addon.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            self.addon.summary = {'es': u'resumen banana'}
+            self.addon.save()
+
+        extracted = self._extract()
+
+        assert sorted(extracted['name_translations']) == sorted([
+            {'lang': u'en-GB', 'string': 'Banana Bonkers'},
+            {'lang': u'es', 'string': u'Banana Bonkers espanole'},
+        ])
+        assert sorted(extracted['description_translations']) == sorted([
+            {'lang': u'en-GB', 'string': u'Let your browser eat your bananas'},
+            {
+                'lang': u'es',
+                'string': u'Deje que su navegador coma sus plátanos'
+            },
+        ])
+        assert extracted['name_l10n_english'] == ['Banana Bonkers']
+        assert extracted['name_l10n_spanish'] == [u'Banana Bonkers espanole']
+        assert (extracted['description_l10n_english'] ==
+                [u'Let your browser eat your bananas'])
+        assert (extracted['description_l10n_spanish'] ==
+                [u'Deje que su navegador coma sus plátanos'])
+
     def test_extract_persona(self):
         # Override self.addon with a persona.
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
