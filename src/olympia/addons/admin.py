@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib import admin
 from django.core.urlresolvers import resolve
+from django.utils.html import format_html
+from django.utils.translation import ugettext
 
+from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.admin import staff_admin_site, StaffModelAdmin
 
 from . import models
@@ -89,8 +92,20 @@ class ReplacementAddonForm(forms.ModelForm):
 
 
 class ReplacementAddonAdmin(StaffModelAdmin):
-    list_display = ('guid', 'path')
+    list_display = ('guid', 'path', 'guid_slug', '_url')
     form = ReplacementAddonForm
+
+    def _url(self, obj):
+        return format_html(
+            '<a href="{}">Test</a>',
+            reverse('addons.find_replacement') + '?guid=%s' % obj.guid)
+
+    def guid_slug(self, obj):
+        try:
+            slug = models.Addon.objects.get(guid=obj.guid).slug
+        except models.Addon.DoesNotExist:
+            slug = ugettext(u'- Add-on not on AMO -')
+        return slug
 
 
 admin.site.register(models.DeniedGuid)
