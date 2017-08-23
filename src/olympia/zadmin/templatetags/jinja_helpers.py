@@ -13,7 +13,6 @@ def admin_site_links():
             ('Discovery Pane promo modules',
              reverse('discovery.module_admin')),
             ('Monthly Pick', reverse('zadmin.monthly_pick')),
-            ('Bulk add-on validation', reverse('zadmin.validation')),
             ('Fake mail', reverse('zadmin.mail')),
             ('ACR Reports', reverse('zadmin.compat')),
             ('Email Add-on Developers', reverse('zadmin.email_devs')),
