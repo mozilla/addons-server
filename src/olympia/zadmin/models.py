@@ -10,7 +10,6 @@ from django.db.models import F
 
 from olympia import amo
 from olympia.amo.models import ModelBase
-from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 
@@ -71,21 +70,6 @@ class ValidationJob(ModelBase):
 
     def result_failing(self):
         return self.result_set.exclude(completed=None).filter(errors__gt=0)
-
-    @property
-    def preview_notify_mail_link(self):
-        return self._preview_link(EmailPreviewTopic(self, 'notify'))
-
-    def _preview_link(self, topic):
-        qs = topic.filter()
-        if qs.count():
-            return reverse('zadmin.email_preview_csv', args=[topic.topic])
-
-    def preview_notify_mail(self, *args, **kwargs):
-        EmailPreviewTopic(self, 'notify').send_mail(*args, **kwargs)
-
-    def get_notify_preview_emails(self):
-        return EmailPreviewTopic(self, 'notify').filter()
 
     def is_complete(self, as_int=False):
         completed = self.completed is not None

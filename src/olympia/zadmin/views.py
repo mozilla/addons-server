@@ -1,29 +1,24 @@
 import csv
-import json
-from decimal import Decimal
 
 from django.apps import apps
 from django import http
-from django.db import transaction
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
-from django.utils.html import format_html
 from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
-import django_tables2 as tables
 
-from olympia import amo, core
+from olympia import amo
 from olympia.amo import search
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
+from olympia.applications.models import AppVersion
 from olympia.amo import messages
 from olympia.amo.decorators import (
     any_permission_required, json_view, login_required, post_required)
@@ -33,7 +28,6 @@ from olympia.amo.utils import HttpResponseSendFile, chunked, render
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
-from olympia.editors.utils import ItemStateTable
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
@@ -41,17 +35,14 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint
 from olympia.versions.models import Version
 from olympia.zadmin.forms import SiteEventForm
-from olympia.zadmin.models import SiteEvent, ValidationResult
+from olympia.zadmin.models import SiteEvent
 
 from . import tasks
 from .decorators import admin_required
 from .forms import (
-    AddonStatusForm, BulkValidationForm, CompatForm, DevMailerForm,
-    FeaturedCollectionFormSet, FileFormSet, MonthlyPickFormSet, NotifyForm,
-    YesImSure)
-from .models import (
-    EmailPreviewTopic, ValidationJob, ValidationResultMessage,
-    ValidationResultAffectedAddon)
+    AddonStatusForm, CompatForm, DevMailerForm, FeaturedCollectionFormSet,
+    FileFormSet, MonthlyPickFormSet, YesImSure)
+from .models import EmailPreviewTopic
 
 log = olympia.core.logger.getLogger('z.zadmin')
 
@@ -120,110 +111,9 @@ def fix_disabled_file(request):
 @json_view
 def application_versions_json(request):
     app_id = request.POST['application']
-    f = BulkValidationForm()
-    return {'choices': f.version_choices_for_app_id(app_id)}
 
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-def validation(request, form=None):
-    if not form:
-        form = BulkValidationForm()
-    jobs = ValidationJob.objects.order_by('-created')
-    return render(request, 'zadmin/validation.html',
-                  {'form': form,
-                   'notify_form': NotifyForm(text='validation'),
-                   'validation_jobs': jobs})
-
-
-def find_files(job):
-    # This is a first pass, we know we don't want any addons in the states
-    # STATUS_NULL and STATUS_DISABLED.
-    current = job.curr_max_version.version_int
-    target = job.target_version.version_int
-    addons = (
-        Addon.objects.filter(status__in=amo.VALID_ADDON_STATUSES,
-                             disabled_by_user=False,
-                             versions__apps__application=job.application,
-                             versions__apps__max__version_int__gte=current,
-                             versions__apps__max__version_int__lt=target)
-        # Exclude lang packs and themes.
-        .exclude(type__in=[amo.ADDON_LPAPP,
-                           amo.ADDON_THEME])
-        # Exclude WebExtensions (see #1499).
-        .exclude(versions__files__is_webextension=True)
-        .no_transforms().values_list("pk", flat=True)
-        .distinct())
-    for pks in chunked(addons, 100):
-        tasks.add_validation_jobs.delay(pks, job.pk)
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-@transaction.non_atomic_requests
-def start_validation(request):
-    # FIXME: `@transaction.non_atomic_requests` is a workaround for an issue
-    # that might exist elsewhere too. The view is wrapped in a transaction
-    # by default and because of that tasks being started in this view
-    # won't see the `ValidationJob` object created.
-    form = BulkValidationForm(request.POST)
-    if form.is_valid():
-        job = form.save(commit=False)
-        job.creator = core.get_user()
-        job.save()
-        find_files(job)
-        return redirect(reverse('zadmin.validation'))
-    else:
-        return validation(request, form=form)
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-@post_required
-@json_view
-def job_status(request):
-    ids = json.loads(request.POST['job_ids'])
-    jobs = ValidationJob.objects.filter(pk__in=ids)
-    all_stats = {}
-    for job in jobs:
-        status = job.stats
-        for k, v in status.items():
-            if isinstance(v, Decimal):
-                status[k] = str(v)
-        all_stats[job.pk] = status
-    return all_stats
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-@post_required
-@json_view
-def notify_syntax(request):
-    notify_form = NotifyForm(request.POST)
-    if not notify_form.is_valid():
-        return {'valid': False, 'error': notify_form.errors['text'][0]}
-    else:
-        return {'valid': True, 'error': None}
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-@post_required
-def notify(request, job):
-    job = get_object_or_404(ValidationJob, pk=job)
-    notify_form = NotifyForm(request.POST, text='validation')
-
-    if not notify_form.is_valid():
-        messages.error(request, notify_form)
-    else:
-        tasks.notify_compatibility.delay(job, notify_form.cleaned_data)
-
-    return redirect(reverse('zadmin.validation'))
+    versions = AppVersion.objects.filter(application=app_id)
+    return {'choices': [(v.id, v.version) for v in versions]}
 
 
 @any_permission_required([amo.permissions.ADMIN,
@@ -239,108 +129,6 @@ def email_preview_csv(request, topic):
     for row in rs:
         writer.writerow([r.encode('utf8') for r in row])
     return resp
-
-
-class BulkValidationResultTable(ItemStateTable, tables.Table):
-    message_id = tables.Column(verbose_name=_('Message ID'))
-    message = tables.Column(verbose_name=_('Message'))
-    compat_type = tables.Column(verbose_name=_('Compat Type'))
-    addons_affected = tables.Column(verbose_name=_('Addons Affected'))
-
-    def render_message_id(self, record):
-        detail_url = reverse(
-            'zadmin.validation_summary_detail',
-            args=(record.validation_job.pk, record.id))
-        return format_html(
-            u'<a href="{0}">{1}</a>', detail_url, record.message_id)
-
-
-class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
-    addon = tables.Column(verbose_name=_('Addon'))
-    validation_link = tables.Column(
-        verbose_name=_('Validation Result'),
-        empty_values=())
-
-    def __init__(self, *args, **kwargs):
-        self.results = kwargs.pop('results')
-        super(BulkValidationAffectedAddonsTable, self).__init__(
-            *args, **kwargs)
-
-    def render_addon(self, record):
-        addon = record.addon
-        detail_url = reverse('addons.detail', args=(addon.pk,))
-        return format_html(u'<a href="{0}">{1}</a>', detail_url, addon.name)
-
-    def render_validation_link(self, record):
-        results = [
-            (result.pk, reverse(
-                'devhub.bulk_compat_result',
-                args=(result.file.version.addon_id, result.pk)))
-            for result in self.results
-            if result.file.version.addon_id == record.addon.id]
-
-        return ', '.join(
-            format_html(u'<a href="{0}">{1}</a>', result[1], result[0])
-            for result in results)
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-def validation_summary(request, job_id):
-    messages = ValidationResultMessage.objects.filter(validation_job=job_id)
-    order_by = request.GET.get('sort', 'message_id')
-
-    table = BulkValidationResultTable(data=messages, order_by=order_by)
-
-    page = amo.utils.paginate(request, table.rows, per_page=25)
-    table.set_page(page)
-    return render(request, 'zadmin/validation_summary.html',
-                  {'table': table, 'page': page})
-
-
-@any_permission_required([amo.permissions.ADMIN,
-                          amo.permissions.ADMIN_TOOLS_VIEW,
-                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
-def validation_summary_affected_addons(request, job_id, message_id):
-    affected_addons = list(
-        ValidationResultAffectedAddon.objects
-        .filter(
-            validation_result_message=message_id,
-            validation_result_message__validation_job=job_id))
-
-    # Get rid of duplicates
-    addon_ids = set()
-
-    for affected_addon in affected_addons:
-        if affected_addon.addon_id in addon_ids:
-            affected_addons.remove(affected_addon)
-            continue
-
-        addon_ids.add(affected_addon.addon_id)
-
-    order_by = request.GET.get('sort', 'addon')
-
-    results = (
-        ValidationResult.objects
-        .select_related('file__version')
-        .filter(validation_job=job_id,
-                file__version__addon__in=addon_ids))
-
-    table = BulkValidationAffectedAddonsTable(
-        results=results,
-        data=affected_addons, order_by=order_by)
-
-    page = amo.utils.paginate(request, table.rows, per_page=25)
-    table.set_page(page)
-
-    message = ValidationResultMessage.objects.filter(
-        validation_job=job_id, id=message_id)[0]
-    return render(request, 'zadmin/validation_summary.html',
-                  {'table': table,
-                   'page': page,
-                   'message_id': message.message_id,
-                   'message': message.message})
 
 
 @admin_required
