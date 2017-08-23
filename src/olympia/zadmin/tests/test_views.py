@@ -3,7 +3,6 @@ import csv
 import os
 import json
 from cStringIO import StringIO
-from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
@@ -11,34 +10,25 @@ from django.core.cache import cache
 
 import mock
 from pyquery import PyQuery as pq
-from lxml.html import HTMLParser, fromstring
 
 import olympia
 from olympia import amo
 from olympia.amo.tests import (
-    TestCase, formset, initial, file_factory, user_factory, version_factory)
+    TestCase, formset, initial, user_factory, version_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
-from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.tests import TestCompatibilityReportCronMixin
-from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
-from olympia.users.utils import get_task_user
-from olympia.versions.models import ApplicationsVersions, Version
-from olympia.zadmin import forms, tasks
+from olympia.versions.models import Version
 from olympia.zadmin.forms import DevMailerForm
-from olympia.zadmin.models import (
-    EmailPreviewTopic, ValidationJob, ValidationResult,
-    ValidationResultAffectedAddon, ValidationResultMessage)
-from olympia.zadmin.tasks import updated_versions
-from olympia.zadmin.views import find_files
+from olympia.zadmin.models import EmailPreviewTopic
 
 
 SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
