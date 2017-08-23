@@ -1,3 +1,5 @@
+import csv
+
 from django.apps import apps
 from django import http
 from django.conf import settings
@@ -112,6 +114,21 @@ def application_versions_json(request):
 
     versions = AppVersion.objects.filter(application=app_id)
     return {'choices': [(v.id, v.version) for v in versions]}
+
+
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW])
+def email_preview_csv(request, topic):
+    resp = http.HttpResponse()
+    resp['Content-Type'] = 'text/csv; charset=utf-8'
+    resp['Content-Disposition'] = "attachment; filename=%s.csv" % (topic)
+    writer = csv.writer(resp)
+    fields = ['from_email', 'recipient_list', 'subject', 'body']
+    writer.writerow(fields)
+    rs = EmailPreviewTopic(topic=topic).filter().values_list(*fields)
+    for row in rs:
+        writer.writerow([r.encode('utf8') for r in row])
+    return resp
 
 
 @admin_required
