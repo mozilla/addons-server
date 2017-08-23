@@ -115,14 +115,17 @@ class Extractor(object):
     App = collections.namedtuple('App', 'appdata id min max')
 
     @classmethod
-    def parse(cls, path):
+    def parse(cls, path, minimal=False):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
         certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
         if os.path.exists(manifest_json):
-            data = ManifestJSONExtractor(manifest_json).parse()
+            data = ManifestJSONExtractor(manifest_json).parse(minimal=minimal)
         elif os.path.exists(install_rdf):
-            data = RDFExtractor(path).data
+            # Note that RDFExtractor is a misnomer, it receives the full path
+            # to the file because it might need to read other files than just
+            # the rdf to deal with dictionaries, complete themes etc.
+            data = RDFExtractor(path).parse(minimal=minimal)
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
@@ -180,35 +183,42 @@ class RDFExtractor(object):
         install_rdf_path = os.path.join(path, 'install.rdf')
         self.rdf = rdflib.Graph().parse(open(install_rdf_path))
         self.package_type = None
-        self.find_root()
-        self.data = {
+        self.find_root()  # Will set self.package_type
+
+    def parse(self, minimal=False):
+        data = {
             'guid': self.find('id'),
             'type': self.find_type(),
-            'name': self.find('name'),
             'version': self.find('version'),
-            'homepage': self.find('homepageURL'),
-            'summary': self.find('description'),
-            'is_restart_required': (
-                self.find('bootstrap') != 'true' and
-                self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
-            'apps': self.apps(),
-            'is_multi_package': self.package_type == '32',
+            'is_webextension': False,
         }
-        # We used to simply use the value of 'strictCompatibility' in the rdf
-        # to set strict_compatibility, but now we enable it or not for all
-        # legacy add-ons depending on their type. This will prevent them from
-        # being marked as compatible with Firefox 57.
-        self.data['strict_compatibility'] = (
-            self.data['type'] not in amo.NO_COMPAT)
-        # `experiment` is detected in in `find_type`.
-        self.data['is_experiment'] = self.is_experiment
-        multiprocess_compatible = self.find('multiprocessCompatible')
-        if multiprocess_compatible == 'true':
-            self.data['e10s_compatibility'] = amo.E10S_COMPATIBLE
-        elif multiprocess_compatible == 'false':
-            self.data['e10s_compatibility'] = amo.E10S_INCOMPATIBLE
-        else:
-            self.data['e10s_compatibility'] = amo.E10S_UNKNOWN
+        if not minimal:
+            data.update({
+                'name': self.find('name'),
+                'homepage': self.find('homepageURL'),
+                'summary': self.find('description'),
+                'is_restart_required': (
+                    self.find('bootstrap') != 'true' and
+                    self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
+                'apps': self.apps(),
+                'is_multi_package': self.package_type == '32',
+            })
+            # We used to simply use the value of 'strictCompatibility' in the
+            # rdf to set strict_compatibility, but now we enable it or not for
+            # all legacy add-ons depending on their type. This will prevent
+            # them from being marked as compatible with Firefox 57.
+            data['strict_compatibility'] = (
+                data['type'] not in amo.NO_COMPAT)
+            # `experiment` is detected in in `find_type`.
+            data['is_experiment'] = self.is_experiment
+            multiprocess_compatible = self.find('multiprocessCompatible')
+            if multiprocess_compatible == 'true':
+                data['e10s_compatibility'] = amo.E10S_COMPATIBLE
+            elif multiprocess_compatible == 'false':
+                data['e10s_compatibility'] = amo.E10S_INCOMPATIBLE
+            else:
+                data['e10s_compatibility'] = amo.E10S_UNKNOWN
+        return data
 
     def find_type(self):
         # If the extension declares a type that we know about, use
@@ -394,23 +404,27 @@ class ManifestJSONExtractor(object):
                 'contains an unsupported version?')
             raise forms.ValidationError(msg)
 
-    def parse(self):
-        return {
+    def parse(self, minimal=False):
+        data = {
             'guid': self.guid,
             'type': amo.ADDON_EXTENSION,
-            'name': self.get('name'),
             'version': self.get('version', ''),
-            'homepage': self.get('homepage_url'),
-            'summary': self.get('description'),
-            'is_restart_required': False,
-            'apps': list(self.apps()),
             'is_webextension': True,
-            'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
-            'default_locale': self.get('default_locale'),
-            'permissions': self.get('permissions', []),
-            'content_scripts': self.get('content_scripts', []),
-            'is_static_theme': 'theme' in self.data
         }
+        if not minimal:
+            data.update({
+                'name': self.get('name'),
+                'homepage': self.get('homepage_url'),
+                'summary': self.get('description'),
+                'is_restart_required': False,
+                'apps': list(self.apps()),
+                'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
+                'default_locale': self.get('default_locale'),
+                'permissions': self.get('permissions', []),
+                'content_scripts': self.get('content_scripts', []),
+                'is_static_theme': 'theme' in self.data
+            })
+        return data
 
 
 class MozillaSignedCertificateChecker(object):
@@ -467,6 +481,7 @@ def parse_search(fileorpath, addon=None):
             'type': amo.ADDON_SEARCH,
             'name': data['name'],
             'is_restart_required': False,
+            'is_webextension': False,
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
 
@@ -678,14 +693,23 @@ def extract_xpi(xpi, path, expand=False, verify=True):
     return all_files
 
 
-def parse_xpi(xpi, addon=None, check=True):
-    """Extract and parse an XPI."""
+def parse_xpi(xpi, addon=None, minimal=False):
+    """Extract and parse an XPI. Returns a dict with various properties
+    describing the xpi.
+
+    Will raise ValidationError if something went wrong while parsing.
+
+    If minimal is True, it avoids validation as much as possible (still raising
+    ValidationError for hard errors like I/O or invalid json/rdf) and returns
+    only the minimal set of properties needed to decide what to do with the
+    add-on: guid, version and is_webextension.
+    """
     # Extract to /tmp
     path = tempfile.mkdtemp()
     try:
         xpi = get_file(xpi)
         extract_xpi(xpi, path)
-        xpi_info = Extractor.parse(path)
+        xpi_info = Extractor.parse(path, minimal=minimal)
     except forms.ValidationError:
         raise
     except IOError as e:
@@ -703,10 +727,9 @@ def parse_xpi(xpi, addon=None, check=True):
     finally:
         rm_local_tmp_dir(path)
 
-    if check:
-        return check_xpi_info(xpi_info, addon)
-    else:
+    if minimal:
         return xpi_info
+    return check_xpi_info(xpi_info, addon)
 
 
 def check_xpi_info(xpi_info, addon=None):
@@ -767,18 +790,26 @@ def check_xpi_info(xpi_info, addon=None):
     return xpi_info
 
 
-def parse_addon(pkg, addon=None, check=True):
+def parse_addon(pkg, addon=None, minimal=False):
     """
-    pkg is a filepath or a django.core.files.UploadedFile
-    or files.models.FileUpload.
+    Extract and parse a file path, UploadedFile or FileUpload. Returns a dict
+    with various properties describing the add-on.
+
+    Will raise ValidationError if something went wrong while parsing.
+
+    If minimal is True, it avoids validation as much as possible (still raising
+    ValidationError for hard errors like I/O or invalid json/rdf) and returns
+    only the minimal set of properties needed to decide what to do with the
+    add-on (the exact set depends on the add-on type, but it should always
+    contain at least guid, type, version and is_webextension.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
     else:
-        parsed = parse_xpi(pkg, addon, check)
+        parsed = parse_xpi(pkg, addon, minimal=minimal)
 
-    if addon and addon.type != parsed['type']:
+    if not minimal and addon and addon.type != parsed['type']:
         msg = ugettext(
             "<em:type> in your install.rdf (%s) "
             "does not match the type of your add-on on AMO (%s)")

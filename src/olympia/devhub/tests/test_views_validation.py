@@ -305,8 +305,11 @@ class TestUploadURLs(TestCase):
         self.run_validator.return_value = json.dumps(
             amo.VALIDATOR_SKELETON_RESULTS)
         self.parse_addon = self.patch('olympia.devhub.utils.parse_addon')
-        self.parse_addon.return_value = {'guid': self.addon.guid,
-                                         'version': '1.0'}
+        self.parse_addon.return_value = {
+            'guid': self.addon.guid,
+            'version': '1.0',
+            'is_webextension': False,
+        }
 
     def patch(self, *args, **kw):
         patcher = mock.patch(*args, **kw)

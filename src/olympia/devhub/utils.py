@@ -233,8 +233,8 @@ class Validator(object):
             # metadata that we need to match it against a previous upload
             # from the file itself.
             try:
-                addon_data = parse_addon(file_, check=False)
-                is_webextension = addon_data.get('is_webextension', False)
+                addon_data = parse_addon(file_, minimal=True)
+                is_webextension = addon_data['is_webextension']
             except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))

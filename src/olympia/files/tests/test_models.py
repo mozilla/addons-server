@@ -421,22 +421,41 @@ class TestParseXpi(TestCase):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
 
-    def parse(self, addon=None, filename='extension.xpi'):
+    def parse(self, addon=None, filename='extension.xpi', minimal=None):
         path = 'src/olympia/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
-        return parse_addon(open(xpi), addon)
+        if minimal is None:
+            return parse_addon(open(xpi), addon)
+        else:
+            return parse_addon(open(xpi), addon, minimal=minimal)
 
     def test_parse_basics(self):
-        # Everything but the apps
-        exp = {'guid': 'guid@xpi',
-               'name': 'xpi name',
-               'summary': 'xpi description',
-               'version': '0.1',
-               'homepage': 'http://homepage.com',
-               'type': 1}
+        # Basic test for key properties (more advanced testing is done in other
+        # methods).
+        expected = {
+            'guid': 'guid@xpi',
+            'name': 'xpi name',
+            'summary': 'xpi description',
+            'version': '0.1',
+            'homepage': 'http://homepage.com',
+            'type': 1,
+            'is_webextension': False,
+        }
         parsed = self.parse()
-        for key, value in exp.items():
+        for key, value in expected.items():
             assert parsed[key] == value
+
+    def test_parse_minimal(self):
+        # When minimal=True is passed, ensure we only have those specific
+        # properties.
+        expected = {
+            'guid': 'guid@xpi',
+            'version': '0.1',
+            'type': amo.ADDON_EXTENSION,
+            'is_webextension': False,
+        }
+        parsed = self.parse(minimal=True)
+        assert parsed == expected
 
     def test_parse_permissions(self):
         parsed = self.parse(filename='webextension_no_id.xpi')
@@ -451,6 +470,30 @@ class TestParseXpi(TestCase):
             AppVersion.objects.get(version='3.0'),
             AppVersion.objects.get(version='3.6.*'))]
         assert self.parse()['apps'] == expected
+
+    def test_parse_apps_error_webextension(self):
+        AppVersion.objects.all().delete()
+        with self.assertRaises(forms.ValidationError) as e:
+            assert self.parse(filename='webextension_with_apps_targets.xpi')
+        assert e.exception.messages[0].startswith('Cannot find min/max vers')
+
+        with self.assertRaises(forms.ValidationError) as e:
+            assert self.parse(
+                filename='webextension_with_apps_targets.xpi',
+                minimal=False)
+        assert e.exception.messages[0].startswith('Cannot find min/max vers')
+
+        # When minimal=True is passed, we don't do validation...
+        expected = {
+            'guid': '@webext-with-targets',
+            'type': amo.ADDON_EXTENSION,
+            'version': '1.0',
+            'is_webextension': True,
+        }
+        parsed = self.parse(
+            filename='webextension_with_apps_targets.xpi',
+            minimal=True)
+        assert parsed == expected
 
     def test_parse_max_star(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
@@ -665,13 +708,15 @@ class TestParseAlternateXpi(TestCase, amo.tests.AMOPaths):
 
     def test_parse_basics(self):
         # Everything but the apps.
-        exp = {'guid': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
-               'name': 'Delicious Bookmarks',
-               'summary': 'Access your bookmarks wherever you go and keep '
-                          'them organized no matter how many you have.',
-               'homepage': 'http://delicious.com',
-               'type': amo.ADDON_EXTENSION,
-               'version': '2.1.106'}
+        exp = {
+            'guid': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
+            'name': 'Delicious Bookmarks',
+            'summary': 'Access your bookmarks wherever you go and keep '
+                       'them organized no matter how many you have.',
+            'homepage': 'http://delicious.com',
+            'type': amo.ADDON_EXTENSION,
+            'version': '2.1.106'
+        }
         parsed = self.parse()
         for key, value in exp.items():
             assert parsed[key] == value
@@ -1297,9 +1342,11 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
             'guid': None,
             'name': u'search tool',
             'is_restart_required': False,
+            'is_webextension': False,
             'version': datetime.now().strftime('%Y%m%d'),
             'summary': u'Search Engine for Firefox',
-            'type': amo.ADDON_SEARCH}
+            'type': amo.ADDON_SEARCH
+        }
 
     @mock.patch('olympia.files.utils.extract_search')
     def test_extract_search_error(self, extract_mock):
@@ -1313,13 +1360,13 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
 @mock.patch('olympia.files.utils.parse_search')
 def test_parse_addon(search_mock, xpi_mock):
     parse_addon('file.xpi', None)
-    xpi_mock.assert_called_with('file.xpi', None, True)
+    xpi_mock.assert_called_with('file.xpi', None, minimal=False)
 
     parse_addon('file.xml', None)
     search_mock.assert_called_with('file.xml', None)
 
     parse_addon('file.jar', None)
-    xpi_mock.assert_called_with('file.jar', None, True)
+    xpi_mock.assert_called_with('file.jar', None, minimal=False)
 
 
 def test_parse_xpi():
