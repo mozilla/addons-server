@@ -1,13 +1,9 @@
-import os
-import re
-
 from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.forms.models import BaseModelFormSet
-from django.template import Context, Template, TemplateSyntaxError
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from product_details import product_details
@@ -15,14 +11,12 @@ from product_details import product_details
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.urlresolvers import reverse
-from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
 from olympia.compat.forms import APPVER_CHOICES
 from olympia.lib import happyforms
 from olympia.files.models import File
-from olympia.zadmin.models import SiteEvent, ValidationJob
+from olympia.zadmin.models import SiteEvent
 
 LOGGER_NAME = 'z.zadmin'
 log = olympia.core.logger.getLogger(LOGGER_NAME)
@@ -42,96 +36,6 @@ class DevMailerForm(happyforms.Form):
     preview_only = forms.BooleanField(initial=True, required=False,
                                       label=u'Log emails instead of sending')
     message = forms.CharField(widget=forms.Textarea, required=True)
-
-
-class BulkValidationForm(happyforms.ModelForm):
-    application = forms.ChoiceField(
-        label=_(u'Application'),
-        choices=amo.APPS_CHOICES)
-    curr_max_version = forms.ChoiceField(
-        label=_(u'Current Max. Version'),
-        choices=[('', _(u'Select an application first'))])
-    target_version = forms.ChoiceField(
-        label=_(u'Target Version'),
-        choices=[('', _(u'Select an application first'))])
-    finish_email = forms.CharField(
-        required=False,
-        label=_(u'Email when finished'))
-
-    class Meta:
-        model = ValidationJob
-        fields = ('application', 'curr_max_version', 'target_version',
-                  'finish_email')
-
-    def __init__(self, *args, **kw):
-        kw.setdefault('initial', {})
-        kw['initial']['finish_email'] = settings.FLIGTAR
-        super(BulkValidationForm, self).__init__(*args, **kw)
-        w = self.fields['application'].widget
-        # Get the URL after the urlconf has loaded.
-        w.attrs['data-url'] = reverse('zadmin.application_versions_json')
-
-    def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application=app_id)
-        return [(v.id, v.version) for v in versions]
-
-    def clean_application(self):
-        app_id = int(self.cleaned_data['application'])
-        self.cleaned_data['application'] = app_id
-        choices = self.version_choices_for_app_id(app_id)
-        self.fields['target_version'].choices = choices
-        self.fields['curr_max_version'].choices = choices
-        return self.cleaned_data['application']
-
-    def _clean_appversion(self, field):
-        return AppVersion.objects.get(pk=int(field))
-
-    def clean_curr_max_version(self):
-        return self._clean_appversion(self.cleaned_data['curr_max_version'])
-
-    def clean_target_version(self):
-        return self._clean_appversion(self.cleaned_data['target_version'])
-
-
-path = os.path.join(settings.ROOT, 'src/olympia/zadmin/templates/zadmin')
-texts = {
-    'validation': open('%s/%s' % (path, 'validation-email.txt')).read(),
-}
-
-
-varname = re.compile(r'{{\s*([a-zA-Z0-9_]+)\s*}}')
-
-
-class NotifyForm(happyforms.Form):
-    subject = forms.CharField(widget=forms.TextInput, required=True)
-    preview_only = forms.BooleanField(
-        initial=True, required=False,
-        label=_(u'Log emails instead of sending'))
-    text = forms.CharField(widget=forms.Textarea, required=True)
-    variables = ['{{PASSING_ADDONS}}', '{{FAILING_ADDONS}}', '{{APPLICATION}}',
-                 '{{VERSION}}']
-    variable_names = [varname.match(v).group(1) for v in variables]
-
-    def __init__(self, *args, **kw):
-        kw.setdefault('initial', {})
-        if 'text' in kw:
-            kw['initial']['text'] = texts[kw.pop('text')]
-        kw['initial']['subject'] = ('Add-on compatibility with '
-                                    '{{APPLICATION}} {{VERSION}}')
-        super(NotifyForm, self).__init__(*args, **kw)
-
-    def check_template(self, data):
-        try:
-            Template(data).render(Context({}))
-        except TemplateSyntaxError, err:
-            raise forms.ValidationError(err)
-        return data
-
-    def clean_text(self):
-        return self.check_template(self.cleaned_data['text'])
-
-    def clean_subject(self):
-        return self.check_template(self.cleaned_data['subject'])
 
 
 class FeaturedCollectionForm(happyforms.ModelForm):
