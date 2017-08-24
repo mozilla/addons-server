@@ -128,9 +128,9 @@ function create_auto_pull_request {
 #     exit 0
 # fi
 
-init_environment
+# init_environment
 
-extract_locales
+# extract_locales
 
 commit_and_push
 
