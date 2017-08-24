@@ -126,24 +126,6 @@
 
     {% if addon.takes_contributions %}
       {{ impala_contribution(addon=addon, src='dp-btn-primary') }}
-    {% elif addon.has_profile() and addon.listed_authors %}
-      <div class="notice c author">
-        {% with single_dev = addon.listed_authors|random %}
-          <h3>
-            {% trans count=addon.listed_authors|length,
-                     name=single_dev.name,
-                     url=addon.meet_the_dev_url() %}
-              Meet the Developer: <a href="{{ url }}">{{ name }}</a>
-            {% pluralize %}
-              <a href="{{ url }}">Meet the Developers</a>
-            {% endtrans %}
-          </h3>
-          <img class="avatar" alt="{{ single_dev.name }}" height="64" alt=""
-               width="64" src="{{ single_dev.picture_url }}"/>
-          <p>{{ _("Learn why {0} was created and find out what's next for this "
-                  "add-on.")|format_html(addon.name) }}</p>
-        {% endwith %}
-      </div>
     {% endif %}
   </section>
 </div>
