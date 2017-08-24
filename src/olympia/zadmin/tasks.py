@@ -269,7 +269,7 @@ def fetch_langpack(url, xpi, **kw):
     # will be used as the add-on's default locale if available.
     with translation.override(lang):
         try:
-            data = parse_addon(upload, check=False)
+            data = parse_addon(upload, minimal=True)
 
             allowed_guid = re.compile(r'^langpack-{0}@'
                                       r'[a-z]+\.mozilla\.org$'.format(lang))
