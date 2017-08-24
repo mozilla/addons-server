@@ -20,7 +20,7 @@
 Addons-Server
 =============
 
-Welcome to the Addons Server!  This is the `addons.mozilla.org`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `irc.mozilla.org #amo`_ if you have questions.
+Welcome to the Addons Server!  Please feel free to visit the webpage of the current project hosted on `addons.mozilla.org`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `irc.mozilla.org #amo`_ if you have questions.
 
 Please report bugs here: https://github.com/mozilla/addons/issues or https://github.com/mozilla/addons-server/issues
 You can access the AMO dev environment at https://addons-dev.allizom.org/ and the AMO stage environment at https://addons.allizom.org/
@@ -37,7 +37,7 @@ You can join our mailing list at: https://mail.mozilla.org/listinfo/dev-addons
 Security Bug Reports
 --------------------
 
-This code and its associated production website are included in the Mozilla’s web and services `bug bounty program`_. If you find a security vulnerability, please submit it via the process outlined in the program and `FAQ pages`_. Further technical details about this application are available from the `Bug Bounty Onramp page`_.
+This code and its associated production webpage are included in the Mozilla’s web and services `bug bounty program`_. If you find a security vulnerability, please submit it via the process outlined in the program and `FAQ pages`_. Further technical details about this application are available from the `Bug Bounty Onramp page`_.
 
 Please submit all security-related bugs through Bugzilla using the `web security bug form`_. Never submit security-related bugs through a Github Issue or by email.
 
