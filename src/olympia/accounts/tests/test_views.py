@@ -965,21 +965,22 @@ class TestAccountViewSet(TestCase):
         assert response.data['email'] == self.user.email
         assert response.data['url'] == absolutify(self.user.get_url_path())
 
-    def test_no_private_data_without_auth(self):
-        assert not self.user.is_developer
+    def test_is_not_public_because_not_developer(self):
+        assert not self.user.is_public
         response = self.client.get(self.url)  # No auth.
-        assert response.status_code == 200
-        assert response.data['name'] == self.user.name
-        assert 'email' not in response.data
-        # Not a developer so no account profile url
-        assert response.data['url'] is None
+        assert response.status_code == 404
+        # Login as a random user and check it's still not visible.
+        self.client.login_api(user_factory())
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
-    def test_is_developer_no_auth(self):
+    def test_is_public_because_developer(self):
         addon_factory(users=[self.user])
+        assert self.user.is_developer and self.user.is_public
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
-        assert 'email' not in response.data
+        assert 'email' not in response.data  # Don't expose private data.
         # They are a developer so we should link to account profile url
         assert response.data['url'] == absolutify(self.user.get_url_path())
 
@@ -1002,11 +1003,11 @@ class TestAccountViewSet(TestCase):
                            kwargs={'pk': self.user.username})
         self.test_self_view()
 
-    def test_no_private_data_without_auth_slug(self):
+    def test_is_public_because_developer_slug(self):
         # Check it works the same with an account slug rather than pk.
         self.url = reverse('account-detail',
                            kwargs={'pk': self.user.username})
-        self.test_no_private_data_without_auth()
+        self.test_is_public_because_developer()
 
     def test_admin_view_slug(self):
         # Check it works the same with an account slug rather than pk.

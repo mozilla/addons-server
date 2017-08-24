@@ -245,8 +245,6 @@ class AddonSerializer(serializers.ModelSerializer):
         )
 
     def to_representation(self, obj):
-        # Set this so BaseUserSerializer doesn't need to do a query
-        self.context['is_developer'] = True
         data = super(AddonSerializer, self).to_representation(obj)
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
@@ -454,7 +452,8 @@ class ESBaseAddonSerializer(BaseESSerializer):
         obj.listed_authors = [
             UserProfile(
                 id=data_author['id'], display_name=data_author['name'],
-                username=data_author['username'])
+                username=data_author['username'],
+                is_public=data_author.get('is_public', False))
             for data_author in data_authors
         ]
 

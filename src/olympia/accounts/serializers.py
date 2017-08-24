@@ -36,7 +36,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
             'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
-            'last_login_ip', 'read_dev_agreement', 'is_verified',
+            'last_login_ip', 'read_dev_agreement',
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',

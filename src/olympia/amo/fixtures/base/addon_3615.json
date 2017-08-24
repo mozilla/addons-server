@@ -240,6 +240,7 @@
             "biography": null,
             "deleted": false,
             "username": "55021",
+            "is_public": true,
             "display_name": "55021 \u0627\u0644\u062a\u0637\u0628",
             "created": "2007-03-05 13:09:56",
             "notes": null,

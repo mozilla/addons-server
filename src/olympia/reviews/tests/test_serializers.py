@@ -116,8 +116,8 @@ class TestBaseReviewSerializer(TestCase):
         assert result['is_latest'] is False
 
     def test_with_reply(self):
-        addon = addon_factory()
         reply_user = user_factory()
+        addon = addon_factory(users=[reply_user])
         self.review = Review.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
@@ -138,7 +138,7 @@ class TestBaseReviewSerializer(TestCase):
         assert result['reply']['user'] == {
             'id': reply_user.pk,
             'name': unicode(reply_user.name),
-            # should be the profile for a developer because only they can reply
+            # should be the profile for a developer
             'url': absolutify(reply_user.get_url_path()),
         }
 
@@ -173,10 +173,10 @@ class TestBaseReviewSerializer(TestCase):
         assert result['reply'] is None
 
     def test_with_deleted_reply_but_view_allowing_it_to_be_shown(self):
-        addon = addon_factory()
+        reply_user = user_factory()
+        addon = addon_factory(users=[reply_user])
         self.view.get_addon_object.return_value = addon
         self.view.should_access_deleted_reviews = True
-        reply_user = user_factory()
         self.review = Review.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
