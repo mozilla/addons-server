@@ -1,3 +1,5 @@
+from urllib import urlencode
+
 from django import forms
 from django.contrib import admin
 from django.core.urlresolvers import resolve
@@ -96,9 +98,10 @@ class ReplacementAddonAdmin(StaffModelAdmin):
     form = ReplacementAddonForm
 
     def _url(self, obj):
+        guid_param = urlencode({'guid': obj.guid})
         return format_html(
             '<a href="{}">Test</a>',
-            reverse('addons.find_replacement') + '?guid=%s' % obj.guid)
+            reverse('addons.find_replacement') + '?%s' % guid_param)
 
     def guid_slug(self, obj):
         try:

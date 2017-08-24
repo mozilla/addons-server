@@ -39,21 +39,22 @@ class TestReplacementAddonList(TestCase):
             ['guid', 'path', 'guid_slug', '_url'])
 
     def test_list_values(self):
-        ReplacementAddon.objects.create(guid='@foofoofoo', path='/addon/bar/')
+        # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
+        ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')
         request = RequestFactory().get(
             '/en-US/admin/models/addons/replacementaddon/')
         request.user = UserProfile.objects.get(email='admin@mozilla.com')
         adminview = ReplacementAddonAdmin(
             ReplacementAddon, StaffAdminSite(name='staffadmin'))
         view = adminview.changelist_view(request)
-        assert '@foofoofoo' in view.rendered_content
+        assert '@foofoo&amp;foo' in view.rendered_content
         assert '/addon/bar/' in view.rendered_content
         test_url = '<a href="%s">Test</a>' % (
-            reverse('addons.find_replacement') + '?guid=@foofoofoo')
-        assert test_url in view.rendered_content
+            reverse('addons.find_replacement') + '?guid=%40foofoo%26foo')
+        assert test_url in view.rendered_content, view.rendered_content
         # guid is not on AMO so no slug to show
         assert '- Add-on not on AMO -' in view.rendered_content
         # show the slug when the add-on exists
-        addon_factory(guid='@foofoofoo', slug='slugmcslugface')
+        addon_factory(guid='@foofoo&foo', slug='slugymcslugface')
         view = adminview.changelist_view(request)
-        assert 'slugmcslugface' in view.rendered_content
+        assert 'slugymcslugface' in view.rendered_content
