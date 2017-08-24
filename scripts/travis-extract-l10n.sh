@@ -89,7 +89,7 @@ function extract_locales {
 
 
 function commit_and_push {
-    git add -A .
+    git add -a .
     git commit -m "$MESSAGE"
     git push -q origin
 }
@@ -116,17 +116,17 @@ function create_auto_pull_request {
 
 
 
-# if [ "$TRAVIS_BRANCH" != "master" ]
-# then
-#   echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
-#   exit 0
-# fi
+if [ "$TRAVIS_BRANCH" != "do-not-delete-l10n-extraction" ]
+then
+  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
+  exit 0
+fi
 
-# if [ "GITHUB_TOKEN" == "" ]
-# then
-#     echo "Must provide github token"
-#     exit 0
-# fi
+if [ "GITHUB_TOKEN" == "" ]
+then
+    echo "Must provide github token"
+    exit 0
+fi
 
 init_environment
 
