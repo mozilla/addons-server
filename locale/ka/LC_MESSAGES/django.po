@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-24 19:53+0000\n"
+"PO-Revision-Date: 2017-08-24 20:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2614,7 +2614,7 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "დამატებას გააჩნია პირადი მონაცემების დაცვის დებულება"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
@@ -3541,6 +3541,8 @@ msgstr "გთხოვთ მიუთითოთ შესაბამის�
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
+"თუ თქვენი დამატება მონაცემებს იღებს და აგზავნის მომხმარებლის კომპიუტერიდან, აუცილებელია პირადი მონაცემების დებულება, სადაც განმარტებული იქნება, რა ინფორმაცია იგზავნება და როგორ ხდება მისი "
+"გამოყენება."
 
 msgid "Notes to Reviewer:"
 msgstr "შენიშვნები მიმომხილველისთვის:"
