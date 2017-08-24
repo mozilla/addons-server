@@ -15,6 +15,8 @@ set -o errexit -o nounset
 REV=$(git rev-parse --short HEAD)
 MESSAGE="Extracted l10n messages from $(date -u --iso-8601=date) at $REV"
 BRANCH_NAME="l10n-extract-$(date -u --iso-8601=date)-$REV"
+ROBOT_EMAIL="addons-dev-automation+github@mozilla.com"
+ROBOT_NAME="Mozilla Add-ons Robot"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
@@ -27,6 +29,8 @@ function init_environment {
     echo "machine github.com login $GITHUB_TOKEN password x-oauth-basic" >> ~/.netrc
     chmod 0600 ~/.netrc
 
+    git config --global user.email "$ROBOT_EMAIL"
+    git config --global user.name "$ROBOT_NAME"
     git remote set-url --push origin "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
     git checkout -b "$BRANCH_NAME"
 
