@@ -69,8 +69,14 @@ before_script:
       fi
 
 script:
-  - test $TRAVIS_EVENT_TYPE != "cron" && RUNNING_IN_CI=True tox -v
-  - test $TRAVIS_EVENT_TYPE == "cron" && bash scripts/travis-extract-l10n.sh
+  - |
+    if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
+      RUNNING_IN_CI=True tox -v
+    fi
+  - |
+    if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
+      bash scripts/travis-extract-l10n.sh
+    fi
 
 notifications:
   irc:
