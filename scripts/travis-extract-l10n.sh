@@ -1,11 +1,38 @@
 #! /bin/bash
-
+# This script is supposed to be running automatically via travis cronjobs.
+#
 # This script will do the following:
+#   - prepare git credentials for pull request push
+#   - create a new branch (l10n-extract-2017-08-24-0b3bcaf2ca)
 #   - Update your code
 #   - Extract new strings and push to the .po files
 #
 # This script makes a lot of assumptions and has no error checking, so read it
 # over before you run it.
+
+set -o errexit -o nounset
+
+# if [ "$TRAVIS_BRANCH" != "master" ]
+# then
+#   echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
+#   exit 0
+# fi
+
+# if [ "GITHUB_TOKEN" == "" ]
+# then
+#     echo "Must provide github token"
+#     exit 0
+# fi
+
+
+rev=$(git rev-parse --short HEAD)
+
+echo "machine github.com login $GITHUB_TOKEN password x-oauth-basic" >> ~/.netrc
+chmod 0600 ~/.netrc
+
+git remote set-url --push origin "https://github.com/mozilla/addons-server"
+
+git checkout -b "l10n-extract-$(date -u --iso-8601=date)-$rev"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
@@ -13,17 +40,10 @@ MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
 DEBUG_LOCALES="dbl dbr"
 
-# -------------------------------------------------------------------
+make -f Makefile-docker install_python_dependencies
+make -f Makefile-docker install_node_js
 
-
-if [ ! -d "locale" ]; then
-    echo "Sorry, please run from the root of the project, eg.  ./locale/omg_new_l10n.sh"
-    exit 1
-fi
-
-echo "Alright, here we go..."
-
-./manage.py extract
+python manage.py extract
 
 pushd locale > /dev/null
 
@@ -68,3 +88,7 @@ msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr
 popd > /dev/null
 
 echo "done."
+
+git add -A .
+git commit -m "Extracted l10n messages from $(date -u --iso-8601=date) at $rev"
+git push -q origin

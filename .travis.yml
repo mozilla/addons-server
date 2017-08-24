@@ -7,6 +7,7 @@ python:
 env:
   global:
     - DISPLAY=:99.0
+    - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
   matrix:
   - TOXENV=flake8
   - TOXENV=docs
@@ -68,7 +69,7 @@ before_script:
       fi
 
 script:
-  - RUNNING_IN_CI=True tox -v
+  - bash scripts/travis-extract-l10n.sh
 
 notifications:
   irc:
