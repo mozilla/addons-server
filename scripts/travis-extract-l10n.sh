@@ -32,6 +32,7 @@ function init_environment {
     git config --global user.email "$ROBOT_EMAIL"
     git config --global user.name "$ROBOT_NAME"
     git remote set-url --push origin "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
+    git checkout master
     git checkout -b "$BRANCH_NAME"
 
     make -f Makefile-docker install_python_dependencies
