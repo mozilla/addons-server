@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 19:08+0000\n"
+"PO-Revision-Date: 2017-08-25 21:00+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -6781,24 +6781,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Ali ima Mozilla pravila glede tega, kaj je sprejemljivo za objavo?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Da. Mozillin <a href=\"%(p_url)s\">Pravilnik za dodatke</a> opisuje, kaj je sprejemljivo pošiljanje. Ta pravilnik se lahko spremeni brez predhodnega obvestila. Poleg tega ekipa urednikov AMO "
-"uporablja <a href=\"%(g_url)s\">Vodnik za pregledovanje dodatkov</a> zaradi zagotavljanja ustreznosti dodatka s smernicami za delovanje in varnost."
+"Da. Mozillin %(policy_link_open)sPravilnik za dodatke%(link_close)s opisuje, kaj je sprejemljivo pošiljanje. Ta pravilnik se lahko spremeni brez predhodnega obvestila. Poleg tega ekipa "
+"pregledovalcev dodatkov uporablja %(guide_link_open)sVodnik za pregledovanje dodatkov%(link_close)s zaradi zagotavljanja skladanja dodatka s smernicami za delovanje in varnost."
 
 msgid "How do I submit my add-on?"
 msgstr "Kako pošljem svoj dodatek?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
-"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Za pošiljanje dodatka morate biti na AMO registriran uporabnik. Preden pošljete dodatek, preberite <a "
-"href=\"%(url)s\">Vodnik za pregled dodatkov</a> in se prepričate, da vaš dodatek ustreza našim smernicam."
+"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Za pošiljanje dodatka morate biti na AMO registriran uporabnik. Preden pošljete dodatek, preberite "
+"%(review_policy_link_open)sVodnik za pregled dodatkov%(link_close)s in se prepričate, da vaš dodatek ustreza našim smernicam."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Kateri operacijski sistem naj izberem za svoj dodatek?"
@@ -7070,13 +7070,13 @@ msgstr "Posodobitve dodatkov se preverijo enkrat na dan. V Firefoxu se posodobit
 msgid "Are add-ons safe to install?"
 msgstr "Ali je dodatke varno namestiti?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Pri nameščanju dodatkov bodite previdni, saj lahko poškodujejo vaš računalnik ali kršijo vašo zasebnost. Dodatke, ki so na voljo na tej strani, lahko pregleda Mozillina ekipa pregledovalcev, skrbno "
-"pa tudi spremljamo povratne informacije uporabnikov, zato bi načeloma morali biti varni za namestitev. <a href=\"%(learnmore_url)s\">Več o procesu pregledovanja</a>"
+"pa tudi spremljamo povratne informacije uporabnikov, zato bi načeloma morali biti varni za namestitev. %(learnmore_link_open)sVeč o postopku pregledovanja%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7146,24 +7146,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Kaj pomeni, da je dodatek \"poskusen\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Poskusne dodatke so njihovi razvijalci označili kot nepripravljene za širšo javnost. Še vedno imajo lahko napake ali ne delujejo pravilno. Bodite previdni pri nameščanju poskusnih dodatkov in jih "
-"takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"takoj odstranite, če naletite na težave. %(learnmore_link_open)sVeč o našem postopku pregledov%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Kaj pomeni, če dodatek \"ni pregledan\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Če ste prejeli neposredno povezavo na dodatek, ki še ni pregledan, to pomeni, da trenutno čaka na Mozillin pregled. Bodite previdni pri namestitvi teh dodatkov, saj lahko škodujejo vašemu "
-"računalniku ali zlorabijo vašo zasebnost. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"računalniku ali zlorabijo vašo zasebnost. %(learnmore_link_open)sVeč o našem postopku pregledov%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Koliko stanejo dodatki, če jih hočem kupiti?"
