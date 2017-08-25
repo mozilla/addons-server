@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 14:09+0000\n"
+"PO-Revision-Date: 2017-08-25 14:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1077,11 +1077,12 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versi"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Jika aplikasi yang disokong tidak memerlukan fail manifes, anda masih perlu menyertakannya dengan sifat yang diperlukan seperti yang dinyatakan <a href=\"%(url)s\">di sini</a>."
+msgstr ""
+"Jika aplikasi anda yang disokong tidak memerlukan fail manifes, anda masih perlu sertakan satu sifat seperti yang dinyatakan %(amo_manifests_mdn_link_open)sdi sini%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1641,9 +1642,8 @@ msgid "Additional Resources"
 msgstr "Sumber Tambahan"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Ketahui selanjutnya perihal <a href=\"http://support.mozilla.com/kb/Search+bar\">bar carian</a> dalam {0}"
+msgstr "Ketahui selanjutnya perihal <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">bar carian</a> dalam {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Layari lebih banyak penyedia carian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2247,13 +2247,11 @@ msgstr "Ulasan Tema Lengkap Awalan"
 msgid "Updated Complete Theme Review"
 msgstr "Ulasan Tema Lengkap Dikemaskini"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Ulasan Add-on Moderat"
+msgstr "Semakan Add-on Moderat"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Ulasan Add-on Moderat Dibalikkan"
+msgstr "Moderat Semakan Add-on Diterbalikkan"
 
 msgid "Level 1"
 msgstr "Tahap 1"
@@ -2729,13 +2727,11 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 "Anda sendiri. <span class=\"helptext\">Serahan anda akan serta-merta ditandatangani untuk mengedarkan-sendiri. Anda akan uruskan sendiri kemaskini via updateURL atau kemaskini aplikasi luar.</span>"
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Bermula Firefox 53, ekstensi baru dalam laman web ini hanyalah WebExtensions."
+msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau lebih tinggi. Gunakan maxVersion 56.* atau lebih rendah."
+msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau ke atas. Gunakan maxVersion 56.* atau ke bawah."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
@@ -4031,13 +4027,13 @@ msgstr "<a href=\"%(register)s\">Daftar</a> atau <a href=\"%(login)s\">Daftar Ma
 msgid "Customize Firefox"
 msgstr "Penyesuaian Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Add-ons membolehkan berjuta-juta pengguna Firefox menambahkan pengalaman pelayaran mereka. Jika anda tahu <a href=\"%(html_link)s\"></a>, <a href=\"%(js_link)s\">JavaScript</a>, dan <a "
-"href=\"%(css_link)s\">CSS</a>, anda sudah ada semua kemahiran untuk membina add-on yang bagus."
+"Add-ons membolehkan berjuta-juta pengguna Firefox meningkatkan pengalaman pelayaran mereka. Jika anda tahu "
+"%(html_link_open)sHTML%(link_close)s,%(js_link_open)sJavaScript%(link_close)s,dan%(css_link_open)sCSS%(link_close)s anda sudah ada semua kemahiran untuk membina add-on yang bagus."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Belajar Cara Membina Add-on"
@@ -4288,13 +4284,13 @@ msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan 
 msgid "Give your Theme a name."
 msgstr "Berikan nama untuk Tema anda."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Saya setuju dengan <a href=\"%(agreement_url)s\">Perjanjian Distribusi Add-on Firefox</a> dan maklumat saya dikendalikan seperti yang dijelaskan dalam <a href=\"%(privacy_notice_url)s\">Notis "
-"Privasi Laman Web, Komunikasi dan Kuki</a>."
+"Saya bersetuju dengan %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s dan dengan cara pengendalian maklumat saya seperti yang dijelaskan dalam Laman Web "
+"%(privacy_notice_link_open)s,Notis Privasi Komunikasi dan Kuki %(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Hantar Tema"
@@ -6449,9 +6445,9 @@ msgstr "Rujukan untuk Lesen Sumber Terbuka"
 msgid "Add-on Developer FAQ"
 msgstr "FAQ Pembangun Add-on"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Bagaimana saya boleh membina Add-on?</h3> <p> Mozilla menyediakan dokumentasi tentang bagaimana untuk membina add-on melalui <a href=\"%(url)s\">Rangkaian Pembangun Mozilla</a>. </p>"
+msgstr "<h3>Apakah cara untuk membina Add-on?</h3> <p> Mozilla menyediakan dokumentasi tentang cara untuk membina add-on melalui %(addons_link_open)sRangkaian Pembangun Mozilla%(link_close)s.</p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Apakah fail \".xpi\"?"
@@ -6469,15 +6465,15 @@ msgstr ""
 "XUL (Bahasa Antaramuka Pengguna XML) ialah bahasa asas-XML Mozilla yang membolehkan anda membina aplikasi silang platform yang penuh-ciri. Asas ini menyediakan pengguna dengan widget  antaramuka "
 "seperti butang, menu, alatan bar, pepohon dsb yang boleh digunakan untuk meningkatkan add-on dengan mengubah sebahagian daripada UI pelayar."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>Nota:</strong> XUL dianggap teknologi legasi dalam Firefox, dan add-on yang menggunakan XUL tidak lagi dimuatkan mulai Firefox 57. Sila guna <a href=\"%(webext_url)s\">WebExtensions</a> APIs"
-" untuk membangunkan add-ons baru. Jika anda ada add-on legasi, pertimbangkan untuk memindahkannya ke WebExtensions. Untuk maklumat pemindahan add-on legasi, sila layari<a "
-"href=\"%(portlegacy_url)s\">Pemindahan add-on legasi Firefox</a>."
+"<strong>Nota:</strong> XUL dianggap sebagai teknologi legasi dalam Firefox, dan add-on yang menggunakan XUL tidak akan dimuatkan lagi bermula dengan Firefox 57. Sila gunakan "
+"%(webext_link_open)sWebExtensions%(link_close)sAPIs untuk membangunkan add-ons baru. Jika anda ada add-on legasi, pertimbangkan untuk memindahkannya ke WebExtensions. Untuk maklumat perihal "
+"pemindahan add-on legasi, sila layari %(portlegacy_link_open)sPemindahan add-on legasi Firefox%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Bagaimana saya boleh menguji keserasian dengan versi terkini perisian Mozilla?"
@@ -6574,24 +6570,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Mozilla ada menetapkan polisi berkenaan serahan yang diterima?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ya. <a href=\"%(p_url)s\">Polisi Semakan Add-on</a> Mozilla menjelaskan apa yang dianggap serahan yang boleh diterima. Polisi ini tertakluk kepada perubahan tanpa notis. Di samping itu, Pasukan "
-"Penyemak Add-on menggunakan <a href=\"%(g_url)s\">Panduan Semakan Add-on</a> untuk memastikan bahawa add-on anda memenuhi garis panduan khusus untuk fungsi dan Keselamatan."
+"Ya. %(policy_link_open)sPolisi Semakan Add-on%(link_close)s Mozilla menjelaskan apa yang dianggap serahan yang boleh diterima. Polisi ini tertakluk kepada perubahan tanpa notis. Di samping itu, "
+"Pasukan Penyemak Add-on menggunakan %(guide_link_open)sPanduan Semakan Add-on%(link_close)s untuk memastikan bahawa add-on anda memenuhi garis panduan khusus untuk fungsi dan Keselamatan."
 
 msgid "How do I submit my add-on?"
 msgstr "Bagaimana boleh saya serahkan add-on saya?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "Papan pemuka Alatan Pembangun membolehkan anda memuat naik dan menghantar add-ons ke AMO. Anda mestilah pengguna berdaftar AMO sebelum boleh menghantar add-on. Sebelum menghantar add-on, pastikan "
-"anda sudah membaca <a href=\"%(url)s\">Polisi Semakan Add-on</a> untuk memastikan add-on anda dibuat dengan mematuhi garis panduan kami."
+"anda sudah membaca %(review_policy_link_open)sPolisi Semakan Add-on%(link_close)s untuk memastikan add-on anda dibuat dengan mematuhi garis panduan kami."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Apakah sistem pengoperasian yang saya pilih untuk add-on saya?"
@@ -6869,13 +6865,13 @@ msgstr "Add-ons disemak secara atomatik sekali pada setiap hari. Di Firefox, kem
 msgid "Are add-ons safe to install?"
 msgstr "Adakah add-ons selamat untuk dipasang?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Sila berhati-hati apabila memasang add-ons, kerana mungkin boleh membahayakan komputer atau menyalahi privasi anda. Add-ons yang tersedia dalam laman ini tertakluk kepada semakan pasukan penyemak "
-"Mozilla, dan maklum balas pengguna dipantau dengan teliti, maka secara umumnya selamat untuk dipasang. <a href=\"%(learnmore_url)s\">Ketahui selanjutnya perihal proses semakan kami</a>"
+"Mozilla, dan maklum balas pengguna dipantau dengan teliti, maka secara umumnya selamat untuk dipasang.%(learnmore_link_open)sKetahui selanjutnya perihal proses semakan kami%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6944,24 +6940,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Apakah maksud add-on sebagai \"eksperimen\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
-"Add-ons eksperimen telah ditandakan oleh pembangun sebagai tidak sesuai untuk pengguna umum.  Mungkin masih ada pepijat atau tidak berfungsi dengan baik. Berhati-hati apabila memasang add-on "
-"eksperimen dan nyahpasang dengan segera jika anda mengalami masalah. <a href=\"%(url)s\">Ketahui selanjutnya perihal proses semakan kami</a></dd>"
+"Add-ons eksperimen telah ditandakan oleh pembangun sebagai tidak sesuai untuk pengguna umum.   Mungkin masih ada pepijat atau tidak berfungsi dengan baik. Berhati-hati apabila memasang add-on "
+"eksperimen dan nyahpasang dengan segera jika anda mengalami masalah. %(learnmore_link_open)sKetahui selanjutnya perihal proses semakan kami%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Apakah maksud add-on sebagai \"tidak disemak\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Jika anda terima pautan terus ke add-on yang menyatakan masih belum disemak, ini bermakna add-on ini sedang menunggu semakan oleh Mozilla. Berhati-hati apabila memasang add-ons ini, kerana boleh "
-"membahayakan komputer anda atau menyalahi privasi anda. <a href=\"%(url)s\">Ketahui selanjutnya perihal proses semakan kami</a></dd>"
+"membahayakan komputer anda atau menyalahi privasi anda. %(learnmore_link_open)sKetahui selanjutnya perihal proses semakan kami%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Berapa kos pembelian add-ons?"
