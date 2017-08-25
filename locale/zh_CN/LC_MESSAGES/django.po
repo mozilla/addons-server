@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 20:28+0000\n"
+"PO-Revision-Date: 2017-08-25 20:52+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1579,7 +1579,7 @@ msgstr "下载语言包"
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
-msgstr ""
+msgstr "安装一个词典类型的附加组件将为您的 %(app_name)s 拼写检查器添加一个新的语言选项，帮助您在填写 Web 表单时检查拼写。语言包附加组件则更改整个应用程序的界面语言。"
 
 msgid "Available in your locale"
 msgstr "您的语言下可用的"
@@ -1636,7 +1636,7 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)s制作你自己的搜索工具%(amo_mdn_link_close)s"
 
 msgid "Most Popular Extensions"
 msgstr "最热门的扩展"
@@ -3489,7 +3489,7 @@ msgid "Summary:"
 msgstr "概述："
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "此摘要应清楚阐述您的附加组件的作用。它将在信息页面和搜索结果中显示，审核员也将基于它来测试您的附加组件。"
 
 msgid "This add-on is experimental"
 msgstr "这个附加组件为实验性"
