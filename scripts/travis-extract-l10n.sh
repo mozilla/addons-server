@@ -117,11 +117,11 @@ function create_auto_pull_request {
 
 
 
-if [ "$TRAVIS_BRANCH" != "do-not-delete-l10n-extraction" ]
-then
-  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
-  exit 0
-fi
+#if [ "$TRAVIS_BRANCH" != "do-not-delete-l10n-extraction" ]
+#then
+#  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
+#  exit 0
+#fi
 
 if [ "GITHUB_TOKEN" == "" ]
 then
