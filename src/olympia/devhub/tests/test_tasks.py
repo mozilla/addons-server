@@ -621,8 +621,36 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'warning'
         assert validation['errors'] == 0
 
+    def test_only_consider_beta_for_downgrade_error_if_uploading_a_beta(self):
+        """Make sure we don't raise the webextension downgrade error when
+        uploading a public legacy version we have a beta webext."""
+        # Create a beta webext with a version number higher than the existing
+        # legacy, but lower than the legacy we're about to upload...
+        version_factory(addon=self.addon, version='1.0b1', file_kw={
+            'is_webextension': True, 'status': amo.STATUS_BETA,
+        })
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+        tasks.validate(upload, listed=True)
+        upload.refresh_from_db()
+        assert upload.processed_validation['errors'] == 0
+        assert upload.valid
+
+        # Do consider previous betas when uploading a beta, though.
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'beta-extension.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+        tasks.validate(upload, listed=True)
+        upload.refresh_from_db()
+        assert not upload.valid
+        expected = ['validation', 'messages', 'webext_downgrade']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert upload.processed_validation['messages'][0]['type'] == 'error'
+
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
-        """Make sure there's no workaround the downgrade error."""
+        """Make sure even deleting the previous version does not prevent
+        the downgrade error."""
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
 

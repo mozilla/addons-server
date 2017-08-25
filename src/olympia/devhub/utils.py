@@ -6,13 +6,13 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 from celery import chain
-from validator.version import Version as VersionString
 
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import is_beta, parse_addon
+from olympia.versions.compare import version_int
 
 from . import tasks
 
@@ -176,41 +176,41 @@ def find_previous_version(addon, file, version_string, channel):
     if not addon or not version_string:
         return
 
-    version = VersionString(version_string)
-
-    # Find any previous version of this add-on with the correct status
-    # to match the given file.
-    files = File.objects.filter(version__addon=addon, version__channel=channel)
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED and
-            (file and file.status != amo.STATUS_BETA)):
-        # TODO: We'll also need to implement this for FileUploads
-        # when we can accurately determine whether a new upload
-        # is a beta version.
-        files = files.filter(status=amo.STATUS_PUBLIC)
-    else:
-        files = files.filter(Q(status=amo.STATUS_PUBLIC) |
-                             Q(status=amo.STATUS_BETA, is_signed=True))
+    is_version_beta = is_beta(version_string)
+    statuses = [amo.STATUS_PUBLIC]
+    if is_version_beta:
+        # Only include beta versions if the version string passed corresponds
+        # to a beta version. This is not perfect because even if the version
+        # string *looks* like a beta, the developer might want to use it as a
+        # regular listed upload, and in that case including previous betas in
+        # the list is wrong, but it's the best we can do when we're dealing
+        # with a FileUpload, since it's too early to know what the developer
+        # intends to do.
+        statuses.append(amo.STATUS_BETA)
+    # Find all previous files of this add-on with the correct status and in
+    # the right channel.
+    qs = File.objects.filter(
+        version__addon=addon, version__channel=channel, status__in=statuses)
 
     if file:
-
         # Add some extra filters if we're validating a File instance,
         # to try to get the closest possible match.
-        files = (files.exclude(pk=file.pk)
-                 # Files which are not for the same platform, but have
-                 # other files in the same version which are.
-                 .exclude(~Q(platform=file.platform) &
-                          Q(version__files__platform=file.platform))
-                 # Files which are not for either the same platform or for
-                 # all platforms, but have other versions in the same
-                 # version which are.
-                 .exclude(~Q(platform__in=(file.platform,
-                                           amo.PLATFORM_ALL.id)) &
-                          Q(version__files__platform=amo.PLATFORM_ALL.id)))
+        qs = (qs.exclude(pk=file.pk)
+              # Files which are not for the same platform, but have
+              # other files in the same version which are.
+                .exclude(~Q(platform=file.platform) &
+                         Q(version__files__platform=file.platform))
+              # Files which are not for either the same platform or for
+              # all platforms, but have other versions in the same
+              # version which are.
+                .exclude(~Q(platform__in=(file.platform,
+                                          amo.PLATFORM_ALL.id)) &
+                         Q(version__files__platform=amo.PLATFORM_ALL.id)))
 
-    for file_ in files.order_by('-id'):
+    vint = version_int(version_string)
+    for file_ in qs.order_by('-id'):
         # Only accept versions which come before the one we're validating.
-        if VersionString(file_.version.version) < version:
+        if file_.version.version_int < vint:
             return file_
 
 
