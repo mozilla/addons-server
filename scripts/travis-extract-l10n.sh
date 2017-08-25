@@ -90,8 +90,7 @@ function extract_locales {
 
 
 function commit_and_push {
-    git add -a .
-    git commit -m "$MESSAGE"
+    git commit -a -m "$MESSAGE"
     git push -q origin
 }
 
