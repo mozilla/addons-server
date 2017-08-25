@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 18:49+0000\n"
+"PO-Revision-Date: 2017-08-25 19:08+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1126,9 +1126,9 @@ msgstr "Veljavne različice aplikacije"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Dodatki poslani v dodatke Mozilla morajo meti datoteko manifesta s podporo za vsaj eno od spodnjih aplikacij. Za te aplikacije so dovoljene damo spodnje različice."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Upoštevajte, da WebExtensions v <a href=\"%(version_url)s\">strict_min_version</a> ne sme vsebovati \"*\"."
+msgstr "Upoštevajte, da WebExtensions v%(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s ne sme vsebovati \"*\"."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1136,11 +1136,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Različice"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Če vaša podprta aplikacija datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene <a href=\"%(url)s\">tukaj</a>."
+msgstr "Če vaš podprt program datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene %(amo_manifests_mdn_link_open)stukaj%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1676,7 +1676,7 @@ msgstr "Prenesi jezikovni paket"
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
-msgstr ""
+msgstr "Z namestitvijo slovarja dodate nov možen jezik v %(app_name)sov črkovalnik, ki pri izpolnjevanju obrazcev preverja vaše črkovanje. Jezikovni paketi spremenijo jezik celotnega programa."
 
 msgid "Available in your locale"
 msgstr "Na razpolago v slovenščini"
@@ -1727,16 +1727,15 @@ msgid "Additional Resources"
 msgstr "Dodatni viri"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Preberite več o <a href=\"http://support.mozilla.com/kb/Search+bar\">iskalni vrstici</a> v {0}"
+msgstr "Preberite več o {0}ovi <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">iskalni vrstici</a>"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Brskajte po še več iskalnikih na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sUstvarite lastno%(amo_mdn_link_close)s orodje za iskanje"
 
 msgid "Most Popular Extensions"
 msgstr "Najbolj priljubljene razširitve"
@@ -2354,7 +2353,6 @@ msgstr "Posodobljen pregled celotne teme"
 msgid "Moderated Add-on Review"
 msgstr "Moderirana ocena dodatka"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
 msgstr "Moderacija pregleda dodatka je bila obrnjena"
 
@@ -4160,13 +4158,13 @@ msgstr "<a href=\"%(register)s\">Registrirajte se</a> ali <a href=\"%(login)s\">
 msgid "Customize Firefox"
 msgstr "Prilagodite si Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Dodatki omogočajo milijonom Firefoxovih uporabnikov boljše brskanje. Če znate <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> in <a href=\"%(css_link)s\">CSS</a>, že imate"
-" vse potrebno znanje za ustvarjanje imenitnih dodatkov."
+"Dodatki omogočajo milijonom Firefoxovih uporabnikov boljše brskanje. Če znate %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s in %(css_link_open)sCSS%(link_close)s, že"
+" imate vse potrebno znanje za ustvarjanje imenitnih dodatkov."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučite se ustvariti dodatek"
@@ -4426,13 +4424,13 @@ msgstr "S temami za ozadje si lahko hitro in enostavno prilagodite videz svojega
 msgid "Give your Theme a name."
 msgstr "Poimenujte svojo temo."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Strinjam se s <a href=\"%(agreement_url)s\">Sporazumom o razširjanju dodatkov za Firefox</a> in obravnavo mojih podatkov, kot je to opisano v <a href=\"%(privacy_notice_url)s\">Obvestilu o "
-"zasebnosti za spletne strani, komunikacije in piškotke</a>."
+"Strinjam se s %(agreement_link_open)sSporazumom o razširjanju dodatkov za Firefox%(link_close)s in z obravnavo mojih podatkov, kot je to opisano v %(privacy_notice_link_open)sObvestilu o zasebnosti "
+"za spletne strani, komunikacije in piškotke%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Pošlji Temo"
@@ -6658,9 +6656,9 @@ msgstr "Reference za odprto-kodne licence"
 msgid "Add-on Developer FAQ"
 msgstr "Pogosta vprašanja za razvijalce dodatkov"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Kako izgradim dodatek?</h3> <p> Mozilla dobavlja dokumentacijo o izgradnji dodatkov preko omrežja <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+msgstr "<h3>Kako ustvarim dodatek?</h3> <p> Mozilla ponuja dokumentacijo o razvijanju dodatkov preko omrežja %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Kaj je datoteka \".xpi\"?"
@@ -6678,15 +6676,15 @@ msgstr ""
 "XUL (XML User Interface Language) je Mozillin jezik na osnovi XML, ki vam omogoča ustvariti aplikacije z bogato funkcionalnostjo in neodvisno od platforme. Ponuja komponente, kot so gumbi, meniji, "
 "orodne vrstice, drevesa itd., s katerimi lahko obogatite dodatke tako, da spremenite dele uporabniškega vmesnika brskalnika."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>Opomba:</strong> XUL velja v Firefoxu za zastarelo tehnologijo, dodatki na osnovi XUL pa se v Firefoxu 57 in novejših ne bodo več naložili. Za razvoj novih dodatkov uporabljajte API-je <a "
-"href=\"%(webext_url)s\">WebExtensions</a>. Če razvijate zastarel dodatek, računajte s selitvijo na WebExtensions. Za informacije o selitvi zastarelega dodatka obiščite stran <a "
-"href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a>."
+"<strong>Opomba:</strong> XUL velja v Firefoxu za zastarelo tehnologijo, dodatki na osnovi XUL pa se v Firefoxu 57 in novejših ne bodo več naložili. Za razvoj novih dodatkov uporabljajte API-je "
+"%(webext_link_open)sWebExtensions%(link_close)s. Če razvijate zastarel dodatek, računajte s selitvijo na WebExtensions. Za informacije o selitvi zastarelega dodatka obiščite stran "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Kako preveriti združljivost z najnovejšo različico programske opreme Mozilla?"
