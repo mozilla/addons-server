@@ -13,6 +13,11 @@
   <h2>{{ addon.name }}</h2>
 </header>
 <section class="primary payments devhub-form" role="main">
+  <p class="error">
+    {{ _('This page will soon be removed in favor of the Contributions URL field in '
+         'the main Edit page. Make sure to use that field to keep Contributions '
+         'enabled.') }}
+  </p>
   {% set contrib = addon.takes_contributions and addon.has_full_profile() or errors %}
   {% if contrib and not errors %}
     <div id="status-bar">

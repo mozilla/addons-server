@@ -1,6 +1,7 @@
+import os
 from datetime import datetime
 from decimal import Decimal
-import os
+from urlparse import urlsplit
 
 from django import forms
 from django.conf import settings
@@ -132,13 +133,14 @@ class AddonFormBasic(AddonFormBase):
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     tags = forms.CharField(required=False)
+    contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
 
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'tags', 'is_experimental',
-                  'requires_payment')
+                  'requires_payment', 'contributions')
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
@@ -149,6 +151,17 @@ class AddonFormBasic(AddonFormBase):
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
+
+    def clean_contributions(self):
+        if not self.cleaned_data['contributions']:
+            return self.cleaned_data['contributions']
+        hostname = urlsplit(self.cleaned_data['contributions']).hostname
+        for domain in amo.VALID_CONTRIBUTION_DOMAINS:
+            if hostname.endswith(domain):
+                return self.cleaned_data['contributions']
+        raise forms.ValidationError(ugettext(
+            'URL domain must be one of [%s], or a subdomain.' % ', '.join(
+                amo.VALID_CONTRIBUTION_DOMAINS)))
 
     def save(self, addon, commit=False):
         if self.fields.get('tags'):

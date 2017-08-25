@@ -318,6 +318,7 @@ class Addon(OnChangeMixin, ModelBase):
         max_length=255, blank=True, null=True,
         help_text="For dictionaries and language packs")
 
+    contributions = models.URLField(max_length=255, blank=True)
     wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
     charity = models.ForeignKey('Charity', null=True)

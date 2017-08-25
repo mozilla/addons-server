@@ -173,6 +173,22 @@
               {% endif %}
             </td>
           </tr>
+          <tr>
+            <th>
+              {{ tip(_("Contributions URL"),
+                     _("If you would like to request monetary contributions "
+                       "from your users, set this to a page where they can do so.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
+                <p>{{ form.contributions }}</p>
+                {{ form.contributions.errors }}
+              {% else %}
+                {{ addon.contributions }}
+              {% endif %}
+            </td>
+          </tr>
           {% endif %}
         </tbody>
       </table>

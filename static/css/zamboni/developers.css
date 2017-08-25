@@ -66,7 +66,8 @@ ul.refinements:last-child {
 }
 
 #trans-tags input,
-#trans-name input {
+#trans-name input,
+#id_contributions {
     width: 80%;
 }
 

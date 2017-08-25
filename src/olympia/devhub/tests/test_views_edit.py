@@ -627,6 +627,42 @@ class TestEditBasicListed(BaseTestEditBasic):
             assert pq(
                 response.content)('#l10n-menu').attr('data-default') == 'fr'
 
+    def test_contributions_url_not_url(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='foooo')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions', 'Enter a valid URL.')
+
+    def test_contributions_url_not_valid_domain(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://foo.baa/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions',
+            'URL domain must be one of [%s], or a subdomain.' %
+            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
+
+    def test_contributions_url_valid_domain(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://paypal.me/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == 'http://paypal.me/'
+
+    def test_contributions_url_valid_domain_sub(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://sub.paypal.me/random/?path')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == (
+            'http://sub.paypal.me/random/?path')
+
 
 class TestEditMedia(BaseTestEdit):
     __test__ = True
