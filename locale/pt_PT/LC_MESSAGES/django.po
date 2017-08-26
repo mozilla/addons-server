@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 20:55+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2017-08-26 15:02+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -485,13 +485,13 @@ msgstr "Política de privacidade"
 msgid "Report Abuse"
 msgstr "Reportar abuso"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Se suspeita que este extra <a href=\"%(url)s\">viola as nossas políticas</a> ou tem problemas de segurança ou privacidade, por favor use o formulário abaixo para descrever as suas preocupações. Por "
-"favor, não use esse formulário para qualquer outro motivo."
+"Se suspeita que este extra viola %(amo_policy_link_open)sas nossas políticas%(link_close)s ou tem problemas de segurança ou de privacidade, por favor utilize o formulário abaixo para descrever as "
+"suas preocupações. Por favor, não utilize este formulário por qualquer outro motivo."
 
 msgid "Send Report"
 msgstr "Enviar relatório"
@@ -1092,9 +1092,9 @@ msgstr ""
 "Extras submetidos no Extras da Mozilla necessitam de ter um ficheiro manifest com pelo menos uma das aplicações suportadas abaixo. Apenas as versões listadas abaixo são permitidas para estas "
 "aplicações."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Por favor esteja ciente que WebExtensions não aceita um \"*\" em <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Por favor, esteja ciente que a WebExtensions não aceita um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
