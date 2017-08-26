@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-26 10:25+0000\n"
+"PO-Revision-Date: 2017-08-26 11:42+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2799,9 +2799,8 @@ msgstr ""
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettate solo nuove estensioni realizzate con WebExtensions."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Le estensioni che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
+msgstr "I componenti aggiuntivi che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -3625,6 +3624,8 @@ msgstr "Sommario:"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+"Questo riassunto deve illustrare chiaramente la funzione del componente aggiuntivo, in quanto comparirà in elenchi e risultati di ricerca oltre ad essere utilizzato dai revisori come riferimento per"
+" eseguire i test necessari sul componente stesso."
 
 msgid "This add-on is experimental"
 msgstr "Questo componente aggiuntivo è sperimentale"
@@ -4147,13 +4148,13 @@ msgstr "<a href=\"%(login)s\">Accedi</a> o <a href=\"%(register)s\">Registrati</
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a href=\"%(html_link)s\">HTML</a>, <a "
-"href=\"%(js_link)s\">JavaScript</a> e <a href=\"%(css_link)s\">CSS</a>, sei già in possesso di tutti gli strumenti necessari per realizzare uno straordinario componente aggiuntivo."
+"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi %(html_link_open)sHTML%(link_close)s, "
+"%(js_link_open)sJavaScript%(link_close)s e %(css_link_open)sCSS%(link_close)s, sei già in possesso di tutti gli strumenti necessari per realizzare uno straordinario componente aggiuntivo."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Scopri come realizzare un componente aggiuntivo"
@@ -4409,13 +4410,13 @@ msgstr ""
 msgid "Give your Theme a name."
 msgstr "Scegli un nome per il tuo tema."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Accetto il <a href=\"%(agreement_url)s\">Contratto di distribuzione per i componenti aggiuntivi di Firefox</a> e consento il trattamento dei miei dati personali secondo quanto descritto nell’<a "
-"href=\"%(privacy_notice_url)s\">Informativa sulla privacy per i siti web, le comunicazioni e i cookie</a>."
+"Accetto il %(agreement_link_open)sContratto di distribuzione per i componenti aggiuntivi di Firefox%(link_close)s e consento il trattamento dei miei dati personali secondo quanto descritto "
+"nell’%(privacy_notice_link_open)sInformativa sulla privacy per i siti web, le comunicazioni e i cookie%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Carica tema"
@@ -6603,11 +6604,11 @@ msgstr "Riferimenti per le licenze Open Source"
 msgid "Add-on Developer FAQ"
 msgstr "FAQ per gli sviluppatori di componenti aggiuntivi"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr ""
-"<h3>Come si sviluppa un componente aggiuntivo?</h3><p>Mozilla mette a disposizione la documentazione per sviluppare i componenti aggiuntivi tramite <a href=\"%(url)s\">Mozilla Developer "
-"Network</a>.</p>"
+"<h3>Come si sviluppa un componente aggiuntivo?</h3><p>Mozilla mette a disposizione la documentazione per sviluppare i componenti aggiuntivi tramite %(addons_link_open)sMozilla Developer "
+"Network%(link_close)s.</p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Che cos’è un file XPI?"
@@ -6625,15 +6626,15 @@ msgstr ""
 "XUL (XML User Interface Language) è un linguaggio sviluppato da Mozilla e basato su XML, che permette di creare applicazioni multipiattaforma molto complesse. Esso fornisce gli oggetti "
 "dell’interfaccia, come pulsanti, menu, barre degli strumenti, alberi, ecc che possono essere utilizzati per migliorare i componenti aggiuntivi modificando parti dell’interfaccia utente del browser."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 "<strong>Nota:</strong> XUL è considerata una tecnologia obsoleta in Firefox e i componenti aggiuntivi che la utilizzano smetteranno di funzionare a partire da Firefox 57. Per lo sviluppo di nuovi "
-"componenti aggiuntivi è consigliato utilizzare API <a href=\"%(webext_url)s\">WebExtension</a>. Per maggiori informazioni sulla migrazione di un componente aggiuntivo che utilizza tecnologie "
-"obsolete, fare riferimento a <a href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a>."
+"componenti aggiuntivi è consigliato utilizzare API %(webext_link_open)sWebExtension%(link_close)s. Per maggiori informazioni sulla migrazione di un componente aggiuntivo che utilizza tecnologie "
+"obsolete, fare riferimento a %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Come posso fare il test di compatibilità con l’ultima versione di un programma Mozilla?"
@@ -6730,25 +6731,25 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Mozilla ha una politica definita riguardo ai requisiti che un componente aggiuntivo deve possedere per essere accettabile?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sì, i <a href=\"%(p_url)s\">criteri per i componenti aggiuntivi</a> Mozilla descrivono le caratteristiche che un componente aggiuntivo deve possedere per essere considerato consono. Questi criteri "
-"possono essere soggetti a cambiamenti senza alcun preavviso. Il team di revisori AMO fa inoltre riferimento alla <a href=\"%(g_url)s\">Guida per revisori</a> per determinare se un componente "
-"aggiuntivo rispetti le linee guida in materia di funzionalità e sicurezza."
+"Sì, i %(policy_link_open)scriteri per i componenti aggiuntivi%(link_close)s Mozilla descrivono le caratteristiche che un componente aggiuntivo deve possedere per essere considerato consono. Questi "
+"criteri possono essere soggetti a cambiamenti senza alcun preavviso. Il team di revisori AMO fa inoltre riferimento alla %(guide_link_open)sGuida per revisori%(link_close)s per determinare se un "
+"componente aggiuntivo rispetti le linee guida in materia di funzionalità e sicurezza."
 
 msgid "How do I submit my add-on?"
 msgstr "Come posso inviare un componente aggiuntivo?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "La dashboard Strumenti di sviluppo consente di candidare i componenti aggiuntivi ad AMO. Per caricare un componente aggiuntivo devi essere un utente registrato. Prima di caricare un componente "
-"aggiuntivo leggi la <a href=\"%(url)s\">Guida per revisori</a> per assicurarti che il tuo componente segua le linee guida adottate dai revisori."
+"aggiuntivo leggi la %(review_policy_link_open)sGuida per revisori%(link_close)s per assicurarti che il tuo componente segua le linee guida adottate dai revisori."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Che sistema operativo scelgo per il mio componente aggiuntivo?"
@@ -7037,14 +7038,14 @@ msgstr ""
 msgid "Are add-ons safe to install?"
 msgstr "I componenti aggiuntivi sono sicuri da installare?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Esercita cautela ogni volta che installi un componente aggiuntivo, in quanto esso potrebbe danneggiare il dispositivo o violare la privacy. I componenti aggiuntivi pubblicati su questo sito "
 "normalmente vengono sottoposti a un processo di revisione da parte del team di revisori di Mozilla, inoltre anomalie sospette segnalate dagli utenti vengono attentamente monitorate, per cui "
-"installare un componente aggiuntivo da AMO è generalmente più sicuro. <a href=\"%(learnmore_url)s\">Ulteriori informazioni sul processo di revisione</a>"
+"installare un componente aggiuntivo da AMO è generalmente più sicuro. %(learnmore_link_open)sUlteriori informazioni sul processo di revisione%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7114,24 +7115,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Che cosa significa che un componente aggiuntivo è “sperimentale”?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "“Sperimentale” è un'etichetta usata dagli sviluppatori per segnalare i componenti non ancora pronti per la distribuzione al pubblico. Tali componenti potrebbero presentare bug o malfunzionamenti. "
-"Utilizzali con cautela e disinstallali se riscontri problemi. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
+"Utilizzali con cautela e disinstallali se riscontri problemi. %(learnmore_link_open)sUlteriori informazioni sul processo di revisione%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Che cosa significa se un componente aggiuntivo è “non revisionato”?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Potresti ricevere un link diretto per scaricare un componente aggiuntivo non ancora revisionato da Mozilla. Utilizza questi componenti aggiuntivi con cautela in quanto potrebbero danneggiare il tuo "
-"computer o la tua privacy. Ti consigliano di installare solo componenti aggiuntivi sottoposti a revisione. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
+"computer o la tua privacy. Ti consigliamo di installare solo componenti aggiuntivi sottoposti a revisione. %(learnmore_link_open)sUlteriori informazioni sul processo di revisione%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Quanto costa acquistare un componente aggiuntivo?"
