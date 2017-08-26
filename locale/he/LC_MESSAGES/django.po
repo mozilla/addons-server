@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-26 17:29+0000\n"
+"PO-Revision-Date: 2017-08-26 17:50+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -720,9 +720,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "תוספת זו יכולה:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות (לדוגמה: תוספת לניהול לשוניות תבקש הרשאה לגישה למערכת הלשוניות של הדפדפן שלך)."
+msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות. מכיוון שיש בבעלותך שליטה מלאה על ה־Firefox שלך, יש לך האפשרות לאשר או לדחות את הבקשות האלו."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
@@ -1719,9 +1718,8 @@ msgid "Additional Resources"
 msgstr "משאבים נוספים"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "מידע נוסף על <a href=\"http://support.mozilla.com/kb/Search+bar\">סרגל החיפוש</a> ב־{0}"
+msgstr "מידע נוסף על <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">סרגל החיפוש</a> ב־{0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "עיון במאגר ספקי חיפוש גדול אפילו יותר בכתובת <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
