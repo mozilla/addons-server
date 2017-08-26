@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-26 17:50+0000\n"
+"PO-Revision-Date: 2017-08-26 17:53+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2814,9 +2814,8 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "החל מ־Firefox 53, הרחבות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
+msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
@@ -3223,9 +3222,8 @@ msgstr "תוספת זו הינה ניסיונית."
 msgid "This add-on is ready for general use."
 msgstr ""
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "נדרשת הפעלה מחדש"
+msgstr "תשלום נדרש?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -4004,9 +4002,8 @@ msgstr "בלוג"
 msgid "Contact Us"
 msgstr "יצירת קשר"
 
-#, fuzzy
 msgid "Policies"
-msgstr "מדיניות תוספות"
+msgstr "מדיניות"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4983,9 +4980,8 @@ msgstr "דיווחים על שימוש לרעה"
 msgid "View Privacy Policy"
 msgstr "צפייה בהצהרת הפרטיות"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "נדרשת הפעלה מחדש"
+msgstr "תשלום נדרש"
 
 msgid "EULA"
 msgstr "הסכם רישיון"
