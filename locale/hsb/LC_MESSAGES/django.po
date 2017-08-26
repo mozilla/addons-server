@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-26 10:29+0000\n"
+"PO-Revision-Date: 2017-08-26 10:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -499,13 +499,13 @@ msgstr "Prawidła priwatnosće"
 msgid "Report Abuse"
 msgstr "Znjewužiwanje zdźělić"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Jeli sej mysliće, zo so tutón přidatk přećiwo <a href=\"%(url)s\">našim prawidłam</a> přeńdźe abo ma problemy wěstoty a priwatnosće, wužiwajće prošu slědowacy formular, zo byšće swoje wobmyslenja "
-"wopisał. Prošu njewužiwajće tutón formular z druheje přičiny."
+"Jeli sej mysliće, zo so tutón přidatk přećiwo %(amo_policy_link_open)snašim prawidłam%(link_close)s přeńdźe abo ma problemy wěstoty a priwatnosće, wužiwajće prošu slědowacy formular, zo byšće swoje "
+"wobmyslenja wopisał. Prošu njewužiwajće tutón formular z druheje přičiny."
 
 msgid "Send Report"
 msgstr "Rozprawu pósłać"
@@ -1116,9 +1116,9 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 "Přidatki zapodate pola Mozilla Add-ons dyrbja manifestowu dataju měć, při čimž so znajmjeńša jednej ze slědowacych nałoženjow podpěruje. Jenož deleka podate wersije su za tute nałoženja dowolene."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Budźće sej wědomy, zo WebExtensions žanu „*“ w <a href=\"%(version_url)s\">strict_min_version</a> njeakceptuja."
+msgstr "Budźće sej wědomy, zo WebExtensions žanu „*“ w %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s njeakceptuja."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1126,11 +1126,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Wersije"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće jednu z trěbnymi kajkosćemi přidać, kaž su <a href=\"%(url)s\">tu</a> podate."
+msgstr "Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće jednu z trěbnymi kajkosćemi přidać, kaž su %(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s podate."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1665,6 +1665,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Instalowanje słownikoweho přidatka prawopisnej kontroli %(app_name)s nowe rěčne nastajenje přidawa, kotrež waš prawopis kontroluje, hdyž formulary wupjelnjeće. Rěčne pakćiki rěč cyłeho nałoženja "
+"změnja."
 
 msgid "Available in your locale"
 msgstr "We wašej rěči k dispoziciji"
@@ -1715,16 +1717,15 @@ msgid "Additional Resources"
 msgstr "Přidatne resursy"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Zhońće wjace wo <a href=\"http://support.mozilla.com/kb/Search+bar\">pytanskim polu</a> w {0}"
+msgstr "Zhońće wjace wo <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">pytanskim polu</a> w {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Přepytujće dalše pytanskich poskićowarjow na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sWuwijće swójski%(amo_mdn_link_close)s pytanski nastroj"
 
 msgid "Most Popular Extensions"
 msgstr "Najbóle woblubowane rozšěrjenja"
@@ -2332,13 +2333,11 @@ msgstr "Nachwilne přepruwowanje dospołneje drasty"
 msgid "Updated Complete Theme Review"
 msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Přepruwowanje moderěrowaneho přidatka"
+msgstr "Moderěrowane pohódnoćenje přidatka"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za přepruwowanje přidatka je so cofnyła"
+msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
 
 msgid "Level 1"
 msgstr "Schodźenk 1"
@@ -2813,11 +2812,9 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Samostatny. <span class=\"helptext\">Waše zapodaće budźe so hnydom za samorozdźělenje signować. Aktualizacije měli so přez updateURL abo eksterne nałoženske aktualizacije rjadować.</span>"
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Wot Firefox 53 móža nowe rozšěrjenja jenož WebExtensions być."
+msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExtensions być."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
 
@@ -3633,7 +3630,7 @@ msgid "Summary:"
 msgstr "Zjeće:"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Tute zhornjenje měło jednozmyslnje rozjasnić, štož waš přidatk čini. Pokazuje so w lisćinach a pytanskich wuslědkach, a wužiwa so wot přepruwowarjow za testowanje wašeho přidatka."
 
 msgid "This add-on is experimental"
 msgstr "Tutón přidatk je eksperimentelny"
