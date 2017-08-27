@@ -135,8 +135,8 @@ class TestADICommand(FixturesFolderMixin, TestCase):
             'nb-NO', 'nl', 'nn-NO', 'nr', 'nso', 'or', 'pa-IN', 'pl', 'pt-BR',
             'pt-PT', 'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
             'ss', 'st', 'sv-SE', 'sw', 'sw-TZ', 'ta', 'ta-IN', 'ta-LK', 'te',
-            'th', 'tn', 'tr', 'ts', 'uk', 've', 'vi', 'wa', 'wo-SN', 'xh',
-            'zap-MX-diiste', 'zh-CN', 'zh-TW', 'zu']
+            'th', 'tn', 'tr', 'ts', 'uk', 'ur', 've', 'vi', 'wa', 'wo-SN',
+            'xh', 'zap-MX-diiste', 'zh-CN', 'zh-TW', 'zu']
         uc = UpdateCount(addon_id=3615)
         self.command.update_locale(uc, 'foobar', 123)  # Non-existent locale.
         assert not uc.locales
