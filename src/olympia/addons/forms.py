@@ -153,15 +153,13 @@ class AddonFormBasic(AddonFormBase):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_contributions(self):
-        if not self.cleaned_data['contributions']:
-            return self.cleaned_data['contributions']
-        hostname = urlsplit(self.cleaned_data['contributions']).hostname
-        for domain in amo.VALID_CONTRIBUTION_DOMAINS:
-            if hostname.endswith(domain):
-                return self.cleaned_data['contributions']
-        raise forms.ValidationError(ugettext(
-            'URL domain must be one of [%s], or a subdomain.' % ', '.join(
-                amo.VALID_CONTRIBUTION_DOMAINS)))
+        if self.cleaned_data['contributions']:
+            hostname = urlsplit(self.cleaned_data['contributions']).hostname
+            if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
+                raise forms.ValidationError(ugettext(
+                    'URL domain must be one of [%s], or a subdomain.' %
+                    ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)))
+        return self.cleaned_data['contributions']
 
     def save(self, addon, commit=False):
         if self.fields.get('tags'):
