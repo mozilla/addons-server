@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 21:30+0000\n"
+"PO-Revision-Date: 2017-08-27 21:50+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -735,12 +735,11 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Tento doplnok môže:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie (napríklad doplnok na správu kariet požiada o povolenie na prístup k systému kariet prehliadača)."
+msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie. Keďže kontrolu nad svojim Firefoxom máte vy, je len na vás či tieto povolenia doplnku udelíte alebo nie."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Vezmite, prosím, na vedomie, že tento doplnok využíva zastaranú technológiu, ktorá mu dáva prístup ku všetkým funkciám a údajom prehliadača bez nutnosti žiadať vás o povolenie."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -883,9 +882,8 @@ msgstr "Centrum vývojárov"
 msgid "Manage API Keys"
 msgstr "Spravovať kľúče API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Redaktori"
+msgstr "Nástroje redaktora"
 
 msgid "Admin Tools"
 msgstr "Nástroje správcu"
@@ -915,7 +913,7 @@ msgid "Firefox Add-ons"
 msgstr "Doplnky pre Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Ospravedlňujeme sa, ale na zadanej adrese nemôžeme nič nájsť. Ak ste sa sem dostali po kliknutí na odkaz na doplnok, je možne, že daný doplnok bol jeho autorom odstránený."
 
 msgid "Suggested Pages"
 msgstr "Odporúčané stránky"
@@ -1116,11 +1114,11 @@ msgid "Valid Application Versions"
 msgstr "Platné verzie aplikácie"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "Doplnky nahrávané na stránku Doplnky Mozilly musia obsahovať súbor manifest s aspoň jednou podporovanou aplikáciou uvedenou nižšie. Len verzie uvedené nižšie sú pre tieto aplikácie povolené."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Upozorňujeme, že WebExtensions neakceptujú hodnotu \"*\" v parametre <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Upozorňujeme, že WebExtensions neakceptujú hodnotu \"*\" v parametre %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "Identifikátor GUID"
@@ -1128,11 +1126,13 @@ msgstr "Identifikátor GUID"
 msgid "Versions"
 msgstr "Verzie"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané <a href=\"%(url)s\">tu</a>."
+msgstr ""
+"Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané "
+"%(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1179,17 +1179,14 @@ msgstr "Táto adresa URL je už používaná inou kolekciou."
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikony musia byť vo formáte .png alebo .jpg."
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou kolekciou."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Zadajte platné používateľské meno, ktoré obsahuje znaky abecedy, čísla, podčiarky alebo pomlčky."
+msgstr "Zadajte platnú URL, ktorá obsahuje znaky abecedy, čísla, podčiarky alebo pomlčky."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Tento názov nemôže byť použitý."
+msgstr "Táto URL nemôže byť použitá."
 
 msgid "Name"
 msgstr "Názov"
@@ -1444,12 +1441,11 @@ msgstr "Odstrániť"
 msgid "Collection Contributors"
 msgstr "Prispievatelia kolekcie"
 
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"K tejto kolekcii môžete pridať viacerých prispievateľov.  Prispievateľ môžete z tejto kolekcie pridávať alebo odstraňovať doplnky, nemôže však meniť jej názov alebo popis.  Ak chcete pridať "
+"K tejto kolekcii môžete pridať viacerých prispievateľov. Prispievateľ môže do tejto kolekcie pridávať alebo z nej odstraňovať doplnky, nemôže však meniť jej názov alebo popis. Ak chcete pridať "
 "prispievateľa, zadajte jeho e-mailovú adresu do poľa nižšie. Prispievatelia musia mať účet na stránke Doplnky Mozilly."
 
 msgid "User"
@@ -1518,9 +1514,9 @@ msgstr "Kolekcie sú skupiny podobných doplnkov, ktoré môže vytvárať a zdi
 msgid "Subscribe"
 msgstr "Odoberať"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "od %(users)s"
+msgstr "autor: %(author_link)s"
 
 msgid "Following"
 msgstr "Odberateľ"
