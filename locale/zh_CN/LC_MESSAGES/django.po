@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 03:30+0000\n"
+"PO-Revision-Date: 2017-08-27 03:42+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6733,11 +6733,11 @@ msgstr "附加组件每天会自动检查一次是否有更新。在 Firefox 中
 msgid "Are add-ons safe to install?"
 msgstr "安装附加组件是否安全？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr "请小心安装附加组件，以免它们损害您的计算机或侵犯您的隐私。Mozilla 的审核团队会对本网站提供的附加组件进行检查，并且关注用户，所以一般来说安装是安全的。<a href=\"%(learnmore_url)s\">详细了解我们的审核流程</a>"
+msgstr "安装附加组件时请小心，这些组件可能会损害您的电脑或侵犯您的隐私。Mozilla 的审核团队会对本网站提供的附加组件进行检查，且密切关注用户的反馈，所以一般来说在本网站安装附加组件是安全的。%(learnmore_link_open)s详细了解我们的审核流程%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6795,20 +6795,20 @@ msgstr "我们有着成千上万的附加组件，它们有的东西可能适合
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "附加组件的“实验性”是什么意思？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr "实验性的附加组件是被其开发者标记为非广泛适用。他们已由我们的审核员进行了审核，确定它们没有安全方面的问题，但它们可能仍有缺陷或无法正常工作。安装实验性的附加组件时要小心为上，并且如果您遭遇问题，请立即卸载那个附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
+msgstr "开发者若将附加组件标为“实验性”，则代表此组件可能还不普遍适用。这些附加组件可能存在缺陷或无法正常工作。安装实验性的附加组件时请小心为上，如果您遇到问题，请立即卸载那个附加组件。%(learnmore_link_open)s详细了解我们的审核过程%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "附加组件“未经审核”是什么意思？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr "虽然我们展台中可供公众使用的所有附加组件都已经过了审核员的审核，您仍可能会收到一个链向未经审核的附加组件的链接。安装这些附加组件时应特别小心，因为他们可能会侵害您的计算机或侵犯您的隐私权。我们建议您只安装已经过审核的附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
+msgstr "如果您收到某个附加组件的链接，且打开后提示该附加组件尚未通过审核，就代表它仍在等待 Mozilla 的审核。安装这些附加组件时应特别小心，因为他们可能会损害您的电脑或侵犯您的隐私权。我们建议您只安装已通过审核的附加组件。%(learnmore_link_open)s详细了解我们的审核过程%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "购买附加组件是什么价格？"
