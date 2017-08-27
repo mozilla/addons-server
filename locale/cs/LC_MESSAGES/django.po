@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 11:29+0000\n"
+"PO-Revision-Date: 2017-08-27 11:33+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6587,15 +6587,15 @@ msgstr ""
 "XUL (XML User Interface Language) je jazyk Mozilly založený na XML, který umožňuje vytvářet multiplatformní aplikace. Poskytuje prvky uživatelského rozhraní jako jsou tlačítka, nabídky, lišty, "
 "stromy atd, které mohou být použity k vylepšení doplňků, které upravují prvky UI prohlížeče."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>Poznámka:</strong> XUL je ve Firefoxu považován za zastaralou technologii a doplňky používající XUL se od Firefoxu 57 nenačtou. Prosím, pro vývoj nových doplňků používejte <a "
-"href=\"%(webext_url)s\">WebExtensions</a> API. Pokud máte zastaralý doplněk, zvažte jeho převod na WebExtensions. Pro více informací o převodu zastaralého doplňku navštivte <a "
-"href=\"%(portlegacy_url)s\">Převádění zastaralého Firefox doplňků</a>."
+"<strong>Poznámka:</strong> XUL je ve Firefoxu považován za zastaralou technologii a doplňky používající XUL se od Firefoxu 57 nenačtou. Prosím, pro vývoj nových doplňků používejte "
+"%(webext_link_open)sWebExtensions%(link_close)s API. Pokud máte zastaralý doplněk, zvažte jeho převod na WebExtensions. Pro více informací o převodu zastaralého doplňku navštivte "
+"%(portlegacy_link_open)sPřevádění zastaralého Firefox doplňků%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Jak mohu otestovat kompatibilitu s poslední verzí software od Mozilly?"
@@ -6692,24 +6692,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Má Mozilla někde uvedeny zásady, které musí splňovat doplněk, aby mohl být schválen?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v <a href=\"%(p_url)s\">poznámce ke kontrole doplňků</a> Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího "
-"upozornění. Tým redaktorů AMO navíc používá <a href=\"%(g_url)s\">Příručku pro kontrolu doplňků</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
+"Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v %(policy_link_open)spoznámce ke kontrole doplňků%(link_close)s Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího "
+"upozornění. Tým redaktorů AMO navíc používá %(guide_link_open)sPříručku pro kontrolu doplňků%(link_close)s, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
 
 msgid "How do I submit my add-on?"
 msgstr "Jak svůj doplněk nahraji?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
-"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a "
-"href=\"%(url)s\">poznámky ke kontrole doplňků</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat."
+"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli "
+"%(review_policy_link_open)spoznámky ke kontrole doplňků%(link_close)s serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Jaký operační systém mám pro můj doplněk zvolit?"
@@ -6980,13 +6980,13 @@ msgstr "Aktualizace doplňků jsou automaticky kontrolovány jednou denně. Ve F
 msgid "Are add-ons safe to install?"
 msgstr "Je bezpečné instalovat doplňky?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Při instalaci doplňků buďte opatrní. Mohou poškodit váš počítač nebo narušit vaše soukromí. Doplňky dostupné na tomto serveru mohou být Mozillou kontrolovány a zpětná vazba uživatelů sledována, "
-"takže by měly být bezpečné. <a href=\"%(learnmore_url)s\">Dozvědět se více o našem procesu kontroly</a>"
+"takže by měly být bezpečné. %(learnmore_link_open)sDozvědět se více o našem procesu kontroly%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7054,24 +7054,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Co znamená, že je doplněk \"experimentální\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Experimentální doplňky byly jejich autory označeny jako nevhodné pro širokou veřejnost. Mohou být plné chyb nebo nemusí fungovat správně. Při instalaci experimentálních doplňků buďte opatrní a v "
-"případě problémů je okamžitě odinstalujte. <a href=\"%(url)s\">Zjistit více o našem procesu kontroly</a></dd>"
+"případě problémů je okamžitě odinstalujte. %(learnmore_link_open)sZjistit více o našem procesu kontroly%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Pokud dostanete přímý odkaz na doplněk, který ještě zkontrolován nebyl, znamená to, že čeká na kontrolu od Mozilly. Při instalaci takového doplňku buďte opatrní. Může poškodit váš počítač nebo "
-"narušit vaše soukromí. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"
+"narušit vaše soukromí. %(learnmore_link_open)sDozvědět se více o našem procesu kontroly%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Kolik doplňky stojí?"
