@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 21:50+0000\n"
+"PO-Revision-Date: 2017-08-27 22:10+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1531,7 +1531,7 @@ msgid "Collection Icon"
 msgstr "Ikona kolekcie"
 
 msgid "Reset"
-msgstr "Vynulovať"
+msgstr "Obnoviť"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr "Podporované formáty: PNG a JPG.  Obrázky budú upravené na veľkosť 32x32."
@@ -1710,16 +1710,15 @@ msgid "Additional Resources"
 msgstr "Ďalšie zdroje"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Ďalšie informácie o <a href=\"http://support.mozilla.com/kb/Search+bar\">paneli vyhľadávania</a> v aplikácii {0}"
+msgstr "Ďalšie informácie o <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">paneli vyhľadávania</a> v aplikácii {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Objavte ešte viac vyhľadávacích modulov na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sVytvorte si svoj vlastný%(amo_mdn_link_close)s vyhľadávací nástroj"
 
 msgid "Most Popular Extensions"
 msgstr "Najpopulárnejšie rozšírenia"
@@ -1883,9 +1882,8 @@ msgstr "Zostavenie aplikácie"
 msgid "Platform"
 msgstr "Platforma"
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Zakázaný"
+msgstr "e10s povolené"
 
 msgid "e10s Compatible"
 msgstr "Kompatibilita s e10s"
@@ -2148,13 +2146,11 @@ msgstr "Zdrojový kód doplnku {addon} {version} bol nahraný."
 msgid "Source code uploaded"
 msgstr "Zdrojový kód bol nahratý"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Doplnok {addon} {version} bol okomentovaný."
+msgstr "Automatické schválenie doplnku {addon} {version} potvrdené."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Stav schválenia"
+msgstr "Automatické schválenie potvrdené"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2314,7 +2310,7 @@ msgid "Days Before Bonus Points Applied"
 msgstr "Dni pred uplatnením bonusových bodov"
 
 msgid "Theme Review"
-msgstr "Skontrola témy"
+msgstr "Kontrola témy"
 
 msgid "New Search Provider Review"
 msgstr "Nová kontrola vyhľadávacieho modulu"
@@ -2379,7 +2375,7 @@ msgid "Alerts & Updates"
 msgstr "Upozornenia a aktualizácie"
 
 msgid "Appearance"
-msgstr "Témy a vzhľad"
+msgstr "Vzhľad"
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -2388,7 +2384,7 @@ msgid "Download Management"
 msgstr "Správa preberania súborov"
 
 msgid "Feeds, News & Blogging"
-msgstr "Kanály, novinky a blogovanie"
+msgstr "Kanály, správy a blogovanie"
 
 msgid "Games & Entertainment"
 msgstr "Hry a zábava"
@@ -2785,7 +2781,7 @@ msgid "Version {version} already exists."
 msgstr "Verzia {version} už existuje."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Pokračovať namiesto toho so súčasným nahrávaním?"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platformu Všetky nie je možné kombinovať s inou platformou."
@@ -2793,9 +2789,8 @@ msgstr "Platformu Všetky nie je možné kombinovať s inou platformou."
 msgid "A platform can only be chosen once."
 msgstr "Platformu je možné zvoliť len raz."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Riešenie"
+msgstr "Reputácia"
 
 msgid "Application"
 msgstr "Aplikácia"
@@ -2815,10 +2810,10 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Zastarané doplnky nie sú kompatibilné s Firefoxom 57 a novším. Nastavte atribút maxVersion na 56.* alebo nižší."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2903,10 +2898,10 @@ msgid "You cannot submit this type of add-on"
 msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Nemôžete nahrať doplnok s GUID končiacim na \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
 
 msgid "Icons cannot be animated."
 msgstr "Ikony nesmú byť animované."
@@ -2945,7 +2940,7 @@ msgid "Review requested."
 msgstr "Vyžiadaná kontrola"
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Pre pokračovanie musíte poskytnúť ďalšie detaily."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
@@ -2984,10 +2979,10 @@ msgid "Printable Version"
 msgstr "Verzia pre tlač"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
 
 msgid "I Accept this Agreement"
-msgstr "Súhlasím s týmto ujednaním"
+msgstr "Súhlasím s touto zmluvou"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
@@ -3054,7 +3049,7 @@ msgstr "Pre načítanie vášho doplnku použite pole nižšie."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Vezmite na vedomie, že tento nástroj funguje len so zastaranými doplnkami. API WebExtension sú detailne <a href=\"%(webext_doc_url)s\">zdokumentované tu</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Po načítaní bude spustená sada automatizovaných testov, ktoré skontrolujú kompatibilitu s nasledujúcou verziou aplikácie:"
@@ -3231,9 +3226,8 @@ msgstr "Tento doplnok je experimentálny."
 msgid "This add-on is ready for general use."
 msgstr "Tento doplnok je pripravený na bežné používanie."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Vyžaduje reštart"
+msgstr "Je vyžadovaná platba?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3498,7 +3492,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Pre potvrdenie svojho rozhodnutia zadajte nasledovný text: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Povedzte nám, prečo odstraňujete vašu tému vzhľadu:"
