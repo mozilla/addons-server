@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 16:10+0000\n"
+"PO-Revision-Date: 2017-08-27 16:14+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1999,8 +1999,8 @@ msgstr "Análise completa de {addon} {version} solicitada."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"O complemento foi marcado para análise do revisor admin.  ele ainda está na lista de análise, mas é necessário ser analisado por um de nossos revisores admin. A análise pode demorar mais tempo que o"
-" normal."
+"A extensão foi marcada para análise do revisor admin.  Ele ainda está na lista de análise, mas é necessário ser analisado por um de nossos revisores admin. A análise pode demorar mais tempo que o "
+"normal."
 
 msgid "Comment on {addon} {version}."
 msgstr "Comentário sobre {addon} {version}."
@@ -2292,7 +2292,7 @@ msgid "Manual Reviewer Points"
 msgstr "Pontos do manual do revisor"
 
 msgid "New Add-on Review"
-msgstr "Nova análise do complemento"
+msgstr "Nova análise da extensão"
 
 msgid "Preliminary Add-on Review"
 msgstr "Análise preliminar"
@@ -2689,7 +2689,7 @@ msgid "Recent Changes for %s"
 msgstr "Alterações recentes de %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr "Alterações recentes dos meus complementos"
+msgstr "Alterações recentes das minhas extensões"
 
 msgid "Must have at least one owner."
 msgstr "Deve haver pelo menos um dono."
@@ -2716,26 +2716,26 @@ msgid "License text is required when choosing Other."
 msgstr "Você deve fornecer o texto da licença ao escolher Outro."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr "Este complemento tem uma Licença de Usuário Final"
+msgstr "Esta extensão tem uma Licença de Usuário Final"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Especifique a Licença de Usuário Final do seu complemento:"
+msgstr "Especifique a Licença de Usuário Final a sua extensão:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Esse complemento possui uma Política de privacidade"
+msgstr "Essa extensão possui uma Política de Privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Por favor, especifique a Política de privacidade do seu complemento:"
 
 msgid "Why did you make this add-on?"
-msgstr "Por que você criou esse complemento?"
+msgstr "Por que você criou essa extensão?"
 
 msgid "What's next for this add-on?"
-msgstr "O que vem por aí para esse complemento?"
+msgstr "O que vem por aí para essa extensão?"
 
 # %1 is a number.
 msgid "The developers of this add-on"
-msgstr "Os desenvolvedores desse complemento"
+msgstr "Os desenvolvedores dessa extensão"
 
 msgid "The Mozilla Foundation"
 msgstr "A Fundação Mozilla"
@@ -2774,13 +2774,13 @@ msgid "Override failed validation"
 msgstr "Substituir validação com falha"
 
 msgid "Submit my add-on for manual review."
-msgstr "Submeter o meu complemento para análise manual."
+msgstr "Submeter a minha extensão para análise manual."
 
 msgid "Do not list my add-on on this site"
-msgstr "Não listar meu complemento neste site"
+msgstr "Não listar minha extensão neste site"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr "Marque esta opção se pretende distribuir seu complemento por conta própria e só precisa que ele seja assinado pela Mozilla."
+msgstr "Marque esta opção se pretende distribuir sua extensão por conta própria e só precisa que ele seja assinada pela Mozilla."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Um arquivo com uma versão que termina com a|alpha|b|beta|pre|rc e um número opcional é detectado como beta."
