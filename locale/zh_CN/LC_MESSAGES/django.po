@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 20:52+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2017-08-27 03:10+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -472,11 +472,11 @@ msgstr "隐私政策"
 msgid "Report Abuse"
 msgstr "报告滥用"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
-msgstr "如果您怀疑此附加组件违反<a href=\"%(url)s\">我们的政策</a>或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
+msgstr "如果您怀疑此附加组件违反%(amo_policy_link_open)s我们的政策%(link_close)s或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
 
 msgid "Send Report"
 msgstr "发送报告"
@@ -1059,9 +1059,9 @@ msgstr "有效应用程序版本"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "提交到 Mozilla 附加组件的附加组件的清单文件必须支持下面的至少一个应用程序。只允许下面列出的这些应用程序版本。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "请注意，WebExtensions 不接受 \"*\" 放在 <a href=\"%(version_url)s\">strict_min_version</a>。"
+msgstr "请注意，WebExtensions 不接受在 %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s 的值中包含“*”。"
 
 msgid "GUID"
 msgstr "GUID"
@@ -1069,11 +1069,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "版本"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "如果您支持的应用程序不需要一个清单文件，您仍必须按<a href=\"%(url)s\">这里</a>的要求包含一个必须的属性。"
+msgstr "即便您所支持的应用程序本身不需要一个清单文件，您仍必须按%(amo_manifests_mdn_link_open)s这里%(amo_manifests_mdn_link_close)s的要求附上包含所有必要属性的清单文件。"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1627,9 +1627,8 @@ msgid "Additional Resources"
 msgstr "附加资源"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "详细了解关于 {0} 中的<a href=\"http://support.mozilla.com/kb/Search+bar\">搜索栏</a>的信息"
+msgstr "详细了解 {0} 中的<a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">搜索栏</a>"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览更多的搜索引擎"
@@ -2234,13 +2233,11 @@ msgstr "完整主题初步审核"
 msgid "Updated Complete Theme Review"
 msgstr "完整主题更新审核"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
 msgstr "提请仲裁的附加组件评价"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "附加组件评价仲裁已还原"
+msgstr "已还原附加组件评价仲裁"
 
 msgid "Level 1"
 msgstr "第1级"
