@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-28 08:29+0000\n"
+"PO-Revision-Date: 2017-08-28 18:49+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -488,13 +488,13 @@ msgstr "Декларация за поверителност"
 msgid "Report Abuse"
 msgstr "Докладване на злоупотреба"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Ако подозирате, че тази добавка нарушава <a href=\"%(url)s\">политиките ни</a> или има проблеми със сигурността или поверителността, моля използвайте формата отдолу, за да опишете загрижеността си. "
-"Моля, не използвайте тази форма за други въпроси."
+"Ако подозирате, че тази добавка нарушава %(amo_policy_link_open)sполитиките ни%(link_close)s или има проблеми със сигурността или поверителността, моля използвайте формата отдолу, за да опишете "
+"загрижеността си. Моля, не използвайте тази форма за други въпроси."
 
 msgid "Send Report"
 msgstr "Докладване"
@@ -1093,11 +1093,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Версии"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е <a href=\"%(url)s\">указано тук</a>."
+msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1660,9 +1660,8 @@ msgid "Additional Resources"
 msgstr "Допълнителни ресурси"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Научете повече за <a href=\"http://support.mozilla.com/kb/Search+bar\">лентата за търсене</a> в {0}"
+msgstr "Научете повече за <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">лентата за търсене</a> в {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Разгледайте още повече търсещи машини на <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2759,13 +2758,11 @@ msgstr ""
 "Самостоятелно. <span class=\"helptext\">Добавката ще бъде подписана за самостоятелно разпространение. Вие ще се грижите за обновяванията посредством updateURL или обновявания на външно "
 "приложение.</span>"
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Започвайки с Firefox 53 новите разширения на страницата може да са само WebExtensions."
+msgstr "Започвайки с Firefox 53 новите добавки на страницата може да са само WebExtensions."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Остарелите разширения са несъвместими с Firefox 57 и по-нов. Използвайте maxVersion 56.* или по-малка."
+msgstr "Остарелите добавки са несъвместими с Firefox 57 и по-нов. Използвайте maxVersion 56.* или по-малка."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
