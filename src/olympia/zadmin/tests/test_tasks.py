@@ -122,13 +122,18 @@ class TestLangpackFetcher(TestCase):
         assert addon._current_version
         assert addon.current_version.version == amo.FIREFOX.latest_version
 
+        file_ = addon.current_version.files.get()
+
         # has_complete_metadata checks license and categories were set.
         assert addon.has_complete_metadata(), addon.get_required_metadata()
-        assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
         assert addon.status == amo.STATUS_PUBLIC
 
-        mock_sign_file.assert_called_once_with(
-            addon.current_version.files.get(), settings.SIGNING_SERVER)
+        # Make sure it has strict compatibility enabled (should be done
+        # automatically for legacy extensions, that includes langpacks)
+        assert file_.strict_compatibility is True
+
+        mock_sign_file.assert_called_once_with(file_, settings.SIGNING_SERVER)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
@@ -150,10 +155,15 @@ class TestLangpackFetcher(TestCase):
         # has_complete_metadata checks license and categories were set.
         assert addon.has_complete_metadata(), addon.get_required_metadata()
         version = addon.versions.get(version=versions[1])
-        assert version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert addon.current_version == version
+        file_ = version.files.get()
+        assert file_.status == amo.STATUS_PUBLIC
 
-        mock_sign_file.assert_called_with(
-            version.files.get(), settings.SIGNING_SERVER)
+        # Make sure it has strict compatibility enabled (should be done
+        # automatically for legacy extensions, that includes langpacks)
+        assert file_.strict_compatibility is True
+
+        mock_sign_file.assert_called_with(file_, settings.SIGNING_SERVER)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_duplicate_langpack(self, mock_sign_file):
