@@ -37,9 +37,17 @@ class StatsTest(TestCase):
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
         self.url_args_theme = {'start': '20090601', 'end': '20090930',
                                'addon_id': 6}
+        # We use fixtures with fixed add-on pks. That causes the add-ons to be
+        # in a weird state that we have to fix.
+        # For the persona (pk=6) the current_version needs to be set manually
+        # because otherwise the version can't be found, as it has no files.
+        # For the rest we simply add a version and it will automatically be
+        # picked up as the current_version.
+        persona_addon = Addon.objects.get(pk=6)
         version_factory(addon=Addon.objects.get(pk=4))
         version_factory(addon=Addon.objects.get(pk=5))
-        version_factory(addon=Addon.objects.get(pk=6))
+        persona_version = version_factory(addon=persona_addon)
+        persona_addon.update(_current_version=persona_version)
         Addon.objects.filter(id__in=(4, 5, 6)).update(status=amo.STATUS_PUBLIC)
         # Most tests don't care about permissions.
         self.login_as_admin()

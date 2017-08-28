@@ -828,6 +828,7 @@ def user_factory(**kw):
 def version_factory(file_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
+    addon_type = getattr(kw.get('addon'), 'type', None)
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
@@ -844,7 +845,7 @@ def version_factory(file_kw=None, **kw):
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
-    if kw.get('addon').type not in amo.NO_COMPAT:
+    if addon_type not in amo.NO_COMPAT:
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
@@ -853,7 +854,8 @@ def version_factory(file_kw=None, **kw):
                                                    version=ver, min=av_min,
                                                    max=av_max)
     file_kw = file_kw or {}
-    file_factory(version=ver, **file_kw)
+    if addon_type != amo.ADDON_PERSONA:
+        file_factory(version=ver, **file_kw)
     return ver
 
 
