@@ -412,6 +412,10 @@ class TestAddonIndexer(TestCase):
     def test_extract_persona(self):
         # Override self.addon with a persona.
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        # Delete any files so that we can be sure that compat info is entirely
+        # done automatically as long as it's a persona.
+        self.addon.current_version.files.all().delete()
+
         persona = self.addon.persona
         persona.header = u'myheader.jpg'
         persona.footer = u'myfooter.jpg'
@@ -431,6 +435,21 @@ class TestAddonIndexer(TestCase):
         assert extracted['persona']['is_new'] is False  # It has a persona_id.
         assert extracted['persona']['textcolor'] == persona.textcolor
 
+        # Personas are always considered compatible with every platform, and
+        # all versions of all apps.
+        assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
+        expected_version_compat = {
+            'max': 9999000000200100,
+            'max_human': None,
+            'min': 0,
+            'min_human': None
+        }
+        assert extracted['current_version']['compatible_apps'] == {
+            amo.ANDROID.id: expected_version_compat,
+            amo.FIREFOX.id: expected_version_compat,
+            amo.THUNDERBIRD.id: expected_version_compat,
+            amo.SEAMONKEY.id: expected_version_compat,
+        }
         self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
         extracted = self._extract()
         assert extracted['persona']['is_new'] is True  # No persona_id.
