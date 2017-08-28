@@ -124,6 +124,7 @@
 
     {{ dependencies_note(addon) }}
 
+  {% if not waffle.switch('simple-contributions') %}
     {% if addon.takes_contributions %}
       {{ impala_contribution(addon=addon, src='dp-btn-primary') }}
     {% elif addon.has_profile() and addon.listed_authors %}
@@ -145,6 +146,25 @@
         {% endwith %}
       </div>
     {% endif %}
+  {% else %}
+    {% if addon.contributions %}
+      <div class="notice c author">
+        <div class="button-wrapper">
+          <a class="button contribute prominent" id="contribution-url-button"
+             href="{{ addon.contributions|external_url }}">
+            <b></b>{{ _('Contribute') }}
+          </a>
+        </div>
+        <h3>{{ _('Enjoy this add-on?') }}</h3>
+        <p class="">
+        {% trans %}
+          The developer of this add-on asks that you help support its
+          continued development by making a small contribution.
+        {% endtrans %}
+        </p>
+      </div>
+    {% endif %}
+  {% endif %}
   </section>
 </div>
 {% endblock header_content %}
