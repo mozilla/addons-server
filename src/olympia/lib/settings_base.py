@@ -198,7 +198,7 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
+LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
