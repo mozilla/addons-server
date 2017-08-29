@@ -476,5 +476,5 @@ urllib3==1.22 \
 vine==1.1.4 \
     --hash=sha256:6849544be74ec3638e84d90bc1cf2e1e9224cc10d96cd4383ec3f69e9bce077b \
     --hash=sha256:52116d59bc45392af9fdd3b75ed98ae48a93e822cee21e5fda249105c59a7a72
-django-jinja==2.3.1 \
-    --hash=sha256:ebfde44cb716e57a9cdff6c1a4935fc49c7419ea4cd0b2b89bcecc696b9c0c86
+django-jinja==2.4.0 \
+    --hash=sha256:67d0c77da305013c09f5bc6a45deda8dd66936b94d6548fd893d7ac2dfcafe6e
