@@ -27,10 +27,6 @@ class BaseESSerializer(ModelSerializer):
         for field_name in self.fields:
             self.fields[field_name].read_only = True
 
-        if getattr(self, 'context'):
-            for field_name in self.fields:
-                self.fields[field_name].context = self.context
-
     def get_fields(self):
         """
         Return all fields as normal, with one exception: replace every instance
