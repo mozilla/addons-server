@@ -922,8 +922,11 @@ class TestApplicationsVersions(TestCase):
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
     def test_repr_when_type_in_no_compat(self):
-        addon = addon_factory(type=amo.ADDON_PERSONA,
-                              version_kw=self.version_kw)
+        # addon_factory() does not create ApplicationsVersions for types in
+        # NO_COMPAT, so create an extension first and change the type
+        # afterwards.
+        addon = addon_factory(version_kw=self.version_kw)
+        addon.update(type=amo.ADDON_DICT)
         version = addon.current_version
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 and later'
 
