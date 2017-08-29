@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-26 10:08+0000\n"
+"PO-Revision-Date: 2017-08-29 17:45+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2246,13 +2246,11 @@ msgstr "სრული თემის წინასწარი მიმო
 msgid "Updated Complete Theme Review"
 msgstr "განახლებული სრული თემის მიმოხილვა"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "დამატების განახლებული მიმოხილვა"
+msgstr "შემოწმებული დამატების მიმოხილვა"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "დამატების მიმოხილვის წარმადობა"
+msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
 
 msgid "Level 1"
 msgstr ""
@@ -4026,13 +4024,13 @@ msgstr "<a href=\"%(register)s\">რეგისტრაცია</a> ან <a
 msgid "Customize Firefox"
 msgstr "Firefox-ის მორგება"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გაზარდონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> და <a"
-" href=\"%(css_link)s\">CSS</a>-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
+"დამატებები საშუალებას აძლევს Firefox-ის მილიონობით მომხმარებელს, გაზარდონ თავიანთი ბრაუზერის შესაძლებლობები. თუ ფლობთ %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s "
+"და %(css_link_open)sCSS%(link_close)s-ს, თქვენ უკვე თავისუფლად შეგიძლიათ შექმნათ არაჩვეულებრივი დამატებები."
 
 msgid "Learn How to Make an Add-on"
 msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
@@ -4281,13 +4279,13 @@ msgstr ""
 msgid "Give your Theme a name."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"ვუერთდები <a href=\"%(agreement_url)s\">შეთანხმებას, Firefox დამატებების გავრცელების თაობაზე </a> და თანახმა ვარ ჩემი ინფორმაცია დამუშავდეს, <a href=\"%(privacy_notice_url)s\">პირადი მონაცემების "
-"დაცვის დებულების</a> მიხედვით."
+"ვუერთდები %(agreement_link_open)sშეთანხმებას, Firefox დამატებების გავრცელების თაობაზე%(link_close)s და თანახმა ვარ ჩემი მონაცემები დამუშავდეს, %(privacy_notice_link_open)sპირადი მონაცემების დაცვის "
+"დებულების%(link_close)s შესაბამისად."
 
 msgid "Submit Theme"
 msgstr ""
@@ -6444,15 +6442,15 @@ msgstr ""
 "XUL (XML სამომხმარებლო გარემოს დაპროგრამების ენა) არის Mozilla-ს XML-ზე დაფუძნებული ენა, რომელიც საშუალებას გაძლევთ შექმნათ მრავალი შესაძლებლობის მქონე, მრავალპლატფორმული პროგრამები. მისი მეშვეობით "
 "შესაძლებელია სამომხმარებლო გარემოს ისეთი ელემენტების შეცვლა, როგორიცაა ღილაკები, მენიუები, ხელსაწყოთა ზოლები, ფორმები და ა.შ. რაც გაზრდის დამატებების შესაძლებლობებს, ბრაუზერის იერსახის შესაცვლელად."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>გაითვალისწინეთ:</strong> XUL მიჩნეულია მოძველებულ ტექნოლოგიად და დამატებები, რომელიც იყენებს XUL-ს, აღარ იმუშავებს Firefox 57 ვერსიიდან მოყოლებული. გთხოვთ გამოიყენოთ <a "
-"href=\"%(webext_url)s\">WebExtensions</a> API-ები ახალი დამატებების შესაქმნელად. თუ დარჩენილი გაქვთ ძველი დამატება, გთხოვთ გადაიტანოთ WebExtensions-ზე. ინფორმაციის მისაღებად, თუ როგორ ხდება ძველი "
-"დამატების ახალ ტექნოლოგიაზე მორგება, გაეცანით <a href=\"%(portlegacy_url)s\">Firefox-ის ძველი დამატების გადატანის ინსტრუქციას</a>."
+"<strong>გაითვალისწინეთ:</strong> XUL მიჩნეულია მოძველებულ ტექნოლოგიად და დამატებები, რომელიც იყენებს XUL-ს, აღარ იმუშავებს Firefox 57 ვერსიიდან მოყოლებული. გთხოვთ გამოიყენოთ "
+"%(webext_link_open)sWebExtensions%(link_close)s API-ები ახალი დამატებების შესაქმნელად. თუ დარჩენილი გაქვთ ძველი დამატება, გთხოვთ გადაიტანოთ WebExtensions-ზე. ინფორმაციის მისაღებად, თუ როგორ ხდება "
+"ძველი დამატების ახალ ტექნოლოგიაზე მორგება, გაეცანით %(portlegacy_link_open)sFirefox-ის ძველი დამატების გადატანის ინსტრუქციას%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
@@ -6820,13 +6818,13 @@ msgstr "დამატებები თავისთავად მოწ�
 msgid "Are add-ons safe to install?"
 msgstr "უსაფრთხოა დამატებების დაყენება?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "ყურადღებით იყავით, დამატებების დაყენებისას, რადგან მათი საშუალებით შესაძლებელია სისტემის დაზიანება, ან პირადი მონაცემების ხელყოფა. ამ საიტზე ხელმისაწვდომი დამატებები, Mozilla-ს მიმომხილველთა გუნდისა"
-" და მომხმარებელთა გამოხმაურებების შედეგად, მკაცრად კონტროლდება, ასე რომ უმეტესობა მათგანი უსაფრთხოა დასაყენებლად. <a href=\"%(learnmore_url)s\">შეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ</a>"
+" და მომხმარებელთა გამოხმაურებების შედეგად, მკაცრად კონტროლდება, ასე რომ უმეტესობა მათგანი უსაფრთხოა დასაყენებლად. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6895,24 +6893,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "რას ნიშნავს, როცა დამატება არის \"საცდელი\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "საცდელი დამატებები გულისხმობს, რომ შემმუშავებლის აზრით, არაა განკუთვნილი მომხმარებელთა ფართო წრისთვის. ასეთ დამატებებს შეიძლება გარკვეული ხარვეზები გააჩნდეს და გამართულად არ იმუშაოს. ყურადღება "
-"გამოიჩინეთ, როცა საცდელ დამატებას აყენებთ და დაუყოვნებლივ ამოშალეთ, თუკი შეამჩნევთ ხარვეზებს. <a href=\"%(url)s\">შეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ</a></dd>"
+"გამოიჩინოთ, როცა საცდელ დამატებას აყენებთ და დაუყოვნებლივ ამოშალოთ, თუკი შეამჩნევთ ხარვეზებს. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "რას ნიშნავს, როცა დამატება \"განუხილველია\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "თუ დამატების პირდაპირ ბმულზე გადასვლისას მითითებულია, რომ ჯერ განუხილველია, ეს ნიშნავს, რომ ელოდება Mozilla-სგან დამოწმებას. ყურადღება გამოიჩინეთ, მსგავსი დამატებების დაყენებისას, რადგან შესაძლოა "
-"თქვენი სისტემა დააზიანოს, ან ხელყოს პირადი მონაცემები. <a href=\"%(url)s\">შეიტყვეთ მეტი, მიმოხილვის შესახებ</a></dd>"
+"თქვენი სისტემა დააზიანოს, ან ხელყოს პირადი მონაცემები. %(learnmore_link_open)sშეიტყვეთ მეტი, მიმოხილვის შესახებ%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "რა ღირს დამატებები?"
