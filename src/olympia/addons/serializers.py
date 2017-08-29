@@ -121,13 +121,14 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
     license = CompactLicenseSerializer()
+    release_notes = TranslationSerializerField(source='releasenotes')
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
         fields = ('id', 'compatibility', 'edit_url', 'files',
-                  'is_strict_compatibility_enabled', 'license', 'reviewed',
-                  'url', 'version')
+                  'is_strict_compatibility_enabled', 'license',
+                  'release_notes', 'reviewed', 'url', 'version')
 
     def to_representation(self, instance):
         # Help the LicenseSerializer find the version we're currently
@@ -154,10 +155,20 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
         return any(file_.strict_compatibility for file_ in obj.all_files)
 
 
+class SimpleESVersionSerializer(SimpleVersionSerializer):
+    class Meta:
+        model = Version
+        # In ES, we don't have license and release notes info, so instead of
+        # returning null, which is not necessarily true, we omit those fields
+        # entirely.
+        fields = ('id', 'compatibility', 'edit_url', 'files',
+                  'is_strict_compatibility_enabled', 'reviewed', 'url',
+                  'version')
+
+
 class VersionSerializer(SimpleVersionSerializer):
     channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
     license = LicenseSerializer()
-    release_notes = TranslationSerializerField(source='releasenotes')
 
     class Meta:
         model = Version
@@ -352,7 +363,15 @@ class AddonSerializerWithUnlistedData(AddonSerializer):
         fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
 
 
-class ESBaseAddonSerializer(BaseESSerializer):
+class ESAddonSerializer(BaseESSerializer, AddonSerializer):
+    # Override various fields for related objects which we don't want to expose
+    # data the same way than the regular serializer does (usually because we
+    # some of the data is not indexed in ES).
+    authors = BaseUserSerializer(many=True, source='listed_authors')
+    current_beta_version = SimpleESVersionSerializer()
+    current_version = SimpleESVersionSerializer()
+    previews = ESPreviewSerializer(many=True, source='all_previews')
+
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
@@ -493,17 +512,14 @@ class ESBaseAddonSerializer(BaseESSerializer):
         return obj
 
 
-class ESAddonSerializer(ESBaseAddonSerializer, AddonSerializer):
-    # Override authors because we don't want picture_url in serializer.
-    authors = BaseUserSerializer(many=True, source='listed_authors')
-    previews = ESPreviewSerializer(many=True, source='all_previews')
-
-
 class ESAddonSerializerWithUnlistedData(
-        ESBaseAddonSerializer, AddonSerializerWithUnlistedData):
-    # Override authors because we don't want picture_url in serializer.
-    authors = BaseUserSerializer(many=True, source='listed_authors')
-    previews = ESPreviewSerializer(many=True, source='all_previews')
+        ESAddonSerializer, AddonSerializerWithUnlistedData):
+    # Because we're inheriting from ESAddonSerializer which does set its own
+    # Meta class already, we have to repeat this from
+    # AddonSerializerWithUnlistedData, but it beats having to redeclare the
+    # fields...
+    class Meta(AddonSerializerWithUnlistedData.Meta):
+        fields = AddonSerializerWithUnlistedData.Meta.fields
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
