@@ -31,12 +31,26 @@ class AddonSerializerOutputTestMixin(object):
         super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')
 
-    def check_author(self, author, result):
-        assert result == {
+    def _test_author(self, author, data):
+        assert data == {
             'id': author.pk,
             'name': author.name,
             'url': absolutify(author.get_url_path()),
             'picture_url': absolutify(author.picture_url)}
+
+    def _test_version_license_and_release_notes(self, version, data):
+        assert data['release_notes'] == {
+            'en-US': u'Release notes in english',
+            'fr': u'Notes de version en français',
+        }
+        assert data['license']
+        assert dict(data['license']) == {
+            'id': version.license.pk,
+            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
+            # License text is not present in version serializer used from
+            # AddonSerializer.
+            'url': 'http://license.example.com/',
+        }
 
     def _test_version(self, version, data):
         assert data['id'] == version.pk
@@ -78,6 +92,17 @@ class AddonSerializerOutputTestMixin(object):
         cat1 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
         cat1.save()
+        license = License.objects.create(
+            name={
+                'en-US': u'My License',
+                'fr': u'Mä Licence',
+            },
+            text={
+                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+            },
+            url='http://license.example.com/'
+
+        )
         self.addon = addon_factory(
             average_daily_users=4242,
             average_rating=4.21,
@@ -102,6 +127,13 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
             total_reviews=666,
+            version_kw={
+                'license': license,
+                'releasenotes': {
+                    'en-US': u'Release notes in english',
+                    'fr': u'Notes de version en français',
+                },
+            },
             weekly_downloads=2147483647,
         )
         AddonUser.objects.create(user=user_factory(username='hidden_author'),
@@ -159,11 +191,13 @@ class AddonSerializerOutputTestMixin(object):
             reverse('addons.versions',
                     args=[self.addon.slug, self.addon.current_version.version])
         )
+        self._test_version_license_and_release_notes(
+            self.addon.current_version, result['current_version'])
 
         assert result['authors']
         assert len(result['authors']) == 2
-        self.check_author(first_author, result['authors'][0])
-        self.check_author(second_author, result['authors'][1])
+        self._test_author(first_author, result['authors'][0])
+        self._test_author(second_author, result['authors'][1])
 
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
@@ -544,12 +578,18 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             result = self.serializer.to_representation(obj)
         return result
 
-    def check_author(self, author, result):
+    def _test_author(self, author, data):
         """Override because the ES serializer doesn't include picture_url."""
-        assert result == {
+        assert data == {
             'id': author.pk,
             'name': author.name,
-            'url': absolutify(author.get_url_path())}
+            'url': absolutify(author.get_url_path())
+        }
+
+    def _test_version_license_and_release_notes(self, version, data):
+        """Override because the ES serializer doesn't include those fields."""
+        assert 'license' not in data
+        assert 'release_notes' not in data
 
 
 class TestVersionSerializerOutput(TestCase):
