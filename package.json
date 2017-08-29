@@ -10,7 +10,7 @@
     "potools": "potools"
   },
   "dependencies": {
-    "addons-linter": "0.24.0",
+    "addons-linter": "0.25.0",
     "clean-css": "4.1.7",
     "clean-css-cli": "4.1.6",
     "jqmodal": "1.4.2",
