@@ -412,9 +412,9 @@ class TestAddonIndexer(TestCase):
     def test_extract_persona(self):
         # Override self.addon with a persona.
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
-        # Delete any files so that we can be sure that compat info is entirely
-        # done automatically as long as it's a persona.
-        self.addon.current_version.files.all().delete()
+        # It's a Persona, there should not be any files attached, and the
+        # indexer should not care.
+        assert self.addon.current_version.files.count() == 0
 
         persona = self.addon.persona
         persona.header = u'myheader.jpg'
