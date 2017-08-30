@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-29 17:45+0000\n"
+"PO-Revision-Date: 2017-08-30 14:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -749,7 +749,7 @@ msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "ყველა (%(cnt)s) მომხმარებლის მიმოხილვის ნახვა"
 
 msgid "This add-on has not yet been reviewed."
-msgstr "ეს დამატების მიმოხილვა, ჯერ არავის გაუკეთებია."
+msgstr "ამ დამატების მიმოხილვა, ჯერ არავის გაუკეთებია."
 
 msgid "Be the first!"
 msgstr "იყავით პირველი!"
@@ -1585,7 +1585,7 @@ msgid "Download Dictionary"
 msgstr ""
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "ენის პაკეტის ჩამოტვირთვა"
 
 #, python-format
 msgid ""
@@ -2135,10 +2135,10 @@ msgid "Search Engine"
 msgstr "საძიებო სისტემა"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "ენის პაკეტი (პროგრამა)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "ენის პაკეტი (დამატება)"
 
 msgid "Plugin"
 msgstr ""
@@ -2153,10 +2153,10 @@ msgid "Dictionaries"
 msgstr ""
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "ენის პაკეტები (პროგრამა)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "ენის პაკეტები (დამატება)"
 
 msgid "Plugins"
 msgstr ""
@@ -2214,7 +2214,7 @@ msgid "New Language Pack Review"
 msgstr "ენის ახალი პაკეტის განხილვა"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "ენის პაკეტის წინასწარი მიმოხილვა"
 
 msgid "Updated Language Pack Review"
 msgstr "ენის პაკეტის განახლებული მიმოხილვა"
@@ -5565,7 +5565,7 @@ msgid "Not to worry, here are three to get started."
 msgstr "არ ინერვიულოთ, დაიწყეთ ამ სამი დამატებით."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "თარგმნეთ შიგთავსი ინტერნეტში, 40-ზე მეტ ენაზე."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "მარტივად დაუკავშირდით სოციალურ ქსელებს და გააზიარეთ, ან დაწერეთ გამოხმაურება პირდაპირ იმ გვერდზე, რომელზეც იმყოფებით."
@@ -7741,10 +7741,10 @@ msgid "See more applications&hellip;"
 msgstr ""
 
 msgid "Top Languages"
-msgstr ""
+msgstr "ძირითადი ენები"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "იხილეთ სხვა ენები&hellip;"
 
 msgid "Top Platforms"
 msgstr ""
@@ -7898,7 +7898,7 @@ msgstr ""
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "ლოკალიზება: <a id=\"change-locale\" href=\"#\">%(dl)s-ზე</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
@@ -7919,7 +7919,7 @@ msgstr ""
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "ნამდვილად გსურთ ყველა <b>{0}</b> თარგმანის წაშლა? ეს ქმედება შეუქცევადია."
 
 msgid "Delete Locale"
 msgstr "ენის წაშლა"
