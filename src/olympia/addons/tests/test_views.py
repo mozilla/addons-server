@@ -18,7 +18,7 @@ from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
@@ -439,6 +439,33 @@ class TestDeveloperPages(TestCase):
         url = reverse('addons.meet', args=['592'])
         r = self.client.get(url, follow=True)
         assert pq(r.content)('#about-addon b').length == 2
+
+
+@override_switch('simple-contributions', active=True)
+class TestContributionsURL(TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_592',
+                'base/users', 'addons/eula+contrib-addon',
+                'addons/addon_228106_info+dev+bio.json',
+                'addons/addon_228107_multiple-devs.json']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=592)
+        user = UserProfile.objects.get(pk=999)
+        AddonUser(addon=self.addon, user=user).save()
+
+    def test_button_appears_if_set(self):
+        response = self.client.get(self.addon.get_url_path())
+        # No button by default because Addon.contributions url not set.
+        assert pq(response.content)('#contribution-url-button').length == 0
+
+        # Set it and it appears though.
+        self.addon.update(contributions='https://paypal.me/foooo')
+        response = self.client.get(self.addon.get_url_path()
+                                   )
+        button = pq(response.content)('#contribution-url-button')
+        assert button.length == 1, response.content
+        assert button[0].attrib['href'] == get_outgoing_url(
+            'https://paypal.me/foooo')
 
 
 class TestLicensePage(TestCase):
