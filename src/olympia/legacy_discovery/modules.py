@@ -4,7 +4,6 @@ import jinja2
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import Collection, MonthlyPick as MP
 from olympia.legacy_api.views import addon_filter
@@ -66,15 +65,23 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'legacy_discovery/modules/monthly.html'
 
+    def get_pick(self, locale):
+        monthly_pick = MP.objects.filter(locale=locale)[0]
+        if not monthly_pick.addon.is_public():
+            raise IndexError
+        return monthly_pick
+
     def context(self, **kwargs):
         try:
-            pick = MP.objects.filter(locale=self.request.LANG)[0]
+            monthly_pick = self.get_pick(self.request.LANG)
         except IndexError:
             try:
-                pick = MP.objects.filter(locale='')[0]
+                # No MonthlyPick available in the user's locale, use '' to get
+                # the global pick if there is one.
+                monthly_pick = self.get_pick('')
             except IndexError:
-                pick = None
-        return {'pick': pick, 'module_context': 'discovery'}
+                monthly_pick = None
+        return {'pick': monthly_pick, 'module_context': 'discovery'}
 
 
 class CollectionPromo(PromoModule):
@@ -100,26 +107,34 @@ class CollectionPromo(PromoModule):
         return {}
 
     def get_addons(self):
-        addons = self.collection.addons.filter(status=amo.STATUS_PUBLIC)
-        kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
-                  platform=self.platform, version=self.version,
-                  compat_mode=self.compat_mode)
+        addons = self.collection.addons.public()
+        kw = {
+            'addon_type': 'ALL',
+            'limit': self.limit,
+            'app': self.request.APP,
+            'platform': self.platform,
+            'version': self.version,
+            'compat_mode': self.compat_mode
+        }
 
-        def f():
+        def _filter():
             return addon_filter(addons, **kw)
 
-        return caching.cached_with(addons, f, repr(kw))
+        return caching.cached_with(addons, _filter, repr(kw))
 
     def render(self, module_context='discovery'):
         if module_context == 'home':
             self.platform = 'ALL'
             self.version = None
-        c = dict(promo=self, module_context=module_context,
-                 descriptions=self.get_descriptions())
+        context = {
+            'promo': self,
+            'module_context': module_context,
+            'descriptions': self.get_descriptions()
+        }
         if self.collection:
-            c.update(addons=self.get_addons())
+            context['addons'] = self.get_addons()
         return jinja2.Markup(render_to_string(
-            self.template, c, request=self.request))
+            self.template, context, request=self.request))
 
 
 class ShoppingCollection(CollectionPromo):
