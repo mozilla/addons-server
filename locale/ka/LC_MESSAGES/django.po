@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 15:17+0000\n"
+"PO-Revision-Date: 2017-08-30 22:32+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2605,16 +2605,16 @@ msgid "Details"
 msgstr ""
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "რა არის თქვენი ლიცენზიის დასახელება?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "ლიცენზიის ტექსტის მითითება."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "საკუთარის არჩევის შემთხვევაში, საჭიროა ლიცენზიის ტექსტის მითითება."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "დამატებას გააჩნია სამომხმარებლო სალიცენზიო შეთანხმება"
 
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
@@ -8271,7 +8271,7 @@ msgid "Version History with Changelogs"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
 
 msgid "Permanent link to this version"
 msgstr ""
