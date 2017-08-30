@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 08:35+0000\n"
+"PO-Revision-Date: 2017-08-30 08:52+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3480,7 +3480,7 @@ msgid "Edit details about this theme's listing."
 msgstr "Редактиране на информацията за темата."
 
 msgid "Edit Listing"
-msgstr "Редактиране на списъка"
+msgstr "Редактиране на добавката"
 
 msgid "View the popularity of this theme over time."
 msgstr ""
@@ -3625,7 +3625,7 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Управление на добавката"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -3745,7 +3745,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Добавката няма да бъде включена в резултатите от търсене, а страницата ѝ ще показва, че сте я изключили. Добавката оставена в това състояние няма да приема нови версии."
 
 msgid "Created:"
 msgstr ""
@@ -3994,13 +3994,13 @@ msgid "Update Your Legacy Extension"
 msgstr "Обновете вашето остаряло разширение"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr ""
+msgstr "Има нов стандарт за разработка на добавки за Firefox, които ще работят и на другите четци. Ще трябва да обновите вашите остарели разширения, за да останат съвместими."
 
 msgid "Learn How"
 msgstr "Научете как"
 
 msgid "What's New"
-msgstr ""
+msgstr "Какво е новото"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr "Имате готова добавка? Прочетете нашите инструкции за процеса на изпращане."
@@ -4314,7 +4314,7 @@ msgstr "Следващи стъпки:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Дайте повече информация за темата като я <a href=\"%(edit_url)s\">редактирате</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
