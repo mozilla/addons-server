@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 13:08+0000\n"
+"PO-Revision-Date: 2017-08-30 19:48+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1873,7 +1873,7 @@ msgstr "{addon} активиран."
 
 #. L10n: {0} is the status
 msgid "{addon} status changed to {0}."
-msgstr "състоянието на {addon} сменено на {0}."
+msgstr "Състоянието на {addon} променено на {0}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} добавена към {addon}."
