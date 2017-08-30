@@ -45,6 +45,7 @@ from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
     Addon, AddonCategory, Category, Persona,
     update_search_index as addon_update_search_index)
+from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
@@ -692,24 +693,21 @@ def addon_factory(
     kwargs.update(kw)
 
     # Save 1.
-    if type_ == amo.ADDON_PERSONA:
-        # Personas need to start life as an extension for versioning.
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
-    else:
-        addon = Addon.objects.create(type=type_, **kwargs)
+    addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
     version = version_factory(file_kw, addon=addon, **version_kw)
-    addon.update_version()
-    addon.status = status
-    if type_ == amo.ADDON_PERSONA:
-        addon.type = type_
+    if addon.type == amo.ADDON_PERSONA:
+        addon._current_version = version
         persona_id = persona_id if persona_id is not None else addon.id
 
         # Save 3.
         Persona.objects.create(
             addon=addon, popularity=addon.weekly_downloads,
             persona_id=persona_id)
+
+    addon.update_version()
+    addon.status = status
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
@@ -720,7 +718,7 @@ def addon_factory(
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
         static_category = random.choice(
-            CATEGORIES[application][type_].values())
+            CATEGORIES[application][addon.type].values())
         category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
@@ -730,6 +728,13 @@ def addon_factory(
 
     # Save 4.
     addon.save()
+
+    if addon.type == amo.ADDON_PERSONA:
+        # Personas only have one version and signals.version_changed is never
+        # fired for them - instead it gets updated through a cron (!). We do
+        # need to get it right in some tests like the ui tests, so we call the
+        # task ourselves.
+        version_changed(addon.pk)
 
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
@@ -853,8 +858,8 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    file_kw = file_kw or {}
     if addon_type != amo.ADDON_PERSONA:
+        file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     return ver
 

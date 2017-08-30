@@ -188,7 +188,8 @@ class AddonIndexer(BaseSearchIndexer):
     def extract_version(cls, obj, version_obj):
         return {
             'id': version_obj.pk,
-            'compatible_apps': cls.extract_compatibility_info(version_obj),
+            'compatible_apps': cls.extract_compatibility_info(
+                obj, version_obj),
             'files': [{
                 'id': file_.id,
                 'created': file_.created,
@@ -207,9 +208,23 @@ class AddonIndexer(BaseSearchIndexer):
         } if version_obj else None
 
     @classmethod
-    def extract_compatibility_info(cls, version_obj):
+    def extract_compatibility_info(cls, obj, version_obj):
+        """Return compatibility info for the specified version_obj, as will be
+        indexed in ES."""
         compatible_apps = {}
-        for app, appver in version_obj.compatible_apps.items():
+        # <Version>.compatible_apps and <Addon>.compatible_apps have a subtle
+        # difference: the latter handles addons with no compatibility info,
+        # something the former can not do in a performant way easily (it
+        # computes compatibility info in a transformer where it does not have
+        # access to the parent addon without making additional queries).
+        # Here, in the indexer, we have access to both already, so if we detect
+        # that the add-on is not supposed to have compatibility information, we
+        # use the implementation from Addon.
+        if obj.type in amo.NO_COMPAT:
+            source = obj
+        else:
+            source = version_obj
+        for app, appver in source.compatible_apps.items():
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
                 min_human, max_human = appver.min.version, appver.max.version
@@ -243,6 +258,10 @@ class AddonIndexer(BaseSearchIndexer):
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
+            # Personas are compatible with all platforms. They don't have files
+            # so we have to fake the info to be consistent with the rest of the
+            # add-ons stored in ES.
+            data['platforms'] = [amo.PLATFORM_ALL.id]
             try:
                 # Boost on popularity.
                 data['boost'] = float(obj.persona.popularity ** .2)
@@ -264,6 +283,9 @@ class AddonIndexer(BaseSearchIndexer):
                 # The instance won't have a persona while it's being created.
                 pass
         else:
+            if obj.current_version:
+                data['platforms'] = [p.id for p in
+                                     obj.current_version.supported_platforms]
             # Boost by the number of users on a logarithmic scale. The maximum
             # boost (11,000,000 users for adblock) is about 5x.
             data['boost'] = float(obj.average_daily_users ** .2)
@@ -279,9 +301,6 @@ class AddonIndexer(BaseSearchIndexer):
         data['category'] = [cat.id for cat in obj.all_categories]
         data['current_version'] = cls.extract_version(
             obj, obj.current_version)
-        if obj.current_version:
-            data['platforms'] = [p.id for p in
-                                 obj.current_version.supported_platforms]
         data['current_beta_version'] = cls.extract_version(
             obj, obj.current_beta_version)
         data['listed_authors'] = [
