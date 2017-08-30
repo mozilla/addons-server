@@ -3068,7 +3068,7 @@ msgid "None"
 msgstr "არაა"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "ავტორების & ლიცენზიის მართვა"
 
 msgid "Authors"
 msgstr ""
