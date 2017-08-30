@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 22:32+0000\n"
+"PO-Revision-Date: 2017-08-30 23:00+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4179,7 +4179,7 @@ msgid "A short explanation of your theme's basic functionality that is displayed
 msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება ძიებაში და ჩამონათვალში, ასევე თქვენი თემის გვერდის თავში."
 
 msgid "Theme License"
-msgstr ""
+msgstr "თემის ლიცენზია"
 
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
@@ -4212,7 +4212,7 @@ msgid "Your Theme will be released under the following license:"
 msgstr "თქვენი თემა გამოშვებული იქნება, მოცემული ლიცენზიის ქვეშ:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "მიუთითეთ სხვა ლიცენზია."
 
 msgid "Select a license for your Theme."
 msgstr "აირჩიეთ ლიცენზია თქვენი თემისთვის."
