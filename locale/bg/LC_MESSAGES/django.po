@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 20:38+0000\n"
+"PO-Revision-Date: 2017-08-30 21:35+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -619,7 +619,7 @@ msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> рецензия"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> рецензии"
 
 msgid "View statistics"
-msgstr "Виж статистиките"
+msgstr "Преглед на статистиката"
 
 msgid "Manage"
 msgstr "Управление"
@@ -2493,7 +2493,7 @@ msgid "Import/Export"
 msgstr "Внасяне/Изнасяне"
 
 msgid "Message and News Reading"
-msgstr "Съобщения и четене на новини"
+msgstr "Съобщения и новини"
 
 msgid "Privacy and Security"
 msgstr "Поверителност и сигурност"
@@ -7232,7 +7232,7 @@ msgstr "История на добавката"
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr "Оценени с %d от 5 звезди"
+msgstr "Оценена с %d от 5 звезди"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -7374,11 +7374,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Rated {0} out of 5 stars"
-msgstr "Оценени с {0} от 5 звезди"
+msgstr "Оценена с {0} от 5 звезди"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оценени с %(rating)s от 5 звезди"
+msgstr "Оценена с %(rating)s от 5 звезди"
 
 msgid "Most popular this week"
 msgstr "Най-популярни тази седмица"
