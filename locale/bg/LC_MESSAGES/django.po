@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 20:10+0000\n"
+"PO-Revision-Date: 2017-08-30 20:38+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -7520,7 +7520,7 @@ msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Обобщение"
 
 msgid "by Source"
 msgstr "по източник"
@@ -7713,19 +7713,19 @@ msgid "Top Applications"
 msgstr "По приложения"
 
 msgid "See more applications&hellip;"
-msgstr "Вижте още приложения&hellip;"
+msgstr "Повече приложения&hellip;"
 
 msgid "Top Languages"
 msgstr "По езици"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Повече езици&hellip;"
 
 msgid "Top Platforms"
 msgstr "По ОС"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Повече платформи&hellip;"
 
 msgid "Ratings by Date"
 msgstr "Оценки по дата"
