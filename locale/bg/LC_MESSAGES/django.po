@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-30 19:48+0000\n"
+"PO-Revision-Date: 2017-08-30 20:10+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1025,7 +1025,7 @@ msgstr ""
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Показват се <b>%(begin)s</b>&ndash;<b>%(end)s</b> от<b>%(count)s</b>"
+msgstr "Резултати <b>%(begin)s</b> &ndash; <b>%(end)s</b> от <b>%(count)s</b>"
 
 msgid "Add-ons"
 msgstr "Добавки"
@@ -1873,7 +1873,7 @@ msgstr "{addon} активиран."
 
 #. L10n: {0} is the status
 msgid "{addon} status changed to {0}."
-msgstr "Състоянието на {addon} променено на {0}."
+msgstr "Състоянието на {addon} е променено на {0}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} добавена към {addon}."
