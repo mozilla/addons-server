@@ -181,7 +181,10 @@ class ESTranslationSerializerField(TranslationSerializerField):
         # automatically made by the translations app.
         translation = self.fetch_single_translation(
             obj, target_name, target_translations, get_language())
-        setattr(obj, target_name, Translation(localized_string=translation))
+        value = (
+            Translation(localized_string=translation)
+            if translation is not None else translation)
+        setattr(obj, target_name, value)
 
     def fetch_all_translations(self, obj, source, field):
         return field or None
