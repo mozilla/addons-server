@@ -670,6 +670,7 @@ def addon_factory(
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
     category = kw.pop('category', None)
+    default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
@@ -680,6 +681,7 @@ def addon_factory(
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
         'status': amo.STATUS_PUBLIC,
+        'default_locale': default_locale,
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
         'average_daily_users': popularity or random.randint(200, 2000),
@@ -693,7 +695,8 @@ def addon_factory(
     kwargs.update(kw)
 
     # Save 1.
-    addon = Addon.objects.create(type=type_, **kwargs)
+    with translation.override(default_locale):
+        addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
     version = version_factory(file_kw, addon=addon, **version_kw)

@@ -2818,6 +2818,24 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
 
+    def test_default_locale_fallback_still_works_for_translations(self):
+        addon = addon_factory(default_locale='pt-BR', name='foobar')
+        # Couple quick checks to make sure the add-on is in the right state
+        # before testing.
+        assert addon.default_locale == 'pt-BR'
+        assert addon.name.locale == 'pt-br'
+
+        self.refresh()
+
+        # Search in a different language than the one used for the name: we
+        # should fall back to default_locale and find the translation.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
+        assert data['results'][0]['name'] == 'foobar'
+
+        # Same deal in en-US.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
+        assert data['results'][0]['name'] == 'foobar'
+
     def test_empty(self):
         data = self.perform_search(self.url)
         assert 'count' not in data
@@ -2833,8 +2851,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         qset = AddonAutoCompleteSearchView().get_queryset()
 
         includes = set((
-            'icon_type', 'id', 'modified', 'name_translations', 'persona',
-            'slug', 'type'))
+            'default_locale', 'icon_type', 'id', 'modified',
+            'name_translations', 'persona', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 
