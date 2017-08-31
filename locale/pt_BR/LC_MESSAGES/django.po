@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-28 14:47+0000\n"
+"PO-Revision-Date: 2017-08-31 01:05+0000\n"
 "Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1129,11 +1129,13 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versões"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Se o seu aplicativo suportado não requer um arquivo manifest, você ainda tem de incluir um com as propriedades requeridas como especificado <a href=\"%(url)s\">aqui</a>."
+msgstr ""
+"Se o seu aplicativo suportado não requer um arquivo manifest, você ainda tem de incluir um com as propriedades requeridas conforme especificado "
+"%(amo_manifests_mdn_link_open)saqui%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1715,9 +1717,8 @@ msgid "Additional Resources"
 msgstr "Recursos adicionais"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">barra de pesquisa</a> do {0}"
+msgstr "Saiba mais sobre a <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">barra de pesquisa</a> do {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Explore mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2349,9 +2350,8 @@ msgstr "Análise atualizada do Tema Completo"
 msgid "Moderated Add-on Review"
 msgstr "Análise moderada da extensão"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Moderação de análise de complemento revertida"
+msgstr "Moderação de análise de extensão revertida"
 
 msgid "Level 1"
 msgstr "Nível 1"
@@ -6708,9 +6708,9 @@ msgstr "Referências de licenças de código aberto"
 msgid "Add-on Developer FAQ"
 msgstr "Dúvidas comuns de desenvolvedores de complementos"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Como faço para criar um complemento?</h3> <p>A Mozilla fornece documentação sobre como criar um complemento através do <a href=\"%(url)s\">Mozilla Developer Network</a>.</p>"
+msgstr "<h3>Como faço para criar uma extensão?</h3> <p>A Mozilla fornece documentação sobre como criar uma extensão através da %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "O que é um arquivo \".xpi\"?"
