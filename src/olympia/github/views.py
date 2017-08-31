@@ -1,3 +1,5 @@
+import json
+
 import requests
 from rest_framework import status
 from rest_framework.response import Response
@@ -19,7 +21,17 @@ class GithubView(APIView):
             # response so github doesn't report it as an error.
             return Response({}, status=status.HTTP_200_OK)
 
-        github = GithubRequest(data=request.data)
+        # If the content-type is form-urlencoded the JSON is sent in the
+        # payload parameter.
+        #
+        # See: https://developer.github.com/webhooks/creating/#content-type
+        if (request.META.get('CONTENT_TYPE') ==
+           'application/x-www-form-urlencoded'):
+            data = json.loads(request.data['payload'])
+        else:
+            data = request.data
+
+        github = GithubRequest(data=data)
         if not github.is_valid():
             return Response({}, status=422)
 
