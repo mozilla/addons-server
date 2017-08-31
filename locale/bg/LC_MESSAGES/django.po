@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-31 00:32+0000\n"
+"PO-Revision-Date: 2017-08-31 09:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3777,7 +3777,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Това е последната качена версия, която обаче все още не се вижда на сайта."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Опашката се не обработва подред"
 
 msgid "Queue Position:"
 msgstr "Място в опашката:"
