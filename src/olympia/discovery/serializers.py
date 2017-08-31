@@ -2,6 +2,7 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -48,4 +49,10 @@ class DiscoverySerializer(serializers.Serializer):
                 '{start_sub_heading}', '<span>').replace(
                 '{end_sub_heading}', '</span>').replace(
                 '{addon_name}', addon_link)
+
+        if (data['description'] is None and
+                instance.addon.type == amo.ADDON_EXTENSION and
+                instance.addon.summary):
+            data['description'] = (
+                u'<blockquote>%s</blockquote>' % instance.addon.summary)
         return data

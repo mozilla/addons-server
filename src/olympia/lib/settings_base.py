@@ -1714,3 +1714,5 @@ CRON_JOBS = {
 
     'update_user_ratings': 'olympia.users.cron',
 }
+
+RECOMMENDATION_ENGINE_URL = 'https://taar.dev.mozaws.net/api/recommendations/'
