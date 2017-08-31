@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-04-13 23:37+0000\n"
-"Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
+"PO-Revision-Date: 2017-08-14 08:40+0000\n"
+"Last-Translator: Rahmat Subekti <rahmatsubekti@live.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "Validating {0}"
 msgstr "Mengvalidasi {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Penggaya anda melebihi ukuran maksimum {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Menerima balasan kosong dari server; status: {0}"
@@ -131,7 +131,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipe berkas yang Anda unggah tidak dikenal."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Berkas anda melebihi ukuran maksimum {0}."
 
 msgid "You cancelled the upload."
 msgstr "Anda membatalkan unggah."
@@ -657,9 +657,8 @@ msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform Anda"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
+msgstr "Pengaya ini tidak kompatibel dengan versi {0} Anda."
 
 msgid "View other versions"
 msgstr "Lihat versi lainnya"
