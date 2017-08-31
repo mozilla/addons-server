@@ -101,11 +101,16 @@ class AddonAppVersionFilterParam(AddonFilterParam):
 
 
 class AddonAuthorFilterParam(AddonFilterParam):
+    # Note: this filter returns add-ons that have at least one matching author
+    # when several are provided (separated by a comma).
+    # It works differently from the tag filter below that needs all tags
+    # provided to match.
+    operator = 'terms'
     query_param = 'author'
     es_field = 'listed_authors.username'
 
     def get_value(self):
-        return self.request.GET.get(self.query_param, '')
+        return self.request.GET.get(self.query_param, '').split(',')
 
 
 class AddonPlatformFilterParam(AddonFilterParam):

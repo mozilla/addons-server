@@ -2740,6 +2740,33 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['slug'] == addon.slug
 
+    def test_filter_by_multiple_authors(self):
+        author = user_factory(username='foo')
+        author2 = user_factory(username='bar')
+        another_author = user_factory(username='someoneelse')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        AddonUser.objects.create(addon=addon, user=author2)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        AddonUser.objects.create(addon=addon2, user=author2)
+        another_addon = addon_factory()
+        AddonUser.objects.create(addon=another_addon, user=another_author)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'foo,bar'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
