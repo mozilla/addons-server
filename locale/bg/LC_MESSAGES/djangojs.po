@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-18 20:28+0000\n"
+"PO-Revision-Date: 2017-09-01 12:16+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -622,7 +622,7 @@ msgstr "<b>{0}</b> от {1} до {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b> средно за последните {1} дни"
+msgstr "Средно <b>{0}</b> за последните {1} дни"
 
 msgid "No data available."
 msgstr "Няма данни"
