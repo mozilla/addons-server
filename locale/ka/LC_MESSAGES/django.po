@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-01 19:02+0000\n"
+"PO-Revision-Date: 2017-09-01 20:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3910,7 +3910,7 @@ msgid "Policies"
 msgstr "დებულებები"
 
 msgid "FAQ"
-msgstr "ხდკ"
+msgstr "ხ.დ.კ."
 
 msgid "Report Bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
@@ -6293,7 +6293,7 @@ msgstr "კითხვა მაქვს"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"დასაწყებად, საუკეთესო ადგილია ჩვენი <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">ხდკ</abbr></a> გვერდი. თუ თქვენს კითხვაზე მანდ ვერ იპოვით პასუხს, შეგიძლიათ <a "
+"დასაწყებად, საუკეთესო ადგილია ჩვენი <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">ხ.დ.კ.</abbr></a> გვერდი. თუ თქვენს კითხვაზე მანდ ვერ იპოვით პასუხს, შეგიძლიათ <a "
 "href=\"%(forum_url)s\">ჩვენს ფორუმებზე დასვათ კითხვა</a>."
 
 #, python-format
@@ -6395,7 +6395,7 @@ msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki 
 msgstr "შემოწირულობის შესახებ ინფორმაციის მისაღებად, ეწვიეთ ჩვენს <a href=\"%(url)s\">wiki გვერდს</a>."
 
 msgid "Developer FAQ"
-msgstr "შემმუშავებლების ხდკ"
+msgstr "შემმუშავებლის ხ.დ.კ."
 
 msgid "Sections"
 msgstr ""
@@ -6420,7 +6420,7 @@ msgid "References for Open Source Licenses"
 msgstr ""
 
 msgid "Add-on Developer FAQ"
-msgstr "დამატების შემმუშავებელთა ხდკ"
+msgstr "დამატების შემმუშავებელის ხ.დ.კ."
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
@@ -7013,7 +7013,7 @@ msgstr "ინფორმაცია შემმუშავებლებ�
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "გთხოვთ გაეცნოთ ჩვენს <a href=\"%(faq_url)s\">შემმუშავებელთა ხდკ</a> და <a href=\"%(hub_url)s\">შემმუშავებლების</a> გვერდებს, დამატებების შემუშავებასთან დაკავშირებულ კითხვებზე პასუხის მისაღებად."
+msgstr "გთხოვთ გაეცნოთ ჩვენს <a href=\"%(faq_url)s\">შემმუშავებელის ხ.დ.კ.</a> და <a href=\"%(hub_url)s\">შემმუშავებლების</a> გვერდებს, დამატებების შემუშავებასთან დაკავშირებულ კითხვებზე პასუხის მისაღებად."
 
 msgid "Still have questions?"
 msgstr "კიდევ გაქვთ კითხვები?"
