@@ -28,6 +28,6 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "potools": "0.0.7"
+    "potools": "0.1.0"
   }
 }
