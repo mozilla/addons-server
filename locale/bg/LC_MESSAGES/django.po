@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-01 12:18+0000\n"
+"PO-Revision-Date: 2017-09-01 19:44+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3017,11 +3017,11 @@ msgid "Tested for compatibility against:"
 msgstr "Тествано за съвместимост със:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr "Последни действия по моите добавки"
+msgstr "Последни дейности по моите добавки"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Последни действия по {0}"
+msgstr "Последни дейности по {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -3073,7 +3073,7 @@ msgid "Close"
 msgstr "Затвори"
 
 msgid "Recent Activity"
-msgstr "Последни действия"
+msgstr "Последни дейности"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
@@ -3756,7 +3756,7 @@ msgid "%%b %%e, %%Y"
 msgstr ""
 
 msgid "Add-on Multi Process Status:"
-msgstr "Многопроцесност на добавката:"
+msgstr "Многопроцесност:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
