@@ -5,7 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 
 from olympia.addons.models import Addon
-from olympia.bandwagon.models import Collection, MonthlyPick as MP
+from olympia.bandwagon.models import (
+    Collection, MonthlyPick as MonthlyPickModel)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
 
@@ -66,7 +67,7 @@ class MonthlyPick(TemplatePromo):
     template = 'legacy_discovery/modules/monthly.html'
 
     def get_pick(self, locale):
-        monthly_pick = MP.objects.filter(locale=locale)[0]
+        monthly_pick = MonthlyPickModel.objects.filter(locale=locale)[0]
         if not monthly_pick.addon.is_public():
             raise IndexError
         return monthly_pick
