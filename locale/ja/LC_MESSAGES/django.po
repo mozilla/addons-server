@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-25 14:20+0000\n"
+"PO-Revision-Date: 2017-09-02 07:41+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -7051,7 +7051,7 @@ msgid "The study will expire on its own in a few weeks. You may leave the study 
 msgstr "この調査は数週間以内に自動的に終了しますが、それよりも早く調査への参加を終えることもできます。そのためには、以下の手順に従ってください。"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "ロケーションバーに about:addons と入力し、Enter キーを押してください。"
+msgstr "アドレスバーに about:addons と入力し、Enter キーを押してください。"
 
 msgid "Find Plugin Safety in the addons list."
 msgstr "アドオンの一覧から Plugin Safety を見つけてください。"
