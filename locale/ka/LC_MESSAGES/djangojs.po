@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-20 21:39+0000\n"
+"PO-Revision-Date: 2017-09-02 21:58+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -252,7 +252,7 @@ msgstr "დამატებითი მონაცემები..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "{0}-ის დეტალები"
+msgstr "დამატებითი მონაცემები {0} თარიღისთვის"
 
 msgid "Collections Created"
 msgstr "კრებულები შეიქმნა"
