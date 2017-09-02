@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-02 07:29+0000\n"
+"PO-Revision-Date: 2017-09-02 07:36+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1139,7 +1139,7 @@ msgid "Recently Popular"
 msgstr "最近热门"
 
 msgid "Added"
-msgstr "添加时间"
+msgstr "添加时刻"
 
 msgid "Popularity"
 msgstr "热门度"
@@ -3027,7 +3027,7 @@ msgstr "近期动态"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr "%(ago)s 由 %(user)s"
+msgstr "%(ago)s 由 %(user)s 发布"
 
 msgid "Older activity for My Add-ons"
 msgstr "我的附加组件的早期动态"
