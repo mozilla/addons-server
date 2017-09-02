@@ -2,6 +2,8 @@ import json
 import mock
 import requests
 
+from django.utils.http import urlencode
+
 from olympia.amo.tests import AMOPaths, TestCase
 from olympia.files.models import FileUpload
 from olympia.amo.urlresolvers import reverse
@@ -16,12 +18,33 @@ class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
         super(TestGithubView, self).setUp()
         self.url = reverse('github.validate')
 
-    def post(self, data, header=None):
+    def post(self, data, header=None, data_type=None):
+        data_type = data_type or 'application/json'
+        if (data_type == 'application/json'):
+            data = json.dumps(data)
+        elif (data_type == 'application/x-www-form-urlencoded'):
+            data = urlencode({'payload': json.dumps(data)})
         return self.client.post(
-            self.url, data=json.dumps(data),
-            content_type='application/json',
+            self.url, data=data,
+            content_type=data_type,
             HTTP_X_GITHUB_EVENT=header or 'pull_request'
         )
+
+    def complete(self):
+        pending, success = self.requests.post.call_args_list
+        self.check_status(
+            'pending',
+            call=pending,
+            url='https://api.github.com/repos/org/repo/statuses/abc'
+        )
+        self.check_status(
+            'success',
+            call=success,
+            url='https://api.github.com/repos/org/repo/statuses/abc',
+            target_url=mock.ANY
+        )
+
+        assert FileUpload.objects.get()
 
     def test_not_pull_request(self):
         assert self.post({}, header='meh').status_code == 200
@@ -47,21 +70,14 @@ class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
         res = self.post(example_pull_request)
         assert 'write access' in json.loads(res.content)['details']
 
+    def test_good_not_json(self):
+        self.setup_xpi()
+        assert self.post(
+            example_pull_request,
+            data_type='application/x-www-form-urlencoded').status_code == 201
+        self.complete()
+
     def test_good(self):
         self.setup_xpi()
-
-        self.post(example_pull_request)
-        pending, success = self.requests.post.call_args_list
-        self.check_status(
-            'pending',
-            call=pending,
-            url='https://api.github.com/repos/org/repo/statuses/abc'
-        )
-        self.check_status(
-            'success',
-            call=success,
-            url='https://api.github.com/repos/org/repo/statuses/abc',
-            target_url=mock.ANY
-        )
-
-        assert FileUpload.objects.get()
+        assert self.post(example_pull_request).status_code == 201
+        self.complete()
