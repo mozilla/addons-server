@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-08-27 03:42+0000\n"
+"PO-Revision-Date: 2017-09-02 07:29+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1008,7 +1008,7 @@ msgstr "附加组件"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr "{0} 前"
+msgstr "{0}前"
 
 msgid "Title"
 msgstr "标题"
@@ -1103,7 +1103,7 @@ msgid "Describe your collection (no links allowed)."
 msgstr "描述您的收藏集（不允许使用链接）。"
 
 msgid "Privacy:"
-msgstr "隐私权政策："
+msgstr "公开范围："
 
 msgid "Icon"
 msgstr "图标"
@@ -7051,7 +7051,7 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr "退出研究并不妨碍您参与未来的研究。"
 
 msgid "Your privacy"
-msgstr "您的隐私"
+msgstr "您的隐私权"
 
 msgid "All Shield Studies"
 msgstr "所有盾牌研究"
