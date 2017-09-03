@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-02 22:03+0000\n"
+"PO-Revision-Date: 2017-09-03 00:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1752,7 +1752,7 @@ msgid "No themes found"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "ყველა"
 
 msgid "Add-on Compatibility Reports"
 msgstr "მოხსენებები დამატებების თავსებადობაზე"
@@ -1783,7 +1783,7 @@ msgid_plural "{0} problem reports"
 msgstr[0] ""
 
 msgid "View all"
-msgstr ""
+msgstr "ყველას ნახვა"
 
 msgid "Filter by Application"
 msgstr "პროგრამების მიხედვით"
@@ -2535,7 +2535,7 @@ msgid "Header image alignment problem"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "ყველა უფლება დაცულია"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -2559,7 +2559,7 @@ msgid "Any"
 msgstr ""
 
 msgid "All Platforms"
-msgstr ""
+msgstr "ყველა პლატფორმა"
 
 msgid "Linux"
 msgstr ""
@@ -2602,7 +2602,7 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr "ვრცლად"
+msgstr "შესახებ"
 
 msgid "What is your license's name?"
 msgstr "რა არის თქვენი ლიცენზიის დასახელება?"
@@ -2917,7 +2917,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>დამატებების</small> შემმუშავებლები"
 
 msgid "more add-ons..."
 msgstr "სხვა დამატებები..."
@@ -3065,7 +3065,7 @@ msgid "Edit Information"
 msgstr "მონაცემების შესწორება"
 
 msgid "None"
-msgstr "არაა"
+msgstr "არცერთი"
 
 msgid "Manage Authors & License"
 msgstr "ავტორების & ლიცენზიის მართვა"
@@ -3294,7 +3294,7 @@ msgid "This add-on will be automatically upgraded to new versions of the Add-on 
 msgstr ""
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "არა, ეს დამატება განახლდება ხელით."
 
 msgid "Universally unique identifier"
 msgstr ""
@@ -7996,7 +7996,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "სამომხმარებლო ცნობები"
 
 msgid "An email address is required."
 msgstr ""
@@ -8095,14 +8095,14 @@ msgid "Delete current photo"
 msgstr "მიმდინარე სურათის წაშლა"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "წარუდგინეთ თავი ჩვენს ერთობას, თუ სურვილი გაქვთ! ეს ტექსტი საჯაროდ გამოჩნდება თქვენს მომხმარებლის გვერდზე."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "დაშვებული HTML ელემენტები: %(html)s. ბმულის დადება აკრძალულია."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr "გადაწყვიტეთ, რომელი კრებულები გსურთ გამოჩნდეს, თქვენს პროფილზე."
+msgstr "მიუთითეთ, რომელი კრებულები გსურთ გამოჩნდეს, თქვენს პროფილზე."
 
 msgid "Display the collections I have created"
 msgstr "ჩემ მიერ შექმნილი კრებულების გამოჩენა"
@@ -8111,7 +8111,7 @@ msgid "Display collections I'm following"
 msgstr "ჩემ მიერ გამოწერილი კრებულების ნახვა"
 
 msgid "Notifications"
-msgstr ""
+msgstr "შეტყობინებები"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr "ამიერიდან, Mozilla-მ შესაძლოა გამოგიგზავნოთ ელფოსტაზე სამომავლო გამოშვებების და დამატებების შესახებ ცნობები. გთხოვთ მიუთითოთ ის თემები, რომელიც გაინტერესებთ."
@@ -8129,7 +8129,7 @@ msgid "Update Account"
 msgstr "ანგარიშის განახლება"
 
 msgid "none"
-msgstr "არაა"
+msgstr "არცერთი"
 
 msgid "all"
 msgstr ""
