@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 19:28+0000\n"
+"PO-Revision-Date: 2017-09-03 19:36+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4167,7 +4167,7 @@ msgid "Theme Details"
 msgstr "თემის მონაცემები"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "შეუსაბამეთ სასურველი URL ბმული თქვენს გვერდს."
 
 msgid "Select the category that best describes your Theme."
 msgstr ""
@@ -4275,9 +4275,11 @@ msgstr "ახალი თემის შექმნა"
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
+"ფონის შემცვლელი თემები, საშუალებას გაძლევთ მარტივად მოარგოთ Firefox-ის იერსახე, თქვენს გემოვნებას. წარადგინეთ საკუთარი ნამუშევარი ქვემოთ, ან <a href=\"%(submit_url)s\">შეიტყვეთ, როგორ ხდება მისი "
+"შექმნა</a>!"
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "დაარქვით თემას სახელი."
 
 #, python-format
 msgid ""
