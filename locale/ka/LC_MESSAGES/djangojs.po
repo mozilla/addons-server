@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 01:17+0000\n"
+"PO-Revision-Date: 2017-09-03 22:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -161,22 +161,22 @@ msgid "All Rights Reserved"
 msgstr "ყველა უფლება დაცულია"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0 (ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული - ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული - ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"

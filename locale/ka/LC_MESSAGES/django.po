@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 21:20+0000\n"
+"PO-Revision-Date: 2017-09-03 22:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2538,22 +2538,22 @@ msgid "All Rights Reserved"
 msgstr "ყველა უფლება დაცულია"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0 (ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული - ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული - ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Any"
 msgstr ""
@@ -4200,7 +4200,7 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის, გადამუშავებული სახით."
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "კი, თუ ამავე ლიცენზიით გაავრცელებენ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
