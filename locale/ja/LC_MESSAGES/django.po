@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-02 07:41+0000\n"
+"PO-Revision-Date: 2017-09-03 06:01+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -312,7 +312,7 @@ msgstr "{0} のページへ戻る…"
 # Firefox,
 # Sunbird
 msgid "Add-ons for {0}"
-msgstr "Add-ons for {0}"
+msgstr "{0} 向けアドオン"
 
 msgid "Featured Extensions"
 msgstr "おすすめの拡張機能"
@@ -863,7 +863,7 @@ msgid "Page Not Found"
 msgstr "ページが見つかりませんでした"
 
 msgid "Firefox Add-ons"
-msgstr "Firefox Add-ons"
+msgstr "Firefox アドオン"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr "申し訳ありませんが、入力したアドレスには何も見つかりませんでした。アドオンへのリンクにアクセスしたのであれば、アドオンが作者によって削除された可能性があります。"
@@ -878,7 +878,7 @@ msgid "Browse all themes"
 msgstr "すべてのテーマを見る"
 
 msgid "Add-ons Home Page"
-msgstr "Add-ons ホームページ"
+msgstr "アドオンホームページ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -1011,7 +1011,7 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
 msgid "Add-ons"
-msgstr "Add-ons"
+msgstr "アドオン"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -1064,7 +1064,7 @@ msgid "Valid Application Versions"
 msgstr "アプリケーションの有効バージョン"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
+msgstr "Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -1372,7 +1372,7 @@ msgstr "コレクションの協力者"
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
+msgstr "複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla アドオンサイトのアカウントが必要です。"
 
 msgid "User"
 msgstr "ユーザー"
@@ -2932,10 +2932,10 @@ msgid "Community & Support"
 msgstr "コミュニティとサポート"
 
 msgid "Add-ons Blog"
-msgstr "Add-ons ブログ"
+msgstr "アドオンブログ"
 
 msgid "Add-ons Forum"
-msgstr "Add-ons フォーラム"
+msgstr "アドオンフォーラム"
 
 msgid "More Resources"
 msgstr "その他の資料"
@@ -6169,7 +6169,7 @@ msgid "Zimbabwe Dollar"
 msgstr "ジンバブエ, ドル"
 
 msgid "About Mozilla Add-ons"
-msgstr "Mozilla Add-ons について"
+msgstr "Mozilla アドオンサイトについて"
 
 msgid "What is this website?"
 msgstr "このサイトは何ですか？"
@@ -6197,7 +6197,7 @@ msgstr "アドオンワールドからの最新ニュースは、いくつかの
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr "私たちの <a href=\"%(url)s\">Add-ons Blog</a> では、アドオンに熱中している人や開発者向けの情報を定期的に更新しています。"
+msgstr "私たちの <a href=\"%(url)s\">アドオンブログ</a> では、アドオンに熱中している人や開発者向けの情報を定期的に更新しています。"
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -7701,7 +7701,7 @@ msgid "Application versions by Date"
 msgstr "日別アプリケーションバージョン"
 
 msgid "Mozilla Add-ons"
-msgstr "Mozilla Add-ons"
+msgstr "Mozilla アドオン"
 
 msgid "Find add-ons for other applications"
 msgstr "他のアプリケーション用のアドオンを探す"
@@ -7710,7 +7710,7 @@ msgid "Other Applications"
 msgstr "他のアプリケーション"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "自分のコレクションを作成するには Mozilla Add-ons のアカウントが必要です。"
+msgstr "自分のコレクションを作成するには Mozilla アドオンサイトのアカウントが必要です。"
 
 msgid "Footer logo"
 msgstr "フッターロゴ"
@@ -7738,7 +7738,7 @@ msgstr "他の言語"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "{0} Add-ons のホームページへ戻る"
+msgstr "{0} アドオンのホームページへ戻る"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> アドオン"
@@ -7768,7 +7768,7 @@ msgstr "ここで公開されている数千ものアドオンを試すには、
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr "{0} Add-ons へようこそ。"
+msgstr "{0} アドオンサイトへようこそ。"
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
@@ -7781,10 +7781,10 @@ msgid "On the go?"
 msgstr "外出先ですか？"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "<a class=\"mobile-link\" href=\"#\">Mobile Add-ons サイト</a> を見る"
+msgstr "<a class=\"mobile-link\" href=\"#\">モバイル向けアドオンサイト</a> を見る"
 
 msgid "Android Add-ons"
-msgstr "Android Add-ons"
+msgstr "Android 向けアドオン"
 
 msgid "required"
 msgstr "必須"
@@ -8030,7 +8030,7 @@ msgid "all"
 msgstr "すべて"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Add-ons サイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
+msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
 
 msgid "User Login"
 msgstr "ログイン"
