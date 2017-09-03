@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 22:50+0000\n"
+"PO-Revision-Date: 2017-09-03 23:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2514,7 +2514,7 @@ msgid "Inappropriate or offensive content"
 msgstr ""
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "ძალადობის, ომის, ან შეიარაღების ამსახველი სურათი"
 
 msgid "Nazi or other hate content"
 msgstr ""
@@ -2529,10 +2529,10 @@ msgid "Spam content"
 msgstr ""
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "უხარისხო, გაწელილი, ან ცარიელი სურათი"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
 
 msgid "All Rights Reserved"
 msgstr "ყველა უფლება დაცულია"
@@ -2826,7 +2826,7 @@ msgid "Icons cannot be animated."
 msgstr ""
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "სურათი ვერ იმოძრავებს."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -2834,7 +2834,7 @@ msgstr "სურათის ზომა არ უნდა აღემა�
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
 msgid "There was an error uploading your preview."
 msgstr ""
@@ -3202,7 +3202,7 @@ msgstr ""
 "თუ თქვენს დამატებას აქვს საკუთარი ვებგვერდი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Images"
-msgstr ""
+msgstr "სურათები"
 
 msgid "Support Information"
 msgstr "დამხმარე ინფორმაცია"
@@ -3353,7 +3353,7 @@ msgid "Upload a Custom Icon..."
 msgstr ""
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG და JPG მხარდაჭერილია. ხატულის სიგრძე/სიგანე, შემცირდება 64x64 პიქსელამდე, თუ მეტი ზომის იქნება."
+msgstr "მხარდაჭერილია PNG და JPG. ზომების გადაჭარბების შემთხვევაში, ხატულის სიგრძე/სიმაღლე, შემცირდება 64x64 პიქსელამდე."
 
 msgid "Screenshots"
 msgstr ""
@@ -4218,7 +4218,7 @@ msgid "Select a license for your Theme."
 msgstr "აირჩიეთ ლიცენზია თქვენი თემისთვის."
 
 msgid "Theme Design"
-msgstr ""
+msgstr "თემის გაფორმება"
 
 msgid "Upload New Design"
 msgstr ""
@@ -4236,7 +4236,7 @@ msgid "Pending Footer"
 msgstr ""
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "თემის გაფორმების განახლება შეგეძლებათ აქ, დამოწმების შემდეგ."
 
 msgid "Header"
 msgstr ""
@@ -4245,7 +4245,7 @@ msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "ფერების შერჩევა თემისთვის."
 
 msgid "Foreground Text"
 msgstr ""
@@ -4314,10 +4314,10 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "ჩაერთეთ საუბრებში ჩვენს <a href=\"%(forum_url)s\">ფორუმებზე</a>."
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "თემის ზედა სურათის არჩევა."
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 პიქსელი"
 
 msgid "300 KB max"
 msgstr ""
@@ -4329,19 +4329,19 @@ msgid "Aligned to top-right"
 msgstr ""
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "სხვა ზედა სურათის არჩევა"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "თემის ქვედა სურათის არჩევა."
 
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 პიქსელი"
 
 msgid "Aligned to bottom-left"
 msgstr ""
 
 msgid "Select a different footer image"
-msgstr ""
+msgstr "სხვა ქვედა სურათის არჩევა"
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -6375,22 +6375,28 @@ msgid "Past Developers &amp; Administrators"
 msgstr ""
 
 msgid "Software and Images"
-msgstr ""
+msgstr "პროგრამა და სურათები"
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"ზოგიერთი ხატულა <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk ხატულების კრებულიდან</a>, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
+"Commons Attribution 2.5 (ავტორის მითითებით)</a>."
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"ზოგიერთი ხატულა <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh ვებხატულების კრებულიდან</a>, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
+"Commons Attribution 3.0 (ავტორის მითითებით)</a>."
 
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"ზოგიერთ გვერდზე გამოყენებული <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts-ის</a> (არაკომერციული) ელემენტები, ვრცელდება ლიცენზიით <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)</a>."
 
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
