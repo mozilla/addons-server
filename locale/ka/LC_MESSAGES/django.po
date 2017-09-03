@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 23:07+0000\n"
+"PO-Revision-Date: 2017-09-03 23:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -432,7 +432,7 @@ msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> მომხმარებელი"
 
 msgid "Hover to Preview"
-msgstr "გადაულივლივეთ წინასწარ სანახავად"
+msgstr "წინასწარ სანახავად, გადაატარეთ ისარი ზედ"
 
 msgid "Add"
 msgstr "ჩადგმა"
@@ -1810,7 +1810,7 @@ msgid "e10s Compatible"
 msgstr "e10s-სთან თავსებადი"
 
 msgid "Submitted"
-msgstr ""
+msgstr "წარდგენილია"
 
 msgid "Success"
 msgstr ""
@@ -2671,7 +2671,7 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "დამატების წარდგენა განსახილველად."
 
 msgid "Do not list my add-on on this site"
 msgstr "არ გამოაქვეყნო ჩემი დამატება ამ საიტზე"
@@ -2814,7 +2814,7 @@ msgid "Check Add-on Compatibility"
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "ამ სახის დამატების წარდგენა, არ შეგიძლიათ"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
@@ -2837,7 +2837,7 @@ msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "წინასწარი ვერსიის ატვირთვისას მოხდა შეცდომა."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4203,16 +4203,16 @@ msgid "Yes, as long as they share alike"
 msgstr "კი, თუ ამავე ლიცენზიით გაავრცელებენ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაავრცელონ გადამუშავებული სახით მხოლოდ, იმავე ლიცენზიის, ან მასთან თავსებადი ლიცენზიის ქვეშ, რასაც მფლობელი იყენებს."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არსებული სახით — გადამუშავების გარეშე."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "თქვენი თემა გამოშვებული იქნება, მოცემული ლიცენზიის ქვეშ:"
 
 msgid "Select a different license."
-msgstr "მიუთითეთ სხვა ლიცენზია."
+msgstr "სხვა ლიცენზიის არჩევა."
 
 msgid "Select a license for your Theme."
 msgstr "აირჩიეთ ლიცენზია თქვენი თემისთვის."
@@ -4248,19 +4248,19 @@ msgid "Select colors for your Theme."
 msgstr "ფერების შერჩევა თემისთვის."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "წინა პლანზე არსებული ტექსტი"
 
 msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "ფონი"
 
 msgid "This is the color of the tabs."
 msgstr ""
 
 msgid "Preview"
-msgstr ""
+msgstr "წინასწარ გადახედვა"
 
 msgid "Your Theme's Name"
 msgstr ""
@@ -4290,7 +4290,7 @@ msgstr ""
 "დებულების%(link_close)s შესაბამისად."
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "თემის წარდგენა"
 
 msgid "You're done!"
 msgstr "მორჩა!"
@@ -4541,6 +4541,8 @@ msgstr ""
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
+"მეტი, ვიდრე უბრალოდ ეკრანზე გადაღებული სურათები, Awesome Screenshot Plus გაძლევთ შესაძლებლობას სურათზე გააკეთოთ წარწერა, ან დაამატოთ ნახატები. ფაილების შენახვა და გაზიარება ხდება სწრაფად და "
+"მარტივად."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -4693,7 +4695,7 @@ msgid "Duplicate Submission"
 msgstr ""
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "გმადლობთ, თქვენი თემის წარდგენისთვის"
 
 msgid "A problem with your Theme submission"
 msgstr ""
