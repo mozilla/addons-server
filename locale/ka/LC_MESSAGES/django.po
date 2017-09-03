@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 20:05+0000\n"
+"PO-Revision-Date: 2017-09-03 20:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4182,7 +4182,7 @@ msgid "Theme License"
 msgstr "თემის ლიცენზია"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "აძლევთ სხვებს უფლებას, გაავრცელონ თქვენი თემა, ავტორის მითითებით?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის მოგების მიზნითაც."
@@ -4191,10 +4191,10 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არამომგებიანი დანიშნულებით."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "აძლევთ სხვებს უფლებას, მოგების მიზნით გამოიყენონ თქვენი თემა?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "აძლევთ სხვებს უფლებას, გავრცელებისას ცვლილებები შეიტანონ თქვენს ნამუშევარში?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის, შუალედურ პროდუქტად."
