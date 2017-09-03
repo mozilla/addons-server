@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 17:01+0000\n"
+"PO-Revision-Date: 2017-09-03 19:28+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -821,7 +821,7 @@ msgid "Manage My Submissions"
 msgstr "წარდგენილი ნამუშევრების მართვა"
 
 msgid "Submit a New Add-on"
-msgstr "წარადგინეთ ახალი დამატება"
+msgstr "ახალი დამატების წარდგენა"
 
 msgid "Submit a New Theme"
 msgstr "ახალი თემის წარდგენა"
@@ -4270,7 +4270,7 @@ msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
 msgstr "<a href=\"%(profile_url)s\">%(user)s</a>-ისგან"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "ახალი თემის შექმნა"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
