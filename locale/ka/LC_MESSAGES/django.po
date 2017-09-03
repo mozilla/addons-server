@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 01:11+0000\n"
+"PO-Revision-Date: 2017-09-03 01:20+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -789,7 +789,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ეს თემა გადის შემოწმებას. ხილულია მხოლოდ თქვენთვის."
 
 msgid "Collector's Note"
-msgstr "კრებულის შემდგენის შენიშვნა"
+msgstr "კრებულის შემდგენელის შენიშვნა"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -1230,7 +1230,7 @@ msgid "Learn about collections"
 msgstr "გაიგეთ კრებულების შესახებ"
 
 msgid "More Options:"
-msgstr "მეტი პარამეტრები:"
+msgstr "დამატებითი პარამეტრები:"
 
 msgid "Edit Collection"
 msgstr "კრებულის რედაქტირება"
@@ -1345,7 +1345,7 @@ msgstr "არა"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr "{0} რედაქტირება"
+msgstr "{0} - რედაქტირება"
 
 msgid "Description"
 msgstr "აღწერა"
