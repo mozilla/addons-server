@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 14:30+0000\n"
+"PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -78,7 +78,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Лише останні версії додатків можуть мати нотатки."
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Додаток не на AMO -"
 
 msgid "Download Now"
 msgstr "Завантажити зараз"
@@ -731,7 +731,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Деяким додаткам потрібен дозвіл для виконання певних функцій. Оскільки ви керуєте своїм Firefox, вам обирати, приймати чи відхиляти ці запити."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Зверніть увагу, що цей додаток використовує застарілу технологію, яка дозволяє отримувати йому доступ до всіх функцій і даних браузера без вашого дозволу."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1651,6 +1651,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Встановлення словника у вигляді розширення додасть нову мову в функцію перевірки правопису %(app_name)s, яка перевіряє наявність помилок у тексті, який ви вводите у веб-формах. Мовні пакунки "
+"повністю змінюють мову програми."
 
 msgid "Available in your locale"
 msgstr "Доступно вашою мовою"
@@ -1708,7 +1710,7 @@ msgstr "Знайдіть ще більше провайдерів пошуку �
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sСтворіть свій власний%(amo_mdn_link_close)s інструмент пошуку"
 
 msgid "Most Popular Extensions"
 msgstr "Найпопулярніші розширення"
@@ -2798,7 +2800,7 @@ msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensi
 msgstr "Починаючи з Firefox 53, нові додатки на цьому сайті можуть бути лише типу WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Застарілі розширення несумісні з Firefox, починаючи з версії 57. Використовуйте maxVersion 56.* або нижче."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Ми дозволяємо і заохочуємо оновлення, але вам не вдасться скасувати цей процес. Після того, як ваші користувачі встановлять WebExtension, вони не зможуть встановити застарілий додаток."
@@ -3032,7 +3034,7 @@ msgstr "Використовуйте розташоване нижче поле,
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Зверніть увагу, що цей інструмент працює лише із застарілими додатками. WebExtension API є технологією, що <a href=\"%(webext_doc_url)s\">документована тут</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Після завантаження буде запущена серія автоматичних валідуючих тестів, які перевірять сумісність із наступною версією програми:"
@@ -3620,7 +3622,7 @@ msgid "Summary:"
 msgstr "Стисло:"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Цей опис повинен чітко пояснювати, що робить ваш додаток. Він буде показаний на сторінці та в пошуку, а також буде використовуватись під час перевірки вашого додатку."
 
 msgid "This add-on is experimental"
 msgstr "Цей додаток є експериментальним"
