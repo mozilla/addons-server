@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 23:31+0000\n"
+"PO-Revision-Date: 2017-09-03 23:47+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3170,7 +3170,7 @@ msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "უნდა იყოს მძიმით გამოყოფილი და შეიცავდეს, სულ მცირე {0} სიმბოლოს."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "მაგალითად: მუქი, კინო, თრილერი. არ უნდა აღემატებოდეს 20-ს."
+msgstr "მაგალითად: მუქი, კინო, თრილერი. არაუმეტეს 20 ცალი."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -3752,13 +3752,13 @@ msgid "Listed Version:"
 msgstr "გამოქვეყნებული ვერსია:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "ეს არის თქვენი დამატების ის ვერსია, რომლის ჩადგმის ღილაკზე, ნებისმიერს შეუძლია დაწკაპება და დაყენება, addons.mozilla.org საიტიდან."
 
 msgid "Next Listed Version:"
 msgstr "მომდევნო გამოსაქვეყნებელი ვერსია:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "ეს არის ყველაზე ბოლოს ატვირთული ვერსია, სავარაუდოდ, ჯერ არ იქნება საიტზე გამოჩენილი."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
@@ -3777,7 +3777,7 @@ msgid "Latest Version:"
 msgstr ""
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "ეს არის ყველაზე ბოლოს ატვირთული, გამოუქვეყნებელი ვერსია."
 
 msgid "(required since this add-on accepts contributions)"
 msgstr ""
@@ -4251,13 +4251,13 @@ msgid "Foreground Text"
 msgstr "წინა პლანზე არსებული ტექსტი"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "ჩანართის სათაურის ფერი."
 
 msgid "Background"
 msgstr "ფონი"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "ჩანართის ფონის ფერი."
 
 msgid "Preview"
 msgstr "წინასწარ გადახედვა"
@@ -4320,13 +4320,13 @@ msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 პიქსელი"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "არაუმეტეს 300 კბ"
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG ან JPG"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "განთავსდება ზედა მარჯვენა მხარეს"
 
 msgid "Select a different header image"
 msgstr "სხვა ზედა სურათის არჩევა"
@@ -4338,7 +4338,7 @@ msgid "3000 &times; 100 pixels"
 msgstr "3000 &times; 100 პიქსელი"
 
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "განთავსდება ქვედა მარცხენა მხარეს"
 
 msgid "Select a different footer image"
 msgstr "სხვა ქვედა სურათის არჩევა"
@@ -6560,7 +6560,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I submit my add-on?"
-msgstr ""
+msgstr "როგორ წარვადგინო დამატება?"
 
 #, python-format
 msgid ""
@@ -7326,7 +7326,7 @@ msgid "Write a Reply"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "წარდგენა"
 
 #. this string is following a <button>.
 #, python-format
