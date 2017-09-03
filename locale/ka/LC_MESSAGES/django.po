@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 00:50+0000\n"
+"PO-Revision-Date: 2017-09-03 01:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1246,7 +1246,7 @@ msgstr[0] "%(num)s თემა ამ კრებულში"
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s დამატება ამ კრებულში"
+msgstr[0] "ამ კრებულში არის %(num)s დამატება"
 
 msgid "Go"
 msgstr "გადასვლა"
@@ -1270,14 +1270,14 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"დამატებები, რომელიც მონიშნულია ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>საჯაროა</b>, რაც ნიშნავს, რომ ყველასთვის ხილულია. თუ გსურთ დამალოთ, დააწკაპეთ ქვემოთ არსებულ "
+"დამატებები, რომელიც მოინიშნება ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>საჯაროა</b>, რაც ნიშნავს, რომ ყველასთვის ხილულია. თუ გსურთ დამალოთ, დააწკაპეთ ქვემოთ არსებულ "
 "ღილაკზე და გახადეთ პირადი."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"დამატებები, რომელიც მონიშნულია ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>პირადია</b>, რაც ნიშნავს, რომ მხოლოდ თქვენთვისაა ხილული. თუ გსურთ ყველას შეეძლოს მისი ნახვა, "
+"დამატებები, რომელიც მოინიშნება ღილაკით <b>რჩეულებში დამატება</b>, გამოჩნდება აქ. ეს კრებული ამჟამად <b>პირადია</b>, რაც ნიშნავს, რომ მხოლოდ თქვენთვისაა ხილული. თუ გსურთ ყველას შეეძლოს მისი ნახვა, "
 "დააწკაპეთ ქვემოთ არსებულ ღილაკზე და გახადეთ საჯარო."
 
 msgid "My favorite add-ons"
@@ -1332,7 +1332,7 @@ msgstr "კრებულის რედაქტირება"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr "{0} წაშლა "
+msgstr "{0} წაიშლება"
 
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხართ?"
@@ -3291,7 +3291,7 @@ msgid "If selected, we will try to automatically upgrade your add-on when a new 
 msgstr "თუ მონიშნულია, ჩვენ შევეცდებით ავტომატურად განვაახლოთ თქვენი დამატება, SDK -ს ახალი ვერსიის გამოსვლისთანავე. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "ეს დამატება ავტომატურად განახლდება დამატების SDK-ს ახალ ვერსიაზე."
 
 msgid "No, this add-on will be upgraded manually."
 msgstr "არა, ეს დამატება განახლდება ხელით."
@@ -7937,7 +7937,7 @@ msgid "Occupation"
 msgstr "საქმიანობა"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Firefox ანგარიშის მომხმარებლებს, ამჟამად ელფოსტის მისამართის შეცვლა არ შეუძლიათ."
 
 msgid "Profile Photo"
 msgstr "პროფილის სურათი"
@@ -7963,13 +7963,13 @@ msgid "My Mobile Add-ons"
 msgstr "ჩემი დამატებები მობილურისთვის"
 
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "დამატების შემმუშავებლის მიერ მადლობის გადახდისას, წვლილის შეტანისთვის"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "დამატების შემმუშავებლის მიერ, ჩემს მიმოხილვაზე გამოხმაურებისას"
 
 msgid "new add-ons or Firefox features are available"
-msgstr "ხელმისაწვდომია ახალი დამატებები, ან Firefox-ის ახალი შესაძლებლობები"
+msgstr "ახალი დამატებების ან Firefox-ის ახალი შესაძლებლობების გამოსვლისას"
 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
@@ -7999,10 +7999,10 @@ msgid "User Notifications"
 msgstr "სამომხმარებლო ცნობები"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "ელფოსტის მითითება აუცილებელია."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "მომხმარებელი ელფოსტის ამ მისამართით, არ მოიძებნა."
 
 msgid "Profile Deleted"
 msgstr "პროფილი წაიშალა"
@@ -8074,10 +8074,10 @@ msgid "Username"
 msgstr "მომხმარებლის სახელი"
 
 msgid "Email Address"
-msgstr ""
+msgstr "ელფოსტის მისამართი"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox ანგარიშის გამართვა..."
 
 msgid "Profile"
 msgstr "პროფილი"
@@ -8117,7 +8117,7 @@ msgid "From time to time, Mozilla may send you email about upcoming releases and
 msgstr "ამიერიდან, Mozilla-მ შესაძლოა გამოგიგზავნოთ ელფოსტაზე სამომავლო გამოშვებების და დამატებების შესახებ ცნობები. გთხოვთ მიუთითოთ ის თემები, რომელიც გაინტერესებთ."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla იტოვებს უფლებას, საჭიროებისამებრ პირადად გამოგეხმაუროთ, თქვენს დამატებებთან დაკავშირებულ საკითხებზე."
 
 msgid "Admin"
 msgstr ""
@@ -8135,7 +8135,7 @@ msgid "all"
 msgstr ""
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "ანგარიშზე შესვლისთვის, Mozilla დამატებების საიტი გადამისამართდება Firefox ანგარიშების საიტზე. გადადით და დაასრულეთ ანგარიშის მონაცემების შეყვანა."
 
 msgid "User Login"
 msgstr ""
@@ -8208,7 +8208,7 @@ msgstr ""
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "<strong>%(email)s</strong> ელფოსტის მისამართზე წერილებს ვეღარ მიიღებთ, როცა:"
 
 msgid "More Actions:"
 msgstr ""
