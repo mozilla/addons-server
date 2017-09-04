@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -131,6 +131,10 @@ msgstr "ป้ายกำกับทั้งหมดต้องมี %s �
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
@@ -3160,8 +3164,7 @@ msgstr ""
 msgid "Summary"
 msgstr "สรุป"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 msgid "Experimental?"
@@ -3211,6 +3214,13 @@ msgstr ""
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "ป้ายกำกับที่สงวนไว้:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "ผู้มีส่วนร่วม"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr ""
@@ -3555,9 +3565,6 @@ msgstr ""
 msgid "Summary:"
 msgstr "สรุป"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "ส่วนเสริมนี้ถูกเอาออกโดยผู้สร้างส่วนเสริม"
@@ -3841,6 +3848,9 @@ msgid "Manage Your Developer Profile"
 msgstr ""
 
 msgid "Create a Developer Profile"
+msgstr ""
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
 msgstr ""
 
 msgid ""

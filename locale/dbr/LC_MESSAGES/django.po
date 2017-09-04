@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ".ɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇɐ ǝq ʇsnɯ sƃɐʇ ʅʅ∀"
 msgstr[1] ".sɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇɐ ǝq ʇsnɯ sƃɐʇ ʅʅ∀"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr " ´.uıɐɯopqns ɐ ɹo ´[%s] ɟo ǝuo ǝq ʇsnɯ uıɐɯop ⅂ᴚ∩"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ".uoıʇɐɔıʅddɐ sıɥʇ ɹoɟ pǝɹnʇɐǝɟ sı uo-ppɐ ɹnoʎ ǝʅıɥʍ pǝƃuɐɥɔ ǝq ʇouuɐɔ sǝıɹoƃǝʇɐↃ"
@@ -3154,10 +3158,8 @@ msgstr "ƃuıʇsı⅂ ʍǝıɅ"
 msgid "Summary"
 msgstr "ʎɹɐɯɯnS"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ǝƃɐd sʅıɐʇǝp s,uo-ppɐ ɹnoʎ ɟo doʇ ǝɥʇ ʇɐ sɐ ʅʅǝʍ sɐ ´sƃuıʇsıʅ ǝsʍoɹq puɐ ɥɔɹɐǝs uı pǝʎɐʅdsıp sı ʇɐɥʇ ʎʇıʅɐuoıʇɔunɟ ɔısɐq s,uo-ppɐ ɹnoʎ ɟo uoıʇɐuɐʅdxǝ ʇɹoɥs ∀"
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr ".uo-ppɐ ɹnoʎ ʇsǝʇ oʇ sɹǝʍǝıʌǝɹ ʎq pǝsn ǝq ʅʅıʍ ʇı puɐ ´sǝɥɔɹɐǝs puɐ sƃuıʇsıʅ uı uʍoɥs ǝq ʅʅıʍ ʇI .sǝop uo-ppɐ ɹnoʎ ʇɐɥʍ uıɐʅdxǝ ʎʅɹɐǝʅɔ pʅnoɥs ʎɹɐɯɯns sıɥ⊥"
 
 msgid "Experimental?"
 msgstr "¿ʅɐʇuǝɯıɹǝdxƎ"
@@ -3207,6 +3209,12 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ":ƃɐʇ pǝʌɹǝsǝᴚ"
 msgstr[1] ":sƃɐʇ pǝʌɹǝsǝᴚ"
+
+msgid "Contributions URL"
+msgstr "⅂ᴚ∩ suoıʇnqıɹʇuoↃ"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ".os op uɐɔ ʎǝɥʇ ǝɹǝɥʍ ǝƃɐd ɐ oʇ sıɥʇ ʇǝs ´sɹǝsn ɹnoʎ ɯoɹɟ suoıʇnqıɹʇuoɔ ʎɹɐʇǝuoɯ ʇsǝnbǝɹ oʇ ǝʞıʅ pʅnoʍ noʎ ɟI"
 
 msgid "Add-on Details"
 msgstr "sʅıɐʇǝᗡ uo-pp∀"
@@ -3559,9 +3567,6 @@ msgstr ".⅂ᴚ∩ ɹnoʎ uı sǝɥsɐp puɐ ´sǝɹoɔsɹǝpun ´sɹǝqɯnu ´s
 msgid "Summary:"
 msgstr ":ʎɹɐɯɯnS"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ".uo-ppɐ ɹnoʎ ʇsǝʇ oʇ sɹǝʍǝıʌǝɹ ʎq pǝsn ǝq ʅʅıʍ ʇı puɐ ´sǝɥɔɹɐǝs puɐ sƃuıʇsıʅ uı uʍoɥs ǝq ʅʅıʍ ʇI .sǝop uo-ppɐ ɹnoʎ ʇɐɥʍ uıɐʅdxǝ ʎʅɹɐǝʅɔ pʅnoɥs ʎɹɐɯɯns sıɥ⊥"
-
 msgid "This add-on is experimental"
 msgstr "ʅɐʇuǝɯıɹǝdxǝ sı uo-ppɐ sıɥ⊥"
 
@@ -3822,6 +3827,9 @@ msgstr "ǝʅıɟoɹԀ ɹǝdoʅǝʌǝᗡ ɹno⅄ ǝƃɐuɐW"
 
 msgid "Create a Developer Profile"
 msgstr "ǝʅıɟoɹԀ ɹǝdoʅǝʌǝᗡ ɐ ǝʇɐǝɹↃ"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ".pǝʅqɐuǝ suoıʇnqıɹʇuoↃ dǝǝʞ oʇ pʅǝıɟ ʇɐɥʇ ǝsn oʇ ǝɹns ǝʞɐW .ǝƃɐd ʇıpƎ uıɐɯ ǝɥʇ uı pʅǝıɟ ⅂ᴚ∩ suoıʇnqıɹʇuoↃ ǝɥʇ ɟo ɹoʌɐɟ uı pǝʌoɯǝɹ ǝq uoos ʅʅıʍ ǝƃɐd sıɥ⊥"
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

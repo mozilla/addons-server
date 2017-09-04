@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-08-08 19:23+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -142,6 +142,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Totes les etiquetes han de tenir com a mínim {0} caràcter."
 msgstr[1] "Totes les etiquetes han de tenir com a mínim {0} caràcters."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "No es poden canviar les categories mentre el vostre complement estigui destacat per a aquesta aplicació."
@@ -3234,8 +3238,7 @@ msgstr "Mostra la llista"
 msgid "Summary"
 msgstr "Resum"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 #, fuzzy
@@ -3289,6 +3292,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Etiqueta reservada:"
 msgstr[1] "Etiquetes reservades:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Donacions"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Detalls del complement"
@@ -3637,9 +3647,6 @@ msgstr ""
 msgid "Summary:"
 msgstr "Resum"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Aquest complement requereix un programa extern."
@@ -3935,6 +3942,9 @@ msgstr "Gestioneu el vostre perfil de desenvolupador"
 
 msgid "Create a Developer Profile"
 msgstr "Crea un perfil de desenvolupador"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

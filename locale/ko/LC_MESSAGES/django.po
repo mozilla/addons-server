@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -129,6 +129,10 @@ msgstr "모든 태그는 유효하지 않은 글자 제거 후 %s자 이하여�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "태그는 최소한 {0} 글자 이상이어야 합니다."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
@@ -3183,8 +3187,7 @@ msgstr "목록 보기"
 msgid "Summary"
 msgstr "요약 정보"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 #, fuzzy
@@ -3236,6 +3239,13 @@ msgstr "예: dark, cinema, noir. 단어는 20자 이내로 제한됩니다."
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "금지 태그:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "기부금"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "부가 기능 세부 설명"
@@ -3582,9 +3592,6 @@ msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 msgid "Summary:"
 msgstr "요약 정보"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
@@ -3878,6 +3885,9 @@ msgstr "개발자 프로필 관리"
 
 msgid "Create a Developer Profile"
 msgstr "개발자 프로필 만들기"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

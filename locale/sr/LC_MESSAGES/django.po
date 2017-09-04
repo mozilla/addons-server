@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -131,6 +131,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Све ознаке морају садржати најмање {0} карактер."
 msgstr[1] "Све ознаке морају садржати најмање {0} карактера."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
@@ -3242,8 +3246,7 @@ msgstr "Погледај листинг"
 msgid "Summary"
 msgstr "Резиме"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 #, fuzzy
@@ -3298,6 +3301,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Резервисана ознака:"
 msgstr[1] "Резервисане ознаке:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Прилози"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Детаљи додатка"
@@ -3643,9 +3653,6 @@ msgstr "Молимо Вас да користите само слова, бро�
 msgid "Summary:"
 msgstr "Резиме"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Овај додатак захтева спољашњи софтвер."
@@ -3939,6 +3946,9 @@ msgstr "Управљајте Вашим профилом програмера"
 
 msgid "Create a Developer Profile"
 msgstr "Направите профил програмера"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
@@ -3208,9 +3212,8 @@ msgstr "ਸੂਚੀ ਵੇਖੋ"
 msgid "Summary"
 msgstr "ਸੰਖੇਪ"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਦੀ ਇੱਕ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਝਲਕ ਸੂਚੀਆਂ ਵਿੱਚ, ਨਾਲ ਦੀ ਨਾਲ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੇ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਲਈ ਢੁੱਕਵੀਂ ਹੈ।"
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr ""
 
 msgid "Experimental?"
 msgstr ""
@@ -3262,6 +3265,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
 msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "ਯੋਗਦਾਨ"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
@@ -3611,9 +3621,6 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ URL ਵਿੱਚ ਕੇਵਲ 
 msgid "Summary:"
 msgstr "ਸੰਖੇਪ"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
@@ -3909,6 +3916,9 @@ msgstr "ਆਪਣੀ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਦੀ ਸ�
 msgid "Create a Developer Profile"
 msgstr ""
 "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਉਪਭੋਗੀਆਂ ਨੂੰ ਤੁਹਾਡੇ ਬਾਰੇ ਦੱਸੇਗੀ, ਤੁਸੀਂ ਇਹ ਐਡ-ਆਨ ਕਿਉਂ ਬਣਾਇਆ, ਅਤੇ ਐਡ-ਆਨ ਲਈ ਅੱਗੇ ਕੀ ਕਰੋਗੇ। ਇਹ ਪ੍ਰੋਫ਼ਾਈਲ ਯੋਗਦਾਨ ਇਛੁੱਕ ਐਡ-ਆਨਾਂ ਲਈ ਲਾਜ਼ਮੀ ਹੈ, ਪਰ ਕਿਸੇ ਵੀ ਚਾਹਵਾਨ ਡਿਵੈਲਪਰ ਲਈ ਆਪਣੇ ਉਪਭੋਗੀਆਂ ਨਾਲ ਜੁੜਨ ਲਈ ਲਾਭਦਾਇਕ ਹੋ ਸਕਦੀ ਹੈ।"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
