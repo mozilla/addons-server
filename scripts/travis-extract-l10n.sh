@@ -1,5 +1,6 @@
 #! /bin/bash
 # This script is supposed to be running automatically via travis cronjobs.
+# It's also possible to be run manually if necessary.
 #
 # This script will do the following:
 #   - prepare git credentials for pull request push
@@ -7,8 +8,12 @@
 #   - Update your code
 #   - Extract new strings and push to the .po files
 #
-# This script makes a lot of assumptions and has no error checking, so read it
-# over before you run it.
+# If you're running the script manually please make sure to expose
+# the following variables to the environment:
+#   - GITHUB_TOKEN (to the github token of addons-robot,
+#                   talk to tofumatt or cgrebs)
+#   - TRAVIS_REPO_SLUG="mozilla/addons-server"
+#   - TRAVIS_BRANCH="master"
 
 set -o errexit -o nounset
 
@@ -24,10 +29,16 @@ MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
 DEBUG_LOCALES="dbl dbr"
 
+GIT_USER_EMAIL="$(git config --global user.email)"
+GIT_USER_NAME="$(git config --global user.name)"
+GIT_SIGNING="$(git config --global commit.gpgsign)"
+GIT_SIGNING_KEY="$(git config --global user.signinkey)"
+
 
 function init_environment {
     echo "machine github.com login $GITHUB_TOKEN password x-oauth-basic" >> ~/.netrc
     chmod 0600 ~/.netrc
+
 
     git config --global user.email "$ROBOT_EMAIL"
     git config --global user.name "$ROBOT_NAME"
@@ -37,6 +48,20 @@ function init_environment {
 
     make -f Makefile-docker install_python_dependencies
     make -f Makefile-docker install_node_js
+}
+
+
+function restore_environment {
+    echo "Restoring global git configuration"
+
+    git config --global user.email "$GIT_USER_EMAIL"
+    git config --global user.name "$GIT_USER_NAME"
+
+    if [ "$GIT_SIGNING" == "true" ]; then
+        git config --global commit.gpgsign "$(GIT_SIGNING)"
+        git config --global user.signinkey "$(GIT_SIGNING_KEY)"
+    fi
+
 }
 
 
@@ -114,13 +139,10 @@ function create_auto_pull_request {
     echo "auto merge pull request is created ..."
 }
 
-
-
-#if [ "$TRAVIS_BRANCH" != "do-not-delete-l10n-extraction" ]
-#then
-#  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
-#  exit 0
-#fi
+if [ "$TRAVIS_BRANCH" != "master" ]; then
+  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
+  exit 0
+fi
 
 if [ "GITHUB_TOKEN" == "" ]
 then
@@ -135,3 +157,5 @@ extract_locales
 commit_and_push
 
 create_auto_pull_request
+
+restore_environment
