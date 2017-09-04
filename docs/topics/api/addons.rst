@@ -42,13 +42,13 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :query string author: Filter by exact author username.
+    :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching authors are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
-    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json int count: The number of results for this query.
@@ -139,12 +139,12 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int authors[].id: The id for an author.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
-    :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.  For performance reasons this field is omitted from search results.
+    :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set. For performance reasons this field is omitted from the search endpoint.
     :>json int average_daily_users: The average number of users for the add-on per day.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
-    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
+    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
@@ -360,9 +360,9 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file. An optional ``src`` query parameter can be added to indicate the source page (See :ref:`download sources <download-sources>`).
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings.  Empty for non-webextensions.
-    :>json object license: Object holding information about the license for the version.
+    :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from search endpoint.
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
-    :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on detail endpoint.
     :>json string|null license.url: The URL of the full text of license.
     :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.

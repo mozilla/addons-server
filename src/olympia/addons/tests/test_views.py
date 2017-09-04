@@ -18,7 +18,7 @@ from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
@@ -439,6 +439,33 @@ class TestDeveloperPages(TestCase):
         url = reverse('addons.meet', args=['592'])
         r = self.client.get(url, follow=True)
         assert pq(r.content)('#about-addon b').length == 2
+
+
+@override_switch('simple-contributions', active=True)
+class TestContributionsURL(TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_592',
+                'base/users', 'addons/eula+contrib-addon',
+                'addons/addon_228106_info+dev+bio.json',
+                'addons/addon_228107_multiple-devs.json']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=592)
+        user = UserProfile.objects.get(pk=999)
+        AddonUser(addon=self.addon, user=user).save()
+
+    def test_button_appears_if_set(self):
+        response = self.client.get(self.addon.get_url_path())
+        # No button by default because Addon.contributions url not set.
+        assert pq(response.content)('#contribution-url-button').length == 0
+
+        # Set it and it appears though.
+        self.addon.update(contributions='https://paypal.me/foooo')
+        response = self.client.get(self.addon.get_url_path()
+                                   )
+        button = pq(response.content)('#contribution-url-button')
+        assert button.length == 1, response.content
+        assert button[0].attrib['href'] == get_outgoing_url(
+            'https://paypal.me/foooo')
 
 
 class TestLicensePage(TestCase):
@@ -2713,6 +2740,33 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['slug'] == addon.slug
 
+    def test_filter_by_multiple_authors(self):
+        author = user_factory(username='foo')
+        author2 = user_factory(username='bar')
+        another_author = user_factory(username='someoneelse')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        AddonUser.objects.create(addon=addon, user=author2)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        AddonUser.objects.create(addon=addon2, user=author2)
+        another_addon = addon_factory()
+        AddonUser.objects.create(addon=another_addon, user=another_author)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'foo,bar'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
@@ -2791,6 +2845,24 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
 
+    def test_default_locale_fallback_still_works_for_translations(self):
+        addon = addon_factory(default_locale='pt-BR', name='foobar')
+        # Couple quick checks to make sure the add-on is in the right state
+        # before testing.
+        assert addon.default_locale == 'pt-BR'
+        assert addon.name.locale == 'pt-br'
+
+        self.refresh()
+
+        # Search in a different language than the one used for the name: we
+        # should fall back to default_locale and find the translation.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
+        assert data['results'][0]['name'] == 'foobar'
+
+        # Same deal in en-US.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
+        assert data['results'][0]['name'] == 'foobar'
+
     def test_empty(self):
         data = self.perform_search(self.url)
         assert 'count' not in data
@@ -2806,8 +2878,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         qset = AddonAutoCompleteSearchView().get_queryset()
 
         includes = set((
-            'icon_type', 'id', 'modified', 'name_translations', 'persona',
-            'slug', 'type'))
+            'default_locale', 'icon_type', 'id', 'modified',
+            'name_translations', 'persona', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 

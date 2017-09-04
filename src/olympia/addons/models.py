@@ -318,6 +318,7 @@ class Addon(OnChangeMixin, ModelBase):
         max_length=255, blank=True, null=True,
         help_text="For dictionaries and language packs")
 
+    contributions = models.URLField(max_length=255, blank=True)
     wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
     charity = models.ForeignKey('Charity', null=True)
@@ -1632,7 +1633,9 @@ class Persona(caching.CachingMixin, models.Model):
                          addon.all_categories else ''),
             # TODO: Change this to be `addons_users.user.display_name`.
             'author': self.display_username,
-            'description': unicode(addon.description),
+            'description': (unicode(addon.description)
+                            if addon.description is not None
+                            else addon.description),
             'header': self.header_url,
             'footer': self.footer_url or '',
             'headerURL': self.header_url,

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,9 @@ msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
+msgid "- Add-on not on AMO -"
+msgstr ""
+
 msgid "Download Now"
 msgstr "                  ਹੁਣੇ ਹੀ ਡਾਓਨਲੋਡ ਕਰੋ                "
 
@@ -128,6 +131,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
@@ -481,10 +488,10 @@ msgstr "ਪਰਦਾ ਨੀਤੀ"
 msgid "Report Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
 msgstr ""
 "ਜੇਕਰ ਤੁਹਾਨੂੰ ਸੱਕ ਹੈ ਇਹ ਐਡ-ਆਨ <a href=\"%(url)s\">ਸਾਡੀ ਨੀਤੀਆਂ</a> ਦੀ ਉਲੰਘਣਾ ਕਰਦਾ ਹੈ ਜਾਂ ਸੁਰੱਖਿਆ ਜਾਂ ਪਰਦੇ ਦੇ ਮੁੱਦੇ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀਆਂ ਚਿੰਤਾਵਾਂ ਪ੍ਰਗਟ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਫ਼ਾਰਮ ਨੂੰ ਵਰਤੋਂ। ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਫ਼ਾਰਮ ਦੀ ਕਿਸੇ ਹੋਰ ਕਾਰਨ ਲਈ ਵਰਤੋਂ ਨਾ "
 "ਕਰੋ।"
@@ -553,6 +560,9 @@ msgstr ""
 msgid "by %(users)s"
 msgstr "%(users)s ਵੱਲੋਂ"
 
+msgid "Download Anyway"
+msgstr ""
+
 #, fuzzy
 msgid "[Warning]"
 msgstr "{0} ਚੇਤਾਵਨੀ"
@@ -564,9 +574,6 @@ msgstr "ਵਰਜਨ"
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
-
-msgid "Download Anyway"
-msgstr ""
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -1089,12 +1096,8 @@ msgstr "ਠੀਕ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-#, fuzzy
-msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 msgstr ""
 
 msgid "GUID"
@@ -1103,11 +1106,10 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "ਵਰਜਨ"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 #. L10n: {0} is 'Add-ons for <app>'.
@@ -1624,6 +1626,12 @@ msgstr "ਸ਼ਬਦਕੋਸ ਡਾਊਨਲੋਡ ਕਰੋ"
 msgid "Download Language Pack"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ ਡਾਊਨਲੋਡ ਕਰੋ"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
+msgstr ""
+
 msgid "Available in your locale"
 msgstr "ਤੁਹਾਡੇ ਲੋਕੇਲ ਵਿੱਚ ਉੱਪਲਬਧ"
 
@@ -1671,13 +1679,15 @@ msgid "Additional Resources"
 msgstr "ਹੋਰ ਵਾਧੂ ਵਸੀਲੇ"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
+#, fuzzy
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
 msgstr "{0} ਵਿੱਚ <a href=\"http://support.mozilla.com/kb/Search+bar\">ਖੋਜ ਬਾਰ</a> ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2296,10 +2306,12 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ
 msgid "Updated Complete Theme Review"
 msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-msgid "Moderated Addon Review"
+#, fuzzy
+msgid "Moderated Add-on Review"
 msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-msgid "Addon Review Moderation Reverted"
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
 
 msgid "Level 1"
@@ -2801,10 +2813,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3200,9 +3212,8 @@ msgstr "ਸੂਚੀ ਵੇਖੋ"
 msgid "Summary"
 msgstr "ਸੰਖੇਪ"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਦੀ ਇੱਕ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਝਲਕ ਸੂਚੀਆਂ ਵਿੱਚ, ਨਾਲ ਦੀ ਨਾਲ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੇ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਲਈ ਢੁੱਕਵੀਂ ਹੈ।"
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr ""
 
 msgid "Experimental?"
 msgstr ""
@@ -3254,6 +3265,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
 msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "ਯੋਗਦਾਨ"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
@@ -3603,9 +3621,6 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ URL ਵਿੱਚ ਕੇਵਲ 
 msgid "Summary:"
 msgstr "ਸੰਖੇਪ"
 
-msgid "This summary will be shown in listings and searches."
-msgstr "ਇਹ ਸਾਰ ਸੂਚੀ ਅਤੇ ਖੋਜਾਂ ਵਿੱਚ ਵਿਖਾਈ ਜਾਵੇਗਾ।"
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
@@ -3902,6 +3917,9 @@ msgid "Create a Developer Profile"
 msgstr ""
 "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਉਪਭੋਗੀਆਂ ਨੂੰ ਤੁਹਾਡੇ ਬਾਰੇ ਦੱਸੇਗੀ, ਤੁਸੀਂ ਇਹ ਐਡ-ਆਨ ਕਿਉਂ ਬਣਾਇਆ, ਅਤੇ ਐਡ-ਆਨ ਲਈ ਅੱਗੇ ਕੀ ਕਰੋਗੇ। ਇਹ ਪ੍ਰੋਫ਼ਾਈਲ ਯੋਗਦਾਨ ਇਛੁੱਕ ਐਡ-ਆਨਾਂ ਲਈ ਲਾਜ਼ਮੀ ਹੈ, ਪਰ ਕਿਸੇ ਵੀ ਚਾਹਵਾਨ ਡਿਵੈਲਪਰ ਲਈ ਆਪਣੇ ਉਪਭੋਗੀਆਂ ਨਾਲ ਜੁੜਨ ਲਈ ਲਾਭਦਾਇਕ ਹੋ ਸਕਦੀ ਹੈ।"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -4164,8 +4182,8 @@ msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਵਰਤਣ ਵਿੱਚ ਆਸਾਨ �
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
-"a>, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
 "mozilla.org/docs/Web/JavaScript\">JavaScript</a>, ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>ਬਾਰੇ ਜਾਣਦੇ ਹੋ, ਇੱਕ ਵਧੀਆ ਐਡ-ਆਨ ਬਣਾਉਣ ਲਈ ਜ਼ਰੂਰੀ ਹਨੁਰ ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
@@ -4425,8 +4443,8 @@ msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -6634,8 +6652,8 @@ msgstr "ਓਪਨ ਸੋਰਸ ਲਾਇਸੰਸਾਂ ਲਈ ਹਵਾਲੇ"
 msgid "Add-on Developer FAQ"
 msgstr "ਐਡ-ਆਨ ਡਿਵੈਲਪਰ FAQ"
 
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+#, fuzzy, python-format
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr "<h3>ਮੈਂ ਐਡ-ਆਨ ਕਿਵੇਂ ਬਣਾ ਸਕਦਾ?</h3> <p> ਮੌਜੀਲਾ <a href=\"%(url)s\">ਮੌਜੀਲਾ ਡਿਵੈਲਪਰ ਨੈੱਟਵਰਕ</a>ਦੁਆਰਾ ਐਡ-ਆਨ ਕਿਵੇਂ ਬਣਾਈਏ ਬਾਰੇ ਦਸਤਾਵੇਜ ਮੁਹੱਈਆ ਕਰਵਾਉਂਦਾ ਹੈ।</p>"
 
 msgid "What is a \".xpi\" file?"
@@ -6656,9 +6674,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
+"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -6757,8 +6775,8 @@ msgstr "ਪ੍ਰਵਾਨਿਤ ਦਾਖਲ ਕਾਰਜ ਕੀ ਹੈ ਕੀ 
 
 #, fuzzy, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
-"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "ਹਾਂ, ਮੌਜੀਲਾ ਦੀ <a href=\"%(p_url)s\">ਐਡ-ਆਨ ਨੀਤੀ</a> ਦੱਸਦੀ ਹੈ ਕੀ ਇੱਕ ਪ੍ਰਵਾਨਿਤ ਦਾਖਲ ਕਾਰਜ ਕੀ ਹੈ। ਇਸ ਨੀਤੀ ਬਿਨਾਂ ਸੂਚਨਾ ਦੇ ਬਦਲਾਅ ਦੇ ਅਧੀਨ ਹੈ, ਇਸ ਦੇ ਨਾਲ ਹੀ, AMO ਸੰਪਾਦਕੀ ਟੀਮ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਣ  ਕਾਰਜਕਸ਼ਲਤਾ ਅਤੇ "
 "ਸੁਰੱਖਿਆ ਦੇ ਖਾਸ਼ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਪੂਰੇ ਕਰਦਾ ਲਈ <a href=\"%(g_url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ ਗਾਈਡ</a> ਦੀ ਵਰਤੋਂ ਕਰਦੀ ਹੈ।"
@@ -6770,7 +6788,7 @@ msgstr "ਮੈਂ ਮੇਰਾ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਲਈ ਕਿਵ
 #, fuzzy, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "ਡਿਵੈਲਪਰ ਟੂਲ ਡੈਸਬੋਰਡ ਤੁਹਾਨੂੰ AMO ਲਈ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਅਤੇ ਦਾਖਲ ਕਰਨ ਦੀ ਪ੍ਰਵਾਨਗੀ ਦੇਵੇਗਾ। ਐਡ-ਆਨ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ ਇੱਕ ਰਜਿਸਟਰ AMO ਉਪਭੋਗੀ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ। ਆਪਣਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ AMO <a href=\"%(url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ "
 "ਗਾਈਡ</a> ਪੜ੍ਹੋ ਇਹ ਯਕੀਨੀ ਕਰਨ ਲਈ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸੰਪਾਦਕਾਂ ਵੱਲੋਂ ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ ਲਈ ਤੈਅ ਕੀਤੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਪੂਰੇ ਕਰਦਾ ਹੈ।"
@@ -7047,7 +7065,7 @@ msgstr "ਕੀ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਸੁਰੱਖ
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 #, python-format
@@ -7117,7 +7135,7 @@ msgstr "ਜੇਕਰ ਐਡ-ਆਨ \"ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ\"
 #, fuzzy, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "ਪ੍ਰਯੋਗਆਤਮਕ ਐਡ-ਆਨਾਂ ਦੀ ਸਾਡੇ ਸੰਪਾਦਕਾਂ ਦੁਆਰਾ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਪੜਤਾਲ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਕੀ ਇਹਨਾਂ ਵਿੱਚ ਕੋਈ ਸੁਰੱਖਿਆ ਖਾਮੀ ਨਾ ਹੋਵੇ, ਪਰ ਇਹਨਾਂ ਵਿੱਚ ਬੱਗ ਹੋ ਸਕਦੇ ਹਨ ਜਾਂ ਠੀਕ ਢੰਗ ਨਾਲ ਕੰਮ ਨਾ ਕਰਨ।  ਪ੍ਰਯੋਗਆਤਮਕ ਐਡ-ਆਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਦੇ ਸਮੇਂ ਸਾਵਧਾਨੀ ਵਰਤੋਂ "
 "ਅਤੇ ਐਡ-ਆਨ ਨੂੰ ਉਸੇ ਸਮੇਂ ਅਣ-ਇੰਸਟਾਲ ਕਰੋ ਜੇਕਰ ਤੁਹਾਨੂੰ ਖਾਮੀਆਂ ਨਜ਼ਰ ਆਉਣ। <a href=\"%(url)s\">ਸਾਡੇ ਸਮੀਖਿਆ ਕਾਰਜ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</dd>"
@@ -7128,7 +7146,7 @@ msgstr "ਜੇਕਰ ਐਡ-ਆਨ \"ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ\"
 #, fuzzy, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "ਜਦ ਕਿ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਜਨਤਕ ਤੌਰ ਤੇ ਉੱਪਲਬਧ ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਇੱਕ ਸੰਪਾਦਕ ਦੁਆਰਾ ਸਮੀਖਿਆ ਹੁੰਦੀ ਹੈ, ਹੋ ਸਕਦਾ ਤੁਹਾਨੂੰ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਸਿੱਧਾ ਲਿੰਕ ਪ੍ਰਾਪਤ ਹੋਵੇ ਜਿਸ ਦੀ ਹਾਲੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ। ਇਹਨਾਂ ਐਡ-ਆਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਦੇ ਸਮੇਂ ਸਾਵਧਾਨੀ ਵਰਤੋਂ, ਇਹ ਤੁਹਾਡੇ "
 "ਕੰਪਿਊਟਰ ਦਾ ਨੁਕਸ਼ਾਨ ਜਾਂ ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਦੀ ਉਲੰਘਣਾ ਕਰ ਸਕਦੇ ਹਨ। ਅਸੀਂ ਕੇਵਲ ਸਮੀਖਿਆ ਹੋਏ ਐਡ-ਆਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਸਿਫ਼ਾਰਸ਼ ਕਰਦੇ ਹਾਂ। <a href=\"%(url)s\">ਸਾਡੇ ਸਮੀਖਿਆ ਕਾਰਜ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</a></dd>"
@@ -8535,18 +8553,6 @@ msgstr "ਪੁਰਾਣੇ ਵਰਜਨਾਂ ਨਾਲ ਸਾਵਧਾਨ ਰ�
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "ਇਹ ਵਰਜਨ ਹਵਾਲੇ ਅਤੇ ਟੈਸਟਿੰਗ ਦੇ ਮਕਸਦ ਲਈ ਵਿਖਾਏ ਗਏ ਹਨ। ਤੁਹਾਨੂੰ ਹਮੇਸ਼ਾ ਐਡ-ਆਨ ਦੇ <a href=\"%(url)s\">ਤਾਜ਼ੇ ਵਰਜਨ</a> ਦੀ ਵਰਤੋਂ ਕਰਨੀ ਚਾਹੀਦੀ ਹੈ।"
 
-msgid "Current Max. Version"
-msgstr "ਮੌਜੂਦਾ ਮੈਕਸ.ਵਰਜਨ"
-
-msgid "Target Version"
-msgstr "ਟੀਚਾ ਵਰਜਨ"
-
-msgid "Email when finished"
-msgstr "ਮੁਕੰਮਲ ਹੋਣ ਤੇ ਈਮੇਲ ਕਰੋ"
-
-msgid "Log emails instead of sending"
-msgstr "ਭੇਜਣ ਦੀ ਥਾਂ ਈਮੇਲਾਂ ਲਾਗ ਕਰੋ"
-
 msgid "Deleted versions can`t be changed."
 msgstr ""
 
@@ -8555,25 +8561,3 @@ msgstr "ਬਾਈਨਰੀ"
 
 msgid "Non-binary"
 msgstr "ਨਾਨ-ਬਾਈਨਰੀ"
-
-#, fuzzy
-msgid "Message ID"
-msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ"
-
-msgid "Message"
-msgstr ""
-
-#, fuzzy
-msgid "Compat Type"
-msgstr "ਤੁਲਨਾ"
-
-#, fuzzy
-msgid "Addons Affected"
-msgstr "ਬਣਾਏ ਗਏ ਐਡ-ਆਨ"
-
-msgid "Addon"
-msgstr ""
-
-#, fuzzy
-msgid "Validation Result"
-msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜੇ"

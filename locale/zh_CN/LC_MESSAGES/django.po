@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-23 17:03+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"PO-Revision-Date: 2017-09-04 12:18+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -70,6 +70,9 @@ msgstr "审核说明"
 msgid "Only latest versions of addons can have notes added."
 msgstr "仅最新版的 addons 可添加说明。"
 
+msgid "- Add-on not on AMO -"
+msgstr "- 附加组件不在 AMO -"
+
 msgid "Download Now"
 msgstr "立即下载"
 
@@ -122,6 +125,10 @@ msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr "网址域名必须是 [%s] 或其子域。"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
@@ -471,9 +478,9 @@ msgstr "报告滥用"
 
 #, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
-msgstr "如果您怀疑此附加组件违反<a href=\"%(url)s\">我们的政策</a>或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
+msgstr "如果您怀疑此附加组件违反%(amo_policy_link_open)s我们的政策%(link_close)s或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
 
 msgid "Send Report"
 msgstr "发送报告"
@@ -510,7 +517,7 @@ msgid ""
 msgstr "查看此附加组件的<a href=\"%(support)s\">支持部分</a>了解可用的协助方式。您也可以试试在<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加组件社区</a>中寻求帮助。"
 
 msgid "Review Guidelines"
-msgstr "评价撰写指南"
+msgstr "评价撰写准则"
 
 msgid "Reviews"
 msgstr "评价"
@@ -537,6 +544,9 @@ msgstr "{0} 的图标"
 msgid "by %(users)s"
 msgstr "作者：%(users)s"
 
+msgid "Download Anyway"
+msgstr "继续下载"
+
 # {0} is a number
 msgid "[Warning]"
 msgstr "[警告]"
@@ -546,9 +556,6 @@ msgstr "权限"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "此附加组件已被其开发者标为实验性"
-
-msgid "Download Anyway"
-msgstr "继续下载"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -811,7 +818,7 @@ msgid "My Favorites"
 msgstr "我最喜爱"
 
 msgid "Log out"
-msgstr "退出"
+msgstr "登出"
 
 msgid "Manage My Submissions"
 msgstr "管理我的提交"
@@ -1005,7 +1012,7 @@ msgstr "附加组件"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr "{0} 前"
+msgstr "{0}前"
 
 msgid "Title"
 msgstr "标题"
@@ -1056,12 +1063,9 @@ msgstr "有效应用程序版本"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "提交到 Mozilla 附加组件的附加组件的清单文件必须支持下面的至少一个应用程序。只允许下面列出的这些应用程序版本。"
 
-msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr "请注意，WebExtensions 不接受 \"*\" 放在 <a href=\"%(version_url)s\">strict_min_version</a>。"
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "请注意，WebExtensions 不接受在 %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s 的值中包含“*”。"
 
 msgid "GUID"
 msgstr "GUID"
@@ -1069,12 +1073,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "版本"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/zh-CN/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "如果您支持的应用程序不需要一个清单文件，您仍必须按<a href=\"%(url)s\">这里</a>的要求包含一个必须的属性。"
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr "即便您所支持的应用程序本身不需要一个清单文件，您仍必须按%(amo_manifests_mdn_link_open)s这里%(amo_manifests_mdn_link_close)s的要求附上包含所有必要属性的清单文件。"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1104,7 +1107,7 @@ msgid "Describe your collection (no links allowed)."
 msgstr "描述您的收藏集（不允许使用链接）。"
 
 msgid "Privacy:"
-msgstr "隐私权政策："
+msgstr "公开范围："
 
 msgid "Icon"
 msgstr "图标"
@@ -1140,7 +1143,7 @@ msgid "Recently Popular"
 msgstr "最近热门"
 
 msgid "Added"
-msgstr "添加时间"
+msgstr "添加时刻"
 
 msgid "Popularity"
 msgstr "热门度"
@@ -1576,6 +1579,12 @@ msgstr "下载字典"
 msgid "Download Language Pack"
 msgstr "下载语言包"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
+msgstr "安装一个词典类型的附加组件将为您的 %(app_name)s 拼写检查器添加一个新的语言选项，帮助您在填写 Web 表单时检查拼写。语言包附加组件则更改整个应用程序的界面语言。"
+
 msgid "Available in your locale"
 msgstr "您的语言下可用的"
 
@@ -1622,14 +1631,15 @@ msgid "Additional Resources"
 msgstr "附加资源"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "详细了解关于 {0} 中的<a href=\"http://support.mozilla.com/kb/Search+bar\">搜索栏</a>的信息"
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
+msgstr "详细了解 {0} 中的<a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">搜索栏</a>"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览更多的搜索引擎"
 
-msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">制作你自己的</a>搜索工具"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
+msgstr "%(amo_mdn_link_open)s制作你自己的搜索工具%(amo_mdn_link_close)s"
 
 msgid "Most Popular Extensions"
 msgstr "最热门的扩展"
@@ -2227,11 +2237,11 @@ msgstr "完整主题初步审核"
 msgid "Updated Complete Theme Review"
 msgstr "完整主题更新审核"
 
-msgid "Moderated Addon Review"
+msgid "Moderated Add-on Review"
 msgstr "提请仲裁的附加组件评价"
 
-msgid "Addon Review Moderation Reverted"
-msgstr "附加组件评价仲裁已还原"
+msgid "Add-on Review Moderation Reverted"
+msgstr "已还原附加组件评价仲裁"
 
 msgid "Level 1"
 msgstr "第1级"
@@ -2704,11 +2714,11 @@ msgstr "在本网站上。<span class=\"helptext\">您提交的作品将在通�
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来处理。</span>"
 
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr "从 Firefox 53 开始，本网站只接受 WebExtension 形式的新扩展。"
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
 
-msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "传统扩展不兼容 Firefox 57 或更高版本。请将 maxVersion 设为 56.* 或更低。"
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "旧式扩展不兼容 Firefox 57 或更高版本。请将 maxVersion 设为 56.* 或更低。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的用户已安装 WebExtension 版本，他们将不能再安装旧式附加组件。"
@@ -3021,7 +3031,7 @@ msgstr "近期动态"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr "%(ago)s 由 %(user)s"
+msgstr "%(ago)s 由 %(user)s 发布"
 
 msgid "Older activity for My Add-ons"
 msgstr "我的附加组件的早期动态"
@@ -3092,9 +3102,8 @@ msgstr "查看公开页面"
 msgid "Summary"
 msgstr "概述"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "您的附加组件基本功能的简短说明，它会显示在搜索结果、列表和您的附加组件的详细信息页面中。此项只与上架的附加组件相关。"
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr "此摘要应清楚阐述您的附加组件的作用。它将在信息页面和搜索结果中显示，审核员也将基于它来测试您的附加组件。"
 
 msgid "Experimental?"
 msgstr "实验性？"
@@ -3140,6 +3149,12 @@ msgstr "例如：黑暗、电影院、黑色。最多20个。"
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "保留的标签："
+
+msgid "Contributions URL"
+msgstr "捐款网址"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "如果您想请求用户捐款，在这里放下捐款页面。"
 
 msgid "Add-on Details"
 msgstr "附加组件详细信息"
@@ -3477,9 +3492,6 @@ msgstr "在网址中仅能使用字母、数字、下划线和连字符。"
 msgid "Summary:"
 msgstr "概述："
 
-msgid "This summary will be shown in listings and searches."
-msgstr "这段概述将会显示在列表和搜索结果中。"
-
 msgid "This add-on is experimental"
 msgstr "这个附加组件为实验性"
 
@@ -3739,6 +3751,9 @@ msgstr "管理您的开发者简介"
 msgid "Create a Developer Profile"
 msgstr "创建开发者简介"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr "此页面将在不久后被删除，请改用主编辑页面中的捐款网址栏。"
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -3974,9 +3989,9 @@ msgstr "定制 Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
-msgstr "附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您了解 <a href=\"%(html_link)s\">HTML</a>、<a href=\"%(js_link)s\">JavaScript</a> 和 <a href=\"%(css_link)s\">CSS</a>，您就已经有必要的技能来制作一个绝佳的附加组件了。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
+"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr "附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备必要技能能来制作一个绝佳的附加组件了。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "了解如何制作一个附加组件"
@@ -4226,9 +4241,9 @@ msgstr "给主题取个名字。"
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
-msgstr "我同意 <a href=\"%(agreement_url)s\">Firefox 附加组件分发协议</a>和按照<a href=\"%(privacy_notice_url)s\">网站、通信和 Cookie 隐私声明</a>处理我的信息。"
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
+msgstr "我同意 %(agreement_link_open)sFirefox 附加组件分发协议%(link_close)s和按照%(privacy_notice_link_open)s网站、通信和 Cookie 隐私声明%(link_close)s处理我的信息。"
 
 msgid "Submit Theme"
 msgstr "发布主题"
@@ -6353,8 +6368,8 @@ msgid "Add-on Developer FAQ"
 msgstr "附加组件开发者常见问题集"
 
 #, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<h3>我该如何制作一个附加组件？</h3> <p> Mozilla 在<a href=\"%(url)s\">Mozilla 开发者网络</a>提供了如何制作一个附加组件的文档。 </p>"
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
+msgstr "<h3>我该如何制作附加组件？</h3> <p> Mozilla 在 %(addons_link_open)sMozilla 开发者网络%(link_close)s提供了制作附加组件的相关文档。 </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "什么是“.xpi”文件？"
@@ -6372,12 +6387,12 @@ msgstr "XUL（XML 用户界面语言）是 Mozilla 的一种基于 XML 的语言
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
+"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
+" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>注意：</strong>Firefox 中的 XUL 已被认为是一项老旧技术，使用 XUL 的附加组件自 Firefox 57 起将不再被加载。请使用 <a href=\"%(webext_url)s\">WebExtensions</a> API 开发新的附加组件。如果您拥有旧技术制作的附加组件，请考虑将其迁移到 WebExtensions。有关迁移附加组件的信息，请访问 "
-"<a href=\"%(portlegacy_url)s\">移植一个 Firefox 传统附加组件</a>。"
+"<strong>注意：</strong>Firefox 中的 XUL 已被认为是一项老旧技术，使用 XUL 的附加组件自 Firefox 57 起将不再被加载。请使用 %(webext_link_open)sWebExtensions%(link_close)s API 开发新的附加组件。如果您拥有旧技术制作的附加组件，请考虑将其迁移到 "
+"WebExtensions。有关迁移附加组件的信息，请参考 %(portlegacy_link_open)s移植一个 Firefox 传统附加组件%(link_close)s。"
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "我要如何测试与最新版本的 Mozilla 软件的兼容性？"
@@ -6467,9 +6482,9 @@ msgstr "Mozilla 有任何有关可接受的提交的政策标准吗？"
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
-" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr "是的。Mozilla 的<a href=\"%(p_url)s\">附加组件审核政策</a>描述了什么是可接受的提交。这项政策如有更改，恕不另行通知。此外，AMO 审核员团队遵循<a href=\"%(g_url)s\">附加组件审核指南</a>来确保您的附加组件满足特定功能和安全性要求。"
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
+msgstr "是的。Mozilla 的%(policy_link_open)s附加组件审核政策%(link_close)s介绍了怎样的提交请求会被接受。这项政策如有更改，恕不另行通知。此外，AMO 审核员团队遵循%(guide_link_open)s附加组件审核准则%(link_close)s来确保您的附加组件满足特定功能性和安全性要求。"
 
 msgid "How do I submit my add-on?"
 msgstr "如何提交我的附加组件？"
@@ -6477,8 +6492,8 @@ msgstr "如何提交我的附加组件？"
 #, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
-msgstr "开发者工具面板允许您上传和提交附加组件到 AMO。您提交附加组件前必须先注册 AMO 账户。提交您的附加组件前请先阅读 AMO <a href=\"%(url)s\">附加组件审核政策</a>，确保您的附加组件符合我们的准则。"
+" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
+msgstr "开发者工具面板允许您上传和提交附加组件到 AMO。您提交附加组件前必须先注册 AMO 账户。提交您的附加组件前请先阅读 AMO %(review_policy_link_open)s附加组件审核政策%(link_close)s，确保您的附加组件符合我们的准则。"
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "我该为我的附加组件选择什么操作系统？"
@@ -6513,7 +6528,7 @@ msgstr "我的附加组件必须经过审核？"
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
-msgstr "所有附加组件提交后，无论它是新的还是更新，都必须被审核以确保 Mozilla 用户有一个稳定且安全的使用体验。所有附加组件提交后的审核都采用<a href=\"%(url)s\">附加组件审核指南</a>中所述的准则。"
+msgstr "所有附加组件提交后，无论它是新的还是更新，都必须被审核以确保 Mozilla 用户有一个稳定且安全的使用体验。所有附加组件提交后的审核都采用<a href=\"%(url)s\">附加组件审核指南</a>所述准则。"
 
 msgid "Who reviews my add-on?"
 msgstr "谁审核我的附加组件？"
@@ -6523,10 +6538,10 @@ msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr "附加组件由附加组件审核员审核，他们是帮助 Mozilla 项目的一群优秀开发者，工作是审核附加组件确保 Mozilla 用户获得稳定和安全的体验。与审核员沟通时，请保持礼貌、耐心和尊重，他们认真工作是为了确保您的附加组件能够正常运行并且遵循了<a href=\"%(url)s\">附加组件审核指南</a>中描述的各项要求。"
+msgstr "附加组件由附加组件审核员审核，他们是帮助 Mozilla 项目的一群优秀开发者，工作是审核附加组件确保 Mozilla 用户获得稳定和安全的体验。与审核员沟通时，请保持礼貌、耐心和尊重，他们认真工作是为了确保您的附加组件能够正常运行并且遵循了<a href=\"%(url)s\">附加组件审核指南</a>所述准则。"
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr "审核我的附加组件采用哪些准则？"
+msgstr "审核我的附加组件依照哪些准则？"
 
 #, python-format
 msgid ""
@@ -6582,7 +6597,7 @@ msgid "Add-on updates may be subject to review just the same as new submissions.
 msgstr "附加组件的更新需要如新提交的附加组件那样接受审核。"
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "我该如何回复一名用户发在我附加组件评论的负面回复？"
+msgstr "我该如何回复对我的附加组件留下负面评价的用户？"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
 msgstr "开发者只要登录 AMO，就可以对任何在它们自己的附加组件评论进行回复。此外，任何用户都可以标记要求审核："
@@ -6730,8 +6745,8 @@ msgstr "安装附加组件是否安全？"
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
-msgstr "请小心安装附加组件，以免它们损害您的计算机或侵犯您的隐私。Mozilla 的审核团队会对本网站提供的附加组件进行检查，并且关注用户，所以一般来说安装是安全的。<a href=\"%(learnmore_url)s\">详细了解我们的审核流程</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
+msgstr "安装附加组件时请小心，这些组件可能会损害您的电脑或侵犯您的隐私。Mozilla 的审核团队会对本网站提供的附加组件进行检查，且密切关注用户的反馈，所以一般来说在本网站安装附加组件是安全的。%(learnmore_link_open)s详细了解我们的审核流程%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6792,8 +6807,8 @@ msgstr "附加组件的“实验性”是什么意思？"
 #, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
-msgstr "实验性的附加组件是被其开发者标记为非广泛适用。他们已由我们的审核员进行了审核，确定它们没有安全方面的问题，但它们可能仍有缺陷或无法正常工作。安装实验性的附加组件时要小心为上，并且如果您遭遇问题，请立即卸载那个附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
+msgstr "开发者若将附加组件标为“实验性”，则代表此组件可能还不普遍适用。这些附加组件可能存在缺陷或无法正常工作。安装实验性的附加组件时请小心为上，如果您遇到问题，请立即卸载那个附加组件。%(learnmore_link_open)s详细了解我们的审核过程%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "附加组件“未经审核”是什么意思？"
@@ -6801,8 +6816,8 @@ msgstr "附加组件“未经审核”是什么意思？"
 #, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
-msgstr "虽然我们展台中可供公众使用的所有附加组件都已经过了审核员的审核，您仍可能会收到一个链向未经审核的附加组件的链接。安装这些附加组件时应特别小心，因为他们可能会侵害您的计算机或侵犯您的隐私权。我们建议您只安装已经过审核的附加组件。<a href=\"%(url)s\">了解我们的审核过程</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
+msgstr "如果您收到某个附加组件的链接，且打开后提示该附加组件尚未通过审核，就代表它仍在等待 Mozilla 的审核。安装这些附加组件时应特别小心，因为他们可能会损害您的电脑或侵犯您的隐私权。我们建议您只安装已通过审核的附加组件。%(learnmore_link_open)s详细了解我们的审核过程%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "购买附加组件是什么价格？"
@@ -6832,7 +6847,7 @@ msgid ""
 msgstr "请注意，当您从附加组件列表的“测试版”中安装附加组件的时候，您将会持续收到这个附加组件的可用更新。和您安装的初始版本一样，所有测试版都没有经过 Mozilla 的审核并且有可能伤害您的计算机。"
 
 msgid "How do I report an inappropriate or spam user review?"
-msgstr "如何报告一个不适当的用户评论？"
+msgstr "如何报告一个不适当的用户评价？"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
@@ -6982,7 +6997,7 @@ msgstr "我该怎么报告有问题的评论？"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr "请点击“报告此评论”来报告或标记任何有问题的评论，这将被提交给网站的管理团队。我们的管理团队将依照评论指南评估并决定是否要删除该评论，或者将评论还原到网站上。"
+msgstr "请点击“报告此评论”来报告或标记任何有问题的评论，这将被提交给网站的管理团队。我们的管理团队将依照评论准则评估并决定是否要删除该评论，或者将评论还原到网站上。"
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "我是一个附加组件的作者，我可以回应评论吗？"
@@ -7045,7 +7060,7 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr "退出研究并不妨碍您参与未来的研究。"
 
 msgid "Your privacy"
-msgstr "您的隐私"
+msgstr "您的隐私权"
 
 msgid "All Shield Studies"
 msgstr "所有盾牌研究"
@@ -7173,9 +7188,9 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>请注意以下内容︰</h2><ul><li>请像与朋友分享体验一样介绍此附加组件。最好给出明确且有用的细节，如哪些功能你喜欢或者不喜欢，它是如何简单易用，或者它有什么缺点等。避免泛泛而谈，如用\"很棒\"或\"糟糕\"评价，除非你能证明你为什么你这样觉得是。</li><li>请不要在评论中提交错误报告。我们不会向附加组件开发者提供您的电子邮件地址，因此他们无法与您进行必要的联系，帮助解决您的问题。请在<a"
-" href=\"%(support)s\">支持部分</a>找到附加组件开发者的联系方式。您也可以尝试在<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加组件社区</a>寻求帮助。</li><li>请确保点评恰当，避免使用不当的语言，不附带任何个人信息。</li></ul><p>阅读<a"
-" href=\"%(guide)s\">《审查指南》</a>可详细了解有关附加组件评论的信息。</p>"
+"<h2>请注意以下内容︰</h2><ul><li>请像与朋友分享体验一样介绍此附加组件。最好给出明确且有用的细节，如哪些功能您喜欢或者不喜欢，它是如何简单易用，或者它有什么缺点等。避免泛泛而谈，如用\"很棒\"或\"糟糕\"评价，除非您能说明原因。</li><li>请不要在评论中提交错误报告。我们不会向附加组件开发者提供您的电子邮件地址，因此他们无法与您进行必要的联系来帮助解决您的问题。请在<a"
+" href=\"%(support)s\">技术支持段落</a>找到附加组件开发者的联系方式。您也可以尝试在<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">附加组件社区</a>寻求帮助。</li><li>请确保点评恰当，避免使用不当的语言，不附带任何个人信息。</li></ul><p>阅读<a href=\"%(guide)s\">《评论指南》</a>可详细了解有关附加组件评论的信息。</p>"
 
 msgid "Reply to review by {0}"
 msgstr "回复 {0} 的评价"
@@ -7268,7 +7283,7 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} 条评价"
 
 msgid "Rated {0} out of 5 stars"
-msgstr "评分 {0}，满分5星"
+msgstr "评分{0}星，满分5星"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
@@ -8176,18 +8191,6 @@ msgstr "小心使用旧版本！"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "这些版本仅供参考和测试目的发布。您可以一直使用<a href=\"%(url)s\">最新版本</a>的附加组件。"
 
-msgid "Current Max. Version"
-msgstr "当前最大版本"
-
-msgid "Target Version"
-msgstr "目标版本"
-
-msgid "Email when finished"
-msgstr "完成时发邮件"
-
-msgid "Log emails instead of sending"
-msgstr "记录邮件而不是发送"
-
 msgid "Deleted versions can`t be changed."
 msgstr "已删除的版本不能更改。"
 
@@ -8196,21 +8199,3 @@ msgstr "二进制"
 
 msgid "Non-binary"
 msgstr "非二进制"
-
-msgid "Message ID"
-msgstr "消息 ID"
-
-msgid "Message"
-msgstr "消息"
-
-msgid "Compat Type"
-msgstr "兼容类型"
-
-msgid "Addons Affected"
-msgstr "受影响附加组件"
-
-msgid "Addon"
-msgstr "附加组件"
-
-msgid "Validation Result"
-msgstr "验证结果"

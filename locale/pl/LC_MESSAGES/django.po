@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -77,6 +77,9 @@ msgstr "Data sprawdzenia"
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
+msgid "- Add-on not on AMO -"
+msgstr ""
+
 msgid "Download Now"
 msgstr "Pobierz"
 
@@ -134,6 +137,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Każda etykieta musi mieć przynajmniej {0} znak."
 msgstr[1] "Każda etykieta musi mieć przynajmniej {0} znaki."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Nie można zmieniać kategorii, gdy dodatek jest polecany dla tego programu."
@@ -494,10 +501,10 @@ msgstr "Polityka prywatności"
 msgid "Report Abuse"
 msgstr "Zgłoś nadużycie"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
 msgstr ""
 "Jeśli podejrzewasz, że ten dodatek narusza <a href=\"%(url)s\">nasze zasady</a>, ma problemy z bezpieczeństwem lub zachowaniem prywatności – użyj poniższego formularza, by opisać swoje obawy. Nie "
 "używaj tego formularza z innych powodów."
@@ -566,6 +573,9 @@ msgstr "Ikona dla {0}"
 msgid "by %(users)s"
 msgstr "autor: %(users)s"
 
+msgid "Download Anyway"
+msgstr "Pobierz mimo wszystko"
+
 #, fuzzy
 msgid "[Warning]"
 msgstr "{0} ostrzeżenie"
@@ -577,9 +587,6 @@ msgstr "Wersje"
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Ten dodatek został usunięty przez jego autora."
-
-msgid "Download Anyway"
-msgstr "Pobierz mimo wszystko"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -1113,12 +1120,8 @@ msgstr "Poprawne wersje programu"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-#, fuzzy
-msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/pl/Manifesty_Instalacji"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 msgstr ""
 
 msgid "GUID"
@@ -1127,11 +1130,10 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Wersje"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "https://developer.mozilla.org/pl/Manifesty_Instalacji"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 #. L10n: {0} is 'Add-ons for <app>'.
@@ -1655,6 +1657,12 @@ msgstr "Pobierz słownik"
 msgid "Download Language Pack"
 msgstr "Pobierz pakiet językowy"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
+msgstr ""
+
 msgid "Available in your locale"
 msgstr "Dostępny w twoim języku"
 
@@ -1702,13 +1710,15 @@ msgid "Additional Resources"
 msgstr "Dodatkowe zasoby"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
+#, fuzzy
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
 msgstr "Dowiedz się więcej o <a href=\"http://support.mozilla.com/kb/Search+bar\">pasku wyszukiwania</a> w programie {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2336,10 +2346,12 @@ msgstr "Wstępne sprawdzenie kompletnego motywu"
 msgid "Updated Complete Theme Review"
 msgstr "Sprawdzenie zaktualizowanego kompletnego motywu"
 
-msgid "Moderated Addon Review"
+#, fuzzy
+msgid "Moderated Add-on Review"
 msgstr "Moderowane sprawdzenie dodatku"
 
-msgid "Addon Review Moderation Reverted"
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
 msgstr "Przywrócono moderację sprawdzenia dodatku"
 
 msgid "Level 1"
@@ -2817,10 +2829,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3219,11 +3231,8 @@ msgstr "Strona dodatku"
 msgid "Summary"
 msgstr "Podsumowanie"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
-"Krótki opis podstawowych funkcji twojego dodatku, który jest wyświetlany w wynikach wyszukiwania i na listach przeglądania, a także na górze strony ze szczegółami dodatku. Dotyczy tylko "
-"wyświetlanych dodatków."
 
 #, fuzzy
 msgid "Experimental?"
@@ -3281,6 +3290,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Zarezerwowana etykieta:"
 msgstr[1] "Zarezerwowane etykiety:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Dotacje"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Szczegółowe dane dodatku"
@@ -3634,9 +3650,6 @@ msgstr "W adresie URL użyj tylko liter, cyfr, znaków podkreślenie i myślnik�
 msgid "Summary:"
 msgstr "Podsumowanie"
 
-msgid "This summary will be shown in listings and searches."
-msgstr "Opis będzie wyświetlany w wykazach przeglądania i wyszukiwania."
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Dodatek wymaga zewnętrznego oprogramowania."
@@ -3936,6 +3949,9 @@ msgstr "Zarządzanie swoim profilem autora"
 msgid "Create a Developer Profile"
 msgstr "Utwórz profil autora"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -4205,8 +4221,8 @@ msgstr "Łatwe w obsłudze motywy dla Firefoksa"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
-"a>, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 #, fuzzy
@@ -4467,8 +4483,8 @@ msgstr "Podaj nazwę motywu"
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -6698,8 +6714,8 @@ msgstr "Publikacje dotyczące licencji otwartego dostępu do kodu źródłowego"
 msgid "Add-on Developer FAQ"
 msgstr "Tworzenie dodatków – FAQ"
 
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+#, fuzzy, python-format
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr "<h3>Jak stworzyć dodatek?</h3> <p> Mozilla dostarcza dokumentację tworzenia dodatków na stronie <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 
 msgid "What is a \".xpi\" file?"
@@ -6721,9 +6737,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
+"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -6825,8 +6841,8 @@ msgstr "Czy Mozilla ma określone zasady, jakie powinien spełniać zamieszczany
 
 #, fuzzy, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
-"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "Tak. <a href=\"%(p_url)s\">Zasady dodatków</a> Mozilli je określają. Zasady te mogą być zmieniane bez powiadamiania. Ponadto zespół recenzentów AMO stosuje <a href=\"%(g_url)s\">Instrukcję "
 "recenzji</a>, aby sprawdzić i zapewnić, że dodatek spełnia określone warunki funkcjonalności i bezpieczeństwa."
@@ -6838,7 +6854,7 @@ msgstr "Jak można przesłać dodatek do sprawdzenia?"
 #, fuzzy, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "Panel narzędzi programisty umożliwia przesyłanie dodatków na AMO i kierowanie ich do sprawdzenia. Aby wysłać dodatek, trzeba być zarejestrowanym użytkownikiem AMO. Przed skierowaniem dodatku do "
 "sprawdzenia należy zapoznać się z <a href=\"%(url)s\">Instrukcją recenzji</a>, aby upewnić się, że dodatek spełnia wytyczne stosowane przez recenzentów do oceny dodatków."
@@ -7125,7 +7141,7 @@ msgstr "Czy zainstalowanie dodatków nie stwarza problemów bezpieczeństwa?"
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 #, python-format
@@ -7195,7 +7211,7 @@ msgstr "Co to oznacza, że dodatek jest „niesprawdzony”?"
 #, fuzzy, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Eksperymentalne dodatki zostały sprawdzone przez naszych recenzentów, by upewnić się, czy nie zawierają zagrożeń bezpieczeństwa, ale nadal mają błędy lub nie działają poprawnie. Należy zachować "
 "ostrożność, instalując eksperymentalne dodatki i niezwłocznie odinstalować, jeśli wystąpiły jakieś problemy. <a href=\"%(url)s\">Dowiedz się więcej o naszej metodzie sprawdzania dodatków</a></dd>"
@@ -7206,7 +7222,7 @@ msgstr "Co to oznacza, że dodatek jest „niesprawdzony”?"
 #, fuzzy, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Pomimo że wszystkie publicznie dostępne dodatki w naszej galerii są sprawdzane przez recenzentów, możesz otrzymać bezpośredni odnośnik do dodatku, który nie został jeszcze sprawdzony. Należy "
 "zachować ostrożność, instalując takie dodatki, ponieważ mogą one spowodować uszkodzenie twojego komputera lub naruszyć twoją prywatność. <a href=\"%(url)s\">Dowiedz się więcej o naszej metodzie "
@@ -8647,18 +8663,6 @@ msgstr "Zachowaj ostrożność, gdy używasz nieaktualnych wersji!"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "Wersje te są wyświetlane w celach informacyjnych i testowych. Używaj zawsze <a href=\"%(url)s\">najnowszych wersji</a> danego dodatku."
 
-msgid "Current Max. Version"
-msgstr "Najwyższa bieżąca wersja"
-
-msgid "Target Version"
-msgstr "Docelowa wersja"
-
-msgid "Email when finished"
-msgstr "Wyślij, gdy skończy"
-
-msgid "Log emails instead of sending"
-msgstr "Rejestruj e-maile zamiast wysyłania"
-
 msgid "Deleted versions can`t be changed."
 msgstr ""
 
@@ -8667,25 +8671,3 @@ msgstr "Binarny"
 
 msgid "Non-binary"
 msgstr "Niebinarny"
-
-#, fuzzy
-msgid "Message ID"
-msgstr "Wiadomość dnia"
-
-msgid "Message"
-msgstr ""
-
-#, fuzzy
-msgid "Compat Type"
-msgstr "Kompaktowe"
-
-#, fuzzy
-msgid "Addons Affected"
-msgstr "Utworzone dodatki"
-
-msgid "Addon"
-msgstr ""
-
-#, fuzzy
-msgid "Validation Result"
-msgstr "Wyniki sprawdzenia"

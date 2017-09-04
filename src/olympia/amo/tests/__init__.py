@@ -45,6 +45,7 @@ from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
     Addon, AddonCategory, Category, Persona,
     update_search_index as addon_update_search_index)
+from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
@@ -669,9 +670,13 @@ def addon_factory(
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
     category = kw.pop('category', None)
+    default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
+    slug = kw.pop('slug', None)
+    if slug is None:
+        slug = name.replace(' ', '-').lower()[:30]
 
     kwargs = {
         # Set artificially the status to STATUS_PUBLIC for now, the real
@@ -679,8 +684,9 @@ def addon_factory(
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
         'status': amo.STATUS_PUBLIC,
+        'default_locale': default_locale,
         'name': name,
-        'slug': name.replace(' ', '-').lower()[:30],
+        'slug': slug,
         'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
@@ -692,24 +698,22 @@ def addon_factory(
     kwargs.update(kw)
 
     # Save 1.
-    if type_ == amo.ADDON_PERSONA:
-        # Personas need to start life as an extension for versioning.
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
-    else:
+    with translation.override(default_locale):
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
     version = version_factory(file_kw, addon=addon, **version_kw)
-    addon.update_version()
-    addon.status = status
-    if type_ == amo.ADDON_PERSONA:
-        addon.type = type_
+    if addon.type == amo.ADDON_PERSONA:
+        addon._current_version = version
         persona_id = persona_id if persona_id is not None else addon.id
 
         # Save 3.
         Persona.objects.create(
             addon=addon, popularity=addon.weekly_downloads,
             persona_id=persona_id)
+
+    addon.update_version()
+    addon.status = status
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
@@ -720,7 +724,7 @@ def addon_factory(
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
         static_category = random.choice(
-            CATEGORIES[application][type_].values())
+            CATEGORIES[application][addon.type].values())
         category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
@@ -730,6 +734,13 @@ def addon_factory(
 
     # Save 4.
     addon.save()
+
+    if addon.type == amo.ADDON_PERSONA:
+        # Personas only have one version and signals.version_changed is never
+        # fired for them - instead it gets updated through a cron (!). We do
+        # need to get it right in some tests like the ui tests, so we call the
+        # task ourselves.
+        version_changed(addon.pk)
 
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
@@ -828,6 +839,7 @@ def user_factory(**kw):
 def version_factory(file_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
+    addon_type = getattr(kw.get('addon'), 'type', None)
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
@@ -844,7 +856,7 @@ def version_factory(file_kw=None, **kw):
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
-    if kw.get('addon').type not in amo.NO_COMPAT:
+    if addon_type not in amo.NO_COMPAT:
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
@@ -852,8 +864,9 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    file_kw = file_kw or {}
-    file_factory(version=ver, **file_kw)
+    if addon_type != amo.ADDON_PERSONA:
+        file_kw = file_kw or {}
+        file_factory(version=ver, **file_kw)
     return ver
 
 

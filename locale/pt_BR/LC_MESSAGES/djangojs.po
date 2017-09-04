@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-15 14:52+0000\n"
-"Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"PO-Revision-Date: 2017-08-27 16:08+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -102,8 +102,7 @@ msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
-"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários possuam o WebExtension instalado, não serão capazes de instalar um complemento "
-"legado."
+"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários possuam o WebExtension instalado, não serão capazes de instalar uma extensão legada."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Portando uma extensão obsoleta do Firefox no MDN"

@@ -702,11 +702,6 @@ body:not(.home) .amo-header,
   margin-top: 0;
 }
 
-.featured li {
-  height: auto;
-  width: auto;
-}
-
 // Featured/Monthly Add-on background modification
 #featured-addon,
 #monthly {
@@ -1960,6 +1955,18 @@ h3.author .transfer-ownership {
   }
 }
 
+// (new) Contribution url button
+#contribution-url-button {
+  text-decoration: none;
+}
+// (new) Contribution url button
+.notice.c.author .button-wrapper {
+  float:right;
+}
+.html-rtl .notice.c.author .button-wrapper {
+  float:right;
+}
+
 .notice.c.author {
   h3,
   p {
@@ -2425,6 +2432,10 @@ body.editor-tools {
       }
     }
   }
+}
+
+.listing .item:not(.incompatible) .install-shell {
+    visibility: visible;
 }
 
 .item-info .install-button .button {

@@ -261,7 +261,6 @@ var installButton = function() {
         var opts = no_compat_necessary ? {addWarning: false} : {};
         versionsAndPlatforms(opts);
     } else if (z.app == 'firefox') {
-        versionsAndPlatforms();
         $button.addClass('CTA');
         $button.text(gettext('Only with Firefox \u2014 Get Firefox Now!'));
         $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2&utm_source=addons.mozilla.org&utm_medium=referral&utm_campaign=non-fx-button#download-fx');

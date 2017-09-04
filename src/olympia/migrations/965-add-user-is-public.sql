@@ -1,6 +1,5 @@
 ALTER TABLE users
-    ADD COLUMN `public` boolean DEFAULT FALSE,
-    DROP COLUMN `is_verified`;
+    ADD COLUMN `public` boolean DEFAULT FALSE;
 
 /* AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5

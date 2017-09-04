@@ -12,12 +12,8 @@ Jinja2==2.9.6 \
 # MarkupSafe is required by Jinja2
 MarkupSafe==1.0 \
     --hash=sha256:a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665
-mysqlclient==1.3.10 \
-    --hash=sha256:34003bb52c82e415ba10da1ce2925745ad2220335e1e14921bb56f68dd5e37f6 \
-    --hash=sha256:b435116061913b75a27519bee3f71d82a11b409f878f8797061ecf24117854c6 \
-    --hash=sha256:9cafa74a58b7f280cd2392f1b656aa3660ca6ddfd641f0779cd0a76831bb81b0 \
-    --hash=sha256:26e19db4929313104e287916afa4cdd03974c51838414d508023bb324468daf0 \
-    --hash=sha256:452aaf9d2ba1a4fb85c134c88f9b1857852deed63b3b13255d7a65d2c1297262
+mysqlclient==1.3.12 \
+    --hash=sha256:2d9ec33de39f4d9c64ad7322ede0521d85829ce36a76f9dd3d6ab76a9c8648e5
 Pillow==4.2.1 \
     --hash=sha256:c7ba8b42923c1b5e72fe3b0aa792de8ffc13c5a3d4df8e88f06959d0835fea8e \
     --hash=sha256:e07f388cf345b002853eabb720c234b281119cf4c2677d7e0b9ec4d8f9a18fbd \
@@ -72,9 +68,9 @@ PyJWT==1.5.2 \
     --hash=sha256:1179f0bff86463b5308ee5f7aff1c350e1f38139d62a723e16fb2c557d1c795f
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.71 \
-    --hash=sha256:814db2d7bdbacb7c9a6f0e3f6e9c2312e2284fdcc999a068cd8a86645841fff1 \
-    --hash=sha256:52e877255e9e7b857cea48aaba8dfa6a71f2bfced2509264ec9c5024d1aa3909
+amo-validator==1.10.72 \
+    --hash=sha256:f54f65d480bcbdc498975a09dbdd408ce64c74c372f0802705fb07df00ab4e54 \
+    --hash=sha256:02938dea6573bfd29852d96bcd9b46d1b95c9c9d6045229bc31b272a5e850f77
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
@@ -224,9 +220,9 @@ django-environ==0.4.1 \
 django-extensions==1.6.7 \
     --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
     --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943 # pyup: ==1.6.7
-django-mozilla-product-details==0.12.1 \
-    --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
-    --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb
+django-mozilla-product-details==0.13 \
+    --hash=sha256:ce97fc2533aa06560d9b438ebba2522dc0b2ada86d6e0537cfb5ac06db1a6aa2 \
+    --hash=sha256:4ffa5a104f53645460a50c9342a41e3ea02d432851becf56e820d42faa94839f
 django-multidb-router==0.6 \
     --hash=sha256:4c488dcb84cffd88bcd2b1651962b767f9bb245206407c8ea678043cd39d3ca8
 django-post-request-task==0.1.1 \
@@ -235,17 +231,18 @@ django-post-request-task==0.1.1 \
 django-session-csrf==0.7.1 \
     --hash=sha256:e17177e6e2e6518ec7ce6693ad10a5c747f8571d09f4cfa9082599334421605d \
     --hash=sha256:ff8c10e30d312c77fc6a6db7710e22b9383e28c03b7fe958876ca96f39aa6cf2
-django-statsd-mozilla==0.3.16 \
-    --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
+django-statsd-mozilla==0.4.0 \
+    --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
+    --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
 django-tables2==1.10.0 \
     --hash=sha256:51607a1dada9ad10cf09aaadc7208960c6922ab720dd8b5d0c0d1b2222f00a66
 django-waffle==0.12.0 \
     --hash=sha256:5825358d97cc327bc749cd3ce21ea70c958cd50ca91cb62e0c7b690eed83afc9 \
     --hash=sha256:b37da3c26b9d44920e9f5bb35a1339a9f8320437423e733aa8b1f8e03c39cb74
 # djangorestframework is required by drf-nested-routers
-djangorestframework==3.6.3 \
-    --hash=sha256:bb9d55997a71fb1c844cd84c15cbe2e87d2ec8493a685f96aa3db403760626b7 \
-    --hash=sha256:6aa6aafdfb7f6152a401873ecae93aff9eb54d7a74266065347cf4de68278ae4
+djangorestframework==3.6.4 \
+    --hash=sha256:0f9bfbac702f3376dfb2db4971ad8af4e066bfa35393b1b85e085f7e8b91189a \
+    --hash=sha256:de8ac68b3cf6dd41b98e01dcc92dc0022a5958f096eafc181a17fa975d18ca42
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
@@ -355,8 +352,10 @@ mozilla-logger==0.2 \
 natsort==5.1.0 \
     --hash=sha256:64b702ee943144beea9cc58f4b2893da3bc3dfa9bd31cd216f8bfd6dce6edf57 \
     --hash=sha256:5db0fd17c9f8ef3d54962a6e46159ce4807c630f0931169cd15ce54f2ac395b9
-ndg-httpsclient==0.4.2 \
-    --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
+ndg-httpsclient==0.4.3 \
+    --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
+    --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
+    --hash=sha256:7bfd8c5cfcbc241a93ca6a4e45f952650f5c7ecf7c49b1dbcf5f4d390240be0b
 newrelic==2.90.0.75 \
     --hash=sha256:c57b89b170b208567989f4ff8066aa2a3abd22e9b95e765cfbef3b950f9f0040
 nobot==0.4.1 \
@@ -432,9 +431,9 @@ requests==2.18.4 \
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==36.2.7 \
-    --hash=sha256:02b5f3869777dfbfbe3786a057bc6d523445a3e541a0abdf85adbe0b091e96b9 \
-    --hash=sha256:b0fe5d432d922df595e918577c51458d63f245115d141b309ac32ecfca329df5
+setuptools==36.3.0 \
+    --hash=sha256:42bafe9efb8f771f6c96bb8e052e1de7474270719d471d596b9d91e53e8befd4 \
+    --hash=sha256:e9fa391c1183b40fc6a1298bee02d554743f23c805a3b75dbb18def0f0755fb1
 signing-clients==1.3.2 \
     --hash=sha256:2b74b3fce06b1a6acf790fcbc59ea345137698c53757e87af84db092c2190760 \
     --hash=sha256:5cc61c9caa960cea5bec2bc8eae17c3197e872a9008bf52146d4cbb03da93c08
@@ -476,5 +475,5 @@ urllib3==1.22 \
 vine==1.1.4 \
     --hash=sha256:6849544be74ec3638e84d90bc1cf2e1e9224cc10d96cd4383ec3f69e9bce077b \
     --hash=sha256:52116d59bc45392af9fdd3b75ed98ae48a93e822cee21e5fda249105c59a7a72
-django-jinja==2.3.1 \
-    --hash=sha256:ebfde44cb716e57a9cdff6c1a4935fc49c7419ea4cd0b2b89bcecc696b9c0c86
+django-jinja==2.4.0 \
+    --hash=sha256:67d0c77da305013c09f5bc6a45deda8dd66936b94d6548fd893d7ac2dfcafe6e

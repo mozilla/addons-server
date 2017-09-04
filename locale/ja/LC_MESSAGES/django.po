@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-12 03:38+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"PO-Revision-Date: 2017-09-04 08:36+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,9 @@ msgstr "審査担当者へのメモ"
 msgid "Only latest versions of addons can have notes added."
 msgstr "ノートを追加できるのはアドオンの最新版のみです。"
 
+msgid "- Add-on not on AMO -"
+msgstr ""
+
 msgid "Download Now"
 msgstr "今すぐダウンロード"
 
@@ -126,6 +129,10 @@ msgstr "すべてのタグは無効な文字を除き %s 文字以下でなけ�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "すべてのタグは {0} 文字以上でなければなりません。"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
@@ -309,7 +316,7 @@ msgstr "{0} のページへ戻る…"
 # Firefox,
 # Sunbird
 msgid "Add-ons for {0}"
-msgstr "Add-ons for {0}"
+msgstr "{0} 向けアドオン"
 
 msgid "Featured Extensions"
 msgstr "おすすめの拡張機能"
@@ -476,9 +483,9 @@ msgstr "不正報告"
 
 #, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
-msgstr "このアドオンが <a href=\"%(url)s\">ポリシー</a> に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォームを使用しないでください。"
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
+msgstr "このアドオンが %(amo_policy_link_open)sポリシー%(link_close)s に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォームを使用しないでください。"
 
 msgid "Send Report"
 msgstr "レポートを送信"
@@ -542,6 +549,9 @@ msgstr "{0} のアイコン"
 msgid "by %(users)s"
 msgstr "作者: %(users)s"
 
+msgid "Download Anyway"
+msgstr "強制ダウンロード"
+
 # {0} is a number
 msgid "[Warning]"
 msgstr "[警告]"
@@ -551,9 +561,6 @@ msgstr "許可設定"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "このアドオンは作者によって実験的とされています"
-
-msgid "Download Anyway"
-msgstr "強制ダウンロード"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -860,7 +867,7 @@ msgid "Page Not Found"
 msgstr "ページが見つかりませんでした"
 
 msgid "Firefox Add-ons"
-msgstr "Firefox Add-ons"
+msgstr "Firefox アドオン"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr "申し訳ありませんが、入力したアドレスには何も見つかりませんでした。アドオンへのリンクにアクセスしたのであれば、アドオンが作者によって削除された可能性があります。"
@@ -875,7 +882,7 @@ msgid "Browse all themes"
 msgstr "すべてのテーマを見る"
 
 msgid "Add-ons Home Page"
-msgstr "Add-ons ホームページ"
+msgstr "アドオンホームページ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -1008,7 +1015,7 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
 msgid "Add-ons"
-msgstr "Add-ons"
+msgstr "アドオン"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -1061,14 +1068,11 @@ msgid "Valid Application Versions"
 msgstr "アプリケーションの有効バージョン"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
-
-msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/ja/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
 
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr "WebExtensions では <a href=\"%(version_url)s\">strict_min_version</a> に「*」を設定できないことに注意してください。"
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "WebExtensions では %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s に「*」を設定できないことに注意してください。"
 
 msgid "GUID"
 msgstr "GUID"
@@ -1076,12 +1080,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "バージョン"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "https://developer.mozilla.org/ja/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。マニフェストファイルに必要なプロパティは<a href=\"%(url)s\">こちら</a> で指定されています。"
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定されています。"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1373,7 +1376,7 @@ msgstr "コレクションの協力者"
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
+msgstr "複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla アドオンサイトのアカウントが必要です。"
 
 msgid "User"
 msgstr "ユーザー"
@@ -1583,6 +1586,12 @@ msgstr "辞書をダウンロード"
 msgid "Download Language Pack"
 msgstr "言語パックをダウンロード"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
+msgstr ""
+
 msgid "Available in your locale"
 msgstr "あなたのロケールに対応しているもの"
 
@@ -1629,14 +1638,15 @@ msgid "Additional Resources"
 msgstr "関連情報"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "{0} の <a href=\"http://support.mozilla.com/kb/Search+bar\">検索バー</a> について詳しく知る"
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
+msgstr "{0} の <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">検索バー</a> について詳しく知る"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "その他の検索プロバイダーは、<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> で見つけてください"
 
-msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "検索ツールを <a href=\"https://developer.mozilla.org/ja/Creating_OpenSearch_plugins_for_Firefox\">自分で作る</a>"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
+msgstr ""
 
 msgid "Most Popular Extensions"
 msgstr "最も人気の拡張機能"
@@ -2234,11 +2244,11 @@ msgstr "完全テーマの事前審査"
 msgid "Updated Complete Theme Review"
 msgstr "完全テーマの更新審査"
 
-msgid "Moderated Addon Review"
+msgid "Moderated Add-on Review"
 msgstr "アドオンの管理者審査"
 
-msgid "Addon Review Moderation Reverted"
-msgstr "アドオンのレビューモデレーションを取り消しました"
+msgid "Add-on Review Moderation Reverted"
+msgstr "アドオンの管理者審査が取り消されました"
 
 msgid "Level 1"
 msgstr "レベル 1"
@@ -2711,10 +2721,10 @@ msgstr "当サイト上で。<span class=\"helptext\">あなたのアドオン�
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
-msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -2926,10 +2936,10 @@ msgid "Community & Support"
 msgstr "コミュニティとサポート"
 
 msgid "Add-ons Blog"
-msgstr "Add-ons ブログ"
+msgstr "アドオンブログ"
 
 msgid "Add-ons Forum"
-msgstr "Add-ons フォーラム"
+msgstr "アドオンフォーラム"
 
 msgid "More Resources"
 msgstr "その他の資料"
@@ -3100,9 +3110,8 @@ msgstr "詳細ページを表示"
 msgid "Summary"
 msgstr "概要"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "検索結果やカテゴリーなどのリスト、そしてアドオンの詳細ページ最上部に表示される、このアドオンの基本機能についての短い説明文。当該アドオンにのみ関係します。"
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr ""
 
 msgid "Experimental?"
 msgstr "実験的？"
@@ -3148,6 +3157,12 @@ msgstr "例、ダーク、映画、黒。最大 20 個。"
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "予約済みのタグ:"
+
+msgid "Contributions URL"
+msgstr "寄付 URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "アドオンの詳細"
@@ -3485,9 +3500,6 @@ msgstr "URL には、英数字、アンダーバー、ハイフンのみ使用�
 msgid "Summary:"
 msgstr "概要:"
 
-msgid "This summary will be shown in listings and searches."
-msgstr "この概要はアドオン一覧や検索結果にも表示されます。"
-
 msgid "This add-on is experimental"
 msgstr "このアドオンは実験的です"
 
@@ -3747,6 +3759,9 @@ msgstr "開発者プロフィールを編集"
 msgid "Create a Developer Profile"
 msgstr "開発者プロフィールを作成"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -3983,9 +3998,11 @@ msgstr "Firefox をカスタマイズ"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
-msgstr "アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし <a href=\"%(html_link)s\">HTML</a> や <a href=\"%(js_link)s\">JavaScript</a>、<a href=\"%(css_link)s\">CSS</a> を知っているなら、素晴らしいアドオンを作るのに必要な技術を既にお持ちです。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
+"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr ""
+"アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし %(html_link_open)sHTML%(link_close)s や %(js_link_open)sJavaScript%(link_close)s、%(css_link_open)sCSS%(link_close)s "
+"を知っているなら、素晴らしいアドオンを作るのに必要な技術を既にお持ちです。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "アドオンの作り方を学ぶ"
@@ -4235,8 +4252,8 @@ msgstr "テーマに名前を付けてください。"
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -6161,7 +6178,7 @@ msgid "Zimbabwe Dollar"
 msgstr "ジンバブエ, ドル"
 
 msgid "About Mozilla Add-ons"
-msgstr "Mozilla Add-ons について"
+msgstr "Mozilla アドオンサイトについて"
 
 msgid "What is this website?"
 msgstr "このサイトは何ですか？"
@@ -6189,7 +6206,7 @@ msgstr "アドオンワールドからの最新ニュースは、いくつかの
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr "私たちの <a href=\"%(url)s\">Add-ons Blog</a> では、アドオンに熱中している人や開発者向けの情報を定期的に更新しています。"
+msgstr "私たちの <a href=\"%(url)s\">アドオンブログ</a> では、アドオンに熱中している人や開発者向けの情報を定期的に更新しています。"
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -6364,7 +6381,7 @@ msgid "Add-on Developer FAQ"
 msgstr "アドオン開発者 FAQ"
 
 #, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr ""
 
 msgid "What is a \".xpi\" file?"
@@ -6383,9 +6400,9 @@ msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言�
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
+"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
+" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -6474,8 +6491,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
-" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
 msgid "How do I submit my add-on?"
@@ -6484,7 +6501,7 @@ msgstr "アドオンを投稿するには？"
 #, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -6741,7 +6758,7 @@ msgstr "アドオンをインストールしても安全ですか？"
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 #, python-format
@@ -6805,7 +6822,7 @@ msgstr "アドオンが「実験的」とはどういう意味ですか？"
 #, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -6814,7 +6831,7 @@ msgstr ""
 #, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 
 msgid "How much do add-ons cost to purchase?"
@@ -7043,7 +7060,7 @@ msgid "The study will expire on its own in a few weeks. You may leave the study 
 msgstr "この調査は数週間以内に自動的に終了しますが、それよりも早く調査への参加を終えることもできます。そのためには、以下の手順に従ってください。"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "ロケーションバーに about:addons と入力し、Enter キーを押してください。"
+msgstr "アドレスバーに about:addons と入力し、Enter キーを押してください。"
 
 msgid "Find Plugin Safety in the addons list."
 msgstr "アドオンの一覧から Plugin Safety を見つけてください。"
@@ -7693,7 +7710,7 @@ msgid "Application versions by Date"
 msgstr "日別アプリケーションバージョン"
 
 msgid "Mozilla Add-ons"
-msgstr "Mozilla Add-ons"
+msgstr "Mozilla アドオン"
 
 msgid "Find add-ons for other applications"
 msgstr "他のアプリケーション用のアドオンを探す"
@@ -7702,7 +7719,7 @@ msgid "Other Applications"
 msgstr "他のアプリケーション"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "自分のコレクションを作成するには Mozilla Add-ons のアカウントが必要です。"
+msgstr "自分のコレクションを作成するには Mozilla アドオンサイトのアカウントが必要です。"
 
 msgid "Footer logo"
 msgstr "フッターロゴ"
@@ -7730,7 +7747,7 @@ msgstr "他の言語"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "{0} Add-ons のホームページへ戻る"
+msgstr "{0} アドオンのホームページへ戻る"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> アドオン"
@@ -7760,7 +7777,7 @@ msgstr "ここで公開されている数千ものアドオンを試すには、
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr "{0} Add-ons へようこそ。"
+msgstr "{0} アドオンサイトへようこそ。"
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
@@ -7773,10 +7790,10 @@ msgid "On the go?"
 msgstr "外出先ですか？"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "<a class=\"mobile-link\" href=\"#\">Mobile Add-ons サイト</a> を見る"
+msgstr "<a class=\"mobile-link\" href=\"#\">モバイル向けアドオンサイト</a> を見る"
 
 msgid "Android Add-ons"
-msgstr "Android Add-ons"
+msgstr "Android 向けアドオン"
 
 msgid "required"
 msgstr "必須"
@@ -8022,7 +8039,7 @@ msgid "all"
 msgstr "すべて"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Add-ons サイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
+msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
 
 msgid "User Login"
 msgstr "ログイン"
@@ -8190,18 +8207,6 @@ msgstr "古いバージョンにご注意！"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "これらは、参考またはテストのために表示されているバージョンです。常に <a href=\"%(url)s\">最新バージョン</a> のアドオンを使用してください。"
 
-msgid "Current Max. Version"
-msgstr "現時点の最大対応バージョン"
-
-msgid "Target Version"
-msgstr "対応バージョン"
-
-msgid "Email when finished"
-msgstr "完了時にメールを送信する"
-
-msgid "Log emails instead of sending"
-msgstr "メールを送信する代わりにログで残す"
-
 msgid "Deleted versions can`t be changed."
 msgstr "削除したバージョンは変更できません。"
 
@@ -8210,21 +8215,3 @@ msgstr "バイナリ"
 
 msgid "Non-binary"
 msgstr "非バイナリ"
-
-msgid "Message ID"
-msgstr "メッセージ ID"
-
-msgid "Message"
-msgstr "メッセージ"
-
-msgid "Compat Type"
-msgstr "互換性の種類"
-
-msgid "Addons Affected"
-msgstr "影響を受けるアドオン"
-
-msgid "Addon"
-msgstr "アドオン"
-
-msgid "Validation Result"
-msgstr "検証結果"

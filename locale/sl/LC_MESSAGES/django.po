@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2016-09-13 17:01+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"PO-Revision-Date: 2017-09-04 15:35+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -70,6 +70,9 @@ msgstr "Opomba pregleda"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Opombe so lahko dodane samo najnovejšim različicam dodatkov."
 
+msgid "- Add-on not on AMO -"
+msgstr "- Dodatek ni na AMO -"
+
 msgid "Download Now"
 msgstr "Prenesi zdaj"
 
@@ -134,6 +137,10 @@ msgstr[0] "Vse oznake morajo biti najmanj {0} znak."
 msgstr[1] "Vse oznake morajo imeti najmanj {0} znaka."
 msgstr[2] "Vse oznake morajo imeti najmanj {0} znake."
 msgstr[3] "Vse oznake morajo imeti najmanj {0} znakov."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr "Domena spletnega naslova mora biti ena od [%s] ali poddomena., "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati."
@@ -504,11 +511,11 @@ msgstr "Prijava zlorabe"
 
 #, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
 msgstr ""
-"Če sumite, da ta dodatek krši <a href=\"%(url)s\">naše pravilnike</a> , ali ima probleme v zvezi z varnostjo in zasebnostjo, vnesite prosim svoje pomisleke v obrazec spodaj. Ne uporabljajte tega "
-"obrazca za kake druge namene."
+"Če sumite, da ta dodatek krši %(amo_policy_link_open)snaše pravilnike%(link_close)s ali da ima težave z varnostjo ali zasebnostjo, vnesite svoje pomisleke v spodnji obrazec. Ne uporabljajte tega "
+"obrazca za kakršnekoli druge namene."
 
 msgid "Send Report"
 msgstr "Pošlji poročilo"
@@ -577,6 +584,9 @@ msgstr "Ikona za {0}"
 msgid "by %(users)s"
 msgstr "od %(users)s"
 
+msgid "Download Anyway"
+msgstr "Vseeno prenesi"
+
 # {0} is a number
 msgid "[Warning]"
 msgstr "[Opozorilo]"
@@ -586,9 +596,6 @@ msgstr "Dovoljenja"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Ta dodatek so njegovi razvijalci označili kot poskusen"
-
-msgid "Download Anyway"
-msgstr "Vseeno prenesi"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -1123,12 +1130,9 @@ msgstr "Veljavne različice aplikacije"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Dodatki poslani v dodatke Mozilla morajo meti datoteko manifesta s podporo za vsaj eno od spodnjih aplikacij. Za te aplikacije so dovoljene damo spodnje različice."
 
-msgid "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr "Upoštevajte, da WebExtensions v <a href=\"%(version_url)s\">strict_min_version</a> ne sme vsebovati \"*\"."
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Upoštevajte, da WebExtensions v%(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s ne sme vsebovati \"*\"."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1136,12 +1140,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Različice"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Če vaša podprta aplikacija datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene <a href=\"%(url)s\">tukaj</a>."
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr "Če vaš podprt program datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene %(amo_manifests_mdn_link_open)stukaj%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1673,6 +1676,12 @@ msgstr "Prenesi slovar"
 msgid "Download Language Pack"
 msgstr "Prenesi jezikovni paket"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
+msgstr "Z namestitvijo slovarja dodate nov možen jezik v %(app_name)sov črkovalnik, ki pri izpolnjevanju obrazcev preverja vaše črkovanje. Jezikovni paketi spremenijo jezik celotnega programa."
+
 msgid "Available in your locale"
 msgstr "Na razpolago v slovenščini"
 
@@ -1722,14 +1731,15 @@ msgid "Additional Resources"
 msgstr "Dodatni viri"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "Preberite več o <a href=\"http://support.mozilla.com/kb/Search+bar\">iskalni vrstici</a> v {0}"
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
+msgstr "Preberite več o {0}ovi <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">iskalni vrstici</a>"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Brskajte po še več iskalnikih na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
-msgid "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en-US/Creating_OpenSearch_plugins_for_Firefox\">Ustvarite svoj</a> iskalnik"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
+msgstr "%(amo_mdn_link_open)sUstvarite lastno%(amo_mdn_link_close)s orodje za iskanje"
 
 msgid "Most Popular Extensions"
 msgstr "Najbolj priljubljene razširitve"
@@ -2344,10 +2354,10 @@ msgstr "Predhoden pregled celotne teme"
 msgid "Updated Complete Theme Review"
 msgstr "Posodobljen pregled celotne teme"
 
-msgid "Moderated Addon Review"
+msgid "Moderated Add-on Review"
 msgstr "Moderirana ocena dodatka"
 
-msgid "Addon Review Moderation Reverted"
+msgid "Add-on Review Moderation Reverted"
 msgstr "Moderacija pregleda dodatka je bila obrnjena"
 
 msgid "Level 1"
@@ -2528,7 +2538,7 @@ msgid "Performance"
 msgstr "Zmogljivost"
 
 msgid "Photos & Media"
-msgstr "Fotografije in mediji"
+msgstr "Fotografije in predstavnost"
 
 msgid "Security & Privacy"
 msgstr "Varnost in zasebnost"
@@ -2579,7 +2589,7 @@ msgid "Language Support and Translation"
 msgstr "Jezikovna podpora in prevajanje"
 
 msgid "Photos and Media"
-msgstr " Fotografije in mediji"
+msgstr "Fotografije in predstavnost"
 
 msgid "RSS, News and Blogging"
 msgstr "RSS, novice in bloganje"
@@ -2825,11 +2835,11 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Po svoje. <span class=\"helptext\">Vaš prispevek bo takoj podpisan za osebno razširjanje. Za posodobitve boste morali skrbeti vi preko updateURL ali zunanjega programa.</span>"
 
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr "Razširitve za Firefox 53 in novejše so lahko samo WebExtensions."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Dodatki za Firefox 53 in novejše so lahko samo WebExtensions."
 
-msgid "Legacy extensions are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Stare razširitve niso združljive s Firefoxom 57 in novejšimi. Uporabite maxVersion 56.* ali nižjo."
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Stari dodatki niso združljivi s Firefoxom 57 in novejšimi. Uporabite maxVersion 56.* ali nižjo."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
@@ -3221,9 +3231,8 @@ msgstr "Prikaži stran"
 msgid "Summary"
 msgstr "Povzetek"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "Kratka razlaga osnovnih funkcionalnosti dodatka, ki se prikaže v rezultatih iskanja in brskanja kot tudi na vrhu strani s podrobnim opisom dodatka. Velja samo za dodatke na seznamu."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr "Ta povzetek naj jasno razloži, kaj vaš dodatek počne. Prikazan bo na seznamu in v iskanjih, pregledovalci pa ga bodo uporabili pri preskušanju vašega dodatka."
 
 msgid "Experimental?"
 msgstr "Poskusno?"
@@ -3279,6 +3288,12 @@ msgstr[0] "Rezervirana oznaka:"
 msgstr[1] "Rezervirani oznaki:"
 msgstr[2] "Rezervirane oznake:"
 msgstr[3] "Rezerviranih oznak:"
+
+msgid "Contributions URL"
+msgstr "Naslov za prispevke"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Če želite od svojih uporabnikov zahtevati denarne prispevke, tu nastavite stran, na kateri jih lahko oddajo."
 
 msgid "Add-on Details"
 msgstr "Podrobnosti o dodatku"
@@ -3429,7 +3444,7 @@ msgid "Enter the name of an add-on"
 msgstr "Vnesite ime za dodatek"
 
 msgid "Add-on Media for {0}"
-msgstr "Mediji za dodatek za {0}"
+msgstr "Predstavnost za dodatek {0}"
 
 msgid "Add-on icon"
 msgstr "Sličica za dodatek"
@@ -3635,9 +3650,6 @@ msgstr "V URL-ju uporabljajte prosim le črke, številke, podčrtaje in vezaje."
 
 msgid "Summary:"
 msgstr "Povzetek:"
-
-msgid "This summary will be shown in listings and searches."
-msgstr "Ta povzetek se bo objavljalo v seznamih in v rezultatih iskanja."
 
 msgid "This add-on is experimental"
 msgstr "Ta dodatek je poskusen"
@@ -3906,6 +3918,9 @@ msgstr "Upravljanje mojega profila razvijalca"
 msgid "Create a Developer Profile"
 msgstr "Ustvarite profil razvijalca"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr "Ta stran bo kmalu odstranjena, zamenjalo jo bo polje Naslov za prispevke na glavni strani za urejanje. Nastavite to polje, da ohranite prispevke omogočene."
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -4154,11 +4169,11 @@ msgstr "Prilagodite si Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
+"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Dodatki omogočajo milijonom Firefoxovih uporabnikov boljše brskanje. Če znate <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> in <a href=\"%(css_link)s\">CSS</a>, že imate"
-" vse potrebno znanje za ustvarjanje imenitnih dodatkov."
+"Dodatki omogočajo milijonom Firefoxovih uporabnikov boljše brskanje. Če znate %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s in %(css_link_open)sCSS%(link_close)s, že"
+" imate vse potrebno znanje za ustvarjanje imenitnih dodatkov."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučite se ustvariti dodatek"
@@ -4420,11 +4435,11 @@ msgstr "Poimenujte svojo temo."
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Strinjam se s <a href=\"%(agreement_url)s\">Sporazumom o razširjanju dodatkov za Firefox</a> in obravnavo mojih podatkov, kot je to opisano v <a href=\"%(privacy_notice_url)s\">Obvestilu o "
-"zasebnosti za spletne strani, komunikacije in piškotke</a>."
+"Strinjam se s %(agreement_link_open)sSporazumom o razširjanju dodatkov za Firefox%(link_close)s in z obravnavo mojih podatkov, kot je to opisano v %(privacy_notice_link_open)sObvestilu o zasebnosti "
+"za spletne strani, komunikacije in piškotke%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Pošlji Temo"
@@ -5861,7 +5876,7 @@ msgid "Must-Have Media"
 msgstr "Obvezni mediji"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Naredite boljše posnetke zaslona, izboljšajte doživetje videa v spletu, končno se naučite narediti GIF ter še druga odlična orodja za delo z mediji."
+msgstr "Ustvarjajte boljše posnetke zaslona, izboljšajte doživetje videa na spletu, končno se naučite ustvariti GIF ter še druga odlična orodja za delo s predstavnostjo."
 
 msgid "Discover Add-ons"
 msgstr "Odkrijte dodatke"
@@ -6651,8 +6666,8 @@ msgid "Add-on Developer FAQ"
 msgstr "Pogosta vprašanja za razvijalce dodatkov"
 
 #, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<h3>Kako izgradim dodatek?</h3> <p> Mozilla dobavlja dokumentacijo o izgradnji dodatkov preko omrežja <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
+msgstr "<h3>Kako ustvarim dodatek?</h3> <p> Mozilla ponuja dokumentacijo o razvijanju dodatkov preko omrežja %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Kaj je datoteka \".xpi\"?"
@@ -6672,13 +6687,13 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
+"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
+" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>Opomba:</strong> XUL velja v Firefoxu za zastarelo tehnologijo, dodatki na osnovi XUL pa se v Firefoxu 57 in novejših ne bodo več naložili. Za razvoj novih dodatkov uporabljajte API-je <a "
-"href=\"%(webext_url)s\">WebExtensions</a>. Če razvijate zastarel dodatek, računajte s selitvijo na WebExtensions. Za informacije o selitvi zastarelega dodatka obiščite stran <a "
-"href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a>."
+"<strong>Opomba:</strong> XUL velja v Firefoxu za zastarelo tehnologijo, dodatki na osnovi XUL pa se v Firefoxu 57 in novejših ne bodo več naložili. Za razvoj novih dodatkov uporabljajte API-je "
+"%(webext_link_open)sWebExtensions%(link_close)s. Če razvijate zastarel dodatek, računajte s selitvijo na WebExtensions. Za informacije o selitvi zastarelega dodatka obiščite stran "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Kako preveriti združljivost z najnovejšo različico programske opreme Mozilla?"
@@ -6777,11 +6792,11 @@ msgstr "Ali ima Mozilla pravila glede tega, kaj je sprejemljivo za objavo?"
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
-" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Da. Mozillin <a href=\"%(p_url)s\">Pravilnik za dodatke</a> opisuje, kaj je sprejemljivo pošiljanje. Ta pravilnik se lahko spremeni brez predhodnega obvestila. Poleg tega ekipa urednikov AMO "
-"uporablja <a href=\"%(g_url)s\">Vodnik za pregledovanje dodatkov</a> zaradi zagotavljanja ustreznosti dodatka s smernicami za delovanje in varnost."
+"Da. Mozillin %(policy_link_open)sPravilnik za dodatke%(link_close)s opisuje, kaj je sprejemljivo pošiljanje. Ta pravilnik se lahko spremeni brez predhodnega obvestila. Poleg tega ekipa "
+"pregledovalcev dodatkov uporablja %(guide_link_open)sVodnik za pregledovanje dodatkov%(link_close)s zaradi zagotavljanja skladanja dodatka s smernicami za delovanje in varnost."
 
 msgid "How do I submit my add-on?"
 msgstr "Kako pošljem svoj dodatek?"
@@ -6789,10 +6804,10 @@ msgstr "Kako pošljem svoj dodatek?"
 #, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
-"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Za pošiljanje dodatka morate biti na AMO registriran uporabnik. Preden pošljete dodatek, preberite <a "
-"href=\"%(url)s\">Vodnik za pregled dodatkov</a> in se prepričate, da vaš dodatek ustreza našim smernicam."
+"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Za pošiljanje dodatka morate biti na AMO registriran uporabnik. Preden pošljete dodatek, preberite "
+"%(review_policy_link_open)sVodnik za pregled dodatkov%(link_close)s in se prepričate, da vaš dodatek ustreza našim smernicam."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Kateri operacijski sistem naj izberem za svoj dodatek?"
@@ -7067,10 +7082,10 @@ msgstr "Ali je dodatke varno namestiti?"
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Pri nameščanju dodatkov bodite previdni, saj lahko poškodujejo vaš računalnik ali kršijo vašo zasebnost. Dodatke, ki so na voljo na tej strani, lahko pregleda Mozillina ekipa pregledovalcev, skrbno "
-"pa tudi spremljamo povratne informacije uporabnikov, zato bi načeloma morali biti varni za namestitev. <a href=\"%(learnmore_url)s\">Več o procesu pregledovanja</a>"
+"pa tudi spremljamo povratne informacije uporabnikov, zato bi načeloma morali biti varni za namestitev. %(learnmore_link_open)sVeč o postopku pregledovanja%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7143,10 +7158,10 @@ msgstr "Kaj pomeni, da je dodatek \"poskusen\"?"
 #, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Poskusne dodatke so njihovi razvijalci označili kot nepripravljene za širšo javnost. Še vedno imajo lahko napake ali ne delujejo pravilno. Bodite previdni pri nameščanju poskusnih dodatkov in jih "
-"takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"takoj odstranite, če naletite na težave. %(learnmore_link_open)sVeč o našem postopku pregledov%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Kaj pomeni, če dodatek \"ni pregledan\"?"
@@ -7154,10 +7169,10 @@ msgstr "Kaj pomeni, če dodatek \"ni pregledan\"?"
 #, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Če ste prejeli neposredno povezavo na dodatek, ki še ni pregledan, to pomeni, da trenutno čaka na Mozillin pregled. Bodite previdni pri namestitvi teh dodatkov, saj lahko škodujejo vašemu "
-"računalniku ali zlorabijo vašo zasebnost. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"računalniku ali zlorabijo vašo zasebnost. %(learnmore_link_open)sVeč o našem postopku pregledov%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Koliko stanejo dodatki, če jih hočem kupiti?"
@@ -8612,18 +8627,6 @@ msgstr "Bodite previdni pri starih različicah!"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "Te različice se prikazuje za namene sklicevanja in testiranja. Uporabljajte vedno samo <a href=\"%(url)s\">najnovejše različice</a> dodatkov."
 
-msgid "Current Max. Version"
-msgstr "Trenutna najv. različica"
-
-msgid "Target Version"
-msgstr "Ciljna različica"
-
-msgid "Email when finished"
-msgstr "E-pošta, ko končano"
-
-msgid "Log emails instead of sending"
-msgstr "Zavedi e-pošto, namesto da se jo pošlje"
-
 msgid "Deleted versions can`t be changed."
 msgstr "Izbrisanih različic ni mogoče spreminjati."
 
@@ -8632,21 +8635,3 @@ msgstr "Binarno"
 
 msgid "Non-binary"
 msgstr "Ne-binarno"
-
-msgid "Message ID"
-msgstr "ID sporočila"
-
-msgid "Message"
-msgstr "Sporočilo"
-
-msgid "Compat Type"
-msgstr "Vrsta združljivosti"
-
-msgid "Addons Affected"
-msgstr "To vpliva na dodatke:"
-
-msgid "Addon"
-msgstr "Dodatek"
-
-msgid "Validation Result"
-msgstr "Rezultat preverjanja veljavnosti"

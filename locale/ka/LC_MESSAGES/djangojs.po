@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-10 06:27+0000\n"
-"PO-Revision-Date: 2017-08-20 21:39+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"PO-Revision-Date: 2017-09-03 23:54+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -151,32 +151,32 @@ msgid "Stop Following"
 msgstr "გამოწერის გაუქმება"
 
 msgid "Following"
-msgstr "გამოწერა"
+msgstr "გამოწერილია"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
 
 msgid "All Rights Reserved"
-msgstr "ყველა უფლება დაცულია"
+msgstr "All Rights Reserved (ყველა უფლება დაცულია)"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0 (ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული - ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული - ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მითითებით - გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"
@@ -252,7 +252,7 @@ msgstr "დამატებითი მონაცემები..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "{0}-ის დეტალები"
+msgstr "დამატებითი მონაცემები {0} თარიღისთვის"
 
 msgid "Collections Created"
 msgstr "კრებულები შეიქმნა"
@@ -690,7 +690,7 @@ msgid "Remove from Favorites"
 msgstr "რჩეულებიდან ამოღება"
 
 msgid "Pending"
-msgstr "განხილვის პროცესში"
+msgstr "განიხილება"
 
 msgid "Add a comment"
 msgstr "კომენტარის დამატება"

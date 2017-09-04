@@ -49,10 +49,9 @@
               <label data-for="summary">
                 {{ _("Summary") }}
                 {{ tip(None,
-                       _("A short explanation of your add-on's basic "
-                         "functionality that is displayed in search and browse "
-                         "listings, as well as at the top of your add-on's "
-                         "details page. It is only relevant for listed add-ons.")) }}
+                       _("This summary should clearly explain what your add-on "
+                         "does. It will be shown in listings and searches, and "
+                         "it will be used by reviewers to test your add-on.")) }}
               </label>
             </th>
             <td>
@@ -170,6 +169,22 @@
                 {% call empty_unless(tags) %}
                   {{ tags|join(', ') }}
                 {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Contributions URL"),
+                     _("If you would like to request monetary contributions "
+                       "from your users, set this to a page where they can do so.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
+                <p>{{ form.contributions }}</p>
+                {{ form.contributions.errors }}
+              {% else %}
+                {{ addon.contributions }}
               {% endif %}
             </td>
           </tr>
