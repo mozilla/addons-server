@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-04 00:46+0000\n"
+"PO-Revision-Date: 2017-09-04 01:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1592,6 +1592,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"ლექსიკონის დამატების ჩადგმით, თქვენს %(app_name)s-ის მართლწერის შემმოწმებელს დაემატება ახალი ენა, რომელიც შეამოწმებს ვებგვერდებზე არსებულ ველებში შეყვანილ ტექსტს. ენის პაკეტის დამატება კი მთლიანად "
+"შეცვლის პროგრამის ენას."
 
 msgid "Available in your locale"
 msgstr "თქვენს ენაზე ხელმისაწვდომი"
@@ -6796,7 +6798,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">სრული თემები</a
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">თემებით</a></strong> გაფორმების მსუბუქი ცვლილება ხდება, ძირითადად ფონის სურათების და %(app_name)s-ის ხელსაწყოთა ზოლის."
+msgstr "<strong><a href=\"%(browse_url)s\">თემებით</a></strong> იერსახის მსუბუქი ცვლილება ხდება, ძირითადად ფონის სურათების და %(app_name)s-ის ხელსაწყოთა ზოლის."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -6887,7 +6889,8 @@ msgid ""
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
 "მსგავსი დამატებები, ბევრი შეიძლება იყოს. იმის გამოსარკვევად, თუ რომელი უკეთ ერგება თქვენს მოთხოვნებს, გაეცანით მის სრულ აღწერას და დაათვალიერეთ სურათები. ასევე გადახედეთ დამატების შეფასებებს, "
-"მიმოხილვებს, გადმოწერების რაოდენობას, რითიც დაადგენთ, თუ რომელი უფრო მეტად მოსწონთ მომხმარებლებს. ასევე, შეგიძლიათ თავადვე გამოსცადოთ რიგრიგობით თითოეული და რომელიც მეტად მოგეწონებათ, ის დაიტოვოთ."
+"მიმოხილვებს, გადმოწერების რაოდენობას, რითიც დაადგენთ, თუ რომელი უფრო მეტად სასურველია, სხვა მომხმარებლებისათვის. ასევე, შეგიძლიათ თავადვე გამოსცადოთ რიგრიგობით თითოეული და რომელიც მეტად მოგეწონებათ,"
+" ის დაიტოვოთ."
 
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "როგორ მოვიქცე, თუ საჭირო დამატებას ვერ ვპოულობ?"
@@ -6909,7 +6912,7 @@ msgid ""
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "საცდელი დამატებები გულისხმობს, რომ შემმუშავებლის აზრით, არაა განკუთვნილი მომხმარებელთა ფართო წრისთვის. ასეთ დამატებებს შეიძლება გარკვეული ხარვეზები გააჩნდეს და გამართულად არ იმუშაოს. ყურადღება "
-"გამოიჩინოთ, როცა საცდელ დამატებას აყენებთ და დაუყოვნებლივ ამოშალოთ, თუკი შეამჩნევთ ხარვეზებს. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
+"გამოიჩინეთ საცდელი დამატების დაყენებისას და დაუყოვნებლივ ამოშალეთ, თუკი შეამჩნევთ ხარვეზებს. %(learnmore_link_open)sშეიტყვეთ მეტი, დამატებების მიმოხილვის შესახებ%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "რას ნიშნავს, როცა დამატება \"განუხილველია\"?"
@@ -8254,7 +8257,7 @@ msgid "Number of add-ons developed"
 msgstr "შემუშავებული დამატებების რაოდენობა"
 
 msgid "{0} add-ons"
-msgstr "{0} დამატებები"
+msgstr "{0} დამატება"
 
 #, python-format
 msgid "%(num)s theme"
