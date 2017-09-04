@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-08-25 12:56+0000\n"
-"PO-Revision-Date: 2017-09-03 23:47+0000\n"
+"PO-Revision-Date: 2017-09-04 00:19+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2535,7 +2535,7 @@ msgid "Header image alignment problem"
 msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
 
 msgid "All Rights Reserved"
-msgstr "ყველა უფლება დაცულია"
+msgstr "All Rights Reserved (ყველა უფლება დაცულია)"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0 (ავტორის მითითებით)"
@@ -2647,7 +2647,7 @@ msgid "Please enter a suggested amount less than ${0}."
 msgstr "გთხოვთ მიუთითოთ შესათავაზებელი ოდენობა, რომელიც ნაკლებია ${0}-ზე."
 
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "PayPal ID-ის მითითება აუცილებელია შემოწირულობების მისაღებად."
 
 msgid "Could not validate PayPal id."
 msgstr ""
@@ -5339,7 +5339,7 @@ msgid "Approve Theme"
 msgstr ""
 
 msgid "Field required"
-msgstr ""
+msgstr "ველის შევსება აუცილებელია"
 
 msgid "Enter the ID or URL of the duplicate"
 msgstr ""
@@ -5395,7 +5395,7 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID აუცილებელია Firefox 47 და უფრო ძველ ვერსიებზე."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
@@ -7277,7 +7277,7 @@ msgid "Other (please specify)"
 msgstr "სხვა (გთხოვთ მიუთითოთ)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "ამ ველის შევსება აუცილებელია."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -7900,10 +7900,10 @@ msgid "Android Add-ons"
 msgstr "Android დამატებები"
 
 msgid "required"
-msgstr ""
+msgstr "აუცილებელია"
 
 msgid "Required fields"
-msgstr ""
+msgstr "აუცილებელი ველები"
 
 #. {0} is a language name, like 'French'
 #, python-format
