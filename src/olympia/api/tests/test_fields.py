@@ -200,9 +200,9 @@ class TestTranslationSerializerField(TestCase):
         mock_serializer = serializers.Serializer(context={'request': request})
         field = self.field_class()
 
-        # field.bind('name', mock_serializer)
-        # result = field.to_representation(field.get_attribute(self.addon))
-        # assert result is None
+        field.bind('name', mock_serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert result is None
 
         field.source = None
         field.bind('description', mock_serializer)
