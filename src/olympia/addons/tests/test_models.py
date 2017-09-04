@@ -2060,6 +2060,10 @@ class TestPersonaModel(TestCase):
         assert data['footerURL'] == ''
         assert data['footer'] == ''
 
+    def test_theme_data_with_null_description(self):
+        addon = addon_factory(type=amo.ADDON_PERSONA, description=None)
+        assert addon.persona.theme_data['description'] is None
+
 
 class TestPreviewModel(TestCase):
     fixtures = ['base/previews']

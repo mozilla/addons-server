@@ -673,6 +673,9 @@ def addon_factory(
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
+    slug = kw.pop('slug', None)
+    if slug is None:
+        slug = name.replace(' ', '-').lower()[:30]
 
     kwargs = {
         # Set artificially the status to STATUS_PUBLIC for now, the real
@@ -681,7 +684,7 @@ def addon_factory(
         # STATUS_DELETED.
         'status': amo.STATUS_PUBLIC,
         'name': name,
-        'slug': name.replace(' ', '-').lower()[:30],
+        'slug': slug,
         'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,

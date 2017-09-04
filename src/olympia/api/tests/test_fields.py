@@ -193,6 +193,22 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
+    def test_field_value_null(self):
+        self.addon = addon_factory(slug='lol', name=None, description=None)
+
+        request = Request(self.factory.get('/', {'lang': 'en-US'}))
+        mock_serializer = serializers.Serializer(context={'request': request})
+        field = self.field_class()
+
+        field.bind('name', mock_serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert result is None
+
+        field.source = None
+        field.bind('description', mock_serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert result is None
+
 
 class TestESTranslationSerializerField(TestTranslationSerializerField):
     field_class = ESTranslationSerializerField
@@ -293,6 +309,18 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
 
         self.addon.description_translations = None
         field.bind('description', None)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert result is None
+
+    def test_field_value_null(self):
+        request = Request(self.factory.get('/', {'lang': 'en-US'}))
+        mock_serializer = serializers.Serializer(context={'request': request})
+
+        field = self.field_class()
+        self.addon.description_translations = {
+            'en-US': None
+        }
+        field.bind('description', mock_serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
