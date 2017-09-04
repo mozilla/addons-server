@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 15:30+0000\n"
+"PO-Revision-Date: 2017-09-04 15:35+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3289,12 +3289,11 @@ msgstr[1] "Rezervirani oznaki:"
 msgstr[2] "Rezervirane oznake:"
 msgstr[3] "Rezerviranih oznak:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Prispevki"
+msgstr "Naslov za prispevke"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Če želite od svojih uporabnikov zahtevati denarne prispevke, tu nastavite stran, na kateri jih lahko oddajo."
 
 msgid "Add-on Details"
 msgstr "Podrobnosti o dodatku"
@@ -3920,7 +3919,7 @@ msgid "Create a Developer Profile"
 msgstr "Ustvarite profil razvijalca"
 
 msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
+msgstr "Ta stran bo kmalu odstranjena, zamenjalo jo bo polje Naslov za prispevke na glavni strani za urejanje. Nastavite to polje, da ohranite prispevke omogočene."
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
