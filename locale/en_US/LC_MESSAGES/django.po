@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -134,6 +134,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "All tags must be at least {0} character."
 msgstr[1] "All tags must be at least {0} characters."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr "URL domain must be one of [%s], or a subdomain., "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Categories cannot be changed while your add-on is featured for this application."
@@ -3256,10 +3260,8 @@ msgstr "View Listing"
 msgid "Summary"
 msgstr "Summary"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 
 #, fuzzy
 msgid "Experimental?"
@@ -3314,6 +3316,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Reserved tag:"
 msgstr[1] "Reserved tags:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Contributions"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 
 msgid "Add-on Details"
 msgstr "Add-on Details"
@@ -3674,9 +3683,6 @@ msgstr "Please use only letters, numbers, underscores, and dashes in your URL."
 msgid "Summary:"
 msgstr "Summary"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "This add-on requires external software."
@@ -3977,6 +3983,9 @@ msgstr "Manage Your Developer Profile"
 
 msgid "Create a Developer Profile"
 msgstr "Create a Developer Profile"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2017-08-11 21:27+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -131,6 +131,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρα."
 msgstr[1] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρες."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
@@ -3199,11 +3203,8 @@ msgstr "Σελίδα πρόσθετου"
 msgid "Summary"
 msgstr "Σύνοψη"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
-"Μια σύντομη εξήγηση των βασικών λειτουργιών του προσθέτου σας, που εμφανίζεται στην αναζήτηση και τις λίστες εξερεύνησης, καθώς και στο πάνω μέρος της σελίδας λεπτομερειών του προσθέτου σας. Αφορά "
-"μόνο τα καταχωρημένα πρόσθετα."
 
 msgid "Experimental?"
 msgstr "Πειραματικό;"
@@ -3254,6 +3255,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Δεσμευμένη ετικέτα:"
 msgstr[1] "Δεσμευμένες ετικέτες:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Δωρεές"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Λεπτομέρειες πρόσθετου"
@@ -3592,9 +3600,6 @@ msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα,
 msgid "Summary:"
 msgstr "Σύνοψη:"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 msgid "This add-on is experimental"
 msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
@@ -3855,6 +3860,9 @@ msgstr "Διαχείριση του προφίλ δημιουργού"
 
 msgid "Create a Developer Profile"
 msgstr "Δημιουργία προφίλ δημιουργού"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "

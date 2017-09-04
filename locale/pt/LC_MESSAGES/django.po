@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-08-25 12:56+0000\n"
+"POT-Creation-Date: 2017-09-04 05:43+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,6 +128,10 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
 msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain., "
+msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver a ser destacado para esta aplicação."
@@ -3221,11 +3225,8 @@ msgstr "Ver listagem"
 msgid "Summary"
 msgstr "Resumo"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
-"Uma explicação curta da funcionalidade básica do seu extra que é apresentada em listas de pesquisas e de navegação, bem como no topo da página de detalhes do seu extra. Isto apenas é relevante para "
-"extras listados."
 
 msgid "Experimental?"
 msgstr ""
@@ -3283,6 +3284,13 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Etiqueta reservada:"
 msgstr[1] "Etiquetas reservadas:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Contribuições"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Detalhes do extra"
@@ -3640,9 +3648,6 @@ msgstr "Por favor, utilize apenas letras, números, underscores e hífenes  na s
 msgid "Summary:"
 msgstr "Resumo"
 
-msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
-
 #, fuzzy
 msgid "This add-on is experimental"
 msgstr "Este extra necessita de software externo."
@@ -3945,6 +3950,9 @@ msgstr "Gerir o seu perfil de programador"
 
 msgid "Create a Developer Profile"
 msgstr "Criar um perfil de programador"
+
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
