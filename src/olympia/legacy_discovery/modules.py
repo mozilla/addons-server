@@ -192,25 +192,6 @@ class StPatricksPersonas(CollectionPromo):
                  'St. Patrick&rsquo;s Day.')
 
 
-class TravelCollection(CollectionPromo):
-    slug = 'Travelers Pack'
-    collection_author, collection_slug = 'mozilla', 'travel'
-    id = 'travel'
-    cls = 'promo'
-    title = _(u'Sit Back and Relax')
-    subtitle = _(u'Add-ons that help you on your travels!')
-
-    def get_descriptions(self):
-        return {
-            5791: _(u"Displays a country flag depicting the location of the "
-                    "current website's server and more."),
-            1117: _(u'FoxClocks let you keep an eye on the time around the '
-                    'world.'),
-            11377: _(u'Automatically get the lowest price when you shop '
-                     'online or search for flights.')
-        }
-
-
 class SchoolCollection(CollectionPromo):
     slug = 'School'
     collection_author, collection_slug = 'mozilla', 'back-to-school'
