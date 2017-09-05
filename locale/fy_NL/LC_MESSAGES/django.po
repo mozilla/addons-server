@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-05 08:06+0000\n"
+"PO-Revision-Date: 2017-09-05 09:13+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2112,13 +2112,11 @@ msgstr "Boarnekoade foar {addon} {version} opladen."
 msgid "Source code uploaded"
 msgstr "Boarnekoade opladen"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Goedkarringsopmerkingen foar {addon} {version} wizige."
+msgstr "Automatyske goedkarring befêstige foar {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Goedkarsteat"
+msgstr "Automatyske goedkarring befêstige"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2299,13 +2297,11 @@ msgstr "Foarriedige folslein-temabeoardieling"
 msgid "Updated Complete Theme Review"
 msgstr "Bywurke folslein-temabeoardieling"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Beoardieling moderearre add-on"
+msgstr "Moderearre add-on-beoardieling"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Beoardielingsevaluaasje add-on ûngedien makke"
+msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
 
 msgid "Level 1"
 msgstr "Nivo 1"
@@ -2744,13 +2740,11 @@ msgstr "Jo kinne gjin bestannen mear oplade foar dizze ferzje."
 msgid "Version doesn't match"
 msgstr "Ferzje komt net oerien"
 
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Ferzje %s bestiet al of is earder opladen."
+msgstr "Ferzje {version} is earder al opladen fuortsmiten."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "Ferzje %s bestiet al of is earder opladen."
+msgstr "Ferzje {version} bestiet al."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2761,9 +2755,8 @@ msgstr "It platfoarm Alle kin net mei spesifike platfoarms kombinearre wurde."
 msgid "A platform can only be chosen once."
 msgstr "In platfoarm kin mar ien kear keazen wurde."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Utsûndering"
+msgstr "Reputaasje"
 
 msgid "Application"
 msgstr "Tapassing"
@@ -2915,9 +2908,8 @@ msgstr "Ferzje %s opnij ynskeakele."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik folsleine falidaasjeresultaten. Let goed op by de beoardieling."
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Beoardieling oanfrege"
+msgstr "Beoardieling oanfrege."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2934,23 +2926,21 @@ msgstr "Nije API-kaai makke"
 msgid "API key revoked"
 msgstr "API-kaai ynlutsen"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo gegevens omgean."
+msgstr ""
+"Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo "
+"gegevens omgean."
 
-#, fuzzy
 msgid "Distribution Agreement"
-msgstr "Add-on-distribúsjeoerienkomst"
+msgstr "Distribúsje-oerienkomst"
 
-#, fuzzy
 msgid "Review Policy"
-msgstr "Opmerking by beoardieling"
+msgstr "Beoardielingsbelied"
 
-#, fuzzy
 msgid "Review Rules"
-msgstr "Beoardielingsrjochtlinen"
+msgstr "Beoardielingsrigels"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo gegevens omgean."
@@ -3204,9 +3194,8 @@ msgstr "Dizze add-on is eksperiminteel."
 msgid "This add-on is ready for general use."
 msgstr "Dizze add-on is ree foar algemien gebrûk."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Fereasket opnij starte"
+msgstr "Betelling fereaske?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3245,9 +3234,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Reservearre label:"
 msgstr[1] "Reservearre labels:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Bydragen"
+msgstr "Bydragen-URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3487,7 +3475,6 @@ msgstr ""
 "Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account keppele,"
 " sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
 
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Fier de folgjende tekst yn om jo beslissing te befêstigjen: {slug}"
 
@@ -3563,9 +3550,8 @@ msgstr "Dit tema fuortmsite."
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Dizze add-on is net kompatibel mei jo ferzje fan %(app)s."
+msgstr "Dizze add-on hat gjin ferzjes."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3636,13 +3622,11 @@ msgstr "Is der earne wat ús beoardielers yn tinzen hâlde moatte by de beoardie
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dizze opmerkingen binne allinnich sichtber foar jo en beoardielers."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Ferzje opnij ynskeakelje"
+msgstr "Annulearje en ferzje útskeakelje"
 
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Ferzje opnij ynskeakelje"
+msgstr "Beoardieling annulearje en ferzje útskeakelje"
 
 #, fuzzy
 msgid "Submit Version"
