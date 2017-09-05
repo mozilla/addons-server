@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import string_concat, ugettext_lazy as _
 
+from olympia import amo
+
 
 class DiscoItem(object):
     def __init__(self, *args, **kwargs):
@@ -8,6 +10,12 @@ class DiscoItem(object):
         self.addon_name = kwargs.get('addon_name')
         self.heading = kwargs.get('heading')
         self.description = kwargs.get('description')
+        self.type = kwargs.get('type', amo.ADDON_EXTENSION)
+
+    def __repr__(self):
+        return 'DiscoItem(%s, %s, %s, %s, %s)' % (
+            self.addon_id, self.addon_name, self.heading, self.description,
+            self.type)
 
 
 # At the moment the disco pane items are hardcoded in this file in the repos,
@@ -16,7 +24,7 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = [
     # 'c o l o r s' theme.
-    DiscoItem(addon_id=61230, addon_name='Colors'),
+    DiscoItem(addon_id=61230, addon_name='Colors', type=amo.ADDON_PERSONA),
 
     # Privacy Badger
     DiscoItem(
@@ -41,7 +49,8 @@ discopane_items = [
             '</blockquote>')),
 
     # 'ibbis persona' theme.
-    DiscoItem(addon_id=20628, addon_name='Ibbis Persona'),
+    DiscoItem(addon_id=20628, addon_name='Ibbis Persona',
+              type=amo.ADDON_PERSONA),
 
     # Awesome Screenshot Plus
     DiscoItem(
@@ -67,5 +76,6 @@ discopane_items = [
             '</blockquote>')),
 
     # 'two fireflies' theme.
-    DiscoItem(addon_id=625990, addon_name='Two Fireflies'),
+    DiscoItem(addon_id=625990, addon_name='Two Fireflies',
+              type=amo.ADDON_PERSONA),
 ]

@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
+import mock
+from waffle.testutils import override_switch
+
 from olympia import amo
-from olympia.discovery.data import discopane_items
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.discovery.data import discopane_items, DiscoItem
+from olympia.discovery.utils import replace_extensions
 
 
 class TestDiscoveryViewList(TestCase):
@@ -41,13 +45,21 @@ class TestDiscoveryViewList(TestCase):
         assert (result['addon']['current_version']['files'][0]['id'] ==
                 addon.current_version.all_files[0].pk)
 
-        assert u'<a href="{0}">{1} by {2}</a>'.format(
-            absolutify(addon.get_url_path()),
-            unicode(item.addon_name or addon.name),
-            u', '.join(author.name for author in addon.listed_authors),
-        ) in result['heading']
-        assert '<span>' in result['heading']
-        assert '</span>' in result['heading']
+        if item.heading:
+            # Predefined discopane items have a different heading format.
+            assert u'<a href="{0}">{1} by {2}</a>'.format(
+                absolutify(addon.get_url_path()),
+                unicode(item.addon_name or addon.name),
+                u', '.join(author.name for author in addon.listed_authors),
+            ) in result['heading']
+            assert '<span>' in result['heading']
+            assert '</span>' in result['heading']
+        else:
+            assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
+                absolutify(addon.get_url_path()),
+                unicode(item.addon_name or addon.name),
+                u', '.join(author.name for author in addon.listed_authors)
+            ) == result['heading']
         assert result['description']
 
     def _check_disco_theme(self, result, item):
@@ -113,3 +125,48 @@ class TestDiscoveryViewList(TestCase):
         assert results[1]['addon']['id'] == discopane_items[4].addon_id
         assert results[2]['addon']['id'] == discopane_items[5].addon_id
         assert results[3]['addon']['id'] == discopane_items[6].addon_id
+
+
+@override_switch('disco-recommendations', active=True)
+class TestDiscoveryRecommendations(TestDiscoveryViewList):
+    def setUp(self):
+        super(TestDiscoveryRecommendations, self).setUp()
+        patcher = mock.patch(
+            'olympia.discovery.views.get_recommendations')
+        self.get_recommendations = patcher.start()
+        self.addCleanup(patcher.stop)
+        # If no recommendations then results should be as before - tests from
+        # the parent class check this.
+        self.get_recommendations.return_value = []
+
+    def test_recommendations(self):
+        author = user_factory()
+        recommendations = {
+            101: addon_factory(id=101, guid='101@mozilla', users=[author]),
+            102: addon_factory(id=102, guid='102@mozilla', users=[author]),
+            103: addon_factory(id=103, guid='103@mozilla', users=[author]),
+            104: addon_factory(id=104, guid='104@mozilla', users=[author]),
+        }
+        replacement_items = [
+            DiscoItem(addon_id=101),
+            DiscoItem(addon_id=102),
+            DiscoItem(addon_id=103),
+            DiscoItem(addon_id=104),
+        ]
+        self.addons.update(recommendations)
+        self.get_recommendations.return_value = replacement_items
+
+        response = self.client.get(self.url, {'lang': 'en-US',
+                                              'telemetry-client-id': '666'})
+        # should still be the same number of results.
+        assert response.data['count'] == len(discopane_items)
+        assert response.data['results']
+
+        # personas aren't replaced by recommendations, so should be as before.
+        new_discopane_items = replace_extensions(
+            discopane_items, replacement_items)
+        for i, result in enumerate(response.data['results']):
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, new_discopane_items[i])
+            else:
+                self._check_disco_addon(result, new_discopane_items[i])

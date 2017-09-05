@@ -1,18 +1,35 @@
 from django_statsd.clients import statsd
 from rest_framework.mixins import ListModelMixin
 from rest_framework.viewsets import GenericViewSet
+from waffle import switch_is_active
 
 from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items
 from olympia.discovery.serializers import DiscoverySerializer
+from olympia.discovery.utils import get_recommendations, replace_extensions
 
 
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = DiscoverySerializer
 
+    def get_discopane_items(self):
+        if not getattr(self, 'discopane_items', None):
+            telemetry_id = (self.kwargs.get('telemetry-client-id') or
+                            self.request.GET.get('telemetry-client-id'))
+            self.discopane_items = discopane_items
+            if switch_is_active('disco-recommendations') and telemetry_id:
+                recommendations = get_recommendations(telemetry_id)
+                if recommendations:
+                    # if we got some recommendations then replace the
+                    # extensions in discopane_items with them.
+                    # Leave the non-extensions (personas) alone.
+                    self.discopane_items = replace_extensions(
+                        discopane_items, recommendations)
+        return self.discopane_items
+
     def get_queryset(self):
-        ids = [item.addon_id for item in discopane_items]
+        ids = [item.addon_id for item in self.get_discopane_items()]
         # FIXME: Implement using ES. It would look like something like this,
         # with a specific serializer that inherits from the ES one + code to
         # build the dict:
@@ -23,7 +40,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
         # Patch items to add addons.
         result = []
-        for item in discopane_items:
+        for item in self.get_discopane_items():
             try:
                 item.addon = addons[item.addon_id]
                 result.append(item)
