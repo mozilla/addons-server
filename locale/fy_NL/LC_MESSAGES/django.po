@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-05 09:25+0000\n"
+"PO-Revision-Date: 2017-09-05 09:48+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4355,13 +4355,13 @@ msgstr ""
 msgid "Give your Theme a name."
 msgstr "Jou jo tema in namme."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Ik akseptearje de <a href=\"%(agreement_url)s\">Firefox-add-on-ferspriedingsoerienkomst</a> en dat myn gegevens ferwurke wurde lykas beskreaun yn de <a "
-"href=\"%(privacy_notice_url)s\">Privacyferklearring foar websites, kommunikaasje en cookies</a>."
+"Ik akseptearje de %(agreement_link_open)sFirefox-add-on-ferspriedingsoerienkomst%(link_close)s en dat myn gegevens ferwurke wurde lykas beskreaun yn de "
+"%(privacy_notice_link_open)sPrivacyferklearring foar websites, kommunikaasje en cookies%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Tema yntsjinje"
@@ -4447,9 +4447,8 @@ msgstr "Goedkarsteat"
 msgid "Notes for Reviewers"
 msgstr "Opmerkingen foar beoardielers"
 
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Fier opsjoneel ynformaasje yn dy't nuttich wêze kin foar de editor dy't dizze add-on beoardielet, lykas ynformaasje oer in testaccount."
+msgstr "Fier opsjoneel ynformaasje yn dy't nuttich wêze kin foar de beoardieler by it beoardielen fan dizze app, lykas testynformaasje."
 
 msgid "Source code"
 msgstr "Boarnekoade"
@@ -4513,15 +4512,14 @@ msgstr "Antwurdzje"
 msgid "Listing visibility"
 msgstr "Sichtberheid fan fermelding"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Sichtber foar elkenien op {0} en opnommen yn sykresultaten en fermeldingssiden."
+msgstr "{label_open}Sichtber:{label_close} Sichtber foar elkenien op {site_url} en opnommen yn sykresultaten en fermeldingssiden."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Wurdt net yn sykresultaten opnommen, en de fermeldingsside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar fermelding wurde yn dizze tastân net akseptearre."
+"{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de fermeldingsside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar fermelding "
+"wurde yn dizze tastân net akseptearre."
 
 msgid "Listed versions"
 msgstr "Fermelde ferzjes"
@@ -4542,9 +4540,8 @@ msgstr "Fuortsmite/Utskeakelje"
 msgid "Next version of this add-on"
 msgstr "Folgjende ferzje fan dizze add-on"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Aldere ferzjes"
+msgstr "Oare ferzjes"
 
 msgid "All versions"
 msgstr "Alle ferzjes"
@@ -4611,30 +4608,26 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
 msgstr[1] "{0} warskôgingen"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Stop stikeme trackers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Block invisible trackers and spying ads that follow you around the Web."
 msgstr ""
 
-#, fuzzy
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje jo skriuwstyl {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ""
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje YouTube {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
@@ -4712,9 +4705,8 @@ msgstr "Stjoer my in berjocht as dizze add-on de folgjende kear bywurke wurdt. (
 msgid "Clear Admin Review Flag"
 msgstr "Beoardielingslabel foar behearder wiskje"
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "Label Mear ynformaasje frege wiskje"
+msgstr "Wurdt der mear ynformaasje frege?"
 
 msgid "Choose a canned response..."
 msgstr "Kies in yn it foar definiearre antwurd…"
@@ -4748,9 +4740,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Hânmjittige beoardielerspunten"
+msgstr "Befettet beoardielersopmerking"
 
 msgid "Sources provided"
 msgstr ""
@@ -4776,13 +4767,11 @@ msgstr ""
 msgid "Has a pending info request."
 msgstr ""
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Markearre foar fierdere beoardieling"
+msgstr "Is markearre foar beoardieling."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "myn add-on wurdt troch in beoardieler beoardiele"
+msgstr "Is beskoattele troch in beoardieler."
 
 msgid "Duplicate Submission"
 msgstr ""
@@ -4847,21 +4836,18 @@ msgstr ""
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Wacht op goedkarring"
+msgstr "Goedkarring befêstigje"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Ferzje opnij ynskeakelje"
+msgstr "Mear ferzjes ôfwize"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Antwurd fan beoardieler"
 
@@ -4956,27 +4942,23 @@ msgstr "Misbrûkmeldingen"
 msgid "View Privacy Policy"
 msgstr "Privacybelied besjen"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Fereasket opnij starte"
+msgstr "Fereasket betelling"
 
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Goedkarsteat"
+msgstr "Datum fan lêste goedkarring"
 
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Misbrûkmeldingen"
+msgstr "Misbrûkmeldingen ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Brûkersbeoardielingen"
+msgstr "Slimme brûkersbeoardielingen ({num})"
 
 msgid "More about this add-on"
 msgstr "Mear oer dizze add-on"
@@ -4987,9 +4969,8 @@ msgstr "Ofbyldingengalery"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Tebek nei de startside fan de ûntwikkelershub"
+msgstr "Tebek nei de startside fan de Beoardielershelpmiddelen"
 
 msgid "Queues"
 msgstr ""
@@ -5003,9 +4984,8 @@ msgstr ""
 msgid "Moderated Reviews"
 msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Mear add-ons"
+msgstr "Automatysk goedkarre add-ons"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5047,9 +5027,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Beoardielingsskiednis"
+msgstr "Auteur fan beoardieling"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5098,9 +5077,8 @@ msgstr ""
 msgid "Reviews This Month"
 msgstr ""
 
-#, fuzzy
 msgid "New Reviewers"
-msgstr "AMO-beoardielers"
+msgstr "Nije beoardelers"
 
 msgid "You're #{0} with {1} reviews"
 msgstr ""
@@ -5129,9 +5107,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Beoardielingsevaluaasje add-on ûngedien makke"
+msgstr "Prestaasjes fan add-on-beoardieler"
 
 msgid "View statistics for user"
 msgstr ""
@@ -5233,9 +5210,8 @@ msgstr ""
 msgid "The developer has provided source code."
 msgstr ""
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Mear add-ons"
+msgstr "Net automatysk goedkard fanwegen"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5313,9 +5289,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Ferzjes"
+msgstr "Tastimmingen:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6650,9 +6625,8 @@ msgid ""
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Jo kinne dit type add-on net yntsjinje"
+msgstr "Hoe tsjinje ik myn add-on yn?"
 
 #, python-format
 msgid ""
@@ -6686,9 +6660,8 @@ msgstr ""
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Myn add-on foar beoardieling yntsjinje."
+msgstr "Moat myn add-on beoardiele wurde?"
 
 #, python-format
 msgid ""
@@ -7218,9 +7191,8 @@ msgstr ""
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr ""
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "Privacy:"
+msgstr "Jo privacy"
 
 msgid "All Shield Studies"
 msgstr ""
@@ -7315,9 +7287,8 @@ msgstr ""
 msgid "This field is required."
 msgstr ""
 
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Jo kinne it ûntwerp fan jo tema hjir bywurkje sa gau as dit goedkard is."
+msgstr "Jo kinne de add-on fan in beoardieling net wizigje as dizze oanmakke is."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr ""
@@ -7331,9 +7302,8 @@ msgstr ""
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Jo kinne gjin bestannen mear oplade foar dizze ferzje."
+msgstr "Jo kinne net mear beoardielingen foar deselde ferzje fan in add-on skriuwe."
 
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr ""
