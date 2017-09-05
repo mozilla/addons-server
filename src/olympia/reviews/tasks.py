@@ -53,9 +53,20 @@ def addon_review_aggregates(addons, **kw):
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
     stats = {x['addon']: (x['rating'], x['count']) for x in qs}
+
+    text_qs = (Review.without_replies.all().no_cache()
+               .filter(addon__in=addons, is_latest=True)
+               .exclude(body=None)
+               .values('addon')  # Group by addon id.
+               .annotate(count=Count('addon'))
+               .order_by())
+    text_stats = {x['addon']: x['count'] for x in text_qs}
+
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
-        addon.update(total_reviews=reviews, average_rating=rating)
+        reviews_with_text = text_stats.get(addon.id, 0)
+        addon.update(total_reviews=reviews, text_reviews=reviews_with_text,
+                     average_rating=rating)
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)

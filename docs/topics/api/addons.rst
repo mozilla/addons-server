@@ -168,6 +168,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The number of user ratings for the add-on.
+    :>json int ratings.text_count: The number of user ratings with review text for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.

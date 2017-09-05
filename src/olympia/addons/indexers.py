@@ -324,6 +324,7 @@ class AddonIndexer(BaseSearchIndexer):
         data['ratings'] = {
             'average': obj.average_rating,
             'count': obj.total_reviews,
+            'text_count': obj.text_reviews,
         }
         # We can use tag_list because the indexing code goes through the
         # transformer that sets it (attach_tags).

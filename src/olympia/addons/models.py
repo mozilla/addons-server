@@ -285,6 +285,8 @@ class Addon(OnChangeMixin, ModelBase):
                                         db_column='bayesianrating')
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
+    text_reviews = models.PositiveIntegerField(default=0,
+                                               db_column='textreviews')
     weekly_downloads = models.PositiveIntegerField(
         default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(

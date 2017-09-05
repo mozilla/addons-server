@@ -31,6 +31,7 @@ class AddonAdmin(admin.ModelAdmin):
         }),
         ('Stats', {
             'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
+                       'text_reviews',
                        'weekly_downloads', 'total_downloads',
                        'average_daily_downloads', 'average_daily_users'),
         }),
