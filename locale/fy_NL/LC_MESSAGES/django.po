@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-05 10:15+0000\n"
+"PO-Revision-Date: 2017-09-05 11:18+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -720,10 +720,10 @@ msgid "This add-on can:"
 msgstr "Dizze add-on kin:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "Guon add-ons freegje tastimming om bepaalde funksjes út te fieren. Omdat jo de kontrôle oer jo Firefox hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Hâld der rekkening mei dat dizze add-on ferâldere technology brûkt, dy't de add-on tagong ta alle browserfunksjes jout sûnder om jo tastimming te freegjen."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -894,7 +894,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-add-ons"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Sorry, mar wy kinne neat op it troch jo ynfierde adres fine. As jo in keppeling nei in add-on folge hawwe, is it mooglik dat de add-on troch de skriuwer fuortsmiten is."
 
 msgid "Suggested Pages"
 msgstr "Foarstelde siden"
@@ -911,6 +911,8 @@ msgstr "Add-ons-startside"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"As jo in keppeling earne fan del folge hawwe, %(open_bug_link)smeld dan in probleem%(close_bug_link)s. Fertel ús wêr't jo fan del kamen en wêr't jo nei op syk wiene, en wy sillen probearje it op te "
+"lossen."
 
 msgid "Not Found"
 msgstr "Net fûn"
@@ -1082,7 +1084,7 @@ msgstr "De taalkoade {lang_code} is ûnjildich."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Unjildige pk of identifikator ‘%s’ - objekt bestiet net."
 
 msgid "Application Versions"
 msgstr "Tapassingsferzjes"
@@ -1165,7 +1167,7 @@ msgid "This slug is already in use by another one of your collections."
 msgstr "Dizze identifikator wurdt al troch ien fan jo oare kolleksje brûkt."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Fier in jildige identifikator yn dy't út letters, sifers, lizzende streepkes of ôfbrektekens bestiet."
 
 msgid "This slug cannot be used."
 msgstr "Dizze identifikator kin net brûkt wurde."
