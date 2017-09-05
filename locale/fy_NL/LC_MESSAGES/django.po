@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-05 09:13+0000\n"
+"PO-Revision-Date: 2017-09-05 09:25+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3628,9 +3628,8 @@ msgstr "Annulearje en ferzje útskeakelje"
 msgid "Cancel Review and Disable Version"
 msgstr "Beoardieling annulearje en ferzje útskeakelje"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "In nije ferzje yntsjinje"
+msgstr "Ferzje yntsjinje"
 
 msgid "Submit Version for Review"
 msgstr "Ferzje foar beoardieling yntsjinje"
@@ -3659,9 +3658,8 @@ msgstr "Yntsjinning foltôge"
 msgid "You’re done!"
 msgstr "Jo binne klear!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Ferzje ûndetekene"
+msgstr "Ferzje ynstjinne"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3886,13 +3884,11 @@ msgstr "Nije ferzje oplade"
 msgid "View All"
 msgstr "Alles besjen"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Net beoardiele"
+msgstr "Side foar fermelde beoardielingen"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Brûkersbeoardielingen"
+msgstr "Side foar net-fermelde beoardielingen"
 
 msgid "View Statistics Dashboard"
 msgstr "Statistikendashboerd besjen"
@@ -3960,17 +3956,14 @@ msgstr "Lêste nijs"
 msgid "Read more in our Blog"
 msgstr "Lês mear op ús blog"
 
-#, fuzzy
 msgid "Resources"
-msgstr "Mear helpboarnen"
+msgstr "Helpboarnen"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Wurdearring"
+msgstr "Portearje"
 
-#, fuzzy
 msgid "Community"
-msgstr "Opmerking"
+msgstr "Mienskip"
 
 msgid "About"
 msgstr "Oer"
@@ -3982,21 +3975,18 @@ msgstr "Foarum"
 msgid "Blog"
 msgstr "Blog"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "Kontakten"
+msgstr "Kontakt opnimme"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Add-onbelied"
+msgstr "Beliedsrigels"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
 msgstr "FAQ"
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "Misbrûk melde"
+msgstr "Bug melde"
 
 msgid "Site Status"
 msgstr "Websitesteat"
@@ -4010,9 +4000,8 @@ msgstr "Kompatibiliteitsrapportaazje"
 msgid "Promote"
 msgstr "Promoatsje"
 
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Jo add-on beheare"
+msgstr "Jo add-on Oanrekommandearre krije"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Knop “Add-on downloade”"
@@ -4026,9 +4015,8 @@ msgstr "Misbrûk fan hannelsmerk melde"
 msgid "Legal Notices"
 msgstr "Juridyske betingsten"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Fereaske add-ons"
+msgstr "Add-ons beoardiele"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -4042,13 +4030,11 @@ msgstr "Wat koade skriuwe"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
-msgstr "start"
+msgstr "Begjinne"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Mear fan dizze keunstner"
+msgstr "Mear manieren om mei te dwaan"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr ""
@@ -4062,20 +4048,17 @@ msgstr "Jo add-on beheare"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Oanrekommandearre útwreidingen"
+msgstr "Wurkje jo ferâldere útwreiding by"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions wurde de standert foar ûntwikkeling fan add-ons yn Firefox. Dizze en oare wizigingen kinne ynfloed hawwe op ûntwikkelers fan ferâldere add-ons."
+msgstr "Der is in nije, browser-ûnôfhinklike standert foar it ûntwikkeljen fan útwreidingen yn Firefox. Jo moatte jo ferâldere útwreidingen bywurkje om kompatibel te bliuwen."
 
 msgid "Learn How"
 msgstr "Mear ynfo"
 
-#, fuzzy
 msgid "What's New"
-msgstr "Lêste nijs"
+msgstr "Wat is nij"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
@@ -4083,9 +4066,8 @@ msgstr ""
 msgid "See Tutorial"
 msgstr ""
 
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Alle ferzjes besjen"
+msgstr "Alle ynstjoeringen besjen"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Hjir besjogge en beheare jo jo add-ons en tema’s. Klik op ‘Jo earste add-on yntsjinje’ of ‘Jo earste tema yntsjinje’ om jo earste add-on te publisearjen."
@@ -4102,48 +4084,42 @@ msgstr "Add-on-ûntwikkelershub"
 msgid "Docs"
 msgstr "Dokuminten"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "Oanmelde"
+msgstr "Ofmelde"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Gjin foto"
+msgstr "Brûkersfoto"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> fan <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(register)s\">Registrearje</a> of <a href=\"%(login)s\">oanmelde</a>"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Jo Firefox oanpasse"
+msgstr "Firefox oanpasse"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje. As jo <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> en <a href=\"#\">CSS</a> kinne, hawwe jo al de nedige "
-"feardichheden om in geweldige add-on te meitsjen."
+"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje. As jo %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en "
+"%(css_link_open)sCSS%(link_close)s kinne, hawwe jo al de nedige feardichheden om in geweldige add-on te meitsjen."
 
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Lear in add-on te meitsjen"
+msgstr "Ynformaasje oer it meitsjen fan in add-on"
 
 msgid "Port a Chrome Extension"
 msgstr "In Chrome-útwreiding portearje"
 
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox stipet WebExtension-API’s, dy't yn de measte gefallen kompatibel binne mei de útwreidings-API’s dy't troch Google, Chrome en Opera stipe wurde, dus jo útwreidingen kinne mei mar in pear "
+"Firefox stipet WebExtension-API’s, dy't yn de measte gefallen kompatibel binne mei de útwreidings-API’s dy't troch Chrome, Opera en Edge stipe wurde, dus jo útwreidingen kinne mei mar in pear "
 "oanpassingen yn Firefox wurkje."
 
 msgid "Publish Your Add-on"
 msgstr "Jo add-on publisearje"
 
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Hawwe jo in add-on klear? Tsjinje jo útwreiding of tema yn foar fermelding op addons.mozilla.org, of ûndertekenje en distribuearje jo útwreiding sels."
 
