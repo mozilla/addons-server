@@ -1,5 +1,5 @@
 fxapom==1.10.1
-PyJWT==1.5.2
+PyJWT==1.5.3
 PyPOM==1.2.0
 pytest==3.2.1
 pytest-instafail==0.3.0
