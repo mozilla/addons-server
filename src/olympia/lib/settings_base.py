@@ -1716,3 +1716,4 @@ CRON_JOBS = {
 }
 
 RECOMMENDATION_ENGINE_URL = 'https://taar.dev.mozaws.net/api/recommendations/'
+RECOMMENDATION_ENGINE_TIMEOUT = 5

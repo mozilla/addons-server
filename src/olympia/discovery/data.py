@@ -12,12 +12,10 @@ class DiscoItem(object):
         self.description = kwargs.get('description')
         self.type = kwargs.get('type', amo.ADDON_EXTENSION)
 
-    def __str__(self):
+    def __repr__(self):
         return 'DiscoItem(%s, %s, %s, %s, %s)' % (
             self.addon_id, self.addon_name, self.heading, self.description,
             self.type)
-
-    __repr__ = __str__
 
 
 # At the moment the disco pane items are hardcoded in this file in the repos,
