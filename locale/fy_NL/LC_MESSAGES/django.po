@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-05 10:09+0000\n"
+"PO-Revision-Date: 2017-09-05 10:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -136,7 +136,7 @@ msgstr[1] "Alle labels moatte út op syn minst {0} tekens bestean."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr ""
+msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze., "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foar dizze tapassing oanrekommandearre wurdt."
@@ -177,7 +177,7 @@ msgid "Listed"
 msgstr "Fermeld"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -373,10 +373,10 @@ msgid "Requires Restart"
 msgstr "Fereasket opnij starte"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Dizze add-on is boud mei nije technology dy't kompatibel is mei Firefox 57 en heger."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Kompatibel mei Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -706,12 +706,14 @@ msgid "close"
 msgstr "slute"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Guon add-ons freegje tastimming om bepaalde funksjes út te fieren (bygelyks: in ljepblêd-add-on freget tastimming foar tagong ta it ljepblêdensysteem fan jo browser)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Omdat jo de kontrôle oer jo Firefox hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo. It akseptearjen fan tastimmingen hat yn prinsipe gjin gefolgen foar de prestaasjes of "
+"befeiliging fan jo browser, mar yn seldsume gefallen kin der sprake wêze fan in risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
