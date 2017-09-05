@@ -41,6 +41,12 @@ function init_environment {
 
     git config --global user.email "$ROBOT_EMAIL"
     git config --global user.name "$ROBOT_NAME"
+
+    if [ "$GIT_SIGNING" == "true" ]; then
+        git config --global commit.gpgsign false
+        git config --global --unset user.signinkey
+    fi
+
     git remote set-url --push origin "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
     git checkout master
     git checkout -b "$BRANCH_NAME"
@@ -60,7 +66,6 @@ function restore_environment {
         git config --global commit.gpgsign "$(GIT_SIGNING)"
         git config --global user.signinkey "$(GIT_SIGNING_KEY)"
     fi
-
 }
 
 
