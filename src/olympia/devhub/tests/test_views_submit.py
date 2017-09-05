@@ -118,7 +118,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
 class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
     def test_set_read_dev_agreement(self):
         response = self.client.post(reverse('devhub.submit.agreement'), {
-            'distribution_agreement': 'on',
+            'developer_agreement': 'on',
             'review_policy': 'on',
         })
         assert response.status_code == 302
@@ -132,7 +132,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
         form = response.context['agreement_form']
         assert form.is_valid() is False
         assert form.errors == {
-            'distribution_agreement': [u'This field is required.'],
+            'developer_agreement': [u'This field is required.'],
             'review_policy': [u'This field is required.'],
         }
         doc = pq(response.content)
