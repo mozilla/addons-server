@@ -207,6 +207,13 @@ class AddonExcludeAddonsQueryParam(AddonQueryParam):
         return filters
 
 
+class AddonFeaturedQueryParam(AddonQueryParam):
+    query_param = 'featured'
+    reverse_dict = {'': True, 'true': True}
+    valid_values = [True]
+    es_field = 'is_featured'
+
+
 class SearchQueryFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that performs an ES query according
@@ -350,6 +357,7 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
                          AddonAuthorQueryParam, AddonCategoryQueryParam,
+                         AddonFeaturedQueryParam,
                          AddonPlatformQueryParam, AddonTagQueryParam,
                          AddonTypeQueryParam]
 

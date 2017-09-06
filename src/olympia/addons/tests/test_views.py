@@ -2360,7 +2360,7 @@ class TestAddonSearchView(ESTestCase):
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
-        assert response.status_code == expected_status
+        assert response.status_code == expected_status, response.content
         data = json.loads(response.content)
         return data
 
@@ -2524,6 +2524,27 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
+
+    @patch('olympia.addons.models.get_featured_ids')
+    def test_filter_by_featured(self, get_featured_ids_mock):
+        addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        print "*** setting mock return value here"
+        get_featured_ids_mock.return_value = [addon.pk]
+        assert addon.is_featured()
+        self.refresh()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'featured': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+        # Leaving out the param value should also work.
+        data = self.perform_search(self.url + '?featured')
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
