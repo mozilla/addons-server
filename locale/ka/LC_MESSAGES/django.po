@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 14:35+0000\n"
+"PO-Revision-Date: 2017-09-06 21:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -256,7 +256,7 @@ msgstr ""
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "How much would you like to contribute?"
-msgstr "რამხელა თანხის შეწირვა გსურთ?"
+msgstr "რა ოდენობის თანხის გაღება გსურთ?"
 
 msgid "The maximum contribution amount is {0}."
 msgstr "შეწირულობის მაქსიმალური ოდენობაა {0}."
@@ -269,12 +269,12 @@ msgstr "შეწირულობის ოდენობა უნდა ი
 
 #. {0} is a currency amount (e.g., $5.00)
 msgid "A one-time suggested contribution of {0}"
-msgstr "ერთჯერადი შემოთავაზებული შეწირვა რაოდენობით {0}"
+msgstr "ერთჯერადი შემოთავაზებული შესაწირი {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount input
 #. field
 msgid "A one-time contribution of {0} {1}"
-msgstr "ერთჯერადი შეწირვა რაოდენობით {0} {1}"
+msgstr "ერთჯერადად შესაწირი თანხის მითითება {0} {1}"
 
 msgid "Leave a comment or request with your contribution."
 msgstr "დატოვეთ კომენტარი ან მოითხოვეთ თქვენი შეწირულობით."
