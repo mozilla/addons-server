@@ -23,9 +23,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.encoding import force_bytes
 from django.utils.importlib import import_module
-from django.utils.http import urlencode
 
 import mock
 import pytest
