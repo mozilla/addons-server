@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-06 22:49+0000\n"
+"PO-Revision-Date: 2017-09-06 23:04+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -750,7 +750,7 @@ msgstr "პირდაპირი ბმული"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "ყველა (%(cnt)s) მომხმარებლის მიმოხილვის ნახვა"
+msgstr[0] "მომხმარებლების ყველა (%(cnt)s) მიმოხილვის ნახვა"
 
 msgid "This add-on has not yet been reviewed."
 msgstr "ამ დამატების მიმოხილვა, ჯერ არავის გაუკეთებია."
@@ -5396,13 +5396,13 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "{name}-ის მონაცემებთან წვდომა"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "მოცემულ საიტებზე, თქვენს მონაცემებთან წვდომა:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "ყველა საიტზე, თქვენს მონაცემებთან წვდომა"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID აუცილებელია Firefox 47 და უფრო ძველ ვერსიებზე."
@@ -7392,7 +7392,7 @@ msgstr "მიმოხილვები {0}-ის შესახებ"
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატებაზე"
+msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
