@@ -330,17 +330,6 @@ class APITestClient(APIClient):
         """
         self.defaults.pop('HTTP_AUTHORIZATION', None)
 
-    def get(self, path, data=None, **extra):
-        # Work around DRF #4458 since we're running an old version that does
-        # not have this fix yet.
-        r = {
-            'QUERY_STRING': urlencode(data or {}, doseq=True),
-        }
-        if not data and '?' in path:
-            r['QUERY_STRING'] = force_bytes(path.split('?')[1])
-        r.update(extra)
-        return self.generic('GET', path, **r)
-
 
 def days_ago(days):
     return datetime.now().replace(microsecond=0) - timedelta(days=days)
