@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-06 23:04+0000\n"
+"PO-Revision-Date: 2017-09-06 23:14+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -304,7 +304,7 @@ msgstr "მომხმარებლის სალიცენზიო შ�
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s ინსტალაციის გაგრძელებამდე მოითხოვს, რომ ამ საბოლოო მომხმარებლის სალიცენზიო შეთანხმებას დაეთანხმოთ:"
+msgstr "%(addon_name)s დამატების დასაყენებლად, საჭიროა დაეთანხმოთ მოცემულ სამომხმარებლო შეთანხმების პირობებს:"
 
 msgid "Back to {0}…"
 msgstr "დაბრუნება {0}-ზე…"
@@ -2858,7 +2858,7 @@ msgid "Version %s re-enabled."
 msgstr "%s ვერსია ხელახლაა ჩართული."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "ატვირთვის დამოწმება ვერ მოხერხდა და შეიძლება, საბოლოო დამოწმების შედეგებზე, გავლენა მოახდინოს. გთხოვთ მიაქციოთ ყურადღება, მიმოხილვის დროს."
+msgstr "ატვირთვის დამოწმება ვერ მოხერხდა და შეიძლება, საბოლოო დამოწმების შედეგებზე, გავლენა მოახდინოს. გთხოვთ გაითვალისწინოთ ეს, მიმოხილვისას."
 
 msgid "Review requested."
 msgstr "საჭიროებს განხილვას."
