@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-06 22:27+0000\n"
+"PO-Revision-Date: 2017-09-06 22:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -395,7 +395,7 @@ msgstr "მეტი {0} თემა"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr "ყველა {0} თემის ნახვა"
+msgstr "ყველა ({0}) თემის ნახვა"
 
 msgid "More by this Artist"
 msgstr "მეტი ამ მხატვრისგან"
@@ -535,7 +535,7 @@ msgstr "შემქმნელის პასუხის ჩვენებ�
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "ნახეთ ყველა %(cnt)s მიმოხილვა ამ დამატების შესახებ"
+msgstr[0] "ნახეთ ყველა (%(cnt)s) მიმოხილვა, ამ დამატების შესახებ"
 
 msgid "Tags"
 msgstr "ჭდეები"
@@ -696,7 +696,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr "ეს დამატება შეიძლება:"
+msgstr "ამ დამატებას შეეძლება:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr "დამატებების ნაწილი ითხოვს ნებართვებს, გარკვეული მოქმედებებისთვის. Firefox-ის მართვის სადავეები თქვენს ხელშია და არჩევანიც თქვენზეა, დართავთ ნებას, თუ არა."
@@ -910,7 +910,7 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr "<h1>უი!  მოხდა შეცდომა.</h1><p>შევეცდებით მალე გამოვასწოროთ.</p> <p>შეგიძლიათ სცადოთ გვერდის განახლება, ან დაბრუნდეთ <a href=\"%(home)s\">დამატებების მთავარ გვერდზე</a>. </p>"
 
 msgid "Some rights reserved"
-msgstr "ზოგიერთი უფლება დაცულია"
+msgstr "უფლებების ნაწილი დაცულია"
 
 msgid "No results found"
 msgstr "შედეგები ვერ მოიძებნა."
