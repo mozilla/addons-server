@@ -20,7 +20,7 @@
 Addons-Server
 =============
 
-Welcome to the Addons Server!  Please feel free to visit the webpage of the current project hosted on `addons.mozilla.org`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `irc.mozilla.org #amo`_ if you have questions.
+Welcome to the Addons Server repository!  Please feel free to visit the webpage of the current project hosted on `addons.mozilla.org`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `irc.mozilla.org #amo`_ if you have any questions.
 
 Please report bugs here: https://github.com/mozilla/addons/issues or https://github.com/mozilla/addons-server/issues
 You can access the AMO dev environment at https://addons-dev.allizom.org/ and the AMO stage environment at https://addons.allizom.org/
