@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3290,16 +3290,13 @@ msgid ""
 "we handle your information."
 msgstr ""
 
-msgid "Distribution Agreement"
-msgstr ""
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Komentari autora"
 
 #, fuzzy
 msgid "Review Policy"
 msgstr "Datum recenzije"
-
-#, fuzzy
-msgid "Review Rules"
-msgstr "Recenzenti"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
@@ -5332,11 +5329,17 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 
-msgid ""
-"Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid ""
+"Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid ""
@@ -5346,14 +5349,6 @@ msgstr ""
 msgid ""
 "Supporting 25+ languages, this extension puts a proofreader right in your "
 "browser."
-msgstr ""
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid ""
-"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
-"with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6529,28 +6524,6 @@ msgstr "Teme za dan St. Patrick"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Dekoriši svoj pregledač za proslavu dana St. Patrick."
-
-msgid "Sit Back and Relax"
-msgstr "Sedite i opustite se"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Dodaci koji Vam pomažu na putovanjima!"
-
-msgid ""
-"Displays a country flag depicting the location of the current website's "
-"server and more."
-msgstr ""
-"Prikaži zastavu države koja opisuje lokaciju servera trenutnog sajta i još."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks Vam omogućuje da vodite računa o vremenu širom sveta."
-
-msgid ""
-"Automatically get the lowest price when you shop online or search for "
-"flights."
-msgstr ""
-"Automatski dobijte najnižu cenu kada kupujete online ili kada pretražujete "
-"letove."
 
 msgid "A+ add-ons for School"
 msgstr "5* dodaci za školu"

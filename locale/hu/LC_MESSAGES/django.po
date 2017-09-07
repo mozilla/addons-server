@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-26 09:23+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2941,14 +2941,12 @@ msgstr ""
 "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
 "hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
 
-msgid "Distribution Agreement"
-msgstr "Kiegészítő-terjesztési megállapodás"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Fejlesztő megjegyzései"
 
 msgid "Review Policy"
 msgstr "Értékelési irányelvek"
-
-msgid "Review Rules"
-msgstr "Értékelési szabályok"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4627,23 +4625,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Állítsa meg az alattomos követőket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Blokkolja a láthatatlan követőket, és a kémkedő hirdetéseket, amelyek követik a Weben."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Fejlessze az írását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Fejlessze az írását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "25+ nyelvet támogatva, ez a kiegészítő egy korrektort tesz közvetlenül a böngészőbe."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Több, mint egyszerű képernyőképek, az Awesome Screenshot Plus lehetővé teszi a képek feliratozását szöveggel és grafikákkal. A fájlok tárolása és megosztása gyerekjáték."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tegye jobbá a videókat a {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -5712,21 +5712,6 @@ msgstr "Szt. Patrik napi témák"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ünnepelje a Szent Patrik napot a böngészője dekorálásával."
-
-msgid "Sit Back and Relax"
-msgstr "Dőljön hátra és lazítson"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Kiegészítők, melyek segítik az utazásaiban!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Megjeleníti az ország zászlóját, ahol a jelenlegi weboldal kiszolgálója található, és még többet."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "A FoxClocks lehetővé teszi, hogy szemmel tartsa az időt a világ körül."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Automatikusan a legalacsonyabb árat kapja, ha az interneten vásárol vagy repülőjegyet keres."
 
 msgid "A+ add-ons for School"
 msgstr "Csillagos 5-ös kiegészítők a sulihoz"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-27 11:33+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2968,14 +2968,12 @@ msgstr ""
 "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznáky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše oznámení o zásadách ochrany osobních "
 "údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
 
-msgid "Distribution Agreement"
-msgstr "Dohoda o distribuci"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Komentáře vývojáře"
 
 msgid "Review Policy"
 msgstr "Poznámka ke kontrole"
-
-msgid "Review Rules"
-msgstr "Pravidla kontroly"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4643,23 +4641,25 @@ msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastavte slídily {start_sub_heading}s doplňkem{addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vytvářejte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Blokujte neviditelné sledovací prvky a špehující reklamy, který vás sledují po celém webu."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zlepšete svůj pravopis {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zlepšete svůj pravopis {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Kontrola pravopisu ve více než 25 jazycích přímo ve vašem prohlížeči."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vytvářejte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Více než jen snímky obrazovky - Awesome Screenshot Plus vám dovolí přidávat k obrázkům text a grafiku. Ukládání a sdílení souborů je s jeho pomocí snadné a rychlé."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
@@ -5731,21 +5731,6 @@ msgstr "Motivy ke dni Sv. Patrika"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ozdobte svůj prohlížeč na oslavu dne Sv. Patrika."
-
-msgid "Sit Back and Relax"
-msgstr "Seďte a relaxujte"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Doplňky, které vám pomohou cestovat!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Zobrazuje pro stránku ikonku vlajky v závislosti na tom, kde se nachází server."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "Díky FoxClocks máte stále přehled o tom, jaký čas je kdekoliv na světě."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Automaticky vám nabízí nejlevnější ceny, když nakupujete online či hledáte let."
 
 msgid "A+ add-ons for School"
 msgstr "Doplňky do školy"

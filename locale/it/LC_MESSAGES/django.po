@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-27 08:54+0000\n"
 "Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2962,14 +2962,12 @@ msgstr ""
 "Prima di procedere, leggi e accetta il Contratto di distribuzione per i componenti aggiuntivi di Firefox e il regolamento e le linee guida per la revisione. Potrai trovare anche un link alla nostra "
 "Informativa sulla privacy, in cui sono illustrati i criteri con cui utilizziamo le informazioni che ci vengono fornite."
 
-msgid "Distribution Agreement"
-msgstr "Contratto di distribuzione"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Commenti dello sviluppatore"
 
 msgid "Review Policy"
 msgstr "Norme per le revisioni"
-
-msgid "Review Rules"
-msgstr "Regolamento per le revisioni"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4678,23 +4676,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avviso"
 msgstr[1] "{0} avvisi"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca i subdoli elementi traccianti {start_sub_heading}con {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Blocca gli invisibili elementi traccianti e le pubblicità spione che seguono la tua navigazione sul Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Rendi i tuoi testi impeccabili {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rendi i tuoi testi impeccabili {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Con oltre 25 lingue supportate, questa estensione trasforma il tuo browser in un vero e proprio correttore di bozze."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Molto più che semplici screenshot, Awesome Screenshot Plus ti consente di aggiungere annotazioni e effetti decorativi all’immagine. Salvarla e condividerla sarà poi un gioco da ragazzi."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -5759,21 +5759,6 @@ msgstr "Temi per il giorno di San Patrizio"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Addobba il tuo browser per il giorno di San Patrizio."
-
-msgid "Sit Back and Relax"
-msgstr "Siediti e rilassati"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Un aiuto per i tuoi viaggi"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Visualizza la bandiera della nazione in cui è ospitato il server del sito web che stai visitando e molto altro ancora."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "Con FoxClocks potrai sempre conoscere l’ora esatta in tutto il mondo."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Trova il prezzo più conveniente quando fai shopping online o stai cercando un volo per le vacanze."
 
 msgid "A+ add-ons for School"
 msgstr "Componenti aggiuntivi da 10 e lode per la scuola"
