@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-07 09:49+0000\n"
+"PO-Revision-Date: 2017-09-07 10:06+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -164,7 +164,7 @@ msgid "Enter a new author's email address"
 msgstr "Geben Sie eine neue E-Mail-Adresse des Autors ein"
 
 msgid "Users have the option of contributing more or less than this amount."
-msgstr "Benutzer können mehr, aber auch weniger als diesen Betrag beitragen."
+msgstr "Benutzer können mehr, aber auch weniger als diesen Betrag spenden."
 
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr "In der Add-ons-Verwaltung (Firefox 4 und neuer) werden Nutzer immer gefragt. Gilt nur für Desktop."
@@ -8440,7 +8440,7 @@ msgid "edit your profile"
 msgstr "Ihr Profil bearbeiten"
 
 msgid "We could not unsubscribe you"
-msgstr "Wir konnten Ihr Abonnement nicht aufhebne"
+msgstr "Wir konnten Ihr Abonnement nicht aufheben"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
