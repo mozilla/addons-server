@@ -23,15 +23,18 @@ class TestAddonReviewAggregates(TestCase):
         # Add an old review that should not be used to calculate the average,
         # because the same user posts a new one right after that.
         old_review = Review.objects.create(
-            addon=addon, rating=1, user=user, is_latest=False)
-        new_review = Review.objects.create(addon=addon, rating=3, user=user)
-        Review.objects.create(addon=addon, rating=3, user=user_factory())
+            addon=addon, rating=1, user=user, is_latest=False, body=u'old')
+        new_review = Review.objects.create(addon=addon, rating=3, user=user,
+                                           body=u'new')
+        Review.objects.create(addon=addon, rating=3, user=user_factory(),
+                              body=u'foo')
         Review.objects.create(addon=addon, rating=2, user=user_factory())
         Review.objects.create(addon=addon, rating=1, user=user_factory())
 
         # On another addon as well.
         Review.objects.create(addon=addon2, rating=1, user=user_factory())
-        Review.objects.create(addon=addon2, rating=1, user=user_factory())
+        Review.objects.create(addon=addon2, rating=1, user=user_factory(),
+                              body=u'two')
 
         # addon_review_aggregates should ignore replies, so let's add one.
         Review.objects.create(
@@ -53,6 +56,8 @@ class TestAddonReviewAggregates(TestCase):
         assert addon.average_rating == 0
         assert addon2.bayesian_rating == 0
         assert addon2.average_rating == 0
+        assert addon.text_reviews_count == 0
+        assert addon2.text_reviews_count == 0
 
         # Trigger the task and test results.
         addon_review_aggregates([addon.pk, addon2.pk])
@@ -64,15 +69,19 @@ class TestAddonReviewAggregates(TestCase):
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.375
         assert addon2.average_rating == 1.0
+        assert addon.text_reviews_count == 2
+        assert addon2.text_reviews_count == 1
 
         # Trigger the task with a single add-on.
-        Review.objects.create(addon=addon2, rating=5, user=user_factory())
+        Review.objects.create(addon=addon2, rating=5, user=user_factory(),
+                              body=u'xxx')
         addon2.reload()
         assert addon2.total_reviews == 2
 
         addon_review_aggregates(addon2.pk)
         addon2.reload()
         assert addon2.total_reviews == 3
+        assert addon2.text_reviews_count == 2
         assert addon.bayesian_rating == 1.9821428571428572
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.97915
