@@ -23,19 +23,31 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'c o l o r s' theme.
-    DiscoItem(addon_id=61230, addon_name='Colors', type=amo.ADDON_PERSONA),
+    # 'Pearlescent' theme.
+    DiscoItem(addon_id=696234, type=amo.ADDON_PERSONA),
 
-    # Privacy Badger
+    # New Tab Override.
     DiscoItem(
-        addon_id=506646,
-        heading=_(u'Stop sneaky trackers {start_sub_heading}with {addon_name}'
+        addon_id=626810,
+        heading=_(u'Tab Customization {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Block invisible trackers and spying ads that follow you '
-              u'around the Web.'),
+            _(u'Set the page you see every time you open a new tab.'),
             '</blockquote>')),
+
+    # Emoji Cheatsheet.
+    DiscoItem(
+        addon_id=511962,
+        heading=_(u'Up your emoji game {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis—always a click away.'),
+            '</blockquote>')),
+
+    # 'Dog Pichu' theme.
+    DiscoItem(addon_id=265123, type=amo.ADDON_PERSONA),
 
     # LanguageTool Grammar Checker
     DiscoItem(
@@ -46,22 +58,6 @@ discopane_items = [
             '<blockquote>',
             _(u'Supporting 25+ languages, this extension puts a proofreader '
               u'right in your browser.'),
-            '</blockquote>')),
-
-    # 'ibbis persona' theme.
-    DiscoItem(addon_id=20628, addon_name='Ibbis Persona',
-              type=amo.ADDON_PERSONA),
-
-    # Awesome Screenshot Plus
-    DiscoItem(
-        addon_id=287841,
-        heading=_(u'Take screenshots {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'More than just screenshots, Awesome Screenshot Plus lets you '
-              u'annotate images with text and graphics. Storing and sharing '
-              u'files is a breeze.'),
             '</blockquote>')),
 
     # Enhancer for YouTube
@@ -75,7 +71,6 @@ discopane_items = [
               u'ad blocking, auto-play control, and more.'),
             '</blockquote>')),
 
-    # 'two fireflies' theme.
-    DiscoItem(addon_id=625990, addon_name='Two Fireflies',
-              type=amo.ADDON_PERSONA),
+    # 'Fall Painting' theme.
+    DiscoItem(addon_id=644254, type=amo.ADDON_PERSONA),
 ]

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from collections import OrderedDict
+
 import mock
 from waffle.testutils import override_switch
 
@@ -16,21 +18,15 @@ class TestDiscoveryViewList(TestCase):
         self.url = reverse('discovery-list')
 
         # Represents a dummy version of `olympia.discovery.data`
-        self.addons = {
-            61230: addon_factory(
-                id=61230, type=amo.ADDON_PERSONA,
-                users=[user_factory(), user_factory()]),
-            506646: addon_factory(id=506646, type=amo.ADDON_EXTENSION),
-            708770: addon_factory(id=708770, type=amo.ADDON_EXTENSION),
-            20628: addon_factory(
-                id=20628, type=amo.ADDON_PERSONA,
-                users=[user_factory(), user_factory()]),
-            287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
-            700308: addon_factory(id=700308, type=amo.ADDON_EXTENSION),
-            625990: addon_factory(
-                id=625990, type=amo.ADDON_PERSONA,
-                users=[user_factory(), user_factory()]),
-        }
+        self.addons = OrderedDict([
+            (696234, addon_factory(id=696234, type=amo.ADDON_PERSONA)),
+            (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
+            (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+            (265123, addon_factory(id=265123, type=amo.ADDON_PERSONA)),
+            (708770, addon_factory(id=708770, type=amo.ADDON_EXTENSION)),
+            (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
+            (644254, addon_factory(id=644254, type=amo.ADDON_PERSONA)),
+        ])
 
     def test_reverse(self):
         assert self.url == '/api/v3/discovery/'
@@ -103,13 +99,14 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_deleted = self.addons[61230]
+        addon_deleted = self.addons.values()[0]
         addon_deleted.delete()
 
-        disabled_by_user = self.addons[506646]
+        disabled_by_user = self.addons.values()[1]
         disabled_by_user.update(disabled_by_user=True)
 
-        self.addons[708770].update(status=amo.STATUS_NOMINATED)
+        nominated = self.addons.values()[2]
+        nominated.update(status=amo.STATUS_NOMINATED)
 
         response = self.client.get(self.url)
         assert response.data
