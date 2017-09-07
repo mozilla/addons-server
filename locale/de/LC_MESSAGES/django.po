@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-07 13:10+0000\n"
+"PO-Revision-Date: 2017-09-07 13:12+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -3214,7 +3214,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Setzen Sie dieses Häkchen, wenn die Hauptfunktionen des Add-ons eine Zahlung vor Nutzung oder nach einer Testlaufzeit erfordern."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "Dieses Add-on erfordert Zahlung, kostenpflichtige Dienste oder Software oder zusätzliche Hardware."
+msgstr "Dieses Add-on erfordert eine Zahlung, kostenpflichtige Dienste oder Software oder zusätzliche Hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Dieses Add-on erfordert keine zusätzliche Zahlung, kostenpflichtige Dienste oder Software oder zusätzliche Hardware."
