@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-07 00:26+0000\n"
+"PO-Revision-Date: 2017-09-07 09:49+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -8177,7 +8177,7 @@ msgid "Anonymous user {id}"
 msgstr "Anonymer Nutzer {id}"
 
 msgid "My Mobile Add-ons"
-msgstr "Meine mobile Add-ons"
+msgstr "Meine mobilen Add-ons"
 
 msgid "an add-on developer thanks me for a contribution"
 msgstr "Ein Add-on-Entwickler dankt mir für eine Spende"
@@ -8201,7 +8201,7 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr "Bleiben Sie auf dem neuesten Stand und erhalten Sie Nachrichten und Informationen zu Veranstaltungen für Add-on-Entwickler (einschließlich des Newsletters about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "Die Komatibilität meines Add-ons kann nicht erhöht werden"
+msgstr "Die Kompatibilität meines Add-ons kann nicht erhöht werden"
 
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr "Mein SDK-basiertes Add-on kann nicht aktualisiert werden"
