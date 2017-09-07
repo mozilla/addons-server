@@ -56,8 +56,8 @@ class TestAddonReviewAggregates(TestCase):
         assert addon.average_rating == 0
         assert addon2.bayesian_rating == 0
         assert addon2.average_rating == 0
-        assert addon.text_reviews == 0
-        assert addon2.text_reviews == 0
+        assert addon.text_reviews_count == 0
+        assert addon2.text_reviews_count == 0
 
         # Trigger the task and test results.
         addon_review_aggregates([addon.pk, addon2.pk])
@@ -69,8 +69,8 @@ class TestAddonReviewAggregates(TestCase):
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.375
         assert addon2.average_rating == 1.0
-        assert addon.text_reviews == 2
-        assert addon2.text_reviews == 1
+        assert addon.text_reviews_count == 2
+        assert addon2.text_reviews_count == 1
 
         # Trigger the task with a single add-on.
         Review.objects.create(addon=addon2, rating=5, user=user_factory(),
@@ -81,7 +81,7 @@ class TestAddonReviewAggregates(TestCase):
         addon_review_aggregates(addon2.pk)
         addon2.reload()
         assert addon2.total_reviews == 3
-        assert addon2.text_reviews == 2
+        assert addon2.text_reviews_count == 2
         assert addon.bayesian_rating == 1.9821428571428572
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.97915

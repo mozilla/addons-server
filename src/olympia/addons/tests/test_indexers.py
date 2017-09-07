@@ -184,7 +184,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,
             'count': self.addon.total_reviews,
-            'text_count': self.addon.text_reviews,
+            'text_count': self.addon.text_reviews_count,
         }
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True

@@ -65,8 +65,8 @@ def addon_review_aggregates(addons, **kw):
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         reviews_with_text = text_stats.get(addon.id, 0)
-        addon.update(total_reviews=reviews, text_reviews=reviews_with_text,
-                     average_rating=rating)
+        addon.update(total_reviews=reviews, average_rating=rating,
+                     text_reviews_count=reviews_with_text)
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
