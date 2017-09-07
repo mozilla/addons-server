@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-07 11:14+0000\n"
+"PO-Revision-Date: 2017-09-07 12:05+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1651,7 +1651,7 @@ msgid "Available in your locale"
 msgstr "In Ihrer Sprache verfügbar"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr "Liste von für Ihre Sprache verfügbaren Sprachpaketen und Wörterbüchern"
+msgstr "Liste der für Ihre Sprache verfügbaren Sprachpakete und Wörterbücher."
 
 msgid "Language"
 msgstr "Sprache"
@@ -1666,7 +1666,7 @@ msgid "All locales"
 msgstr "Alle Sprachen"
 
 msgid "List of language packs and dictionaries."
-msgstr "Liste von Wörterbüchern und Sprachpaketen."
+msgstr "Liste der Wörterbücher und Sprachpakete."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
