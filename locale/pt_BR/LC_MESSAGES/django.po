@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-31 11:55+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2993,14 +2993,12 @@ msgstr ""
 "Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
 "informação."
 
-msgid "Distribution Agreement"
-msgstr "Acordo de distribuição"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Comentários do desenvolvedor"
 
 msgid "Review Policy"
 msgstr "Política de revisão"
-
-msgid "Review Rules"
-msgstr "Regras de revisão"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4755,23 +4753,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare trackers sorrateiros {start_sub_heading}com {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Bloqueia trackers invisíveis e anúncios espiões que o seguem através da Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Ao suportar mais de 25 idiomas, esta extensão coloca um corretor diretamente no seu navegador."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Mais do que apenas capturar telas, o Awesome Screenshot Plus permite que você insira texto e gráficos nas imagens. Armazenar e compartilhar arquivos é facílimo."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
@@ -5865,21 +5865,6 @@ msgstr "Temas do Dia de São Patrício"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Decore seu navegador para celebrar o dia de São Patrício."
-
-msgid "Sit Back and Relax"
-msgstr "Recline sua poltrona e relaxe"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Extensões que ajudam em suas viagens!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Exibe uma bandeira referente à localização do servidor do site visitado e mais."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "O FoxClocks permite que você fique de olho no tempo em todo o mundo."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Encontre automaticamente o menor preço ao pesquisar passagens e voos on-line."
 
 msgid "A+ add-ons for School"
 msgstr "Extensões nota 10 para estudar"

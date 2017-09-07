@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-16 15:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -2959,14 +2959,12 @@ msgstr ""
 "Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique "
 "comment nous gérons les informations vous concernant."
 
-msgid "Distribution Agreement"
-msgstr "Accord de distribution"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Commentaires du développeur"
 
 msgid "Review Policy"
 msgstr "Politique de révision"
-
-msgid "Review Rules"
-msgstr "Règles de révision"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4656,24 +4654,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
 msgstr[1] "{0} avertissements"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez les traqueurs {start_sub_heading} avec {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Faites moins de fautes {start_sub_heading}avec {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Faites moins de fautes {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Avec plus de 25 langues prises en charge, cette extension transforme votre navigateur en un véritable correcteur."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-"Bien plus que réaliser de simples captures d’écran, Awesome Screenshot Plus vous permet d’annoter des images avec du texte et d’autres images. Enregistrez et partagez des fichiers en un clin d’œil."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
@@ -5731,21 +5730,6 @@ msgstr "Thèmes de la Saint Patrick"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Décorez votre navigateur pour fêter la Saint Patrick."
-
-msgid "Sit Back and Relax"
-msgstr "Asseyez-vous et relaxez-vous"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Modules qui vous seront utiles pour vos voyages !"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Affiche un drapeau du pays représentant la localisation du serveur du site web et plus."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks vous permet de garder un œil sur le temps à travers le monde."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Obtenir automatiquement le prix le plus bas lorsque vous achetez en ligne ou que vous cherchez des vols."
 
 msgid "A+ add-ons for School"
 msgstr "Modules A+ pour l’École"

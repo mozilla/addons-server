@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-08-26 23:11+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -2973,14 +2973,12 @@ msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
 
-msgid "Distribution Agreement"
-msgstr "Соглашение по распространению"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Комментарии разработчика"
 
 msgid "Review Policy"
 msgstr "Политика проверки"
-
-msgid "Review Rules"
-msgstr "Правила проверки"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4694,23 +4692,25 @@ msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Остановите пронырливые трекеры {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Создавайте скриншоты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Блокируйте невидимые трекеры и шпионскую рекламу, которая следит за вами в Интернете."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Улучшайте ваше правописание {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте ваше правописание {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Поддерживая более 25 языков, это расширение проверяет грамматику прямо в вашем браузере."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Создавайте скриншоты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Больше, чем просто скриншоты, Awesome Screenshot Plus позволяет вам добавлять на ваши изображения текст и графику. Сохранение файлов и обмен ими - бальзам на душу."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
@@ -5780,21 +5780,6 @@ msgstr "Темы для дня Святого Патрика"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Украсьте свой браузер чтобы отпраздновать день Святого Патрика"
-
-msgid "Sit Back and Relax"
-msgstr "Устройтесь поудобнее и расслабьтесь"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Дополнения, которые помогут вам в дороге!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Отображает флаг страны, в которой располагается сервер текущего веб-сайта и многое другое."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks позволяет вам следить за временем по всему миру."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Автоматически получайте самую низкую цену, когда вы делаете покупки в онлайне или ищете авиабилеты."
 
 msgid "A+ add-ons for School"
 msgstr "Дополнения на 5+"
