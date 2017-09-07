@@ -13,6 +13,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext, pgettext
 
+import waffle
+
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
@@ -424,8 +426,14 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         search_form = None
         is_searching = False
     admin_reviewer = is_admin_reviewer(request)
-    if not admin_reviewer and not is_searching and hasattr(qs, 'filter'):
-        qs = exclude_admin_only_addons(qs)
+    if hasattr(qs, 'filter'):
+        if waffle.switch_is_active('post-review'):
+            # Hide webextensions from the queues: auto-approve cron should pick
+            # them up.
+            qs = qs.filter(**{'files.is_webextension': False})
+
+        if not is_searching and not admin_reviewer:
+            qs = exclude_admin_only_addons(qs)
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
