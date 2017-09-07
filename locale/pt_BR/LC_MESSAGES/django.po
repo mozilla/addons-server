@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-07 17:10+0000\n"
+"PO-Revision-Date: 2017-09-07 17:17+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -136,7 +136,7 @@ msgstr[1] "Todas as etiquetas devem ter pelo menos {0} caracteres."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr ""
+msgstr "A URL do domínio deve ser um dos [%s], ou um subdomínio., "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "As categorias não podem ser alteradas enquanto sua extensão for destaque para este aplicativo."
@@ -1671,6 +1671,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"A instalação de uma extensão de dicionário adicionará uma nova opção de idioma ao seu corretor ortográfico %(app_name)s, que verifica sua ortografia quando você for preencher formulários da Web. As "
+"extensões do pacote de idiomas alteram o idioma de todo o aplicativo."
 
 msgid "Available in your locale"
 msgstr "Disponíveis no seu idioma"
@@ -1729,7 +1731,7 @@ msgstr "Explore mais provedores de pesquisa em <a href=\"http://mycroftproject.c
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sFaça sua própria%(amo_mdn_link_close)s ferramenta de pesquisa"
 
 msgid "Most Popular Extensions"
 msgstr "Extensões mais populares"
@@ -2350,7 +2352,6 @@ msgstr "Análise preliminar do Tema Completo"
 msgid "Updated Complete Theme Review"
 msgstr "Análise atualizada do Tema Completo"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
 msgstr "Análise moderada da extensão"
 
@@ -2834,13 +2835,11 @@ msgstr ""
 "Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas através de um updateURL ou atualizações de "
 "aplicativos externos.</span>"
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir do Firefox 53, as novas extensões neste site só podem ser WebExtensions."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "As extensões legadas não são compatíveis com o Firefox 57 ou superior. Use o Firefox na versão 56.* ou em alguma outra versão anterior."
+msgstr "As extensões legadas não são compatíveis com o Firefox 57 ou superior. Use a versão maxVersion da versão 56.* ou outra versão anterior."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nós permitimos e encorajamos atualizar, mas você não pode reverter este processo. Uma vez que os usuários tenham o WebExtension instalado, não serão capazes de instalar uma extensão legada."
@@ -3243,7 +3242,7 @@ msgid "Summary"
 msgstr "Resumo"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Este resumo deve explicar claramente o que a sua extensão faz. Ele será exibido em listas e pesquisas, e será usado pelos revisores para testar a sua extensão."
 
 msgid "Experimental?"
 msgstr "Experimental?"
@@ -3300,12 +3299,11 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Etiqueta reservada:"
 msgstr[1] "Etiquetas reservadas:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Contribuições"
+msgstr "URL de contribuições"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Se você quiser solicitar contribuições monetárias de seus usuários, defina isso para uma página onde eles possam fazê-lo."
 
 msgid "Add-on Details"
 msgstr "Detalhes do complemento"
