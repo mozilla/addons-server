@@ -826,8 +826,8 @@ class AutoApprovalSummary(ModelBase):
             new_size = find_code_size(self.version)
         except FileValidation.DoesNotExist:
             raise AutoApprovalNoValidationResultError()
-        # We don't really about whether it's a negative or positive change in
-        # size, we just need the absolute value (if there is no currently
+        # We don't really care about whether it's a negative or positive change
+        # in size, we just need the absolute value (if there is no current
         # public version, that value ends up being the total code size of the
         # version we're approving).
         return abs(old_size - new_size)
