@@ -720,7 +720,8 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_weight(self):
         """Calculate the weight value for this version according to various
-        risk factors.
+        risk factors, setting the weight property on the instance and returning
+        a dict of risk factors.
 
         That value is then used in editor tools to prioritize add-ons in the
         auto-approved queue."""
@@ -769,7 +770,9 @@ class AutoApprovalSummary(ModelBase):
         return factors
 
     def calculate_static_analysis_weight_factors(self):
-        """Calculate the static analysis risk factors.
+        """Calculate the static analysis risk factors, returning a dict of
+        risk factors.
+
         Used by calculate_weight()."""
         try:
             factors = {
@@ -791,14 +794,43 @@ class AutoApprovalSummary(ModelBase):
                 'uses_native_messaging': (
                     20 if self.check_uses_native_messaging(self.version) else
                     0),
+                # Size of code changes: 5kB is one point, up to a max of 100.
+                'size_of_code_changes': min(
+                    self.calculate_size_of_code_changes() / 5000, 100)
             }
         except AutoApprovalNoValidationResultError:
             # We should have a FileValidationResult... since we don't and
-            # something is wrong, increase the weight by 100.
+            # something is wrong, increase the weight by 200.
             factors = {
-                'no_validation_result': 100,
+                'no_validation_result': 200,
             }
         return factors
+
+    def calculate_size_of_code_changes(self):
+        """Return the size of code changes between the version being
+        approved and the previous public one."""
+        def find_code_size(version):
+            # There could be multiple files: if that's the case, take the
+            # total for all files and divide it by the number of files.
+            number_of_files = len(version.all_files) or 1
+            total_code_size = 0
+            for file_ in version.all_files:
+                data = json.loads(file_.validation.validation)
+                total_code_size += (
+                    data.get('metadata', {}).get('totalScannedFileSize', 0))
+            return total_code_size / number_of_files
+
+        try:
+            old_version = self.version.addon.current_version
+            old_size = find_code_size(old_version) if old_version else 0
+            new_size = find_code_size(self.version)
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        # We don't really care about whether it's a negative or positive change
+        # in size, we just need the absolute value (if there is no current
+        # public version, that value ends up being the total code size of the
+        # version we're approving).
+        return abs(old_size - new_size)
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
