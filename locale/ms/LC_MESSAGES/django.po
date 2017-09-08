@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 10:02+0000\n"
+"PO-Revision-Date: 2017-09-08 11:52+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1172,7 +1172,7 @@ msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Tinjau koleksi anda</a> untuk melihat perubahan."
 
 msgid "Icon Deleted"
-msgstr "Ikon Dihapuskan"
+msgstr "Ikon Dibuang"
 
 msgid "Create a New Collection"
 msgstr "Cipta Koleksi Baru"
@@ -1243,7 +1243,7 @@ msgid "Edit Collection"
 msgstr "Edit Koleksi"
 
 msgid "Delete Collection"
-msgstr "Hapus Koleksi"
+msgstr "Buang Koleksi"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
@@ -1339,7 +1339,7 @@ msgstr "Edit Koleksi ini"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr "Hapus {0}"
+msgstr "Buang {0}"
 
 msgid "Are you sure?"
 msgstr "Adakah anda pasti?"
@@ -1868,13 +1868,13 @@ msgstr "{version} diedit untuk {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr "Versi {0} dihapuskan daripada {addon}."
+msgstr "Versi {0} dibuang daripada {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
 msgstr "Fail {0.name} ditambah ke {version} {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "Fail {0} dihapuskan daripada {version} {addon}."
+msgstr "Fail {0} dibuang daripada {version} {addon}."
 
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} diluluskan."
@@ -1974,7 +1974,7 @@ msgid "{user} approved {review} for {addon}."
 msgstr "{user} meluluskan {review} untuk {addon}."
 
 msgid "Review {review} for {addon} deleted."
-msgstr "Ulasan {review} untuk {addon} dihapuskan."
+msgstr "Ulasan {review} untuk {addon} dibuang."
 
 msgid "{user} deleted {review} for {addon}."
 msgstr "{user} menghapuskan {review} untuk {addon}."
@@ -2007,7 +2007,7 @@ msgid "Edited field: {2} set to: {0}."
 msgstr "Medan diedit: {2} set ke: {0}."
 
 msgid "Deleted: {1}."
-msgstr "Dihapuskan: {1}."
+msgstr "Dibuang: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr "Pengguna {user} mengedit, alasan: {1}"
@@ -2041,7 +2041,7 @@ msgstr "{file} telah ditandatangan."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Id add-on {0} dengan GUID {1} telah dihapuskan"
+msgstr "Id add-on {0} dengan GUID {1} telah dibuang"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} dipindahkan daripada persediaan."
@@ -2107,7 +2107,7 @@ msgid "Disabled by Mozilla"
 msgstr "Dinyahdaya oleh Mozilla"
 
 msgid "Deleted"
-msgstr "Dihapuskan"
+msgstr "Dibuang"
 
 msgid "Pending approval"
 msgstr "Menunggu kelulusan"
@@ -2694,7 +2694,7 @@ msgid "Version doesn't match"
 msgstr "Versi tidak sepadan"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Versi {version} telah dimuat naik sebelum ini dan dihapuskan."
+msgstr "Versi {version} telah dimuat naik sebelum ini dan dibuang."
 
 msgid "Version {version} already exists."
 msgstr "Versi {version} sudah wujud."
@@ -2784,19 +2784,19 @@ msgid "Please check the form for errors."
 msgstr "Sila semak borang untuk ralat."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "Add-on ini tidak boleh dihapuskan. Hanya nyahdaya sahaja."
+msgstr "Add-on ini tidak boleh dibuang. Hanya nyahdayakan sahaja."
 
 msgid "Theme deleted."
-msgstr "Tema dihapuskan."
+msgstr "Tema telah dibuang."
 
 msgid "Add-on deleted."
-msgstr "Add-on dihapuskan."
+msgstr "Add-on telah dibuang."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "Nama URL tidak betul. Tema tidak dihapuskan."
+msgstr "Nama URL tidak betul. Tema tidak dibuang."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "Nama URL tidak betul. Add-on tidak dihapuskan."
+msgstr "Nama URL tidak betul. Add-on tidak dibuang."
 
 msgid "An author has been added to your add-on"
 msgstr "Seorang pengarang ditambah ke add-on anda"
@@ -2848,7 +2848,7 @@ msgstr "Versi %s dinyahdaya."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr "Versi %s dihapuskan."
+msgstr "Versi %s telah dibuang."
 
 #, python-format
 msgid "Version %s re-enabled."
@@ -3400,10 +3400,10 @@ msgid "Top"
 msgstr "Teratas"
 
 msgid "Delete Theme"
-msgstr "Hapus Tema"
+msgstr "Buang Tema"
 
 msgid "Delete Add-on"
-msgstr "Hapus Add-on"
+msgstr "Buang Add-on"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Membuang tema anda akan menghapuskannya secara kekal daripada laman ini."
@@ -3434,10 +3434,10 @@ msgid "Resume"
 msgstr "Sambung"
 
 msgid "Delete this add-on."
-msgstr "Hapus add-on ini."
+msgstr "Buang add-on ini."
 
 msgid "Delete"
-msgstr "Hapus"
+msgstr "Buang"
 
 msgid "Edit information about this add-on."
 msgstr "Edit maklumat add-on ini."
@@ -3485,7 +3485,7 @@ msgid "Transfer Ownership"
 msgstr "Pindah Pemilikan"
 
 msgid "Delete this theme."
-msgstr "Hapus tema ini."
+msgstr "Buang tema ini."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Add-on ini hilang beberapa maklumat yang diperlukan sebelum boleh dihantar untuk penerbitan."
@@ -4466,7 +4466,7 @@ msgid "Validation"
 msgstr "Pengesahan"
 
 msgid "Delete/Disable"
-msgstr "Hapus/Disable"
+msgstr "Buang/Nyahdaya"
 
 msgid "Next version of this add-on"
 msgstr "Versi berikut add-on ini"
@@ -4481,7 +4481,7 @@ msgid "Upload a New Version"
 msgstr "Muat naik Versi Baru"
 
 msgid "Delete Version {version}"
-msgstr "Hapus Versi {version}"
+msgstr "Buang Versi {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -4499,7 +4499,7 @@ msgid "Are you sure you wish to delete this version?"
 msgstr "Anda pasti mahu menghapuskan versi ini?"
 
 msgid "Delete Version"
-msgstr "Hapus Versi"
+msgstr "Buang Versi"
 
 msgid "Disable Version"
 msgstr "Nyahdaya Versi"
@@ -4563,7 +4563,7 @@ msgid "Approved reviews"
 msgstr "Semakan diluluskan"
 
 msgid "Deleted reviews"
-msgstr "Semakan dihapuskan"
+msgstr "Semakan yang dibuang"
 
 msgid "View entries between"
 msgstr "Papar entri antara"
@@ -4656,7 +4656,7 @@ msgid "Skip for now"
 msgstr "Langkau dulu sekarang"
 
 msgid "Delete review"
-msgstr "Hapus semakan"
+msgstr "Buang semakan"
 
 msgid "Admin Review"
 msgstr "Semakan Pentadbir"
@@ -4971,7 +4971,7 @@ msgid "Review was flagged prior to deletion."
 msgstr "Semakan telah ditandakan sebelum dihapuskan."
 
 msgid "Undelete"
-msgstr "Nyah-hapus"
+msgstr "Batalkan membuang"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
