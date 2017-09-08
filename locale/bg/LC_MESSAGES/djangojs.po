@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 13:49+0000\n"
+"PO-Revision-Date: 2017-09-08 14:31+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -375,28 +375,28 @@ msgid "Category Landing Recently Added"
 msgstr "Категория Наскоро добавени"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Списък на добавки сортиран по препоръчани"
+msgstr "Списък на добавки подреден по препоръчани"
 
 msgid "Browse Listing Users Sort"
-msgstr "Списък на добавки сортиран по брой потребители"
+msgstr "Списък на добавки подреден по брой потребители"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Списък на добавки сортиран по оценка"
+msgstr "Списък на добавки подреден по оценка"
 
 msgid "Browse Listing Created Sort"
-msgstr "Списък на добавки сортиран по дата на създаване"
+msgstr "Списък на добавки подреден по дата на създаване"
 
 msgid "Browse Listing Name Sort"
-msgstr "Списък на добавки сортиран по име"
+msgstr "Списък на добавки подреден по име"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Списък на добавки сортиран по брой изтегляния"
+msgstr "Списък на добавки подреден по брой изтегляния"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Списък на добавки сортиран по дата на обновяване"
+msgstr "Списък на добавки подреден по дата на обновяване"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Списък на добавки сортиран по обещаващи"
+msgstr "Списък на добавки подреден по обещаващи"
 
 msgid "Total Amount Contributed"
 msgstr "Общо принос"
