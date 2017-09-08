@@ -7,6 +7,7 @@ from django.core.files.storage import default_storage as storage
 import mock
 import pytest
 from pyquery import PyQuery
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -555,6 +556,25 @@ class TestVersion(TestCase):
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
+
+    def test_is_ready_for_auto_approval_addon_status(self):
+        addon = Addon.objects.get(id=3615)
+        addon.status = amo.STATUS_NOMINATED
+        version = addon.current_version
+        version.all_files = [
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+        assert not version.is_ready_for_auto_approval
+
+        with override_switch('post-review', active=True):
+            # When the post-review switch is active, we also accept add-ons
+            # with NOMINATED status.
+            assert version.is_ready_for_auto_approval
+
+            addon.status = amo.STATUS_NOMINATED
+            assert version.is_ready_for_auto_approval
+
+            addon.status = amo.STATUS_DISABLED
+            assert not version.is_ready_for_auto_approval
 
     def test_was_auto_approved(self):
         addon = Addon.objects.get(id=3615)
