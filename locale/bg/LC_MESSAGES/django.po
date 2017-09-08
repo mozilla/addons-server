@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 13:52+0000\n"
+"PO-Revision-Date: 2017-09-08 14:12+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -68,13 +68,13 @@ msgid "Version {0}"
 msgstr "Версия {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "Бележка от рецензията"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Бележка може да бъде добавяна само към последните версии на добавките."
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Добавката не е н AMO -"
 
 msgid "Download Now"
 msgstr "Изтегляне"
@@ -2277,13 +2277,11 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Обновена рецензия на добавката"
+msgstr "Модерирана рецензия на добавка"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Журнал на рецензиите"
+msgstr "Отказ от модерирана рецензия на добавка"
 
 msgid "Level 1"
 msgstr ""
@@ -2913,9 +2911,8 @@ msgid ""
 " which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
 msgid "Developer Agreement"
-msgstr "Коментари от разработчика"
+msgstr ""
 
 msgid "Review Policy"
 msgstr "Политика на рецензиите"
@@ -3330,7 +3327,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "UUID-то на добавката ви е указано в install manifest-а ѝ и я идентифицира уникално. Не можете да променято UUID-то, след като вече е била пратена."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Табло"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
@@ -3409,7 +3406,7 @@ msgstr "Тестове за локализацията"
 # 75%
 # 80%
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Тестове за съвместимост"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3504,7 +3501,7 @@ msgid "Transfer Ownership"
 msgstr "Прехвърляне на собственост"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Изтриване на темата."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3949,7 +3946,7 @@ msgid "Compatibility Reporter"
 msgstr ""
 
 msgid "Promote"
-msgstr ""
+msgstr "Насърчаване"
 
 msgid "Get Your Add-on Featured"
 msgstr "Направете добавката си препоръчана"
@@ -4154,7 +4151,7 @@ msgid "What is your PayPal ID?"
 msgstr ""
 
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Регистриране в PayPal"
 
 msgid "What is your suggested contribution?"
 msgstr ""
@@ -4284,10 +4281,10 @@ msgid "This is the color of the tabs."
 msgstr "Това е цветът на разделите."
 
 msgid "Preview"
-msgstr ""
+msgstr "Преглед"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Име на темата"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
@@ -4301,7 +4298,7 @@ msgid "Background themes let you easily personalize the look of your Firefox. Su
 msgstr ""
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Дайте име на темата."
 
 #, python-format
 msgid ""
@@ -4900,7 +4897,7 @@ msgid "Abuse Reports ({num})"
 msgstr ""
 
 msgid "Bad User Reviews ({num})"
-msgstr ""
+msgstr "Лоши отзиви ({num})"
 
 msgid "More about this add-on"
 msgstr "Повече за добавката"
@@ -5099,7 +5096,7 @@ msgid "clear search"
 msgstr "изчистване на търсенето"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Обработване на отзиви"
 
 msgid "Moderation actions:"
 msgstr ""
@@ -5113,7 +5110,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Всички отзиви са модерирани. Добра работа!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
@@ -5214,7 +5211,7 @@ msgid "Hide Comments"
 msgstr ""
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "За периода не са намерени отзиви."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
@@ -5287,7 +5284,7 @@ msgid "Reason"
 msgstr ""
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "В момента няма рецензии."
 
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
@@ -5335,7 +5332,7 @@ msgid "Commit Review"
 msgstr ""
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Изпращане на рецензия"
 
 msgid "{0} out of {1} reviewed"
 msgstr ""
@@ -6392,7 +6389,7 @@ msgstr ""
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Повече то {0} отзива към добавката"
 
 msgid "Other Contributors"
 msgstr ""
@@ -6931,8 +6928,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"За да докладвате потребителска рецензия на добавка, влезте в сметката си и посетете страницата на рецензиите. Намерете рецензията, която искате да докладвате, изберете \"Докладване на рецензията\" и"
-" изберете причина. Нашият редакторски екип ще разследва рецензията и ще предприеме подходящи действия."
+"За да докладвате отзив към добавка, влезте в сметката си и посетете страницата на рецензиите. Намерете рецензията, която искате да докладвате, изберете \"Докладване на отзив\" и изберете причина. "
+"Нашият редакторски екип ще разследва рецензията и ще предприеме подходящи действия."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Как да докладвам дефект или да се свържа с екипа на Добавки?"
@@ -7274,13 +7271,13 @@ msgid ""
 msgstr ""
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Отговаряне на отзива на {0}"
 
 msgid "Write a Reply"
 msgstr "Публикуване на отговор"
 
 msgid "Submit"
-msgstr ""
+msgstr "Изпращане"
 
 #. this string is following a <button>.
 #, python-format
@@ -7288,21 +7285,21 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr "или <a href=\"%(url)s\">Отказ</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Моля, изберете причина:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "от %(user)s <b>(Разработчик)</b> на %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Това е отзив за предна версия на добавката ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Потребителят има <a href=\"%(user_review_url)s\">предишен отзив</a> към добавката."
+msgstr[1] "Потребителят има <a href=\"%(user_review_url)s\">%(cnt)s предишни отзива</a> към добавката."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -7328,7 +7325,7 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Отзиви"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -7336,8 +7333,8 @@ msgstr ""
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> рецензия на добавката"
-msgstr[1] "<b>{0}</b> рецензии на добавката"
+msgstr[0] "<b>{0}</b> отзив към добавката"
+msgstr[1] "<b>{0}</b> отзив към добавката"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7350,7 +7347,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Не са намерени отзиви."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -7364,8 +7361,8 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} отзив"
+msgstr[1] "{num} отзива"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Оценена с {0} от 5 звезди"
@@ -8109,7 +8106,7 @@ msgid "User Login"
 msgstr ""
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Вписване с Firefox Account"
 
 msgid "Password Reset"
 msgstr "Нулиране на парола"
@@ -8154,10 +8151,10 @@ msgid "Created by Me"
 msgstr "Създадени от мен"
 
 msgid "My Reviews"
-msgstr "Рецензии"
+msgstr "Мои отзиви"
 
 msgid "No add-on reviews yet."
-msgstr "Все още няма рецензии на добавки."
+msgstr "Все още няма отзиви към добавки."
 
 msgid "Report User"
 msgstr "Докладване на потребител"
@@ -8195,7 +8192,7 @@ msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked i
 msgstr "За съжаление не можахме да отменим абонамента ви. Посетили сте невалидна препратка. Все пак, можете да се отпишете от <a href=\"%(edit_url)s\">страницата за редакция на профил</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Информация за разработчика"
 
 msgid "User since"
 msgstr "Потребител от"
@@ -8229,7 +8226,7 @@ msgstr "Средна оценка на добавките"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "други"
 
 #, python-format
 msgid "%s Version History"
@@ -8239,14 +8236,14 @@ msgid "Version History with Changelogs"
 msgstr "Хронология на версиите с история на промените"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} и по-нова"
 
 msgid "Permanent link to this version"
 msgstr "Постоянна връзка към тази версия"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Издадена на {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
