@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 14:12+0000\n"
+"PO-Revision-Date: 2017-09-08 14:31+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -350,7 +350,7 @@ msgid "Featured Collections"
 msgstr "Препоръчани колекции"
 
 msgid "Sort by:"
-msgstr "Сортиране по:"
+msgstr "Подреждане по:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -794,10 +794,10 @@ msgid "Add to collection"
 msgstr "Добавяне към колекция"
 
 msgid "My Add-ons"
-msgstr "Моите добавки"
+msgstr "Мои добавки"
 
 msgid "My Themes"
-msgstr "Моите теми"
+msgstr "Мои теми"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -4136,19 +4136,19 @@ msgid "Fill in the fields below to begin asking for voluntary contributions from
 msgstr ""
 
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Кой ще получава приноса към добавката?"
 
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Какво е името на организацията?"
 
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Какъв е интернет адресът на организацията?"
 
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Какъв е идентификаторът в PayPal на организацията?"
 
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Какво е вашият идентификатор в PayPal?"
 
 msgid "Sign up for PayPal"
 msgstr "Регистриране в PayPal"
@@ -7396,7 +7396,7 @@ msgid "search for apps"
 msgstr "търсене на приложения"
 
 msgid "Sort By"
-msgstr "Сортиране по"
+msgstr "Подреждане по"
 
 msgid "Relevance"
 msgstr "Уместност"
