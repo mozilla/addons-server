@@ -214,7 +214,7 @@ ADDON_TYPE_CHOICES_API = {
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
-VALID_CONTRIBUTION_DOMAINS = ('paypal.me', 'patreon.com')
+VALID_CONTRIBUTION_DOMAINS = ('paypal.me', 'patreon.com', 'micropayment.de')
 
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
