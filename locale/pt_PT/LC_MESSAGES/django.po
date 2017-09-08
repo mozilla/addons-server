@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 13:11+0000\n"
+"PO-Revision-Date: 2017-09-08 13:13+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2932,9 +2932,8 @@ msgstr ""
 "Antes de começar, por favor leia e aceite o nosso Acordo de distribuição de extras do Firefox e também as nossas Políticas e Regras de revisão. O nosso Acordo de distribuição de extras do Firefox "
 "também tem uma ligação para o nosso Aviso privacidade que explica como gerimos a sua informação."
 
-#, fuzzy
 msgid "Developer Agreement"
-msgstr "Comentários do programador"
+msgstr "Acordo do programador"
 
 msgid "Review Policy"
 msgstr "Política de revisão"
@@ -4619,19 +4618,17 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Personalização de separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Defina a página que vê sempre que abrir um novo separador."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore a sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore a sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
