@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 06:45+0000\n"
+"PO-Revision-Date: 2017-09-08 10:02+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2882,9 +2882,8 @@ msgstr ""
 "Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox serta Polisi dan Peraturan Semakan kami. Perjanjian Pengedaran Add-on Firefox juga ada hubungan dengan Notis Privasi kami"
 " yang menjelaskan cara kami mengendalikan maklumat anda."
 
-#, fuzzy
 msgid "Developer Agreement"
-msgstr "Ulasan Pembangun"
+msgstr "Perjanjian Pembangun"
 
 msgid "Review Policy"
 msgstr "Polisi Semakan"
@@ -4536,19 +4535,17 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Tetapkan halaman yang akan dipaparkan setiap kali anda buka tab baru."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan penulisan anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan penulisan anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
