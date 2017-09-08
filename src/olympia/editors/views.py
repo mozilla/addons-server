@@ -428,8 +428,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     admin_reviewer = is_admin_reviewer(request)
     if hasattr(qs, 'filter'):
         if waffle.switch_is_active('post-review'):
-            # Hide webextensions from the queues: auto-approve cron should pick
-            # them up.
+            # Hide webextensions from the queues so that human reviewers don't
+            # pick them up: auto-approve cron should take care of them.
             qs = qs.filter(**{'files.is_webextension': False})
 
         if not is_searching and not admin_reviewer:
