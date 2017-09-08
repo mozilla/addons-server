@@ -1431,6 +1431,10 @@ class TestAutoApprovedQueue(QueueTest):
         self.generate_files()
         self._test_results()
 
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_waffle(self):
+        self.test_results()
+
     def test_queue_count(self):
         self.login_with_permission()
         self.generate_files()
