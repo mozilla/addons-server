@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 11:52+0000\n"
+"PO-Revision-Date: 2017-09-08 11:55+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5182,7 +5182,7 @@ msgid "Reviewer"
 msgstr "Penyemak"
 
 msgid "Add-on has been deleted."
-msgstr "Add-on telah dihapuskan."
+msgstr "Add-on telah dibuang."
 
 msgid "Show Comments"
 msgstr "Papar Komen"
@@ -5246,7 +5246,7 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s pada %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
-msgstr "Tarikh Dihapuskan"
+msgstr "Tarikh telah Dibuang"
 
 msgid "No deleted themes found for this period."
 msgstr "Tiada tema dihapuskan yang ditemukan dalam tempoh ini."
@@ -5489,7 +5489,7 @@ msgid "Fetching validation results..."
 msgstr "Mendapatkan hasil pengesahan..."
 
 msgid "Deleted files:"
-msgstr "Fail dihapuskan:"
+msgstr "Fail yang telah dibuang:"
 
 msgid "Hide known files"
 msgstr "Sorok fail yang diketahui"
@@ -7408,7 +7408,7 @@ msgid "Edit review"
 msgstr "Edit ulasan"
 
 msgid "Delete reply"
-msgstr "Hapus balasan"
+msgstr "Buang balasan"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
@@ -7980,7 +7980,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr "Adakah anda pasti mahu menghapuskan semua terjemahan <b>{0}</b>? Ini tidak boleh dibatalkan."
 
 msgid "Delete Locale"
-msgstr "Hapus Lokaliti"
+msgstr "Buang Lokaliti"
 
 msgid "Email must be {email}."
 msgstr "E-mel hendaklah {email}."
@@ -8063,10 +8063,10 @@ msgid "A user with that email address does not exist."
 msgstr "Pengguna dengan alamat e-mel ini tidak wujud."
 
 msgid "Profile Deleted"
-msgstr "Profil Dihapuskan"
+msgstr "Profil telah Dibuang"
 
 msgid "Photo Deleted"
-msgstr "Foto Dihapuskan"
+msgstr "Foto telah Dibuang"
 
 msgid "Profile Updated"
 msgstr "Profil Dikemaskini"
@@ -8084,7 +8084,7 @@ msgid "new"
 msgstr "baru"
 
 msgid "Delete User Account"
-msgstr "Hapus Akaun Pengguna"
+msgstr "Buang Akaun Pengguna"
 
 #, python-format
 msgid ""
@@ -8095,7 +8095,7 @@ msgstr ""
 "menyingkirkan anda daripada senarai pengarang add-on itu. Selepas itu barulah anda boleh menghapuskan akaun anda."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Dengan mengklik \"hapus\" akaun anda akan <strong>dihapuskan secara kekal</strong>. Ini bermakna:"
+msgstr "Dengan mengklik \"buang\" akaun anda akan <strong>dihapuskan secara kekal</strong>. Ini bermakna:"
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
@@ -8111,13 +8111,13 @@ msgid "I understand this step cannot be undone."
 msgstr "Saya faham bahawa langkah ini tidak boleh dibatalkan."
 
 msgid "Delete my user account now"
-msgstr "Hapus akaun pengguna saya sekarang"
+msgstr "Buang akaun pengguna saya sekarang"
 
 msgid "Delete User Photo"
-msgstr "Hapus Foto Pengguna"
+msgstr "Buang Foto Pengguna"
 
 msgid "Delete my user picture now"
-msgstr "Hapus foto pengguna saya sekarang"
+msgstr "Buang foto pengguna saya sekarang"
 
 msgid "Please set your display name"
 msgstr "Sila tetapkan nama paparan anda"
@@ -8150,7 +8150,7 @@ msgid "Choose Photo&hellip;"
 msgstr "Pilih Foto&hellip;"
 
 msgid "Delete current photo"
-msgstr "Hapus foto semasa"
+msgstr "Buang foto semasa"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Kenalkan diri anda kepada komuniti, jika anda mahu! Teks ini akan dipamerkan kepada umum dalam halaman info pengguna anda."
@@ -8181,7 +8181,7 @@ msgid "Admin"
 msgstr "Pentadbir"
 
 msgid "Delete Account"
-msgstr "Hapus Akaun"
+msgstr "Buang Akaun"
 
 msgid "Update Account"
 msgstr "Kemaskini Akaun"
@@ -8357,7 +8357,7 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr "Versi ini dipaparkan bagi tujuan rujukan dan ujian. Anda perlu sentiasa gunakan add-on <a href=\"%(url)s\">versi terkini</a>."
 
 msgid "Deleted versions can`t be changed."
-msgstr "Versi yang dihapuskan tidak boleh diubah."
+msgstr "Versi yang telah dibuang tidak boleh diubah."
 
 msgid "Binary"
 msgstr "Binari"
