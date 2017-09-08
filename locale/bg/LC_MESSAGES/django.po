@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-07 21:16+0000\n"
+"PO-Revision-Date: 2017-09-08 13:52+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -552,8 +552,8 @@ msgstr "Отговор от разработчика към рецензията
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Вижте всички рецензии на добавката"
-msgstr[1] "Вижте всички %(cnt)s рецензии на добавкака"
+msgstr[0] "Вижте всички отзиви на добавката"
+msgstr[1] "Вижте всички %(cnt)s отзива на добавката"
 
 msgid "Tags"
 msgstr "Етикети"
@@ -775,7 +775,7 @@ msgstr "постоянна връзка"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Вижте всички рецензии"
+msgstr[0] "Вижте всички отзиви"
 msgstr[1] "Вижте всички %(cnt)s рецензии"
 
 msgid "This add-on has not yet been reviewed."
@@ -2251,7 +2251,7 @@ msgid "Updated Language Pack Review"
 msgstr ""
 
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Бонус за просрочени рецензии"
 
 msgid "Days Before Bonus Points Applied"
 msgstr ""
@@ -2808,7 +2808,7 @@ msgid "User Collections"
 msgstr "Потребителски колекции"
 
 msgid "User Reviews"
-msgstr "Потребителски рецензии"
+msgstr "Потребителски отзиви"
 
 msgid "Changes successfully saved."
 msgstr "Промените са запазени успешно."
@@ -4573,10 +4573,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Одобрени рецензии"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Изтрити рецензии"
 
 msgid "View entries between"
 msgstr ""
@@ -4767,7 +4767,7 @@ msgid "Last Update"
 msgstr ""
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Няма отзиви"
 
 msgid "Weight"
 msgstr ""
@@ -4853,8 +4853,8 @@ msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} успешно прегледана тема (+{1} точки, общо – {2})."
+msgstr[1] "{0} успешно прегледани теми (+{1} точки, общо – {2})."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
@@ -5024,7 +5024,7 @@ msgid "New Reviewers"
 msgstr ""
 
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Вие сте №{0} с {1} рецензии"
 
 #. num = number of reviews in the queue
 msgid "Moderated Review ({num})"
@@ -5060,7 +5060,7 @@ msgid "Range"
 msgstr ""
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Вашите отзиви"
 
 msgid "By {user_name}"
 msgstr ""
