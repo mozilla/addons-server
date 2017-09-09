@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 11:55+0000\n"
+"PO-Revision-Date: 2017-09-09 02:59+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1793,7 +1793,7 @@ msgid "View all"
 msgstr "Papar semua"
 
 msgid "Filter by Application"
-msgstr "Saring mengikut Aplikasi"
+msgstr "Tapis mengikut Aplikasi"
 
 msgid "Report Type"
 msgstr "Jenis Laporan"
@@ -2465,7 +2465,7 @@ msgid "Contacts"
 msgstr "Kenalan"
 
 msgid "Folders and Filters"
-msgstr "Folder dan Penyaring"
+msgstr "Folder dan Penapis"
 
 msgid "Import/Export"
 msgstr "Import/Export"
@@ -4572,7 +4572,7 @@ msgid "and"
 msgstr "dan"
 
 msgid "Filter by type/action"
-msgstr "Saring mengikut jenis/action"
+msgstr "Tapis mengikut jenis/tindakan"
 
 msgid "Passed automatic validation"
 msgstr "Pengesahan automatik diluluskan"
@@ -4581,7 +4581,7 @@ msgid "Failed automatic validation"
 msgstr "Pengesahan automatik gagal"
 
 msgid "Filter by automatic validation"
-msgstr "Saring mengikut pengesahan automatik"
+msgstr "Tapis mengikut pengesahan automatik"
 
 msgid "containing"
 msgstr "mengandungi"
@@ -4934,7 +4934,7 @@ msgstr "Pengumuman"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr "Saring"
+msgstr "Tapis"
 
 msgid "Date"
 msgstr "Tarikh"

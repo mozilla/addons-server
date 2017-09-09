@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-09 02:50+0000\n"
+"PO-Revision-Date: 2017-09-09 02:57+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -372,28 +372,28 @@ msgid "Category Landing Recently Added"
 msgstr "Kategori Pelantar Terkini Ditambah"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Layari Senarai Susunan Sorotan"
+msgstr "Layari Senarai mengikut Susunan Sorotan"
 
 msgid "Browse Listing Users Sort"
-msgstr "Layari Senarai Isih Pengguna"
+msgstr "Layari Senarai mengikut Susunan Pengguna"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Layari Senarai Isih Tahap"
+msgstr "Layari Senarai mengikut Susunan Tahap"
 
 msgid "Browse Listing Created Sort"
-msgstr "Layari Senarai Isih Dicipta"
+msgstr "Layari Senarai mengikut Susunan Dicipta"
 
 msgid "Browse Listing Name Sort"
-msgstr "Layari Senarai Isih Nama"
+msgstr "Layari Senarai mengikut Susunan Nama"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Layari Senarai Isih Popular"
+msgstr "Layari Senarai mengikut Susunan Popular"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Layari Senarai Isih Dikemas kini"
+msgstr "Layari Senarai mengikut Susunan Dikemaskini"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Layari Senarai Isih Penampilan"
+msgstr "Layari Senarai mengikut Susunan Penampilan"
 
 msgid "Total Amount Contributed"
 msgstr "Jumlah Amaun Disumbangkan"
