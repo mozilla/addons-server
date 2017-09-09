@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 12:32+0000\n"
+"PO-Revision-Date: 2017-09-07 07:59+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2956,9 +2956,8 @@ msgstr ""
 "Prima di procedere, leggi e accetta il Contratto di distribuzione per i componenti aggiuntivi di Firefox e il regolamento e le linee guida per la revisione. Potrai trovare anche un link alla nostra "
 "Informativa sulla privacy, in cui sono illustrati i criteri con cui utilizziamo le informazioni che ci vengono fornite."
 
-#, fuzzy
 msgid "Developer Agreement"
-msgstr "Commenti dello sviluppatore"
+msgstr ""
 
 msgid "Review Policy"
 msgstr "Norme per le revisioni"
@@ -3262,9 +3261,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Etichetta riservata:"
 msgstr[1] "Etichette riservate:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Donazioni"
+msgstr "URL per le offerte"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -4674,9 +4672,8 @@ msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_headi
 msgid "Set the page you see every time you open a new tab."
 msgstr "Imposta la pagina che viene mostrata ogni qualvolta apri una nuova scheda."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rendi i tuoi testi impeccabili {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Decine di fantastiche emoji a portata di clic."
