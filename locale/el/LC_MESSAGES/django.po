@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-10 13:28+0000\n"
+"PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1108,9 +1108,9 @@ msgstr ""
 "Τα πρόσθετα που υποβάλλονται στα Πρόσθετα Mozilla πρέπει να έχουν ένα αρχείο manifest με τουλάχιστον ένα από τις παρακάτω υποστηριζόμενες εφαρμογές. Μόνο οι παρακάτω εκδόσεις επιτρέπονται για αυτές "
 "τις εφαρμογές."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Παρακαλώ να έχετε υπόψη ότι οι επεκτάσεις ιστού δεν θα δέχονται ένα \"*\" στο <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Παρακαλούμε να έχετε υπόψη ότι τα WebExtensions δεν αποδέχονται \"*\" στο %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1118,11 +1118,13 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Εκδόσεις"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως καθορίζονται <a href=\"%(url)s\">εδώ</a>."
+msgstr ""
+"Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται "
+"%(amo_manifests_mdn_link_open)sεδώ%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1693,9 +1695,8 @@ msgid "Additional Resources"
 msgstr "Πρόσθετοι πόροι"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Μάθετε περισσότερα για την <a href=\"http://support.mozilla.com/kb/Search+bar\">εργαλειοθήκη αναζήτησης</a> του {0}"
+msgstr "Μάθετε περισσότερα για τη <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">γραμμή αναζήτησης</a> στο {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Περιηγηθείτε σε ακόμη περισσότερους παρόχους αναζήτησης στο <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2127,9 +2128,8 @@ msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας για το 
 msgid "Source code uploaded"
 msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Οι σημειώσεις έγκρισης άλλαξαν για το {addon} {version}."
+msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε για το {addon} {version}."
 
 msgid "Auto-Approval confirmed"
 msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
@@ -2312,9 +2312,8 @@ msgstr "Πρωταρχική επιθεώρηση θέματος"
 msgid "Updated Complete Theme Review"
 msgstr "Ενημερωμένη επιθεώρηση θέματος"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Ειδική επιθεώρηση προσθέτου"
+msgstr "Συντονισμένος έλεγχος προσθέτου"
 
 #, fuzzy
 msgid "Add-on Review Moderation Reverted"
@@ -2739,7 +2738,7 @@ msgid "Override failed validation"
 msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Υποβολή του προσθέτου μου για χειροκίνητη αξιολόγηση."
 
 msgid "Do not list my add-on on this site"
 msgstr "Να μην αναγράφεται το πρόσθετό μου σε αυτή την ιστοσελίδα"
@@ -3365,7 +3364,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "Το UUID του πρόσθετου σας ορίζεται στο install manifest του πρόσθετου και είναι το μοναδιαίο αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του πρόσθετου."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Λευκός πίνακας"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
@@ -3941,9 +3940,8 @@ msgstr "Διαβάστε περισσότερα στο ιστολόγιό μας
 msgid "Resources"
 msgstr "Πόροι"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Βαθμολογία"
+msgstr "Μεταφορά (porting)"
 
 msgid "Community"
 msgstr "Κοινότητα"
@@ -6557,7 +6555,7 @@ msgid ""
 msgstr ""
 
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Μπορεί η Mozilla να \"φιλοξενήσει\" το πρόσθετό μου;"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
@@ -6793,17 +6791,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Θα δουλεύουν τα πρόσθετα με τον περιηγητή μου ή άλλη εφαρμογή;"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Τα πρόσθετα που παρουσιάζονται εδώ, δουλεύουν μόνο με εφαρμογές βασισμένες σε κώδικα Mozilla, όπως ο <a href=\"%(getfirefox_url)s\">Firefox</a>,  ο <a href=\"%(getmobile_url)s\">Firefox για "
-"κινητά</a>, ο<a href=\"%(getseamonkey_url)s\">SeaMonkey</a> και ο <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Δεν δουλεύουν όμως απαραίτητα όλα τα πρόσθετα με όλες αυτές τις εφαρμογές, ή και"
-" με όλες τις εκδόσεις κάποιας εφαρμογής. Κάθε πρόσθετο καθορίζει τις εφαρμογές και τις εκδόσεις των εφαρμογών που συνεργάζεται, όπως πχ τον Firefox 2.0 - 3.6.*. Για τα πρόσθετα του Firefox, τα "
-"κουμπιά εγκατάστασης αναφέρουν αν το πρόσθετο είναι συμβατό ή όχι με την έκδοση που έχετε."
+"Τα πρόσθετα αυτής της συλλογής λειτουργούν μόνο με εφαρμογές βάσει του κώδικα της Mozilla, όπως το <a href=\"%(getfirefox_url)s\">Firefox</a>, το <a href=\"%(getmobile_url)s\">Firefox για "
+"Android</a>, το <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> και το <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ωστόσο, δεν λειτουργούν όλα τα πρόσθετα με καθεμία από αυτές τις εφαρμογές ή"
+" κάθε έκδοση αυτών των εφαρμογών. Κάθε πρόσθετο καθορίζει με ποιες εφαρμογές και με ποιες εκδόσεις λειτουργεί, όπως το Firefox 50.0 - 52.*. Για τα πρόσθετα του Firefox, τα κουμπιά εγκατάστασης "
+"υποδεικνύουν αν το πρόσθετο είναι συμβατό ή όχι."
 
 msgid "What are the different types of add-ons?"
 msgstr "Τι είναι οι διάφοροι τύποι προσθέτων;"
