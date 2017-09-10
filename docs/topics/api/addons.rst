@@ -119,9 +119,10 @@ Detail
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     .. note::
         This endpoint will have the add-ons it can access reduced to public
@@ -277,9 +278,10 @@ This endpoint allows you to list all versions belonging to a specific add-on.
 .. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :query string filter: The :ref:`filter <version-filtering-param>` to apply.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
@@ -383,9 +385,10 @@ a specific add-on by id, slug or guid.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :>json int e10s: The add-on e10s compatibility. Can be one of the following:
 
@@ -409,9 +412,10 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :>json string|object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
