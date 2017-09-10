@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-10 09:55+0000\n"
+"PO-Revision-Date: 2017-09-10 11:06+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -481,13 +481,13 @@ msgstr "Tasertit n tbaḍnit"
 msgid "Report Abuse"
 msgstr "Azen yir aseqdec"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Ma tɣileḍ d akken azegrir-agi yeṛza <a href=\"%(url)s\">tisertityin nneɣ</a> neɣ yetthaz tudert tabadnit neɣ taɣellist, tanemmirt ma teččureḍ tiferkit-agi daw-a akken aɣ-d-azneḍ ayen i k-iceɣben. Ur"
-" seqdac ara tiferkit-agi i wayen nniḍen."
+"Ma tɣileḍ d akken azegrir-agi yeṛza %(amo_policy_link_open)s neγ tisefsiyen%(link_close)s neɣ yetthaz tudert tabadnit neɣ taɣellist, tanemmirt ma teččureḍ tiferkit-agi daw-a akken aɣ-d-azneḍ ayen i "
+"k-iceɣben. Ur seqdac ara tiferkit-agi i wayen nniḍen."
 
 msgid "Send Report"
 msgstr "Azen aneqqis"
@@ -1078,9 +1078,9 @@ msgstr "Ileqman inetmen n usnas"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Izegrar yettwaznen deg usmel Mozilla Add-ons yessefk ad gebren afaylu ameskan igebren ɣarṣum iseɣẓanen yettwabedren daw-a. Ala ileqman id-yettwabedren daw-a i yettwasirgen."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Ma ulac aɣilif ẓeṛ d akken WebExtensions ur qeblen ara  \"*\" di <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Ma ulac aɣilif ẓeṛ d akken WebExtensions ur qeblen ara \"*\" di %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1088,11 +1088,13 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Ileqman"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel <a href=\"%(url)s\">dagi</a>."
+msgstr ""
+"Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel "
+"%(amo_manifests_mdn_link_open)sdagi%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1661,9 +1663,8 @@ msgid "Additional Resources"
 msgstr "Tiɣbula nniḍen"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Issin ugar ɣef <a href=\"http://support.mozilla.com/kb/Search+bar\">ufeggag n unadi</a> di {0}"
+msgstr "Issin ugar ɣef <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">ufeggag n unadi</a> di {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Tzemred ad twaliḍ amseddayen nniḍen n undai di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -3195,9 +3196,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Ticraḍ yettwaḥerren:"
 msgstr[1] "Ticraḍ yettwaḥerren:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Ittekkiyen"
+msgstr "Ittekkiyen URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3575,16 +3575,14 @@ msgstr "Yella wayen nniḍen i yessefk ad ẓren imsekyaden i ucegger n uzegrir-
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "Sefsex acegger sakin sens lqem"
+msgstr "Sefsex sakin sens lqem"
 
 msgid "Cancel Review and Disable Version"
 msgstr "Sefsex acegger sakin sens lqem"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Azen lqem amaynut"
+msgstr "Azen lqem"
 
 msgid "Submit Version for Review"
 msgstr "Azen lqem i ucegger"
@@ -3613,7 +3611,6 @@ msgstr "Tuzna temmed"
 msgid "You’re done!"
 msgstr "D ayen ifuk!"
 
-#, fuzzy
 msgid "Version Submitted"
 msgstr "Lqem yettwazmel"
 
@@ -4645,9 +4642,8 @@ msgstr ""
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "Kkes anamal n usuter n telɣut"
+msgstr "Tesriḍ ugar n talγut?"
 
 msgid "Choose a canned response..."
 msgstr "Fren tiririt yettwakelsen..."
@@ -4699,7 +4695,6 @@ msgstr ""
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#, fuzzy
 msgid "Has too many daily users."
 msgstr "Isεa aṭas n iseqdacen n yal ass."
 
@@ -4905,13 +4900,11 @@ msgstr "Azemz aneggaru n waqbal"
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Assaγ n uẓekker"
+msgstr "Assaγ n uẓekker ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Iceggiren n useqdac"
+msgstr "Iceggireni ddiri n useqdac ({num})"
 
 msgid "More about this add-on"
 msgstr "Ugar γef uzegrir-agi"
@@ -4981,9 +4974,8 @@ msgstr "Ulac tidyanin yettwafen di twala-agi."
 msgid "Log details"
 msgstr "Talqayt n uɣmis"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Cegger amazray"
+msgstr "Cegger ameskar"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6586,9 +6578,8 @@ msgid ""
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Amek ara yazneɣ azegrir inu i ucegger?"
+msgstr "Amek ara yazneɣ azegrir inu?"
 
 #, python-format
 msgid ""
@@ -6622,9 +6613,8 @@ msgstr "Zemreɣ ad sedduɣ tasertit tabadnit i uzegrir inu?"
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Amek ara yazneɣ azegrir inu i ucegger?"
+msgstr "Ilaq-iyi ad azneɣ azegrir inu i ucegger?"
 
 #, python-format
 msgid ""
@@ -7155,9 +7145,8 @@ msgstr ""
 msgid "What will happen next"
 msgstr ""
 
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Talemmast</strong> (%(total)s)"
+msgstr "<strong>Ma tqebleḍd</strong> ad tettekiḍ:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
