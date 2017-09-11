@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-10 16:00+0000\n"
-"Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
+"PO-Revision-Date: 2017-09-11 13:50+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -2911,7 +2911,6 @@ msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n iz
 msgid "Developer Agreement"
 msgstr "Iwenniten n uneflay"
 
-#, fuzzy
 msgid "Review Policy"
 msgstr "Tasertit n ucegger"
 
@@ -3160,9 +3159,8 @@ msgstr "Azegrir-agi d armitan."
 msgid "This add-on is ready for general use."
 msgstr "Azegrir-agi ihegga i useqdec amatu."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Yesra asenker tikelt nniden"
+msgstr "Yesra asellek?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3923,9 +3921,8 @@ msgstr "Ablug"
 msgid "Contact Us"
 msgstr "Nermes-aγ-d"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Tisertiyin n uzegrir"
+msgstr "Tisertiyin"
 
 msgid "FAQ"
 msgstr "Isteqsiyen FAQ"
@@ -4704,13 +4701,11 @@ msgstr ""
 msgid "Has a pending info request."
 msgstr ""
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Yettwacreḍ i ucegger"
+msgstr "Ittwawcem i umcegger anedbal."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "azegrir-inu yettucegger sɣuṛ yiwen n imcegger."
+msgstr "Iwḥel sγur imcegger."
 
 msgid "Duplicate Submission"
 msgstr "Tuzna snat n tikal"
@@ -4775,22 +4770,19 @@ msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tagi lqem-agi akk ad t-tekkes seg wedras. Iwenniten ad ttwaznen i uneflay."
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Yettṛaǧu asentem"
+msgstr "Sentem aqbal"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Rmed tikelt nniḍen lqem-agi"
+msgstr "Aggwi aṭas n ilqman"
 
 #, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
 
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
 
@@ -4849,9 +4841,8 @@ msgstr ""
 msgid "commented"
 msgstr "yettuwennet"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "yettwaqbel"
+msgstr "sentem d akken yettwaqbel"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4886,14 +4877,12 @@ msgstr "Assaγ n uẓekker"
 msgid "View Privacy Policy"
 msgstr "Wali tasertit n tbaḍnit"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Yesra asenker tikelt nniden"
+msgstr "Yesra asellek"
 
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
 msgstr "Azemz aneggaru n waqbal"
 
@@ -4930,7 +4919,6 @@ msgstr "Ileqman"
 msgid "Moderated Reviews"
 msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Qbel s wudem awurman izegrar"
 
@@ -5157,9 +5145,8 @@ msgstr "Sider ifuyla"
 msgid "The developer has provided source code."
 msgstr "Aneflay yefka-d tangalt taɣbalut."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Izegrar Android"
+msgstr "Ur ittwaqbel ara s wudem awurman acku"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
