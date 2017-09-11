@@ -75,8 +75,8 @@ class TestAddonIndexer(TestCase):
         # Each translated field that we want to return to the API.
         raw_translated_fields = [
             '%s_translations' % field for field in
-            ['name', 'description', 'homepage', 'summary', 'support_email',
-             'support_url']]
+            ['name', 'description', 'developer_comments', 'homepage',
+             'summary', 'support_email', 'support_url']]
 
         # Return a list with the base fields and the dynamic ones added.
         fields = (cls.simple_fields + complex_fields + analyzer_fields +

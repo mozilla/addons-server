@@ -149,6 +149,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).

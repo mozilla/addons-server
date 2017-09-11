@@ -111,6 +111,7 @@ class AddonSerializerOutputTestMixin(object):
             bayesian_rating=4.22,
             category=cat1,
             description=u'My Addôn description',
+            developer_comments=u'Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
                 'is_restart_required': False,
@@ -205,6 +206,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
+        assert result['developer_comments'] == {
+            'en-US': self.addon.developer_comments}
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
