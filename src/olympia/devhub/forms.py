@@ -873,5 +873,5 @@ class DistributionChoiceForm(happyforms.Form):
 
 
 class AgreementForm(happyforms.Form):
-    developer_agreement = forms.BooleanField()
+    distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
