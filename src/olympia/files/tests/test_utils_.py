@@ -155,6 +155,7 @@ class TestManifestJSONExtractor(TestCase):
                                          version=version)
 
     def create_webext_default_versions(self):
+        self.create_appversion('firefox', '36.0')  # Incompatible with webexts.
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
@@ -206,19 +207,36 @@ class TestManifestJSONExtractor(TestCase):
         assert (
             self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
 
-    def test_invalid_app_versions_are_ignored(self):
-        """Invalid versions are ignored."""
+    def test_invalid_strict_min_version(self):
         data = {
             'applications': {
                 'gecko': {
-                    # Not created, so are seen as invalid.
-                    'strict_min_version': '>=30.0',
-                    'strict_max_version': '=30.*',
-                    'id': '@random'
+                    'strict_min_version': 'A',
+                    'id': '@invalid_strict_min_version'
                 }
             }
         }
-        assert not self.parse(data)['apps']
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert (
+            exc.value.message ==
+            'Lowest supported "strict_min_version" is 42.0.')
+
+    def test_strict_min_version_needs_to_be_higher_then_42_if_specified(self):
+        """strict_min_version needs to be higher than 42.0 if specified."""
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '36.0',
+                    'id': '@too_old_strict_min_version'
+                }
+            }
+        }
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert (
+            exc.value.message ==
+            'Lowest supported "strict_min_version" is 42.0.')
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
