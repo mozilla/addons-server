@@ -24,6 +24,7 @@ to if nessecary.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
+    :>json string reporter.username: The username of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
     :>json object addon: The add-on reported for abuse.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -52,8 +53,10 @@ so reports can be responded to if nessecary.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
+    :>json string reporter.username: The username of the user who submitted the report.
     :>json object user: The user reported for abuse.
     :>json int user.id: The id of the user reported.
     :>json string user.name: The name of the user reported.
     :>json string user.url: The link to the profile page for of the user reported.
+    :>json string user.username: The username of the user reported.
     :>json string message: The body/content of the abuse report.

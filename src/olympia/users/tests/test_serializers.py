@@ -46,15 +46,19 @@ class TestBaseUserSerializer(TestCase):
         result = self.serialize()
         assert result['url'] == absolutify(self.user.get_url_path())
 
+    def test_username(self):
+        serialized = self.serialize()
+        assert serialized['username'] == self.user.username
+
 
 class TestAddonDeveloperSerializer(TestBaseUserSerializer):
     serializer_class = AddonDeveloperSerializer
 
     def test_picture(self):
-        serial = self.serialize()
-        assert ('anon_user.png' in serial['picture_url'])
+        serialized = self.serialize()
+        assert ('anon_user.png' in serialized['picture_url'])
 
         self.user.update(picture_type='image/jpeg')
-        serial = self.serialize()
-        assert serial['picture_url'] == absolutify(self.user.picture_url)
-        assert '%s.png' % self.user.id in serial['picture_url']
+        serialized = self.serialize()
+        assert serialized['picture_url'] == absolutify(self.user.picture_url)
+        assert '%s.png' % self.user.id in serialized['picture_url']

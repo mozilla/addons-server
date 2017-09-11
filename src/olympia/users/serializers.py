@@ -11,7 +11,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('id', 'name', 'url')
+        fields = ('id', 'name', 'url', 'username')
 
     def get_url(self, obj):
         def is_adminish(user):
@@ -29,7 +29,7 @@ class AddonDeveloperSerializer(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
 
     class Meta(BaseUserSerializer.Meta):
-        fields = ('id', 'name', 'url', 'picture_url')
+        fields = ('id', 'name', 'url', 'username', 'picture_url')
         read_only_fields = fields
 
     def get_picture_url(self, obj):

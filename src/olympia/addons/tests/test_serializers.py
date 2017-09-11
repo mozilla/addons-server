@@ -35,8 +35,10 @@ class AddonSerializerOutputTestMixin(object):
         assert data == {
             'id': author.pk,
             'name': author.name,
+            'picture_url': absolutify(author.picture_url),
             'url': absolutify(author.get_url_path()),
-            'picture_url': absolutify(author.picture_url)}
+            'username': author.username,
+        }
 
     def _test_version_license_and_release_notes(self, version, data):
         assert data['release_notes'] == {
@@ -585,7 +587,8 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         assert data == {
             'id': author.pk,
             'name': author.name,
-            'url': absolutify(author.get_url_path())
+            'url': absolutify(author.get_url_path()),
+            'username': author.username,
         }
 
     def _test_version_license_and_release_notes(self, version, data):

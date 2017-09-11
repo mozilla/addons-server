@@ -48,7 +48,9 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['user'] == {
             'id': self.user.pk,
             'name': self.user.name,
-            'url': None}
+            'url': None,
+            'username': self.user.username,
+        }
 
     def test_url_for_yourself(self):
         # should include account profile url for your own requests

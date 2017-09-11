@@ -48,6 +48,7 @@ This endpoint allows you to fetch a single review note for a specific version of
     :>json int user.id: The id of the reviewer or author who left the review note.
     :>json string user.name: The name of the reviewer or author.
     :>json string user.url: The link to the profile page for of the reviewer or author.
+    :>json string user.username: The username of the reviewer or author.
     :>json string comments: The text content of the review note.
     :>json string date: The date the review note was created.
 

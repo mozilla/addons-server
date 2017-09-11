@@ -50,6 +50,7 @@ class TestBaseReviewSerializer(TestCase):
             'id': self.user.pk,
             'name': unicode(self.user.name),
             'url': None,
+            'username': self.user.username,
         }
         assert result['version'] == {
             'id': self.review.version.id,
@@ -140,6 +141,7 @@ class TestBaseReviewSerializer(TestCase):
             'name': unicode(reply_user.name),
             # should be the profile for a developer
             'url': absolutify(reply_user.get_url_path()),
+            'username': reply_user.username,
         }
 
     def test_reply_profile_url_for_yourself(self):
@@ -198,6 +200,7 @@ class TestBaseReviewSerializer(TestCase):
             'id': reply_user.pk,
             'name': unicode(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
+            'username': reply_user.username,
         }
 
     def test_readonly_fields(self):
