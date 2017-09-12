@@ -195,6 +195,7 @@ class AddonSerializer(serializers.ModelSerializer):
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
+    developer_comments = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
@@ -226,6 +227,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'current_version',
             'default_locale',
             'description',
+            'developer_comments',
             'edit_url',
             'guid',
             'has_eula',
@@ -374,8 +376,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     previews = ESPreviewSerializer(many=True, source='all_previews')
 
     datetime_fields = ('created', 'last_updated', 'modified')
-    translated_fields = ('name', 'description', 'homepage', 'summary',
-                         'support_email', 'support_url')
+    translated_fields = ('name', 'description', 'developer_comments',
+                         'homepage', 'summary', 'support_email', 'support_url')
 
     def fake_file_object(self, obj, data):
         file_ = File(
