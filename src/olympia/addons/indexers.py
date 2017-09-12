@@ -106,6 +106,13 @@ class AddonIndexer(BaseSearchIndexer):
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
+                    'featured_for': {
+                        'type': 'nested',
+                        'properties': {
+                            'application': {'type': 'byte'},
+                            'locales': {'type': 'keyword'},
+                        },
+                    },
                     'guid': {'type': 'keyword', 'index': False},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
@@ -312,6 +319,9 @@ class AddonIndexer(BaseSearchIndexer):
         ]
 
         data['is_featured'] = obj.is_featured(None, None)
+        data['featured_for'] = [
+            {'application': [app], 'locales': list(locales)}
+            for app, locales in obj.get_featured_by_app().items()]
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)

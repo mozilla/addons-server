@@ -50,7 +50,8 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
-            'current_version', 'description', 'has_eula', 'has_privacy_policy',
+            'current_version', 'description', 'featured_for',
+            'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
             'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
@@ -200,6 +201,34 @@ class TestAddonIndexer(TestCase):
         assert self.addon.is_featured()
         extracted = self._extract()
         assert extracted['is_featured'] is True
+
+    def test_extract_featured_for(self):
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id)
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None]}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id,
+                                          locale='fr')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.ANDROID.id,
+                                          locale='de-DE')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
+            {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
 
     def test_extract_eula_privacy_policy(self):
         # Remove eula.
