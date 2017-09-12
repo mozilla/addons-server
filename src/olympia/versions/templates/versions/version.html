@@ -57,9 +57,9 @@
   </div>
   <div class="action">
     {% if skip_contrib %}
-      {{ install_button(addon, version=version, impala=impala, show_contrib=False) }}
+      {{ install_button(addon, version=version, impala=impala, show_contrib=False, show_download_anyway=True) }}
     {% else %}
-      {{ install_button(addon, version=version, impala=impala) }}
+      {{ install_button(addon, version=version, impala=impala, show_download_anyway=True) }}
     {% endif %}
   </div>
 </div>

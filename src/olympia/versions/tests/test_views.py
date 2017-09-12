@@ -115,6 +115,20 @@ class TestViews(TestCase):
         assert (doc('.button')[0].attrib['href'] ==
                 file_.get_url_path(src='version-history'))
 
+    def test_version_list_button_shows_download_anyway(self):
+        first_version = self.addon.current_version
+        first_version.update(created=self.days_ago(1))
+        first_file = first_version.files.all()[0]
+        second_version = version_factory(addon=self.addon, version='2.0')
+        second_file = second_version.files.all()[0]
+        doc = self.get_content()
+        links = doc('.download-anyway a')
+        assert links
+        assert links[0].attrib['href'] == second_file.get_url_path(
+            'version-history', attachment=True)
+        assert links[1].attrib['href'] == first_file.get_url_path(
+            'version-history', attachment=True)
+
     def test_version_list_doesnt_show_unreviewed_versions_public_addon(self):
         version = self.addon.current_version.version
         version_factory(
