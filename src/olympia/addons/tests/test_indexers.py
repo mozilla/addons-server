@@ -23,7 +23,8 @@ class TestAddonIndexer(TestCase):
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
     simple_fields = [
-        'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
+        'average_daily_users', 'bayesian_rating', 'contributions', 'created',
+        'default_locale',
         'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_experimental',
         'last_updated', 'modified', 'public_stats', 'requires_payment', 'slug',
         'status', 'type', 'view_source', 'weekly_downloads',

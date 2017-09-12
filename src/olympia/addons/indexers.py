@@ -98,11 +98,12 @@ class AddonIndexer(BaseSearchIndexer):
                     'app': {'type': 'byte'},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'double'},
-                    'current_beta_version': version_mapping,
-                    'category': {'type': 'integer'},
-                    'created': {'type': 'date'},
-                    'current_version': version_mapping,
                     'boost': {'type': 'float', 'null_value': 1.0},
+                    'category': {'type': 'integer'},
+                    'contributions': {'type': 'text'},
+                    'created': {'type': 'date'},
+                    'current_beta_version': version_mapping,
+                    'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
                     'guid': {'type': 'keyword', 'index': False},
@@ -250,7 +251,8 @@ class AddonIndexer(BaseSearchIndexer):
         """Extract indexable attributes from an add-on."""
         from olympia.addons.models import Preview
 
-        attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
+        attrs = ('id', 'average_daily_users', 'bayesian_rating',
+                 'contributions', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
                  'is_disabled', 'is_experimental', 'last_updated',
                  'modified', 'public_stats', 'requires_payment', 'slug',

@@ -192,6 +192,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
+    contributions_url = serializers.URLField(source='contributions')
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
@@ -223,6 +224,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'authors',
             'average_daily_users',
             'categories',
+            'contributions_url',
             'current_beta_version',
             'current_version',
             'default_locale',
@@ -426,6 +428,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             obj, data, (
                 'average_daily_users',
                 'bayesian_rating',
+                'contributions',
                 'created',
                 'default_locale',
                 'guid',
