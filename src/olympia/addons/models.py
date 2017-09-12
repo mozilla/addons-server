@@ -1225,14 +1225,12 @@ class Addon(OnChangeMixin, ModelBase):
         return self.id in get_featured_ids(app, lang)
 
     def get_featured_by_app(self):
-        coll_q = (self.collections.filter(featuredcollection__isnull=False)
-                  .distinct().values_list('featuredcollection__application',
-                                          'featuredcollection__locale'))
-        out = {}
-        for app, locale in coll_q:
-            app_set = out.get(app, set())
-            app_set.add(locale)
-            out[app] = app_set
+        qset = (self.collections.filter(featuredcollection__isnull=False)
+                .distinct().values_list('featuredcollection__application',
+                                        'featuredcollection__locale'))
+        out = collections.defaultdict(set)
+        for app, locale in qset:
+            out[app].add(locale)
         return out
 
     def has_full_profile(self):
