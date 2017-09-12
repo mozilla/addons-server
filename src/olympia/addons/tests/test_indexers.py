@@ -209,7 +209,7 @@ class TestAddonIndexer(TestCase):
         collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None]}]
+            {'application': [amo.FIREFOX.id], 'locales': ['NONE']}]
 
         collection = collection_factory()
         FeaturedCollection.objects.create(collection=collection,
@@ -218,7 +218,7 @@ class TestAddonIndexer(TestCase):
         collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
+            {'application': [amo.FIREFOX.id], 'locales': ['NONE', 'fr']}]
 
         collection = collection_factory()
         FeaturedCollection.objects.create(collection=collection,
@@ -227,7 +227,7 @@ class TestAddonIndexer(TestCase):
         collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['featured_for'] == [
-            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
+            {'application': [amo.FIREFOX.id], 'locales': ['NONE', 'fr']},
             {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
 
     def test_extract_eula_privacy_policy(self):

@@ -211,7 +211,26 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     query_param = 'featured'
     reverse_dict = {'': True, 'true': True}
     valid_values = [True]
-    es_field = 'is_featured'
+    es_field = 'featured_for'
+
+    def get_es_filter(self):
+        self.get_value()  # Call to validate the value - we only want True.
+        app_filter = AddonAppFilterParam(self.request)
+        app = (app_filter.get_value()
+               if self.request.GET.get(app_filter.query_param) else None)
+        locale = self.request.GET.get('locale')
+        if not app and not locale:
+            # If neither app nor locale is specified fall back on is_featured.
+            return [Q('term', is_featured=True)]
+        queries = []
+        if app:
+            queries.append(
+                Q('term', **{'featured_for.application': app}))
+        if locale:
+            queries.append(
+                Q('terms', **{'featured_for.locales': [locale, 'NONE']}))
+        return [Q('nested', path='featured_for',
+                  query=query.Bool(must=queries))]
 
 
 class SearchQueryFilter(BaseFilterBackend):
