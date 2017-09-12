@@ -425,7 +425,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         inner = must[1]['nested']['query']['bool']['must']
         assert len(must) == 2
         assert {'term': {'featured_for.application': amo.FIREFOX.id}} in inner
-        assert {'terms': {'featured_for.locales': ['fr', 'NONE']}} in inner
+        assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'featured': 'true', 'app': 'foobaa'})
@@ -437,7 +437,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'is_featured': True}} not in must
         inner = must[0]['nested']['query']['bool']['must']
         assert len(must) == 1
-        assert {'terms': {'featured_for.locales': ['fr', 'NONE']}} in inner
+        assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):

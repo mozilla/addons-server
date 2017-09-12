@@ -228,7 +228,7 @@ class AddonFeaturedQueryParam(AddonQueryParam):
                 Q('term', **{'featured_for.application': app}))
         if locale:
             queries.append(
-                Q('terms', **{'featured_for.locales': [locale, 'NONE']}))
+                Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
         return [Q('nested', path='featured_for',
                   query=query.Bool(must=queries))]
 
