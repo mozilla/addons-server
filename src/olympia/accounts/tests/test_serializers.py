@@ -74,6 +74,25 @@ class TestPublicUserProfileSerializer(TestCase):
         result = self.serialize()
         assert result['url'] == absolutify(self.user.get_url_path())
 
+    def test_anonymous_username_display_name(self):
+        self.user = user_factory(
+            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0')
+        data = self.serialize()
+        assert self.user.has_anonymous_username is True
+        assert data['has_anonymous_username'] is True
+        assert self.user.has_anonymous_display_name is True
+        assert data['has_anonymous_display_name'] is True
+
+        self.user.update(display_name=u'Bób dé bob')
+        data = self.serialize()
+        assert data['has_anonymous_username'] is True
+        assert data['has_anonymous_display_name'] is False
+
+        self.user.update(username='bob')
+        data = self.serialize()
+        assert data['has_anonymous_username'] is False
+        assert data['has_anonymous_display_name'] is False
+
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer):
     serializer = UserProfileSerializer

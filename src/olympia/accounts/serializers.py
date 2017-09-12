@@ -22,7 +22,8 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (
-            'average_addon_rating', 'created', 'biography', 'homepage',
+            'average_addon_rating', 'created', 'biography',
+            'has_anonymous_display_name', 'has_anonymous_username', 'homepage',
             'is_addon_developer', 'is_artist', 'location', 'occupation',
             'num_addons_listed', 'picture_type', 'picture_url',
         )

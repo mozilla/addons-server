@@ -37,6 +37,8 @@ A developer is defined as a user who is listed as a developer or owner of one or
     :>json string|null picture_type: the image type (only 'image/png' is supported) if a user defined photo has been provided, or none if no photo has been provided.
     :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
     :>json boolean is_artist: The user has developed and listed themes on this website.
+    :>json boolean has_anonymous_display_name: The user hasn't chosen a name or username.
+    :>json boolean has_anonymous_username: The user hasn't chosen a username.
 
 
 If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.

@@ -82,7 +82,7 @@ class UserEditForm(happyforms.ModelForm):
         self.request = kwargs.pop('request', None)
 
         instance = kwargs.get('instance')
-        if instance and instance.has_anonymous_username():
+        if instance and instance.has_anonymous_username:
             kwargs.setdefault('initial', {})
             kwargs['initial']['username'] = ''
 
@@ -130,7 +130,7 @@ class UserEditForm(happyforms.ModelForm):
         name = self.cleaned_data['username']
 
         if not name:
-            if self.instance.has_anonymous_username():
+            if self.instance.has_anonymous_username:
                 name = self.instance.username
             else:
                 name = self.instance.anonymize_username()
