@@ -31,13 +31,14 @@ Discovery Recommendations
 .. _disco-recommendations:
 
 If a telemetry client id is passed as a parameter to the discovery pane api
-endpoint then static curated content is replaced with recommendations from the
+endpoint then static curated content is amended with recommendations from the
 `recommendation service <https://github.com/mozilla/taar>`_.  The same number
 of results will be returned as a standard discovery response and only extensions
 (not themes) are recommeded.  Only valid, publicly available addons are shown.
 
-E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes;
-up to 4 extensions will be replaced with recommendations and the 3 themes not
-replaced; so 7 items will be still returned.
+E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
+Up to 4 extensions will be replaced with recommendations; the 3 themes will not
+be replaced. The API will still return a total of 7 items.
+
 
  .. http:get:: /api/v3/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef
