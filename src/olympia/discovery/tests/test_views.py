@@ -82,6 +82,7 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
         for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
             if 'theme_data' in result['addon']:
                 self._check_disco_theme(result, discopane_items[i])
             else:
