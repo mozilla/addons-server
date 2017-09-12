@@ -11,8 +11,9 @@ class AllowCollectionAuthor(BasePermission):
 
 
 class AllowCollectionContributor(BasePermission):
-    """Allow a contributor of a collection to do stuff.  Be careful how this
-    is used - """
+    """Allow a contributor of a collection to do stuff.  Be careful where this
+    used as it can allow creating / listing objects if used alone in a ViewSet
+    that has those actions."""
 
     def has_permission(self, request, view):
         return request.user.is_authenticated()
