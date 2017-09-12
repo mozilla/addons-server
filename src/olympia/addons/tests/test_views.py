@@ -2529,10 +2529,8 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_featured(self, get_featured_ids_mock):
         addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        print "*** setting mock return value here"
         get_featured_ids_mock.return_value = [addon.pk]
         assert addon.is_featured()
-        self.refresh()
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})

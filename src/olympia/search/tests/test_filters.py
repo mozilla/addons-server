@@ -390,6 +390,19 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'ids': {'values': [u'1']}} in must_not
         assert {'terms': {'slug': [u'fooBar']}} in must_not
 
+    def test_search_by_featured(self):
+        qs = self._filter(data={'featured': 'true'})
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}} in must
+
+        qs = self._filter(data={'featured': ''})
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}}
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'featured': 'false'})
+        assert context.exception.detail == ['Invalid "featured" parameter.']
+
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
     filter_classes = [InternalSearchParameterFilter]
