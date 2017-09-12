@@ -2527,7 +2527,7 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == theme.pk
 
     @patch('olympia.addons.models.get_featured_ids')
-    def test_filter_by_featured_no_app_no_locale(self, get_featured_ids_mock):
+    def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
         addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         addon_factory(slug='other-addon', name=u'Other Addôn')
         get_featured_ids_mock.return_value = [addon.pk]
@@ -2545,7 +2545,7 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-    def test_filter_by_featured_app_and_locales(self):
+    def test_filter_by_featured_app_and_langs(self):
         fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         collection = collection_factory()
         FeaturedCollection.objects.create(
@@ -2580,9 +2580,9 @@ class TestAddonSearchView(ESTestCase):
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
 
-        # If we specify locale 'fr' too it should be the same collections.
+        # If we specify lang 'fr' too it should be the same collections.
         data = self.perform_search(
-            self.url, {'featured': 'true', 'app': 'firefox', 'locale': 'fr'})
+            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
         assert data['count'] == 2 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
@@ -2590,19 +2590,19 @@ class TestAddonSearchView(ESTestCase):
         # But 'en-US' will exclude the 'fr' collection.
         data = self.perform_search(
             self.url, {'featured': 'true', 'app': 'firefox',
-                       'locale': 'en-US'})
+                       'lang': 'en-US'})
         assert data['count'] == 1 == len(data['results'])
         assert data['results'][0]['id'] == fx_addon.pk
 
-        # If we only search for locale, application is ignored.
+        # If we only search for lang, application is ignored.
         data = self.perform_search(
-            self.url, {'featured': 'true', 'locale': 'en-US'})
+            self.url, {'featured': 'true', 'lang': 'en-US'})
         assert data['count'] == 2 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fn_addon.pk})
 
         data = self.perform_search(
-            self.url, {'featured': 'true', 'locale': 'fr'})
+            self.url, {'featured': 'true', 'lang': 'fr'})
         assert data['count'] == 4 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id'],
                data['results'][2]['id'], data['results'][3]['id']}

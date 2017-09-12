@@ -418,7 +418,7 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_featured_yes_app_yes_locale(self):
         qs = self._filter(data={'featured': 'true', 'app': 'firefox',
-                                'locale': 'fr'})
+                                'lang': 'fr'})
         must = qs['query']['bool']['must']
         assert {'term': {'is_featured': True}} not in must
         assert must[0] == {'term': {'app': amo.FIREFOX.id}}
@@ -432,7 +432,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_featured_no_app_yes_locale(self):
-        qs = self._filter(data={'featured': 'true', 'locale': 'fr'})
+        qs = self._filter(data={'featured': 'true', 'lang': 'fr'})
         must = qs['query']['bool']['must']
         assert {'term': {'is_featured': True}} not in must
         inner = must[0]['nested']['query']['bool']['must']

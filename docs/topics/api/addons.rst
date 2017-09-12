@@ -47,7 +47,7 @@ This endpoint allows you to search through public add-ons.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
     :query boolean featured: Filter to only featured add-ons.
         If ``app`` is provided as a parameter then only featured collections targetted to that application are taken into account.
-        If ``locale`` is provided then only featured collections for that locale, or no locale, are taken into account. Both ``app`` and ``locale`` can be provided to filter to addons that are featured in that application and for that locale, or no locale.
+        If ``lang`` is provided then only featured collections for that language, or no language, are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in that application and for that language, or no language.
         The value `true` is optional - ``featured`` and ``featured=true`` are identical.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.

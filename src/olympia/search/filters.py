@@ -218,7 +218,7 @@ class AddonFeaturedQueryParam(AddonQueryParam):
         app_filter = AddonAppFilterParam(self.request)
         app = (app_filter.get_value()
                if self.request.GET.get(app_filter.query_param) else None)
-        locale = self.request.GET.get('locale')
+        locale = self.request.GET.get('lang')
         if not app and not locale:
             # If neither app nor locale is specified fall back on is_featured.
             return [Q('term', is_featured=True)]
