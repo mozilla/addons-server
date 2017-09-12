@@ -338,6 +338,13 @@ class ManifestJSONExtractor(object):
         return self.gecko.get('id', None)
 
     @property
+    def type(self):
+        return (
+            amo.ADDON_LPAPP if self.get('langpack_id')
+            else amo.ADDON_EXTENSION
+        )
+
+    @property
     def strict_max_version(self):
         return get_simple_version(self.gecko.get('strict_max_version'))
 
@@ -416,7 +423,7 @@ class ManifestJSONExtractor(object):
     def parse(self, minimal=False):
         data = {
             'guid': self.guid,
-            'type': amo.ADDON_EXTENSION,
+            'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
         }
@@ -428,6 +435,9 @@ class ManifestJSONExtractor(object):
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
+                # Langpacks have strict compatibility enabled, rest of
+                # webextensions don't.
+                'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
                 'permissions': self.get('permissions', []),
                 'content_scripts': self.get('content_scripts', []),
