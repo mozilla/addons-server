@@ -145,10 +145,10 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
             104: addon_factory(id=104, guid='104@mozilla', users=[author]),
         }
         replacement_items = [
-            DiscoItem(addon_id=101),
-            DiscoItem(addon_id=102),
-            DiscoItem(addon_id=103),
-            DiscoItem(addon_id=104),
+            DiscoItem(addon_id=101, is_recommendation=True),
+            DiscoItem(addon_id=102, is_recommendation=True),
+            DiscoItem(addon_id=103, is_recommendation=True),
+            DiscoItem(addon_id=104, is_recommendation=True),
         ]
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
@@ -165,5 +165,8 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         for i, result in enumerate(response.data['results']):
             if 'theme_data' in result['addon']:
                 self._check_disco_theme(result, new_discopane_items[i])
+                # There aren't any theme recommendations.
+                assert result['is_recommendation'] is False
             else:
                 self._check_disco_addon(result, new_discopane_items[i])
+                assert result['is_recommendation'] is True

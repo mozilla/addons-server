@@ -21,6 +21,7 @@ def test_get_recommendations(call_recommendation_server):
     ]
     assert ([r.addon_id for r in get_recommendations('0')] ==
             [101, 102, 103, 104])
+    assert all([r.is_recommendation for r in get_recommendations('0')])
 
     # only valid, public add-ons should match guids
     a101.update(status=amo.STATUS_NULL)

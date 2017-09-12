@@ -11,6 +11,7 @@ class DiscoItem(object):
         self.heading = kwargs.get('heading')
         self.description = kwargs.get('description')
         self.type = kwargs.get('type', amo.ADDON_EXTENSION)
+        self.is_recommendation = kwargs.get('is_recommendation', False)
 
     def __repr__(self):
         return 'DiscoItem(%s, %s, %s, %s, %s)' % (

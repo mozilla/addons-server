@@ -5,13 +5,20 @@ from waffle import switch_is_active
 
 from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items
-from olympia.discovery.serializers import DiscoverySerializer
+from olympia.discovery.serializers import (
+    DiscoveryRecommendationSerializer, DiscoverySerializer)
 from olympia.discovery.utils import get_recommendations, replace_extensions
 
 
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
-    serializer_class = DiscoverySerializer
+
+    def get_serializer_class(self):
+        if ('telemetry-client-id' in self.kwargs or
+                'telemetry-client-id' in self.request.GET):
+            return DiscoveryRecommendationSerializer
+        else:
+            return DiscoverySerializer
 
     def get_discopane_items(self):
         if not getattr(self, 'discopane_items', None):

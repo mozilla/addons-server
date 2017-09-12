@@ -58,3 +58,7 @@ class DiscoverySerializer(serializers.Serializer):
             data['description'] = (
                 u'<blockquote>%s</blockquote>' % instance.addon.summary)
         return data
+
+
+class DiscoveryRecommendationSerializer(DiscoverySerializer):
+    is_recommendation = serializers.BooleanField()
