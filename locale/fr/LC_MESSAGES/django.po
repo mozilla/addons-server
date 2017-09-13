@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-08 10:59+0000\n"
+"PO-Revision-Date: 2017-09-13 01:31+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -496,13 +496,13 @@ msgstr "Politique de confidentialité"
 msgid "Report Abuse"
 msgstr "Signaler un abus"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Si vous suspectez que ce module viole <a href=\"%(url)s\">nos politiques</a> ou qu’il est sujet à des problèmes relatifs à la vie privée ou à la sécurité, merci de remplir le formulaire ci-dessous "
-"pour décrire vos préoccupations. Merci de ne pas utiliser ce formulaire pour autre chose."
+"Si vous suspectez que ce module viole %(amo_policy_link_open)snos politiques%(link_close)s ou qu’il est sujet à des problèmes relatifs à la vie privée ou à la sécurité, merci de remplir le "
+"formulaire ci-dessous pour décrire vos préoccupations. Merci de ne pas utiliser ce formulaire pour autre chose."
 
 msgid "Send Report"
 msgstr "Envoyer un rapport"
@@ -1112,9 +1112,9 @@ msgstr ""
 "Les modules soumis au site Mozilla Add-ons doivent être accompagnés d’un fichier manifeste qui contient au moins un des logiciels listés ci-dessous. Seules les versions listées ci-dessous sont "
 "autorisées."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Veuillez noter que les WebExtensions n’acceptent pas d’astérisque («&nbsp;*&nbsp;») dans <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Veuillez noter que les WebExtensions n’acceptent pas d’astérisque (« * ») dans %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1122,11 +1122,13 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versions"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié <a href=\"%(url)s\">ici</a>."
+msgstr ""
+"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié "
+"%(amo_manifests_mdn_link_open)sici%(amo_manifests_mdn_link_close)s."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1697,9 +1699,8 @@ msgid "Additional Resources"
 msgstr "Ressources supplémentaires"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "En savoir plus sur la <a href=\"http://support.mozilla.com/kb/Search+bar\">barre de recherche</a> dans {0}"
+msgstr "En savoir plus sur la <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">barre de recherche</a> dans {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Vous pouvez découvrir d’autres moteurs de recherche sur <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2313,11 +2314,9 @@ msgstr "Revue préliminaire de thème complet"
 msgid "Updated Complete Theme Review"
 msgstr "Mise à jour de la revue de thème complet"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
 msgstr "Commentaire du module modéré"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
 msgstr "Revue du module annulée lors de la modération"
 
@@ -2797,11 +2796,9 @@ msgstr ""
 "Gestion personnelle. <span class=\"helptext\">Votre envoi sera immédiatement signé pour une distribution personnelle. Vous devrez gérer les mises à jour via une updateURL ou des mises à jour "
 "d’application externe.</span>"
 
-#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "À partir de la version 53 de Firefox, les nouvelles extensions sur ce site ne pourront être que des WebExtensions."
+msgstr "À partir de la version 53 de Firefox, les nouvelles extensions sur ce site ne peuvent être que des WebExtensions."
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Les extensions considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
 
@@ -2947,13 +2944,12 @@ msgstr "Nouvelle clé d’API créée."
 msgid "API key revoked"
 msgstr "Clé d’API révoquée"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique comment"
-" nous gérons les informations vous concernant."
+"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour les"
+" modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
 
 #, fuzzy
 msgid "Developer Agreement"
@@ -4087,7 +4083,6 @@ msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 msgid "Update Your Legacy Extension"
 msgstr "Mettez à jour votre extension obsolète"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr "Les WebExtensions sont désormais le format standard de développement des extensions pour Firefox. Vous devrez mettre à jour vos extensions classiques pour qu’elles restent compatibles."
 
@@ -4136,13 +4131,13 @@ msgstr "<a href=\"%(register)s\">S’inscrire</a> ou <a href=\"%(login)s\">Se co
 msgid "Customize Firefox"
 msgstr "Personnalisez Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a "
-"href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> et <a href=\"%(css_link)s\">CSS</a>, vous avez toutes les cartes en main pour créer un super module."
+"Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez "
+"%(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s et %(css_link_open)sCSS%(link_close)s, vous avez toutes les cartes en main pour créer un super module."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Apprenez à créer un module"
@@ -4394,13 +4389,13 @@ msgstr "Les thèmes d’arrière plan vous permettent de facilement personnalise
 msgid "Give your Theme a name."
 msgstr "Donnez un nom à votre thème."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"J’accepte <a href=\"%(agreement_url)s\">l’accord de distribution des modules Firefox</a> et j’accepte que les informations qui me sont relatives soient traitées comme le décrit <a "
-"href=\"%(privacy_notice_url)s\">la politique de confidentialité relative aux sites web, aux communications et aux cookies</a>."
+"J’accepte %(agreement_link_open)sl’accord de distribution des modules Firefox%(link_close)s et j’accepte que les informations qui me sont relatives soient traitées comme le décrit "
+"%(privacy_notice_link_open)sla politique de confidentialité relative aux sites web, aux communications et aux cookies%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Envoyer le thème"
@@ -6563,9 +6558,10 @@ msgstr "Références pour les licences libres"
 msgid "Add-on Developer FAQ"
 msgstr "FAQ du développeur de module"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Comment créer un module complémentaire&nbsp;?</h3> <p> Mozilla fournit de la documentation sur <a href=\"%(url)s\">Mozilla Developer Network</a> qui explique comment créer un module. </p>"
+msgstr ""
+"<h3>Comment créer un module complémentaire ?</h3> <p> Mozilla fournit de la documentation sur %(addons_link_open)sMozilla Developer Network%(link_close)s qui explique comment créer un module. </p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Qu’est-ce qu’un fichier « .xpi » ?"
@@ -6637,14 +6633,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Est-ce que je peux héberger mon propre module ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
-"Oui. Beaucoup de développeurs choisissent d’héberger leur propre modles. Choisir d’héberger son module sur le <a href=\"%(amo_url)s\">site des modules Mozilla</a>, surtout, permet de bénéficier de "
-"l’exposition liée au gros volume de visiteurs sur le site. <a href=\"%(md_url)s\">mozdev.org</a> propose un hébergement de projet gratuit pour les applications Mozilla et les extensions, fournissant"
-" aux développeurs les outils pour gérer code source, versions, suivi de bugs et documentation."
+"Oui. Beaucoup de développeurs choisissent d’héberger leurs propres modules. Choisir d’héberger son module sur le <a href=\"%(amo_url)s\">site des modules de Mozilla</a> permet néanmoins de "
+"bénéficier de l’exposition liée au volume important de visiteurs sur le site."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Est-ce que Mozilla peut héberger mon module ?"
@@ -6683,26 +6678,26 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Est-ce que Mozilla a une politique en place sur ce qu’est une proposition acceptable ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
 "Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Oui. La <a href=\"%(p_url)s\">politique de module</a> de Mozilla décrit ce qu’est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, l’équipe"
-" des testeurs d’AMO utilise le <a href=\"%(g_url)s\">guide de revue des testeurs</a> pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
-"sécurité."
+"Oui. La %(policy_link_open)spolitique de module%(link_close)s de Mozilla décrit ce qu’est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, "
+"l’équipe des testeurs d’AMO utilise le %(guide_link_open)sguide de revue des testeurs%(link_close)s pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux "
+"fonctionnalités et à la sécurité."
 
 msgid "How do I submit my add-on?"
 msgstr "Comment puis-je soumettre mon module complémentaire ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "Le tableau de bord des outils du développeur vous permet de charger et envoyer vos modules sur AMO. Vous devez être un utilisateur inscrit sur AMO avant de proposer un module. Avant l’envoi de votre"
-" module, assuez-vous d’avoir lu le <a href=\"%(url)s\">guide de revue des testeurs</a> pour être sûr que votre module correspond à la ligne de conduite utilisée par les testeurs pour évaluer les "
-"modules."
+" module, assurez-vous d’avoir lu le %(review_policy_link_open)sguide de revue des testeurs%(link_close)s pour être sûr que votre module correspond à la ligne de conduite utilisée par les testeurs "
+"pour évaluer les modules."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Quel système d’exploitation dois-je choisir pour mon module ?"
@@ -6739,18 +6734,18 @@ msgstr ""
 msgid "Must my add-on be reviewed?"
 msgstr "Mon module complémentaire doit-il être revu ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Tous les modules envoyés, qu’ils soient nouveaux ou mis à jours, sont vérifiés pour s’assurer que les utilisateurs de Mozilla n’auront pas de surprise. Tous les envois de module sont vérifiés "
-"suivant les directives édictées dans le <a href=\"%(url)s\">guide de revue des testeurs</a>."
+"Tous les modules envoyés, qu’ils soient nouveaux ou mis à jours, sont vérifiés pour s’assurer que les utilisateurs de Mozilla puisse profiter d’une expérience stable et sécurisée. Tous les envois de"
+" modules sont vérifiés suivant les directives du <a href=\"%(url)s\">guide de revue des testeurs</a>."
 
 msgid "Who reviews my add-on?"
 msgstr "Qui fait la revue de mon module ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
@@ -6763,7 +6758,7 @@ msgstr ""
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quelles sont les lignes directrices utilisées pour vérifier mon module ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
@@ -6846,7 +6841,6 @@ msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Autre (fournit une fenêtre surgissante pour fournir plus d’informations)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 msgstr "Actuellement, AMO ne propose pas de mécanisme pour directement communiquer avec un testeur mais cette fonctionnalité est actuellement à l’étude et pourra venir dans une future mise à jour."
 
@@ -7056,7 +7050,7 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Et si je ne trouve pas un module que je cherche ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
@@ -7067,26 +7061,26 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Qu’est-ce que cela signifie lorsqu’un module est « expérimental » ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Les modules expérimentaux ont été marqués par leurs développeurs comme n’étant pas destinés au plus grand nombre. Ils ont été vérifiés par nos éditeurs pour s’assurer qu’ils ne présentent pas de "
 "problème de sécurité, mais ils peuvent toujours contenir des défauts ou ne pas fonctionner correctement. Faites attention lorsque vous installez des modules expérimentaux et désinstallez-les "
-"immédiatement si vous remarquez des problèmes. <a href=\"%(url)s\">En savoir plus sur notre processus de revue</a></dd>"
+"immédiatement si vous remarquez des problèmes. %(learnmore_link_open)sEn savoir plus sur notre processus de revue%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Qu’est-ce que cela signifie lorsqu’un module n’est « pas vérifié » ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Bien que tous les modules visibles dans notre galerie aient été vérifiés par un éditeur, vous pouvez recevoir un lien direct vers un module qui n’a pas été vérifié. Faites attention lorsque vous "
-"installez ces modules, étant donné qu’ils pourraient altérer votre configuration ou ne pas respecter votre vie privée. Nous vous recommandons de n’installer que des modules vérifiés. <a "
-"href=\"%(url)s\">En savoir plus sur notre processus de revue</a></dd>"
+"installez ces modules, étant donné qu’ils pourraient altérer votre configuration ou ne pas respecter votre vie privée. Nous vous recommandons de n’installer que des modules vérifiés. "
+"%(learnmore_link_open)sEn savoir plus sur notre processus de revue%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Combien coûtent les modules ?"
@@ -7114,13 +7108,12 @@ msgstr ""
 "Les versions bêtas sont des versions non testées qui correspondent aux dernières avancée du développeur d’un module. Bien que les auteurs aient des critères de qualité différents pour du code bêta, "
 "vous devriez considérer que ces modules sont moins stables que les versions publiées."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Merci de noter que lorsque vous installez un module de la section « version bêta », vous continuerez à recevoir les mises à jour disponibles pour ce module. À la manière de la première version que "
-"vous installez, toutes les mises à jour bêta ne sont pas testées par Mozilla et pourraient endommager votre configuration."
+"Merci de noter que lorsque vous installez un module de la section « version bêta », vous continuerez à recevoir les mises à jour disponibles pour ce module. À la manière de la première version que "
+"vous installez, toutes les mises à jour bêta ne sont pas testées par Mozilla et pourraient endommager votre ordinateur."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Comment notifier un commentaire inapproprié ou spam ?"
