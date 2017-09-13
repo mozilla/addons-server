@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 01:31+0000\n"
+"PO-Revision-Date: 2017-09-13 01:35+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1178,13 +1178,11 @@ msgstr "Les icônes doivent être en PNG ou JPG."
 msgid "This slug is already in use by another one of your collections."
 msgstr "Cette adresse est déjà utilisée par une autre collection."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Entrez un nom d’utilisateur valide, composé de lettres, nombres, soulignements ou traits d’union."
+msgstr "Entrez une référence valide, composée de lettres, nombres, soulignements ou traits d’union."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Ce nom ne peut être utilisé."
+msgstr "Cette référence ne peut être utilisée."
 
 msgid "Name"
 msgstr "Nom"
@@ -1707,7 +1705,7 @@ msgstr "Vous pouvez découvrir d’autres moteurs de recherche sur <a href=\"htt
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sCréez votre propre%(amo_mdn_link_close)s outil de recherche"
 
 msgid "Most Popular Extensions"
 msgstr "Extensions les plus populaires"
@@ -2951,9 +2949,8 @@ msgstr ""
 "Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour les"
 " modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
 
-#, fuzzy
 msgid "Developer Agreement"
-msgstr "Commentaires du développeur"
+msgstr "Accord du développeur"
 
 msgid "Review Policy"
 msgstr "Politique de révision"
@@ -3253,9 +3250,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Étiquette réservée :"
 msgstr[1] "Étiquettes réservées :"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Contributions"
+msgstr "URL des contributions"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -7172,13 +7168,13 @@ msgstr "Modules mobile"
 msgid "What are mobile add-ons?"
 msgstr "Que sont les modules mobiles ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Les modules mobiles fonctionnent avec <a href=\"%(mobile_url)s\">Firefox pour Mobile</a> et ajoutent ou modifient des fonctionnalités de la même manière que les modules pour Firefox. Vous pouvez "
-"trouver des modules compatibles Firefox pour Mobile dans notre <a href=\"%(gallery_url)s\">galerie</a>."
+"Les modules mobiles fonctionnent avec <a href=\"%(mobile_url)s\">Firefox pour Android</a> et ajoutent ou modifient des fonctionnalités de la même manière que les modules pour Firefox. Vous pouvez "
+"trouver des modules compatibles avec Firefox pour Android dans notre <a href=\"%(gallery_url)s\">galerie</a>."
 
 msgid "Developer Topics"
 msgstr "Sujets développeurs"
@@ -7299,14 +7295,12 @@ msgstr ""
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Je suis auteur de module, puis-je supprimer les commentaires et notes défavorables ?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"En général, non. Mais si la revue ne respectait pas les lignes directrices décrites ci-dessus, vous pouvez cliquer sur « Signaler cette revue » et demander qu’elle soit modérée. Si une revue "
-"comprenait une observation qui n’est plus valide en raison d’une nouvelle version de votre module, nous pouvons envisager la suppression de la revue. Soumettez votre demande détaillée à amo-"
-"editors@mozilla.org."
+"En général, non. Mais si la revue ne respectait pas les lignes directrices décrites ci-dessus, vous pouvez cliquer sur « Signaler cette revue » et demander qu’elle soit modérée. Si une revue "
+"comprenait une observation qui n’est plus valide en raison d’une nouvelle version de votre module, nous pouvons envisager la suppression de la revue."
 
 msgid "Start Now"
 msgstr "Participer"
