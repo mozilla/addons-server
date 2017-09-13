@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 08:30+0000\n"
+"PO-Revision-Date: 2017-09-13 08:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "Имате нужда от помощ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Разработчиците на добавки и теми не могат да изтриват своите сметки. Трябва да изтриете всички добавки и теми свързани с вашата сметка или да ги прехвърлите на друг потребител."
 
 msgid "Review"
 msgstr "Отзив"
@@ -135,7 +135,7 @@ msgstr[1] "Всички етикети трябва да са поне {0} зн�
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr ""
+msgstr "Домейнът трябва да е някой от [%s] или под домейн. "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категориите не могат да се променят, докато добавката ви е препоръчана за това приложение."
@@ -547,7 +547,7 @@ msgid "by %(user)s on %(date)s"
 msgstr "от %(user)s на %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr "Отговор от разработчика към рецензията"
+msgstr "Показване на отговора на разработчика"
 
 #, python-format
 msgid "See all reviews of this add-on"
@@ -631,10 +631,10 @@ msgid "Manage"
 msgstr "Управление"
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "Рецензия на добавката"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "Управление на администраторите"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -723,7 +723,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Обърнете внимание, че тази добавка използва остаряла технология, която дава достъп до пълната функционалност и данни на четеца без да пита за разрешение за това."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -993,7 +993,7 @@ msgid "Collections"
 msgstr "Колекции"
 
 msgid "Collections I've Made"
-msgstr "Колекции, които съм направил"
+msgstr "Колекции, които съм създал"
 
 msgid "Collections I'm Following"
 msgstr "Колекции, които следвам"
@@ -1019,13 +1019,13 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr "Страница <a href=\"%(current_pg_url)s\">%(current_pg)s</a> от <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr "Скочи на първата страница"
+msgstr "Към първата страница"
 
 msgid "Previous"
 msgstr "Предишна"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Към последната страница"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1243,7 +1243,7 @@ msgid "About this Collection"
 msgstr "Относно колекцията"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Добавки, синхронизирани с моя мобилен Firefox"
 
 msgid "Make this Collection Private"
 msgstr "Превръщане в лична"
@@ -1255,7 +1255,7 @@ msgid "Learn about collections"
 msgstr "Повече за колекциите"
 
 msgid "More Options:"
-msgstr "Още действия:"
+msgstr "Повече настройки:"
 
 msgid "Edit Collection"
 msgstr "Редактиране на колекцията"
@@ -1360,7 +1360,7 @@ msgstr "Редактиране на колекцията"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr "Изтрий {0}"
+msgstr "Изтриване на {0}"
 
 msgid "Are you sure?"
 msgstr "Сигурни ли сте?"
@@ -3450,10 +3450,10 @@ msgid "Resume"
 msgstr "Продължаване"
 
 msgid "Delete this add-on."
-msgstr "Изтрий тази добавка."
+msgstr "Изтриване на добавката."
 
 msgid "Delete"
-msgstr "Изтрий"
+msgstr "Изтриване"
 
 msgid "Edit information about this add-on."
 msgstr "Редактиране на добавката."
@@ -3477,7 +3477,7 @@ msgid "Manage Status & Versions"
 msgstr "Състояние и версии"
 
 msgid "View Add-on Listing"
-msgstr "Покажи листинга на добавката"
+msgstr "Преглед на добавката"
 
 msgid "View Recent Changes"
 msgstr "Последни промени"
