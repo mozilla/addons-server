@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 08:50+0000\n"
+"PO-Revision-Date: 2017-09-13 08:59+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1674,7 +1674,7 @@ msgstr "Разгледайте още повече търсещи машини �
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sСъздайте свой собствен%(amo_mdn_link_close)s инструмент за търсене"
 
 msgid "Most Popular Extensions"
 msgstr "Най-известните разширения"
@@ -1689,7 +1689,7 @@ msgid "Extensions by Name"
 msgstr "Разширения по име"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Разширения по седмични изтегляния"
 
 msgid "Recently Updated Extensions"
 msgstr "Последно обновени разширения"
@@ -1995,10 +1995,10 @@ msgid "{user} approved {review} for {addon}."
 msgstr "{user} одобри {review} за {addon}."
 
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Отзива {review} към {addon} е изтрит."
 
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} изтри {review} за {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -2037,10 +2037,10 @@ msgid "User {user} anonymized."
 msgstr "Потребител {user} анонимизиран."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Потребител {user} ограничен."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Администраторът {0} прегледа журнала с действия на {user}."
 
 # 83%
 # 100%
@@ -2048,29 +2048,29 @@ msgid "{review} for {addon} updated."
 msgstr "{review} за {addon} одобрена."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} рецензия завършена."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Потребител {0.name} добавен към {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Потребител {0.name} премахнат от {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} скрита."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} е подписан."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Добавка id {0} с GUID {1} е изтрита"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} премина предварителна проверка."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Отговор от разработчик на {addon} {version}."
 
 msgid "Developer Reply"
 msgstr ""
@@ -2136,7 +2136,7 @@ msgid "Pending approval"
 msgstr "Очакваща одобряване"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Отбелязана за допълнителна рецензия"
 
 msgid "Beta"
 msgstr "Бета"
