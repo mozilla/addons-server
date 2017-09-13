@@ -1212,7 +1212,6 @@ CELERY_ROUTES = {
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
-    'olympia.zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},

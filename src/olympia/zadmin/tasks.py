@@ -1,14 +1,9 @@
 import os
 import re
 import sys
-import textwrap
-import traceback
-from datetime import datetime
 from urlparse import urljoin
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
-from django.db import connection
 from django.utils import translation
 
 import requests
@@ -22,14 +17,12 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.constants.categories import CATEGORIES
-from olympia.devhub.tasks import run_validator
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, Version
-from olympia.zadmin.models import (
-    EmailPreviewTopic, ValidationJob, ValidationResult)
+from olympia.zadmin.models import EmailPreviewTopic
 
 log = olympia.core.logger.getLogger('z.task')
 
@@ -46,125 +39,6 @@ def admin_email(all_recipients, subject, body, preview_only=False,
         send = send_mail
     for recipient in all_recipients:
         send(subject, body, recipient_list=[recipient], from_email=from_email)
-
-
-def tally_job_results(job_id, **kw):
-    sql = """select sum(1),
-                    sum(case when completed IS NOT NULL then 1 else 0 end)
-             from validation_result
-             where validation_job_id=%s"""
-
-    with connection.cursor() as cursor:
-        cursor.execute(sql, [job_id])
-        total, completed = cursor.fetchone()
-
-    if completed == total:
-        # The job has finished.
-        job = ValidationJob.objects.get(pk=job_id)
-        job.update(completed=datetime.now())
-        if job.finish_email:
-            send_mail(u'Behold! Validation results for %s %s->%s'
-                      % (amo.APP_IDS[job.application].pretty,
-                         job.curr_max_version.version,
-                         job.target_version.version),
-                      textwrap.dedent("""
-                          Aww yeah
-                          %s
-                          """ % absolutify(reverse('zadmin.validation'))),
-                      from_email=settings.DEFAULT_FROM_EMAIL,
-                      recipient_list=[job.finish_email])
-
-
-@task(rate_limit='6/s')
-@write
-def bulk_validate_file(result_id, **kw):
-    res = ValidationResult.objects.get(pk=result_id)
-    task_error = None
-    validation = None
-    file_base = os.path.basename(res.file.file_path)
-    try:
-        log.info('[1@None] Validating file %s (%s) for result_id %s'
-                 % (res.file, file_base, res.id))
-        target = res.validation_job.target_version
-        guid = amo.APP_IDS[target.application].guid
-        ver = {guid: [target.version]}
-        # Set min/max so the validator only tests for compatibility with
-        # the target version. Note that previously we explicitly checked
-        # for compatibility with older versions. See bug 675306 for
-        # the old behavior.
-        overrides = {'targetapp_minVersion': {guid: target.version},
-                     'targetapp_maxVersion': {guid: target.version}}
-        validation = run_validator(res.file.file_path, for_appversions=ver,
-                                   test_all_tiers=True, overrides=overrides,
-                                   compat=True)
-    except:
-        task_error = sys.exc_info()
-        log.exception(
-            u'bulk_validate_file exception on file {} ({})'
-            .format(res.file, file_base))
-
-    res.completed = datetime.now()
-    if task_error:
-        res.task_error = ''.join(traceback.format_exception(*task_error))
-    else:
-        res.apply_validation(validation)
-        log.info('[1@None] File %s (%s) errors=%s'
-                 % (res.file, file_base, res.errors))
-    res.save()
-    tally_job_results(res.validation_job.id)
-
-
-@task
-@write
-def add_validation_jobs(pks, job_pk, **kw):
-    log.info('[%s@None] Adding validation jobs for addons starting at: %s '
-             ' for job: %s'
-             % (len(pks), pks[0], job_pk))
-
-    job = ValidationJob.objects.get(pk=job_pk)
-    curr_ver = job.curr_max_version.version_int
-    target_ver = job.target_version.version_int
-    unreviewed_statuses = (amo.STATUS_AWAITING_REVIEW, amo.STATUS_BETA)
-    for addon in Addon.objects.filter(pk__in=pks):
-        ids = set()
-        base = addon.versions.filter(apps__application=job.application,
-                                     apps__max__version_int__gte=curr_ver,
-                                     apps__max__version_int__lt=target_ver,
-                                     channel=amo.RELEASE_CHANNEL_LISTED)
-
-        already_compat = addon.versions.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            files__status=amo.STATUS_PUBLIC,
-            apps__max__version_int__gte=target_ver)
-        if already_compat.exists():
-            log.info('Addon %s already has a public version %r which is '
-                     'compatible with target version of app %s %s (or newer)'
-                     % (addon.pk, [v.pk for v in already_compat.all()],
-                        job.application, job.target_version))
-            continue
-
-        try:
-            public = (base.filter(files__status=amo.STATUS_PUBLIC)
-                          .latest('id'))
-        except ObjectDoesNotExist:
-            public = None
-
-        if public:
-            ids.update([f.id for f in public.files.all()])
-            ids.update(base.filter(files__status__in=unreviewed_statuses,
-                                   id__gt=public.id)
-                           .values_list('files__id', flat=True))
-
-        else:
-            ids.update(base.filter(files__status__in=unreviewed_statuses)
-                       .values_list('files__id', flat=True))
-
-        log.info('Adding %s files for validation for '
-                 'addon: %s for job: %s' % (len(ids), addon.pk, job_pk))
-        for id in ids:
-            result = ValidationResult.objects.create(validation_job_id=job_pk,
-                                                     file_id=id)
-            bulk_validate_file.delay(result.pk)
 
 
 def get_context(addon, version, job, results, fileob=None):
