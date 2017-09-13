@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 01:35+0000\n"
+"PO-Revision-Date: 2017-09-13 02:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1649,6 +1649,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Installer un module de type dictionnaire ajoutera une nouvelle langue pour le correcteur orthographique de %(app_name)s qui sert à vérifier la syntaxe lorsque vous remplissez des formulaires web. "
+"Les paquetages linguistiques changeront la langue pour l’ensemble de l’application."
 
 msgid "Available in your locale"
 msgstr "Disponible dans votre langue"
@@ -3033,7 +3035,7 @@ msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Veuillez noter que cet outil ne fonctionne uniquement qu’avec des modules complémentaires obsolètes. Les API WebExtension sont <a href=\"%(webext_doc_url)s\">documentées de façon précise ici</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Après un envoi, une série de tests de validation automatiques seront exécutés pour vérifier la compatibilité avec les versions des applications suivantes :"
@@ -3196,6 +3198,8 @@ msgstr "Résumé"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+"Ce résumé doit détailler précisément les fonctionnalités du module complémentaire. Il sera visible dès la recherche ainsi que dans les listes de modules, il sera aussi utilisé par les testeurs pour "
+"valider votre module."
 
 msgid "Experimental?"
 msgstr "Expérimental ?"
@@ -3213,13 +3217,13 @@ msgid "Requires Payment?"
 msgstr "Nécessite un paiement ?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Cochez cette case si les fonctionnalités essentielles de ce module nécessitent un paiement préalable ou à l’issue d’une période d’essai pour pouvoir fonctionner."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Ce module complémentaire nécessite un paiement, des services ou logiciels payants ou du matériel additionnel."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Ce module complémentaire ne nécessite aucun paiement, service ou logiciel payant ni de matériel supplémentaire."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3254,7 +3258,7 @@ msgid "Contributions URL"
 msgstr "URL des contributions"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Si vous souhaitez demander une contribution financière aux utilisateurs, configurez ceci vers une page où il est possible de le faire."
 
 msgid "Add-on Details"
 msgstr "Détails du module"
@@ -3884,7 +3888,7 @@ msgid "Create a Developer Profile"
 msgstr "Créer un profil développeur"
 
 msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
+msgstr "Cette page sera bientôt remplacée par le champ « URL des contributions » dans la page principale. Assurez-vous d’utiliser ce champ pour conserver l’appel aux dons."
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
@@ -4089,7 +4093,7 @@ msgid "What's New"
 msgstr "Dernières nouvelles"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Prêt à proposer un module complémentaire ? Lisez notre guide détaillé sur le processus d’envoi de modules."
 
 msgid "See Tutorial"
 msgstr "Voir le tutoriel"
@@ -4870,7 +4874,7 @@ msgid "Confirm Approval"
 msgstr "Confirmer l’approbation"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "La dernière version publique de ce module a été automatiquement approuvée. Ce message valide votre confirmation, sans en notifier le développeur."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejeter plusieurs versions"
@@ -6604,7 +6608,7 @@ msgstr "#amo (pour l’assistance liée à l’hébergement de votre module sur 
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (pour les discussions relatives au développement et au portage vers les WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Forum sur les modules complémentaires"
