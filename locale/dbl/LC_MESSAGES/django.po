@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -758,6 +758,12 @@ msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŀīƈḗƞşḗ ƒǿř {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŀīƈḗƞşḗ"
+
+msgid "support section"
+msgstr "şŭƥƥǿřŧ şḗƈŧīǿƞ"
+
+msgid "support email"
+msgstr "şŭƥƥǿřŧ ḗḿȧīŀ"
 
 msgid "permalink"
 msgstr "ƥḗřḿȧŀīƞķ"
@@ -2909,11 +2915,11 @@ msgstr ""
 "Ɓḗƒǿřḗ şŧȧřŧīƞɠ, ƥŀḗȧşḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ǿŭř Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ ȧş ẇḗŀŀ ȧş ǿŭř Řḗṽīḗẇ Ƥǿŀīƈīḗş ȧƞḓ Řŭŀḗş. Ŧħḗ Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ ȧŀşǿ ŀīƞķş ŧǿ ǿŭř Ƥřīṽȧƈẏ "
 "Ƞǿŧīƈḗ ẇħīƈħ ḗẋƥŀȧīƞş ħǿẇ ẇḗ ħȧƞḓŀḗ ẏǿŭř īƞƒǿřḿȧŧīǿƞ."
 
-msgid "Developer Agreement"
-msgstr "Ḓḗṽḗŀǿƥḗř Aɠřḗḗḿḗƞŧ"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ"
 
-msgid "Review Policy"
-msgstr "Řḗṽīḗẇ Ƥǿŀīƈẏ"
+msgid "Review Policies and Rules"
+msgstr "Řḗṽīḗẇ Ƥǿŀīƈīḗş ȧƞḓ Řŭŀḗş"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Ɓḗƒǿřḗ şŧȧřŧīƞɠ, ƥŀḗȧşḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ǿŭř Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ. Īŧ ȧŀşǿ ŀīƞķş ŧǿ ǿŭř Ƥřīṽȧƈẏ Ƞǿŧīƈḗ ẇħīƈħ ḗẋƥŀȧīƞş ħǿẇ ẇḗ ħȧƞḓŀḗ ẏǿŭř īƞƒǿřḿȧŧīǿƞ."
@@ -3709,9 +3715,6 @@ msgstr "Şŭƀḿīŧ Ƒīŀḗ"
 
 msgid "Sign Add-on"
 msgstr "Şīɠƞ Aḓḓ-ǿƞ"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ"
 
 msgid "API Credentials"
 msgstr "AƤĪ Ƈřḗḓḗƞŧīȧŀş"
@@ -5450,6 +5453,9 @@ msgstr "Aƈƈḗşş ẏǿŭř ḓȧŧȧ ƒǿř ȧŀŀ ẇḗƀşīŧḗş"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "ƓŬĪḒ īş řḗɋŭīřḗḓ ƒǿř Ƒīřḗƒǿẋ 47 ȧƞḓ ƀḗŀǿẇ."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr "Ŀǿẇḗşŧ şŭƥƥǿřŧḗḓ \"şŧřīƈŧ_ḿīƞ_ṽḗřşīǿƞ\" īş 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Ƈȧƞƞǿŧ ƒīƞḓ ḿīƞ/ḿȧẋ ṽḗřşīǿƞ. Ḿȧẏƀḗ \"şŧřīƈŧ_ḿīƞ_ṽḗřşīǿƞ\" ǿř \"şŧřīƈŧ_ḿȧẋ_ṽḗřşīǿƞ\" ƈǿƞŧȧīƞş ȧƞ ŭƞşŭƥƥǿřŧḗḓ ṽḗřşīǿƞ?"

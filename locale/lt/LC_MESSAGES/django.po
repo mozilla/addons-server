@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -775,6 +775,12 @@ msgstr ""
 
 #. The License for this add-on.
 msgid "Source Code License"
+msgstr ""
+
+msgid "support section"
+msgstr ""
+
+msgid "support email"
 msgstr ""
 
 msgid "permalink"
@@ -2934,12 +2940,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Plėtojimo kanalas"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Apžvalgų žurnalas"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3739,9 +3744,6 @@ msgstr "Neperžiūrėtas"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Priedai"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5520,6 +5522,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

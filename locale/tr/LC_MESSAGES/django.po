@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-08-02 10:00+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -776,6 +776,14 @@ msgstr "{addon} kaynak kodu lisansı"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Kaynak Kodu Lisansı"
+
+#, fuzzy
+msgid "support section"
+msgstr "Destek sitesi"
+
+#, fuzzy
+msgid "support email"
+msgstr "Destek e-postası:"
 
 msgid "permalink"
 msgstr "kalıcı bağlantı"
@@ -2990,13 +2998,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-# 100%
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Geliştirici yorumları"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "İnceleme notu"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3868,9 +3874,6 @@ msgstr "Yeni Tema Gönder"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Eklenti"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
@@ -5820,6 +5823,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

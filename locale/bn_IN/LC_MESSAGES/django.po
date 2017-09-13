@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2016-11-03 13:40+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -749,6 +749,12 @@ msgstr ""
 
 #. The License for this add-on.
 msgid "Source Code License"
+msgstr ""
+
+msgid "support section"
+msgstr ""
+
+msgid "support email"
 msgstr ""
 
 msgid "permalink"
@@ -2884,11 +2890,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-msgid "Developer Agreement"
+msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "নোটটি যাচাই করুন"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3662,9 +3668,6 @@ msgid "Submit File"
 msgstr ""
 
 msgid "Sign Add-on"
-msgstr ""
-
-msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 msgid "API Credentials"
@@ -5392,6 +5395,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

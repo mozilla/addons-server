@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -758,6 +758,14 @@ msgstr "Lisensi Kode Sumber untuk {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Lisensi Kode Sumber"
+
+#, fuzzy
+msgid "support section"
+msgstr "Situs dukungan"
+
+#, fuzzy
+msgid "support email"
+msgstr "E-mail dukungan"
 
 msgid "permalink"
 msgstr "tautan permanen"
@@ -2929,12 +2937,11 @@ msgstr ""
 "Sebelum memulai, harap membaca dan menerima Kesepakatan Distribusi Pengaya Firefox. Ini juga akan berhubungan dengan Pemberitahuan Privasi kami yang menerangkan bagaimana kami menangani informasi "
 "anda."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Komentar Pengembang"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Catatan ulasan"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3817,9 +3824,6 @@ msgstr "Memasukkan Tema Baru"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Memasukkan Pengaya"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
 msgid "API Credentials"
 msgstr "Keterangan Pengenal API"
@@ -5668,6 +5672,9 @@ msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Tidak bisa menemukan versi min/maks. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandung versi yang tidak didukung?"

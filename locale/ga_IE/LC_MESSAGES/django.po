@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -828,6 +828,14 @@ msgstr "Ceadúnas an chóid fhoinsigh le haghaidh {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Ceadúnas an Chóid Fhoinsigh"
+
+#, fuzzy
+msgid "support section"
+msgstr "Suíomh tacaíochta"
+
+#, fuzzy
+msgid "support email"
+msgstr "Ríomhphost tacaíochta:"
 
 msgid "permalink"
 msgstr "buan-nasc"
@@ -3037,12 +3045,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Nótaí Tráchta ón Fhorbróir"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Eagarthóir"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3848,9 +3855,6 @@ msgstr "Seol Comhad"
 
 msgid "Sign Add-on"
 msgstr "Sínigh Breiseán"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5698,6 +5702,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
