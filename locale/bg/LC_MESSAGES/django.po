@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-12 07:04+0000\n"
+"PO-Revision-Date: 2017-09-13 08:30+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -834,16 +834,16 @@ msgid "Tools"
 msgstr "Инструменти"
 
 msgid "My Profile"
-msgstr "Моят профил"
+msgstr "Профил"
 
 msgid "Account Settings"
-msgstr "Настройки на сметката"
+msgstr "Сметка"
 
 msgid "My Collections"
-msgstr "Моите колекции"
+msgstr "Колекции"
 
 msgid "My Favorites"
-msgstr "Моите любими"
+msgstr "Любими"
 
 msgid "Log out"
 msgstr "Изход"
@@ -1437,7 +1437,7 @@ msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Отказване</a>"
 
 msgid "Remove from favorites"
-msgstr "Премахни от любими"
+msgstr "Премахване от любими"
 
 msgid "Add to favorites"
 msgstr "Добавяне към любими"
@@ -2983,7 +2983,7 @@ msgid "More Resources"
 msgstr "Още ресурси"
 
 msgid "Search Developer Docs"
-msgstr "Търсене в документите за разработчици"
+msgstr "Търсене в документацията"
 
 msgid "Search"
 msgstr "Търсене"
@@ -8115,7 +8115,7 @@ msgid "User Info for {0}"
 msgstr "Информация за потребителя {0}"
 
 msgid "Edit profile"
-msgstr "Моят профил"
+msgstr "Профил"
 
 msgid "Manage user"
 msgstr ""
