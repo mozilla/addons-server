@@ -29,43 +29,13 @@ MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
 DEBUG_LOCALES="dbl dbr"
 
-GIT_USER_EMAIL="$(git config --global user.email)"
-GIT_USER_NAME="$(git config --global user.name)"
-GIT_SIGNING="$(git config --global commit.gpgsign)"
-GIT_SIGNING_KEY="$(git config --global user.signinkey)"
-
-
 function init_environment {
-    echo "machine github.com login $GITHUB_TOKEN password x-oauth-basic" >> ~/.netrc
-    chmod 0600 ~/.netrc
-
-    git config --global user.email "$ROBOT_EMAIL"
-    git config --global user.name "$ROBOT_NAME"
-
-    if [ "$GIT_SIGNING" == "true" ]; then
-        git config --global commit.gpgsign false
-        git config --global --unset user.signinkey
-    fi
-
     git remote set-url --push origin "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
     git checkout master
     git checkout -b "$BRANCH_NAME"
 
     make -f Makefile-docker install_python_dependencies
     make -f Makefile-docker install_node_js
-}
-
-
-function restore_environment {
-    echo "Restoring global git configuration"
-
-    git config --global user.email "$GIT_USER_EMAIL"
-    git config --global user.name "$GIT_USER_NAME"
-
-    if [ "$GIT_SIGNING" == "true" ]; then
-        git config --global commit.gpgsign "$(GIT_SIGNING)"
-        git config --global user.signinkey "$(GIT_SIGNING_KEY)"
-    fi
 }
 
 
@@ -119,7 +89,7 @@ function extract_locales {
 
 
 function commit_and_push {
-    git commit -m "$MESSAGE" locale/*/LC_MESSAGES/*.po
+    git commit -m "$MESSAGE" --author "$ROBOT_NAME <$ROBOT_EMAIL>" --no-gpg-sign locale/*/LC_MESSAGES/*.po
     git push -q origin
 }
 
@@ -161,5 +131,3 @@ extract_locales
 commit_and_push
 
 create_auto_pull_request
-
-restore_environment
