@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -862,32 +862,32 @@ msgstr ""
 msgid "Download for {0} anyway"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:201
+#: static/js/zamboni/buttons.js:214
 msgid "Not available for your platform"
 msgstr ""
 
 #. L10n: {0} is an app name.
-#: static/js/zamboni/buttons.js:209
+#: static/js/zamboni/buttons.js:222
 msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
-#: static/js/zamboni/buttons.js:213 static/js/zamboni/buttons.js:234
+#: static/js/zamboni/buttons.js:226 static/js/zamboni/buttons.js:247
 msgid "View other versions"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:230
+#: static/js/zamboni/buttons.js:243
 msgid "Works with {app} {min} - {max}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:231
+#: static/js/zamboni/buttons.js:244
 msgid "Works with {app}"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:265
+#: static/js/zamboni/buttons.js:278
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:309
+#: static/js/zamboni/buttons.js:322
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."

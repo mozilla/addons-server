@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:57+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -778,6 +778,14 @@ msgstr "Lisäosan {addon} lähdekoodin lisenssi"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Lähdekoodin lisenssi"
+
+#, fuzzy
+msgid "support section"
+msgstr "Tukisivusto"
+
+#, fuzzy
+msgid "support email"
+msgstr "Sähköpostituki"
 
 msgid "permalink"
 msgstr "ikilinkki"
@@ -3032,14 +3040,12 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-# 100%
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Kehittäjän kommentit"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 # 85%
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Arvostelu:"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3874,9 +3880,6 @@ msgstr "Lisää uusi lisäosa"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Lisää lisäosa"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5719,6 +5722,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

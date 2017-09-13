@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,20 +101,20 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:167
+#: src/olympia/addons/buttons.py:172
 msgid "Download Now"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:169
+#: src/olympia/addons/buttons.py:174
 msgid "Download"
 msgstr ""
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: src/olympia/addons/buttons.py:173
+#: src/olympia/addons/buttons.py:178
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:189
+#: src/olympia/addons/buttons.py:194
 #: src/olympia/addons/templates/addons/impala/details.html:120
 #: src/olympia/addons/templates/addons/impala/listing/items.html:15
 #: src/olympia/addons/templatetags/jinja_helpers.py:37
@@ -129,17 +129,17 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:194
+#: src/olympia/addons/buttons.py:199
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:201
+#: src/olympia/addons/buttons.py:206
 msgctxt "install_button"
 msgid "Experimental"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:208
+#: src/olympia/addons/buttons.py:213
 msgid "Add to {0}"
 msgstr ""
 
@@ -870,7 +870,6 @@ msgid ""
 "issue."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html:34
 #: src/olympia/addons/templates/addons/review_add_box.html:31
 #, python-format
 msgid ""
@@ -880,7 +879,7 @@ msgid ""
 "\">add-on community</a> for help."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html:41
+#: src/olympia/addons/templates/addons/impala/review_add_box.html:43
 #: src/olympia/addons/templates/addons/review_add_box.html:37
 #: src/olympia/pages/templates/pages/review_guide.html:3
 #: src/olympia/pages/templates/pages/review_guide.html:44
@@ -1232,6 +1231,14 @@ msgstr ""
 #. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html:18
 msgid "Source Code License"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/review_add_box.html:35
+msgid "support section"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/review_add_box.html:37
+msgid "support email"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:19
@@ -2077,7 +2084,7 @@ msgstr[1] ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:119
 #: src/olympia/compat/templates/compat/reporter_detail.html:27
 #: src/olympia/files/templates/files/viewer.html:40
-#: src/olympia/templates/footer.html:26
+#: src/olympia/templates/footer.html:37
 #: src/olympia/templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr ""
@@ -4417,11 +4424,13 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html:12
-msgid "Developer Agreement"
+#: src/olympia/devhub/templates/devhub/api/agreement.html:3
+#: src/olympia/devhub/templates/devhub/api/agreement.html:11
+msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html:13
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html:17
@@ -5647,11 +5656,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:98
 msgid "Sign Add-on"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/api/agreement.html:3
-#: src/olympia/devhub/templates/devhub/api/agreement.html:11
-msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:16
@@ -7141,35 +7145,35 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
-#: src/olympia/editors/models.py:853
+#: src/olympia/editors/models.py:885
 msgid "Uses a custom CSP."
 msgstr ""
 
-#: src/olympia/editors/models.py:855
+#: src/olympia/editors/models.py:887
 msgid "Uses nativeMessaging permission."
 msgstr ""
 
-#: src/olympia/editors/models.py:857
+#: src/olympia/editors/models.py:889
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#: src/olympia/editors/models.py:859
+#: src/olympia/editors/models.py:891
 msgid "Has too many daily users."
 msgstr ""
 
-#: src/olympia/editors/models.py:861
+#: src/olympia/editors/models.py:893
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
 
-#: src/olympia/editors/models.py:862
+#: src/olympia/editors/models.py:894
 msgid "Has a pending info request."
 msgstr ""
 
-#: src/olympia/editors/models.py:863
+#: src/olympia/editors/models.py:895
 msgid "Is flagged for admin review."
 msgstr ""
 
-#: src/olympia/editors/models.py:864
+#: src/olympia/editors/models.py:896
 msgid "Is locked by a reviewer."
 msgstr ""
 
@@ -7304,64 +7308,64 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#: src/olympia/editors/views.py:148
+#: src/olympia/editors/views.py:150
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:149
+#: src/olympia/editors/views.py:151
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:150
+#: src/olympia/editors/views.py:152
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:530
+#: src/olympia/editors/views.py:545
 msgid "An unknown error occurred"
 msgstr ""
 
-#: src/olympia/editors/views.py:631
+#: src/olympia/editors/views.py:646
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/editors/views.py:681
+#: src/olympia/editors/views.py:696
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/editors/views.py:829
+#: src/olympia/editors/views.py:844
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/editors/views.py:911
+#: src/olympia/editors/views.py:926
 msgid "was approved"
 msgstr ""
 
-#: src/olympia/editors/views.py:913
+#: src/olympia/editors/views.py:928
 msgid "given preliminary review"
 msgstr ""
 
-#: src/olympia/editors/views.py:914
+#: src/olympia/editors/views.py:929
 msgid "rejected"
 msgstr ""
 
-#: src/olympia/editors/views.py:915
+#: src/olympia/editors/views.py:930
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: src/olympia/editors/views.py:917
+#: src/olympia/editors/views.py:932
 msgid "needs more information"
 msgstr ""
 
-#: src/olympia/editors/views.py:918
+#: src/olympia/editors/views.py:933
 msgid "needs super review"
 msgstr ""
 
-#: src/olympia/editors/views.py:919
+#: src/olympia/editors/views.py:934
 msgid "commented"
 msgstr ""
 
-#: src/olympia/editors/views.py:920
+#: src/olympia/editors/views.py:935
 msgid "confirmed as approved"
 msgstr ""
 
@@ -8142,7 +8146,7 @@ msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/editors/templatetags/jinja_helpers.py:43
-#: src/olympia/versions/models.py:392
+#: src/olympia/versions/models.py:393
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -8192,76 +8196,80 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:363
+#: src/olympia/files/utils.py:370
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:401
+#: src/olympia/files/utils.py:381
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
+
+#: src/olympia/files/utils.py:417
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:462
+#: src/olympia/files/utils.py:481
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:478
+#: src/olympia/files/utils.py:497
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:516
+#: src/olympia/files/utils.py:535
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:524
+#: src/olympia/files/utils.py:543
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:576
+#: src/olympia/files/utils.py:595
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:721 src/olympia/files/utils.py:725
+#: src/olympia/files/utils.py:740 src/olympia/files/utils.py:744
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:748
+#: src/olympia/files/utils.py:767
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:763
+#: src/olympia/files/utils.py:782
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:765
+#: src/olympia/files/utils.py:784
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:776
+#: src/olympia/files/utils.py:795
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:779
+#: src/olympia/files/utils.py:798
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:782
+#: src/olympia/files/utils.py:801
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:787
+#: src/olympia/files/utils.py:806
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:813
+#: src/olympia/files/utils.py:832
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -11607,7 +11615,7 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr ""
 
-#: src/olympia/templates/footer.html:15
+#: src/olympia/templates/footer.html:26
 #: src/olympia/templates/includes/lang_switcher.html:2
 msgid "Other languages"
 msgstr ""
@@ -12218,7 +12226,7 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr ""
 
-#: src/olympia/versions/models.py:751
+#: src/olympia/versions/models.py:757
 msgid "{app} {min} and later"
 msgstr ""
 
