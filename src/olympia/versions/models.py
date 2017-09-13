@@ -579,7 +579,7 @@ class Version(OnChangeMixin, ModelBase):
             addon_statuses.append(amo.STATUS_NOMINATED)
         return (
             self.addon.status in addon_statuses and
-            self.addon.type == amo.ADDON_EXTENSION and
+            self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
             self.is_webextension and
             self.is_unreviewed and
             self.channel == amo.RELEASE_CHANNEL_LISTED)

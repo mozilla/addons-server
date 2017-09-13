@@ -145,6 +145,66 @@ class TestAutoApproveCommand(TestCase):
         assert len(qs) == 1
         assert qs[0] == self.version
 
+    def test_fetch_candidates_language_packs_are_considered(self):
+        # Like test_fetch_candidate() above, but with language packs.
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        # Add a bunch of add-ons in various states that should not be returned.
+        # Public add-on with no updates.
+        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
+
+        # Disabled add-on with updates.
+        disabled_addon = addon_factory(
+            type=amo.ADDON_LPAPP, disabled_by_user=True)
+        version_factory(addon=disabled_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW,
+            'is_webextension': True})
+
+        # Non-public add-on.
+        addon_factory(
+            type=amo.ADDON_LPAPP, status=amo.STATUS_NOMINATED, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True
+            })
+
+        # Add-on with deleted version.
+        addon_with_deleted_version = addon_factory(type=amo.ADDON_LPAPP)
+        deleted_version = version_factory(
+            addon=addon_with_deleted_version, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        deleted_version.delete()
+
+        # Add-on with a non-webextension update.
+        non_webext_addon = addon_factory(type=amo.ADDON_LPAPP)
+        version_factory(addon=non_webext_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Add-on with 3 versions:
+        # - one webext, listed, public.
+        # - one non-listed webext version
+        # - one listed non-webext awaiting review.
+        complex_addon = addon_factory(
+            type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
+        version_factory(
+            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True})
+        version_factory(addon=complex_addon, file_kw={
+            'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Finally, add a second file to self.version to test the distinct().
+        file_factory(
+            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
+            is_webextension=True)
+
+        # Gather the candidates.
+        command = auto_approve.Command()
+        qs = command.fetch_candidates()
+
+        # Only self.version should be found, once.
+        assert len(qs) == 1
+        assert qs[0] == self.version
+
     @override_switch('post-review', active=True)
     def test_fetch_candidates_post_review(self):
         # Add nominated add-on: it should be considered since post-review

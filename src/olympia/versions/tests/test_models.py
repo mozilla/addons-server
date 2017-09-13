@@ -557,6 +557,9 @@ class TestVersion(TestCase):
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
 
+        addon.type = amo.ADDON_LPAPP
+        assert version.is_ready_for_auto_approval
+
     def test_is_ready_for_auto_approval_addon_status(self):
         addon = Addon.objects.get(id=3615)
         addon.status = amo.STATUS_NOMINATED
