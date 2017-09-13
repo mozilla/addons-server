@@ -356,6 +356,16 @@ class TestButton(ButtonTest):
         self.addon.current_version = None
         assert self.get_button().links() == []
 
+    @patch('olympia.addons.buttons.install_button')
+    @patch('olympia.addons.templatetags.jinja_helpers.statusflags')
+    def test_big_install_button(self, flags_mock, install_button_mock):
+        big_install_button(self.context, self.addon)
+        assert install_button_mock.call_args[1] == {
+            'detailed': True,
+            'show_download_anyway': True,
+            'size': 'prominent'
+        }
+
 
 class TestButtonHtml(ButtonTest):
 
@@ -510,6 +520,20 @@ class TestButtonHtml(ButtonTest):
         assert install.attr('data-is-compatible-by-default') == 'false'
         assert install.attr('data-is-compatible-app') == 'true'
         assert install.attr('data-compat-overrides') == '[]'
+
+    def test_show_download_anyway(self):
+        compat = Mock()
+        compat.min.version = '42.0'
+        compat.max.version = '56.0'
+        self.version.compatible_apps = {amo.FIREFOX: compat}
+        self.version.is_compatible_by_default = False
+        self.version.is_compatible_app.return_value = True
+
+        doc = self.render(impala=True)
+        assert not doc('.download-anyway')
+
+        doc = self.render(impala=True, show_download_anyway=True)
+        assert doc('.download-anyway')
 
 
 class TestViews(TestCase):
