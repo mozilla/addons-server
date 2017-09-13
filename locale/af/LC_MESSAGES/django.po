@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -781,6 +781,14 @@ msgstr "Bronkodelisensie vir {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Bronkodelisensie"
+
+#, fuzzy
+msgid "support section"
+msgstr "Werf vir ondersteuning"
+
+#, fuzzy
+msgid "support email"
+msgstr "E-posadres vir ondersteuning"
 
 msgid "permalink"
 msgstr ""
@@ -2997,13 +3005,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-# 100%
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Opmerkings van die ontwikkelaar"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Resensie"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3812,9 +3818,6 @@ msgstr "Dien 'n nuwe tema in"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "My byvoegings"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5629,6 +5632,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

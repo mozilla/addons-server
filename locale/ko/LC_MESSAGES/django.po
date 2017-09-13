@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -762,6 +762,14 @@ msgstr "{addon}의 소스 코드 라이선스"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "소스 코드라이선스"
+
+#, fuzzy
+msgid "support section"
+msgstr "기술 지원 사이트"
+
+#, fuzzy
+msgid "support email"
+msgstr "기술 지원 이메일"
 
 msgid "permalink"
 msgstr "고유 주소"
@@ -2941,12 +2949,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr "사용하기 전에, Firefox 추가 기능의 배포 계약을 읽고 동의해주세요. 동의하시면 개인 정보 보호 정책도 승인한 것으로 간주합니다."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "개발자 코멘트"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "심사 노트"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3764,9 +3771,6 @@ msgstr "새로운 테마 올리기"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "부가 기능 등록"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5601,6 +5605,9 @@ msgid "Access your data for all websites"
 msgstr "모든 웹사이트에서 사용자의 데이터에 접근"
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

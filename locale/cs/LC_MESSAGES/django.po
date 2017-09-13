@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:37+0000\n"
 "PO-Revision-Date: 2017-08-27 11:33+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -791,6 +791,14 @@ msgstr "Licence zdrojového kódu doplňku {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Licence zdrojového kódu"
+
+#, fuzzy
+msgid "support section"
+msgstr "Stránka podpory"
+
+#, fuzzy
+msgid "support email"
+msgstr "E-mail podpory:"
 
 msgid "permalink"
 msgstr "trvalý odkaz"
@@ -2968,11 +2976,11 @@ msgstr ""
 "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznáky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše oznámení o zásadách ochrany osobních "
 "údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Komentáře vývojáře"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Dohoda o distribuci doplňků pro Firefox"
 
-msgid "Review Policy"
+#, fuzzy
+msgid "Review Policies and Rules"
 msgstr "Poznámka ke kontrole"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3777,9 +3785,6 @@ msgstr "Odeslat soubor"
 
 msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Dohoda o distribuci doplňků pro Firefox"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -5545,6 +5550,9 @@ msgstr "Přistupovat k vašim datům pro všechny webové stránky"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID je vyžadováno pro Firefox verze 47 a nižší."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Nelze nalézt minimální / maximální verzi. Zkontrolujte, zda \"strict_min_version\" nebo \"strict_max_version\" neobsahuje nepodporovanou verzi."
