@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-13 23:57+0000\n"
 "PO-Revision-Date: 2017-08-29 19:54+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -802,6 +802,14 @@ msgstr ""
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Source Code License"
+
+#, fuzzy
+msgid "support section"
+msgstr "Cefnogaeth"
+
+#, fuzzy
+msgid "support email"
+msgstr "Cefnogaeth"
 
 msgid "permalink"
 msgstr ""
@@ -2989,12 +2997,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Sylwadau'r Datblygwr"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Review"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3799,9 +3806,6 @@ msgstr "New Version"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Fy Ychwanegion"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5601,6 +5605,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
