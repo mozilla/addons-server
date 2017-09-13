@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 02:42+0000\n"
+"PO-Revision-Date: 2017-09-13 03:15+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -88,7 +88,7 @@ msgstr "Téléchargement"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Continuer vers les téléchargements&nbsp;&rarr;"
+msgstr "Continuer vers les téléchargements &rarr;"
 
 msgid "Featured"
 msgstr "En vedette"
@@ -649,7 +649,7 @@ msgstr "                  Icône pour {0}                "
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Rencontrer le développeur&nbsp;: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[0] "Rencontrer le développeur : <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Rencontrer les développeurs</a>"
 
 # {0} is an add-on name.
@@ -673,7 +673,7 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Last Updated:"
-msgstr "Dernière mise à jour&nbsp;:"
+msgstr "Dernière mise à jour :"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
@@ -705,7 +705,7 @@ msgstr ""
 "continuerez à recevoir les mises à jour de ce canal. Pour ne plus les recevoir, réinstaller la version par défaut depuis le lien ci-dessus."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Attention&nbsp;:</strong> les versions de développement de ce module n’ont pas été revues par Mozilla."
+msgstr "<strong>Attention :</strong> les versions de développement de ce module n’ont pas été revues par Mozilla."
 
 msgid "See complete development channel history"
 msgstr "Voir l’intégralité de l’historique de développement"
@@ -937,8 +937,8 @@ msgstr ""
 "cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
 "href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
 " le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
-"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a>&nbsp;? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champs de recherche ci-"
-"dessus. </li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
+"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champs de recherche ci-dessus. "
+"</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oops"
@@ -2685,7 +2685,7 @@ msgid "This add-on has an End-User License Agreement"
 msgstr "Ce module possède des conditions générales d’utilisation."
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Veuillez définir les conditions générales d’utilisation de votre module complémentaire&nbsp;:"
+msgstr "Veuillez définir les conditions générales d’utilisation de votre module complémentaire :"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Ce module a une politique de confidentialité"
@@ -3044,7 +3044,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "Après un envoi, une série de tests de validation automatiques seront exécutés sur votre fichier."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Souhaitez-vous que votre module soit distribué sur ce site&nbsp;?"
+msgstr "Souhaitez-vous que votre module soit distribué sur ce site ?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -3727,7 +3727,7 @@ msgid "Download {0}"
 msgstr "Télécharger {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes&nbsp;:"
+msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes :"
 
 msgid "Upload File"
 msgstr "Envoyer un fichier"
@@ -3756,7 +3756,7 @@ msgstr ""
 " fichier."
 
 msgid "Which platforms is this file compatible with?"
-msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible&nbsp;?"
+msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible ?"
 
 msgid "Only publish this version to my beta channel."
 msgstr "Publier uniquement cette version sur le canal beta."
@@ -3831,7 +3831,7 @@ msgstr ""
 "état."
 
 msgid "Created:"
-msgstr "Créé le&nbsp;:"
+msgstr "Créé le :"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, python-format
@@ -3839,7 +3839,7 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 msgid "Add-on Multi Process Status:"
-msgstr "État du mode multiprocessus du module&nbsp;:"
+msgstr "État du mode multiprocessus du module :"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "La compatibilité de votre module avec Firefox en mode multi-processus (e10s)."
@@ -4596,7 +4596,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Supprimer cette version va effacer définitivement :"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Important&nbsp;:</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de nouvelle version possédant le même numéro de version."
+msgstr "<strong>Important :</strong> une fois qu’une version a été supprimée, vous ne pouvez plus envoyer de nouvelle version possédant le même numéro de version."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Êtes-vous sûr de vouloir supprimer cette version ?"
@@ -4617,7 +4617,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr "Les fichiers en attente de revue seront désactivés et vous devrez envoyer de nouvelles versions."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Voulez-vous vraiment masquer ce module&nbsp;?"
+msgstr "Voulez-vous vraiment masquer ce module ?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "Annuler la demande de revue marquera votre module comme incomplet, et toute version en attente de revue sera désactivée."
@@ -5238,7 +5238,7 @@ msgid "Compatibility:"
 msgstr "Compatibilité :"
 
 msgid "Additional sources:"
-msgstr "Sources supplémentaires&nbsp;:"
+msgstr "Sources supplémentaires :"
 
 msgid "Download files"
 msgstr "Télécharger les fichiers"
@@ -6400,7 +6400,7 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr "Si vous êtes intéressés mais que vous n’êtes pas trop technique, vous pouvez toujours nous aider :"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr "Faites passer le mot&nbsp;! Discutez des modules que vous utilisez."
+msgstr "Faites passer le mot ! Discutez des modules que vous utilisez."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -6634,7 +6634,7 @@ msgid ""
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Oui. Vous pouvez trouver des développeurs tiers sur <a href=\"%(forum_url)s\">le forum dédié aux modules</a>, <a href=\"%(list_url)s\">la liste de diffusion mozilla.jobs</a>, <a "
-"href=\"%(mz_url)s\">les forums mozillaZine</a> ou sur <a href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note&nbsp;: Mozilla ne recommande aucun développeur en particulier."
+"href=\"%(mz_url)s\">les forums mozillaZine</a> ou sur <a href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note : Mozilla ne recommande aucun développeur en particulier."
 
 msgid "Can I host my own add-on?"
 msgstr "Est-ce que je peux héberger mon propre module ?"
@@ -6672,7 +6672,7 @@ msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your inform
 msgstr "Oui. Notre <a href=\"%(url)s\">politique de confidentialité</a> décrit comment vos informations sont gérées par Mozilla."
 
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Quels sont les « outils de développement » listés sur AMO&nbsp;?"
+msgstr "Quels sont les « outils de développement » listés sur AMO ?"
 
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
@@ -7496,7 +7496,7 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Gardez ces conseils en tête&nbsp;:</h2> <ul> <li> Décrivez votre impression sur ce module comme vous écririez à un ami. Fournissez des informations spécifiques et des détails utiles comme les "
+"<h2>Gardez ces conseils en tête :</h2> <ul> <li> Décrivez votre impression sur ce module comme vous écririez à un ami. Fournissez des informations spécifiques et des détails utiles comme les "
 "fonctionnalités que vous avez appréciées ou que vous n’avez pas aimées, la simplicité d’utilisation, les inconvénients. Évitez d’utiliser des tournures trop génériques comme « C’est génial » ou « "
 "Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les commentaires pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci "
 "ne sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
@@ -8201,6 +8201,7 @@ msgstr "quelqu’un a écrit une critique sur mon module"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
+"rester au courant en recevant des actualités et des informations sur des évènements pour les développeurs de modules complémentaires (et recevoir également la lettre d’information about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilité de mon module n’a pas pu être mise à jour"
@@ -8215,7 +8216,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla a besoin de me contacter à propos de mon module"
 
 msgid "User Notifications"
-msgstr "Notification utilisateur"
+msgstr "Notifications de l’utilisateur"
 
 msgid "An email address is required."
 msgstr "Une adresse de courriel est nécessaire."
@@ -8256,7 +8257,7 @@ msgstr ""
 " l’équipe de développement de ces modules vous retire de la liste des auteurs. Une fois ceci réalisé, vous pourrez supprimer votre compte."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "En cliquant sur «&nbsp;supprimer&nbsp;», votre compte sera <strong>supprimé de façon permanente</strong>. Cela signifie que&nbsp;:"
+msgstr "En cliquant sur « supprimer », votre compte sera <strong>supprimé de façon permanente</strong>. Cela signifie que :"
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
@@ -8348,10 +8349,10 @@ msgid "Update Account"
 msgstr "Mettre à jour mon compte"
 
 msgid "none"
-msgstr "aucun"
+msgstr "aucune"
 
 msgid "all"
-msgstr "tous"
+msgstr "toutes"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Le site Mozilla Add-ons utilise désormais les comptes Firefox pour la connexion. Poursuivez pour terminer le processus de mise à jour."
