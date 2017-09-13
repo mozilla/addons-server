@@ -42,7 +42,7 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching authors are returned.
+    :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
@@ -119,9 +119,10 @@ Detail
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     .. note::
         This endpoint will have the add-ons it can access reduced to public
@@ -139,6 +140,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int authors[].id: The id for an author.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
+    :>json string authors[].username: The username for an author.
     :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set. For performance reasons this field is omitted from the search endpoint.
     :>json int average_daily_users: The average number of users for the add-on per day.
     :>json object categories: Object holding the categories the add-on belongs to.
@@ -147,6 +149,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
@@ -167,7 +170,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
-    :>json int ratings.count: The number of user ratings for the add-on.
+    :>json int ratings.count: The total number of user ratings for the add-on.
+    :>json int ratings.text_count: The number of user ratings with review text for the add-on.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
@@ -276,9 +280,10 @@ This endpoint allows you to list all versions belonging to a specific add-on.
 .. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :query string filter: The :ref:`filter <version-filtering-param>` to apply.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
@@ -382,9 +387,10 @@ a specific add-on by id, slug or guid.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :>json int e10s: The add-on e10s compatibility. Can be one of the following:
 
@@ -408,9 +414,10 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
     .. note::
-        Non-public add-ons, or add-ons with only unlisted versions, require
-        authentication and either reviewer permissions or a user account listed
-        as a developer of the add-on.
+        Non-public add-ons and add-ons with only unlisted versions require both:
+
+            * authentication
+            * reviewer permissions or an account listed as a developer of the add-on
 
     :>json string|object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).

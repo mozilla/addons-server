@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 13:54+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-08 13:13+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2932,15 +2932,11 @@ msgstr ""
 "Antes de começar, por favor leia e aceite o nosso Acordo de distribuição de extras do Firefox e também as nossas Políticas e Regras de revisão. O nosso Acordo de distribuição de extras do Firefox "
 "também tem uma ligação para o nosso Aviso privacidade que explica como gerimos a sua informação."
 
-msgid "Distribution Agreement"
-msgstr "Acordo de distribuição"
+msgid "Developer Agreement"
+msgstr "Acordo do programador"
 
 msgid "Review Policy"
 msgstr "Política de revisão"
-
-# 77%
-msgid "Review Rules"
-msgstr "Regras de revisão"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4622,23 +4618,23 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare trackers sorrateiros {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personalização de separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Bloqueia trackers invisíveis e anúncios espiões que lhe seguem através da Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr "Defina a página que vê sempre que abrir um novo separador."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore a sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Ao suportar 25+ idiomas, esta extensão coloca um revisor no seu navegador."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Mais do que apenas capturas de ecrã, o Awesome Screenshot Plus deixa-lhe anotar imagens com texto e gráficos. Armazenar e partilhas ficheiros é facílimo."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
@@ -5698,21 +5694,6 @@ msgstr "Temas do Dia de São Patrício"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Decore o seu navegador pata celebrar o Dia de São Patrício."
-
-msgid "Sit Back and Relax"
-msgstr "Sente-se e relaxe"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Extras que o ajudam nas suas viagens!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Exibe uma bandeira referente à localização do servidor do sitio visitado e mais."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks deixa-o ver as horas em todo o mundo."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Obtenha automaticamente o menor preço quando faz compras online ou procura vôos."
 
 msgid "A+ add-ons for School"
 msgstr "Extras A+ para a Escola"

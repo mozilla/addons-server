@@ -1705,7 +1705,6 @@ def docs(request, doc_name=None):
         'themes/faq': '/Themes/Background/FAQ',
         'policies': '/AMO/Policy',
         'policies/reviews': '/AMO/Policy/Reviews',
-        'policies/rules': '/AMO/Policy/Rules',
         'policies/contact': '/AMO/Policy/Contact',
         'policies/agreement': '/AMO/Policy/Agreement',
     }

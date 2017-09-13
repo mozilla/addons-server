@@ -338,6 +338,13 @@ class ManifestJSONExtractor(object):
         return self.gecko.get('id', None)
 
     @property
+    def type(self):
+        return (
+            amo.ADDON_LPAPP if self.get('langpack_id')
+            else amo.ADDON_EXTENSION
+        )
+
+    @property
     def strict_max_version(self):
         return get_simple_version(self.gecko.get('strict_max_version'))
 
@@ -363,8 +370,18 @@ class ManifestJSONExtractor(object):
                 ugettext('GUID is required for Firefox 47 and below.')
             )
 
-        couldnt_find_version = False
+        # If a minimum strict version is specified, it needs to be higher
+        # than the version when Firefox started supporting WebExtensions
+        # (We silently ignore apps that the add-on is not compatible with
+        # below, but we need to be at least compatible with Firefox...)
+        unsupported_no_matter_what = (
+            self.strict_min_version and vint(self.strict_min_version) <
+            vint(amo.DEFAULT_WEBEXT_MIN_VERSION))
+        if unsupported_no_matter_what:
+            msg = ugettext('Lowest supported "strict_min_version" is 42.0.')
+            raise forms.ValidationError(msg)
 
+        couldnt_find_version = False
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
                 strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
@@ -375,15 +392,14 @@ class ManifestJSONExtractor(object):
             strict_max_version = (
                 self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
 
-            skip_app = (
-                self.strict_min_version and vint(self.strict_min_version) <
-                vint(default_min_version)
-            )
-
             # Don't attempt to add support for this app to the WebExtension
             # if the `strict_min_version` is below the default minimum version
             # that is required to run WebExtensions (48.* for Android and 42.*
             # for Firefox).
+            skip_app = (
+                self.strict_min_version and vint(self.strict_min_version) <
+                vint(default_min_version)
+            )
             if skip_app:
                 continue
 
@@ -407,7 +423,7 @@ class ManifestJSONExtractor(object):
     def parse(self, minimal=False):
         data = {
             'guid': self.guid,
-            'type': amo.ADDON_EXTENSION,
+            'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
         }
@@ -419,6 +435,9 @@ class ManifestJSONExtractor(object):
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
+                # Langpacks have strict compatibility enabled, rest of
+                # webextensions don't.
+                'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
                 'permissions': self.get('permissions', []),
                 'content_scripts': self.get('content_scripts', []),

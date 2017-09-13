@@ -174,8 +174,8 @@ class AddonIndexer(BaseSearchIndexer):
         # Add fields that we expect to return all translations without being
         # analyzed/indexed.
         cls.attach_translation_mappings(
-            mapping, ('description', 'homepage', 'name', 'summary',
-                      'support_email', 'support_url'))
+            mapping, ('description', 'developer_comments', 'homepage', 'name',
+                      'summary', 'support_email', 'support_url'))
 
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
@@ -324,6 +324,7 @@ class AddonIndexer(BaseSearchIndexer):
         data['ratings'] = {
             'average': obj.average_rating,
             'count': obj.total_reviews,
+            'text_count': obj.text_reviews_count,
         }
         # We can use tag_list because the indexing code goes through the
         # transformer that sets it (attach_tags).
@@ -338,7 +339,8 @@ class AddonIndexer(BaseSearchIndexer):
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.
-        for field in ('homepage', 'support_email', 'support_url'):
+        for field in ('developer_comments', 'homepage', 'support_email',
+                      'support_url'):
             data.update(cls.extract_field_raw_translations(obj, field))
         # Also do that for preview captions, which are set on each preview
         # object.

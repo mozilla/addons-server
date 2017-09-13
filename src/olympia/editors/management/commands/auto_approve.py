@@ -45,7 +45,7 @@ class Command(BaseCommand):
         else:
             addon_statuses = (amo.STATUS_PUBLIC,)
         return (Version.objects.filter(
-            addon__type=amo.ADDON_EXTENSION,
+            addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP),
             addon__disabled_by_user=False,
             addon__status__in=addon_statuses,
             files__status=amo.STATUS_AWAITING_REVIEW,

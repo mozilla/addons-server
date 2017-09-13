@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2910,14 +2910,11 @@ msgstr ""
 ".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ǝɥ⊥ .sǝʅnᴚ puɐ sǝıɔıʅoԀ ʍǝıʌǝᴚ ɹno sɐ ʅʅǝʍ sɐ ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ "
 "xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
 
-msgid "Distribution Agreement"
-msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ"
+msgid "Developer Agreement"
+msgstr "ʇuǝɯǝǝɹƃ∀ ɹǝdoʅǝʌǝᗡ"
 
 msgid "Review Policy"
 msgstr "ʎɔıʅoԀ ʍǝıʌǝᴚ"
-
-msgid "Review Rules"
-msgstr "sǝʅnᴚ ʍǝıʌǝᴚ"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇI .ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
@@ -4569,23 +4566,23 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sɹǝʞɔɐɹʇ ʎʞɐǝus doʇS"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɐzıɯoʇsnↃ qɐ⊥"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr ".qǝＭ ǝɥʇ punoɹɐ noʎ ʍoʅʅoɟ ʇɐɥʇ spɐ ƃuıʎds puɐ sɹǝʞɔɐɹʇ ǝʅqısıʌuı ʞɔoʅԐ"
+msgid "Set the page you see every time you open a new tab."
+msgstr ".qɐʇ ʍǝu ɐ uǝdo noʎ ǝɯıʇ ʎɹǝʌǝ ǝǝs noʎ ǝƃɐd ǝɥʇ ʇǝS"
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ d∩"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ".ʎɐʍɐ ʞɔıʅɔ ɐ sʎɐʍʅɐ—sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʇıɹʍ ɹnoʎ ǝʌoɹdɯI"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr ".ɹǝsʍoɹq ɹnoʎ uı ʇɥƃıɹ ɹǝpɐǝɹɟooɹd ɐ sʇnd uoısuǝʇxǝ sıɥʇ ´sǝƃɐnƃuɐʅ +52 ƃuıʇɹoddnS"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ".ǝzǝǝɹq ɐ sı sǝʅıɟ ƃuıɹɐɥs puɐ ƃuıɹoʇS .sɔıɥdɐɹƃ puɐ ʇxǝʇ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´sʇoɥsuǝǝɹɔs ʇsnɾ uɐɥʇ ǝɹoW"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
@@ -5640,21 +5637,6 @@ msgstr "sǝɯǝɥ⊥ ʎɐᗡ s&rsquo;ʞɔıɹʇɐԀ .ʇS"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ".ʎɐᗡ s&rsquo;ʞɔıɹʇɐԀ .ʇS ǝʇɐɹqǝʅǝɔ oʇ ɹǝsʍoɹq ɹnoʎ ǝʇɐɹoɔǝᗡ"
-
-msgid "Sit Back and Relax"
-msgstr "xɐʅǝᴚ puɐ ʞɔɐԐ ʇıS"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "¡sʅǝʌɐɹʇ ɹnoʎ uo noʎ dʅǝɥ ʇɐɥʇ suo-pp∀"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ".ǝɹoɯ puɐ ɹǝʌɹǝs s,ǝʇısqǝʍ ʇuǝɹɹnɔ ǝɥʇ ɟo uoıʇɐɔoʅ ǝɥʇ ƃuıʇɔıdǝp ƃɐʅɟ ʎɹʇunoɔ ɐ sʎɐʅdsıᗡ"
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ".pʅɹoʍ ǝɥʇ punoɹɐ ǝɯıʇ ǝɥʇ uo ǝʎǝ uɐ dǝǝʞ noʎ ʇǝʅ sʞɔoʅↃxoℲ"
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ".sʇɥƃıʅɟ ɹoɟ ɥɔɹɐǝs ɹo ǝuıʅuo doɥs noʎ uǝɥʍ ǝɔıɹd ʇsǝʍoʅ ǝɥʇ ʇǝƃ ʎʅʅɐɔıʇɐɯoʇn∀"
 
 msgid "A+ add-ons for School"
 msgstr "ʅooɥɔS ɹoɟ suo-ppɐ +∀"

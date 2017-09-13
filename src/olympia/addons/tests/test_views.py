@@ -152,15 +152,6 @@ class TestHomepageFeatures(TestCase):
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
-class TestPromobox(TestCase):
-    fixtures = ['addons/ptbr-promobox']
-
-    def test_promo_box_ptbr(self):
-        # bug 564355, we were trying to match pt-BR and pt-br
-        response = self.client.get('/pt-BR/firefox/', follow=True)
-        assert response.status_code == 200
-
-
 class TestContributeInstalled(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 

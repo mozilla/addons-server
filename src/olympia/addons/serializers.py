@@ -195,6 +195,7 @@ class AddonSerializer(serializers.ModelSerializer):
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
+    developer_comments = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
@@ -226,6 +227,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'current_version',
             'default_locale',
             'description',
+            'developer_comments',
             'edit_url',
             'guid',
             'has_eula',
@@ -322,6 +324,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'average': obj.average_rating,
             'bayesian_average': obj.bayesian_rating,
             'count': obj.total_reviews,
+            'text_count': obj.text_reviews_count,
         }
 
     def get_theme_data(self, obj):
@@ -373,8 +376,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     previews = ESPreviewSerializer(many=True, source='all_previews')
 
     datetime_fields = ('created', 'last_updated', 'modified')
-    translated_fields = ('name', 'description', 'homepage', 'summary',
-                         'support_email', 'support_url')
+    translated_fields = ('name', 'description', 'developer_comments',
+                         'homepage', 'summary', 'support_email', 'support_url')
 
     def fake_file_object(self, obj, data):
         file_ = File(
@@ -481,8 +484,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # for us when its to_representation() method is called.
         obj.all_previews = data.get('previews', [])
 
-        obj.average_rating = data.get('ratings', {}).get('average')
-        obj.total_reviews = data.get('ratings', {}).get('count')
+        ratings = data.get('ratings', {})
+        obj.average_rating = ratings.get('average')
+        obj.total_reviews = ratings.get('count')
+        obj.text_reviews_count = ratings.get('text_count')
 
         obj._is_featured = data.get('is_featured', False)
 

@@ -183,7 +183,20 @@ var installButton = function() {
         var $installShell = $visibleButton.parents('.install-shell');
         var $downloadAnyway = $visibleButton.next('.download-anyway');
         if ($downloadAnyway.length) {
-            var $newParent = $installShell.find('.more-versions');
+            // We want to be able to add the download anyway link regardless
+            // of what is already shown. There could be just an error message,
+            // or an error message plus a link to more versions. We also want
+            // those combinations to work without the download anyway link
+            // being shown.
+            // Append a separator to the .more-versions element:
+            // if it's displayed we need to separate the download anyway link
+            // from the text shown in that span.
+            var $moreVersions = $installShell.find('.more-versions');
+            $moreVersions.append(' | ');
+            // In any case, add the download anyway link to the parent div.
+            // It'll show up regardless of whether we are showing the more
+            // versions link or not.
+            var $newParent = $installShell.find('.extra .not-available');
             $newParent.append($downloadAnyway);
             $downloadAnyway.show();
         }

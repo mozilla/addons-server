@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 16:42+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-08 15:25+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2967,14 +2967,11 @@ msgstr ""
 "Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju a naše pśeglědowańske zasady a pšawidła. Dojadnanje wó rozdźělowanju Firefox teke wótkazujo k našomu pokazoju "
 "priwatnosći, kótaraž wujasnjujo, kak z wašymi informacijami wobchadamy."
 
-msgid "Distribution Agreement"
-msgstr "Dojadnanje za rozdźělowanje"
+msgid "Developer Agreement"
+msgstr "Wuwijarske dojadnanje"
 
 msgid "Review Policy"
 msgstr "Pśeglědowańske zasady"
-
-msgid "Review Rules"
-msgstr "Pśeglědowańske pšawidła"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4649,23 +4646,23 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrujśo zakśebjatne pśeslědowaki {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pśiměrśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Blokěrujśo njewidobne pśeslědowarje a špioněrujuce wabjenje, kótarež wam we webje slěduju."
+msgid "Set the page you see every time you open a new tab."
+msgstr "Nastajśo bok, kótaryž kuždy raz wiźiśo, gaž nowy rejtark wócynjaśo."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pólěpšćo swóju emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dwanastki wjelicnych emoźijow - pśecej jano jadno kliknjenje zdalone."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swój pisański stil {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Toś to rozšyrjenje 25+ rěcy pódpěra a pśidawa wašomu wobglědowakoju rěd za pšawopisnu kontrolu."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gótujśo fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Wěcej ako janož fota wobrazowki: Z Awesome Screenshot Plus móžośo wobrazam tekst a grafiki přidać. Dataje daju se cele jadnorje składowaś a źěliś."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo wideo {start_sub_heading} z {addon_name}{end_sub_heading}"
@@ -5750,21 +5747,6 @@ msgstr "Drastwy k dnju Swětego Patricka"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Pyšniśo swój wobglědowak, aby źeń Swj. Patricka swěśił."
-
-msgid "Sit Back and Relax"
-msgstr "Zlagniśo naslědk a wódychajśo"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Dodanki, kótarež pomagaju wam na wašych drogowanjach!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Pokazujo krajnu chórgojcku, aby stojnišćo serwera aktualnego websedła a wěcej pokazało."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "Z FoxClocks wobchowajośo cas na cełem swěśe we wócyma."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Dostańśo awtomatiski nejnišu płaśiznu, gaž nakupujośo online abo pytaśo za lětami."
 
 msgid "A+ add-ons for School"
 msgstr "Dodanki 1+ za šulu"

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 12:18+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-12 10:00+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -895,9 +895,9 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>非常抱歉，我们找不到您要查找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您自己输入了网址，请仔细检查有无拼写错误。</li> <li>如如果您点击某个链接而来，请<a href=\"https://github.com/mozilla/addons-"
-"server/issues/new/\">填报问题</a>。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。</li> </ul> <p>要不转到网站其他地方逛逛吧。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>有兴趣吗？</li> <li>您想<a "
-"href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果您想从头开始，可以转到<a href=\"%(home)s\">附加组件首页</a>。</li> </ul>"
+"<h1>非常抱歉，我们找不到您要找的内容。</h1> <p>您请求的页面或文件在我们的网站上没有找到。这可能是因为您点击了一个过期的链接，或者输入了不正确的网址。</p> <ul> <li>如果您是在地址栏里输入的网址，请检查一下确保没有拼写错误。</li> <li>如果您点击某个链接而来，可能是由于我们的疏忽，请<a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">填报问题</a>。填报时请提及您是从哪个网址过来的、想访问什么内容，我们将修正此问题。</li> </ul> <p>要不转到网站其他地方逛逛吧。</p> <ul> <li>您对我们的<a href=\"%(rec)s\">精选附加组件</a>有兴趣吗？</li> <li>您想<a "
+"href=\"%(search)s\">搜索附加组件</a>吗？您可以转到<a href=\"%(search)s\">搜索页面</a>，或者就用上面的搜索框进行搜索。</li> <li>如果没有确定的目标，就从<a href=\"%(home)s\">附加组件首页</a>开始吧。</li> </ul>"
 
 msgid "Oops"
 msgstr "哎呀"
@@ -2863,14 +2863,11 @@ msgid ""
 " which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
-msgid "Distribution Agreement"
-msgstr "分发协议"
+msgid "Developer Agreement"
+msgstr "开发者协议"
 
 msgid "Review Policy"
 msgstr "审核政策"
-
-msgid "Review Rules"
-msgstr "审核规则"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议。它还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
@@ -4482,23 +4479,23 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拒绝跟踪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "自定义新标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "拦截在网络世界中不断尾随你的跟踪器。"
+msgid "Set the page you see every time you open a new tab."
+msgstr "设置每次打开新标签页时看到的页面。"
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "无数的精美 emoji，只需一键。"
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "校阅写作文字 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "支持超过25种语言，此扩展可为您的浏览器提供文字校阅功能。"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "截取图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Awesome Screenshot Plus 不仅仅是截图，还能用文本和图形注解图像。存储和共享文件也很轻松。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -5538,21 +5535,6 @@ msgstr "圣帕特里克节主题"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "装扮您的浏览器来庆祝圣帕特里克节。"
-
-msgid "Sit Back and Relax"
-msgstr "坐下来放松一下"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "这些该附加组件对您的旅途大有益处！"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "显示一个国旗图标来表示当前网站服务器的所在位置和其他相关信息。"
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks 让您一览尽收世界各地的时间。"
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "在您网上购物或查询航班时自动获得最低报价。"
 
 msgid "A+ add-ons for School"
 msgstr "适合校园的满分级附加组件"

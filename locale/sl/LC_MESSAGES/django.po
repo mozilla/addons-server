@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 15:35+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-08 14:04+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2986,14 +2986,11 @@ msgstr ""
 "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov, kot tudi našo politiko in pravila pregledov. Sporazum vsebuje tudi povezavo na naše Obvestilo o zasebnosti, ki "
 "razlaga, kako ravnamo z vašimi podatki."
 
-msgid "Distribution Agreement"
-msgstr "Sporazum o razširjanju"
+msgid "Developer Agreement"
+msgstr "Sporazum za razvijalce"
 
 msgid "Review Policy"
 msgstr "Politika pregledov"
-
-msgid "Review Rules"
-msgstr "Pravila pregledov"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
@@ -4690,23 +4687,23 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ustavite zahrbtne sledilce {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Prilagodite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Blokirajte nevidne sledilce in vohunske oglase, ki vam sledijo po spletu."
+msgid "Set the page you see every time you open a new tab."
+msgstr "Nastavite stran, ki naj se prikaže vsakič, ko odprete nov zavihek."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Kopica prima smeškov – vedno na dosegu miške."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte svoje pisanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Ta razširitev podpira prek 25 jezikov in postavi orodje za lektoriranje neposredno v vaš brskalnik."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zajemajte posnetke zaslona {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Več kot le posnetki zaslona. Awesome Screenshot Plus vam omogoča dodajanje opomb z besedilom in grafiko, shranjevanje in deljenje posnetkov pa je igrača."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -5808,21 +5805,6 @@ msgstr "Teme za dan sv. Patrika"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Polepšajte si svoj brskalnik na dan sv. Patrika"
-
-msgid "Sit Back and Relax"
-msgstr "Naslonite se nazaj in se sprostite"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Dodatki, ki vam pomagajo na potovanjih!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Prikaže zastavo države, ki ponazarja lokacijo strežnika trenutne strani, in še več."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks vam omogoča ogled časa po svetu."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Samodejno dobite najnižjo ceno, ko nakupujete prek spleta ali iščete polet."
 
 msgid "A+ add-ons for School"
 msgstr "Odlični dodatki za šolo"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -2955,14 +2955,12 @@ msgstr ""
 "Перш ніж почати, будь ласка прочитайте і прийміть нашу Угода про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
 "посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
 
-msgid "Distribution Agreement"
-msgstr "Угода про розповсюдження"
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Коментарі розробника"
 
 msgid "Review Policy"
 msgstr "Політика перевірки"
-
-msgid "Review Rules"
-msgstr "Правила перевірки"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -4646,23 +4644,25 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте підлі трекери {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "Блокуйте невидимі трекери і шпигунську рекламу, яка стежить за вами в Інтернеті."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "Підтримуючи більше 25 мов, це розширення перевіряє граматику прямо у вашому браузері."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Більше, ніж просто знімки екрану, Awesome Screenshot Plus дозволяє анотувати зображення текстом та графікою. Збереження файлів і обмін ними - бальзам на душу."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -5732,21 +5732,6 @@ msgstr "Теми до дня Святого Патріка"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Прикрасьте свій браузер, щоб відзначити день Святого Патріка."
-
-msgid "Sit Back and Relax"
-msgstr "Сядьте та розслабтеся"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Додатки, які допомагають вам під час подорожей!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Відображає прапор країни, який показує розташування сервера поточного веб-сайту та інше."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClocks дозволяє вам слідкувати за часом по всьому Світу."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Автоматично отримуйте найнижчу ціну при покупках онлайн чи пошуку авіаквитків."
 
 msgid "A+ add-ons for School"
 msgstr "Додатки для школи A+"

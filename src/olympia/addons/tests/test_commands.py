@@ -9,8 +9,10 @@ import pytest
 from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import approve_addons
+from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.editors.models import AutoApprovalSummary, ReviewerScore
+from olympia.files.models import FileValidation
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -280,6 +282,9 @@ class RecalculateWeightTestCase(TestCase):
 
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
+        FileValidation.objects.create(
+            file=addon.current_version.all_files[0], validation=u'{}')
+        addon = Addon.objects.get(pk=addon.pk)
         summary = AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
         assert summary.weight == 0
@@ -288,6 +293,5 @@ class RecalculateWeightTestCase(TestCase):
             'process_addons', task='recalculate_post_review_weight')
 
         summary.reload()
-        # Weight should be 110 because of average_daily_users / 10000 and the
-        # fact there is no file validation result.
-        assert summary.weight == 110
+        # Weight should be 10 because of average_daily_users / 10000.
+        assert summary.weight == 10

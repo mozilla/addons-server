@@ -17,6 +17,7 @@ import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 from freezegun import freeze_time
+from waffle.testutils import override_switch
 
 from olympia import amo, core, reviews
 from olympia.amo.tests import (
@@ -749,8 +750,8 @@ class QueueTest(EditorTest):
         assert a.attr('href') == self.url
 
     def _test_results(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
         expected = []
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
@@ -762,10 +763,10 @@ class QueueTest(EditorTest):
             channel = ['unlisted'] if not self.listed else []
             url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
-        check_links(
-            expected,
-            pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
-            verify=False)
+        links = pq(
+            response.content)('#addon-queue tr.addon-row td a:not(.app-icon)')
+        check_links(expected, links, verify=False)
+        assert len(links) == len(self.expected_addons)
 
 
 class TestQueueBasics(QueueTest):
@@ -1023,6 +1024,27 @@ class TestPendingQueue(QueueTest):
     def test_get_queue(self):
         self._test_get_queue()
 
+    @override_switch('post-review', active=False)
+    def test_webextensions_not_filtered_out_without_post_review(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # Without the post-review waffle enabled, the webextension should still
+        # be present.
+        self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_webextensions_filtered_out_with_post_review(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # With the post-review waffle enabled, the webextension should be
+        # filtered out.
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
+
 
 class TestNominatedQueue(QueueTest):
 
@@ -1080,6 +1102,27 @@ class TestNominatedQueue(QueueTest):
 
     def test_get_queue(self):
         self._test_get_queue()
+
+    @override_switch('post-review', active=False)
+    def test_webextensions_not_filtered_out_without_post_review(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # Without the post-review waffle enabled, the webextension should still
+        # be present.
+        self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_webextensions_filtered_out_with_post_review(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # With the post-review waffle enabled, the webextension should be
+        # filtered out.
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
 
 
 class TestModeratedQueue(QueueTest):
@@ -1387,6 +1430,10 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
         self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_waffle(self):
+        self.test_results()
 
     def test_queue_count(self):
         self.login_with_permission()

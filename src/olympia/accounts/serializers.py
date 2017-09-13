@@ -24,7 +24,7 @@ class PublicUserProfileSerializer(BaseUserSerializer):
         fields = BaseUserSerializer.Meta.fields + (
             'average_addon_rating', 'created', 'biography', 'homepage',
             'is_addon_developer', 'is_artist', 'location', 'occupation',
-            'num_addons_listed', 'picture_type', 'picture_url', 'username',
+            'num_addons_listed', 'picture_type', 'picture_url',
         )
         # This serializer should never be used for updates but just to be sure.
         read_only_fields = fields

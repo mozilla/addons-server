@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-#: src/olympia/addons/admin.py:110
+#: src/olympia/addons/admin.py:111
 msgid "- Add-on not on AMO -"
 msgstr ""
 
@@ -229,21 +229,21 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: src/olympia/addons/models.py:328
+#: src/olympia/addons/models.py:330
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
 
-#: src/olympia/addons/models.py:333
+#: src/olympia/addons/models.py:335
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only"
 " applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py:1694 src/olympia/constants/base.py:86
+#: src/olympia/addons/models.py:1698 src/olympia/constants/base.py:86
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2160
+#: src/olympia/addons/models.py:2164
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -626,7 +626,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/persona_detail.html:16
 #: src/olympia/addons/templates/addons/persona_preview.html:96
 #: src/olympia/devhub/templates/devhub/versions/list.html:127
-#: src/olympia/discovery/serializers.py:41 src/olympia/discovery/serializers.py:45
+#: src/olympia/discovery/serializers.py:42 src/olympia/discovery/serializers.py:46
 #: src/olympia/editors/templates/editors/review.html:29
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html:27
 msgid "by"
@@ -1392,7 +1392,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:81
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:42
-#: src/olympia/devhub/views.py:1791
+#: src/olympia/devhub/views.py:1790
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1778,7 +1778,7 @@ msgstr ""
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
-#: src/olympia/api/fields.py:271
+#: src/olympia/api/fields.py:274
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
@@ -2592,7 +2592,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/featured.html:4
 #: src/olympia/browse/templates/browse/featured.html:12
-#: src/olympia/legacy_discovery/modules.py:278
+#: src/olympia/legacy_discovery/modules.py:259
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52
 msgid "Featured Add-ons"
 msgstr ""
@@ -4390,21 +4390,21 @@ msgstr ""
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1768
+#: src/olympia/devhub/views.py:1767
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1785
+#: src/olympia/devhub/views.py:1784
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1799
+#: src/olympia/devhub/views.py:1798
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1810
+#: src/olympia/devhub/views.py:1809
 msgid "API key revoked"
 msgstr ""
 
@@ -4417,37 +4417,33 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html:12
-msgid "Distribution Agreement"
+msgid "Developer Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html:13
 msgid "Review Policy"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/agreement.html:14
-msgid "Review Rules"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/agreement.html:18
+#: src/olympia/devhub/templates/devhub/agreement.html:17
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/agreement.html:32
+#: src/olympia/devhub/templates/devhub/agreement.html:31
 msgid "Printable Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/agreement.html:40
+#: src/olympia/devhub/templates/devhub/agreement.html:39
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/agreement.html:42
+#: src/olympia/devhub/templates/devhub/agreement.html:41
 msgid "I Accept this Agreement"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/agreement.html:45
+#: src/olympia/devhub/templates/devhub/agreement.html:44
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
 
@@ -6949,39 +6945,37 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/discovery/data.py:24
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+#: src/olympia/discovery/data.py:32
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:28
-msgid "Block invisible trackers and spying ads that follow you around the Web."
+#: src/olympia/discovery/data.py:36
+msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#: src/olympia/discovery/data.py:35
+#: src/olympia/discovery/data.py:42
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:46
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+#: src/olympia/discovery/data.py:55
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:39
+#: src/olympia/discovery/data.py:59
 msgid ""
 "Supporting 25+ languages, this extension puts a proofreader right in your "
 "browser."
 msgstr ""
 
-#: src/olympia/discovery/data.py:49
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py:53
-msgid ""
-"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
-"with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
-#: src/olympia/discovery/data.py:61
+#: src/olympia/discovery/data.py:66
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:65
+#: src/olympia/discovery/data.py:70
 msgid ""
 "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
 "play control, and more."
@@ -8477,100 +8471,78 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py:200
-msgid "Sit Back and Relax"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py:201
-msgid "Add-ons that help you on your travels!"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py:205
-msgid ""
-"Displays a country flag depicting the location of the current website's "
-"server and more."
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py:207
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py:209
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py:219
 msgid "A+ add-ons for School"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:220
+#: src/olympia/legacy_discovery/modules.py:201
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:225
+#: src/olympia/legacy_discovery/modules.py:206
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:226
+#: src/olympia/legacy_discovery/modules.py:207
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:227
+#: src/olympia/legacy_discovery/modules.py:208
 msgid "Web page and text translator, dictionary, and more!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:244
+#: src/olympia/legacy_discovery/modules.py:225
 msgid "Love is in the Air"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:245
+#: src/olympia/legacy_discovery/modules.py:226
 msgid "Add some romance to your Firefox."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:252
+#: src/olympia/legacy_discovery/modules.py:233
 msgid "Get up and move!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:253
+#: src/olympia/legacy_discovery/modules.py:234
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:261
+#: src/olympia/legacy_discovery/modules.py:242
 msgid "New &amp; Now"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:262
+#: src/olympia/legacy_discovery/modules.py:243
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:269
+#: src/olympia/legacy_discovery/modules.py:250
 msgid "Worry-free browsing"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:270
+#: src/olympia/legacy_discovery/modules.py:251
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:279
+#: src/olympia/legacy_discovery/modules.py:260
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:287
+#: src/olympia/legacy_discovery/modules.py:268
 msgid "Games!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:288
+#: src/olympia/legacy_discovery/modules.py:269
 msgid ""
 "Add more fun to your Firefox. Play dozens of games right from your "
 "browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:298
+#: src/olympia/legacy_discovery/modules.py:279
 msgid "Must-Have Media"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:299
+#: src/olympia/legacy_discovery/modules.py:280
 msgid ""
 "Take better screenshots, improve your online video experience, finally learn "
 "how to make a GIF, and other great media tools."

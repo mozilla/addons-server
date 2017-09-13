@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-08-10 08:51+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-10 11:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -112,8 +112,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
@@ -250,7 +250,7 @@ msgid "Amount, in USD"
 msgstr "Mennyiség, USD-ben"
 
 msgid "Number of Contributions"
-msgstr "Hozzájárulások száma"
+msgstr "Támogatások száma"
 
 msgid "More Info..."
 msgstr "Tovább…"
@@ -404,7 +404,7 @@ msgid "Total Amount Contributed"
 msgstr "Teljes adomány"
 
 msgid "Average Contribution"
-msgstr "Átlagos adomány"
+msgstr "Átlagos támogatás"
 
 msgid "Usage"
 msgstr "Használat"
@@ -512,11 +512,11 @@ msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Adományok az elmúlt {0} napban"
+msgstr "Támogatások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Adományok {0} és {1} között"
+msgstr "Támogatások {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"

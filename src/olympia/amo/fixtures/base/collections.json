@@ -38,25 +38,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "bandwagon.collectionfeature",
-        "fields": {
-            "modified": "2010-02-06 14:22:28",
-            "created": "2009-07-15 17:06:46"
-        }
-    },
-    {
-        "pk": 47,
-        "model": "bandwagon.collectionpromo",
-        "fields": {
-            "locale": "",
-            "collection_feature": 1,
-            "modified": "2010-01-05 18:16:11",
-            "collection": 80,
-            "created": "2010-01-05 18:16:11"
-        }
-    },
-    {
         "pk": 207981,
         "model": "bandwagon.collectionaddon",
         "fields": {

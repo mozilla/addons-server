@@ -63,9 +63,9 @@ Pillow==4.2.1 \
     --hash=sha256:7ff60c2ca880715fa9b36315932d9ff5838d05ebf2ea2b06c48a09c33be94684 \
     --hash=sha256:99162bcec9d7d133da161d03b3423490418babf72be5dccd752852f409d00804
 # PyJWT is required by djangorestframework-jwt
-PyJWT==1.5.2 \
-    --hash=sha256:9e7d780c30cd03bb0d29510b03e09caa95c6d880b3897450eb0f2d1678d3e5b1 \
-    --hash=sha256:1179f0bff86463b5308ee5f7aff1c350e1f38139d62a723e16fb2c557d1c795f
+PyJWT==1.5.3 \
+    --hash=sha256:a4e5f1441e3ca7b382fd0c0b416777ced1f97c64ef0c33bfa39daf38505cfd2f \
+    --hash=sha256:500be75b17a63f70072416843dc80c8821109030be824f4d14758f114978bae7
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
 amo-validator==1.10.72 \
@@ -356,8 +356,8 @@ ndg-httpsclient==0.4.3 \
     --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
     --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
     --hash=sha256:7bfd8c5cfcbc241a93ca6a4e45f952650f5c7ecf7c49b1dbcf5f4d390240be0b
-newrelic==2.90.0.75 \
-    --hash=sha256:c57b89b170b208567989f4ff8066aa2a3abd22e9b95e765cfbef3b950f9f0040
+newrelic==2.92.0.78 \
+    --hash=sha256:3e83e413f39fd140c32bb3783ce5e071452968cd4271696575cfc931f8c314c9
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
@@ -394,9 +394,9 @@ pyquery==1.2.17 \
     --hash=sha256:554335a65570b4871051320a30919836f7548dbb2f2616d6e1f7c3f887096ef3 \
     --hash=sha256:6aa0133b30d9a0229ad65d3a7708c4e853bf46808fb359d06ca56f5039102af6
 # pytest is required by amo-validator
-pytest==3.2.1 \
-    --hash=sha256:82c1e44a964ec5922c7c3891787df31c8c4f18b6c97a722df56b6cf20bb38c8a \
-    --hash=sha256:4c2159d2be2b4e13fa293e7a72bdf2f06848a017150d5c6d35112ce51cfd74ce
+pytest==3.2.2 \
+    --hash=sha256:b84f554f8ddc23add65c411bf112b2d88e2489fd45f753b1cae5936358bdf314 \
+    --hash=sha256:f46e49e0340a532764991c498244a60e3a37d7424a532b3ff1a6a7653f1a403a
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.1 \
     --hash=sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c \
@@ -431,9 +431,9 @@ requests==2.18.4 \
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==36.3.0 \
-    --hash=sha256:42bafe9efb8f771f6c96bb8e052e1de7474270719d471d596b9d91e53e8befd4 \
-    --hash=sha256:e9fa391c1183b40fc6a1298bee02d554743f23c805a3b75dbb18def0f0755fb1
+setuptools==36.4.0 \
+    --hash=sha256:4d54c0bfee283e78609169213f9c075827d5837086f58b588b417b093c23464b \
+    --hash=sha256:2758b0270fe8ceec42f336ee5b411e60dc8579febc27bb3ba9b794dc7f0239ae
 signing-clients==1.3.2 \
     --hash=sha256:2b74b3fce06b1a6acf790fcbc59ea345137698c53757e87af84db092c2190760 \
     --hash=sha256:5cc61c9caa960cea5bec2bc8eae17c3197e872a9008bf52146d4cbb03da93c08

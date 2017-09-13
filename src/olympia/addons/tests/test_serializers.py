@@ -35,8 +35,10 @@ class AddonSerializerOutputTestMixin(object):
         assert data == {
             'id': author.pk,
             'name': author.name,
+            'picture_url': absolutify(author.picture_url),
             'url': absolutify(author.get_url_path()),
-            'picture_url': absolutify(author.picture_url)}
+            'username': author.username,
+        }
 
     def _test_version_license_and_release_notes(self, version, data):
         assert data['release_notes'] == {
@@ -109,6 +111,7 @@ class AddonSerializerOutputTestMixin(object):
             bayesian_rating=4.22,
             category=cat1,
             description=u'My Addôn description',
+            developer_comments=u'Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
                 'is_restart_required': False,
@@ -127,6 +130,7 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
             total_reviews=666,
+            text_reviews_count=555,
             version_kw={
                 'license': license,
                 'releasenotes': {
@@ -202,6 +206,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
+        assert result['developer_comments'] == {
+            'en-US': self.addon.developer_comments}
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
@@ -242,6 +248,7 @@ class AddonSerializerOutputTestMixin(object):
             'average': self.addon.average_rating,
             'bayesian_average': self.addon.bayesian_rating,
             'count': self.addon.total_reviews,
+            'text_count': self.addon.text_reviews_count,
         }
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
@@ -583,7 +590,8 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         assert data == {
             'id': author.pk,
             'name': author.name,
-            'url': absolutify(author.get_url_path())
+            'url': absolutify(author.get_url_path()),
+            'username': author.username,
         }
 
     def _test_version_license_and_release_notes(self, version, data):

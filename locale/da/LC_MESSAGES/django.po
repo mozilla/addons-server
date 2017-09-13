@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-08-11 15:49+0000\n"
-"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-05 22:45+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -493,13 +493,13 @@ msgstr "Privatlivspolitik"
 msgid "Report Abuse"
 msgstr "Rapportér misbrug"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Hvis du har mistanke om, at denne tilføjelse krænker <a href=\"%(url)s\">vores politikker</a>, privatlivets fred eller udgør et sikkerhedsproblem, bedes du bruge nedenstående formular til at "
-"beskrive dine bekymringer. Undlad at bruge denne formular til andre formål."
+"Hvis du har mistanke om, at denne tilføjelse krænker %(amo_policy_link_open)svores politikker%(link_close)s, privatlivets fred eller udgør et sikkerhedsproblem, bedes du bruge nedenstående formular "
+"til at beskrive dine bekymringer. Undlad at bruge denne formular til andre formål."
 
 msgid "Send Report"
 msgstr "Send rapport"
@@ -1682,9 +1682,8 @@ msgid "Additional Resources"
 msgstr "Yderligere kilder"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Læs mere om <a href=\"http://support.mozilla.com/kb/Search+bar\">søgefeltet</a> i {0}"
+msgstr "Læs mere om <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">søgefeltet</a> i {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Gennemse endnu flere søgetjenester på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2923,16 +2922,13 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-msgid "Distribution Agreement"
-msgstr ""
+#, fuzzy
+msgid "Developer Agreement"
+msgstr "Udviklers kommentarer"
 
 #, fuzzy
 msgid "Review Policy"
 msgstr "Anmeldelseshistorik"
-
-#, fuzzy
-msgid "Review Rules"
-msgstr "Godkendere"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -3942,9 +3938,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kontakt os"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Add-on Policies"
+msgstr "Politikker"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4068,13 +4063,13 @@ msgstr "<a href=\"%(register)s\">Registrer dig</a> eller <a href=\"%(login)s\">L
 msgid "Customize Firefox"
 msgstr "Tilpas Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Takket være tilføjelser kan millioner af Firefox-brugere forbedre deres oplevelse når de surfer på nettet. Hvis du er fortrolig med <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s"
-"\">JavaScript</a> og <a href=\"%(css_link)s\">CSS</a>, har du forudsætningerne for at kunne lave en tilføjelse."
+"Takket være tilføjelser kan millioner af Firefox-brugere forbedre deres oplevelse når de surfer på nettet. Hvis du er fortrolig med %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
+"%(link_close)s og%(css_link_open)sCSS%(link_close)s, har du forudsætningerne for at kunne lave en tilføjelse."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Læs hvordan man laver en tilføjelse"
@@ -4567,22 +4562,24 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér snedige sporings-mekanismer {start_sub_heading}med {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tag skærmbilleder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Skriv bedre med {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Skriv bedre med {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr ""
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tag skærmbilleder {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5645,21 +5642,6 @@ msgstr ""
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Udsmyk din browser for at fejre St. Patrick&rsquo;s Day."
-
-msgid "Sit Back and Relax"
-msgstr "Læn dig tilbage og slap af"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Tilføjelser der hjælper dig på dine rejser!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Viser et nationalflag svarende til den pågældende servers placering med mere."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "Med FoxClocks kan du holde øje med tiden rundt om i verden."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Få automatisk den laveste pris, når du handler online eller søger efter flybilletter."
 
 msgid "A+ add-ons for School"
 msgstr "A+ tilføjelser til skolen"
@@ -6881,13 +6863,13 @@ msgstr "Tilføjelser kontrolleres automatisk for opdateringer én gang om dagen.
 msgid "Are add-ons safe to install?"
 msgstr "Er det sikkert at installere tilføjelser?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Vær forsigtig, når du installerer tilføjelser, da de kan skade din computer eller krænke dit privatliv. Tilføjelser på dette websted er generelt sikre at installere, da de overvåges af Mozillas "
-"hold af kontrollanter, der også nøje overvåger feedback fra brugerne. <a href=\"%(learnmore_url)s\">Læs mere om vores kontrol</a>"
+"hold af kontrollanter, der også nøje overvåger feedback fra brugerne. %(learnmore_link_open)sLæs mere om vores kontrol%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -6957,24 +6939,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Hvad betyder det, når en tilføjelse er \"eksperimentel\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Eksperimentelle tilføjelser er blevet markeret af deres udviklere, som værende uegnede for et bredt publikum. De kan indeholde fejl og ikke virke ordentligt. Vær forsigtig, når du installerer "
-"eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du oplever problemer. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a></dd>"
+"eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du oplever problemer. %(learnmore_link_open)sLæs mere om vores godkendelsesproces%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Hvad betyder det, når en tilføjelse er \"ikke godkendt\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Hvis du modtager et direkte link til en tilføjelse, der endnu ikke er blevet godkendt, betyder det, at tilføjelsen afventer godkendelse af Mozilla. Vær forsigtig med at installere disse "
-"tilføjelser, da de kan skade din computer eller krænke dit privatliv. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a></dd>"
+"tilføjelser, da de kan skade din computer eller krænke dit privatliv. %(learnmore_link_open)sLæs mere om vores godkendelsesproces%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Hvad koster tilføjelser?"

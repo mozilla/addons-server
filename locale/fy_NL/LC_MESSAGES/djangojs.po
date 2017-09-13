@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2016-11-08 08:02+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-05 10:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "{0} wurdt falidearre"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Jo add-on is grutter as de maksimale grutte fan {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons fan server ûntfongen; steat: {0}"
@@ -139,7 +139,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "It troch jo oplade bestânstype is net bekend."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Jo bestân is grutter as de maksimale grutte fan {0}."
 
 msgid "You cancelled the upload."
 msgstr "Jo hawwe de oplaad annulearre."
@@ -667,9 +667,8 @@ msgid "Not available for your platform"
 msgstr "Net beskikber foar jo platfoarm"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Dit tema is net kompatibel mei jo ferzje fan {0}"
+msgstr "Dizze add-on is net kompatibel mei jo ferzje fan {0}."
 
 msgid "View other versions"
 msgstr "Oare ferzjes besjen"

@@ -18,7 +18,6 @@ from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import sorted_groupby
 from olympia.translations.fields import (
     LinkifiedField, save_signal, NoLinksNoMarkupField, TranslatedField)
 from olympia.users.models import UserProfile
@@ -427,41 +426,6 @@ models.signals.post_save.connect(CollectionAddon.post_save_or_delete,
 models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
                                    sender=CollectionAddon,
                                    dispatch_uid='coll.post_save')
-
-
-class CollectionFeature(ModelBase):
-    title = TranslatedField()
-    tagline = TranslatedField()
-
-    class Meta(ModelBase.Meta):
-        db_table = 'collection_features'
-
-
-models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
-                                dispatch_uid='collectionfeature_translations')
-
-
-class CollectionPromo(ModelBase):
-    collection = models.ForeignKey(Collection, null=True)
-    locale = models.CharField(max_length=10, null=True)
-    collection_feature = models.ForeignKey(CollectionFeature)
-
-    class Meta(ModelBase.Meta):
-        db_table = 'collection_promos'
-        unique_together = ('collection', 'locale', 'collection_feature')
-
-    @staticmethod
-    def transformer(promos):
-        if not promos:
-            return
-
-        promo_dict = dict((p.id, p) for p in promos)
-        q = (Collection.objects.no_cache()
-             .filter(collectionpromo__in=promos)
-             .extra(select={'promo_id': 'collection_promos.id'}))
-
-        for promo_id, collection in (sorted_groupby(q, 'promo_id')):
-            promo_dict[promo_id].collection = collection.next()
 
 
 class CollectionWatcher(ModelBase):

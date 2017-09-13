@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-04 05:43+0000\n"
-"PO-Revision-Date: 2017-09-04 11:05+0000\n"
+"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"PO-Revision-Date: 2017-09-08 10:49+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2873,14 +2873,11 @@ msgid ""
 " which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
-msgid "Distribution Agreement"
-msgstr "附加元件發行同意書"
+msgid "Developer Agreement"
+msgstr "開發者同意書"
 
 msgid "Review Policy"
 msgstr "審核政策"
-
-msgid "Review Rules"
-msgstr "審核規則"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書。當中亦包含我們的隱私權公告，當中解釋我們會如何處理您的資訊。"
@@ -4504,23 +4501,23 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖追蹤器{end_sub_heading}"
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}自訂分頁{end_sub_heading}"
 
-msgid "Block invisible trackers and spying ads that follow you around the Web."
-msgstr "封鎖隱藏在黑暗中，同時跟蹤您上網的追蹤器。"
+msgid "Set the page you see every time you open a new tab."
+msgstr "設定當您開啟新分頁時，每次會看到的頁面。"
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}表情符號大補包{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "好幾打超酷炫的表情符號，讓您點擊輸入。"
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}校閱寫作文字{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "支援超過 25 種語言，此套件可為您的瀏覽器提供一套文字校閱器。"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "不只是拍攝畫面擷圖，Awesome Screenshot Plus 還可讓您在圖片上加上文字與其他圖片。存檔與分享也很簡單。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}改善影片播放{end_sub_heading}"
@@ -5570,21 +5567,6 @@ msgstr "聖派屈克節主題"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "妝點您的瀏覽器來慶祝聖派屈克節。"
-
-msgid "Sit Back and Relax"
-msgstr "輕鬆一下"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "這些附加元件讓您旅途順利！"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "以國旗表示代管這個網站的伺服器之位置以及更多功能。"
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "FoxClock 讓您一眼盡收世界各地的時間。"
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "線上購物或航班查詢時自動取得最低報價。"
 
 msgid "A+ add-ons for School"
 msgstr "上學時不可或缺的甲等附加元件"
