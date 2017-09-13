@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-07 16:02+0000\n"
-"PO-Revision-Date: 2017-09-13 02:30+0000\n"
+"PO-Revision-Date: 2017-09-13 02:42+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -78,7 +78,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Seules les versions les plus récentes des modules peuvent être notées."
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Module complémentaire non présent sur AMO -"
 
 msgid "Download Now"
 msgstr "Télécharger maintenant"
@@ -139,7 +139,7 @@ msgstr[1] "Toutes les étiquettes doivent avoir au moins {0} caractères."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr ""
+msgstr "le domaine de l’URL doit appartenir à [%s] ou à l’un de ses sous-domaines., "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Les catégories ne peuvent pas être changées lorsque votre module est mis en vedette pour cette application."
@@ -1096,7 +1096,7 @@ msgstr "Le code de langue {lang_code} est invalide."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Clé primaire ou identifiant généré « %s » invalide. L’objet n’existe pas."
 
 msgid "Application Versions"
 msgstr "Versions des logiciels"
@@ -4941,7 +4941,7 @@ msgid "commented"
 msgstr "a été commenté"
 
 msgid "confirmed as approved"
-msgstr ""
+msgstr "a été approuvé"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6585,6 +6585,9 @@ msgid ""
 "%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
 " visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
+"<strong>Note :</strong> XUL est une technologie obsolète de Firefox et les modules complémentaires utilisant XUL ne seront plus pris en charge à partir de Firefox 57. Veillez à utiliser "
+"%(webext_link_open)sles API WebExtensions%(link_close)s pour développer de nouveaux modules. Si vous maintenez un module complémentaire qui va devenir obsolète, pensez à le migrer vers les "
+"WebExtensions. Pour plus d’informations sur la migration vers les WebExtensions, jetez-un œil à %(portlegacy_link_open)sPortage d’un module Firefox obsolète%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Comment puis-je tester la compatibilité avec la dernière version du logiciel Mozilla ?"
@@ -6594,6 +6597,9 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"Afin d’assurer la compatibilité avec les derniers logiciels Mozilla, il est important de télécharger les mises à jour dès qu’elles sont disponibles et de tester votre module pour vous assurez qu’il "
+"continue de fonctionner correctement. Parfois, des modifications importantes sont introduites et impactent les fonctionnalités de votre module, il est donc important de s’impliquer activement dans "
+"les tests des versions beta afin que les utilisateurs de votre module ne soient pas impactés de façon négative lors du lancement de la version finale du logiciel Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "J’ai besoin d’aide pour construire mon module. Où puis-je en trouver ?"
@@ -6786,7 +6792,7 @@ msgstr "nombre de problèmes découverts"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "C’est pourquoi il est essentiel de lire le <a href=\"%(g_url)s\">guide de révisions des modules complémentaires</a> pour vous assurer que votre module est correctement configuré."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Comment voir combien de fois mon module a été téléchargé ?"
@@ -6817,7 +6823,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Ma mise à jour a-t-elle besoin d’être vérifiée par les testeurs ?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Les mises à jour de modules complémentaires existants peuvent être soumises à une revue, comme le sont les nouveaux modules."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Comment puis-je répondre à un utilisateur qui a posté un commentaire négatif sur mon module ?"
@@ -6992,6 +6998,9 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
+"Faites attention lorsque vous utilisez des modules complémentaires, ces derniers pourraient endommager votre ordinateur ou compromettre votre vie privée. Les modules disponibles sur ce site sont "
+"susceptibles d’être validé par l'équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
+"être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le process de validation%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
