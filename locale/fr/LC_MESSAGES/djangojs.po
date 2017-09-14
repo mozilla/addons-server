@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 01:50+0000\n"
+"PO-Revision-Date: 2017-09-14 02:41+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -158,10 +158,10 @@ msgid "Follow this Collection"
 msgstr "Suivre cette collection"
 
 msgid "Stop Following"
-msgstr "Arrêter le suivi"
+msgstr "Ne plus suivre"
 
 msgid "Following"
-msgstr "Suivi"
+msgstr "Suivie"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"

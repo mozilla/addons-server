@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 02:19+0000\n"
+"PO-Revision-Date: 2017-09-14 02:45+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -873,7 +873,7 @@ msgid "Submit a New Theme"
 msgstr "Envoyer un nouveau thème"
 
 msgid "Developer Hub"
-msgstr "Pôle développeur"
+msgstr "Pôle développeurs"
 
 msgid "Manage API Keys"
 msgstr "Gérer les clés d’API"
@@ -1507,7 +1507,7 @@ msgstr ""
 "vôtre</a>."
 
 msgid "Subscribe"
-msgstr "Inscription"
+msgstr "S’abonner"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -2607,7 +2607,7 @@ msgid "Low-quality, stretched, or blank image"
 msgstr "Image vide, de mauvaise qualité ou inadaptée"
 
 msgid "Header image alignment problem"
-msgstr "Problème d’alignement de l’image d’entête"
+msgstr "Problème d’alignement de l’image d’en-tête"
 
 msgid "All Rights Reserved"
 msgstr "Tous droits réservés"
@@ -2989,7 +2989,7 @@ msgid "{0} Add-ons"
 msgstr "{0} Modules"
 
 msgid "Return to the DevHub homepage"
-msgstr "Retourner à la page d’accueil DevHub"
+msgstr "Retourner à la page d’accueil du pôle développeurs"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -3802,7 +3802,7 @@ msgstr ""
 "requête, comme indiqué dans <a href=\"%(docs_url)s\">la documentation d’API</a>."
 
 msgid "You don't have any API credentials."
-msgstr "Vous n’avez aucune informations permettant de vous authentifier avec l’API."
+msgstr "Vous n’avez aucune information permettant de vous authentifier avec l’API."
 
 msgid "Revoke"
 msgstr "Révoquer"
@@ -4344,7 +4344,7 @@ msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Votre design précédemment renvoyé, qui attend une validation."
 
 msgid "Pending Header"
-msgstr "Entête d’attente"
+msgstr "En-tête d’attente"
 
 msgid "Pending Footer"
 msgstr "Pieds de page d’attente"
@@ -4353,7 +4353,7 @@ msgid "You may update your theme design here once it has been approved."
 msgstr "Vous pouvez mettre à jour votre thème une fois qu’il sera accepté."
 
 msgid "Header"
-msgstr "Entête"
+msgstr "En-tête"
 
 msgid "Footer"
 msgstr "Pied de page"
@@ -4426,7 +4426,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Rejoignez la conversation dans nos <a href=\"%(forum_url)s\">forums</a>."
 
 msgid "Select a header image for your Theme."
-msgstr "Sélectionnez une image d’entête pour votre thème."
+msgstr "Sélectionnez une image d’en-tête pour votre thème."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
@@ -4630,7 +4630,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Voulez-vous vraiment annuler votre requête de revue ?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentation Module :: Centre développeur"
+msgstr "Documentation Module :: Pôle développeurs"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -7201,7 +7201,7 @@ msgstr "Sujets développeurs"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Merci de consulter notre <a href=\"%(faq_url)s\">FAQ développeurs</a> et le <a href=\"%(hub_url)s\">point de rencontre développeur</a> pour des réponses aux questions des développeurs de modules."
+msgstr "Merci de consulter notre <a href=\"%(faq_url)s\">FAQ développeurs</a> et le <a href=\"%(hub_url)s\">pôle développeurs</a> pour des réponses aux questions des développeurs de modules."
 
 msgid "Still have questions?"
 msgstr "Vous avez toujours des questions ?"
