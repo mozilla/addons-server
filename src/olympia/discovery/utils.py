@@ -37,7 +37,8 @@ def get_recommendations(telemetry_id):
     guids = call_recommendation_server(telemetry_id)
     ids = (Addon.objects.public().filter(guid__in=guids)
            .values_list('id', flat=True))
-    return [data.DiscoItem(addon_id=id_) for id_ in ids]
+    return [data.DiscoItem(addon_id=id_, is_recommendation=True)
+            for id_ in ids]
 
 
 def replace_extensions(source, replacements):

@@ -28,6 +28,7 @@ class DiscoverySerializer(serializers.Serializer):
     heading = serializers.CharField()
     description = serializers.CharField()
     addon = DiscoveryAddonSerializer()
+    is_recommendation = serializers.BooleanField()
 
     def to_representation(self, instance):
         data = super(DiscoverySerializer, self).to_representation(instance)
