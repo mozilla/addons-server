@@ -11,7 +11,6 @@ from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
-from olympia.reviews.tasks import addon_review_aggregates
 
 
 tasks = {
@@ -19,7 +18,6 @@ tasks = {
         'method': find_inconsistencies_between_es_and_db, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
-    'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'recalculate_post_review_weight': {
         'method': recalculate_post_review_weight,
         'qs': [
