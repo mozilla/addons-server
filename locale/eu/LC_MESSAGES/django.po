@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -776,6 +776,14 @@ msgstr "{addon} gehigarriaren iturburu-kodearen lizentzia"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Iturburu-kodearen lizentzia"
+
+#, fuzzy
+msgid "support section"
+msgstr "Laguntzarako gunea"
+
+#, fuzzy
+msgid "support email"
+msgstr "Laguntzarako helbide elektronikoa"
 
 msgid "permalink"
 msgstr ""
@@ -2952,12 +2960,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Garatzailearen iruzkinak"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Berrikusi"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3773,9 +3780,6 @@ msgstr "Bidali gehigarri berria"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Bidali gehigarria"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5616,6 +5620,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

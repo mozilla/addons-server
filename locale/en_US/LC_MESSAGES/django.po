@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -787,6 +787,14 @@ msgstr "Source Code License for {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Source Code License"
+
+#, fuzzy
+msgid "support section"
+msgstr "Support site"
+
+#, fuzzy
+msgid "support email"
+msgstr "Support E-mail"
 
 msgid "permalink"
 msgstr "permalink"
@@ -3008,12 +3016,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Developer Comments"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Firefox Add-on Distribution Agreement"
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Review Date"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3860,9 +3867,6 @@ msgstr "Submit a New Theme"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Submit Add-on"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Firefox Add-on Distribution Agreement"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -5709,6 +5713,9 @@ msgstr "Access your data for all websites"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID is required for Firefox 47 and below."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr "Lowest supported \"strict_min_version\" is 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -897,6 +897,14 @@ msgstr "Licenca izvornog koda za {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Licenca izvornog koda"
+
+#, fuzzy
+msgid "support section"
+msgstr "Sajt podrške"
+
+#, fuzzy
+msgid "support email"
+msgstr "E-pošta podrške"
 
 msgid "permalink"
 msgstr "trajna veza"
@@ -3290,12 +3298,11 @@ msgid ""
 "we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Komentari autora"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Datum recenzije"
 
 msgid ""
@@ -4250,9 +4257,6 @@ msgstr "Podnesi novu temu"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Pošalji dodatak"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -6304,6 +6308,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid ""

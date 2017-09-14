@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -783,6 +783,14 @@ msgstr "Ліцензія початкового коду для {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Ліцензія джерельного коду"
+
+#, fuzzy
+msgid "support section"
+msgstr "Сайт підтримки"
+
+#, fuzzy
+msgid "support email"
+msgstr "Е-пошта підтримки:"
 
 msgid "permalink"
 msgstr "постійне посилання"
@@ -2955,11 +2963,11 @@ msgstr ""
 "Перш ніж почати, будь ласка прочитайте і прийміть нашу Угода про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
 "посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Коментарі розробника"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Угода Firefox про розповсюдження додатків"
 
-msgid "Review Policy"
+#, fuzzy
+msgid "Review Policies and Rules"
 msgstr "Політика перевірки"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3781,9 +3789,6 @@ msgstr "Надіслати файл"
 
 msgid "Sign Add-on"
 msgstr "Підписати додаток"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Угода Firefox про розповсюдження додатків"
 
 msgid "API Credentials"
 msgstr "Облікові дані API"
@@ -5546,6 +5551,9 @@ msgstr "Доступ до ваших даних для всіх веб-сайт�
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Для Firefox версії 47 і нижче GUID є обов'язковим."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Не вдалося знайти min/max версію. Можливо \"strict_min_version\" або \"strict_max_version\" містить непідтримувану версію?"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -766,6 +766,14 @@ msgstr "Licença do código fonte para {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Licença do código fonte"
+
+#, fuzzy
+msgid "support section"
+msgstr "Página de ajuda"
+
+#, fuzzy
+msgid "support email"
+msgstr "Email de suporte"
 
 msgid "permalink"
 msgstr "ligação permanente"
@@ -2973,12 +2981,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuição de extra do Firefox. Também tem uma ligação para a nossa nota de privacidade que explica como gerimos a sua informação."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Comentários do programador"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Acordo de distribuição de extras do Firefox"
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Data da revisão"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3826,9 +3833,6 @@ msgstr "Enviar um tema novo"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Submeter extra"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Acordo de distribuição de extras do Firefox"
 
 msgid "API Credentials"
 msgstr "Credenciais da API"
@@ -5661,6 +5665,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
