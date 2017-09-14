@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 03:05+0000\n"
+"PO-Revision-Date: 2017-09-14 03:43+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -777,9 +777,8 @@ msgstr "Licence du code source pour {addon}"
 msgid "Source Code License"
 msgstr "Licence du code source"
 
-#, fuzzy
 msgid "support section"
-msgstr "Site d’assistance"
+msgstr "site d’assistance"
 
 msgid "support email"
 msgstr "courriel d’assistance"
@@ -5536,7 +5535,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Un GUID est nécessaire pour Firefox 47 et les versions antérieures."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "La plus basse valeur prise en charge pour « strict_min_version » est 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Impossible de trouver la version min/max. Il se peut que « strict_min_version » ou « strict_max_version » contienne une version non prise en charge."
