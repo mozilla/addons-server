@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:04+0000\n"
 "PO-Revision-Date: 2017-09-06 23:14+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -746,6 +746,14 @@ msgstr "{addon}-ის პირველწყარო კოდის ლი�
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "პირველწყარო კოდის ლიცენზია"
+
+#, fuzzy
+msgid "support section"
+msgstr "მხარდაჭერის გვერდი"
+
+#, fuzzy
+msgid "support email"
+msgstr "მხარდაჭერის ელფოსტა:"
 
 msgid "permalink"
 msgstr "პირდაპირი ბმული"
@@ -2889,11 +2897,11 @@ msgstr ""
 "დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ ჩვენს შეთანხმებას, Firefox დამატებების გავრცელების შესახებ, ისევე როგორც ჩვენი მიმოხილვის დებულებებს და წესებს. შეთანხმებას Firefox დამატებების "
 "გავრცელების შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "შემქმნელის კომენტარები"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
 
-msgid "Review Policy"
+#, fuzzy
+msgid "Review Policies and Rules"
 msgstr "მიმოხილვის დებულება"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3687,9 +3695,6 @@ msgstr "ფაილის წარდგენა"
 
 msgid "Sign Add-on"
 msgstr "დამატების ხელმოწერა"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
 
 msgid "API Credentials"
 msgstr ""
@@ -5409,6 +5414,9 @@ msgstr "ყველა საიტზე, თქვენს მონაც�
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID აუცილებელია Firefox 47 და უფრო ძველ ვერსიებზე."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
