@@ -1,6 +1,6 @@
-Babel==2.5.0 \
-    --hash=sha256:e0d07af61ff43729f61dc838f2af283c315e671454e7cf9d744ac9c56cccfca6 \
-    --hash=sha256:754177ee7481b6fac1bf84edeeb6338ab51640984e97e4083657d384b1c8830d
+Babel==2.5.1 \
+    --hash=sha256:f20b2acd44f587988ff185d8949c3e208b4b3d5d20fcab7d91fe481ffa435528 \
+    --hash=sha256:6007daf714d0cd5524bbe436e2d42b3c20e68da66289559341e48d2cd6d25811
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
 Django==1.8.18 \
     --hash=sha256:d8e2fd119756ab10b43a31052c3c8efbc262064b81eecb7871372de4d37b1a94 \
