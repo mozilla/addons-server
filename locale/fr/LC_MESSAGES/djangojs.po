@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 01:04+0000\n"
+"PO-Revision-Date: 2017-09-14 01:26+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgid "There was a problem contacting the server."
 msgstr "Une erreur est survenue pendant le contact du serveur."
 
 msgid "Select a file..."
-msgstr "Sélectionnez un fichier ..."
+msgstr "Sélectionnez un fichier…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .crx, .jar ou .xml"
@@ -56,8 +56,8 @@ msgstr "Vous avez activé un nouvel analyseur de code pour le traitement de votr
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Votre module n’a pas passé la validation et a généré {0} erreur."
-msgstr[1] "Votre module n’a pas passé la validation et a généré {0} erreurs."
+msgstr[0] "Votre module n’a pas passé la validation et a généré {0} erreur."
+msgstr[1] "Votre module n’a pas passé la validation et a généré {0} erreurs."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -140,13 +140,13 @@ msgid "Sorry, no supported platform has been found."
 msgstr "Désolé, aucune plateforme supportée n’a été trouvée."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
+msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Votre fichier dépasse la taille maximale de {0}."
 
 msgid "You cancelled the upload."
-msgstr "Vous avez annulé l’envoi."
+msgstr "Vous avez annulé l’envoi."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Les images doivent être au format PNG ou JPG."
@@ -168,7 +168,7 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Ce thème est incompatible avec votre version de {0}"
 
 msgid "All Rights Reserved"
-msgstr "Tous droits réservés"
+msgstr "Tous droits réservés"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
@@ -204,7 +204,7 @@ msgid "Updating results&hellip;"
 msgstr "Mise à jour des résultats &hellip;"
 
 msgid "Category"
-msgstr "Catégorie"
+msgstr "Catégorie"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr "Rechercher des thèmes pour <b>{0}</b>"
@@ -246,7 +246,7 @@ msgid "{0} installs"
 msgstr "{0} installations"
 
 msgid "Downloads"
-msgstr "Téléchargements"
+msgstr "Téléchargements"
 
 msgid "Daily Users"
 msgstr "Utilisateurs journaliers"
@@ -258,23 +258,23 @@ msgid "Number of Contributions"
 msgstr "Nombre de contributions"
 
 msgid "More Info..."
-msgstr "Plus d’informations ..."
+msgstr "Plus d’informations …"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
 msgstr "Détails pour le {0}"
 
 msgid "Collections Created"
-msgstr "Collections créées"
+msgstr "Collections créées"
 
 msgid "Add-ons in Use"
-msgstr "Modules utilisés"
+msgstr "Modules utilisés"
 
 msgid "Add-ons Created"
-msgstr "Modules créés"
+msgstr "Modules créés"
 
 msgid "Add-ons Downloaded"
-msgstr "Modules téléchargés"
+msgstr "Modules téléchargés"
 
 msgid "Add-ons Updated"
 msgstr "Modules mis à jour"
@@ -310,13 +310,13 @@ msgid "Add-ons Manager Featured"
 msgstr "Mis en avant avec le gestionnaire de modules"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Affiché dans la section « En savoir plus » du gestionnaire de modules"
+msgstr "Affiché dans la section « En savoir plus » du gestionnaire de modules"
 
 msgid "Search Suggestions"
 msgstr "Suggestions de recherche"
 
 msgid "Search Results"
-msgstr "Résultats de la recherche"
+msgstr "Résultats de la recherche"
 
 msgid "Homepage Promo"
 msgstr "Promotion en page d’accueil"
@@ -340,7 +340,7 @@ msgid "Detail Page (Development Channel)"
 msgstr "Page de détail (canal développement)"
 
 msgid "Often Used With"
-msgstr "Fréquemment utilisé avec"
+msgstr "Fréquemment utilisé avec"
 
 msgid "Others By Author"
 msgstr "D’autres de cet auteur"
@@ -364,7 +364,7 @@ msgid "Sharing"
 msgstr "Partage"
 
 msgid "Category Pages"
-msgstr "Pages de catégorie"
+msgstr "Pages de catégorie"
 
 msgid "Collections"
 msgstr "Collections"
@@ -453,7 +453,7 @@ msgstr "Installations et utilisateurs quotidiens du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Téléchargements, derniers {0} jours"
+msgstr "Téléchargements, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -641,7 +641,7 @@ msgid "Other"
 msgstr "Autre"
 
 msgid "Select an application first"
-msgstr "Sélectionnez d’abord une application"
+msgstr "Sélectionnez d’abord une application"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -684,7 +684,7 @@ msgid "Works with {app}"
 msgstr "Fonctionne avec {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !"
+msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour installer un moteur de recherche."
@@ -741,7 +741,7 @@ msgid "Your browser does not support the video tag"
 msgstr "Votre navigateur ne supporte pas la balise vidéo"
 
 msgid "Changes Saved"
-msgstr "Changements enregistrés"
+msgstr "Changements enregistrés"
 
 msgid "Enter a new author's email address"
 msgstr "Entrer l’adresse courriel d’un nouvel auteur"
@@ -808,7 +808,7 @@ msgid "Number of Reviews"
 msgstr "Nombre de revues"
 
 msgid "Loading..."
-msgstr "Chargement ..."
+msgstr "Chargement …"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
@@ -850,10 +850,10 @@ msgid "Status"
 msgstr "Statut"
 
 msgid "All tests passed successfully."
-msgstr "Tous les tests ont été validés avec succès."
+msgstr "Tous les tests ont été validés avec succès."
 
 msgid "These tests were not run."
-msgstr "Ces tests n’ont pas été exécutés."
+msgstr "Ces tests n’ont pas été exécutés."
 
 msgid "Tests"
 msgstr "Tests"
@@ -895,7 +895,7 @@ msgstr[0] "{0} note"
 msgstr[1] "{0} notes"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "La validation n’a pas pu s’achever ou s’est achevée avec des erreurs"
+msgstr "La validation n’a pas pu s’achever ou s’est achevée avec des erreurs"
 
 msgid "Internal server error"
 msgstr "Erreur interne du serveur"
