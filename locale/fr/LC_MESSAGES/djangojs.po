@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 02:41+0000\n"
+"PO-Revision-Date: 2017-09-14 03:00+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -28,7 +28,7 @@ msgid "There was a problem contacting the server."
 msgstr "Une erreur est survenue pendant le contact du serveur."
 
 msgid "Select a file..."
-msgstr "Sélectionnez un fichier…"
+msgstr "Sélectionner un fichier…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .crx, .jar ou .xml"
@@ -61,8 +61,8 @@ msgstr[1] "Votre module n’a pas passé la validation et a généré {0} erreur
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip; et {0} plus"
-msgstr[1] "&hellip; et {0} plus"
+msgstr[0] "…et {0} plus"
+msgstr[1] "…et {0} plus"
 
 msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
@@ -201,7 +201,7 @@ msgid "Marked for deletion"
 msgstr "Marqué pour suppression"
 
 msgid "Updating results&hellip;"
-msgstr "Mise à jour des résultats &hellip;"
+msgstr "Mise à jour des résultats…"
 
 msgid "Category"
 msgstr "Catégorie"
@@ -693,7 +693,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "Ajouter aux favoris…"
 
 msgid "Removing Favorite&hellip;"
-msgstr "Retirer des Favoris &hellip;"
+msgstr "Retirer des favoris…"
 
 msgid "Add to Favorites"
 msgstr "Ajouter aux favoris"
@@ -784,7 +784,7 @@ msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."
 
 msgid "Loading&hellip;"
-msgstr "Chargement &hellip;"
+msgstr "Chargement…"
 
 msgid "Version Notes"
 msgstr "Notes de version"

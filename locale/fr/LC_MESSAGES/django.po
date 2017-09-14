@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 02:45+0000\n"
+"PO-Revision-Date: 2017-09-14 03:05+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -114,8 +114,8 @@ msgstr "Ce raccourci ne peut être « %(slug)s ». Merci d’en choisir un aut
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "Drapeau invalide : {0}"
-msgstr[1] "Drapeaux invalides : {0}"
+msgstr[0] "Étiquette invalide : {0}"
+msgstr[1] "Étiquettes invalides : {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
@@ -1335,7 +1335,7 @@ msgid ""
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est actuellement <b>privée</b>, cela signifie que vous seul "
-"pouvez la voir.  Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
+"pouvez la voir. Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
 
 msgid "My favorite add-ons"
 msgstr "Mes modules favoris"
@@ -1438,8 +1438,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Vous pouvez ajouter plusieurs contributeurs à cette collection.  Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description.  "
-"Pour ajouter un contributeur, saisissez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
+"Vous pouvez ajouter plusieurs contributeurs à cette collection. Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description. Pour"
+" ajouter un contributeur, saisissez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
 
 msgid "User"
 msgstr "Utilisateur"
@@ -1799,7 +1799,7 @@ msgstr "Voir tous les mieux notés"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Plus de 300 000 thèmes pour personnaliser votre navigateur ! Déplacez votre pointeur sur l’un des thèmes pour l’essayer. <a href=\"%(url)s\" class=\"more-info\">Commencez l’exploration</a>"
+msgstr "Plus de 300 000 thèmes pour personnaliser votre navigateur ! Déplacez votre pointeur sur l’un des thèmes pour l’essayer. <a href=\"%(url)s\" class=\"more-info\">Commencez l’exploration</a>"
 
 msgid "Want more personalization?"
 msgstr "Vous voulez plus de personnalisation ?"
@@ -3212,7 +3212,7 @@ msgid "Experimental?"
 msgstr "Expérimental ?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Si votre module est expérimental ou n’est pas prêt pour une utilisation générale.  Le module sera répertorié, mais aura une visibilité réduite.  "
+msgstr "Si votre module est expérimental ou n’est pas prêt pour une utilisation générale. Le module sera répertorié, mais aura une visibilité réduite."
 
 msgid "This add-on is experimental."
 msgstr "Ce module est expérimental."
@@ -3552,7 +3552,7 @@ msgid "Manage Payments"
 msgstr "Gérer les paiements"
 
 msgid "Manage Status & Versions"
-msgstr "Gérer l'états et les versions"
+msgstr "Gérer l’état et les versions"
 
 msgid "View Add-on Listing"
 msgstr "Voir le listing du module"
@@ -3629,8 +3629,8 @@ msgstr "Ce module est expérimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Cochez cette option si votre module est expérimental ou n’est pas prêt pour une utilisation générale.  Le module sera répertorié, mais aura une visibilité réduite.  Vous pouvez modifier ce paramètre"
-" ultérieurement."
+"Cochez cette option si votre module est expérimental ou n’est pas prêt pour une utilisation générale. Le module sera répertorié, mais aura une visibilité réduite. Vous pouvez modifier ce paramètre "
+"ultérieurement."
 
 msgid "Support email:"
 msgstr "Courriel d’assistance :"
@@ -4593,7 +4593,7 @@ msgstr "Supprimer la version {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Vous êtes sur le point de supprimer la version actuelle de votre module. Cela peut modifier l'état de votre module et la visibilité de celui-ci peut décroître si cette version est la seule qui soit "
+"Vous êtes sur le point de supprimer la version actuelle de votre module. Cela peut modifier l’état de votre module et la visibilité de celui-ci peut décroître si cette version est la seule qui soit "
 "publique pour ce module."
 
 msgid "Deleting this version will permanently delete:"
@@ -4723,7 +4723,7 @@ msgid "Add-on Types"
 msgstr "Types de modules"
 
 msgid "Search by add-on name / author email / guid"
-msgstr "Rechercher par nom de module / e-mail de l’auteur / GUID"
+msgstr "Rechercher par nom de module / courriel de l’auteur / GUID"
 
 msgid "Max. Version"
 msgstr "Version maximum"
@@ -6501,7 +6501,7 @@ msgstr "Testeurs"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
-msgstr "Plus de {0} tests de module"
+msgstr "Plus de {0} tests de modules"
 
 msgid "Other Contributors"
 msgstr "Autres contributeurs"
@@ -7006,7 +7006,7 @@ msgid ""
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Faites attention lorsque vous utilisez des modules complémentaires, ces derniers pourraient endommager votre ordinateur ou compromettre votre vie privée. Les modules disponibles sur ce site sont "
-"susceptibles d’être validé par l'équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
+"susceptibles d’être validé par l’équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
 "être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le process de validation%(link_close)s"
 
 #, python-format
@@ -7734,7 +7734,7 @@ msgstr "La clé « upload » est absente du fichier de données multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr "Vous ne pouvez pas ajouter de version à un module dont l'état est : %s."
+msgstr "Vous ne pouvez pas ajouter de version à un module dont l’état est : %s."
 
 msgid "Version does not match the manifest file."
 msgstr "La version ne correspond pas au fichier manifeste."
