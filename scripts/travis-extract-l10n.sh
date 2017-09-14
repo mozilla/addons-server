@@ -30,7 +30,6 @@ UNIQ_FLAGS="--width=200"
 DEBUG_LOCALES="dbl dbr"
 
 function init_environment {
-    git remote set-url --push origin "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
     git checkout master
     git checkout -b "$BRANCH_NAME"
 
@@ -90,7 +89,7 @@ function extract_locales {
 
 function commit_and_push {
     git commit -m "$MESSAGE" --author "$ROBOT_NAME <$ROBOT_EMAIL>" --no-gpg-sign locale/*/LC_MESSAGES/*.po locale/templates/
-    git push -q origin
+    git push -q "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
 }
 
 
