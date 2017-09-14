@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -781,6 +781,14 @@ msgstr "Licencja kodu źródłowego dla {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Licencja kodu źródłowego"
+
+#, fuzzy
+msgid "support section"
+msgstr "Pomoc"
+
+#, fuzzy
+msgid "support email"
+msgstr "E-mail pomocy"
 
 msgid "permalink"
 msgstr "zobacz całą"
@@ -2979,12 +2987,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Komentarze autora"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Data sprawdzenia"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3826,9 +3833,6 @@ msgstr "Prześlij nowy motyw"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Prześlij dodatek"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5661,6 +5665,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"

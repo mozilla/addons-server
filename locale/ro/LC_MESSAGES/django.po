@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-07 16:02+0000\n"
+"POT-Creation-Date: 2017-09-14 00:06+0000\n"
 "PO-Revision-Date: 2017-07-07 20:48+0000\n"
 "Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -797,6 +797,14 @@ msgstr ""
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr ""
+
+#, fuzzy
+msgid "support section"
+msgstr "Suport"
+
+#, fuzzy
+msgid "support email"
+msgstr "Suport"
 
 msgid "permalink"
 msgstr ""
@@ -2982,12 +2990,11 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-#, fuzzy
-msgid "Developer Agreement"
-msgstr "Developer Information"
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
 
 #, fuzzy
-msgid "Review Policy"
+msgid "Review Policies and Rules"
 msgstr "Review"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -3789,9 +3796,6 @@ msgstr "Versiune nouă"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Suplimentele mele"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -5579,6 +5583,9 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
+msgstr ""
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
