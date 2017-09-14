@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 01:26+0000\n"
+"PO-Revision-Date: 2017-09-14 01:50+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -258,7 +258,7 @@ msgid "Number of Contributions"
 msgstr "Nombre de contributions"
 
 msgid "More Info..."
-msgstr "Plus d’informations …"
+msgstr "Plus d’informations…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -690,7 +690,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour installer un moteur de recherche."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "Ajouter au Favoris &hellip;"
+msgstr "Ajouter aux favoris…"
 
 msgid "Removing Favorite&hellip;"
 msgstr "Retirer des Favoris &hellip;"
@@ -808,7 +808,7 @@ msgid "Number of Reviews"
 msgstr "Nombre de revues"
 
 msgid "Loading..."
-msgstr "Chargement …"
+msgstr "Chargement…"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."

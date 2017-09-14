@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 01:28+0000\n"
+"PO-Revision-Date: 2017-09-14 01:50+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -319,7 +319,7 @@ msgid "%(addon_name)s requires that you accept the following End-User License Ag
 msgstr "Le module %(addon_name)s nécessite que vous acceptiez le Contrat de Licence pour l’Utilisateur Final suivant avant de procéder à l’installation :"
 
 msgid "Back to {0}…"
-msgstr "Revenir à {0} …"
+msgstr "Revenir à {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -1109,7 +1109,7 @@ msgid "Application Versions"
 msgstr "Versions des logiciels"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr "Versions acceptables pour toutes les application sur AMO."
+msgstr "Versions acceptables pour toutes les applications sur AMO."
 
 msgid "Valid Application Versions"
 msgstr "Versions valides de l’application"
@@ -1593,7 +1593,7 @@ msgstr "Modules en vedette :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Voici quelques-un de nos modules favoris pour vous aider à commencer à personnaliser %s."
+msgstr "Voici quelques-uns de nos modules favoris pour vous aider à commencer à personnaliser %s."
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1637,7 +1637,7 @@ msgstr "Modules en vedette"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Voici quelques-un de nos modules favoris pour vous aider à commencer à adapter %(app)s."
+msgstr "Voici quelques-uns de nos modules favoris pour vous aider à commencer à personnaliser %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Installer le dictionnaire"
@@ -2909,7 +2909,7 @@ msgstr "Les images ne peuvent pas être animées."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "Les images ne peuvent pas dépasser %dKiO."
+msgstr "Les images ne peuvent pas dépasser %d Ko."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
@@ -2996,7 +2996,7 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr "Centre développeur de <small>modules</small>"
 
 msgid "more add-ons..."
-msgstr "plus de modules …"
+msgstr "plus de modules…"
 
 msgid "Documentation"
 msgstr "Documentation"
@@ -3449,7 +3449,7 @@ msgid "Used in add-on detail pages."
 msgstr "Utilisé dans la page de détails du module"
 
 msgid "Upload a Custom Icon..."
-msgstr "Envoyer une icône personnalisée …"
+msgstr "Envoyer une icône personnalisée…"
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "PNG et JPEG sont supportés. Les icônes seront redimensionnées à 64x64 pixels si elles dépassent."
@@ -3464,7 +3464,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr "Merci de fournir une légende pour cette capture d’écran :"
 
 msgid "Add a Screenshot..."
-msgstr "Ajouter une capture d’écran …"
+msgstr "Ajouter une capture d’écran…"
 
 msgid "Tests"
 msgstr "Tests"
@@ -4432,7 +4432,7 @@ msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
 
 msgid "300 KB max"
-msgstr "300 KiO max"
+msgstr "300 Ko max"
 
 msgid "PNG or JPG"
 msgstr "PNG ou JPG"
@@ -4747,7 +4747,7 @@ msgid "Is more info requested?"
 msgstr "Besoin de plus d’informations ?"
 
 msgid "Choose a canned response..."
-msgstr "Choisissez une réponse enregistrée …"
+msgstr "Choisissez une réponse enregistrée…"
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
@@ -4950,7 +4950,7 @@ msgstr "a été approuvé"
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} validation de thème réalisée avec succès (+{1} points, {2} au total)."
-msgstr[1] "{0} validation de thèmes réalisées avec succès (+{1} points, {2} au total)."
+msgstr[1] "{0} validations de thèmes réalisées avec succès (+{1} points, {2} au total)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
@@ -5266,7 +5266,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr "Vous pouvez toujours envoyer ce formulaire, cependant ne le faites que si vous savez que cela n’entrera pas en conflit."
 
 msgid "Insert canned response..."
-msgstr "Insérez une réponse enregistrée …"
+msgstr "Insérez une réponse enregistrée…"
 
 msgid "Files:"
 msgstr "Fichiers :"
@@ -5617,7 +5617,7 @@ msgid "Add-on file being processed, please wait."
 msgstr "Traitement du fichier du module en cours, merci de patienter."
 
 msgid "Fetching validation results..."
-msgstr "Récupération des résultats de validation …"
+msgstr "Récupération des résultats de validation…"
 
 msgid "Deleted files:"
 msgstr "Fichiers supprimés :"
@@ -6836,7 +6836,7 @@ msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Comment puis-je répondre à un utilisateur qui a posté un commentaire négatif sur mon module ?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Un développeur peut répondre à tout commentaire posté sur son module du moment qu’il est connecté sur AMO. En plus, tout utilisateur peut étiquetter un commentaire comme :"
+msgstr "Un développeur peut répondre à tout commentaire posté sur son module du moment qu’il est connecté sur AMO. En plus, tout utilisateur peut étiqueter un commentaire comme :"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
@@ -6939,9 +6939,9 @@ msgid ""
 "compatible or not."
 msgstr ""
 "Les modules listés dans cette galerie ne fonctionnent qu’avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox pour Android</a>,"
-" <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, et<a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules peuvent ne pas fonctionner sur une de ces applications ou certaines"
-" versions de ces dernières. Chaque module spécifie les applications et versions pour lesquelles il fonctionne, comme par exemple Firefox 50.0 - 52.*. Pour les modules complémentaires Firefox, le "
-"bouton d’installation indiquera si le module est compatible ou non."
+" <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, et <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules peuvent ne pas fonctionner sur une de ces applications ou "
+"certaines versions de ces dernières. Chaque module spécifie les applications et versions pour lesquelles il fonctionne, comme par exemple Firefox 50.0 - 52.*. Pour les modules complémentaires "
+"Firefox, le bouton d’installation indiquera si le module est compatible ou non."
 
 msgid "What are the different types of add-ons?"
 msgstr "Quels sont les différents types de modules ?"
@@ -7047,7 +7047,7 @@ msgid ""
 msgstr ""
 "Les modules sont généralement créés par des développeurs tiers provenant du monde entier, le meilleur moyen de trouver de l’aide à propos d’un module est de chercher des liens pour l’assistance sur "
 "la page d’accueil du module ou de contacter son développeur. Si vous avez des problèmes avec %(app_name)s que vous suspectez être liés à des modules que vous avez installés, <a "
-"href=\"%(troubleshooting_url)s\">rendez-vous sur cette page d’assistance</a> pour des indications pour trouver le soucis."
+"href=\"%(troubleshooting_url)s\">rendez-vous sur cette page d’assistance</a> pour des indications pour trouver le souci."
 
 msgid "Add-on Gallery"
 msgstr "Galerie de modules"
@@ -7121,7 +7121,7 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
-"Les versions bêtas sont des versions non testées qui correspondent aux dernières avancée du développeur d’un module. Bien que les auteurs aient des critères de qualité différents pour du code bêta, "
+"Les versions bêta sont des versions non testées qui correspondent aux dernières avancées du développeur d’un module. Bien que les auteurs aient des critères de qualité différents pour du code bêta, "
 "vous devriez considérer que ces modules sont moins stables que les versions publiées."
 
 msgid ""
@@ -7877,7 +7877,7 @@ msgid "365 days"
 msgstr "365 jours"
 
 msgid "Custom..."
-msgstr "Personnalisé …"
+msgstr "Personnalisé…"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7979,7 +7979,7 @@ msgid "Download sources by Date"
 msgstr "Sources de téléchargement par date"
 
 msgid "About tracking external sources..."
-msgstr "À propos du suivi des sources externes …"
+msgstr "À propos du suivi des sources externes…"
 
 #, python-format
 msgid ""
@@ -8104,7 +8104,7 @@ msgstr "Choisissez parmi les milliers de fonctionnalités et styles supplémenta
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Ajoutez fonctionnalités et styles supplémentaires pour personnaliser votre %(app)s."
+msgstr "Ajoutez des fonctionnalités et styles supplémentaires pour personnaliser votre %(app)s."
 
 msgid "On the go?"
 msgstr "Sur le pouce ?"
