@@ -30,7 +30,7 @@ class CollectionIndexer(BaseSearchIndexer):
                     'name': {'type': 'text',
                              'analyzer': 'standardPlusWordDelimiter'},
                     'type': {'type': 'byte'},
-                    'slug': {'type': 'text'},
+                    'slug': {'type': 'keyword'},
 
                 },
             }

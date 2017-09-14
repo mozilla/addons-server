@@ -159,7 +159,7 @@ class AddonIndexer(BaseSearchIndexer):
                             'average': {'type': 'float', 'index': False}
                         }
                     },
-                    'slug': {'type': 'text'},
+                    'slug': {'type': 'keyword'},
                     'requires_payment': {'type': 'boolean', 'index': False},
                     'status': {'type': 'byte'},
                     'summary': {'type': 'text', 'analyzer': 'snowball'},

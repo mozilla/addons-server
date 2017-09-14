@@ -2487,7 +2487,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-addon'
 
     def test_with_query(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+        addon = addon_factory(slug='my-addon', name=u'My Addon',
                               tags=['some_tag'])
         addon_factory(slug='unrelated', name=u'Unrelated')
         self.refresh()
@@ -2498,7 +2498,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': u'My Addon'}
         assert result['slug'] == 'my-addon'
 
     def test_with_session_cookie(self):
