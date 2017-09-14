@@ -373,6 +373,23 @@ class TestSearchParameterFilter(FilterTestsBase):
         must = qs['query']['bool']['must']
         assert {'terms': {'listed_authors.username': ['foo', 'bar']}} in must
 
+    def test_exclude_addons(self):
+        qs = self._filter(data={'exclude_addons': 'fooBar'})
+        assert 'must' not in qs['query']['bool']
+        must_not = qs['query']['bool']['must_not']
+        assert must_not == [{'terms': {'slug': [u'fooBar']}}]
+
+        qs = self._filter(data={'exclude_addons': 1})
+        assert 'must' not in qs['query']['bool']
+        must_not = qs['query']['bool']['must_not']
+        assert must_not == [{'ids': {'values': [u'1']}}]
+
+        qs = self._filter(data={'exclude_addons': 'fooBar,1'})
+        assert 'must' not in qs['query']['bool']
+        must_not = qs['query']['bool']['must_not']
+        assert {'ids': {'values': [u'1']}} in must_not
+        assert {'terms': {'slug': [u'fooBar']}} in must_not
+
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
     filter_classes = [InternalSearchParameterFilter]

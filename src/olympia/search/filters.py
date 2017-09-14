@@ -16,8 +16,8 @@ def get_locale_analyzer(lang):
     return analyzer
 
 
-class AddonFilterParam(object):
-    """Helper to build a simple ES lookup query from a request.GET param."""
+class AddonQueryParam(object):
+    """Helper to build a simple ES query from a request.GET param."""
     operator = 'term'  # ES filter to use when filtering.
     query_param = None
     reverse_dict = None
@@ -53,11 +53,11 @@ class AddonFilterParam(object):
     def get_value_from_object_from_reverse_dict(self):
         return self.get_object_from_reverse_dict().id
 
-    def get_es_filter(self):
+    def get_es_query(self):
         return [Q(self.operator, **{self.es_field: self.get_value()})]
 
 
-class AddonAppFilterParam(AddonFilterParam):
+class AddonAppFilterParam(AddonQueryParam):
     query_param = 'app'
     reverse_dict = amo.APPS
     valid_values = amo.APP_IDS
@@ -67,7 +67,7 @@ class AddonAppFilterParam(AddonFilterParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonAppVersionFilterParam(AddonFilterParam):
+class AddonAppVersionFilterParam(AddonQueryParam):
     query_param = 'appversion'
     # appversion need special treatment. We need to convert the query parameter
     # into a set of min and max integer values, and filter on those 2 values
@@ -90,7 +90,7 @@ class AddonAppVersionFilterParam(AddonFilterParam):
                 AddonAppFilterParam.query_param,
                 self.query_param))
 
-    def get_es_filter(self):
+    def get_es_query(self):
         app_id, low, high = self.get_values()
         return [
             Q('range', **{'current_version.compatible_apps.%d.min' % app_id:
@@ -100,7 +100,7 @@ class AddonAppVersionFilterParam(AddonFilterParam):
         ]
 
 
-class AddonAuthorFilterParam(AddonFilterParam):
+class AddonAuthorFilterParam(AddonQueryParam):
     # Note: this filter returns add-ons that have at least one matching author
     # when several are provided (separated by a comma).
     # It works differently from the tag filter below that needs all tags
@@ -113,7 +113,7 @@ class AddonAuthorFilterParam(AddonFilterParam):
         return self.request.GET.get(self.query_param, '').split(',')
 
 
-class AddonPlatformFilterParam(AddonFilterParam):
+class AddonPlatformFilterParam(AddonQueryParam):
     query_param = 'platform'
     reverse_dict = amo.PLATFORM_DICT
     valid_values = amo.PLATFORMS
@@ -134,21 +134,21 @@ class AddonPlatformFilterParam(AddonFilterParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonTypeFilterParam(AddonFilterParam):
+class AddonTypeFilterParam(AddonQueryParam):
     query_param = 'type'
     reverse_dict = amo.ADDON_SEARCH_SLUGS
     valid_values = amo.ADDON_SEARCH_TYPES
     es_field = 'type'
 
 
-class AddonStatusFilterParam(AddonFilterParam):
+class AddonStatusFilterParam(AddonQueryParam):
     query_param = 'status'
     reverse_dict = amo.STATUS_CHOICES_API_LOOKUP
     valid_values = amo.STATUS_CHOICES_API
     es_field = 'status'
 
 
-class AddonCategoryFilterParam(AddonFilterParam):
+class AddonCategoryFilterParam(AddonQueryParam):
     query_param = 'category'
     es_field = 'category'
     valid_values = CATEGORIES_BY_ID.keys()
@@ -175,7 +175,7 @@ class AddonCategoryFilterParam(AddonFilterParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonTagFilterParam(AddonFilterParam):
+class AddonTagFilterParam(AddonQueryParam):
     # query_param is needed for SearchParameterFilter below, so we need it
     # even with the custom get_value() implementation.
     query_param = 'tag'
@@ -183,10 +183,28 @@ class AddonTagFilterParam(AddonFilterParam):
     def get_value(self):
         return self.request.GET.get(self.query_param, '').split(',')
 
-    def get_es_filter(self):
+    def get_es_query(self):
         # Just using 'terms' would not work, as it would return any tag match
         # in the list, but we want to exactly match all of them.
         return [Q('term', tags=tag) for tag in self.get_value()]
+
+
+class AddonExcludeAddonsExcludeParam(AddonQueryParam):
+    query_param = 'exclude_addons'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '').split(',')
+
+    def get_es_query(self):
+        filters = []
+        values = self.get_value()
+        ids = [value for value in values if value.isdigit()]
+        slugs = [value for value in values if not value.isdigit()]
+        if ids:
+            filters.append(Q('ids', values=ids))
+        if slugs:
+            filters.append(Q('terms', slug=slugs))
+        return filters
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -327,29 +345,44 @@ class SearchQueryFilter(BaseFilterBackend):
 class SearchParameterFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend for ES queries that look for items
-    matching a specific set of fields in request.GET: app, appversion,
-    platform, tag and type.
+    matching a specific set of params in request.GET: app, appversion,
+    author, category, exclude_addons, platform, tag and type.
     """
     available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
-                         AddonPlatformFilterParam, AddonTypeFilterParam,
-                         AddonCategoryFilterParam, AddonTagFilterParam,
-                         AddonAuthorFilterParam]
+                         AddonAuthorFilterParam, AddonCategoryFilterParam,
+                         AddonPlatformFilterParam, AddonTagFilterParam,
+                         AddonTypeFilterParam]
 
-    def filter_queryset(self, request, qs, view):
-        must = []
+    available_excludes = [AddonExcludeAddonsExcludeParam]
 
-        for filter_class in self.available_filters:
+    def get_applicable_clauses(self, request, params_to_try):
+        rval = []
+        for param_class in params_to_try:
             try:
-                # Initialize the filter class if its query parameter is present
-                # in the request, otherwise don't, to avoid  raising exceptions
-                # because of missing params in complex filters.
-                if filter_class.query_param in request.GET:
-                    filter_ = filter_class(request)
-                    must.extend(filter_.get_es_filter())
+                # Initialize the param class if its query parameter is
+                # present in the request, otherwise don't, to avoid raising
+                # exceptions because of missing params in complex filters.
+                if param_class.query_param in request.GET:
+                    rval.extend(param_class(request).get_es_query())
             except ValueError as exc:
                 raise serializers.ValidationError(*exc.args)
+        return rval
 
-        return qs.query(query.Bool(must=must)) if must else qs
+    def filter_queryset(self, request, qs, view):
+        bool_kwargs = {}
+
+        must = self.get_applicable_clauses(
+            request, self.available_filters)
+        must_not = self.get_applicable_clauses(
+            request, self.available_excludes)
+
+        if must:
+            bool_kwargs['must'] = must
+
+        if must_not:
+            bool_kwargs['must_not'] = must_not
+
+        return qs.query(query.Bool(**bool_kwargs)) if bool_kwargs else qs
 
 
 class InternalSearchParameterFilter(SearchParameterFilter):

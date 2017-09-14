@@ -2796,6 +2796,39 @@ class TestAddonSearchView(ESTestCase):
                 assert result['id'] == addon.pk
                 assert result['slug'] == addon.slug
 
+    def test_exclude_addons(self):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        addon3 = addon_factory()
+        self.refresh()
+
+        # Exclude addon2 and addon3 by slug.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                (addon2.slug, addon3.slug))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon1.pk
+
+        # Exclude addon1 and addon2 by pk.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                map(unicode, (addon2.pk, addon1.pk)))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon3.pk
+
+        # Exclude addon1 by pk and addon3 by slug.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                (unicode(addon1.pk), addon3.slug))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon2.pk
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient
