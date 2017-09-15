@@ -62,12 +62,12 @@ class TestUserEditForm(UserFormBase):
         self.url = reverse('users.edit')
 
     def test_no_username_or_display_name(self):
-        assert not self.user.has_anonymous_username()
+        assert not self.user.has_anonymous_username
         data = {'username': '',
                 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
-        assert self.user.reload().has_anonymous_username()
+        assert self.user.reload().has_anonymous_username
 
     def test_change_username(self):
         assert self.user.username != 'new-username'
