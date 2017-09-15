@@ -356,17 +356,17 @@ class SearchParameterFilter(BaseFilterBackend):
     available_excludes = [AddonExcludeAddonsQueryParam]
 
     def get_applicable_clauses(self, request, params_to_try):
-        rval = []
+        clauses = []
         for param_class in params_to_try:
             try:
                 # Initialize the param class if its query parameter is
                 # present in the request, otherwise don't, to avoid raising
                 # exceptions because of missing params in complex filters.
                 if param_class.query_param in request.GET:
-                    rval.extend(param_class(request).get_es_query())
+                    clauses.extend(param_class(request).get_es_query())
             except ValueError as exc:
                 raise serializers.ValidationError(*exc.args)
-        return rval
+        return clauses
 
     def filter_queryset(self, request, qs, view):
         bool_kwargs = {}
