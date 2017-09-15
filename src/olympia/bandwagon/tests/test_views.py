@@ -1357,8 +1357,15 @@ class TestCollectionViewSetDetail(TestCase):
     def test_not_listed(self):
         self.collection.update(listed=False)
 
+        # not logged in
         response = self.client.get(self.url)
         assert response.status_code == 401
+
+        # logged in
+        random_user = user_factory()
+        self.client.login_api(random_user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_not_listed_self(self):
         self.collection.update(listed=False)
@@ -1379,6 +1386,22 @@ class TestCollectionViewSetDetail(TestCase):
                                                  'slug': collection.slug}))
         assert response.status_code == 200
         assert response.data['id'] == collection.id
+
+    def test_not_listed_contributor(self):
+        self.collection.update(listed=False)
+
+        random_user = user_factory()
+        self.client.login_api(random_user)
+        # Not their collection so not allowed.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        CollectionUser.objects.create(collection=self.collection,
+                                      user=random_user)
+        # Now they can access it.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
 
     def test_404(self):
         # Invalid user.
@@ -1579,6 +1602,20 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         # Just double-check we didn't steal their collection
         assert self.collection.author.id == random_user.id
 
+    def test_contributor_patch_fails(self):
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        self.collection.update(author=random_user)
+        CollectionUser.objects.create(collection=self.collection,
+                                      user=self.user)
+        url = self.get_url(random_user)
+        # Check setup is good and we can access the collection okay.
+        get_response = self.client.get(url)
+        assert get_response.status_code == 200
+        # But can't patch it.
+        response = self.send(url=url)
+        assert response.status_code == 403
+
 
 class TestCollectionViewSetDelete(TestCase):
     client_class = APITestClient
@@ -1601,7 +1638,7 @@ class TestCollectionViewSetDelete(TestCase):
         response = self.client.delete(self.url)
         assert response.status_code == 401
 
-    def test_different_account(self):
+    def test_different_account_fails(self):
         self.client.login_api(self.user)
         different_user = user_factory()
         self.collection.update(author=different_user)
@@ -1622,6 +1659,22 @@ class TestCollectionViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 204
         assert not Collection.objects.filter(id=self.collection.id).exists()
+
+    def test_contributor_fails(self):
+        self.client.login_api(self.user)
+        different_user = user_factory()
+        self.collection.update(author=different_user)
+        CollectionUser.objects.create(collection=self.collection,
+                                      user=self.user)
+        url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': different_user.pk, 'slug': self.collection.slug})
+        # Check setup is good and we can access the collection okay.
+        get_response = self.client.get(url)
+        assert get_response.status_code == 200
+        # But can't delete it.
+        response = self.client.delete(url)
+        assert response.status_code == 403
 
 
 class CollectionAddonViewSetMixin(object):
@@ -1656,6 +1709,13 @@ class CollectionAddonViewSetMixin(object):
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Collections:Edit')
         self.client.login_api(admin_user)
+        self.check_response(self.send(self.url))
+
+    def test_contributor(self):
+        random_user = user_factory()
+        CollectionUser.objects.create(collection=self.collection,
+                                      user=random_user)
+        self.client.login_api(random_user)
         self.check_response(self.send(self.url))
 
 

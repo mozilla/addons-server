@@ -243,13 +243,15 @@ class AllowRelatedObjectPermissions(BasePermission):
 
 class PreventActionPermission(BasePermission):
     """
-    Allow access except for a given action.
+    Allow access except for a given action(s).
     """
-    def __init__(self, action):
-        self.action = action
+    def __init__(self, actions):
+        if not isinstance(actions, list):
+            actions = [actions]
+        self.actions = actions
 
     def has_permission(self, request, view):
-        return getattr(view, 'action', '') != self.action
+        return getattr(view, 'action', '') not in self.actions
 
     def has_object_permission(self, request, view, obj):
         return True

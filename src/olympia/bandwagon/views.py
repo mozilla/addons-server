@@ -40,7 +40,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
-from .permissions import AllowCollectionAuthor
+from .permissions import AllowCollectionAuthor, AllowCollectionContributor
 from .serializers import CollectionAddonSerializer, CollectionSerializer
 from . import forms, tasks
 
@@ -652,6 +652,11 @@ class CollectionViewSet(ModelViewSet):
         AnyOf(
             # Collection authors can do everything.
             AllowCollectionAuthor,
+            # Collection contributors can access an existing collection, and
+            # change it's addons, but can't delete or edit it's details.
+            AllOf(AllowCollectionContributor,
+                  PreventActionPermission(['create', 'list', 'update',
+                                           'destroy', 'partial_update'])),
             # Admins can do everything except create.
             AllOf(GroupPermission(amo.permissions.COLLECTIONS_EDIT),
                   PreventActionPermission('create')),
