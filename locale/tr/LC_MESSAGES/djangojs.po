@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-08-01 10:38+0000\n"
-"Last-Translator: kilincer98 <kilincer98@mynet.com>\n"
+"PO-Revision-Date: 2017-09-15 12:23+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgid "Error with {0}"
 msgstr "{0} hatası"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Eklentinizi işlemek için yeni bir linter etkinleştirdik. Herhangi bir sorun yaşarsanız lütfen GitHub'da bize bildirin"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -64,7 +64,7 @@ msgid "Validating {0}"
 msgstr "{0} doğrulanıyor"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Eklentiniz maksimum {0} olan boyutu aşıyor."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Sunucudan boş yanıt alındı. Durum: {0}"
@@ -99,7 +99,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN'de eski bir Firefox eklentisini dönüştürme ile ilgili bilgiler"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
@@ -117,8 +117,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
-"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
+" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -656,9 +656,8 @@ msgid "Not available for your platform"
 msgstr "Sizin platformunuz için mevcut değil"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
+msgstr "Bu eklenti sizin {0} sürümünüzle uyumlu değil."
 
 msgid "View other versions"
 msgstr "Diğer sürümleri görüntüle"
@@ -786,7 +785,7 @@ msgid "Review notes found"
 msgstr "İnceleme notları bulundu"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "İncelemelerin Ortalaması"
 
 msgid "Number of Reviews"
 msgstr "İncelemelerin Sayısı"
