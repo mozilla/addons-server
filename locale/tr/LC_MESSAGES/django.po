@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-15 12:30+0000\n"
+"PO-Revision-Date: 2017-09-15 12:42+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -568,9 +568,8 @@ msgstr "%(users)s tarafından"
 msgid "Download Anyway"
 msgstr "Yine De İndir"
 
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} uyarı"
+msgstr "[Uyarı]"
 
 msgid "Permissions"
 msgstr "İzinler"
@@ -2789,10 +2788,10 @@ msgid "Do not list my add-on on this site"
 msgstr "Eklentilerimi bu sitede listeleme"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "Eklentinizi kendi başınıza dağıtmayı düşünüyorsanız ve yalnızca Mozilla tarafından imzalanmış olması gerekiyorsa bu seçeneği işaretleyin."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Sürümü a|alpha|b|beta|pre|rc ve isteğe bağlı bir sayı ile biten bir dosya beta olarak algılanır."
 
 msgid "You cannot upload any more files for this version."
 msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
@@ -2801,7 +2800,7 @@ msgid "Version doesn't match"
 msgstr "Sürüm eşleşmedi"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "{version} sürümü daha önce yüklenip silinmiş."
 
 #, fuzzy
 msgid "Version {version} already exists."
@@ -2998,7 +2997,7 @@ msgid "Review Policies and Rules"
 msgstr "İnceleme notu"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "Başlamadan önce lütfen Firefox Eklenti Dağıtım Sözleşmesi'ni okuyup kabul edin. Ayrıca bu sözleşme bilgilerinizi nasıl işlediğimizi açıklayan Gizlilik Bildirimimize de bağlantı sağlar."
 
 msgid "Printable Version"
 msgstr "Yazdırılabilir sürüm"
@@ -3094,7 +3093,7 @@ msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are
 msgstr ""
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Yükleme sonrasında, aşağıdaki uygulama sürümü ile uyumluluğu kontrol etmek için bir dizi otomatik doğrulama testi çalıştırılacaktır:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Yüklemeden sonra dosyanız üzerinde bir dizi otomatik doğrulama testi çalışacak."
@@ -3247,7 +3246,7 @@ msgid "Add-on URL"
 msgstr "Eklenti"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Eklentiniz için kısa ve benzersiz bir kısa URL seçin."
 
 #, fuzzy
 msgid "View Listing"
@@ -3434,13 +3433,13 @@ msgid "Upgrade SDK?"
 msgstr "{0} uygulamasını yükseltin"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Seçilirse, SDK'nın yeni bir sürümü çıktığında eklentinizi otomatik olarak yeni yükseltmeye çalışacağız. Yalnızca listelenen eklentiler için geçerlidir."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Bu eklenti, Eklenti SDK'sının yeni sürümlerine otomatik olarak yükseltilecektir."
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Hayır, bu eklenti el ile yükseltilecektir."
 
 msgid "Universally unique identifier"
 msgstr "Evrensel eşsiz tanımlayıcı"
@@ -3510,7 +3509,7 @@ msgid "Screenshots"
 msgstr "Ekran görüntüleri"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Lütfen eklentinizin en az bir tane ekran görüntüsünü sağlayın:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Lütfen bu ekran görüntüsüne bir başlık verin:"
@@ -3563,7 +3562,7 @@ msgstr ""
 "başkaları aynı kimliği kullanarak sürümleri gönderemeyecektir."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Kararınızı onaylamak için şu metni yazın: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "Temanızı neden sildiğinizi lütfen bize söyleyin:"
@@ -3699,7 +3698,7 @@ msgid "This add-on is experimental"
 msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "Eklentiniz deneyselse veya genel kullanım için hazır değilse bu seçeneği işaretleyin. Eklenti listelenir ama daha az görünür. Bu ayarı daha sonra değiştirebilirsiniz."
 
 msgid "Support email:"
 msgstr "Destek e-postası:"
@@ -3758,7 +3757,7 @@ msgid "These notes will appear on the detail page."
 msgstr "Bu notlar ayrıntı sayfasında görünecektir."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Bu Sürüm Nasıl Dağıtılır?"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr "Eklenti Dağıtımı ve İmzalama hakkında daha fazla bilgi"
@@ -3948,7 +3947,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Kuyruklar sırayla incelenmeyebilir"
 
 msgid "Queue Position:"
 msgstr "Sıradaki konum:"
@@ -4137,7 +4136,7 @@ msgid "Get Your Add-on Featured"
 msgstr "Daha Fazla Eklenti"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"Eklentiyi indir\" düğmesi"
 
 msgid "Legal"
 msgstr "Yasal"
@@ -4160,10 +4159,10 @@ msgid "Join us!"
 msgstr "Bize katılın!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Kod yazın"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Kodlama becerilerinizle katkıda bulunarak eklentileri iyileştirmemize yardımcı olun."
 
 #, fuzzy
 msgid "Get started"
@@ -4174,7 +4173,7 @@ msgid "More Ways to Participate"
 msgstr "Kişiselleştirmenin diğer yolları"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "En özelleştirilebilir tarayıcıyı Firefox'u kullanabilmeniz için kodlama becerisine ihtiyacınız yok!"
 
 msgid "See how"
 msgstr ""
@@ -4276,17 +4275,17 @@ msgid "Sign In"
 msgstr "Giriş yap"
 
 msgid "Validator"
-msgstr ""
+msgstr "Doğrulayıcı"
 
 #, fuzzy
 msgid "Automated code tests for your add-on."
 msgstr "Eklentilerinize Ait Raporlar"
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Eklentinizin Firefox'taki değişikliklerden etkilenme olasılığı olup olmadığına bakın."
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Bir eklentinin Firefox'un belirli bir sürümünde çalışıp çalışmadığını bize söyleyin."
 
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr ""
@@ -4331,7 +4330,7 @@ msgid "Set up Contributions"
 msgstr "Bağışta Bulunun"
 
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Adım 2. Fiyat ve Kullanılabilirlik"
 
 #, fuzzy, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
@@ -4560,7 +4559,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Temanız için üstbilgi resmi seçin."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 piksel"
@@ -4578,7 +4577,7 @@ msgid "Select a different header image"
 msgstr "Farklı bir üst kısım resmi seçin"
 
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Temanız için altbilgi resmi seçin."
 
 msgid "3000 &times; 100 pixels"
 msgstr "3000 &times; 100 piksel"
@@ -4655,7 +4654,7 @@ msgid "0 files"
 msgstr "0 dosya"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Sürümü yeniden etkinleştir"
 
 #, fuzzy
 msgid "Close Review History"
@@ -4743,10 +4742,10 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Bu sürümü sildiğinizde bunlar kalıcı olarak silinir:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Önemli:</strong> Bir sürüm silindiğinde, aynı sürüm numarasına sahip yeni bir sürüm yükleyemezsiniz."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Bu sürümü silmek istediğinizden emin misiniz?"
@@ -4766,22 +4765,22 @@ msgid "Hide Add-on"
 msgstr "Eklenti"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Eklentinizi gizlemek, galerimizin herhangi bir yerinde görünmesini önleyecek ve kullanıcıların otomatik güncellemeleri almasını engelleyecektir."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "İncelemeyi bekleyen dosyalar devre dışı bırakılacak ve yeni sürümler yüklemeniz gerekecek."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Eklentinizi gizlemek istediğinizden emin misiniz?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "İnceleme isteğinizi iptal ederseniz, eklentiniz tamamlanmamış olarak işaretlenir ve incelemeyi bekleyen tüm sürümler devre dışı bırakılır."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "İnceleme isteğinizi iptal etmek istediğinizden emin misiniz?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Eklenti Belgeleri :: Geliştirici Merkezi"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -5487,7 +5486,7 @@ msgid "Download files"
 msgstr "İndirme"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Geliştirici, kaynak kodunu paylaştı."
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -5513,7 +5512,7 @@ msgid "Files:"
 msgstr "Dosyalar:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Test platformu:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -5679,7 +5678,7 @@ msgid "Review Options"
 msgstr "Diğer Seçenekler:"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "İncelemeden sonra otomatik ilerleme"
 
 msgid "Enable keyboard shortcuts"
 msgstr "Klavye kısayollarını devreye sok"
@@ -5760,16 +5759,16 @@ msgid "Enter the ID or URL of the duplicate"
 msgstr ""
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Reddetmek için bir sebep seçin"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Reddetme nedeninizi açıklayın"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Sanatçıya bir soru sor"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "İşaretleme nedeninizi açıklayın"
 
 msgid "Rejected or Unreviewed"
 msgstr "Reddedildi veya incelenmedi"
@@ -5797,7 +5796,7 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Yeni Eklentiler ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "İşaretli"
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -5806,10 +5805,10 @@ msgid "Access your data for {name}"
 msgstr ""
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Aşağıdaki web sitelerindeki verilerinize erişme:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Tüm web sitelerine ait verilerinize erişme"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -5825,7 +5824,7 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Yüklenen dosya çözümlenemedi."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
