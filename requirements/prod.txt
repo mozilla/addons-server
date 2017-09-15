@@ -234,8 +234,8 @@ django-session-csrf==0.7.1 \
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
-django-tables2==1.10.0 \
-    --hash=sha256:51607a1dada9ad10cf09aaadc7208960c6922ab720dd8b5d0c0d1b2222f00a66
+django-tables2==1.11.0 \
+    --hash=sha256:ebe836d5b3548d4b9db28ee34a8d6a4f90875e81f6c10c2e8643f46d905ea62d
 django-waffle==0.12.0 \
     --hash=sha256:5825358d97cc327bc749cd3ce21ea70c958cd50ca91cb62e0c7b690eed83afc9 \
     --hash=sha256:b37da3c26b9d44920e9f5bb35a1339a9f8320437423e733aa8b1f8e03c39cb74
