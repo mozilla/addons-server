@@ -281,6 +281,12 @@ class TestFixAddonsLinterOutput(TestCase):
             'notices': 0,
         }
         assert fixed['ending_tier'] == 5
+        assert fixed['metadata']['is_webextension'] is True
+        assert fixed['metadata']['processed_by_addons_linter'] is True
+        assert fixed['metadata']['listed'] is True
         assert fixed['metadata']['identified_files'] == {
             'lib/vendor/jquery.js': {'path': 'jquery.2.1.4.jquery.js'}
         }
+        # Make sure original metadata was preserved.
+        for key, value in original_output['metadata'].items():
+            assert fixed['metadata'][key] == value

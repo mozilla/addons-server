@@ -144,6 +144,16 @@ def fix_addons_linter_output(validation, listed=True):
         for name, path in validation['metadata'].get('jsLibs', {}).items()
     }
 
+    # Essential metadata.
+    metadata = {
+        'listed': listed,
+        'identified_files': identified_files,
+        'processed_by_addons_linter': True,
+        'is_webextension': True
+    }
+    # Add metadata already set by the linter.
+    metadata.update(validation.get('metadata', {}))
+
     return {
         'success': not validation['errors'],
         'compatibility_summary': {
@@ -155,12 +165,7 @@ def fix_addons_linter_output(validation, listed=True):
         'warnings': validation['summary']['warnings'],
         'errors': validation['summary']['errors'],
         'messages': list(_merged_messages()),
-        'metadata': {
-            'listed': listed,
-            'identified_files': identified_files,
-            'processed_by_addons_linter': True,
-            'is_webextension': True
-        },
+        'metadata': metadata,
         # The addons-linter only deals with WebExtensions and no longer
         # outputs this itself, so we hardcode it.
         'detected_type': 'extension',

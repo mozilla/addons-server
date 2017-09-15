@@ -794,6 +794,17 @@ class AutoApprovalSummary(ModelBase):
                 'uses_native_messaging': (
                     20 if self.check_uses_native_messaging(self.version) else
                     0),
+                # remote scripts: 40.
+                'uses_remote_scripts': (
+                    40 if self.check_uses_remote_scripts(self.version) else 0),
+                # violates mozilla conditions of use: 20.
+                'violates_mozilla_conditions': (
+                    20 if self.check_violates_mozilla_conditions(self.version)
+                    else 0),
+                # libraries of unreadable code: 10.
+                'uses_unknown_minified_code': (
+                    10 if self.check_uses_unknown_minified_code(self.version)
+                    else 0),
                 # Size of code changes: 5kB is one point, up to a max of 100.
                 'size_of_code_changes': min(
                     self.calculate_size_of_code_changes() / 5000, 100)
@@ -910,6 +921,31 @@ class AutoApprovalSummary(ModelBase):
                        for message in validation_data.get('messages', []))
         return any(_check_for_linter_flag_in_file(file_)
                    for file_ in version.all_files)
+
+    @classmethod
+    def check_for_metadata_property(cls, version, prop):
+        def _check_for_property_in_linter_metadata_in_file(file_):
+            try:
+                validation = file_.validation
+            except FileValidation.DoesNotExist:
+                raise AutoApprovalNoValidationResultError()
+            validation_data = json.loads(validation.validation)
+            return validation_data.get(
+                'metadata', {}).get(prop)
+        return any(_check_for_property_in_linter_metadata_in_file(file_)
+                   for file_ in version.all_files)
+
+    @classmethod
+    def check_uses_unknown_minified_code(cls, version):
+        return cls.check_for_metadata_property(version, 'unknownMinifiedFiles')
+
+    @classmethod
+    def check_violates_mozilla_conditions(cls, version):
+        return cls.check_for_linter_flag(version, 'MOZILLA_COND_OF_USE')
+
+    @classmethod
+    def check_uses_remote_scripts(cls, version):
+        return cls.check_for_linter_flag(version, 'REMOTE_SCRIPT')
 
     @classmethod
     def check_uses_eval_or_document_write(cls, version):

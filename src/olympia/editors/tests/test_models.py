@@ -734,6 +734,9 @@ class TestAutoApprovalSummary(TestCase):
             'uses_innerhtml': 0,
             'uses_native_messaging': 0,
             'size_of_code_changes': 0,
+            'uses_remote_scripts': 0,
+            'uses_unknown_minified_code': 0,
+            'violates_mozilla_conditions': 0,
         }
         assert weight_info == expected_result
 
@@ -1016,6 +1019,74 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 20
         assert weight_info['uses_native_messaging'] == 20
 
+    def test_calculate_weight_uses_remote_scripts(self):
+        validation_data = {
+            'messages': [{
+                'id': ['REMOTE_SCRIPT'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 40
+        assert weight_info['uses_remote_scripts'] == 40
+
+    def test_calculate_weight_violates_mozilla_conditions_of_use(self):
+        validation_data = {
+            'messages': [{
+                'id': ['MOZILLA_COND_OF_USE'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['violates_mozilla_conditions'] == 20
+
+    def test_calculate_weight_uses_unknown_minified_code_nothing(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': []  # Empty list: no weight.
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+        validation_data = {
+            'metadata': {
+                # Missing property: no weight.
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+        validation_data = {
+            # Missing metadata: no weight.
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+    def test_calculate_weight_uses_unknown_minified_code(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': ['something']
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 10
+        assert weight_info['uses_unknown_minified_code'] == 10
+
     def test_calculate_size_of_code_changes_no_current_validation(self):
         # Delete the validation for the current version and reload the version
         # we're testing (otherwise the file validation has already been loaded
@@ -1147,6 +1218,9 @@ class TestAutoApprovalSummary(TestCase):
             'uses_innerhtml': 20,
             'uses_native_messaging': 0,
             'size_of_code_changes': 0,
+            'uses_remote_scripts': 0,
+            'uses_unknown_minified_code': 0,
+            'violates_mozilla_conditions': 0,
         }
         assert weight_info == expected_result
 
