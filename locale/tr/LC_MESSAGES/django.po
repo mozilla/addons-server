@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-15 13:08+0000\n"
+"PO-Revision-Date: 2017-09-15 13:12+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2635,10 +2635,10 @@ msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
 msgstr "Hepsi"
@@ -3116,6 +3116,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Bu eklenti, en yeni %(app_name)s sürümü olan <b>%(app_name)s %(app_version)s</b> ile uyumlu değil. Lütfen eklentinizin uyumluluk bilgisini güncellemeyi veya bu eklentinin daha yeni bir sürümünü "
+"yüklemeyi düşünün."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -3336,6 +3338,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Eklentiniz bir destek web sitesi veya foruma sahipse, adresini buraya girin. Web siteniz başka dillere çevirilmişse, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
+"geçerlidir."
 
 msgid "Technical Details"
 msgstr "Teknik Ayrıntılar"
@@ -3860,7 +3864,7 @@ msgid "Invisible"
 msgstr "Görünmez"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Lütfen bir sürüm bilgisi veya eksik üst veriyi ekleyerek eklentinizi tamamlayın."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
@@ -3913,7 +3917,7 @@ msgstr "Sıradaki konum:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(total)s içinde %(position)s."
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
@@ -3989,7 +3993,7 @@ msgid "Developer News"
 msgstr "Geliştirici Haberleri"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Blogu görüntüle ►"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
