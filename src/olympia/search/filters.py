@@ -57,7 +57,7 @@ class AddonQueryParam(object):
         return [Q(self.operator, **{self.es_field: self.get_value()})]
 
 
-class AddonAppFilterParam(AddonQueryParam):
+class AddonAppQueryParam(AddonQueryParam):
     query_param = 'app'
     reverse_dict = amo.APPS
     valid_values = amo.APP_IDS
@@ -67,7 +67,7 @@ class AddonAppFilterParam(AddonQueryParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonAppVersionFilterParam(AddonQueryParam):
+class AddonAppVersionQueryParam(AddonQueryParam):
     query_param = 'appversion'
     # appversion need special treatment. We need to convert the query parameter
     # into a set of min and max integer values, and filter on those 2 values
@@ -76,7 +76,7 @@ class AddonAppVersionFilterParam(AddonQueryParam):
 
     def get_values(self):
         appversion = self.request.GET.get(self.query_param)
-        app = AddonAppFilterParam(self.request).get_value()
+        app = AddonAppQueryParam(self.request).get_value()
 
         if appversion and app:
             # Get a min version less than X.0, and a max greater than X.0a
@@ -87,7 +87,7 @@ class AddonAppVersionFilterParam(AddonQueryParam):
             return app, low, high
         raise ValueError(
             'Invalid combination of "%s" and "%s" parameters.' % (
-                AddonAppFilterParam.query_param,
+                AddonAppQueryParam.query_param,
                 self.query_param))
 
     def get_es_query(self):
@@ -100,8 +100,8 @@ class AddonAppVersionFilterParam(AddonQueryParam):
         ]
 
 
-class AddonAuthorFilterParam(AddonQueryParam):
-    # Note: this filter returns add-ons that have at least one matching author
+class AddonAuthorQueryParam(AddonQueryParam):
+    # Note: this returns add-ons that have at least one matching author
     # when several are provided (separated by a comma).
     # It works differently from the tag filter below that needs all tags
     # provided to match.
@@ -113,7 +113,7 @@ class AddonAuthorFilterParam(AddonQueryParam):
         return self.request.GET.get(self.query_param, '').split(',')
 
 
-class AddonPlatformFilterParam(AddonQueryParam):
+class AddonPlatformQueryParam(AddonQueryParam):
     query_param = 'platform'
     reverse_dict = amo.PLATFORM_DICT
     valid_values = amo.PLATFORMS
@@ -121,7 +121,7 @@ class AddonPlatformFilterParam(AddonQueryParam):
     operator = 'terms'  # Because we'll be sending a list every time.
 
     def get_value(self):
-        value = super(AddonPlatformFilterParam, self).get_value()
+        value = super(AddonPlatformQueryParam, self).get_value()
         # No matter what platform the client wants to see, we always need to
         # include PLATFORM_ALL to match add-ons compatible with all platforms.
         if value != amo.PLATFORM_ALL.id:
@@ -134,48 +134,48 @@ class AddonPlatformFilterParam(AddonQueryParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonTypeFilterParam(AddonQueryParam):
+class AddonTypeQueryParam(AddonQueryParam):
     query_param = 'type'
     reverse_dict = amo.ADDON_SEARCH_SLUGS
     valid_values = amo.ADDON_SEARCH_TYPES
     es_field = 'type'
 
 
-class AddonStatusFilterParam(AddonQueryParam):
+class AddonStatusQueryParam(AddonQueryParam):
     query_param = 'status'
     reverse_dict = amo.STATUS_CHOICES_API_LOOKUP
     valid_values = amo.STATUS_CHOICES_API
     es_field = 'status'
 
 
-class AddonCategoryFilterParam(AddonQueryParam):
+class AddonCategoryQueryParam(AddonQueryParam):
     query_param = 'category'
     es_field = 'category'
     valid_values = CATEGORIES_BY_ID.keys()
 
     def __init__(self, request):
-        super(AddonCategoryFilterParam, self).__init__(request)
+        super(AddonCategoryQueryParam, self).__init__(request)
         # Category slugs are only unique for a given type+app combination.
         # Once we have that, it's just a matter of selecting the corresponding
         # dict in the categories constants and use that as the reverse dict,
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
-            app = AddonAppFilterParam(self.request).get_value()
-            type_ = AddonTypeFilterParam(self.request).get_value()
+            app = AddonAppQueryParam(self.request).get_value()
+            type_ = AddonTypeQueryParam(self.request).get_value()
 
             self.reverse_dict = CATEGORIES[app][type_]
         except KeyError:
             raise ValueError(
                 'Invalid combination of "%s", "%s" and "%s" parameters.' % (
-                    AddonAppFilterParam.query_param,
-                    AddonTypeFilterParam.query_param,
+                    AddonAppQueryParam.query_param,
+                    AddonTypeQueryParam.query_param,
                     self.query_param))
 
     def get_value_from_reverse_dict(self):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonTagFilterParam(AddonQueryParam):
+class AddonTagQueryParam(AddonQueryParam):
     # query_param is needed for SearchParameterFilter below, so we need it
     # even with the custom get_value() implementation.
     query_param = 'tag'
@@ -189,7 +189,7 @@ class AddonTagFilterParam(AddonQueryParam):
         return [Q('term', tags=tag) for tag in self.get_value()]
 
 
-class AddonExcludeAddonsExcludeParam(AddonQueryParam):
+class AddonExcludeAddonsQueryParam(AddonQueryParam):
     query_param = 'exclude_addons'
 
     def get_value(self):
@@ -348,12 +348,12 @@ class SearchParameterFilter(BaseFilterBackend):
     matching a specific set of params in request.GET: app, appversion,
     author, category, exclude_addons, platform, tag and type.
     """
-    available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
-                         AddonAuthorFilterParam, AddonCategoryFilterParam,
-                         AddonPlatformFilterParam, AddonTagFilterParam,
-                         AddonTypeFilterParam]
+    available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
+                         AddonAuthorQueryParam, AddonCategoryQueryParam,
+                         AddonPlatformQueryParam, AddonTagQueryParam,
+                         AddonTypeQueryParam]
 
-    available_excludes = [AddonExcludeAddonsExcludeParam]
+    available_excludes = [AddonExcludeAddonsQueryParam]
 
     def get_applicable_clauses(self, request, params_to_try):
         rval = []
@@ -392,7 +392,7 @@ class InternalSearchParameterFilter(SearchParameterFilter):
     # FIXME: also allow searching by listed/unlisted, deleted or not,
     # disabled or not.
     available_filters = SearchParameterFilter.available_filters + [
-        AddonStatusFilterParam
+        AddonStatusQueryParam
     ]
 
 
