@@ -8,7 +8,7 @@
     {% endif %}
     <title>{% block title %}{{ _('Page Not Found') }}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ STATIC_URL }}img/favicon.ico">
+          href="{{ static('img/favicon.ico') }}">
     {% block site_css %}
       {{ css('errors/css') }}
     {% endblock %}
