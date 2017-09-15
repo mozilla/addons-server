@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-15 08:10+0000\n"
+"PO-Revision-Date: 2017-09-15 08:18+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6698,10 +6698,10 @@ msgid "A site to provide non-judgmental guidance on choosing a license for your 
 msgstr ""
 
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Vanlege spørsmål (FAQ)"
 
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Bruk av utvidingar"
 
 msgid "What is an add-on?"
 msgstr "Kva er ei utviding?"
@@ -6847,7 +6847,7 @@ msgid ""
 msgstr ""
 
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Kva kostar utvidingar?"
 
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
@@ -6889,7 +6889,7 @@ msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr ""
 
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Kva er ein kjeldekodelisens?"
 
 #, python-format
 msgid ""
@@ -7019,7 +7019,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Korleis kan eg rapportere ei problematisk vurdering?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -7048,10 +7048,10 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Kva er det neste som skjer"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Om du er samd i</strong> å delta:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
@@ -7075,10 +7075,10 @@ msgid "Type about:addons into the location bar, and press enter."
 msgstr ""
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Finn Plugin Safety i lista over utvidingar."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klikk på Fjern-knappen."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -7130,7 +7130,7 @@ msgid "Brought to you by:"
 msgstr "Presentert av:"
 
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird er eit avslutta prosjekt"
 
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
@@ -7142,7 +7142,7 @@ msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a h
 msgstr ""
 
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Les meir om Sunbird"
 
 msgid "There was an error communicating with PayPal. Please try again later."
 msgstr ""
@@ -7166,7 +7166,7 @@ msgid "Reviews for %s"
 msgstr "Vurderingar av %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Vurderingshistorikk for denne utvidinga"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
