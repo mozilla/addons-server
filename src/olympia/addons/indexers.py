@@ -112,6 +112,8 @@ class AddonIndexer(BaseSearchIndexer):
                             'application': {'type': 'byte'},
                             'locales': {
                                 'type': 'keyword',
+                                # A null locale means not targeted to a locale,
+                                # so shown to all locales.
                                 'null_value': 'ALL',
                             },
                         },

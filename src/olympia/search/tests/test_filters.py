@@ -395,10 +395,6 @@ class TestSearchParameterFilter(FilterTestsBase):
         must = qs['query']['bool']['must']
         assert {'term': {'is_featured': True}} in must
 
-        qs = self._filter(data={'featured': ''})
-        must = qs['query']['bool']['must']
-        assert {'term': {'is_featured': True}} in must
-
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'featured': 'false'})
         assert context.exception.detail == ['Invalid "featured" parameter.']

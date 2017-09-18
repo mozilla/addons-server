@@ -209,7 +209,7 @@ class AddonExcludeAddonsQueryParam(AddonQueryParam):
 
 class AddonFeaturedQueryParam(AddonQueryParam):
     query_param = 'featured'
-    reverse_dict = {'': True, 'true': True}
+    reverse_dict = {'true': True}
     valid_values = [True]
     es_field = 'featured_for'
 
@@ -224,9 +224,11 @@ class AddonFeaturedQueryParam(AddonQueryParam):
             return [Q('term', is_featured=True)]
         queries = []
         if app:
+            # Search for featured collections targeting `app`.
             queries.append(
                 Q('term', **{'featured_for.application': app}))
         if locale:
+            # Search for featured collections targeting `locale` or all locales
             queries.append(
                 Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
         return [Q('nested', path='featured_for',

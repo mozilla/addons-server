@@ -45,10 +45,9 @@ This endpoint allows you to search through public add-ons.
     :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
-    :query boolean featured: Filter to only featured add-ons.
-        If ``app`` is provided as a parameter then only featured collections targetted to that application are taken into account.
-        If ``lang`` is provided then only featured collections for that language, or no language, are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in that application and for that language, or no language.
-        The value `true` is optional - ``featured`` and ``featured=true`` are identical.
+    :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
+        If ``app`` is provided as a parameter then only featured collections targeted to that application are taken into account.
+        If ``lang`` is provided then only featured collections targeted to that language, (and collections for all languages), are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in collections that application and for that language, (and for all languages).
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.

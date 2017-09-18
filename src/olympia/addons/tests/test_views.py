@@ -2539,12 +2539,6 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        # Leaving out the param value should also work.
-        data = self.perform_search(self.url + '?featured')
-        assert data['count'] == 1
-        assert len(data['results']) == 1
-        assert data['results'][0]['id'] == addon.pk
-
     def test_filter_by_featured_app_and_langs(self):
         fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         collection = collection_factory()
@@ -2573,7 +2567,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(slug='other-addon', name=u'Other Addôn')
         self.reindex(Addon)
 
-        # searching for just Firefox should return the two Firefox collections.
+        # Searching for just Firefox should return the two Firefox collections.
+        # The filter should be `Q('term', **{'featured_for.application': app})`
         data = self.perform_search(self.url, {'featured': 'true',
                                               'app': 'firefox'})
         assert data['count'] == 2 == len(data['results'])
@@ -2581,6 +2576,8 @@ class TestAddonSearchView(ESTestCase):
         self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
 
         # If we specify lang 'fr' too it should be the same collections.
+        # In addition to the app query above, this will be executed too:
+        # `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))`
         data = self.perform_search(
             self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
         assert data['count'] == 2 == len(data['results'])
@@ -2595,6 +2592,7 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == fx_addon.pk
 
         # If we only search for lang, application is ignored.
+        # Just `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))` now.
         data = self.perform_search(
             self.url, {'featured': 'true', 'lang': 'en-US'})
         assert data['count'] == 2 == len(data['results'])
