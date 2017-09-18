@@ -110,6 +110,7 @@ class AddonSerializerOutputTestMixin(object):
             average_rating=4.21,
             bayesian_rating=4.22,
             category=cat1,
+            contributions=u'https://paypal.me/foobar/',
             description=u'My Addôn description',
             developer_comments=u'Dévelopers Addôn comments',
             file_kw={
@@ -203,6 +204,7 @@ class AddonSerializerOutputTestMixin(object):
         self._test_author(first_author, result['authors'][0])
         self._test_author(second_author, result['authors'][1])
 
+        assert result['contributions_url'] == self.addon.contributions
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
