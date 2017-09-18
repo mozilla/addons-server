@@ -211,11 +211,10 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     query_param = 'featured'
     reverse_dict = {'true': True}
     valid_values = [True]
-    es_field = 'featured_for'
 
-    def get_es_filter(self):
+    def get_es_query(self):
         self.get_value()  # Call to validate the value - we only want True.
-        app_filter = AddonAppFilterParam(self.request)
+        app_filter = AddonAppQueryParam(self.request)
         app = (app_filter.get_value()
                if self.request.GET.get(app_filter.query_param) else None)
         locale = self.request.GET.get('lang')
