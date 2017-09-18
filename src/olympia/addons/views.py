@@ -49,7 +49,7 @@ from olympia.api.permissions import (
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
-    AddonAppFilterParam, AddonCategoryFilterParam, AddonTypeFilterParam,
+    AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.stats.models import Contribution
@@ -841,10 +841,10 @@ class AddonFeaturedView(GenericAPIView):
             # If a category is passed then the app and type parameters are
             # mandatory because we need to find a category in the constants to
             # pass to get_creatured_ids(), and category slugs are not unique.
-            # AddonCategoryFilterParam parses the request parameters for us to
+            # AddonCategoryQueryParam parses the request parameters for us to
             # determine the category.
             try:
-                category = AddonCategoryFilterParam(self.request).get_value()
+                category = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
                 raise ParseError(
                     'Invalid app, category and/or type parameter(s).')
@@ -855,11 +855,11 @@ class AddonFeaturedView(GenericAPIView):
             # to pick addons from. It can optionally filter by type, so we
             # parse request for that as well.
             try:
-                app = AddonAppFilterParam(
+                app = AddonAppQueryParam(
                     self.request).get_object_from_reverse_dict()
                 type_ = None
                 if 'type' in self.request.GET:
-                    type_ = AddonTypeFilterParam(self.request).get_value()
+                    type_ = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
                 raise ParseError(
                     'Invalid app, category and/or type parameter(s).')
@@ -905,7 +905,7 @@ class LanguageToolsView(ListAPIView):
 
     def get_queryset(self):
         try:
-            application_id = AddonAppFilterParam(self.request).get_value()
+            application_id = AddonAppQueryParam(self.request).get_value()
         except ValueError:
             raise ParseError('Invalid app parameter.')
 
