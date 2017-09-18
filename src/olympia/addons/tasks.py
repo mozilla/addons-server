@@ -18,8 +18,11 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.storage_utils import rm_stored_dir
-from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
+from olympia.amo.utils import (
+    cache_ns_key, ImageCheck, LocalFileStorage, rm_local_tmp_dir)
+from olympia.applications.models import AppVersion
 from olympia.editors.models import RereviewQueueTheme
+from olympia.files.utils import extract_zip, RDFExtractor
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
@@ -425,3 +428,85 @@ def add_firefox57_tag(ids, **kw):
         # add duplicate tags, manually updating the tag stats, so it's ok for
         # a one-off task.
         Tag(tag_text='firefox57').save_tag(addon)
+
+
+def bump_appver_for_addon_if_necessary(addon, application_id, new_max_appver):
+    did_update = None
+    # Find the applicationversion for Firefox for the current version of this
+    # addon.
+    application_versions = addon.current_version.compatible_apps.get(
+        amo.APPS_ALL[application_id])
+
+    # Make sure it's not compatible already...
+    if application_versions and (
+            application_versions.max.version_int < new_max_appver.version_int):
+        try:
+            # The current application versions is lower than 56.*, So we need
+            # to check the package to know whether or not we can bump it.
+            # We take a shortcut here and only look at the first file we
+            # find...
+            # Note that we can't use parse_addon() wrapper because it no longer
+            # exposes the real value of `strictCompatibility`...
+            path = addon.current_version.all_files[0].file_path
+            with storage.open(path) as file_:
+                extracted_dir = extract_zip(file_)
+            parser = RDFExtractor(extracted_dir)
+            if parser.find('strictCompatibility') != 'true':
+                # It had not enabled strict compatibility. That means we should
+                # bump it!
+                application_versions.max = new_max_appver
+                application_versions.save()
+                did_update = True
+            else:
+                # Strict compatibility was enabled for this add-on, let's avoid
+                # bumping, and note that it did not need updating.
+                did_update = False
+            rm_local_tmp_dir(extracted_dir)
+        except Exception as exp:
+            # A number of things can go wrong missing file, path somehow not
+            # existing, etc). In any case, that means the add-on is in a weird
+            # state and should be ignored (this is a one off task).
+            log.error(u'bump_appver_for_legacy_addons: ignoring addon %d, '
+                      u'received %s when bumping.', addon.pk, unicode(exp))
+    return did_update
+
+
+# Rate limit is per-worker. Kept low to not overload the database with updates.
+# We have 5 workers in the default queue, we have roughly 25.000 add-ons to go
+# through, since process_addons() chunks contain 100 add-ons the task should be
+# fired 250 times. With 5 workers at 5 tasks / minute limit we should do 25
+# tasks in a minute, taking ~ 10 minutes for the whole thing to finish.
+@task(rate_limit='5/m')
+@write
+def bump_appver_for_legacy_addons(ids, **kw):
+    """
+    Task to bump the max appversion to 56.* for legacy add-ons that have not
+    enabled strictCompatibility in their manifest.
+    """
+    addons = Addon.objects.filter(id__in=ids)
+    # The AppVersions we want to point to now.
+    new_max_appversions = {
+        amo.FIREFOX.id: AppVersion.objects.get(
+            application=amo.FIREFOX.id, version='56.*'),
+        amo.ANDROID.id: AppVersion.objects.get(
+            application=amo.ANDROID.id, version='56.*')
+    }
+
+    addons_to_reindex = []
+    for addon in addons:
+        did_update_for_android = None
+        did_update_for_firefox = bump_appver_for_addon_if_necessary(
+            addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id])
+        # If did_update_for_firefox is False (and not just None), that means we
+        # looked at the package and figured it had strictlyCompatible enabled,
+        # so we don't need to do any bumping, there is nothing else to do.
+        # Otherwise we continue with Android.
+        if did_update_for_firefox is not False:
+            did_update_for_android = bump_appver_for_addon_if_necessary(
+                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id])
+
+        if did_update_for_firefox or did_update_for_android:
+            # We did something to that add-on compat, it needs reindexing.
+            addons_to_reindex.append(addon.pk)
+    if addons_to_reindex:
+        index_addons.delay(addons_to_reindex)
