@@ -16,7 +16,8 @@ from mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import (
+    addon_factory, collection_factory, TestCase, version_factory)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
@@ -24,7 +25,7 @@ from olympia.addons.models import (
     Category, Charity, CompatOverride, CompatOverrideRange, FrozenAddon,
     IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
-from olympia.bandwagon.models import Collection
+from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
@@ -754,6 +755,35 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
+
+    def test_get_featured_by_app(self):
+        addon = Addon.objects.get(pk=1003)
+        featured_coll = addon.collections.get().featuredcollection_set.get()
+        assert featured_coll.locale is None
+        # Get the applications this addon is featured for.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
+
+        featured_coll.update(locale='fr')
+        # Check the locale works.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr'}}
+
+        pt_coll = collection_factory()
+        pt_coll.add_addon(addon)
+        FeaturedCollection.objects.create(collection=pt_coll,
+                                          application=amo.FIREFOX.id,
+                                          locale='pt-PT')
+        # Add another featured collection for the same application.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr', 'pt-PT'}}
+
+        mobile_coll = collection_factory()
+        mobile_coll.add_addon(addon)
+        FeaturedCollection.objects.create(collection=mobile_coll,
+                                          application=amo.ANDROID.id,
+                                          locale='pt-PT')
+        # Add a featured collection for the a different application.
+        assert addon.get_featured_by_app() == {
+            amo.FIREFOX.id: {'fr', 'pt-PT'},
+            amo.ANDROID.id: {'pt-PT'}}
 
     def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""

@@ -1224,6 +1224,15 @@ class Addon(OnChangeMixin, ModelBase):
         """Is add-on globally featured for this app and language?"""
         return self.id in get_featured_ids(app, lang)
 
+    def get_featured_by_app(self):
+        qset = (self.collections.filter(featuredcollection__isnull=False)
+                .distinct().values_list('featuredcollection__application',
+                                        'featuredcollection__locale'))
+        out = collections.defaultdict(set)
+        for app, locale in qset:
+            out[app].add(locale)
+        return out
+
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
         return self.the_reason and self.the_future
