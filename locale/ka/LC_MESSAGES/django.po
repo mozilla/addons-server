@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 22:20+0000\n"
+"PO-Revision-Date: 2017-09-19 22:42+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2649,7 +2649,7 @@ msgid "The developers of this add-on"
 msgstr ""
 
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "Mozilla ფონდი"
 
 msgid "An organization of my choice"
 msgstr ""
@@ -3384,22 +3384,22 @@ msgid "Add a Screenshot..."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "შემოწმება"
 
 msgid "General Tests"
-msgstr ""
+msgstr "ზოგადი შემოწმება"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "უსაფრთხოების შემოწმება"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "გაფართოების შემოწმება"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "თარგმანის შემოწმება"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "თავსებადობის შემოწმება"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3672,7 +3672,7 @@ msgid "Upload Version"
 msgstr "ვერსიის ატვირთვა"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "გამოიყენეთ ქვემოთ მოცემული ველები დამატების პაკეტის ასატვირთად და თავსებადი სისტემების მისათითებლად. ატვირთვის შემდეგ, ავტომატურად დაიწყება თქვენი ფაილის შემოწმებები."
+msgstr "გამოიყენეთ ქვემოთ მოცემული ველები დამატების პაკეტის ასატვირთად და თავსებადი სისტემების მისათითებლად. ატვირთვის შემდეგ, ავტომატურად დაიწყება თქვენი ფაილის შემოწმება."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "რომელ სისტემებთანაა თავსებადი?"
@@ -5230,7 +5230,7 @@ msgid "No points awarded yet."
 msgstr "მოგებული ქულები ჯერ არ არის."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "რჩეული მიმომხილველები (ბოლო 7 დღეში)"
 
 msgid "No top reviewers yet."
 msgstr "რჩეული მიმომხილველები ჯერ არ არიან."
@@ -5445,7 +5445,7 @@ msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match th
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "აღმოჩენილია დამატების განმეორებული ID."
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
@@ -7178,7 +7178,7 @@ msgid "Click the remove button."
 msgstr ""
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "თუ დროზე ადრე გსურთ კვლევის დატოვება, გთხოვთ მიიღოთ მონაწილეობა გამოკითხვაში. ჩვენ მაინც გვსურს მოვისმინოთ თქვენი მოსაზრება, მიუხედავად იმისა, დარჩებით თუ არა მონაწილედ, კვლევის ბოლომდე."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr "კვლევაში მონაწილეობაზე უარის თქმა, არ გზღუდავთ მომავალ კვლევებში მონაწილეობისგან."
@@ -7751,7 +7751,7 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> საშუალო დღიური მომხმარებელი"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "რჩეული პროგრამები"
 
 msgid "See more applications&hellip;"
 msgstr ""
@@ -7763,7 +7763,7 @@ msgid "See more languages&hellip;"
 msgstr "იხილეთ სხვა ენები&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "რჩეული სისტემები"
 
 msgid "See more platforms&hellip;"
 msgstr ""
@@ -8030,7 +8030,7 @@ msgid "Profile Updated"
 msgstr "პროფილი განახლდა"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "ნაპოვნია შეცდომები"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "ცვლილებში აღმოჩნდა შეცდომები. გთხოვთ შეასწოროთ და ხელახლა გადმოაგზავნოთ."
