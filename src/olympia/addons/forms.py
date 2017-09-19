@@ -157,8 +157,8 @@ class AddonFormBasic(AddonFormBase):
             hostname = urlsplit(self.cleaned_data['contributions']).hostname
             if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
                 raise forms.ValidationError(ugettext(
-                    'URL domain must be one of [%s], or a subdomain.' %
-                    ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)))
+                    'URL domain must be one of [%s], or a subdomain.'
+                ) % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
         return self.cleaned_data['contributions']
 
     def save(self, addon, commit=False):
