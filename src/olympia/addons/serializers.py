@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from olympia import amo
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -13,8 +14,6 @@ from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.users.serializers import (
-    AddonDeveloperSerializer, BaseUserSerializer)
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
@@ -187,6 +186,15 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
             'eula',
             'privacy_policy',
         )
+
+
+class AddonDeveloperSerializer(BaseUserSerializer):
+    picture_url = serializers.SerializerMethodField()
+
+    class Meta(BaseUserSerializer.Meta):
+        fields = BaseUserSerializer.Meta.fields + (
+            'picture_url',)
+        read_only_fields = fields
 
 
 class AddonSerializer(serializers.ModelSerializer):

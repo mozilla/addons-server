@@ -3,6 +3,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
@@ -10,7 +11,6 @@ from olympia.api.fields import (
     SplitField, SlugOrPrimaryKeyRelatedField, TranslationSerializerField)
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
-from olympia.users.serializers import BaseUserSerializer
 
 
 class CollectionSerializer(serializers.ModelSerializer):

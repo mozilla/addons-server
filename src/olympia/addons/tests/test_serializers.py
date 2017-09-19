@@ -4,6 +4,7 @@ from django.utils.translation import override
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
+from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
@@ -12,7 +13,7 @@ from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
-    AddonSerializer, AddonSerializerWithUnlistedData,
+    AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
     LicenseSerializer, SimpleVersionSerializer, VersionSerializer)
@@ -919,3 +920,16 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+
+
+class TestAddonDeveloperSerializer(TestBaseUserSerializer):
+    serializer_class = AddonDeveloperSerializer
+
+    def test_picture(self):
+        serialized = self.serialize()
+        assert ('anon_user.png' in serialized['picture_url'])
+
+        self.user.update(picture_type='image/jpeg')
+        serialized = self.serialize()
+        assert serialized['picture_url'] == absolutify(self.user.picture_url)
+        assert '%s.png' % self.user.id in serialized['picture_url']
