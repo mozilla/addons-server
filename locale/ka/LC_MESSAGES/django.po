@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 21:30+0000\n"
+"PO-Revision-Date: 2017-09-19 21:41+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4510,7 +4510,7 @@ msgid "Hide Add-on"
 msgstr ""
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "დამატების დამალვის შედეგად, გაქრება გალერეიდან და მომხმარებლებს შეუწყდებათ ავტომატური განახლებები."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr ""
@@ -5014,7 +5014,7 @@ msgid "Reviewer Leaderboard"
 msgstr ""
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "მომოხილვის ქულები ჯერ არ არის."
 
 msgid "Rank"
 msgstr ""
@@ -5227,7 +5227,7 @@ msgid "Recent Points"
 msgstr ""
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "მოგებული ქულები ჯერ არ არის."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr ""
@@ -7551,7 +7551,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr "ამ დამატების გამოქვეყნებულ ვერსიაზე API-ის საშუალებით დამატება არ შეგიძლიათ, არასაკმარისი მონაცემების გამო. გთხოვთ გადმოაგზავნოთ საიტის მეშვეობით"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "ამ დამატებისთვის ატვირთული ფაილები არ არის."
 
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
