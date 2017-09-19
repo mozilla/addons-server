@@ -148,7 +148,9 @@ CATEGORIES = {
             'social-networking': StaticCategory(
                 id=148, name=_(u'Social Networking')),
             'sports-games': StaticCategory(id=146, name=_(u'Sports & Games')),
-            'user-interface': StaticCategory(id=152, name=_(u'User Interface'))
+            'user-interface': StaticCategory(
+                id=152, name=_(u'User Interface')),
+            'other': StaticCategory(id=153, name=_(u'Other'), weight=333)
         }
     },
     THUNDERBIRD.id: {
