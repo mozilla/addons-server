@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 21:09+0000\n"
+"PO-Revision-Date: 2017-09-19 21:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -76,7 +76,7 @@ msgid "- Add-on not on AMO -"
 msgstr ""
 
 msgid "Download Now"
-msgstr "ჩამოტვირთეთ ახლავე"
+msgstr "ჩამოტვირთვა ახლავე"
 
 msgid "Download"
 msgstr "ჩამოტვირთვა"
@@ -1763,7 +1763,7 @@ msgid "View All Up & Coming"
 msgstr "ყველა ზრდადი მოთხოვნის მქონე"
 
 msgid "No themes found"
-msgstr ""
+msgstr "თემები ვერ მოიძებნა"
 
 msgid "All"
 msgstr "ყველა"
@@ -1833,7 +1833,7 @@ msgid "Problem"
 msgstr ""
 
 msgid "No reports found."
-msgstr ""
+msgstr "მოხსენებები ვერ მოიძებნა."
 
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
@@ -2179,7 +2179,7 @@ msgid "Only ask on this add-on's page and developer profile"
 msgstr "იკითხეთ, მხოლოდ ამ დამატების გვერდზე, ან შემმუშავებლის პროფილში"
 
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "თხოვნის გამოჩენა მას შემდეგ, რაც მომხმარებლები დაიწყებენ დამატების ჩამოტვირთვას"
 
 msgid "Ask before users can download this add-on"
 msgstr ""
@@ -2486,22 +2486,22 @@ msgid "Privacy and Security"
 msgstr "პირადულობა და უსაფრთხოება"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "ჩამოტვირთვებისა და ფაილების მართვა"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "იერსახის მორგება"
 
 msgid "Language Support and Translation"
 msgstr "ენების მხარდაჭერა და თარგმნა"
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "ფოტო და მედია ფაილები"
 
 msgid "RSS, News and Blogging"
-msgstr "RSS, სიახლეები და სვეტები"
+msgstr "RSS არხები, სიახლეები და სვეტები"
 
 msgid "Site-specific"
-msgstr ""
+msgstr "საიტზე მორგებული"
 
 msgid "Web and Developer Tools"
 msgstr "ვებშემმუშავებლის ხელსაწყოები"
@@ -3597,7 +3597,7 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr "მისი გავრცელება შეიძლება"
+msgstr "გავრცელების გზა"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr "დამატებითი ინფორმაცია, დამატებების დამოწმების და გავრცელების გზების შესახებ"
@@ -5233,7 +5233,7 @@ msgid "Top Reviewers (past 7 days)"
 msgstr ""
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "რჩეული მიმომხილველები ჯერ არ არიან."
 
 msgid "All Time"
 msgstr ""
@@ -5250,7 +5250,7 @@ msgid "Date Deleted"
 msgstr ""
 
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "დროის ამ მონაკვეთისთვის, წაშლილი თემები ვერ მოიძებნა."
 
 msgid "Theme Review History for {0}"
 msgstr ""
@@ -5316,7 +5316,7 @@ msgid "{0} out of {1} reviewed"
 msgstr ""
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "ამ დროისთვის განსახილველი თემები არაა."
 
 msgid "Clear Search"
 msgstr "ძიების გასუფთავება"
@@ -5532,7 +5532,7 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "ასატვირთი ფაილები არ არის მითითებული."
 
 msgid "Fetching file."
 msgstr ""
@@ -5546,7 +5546,7 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "ეს ფაილი აღარ არსებობს."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
@@ -7233,6 +7233,8 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
+"Sunbird პროექტის შემუშავება შეწყვეტილია და მისი ბოლო გამოშვების თარიღია 30 მარტი, 2010 წელი. საიტზე ინახება Sunbird-ის დამატებები, მაგრამ რადგან პროექტი შეჩერდა, ამ დამატებების მხარდაჭერაც "
+"შეჩერებულია."
 
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
@@ -8018,7 +8020,7 @@ msgid "Profile Deleted"
 msgstr "პროფილი წაიშალა"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "სურათი წაშლილია"
 
 msgid "Profile Updated"
 msgstr "პროფილი განახლდა"

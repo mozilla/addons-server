@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2016-04-11 11:45+0000\n"
-"Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
+"PO-Revision-Date: 2017-09-19 21:23+0000\n"
+"Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "თქვენი დამატებების დასამუ�
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "თქვენმა დამატებამ გადამოწმება {0} შეცდომის გამო ვერ გაიარა."
+msgstr[0] "თქვენი დამატების დამოწმება ვერ მოხერხდა {0} შეცდომის გამო."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
