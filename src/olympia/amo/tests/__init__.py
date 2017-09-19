@@ -341,9 +341,9 @@ ES_patchers = [
     mock.patch('olympia.amo.search.get_es', spec=True),
     mock.patch('elasticsearch.Elasticsearch'),
     mock.patch('olympia.addons.models.update_search_index', spec=True),
-    mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
+    mock.patch('olympia.addons.tasks.index_addons', spec=True),
+    mock.patch('olympia.bandwagon.tasks.index_collections', spec=True),
+    mock.patch('olympia.bandwagon.tasks.unindex_collections', spec=True),
 ]
 
 
