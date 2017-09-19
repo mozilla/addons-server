@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 21:41+0000\n"
+"PO-Revision-Date: 2017-09-19 22:05+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7161,7 +7161,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "კვლევის დატოვება"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
@@ -7179,7 +7179,7 @@ msgid "If you opt out of the study early we will ask you to fill out a survey. W
 msgstr ""
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "კვლევაში მონაწილეობაზე უარის თქმა, არ გზღუდავთ მომავალ კვლევებში მონაწილეობისგან."
 
 msgid "Your privacy"
 msgstr "პირადი მონაცემების დაცულობა:"
@@ -7197,7 +7197,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr "ეს მონაცემები დაკავშირებულია <a href=\"%(url)s\">Firefox ტელემეტრიასთან</a>."
 
 msgid "This particular Study"
-msgstr ""
+msgstr "სპეციფიკური კვლევა"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr "Shield კვლევებით აღრიცხული მონაცემების გარდა, Mozilla აგროვებს შემდეგ მონაცემებს:"
@@ -7993,7 +7993,7 @@ msgid "someone writes a review of my add-on"
 msgstr ""
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "გაეცანით სიახლეებსა და დამატებების შემმუშავებლებთან დაკავშირებული ღონისძიებების შესახებ ინფორმაციას (მათ შორის about:addons-ის საინფორმაციო ცნობებს)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
