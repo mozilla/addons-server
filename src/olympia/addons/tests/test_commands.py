@@ -338,11 +338,11 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_firefox_and_android(
             self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
-        bump_appver_for_addon_if_necessary_mock.return_value = True
+        bump_appver_for_addon_if_necessary_mock.return_value = False
         # Note: technically this add-on is only compatible with Firefox, but
         # we're mocking the function that does the check anyway... we only care
         # about how the task behaves when bump_appver_for_legacy_addons()
-        # returns True for both applications.
+        # returns False for both applications.
         addon = addon_factory()
         index_addons_mock.reset_mock()
         call_command('process_addons', task='bump_appver_for_legacy_addons')
@@ -355,7 +355,7 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_firefox(
             self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
-        bump_appver_for_addon_if_necessary_mock.side_effect = (True, None)
+        bump_appver_for_addon_if_necessary_mock.side_effect = (False, None)
         addon = addon_factory()
         index_addons_mock.reset_mock()
         call_command('process_addons', task='bump_appver_for_legacy_addons')
@@ -368,7 +368,7 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_android(
             self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
-        bump_appver_for_addon_if_necessary_mock.side_effect = (None, True)
+        bump_appver_for_addon_if_necessary_mock.side_effect = (None, False)
         addon = addon_factory()
         index_addons_mock.reset_mock()
         call_command('process_addons', task='bump_appver_for_legacy_addons')
@@ -381,13 +381,13 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_no_update_necessary(
             self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
-        bump_appver_for_addon_if_necessary_mock.return_value = False
+        bump_appver_for_addon_if_necessary_mock.return_value = True
         addon_factory()
         index_addons_mock.reset_mock()
         call_command('process_addons', task='bump_appver_for_legacy_addons')
         assert bump_appver_for_addon_if_necessary_mock.call_count == 1
         # 0 index_addons calls since bump_appver_for_addon_if_necessary
-        # returned False.
+        # returned True.
         assert index_addons_mock.call_count == 0
 
         index_addons_mock.reset_mock()

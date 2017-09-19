@@ -430,8 +430,33 @@ def add_firefox57_tag(ids, **kw):
         Tag(tag_text='firefox57').save_tag(addon)
 
 
-def bump_appver_for_addon_if_necessary(addon, application_id, new_max_appver):
-    did_update = None
+def extract_strict_compatibility_value_for_addon(addon):
+    strict_compatibility = None  # We don't know yet.
+    extracted_dir = None
+    try:
+        # We take a shortcut here and only look at the first file we
+        # find...
+        # Note that we can't use parse_addon() wrapper because it no longer
+        # exposes the real value of `strictCompatibility`...
+        path = addon.current_version.all_files[0].file_path
+        with storage.open(path) as file_:
+            extracted_dir = extract_zip(file_)
+        parser = RDFExtractor(extracted_dir)
+        strict_compatibility = parser.find('strictCompatibility') == 'true'
+    except Exception as exp:
+        # A number of things can go wrong: missing file, path somehow not
+        # existing, etc. In any case, that means the add-on is in a weird
+        # state and should be ignored (this is a one off task).
+        log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
+                      u'received %s when extracting.', addon.pk, unicode(exp))
+    finally:
+        if extracted_dir:
+            rm_local_tmp_dir(extracted_dir)
+    return strict_compatibility
+
+
+def bump_appver_for_addon_if_necessary(
+        addon, application_id, new_max_appver, strict_compatibility=None):
     # Find the applicationversion for Firefox for the current version of this
     # addon.
     application_versions = addon.current_version.compatible_apps.get(
@@ -440,35 +465,20 @@ def bump_appver_for_addon_if_necessary(addon, application_id, new_max_appver):
     # Make sure it's not compatible already...
     if application_versions and (
             application_versions.max.version_int < new_max_appver.version_int):
-        try:
-            # The current application versions is lower than 56.*, So we need
-            # to check the package to know whether or not we can bump it.
-            # We take a shortcut here and only look at the first file we
-            # find...
-            # Note that we can't use parse_addon() wrapper because it no longer
-            # exposes the real value of `strictCompatibility`...
-            path = addon.current_version.all_files[0].file_path
-            with storage.open(path) as file_:
-                extracted_dir = extract_zip(file_)
-            parser = RDFExtractor(extracted_dir)
-            if parser.find('strictCompatibility') != 'true':
-                # It had not enabled strict compatibility. That means we should
-                # bump it!
-                application_versions.max = new_max_appver
-                application_versions.save()
-                did_update = True
-            else:
-                # Strict compatibility was enabled for this add-on, let's avoid
-                # bumping, and note that it did not need updating.
-                did_update = False
-            rm_local_tmp_dir(extracted_dir)
-        except Exception as exp:
-            # A number of things can go wrong missing file, path somehow not
-            # existing, etc). In any case, that means the add-on is in a weird
-            # state and should be ignored (this is a one off task).
-            log.error(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when bumping.', addon.pk, unicode(exp))
-    return did_update
+        if strict_compatibility is None:
+            # We don't know yet if the add-on had strictCompatibility enabled
+            # (either because it's the first time we called the function for
+            # this addon, or because it was not neccessary to bump the last
+            # time we called, or because we had an error before). Let's parse
+            # it to find out.
+            strict_compatibility = (
+                extract_strict_compatibility_value_for_addon(addon))
+        if strict_compatibility is False:
+            # It had not enabled strict compatibility. That means we should
+            # bump it!
+            application_versions.max = new_max_appver
+            application_versions.save()
+    return strict_compatibility
 
 
 # Rate limit is per-worker. Kept low to not overload the database with updates.
@@ -494,19 +504,22 @@ def bump_appver_for_legacy_addons(ids, **kw):
 
     addons_to_reindex = []
     for addon in addons:
-        did_update_for_android = None
-        did_update_for_firefox = bump_appver_for_addon_if_necessary(
+        strict_compatibility = bump_appver_for_addon_if_necessary(
             addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id])
-        # If did_update_for_firefox is False (and not just None), that means we
-        # looked at the package and figured it had strictlyCompatible enabled,
-        # so we don't need to do any bumping, there is nothing else to do.
-        # Otherwise we continue with Android.
-        if did_update_for_firefox is not False:
-            did_update_for_android = bump_appver_for_addon_if_necessary(
-                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id])
+        # If strict_compatibility is True, we know we should skip bumping this
+        # add-on entirely. Otherwise (False or None), we need to continue with
+        # Firefox for Android, which might have different compat info than
+        # Firefox. We pass the value we already have for strict_compatibility,
+        # if it's not None bump_appver_for_addon_if_necessary() will avoid
+        # re-extracting a second time.
+        if strict_compatibility is not True:
+            android_strict_compatibility = bump_appver_for_addon_if_necessary(
+                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id],
+                strict_compatibility=strict_compatibility)
 
-        if did_update_for_firefox or did_update_for_android:
-            # We did something to that add-on compat, it needs reindexing.
-            addons_to_reindex.append(addon.pk)
+            if (android_strict_compatibility is False or
+                    strict_compatibility is False):
+                # We did something to that add-on compat, it needs reindexing.
+                addons_to_reindex.append(addon.pk)
     if addons_to_reindex:
         index_addons.delay(addons_to_reindex)
