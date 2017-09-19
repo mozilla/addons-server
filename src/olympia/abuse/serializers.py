@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.abuse.models import AbuseReport
-from olympia.users.serializers import BaseUserSerializer
 
 
 class AddonAbuseReportSerializer(serializers.ModelSerializer):

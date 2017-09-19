@@ -6,10 +6,10 @@ from django.utils.translation import ugettext
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleVersionSerializer
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review
-from olympia.users.serializers import BaseUserSerializer
 from olympia.versions.models import Version
 
 

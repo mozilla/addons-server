@@ -1,9 +1,9 @@
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer, UserAbuseReportSerializer)
 from olympia.amo.tests import (
     addon_factory, BaseTestCase, user_factory)
-from olympia.users.serializers import BaseUserSerializer
 
 
 class TestAddonAbuseReportSerializer(BaseTestCase):
