@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 22:42+0000\n"
+"PO-Revision-Date: 2017-09-19 23:44+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3884,19 +3884,19 @@ msgstr ""
 "გამოყენება. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "თუ თქვენი დამატება შეიცავს ორობით ან ცნობილი ბიბლიოთეკებისგან განსხვავებულ კოდს, განსახილველად ატვირთეთ მისი წყაროები."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "გთხოვთ მიუთითოთ, დამატების საბოლოო ფაილის კვლავწარმოების სახელმძღვანელო, ან README ფაილის, ან შენიშვნების სახით მიმომხილველებისთვის, არსებულ ვერსიაში."
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "გაეცანით პირველწყარო კოდის მიმოხილვის დებულებას."
 
 msgid "Latest News"
 msgstr "ბოლო სიახლეები"
 
 msgid "Read more in our Blog"
-msgstr "გაიგეთ მეტი ჩვენს სვეტზე"
+msgstr "ვრცლად იხილეთ ჩვენს სვეტზე"
 
 msgid "Resources"
 msgstr "სასარგებლო ბმულები"
@@ -5412,7 +5412,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "უმცირესი/უდიდესი ვერსიების დადგენა ვერ მოხერხდა. იქნებ \"strict_min_version\" ან \"strict_max_version\" მხარდაუჭერელ ვერსიებს შეიცავს?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7245,7 +7245,7 @@ msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a h
 msgstr ""
 
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "შეიტყვეთ მეტი Sunbird-ის შესახებ"
 
 msgid "There was an error communicating with PayPal. Please try again later."
 msgstr "PayPal-თან დაკავშირება ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
