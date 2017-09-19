@@ -12,6 +12,10 @@ from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
+from olympia.versions.compare import version_int
+
+
+firefox_56_star = version_int('56.*')
 
 
 tasks = {
@@ -35,12 +39,12 @@ tasks = {
             Q(
                 type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME),
                 _current_version__files__is_webextension=False,
-                _current_version__apps__max__version_int__lt=56990000200100,
+                _current_version__apps__max__version_int__lt=firefox_56_star,
                 _current_version__apps__application__in=(
                     amo.FIREFOX.id, amo.ANDROID.id))
         ],
         'pre': lambda values_qs: values_qs.distinct(),
-    }
+    },
 }
 
 
