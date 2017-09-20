@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-20 00:11+0000\n"
+"PO-Revision-Date: 2017-09-20 00:28+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2768,7 +2768,7 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "დამოწმებისას ზედმეტად ბევრი შეცდომა/გაფრთხილება აღინიშნა, ასე რომ, %s შეტყობინებები შეკვეცილად გამოჩნდება. ხილული შეტყობინებების გაცნობის შემდეგ, შეგეძლებათ დანარჩენების ნახვაც."
 
 msgid "All My Add-ons"
 msgstr "ჩემი ყველა დამატება"
@@ -2991,10 +2991,10 @@ msgstr "გსურთ თქვენი დამატების გავ
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "{0} დამატების შემოწმების შედეგები "
 
 msgid "Validation Results"
-msgstr ""
+msgstr "შემოწმების შედეგები"
 
 msgid "Validated at:"
 msgstr "შემოწმების თარიღი:"
@@ -4465,7 +4465,7 @@ msgid "Status"
 msgstr "სტატუსი"
 
 msgid "Validation"
-msgstr ""
+msgstr "შემოწმება"
 
 msgid "Delete/Disable"
 msgstr ""
@@ -4577,13 +4577,13 @@ msgid "Filter by type/action"
 msgstr "გაფილტვრა ტიპის/მოქმედების მიხედვით"
 
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "ავტომატური შემოწმება გავლილია"
 
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "ავტომატური შემოწმება წარუმატებლად დასრულდა"
 
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "ავტომატური შემოწმების მიხედვით გაფილტვრა"
 
 msgid "containing"
 msgstr ""
@@ -5426,7 +5426,7 @@ msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "ფაილის ზომა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
 msgid "Invalid archive."
 msgstr ""
@@ -5442,7 +5442,7 @@ msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "დამატების ID თქვენს manifest.json ან intall.rdf (%s) ფაილში, არ ემთხვევა თქვენი დამატების ID-ის AMO საიტზე (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "აღმოჩენილია დამატების განმეორებული ID."
@@ -5458,7 +5458,7 @@ msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> თქვენს intall.rdf (%s) ფაილში, არ ემთხვევა თქვენი დამატების ტიპს AMO საიტზე (%s)"
 
 msgid "Back to review"
 msgstr ""
@@ -5477,7 +5477,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr ""
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "შემოწმება წარუმატებლად დასრულდა:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -5490,7 +5490,7 @@ msgid "Add-on file being processed, please wait."
 msgstr "დამატების ფაილი მუშავდება, გთხოვთ მოითმინოთ."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "შემოწმების შედეგების შეჯერება..."
 
 msgid "Deleted files:"
 msgstr ""
