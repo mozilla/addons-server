@@ -146,7 +146,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string authors[].url: The link to the profile page for an author.
     :>json string authors[].username: The username for an author.
     :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set. For performance reasons this field is omitted from the search endpoint.
-    :>json int average_daily_users: The average number of users for the add-on per day.
+    :>json int average_daily_users: The average number of users for the add-on (updated daily).
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
@@ -190,7 +190,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
-    :>json int weekly_downloads: The number of downloads for the add-on per week.
+    :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
 
 
 .. _addon-detail-status:

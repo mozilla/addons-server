@@ -481,6 +481,8 @@ class AddonSerializerOutputTestMixin(object):
         assert '<script>' not in result['theme_data']['description']
         assert '&lt;script&gt;' in result['theme_data']['description']
 
+        assert 'weekly_downloads' not in result
+
     def test_handle_persona_without_persona_data_in_db(self):
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
         Persona.objects.get(addon=self.addon).delete()

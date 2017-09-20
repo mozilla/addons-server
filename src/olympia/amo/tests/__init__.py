@@ -696,7 +696,7 @@ def addon_factory(
 
         # Save 3.
         Persona.objects.create(
-            addon=addon, popularity=addon.weekly_downloads,
+            addon=addon, popularity=addon.average_daily_users,
             persona_id=persona_id)
 
     addon.update_version()

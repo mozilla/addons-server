@@ -277,14 +277,19 @@ class AddonIndexer(BaseSearchIndexer):
             # add-ons stored in ES.
             data['platforms'] = [amo.PLATFORM_ALL.id]
             try:
-                # Boost on popularity.
-                data['boost'] = float(obj.persona.popularity ** .2)
                 data['has_theme_rereview'] = (
                     obj.persona.rereviewqueuetheme_set.exists())
+                # Theme popularity is roughly equivalent to average daily users
+                # (the period is not the same and the methodology differs since
+                # themes don't have updates, but it's good enough).
+                data['average_daily_users'] = obj.persona.popularity
                 # 'weekly_downloads' field is used globally to sort, but
                 # for themes weekly_downloads don't make much sense, use
-                # popularity instead (FIXME: should be the other way around).
-                data['weekly_downloads'] = obj.persona.popularity
+                # popularity instead. To keep it comparable with extensions,
+                # multiply by 7. (FIXME: could we stop sorting by downloads,
+                # even stop exposing downloads numbers in API/pages outside of
+                # the statistic-specific pages?)
+                data['weekly_downloads'] = obj.persona.popularity * 7
                 data['persona'] = {
                     'accentcolor': obj.persona.accentcolor,
                     'author': obj.persona.display_username,
@@ -300,12 +305,11 @@ class AddonIndexer(BaseSearchIndexer):
             if obj.current_version:
                 data['platforms'] = [p.id for p in
                                      obj.current_version.supported_platforms]
-            # Boost by the number of users on a logarithmic scale. The maximum
-            # boost (11,000,000 users for adblock) is about 5x.
-            data['boost'] = float(obj.average_daily_users ** .2)
             data['has_theme_rereview'] = None
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
+        # Boost by the number of users on a logarithmic scale.
+        data['boost'] = float(data['average_daily_users'] ** .2)
         # Quadruple the boost if the add-on is public.
         if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
                 'boost' in data):

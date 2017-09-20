@@ -1977,6 +1977,7 @@ class TestPersonaModel(TestCase):
         self.persona = self.addon.persona
         self.persona.header = 'header.png'
         self.persona.footer = 'footer.png'
+        self.persona.popularity = 12345
         self.persona.save()
         modified = int(time.mktime(self.persona.addon.modified.timetuple()))
         self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
