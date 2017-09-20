@@ -242,7 +242,8 @@ class Validator(object):
             try:
                 addon_data = parse_addon(file_, minimal=True)
                 is_webextension = addon_data['is_webextension']
-                is_mozilla_signed = addon_data['is_mozilla_signed_extension']
+                is_mozilla_signed = addon_data.get(
+                    'is_mozilla_signed_extension', False)
             except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))
