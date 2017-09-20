@@ -70,9 +70,9 @@ class TestValidatorBase(TestCase):
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
         self.save_upload.assert_has_calls([
-            mock.call([mock.ANY, file_upload.pk, channel],
+            mock.call([mock.ANY, file_upload.pk, channel, False],
                       immutable=True),
-            mock.call([file_upload.pk, channel], link_error=mock.ANY)])
+            mock.call([file_upload.pk, channel, False], link_error=mock.ANY)])
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
@@ -90,9 +90,9 @@ class TestValidatorBase(TestCase):
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
         self.save_file.assert_has_calls([
-            mock.call([mock.ANY, file_.pk, file_.version.channel],
+            mock.call([mock.ANY, file_.pk, file_.version.channel, False],
                       immutable=True),
-            mock.call([file_.pk, file_.version.channel],
+            mock.call([file_.pk, file_.version.channel, False],
                       link_error=mock.ANY)])
 
 
