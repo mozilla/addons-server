@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-20 01:11+0000\n"
+"PO-Revision-Date: 2017-09-20 01:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1667,7 +1667,7 @@ msgid "Most Popular Extensions"
 msgstr "ყველაზე ხშირად ჩამოტვირთული გაფართოებები"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "საუკეთესოდ შეფასებული გაფართოებები"
 
 msgid "Newest Extensions"
 msgstr ""
@@ -2688,7 +2688,7 @@ msgid "Submit my add-on for manual review."
 msgstr "დამატების წარდგენა განსახილველად."
 
 msgid "Do not list my add-on on this site"
-msgstr "არ გამოაქვეყნო ჩემი დამატება ამ საიტზე"
+msgstr "არ გამოქვეყნდეს ჩემი დამატება ამ საიტზე"
 
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr "მონიშნეთ, თუ გსურთ თავად გაავრცელოთ თქვენი დამატება და Mozilla-სგან მხოლოდ დამოწმება გჭირდებათ."
@@ -2884,7 +2884,7 @@ msgid "New API key created"
 msgstr ""
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API გასაღები გაუქმებულია"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -3408,7 +3408,7 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "ზემოთა"
 
 msgid "Delete Theme"
 msgstr "თემის წაშლა"
@@ -3700,7 +3700,7 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr "შეინახეთ თქვენი API გასაღებები საიდუმლოდ და <strong>არასდროს არავის არ გაუმხილოთ</strong>, მათ შორის Mozilla-ს მოხალისეებს."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT შემქმნელი"
 
 msgid "JWT secret"
 msgstr ""
@@ -3710,12 +3710,14 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"API მოთხოვნის გასაკეთებლად, გაგზავნეთ <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ავტორიზაციის თავსართად. JWT-ს შექმნა დაგჭირდებათ ყოველ ჯერზე მოთხოვნის გაგზავნისას, როგორც ახსნილია <a "
+"href=\"%(docs_url)s\">API დოკუმენტაციაში</a>."
 
 msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
 
 msgid "Revoke"
-msgstr ""
+msgstr "გაუქმება"
 
 msgid "Revoke and regenerate credentials"
 msgstr "მონაცემების გაუქმება და ხელახლა შექმნა"
@@ -5502,7 +5504,7 @@ msgid "Add-on SDK Version:"
 msgstr ""
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "ცხრილის მდებარეობა:"
 
 msgid "Up file"
 msgstr ""
@@ -7124,7 +7126,7 @@ msgstr ""
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "დიახ, დამატების ავტორს შეუძლია თქვენს მიმოხილვაზე პასუხის გაცემა ერთხელ. დამატებითი განხილვისთვის შეგიძლიათ თემა გახსნათ ჩვენს <a href=\"%(forum_url)s\">ფორუმზე</a>."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "მე ვარ დამატების ავტორი, შემიძლია თუ არა, არასასურველი მიმოხილვების ან შეფასებების წაშლა?"
