@@ -214,13 +214,19 @@ class RDFExtractor(object):
                 'apps': self.apps(),
                 'is_multi_package': self.package_type == '32',
             })
+
             # We used to simply use the value of 'strictCompatibility' in the
             # rdf to set strict_compatibility, but now we enable it or not for
             # all legacy add-ons depending on their type. This will prevent
             # them from being marked as compatible with Firefox 57.
-            data['strict_compatibility'] = (
-                data['type'] not in amo.NO_COMPAT and
-                self.certinfo and not self.certinfo.is_mozilla_signed_ou)
+            if data['type'] not in amo.NO_COMPAT:
+                if self.certinfo and not self.certinfo.is_mozilla_signed_ou:
+                    data['strict_compatibility'] = False
+                else:
+                    data['strict_compatibility'] = True
+            else:
+                data['strict_compatibility'] = False
+
             # `experiment` is detected in in `find_type`.
             data['is_experiment'] = self.is_experiment
             multiprocess_compatible = self.find('multiprocessCompatible')
