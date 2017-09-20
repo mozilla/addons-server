@@ -228,7 +228,6 @@ class Validator(object):
         self.file = None
         self.prev_file = None
 
-
         if isinstance(file_, FileUpload):
             assert listed is not None
             channel = (amo.RELEASE_CHANNEL_LISTED if listed else

@@ -219,8 +219,8 @@ class RDFExtractor(object):
             # all legacy add-ons depending on their type. This will prevent
             # them from being marked as compatible with Firefox 57.
             data['strict_compatibility'] = (
-                data['type'] not in amo.NO_COMPAT
-                and self.certinfo and not self.certinfo.is_mozilla_signed_ou)
+                data['type'] not in amo.NO_COMPAT and
+                self.certinfo and not self.certinfo.is_mozilla_signed_ou)
             # `experiment` is detected in in `find_type`.
             data['is_experiment'] = self.is_experiment
             multiprocess_compatible = self.find('multiprocessCompatible')
@@ -300,8 +300,8 @@ class RDFExtractor(object):
                 # signed by Mozilla to allow them for Firefox 57 onwards.
                 needs_max_56_star = (
                     app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
-                    max_appver_text == '*'
-                    and not self.certinfo.is_mozilla_signed_ou
+                    max_appver_text == '*' and
+                    not self.certinfo.is_mozilla_signed_ou
                 )
 
                 if needs_max_56_star:
