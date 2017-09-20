@@ -258,7 +258,7 @@ class Validator(object):
             assert listed is None
 
             channel = file_.version.channel
-            is_mozilla_signed = file.is_mozilla_signed_extension
+            is_mozilla_signed = file_.is_mozilla_signed_extension
             save = tasks.handle_file_validation_result
             validate = self.validate_file(file_)
 
