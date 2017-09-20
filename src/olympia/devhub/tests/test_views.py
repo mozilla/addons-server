@@ -1672,7 +1672,8 @@ class TestUploadDetail(BaseUploadTest):
              u'message': u'You cannot submit a Mozilla Signed Extension',
              u'fatal': True, u'type': u'error'}]
 
-    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
+    @mock.patch('olympia.devhub.tasks.run_validator')
+    def test_legacy_mozilla_signed_fx57_compat_allowed(self, mock_validator):
         """Legacy add-ons that are signed with the mozilla certificate
         should be allowed to be submitted ignoring most compatibility
         checks.
@@ -1680,6 +1681,8 @@ class TestUploadDetail(BaseUploadTest):
         See https://github.com/mozilla/addons-server/issues/6424 for more
         information.
         """
+        mock_validator.return_value = json.dumps(self.validation_ok())
+
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '51.0a1')
 
