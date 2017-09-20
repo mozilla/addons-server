@@ -329,7 +329,7 @@ class RDFExtractor(object):
 
 class ManifestJSONExtractor(object):
 
-    def __init__(self, path, certinfo=None, data=''):
+    def __init__(self, path, data='', certinfo=None):
         self.path = path
         self.certinfo = certinfo
 
