@@ -281,7 +281,7 @@ class TestMeasureValidationTime(TestValidator):
                                         channel=amo.RELEASE_CHANNEL_LISTED):
         validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
         tasks.handle_upload_validation_result(validation, self.upload.pk,
-                                              channel)
+                                              channel, False)
 
     def test_track_upload_validation_results_time(self):
         with self.statsd_timing_mock() as statsd_calls:
@@ -821,7 +821,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             }
         }
         results = tasks.annotate_legacy_addon_restrictions(
-            data, is_new_upload=True)
+            data, is_new_upload=True, is_mozilla_signed=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
@@ -843,7 +843,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             }
         }
         results = tasks.annotate_legacy_addon_restrictions(
-            data, is_new_upload=True)
+            data, is_new_upload=True, is_mozilla_signed=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
@@ -964,14 +964,14 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             }
         }
         results = tasks.annotate_legacy_addon_restrictions(
-            data.copy(), is_new_upload=True)
+            data.copy(), is_new_upload=True, is_mozilla_signed=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_addons_max_version']
 
         results = tasks.annotate_legacy_addon_restrictions(
-            data.copy(), is_new_upload=False)
+            data.copy(), is_new_upload=False, is_mozilla_signed=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
