@@ -505,6 +505,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     from validator.validate import validate
 
     apps = dump_apps.Command.JSON_PATH
+
     if not os.path.exists(apps):
         call_command('dump_apps')
 
