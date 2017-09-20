@@ -184,7 +184,7 @@ class RDFExtractor(object):
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
-    def __init__(self, path, certinfo):
+    def __init__(self, path, certinfo=None):
         self.path = path
         self.certinfo = certinfo
         install_rdf_path = os.path.join(path, 'install.rdf')
@@ -325,7 +325,7 @@ class RDFExtractor(object):
 
 class ManifestJSONExtractor(object):
 
-    def __init__(self, path, certinfo, data=''):
+    def __init__(self, path, certinfo=None, data=''):
         self.path = path
         self.certinfo = certinfo
 
