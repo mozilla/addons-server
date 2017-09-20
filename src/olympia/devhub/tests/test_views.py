@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
@@ -1396,6 +1397,11 @@ class TestUploadDetail(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '51.0a1')
+
+        call_command('dump_apps')
+
         assert self.client.login(email='regular@mozilla.com')
 
     def create_appversion(self, name, version):
@@ -1533,7 +1539,6 @@ class TestUploadDetail(BaseUploadTest):
             str(p) for p in amo.MOBILE_PLATFORMS])
 
     def test_webextension_supports_all_platforms(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
 
         # Android is only supported 48+
@@ -1543,7 +1548,6 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('valid_webextension.xpi', [])
 
     def test_webextension_android_excluded_if_no_48_support(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '47.*')
         self.create_appversion('firefox', '48.*')
@@ -1671,6 +1675,27 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1,
              u'message': u'You cannot submit a Mozilla Signed Extension',
              u'fatal': True, u'type': u'error'}]
+
+    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
+        """Legacy add-ons that are signed with the mozilla certificate
+        should be allowed to be submitted ignoring most compatibility
+        checks.
+
+        See https://github.com/mozilla/addons-server/issues/6424 for more
+        information.
+        """
+        user_factory(email='verypinkpanda@mozilla.com')
+        assert self.client.login(email='verypinkpanda@mozilla.com')
+        self.upload_file(os.path.join(
+            settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',
+            'legacy-addon-already-signed-0.1.0.xpi'))
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+
+        assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_system_addon_update_allowed(self, mock_validator):

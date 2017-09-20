@@ -234,12 +234,16 @@ class Validator(object):
                        amo.RELEASE_CHANNEL_UNLISTED)
             save = tasks.handle_upload_validation_result
             is_webextension = False
+            is_mozilla_signed = False
+
             # We're dealing with a bare file upload. Try to extract the
             # metadata that we need to match it against a previous upload
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, minimal=True)
                 is_webextension = addon_data['is_webextension']
+                is_mozilla_signed = addon_data.get(
+                    'is_mozilla_signed_extension', False)
             except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))
@@ -254,6 +258,7 @@ class Validator(object):
             assert listed is None
 
             channel = file_.version.channel
+            is_mozilla_signed = file_.is_mozilla_signed_extension
             save = tasks.handle_file_validation_result
             validate = self.validate_file(file_)
 
@@ -267,13 +272,15 @@ class Validator(object):
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
         on_error = save.subtask(
-            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel],
+            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel,
+             is_mozilla_signed],
             immutable=True)
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
-        self.task = chain(validate, save.subtask([file_.pk, channel],
-                                                 link_error=on_error))
+        self.task = chain(validate, save.subtask(
+            [file_.pk, channel, is_mozilla_signed],
+            link_error=on_error))
 
         # Create a cache key for the task, so multiple requests to
         # validate the same object do not result in duplicate tasks.
