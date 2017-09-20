@@ -9,7 +9,11 @@
 } %}
 
 {% macro sort_link(key) -%}
-  {{ url('browse.personas', category.slug)|urlparams(sort=key) }}
+{% if category %}
+    {{ url('browse.personas', category.slug)|urlparams(sort=key) }}
+{% else %}
+    {{ url('browse.personas', '')|urlparams(sort=key) }}
+{% endif %}
 {%- endmacro %}
 
 {% block bodyclass %}category-landing{% endblock %}
