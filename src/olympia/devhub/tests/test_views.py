@@ -1672,6 +1672,30 @@ class TestUploadDetail(BaseUploadTest):
              u'message': u'You cannot submit a Mozilla Signed Extension',
              u'fatal': True, u'type': u'error'}]
 
+    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
+        """Legacy add-ons that are signed with the mozilla certificate
+        should be allowed to be submitted ignoring most compatibility
+        checks.
+
+        See https://github.com/mozilla/addons-server/issues/6424 for more
+        information.
+        """
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '51.0a1')
+
+        user_factory(email='verypinkpanda@mozilla.com')
+        assert self.client.login(email='verypinkpanda@mozilla.com')
+        self.upload_file(os.path.join(
+            settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',
+            'legacy-addon-already-signed-0.1.0.xpi'))
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+
+        assert data['validation']['messages'] == []
+
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_system_addon_update_allowed(self, mock_validator):
         """Updates to system addons are allowed from anyone."""

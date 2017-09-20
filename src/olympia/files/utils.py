@@ -119,18 +119,23 @@ class Extractor(object):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
         certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
+
+        if os.path.exists(certificate):
+            certificate_info = SigningCertificateInformation(certificate)
+
         if os.path.exists(manifest_json):
-            data = ManifestJSONExtractor(manifest_json).parse(minimal=minimal)
+            data = ManifestJSONExtractor(
+                manifest_json,
+                certinfo=certificate_info).parse(minimal=minimal)
         elif os.path.exists(install_rdf):
             # Note that RDFExtractor is a misnomer, it receives the full path
             # to the file because it might need to read other files than just
             # the rdf to deal with dictionaries, complete themes etc.
-            data = RDFExtractor(path).parse(minimal=minimal)
+            data = RDFExtractor(
+                path, certinfo=certificate_info).parse(minimal=minimal)
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
-        if os.path.exists(certificate):
-            data.update(MozillaSignedCertificateChecker(certificate).parse())
         return data
 
 
@@ -178,8 +183,9 @@ class RDFExtractor(object):
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
-    def __init__(self, path):
+    def __init__(self, path, certinfo):
         self.path = path
+        self.certinfo = certinfo
         install_rdf_path = os.path.join(path, 'install.rdf')
         self.rdf = rdflib.Graph().parse(open(install_rdf_path))
         self.package_type = None
@@ -192,6 +198,9 @@ class RDFExtractor(object):
             'version': self.find('version'),
             'is_webextension': False,
         }
+
+        data.update(self.certinfo.parse())
+
         if not minimal:
             data.update({
                 'name': self.find('name'),
@@ -277,15 +286,24 @@ class RDFExtractor(object):
             if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
                 continue
             seen_apps.add(app.id)
+
             try:
                 min_appver_text = self.find('minVersion', ctx)
                 max_appver_text = self.find('maxVersion', ctx)
 
-                if (app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
-                        max_appver_text == '*'):
-                    # Rewrite '*' as '56.*' in legacy extensions, since they
-                    # are not compatible with higher versions.
+                # Rewrite '*' as '56.*' in legacy extensions, since they
+                # are not compatible with higher versions.
+                # We don't do that for legacy add-ons that are already
+                # signed by Mozilla to allow them for Firefox 57 onwards.
+                needs_max_56_star = (
+                    app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
+                    max_appver_text == '*'
+                    and not self.certinfo.is_mozilla_signed_ou
+                )
+
+                if needs_max_56_star:
                     max_appver_text = '56.*'
+
                 min_appver, max_appver = get_appversions(
                     app, min_appver_text, max_appver_text)
             except AppVersion.DoesNotExist:
@@ -298,8 +316,9 @@ class RDFExtractor(object):
 
 class ManifestJSONExtractor(object):
 
-    def __init__(self, path, data=''):
+    def __init__(self, path, certinfo, data=''):
         self.path = path
+        self.certinfo = certinfo
 
         if not data:
             with open(path) as fobj:
@@ -427,6 +446,9 @@ class ManifestJSONExtractor(object):
             'version': self.get('version', ''),
             'is_webextension': True,
         }
+
+        data.update(self.certinfo.parse())
+
         if not minimal:
             data.update({
                 'name': self.get('name'),
@@ -446,7 +468,7 @@ class ManifestJSONExtractor(object):
         return data
 
 
-class MozillaSignedCertificateChecker(object):
+class SigningCertificateInformation(object):
     """Process the signature to determine the addon is a Mozilla Signed
     extension, so is signed already with a special certificate.  We want to
     know this so we don't write over it later, and stop unauthorised people
