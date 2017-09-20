@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-19 23:44+0000\n"
+"PO-Revision-Date: 2017-09-20 00:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2664,7 +2664,7 @@ msgid "PayPal ID required to accept contributions."
 msgstr "PayPal ID-ის მითითება აუცილებელია შემოწირულობების მისაღებად."
 
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "PayPal id-ის დამოწმება ვერ მოხერხდა."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ფაილის ტიპი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
@@ -2682,7 +2682,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "წარუმატებელ დამოწმებაზე გადაწერა"
 
 msgid "Submit my add-on for manual review."
 msgstr "დამატების წარდგენა განსახილველად."
@@ -2997,7 +2997,7 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
-msgstr ""
+msgstr "შემოწმების თარიღი:"
 
 msgid "Tested for compatibility against:"
 msgstr "შეთავსებადობაზე შემოწმდა ვერსიით:"
@@ -4419,10 +4419,10 @@ msgid "Close Review History"
 msgstr "განხილვების ისტორიის დახურვა"
 
 msgid "Not validated."
-msgstr ""
+msgstr "შეუმოწმებელია."
 
 msgid "Validate now."
-msgstr ""
+msgstr "შემოწმება ახლავე."
 
 msgid "Request Review"
 msgstr "განხილვის მოთხოვნა"
