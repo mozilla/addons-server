@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-20 00:28+0000\n"
+"PO-Revision-Date: 2017-09-20 00:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2878,7 +2878,7 @@ msgid "Your old credentials were revoked and are no longer valid. Be sure to upd
 msgstr "თქვენი ძველი მონაცემები გაუქმებულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "თქვენი ძველი მონაცემები გაუქმებულია და მისი გამოყენება დაუშვებელია."
 
 msgid "New API key created"
 msgstr ""
@@ -3690,7 +3690,7 @@ msgid "Sign Add-on"
 msgstr "დამატების ხელმოწერა"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API მონაცემები"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -3712,16 +3712,16 @@ msgid ""
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
 
 msgid "Revoke"
 msgstr ""
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "მონაცემების გაუქმება და ხელახლა შექმნა"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "ახალი მონაცემების შექმნა"
 
 msgid "Invisible"
 msgstr "უხილავი"
@@ -4189,7 +4189,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "დაამატეთ ჭდეები, თემის უკეთ აღწერისთვის."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება ძიებაში და ჩამონათვალში, ასევე თქვენი თემის გვერდის თავში."
+msgstr "მოკლე აღწერა თქვენი თემის ძირითადი შესაძლებლობების, რომელიც გამოჩნდება ძიებაში და ჩამონათვალში, ასევე თქვენი თემის გვერდის დასაწყისში."
 
 msgid "Theme License"
 msgstr "თემის ლიცენზია"
