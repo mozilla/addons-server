@@ -194,9 +194,9 @@ def handle_upload_validation_result(
         not upload.addon.find_latest_version(channel=channel, exclude=()))
 
     # Annotate results with potential legacy add-ons restrictions.
-    results = annotate_legacy_addon_restrictions(
-        results=results, is_new_upload=is_new_upload,
-        is_mozilla_signed=is_mozilla_signed)
+    if not is_mozilla_signed:
+        results = annotate_legacy_addon_restrictions(
+            results=results, is_new_upload=is_new_upload)
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
@@ -287,8 +287,7 @@ def insert_validation_message(results, type_='error', message='', msg_id='',
     results['{}s'.format(type_)] += 1
 
 
-def annotate_legacy_addon_restrictions(
-        results, is_new_upload, is_mozilla_signed):
+def annotate_legacy_addon_restrictions(results, is_new_upload):
     """
     Annotate validation results to restrict uploads of legacy
     (non-webextension) add-ons if specific conditions are met.
@@ -328,8 +327,7 @@ def annotate_legacy_addon_restrictions(
         is_extension_or_complete_theme and
             not is_webextension and
             is_targeting_firefoxes_only and
-            not is_targeting_firefox_lower_than_53_only and
-            not is_mozilla_signed):
+            not is_targeting_firefox_lower_than_53_only):
 
         msg = ugettext(
             u'Starting with Firefox 53, new add-ons on this site can '
@@ -342,8 +340,7 @@ def annotate_legacy_addon_restrictions(
     # Firefox 56.* or lower, even if they target multiple apps.
     elif (is_extension_or_complete_theme and
             not is_webextension and
-            is_targeting_firefox_higher_or_equal_than_57 and
-            not is_mozilla_signed):
+            is_targeting_firefox_higher_or_equal_than_57):
         # Note: legacy add-ons targeting '*' (which is the default for sdk
         # add-ons) are excluded from this error, and instead are silently
         # rewritten as supporting '56.*' in the manifest parsing code.
