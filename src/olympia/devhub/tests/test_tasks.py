@@ -281,7 +281,7 @@ class TestMeasureValidationTime(TestValidator):
                                         channel=amo.RELEASE_CHANNEL_LISTED):
         validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
         tasks.handle_upload_validation_result(validation, self.upload.pk,
-                                              channel, False)
+                                              channel)
 
     def test_track_upload_validation_results_time(self):
         with self.statsd_timing_mock() as statsd_calls:

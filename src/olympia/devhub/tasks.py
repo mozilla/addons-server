@@ -181,8 +181,7 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
 
 @task
 @write
-def handle_upload_validation_result(
-        results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(results, upload_pk, channel):
     """Annotate a set of validation results and save them to the given
     FileUpload instance."""
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -194,9 +193,8 @@ def handle_upload_validation_result(
         not upload.addon.find_latest_version(channel=channel, exclude=()))
 
     # Annotate results with potential legacy add-ons restrictions.
-    if not is_mozilla_signed:
-        results = annotate_legacy_addon_restrictions(
-            results=results, is_new_upload=is_new_upload)
+    results = annotate_legacy_addon_restrictions(
+        results=results, is_new_upload=is_new_upload)
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
@@ -502,7 +500,6 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     from validator.validate import validate
 
     apps = dump_apps.Command.JSON_PATH
-
     if not os.path.exists(apps):
         call_command('dump_apps')
 
