@@ -219,9 +219,13 @@ class RDFExtractor(object):
             # rdf to set strict_compatibility, but now we enable it or not for
             # all legacy add-ons depending on their type. This will prevent
             # them from being marked as compatible with Firefox 57.
+            # This is not true for legacy add-ons already signed by Mozilla.
+            # For these add-ons we just re-use to whatever
+            # `strictCompatibility` is set.
             if data['type'] not in amo.NO_COMPAT:
-                if self.certinfo and not self.certinfo.is_mozilla_signed_ou:
-                    data['strict_compatibility'] = False
+                if self.certinfo and self.certinfo.is_mozilla_signed_ou:
+                    data['strict_compatibility'] = (
+                        self.find('strictCompatibility') == 'true')
                 else:
                     data['strict_compatibility'] = True
             else:
