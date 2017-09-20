@@ -1054,7 +1054,7 @@ class TestPersonas(TestCase):
             a.save()
 
     def test_does_not_500_in_development(self):
-        with self.settings(DEBUG=True)
+        with self.settings(DEBUG=True):
             self.test_personas_grid()
             self.test_personas_landing()
 
@@ -1067,7 +1067,7 @@ class TestPersonas(TestCase):
         assert base.count() == 2
         response = self.client.get(self.landing_url)
         self.assertTemplateUsed(response, self.grid_template)
-        assert response.status_code = 200
+        assert response.status_code == 200
         assert response.context['is_homepage']
 
     def test_personas_landing(self):
