@@ -119,6 +119,7 @@ class Extractor(object):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
         certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
+        certificate_info = None
 
         if os.path.exists(certificate):
             certificate_info = SigningCertificateInformation(certificate)
@@ -199,7 +200,8 @@ class RDFExtractor(object):
             'is_webextension': False,
         }
 
-        data.update(self.certinfo.parse())
+        if self.certinfo is not None:
+            data.update(self.certinfo.parse())
 
         if not minimal:
             data.update({
@@ -217,7 +219,8 @@ class RDFExtractor(object):
             # all legacy add-ons depending on their type. This will prevent
             # them from being marked as compatible with Firefox 57.
             data['strict_compatibility'] = (
-                data['type'] not in amo.NO_COMPAT)
+                data['type'] not in amo.NO_COMPAT
+                and self.certinfo and not self.certinfo.is_mozilla_signed_ou)
             # `experiment` is detected in in `find_type`.
             data['is_experiment'] = self.is_experiment
             multiprocess_compatible = self.find('multiprocessCompatible')
@@ -447,7 +450,8 @@ class ManifestJSONExtractor(object):
             'is_webextension': True,
         }
 
-        data.update(self.certinfo.parse())
+        if self.certinfo is not None:
+            data.update(self.certinfo.parse())
 
         if not minimal:
             data.update({
