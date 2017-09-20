@@ -200,6 +200,8 @@ class RDFExtractor(object):
             'is_webextension': False,
         }
 
+        # Populate certificate information (e.g signed by mozilla or not)
+        # early on to be able to verify compatibility based on it
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
@@ -460,6 +462,8 @@ class ManifestJSONExtractor(object):
             'is_webextension': True,
         }
 
+        # Populate certificate information (e.g signed by mozilla or not)
+        # early on to be able to verify compatibility based on it
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
