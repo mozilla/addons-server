@@ -311,7 +311,7 @@ class RDFExtractor(object):
                 needs_max_56_star = (
                     app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
                     max_appver_text == '*' and
-                    not self.certinfo.is_mozilla_signed_ou
+                    not (self.certinfo and self.certinfo.is_mozilla_signed_ou)
                 )
 
                 if needs_max_56_star:
