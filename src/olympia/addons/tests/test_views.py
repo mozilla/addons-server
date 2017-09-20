@@ -153,6 +153,16 @@ class TestHomepageFeatures(TestCase):
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
+@override_switch('simple-contributions', active=True)
+class TestContributeInstalled404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
+
+    def test_404(self):
+        url = reverse('addons.installed', args=['a592'])
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestContributeInstalled(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
@@ -184,6 +194,18 @@ class TestContributeInstalled(TestCase):
         assert title.startswith('Thank you for installing Gmail S/MIME')
 
 
+@override_switch('simple-contributions', active=True)
+class TestContributeEmbedded404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
+
+    @patch('olympia.paypal.get_paykey')
+    def test_404(self, get_paykey,):
+        get_paykey.return_value = ['abc', '']
+        url = reverse('addons.contribute', args=['a592'])
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestContributeEmbedded(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
@@ -337,6 +359,16 @@ class TestContributeEmbedded(TestCase):
         return self.client.post(urlparams(url, result_type='json'))
 
 
+@override_switch('simple-contributions', active=True)
+class TestDeveloperPages404(TestCase):
+    fixtures = ['base/addon_592', 'base/users']
+
+    def test_404(self):
+        url = reverse('addons.meet', args=['a592'])
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestDeveloperPages(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',

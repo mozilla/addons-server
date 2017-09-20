@@ -15,6 +15,7 @@ from django.utils.translation import trim_whitespace
 import mock
 import waffle
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, core, paypal
 from olympia.activity.models import ActivityLog
@@ -421,6 +422,19 @@ class TestVersionStats(TestCase):
         self.assertDictEqual(data, exp)
 
 
+@override_switch('simple-contributions', active=True)
+class TestPayments404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.no_cache().get(id=3615)
+        url = addon.get_dev_url('payments')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.get(url).status_code == 404
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestEditPayments(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -702,6 +716,7 @@ class TestDisablePayments(TestCase):
         assert not Addon.objects.no_cache().get(id=3615).wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestPaymentsProfile(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1063,6 +1078,19 @@ class TestActivityFeed(TestCase):
         assert len(doc('#recent-activity .item')) == 1
 
 
+@override_switch('simple-contributions', active=True)
+class TestProfile404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.get(id=3615)
+        url = addon.get_dev_url('profile')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.post(url).status_code == 404
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestProfileBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1095,6 +1123,7 @@ class TestProfileBase(TestCase):
                 assert getattr(addon, k) == v
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfileStatusBar(TestProfileBase):
 
     def setUp(self):
@@ -1155,6 +1184,7 @@ class TestProfileStatusBar(TestProfileBase):
         assert not addon.wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
