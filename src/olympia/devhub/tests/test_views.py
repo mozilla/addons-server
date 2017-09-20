@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
@@ -1398,6 +1399,8 @@ class TestUploadDetail(BaseUploadTest):
         super(TestUploadDetail, self).setUp()
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '51.0a1')
+
+        call_command('dump_apps')
 
         assert self.client.login(email='regular@mozilla.com')
 
