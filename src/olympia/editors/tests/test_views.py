@@ -1335,6 +1335,10 @@ class TestUnlistedAllList(QueueTest):
     def test_results(self):
         self._test_results()
 
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_enabled(self):
+        self._test_results()
+
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
