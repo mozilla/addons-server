@@ -450,9 +450,7 @@ models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile)
-    role = models.SmallIntegerField(
-        default=1,
-        choices=amo.COLLECTION_AUTHOR_CHOICES.items())
+    role = models.SmallIntegerField(default=1)  # TODO: drop me.
 
     class Meta:
         db_table = 'collections_users'
