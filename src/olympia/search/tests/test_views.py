@@ -783,7 +783,7 @@ class TestPersonaSearch(SearchBase):
 
     def test_sort_order_default(self):
         self._generate_personas()
-        self.check_sort_links(None, sort_by='weekly_downloads')
+        self.check_sort_links(None, sort_by='average_daily_users')
 
     def test_sort_order_unknown(self):
         self._generate_personas()

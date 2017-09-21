@@ -48,7 +48,9 @@ def _personas(request):
         'updated': '-last_updated',
         'hotness': '-hotness'}
     results = _filter_search(request, qs, form.cleaned_data, filters,
-                             sorting=mapping, types=[amo.ADDON_PERSONA])
+                             sorting=mapping,
+                             sorting_default='-average_daily_users',
+                             types=[amo.ADDON_PERSONA])
 
     form_data = form.cleaned_data.get('q', '')
 
