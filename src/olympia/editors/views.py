@@ -431,7 +431,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         # Those additional restrictions will only work with our RawSQLModel,
         # so we need to make sure we're not dealing with a regular Django ORM
         # queryset first.
-        if hasattr(qs, 'sql_model'):
+        if hasattr(qs, 'sql_model') and not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
                     'waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
