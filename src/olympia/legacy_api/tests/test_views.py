@@ -824,6 +824,15 @@ class TestGuidSearch(TestCase):
         response = make_call(self.good, lang='fr')
         self.assertContains(response, '<summary>Francais')
 
+    def test_api_caching_app(self):
+        response = make_call(self.good)
+        assert 'en-US/firefox/addon/None/reviews/?src=api' in response.content
+        assert 'en-US/android/addon/None/reviews/' not in response.content
+
+        response = make_call(self.good, app='android')
+        assert 'en-US/android/addon/None/reviews/?src=api' in response.content
+        assert 'en-US/firefox/addon/None/reviews/' not in response.content
+
     def test_xss(self):
         addon_factory(guid='test@xss', name='<script>alert("test");</script>')
         r = make_call('search/guid:test@xss')
