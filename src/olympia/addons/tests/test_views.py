@@ -993,16 +993,46 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         assert span_is_restart_required in response.content
 
-    def test_is_webextension(self):
-        file_ = self.addon.current_version.all_files[0]
+    def test_fx57_label_is_webextension(self):
+        """Test that the Firefox 57 label is being shown.
 
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
         assert file_.is_webextension is False
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
         file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('a.is-webextension')
+        assert (
+            link.attr['href'] ==
+            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+        )
+
+    def test_fx57_label_is_mozilla_signed_extension(self):
+        """Test that the Firefox 57 label is being shown.
+
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
+        assert file_.is_mozilla_signed_extension is False
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.is-webextension')
+
+        file_.update(is_mozilla_signed_extension=True)
+        assert file_.is_mozilla_signed_extension is True
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         link = doc('a.is-webextension')

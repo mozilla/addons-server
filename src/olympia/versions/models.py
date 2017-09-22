@@ -437,6 +437,20 @@ class Version(OnChangeMixin, ModelBase):
         return any(file_.is_webextension for file_ in self.all_files)
 
     @property
+    def is_mozilla_signed(self):
+        """Is the file a special "Mozilla Signed Extension"
+
+        See https://wiki.mozilla.org/Add-ons/InternalSigning for more details.
+        We use that information to workaround compatibility limits for legacy
+        add-ons and to avoid them receiving negative boosts compared to
+        WebExtensions.
+
+        See https://github.com/mozilla/addons-server/issues/6424
+        """
+        return all(
+            file_.is_mozilla_signed_extension for file_ in self.all_files)
+
+    @property
     def has_files(self):
         return bool(self.all_files)
 
