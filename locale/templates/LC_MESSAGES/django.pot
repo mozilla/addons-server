@@ -4,46 +4,46 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.0\n"
+"Generated-By: Babel 2.5.1\n"
 
-#: src/olympia/accounts/serializers.py:51 src/olympia/bandwagon/forms.py:176
+#: src/olympia/accounts/serializers.py:83 src/olympia/bandwagon/forms.py:176
 #: src/olympia/bandwagon/serializers.py:57 src/olympia/users/forms.py:195
 msgid "No links are allowed."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:57 src/olympia/users/forms.py:166
+#: src/olympia/accounts/serializers.py:89 src/olympia/users/forms.py:166
 msgid "This display name cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:65 src/olympia/users/forms.py:142
+#: src/olympia/accounts/serializers.py:97 src/olympia/users/forms.py:142
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:69 src/olympia/users/forms.py:146
+#: src/olympia/accounts/serializers.py:101 src/olympia/users/forms.py:146
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:73 src/olympia/users/forms.py:151
+#: src/olympia/accounts/serializers.py:105 src/olympia/users/forms.py:151
 msgid "This username cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:80 src/olympia/users/forms.py:158
+#: src/olympia/accounts/serializers.py:112 src/olympia/users/forms.py:158
 msgid "This username is already in use."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:87 src/olympia/devhub/views.py:1045
+#: src/olympia/accounts/serializers.py:119 src/olympia/devhub/views.py:1045
 #: src/olympia/users/forms.py:181
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:92 src/olympia/bandwagon/forms.py:203
+#: src/olympia/accounts/serializers.py:124 src/olympia/bandwagon/forms.py:203
 #: src/olympia/devhub/views.py:1062 src/olympia/users/forms.py:184
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -183,9 +183,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/forms.py:161
+#: src/olympia/addons/forms.py:159
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 #: src/olympia/addons/forms.py:228
@@ -239,11 +239,11 @@ msgid ""
 " applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py:1698 src/olympia/constants/base.py:86
+#: src/olympia/addons/models.py:1707 src/olympia/constants/base.py:86
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2164
+#: src/olympia/addons/models.py:2173
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -626,7 +626,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/persona_detail.html:16
 #: src/olympia/addons/templates/addons/persona_preview.html:96
 #: src/olympia/devhub/templates/devhub/versions/list.html:127
-#: src/olympia/discovery/serializers.py:42 src/olympia/discovery/serializers.py:46
+#: src/olympia/discovery/serializers.py:43 src/olympia/discovery/serializers.py:47
 #: src/olympia/editors/templates/editors/review.html:29
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html:27
 msgid "by"
@@ -912,7 +912,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
-#: src/olympia/constants/categories.py:174
+#: src/olympia/constants/categories.py:176
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:146
 msgid "Tags"
 msgstr ""
@@ -1663,7 +1663,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:71
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: src/olympia/users/models.py:404
+#: src/olympia/users/models.py:406
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -1684,7 +1684,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:84 src/olympia/browse/feeds.py:207
 #: src/olympia/browse/templates/browse/search_tools.html:3
 #: src/olympia/constants/base.py:146 src/olympia/constants/categories.py:73
-#: src/olympia/constants/categories.py:206
+#: src/olympia/constants/categories.py:208
 msgid "Search Tools"
 msgstr ""
 
@@ -3436,7 +3436,8 @@ msgstr ""
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py:394 src/olympia/constants/categories.py:80
-#: src/olympia/constants/categories.py:128 src/olympia/devhub/forms.py:144
+#: src/olympia/constants/categories.py:128 src/olympia/constants/categories.py:153
+#: src/olympia/devhub/forms.py:144
 #: src/olympia/editors/templates/editors/performance.html:71
 msgid "Other"
 msgstr ""
@@ -3599,7 +3600,7 @@ msgid "Appearance"
 msgstr ""
 
 #: src/olympia/constants/categories.py:60 src/olympia/constants/categories.py:97
-#: src/olympia/constants/categories.py:191
+#: src/olympia/constants/categories.py:193
 msgid "Bookmarks"
 msgstr ""
 
@@ -3615,7 +3616,7 @@ msgstr ""
 msgid "Games & Entertainment"
 msgstr ""
 
-#: src/olympia/constants/categories.py:68 src/olympia/constants/categories.py:168
+#: src/olympia/constants/categories.py:68 src/olympia/constants/categories.py:170
 msgid "Language Support"
 msgstr ""
 
@@ -3647,7 +3648,7 @@ msgstr ""
 msgid "Animals"
 msgstr ""
 
-#: src/olympia/constants/categories.py:84 src/olympia/constants/categories.py:177
+#: src/olympia/constants/categories.py:84 src/olympia/constants/categories.py:179
 msgid "Compact"
 msgstr ""
 
@@ -3655,19 +3656,19 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-#: src/olympia/constants/categories.py:86 src/olympia/constants/categories.py:171
-#: src/olympia/constants/categories.py:178 src/olympia/constants/categories.py:199
-#: src/olympia/constants/categories.py:212
+#: src/olympia/constants/categories.py:86 src/olympia/constants/categories.py:173
+#: src/olympia/constants/categories.py:180 src/olympia/constants/categories.py:201
+#: src/olympia/constants/categories.py:214
 #: src/olympia/users/templates/users/edit.html:124
 msgid "Miscellaneous"
 msgstr ""
 
-#: src/olympia/constants/categories.py:87 src/olympia/constants/categories.py:179
+#: src/olympia/constants/categories.py:87 src/olympia/constants/categories.py:181
 msgid "Modern"
 msgstr ""
 
 #: src/olympia/constants/categories.py:88 src/olympia/constants/categories.py:127
-#: src/olympia/constants/categories.py:180
+#: src/olympia/constants/categories.py:182
 msgid "Nature"
 msgstr ""
 
@@ -3685,9 +3686,9 @@ msgid "Sports"
 msgstr ""
 
 #: src/olympia/constants/categories.py:94 src/olympia/constants/categories.py:101
-#: src/olympia/constants/categories.py:116 src/olympia/constants/categories.py:183
-#: src/olympia/constants/categories.py:186 src/olympia/constants/categories.py:215
-#: src/olympia/constants/categories.py:218
+#: src/olympia/constants/categories.py:116 src/olympia/constants/categories.py:185
+#: src/olympia/constants/categories.py:188 src/olympia/constants/categories.py:217
+#: src/olympia/constants/categories.py:220
 msgid "General"
 msgstr ""
 
@@ -3808,71 +3809,71 @@ msgstr ""
 msgid "Sports & Games"
 msgstr ""
 
-#: src/olympia/constants/categories.py:151
+#: src/olympia/constants/categories.py:152
 msgid "User Interface"
 msgstr ""
 
-#: src/olympia/constants/categories.py:157
+#: src/olympia/constants/categories.py:159
 msgid "Appearance and Customization"
 msgstr ""
 
-#: src/olympia/constants/categories.py:159
+#: src/olympia/constants/categories.py:161
 msgid "Calendar and Date/Time"
 msgstr ""
 
-#: src/olympia/constants/categories.py:160
+#: src/olympia/constants/categories.py:162
 msgid "Chat and IM"
 msgstr ""
 
-#: src/olympia/constants/categories.py:162
+#: src/olympia/constants/categories.py:164
 msgid "Message Composition"
 msgstr ""
 
-#: src/olympia/constants/categories.py:163
+#: src/olympia/constants/categories.py:165
 msgid "Contacts"
 msgstr ""
 
-#: src/olympia/constants/categories.py:165
+#: src/olympia/constants/categories.py:167
 msgid "Folders and Filters"
 msgstr ""
 
-#: src/olympia/constants/categories.py:166
+#: src/olympia/constants/categories.py:168
 msgid "Import/Export"
 msgstr ""
 
-#: src/olympia/constants/categories.py:170
+#: src/olympia/constants/categories.py:172
 msgid "Message and News Reading"
 msgstr ""
 
-#: src/olympia/constants/categories.py:173 src/olympia/constants/categories.py:203
+#: src/olympia/constants/categories.py:175 src/olympia/constants/categories.py:205
 msgid "Privacy and Security"
 msgstr ""
 
-#: src/olympia/constants/categories.py:193
+#: src/olympia/constants/categories.py:195
 msgid "Downloading and File Management"
 msgstr ""
 
-#: src/olympia/constants/categories.py:195
+#: src/olympia/constants/categories.py:197
 msgid "Interface Customizations"
 msgstr ""
 
-#: src/olympia/constants/categories.py:197
+#: src/olympia/constants/categories.py:199
 msgid "Language Support and Translation"
 msgstr ""
 
-#: src/olympia/constants/categories.py:201
+#: src/olympia/constants/categories.py:203
 msgid "Photos and Media"
 msgstr ""
 
-#: src/olympia/constants/categories.py:205
+#: src/olympia/constants/categories.py:207
 msgid "RSS, News and Blogging"
 msgstr ""
 
-#: src/olympia/constants/categories.py:207
+#: src/olympia/constants/categories.py:209
 msgid "Site-specific"
 msgstr ""
 
-#: src/olympia/constants/categories.py:209
+#: src/olympia/constants/categories.py:211
 msgid "Web and Developer Tools"
 msgstr ""
 
@@ -4208,41 +4209,41 @@ msgid ""
 "updateURL or external application updates.</span>"
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:330
+#: src/olympia/devhub/tasks.py:332
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:345
+#: src/olympia/devhub/tasks.py:347
 msgid ""
 "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion"
 " of 56.* or lower."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:382
+#: src/olympia/devhub/tasks.py:384
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:397
+#: src/olympia/devhub/tasks.py:399
 msgid ""
 "You cannot update a WebExtensions add-on with a legacy add-on. Your users "
 "would not be able to use your new version because Firefox does not support "
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:704
+#: src/olympia/devhub/tasks.py:707
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:708
+#: src/olympia/devhub/tasks.py:711
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:710
+#: src/olympia/devhub/tasks.py:713
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
@@ -6949,37 +6950,37 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/discovery/data.py:32
+#: src/olympia/discovery/data.py:33
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:36
+#: src/olympia/discovery/data.py:37
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#: src/olympia/discovery/data.py:42
+#: src/olympia/discovery/data.py:43
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:46
+#: src/olympia/discovery/data.py:47
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
-#: src/olympia/discovery/data.py:55
+#: src/olympia/discovery/data.py:56
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:59
+#: src/olympia/discovery/data.py:60
 msgid ""
 "Supporting 25+ languages, this extension puts a proofreader right in your "
 "browser."
 msgstr ""
 
-#: src/olympia/discovery/data.py:66
+#: src/olympia/discovery/data.py:67
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:70
+#: src/olympia/discovery/data.py:71
 msgid ""
 "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
 "play control, and more."
@@ -7145,35 +7146,35 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
-#: src/olympia/editors/models.py:885
+#: src/olympia/editors/models.py:896
 msgid "Uses a custom CSP."
 msgstr ""
 
-#: src/olympia/editors/models.py:887
+#: src/olympia/editors/models.py:898
 msgid "Uses nativeMessaging permission."
 msgstr ""
 
-#: src/olympia/editors/models.py:889
+#: src/olympia/editors/models.py:900
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#: src/olympia/editors/models.py:891
+#: src/olympia/editors/models.py:902
 msgid "Has too many daily users."
 msgstr ""
 
-#: src/olympia/editors/models.py:893
+#: src/olympia/editors/models.py:904
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
 
-#: src/olympia/editors/models.py:894
+#: src/olympia/editors/models.py:905
 msgid "Has a pending info request."
 msgstr ""
 
-#: src/olympia/editors/models.py:895
+#: src/olympia/editors/models.py:906
 msgid "Is flagged for admin review."
 msgstr ""
 
-#: src/olympia/editors/models.py:896
+#: src/olympia/editors/models.py:907
 msgid "Is locked by a reviewer."
 msgstr ""
 
@@ -8196,80 +8197,80 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:370
+#: src/olympia/files/utils.py:404
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:381
+#: src/olympia/files/utils.py:415
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:417
+#: src/olympia/files/utils.py:451
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:481
+#: src/olympia/files/utils.py:521
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:497
+#: src/olympia/files/utils.py:537
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:535
+#: src/olympia/files/utils.py:575
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:543
+#: src/olympia/files/utils.py:583
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:595
+#: src/olympia/files/utils.py:635
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:740 src/olympia/files/utils.py:744
+#: src/olympia/files/utils.py:780 src/olympia/files/utils.py:784
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:767
+#: src/olympia/files/utils.py:807
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:782
+#: src/olympia/files/utils.py:822
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:784
+#: src/olympia/files/utils.py:824
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:795
+#: src/olympia/files/utils.py:835
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:798
+#: src/olympia/files/utils.py:838
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:801
+#: src/olympia/files/utils.py:841
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:806
+#: src/olympia/files/utils.py:846
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:832
+#: src/olympia/files/utils.py:872
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -11791,7 +11792,7 @@ msgstr ""
 msgid "Anonymous user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:398
+#: src/olympia/users/models.py:400
 msgid "My Mobile Add-ons"
 msgstr ""
 
