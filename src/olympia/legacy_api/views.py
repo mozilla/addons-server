@@ -282,9 +282,10 @@ class AddonDetailView(APIView):
 @non_atomic_requests
 def guid_search(request, api_version, guids):
     lang = request.LANG
+    app_id = request.APP.id
 
     def guid_search_cache_key(guid):
-        key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
+        key = 'guid_search:%s:%s:%s:%s' % (api_version, lang, app_id, guid)
         return hashlib.sha256(force_bytes(key)).hexdigest()
 
     guids = [guid.strip() for guid in guids.split(',')] if guids else []
