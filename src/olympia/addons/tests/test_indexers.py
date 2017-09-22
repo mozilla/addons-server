@@ -119,8 +119,9 @@ class TestAddonIndexer(TestCase):
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
             'id', 'created', 'filename', 'hash', 'is_webextension',
-            'is_restart_required', 'platform', 'size', 'status',
-            'strict_compatibility', 'webext_permissions_list')
+            'is_restart_required', 'is_mozilla_signed_extension', 'platform',
+            'size', 'status', 'strict_compatibility',
+            'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -252,7 +253,11 @@ class TestAddonIndexer(TestCase):
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
             addon=self.addon,
-            file_kw={'status': amo.STATUS_BETA, 'is_webextension': True})
+            file_kw={
+                'status': amo.STATUS_BETA,
+                'is_webextension': True,
+                'is_mozilla_signed_extension': True,
+            })
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=current_beta_version.all_files[0],
@@ -285,6 +290,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['is_webextension'] == file_.is_webextension
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -315,6 +322,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['is_webextension'] == file_.is_webextension
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -344,6 +353,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform

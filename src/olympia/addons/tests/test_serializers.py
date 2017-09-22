@@ -77,6 +77,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['hash'] == file_.hash
         assert result_file['is_restart_required'] == file_.is_restart_required
         assert result_file['is_webextension'] == file_.is_webextension
+        assert (
+            result_file['is_mozilla_signed_extension'] ==
+            file_.is_mozilla_signed_extension)
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
@@ -629,6 +632,7 @@ class TestVersionSerializerOutput(TestCase):
             file_kw={
                 'hash': 'fakehash',
                 'is_webextension': True,
+                'is_mozilla_signed_extension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
@@ -668,6 +672,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['hash'] == first_file.hash
         assert result['files'][0]['is_webextension'] == (
             first_file.is_webextension)
+        assert result['files'][0]['is_mozilla_signed_extension'] == (
+            first_file.is_mozilla_signed_extension)
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
         assert result['files'][0]['status'] == 'public'
@@ -679,6 +685,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][1]['hash'] == second_file.hash
         assert result['files'][1]['is_webextension'] == (
             second_file.is_webextension)
+        assert result['files'][1]['is_mozilla_signed_extension'] == (
+            second_file.is_mozilla_signed_extension)
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'

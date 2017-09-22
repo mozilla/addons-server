@@ -38,8 +38,8 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ('id', 'created', 'hash', 'is_restart_required',
-                  'is_webextension', 'platform', 'size', 'status', 'url',
-                  'permissions')
+                  'is_webextension', 'is_mozilla_signed_extension',
+                  'platform', 'size', 'status', 'url', 'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -394,6 +394,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
             is_webextension=data.get('is_webextension'),
+            is_mozilla_signed_extension=data.get(
+                'is_mozilla_signed_extension'),
             is_restart_required=data.get('is_restart_required', False),
             platform=data['platform'], size=data['size'],
             status=data['status'],
