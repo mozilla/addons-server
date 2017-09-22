@@ -526,7 +526,8 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-        # It wasn't a webextension, it should not receive the firefox57 tag.
+        # It wasn't a webextension and not signed by mozilla it should not
+        # receive the firefox57 tag.
         assert self.addon.tags.all().count() == 0
 
     @patch('olympia.editors.utils.sign_file')
@@ -670,7 +671,8 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
-        # It wasn't a webextension, it should not receive the firefox57 tag.
+        # It wasn't a webextension and not signed by mozilla it should not
+        # receive the firefox57 tag.
         assert self.addon.tags.all().count() == 0
 
     @patch('olympia.editors.utils.sign_file')
@@ -863,6 +865,17 @@ class TestReviewHelper(TestCase):
            lambda *a, **kw: None)
     def test_nomination_to_public_webextension(self):
         self.file.update(is_webextension=True)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
+
+    @patch('olympia.editors.utils.sign_file',
+           lambda *a, **kw: None)
+    def test_nomination_to_public_mozilla_signed_extension(self):
+        """Test that the firefox57 tag is applied to mozilla signed add-ons"""
+        self.file.update(is_mozilla_signed_extension=True)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_public()
         assert (

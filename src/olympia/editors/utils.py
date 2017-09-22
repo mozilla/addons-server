@@ -532,6 +532,10 @@ class ReviewBase(object):
         if any(file_.is_webextension for file_ in self.files):
             Tag(tag_text='firefox57').save_tag(self.addon)
 
+        # If we've approved a mozilla signed add-on, add the firefox57 tag
+        if all(file_.is_mozilla_signed_extension for file_ in self.files):
+            Tag(tag_text='firefox57').save_tag(self.addon)
+
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
         # approval.
