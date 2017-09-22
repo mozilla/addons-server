@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2017-09-13 08:59+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -133,8 +133,8 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Всички етикети трябва да са поне {0} знак."
 msgstr[1] "Всички етикети трябва да са поне {0} знака."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Домейнът трябва да е някой от [%s] или под домейн. "
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
