@@ -1066,7 +1066,6 @@ class Addon(OnChangeMixin, ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.weekly_downloads = persona.popularity
 
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)

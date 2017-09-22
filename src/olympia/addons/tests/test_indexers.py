@@ -454,8 +454,12 @@ class TestAddonIndexer(TestCase):
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
+        persona.popularity = 1000
         persona.save()
         extracted = self._extract()
+        assert extracted['average_daily_users'] == persona.popularity
+        assert extracted['weekly_downloads'] == persona.popularity * 7
+        assert extracted['boost'] == float(persona.popularity ** .2) * 4
         assert extracted['has_theme_rereview'] is False
         assert extracted['persona']['accentcolor'] == persona.accentcolor
         # We need the author that will go in theme_data here, which is
