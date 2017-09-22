@@ -504,6 +504,7 @@ def ownership(request, addon_id, addon):
 
 
 @dev_required(owner_for_post=True)
+@waffle.decorators.waffle_switch('!simple-contributions')
 def payments(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
 
@@ -571,6 +572,7 @@ def remove_profile(request, addon_id, addon):
 
 
 @dev_required
+@waffle.decorators.waffle_switch('!simple-contributions')
 def profile(request, addon_id, addon):
     profile_form = forms.ProfileForm(request.POST or None, instance=addon)
 

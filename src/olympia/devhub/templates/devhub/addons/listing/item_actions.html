@@ -55,7 +55,7 @@
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
-      {% if show_listed %}
+      {% if show_listed and not waffle.switch('simple-contributions') %}
       {% set manage_urls = [
         (addon.get_dev_url('owner'), _('Manage Authors & License')),
         (addon.get_dev_url('profile'), _('Manage Developer Profile')),
