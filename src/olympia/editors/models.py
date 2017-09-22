@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
+from django.db.models.functions import Func, Coalesce
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -38,6 +39,13 @@ VIEW_QUEUE_FLAGS = (
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
+
+
+# Django 1.8 does not have Cast(), so this is a simple dumb implementation
+# that only handles Cast(..., DateTimeField())
+class DateTimeCast(Func):
+    function = 'CAST'
+    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -1040,6 +1048,29 @@ class AutoApprovalSummary(ModelBase):
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info
+
+    @classmethod
+    def get_auto_approved_queue(cls):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        return (
+            Addon.objects.public()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict,
+                # Was auto-approved after the last human review, so its
+                # approval hasn't been confirmed yet.
+                _current_version__autoapprovalsummary__created__gt=(
+                    # MySQL straight up refuses to compare NULL values
+                    # (ignoring that row completely!) if we don't use
+                    # Coalesce(). This forces NULLs to be considered as being
+                    # an arbitrary old date, January 1st, 2000.
+                    Coalesce(
+                        'addonapprovalscounter__last_human_review',
+                        DateTimeCast(datetime(2000, 1, 1))
+                    ))
+            )
+        )
 
 
 class RereviewQueueThemeManager(ManagerBase):
