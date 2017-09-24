@@ -787,13 +787,11 @@ msgstr "Licence zdrojového kódu doplňku {addon}"
 msgid "Source Code License"
 msgstr "Licence zdrojového kódu"
 
-#, fuzzy
 msgid "support section"
-msgstr "Stránka podpory"
+msgstr ""
 
-#, fuzzy
 msgid "support email"
-msgstr "E-mail podpory:"
+msgstr ""
 
 msgid "permalink"
 msgstr "trvalý odkaz"
@@ -2973,9 +2971,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Poznámka ke kontrole"
+msgstr ""
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
