@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import ugettext
 
 from .models import Collection, CollectionUser
 
@@ -7,7 +8,7 @@ class ContributorInline(admin.TabularInline):
     model = CollectionUser
     raw_id_fields = ('user',)
     fields = ('user',)
-    verbose_name_plural = 'Contributors'
+    verbose_name_plural = ugettext(u'Contributors')
 
 
 class CollectionAdmin(admin.ModelAdmin):

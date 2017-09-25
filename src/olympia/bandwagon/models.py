@@ -450,7 +450,8 @@ models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile)
-    role = models.SmallIntegerField(default=1)  # TODO: drop me.
+    # role is unused & will be dropped in #6496 when collections are simplified
+    role = models.SmallIntegerField(default=1)
 
     class Meta:
         db_table = 'collections_users'
