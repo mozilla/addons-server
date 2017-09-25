@@ -345,12 +345,16 @@ class SearchQueryFilter(BaseFilterBackend):
             query.SF('field_value_factor', field='boost'),
         ]
         if waffle.switch_is_active('boost-webextensions-in-search'):
+            webext_boost_filter = (
+                Q('term', **{'current_version.files.is_webextension': True}) |
+                Q('term', **{
+                    'current_version.files.is_mozilla_signed_extension': True})
+            )
+
             functions.append(
                 query.SF({
                     'weight': WEBEXTENSIONS_WEIGHT,
-                    'filter': Q(
-                        'term',
-                        **{'current_version.files.is_webextension': True})
+                    'filter': webext_boost_filter
                 })
             )
 

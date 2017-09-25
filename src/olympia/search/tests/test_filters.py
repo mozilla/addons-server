@@ -118,7 +118,12 @@ class TestQueryFilter(FilterTestsBase):
         assert len(functions) == 2
         assert functions[1] == {
             'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
-            'filter': {'term': {'current_version.files.is_webextension': True}}
+            'filter': {'bool': {'should': [
+                {'term': {'current_version.files.is_webextension': True}},
+                {'term': {
+                    'current_version.files.is_mozilla_signed_extension': True
+                }}
+            ]}}
         }
 
 

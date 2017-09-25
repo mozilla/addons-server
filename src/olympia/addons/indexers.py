@@ -75,6 +75,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'filename': {
                             'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
+                        'is_mozilla_signed_extension': {'type': 'boolean'},
                         'is_restart_required': {
                             'type': 'boolean', 'index': False},
                         'platform': {
@@ -209,6 +210,8 @@ class AddonIndexer(BaseSearchIndexer):
                 'filename': file_.filename,
                 'hash': file_.hash,
                 'is_webextension': file_.is_webextension,
+                'is_mozilla_signed_extension': (
+                    file_.is_mozilla_signed_extension),
                 'is_restart_required': file_.is_restart_required,
                 'platform': file_.platform,
                 'size': file_.size,

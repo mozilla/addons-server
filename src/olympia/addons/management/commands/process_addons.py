@@ -31,8 +31,12 @@ tasks = {
     'sign_addons': {'method': sign_addons, 'qs': []},
     'add_firefox57_tag_to_webextensions': {
         'method': add_firefox57_tag,
-        'qs': [Q(status=amo.STATUS_PUBLIC,
-                 _current_version__files__is_webextension=True)]},
+        'qs': [
+            Q(status=amo.STATUS_PUBLIC) & (
+                Q(_current_version__files__is_webextension=True) |
+                Q(_current_version__files__is_mozilla_signed_extension=True)
+            )
+        ]},
     'bump_appver_for_legacy_addons': {
         'method': bump_appver_for_legacy_addons,
         'qs': [

@@ -222,16 +222,31 @@ class AddFirefox57TagTestCase(TestCase):
                                'status': amo.STATUS_AWAITING_REVIEW},
                       status=amo.STATUS_NOMINATED)
         public_webextension = addon_factory(file_kw={'is_webextension': True})
+        public_mozilla_signed = addon_factory(file_kw={
+            'is_mozilla_signed_extension': True})
 
         call_command(
             'process_addons', task='add_firefox57_tag_to_webextensions')
 
         assert add_firefox57_tag_mock.call_count == 1
         add_firefox57_tag_mock.assert_called_with(
-            args=[[public_webextension.pk]], kwargs={})
+            args=[[public_webextension.pk, public_mozilla_signed.pk]],
+            kwargs={})
 
-    def test_task_works(self):
+    def test_tag_added_for_is_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
+        assert self.addon.tags.all().count() == 0
+
+        call_command(
+            'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
+
+    def test_tag_added_for_is_mozilla_signed_extension(self):
+        self.addon = addon_factory(
+            file_kw={'is_mozilla_signed_extension': True})
         assert self.addon.tags.all().count() == 0
 
         call_command(
