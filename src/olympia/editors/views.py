@@ -710,8 +710,15 @@ def review(request, addon, channel=None):
     actions = form.helper.actions.items()
 
     try:
+        # Find the previously approved version to compare to.
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
+                # We're looking for a version that was either manually approved
+                # or auto-approved but then confirmed.
+                Q(autoapprovalsummary__isnull=True) |
+                Q(autoapprovalsummary__verdict=amo.AUTO_APPROVED,
+                  autoapprovalsummary__confirmed=True)
+            ).filter(
                 channel=channel,
                 files__isnull=False,
                 created__lt=version.created,

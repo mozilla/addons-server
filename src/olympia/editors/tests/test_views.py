@@ -2660,31 +2660,93 @@ class TestReview(ReviewBase):
         text = pq(r.content)('.editors-install').eq(1).text()
         assert text == "Windows / Mac OS X"
 
-    def test_no_compare_link(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        info = pq(r.content)('#review-files .file-info')
+    def test_compare_no_link(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        info = pq(response.content)('#review-files .file-info')
         assert info.length == 1
         assert info.find('a.compare').length == 0
 
     def test_compare_link(self):
-        version = Version.objects.create(addon=self.addon, version='0.2')
-        version.created = datetime.today() + timedelta(days=1)
-        version.save()
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(2))
 
-        f1 = self.addon.versions.order_by('created')[0].files.all()[0]
-        f1.status = amo.STATUS_PUBLIC
-        f1.save()
+        new_version = version_factory(addon=self.addon, version='0.2')
+        new_file = new_version.files.all()[0]
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
 
-        f2 = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
-        self.addon.update(_current_version=version)
-        assert self.addon.current_version == version
-
-        r = self.client.get(self.url)
-        assert r.context['show_diff']
-        links = pq(r.content)('#review-files .file-info .compare')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
         expected = [
-            reverse('files.compare', args=[f2.pk, f1.pk]),
+            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_compare_link_auto_approved_ignored(self):
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(3))
+
+        interim_version = version_factory(addon=self.addon, version='0.2')
+        interim_version.update(created=self.days_ago(2))
+        AutoApprovalSummary.objects.create(
+            version=interim_version, verdict=amo.AUTO_APPROVED)
+
+        new_version = version_factory(addon=self.addon, version='0.3')
+        new_file = new_version.files.all()[0]
+
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
+        # Comparison should be betweeen the last version and the first,
+        # ignoring the interim version because it was auto-approved and not
+        # manually confirmed by a human.
+        expected = [
+            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(3))
+
+        confirmed_version = version_factory(addon=self.addon, version='0.2')
+        confirmed_version.update(created=self.days_ago(2))
+        confirmed_file = confirmed_version.files.all()[0]
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=confirmed_version,
+            confirmed=True)
+
+        interim_version = version_factory(addon=self.addon, version='0.3')
+        interim_version.update(created=self.days_ago(1))
+        AutoApprovalSummary.objects.create(
+            version=interim_version, verdict=amo.AUTO_APPROVED)
+
+        new_version = version_factory(addon=self.addon, version='0.4')
+        new_file = new_version.files.all()[0]
+
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
+        # Comparison should be betweeen the last version and the second,
+        # ignoring the third version because it was auto-approved and not
+        # manually confirmed by a human (the second was auto-approved but
+        # was manually confirmed).
+        expected = [
+            reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
         ]
         check_links(expected, links, verify=False)
 
@@ -2755,14 +2817,16 @@ class TestReview(ReviewBase):
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
 
     def test_confirm_auto_approval_with_permission(self):
-        AutoApprovalSummary.objects.create(
+        summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.login_as_senior_editor()
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
         })
+        summary.reload()
         assert response.status_code == 302
+        assert summary.confirmed is True
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
         a_log = ActivityLog.objects.filter(
