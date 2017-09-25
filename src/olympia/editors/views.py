@@ -482,15 +482,12 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
-    AUTO_APPROVED = amo.AUTO_APPROVED
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
         'moderated': Review.objects.all().to_moderate().count,
         'auto_approved': (
-            Addon.objects.public().filter(
-                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
-            .count)
+            AutoApprovalSummary.get_auto_approved_queue().count),
     }
     if unlisted:
         counts = {
@@ -571,11 +568,9 @@ def application_versions_json(request):
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     qs = (
-        Addon.objects.public()
+        AutoApprovalSummary.get_auto_approved_queue()
         .select_related(
             'addonapprovalscounter', '_current_version__autoapprovalsummary')
-        .filter(
-            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
         .order_by(
             '-_current_version__autoapprovalsummary__weight',
             'addonapprovalscounter__last_human_review',

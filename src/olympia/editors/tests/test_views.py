@@ -1382,6 +1382,15 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED)
+        # Has been auto-approved, but that auto-approval has been confirmed by
+        # a human already.
+        extra_addon3 = addon_factory(name=u'Extra Addôn 3')
+        extra_summary3 = AutoApprovalSummary.objects.create(
+            version=extra_addon3.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon3, counter=1,
+            last_human_review=extra_summary3.created)
 
         # Has been auto-approved and reviewed by a human before.
         addon1 = addon_factory(name=u'Addôn 1')
@@ -1417,6 +1426,8 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED,
             weight=500)
+        AddonApprovalsCounter.objects.create(
+            addon=addon4, counter=0, last_human_review=self.days_ago(1))
         self.expected_addons = [addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
