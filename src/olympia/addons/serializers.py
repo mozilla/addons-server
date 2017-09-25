@@ -275,11 +275,16 @@ class AddonSerializer(serializers.ModelSerializer):
             data['homepage'] = self.outgoingify(data['homepage'])
         if 'support_url' in data:
             data['support_url'] = self.outgoingify(data['support_url'])
-        if ('weekly_downloads' in data and
-                data.get('type') == amo.ADDON_TYPE_CHOICES_API[
-                    amo.ADDON_PERSONA]):
-            # weekly_downloads don't make sense for lightweight themes.
-            data.pop('weekly_downloads')
+        if obj.type == amo.ADDON_PERSONA:
+            if 'weekly_downloads' in data:
+                # weekly_downloads don't make sense for lightweight themes.
+                data.pop('weekly_downloads')
+
+            if ('average_daily_users' in data and
+                    not self.is_broken_persona(obj)):
+                # In addition, their average_daily_users number must come from
+                # the popularity field of the attached Persona.
+                data['average_daily_users'] = obj.persona.popularity
         return data
 
     def outgoingify(self, data):
@@ -519,7 +524,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     # "New" Persona do not have a persona_id, it's a relic from
                     # old ones.
                     persona_id=0 if persona_data['is_new'] else 42,
-                    textcolor=persona_data['textcolor']
+                    textcolor=persona_data['textcolor'],
+                    popularity=data.get('average_daily_users'),
                 )
             else:
                 # Sadly, https://code.djangoproject.com/ticket/14368 prevents

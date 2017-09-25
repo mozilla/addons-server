@@ -473,6 +473,7 @@ class AddonSerializerOutputTestMixin(object):
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
+        persona.popularity = 123456
         persona.save()
         assert persona.is_new()
 
@@ -480,6 +481,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['theme_data'] == persona.theme_data
         assert '<script>' not in result['theme_data']['description']
         assert '&lt;script&gt;' in result['theme_data']['description']
+
+        assert result['average_daily_users'] == persona.popularity
 
         assert 'weekly_downloads' not in result
 
