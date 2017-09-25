@@ -1,20 +1,25 @@
+import re
+
 from rest_framework import serializers
 
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
+
+from .models import (
+    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview,
+    ReplacementAddon)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -591,3 +596,46 @@ class LanguageToolsSerializer(AddonSerializer):
         fields = ('id', 'current_version', 'default_locale',
                   'locale_disambiguation', 'name', 'target_locale', 'type',
                   'url', )
+
+
+class ReplacementAddonSerializer(serializers.ModelSerializer):
+    replacement = serializers.SerializerMethodField()
+    ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
+    COLLECTION_PATH_REGEX = (
+        r"""/collections/(?P<user_id>[^/<>"']+)/(?P<coll_slug>[^/]+)/$""")
+
+    class Meta:
+        model = ReplacementAddon
+        fields = ('guid', 'replacement')
+
+    def _get_addon_guid(self, addon_id):
+        try:
+            addon = Addon.objects.public().id_or_slug(addon_id).get()
+        except Addon.DoesNotExist:
+            return []
+        return [addon.guid]
+
+    def _get_collection_guids(self, user_id, collection_slug):
+        try:
+            get_args = {'slug': collection_slug, 'listed': True}
+            if isinstance(user_id, basestring) and not user_id.isdigit():
+                get_args.update(**{'author__username': user_id})
+            else:
+                get_args.update(**{'author': user_id})
+            collection = Collection.objects.get(**get_args)
+        except Collection.DoesNotExist:
+            return []
+        valid_q = Addon.objects.get_queryset().valid_q()
+        return list(
+            collection.addons.filter(valid_q).values_list('guid', flat=True))
+
+    def get_replacement(self, obj):
+        addon_match = re.search(self.ADDON_PATH_REGEX, obj.path)
+        if addon_match:
+            return self._get_addon_guid(addon_match.group('addon_id'))
+
+        coll_match = re.search(self.COLLECTION_PATH_REGEX, obj.path)
+        if coll_match:
+            return self._get_collection_guids(
+                coll_match.group('user_id'), coll_match.group('coll_slug'))
+        return []

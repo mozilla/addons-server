@@ -11,12 +11,14 @@ from olympia.amo.tests import (
     version_factory, user_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona, Preview)
+    Addon, AddonCategory, AddonUser, Category, Persona, Preview,
+    ReplacementAddon)
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
-    LicenseSerializer, SimpleVersionSerializer, VersionSerializer)
+    LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
+    VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
@@ -946,3 +948,94 @@ class TestAddonDeveloperSerializer(TestBaseUserSerializer):
         serialized = self.serialize()
         assert serialized['picture_url'] == absolutify(self.user.picture_url)
         assert '%s.png' % self.user.id in serialized['picture_url']
+
+
+class TestReplacementAddonSerializer(TestCase):
+
+    def serialize(self, replacement):
+        serializer = ReplacementAddonSerializer()
+        return serializer.to_representation(replacement)
+
+    def test_valid_addon_path(self):
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
+
+        rep = ReplacementAddon.objects.create(
+            guid='legacy@mozilla', path=u'/addon/stuff/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+        # Edge case, but should accept numeric IDs too
+        rep.update(path=u'/addon/%s/' % addon.id)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_invalid_addons(self):
+        """Broken paths, invalid add-ons, etc, should fail gracefully to None.
+        """
+        rep = ReplacementAddon.objects.create(
+            guid='legacy@mozilla', path=u'/addon/stuff/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        # Addon path doesn't exist.
+        assert result['replacement'] == []
+
+        # Add the add-on but make it not public
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla',
+                              status=amo.STATUS_NULL)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Double check that the test is good and it will work once public.
+        addon.update(status=amo.STATUS_PUBLIC)
+        result = self.serialize(rep)
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_valid_collection_path(self):
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
+        me = user_factory(username=u'me')
+        collection = collection_factory(slug=u'bag', author=me)
+        collection.add_addon(addon)
+
+        rep = ReplacementAddon.objects.create(
+            guid=u'legacy@mozilla', path=u'/collections/me/bag/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+        # Edge case, but should accept numeric user IDs too
+        rep.update(path=u'/collections/%s/bag/' % me.id)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_invalid_collections(self):
+        """Broken paths, invalid users or collections, should fail gracefully
+        to None."""
+        rep = ReplacementAddon.objects.create(
+            guid=u'legacy@mozilla', path=u'/collections/me/bag/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Create the user but not the collection.
+        me = user_factory(username=u'me')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Create the collection but make the add-on invalid.
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla',
+                              status=amo.STATUS_NULL)
+        collection = collection_factory(slug=u'bag', author=me)
+        collection.add_addon(addon)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Double check that the test is good and it will work once public.
+        addon.update(status=amo.STATUS_PUBLIC)
+        result = self.serialize(rep)
+        assert result['replacement'] == [u'newstuff@mozilla']
