@@ -4,8 +4,7 @@ from django.db import models
 from django.forms.utils import ErrorList
 from django.utils.translation.trans_real import to_language
 from django.utils.encoding import force_text
-from django.utils.safestring import mark_safe
-from django.utils.html import conditional_escape
+from django.utils.html import format_html, format_html_join
 
 
 def default_locale(obj):
@@ -27,7 +26,7 @@ class TranslationFormMixin(object):
 
     def __init__(self, *args, **kw):
         super(TranslationFormMixin, self).__init__(*args, **kw)
-        self.error_class = self.error_class_
+        self.error_class = LocaleErrorList
         self.set_default_locale()
 
     def set_default_locale(self):
@@ -39,9 +38,6 @@ class TranslationFormMixin(object):
     def full_clean(self):
         self.set_default_locale()
         return super(TranslationFormMixin, self).full_clean()
-
-    def error_class_(self, *a, **k):
-        return LocaleErrorList(*a, **k)
 
 
 class LocaleErrorList(ErrorList):
@@ -55,8 +51,9 @@ class LocaleErrorList(ErrorList):
         return value in self._errors()
 
     def as_ul(self):
-        if not self:
+        if not self.data:
             return u''
+
         li = []
         for item in self:
             if isinstance(item, tuple):
@@ -65,8 +62,16 @@ class LocaleErrorList(ErrorList):
             else:
                 e, extra = item, ''
             li.append((extra, conditional_escape(force_text(e))))
-        return mark_safe('<ul class="errorlist">%s</ul>' %
-                         ''.join(u'<li%s>%s</li>' % x for x in li))
+
+        return format_html(
+            '<ul class="{}">{}</ul>',
+            self.error_class,
+            format_html_join(
+                '',
+                '<li{}>{}</li>',
+                ((force_text(extra), force_text(elem)) for extra, elem in li)
+            )
+        )
 
     # Override Django 1.7's `__getitem__` which wraps the error with
     # `force_text` converting our tuples to strings.
