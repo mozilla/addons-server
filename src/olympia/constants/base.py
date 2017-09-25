@@ -128,7 +128,6 @@ GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
 
 # Singular
 ADDON_TYPE = {
-    ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extension'),
     ADDON_THEME: _(u'Complete Theme'),
     ADDON_DICT: _(u'Dictionary'),
@@ -141,7 +140,6 @@ ADDON_TYPE = {
 
 # Plural
 ADDON_TYPES = {
-    ADDON_ANY: _(u'Any'),
     ADDON_EXTENSION: _(u'Extensions'),
     ADDON_THEME: _(u'Complete Themes'),
     ADDON_DICT: _(u'Dictionaries'),
@@ -162,8 +160,6 @@ ADDON_SEARCH_TYPES = [
     ADDON_LPAPP,
     ADDON_PERSONA,
 ]
-
-ADDON_ADMIN_SEARCH_TYPES = ADDON_SEARCH_TYPES + [ADDON_PLUGIN]
 
 # Icons
 ADDON_ICONS = {
@@ -218,6 +214,7 @@ ADDON_TYPE_CHOICES_API = {
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
+VALID_CONTRIBUTION_DOMAINS = ('paypal.me', 'patreon.com', 'micropayment.de')
 
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
@@ -238,8 +235,8 @@ VIDEO_TYPES = ('video/webm',)
 
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
-NO_COMPAT = (ADDON_SEARCH, ADDON_PERSONA)
-HAS_COMPAT = dict((t, t not in NO_COMPAT) for t in ADDON_TYPES)
+NO_COMPAT = (ADDON_SEARCH, ADDON_DICT, ADDON_PERSONA)
+HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 
 # Contributions
 CONTRIB_NONE = 0
@@ -293,14 +290,6 @@ COLLECTION_SEARCH_CHOICES = [
     COLLECTION_ANONYMOUS,
 ]
 
-COLLECTION_ROLE_PUBLISHER = 0
-COLLECTION_ROLE_ADMIN = 1
-
-COLLECTION_AUTHOR_CHOICES = {
-    COLLECTION_ROLE_PUBLISHER: 'Publisher',
-    COLLECTION_ROLE_ADMIN: 'Admin',
-}
-
 # Validation.
 
 # A skeleton set of passing validation results.
@@ -350,7 +339,11 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {"requires_chrome": False, "listed": True},
+    "metadata": {
+        "requires_chrome": False,
+        "listed": True,
+        "is_webextension": True
+    },
     "messages": [
         {"id": ["validator", "unexpected_exception"],
          "message": "Sorry, we couldn't load your WebExtension.",
@@ -457,8 +450,8 @@ REVIEWED_CHOICES = {
     REVIEWED_THEME_FULL: _('New Complete Theme Review'),
     _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
-    REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),
-    REVIEWED_ADDON_REVIEW_POORLY: _('Addon Review Moderation Reverted'),
+    REVIEWED_ADDON_REVIEW: _('Moderated Add-on Review'),
+    REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
 }
 
 REVIEWED_SCORES = {

@@ -28,7 +28,7 @@ def extract_webext_permissions(ids, **kw):
         try:
             log.info('Parsing File.id: %s @ %s' %
                      (file_.pk, file_.current_file_path))
-            parsed_data = parse_xpi(file_.current_file_path, check=False)
+            parsed_data = parse_xpi(file_.current_file_path)
             permissions = parsed_data.get('permissions', [])
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):

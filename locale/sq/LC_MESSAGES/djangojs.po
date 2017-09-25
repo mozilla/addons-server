@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2016-11-09 11:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -69,7 +69,9 @@ msgstr "Shihni raportin e plotë të vleftësimit"
 msgid "Validating {0}"
 msgstr "Po vleftësohet {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prej shërbyesit u mor një përgjigje e zbrazët, me gjendjen: {0}"
 
@@ -136,6 +138,9 @@ msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "E anuluat ngarkimin."
@@ -652,18 +657,6 @@ msgstr "Pranoje dhe Instaloje"
 msgid "Add to {0}"
 msgstr "Shtoje te {0}"
 
-msgid "Download Now"
-msgstr "Shkarkojeni Tani"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Lypset të përdorni Firefox 10.0 ose më të ri."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj të Firefox-it."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instaloje për {0} sido qoftë"
@@ -674,9 +667,13 @@ msgstr "Shkarkoje për {0} sido qoftë"
 msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Jo i passhëm për {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
+
+msgid "View other versions"
+msgstr "Shihni versione të tjera"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funksionon me {app} {min} - {max}"
@@ -684,17 +681,8 @@ msgstr "Funksionon me {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funksionon me {app}"
 
-msgid "View other versions"
-msgstr "Shihni versione të tjera"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
-
-msgid "Download now"
-msgstr "Shkarkojeni tani"
-
-msgid "Only available on Firefox Desktop"
-msgstr "E passhme vetëm për Firefox Desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."

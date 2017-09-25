@@ -7,50 +7,54 @@ from olympia.bandwagon.indexers import CollectionIndexer
 from olympia.compat.cron import compatibility_report
 from olympia.compat.indexers import AppCompatIndexer
 from olympia.lib.es.utils import create_index
-from olympia.users.cron import reindex_users
-from olympia.users.indexers import UserProfileIndexer
 
 
 log = olympia.core.logger.getLogger('z.es')
 
 
 # Search-related indexers.
-indexers = (AddonIndexer, AppCompatIndexer, CollectionIndexer,
-            UserProfileIndexer)
+indexers = (AddonIndexer, AppCompatIndexer, CollectionIndexer)
 
 # Search-related index settings.
+# TODO: Is this still needed? Do we care?
+# re https://github.com/mozilla/addons-server/issues/2661
+# funny enough, the elasticsearch mention that `dictionary_decompounder` is to
+# "decompose compound words found in many German languages"
+# and all the words in the list are English... (cgrebs 042017)
 INDEX_SETTINGS = {
-    "analysis": {
-        "analyzer": {
-            "standardPlusWordDelimiter": {
-                "tokenizer": "standard",
-                "filter": ["standard", "wordDelim", "lowercase", "stop",
-                           "dict"]
+    'analysis': {
+        'analyzer': {
+            'standardPlusWordDelimiter': {
+                'tokenizer': 'standard',
+                'filter': [
+                    'standard', 'wordDelim', 'lowercase', 'stop', 'dict'
+                ]
             }
         },
-        "filter": {
-            "wordDelim": {
-                "type": "word_delimiter",
-                "preserve_original": True
+        'filter': {
+            'wordDelim': {
+                'type': 'word_delimiter',
+                'preserve_original': True
             },
-            "dict": {
-                "type": "dictionary_decompounder",
-                "word_list": [
-                    "cool", "iris", "fire", "bug", "flag", "fox", "grease",
-                    "monkey", "flash", "block", "forecast", "screen", "grab",
-                    "cookie", "auto", "fill", "text", "all", "so", "think",
-                    "mega", "upload", "download", "video", "map", "spring",
-                    "fix", "input", "clip", "fly", "lang", "up", "down",
-                    "persona", "css", "html", "http", "ball", "firefox",
-                    "bookmark", "chat", "zilla", "edit", "menu", "menus",
-                    "status", "bar", "with", "easy", "sync", "search",
-                    "google", "time", "window", "js", "super", "scroll",
-                    "title", "close", "undo", "user", "inspect", "inspector",
-                    "browser", "context", "dictionary", "mail", "button",
-                    "url", "password", "secure", "image", "new", "tab",
-                    "delete", "click", "name", "smart", "down", "manager",
-                    "open", "query", "net", "link", "blog", "this", "color",
-                    "select", "key", "keys", "foxy", "translate", "word", ]
+            'dict': {
+                'type': 'dictionary_decompounder',
+                'word_list': [
+                    'cool', 'iris', 'fire', 'bug', 'flag', 'fox', 'grease',
+                    'monkey', 'flash', 'block', 'forecast', 'screen', 'grab',
+                    'cookie', 'auto', 'fill', 'text', 'all', 'so', 'think',
+                    'mega', 'upload', 'download', 'video', 'map', 'spring',
+                    'fix', 'input', 'clip', 'fly', 'lang', 'up', 'down',
+                    'persona', 'css', 'html', 'http', 'ball', 'firefox',
+                    'bookmark', 'chat', 'zilla', 'edit', 'menu', 'menus',
+                    'status', 'bar', 'with', 'easy', 'sync', 'search',
+                    'google', 'time', 'window', 'js', 'super', 'scroll',
+                    'title', 'close', 'undo', 'user', 'inspect', 'inspector',
+                    'browser', 'context', 'dictionary', 'mail', 'button',
+                    'url', 'password', 'secure', 'image', 'new', 'tab',
+                    'delete', 'click', 'name', 'smart', 'down', 'manager',
+                    'open', 'query', 'net', 'link', 'blog', 'this', 'color',
+                    'select', 'key', 'keys', 'foxy', 'translate', 'word',
+                ]
             }
         }
     }
@@ -93,8 +97,7 @@ def reindex(index_name):
     # FIXME: refactor these reindex functions, moving them to a reindex method
     # on the indexer class, and then simply go through indexers like
     # get_mapping() does.
-    reindexers = [reindex_addons, reindex_collections, reindex_users,
-                  compatibility_report]
+    reindexers = [reindex_addons, reindex_collections, compatibility_report]
     for reindexer in reindexers:
         log.info('Reindexing %r' % reindexer.__name__)
         try:

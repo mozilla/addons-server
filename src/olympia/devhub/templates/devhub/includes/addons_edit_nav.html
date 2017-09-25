@@ -4,7 +4,7 @@
   (addon.get_dev_url('owner'), _('Manage Authors & License')),
   ] %}
 
-{% if show_listed %}
+{% if show_listed and not waffle.switch('simple-contributions') %}
 {% set urls = urls + [
   (addon.get_dev_url('profile'), _('Manage Developer Profile')),
   (addon.get_dev_url('payments'), _('Manage Payments')),
@@ -13,6 +13,7 @@
 {% set urls = urls + [
   (addon.get_dev_url('versions'), _('Manage Status & Versions')),
   ] %}
+{% set latest_version=addon.find_latest_version(None) %}
 
 <section class="secondary" role="complementary">
   <div class="addon-status">
@@ -58,20 +59,22 @@
         {{ _('View Recent Changes') }}</a></li>
       {% if not theme %}
         {% if show_listed %}
-        <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
-          {{ _('View Statistics Dashboard') }}</a></li>
+          <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
+            {{ _('View Statistics Dashboard') }}</a></li>
         {% endif %}
-        <li class="compat-reports">
-          <a href="{{ url('compat.reporter_detail', addon.guid) }}">
-            <span>{{ _('Compatibility Reports') }}</span>
-            <br />
-            {% set compat_counts = get_compat_counts(addon) %}
-            <b class="failure" title="{{ _('{0} failure reports')|format_html(compat_counts.failure) }}">
-              {{ compat_counts.failure|numberfmt }}</b>
-            <b class="success" title="{{ _('{0} success reports')|format_html(compat_counts.success) }}">
-              {{ compat_counts.success|numberfmt }}</b>
-          </a>
-        </li>
+        {% if latest_version and not latest_version.is_webextension %}
+          <li class="compat-reports">
+            <a href="{{ url('compat.reporter_detail', addon.guid) }}">
+              <span>{{ _('Compatibility Reports') }}</span>
+              <br />
+              {% set compat_counts = get_compat_counts(addon) %}
+              <b class="failure" title="{{ _('{0} failure reports')|format_html(compat_counts.failure) }}">
+                {{ compat_counts.failure|numberfmt }}</b>
+              <b class="success" title="{{ _('{0} success reports')|format_html(compat_counts.success) }}">
+                {{ compat_counts.success|numberfmt }}</b>
+            </a>
+          </li>
+        {% endif %}
       {% endif %}
     </ul>
   </div>

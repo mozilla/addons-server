@@ -353,7 +353,7 @@ class TestRefreshTest(ESTestCase):
 
     def get_bayesian_rating(self):
         q = Addon.search().filter(id=self.addon.id)
-        return list(q.values_dict('bayesian_rating'))[0]['bayesian_rating'][0]
+        return q.values_dict('bayesian_rating')[0]['bayesian_rating']
 
     def test_created(self):
         assert self.get_bayesian_rating() == 0.0

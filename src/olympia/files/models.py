@@ -63,7 +63,7 @@ class File(OnChangeMixin, ModelBase):
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
-    no_restart = models.BooleanField(default=False)
+    is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
@@ -87,6 +87,9 @@ class File(OnChangeMixin, ModelBase):
     is_experiment = models.BooleanField(default=False)
     # Is the file a WebExtension?
     is_webextension = models.BooleanField(default=False)
+    # Is the file a special "Mozilla Signed Extension"
+    # see https://wiki.mozilla.org/Add-ons/InternalSigning
+    is_mozilla_signed_extension = models.BooleanField(default=False)
     # The user has disabled this file and this was its status.
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(
@@ -117,13 +120,6 @@ class File(OnChangeMixin, ModelBase):
         return (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED or
                 self.status == amo.STATUS_BETA)
 
-    @property
-    def requires_restart(self):
-        """Whether the add-on file requires a browser restart to work."""
-        # For historical purposes the field we store is "no_restart", which
-        # is exactly the opposite.
-        return not self.no_restart
-
     def get_file_cdn_url(self, attachment=False):
         """Return the URL for the file corresponding to this instance
         on the CDN."""
@@ -135,15 +131,20 @@ class File(OnChangeMixin, ModelBase):
         return posixpath.join(
             *map(force_bytes, [host, self.version.addon.id, self.filename]))
 
-    def get_url_path(self, src):
-        return self._make_download_url('downloads.file', src)
+    def get_url_path(self, src, attachment=False):
+        return self._make_download_url(
+            'downloads.file', src, attachment=attachment)
 
     def get_signed_url(self, src):
         return self._make_download_url('signing.file', src)
 
-    def _make_download_url(self, view_name, src):
-        url = os.path.join(reverse(view_name, args=[self.pk]),
-                           self.filename)
+    def _make_download_url(self, view_name, src, attachment=False):
+        kwargs = {
+            'file_id': self.pk
+        }
+        if attachment:
+            kwargs['type'] = 'attachment'
+        url = os.path.join(reverse(view_name, kwargs=kwargs), self.filename)
         return absolutify(urlparams(url, src=src))
 
     @classmethod
@@ -164,12 +165,15 @@ class File(OnChangeMixin, ModelBase):
         data = cls.get_jetpack_metadata(upload.path)
         if 'sdkVersion' in data and data['sdkVersion']:
             file_.jetpack_version = data['sdkVersion'][:10]
-        file_.no_restart = parsed_data.get('no_restart', False)
-        file_.strict_compatibility = parsed_data.get('strict_compatibility',
-                                                     False)
+        file_.is_restart_required = parsed_data.get(
+            'is_restart_required', False)
+        file_.strict_compatibility = parsed_data.get(
+            'strict_compatibility', False)
         file_.is_multi_package = parsed_data.get('is_multi_package', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
         file_.is_webextension = parsed_data.get('is_webextension', False)
+        file_.is_mozilla_signed_extension = parsed_data.get(
+            'is_mozilla_signed_extension', False)
 
         if (is_beta and addon.status == amo.STATUS_PUBLIC and
                 version.channel == amo.RELEASE_CHANNEL_LISTED):
@@ -274,11 +278,13 @@ class File(OnChangeMixin, ModelBase):
         return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
                              m.group('suffix'))
 
-    def latest_xpi_url(self, beta=False):
+    def latest_xpi_url(self, beta=False, attachment=False):
         addon = self.version.addon
         kw = {'addon_id': addon.slug, 'beta': '-beta' if beta else ''}
         if self.platform != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform
+        if attachment:
+            kw['type'] = 'attachment'
         return os.path.join(reverse('downloads.latest', kwargs=kw),
                             'addon-%s-latest%s' % (addon.pk, self.extension))
 
@@ -565,7 +571,7 @@ def track_file_status_change(file_):
     statsd.incr('file_status_change.all.status_{}'.format(file_.status))
 
     if (file_.jetpack_version and
-            file_.no_restart and
+            not file_.is_restart_required and
             not file_.requires_chrome):
         statsd.incr('file_status_change.jetpack_sdk_only.status_{}'
                     .format(file_.status))

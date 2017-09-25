@@ -47,6 +47,7 @@ If your account has the `Collections:Edit` permission then you can access any co
     :>json int author.id: The id of the author (creator) of the collection.
     :>json string author.name: The name of the author.
     :>json string author.url: The link to the profile page for of the author.
+    :>json string author.username: The username of the author.
     :>json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json string modified: The date the collection was last updated.

@@ -97,11 +97,11 @@ def barometer(context, collection):
     return c
 
 
-@library.render_with('addons/includes/collection_add_widget.html')
 @library.global_function
+@library.render_with('addons/includes/collection_add_widget.html')
 def collection_add_widget(addon, condensed=False):
     """Displays 'Add to Collection' widget"""
-    return {'addon': addon}
+    return {'addon': addon, 'condensed': condensed}
 
 
 @library.filter

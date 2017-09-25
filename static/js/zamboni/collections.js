@@ -209,10 +209,10 @@ $(document).ready(function() {
                         return;
                     }
                     dropdown.hide();
-                    $(document.body).unbind('click newPopup', cb);
+                    $(document.body).off('click newPopup', cb);
                 }
 
-                $(document.body).bind('click newPopup', cb);
+                $(document.body).on('click newPopup', cb);
             }, 0);
 
         });
@@ -312,10 +312,10 @@ $('#addon-select').click(function(e) {
 });
 
 var table = $('#addon-ac').closest('table');
-table.delegate(".remove", "click", function() {
+table.on("click", ".remove", function() {
     $(this).closest('tr').remove();
 })
-.delegate(".comment", "click", function() {
+.on("click", ".comment", function() {
     var row = $(this).closest('tr');
     row.find('.comments').show();
     $('.comments textarea', row).focus();
@@ -374,14 +374,14 @@ if ($('body.collections-contributors')) {
     });
 
     var table = $('#contributors-list');
-    table.delegate(".remove", "click", function() {
+    table.on("click", ".remove", function() {
         $(this).closest('tr').remove();
     })
     $("#change-owner").popup(".make-owner", {
         callback: function (obj) {
             var $popup = this,
                 ct = $(obj.click_target);
-            $popup.delegate("#change-owner-cancel", "click", function(e) {
+            $popup.on("click", "#change-owner-cancel", function(e) {
                 e.preventDefault();
                 $popup.hideMe();
             });
@@ -417,17 +417,17 @@ $(document).ready(function () {
 
     var name_val = $('#id_name').val();
 
-    $(document).bind('unicode_loaded', function() {
+    $(document).on('unicode_loaded', function() {
         $('#id_slug').attr('data-customized', (!!$('#id_slug').val() &&
                            ($('#id_slug').val() != makeslug(name_val))) ? 1 : 0);
         slugify();
     });
 
     $('#details-edit form, .collection-create form')
-        .delegate('#id_name', 'keyup', slugify)
-        .delegate('#id_name', 'blur', slugify)
-        .delegate('#edit_slug', 'click', show_slug_edit)
-        .delegate('#id_slug', 'change', function() {
+        .on('keyup', '#id_name', slugify)
+        .on('blur', '#id_name', slugify)
+        .on('click', '#edit_slug', show_slug_edit)
+        .on('change', '#id_slug', function() {
             $('#id_slug').attr('data-customized', 1);
             if (!$('#id_slug').val()) {
                 $('#id_slug').attr('data-customized', 0);
@@ -477,12 +477,12 @@ $(document).ready(function () {
                     $widget.setWidth(200);
                 $widget.setPos(ct);
                 $widget.render();
-                $widget.delegate('#ajax_collections_list li', 'click', handleToggle)
-                       .delegate('#ajax_new_collection', 'click', handleNew)
-                       .delegate('#id_name', 'keyup', slugify)
-                       .delegate('#id_name', 'blur', slugify)
-                       .delegate('#edit_slug', 'click', show_slug_edit)
-                       .delegate('#id_slug', 'change', function() {
+                $widget.on('click', '#ajax_collections_list li', handleToggle)
+                       .on('click', '#ajax_new_collection', handleNew)
+                       .on('keyup', '#id_name', slugify)
+                       .on('blur', '#id_name', slugify)
+                       .on('click', '#edit_slug', show_slug_edit)
+                       .on('change', '#id_slug', function() {
                            if (!$('#id_slug').val()) {
                              $('#id_slug').attr('data-customized', 0);
                              slugify();
@@ -514,14 +514,21 @@ $(document).ready(function () {
                 var tgt = $(this);
                 if (ct.hasClass('ajax-loading')) return;
                 ct.addClass('ajax-loading');
-                form_data = $('#add-to-collection form').serialize();
-                $.post(form_url + '?addon_id=' + addon_id, form_data, renderList, 'html');
+
+                var form_data = {};
+                $.each($('#add-to-collection form').serializeArray(), function() {
+                    form_data[this.name] = this.value;
+                })
+
+                form_data['addon_id'] = addon_id;
+
+                $.post(form_url, form_data, renderList, 'html');
             };
 
             var handleNew = function(e) {
                 e.preventDefault();
                 var tgt = $(this);
-                $.get(form_url, {'addon_id': addon_id}, function(d) {
+                $.get(form_url, function(d) {
                     $widget.html(d);
                     $widget.setWidth(410);
                     $widget.setPos(ct);
@@ -532,8 +539,8 @@ $(document).ready(function () {
             };
 
             $widget.hideMe();
-            $widget.unbind('click.popup', stopPropagation);
-            $widget.bind('click.popup', stopPropagation);
+            $widget.off('click.popup', stopPropagation);
+            $widget.on('click.popup', stopPropagation);
 
             loadList();
 

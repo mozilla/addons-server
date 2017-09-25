@@ -48,7 +48,29 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['user'] == {
             'id': self.user.pk,
             'name': self.user.name,
-            'url': absolutify(self.user.get_url_path())}
+            'url': None,
+            'username': self.user.username,
+        }
+
+    def test_url_for_yourself(self):
+        # should include account profile url for your own requests
+        self.request.user = self.user
+        result = self.serialize()
+        assert result['user']['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_developers(self):
+        # should include account profile url for a developer
+        addon_factory(users=[self.user])
+        result = self.serialize()
+        assert result['user']['url'] == absolutify(self.user.get_url_path())
+
+    def test_url_for_admins(self):
+        # should include account profile url for admins
+        admin = user_factory()
+        self.grant_permission(admin, 'Users:Edit')
+        self.request.user = admin
+        result = self.serialize()
+        assert result['user']['url'] == absolutify(self.user.get_url_path())
 
     def test_should_highlight(self):
         result = self.serialize(context={'to_highlight': [self.entry]})

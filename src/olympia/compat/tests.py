@@ -373,8 +373,10 @@ class TestCompatibilityReportCronMixin(object):
         return addon
 
     def generate_reports(self, addon, good, bad, app, app_version):
-        defaults = dict(guid=addon.guid, app_guid=app.guid,
-                        app_version=app_version)
+        defaults = {
+            'guid': addon.guid,
+            'app_guid': app.guid,
+            'app_version': app_version}
         for x in xrange(good):
             CompatReport.objects.create(works_properly=True, **defaults)
         for x in xrange(bad):
@@ -385,6 +387,7 @@ class TestCompatibilityReportCron(
         TestCompatibilityReportCronMixin, ESTestCase):
     def setUp(self):
         self.app_version = FIREFOX_COMPAT[0]['main']
+        super(TestCompatibilityReportCron, self).setUp()
 
     def test_with_bad_support_data(self):
         # Test containing an addon which has an AppSupport data indicating it
@@ -398,6 +401,22 @@ class TestCompatibilityReportCron(
         # but make sure AppSupport stays in the previous state.
         ApplicationsVersions.objects.filter(
             application=amo.FIREFOX.id).update(application=amo.THUNDERBIRD.id)
+        assert AppSupport.objects.filter(
+            addon=addon, app=amo.FIREFOX.id).exists()
+
+        self.run_compatibility_report()
+
+        assert CompatTotals.objects.count() == 1
+        assert CompatTotals.objects.get().total == 10
+
+    def test_with_no_compat_at_all(self):
+        # Test containing an add-on which has `None` as its compat info for
+        # Firefox (https://github.com/mozilla/addons-server/issues/6161).
+        addon = self.populate()
+        self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
+                              app_version=self.app_version)
+
+        addon.update(type=amo.ADDON_DICT)
         assert AppSupport.objects.filter(
             addon=addon, app=amo.FIREFOX.id).exists()
 

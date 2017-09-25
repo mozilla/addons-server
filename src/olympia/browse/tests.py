@@ -1053,6 +1053,11 @@ class TestPersonas(TestCase):
             a.status = amo.STATUS_PUBLIC
             a.save()
 
+    def test_does_not_500_in_development(self):
+        with self.settings(DEBUG=True):
+            self.test_personas_grid()
+            self.test_personas_landing()
+
     def test_personas_grid(self):
         """
         Show grid page if there are fewer than
@@ -1060,10 +1065,10 @@ class TestPersonas(TestCase):
         """
         base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
         assert base.count() == 2
-        r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, self.grid_template)
-        assert r.status_code == 200
-        assert r.context['is_homepage']
+        response = self.client.get(self.landing_url)
+        self.assertTemplateUsed(response, self.grid_template)
+        assert response.status_code == 200
+        assert response.context['is_homepage']
 
     def test_personas_landing(self):
         """
@@ -1082,8 +1087,8 @@ class TestPersonas(TestCase):
             type=amo.ADDON_PERSONA, slug='abc',
             count=MIN_COUNT_FOR_LANDING + 1, application=amo.FIREFOX.id)
         category.save()
-        r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, self.landing_template)
+        response = self.client.get(self.landing_url)
+        self.assertTemplateUsed(response, self.landing_template)
 
     def test_personas_grid_sorting(self):
         """Ensure we hit a grid page if there is a sorting."""

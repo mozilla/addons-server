@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2015-03-16 11:06+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,9 @@ msgstr ""
 msgid "Validating {0}"
 msgstr ""
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
@@ -128,6 +130,9 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
@@ -645,18 +650,6 @@ msgstr "Aanvaar en installeer"
 msgid "Add to {0}"
 msgstr "Voeg by {0}"
 
-msgid "Download Now"
-msgstr "Laai nou af"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla het dié weergawe gemerk as onversoenbaar met u Firefox-weergawe"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installeer in elk geval vir {0}"
@@ -667,9 +660,13 @@ msgstr "Laai in elk geval af vir {0}"
 msgid "Not available for your platform"
 msgstr "Nie beskikbaar vir u platform nie"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nie beskikbaar vir {0} {1} nie"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dié tema is onversoenbaar met u weergawe van {0}"
+
+msgid "View other versions"
+msgstr ""
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
@@ -677,17 +674,7 @@ msgstr ""
 msgid "Works with {app}"
 msgstr ""
 
-msgid "View other versions"
-msgstr ""
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Laai nou af"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

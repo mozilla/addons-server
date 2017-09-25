@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-12-23 22:41+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-12 12:35+0000\n"
+"Last-Translator: Michal Vašíček <michalvasicek@icloud.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,9 @@ msgstr "Zobrazit podrobný report"
 msgid "Validating {0}"
 msgstr "Probíhá kontrola {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Velkosti vašeho doplňku překračuje limit ({0})."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
 
@@ -138,6 +140,9 @@ msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Typ souboru, který jste nahráli, nebyl rozpoznán."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Velikost vašeho souboru překračuje limit ({0})."
 
 msgid "You cancelled the upload."
 msgstr "Zrušili jste nahrávání."
@@ -656,18 +661,6 @@ msgstr "Souhlasím a instalovat"
 msgid "Add to {0}"
 msgstr "Přidat do aplikace {0}"
 
-msgid "Download Now"
-msgstr "Stáhnout"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Doplněk nebyl aktualizován tak, aby byl ve výchozím nastavení kompatibilní."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Je potřeba, abyste používali Firefox 10.0 či vyšší."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla označila tuto verzi jako nekompatibilní s vaší verzí Firefoxu."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Přesto nainstalovat do aplikace {0}"
@@ -678,9 +671,12 @@ msgstr "Přesto stáhnout pro aplikaci {0}"
 msgid "Not available for your platform"
 msgstr "Není dostupné pro vaši platformu"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Není dostupné pro {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Tento doplněk není kompatibilní s vaší verzí aplikace {0}."
+
+msgid "View other versions"
+msgstr "Zobrazit ostatní verze"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funguje s aplikací {app} {min} - {max}"
@@ -688,17 +684,8 @@ msgstr "Funguje s aplikací {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funguje s aplikací {app}"
 
-msgid "View other versions"
-msgstr "Zobrazit ostatní verze"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Pouze pro Firefox — získejte Firefox nyní!"
-
-msgid "Download now"
-msgstr "Stáhnout nyní"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Dostupné pouze pro Firefox pro desktop"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."

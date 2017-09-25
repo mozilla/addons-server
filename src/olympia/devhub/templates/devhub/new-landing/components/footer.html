@@ -6,9 +6,10 @@
       <section class="DevHub-Footer-section">
         <h4>{{ _('Documentation') }}</h4>
         <ul>
-          <li><a href="https://developer.mozilla.org/Add-ons">{{ _('Add-ons') }}</a></li>
-          <li><a href="https://developer.mozilla.org/Add-ons/WebExtensions">{{ _('WebExtensions') }}</a></li>
-          <li><a href="https://developer.mozilla.org/Add-ons/Themes/Background">{{ _('Themes') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons">{{ _('Add-ons') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions">{{ _('Extensions') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons/Themes/Background">{{ _('Themes') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_Google_Chrome_extension">{{ _('Porting') }}</a></li>
         </ul>
       </section>
 
@@ -18,14 +19,14 @@
           <li><a href="https://addons.mozilla.org/about">{{ _('About') }}</a></li>
           <li><a href="https://discourse.mozilla-community.org/c/add-ons">{{ _('Forum') }}</a></li>
           <li><a href="https://blog.mozilla.org/addons/">{{ _('Blog') }}</a></li>
-          <li><a href="https://developer.mozilla.org/Add-ons#Contact_us">{{ _('Contact Us') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons#Contact_us">{{ _('Contact Us') }}</a></li>
         </ul>
       </section>
 
       <section class="DevHub-Footer-section">
         <h4>{{ _('Support') }}</h4>
         <ul>
-          <li><a href="https://developer.mozilla.org/Add-ons/AMO/Policy">{{ _('Review Policies') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy">{{ _('Policies') }}</a></li>
           <li><a href="https://addons.mozilla.org/faq">{{ _('FAQ') }}</a></li>
           <li><a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Contact">{{ _('Report Bug') }}</a></li>
           <li><a href="https://status.mozilla.org/#addons.mozilla.org_service_history">{{ _('Site Status') }}</a></li>
@@ -36,7 +37,7 @@
         <h4>{{ _('Tools') }}</h4>
         <ul>
           <li><a href="{{ url('devhub.validate_addon') }}">{{ _('Add-on Validator') }}</a></li>
-          <li><a href="https://compatibility-lookup.services.mozilla.com/">{{ _('Compatibility Checker') }}</a></li>
+          <li><a href="{{ url('devhub.check_addon_compatibility') }}">{{ _('Compatibility Checker') }}</a></li>
           <li><a href="https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter/">{{ _('Compatibility Reporter') }}</a></li>
           <li><a href="{{ url('devhub.api_key') }}">{{ _('Manage API Keys') }}</a></li>
         </ul>
@@ -45,7 +46,7 @@
       <section class="DevHub-Footer-section">
         <h4>{{ _('Promote') }}</h4>
         <ul>
-          <li><a href="https://developer.mozilla.org/Add-ons/AMO/Policy/Featured">{{ _('Get Your Add-on Featured') }}</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Featured">{{ _('Get Your Add-on Featured') }}</a></li>
           <li><a href="https://blog.mozilla.org/addons/2015/11/10/promote-your-add-ons-with-the-get-the-add-on-button/">{{ _('"Get The Add-on" button') }}</a></li>
         </ul>
       </section>

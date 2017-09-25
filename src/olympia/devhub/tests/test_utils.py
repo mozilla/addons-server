@@ -70,9 +70,9 @@ class TestValidatorBase(TestCase):
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
         self.save_upload.assert_has_calls([
-            mock.call([mock.ANY, file_upload.pk, channel],
+            mock.call([mock.ANY, file_upload.pk, channel, False],
                       immutable=True),
-            mock.call([file_upload.pk, channel], link_error=mock.ANY)])
+            mock.call([file_upload.pk, channel, False], link_error=mock.ANY)])
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
@@ -90,9 +90,9 @@ class TestValidatorBase(TestCase):
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
         self.save_file.assert_has_calls([
-            mock.call([mock.ANY, file_.pk, file_.version.channel],
+            mock.call([mock.ANY, file_.pk, file_.version.channel, False],
                       immutable=True),
-            mock.call([file_.pk, file_.version.channel],
+            mock.call([file_.pk, file_.version.channel, False],
                       link_error=mock.ANY)])
 
 
@@ -143,7 +143,11 @@ class TestValidatorListed(TestValidatorBase):
     def test_search_plugin(self, parse_addon):
         """Test that search plugins are handled correctly."""
 
-        parse_addon.return_value = {'guid': None, 'version': '20140103'}
+        parse_addon.return_value = {
+            'guid': None,
+            'version': '20140103',
+            'is_webextension': False,
+        }
 
         addon = addon_factory(type=amo.ADDON_SEARCH,
                               version_kw={'version': '20140101'})
@@ -165,8 +169,11 @@ class TestValidatorBeta(TestValidatorBase):
         self.xpi_version = '1.1b1'
 
         parse_addon = self.patch('olympia.devhub.utils.parse_addon')
-        parse_addon.return_value = {'version': self.xpi_version,
-                                    'guid': self.addon.guid}
+        parse_addon.return_value = {
+            'version': self.xpi_version,
+            'guid': self.addon.guid,
+            'is_webextension': False,
+        }
 
     def test_validate_upload(self):
         self.check_upload(self.file_upload)
@@ -274,6 +281,12 @@ class TestFixAddonsLinterOutput(TestCase):
             'notices': 0,
         }
         assert fixed['ending_tier'] == 5
+        assert fixed['metadata']['is_webextension'] is True
+        assert fixed['metadata']['processed_by_addons_linter'] is True
+        assert fixed['metadata']['listed'] is True
         assert fixed['metadata']['identified_files'] == {
             'lib/vendor/jquery.js': {'path': 'jquery.2.1.4.jquery.js'}
         }
+        # Make sure original metadata was preserved.
+        for key, value in original_output['metadata'].items():
+            assert fixed['metadata'][key] == value

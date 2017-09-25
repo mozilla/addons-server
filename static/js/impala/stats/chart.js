@@ -111,13 +111,13 @@
         if (chart && chart.destroy) chart.destroy();
     }
 
-    $win.bind("changeview", function() {
+    $win.on("changeview", function() {
         $chart.parent().removeClass('nodata');
         $chart.addClass('loading');
         $btnZoom.addClass('inactive').click(_pd);
     });
 
-    $win.bind("dataready", function(e, obj) {
+    $win.on("dataready", function(e, obj) {
         var view    = obj.view,
             metric  = view.metric,
             group   = view.group,
@@ -138,20 +138,20 @@
         }
 
         // Disable links if they don't fit into the date range.
-        $('.group a, .range a').removeClass('inactive').unbind('click', false);
+        $('.group a, .range a').removeClass('inactive').off('click', false);
         if (group == 'week') {
-            $('a.days-7').addClass('inactive').bind('click', false);
+            $('a.days-7').addClass('inactive').on('click', false);
         } else if (group == 'month') {
-            $('a.days-7, a.days-30').addClass('inactive').bind('click', false);
+            $('a.days-7, a.days-30').addClass('inactive').on('click', false);
         }
         if (group == 'day') {
             $('a.group-day').parent().addClass('selected');
         }
         if (date_range_days <= 8) {
-            $('a.group-week, a.group-month').addClass('inactive').bind('click', false);
+            $('a.group-week, a.group-month').addClass('inactive').on('click', false);
         }
         if (date_range_days <= 31) {
-            $('a.group-month').addClass('inactive').bind('click', false);
+            $('a.group-month').addClass('inactive').on('click', false);
         }
 
         if (obj.data.empty || !data.firstIndex) {
@@ -494,7 +494,7 @@
 
         chartRange = chart.xAxis[0].getExtremes();
 
-        $win.bind('zoomout', function() {
+        $win.on('zoomout', function() {
             chart.xAxis[0].setExtremes(chartRange.min, chartRange.max);
             $btnZoom.addClass('inactive').click(_pd);
         });

@@ -4,14 +4,10 @@
       <div id="addon-summary-wrapper">
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-          {% if version and version.requires_restart %}
-            <div id="requires-restart" class="js-hidden">
-              <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
+          {% if version and version.is_restart_required %}
+            <div>
+              <span>{{ _('Requires Restart') }}</span>
             </div>
-          {% endif %}
-
-          {% if show_actions %}
-            {{ big_install_button(addon, show_warning=False) }}
           {% endif %}
 
           {% if addon.takes_contributions %}
@@ -121,10 +117,7 @@
                 </td>
               </tr>
               {% endif %}
-              {% if not show_actions %}
-                {# Show privacy policy / eula if the button isn't shown #}
-                {# (Basically, on the add-on review page) #}
-                {% if addon.privacy_policy %}
+              {% if addon.privacy_policy %}
                 <tr>
                   <th>{{ _('Privacy Policy') }}</th>
                   <td>
@@ -132,8 +125,14 @@
                       {{ _('View Privacy Policy') }}</a>
                   </td>
                 </tr>
-                {% endif %}
-                {% if addon.eula %}
+              {% endif %}
+              <tr class="requires-payment">
+                <th>{{ _('Requires Payment') }}</th>
+                <td>
+                    {{ _('Yes') if addon.requires_payment else _('No') }}
+                </td>
+              </tr>
+              {% if addon.eula %}
                 <tr>
                   <th>{{ _('EULA') }}</th>
                   <td>
@@ -141,7 +140,6 @@
                       {{ _('View End-User License Agreement') }}</a>
                   </td>
                 </tr>
-                {% endif %}
               {% endif %}
               {% if is_post_reviewer and approvals_info %}
                 <tr class="last-approval-date">
@@ -172,12 +170,6 @@
             alt="" width="200" height="150" />
         {% endif %}
 
-        {% if show_actions %}
-        <div class="widgets">
-          {{ favorites_widget(addon) }}
-          {% include 'addons/includes/collection_add_widget.html' %}
-        </div>
-        {% endif %}
       </div>{# /secondary #}
 
     </div>{# /featured-inner #}
@@ -199,10 +191,6 @@
         addon.show_beta  %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
-      {% if addon.id == 4664 or addon.id == 144983 %}
-        {# This is for Bug 595561. #}
-        {% include 'addons/qr_code.html' %}
-      {% endif %}
       <p{{ addon.description|locale_html }}>{{ addon.description|nl2br }}</p>
 
       {% if addon.all_previews|length > 1 %}
@@ -223,40 +211,8 @@
         </div>
       {% endif %}
 
-      {# beta channel #}
-      {% if addon.show_beta and show_actions %}
-        <h4 id="beta-channel">{{ _('Development Channel') }}</h4>
-        <div>
-          <p>
-            {% trans %}
-            The Development Channel lets you test an experimental new version of this
-            add-on before it's released to the general public. Once you install
-            the development version, you will continue to get updates from this channel.
-            {% endtrans %}
-            <a href="#install-beta">{{ _('Install development version') }}</a>
-          </p>
-          <div class="install-beta" id="install-beta">
-            <p>
-              {% trans %}
-              <strong>Caution:</strong> Development versions of this add-on have not
-              been reviewed by Mozilla. Once you install a development version you will
-              continue to receive development updates from this developer. To stop
-              receiving development updates, reinstall the default version from the
-              link above.
-              {% endtrans %}
-            </p>
-            <dl>
-              <dt class="beta-version">{{ _('Version {0}')|format_html(
-                addon.current_beta_version.version) }}</dt>
-              <dd>{{ install_button(addon, latest_beta=True,
-                                    show_warning=False) }}</dd>
-            </dl>
-          </div>{# /install-beta #}
-        </div>
-      {% endif %}
-      {# /beta #}
     </div>{# /article #}
-  {% elif not show_actions %}
+  {% else %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article">
       <em>
@@ -273,12 +229,6 @@
     {% if request.user.is_authenticated() %}
       {{ review_add_box(addon=addon) }}
     {% endif %}
-  {% endif %}
-
-
-  {% if version and show_actions %}
-  <h3 id="releasenotes">{{ _('Version Notes') }}</h3>
-  {{ version_detail(addon, version, src="addon-detail-version") }}
   {% endif %}
 
   {% if abuse_form %}

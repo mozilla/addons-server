@@ -115,6 +115,20 @@ class TestViews(TestCase):
         assert (doc('.button')[0].attrib['href'] ==
                 file_.get_url_path(src='version-history'))
 
+    def test_version_list_button_shows_download_anyway(self):
+        first_version = self.addon.current_version
+        first_version.update(created=self.days_ago(1))
+        first_file = first_version.files.all()[0]
+        second_version = version_factory(addon=self.addon, version='2.0')
+        second_file = second_version.files.all()[0]
+        doc = self.get_content()
+        links = doc('.download-anyway a')
+        assert links
+        assert links[0].attrib['href'] == second_file.get_url_path(
+            'version-history', attachment=True)
+        assert links[1].attrib['href'] == first_file.get_url_path(
+            'version-history', attachment=True)
+
     def test_version_list_doesnt_show_unreviewed_versions_public_addon(self):
         version = self.addon.current_version.version
         version_factory(
@@ -165,6 +179,17 @@ class TestViews(TestCase):
     def test_version_list_file_size_uses_binary_prefix(self):
         response = self.client.get(self.url_list)
         assert '1.0 KiB' in response.content
+
+    def test_version_list_no_compat_displayed_if_not_necessary(self):
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert compat_info
+        assert 'Firefox 4.0.99 and later' in compat_info
+
+        self.addon.update(type=amo.ADDON_DICT)
+        doc = self.get_content()
+        compat_info = doc('.compat').text()
+        assert not compat_info
 
 
 class TestDownloadsBase(TestCase):

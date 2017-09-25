@@ -12,10 +12,10 @@ from olympia import activity, amo
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import sorted_groupby
 from olympia.translations.fields import (
     LinkifiedField, save_signal, NoLinksNoMarkupField, TranslatedField)
 from olympia.users.models import UserProfile
@@ -333,6 +333,9 @@ class Collection(ModelBase):
     def is_public(self):
         return self.listed
 
+    def is_featured(self):
+        return FeaturedCollection.objects.filter(collection=self).exists()
+
     @staticmethod
     def transformer(collections):
         if not collections:
@@ -350,6 +353,8 @@ class Collection(ModelBase):
             return
         tasks.collection_meta.delay(instance.id, using='default')
         tasks.index_collections.delay([instance.id])
+        if instance.is_featured():
+            Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
@@ -357,6 +362,16 @@ class Collection(ModelBase):
         if kwargs.get('raw'):
             return
         tasks.unindex_collections.delay([instance.id])
+        if instance.is_featured():
+            Collection.update_featured_status(sender, instance, **kwargs)
+
+    @staticmethod
+    def update_featured_status(sender, instance, **kwargs):
+        from olympia.addons.tasks import index_addons
+        addons = [addon.id for addon in instance.addons.all()]
+        if addons:
+            clear_get_featured_ids_cache(None, None)
+            index_addons.delay(addons)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -411,41 +426,6 @@ models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
                                    dispatch_uid='coll.post_save')
 
 
-class CollectionFeature(ModelBase):
-    title = TranslatedField()
-    tagline = TranslatedField()
-
-    class Meta(ModelBase.Meta):
-        db_table = 'collection_features'
-
-
-models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
-                                dispatch_uid='collectionfeature_translations')
-
-
-class CollectionPromo(ModelBase):
-    collection = models.ForeignKey(Collection, null=True)
-    locale = models.CharField(max_length=10, null=True)
-    collection_feature = models.ForeignKey(CollectionFeature)
-
-    class Meta(ModelBase.Meta):
-        db_table = 'collection_promos'
-        unique_together = ('collection', 'locale', 'collection_feature')
-
-    @staticmethod
-    def transformer(promos):
-        if not promos:
-            return
-
-        promo_dict = dict((p.id, p) for p in promos)
-        q = (Collection.objects.no_cache()
-             .filter(collectionpromo__in=promos)
-             .extra(select={'promo_id': 'collection_promos.id'}))
-
-        for promo_id, collection in (sorted_groupby(q, 'promo_id')):
-            promo_dict[promo_id].collection = collection.next()
-
-
 class CollectionWatcher(ModelBase):
     collection = models.ForeignKey(Collection, related_name='following')
     user = models.ForeignKey(UserProfile)
@@ -468,9 +448,8 @@ models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
 class CollectionUser(models.Model):
     collection = models.ForeignKey(Collection)
     user = models.ForeignKey(UserProfile)
-    role = models.SmallIntegerField(
-        default=1,
-        choices=amo.COLLECTION_AUTHOR_CHOICES.items())
+    # role is unused & will be dropped in #6496 when collections are simplified
+    role = models.SmallIntegerField(default=1)
 
     class Meta:
         db_table = 'collections_users'
@@ -513,6 +492,17 @@ class FeaturedCollection(ModelBase):
     def __unicode__(self):
         return u'%s (%s: %s)' % (self.collection, self.application,
                                  self.locale)
+
+    @staticmethod
+    def post_save_or_delete(sender, instance, **kwargs):
+        Collection.update_featured_status(
+            FeaturedCollection, instance.collection, **kwargs)
+
+
+models.signals.post_save.connect(FeaturedCollection.post_save_or_delete,
+                                 sender=FeaturedCollection)
+models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
+                                   sender=FeaturedCollection)
 
 
 class MonthlyPick(ModelBase):

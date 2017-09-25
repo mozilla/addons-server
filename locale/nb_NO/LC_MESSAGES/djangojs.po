@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2017-06-13 10:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,9 @@ msgstr "Se fullstendig valideringsrapport"
 msgid "Validating {0}"
 msgstr "Validerer {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Mottok en tom respons fra serveren; status: {0}"
 
@@ -130,6 +132,9 @@ msgstr "Beklager, ingen støttet plattform har blitt funnet."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Du avbrøt opplastingen."
@@ -646,18 +651,6 @@ msgstr "Godta og installer"
 msgid "Add to {0}"
 msgstr "Legg til {0}"
 
-msgid "Download Now"
-msgstr "Last ned nå"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Utvidelsen har ikke blitt oppdatert til å støtte kompatibel-som-standard."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Du må bruke Firefox 10.0 eller nyere."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markert denne versjonen som inkompatibel med din Firefox-versjon."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installer for {0} likevel"
@@ -668,9 +661,13 @@ msgstr "Last ned for {0} likevel"
 msgid "Not available for your platform"
 msgstr "Ikke tilgjengelig for plattformen din"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ikke tilgjengelig for {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
+
+msgid "View other versions"
+msgstr "Vis andre versjoner"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
@@ -679,17 +676,7 @@ msgstr "Virker med {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Virker med {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Vis andre versjoner"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Last ned nå"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

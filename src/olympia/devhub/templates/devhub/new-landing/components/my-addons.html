@@ -26,20 +26,18 @@
       <div>
         <p>
           {% trans %}
-            Migrating your legacy add-on to WebExtensions?
-            Get more personalized help during Office Hours, or email
-            <a href="mailto:webextensions-support@mozilla.org">webextensions-support@mozilla.org</a>.
+            Ready to submit an add-on? Read our step-by-step tutorial on the submission process.
           {% endtrans %}
         </p>
-        <a href="https://atsay.github.io/WebExtensions_office_hours/" class="Button">
-          {{ _('See Schedule') }}
+        <a href="https://developer.mozilla.org/en-US/Add-ons/Distribution/Submitting_an_add-on/" class="Button">
+          {{ _('See Tutorial') }}
         </a>
       </div>
       <div>
         <p>
           {% trans %}
-            WebExtensions are now the standard for add-on development in Firefox.
-            You'll need to update your legacy add-ons to stay compatible.
+            There is a new, cross-browser standard for developing extensions in Firefox.
+            You'll need to update your legacy extensions to stay compatible.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on" class="Button">
@@ -48,7 +46,7 @@
       </div>
     </div>
 
-    <h2>{{ ('My Add-ons') }}</h2>
+    <h2>{{ _('My Add-ons') }}</h2>
 
     {% if recent_addons %}
       <div class="DevHub-MyAddons-list">

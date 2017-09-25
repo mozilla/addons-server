@@ -156,8 +156,8 @@ AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
     'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
     'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
-    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
-    'zh-CN', 'zh-TW',
+    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'ur',
+    'vi', 'zh-CN', 'zh-TW',
 )
 
 # Explicit conversion of a shorter language code into a more specific one.
@@ -198,7 +198,7 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
+LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -298,7 +298,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/new-key-email.ltxt',
 
     # Django specific templates
-    r'^registration\/password_reset_subject.txt'
+    r'^registration\/',
 )
 
 TEMPLATES = [
@@ -546,10 +546,10 @@ MINIFY_BUNDLES = {
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
             'css/legacy/jquery-lightbox.css',
-            'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
+            'css/impala/buttons.less',
             'css/impala/formset.less',
             'css/impala/suggestions.less',
             'css/impala/header.less',
@@ -1092,8 +1092,6 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
     'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
-    'olympia.users.tasks.index_users': {'queue': 'priority'},
-    'olympia.users.tasks.unindex_users': {'queue': 'priority'},
 
     # Other queues we prioritize below.
 
@@ -1215,7 +1213,6 @@ CELERY_ROUTES = {
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
-    'olympia.zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
@@ -1520,10 +1517,6 @@ SIGNING_SERVER_TIMEOUT = 10
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
 HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
                       'thunderbird-hotfix@mozilla.org']
-# Minimum Firefox version for default to compatible addons to be signed.
-MIN_D2C_VERSION = '4'
-# Minimum Firefox version for not default to compatible addons to be signed.
-MIN_NOT_D2C_VERSION = '37'
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
@@ -1650,7 +1643,7 @@ REST_FRAMEWORK = {
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
-        'olympia.api.paginator.CustomPageNumberPagination'),
+        'olympia.api.pagination.CustomPageNumberPagination'),
 
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
@@ -1720,5 +1713,10 @@ CRON_JOBS = {
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',
-    'reindex_users': 'olympia.users.cron',
 }
+
+RECOMMENDATION_ENGINE_URL = env(
+    'RECOMMENDATION_ENGINE_URL',
+    default='https://taar.dev.mozaws.net/api/recommendations/')
+RECOMMENDATION_ENGINE_TIMEOUT = env.float(
+    'RECOMMENDATION_ENGINE_TIMEOUT', default=1)

@@ -7,6 +7,7 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.addons.urls import ADDON_ID
 
 from . import views
+from .admin import staff_admin_site
 
 
 # Hijack the admin's login to use our pages.
@@ -21,6 +22,7 @@ def login(request):
 
 admin.site.site_header = admin.site.index_title = 'AMO Administration'
 admin.site.login = login
+staff_admin_site.login = login
 
 
 urlpatterns = [
@@ -39,20 +41,6 @@ urlpatterns = [
     url(r'^validation/application_versions\.json$',
         views.application_versions_json,
         name='zadmin.application_versions_json'),
-    url(r'^validation/start$', views.start_validation,
-        name='zadmin.start_validation'),
-    url(r'^validation/job-status\.json$', views.job_status,
-        name='zadmin.job_status'),
-    url(r'^validation/set/(?P<job>\d+)$', views.notify,
-        name='zadmin.notify'),
-    url(r'^validation/notify/syntax\.json$', views.notify_syntax,
-        name='zadmin.notify.syntax'),
-    url(r'^validation/(?P<job_id>\d+)/summary$',
-        views.validation_summary, name='zadmin.validation_summary'),
-    url(r'^validation/(?P<job_id>\d+)/summary/(?P<message_id>\d+)/$',
-        views.validation_summary_affected_addons,
-        name='zadmin.validation_summary_detail'),
-    url(r'^validation$', views.validation, name='zadmin.validation'),
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
     url(r'^compat$', views.compat, name='zadmin.compat'),
@@ -89,4 +77,6 @@ urlpatterns = [
     url('^models/', include(admin.site.urls)),
     url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
+
+    url('^staff-models/', include(staff_admin_site.urls)),
 ]

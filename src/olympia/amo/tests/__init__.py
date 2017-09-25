@@ -24,7 +24,6 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.encoding import force_bytes
 from django.utils.http import urlencode
 
 import mock
@@ -45,6 +44,7 @@ from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
     Addon, AddonCategory, Category, Persona,
     update_search_index as addon_update_search_index)
+from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
@@ -67,6 +67,68 @@ from . import dynamic_urls
 # installing gettext in the globals, and thus not have it in the context when
 # rendering templates.
 translation.activate('en-us')
+
+# We need ES indexes aliases to match prod behaviour, but also we need the
+# names need to stay consistent during the whole test run, so we generate
+# them at import time. Note that this works because pytest overrides
+# ES_INDEXES before the test run even begins - if we were using
+# override_settings() on ES_INDEXES we'd be in trouble.
+ES_INDEX_SUFFIXES = {
+    key: timestamp_index('')
+    for key in settings.ES_INDEXES.keys()}
+
+
+def get_es_index_name(key):
+    """Return the name of the actual index used in tests for a given key
+    taken from settings.ES_INDEXES.
+
+    Can be used to check whether aliases have been set properly -
+    ES_INDEXES will give the aliases, and this method will give the indices
+    the aliases point to."""
+    value = settings.ES_INDEXES[key]
+    return '%s%s' % (value, ES_INDEX_SUFFIXES[key])
+
+
+def setup_es_test_data(es):
+    try:
+        es.cluster.health()
+    except Exception, e:
+        e.args = tuple(
+            [u"%s (it looks like ES is not running, try starting it or "
+             u"don't run ES tests: make test_no_es)" % e.args[0]] +
+            list(e.args[1:]))
+        raise
+
+    aliases_and_indexes = set(settings.ES_INDEXES.values() +
+                              es.indices.get_alias().keys())
+
+    for key in aliases_and_indexes:
+        if key.startswith('test_amo'):
+            es.indices.delete(key, ignore=[404])
+
+    # Figure out the name of the indices we're going to create from the
+    # suffixes generated at import time. Like the aliases later, the name
+    # has been prefixed by pytest, we need to add a suffix that is unique
+    # to this test run.
+    actual_indices = {key: get_es_index_name(key)
+                      for key in settings.ES_INDEXES.keys()}
+
+    # Create new search and stats indexes with the timestamped name.
+    # This is crucial to set up the correct mappings before we start
+    # indexing things in tests.
+    search_indexers.create_new_index(index_name=actual_indices['default'])
+    stats_search.create_new_index(index_name=actual_indices['stats'])
+
+    # Alias it to the name the code is going to use (which is suffixed by
+    # pytest to avoid clashing with the real thing).
+    actions = [
+        {'add': {'index': actual_indices['default'],
+                 'alias': settings.ES_INDEXES['default']}},
+        {'add': {'index': actual_indices['stats'],
+                 'alias': settings.ES_INDEXES['stats']}}
+    ]
+
+    es.indices.update_aliases({'actions': actions})
 
 
 def formset(*args, **kw):
@@ -267,17 +329,6 @@ class APITestClient(APIClient):
         """
         self.defaults.pop('HTTP_AUTHORIZATION', None)
 
-    def get(self, path, data=None, **extra):
-        # Work around DRF #4458 since we're running an old version that does
-        # not have this fix yet.
-        r = {
-            'QUERY_STRING': urlencode(data or {}, doseq=True),
-        }
-        if not data and '?' in path:
-            r['QUERY_STRING'] = force_bytes(path.split('?')[1])
-        r.update(extra)
-        return self.generic('GET', path, **r)
-
 
 def days_ago(days):
     return datetime.now().replace(microsecond=0) - timedelta(days=days)
@@ -291,10 +342,9 @@ ES_patchers = [
     mock.patch('olympia.amo.search.get_es', spec=True),
     mock.patch('elasticsearch.Elasticsearch'),
     mock.patch('olympia.addons.models.update_search_index', spec=True),
-    mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
-    mock.patch('olympia.users.tasks.index_users.delay', spec=True),
+    mock.patch('olympia.addons.tasks.index_addons', spec=True),
+    mock.patch('olympia.bandwagon.tasks.index_collections', spec=True),
+    mock.patch('olympia.bandwagon.tasks.unindex_collections', spec=True),
 ]
 
 
@@ -608,9 +658,13 @@ def addon_factory(
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
     category = kw.pop('category', None)
+    default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
+    slug = kw.pop('slug', None)
+    if slug is None:
+        slug = name.replace(' ', '-').lower()[:30]
 
     kwargs = {
         # Set artificially the status to STATUS_PUBLIC for now, the real
@@ -618,8 +672,9 @@ def addon_factory(
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
         'status': amo.STATUS_PUBLIC,
+        'default_locale': default_locale,
         'name': name,
-        'slug': name.replace(' ', '-').lower()[:30],
+        'slug': slug,
         'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
@@ -631,24 +686,22 @@ def addon_factory(
     kwargs.update(kw)
 
     # Save 1.
-    if type_ == amo.ADDON_PERSONA:
-        # Personas need to start life as an extension for versioning.
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, **kwargs)
-    else:
+    with translation.override(default_locale):
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
     version = version_factory(file_kw, addon=addon, **version_kw)
-    addon.update_version()
-    addon.status = status
-    if type_ == amo.ADDON_PERSONA:
-        addon.type = type_
+    if addon.type == amo.ADDON_PERSONA:
+        addon._current_version = version
         persona_id = persona_id if persona_id is not None else addon.id
 
         # Save 3.
         Persona.objects.create(
-            addon=addon, popularity=addon.weekly_downloads,
+            addon=addon, popularity=addon.average_daily_users,
             persona_id=persona_id)
+
+    addon.update_version()
+    addon.status = status
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
@@ -658,11 +711,9 @@ def addon_factory(
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
-        category_dict = random.choice(
-            CATEGORIES[application][type_].values()).__dict__.copy()
-        del category_dict['name']  # Not accepted as part of a Category.
-        category, _ = Category.objects.get_or_create(
-            id=category_dict['id'], defaults=category_dict)
+        static_category = random.choice(
+            CATEGORIES[application][addon.type].values())
+        category = Category.from_static_category(static_category, True)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
@@ -671,6 +722,16 @@ def addon_factory(
 
     # Save 4.
     addon.save()
+
+    if addon.type == amo.ADDON_PERSONA:
+        # Personas only have one version and signals.version_changed is never
+        # fired for them - instead it gets updated through a cron (!). We do
+        # need to get it right in some tests like the ui tests, so we call the
+        # task ourselves.
+        version_changed(addon.pk)
+
+    # Potentially update is_public on authors
+    [user.update_is_public() for user in users]
 
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
@@ -766,6 +827,7 @@ def user_factory(**kw):
 def version_factory(file_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
+    addon_type = getattr(kw.get('addon'), 'type', None)
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
@@ -782,7 +844,7 @@ def version_factory(file_kw=None, **kw):
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
-    if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_SEARCH):
+    if addon_type not in amo.NO_COMPAT:
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
@@ -790,34 +852,21 @@ def version_factory(file_kw=None, **kw):
         ApplicationsVersions.objects.get_or_create(application=application,
                                                    version=ver, min=av_min,
                                                    max=av_max)
-    file_kw = file_kw or {}
-    file_factory(version=ver, **file_kw)
+    if addon_type != amo.ADDON_PERSONA:
+        file_kw = file_kw or {}
+        file_factory(version=ver, **file_kw)
     return ver
 
 
 @pytest.mark.es_tests
 class ESTestCase(TestCase):
-    # We need ES indexes aliases to match prod behaviour, but also we need the
-    # names need to stay consistent during the whole test run, so we generate
-    # them at import time. Note that this works because pytest overrides
-    # ES_INDEXES before the test run even begins - if we were using
-    # override_settings() on ES_INDEXES we'd be in trouble.
-    index_suffixes = {key: timestamp_index('')
-                      for key in settings.ES_INDEXES.keys()}
-
     @classmethod
     def get_index_name(cls, key):
-        """Return the name of the actual index used in tests for a given key
-        taken from settings.ES_INDEXES.
-
-        Can be used to check whether aliases have been set properly -
-        ES_INDEXES will give the aliases, and this method will give the indices
-        the aliases point to."""
-        value = settings.ES_INDEXES[key]
-        return '%s%s' % (value, cls.index_suffixes[key])
+        return get_es_index_name(key)
 
     def setUp(self):
         stop_es_mocks()
+        super(ESTestCase, self).setUp()
 
     @classmethod
     def setUpClass(cls):
@@ -833,43 +882,8 @@ class ESTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         stop_es_mocks()
-        try:
-            cls.es.cluster.health()
-        except Exception, e:
-            e.args = tuple(
-                [u"%s (it looks like ES is not running, try starting it or "
-                 u"don't run ES tests: make test_no_es)" % e.args[0]] +
-                list(e.args[1:]))
-            raise
+        setup_es_test_data(cls.es)
 
-        aliases_and_indexes = set(settings.ES_INDEXES.values() +
-                                  cls.es.indices.get_aliases().keys())
-        for key in aliases_and_indexes:
-            if key.startswith('test_amo'):
-                cls.es.indices.delete(key, ignore=[404])
-
-        # Figure out the name of the indices we're going to create from the
-        # suffixes generated at import time. Like the aliases later, the name
-        # has been prefixed by pytest, we need to add a suffix that is unique
-        # to this test run.
-        actual_indices = {key: cls.get_index_name(key)
-                          for key in settings.ES_INDEXES.keys()}
-
-        # Create new search and stats indexes with the timestamped name.
-        # This is crucial to set up the correct mappings before we start
-        # indexing things in tests.
-        search_indexers.create_new_index(index_name=actual_indices['default'])
-        stats_search.create_new_index(index_name=actual_indices['stats'])
-
-        # Alias it to the name the code is going to use (which is suffixed by
-        # pytest to avoid clashing with the real thing).
-        actions = [
-            {'add': {'index': actual_indices['default'],
-                     'alias': settings.ES_INDEXES['default']}},
-            {'add': {'index': actual_indices['stats'],
-                     'alias': settings.ES_INDEXES['stats']}}
-        ]
-        cls.es.indices.update_aliases({'actions': actions})
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
@@ -891,9 +905,12 @@ class ESTestCase(TestCase):
 
     @classmethod
     def empty_index(cls, index):
+        # Try to make sure that all changes are properly flushed.
+        cls.refresh()
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
-            body={"query": {"match_all": {}}}
+            body={'query': {'match_all': {}}},
+            conflicts='proceed',
         )
 
 
@@ -1027,3 +1044,29 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
         else:
             raise AssertionError('Could not exec %r: %s' % (string.strip(), e))
     return locals_
+
+
+def prefix_indexes(config):
+    """Prefix all ES index names and cache keys with `test_` and, if running
+    under xdist, the ID of the current slave.
+
+    Note that this is a pytest helper that is primarily used in conftest.
+    """
+    if hasattr(config, 'slaveinput'):
+        prefix = 'test_{[slaveid]}'.format(config.slaveinput)
+    else:
+        prefix = 'test'
+
+    # Ideally, this should be a session-scoped fixture that gets injected into
+    # any test that requires ES. This would be especially useful, as it would
+    # allow xdist to transparently group all ES tests into a single process.
+    # Unfurtunately, it's surprisingly difficult to achieve with our current
+    # unittest-based setup.
+
+    for key, index in settings.ES_INDEXES.items():
+        if not index.startswith(prefix):
+            settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
+                prefix=prefix, index=index)
+
+    settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
+    settings.KEY_PREFIX = settings.CACHE_PREFIX

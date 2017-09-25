@@ -4,11 +4,11 @@ $(function() {
     // set up topcharts (defined in topchart.js)
     $('.toplist').topChart();
 
-    $(window).bind("changeview", function(e, view) {
+    $(window).on("changeview", function(e, view) {
         $('.two-up').addClass('loading');
     });
     // Save some requests by waiting until the graph data is ready.
-    $(window).bind("dataready", function(e, data) {
+    $(window).on("dataready", function(e, data) {
         // return;
         var view    = _.extend({}, data.view, {group: 'all'}),
             range   = normalizeRange(view.range);

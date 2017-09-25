@@ -1,902 +1,883 @@
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-09 02:57+0000\n"
+"Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} bintang"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Ada masalah menghubungi pelayan."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Pilih fail..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Add-on anda sepatutnya berakhir dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% siap"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} daripada {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Memuat naik {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Ralat dengan {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Kami telah dayakan linter baru untuk memproses Add-on anda. Sila pastikan anda lapor sebarang isu di GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Add-on anda gagal pengesahan dengan {0} ralat."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;dan {0} lagi"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Lihat laporan pengesahan penuh"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Mengesahkan {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Add-on anda melebihi saiz maksimum sebanyak {0}."
+
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Menerima respons kosong darpada pelayan; status: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Ralat tidak dijangka semasa mengesahkan."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Siap mengesahkan {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Pengesahan add-on anda tamat tempoh, akan disemak secara manual."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Add-on anda telah disahkan dengan tiada ralat dan {0} amaran."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Add-on anda telah disahkan dengan tiada ralat dan {0} mesej."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Add-on anda telah disahkan dengan tiada ralat atau amaran."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Serahan anda akan ditandatangani secara automatik."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "kemaskini WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Pemindahan add-on Firefox legasi di MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Samada anda perlukan akaun untuk masuk ke laman web supaya add-on boleh diuji sepenuhnya, termasuk ujian nama pengguna dan kata laluan dalam Nota kepada Penyemak (ini boleh dilakukan dalam langkah "
+"seterusnya)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Senarai semak serahan add-on"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Sila sahkan butiran berikut sebelum memuktamadkan serahan anda. Ini akan mengurangkan kelewatan atau salah faham semasa proses semakan:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Susunan binari, serta skrip yang diringkaskan atau dikelirukan (tidak termasuk pustaka yang diketahui) perlu ada sumbernya dan dikemukakan secara berasingan untuk semakan. Pastikan anda menggunakan "
+"medan memuat naik kod sumber untuk mengelakkan serahan anda ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Proses pengesahan menemukan isu berikut yang boleh menyebabkan penghantaran ditolak:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Maaf, tidak menemukan platform yang menyokong."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Jenis fail yang anda muat naik tidak dikenali."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Fail anda melebihi saiz maksimum sebanyak {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Anda dibatalkan memuat naik."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Imej mesti samada PNG atau JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video mesti dalam WebM."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ikuti Koleksi ini"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "Berhenti Ikuti"
 
 msgid "Following"
-msgstr ""
+msgstr "Ikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Tema ini tidak serasi dengan versi {0} anda"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Hak Cipta Terpelihara"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nama Tema Anda"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ditanda untuk semakan"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Input anda diperlukan"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Ditandai untuk penghapusan"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Mengemaskini hasil&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Cari tema untuk <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Cari aplikasi untuk <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Cari add-ons untuk <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Guna asal"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Minggu {0}"
 
 msgid " downloads"
-msgstr ""
+msgstr " muat turun"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} pengguna"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-on"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} koleksi"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} semakan"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} jualan"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} bayaran balik"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} pemasangan"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Muat turun"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Pengguna Harian"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Amaun, dalam USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Jumlah Sumbangan"
 
 msgid "More Info..."
-msgstr ""
+msgstr "Info Lanjut..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Butiran untuk {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Koleksi Dicipta"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Add-on Digunakan"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Add-on Dicipta"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Add-on Dimuat turun"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Add-on Dikemaskini"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Ulasan Ditulis"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Pendaftaran Pengguna"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Pelanggan"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Penarafan"
 
 msgid "Sales"
-msgstr ""
+msgstr "Jualan"
 
 msgid "Installs"
-msgstr ""
+msgstr "Pemasangan"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Pengurus Add-ons"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promo Pengurus Add-ons"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Sorotan Pengurus Add-ons"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Ketahui Selanjutnya Pengurus Add-ons"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Cadangan Carian"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Carian"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promo Halaman utama"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Sorotan Halaman utama"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Penampilan Halaman Utama"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Paling Popular dalam Halaman utama"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Butiran Halaman"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Halaman Butiran (bawah)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Halaman Butiran (Saluran Pembangunan)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Sering Digunakan Dengan"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Lain-lain Mengikut Pengarang"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Kebergantungan"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Upsell"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Bertemu Pembangun"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Profil Pengguna"
 
 msgid "Version History"
-msgstr ""
+msgstr "Sejarah Versi"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Perkongsian"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Halaman Kategori"
 
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Karusel Sorotan Pelantar Kategori"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategori Pelantar Tahap Tinggi"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategori Pelantar Paling Popular"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategori Pelantar Terkini Ditambah"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Sorotan"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Pengguna"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Tahap"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Dicipta"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Nama"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Popular"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Dikemaskini"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Layari Senarai mengikut Susunan Penampilan"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Jumlah Amaun Disumbangkan"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Purata Sumbangan"
 
 msgid "Usage"
-msgstr ""
+msgstr "Pengunaan"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Muat turun dan Pengguna Harian, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Muat turun dan Pengguna Harian, dari {0} ke {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Pemasangan dan Pengguna Harian, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Pemasangan dan Pengguna Harian, {0} hingga {1} hari lepas"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Muat turun, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Muat turun daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Pengguna Harian, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Pengguna Harian daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Aplikasi, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Aplikasi daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platform, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platform daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Bahasa, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Bahasa daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versi add-on, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versi Add-on daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Status Add-on, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Status Add-on daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Sumber Muat turun, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sumber Muat turun daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Sumbangan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Sumbangan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Matriks Laman, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Matriks Laman daripada {0} untuk {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Add-ons Digunakan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Add-ons Digunakan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Add-ons Dimuat turun, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Add-ons Dimuat turun daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Add-ons Dicipta, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Add-ons Dicipta daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Add-ons Dikemaskini, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Add-ons Dikemaskini daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Ulasan Ditulis, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Ulasan Ditulis daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Pendaftaran Pengguna, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Pendaftaran Pengguna daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Koleksi Dicipta, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Koleksi Dicipta daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Pelanggan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Pelanggan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Penarafan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Penarafan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Jualan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Jualan daripada {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Pemasangan, {0} hari lepas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Pemasangan daripada {0} untuk {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> dalam tempoh {1} hari lepas"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> daripada {1} hingga {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> purata dalam tempoh {1} hari lepas"
 
 msgid "No data available."
-msgstr ""
+msgstr "Tiada data tersedia."
 
 msgid "Date"
-msgstr ""
+msgstr "Tarikh"
 
 msgid "Other"
-msgstr ""
+msgstr "Lain-lain"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih dulu aplikasi"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tetapkan {0} add-ons sehingga versi maksimum {1} dan e-mel kepada pengarang."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "E-mel pengarang add-ons {2} yang gagal pengesahan."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "Terima dan Pasang"
 
 msgid "Add to {0}"
-msgstr ""
-
-msgid "Download Now"
-msgstr ""
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Tambah ke {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Teruskan sahaja pasang untuk {0}"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Teruskan sahaja muat turun untuk {0}"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Tidak tersedia untuk platform anda"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
-msgstr ""
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Add-on ini tidak serasi dengan versi {0}."
 
 msgid "View other versions"
-msgstr ""
+msgstr "Papar versi lain"
+
+msgid "Works with {app} {min} - {max}"
+msgstr "Berfungsi dengan {app} {min} - {max}"
+
+msgid "Works with {app}"
+msgstr "Berfungsi dengan {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Download now"
-msgstr ""
-
-msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Maaf, anda perlukan pelayar berasaskan-Mozilla (seperti Firefox) untuk memasang plugin carian."
 
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Menambah ke Kegemaran&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Menghapuskan Kegemaran&hellip;"
 
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Tambah ke Kegemaran"
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Buang daripada Kegemaran"
 
 msgid "Pending"
-msgstr ""
+msgstr "Tertangguh"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Tambah komen"
 
 msgid "Comment"
-msgstr ""
+msgstr "Komen"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Buang add-on ini daripada koleksi"
 
 msgid "Remove"
-msgstr ""
+msgstr "Buang"
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Singkir pengguna ini daripada penyumbang"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Alamat e-mel diperlukan."
 
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Anda tidak boleh masukkan diri sendiri sebagai penyumbang."
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "Anda sudah masukkan pengguna tersebut."
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tambah ke kegemaran"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Buang daripada kegemaran"
 
 msgid "Stop following"
-msgstr ""
+msgstr "Berhenti ikuti"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Pelayar anda tidak menyokong tag video ini"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Perubahan Disimpan"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Masukkan alamat e-mel baru pengarang"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Ada ralat semasa memuat naik fail anda."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} fail"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} ulasan pengguna"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Ketahui selanjutnya"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Perubahan imej sedang diproses"
 
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Mesti alamat e-mel yang sah."
 
 msgid "No results found."
-msgstr ""
+msgstr "Tiada hasil ditemukan."
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} telah meninjau halaman ini terlebih dahulu."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Resit disemak oleh aplikasi."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Resit tidak disemak oleh aplikasi."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} telah meninjau add-on ini terlebih dahulu."
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Memuatkan&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Nota Versi"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Nota kepada Penyemak"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Tiada nota versi ditemui"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Teks Semakan"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "Nota semakan ditemui"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Purata Ulasan"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Bilangan Ulasan"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Memuatkan..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> aksara lagi."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar lagi."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Buang lokalisasi ini"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Info diminta"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Ditandai"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikasi"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Ditolak"
 
 msgid "Approved"
-msgstr ""
+msgstr "Diluluskan"
 
 msgid "No results found"
-msgstr ""
+msgstr "Tiada hasil ditemukan"
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Pengulas"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Lulus semua ujian."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ujian berikut tidak dilaksanakan."
 
 msgid "Tests"
-msgstr ""
+msgstr "Ujian"
 
 msgid "Error"
-msgstr ""
+msgstr "Ralat"
 
 msgid "Warning"
-msgstr ""
+msgstr "Amaran"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} baris {1} lajur {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} baris {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Ujian Keserasian"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Add-on gagal pengesahan."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Add-on lulus pengesahan."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ralat"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} amaran"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} notis"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Tugas pengesahan tidak dapat diselesaikan atau diselesaikan dengan ada ralat"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Ralat pelayan dalaman"

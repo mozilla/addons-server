@@ -26,7 +26,7 @@ $(document).ready(function(){
     hideInstalled();
 
     initPromos(null, 'discovery');
-    $(this).bind('promos_shown', function(e, $promos) {
+    $(this).on('promos_shown', function(e, $promos) {
         if($('#learn-more').hasClass('video')) { // Is the video available?
             var starter = $('#starter').closest('.panel'),
             s_panel = $('<li>', {'class': 'panel'}),

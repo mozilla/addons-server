@@ -20,7 +20,7 @@ $(document).ready(function () {
         modalActions = $(".modal-actions", unsavedModal),
         translations = {}; //hold the initial values of the fields to check for changes
 
-    $(".primary").delegate(".trans input, .trans textarea", "change keyup paste blur", checkTranslation);
+    $(".primary").on("change keyup paste blur", ".trans input, .trans textarea", checkTranslation);
     $("form").submit(function () {
         $(this).find(".trans .cloned").remove();
     });
@@ -84,9 +84,9 @@ $(document).ready(function () {
         }
     }
 
-    $(".primary").delegate(".errorlist .l10n", "click", switchLocale);
+    $(".primary").on("click", ".errorlist .l10n", switchLocale);
 
-    $("#all_locales").delegate("a", "switch", switchLocale);
+    $("#all_locales").on("switch", "a", switchLocale);
 
     // If the locale switcher is visible, use the cookie.
     var initLocale = dl;
@@ -105,7 +105,7 @@ $(document).ready(function () {
             unsavedModal.children(".msg")
                 .html(format(unsavedModalMsg,[$("#change-locale").text()]));
             unsavedModal.render();
-            $("#l10n-save-changes").unbind().click(function () {
+            $("#l10n-save-changes").off().click(function () {
                 var unsavedForms = $('form:has(.trans .unsaved)');
                 var numFormsLeft = unsavedForms.length;
                 var erroredForms = 0;
@@ -177,19 +177,19 @@ $(document).ready(function () {
         width: 200,
         callback: function() {
             showExistingLocales();
-            $("#locale-popup").delegate('a:not(.remove)', 'click', switchLocale);
-            $("#locale-popup").delegate('a.remove', 'click', function (e) {
+            $("#locale-popup").on('click', 'a:not(.remove)', switchLocale);
+            $("#locale-popup").on('click', 'a.remove', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
                 rmLocaleModal.children(".msg").html(format(rmLocaleModalMsg,toRemove));
                 rmLocaleModal.render();
-                $('#l10n-cancel-rm').unbind().click(rmLocaleModal.hideMe);
+                $('#l10n-cancel-rm').off().click(rmLocaleModal.hideMe);
                 function cleanUp() {
                     $(".modal-actions", rmLocaleModal).removeClass('ajax-loading');
                     rmLocaleModal.hideMe();
                 }
-                $('#l10n-confirm-rm').unbind().click(function(e) {
+                $('#l10n-confirm-rm').off().click(function(e) {
                     $(".modal-actions", rmLocaleModal).addClass('ajax-loading');
                     $.ajax({
                         url: $('#l10n-menu').attr('data-rm-locale'),

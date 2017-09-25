@@ -112,7 +112,6 @@
             "public_stats": false,
             "status": 4,
             "privacy_policy": null,
-            "total_contributions": "1978.68",
             "default_locale": "en-US",
             "target_locale": null,
             "thankyou_note": null,
@@ -125,6 +124,7 @@
             "annoying": 2,
             "modified": "2010-05-24 17:21:28",
             "suggested_amount": "5.00",
+            "contributions": "https://patreon.com/blah",
             "total_reviews": 131
         }
     },

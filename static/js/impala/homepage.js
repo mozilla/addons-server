@@ -2,7 +2,7 @@
     $('.toplist .name').truncate({showTitle: true});
 
     initPromos();
-    $(document).bind('promos_shown', function(e, $promos) {
+    $(document).on('promos_shown', function(e, $promos) {
         hideHomePromo();
         $promos.slideDown('slow')
                .append('<a href="#" class="control prev">&laquo;</a>\

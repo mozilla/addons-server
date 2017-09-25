@@ -255,11 +255,11 @@
             // Show the prev button, if not the first image in set
             if ( settings.activeImage != 0 ) {
                 // Show the images button for Next buttons
-                $('#lightbox-nav-btnPrev').unbind().hover(function() {
+                $('#lightbox-nav-btnPrev').off().hover(function() {
                     $(this).css({ 'background' : 'url(' + settings.imageBtnPrev + ') left 45% no-repeat' });
                 },function() {
                     $(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
-                }).show().bind('click',function() {
+                }).show().on('click', function() {
                     settings.activeImage = settings.activeImage - 1;
                     _set_image_to_view();
                     return false;
@@ -269,11 +269,11 @@
             // Show the next button, if not the last image in set
             if ( settings.activeImage != ( settings.imageArray.length -1 ) ) {
                 // Show the images button for Next buttons
-                $('#lightbox-nav-btnNext').unbind().hover(function() {
+                $('#lightbox-nav-btnNext').off().hover(function() {
                     $(this).css({ 'background' : 'url(' + settings.imageBtnNext + ') right 45% no-repeat' });
                 },function() {
                     $(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
-                }).show().bind('click',function() {
+                }).show().on('click', function() {
                     settings.activeImage = settings.activeImage + 1;
                     _set_image_to_view();
                     return false;
@@ -296,7 +296,7 @@
          *
          */
         function _disable_keyboard_navigation() {
-            $(document).unbind();
+            $(document).off();
         }
         /**
          * Perform the keyboard actions
@@ -441,6 +441,6 @@
             while ( curDate - date < ms);
          };
         // Return the jQuery object for chaining. The unbind method is used to avoid click conflict when the plugin is called more than once
-        return this.unbind('click').click(_initialize);
+        return this.off('click').click(_initialize);
     };
 })(jQuery); // Call and execute the function immediately passing the jQuery object

@@ -38,7 +38,7 @@ $(document).ready(function(){
     }
 
     // Set up our history callback.
-    $(window).bind('popstate', function(ev) {
+    $(window).on('popstate', function(ev) {
         // We don't pushState here because we'd be stuck in this position.
         var e = ev.originalEvent;
         if (e.state && e.state.target) {

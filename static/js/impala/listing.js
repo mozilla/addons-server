@@ -17,9 +17,9 @@ $(function() {
 
     // Make this row appear 'static' so the installation buttons and pop-ups
     // stay open when hovering outside the item row.
-    $(document.body).bind('newStatic', function() {
+    $(document.body).on('newStatic', function() {
         $('.install-note:visible').closest('.item').addClass('static');
-    }).bind('closeStatic', function() {
+    }).on('closeStatic', function() {
         $('.item.static').removeClass('static');
     });
 });

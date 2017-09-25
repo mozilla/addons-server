@@ -170,6 +170,17 @@ class TestPromos(TestCase):
         response = self.client.get(self.get_home_url(), {'platform': 'lol'})
         self._test_response_contains_addons(response)
 
+    def test_home_does_not_contain_disabled_addons(self):
+        self.addon1.update(disabled_by_user=True)
+        self.addon2.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.get_home_url(), {'platform': 'mac'})
+        assert response.status_code == 200
+        assert response.content
+        content = smart_text(response.content)
+        assert unicode(self.addon1.name) not in content
+        assert unicode(self.addon2.name) not in content
+        assert 'This &amp; That' in content
+
     def test_pane_platform_filtering(self):
         """Ensure that the discovery pane is filtered by platform."""
         file_ = self.addon1.current_version.all_files[0]
@@ -356,16 +367,6 @@ class TestDetails(TestCase):
     def get_addon(self):
         return Addon.objects.get(id=3615)
 
-    def test_requires_restart(self):
-        f = self.addon.current_version.all_files[0]
-        assert f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 1
-        f.update(no_restart=True)
-        assert not f.requires_restart
-        r = self.client.get(self.detail_url)
-        assert pq(r.content)('#requires-restart').length == 0
-
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
         assert doc('#install .install-button').text() == 'Download Now'
@@ -521,14 +522,16 @@ class TestMonthlyPick(TestCase):
             module='Monthly Pick')
 
     def test_monthlypick(self):
+        # First test with locale=None, it should never appear.
         mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
                                         image='http://mozilla.com')
-        r = self.client.get(self.url)
-        assert r.content == ''
-        mp.update(locale='')
+        response = self.client.get(self.url)
+        assert response.content == ''
 
-        r = self.client.get(self.url)
-        pick = pq(r.content)('#monthly')
+        # Now update with locale='', it should be used as the fallback.
+        mp.update(locale='')
+        response = self.client.get(self.url)
+        pick = pq(response.content)('#monthly')
         assert pick.length == 1
         assert pick.parents('.panel').attr('data-addonguid') == self.addon.guid
         a = pick.find('h3 a')
@@ -541,6 +544,18 @@ class TestMonthlyPick(TestCase):
         assert pick.find('.wrap > div > div > p').text() == 'BOOP'
         assert pick.find('p.install-button a').attr('href').endswith(
             '?src=discovery-promo')
+
+    def test_monthlypick_disabled_addon(self):
+        disabled_addon = addon_factory(disabled_by_user=True)
+        MonthlyPick.objects.create(
+            addon=disabled_addon, blurb='foo', locale='en-US')
+        MonthlyPick.objects.create(
+            addon=self.addon, blurb='bar', locale='')
+
+        response = self.client.get(self.url)
+        pick = pq(response.content)('#monthly')
+        assert pick.length == 1
+        assert pick.parents('.panel').attr('data-addonguid') == self.addon.guid
 
     def test_monthlypick_no_image(self):
         MonthlyPick.objects.create(addon=self.addon, blurb='BOOP', locale='',

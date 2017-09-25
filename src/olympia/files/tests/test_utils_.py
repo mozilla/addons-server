@@ -155,6 +155,7 @@ class TestManifestJSONExtractor(TestCase):
                                          version=version)
 
     def create_webext_default_versions(self):
+        self.create_appversion('firefox', '36.0')  # Incompatible with webexts.
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
         self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
@@ -183,9 +184,9 @@ class TestManifestJSONExtractor(TestCase):
         """manifest.json addons are always ADDON_EXTENSION."""
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
 
-    def test_no_restart(self):
-        """manifest.json addons are always no_restart."""
-        assert self.parse({})['no_restart'] is True
+    def test_is_restart_required(self):
+        """manifest.json addons never requires restart."""
+        assert self.parse({})['is_restart_required'] is False
 
     def test_name(self):
         """Use name for the name."""
@@ -206,19 +207,36 @@ class TestManifestJSONExtractor(TestCase):
         assert (
             self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
 
-    def test_invalid_app_versions_are_ignored(self):
-        """Invalid versions are ignored."""
+    def test_invalid_strict_min_version(self):
         data = {
             'applications': {
                 'gecko': {
-                    # Not created, so are seen as invalid.
-                    'strict_min_version': '>=30.0',
-                    'strict_max_version': '=30.*',
-                    'id': '@random'
+                    'strict_min_version': 'A',
+                    'id': '@invalid_strict_min_version'
                 }
             }
         }
-        assert not self.parse(data)['apps']
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert (
+            exc.value.message ==
+            'Lowest supported "strict_min_version" is 42.0.')
+
+    def test_strict_min_version_needs_to_be_higher_then_42_if_specified(self):
+        """strict_min_version needs to be higher than 42.0 if specified."""
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '36.0',
+                    'id': '@too_old_strict_min_version'
+                }
+            }
+        }
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)
+        assert (
+            exc.value.message ==
+            'Lowest supported "strict_min_version" is 42.0.')
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
@@ -281,6 +299,42 @@ class TestManifestJSONExtractor(TestCase):
     def test_is_e10s_compatible(self):
         data = self.parse({})
         assert data['e10s_compatibility'] == amo.E10S_COMPATIBLE_WEBEXTENSION
+
+    def test_langpack(self):
+        data = self.parse({'langpack_id': 'foo'})
+        assert data['type'] == amo.ADDON_LPAPP
+        assert data['strict_compatibility'] is True
+
+    def test_extensions_dont_have_strict_compatibility(self):
+        assert self.parse({})['strict_compatibility'] is False
+
+    def test_moz_signed_extension_no_strict_compat(self):
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        file_obj.update(is_mozilla_signed_extension=True)
+        fixture = (
+            'src/olympia/files/fixtures/files/'
+            'legacy-addon-already-signed-0.1.0.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            parsed = utils.parse_xpi(file_obj.file_path)
+            assert parsed['is_mozilla_signed_extension']
+            assert not parsed['strict_compatibility']
+
+    def test_moz_signed_extension_reuse_strict_compat(self):
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        file_obj.update(is_mozilla_signed_extension=True)
+        fixture = (
+            'src/olympia/files/fixtures/files/'
+            'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            parsed = utils.parse_xpi(file_obj.file_path)
+            assert parsed['is_mozilla_signed_extension']
+
+            # We set `strictCompatibility` in install.rdf
+            assert parsed['strict_compatibility']
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
@@ -470,7 +524,7 @@ def test_extract_translations_simple(file_obj):
         # Make sure nb_NO is not in the list since we don't support
         # it currently.
         assert list(sorted(messages.keys())) == [
-            'de', 'en-US', 'ja', 'nl', 'ru']
+            'de', 'en-US', 'ja', 'nl', 'ru', 'sv-SE']
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')

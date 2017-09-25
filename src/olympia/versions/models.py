@@ -6,12 +6,14 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import caching.base
 import jinja2
 from django_statsd.clients import statsd
+from waffle import switch_is_active
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -317,7 +319,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def compatible_apps(self):
-        """Get a mapping of {APP: ApplicationVersion}."""
+        """Get a mapping of {APP: ApplicationsVersions}."""
         avs = self.apps.select_related('version')
         return self._compat_map(avs)
 
@@ -342,32 +344,11 @@ class Version(OnChangeMixin, ModelBase):
         return all_plats
 
     @cached_property
-    def is_compatible(self):
-        """Returns tuple of compatibility and reasons why if not.
-
-        Server side conditions for determining compatibility are:
-            * The add-on is an extension (not a theme, app, etc.)
-            * Has not opted in to strict compatibility.
-            * Does not use binary_components in chrome.manifest.
-
-        Note: The lowest maxVersion compat check needs to be checked
-              separately.
-        Note: This does not take into account the client conditions.
-        """
-        compat = True
-        reasons = []
-        if self.addon.type != amo.ADDON_EXTENSION:
-            compat = False
-            # TODO: We may want this. For now we think it may be confusing.
-            # reasons.append(ugettext('Add-on is not an extension.'))
-        if self.files.filter(binary_components=True).exists():
-            compat = False
-            reasons.append(ugettext('Add-on uses binary components.'))
-        if self.files.filter(strict_compatibility=True).exists():
-            compat = False
-            reasons.append(ugettext(
-                'Add-on has opted into strict compatibility checking.'))
-        return (compat, reasons)
+    def is_compatible_by_default(self):
+        """Returns whether or not the add-on is considered compatible by
+        default."""
+        return not self.files.filter(
+            Q(binary_components=True) | Q(strict_compatibility=True)).exists()
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
@@ -448,12 +429,26 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
-    def requires_restart(self):
-        return any(file_.requires_restart for file_ in self.all_files)
+    def is_restart_required(self):
+        return any(file_.is_restart_required for file_ in self.all_files)
 
     @property
     def is_webextension(self):
         return any(file_.is_webextension for file_ in self.all_files)
+
+    @property
+    def is_mozilla_signed(self):
+        """Is the file a special "Mozilla Signed Extension"
+
+        See https://wiki.mozilla.org/Add-ons/InternalSigning for more details.
+        We use that information to workaround compatibility limits for legacy
+        add-ons and to avoid them receiving negative boosts compared to
+        WebExtensions.
+
+        See https://github.com/mozilla/addons-server/issues/6424
+        """
+        return all(
+            file_.is_mozilla_signed_extension for file_ in self.all_files)
 
     @property
     def has_files(self):
@@ -591,9 +586,14 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
+        addon_statuses = [amo.STATUS_PUBLIC]
+        if switch_is_active('post-review'):
+            # If post-review switch is active, we also accept initial version
+            # submissions, so the add-on can also be NOMINATED.
+            addon_statuses.append(amo.STATUS_NOMINATED)
         return (
-            self.addon.status == amo.STATUS_PUBLIC and
-            self.addon.type == amo.ADDON_EXTENSION and
+            self.addon.status in addon_statuses and
+            self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
             self.is_webextension and
             self.is_unreviewed and
             self.channel == amo.RELEASE_CHANNEL_LISTED)
@@ -766,7 +766,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
         return unicode(amo.APPS_ALL[self.application].pretty)
 
     def __unicode__(self):
-        if (self.version.is_compatible[0] and
+        if (self.version.is_compatible_by_default and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return ugettext(u'{app} {min} and later').format(
                 app=self.get_application_display(),

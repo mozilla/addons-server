@@ -4,10 +4,12 @@ from itertools import chain
 from olympia import amo
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import (
-    addon_factory, ESTestCase, file_factory, TestCase, version_factory)
+    addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
+    version_factory)
 from olympia.addons.models import (
     Addon, attach_tags, attach_translations, Preview)
 from olympia.addons.indexers import AddonIndexer
+from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
@@ -21,9 +23,10 @@ class TestAddonIndexer(TestCase):
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
     simple_fields = [
-        'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
+        'average_daily_users', 'bayesian_rating', 'contributions', 'created',
+        'default_locale',
         'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_experimental',
-        'last_updated', 'modified', 'public_stats', 'slug',
+        'last_updated', 'modified', 'public_stats', 'requires_payment', 'slug',
         'status', 'type', 'view_source', 'weekly_downloads',
     ]
 
@@ -47,10 +50,9 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
-            'current_version', 'description', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'latest_unlisted_version', 'listed_authors',
-            'name', 'name_sort', 'platforms', 'previews', 'public_stats',
-            'ratings', 'summary', 'tags', 'has_theme_rereview',
+            'current_version', 'description', 'featured_for',
+            'has_eula', 'has_privacy_policy',
+            'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
             'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
         ]
@@ -63,8 +65,8 @@ class TestAddonIndexer(TestCase):
         # version for each language-specific analyzer we have.
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
-            [['%s_%s' % (field, analyzer) for analyzer in SEARCH_ANALYZER_MAP]
-             for field in _indexed_translated_fields]))
+            [['%s_l10n_%s' % (field, analyzer) for analyzer
+             in SEARCH_ANALYZER_MAP] for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
         # but to make sure the test is correct we still do a simple check of
@@ -75,8 +77,8 @@ class TestAddonIndexer(TestCase):
         # Each translated field that we want to return to the API.
         raw_translated_fields = [
             '%s_translations' % field for field in
-            ['name', 'description', 'homepage', 'summary', 'support_email',
-             'support_url']]
+            ['name', 'description', 'developer_comments', 'homepage',
+             'summary', 'support_email', 'support_url']]
 
         # Return a list with the base fields and the dynamic ones added.
         fields = (cls.simple_fields + complex_fields + analyzer_fields +
@@ -96,15 +98,15 @@ class TestAddonIndexer(TestCase):
         assert set(mapping_properties.keys()) == set(self.expected_fields())
 
         # Make sure default_locale and translated fields are not indexed.
-        assert mapping_properties['default_locale']['index'] == 'no'
+        assert mapping_properties['default_locale']['index'] is False
         name_translations = mapping_properties['name_translations']
-        assert name_translations['properties']['lang']['index'] == 'no'
-        assert name_translations['properties']['string']['index'] == 'no'
+        assert name_translations['properties']['lang']['index'] is False
+        assert name_translations['properties']['string']['index'] is False
 
         # Make sure nothing inside 'persona' is indexed, it's only there to be
         # returned back to the API directly.
         for field in mapping_properties['persona']['properties'].values():
-            assert field['index'] == 'no'
+            assert field['index'] is False
 
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']
@@ -116,9 +118,40 @@ class TestAddonIndexer(TestCase):
         # Make sure files mapping is set inside current_version.
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
-            'id', 'created', 'filename', 'hash', 'is_webextension', 'platform',
-            'size', 'status', 'webext_permissions_list')
+            'id', 'created', 'filename', 'hash', 'is_webextension',
+            'is_restart_required', 'is_mozilla_signed_extension', 'platform',
+            'size', 'status', 'strict_compatibility',
+            'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
+
+    def test_index_setting_boolean(self):
+        """Make sure that the `index` setting is a true/false boolean.
+
+        Old versions of ElasticSearch allowed 'no' and 'yes' strings,
+        this changed with ElasticSearch 5.x.
+        """
+        doc_name = self.indexer.get_doctype_name()
+        assert doc_name
+
+        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in mapping_properties.values()
+            if 'index' in prop)
+
+        # Make sure our version_mapping is setup correctly too.
+        props = mapping_properties['current_version']['properties']
+
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props.values() if 'index' in prop)
+
+        # As well as for current_version.files
+        assert all(
+            isinstance(prop['index'], bool)
+            for prop in props['files']['properties'].values()
+            if 'index' in prop)
 
     def _extract(self):
         qs = Addon.unfiltered.filter(id__in=[self.addon.pk]).no_cache()
@@ -148,15 +181,55 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_theme_rereview'] is None
         assert extracted['latest_unlisted_version'] is None
         assert extracted['listed_authors'] == [
-            {'name': u'55021 التطب', 'id': 55021, 'username': '55021'}]
+            {'name': u'55021 التطب', 'id': 55021, 'username': '55021',
+             'is_public': True}]
         assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,
             'count': self.addon.total_reviews,
+            'text_count': self.addon.text_reviews_count,
         }
         assert extracted['tags'] == []
         assert extracted['has_eula'] is True
         assert extracted['has_privacy_policy'] is True
+        assert extracted['is_featured'] is False
+
+    def test_extract_is_featured(self):
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=collection.application)
+        collection.add_addon(self.addon)
+        assert self.addon.is_featured()
+        extracted = self._extract()
+        assert extracted['is_featured'] is True
+
+    def test_extract_featured_for(self):
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id)
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None]}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id,
+                                          locale='fr')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.ANDROID.id,
+                                          locale='de-DE')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
+            {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
 
     def test_extract_eula_privacy_policy(self):
         # Remove eula.
@@ -180,7 +253,11 @@ class TestAddonIndexer(TestCase):
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
             addon=self.addon,
-            file_kw={'status': amo.STATUS_BETA, 'is_webextension': True})
+            file_kw={
+                'status': amo.STATUS_BETA,
+                'is_webextension': True,
+                'is_mozilla_signed_extension': True,
+            })
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=current_beta_version.all_files[0],
@@ -192,10 +269,12 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version']
         assert extracted['current_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 2000000200100L,
-                'max': 4000000200100L,
+                'max': 9999000000200100,
                 'max_human': '4.0',
                 'min_human': '2.0',
             }
@@ -208,6 +287,11 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -218,10 +302,12 @@ class TestAddonIndexer(TestCase):
         version = current_beta_version
         assert extracted['current_beta_version']
         assert extracted['current_beta_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['current_beta_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -233,6 +319,11 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -243,10 +334,12 @@ class TestAddonIndexer(TestCase):
         version = unlisted_version
         assert extracted['latest_unlisted_version']
         assert extracted['latest_unlisted_version']['id'] == version.pk
+        # Because strict_compatibility is False, the max version we record in
+        # the index is an arbitrary super high version.
         assert extracted['latest_unlisted_version']['compatible_apps'] == {
             FIREFOX.id: {
                 'min': 4009900200100L,
-                'max': 5009900200100L,
+                'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
             }
@@ -259,10 +352,31 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
+            assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
+            assert extracted_file['is_restart_required'] == (
+                file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert extracted_file['webext_permissions_list'] == []
+
+    def test_version_compatibility_with_strict_compatibility_enabled(self):
+        version = self.addon.current_version
+        file_factory(
+            version=version, platform=PLATFORM_MAC.id,
+            strict_compatibility=True)
+        extracted = self._extract()
+
+        assert extracted['current_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 2000000200100L,
+                'max': 4000000200100L,
+                'max_human': '4.0',
+                'min_human': '2.0',
+            }
+        }
 
     def test_extract_translations(self):
         translations_name = {
@@ -289,18 +403,61 @@ class TestAddonIndexer(TestCase):
             {'lang': u'es', 'string': translations_description['es']},
             {'lang': u'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
         ])
-        assert extracted['name_english'] == [translations_name['en-US']]
-        assert extracted['name_spanish'] == [translations_name['es']]
-        assert (extracted['description_english'] ==
+        assert extracted['name_l10n_english'] == [translations_name['en-US']]
+        assert extracted['name_l10n_spanish'] == [translations_name['es']]
+        assert (extracted['description_l10n_english'] ==
                 [translations_description['en-US']])
-        assert (extracted['description_spanish'] ==
+        assert (extracted['description_l10n_spanish'] ==
                 [translations_description['es']])
-        assert (extracted['description_italian'] ==
+        assert (extracted['description_l10n_italian'] ==
                 ['&lt;script&gt;alert(42)&lt;/script&gt;'])
+
+    def test_extract_translations_engb_default(self):
+        """Make sure we do correctly extract things for en-GB default locale"""
+        with self.activate('en-GB'):
+            kwargs = {
+                'status': amo.STATUS_PUBLIC,
+                'type': amo.ADDON_EXTENSION,
+                'default_locale': 'en-GB',
+                'name': 'Banana Bonkers',
+                'description': u'Let your browser eat your bananas',
+                'summary': u'Banana Summary',
+            }
+
+            self.addon = Addon.objects.create(**kwargs)
+            self.addon.name = {'es': u'Banana Bonkers espanole'}
+            self.addon.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            self.addon.summary = {'es': u'resumen banana'}
+            self.addon.save()
+
+        extracted = self._extract()
+
+        assert sorted(extracted['name_translations']) == sorted([
+            {'lang': u'en-GB', 'string': 'Banana Bonkers'},
+            {'lang': u'es', 'string': u'Banana Bonkers espanole'},
+        ])
+        assert sorted(extracted['description_translations']) == sorted([
+            {'lang': u'en-GB', 'string': u'Let your browser eat your bananas'},
+            {
+                'lang': u'es',
+                'string': u'Deje que su navegador coma sus plátanos'
+            },
+        ])
+        assert extracted['name_l10n_english'] == ['Banana Bonkers']
+        assert extracted['name_l10n_spanish'] == [u'Banana Bonkers espanole']
+        assert (extracted['description_l10n_english'] ==
+                [u'Let your browser eat your bananas'])
+        assert (extracted['description_l10n_spanish'] ==
+                [u'Deje que su navegador coma sus plátanos'])
 
     def test_extract_persona(self):
         # Override self.addon with a persona.
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        # It's a Persona, there should not be any files attached, and the
+        # indexer should not care.
+        assert self.addon.current_version.files.count() == 0
+
         persona = self.addon.persona
         persona.header = u'myheader.jpg'
         persona.footer = u'myfooter.jpg'
@@ -308,8 +465,12 @@ class TestAddonIndexer(TestCase):
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
+        persona.popularity = 1000
         persona.save()
         extracted = self._extract()
+        assert extracted['average_daily_users'] == persona.popularity
+        assert extracted['weekly_downloads'] == persona.popularity * 7
+        assert extracted['boost'] == float(persona.popularity ** .2) * 4
         assert extracted['has_theme_rereview'] is False
         assert extracted['persona']['accentcolor'] == persona.accentcolor
         # We need the author that will go in theme_data here, which is
@@ -320,6 +481,21 @@ class TestAddonIndexer(TestCase):
         assert extracted['persona']['is_new'] is False  # It has a persona_id.
         assert extracted['persona']['textcolor'] == persona.textcolor
 
+        # Personas are always considered compatible with every platform, and
+        # all versions of all apps.
+        assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
+        expected_version_compat = {
+            'max': 9999000000200100,
+            'max_human': None,
+            'min': 0,
+            'min_human': None
+        }
+        assert extracted['current_version']['compatible_apps'] == {
+            amo.ANDROID.id: expected_version_compat,
+            amo.FIREFOX.id: expected_version_compat,
+            amo.THUNDERBIRD.id: expected_version_compat,
+            amo.SEAMONKEY.id: expected_version_compat,
+        }
         self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
         extracted = self._extract()
         assert extracted['persona']['is_new'] is True  # No persona_id.

@@ -45,15 +45,17 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.templatetags.jinja_helpers import (
-    get_position, ReviewHelper)
+from olympia.editors.templatetags.jinja_helpers import get_position
+from olympia.editors.utils import ReviewHelper
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
 from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
-from olympia.users.utils import system_addon_submission_allowed
+from olympia.users.utils import (
+    mozilla_signed_extension_submission_allowed,
+    system_addon_submission_allowed)
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, ValidationResult
 
@@ -66,7 +68,7 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 # We use a session cookie to make sure people see the dev agreement.
 
-MDN_BASE = 'https://developer.mozilla.org/Add-ons'
+MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
 class AddonFilter(BaseFilter):
@@ -160,7 +162,8 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         raise http.Http404()
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     compat_form = forms.CompatFormSet(request.POST or None,
-                                      queryset=version.apps.all())
+                                      queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
     if request.method == 'POST' and compat_form.is_valid():
         for compat in compat_form.save(commit=False):
             compat.version = version
@@ -299,6 +302,7 @@ def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
+        'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
@@ -500,6 +504,7 @@ def ownership(request, addon_id, addon):
 
 
 @dev_required(owner_for_post=True)
+@waffle.decorators.waffle_switch('!simple-contributions')
 def payments(request, addon_id, addon):
     charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
 
@@ -567,6 +572,7 @@ def remove_profile(request, addon_id, addon):
 
 
 @dev_required
+@waffle.decorators.waffle_switch('!simple-contributions')
 def profile(request, addon_id, addon):
     profile_form = forms.ProfileForm(request.POST or None, instance=addon)
 
@@ -619,6 +625,11 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         upload.user = user
         upload.save()
     if app_id and version_id:
+        # If app_id and version_id are present, we are dealing with a
+        # compatibility check (i.e. this is not an upload meant for submission,
+        # we were called from check_addon_compatibility()), which essentially
+        # consists in running the addon uploaded against the legacy validator
+        # with a specific min/max appversion override.
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()
@@ -783,6 +794,10 @@ def json_upload_detail(request, upload, addon_slug=None):
                 raise django_forms.ValidationError(
                     ugettext(u'You cannot submit an add-on with a guid '
                              u'ending "@mozilla.org"'))
+            if not mozilla_signed_extension_submission_allowed(
+                    request.user, pkg):
+                raise django_forms.ValidationError(
+                    ugettext(u'You cannot submit a Mozilla Signed Extension'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -882,8 +897,8 @@ def upload_detail(request, uuid, format='html'):
 
 class AddonDependencySearch(BaseAjaxSearch):
     # No personas.
-    types = [amo.ADDON_ANY, amo.ADDON_EXTENSION, amo.ADDON_THEME,
-             amo.ADDON_DICT, amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
+             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
 
 
 @dev_required
@@ -1101,7 +1116,9 @@ def version_edit(request, addon_id, addon, version_id):
         # We should be in no-caching land but this one stays cached for some
         # reason.
         qs = version.apps.all().no_cache()
-        compat_form = forms.CompatFormSet(request.POST or None, queryset=qs)
+        compat_form = forms.CompatFormSet(
+            request.POST or None, queryset=qs,
+            form_kwargs={'version': version})
         data['compat_form'] = compat_form
 
     if (request.method == 'POST' and
@@ -1690,7 +1707,6 @@ def docs(request, doc_name=None):
         'themes/faq': '/Themes/Background/FAQ',
         'policies': '/AMO/Policy',
         'policies/reviews': '/AMO/Policy/Reviews',
-        'policies/rules': '/AMO/Policy/Rules',
         'policies/contact': '/AMO/Policy/Contact',
         'policies/agreement': '/AMO/Policy/Agreement',
     }

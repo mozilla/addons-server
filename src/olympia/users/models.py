@@ -4,7 +4,7 @@ import re
 import time
 from datetime import datetime
 
-from django import dispatch, forms
+from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
@@ -142,7 +142,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
 
-    is_verified = models.BooleanField(default=True)
+    # Is the profile page for this account publicly viewable?
+    # Note: this is only used for API responses (thus addons-frontend) - all
+    # users's profile pages are publicly viewable on legacy frontend.
+    # TODO: Remove this note once legacy profile pages are removed.
+    is_public = models.BooleanField(default=False, db_column='public')
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
@@ -221,11 +225,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         url = reverse('users.%s' % url_name, args=[username] + args)
         return urlparams(url, src=src)
 
-    def get_user_url(self, name='profile', src=None, args=None):
-        return self.create_user_url(self.id, self.username, name, src, args)
+    def get_themes_url_path(self, src=None, args=None):
+        return self.create_user_url(self.id, self.username, 'themes', src=src,
+                                    args=args)
 
     def get_url_path(self, src=None):
-        return self.get_user_url('profile', src=src)
+        return self.create_user_url(self.id, self.username, 'profile', src=src)
 
     @cached_property
     def groups_list(self):
@@ -286,11 +291,22 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.addonuser_set.filter(
             addon__type=amo.ADDON_PERSONA).exists()
 
+    def update_is_public(self):
+        pre = self.is_public
+        is_public = (
+            self.addonuser_set.filter(
+                role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+                listed=True,
+                addon__status=amo.STATUS_PUBLIC).exists())
+        log.info('Updating %s.is_public from %s to %s' % (
+            self.pk, pre, is_public))
+        self.update(is_public=is_public)
+
     @property
     def name(self):
         if self.display_name:
             return force_text(self.display_name)
-        elif self.has_anonymous_username():
+        elif self.has_anonymous_username:
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
             return ugettext('Anonymous user {id}').format(
@@ -307,7 +323,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.username
 
     def _anonymous_username_id(self):
-        if self.has_anonymous_username():
+        if self.has_anonymous_username:
             return self.username.split('-')[1][:6]
 
     def anonymize_username(self):
@@ -319,11 +335,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         self.username = 'anonymous-{}'.format(os.urandom(16).encode('hex'))
         return self.username
 
+    @property
     def has_anonymous_username(self):
-        return re.match('^anonymous-[0-9a-f]{32}$', self.username)
+        return re.match('^anonymous-[0-9a-f]{32}$', self.username) is not None
 
+    @property
     def has_anonymous_display_name(self):
-        return not self.display_name and self.has_anonymous_username()
+        return not self.display_name and self.has_anonymous_username
 
     @cached_property
     def reviews(self):
@@ -414,22 +432,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @cached_property
     def watching(self):
         return self.collectionwatcher_set.values_list('collection', flat=True)
-
-
-@dispatch.receiver(models.signals.post_save, sender=UserProfile,
-                   dispatch_uid='user.post_save')
-def user_post_save(sender, instance, **kw):
-    if not kw.get('raw'):
-        from . import tasks
-        tasks.index_users.delay([instance.id])
-
-
-@dispatch.receiver(models.signals.post_delete, sender=UserProfile,
-                   dispatch_uid='user.post_delete')
-def user_post_delete(sender, instance, **kw):
-    if not kw.get('raw'):
-        from . import tasks
-        tasks.unindex_users.delay([instance.id])
 
 
 class UserNotification(ModelBase):

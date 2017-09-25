@@ -477,12 +477,12 @@ function initValidator($doc) {
         });
     }
 
-    $('.addon-validator-suite', $doc).bind('validate', function(e) {
+    $('.addon-validator-suite', $doc).on('validate', function(e) {
         var el = $(this),
             data = el.data();
 
         if (data.annotateUrl) {
-            el.delegate('.ignore-duplicates-checkbox', 'change',
+            el.on('change', '.ignore-duplicates-checkbox',
                         function(event) {
                 var $target = $(event.target);
                 $.ajax({type: 'POST',

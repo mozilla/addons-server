@@ -7,6 +7,7 @@ from django.core.files.storage import default_storage as storage
 import mock
 import pytest
 from pyquery import PyQuery
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -93,16 +94,15 @@ class TestVersion(TestCase):
         assert v.minor2 is None
         assert v.minor3 is None
 
-    def test_requires_restart(self):
+    def test_is_restart_required(self):
         version = Version.objects.get(pk=81551)
         file_ = version.all_files[0]
-        assert not file_.no_restart
-        assert file_.requires_restart
-        assert version.requires_restart
+        assert not file_.is_restart_required
+        assert not version.is_restart_required
 
-        file_.update(no_restart=True)
+        file_.update(is_restart_required=True)
         version = Version.objects.get(pk=81551)
-        assert not version.requires_restart
+        assert version.is_restart_required
 
     def test_is_webextension(self):
         version = Version.objects.get(pk=81551)
@@ -403,39 +403,39 @@ class TestVersion(TestCase):
             is_addon_public.return_value = False
             assert not version.is_public()
 
-    def test_is_compatible(self):
-        # Base test for fixture before the rest.
+    def test_is_compatible_by_default(self):
+        # Base test for fixture before the rest. Should be compatible by
+        # default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
-        assert version.is_compatible[0]
+        assert version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 
-    def test_is_compatible_type(self):
-        # Only ADDON_EXTENSIONs should be compatible.
+    def test_is_compatible_by_default_type(self):
+        # Types in NO_COMPAT are compatible by default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         addon.update(type=amo.ADDON_PERSONA)
-        assert not version.is_compatible[0]
+        assert version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 
-    def test_is_compatible_strict_opt_in(self):
-        # Add-ons opting into strict compatibility should not be compatible.
+    def test_is_compatible_by_default_strict_opt_in(self):
+        # Add-ons opting into strict compatibility should not be compatible
+        # by default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         file = version.all_files[0]
         file.update(strict_compatibility=True)
-        assert not version.is_compatible[0]
-        assert 'strict compatibility' in ''.join(version.is_compatible[1])
+        assert not version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 
-    def test_is_compatible_binary_components(self):
-        # Add-ons using binary components should not be compatible.
+    def test_is_compatible_by_default_binary_components(self):
+        # Add-ons using binary components should not be compatible by default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         file = version.all_files[0]
         file.update(binary_components=True)
-        assert not version.is_compatible[0]
-        assert 'binary components' in ''.join(version.is_compatible[1])
+        assert not version.is_compatible_by_default
         assert version.is_compatible_app(amo.FIREFOX)
 
     def test_is_compatible_app_max_version(self):
@@ -556,6 +556,28 @@ class TestVersion(TestCase):
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
+
+        addon.type = amo.ADDON_LPAPP
+        assert version.is_ready_for_auto_approval
+
+    def test_is_ready_for_auto_approval_addon_status(self):
+        addon = Addon.objects.get(id=3615)
+        addon.status = amo.STATUS_NOMINATED
+        version = addon.current_version
+        version.all_files = [
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+        assert not version.is_ready_for_auto_approval
+
+        with override_switch('post-review', active=True):
+            # When the post-review switch is active, we also accept add-ons
+            # with NOMINATED status.
+            assert version.is_ready_for_auto_approval
+
+            addon.status = amo.STATUS_NOMINATED
+            assert version.is_ready_for_auto_approval
+
+            addon.status = amo.STATUS_DISABLED
+            assert not version.is_ready_for_auto_approval
 
     def test_was_auto_approved(self):
         addon = Addon.objects.get(id=3615)
@@ -922,11 +944,14 @@ class TestApplicationsVersions(TestCase):
         version = addon.current_version
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
-    def test_repr_when_not_extension(self):
-        addon = addon_factory(type=amo.ADDON_THEME,
-                              version_kw=self.version_kw)
+    def test_repr_when_type_in_no_compat(self):
+        # addon_factory() does not create ApplicationsVersions for types in
+        # NO_COMPAT, so create an extension first and change the type
+        # afterwards.
+        addon = addon_factory(version_kw=self.version_kw)
+        addon.update(type=amo.ADDON_DICT)
         version = addon.current_version
-        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
+        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 and later'
 
     def test_repr_when_low_app_support(self):
         addon = addon_factory(version_kw=dict(min_app_version='3.0',

@@ -17,15 +17,19 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
-from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import (
+    addon_factory, collection_factory, user_factory, version_factory)
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Charity, Persona)
-from olympia.bandwagon.models import Collection
-from olympia.constants.categories import CATEGORIES
+    Charity, Persona, ReplacementAddon)
+from olympia.addons.views import (
+    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
+    AddonSearchView, AddonAutoCompleteSearchView)
+from olympia.bandwagon.models import Collection, FeaturedCollection
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
@@ -149,15 +153,16 @@ class TestHomepageFeatures(TestCase):
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
-class TestPromobox(TestCase):
-    fixtures = ['addons/ptbr-promobox']
+@override_switch('simple-contributions', active=True)
+class TestContributeInstalled404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
 
-    def test_promo_box_ptbr(self):
-        # bug 564355, we were trying to match pt-BR and pt-br
-        response = self.client.get('/pt-BR/firefox/', follow=True)
-        assert response.status_code == 200
+    def test_404(self):
+        url = reverse('addons.installed', args=['a592'])
+        assert self.client.get(url).status_code == 404
 
 
+@override_switch('simple-contributions', active=False)
 class TestContributeInstalled(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
@@ -189,6 +194,18 @@ class TestContributeInstalled(TestCase):
         assert title.startswith('Thank you for installing Gmail S/MIME')
 
 
+@override_switch('simple-contributions', active=True)
+class TestContributeEmbedded404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
+
+    @patch('olympia.paypal.get_paykey')
+    def test_404(self, get_paykey,):
+        get_paykey.return_value = ['abc', '']
+        url = reverse('addons.contribute', args=['a592'])
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestContributeEmbedded(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
@@ -342,6 +359,16 @@ class TestContributeEmbedded(TestCase):
         return self.client.post(urlparams(url, result_type='json'))
 
 
+@override_switch('simple-contributions', active=True)
+class TestDeveloperPages404(TestCase):
+    fixtures = ['base/addon_592', 'base/users']
+
+    def test_404(self):
+        url = reverse('addons.meet', args=['a592'])
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestDeveloperPages(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
@@ -436,6 +463,33 @@ class TestDeveloperPages(TestCase):
         url = reverse('addons.meet', args=['592'])
         r = self.client.get(url, follow=True)
         assert pq(r.content)('#about-addon b').length == 2
+
+
+@override_switch('simple-contributions', active=True)
+class TestContributionsURL(TestCase):
+    fixtures = ['base/addon_3615', 'base/addon_592',
+                'base/users', 'addons/eula+contrib-addon',
+                'addons/addon_228106_info+dev+bio.json',
+                'addons/addon_228107_multiple-devs.json']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=592)
+        user = UserProfile.objects.get(pk=999)
+        AddonUser(addon=self.addon, user=user).save()
+
+    def test_button_appears_if_set(self):
+        response = self.client.get(self.addon.get_url_path())
+        # No button by default because Addon.contributions url not set.
+        assert pq(response.content)('#contribution-url-button').length == 0
+
+        # Set it and it appears though.
+        self.addon.update(contributions='https://paypal.me/foooo')
+        response = self.client.get(self.addon.get_url_path()
+                                   )
+        button = pq(response.content)('#contribution-url-button')
+        assert button.length == 1, response.content
+        assert button[0].attrib['href'] == get_outgoing_url(
+            'https://paypal.me/foooo')
 
 
 class TestLicensePage(TestCase):
@@ -926,30 +980,59 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_requires_restart(self):
-        span_restart = '<span class="requires-restart">Requires Restart</span>'
-        f = self.addon.current_version.all_files[0]
-
-        assert f.requires_restart is True
-        r = self.client.get(self.url)
-        assert span_restart in r.content
-
-        f.no_restart = True
-        f.save()
-        assert f.requires_restart is False
-        r = self.client.get(self.url)
-        assert span_restart not in r.content
-
-    def test_is_webextension(self):
+    def test_is_restart_required(self):
+        span_is_restart_required = (
+            '<span class="is-restart-required">Requires Restart</span>')
         file_ = self.addon.current_version.all_files[0]
 
+        assert file_.is_restart_required is False
+        response = self.client.get(self.url)
+        assert span_is_restart_required not in response.content
+
+        file_.update(is_restart_required=True)
+        response = self.client.get(self.url)
+        assert span_is_restart_required in response.content
+
+    def test_fx57_label_is_webextension(self):
+        """Test that the Firefox 57 label is being shown.
+
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
         assert file_.is_webextension is False
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
-        file_.update(is_webextension=True, no_restart=True)
+        file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('a.is-webextension')
+        assert (
+            link.attr['href'] ==
+            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+        )
+
+    def test_fx57_label_is_mozilla_signed_extension(self):
+        """Test that the Firefox 57 label is being shown.
+
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
+        assert file_.is_mozilla_signed_extension is False
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.is-webextension')
+
+        file_.update(is_mozilla_signed_extension=True)
+        assert file_.is_mozilla_signed_extension is True
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         link = doc('a.is-webextension')
@@ -1571,10 +1654,28 @@ class TestReportAbuse(TestCase):
 
 
 class TestFindReplacement(TestCase):
-    def test_basic(self):
+    def test_no_match(self):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        self.assert3xx(
+            response,
+            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='/addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+
+    def test_match_no_leading_slash(self):
+        addon_factory(slug='replacey')
+        ReplacementAddon.objects.create(guid='xxx', path='addon/replacey/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')
@@ -1712,7 +1813,7 @@ class AddonAndVersionViewSetDetailMixin(object):
 
     def test_get_deleted_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'Addons:ViewDeleted,Addons:Review')
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -2279,6 +2380,42 @@ class TestAddonSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                      weekly_downloads=555)
+        self.refresh()
+
+        qset = AddonSearchView().get_queryset()
+
+        assert set(qset.to_dict()['_source']['excludes']) == set(
+            ('name_sort', 'boost', 'hotness', 'name', 'description',
+             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
+        )
+
+        response = qset.execute()
+
+        source_keys = response.hits.hits[0]['_source'].keys()
+
+        # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
+        # for some reason I don't yet understand... (cgrebs 0717)
+        # maybe because they're used for boosting or filtering or so?
+        assert not any(key in source_keys for key in (
+            'name_sort', 'boost',
+        ))
+
+        assert not any(
+            key.startswith('name_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('description_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.startswith('summary_l10n_') for key in source_keys
+        )
+
     def perform_search(self, url, data=None, expected_status=200, **headers):
         # Just to cache the waffle switch, to avoid polluting the
         # assertNumQueries() call later.
@@ -2286,7 +2423,7 @@ class TestAddonSearchView(ESTestCase):
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
-        assert response.status_code == expected_status
+        assert response.status_code == expected_status, response.content
         data = json.loads(response.content)
         return data
 
@@ -2413,7 +2550,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-addon'
 
     def test_with_query(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+        addon = addon_factory(slug='my-addon', name=u'My Addon',
                               tags=['some_tag'])
         addon_factory(slug='unrelated', name=u'Unrelated')
         self.refresh()
@@ -2424,7 +2561,7 @@ class TestAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['name'] == {'en-US': u'My Addon'}
         assert result['slug'] == 'my-addon'
 
     def test_with_session_cookie(self):
@@ -2450,6 +2587,87 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
+
+    @patch('olympia.addons.models.get_featured_ids')
+    def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
+        addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        get_featured_ids_mock.return_value = [addon.pk]
+        assert addon.is_featured()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'featured': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+    def test_filter_by_featured_app_and_langs(self):
+        fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.FIREFOX.id)
+        collection.add_addon(fx_addon)
+
+        fx_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Addôn')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.FIREFOX.id, locale='fr')
+        collection.add_addon(fx_fr_addon)
+
+        fn_addon = addon_factory(slug='my-addon', name=u'Featured Addôn 2 go')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.ANDROID.id)
+        collection.add_addon(fn_addon)
+
+        fn_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Mobil')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.ANDROID.id, locale='fr')
+        collection.add_addon(fn_fr_addon)
+
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        self.reindex(Addon)
+
+        # Searching for just Firefox should return the two Firefox collections.
+        # The filter should be `Q('term', **{'featured_for.application': app})`
+        data = self.perform_search(self.url, {'featured': 'true',
+                                              'app': 'firefox'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
+
+        # If we specify lang 'fr' too it should be the same collections.
+        # In addition to the app query above, this will be executed too:
+        # `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))`
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
+
+        # But 'en-US' will exclude the 'fr' collection.
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'app': 'firefox',
+                       'lang': 'en-US'})
+        assert data['count'] == 1 == len(data['results'])
+        assert data['results'][0]['id'] == fx_addon.pk
+
+        # If we only search for lang, application is ignored.
+        # Just `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))` now.
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'lang': 'en-US'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fn_addon.pk})
+
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'lang': 'fr'})
+        assert data['count'] == 4 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id'],
+               data['results'][2]['id'], data['results'][3]['id']}
+        self.assertSetEqual(
+            ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
@@ -2569,8 +2787,7 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_category(self):
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
         addon = addon_factory(
             slug='my-addon', name=u'My Addôn', category=category)
 
@@ -2579,9 +2796,10 @@ class TestAddonSearchView(ESTestCase):
         # Create an add-on in a different category.
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs'])
-        other_category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        other_category = Category.from_static_category(static_category, True)
         addon_factory(slug='different-addon', category=other_category)
+
+        self.refresh()
 
         # Search for add-ons in the first category. There should be only one.
         data = self.perform_search(self.url, {'app': 'firefox',
@@ -2636,6 +2854,230 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(
             self.url, {'app': 'lol'}, expected_status=400)
         assert data == ['Invalid "app" parameter.']
+
+    def test_filter_by_author(self):
+        author = user_factory(username=u'my-fancyAuthôr')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        author2 = user_factory(username=u'my-FancyAuthôrName')
+        AddonUser.objects.create(addon=addon2, user=author2)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'my-fancyAuthôr'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_multiple_authors(self):
+        author = user_factory(username='foo')
+        author2 = user_factory(username='bar')
+        another_author = user_factory(username='someoneelse')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'], weekly_downloads=999)
+        AddonUser.objects.create(addon=addon, user=author)
+        AddonUser.objects.create(addon=addon, user=author2)
+        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
+                               tags=['unique_tag', 'some_tag'],
+                               weekly_downloads=333)
+        AddonUser.objects.create(addon=addon2, user=author2)
+        another_addon = addon_factory()
+        AddonUser.objects.create(addon=another_addon, user=another_author)
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'author': u'foo,bar'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
+    def test_find_addon_default_non_en_us(self):
+        with self.activate('en-GB'):
+            addon = addon_factory(
+                status=amo.STATUS_PUBLIC,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Bonkers',
+                description=u'Let your browser eat your bananas',
+                summary=u'Banana Summary',
+            )
+
+            addon.name = {'es': u'Banana Bonkers espanole'}
+            addon.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            addon.summary = {'es': u'resumen banana'}
+            addon.save()
+
+        addon_factory(
+            slug='English Addon', name=u'My English Addôn')
+
+        self.reindex(Addon)
+
+        for locale in ('en-US', 'en-GB', 'es'):
+            with self.activate(locale):
+                url = reverse('addon-search')
+
+                data = self.perform_search(url, {'lang': locale})
+
+                assert data['count'] == 2
+                assert len(data['results']) == 2
+
+                data = self.perform_search(
+                    url, {'q': 'Banana', 'lang': locale})
+
+                result = data['results'][0]
+                assert result['id'] == addon.pk
+                assert result['slug'] == addon.slug
+
+    def test_exclude_addons(self):
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        addon3 = addon_factory()
+        self.refresh()
+
+        # Exclude addon2 and addon3 by slug.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                (addon2.slug, addon3.slug))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon1.pk
+
+        # Exclude addon1 and addon2 by pk.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                map(unicode, (addon2.pk, addon1.pk)))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon3.pk
+
+        # Exclude addon1 by pk and addon3 by slug.
+        data = self.perform_search(
+            self.url, {'exclude_addons': u','.join(
+                (unicode(addon1.pk), addon3.slug))})
+
+        assert len(data['results']) == 1
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == addon2.pk
+
+
+class TestAddonAutoCompleteSearchView(ESTestCase):
+    client_class = APITestClient
+
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonAutoCompleteSearchView, self).setUp()
+        self.url = reverse('addon-autocomplete')
+
+    def tearDown(self):
+        super(TestAddonAutoCompleteSearchView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, expected_status=200, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later.
+        waffle.switch_is_active('boost-webextensions-in-search')
+
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == expected_status
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        addon_factory(slug='nonsense', name=u'Nope Nope Nope')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'my'})  # No db query.
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 2
+
+        assert {itm['id'] for itm in data['results']} == {addon.pk, addon2.pk}
+
+    def test_default_locale_fallback_still_works_for_translations(self):
+        addon = addon_factory(default_locale='pt-BR', name='foobar')
+        # Couple quick checks to make sure the add-on is in the right state
+        # before testing.
+        assert addon.default_locale == 'pt-BR'
+        assert addon.name.locale == 'pt-br'
+
+        self.refresh()
+
+        # Search in a different language than the one used for the name: we
+        # should fall back to default_locale and find the translation.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
+        assert data['results'][0]['name'] == 'foobar'
+
+        # Same deal in en-US.
+        data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
+        assert data['results'][0]['name'] == 'foobar'
+
+    def test_empty(self):
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_get_queryset_excludes(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      weekly_downloads=666)
+        addon_factory(slug='my-persona', name=u'My Persona',
+                      type=amo.ADDON_PERSONA)
+        self.refresh()
+
+        qset = AddonAutoCompleteSearchView().get_queryset()
+
+        includes = set((
+            'default_locale', 'icon_type', 'id', 'modified',
+            'name_translations', 'persona', 'slug', 'type'))
+
+        assert set(qset.to_dict()['_source']['includes']) == includes
+
+        response = qset.execute()
+
+        # Sort by type to avoid sorting problems before picking the
+        # first result. (We have a theme and an add-on)
+        hit = sorted(response.hits.hits, key=lambda x: x['_source']['type'])
+        assert set(hit[1]['_source'].keys()) == includes
+
+    def test_no_unlisted(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      status=amo.STATUS_NULL,
+                      weekly_downloads=666,
+                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        self.refresh()
+        data = self.perform_search(self.url)
+        assert 'count' not in data
+        assert len(data['results']) == 0
+
+    def test_pagination(self):
+        [addon_factory() for x in range(0, 11)]
+        self.refresh()
+
+        # page_size should be ignored, we should get 10 results.
+        data = self.perform_search(self.url, {'page_size': 1})
+        assert 'count' not in data
+        assert 'next' not in data
+        assert 'prev' not in data
+        assert len(data['results']) == 10
 
 
 class TestAddonFeaturedView(TestCase):
@@ -2791,7 +3233,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 97
+        assert len(data) == 98
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -2802,6 +3244,32 @@ class TestStaticCategoryView(TestCase):
             u'misc': False,
             u'id': 1,
             u'application': u'firefox',
+            u'description': None,
+            u'type': u'extension',
+            u'slug': u'feeds-news-blogging'
+        }
+
+    def test_with_description(self):
+        # StaticCategory is immutable, so avoid calling it's __setattr__
+        # directly.
+        object.__setattr__(CATEGORIES_BY_ID[1], 'description', u'does stuff')
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+
+        assert len(data) == 98
+
+        # some basic checks to verify integrity
+        entry = data[0]
+
+        assert entry == {
+            u'name': u'Feeds, News & Blogging',
+            u'weight': 0,
+            u'misc': False,
+            u'id': 1,
+            u'application': u'firefox',
+            u'description': u'does stuff',
             u'type': u'extension',
             u'slug': u'feeds-news-blogging'
         }
@@ -2819,3 +3287,55 @@ class TestStaticCategoryView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response['cache-control'] == 'max-age=21600'
+
+
+class TestLanguageToolsView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestLanguageToolsView, self).setUp()
+        self.url = reverse('addon-language-tools')
+
+    def test_wrong_app(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 400
+
+        response = self.client.get(self.url, {'app': 'foo'})
+        assert response.status_code == 400
+
+    def test_basic(self):
+        dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        dictionary_spelling_variant = addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            locale_disambiguation='For spelling reform')
+        language_pack = addon_factory(type=amo.ADDON_DICT, target_locale='es')
+
+        # These add-ons below should be ignored: they are either not public or
+        # of the wrong type, not supporting the app we care about, or their
+        # target locale is empty.
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id})
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='fr',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            status=amo.STATUS_NOMINATED)
+        addon_factory(type=amo.ADDON_DICT, target_locale='')
+        addon_factory(type=amo.ADDON_LPAPP, target_locale=None)
+        addon_factory(target_locale='fr')
+
+        response = self.client.get(self.url, {'app': 'firefox'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 3
+        expected = [dictionary, dictionary_spelling_variant, language_pack]
+
+        assert (
+            set(item['id'] for item in data['results']) ==
+            set(item.pk for item in expected))
+
+        assert 'locale_disambiguation' in data['results'][0]
+        assert 'target_locale' in data['results'][0]

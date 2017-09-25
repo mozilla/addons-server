@@ -252,7 +252,7 @@ class ThemeReviewTestMixin(object):
             assert send_mail_jinja_mock.call_args_list[4] == expected_calls[4]
 
             assert message_mock.call_args_list[0][0][1] == (
-                u'5 validation de thèmes réalisées avec succès '
+                u'5 validations de thèmes réalisées avec succès '
                 u'(+15 points, 15 au total).')
 
         # Reviewer points accrual.

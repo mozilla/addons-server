@@ -7,7 +7,7 @@
 
     // Validate the form.
     var $form = $('#submit-persona form');
-    $form.delegate('input, select, textarea', 'change keyup paste', function(e) {
+    $form.on('change keyup paste', 'input, select, textarea', function(e) {
         checkValid(e.target.form);
     });
     checkValid($form[0]);
@@ -129,10 +129,10 @@
             }
         }
 
-        $form.delegate('input[name="cc-attrib"]', 'change', function() {
+        $form.on('change', 'input[name="cc-attrib"]', function() {
             // Toggle the other license options based on whether the copyright license is selected.
             toggleCopyr(+$licenseField.val() == licensesByClass.copyr.id);
-        }).delegate('#persona-license-list input[type=radio][name=license]', 'change', function() {
+        }).on('change', '#persona-license-list input[type=radio][name=license]', function() {
             // Upon selecting license from advanced menu, change it in the Q/A format.
             $('.noncc.disabled').removeClass('disabled');
             $('input[name^="cc-"]').prop('checked', false);
@@ -217,7 +217,7 @@
                 });
             };
 
-        $d.delegate('.reset', 'click', _pd(function() {
+        $d.on('click', '.reset', _pd(function() {
             var $this = $(this),
                 $p = $this.closest('.row');
             $p.find('input[type="hidden"]').val('');
@@ -227,11 +227,11 @@
             $this.hide();
         }));
 
-        $d.delegate('input[type="file"]', 'upload_finished', upload_finished)
-          .delegate('input[type="file"]', 'upload_start', upload_start)
-          .delegate('input[type="file"]', 'upload_success', upload_success)
-          .delegate('input[type="file"]', 'upload_errors', upload_errors)
-          .delegate('input[type="file"]', 'change', function(e) {
+        $d.on('upload_finished', 'input[type="file"]', upload_finished)
+          .on('upload_start', 'input[type="file"]', upload_start)
+          .on('upload_success', 'input[type="file"]', upload_success)
+          .on('upload_errors', 'input[type="file"]', upload_errors)
+          .on('change', 'input[type="file"]', function(e) {
             $(this).imageUploader();
         });
 
@@ -277,7 +277,7 @@
             }
         });
 
-        $('#id_name').bind('change keyup paste blur', _.throttle(function() {
+        $('#id_name').on('change keyup paste blur', _.throttle(function() {
             $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));
             slugify();
         }, 250)).trigger('change');

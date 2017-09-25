@@ -110,7 +110,7 @@ def services_url(viewname, *args, **kwargs):
 
 @library.filter
 def paginator(pager):
-    return Paginator(pager).render()
+    return PaginationRenderer(pager).render()
 
 
 @library.filter
@@ -153,7 +153,7 @@ def sidebar(app):
     return categories, sorted(types, key=lambda x: x.name)
 
 
-class Paginator(object):
+class PaginationRenderer(object):
 
     def __init__(self, pager):
         self.pager = pager
@@ -631,7 +631,7 @@ def datetime_filter(t, fmt=None):
     to use django's datetime filter.
     """
     if fmt is None:
-        fmt = ugettext(u'%B %e, %Y')
+        fmt = u'%B %e, %Y'
 
     fmt = fmt.encode('utf-8')
     return smart_text(t.strftime(fmt)) if t else ''

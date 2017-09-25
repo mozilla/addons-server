@@ -13,6 +13,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext, pgettext
 
+import waffle
+
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
@@ -33,7 +35,7 @@ from olympia.editors.models import (
     get_reviewing_cache_key, PerformanceGraph, ReviewerScore,
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
-from olympia.editors.templatetags.jinja_helpers import (
+from olympia.editors.utils import (
     AutoApprovedTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
@@ -409,9 +411,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
 
-    if is_limited_reviewer(request):
-        qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
-
     if SearchForm:
         if request.GET:
             search_form = SearchForm(request.GET)
@@ -424,8 +423,24 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         search_form = None
         is_searching = False
     admin_reviewer = is_admin_reviewer(request)
-    if not admin_reviewer and not is_searching and hasattr(qs, 'filter'):
-        qs = exclude_admin_only_addons(qs)
+
+    if hasattr(qs, 'filter'):
+        if not is_searching and not admin_reviewer:
+            qs = exclude_admin_only_addons(qs)
+
+        # Those additional restrictions will only work with our RawSQLModel,
+        # so we need to make sure we're not dealing with a regular Django ORM
+        # queryset first.
+        if hasattr(qs, 'sql_model') and not unlisted:
+            if is_limited_reviewer(request):
+                qs = qs.having(
+                    'waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
+
+            if waffle.switch_is_active('post-review'):
+                # Hide webextensions from the queues so that human reviewers
+                # don't pick them up: auto-approve cron should take care of
+                # them.
+                qs = qs.filter(**{'files.is_webextension': False})
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -467,15 +482,12 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
-    AUTO_APPROVED = amo.AUTO_APPROVED
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
         'moderated': Review.objects.all().to_moderate().count,
         'auto_approved': (
-            Addon.objects.public().filter(
-                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
-            .count)
+            AutoApprovalSummary.get_auto_approved_queue().count),
     }
     if unlisted:
         counts = {
@@ -556,11 +568,9 @@ def application_versions_json(request):
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     qs = (
-        Addon.objects.public()
+        AutoApprovalSummary.get_auto_approved_queue()
         .select_related(
             'addonapprovalscounter', '_current_version__autoapprovalsummary')
-        .filter(
-            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
         .order_by(
             '-_current_version__autoapprovalsummary__weight',
             'addonapprovalscounter__last_human_review',

@@ -5,25 +5,57 @@ from django.utils.translation import ugettext
 from rest_framework import serializers
 
 import olympia.core.logger
+from olympia import amo
+from olympia.access import acl
 from olympia.access.models import Group
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.users.models import DeniedName, UserProfile
-from olympia.users.serializers import BaseUserSerializer
 from olympia.users.tasks import resize_photo
 
 
 log = olympia.core.logger.getLogger('accounts')
 
 
+class BaseUserSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserProfile
+        fields = ('id', 'name', 'url', 'username')
+
+    def get_url(self, obj):
+        def is_adminish(user):
+            return (user and
+                    acl.action_allowed_user(user, amo.permissions.USERS_EDIT))
+
+        request = self.context.get('request', None)
+        current_user = getattr(request, 'user', None) if request else None
+        # Only return your own profile url, and for developers.
+        if obj == current_user or is_adminish(current_user) or obj.is_public:
+            return absolutify(obj.get_url_path())
+
+    # Used in subclasses.
+    def get_permissions(self, obj):
+        out = {perm for group in obj.groups_list
+               for perm in group.rules.split(',')}
+        return sorted(out)
+
+    # Used in subclasses.
+    def get_picture_url(self, obj):
+        return absolutify(obj.picture_url)
+
+
 class PublicUserProfileSerializer(BaseUserSerializer):
-    picture_url = serializers.URLField(read_only=True)
+    picture_url = serializers.SerializerMethodField()
     average_addon_rating = serializers.CharField(source='averagerating')
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (
-            'average_addon_rating', 'created', 'biography', 'homepage',
+            'average_addon_rating', 'created', 'biography',
+            'has_anonymous_display_name', 'has_anonymous_username', 'homepage',
             'is_addon_developer', 'is_artist', 'location', 'occupation',
-            'num_addons_listed', 'picture_type', 'picture_url', 'username',
+            'num_addons_listed', 'picture_type', 'picture_url',
         )
         # This serializer should never be used for updates but just to be sure.
         read_only_fields = fields
@@ -31,11 +63,12 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
 class UserProfileSerializer(PublicUserProfileSerializer):
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
+    permissions = serializers.SerializerMethodField()
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
             'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
-            'last_login_ip', 'read_dev_agreement', 'is_verified',
+            'last_login_ip', 'read_dev_agreement', 'permissions',
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
@@ -170,3 +203,14 @@ class UserNotificationSerializer(serializers.Serializer):
             # Not .update because some of the instances are new.
             instance.save()
         return instance
+
+
+class LoginUserProfileSerializer(BaseUserSerializer):
+    permissions = serializers.SerializerMethodField()
+    picture_url = serializers.SerializerMethodField()
+
+    class Meta(BaseUserSerializer.Meta):
+        fields = BaseUserSerializer.Meta.fields + (
+            'email', 'picture_url', 'permissions',
+        )
+        read_only_fields = fields

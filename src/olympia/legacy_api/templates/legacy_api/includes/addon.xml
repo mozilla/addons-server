@@ -105,7 +105,7 @@
     {% endfor -%}
     {%- endif -%}
 
-    {%- if addon.takes_contributions -%}
+    {%- if addon.takes_contributions and not waffle.switch('simple-contributions') -%}
     <contribution_data>
       <link>{{ addon.contribution_url|absolutify|urlparams(src='api') }}</link>
       {% if addon.suggested_amount %}
@@ -115,6 +115,12 @@
       {% endif %}
       <meet_developers>
         {{ addon.meet_the_dev_url()|absolutify|urlparams(src='api') }}
+      </meet_developers>
+    </contribution_data>
+    {%- elif addon.contributions and waffle.switch('simple-contributions')-%}
+    <contribution_data>
+      <meet_developers>
+        {{ addon.contributions }}
       </meet_developers>
     </contribution_data>
     {%- endif -%}

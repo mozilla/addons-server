@@ -10,10 +10,10 @@ import waffle
 
 import olympia.core.logger
 from olympia import amo
-from olympia.editors.templatetags.jinja_helpers import ReviewHelper
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
+from olympia.editors.utils import ReviewHelper
 from olympia.files.utils import atomic_lock
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
@@ -45,7 +45,7 @@ class Command(BaseCommand):
         else:
             addon_statuses = (amo.STATUS_PUBLIC,)
         return (Version.objects.filter(
-            addon__type=amo.ADDON_EXTENSION,
+            addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP),
             addon__disabled_by_user=False,
             addon__status__in=addon_statuses,
             files__status=amo.STATUS_AWAITING_REVIEW,

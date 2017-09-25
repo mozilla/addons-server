@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-11-08 08:02+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-05 10:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -66,7 +66,9 @@ msgstr "Folslein falidaasjerapport besjen"
 msgid "Validating {0}"
 msgstr "{0} wurdt falidearre"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Jo add-on is grutter as de maksimale grutte fan {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons fan server ûntfongen; steat: {0}"
 
@@ -135,6 +137,9 @@ msgstr "Sorry, gjin stipe platfoarm fûn."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "It troch jo oplade bestânstype is net bekend."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Jo bestân is grutter as de maksimale grutte fan {0}."
 
 msgid "You cancelled the upload."
 msgstr "Jo hawwe de oplaad annulearre."
@@ -651,18 +656,6 @@ msgstr "Akseptearje en ynstallearje"
 msgid "Add to {0}"
 msgstr "Tafoegje oan {0}"
 
-msgid "Download Now"
-msgstr "No downloade"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on is net bywurke om standert-kompatibel te stypjen."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Jo moatte Firefox 10.0 of heger brûke."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla hat dizze ferzje as net kompatibel mei jo Firefox-ferzje markearre."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Dochs ynstallearje foar {0}"
@@ -673,9 +666,12 @@ msgstr "Dochs downloade foar {0}"
 msgid "Not available for your platform"
 msgstr "Net beskikber foar jo platfoarm"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Net beskikber foar {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Dizze add-on is net kompatibel mei jo ferzje fan {0}."
+
+msgid "View other versions"
+msgstr "Oare ferzjes besjen"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Wurket mei {app} {min} - {max}"
@@ -683,17 +679,8 @@ msgstr "Wurket mei {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Wurket mei {app}"
 
-msgid "View other versions"
-msgstr "Oare ferzjes besjen"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Allinnich by Firefox – Download Firefox no!"
-
-msgid "Download now"
-msgstr "No downloade"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Allinnich beskikber in Firefox foar desktops"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, jo hawwe in op Mozilla basearre browser (lykas Firefox) nedich om in sykynstekker ynstallearje te kinnen."

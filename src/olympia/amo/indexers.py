@@ -55,8 +55,8 @@ class BaseSearchIndexer(object):
                 '%s_translations' % field_name: {
                     'type': 'object',
                     'properties': {
-                        'lang': {'type': 'string', 'index': 'no'},
-                        'string': {'type': 'string', 'index': 'no'}
+                        'lang': {'type': 'text', 'index': False},
+                        'string': {'type': 'text', 'index': False}
                     }
                 }
             })
@@ -74,9 +74,9 @@ class BaseSearchIndexer(object):
 
         for analyzer in SEARCH_ANALYZER_MAP:
             for field in field_names:
-                property_name = '%s_%s' % (field, analyzer)
+                property_name = '%s_l10n_%s' % (field, analyzer)
                 mapping[doc_name]['properties'][property_name] = {
-                    'type': 'string',
+                    'type': 'text',
                     'analyzer': analyzer,
                 }
 
@@ -102,7 +102,7 @@ class BaseSearchIndexer(object):
     def extract_field_search_translations(cls, obj, field, db_field=None):
         """
         Returns a dict containing all translations for the field, that will be
-        analyzed and indexed by ES without language-specific analyzers.
+        analyzed and indexed by ES *without* language-specific analyzers.
         """
         if db_field is None:
             db_field = '%s_id' % field
@@ -127,7 +127,7 @@ class BaseSearchIndexer(object):
         # Indices for each language. languages is a list of locales we want to
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.iteritems():
-            extend_with_me['%s_%s' % (field, analyzer)] = list(
+            extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
                 set(string for locale, string
                     in obj.translations[getattr(obj, db_field)]
                     if locale.lower() in languages))

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2015-11-03 11:53+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -66,7 +66,9 @@ msgstr "Zobacz pełny raport"
 msgid "Validating {0}"
 msgstr "Weryfikowanie {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Otrzymano pustą odpowiedź z serwera; status: {0}"
 
@@ -131,6 +133,9 @@ msgstr "Przepraszamy, nie znaleziono obsługiwanego systemu."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Nie rozpoznano typu przesłanego pliku."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Anulowano przesyłanie."
@@ -648,18 +653,6 @@ msgstr "Akceptuję, zainstaluj"
 msgid "Add to {0}"
 msgstr "Zainstaluj"
 
-msgid "Download Now"
-msgstr "Pobierz"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Dodatek nie został zaktualizowany, by wspierać domyślną kompatybilność."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Musisz używać Firefoksa 10 lub nowszego."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla oznaczyła tę wersję jako niekompatybilną z twoją wersją Firefoksa."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Mimo wszystko zainstaluj dla systemu (0)"
@@ -670,9 +663,13 @@ msgstr "Mimo wszystko pobierz dla (0)"
 msgid "Not available for your platform"
 msgstr "Niedostępny dla twojego systemu"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Niedostępny dla {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ten motyw jest niekompatybilny z twoją wersją programu {0}"
+
+msgid "View other versions"
+msgstr "Zobacz inne wersje"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Działa z {app} {min} - {max}"
@@ -681,17 +678,7 @@ msgstr "Działa z {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Działa z {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Zobacz inne wersje"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Pobierz"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

@@ -4,10 +4,13 @@ FROM centos:centos7
 RUN touch /addons-server-centos7-container
 
 ADD docker/mysql-community.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
 ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
 
 # For mysql-python dependencies
 ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
+
+ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
 # For git dependencies
 ADD docker/git.repo /etc/yum.repos.d/git.repo

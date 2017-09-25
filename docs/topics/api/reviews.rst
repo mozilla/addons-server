@@ -81,6 +81,7 @@ This endpoint allows you to fetch a review by its id.
     :>json string user.id: The user id.
     :>json string user.name: The user name.
     :>json string user.url: The user profile URL.
+    :>json string user.username: The user username.
 
 ----
 Post

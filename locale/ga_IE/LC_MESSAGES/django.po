@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-02-08 03:44+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -75,15 +75,18 @@ msgstr "Nóta léirmheasa"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Ní féidir nótaí a chur ach leis an leagan is déanaí de bhreiseán."
 
+msgid "- Add-on not on AMO -"
+msgstr ""
+
 msgid "Download Now"
-msgstr "Íosluchtaigh Anois"
+msgstr "Íoslódáil Anois"
 
 msgid "Download"
-msgstr "Íosluchtaigh"
+msgstr "Íoslódáil"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Leathanach Íosluchtaithe&nbsp;&rarr;"
+msgstr "Leathanach Íoslódála&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Mór-Le-Rá"
@@ -144,6 +147,10 @@ msgstr[2] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[3] "Ní mór {0} gcarachtar ar a laghad a bheith i gclib."
 msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
 
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
+
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
 
@@ -175,9 +182,6 @@ msgstr "Déan cur síos ar do Théama."
 msgid "Enter a new author's email address"
 msgstr "Cuir isteach seoladh ríomhphoist an údair nua"
 
-msgid "Not Reviewed"
-msgstr "Gan Léirmheas"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Beidh úsáideoirí in ann níos mó nó níos lú ná an méid seo a thabhairt."
 
@@ -186,6 +190,9 @@ msgstr ""
 
 msgid "Listed"
 msgstr "Liostaithe"
+
+msgid "Addon and collection paths need to end with \"/\""
+msgstr ""
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -375,11 +382,11 @@ msgstr "Curtha leis ar {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s íosluchtú sa tseachtain"
-msgstr[1] "%(num)s íosluchtú sa tseachtain"
-msgstr[2] "%(num)s íosluchtú sa tseachtain"
-msgstr[3] "%(num)s n-íosluchtú sa tseachtain"
-msgstr[4] "%(num)s íosluchtú sa tseachtain"
+msgstr[0] "%(num)s íoslódáil sa tseachtain"
+msgstr[1] "%(num)s íoslódáil sa tseachtain"
+msgstr[2] "%(num)s íoslódáil sa tseachtain"
+msgstr[3] "%(num)s n-íoslódáil sa tseachtain"
+msgstr[4] "%(num)s íoslódáil sa tseachtain"
 
 #, python-format
 msgid "%(num)s user"
@@ -402,11 +409,11 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} íosluchtú sa tseachtain"
-msgstr[1] "{0} íosluchtú sa tseachtain"
-msgstr[2] "{0} íosluchtú sa tseachtain"
-msgstr[3] "{0} n-íosluchtú sa tseachtain"
-msgstr[4] "{0} íosluchtú sa tseachtain"
+msgstr[0] "{0} íoslódáil sa tseachtain"
+msgstr[1] "{0} íoslódáil sa tseachtain"
+msgstr[2] "{0} íoslódáil sa tseachtain"
+msgstr[3] "{0} n-íoslódáil sa tseachtain"
+msgstr[4] "{0} íoslódáil sa tseachtain"
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -503,81 +510,15 @@ msgstr "Gan rátáil fós"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> úsáideoir"
 
-msgid "{0} Daily Users"
-msgstr "{0} Úsáideoir Laethúil"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Chun an breiseán seo agus na mílte eile a úsáid, <b>faigh Firefox</b>, brabhsálaí oscailte agus saor in aisce ó Mhozilla."
-
-msgid "Learn more about Firefox"
-msgstr "Tuilleadh eolais faoi Firefox"
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "nó <b><a class=\"button installer\" href=\"{url}\">íosluchtaigh mar sin féin</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Conas a Shuiteáil in Thunderbird</strong> <ol> <li>Íosluchtaigh agus sábháil an comhad ar do dhiosca crua.</li> <li>In Mozilla Thunderbird, oscail 'Breiseáin' ón roghchlár 'Uirlisí'.</li> "
-"<li>Ón chnaipe roghanna in aice leis an réimse cuardaigh, roghnaigh \"Suiteáil Breiseán Ó Chomhad...\" agus aimsigh an breiseán íosluchtaithe.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
-
-msgid "Learn more about Thunderbird"
-msgstr "Tuilleadh eolais faoi Thunderbird"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Níl an breiseán seo comhoiriúnach leis an leagan de %(app)s atá agat."
-
-msgid "Install Anyway"
-msgstr "Suiteáil Mar Sin Féin"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
-
-msgid "Help test new Firefox Versions"
-msgstr "Cabhraigh linn leaganacha nua de Firefox a thástáil"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Teastaíonn ón bhreiseán seo leagan {new_version} de %(app)s. Tá leagan {old_version} agat faoi láthair."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "Nuashonraigh {0}"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "nó féach ar <a href=\"%(href)s\">leaganacha níos sine den bhreiseán seo</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "Teastaíonn ón Phearsantacht seo leagan %(new_version)s de %(app)s. Tá leagan {old_version} agat faoi láthair."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
-msgstr ""
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Nóta:</strong> Níl an breiseán seo comhoiriúnach le do chóras oibriúcháin."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Níl an breiseán seo comhoiriúnach leis an leagan de %(app)s atá agat mar gheall air seo."
-
-msgid "View other versions"
-msgstr "Féach leaganacha eile"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Níl an breiseán seo comhoiriúnach leis an leagan de %(app)s atá agat."
+#. {0} is the number of users.
+#, fuzzy
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} Úsáideoir Laethúil"
+msgstr[1] "{0} Úsáideoir Laethúil"
+msgstr[2] "{0} Úsáideoir Laethúil"
+msgstr[3] "{0} Úsáideoir Laethúil"
+msgstr[4] "{0} Úsáideoir Laethúil"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -587,25 +528,13 @@ msgstr "Polasaí Príobháideachta le haghaidh {0}"
 msgid "Privacy Policy"
 msgstr "Polasaí Príobháideachta"
 
-msgid "QR code for add-on"
-msgstr "Cód QR le haghaidh an bhreiseáin"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "Replacement Add-ons for {0}"
-msgstr "Breiseáin le haghaidh {0}"
-
 msgid "Report Abuse"
 msgstr "Déan Tuairisc ar Dhrochúsáid"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
 msgstr ""
 "Má cheapann tú go dtagann an breiseán seo salach ar <a href=\"%(url)s\">ár bpolasaithe</a> nó má tá imní ort maidir le slándáil nó príobháideacht, bain úsáid as an bhfoirm thíos agus déan cur síos "
 "ar an bhfadhb. Ná húsáid an fhoirm seo ar aon chúis eile."
@@ -680,6 +609,9 @@ msgstr "Deilbhín {0}"
 msgid "by %(users)s"
 msgstr "le %(users)s"
 
+msgid "Download Anyway"
+msgstr "Íoslódáil mar sin féin"
+
 # {0} is a number
 #, fuzzy
 msgid "[Warning]"
@@ -691,9 +623,6 @@ msgstr "Leaganacha"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Deir na forbróirí gur breiseán turgnamhach é seo"
-
-msgid "Download Anyway"
-msgstr "Íosluchtaigh mar sin féin"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -847,6 +776,12 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Is breiseán turgnamhach é seo"
 
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr ""
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr ""
+
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
 msgstr "Go raibh maith agat as {0} a shuiteáil"
@@ -893,6 +828,14 @@ msgstr "Ceadúnas an chóid fhoinsigh le haghaidh {addon}"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Ceadúnas an Chóid Fhoinsigh"
+
+#, fuzzy
+msgid "support section"
+msgstr "Suíomh tacaíochta"
+
+#, fuzzy
+msgid "support email"
+msgstr "Ríomhphost tacaíochta:"
 
 msgid "permalink"
 msgstr "buan-nasc"
@@ -952,11 +895,14 @@ msgstr "Nóta ón Bhailitheoir"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[0] "<strong>{0}</strong> íoslódáil sa tseachtain"
 msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
 msgstr[4] "<strong>{0}</strong> íosluchtú sa tseachtain"
+
+msgid "Not Reviewed"
+msgstr "Gan Léirmheas"
 
 msgid "Tools"
 msgstr "Uirlisí"
@@ -1006,19 +952,6 @@ msgstr "Earráid agus an t-ionchur á dheimhniú, bain triail eile as."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
-
-msgid "Collections"
-msgstr "Bailiúcháin"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Foclóirí agus Pacáistí Teanga"
-
-msgid "Add-ons"
-msgstr "Breiseáin"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} ó shin"
 
 msgid "Not allowed"
 msgstr "Neamhcheadaithe"
@@ -1135,6 +1068,9 @@ msgstr ""
 msgid "Most Followers"
 msgstr "Líon is mó leantóirí"
 
+msgid "Collections"
+msgstr "Bailiúcháin"
+
 msgid "Collections I've Made"
 msgstr "Bailiúcháin a Chruthaigh Mé"
 
@@ -1149,6 +1085,9 @@ msgstr "Tuilleadh&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Breiseáin Shoghluaiste"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Foclóirí agus Pacáistí Teanga"
 
 msgid "Search Tools"
 msgstr "Uirlisí Cuardaigh"
@@ -1172,6 +1111,13 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> as <b>%(count)s</b> á dtaispeáint"
+
+msgid "Add-ons"
+msgstr "Breiseáin"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} ó shin"
 
 msgid "Title"
 msgstr "Teideal"
@@ -1222,11 +1168,8 @@ msgstr "Leaganacha Bailí an Fheidhmchláir"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 msgstr ""
 
 msgid "GUID"
@@ -1235,11 +1178,10 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Leaganacha"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 #. L10n: {0} is 'Add-ons for <app>'.
@@ -1286,27 +1228,6 @@ msgstr "Tá an URL seo in úsáid ag bailiúchán eile cheana"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ní mór do dheilbhíní a bheith PNG nó JPG."
-
-msgid "Add a positive vote for this collection"
-msgstr "Tabhair vóta deimhneach don bhailiúchán seo"
-
-msgid "Add a negative vote for this collection"
-msgstr "Tabhair vóta diúltach don bhailiúchán seo"
-
-msgid "Remove my vote for this collection"
-msgstr "Bain mo vóta ón bhailiúchán seo"
-
-msgid "Log in to vote for this collection"
-msgstr "Logáil isteach chun vóta a thabhairt don bhailiúchán seo"
-
-msgid "Add to favorites"
-msgstr "Cuir leis na ceanáin"
-
-msgid "Favorite"
-msgstr "Ceanán"
-
-msgid "Remove from favorites"
-msgstr "Bain ó na ceanáin"
 
 #, fuzzy
 msgid "This slug is already in use by another one of your collections."
@@ -1618,6 +1539,12 @@ msgstr "Ar Aghaidh"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "nó <a id=\"change-owner-cancel\" href=\"#\">Cealaigh</a>"
 
+msgid "Remove from favorites"
+msgstr "Bain ó na ceanáin"
+
+msgid "Add to favorites"
+msgstr "Cuir leis na ceanáin"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "Bailiúcháin le {0}"
@@ -1646,6 +1573,10 @@ msgstr ""
 
 msgid "Subscribe"
 msgstr "Liostáil"
+
+#, fuzzy, python-format
+msgid "by %(author_link)s"
+msgstr "le %(users)s"
 
 msgid "Following"
 msgstr "Á Leanúint"
@@ -1695,6 +1626,21 @@ msgstr "Cuir nóta tráchta leis"
 msgid "Remove this add-on from the collection"
 msgstr "Bain an breiseán seo ón bhailiúchán"
 
+msgid "Add a positive vote for this collection"
+msgstr "Tabhair vóta deimhneach don bhailiúchán seo"
+
+msgid "Add a negative vote for this collection"
+msgstr "Tabhair vóta diúltach don bhailiúchán seo"
+
+msgid "Remove my vote for this collection"
+msgstr "Bain mo vóta ón bhailiúchán seo"
+
+msgid "Log in to vote for this collection"
+msgstr "Logáil isteach chun vóta a thabhairt don bhailiúchán seo"
+
+msgid "Favorite"
+msgstr "Ceanán"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
@@ -1729,7 +1675,7 @@ msgid "Most Users"
 msgstr "Líon is mó úsáideoirí"
 
 msgid "Weekly Downloads"
-msgstr "Íosluchtuithe sa tSeachtain"
+msgstr "Íoslódálacha sa tSeachtain"
 
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
@@ -1741,7 +1687,7 @@ msgid "Created"
 msgstr "Cruthaithe"
 
 msgid "Downloads"
-msgstr "Íosluchtuithe"
+msgstr "Íoslódálacha"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1765,10 +1711,16 @@ msgid "Install Language Pack"
 msgstr "Suiteáil Pacáiste Teanga"
 
 msgid "Download Dictionary"
-msgstr "Íosluchtaigh Foclóir"
+msgstr "Íoslódáil Foclóir"
 
 msgid "Download Language Pack"
-msgstr "Íosluchtaigh Pacáiste Teanga"
+msgstr "Íoslódáil Pacáiste Teanga"
+
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
+msgstr ""
 
 msgid "Available in your locale"
 msgstr "Ar fáil i do theanga"
@@ -1820,13 +1772,15 @@ msgid "Additional Resources"
 msgstr "Acmhainní Eile"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
+#, fuzzy
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
 msgstr "Tuilleadh eolais faoin <a href=\"http://support.mozilla.com/kb/Search+bar\">bharra cuardaigh</a> in {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
@@ -2330,9 +2284,6 @@ msgstr "Breathnóir"
 msgid "Support"
 msgstr "Tacaíocht"
 
-msgid "Any"
-msgstr "Ar bith"
-
 msgid "Extension"
 msgstr "Eisínteacht"
 
@@ -2460,10 +2411,11 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-msgid "Moderated Addon Review"
-msgstr ""
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Scrúduithe le Ceannasaí"
 
-msgid "Addon Review Moderation Reverted"
+msgid "Add-on Review Moderation Reverted"
 msgstr ""
 
 msgid "Level 1"
@@ -2509,7 +2461,7 @@ msgid "Bookmarks"
 msgstr "Leabharmharcanna"
 
 msgid "Download Management"
-msgstr "Bainistiú Íosluchtuithe"
+msgstr "Bainistiú Íoslódála"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fothaí, Nuacht, agus Blagadóireacht"
@@ -2687,7 +2639,7 @@ msgid "Privacy and Security"
 msgstr "Príobháideachas agus Slándáil"
 
 msgid "Downloading and File Management"
-msgstr "Íosluchtú agus Bainistiú Comhad"
+msgstr "Íoslódáil agus Bainistiú Comhad"
 
 msgid "Interface Customizations"
 msgstr "Saincheapadh an Chomhéadain"
@@ -2770,6 +2722,9 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "Ar bith"
 
 msgid "All Platforms"
 msgstr "Gach Ardán"
@@ -2879,7 +2834,7 @@ msgid "Need at least one compatible application."
 msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Bhí earráid leis an uasluchtú. Bain triail eile as."
+msgstr "Bhí earráid leis an uaslódáil. Bain triail eile as."
 
 msgid "Override failed validation"
 msgstr ""
@@ -2897,7 +2852,7 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr ""
 
 msgid "You cannot upload any more files for this version."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
 
 msgid "Version doesn't match"
 msgstr "Níl an leagan comhoiriúnach"
@@ -2940,30 +2895,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Doiciméadú Breiseán :: Lárionad Forbartha."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr ""
 
-# {0} is a number
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} earráid"
-msgstr[1] "{0} earráid"
-msgstr[2] "{0} earráid"
-msgstr[3] "{0} n-earráid"
-msgstr[4] "{0} earráid"
-
-# {0} is a number
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} rabhadh"
-msgstr[1] "{0} rabhadh"
-msgstr[2] "{0} rabhadh"
-msgstr[3] "{0} rabhadh"
-msgstr[4] "{0} rabhadh"
-
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3051,6 +2986,9 @@ msgstr ""
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr ""
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
 msgid "Icons cannot be animated."
 msgstr "Ní cheadaítear deilbhíní beo."
 
@@ -3066,7 +3004,7 @@ msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr "Tharla earráid agus do réamhamharc á uasluchtú."
+msgstr "Tharla earráid agus do réamhamharc á uaslódáil."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3102,11 +3040,26 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
+
+#, fuzzy
+msgid "Review Policies and Rules"
+msgstr "Eagarthóir"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Leagan Inphriontáilte"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Glacaim leis an gComhaontú"
@@ -3116,30 +3069,6 @@ msgstr "nó <a href=\"{0}\">Cealaigh</a>"
 
 msgid "Back to Add-ons"
 msgstr "Ar ais go dtí na Breiseáin"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Cuardaigh"
-
-# all of these look good as verbs as of 8 Feb 2011
-msgid "Search"
-msgstr "Cuardaigh"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Torthaí an Chuardaigh: \"{0}\""
-
-msgid "Search Results"
-msgstr "Torthaí an Chuardaigh"
-
-msgid "Please enter some search terms."
-msgstr ""
-
-msgid "Loading results&hellip;"
-msgstr ""
-
-msgid "No results found."
-msgstr "Níor aimsíodh aon rud."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3191,7 +3120,15 @@ msgstr "Tuilleadh Acmhainní"
 msgid "Search Developer Docs"
 msgstr "Cuardaigh an Doiciméadú Forbartha"
 
+# all of these look good as verbs as of 8 Feb 2011
+msgid "Search"
+msgstr "Cuardaigh"
+
 msgid "Use the field below to upload your add-on package."
+msgstr ""
+
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
 msgstr ""
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
@@ -3227,6 +3164,9 @@ msgstr "Gníomhaíocht Is Déanaí le haghaidh {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ag %(user)s"
 
+msgid "No results found."
+msgstr "Níor aimsíodh aon rud."
+
 msgid "Refine Activity"
 msgstr "Scag Gníomhaíocht"
 
@@ -3247,8 +3187,8 @@ msgid ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
 "\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uasluchtaigh Leagan Nua</a> nó <a href=\"#"
-"\" class=\"close\">Ná Bac Leis</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uaslódáil Leagan Nua</a> nó <a href=\"#\" "
+"class=\"close\">Ná Bac Leis</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "Scrúdaigh agus nuashonraigh raonta comhoiriúnachta."
@@ -3350,8 +3290,7 @@ msgstr "Féach ar Leathanach an Bhreiseáin"
 msgid "Summary"
 msgstr "Achoimre"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 msgid "Experimental?"
@@ -3366,6 +3305,19 @@ msgstr "Is breiseán turgnamhach é seo."
 #, fuzzy
 msgid "This add-on is ready for general use."
 msgstr "Tá an t-ainm úsáideora in úsáid cheana."
+
+#, fuzzy
+msgid "Requires Payment?"
+msgstr "Atosú de dhíth"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr ""
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr ""
+
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3396,6 +3348,13 @@ msgstr[1] "Clibeanna in áirithe:"
 msgstr[2] "Clibeanna in áirithe:"
 msgstr[3] "Clibeanna in áirithe:"
 msgstr[4] "Clibeanna in áirithe:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Deontais"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
 
 msgid "Add-on Details"
 msgstr "Mionsonraí an Bhreiseáin"
@@ -3561,7 +3520,7 @@ msgid "Used in add-on detail pages."
 msgstr "Úsáidtear é seo ar leathanach mionsonraí an bhreiseáin."
 
 msgid "Upload a Custom Icon..."
-msgstr "Uasluchtaigh Deilbhín Saincheaptha..."
+msgstr "Uaslódáil Deilbhín Saincheaptha..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64×64 má tá sé níos mó."
@@ -3647,13 +3606,13 @@ msgid "Edit information about this add-on."
 msgstr "Cuir an t-eolas faoin bhreiseán seo in eagar."
 
 msgid "Upload a new version of this add-on."
-msgstr "Uasluchtaigh leagan nua den bhreiseán seo."
+msgstr "Uaslódáil leagan nua den bhreiseán seo."
 
 msgid "New Version"
 msgstr "Leagan Nua"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Staitisticí laethúla ar líon íosluchtuithe agus úsáideoirí."
+msgstr "Staitisticí laethúla ar líon íoslódálacha agus úsáideoirí."
 
 msgid "Statistics"
 msgstr "Staitisticí"
@@ -3738,9 +3697,6 @@ msgstr ""
 msgid "Summary:"
 msgstr "Achoimre:"
 
-msgid "This summary will be shown in listings and searches."
-msgstr ""
-
 msgid "This add-on is experimental"
 msgstr "Is breiseán turgnamhach é seo"
 
@@ -3773,8 +3729,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Cuir an Scrúdú Ar Ceal"
+
+#, fuzzy
 msgid "Cancel Review and Disable Version"
 msgstr "Cuir an Scrúdú Ar Ceal"
+
+#, fuzzy
+msgid "Submit Version"
+msgstr "Seol Leagan Nua"
 
 #, fuzzy
 msgid "Submit Version for Review"
@@ -3804,6 +3768,13 @@ msgstr "Seolta"
 
 msgid "You’re done!"
 msgstr "Tá tú críochnaithe!"
+
+#, fuzzy
+msgid "Version Submitted"
+msgstr "Síníodh an Leagan"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr ""
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3838,13 +3809,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr "Íosluchtaigh {0}"
+msgstr "Íoslódáil {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
 msgid "Upload File"
-msgstr "Uasluchtaigh Comhad"
+msgstr "Uaslódáil Comhad"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3854,7 +3825,7 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Upload Add-on"
-msgstr "Uasluchtaigh Breiseán"
+msgstr "Uaslódáil Breiseán"
 
 #, fuzzy
 msgid "Where to Host File"
@@ -3865,7 +3836,7 @@ msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
 msgid "Upload Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
@@ -3884,9 +3855,6 @@ msgstr "Seol Comhad"
 
 msgid "Sign Add-on"
 msgstr "Sínigh Breiseán"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -4000,6 +3968,9 @@ msgstr "Bainistigh Do Phróifíl Fhorbróra"
 msgid "Create a Developer Profile"
 msgstr ""
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr ""
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -4019,7 +3990,7 @@ msgid "Telling your users what's coming soon will give them something to look fo
 msgstr ""
 
 msgid "Upload New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "View All"
 msgstr ""
@@ -4053,9 +4024,10 @@ msgstr "Léig an blag &#9658;"
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "HTML inghlactha: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr ""
 
 msgid "Some HTML supported."
 msgstr "Tacaítear le roinnt HTML."
@@ -4100,8 +4072,8 @@ msgid "Resources"
 msgstr "Acmhainní"
 
 #, fuzzy
-msgid "WebExtensions"
-msgstr "Eisínteachtaí"
+msgid "Porting"
+msgstr "Rátáil"
 
 msgid "Community"
 msgstr "An Pobal"
@@ -4120,8 +4092,8 @@ msgid "Contact Us"
 msgstr "Dul i dteagmháil linn"
 
 #, fuzzy
-msgid "Review Policies"
-msgstr "Eagarthóir"
+msgid "Policies"
+msgstr "Polasaithe Breiseán"
 
 msgid "FAQ"
 msgstr "Ceisteanna Coitianta"
@@ -4200,10 +4172,10 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
 #, fuzzy
-msgid "Evolution in Add-on Development"
-msgstr "Forbairt Eisínteachtaí"
+msgid "Update Your Legacy Extension"
+msgstr "Eisínteachtaí Mór-Le-Rá"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
 #, fuzzy
@@ -4214,12 +4186,12 @@ msgstr "Tuilleadh Eolais"
 msgid "What's New"
 msgstr "Leagan Is Déanaí:"
 
-msgid ""
-"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-msgid "See Schedule"
-msgstr ""
+#, fuzzy
+msgid "See Tutorial"
+msgstr "Féach uile"
 
 #, fuzzy
 msgid "View All Submissions"
@@ -4258,8 +4230,8 @@ msgstr "Téamaí so-úsáidte i bhFirefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
-"a>, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -4515,8 +4487,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -4585,7 +4557,7 @@ msgid "Files"
 msgstr "Comhaid:"
 
 msgid "Upload Another File"
-msgstr "Uasluchtaigh Comhad Eile"
+msgstr "Uaslódáil Comhad Eile"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -4706,7 +4678,7 @@ msgid "All versions"
 msgstr "Féach ar gach Leagan"
 
 msgid "Upload a New Version"
-msgstr "Uasluchtaigh Leagan Nua"
+msgstr "Uaslódáil Leagan Nua"
 
 msgid "Delete Version {version}"
 msgstr "Scrios Leagan {version}"
@@ -4748,28 +4720,51 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "An bhfuil tú cinnte gur mhaith leat an scrúdú a chur ar ceal?"
 
+msgid "Add-on Documentation :: Developer Hub"
+msgstr "Doiciméadú Breiseán :: Lárionad Forbartha."
+
+# {0} is a number
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} earráid"
+msgstr[1] "{0} earráid"
+msgstr[2] "{0} earráid"
+msgstr[3] "{0} n-earráid"
+msgstr[4] "{0} earráid"
+
+# {0} is a number
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} rabhadh"
+msgstr[1] "{0} rabhadh"
+msgstr[2] "{0} rabhadh"
+msgstr[3] "{0} rabhadh"
+msgstr[4] "{0} rabhadh"
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Set the page you see every time you open a new tab."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
+
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgstr ""
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
-
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4873,53 +4868,63 @@ msgstr ""
 msgid "Delete review"
 msgstr "Scrios an léirmheas"
 
-msgid "Rejected or Unreviewed"
+msgid "Admin Review"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Stádas:"
+msgid "Jetpack Add-on"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-#, fuzzy
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Breiseáin le haghaidh {0}"
-msgstr[1] "Breiseáin le haghaidh {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "More Information Requested"
+msgstr ""
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Nuashonraithe {0}"
-msgstr[1] "Nuashonraithe {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "Contains Reviewer Comment"
+msgstr "breiseán, eagarthóir nó nóta tráchta"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "Sources provided"
+msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
+msgid "WebExtension"
+msgstr ""
+
+msgid "Uses a custom CSP."
+msgstr ""
+
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+msgid "Uses a content script for all URLs."
+msgstr ""
+
 #, fuzzy
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Breiseáin le haghaidh {0}"
-msgstr[1] "Breiseáin le haghaidh {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "Has too many daily users."
+msgstr "Cad is Úsáideoir Laethúil ann?"
 
-msgid "All Unlisted Add-ons"
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
+msgid "Has a pending info request."
+msgstr ""
+
+msgid "Is flagged for admin review."
+msgstr ""
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -5012,71 +5017,6 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr "Nuashonruithe"
-
-msgid "Admin Review"
-msgstr ""
-
-msgid "Jetpack Add-on"
-msgstr ""
-
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "breiseán, eagarthóir nó nóta tráchta"
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr ""
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-#, fuzzy
-msgid "Has too many daily users."
-msgstr "Cad is Úsáideoir Laethúil ann?"
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr ""
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
-msgstr ""
-
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -5160,6 +5100,10 @@ msgstr "Tuairiscí ar Dhrochúsáid"
 msgid "View Privacy Policy"
 msgstr "Polasaí Príobháideachta"
 
+#, fuzzy
+msgid "Requires Payment"
+msgstr "Atosú de dhíth"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5184,19 +5128,6 @@ msgstr "Tuilleadh eolais faoin bhreiseán seo"
 msgid "Image Gallery"
 msgstr "Gailearaí Íomhánna"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-
-msgid "Install development version"
-msgstr "Suiteáil leagan forbartha"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Níl aon rud le feiceáil anseo!  Níor sholáthair an forbróir aon sonraí."
 
@@ -5210,6 +5141,9 @@ msgstr "Ciúnna"
 msgid "New Add-ons"
 msgstr "Breiseáin Nua"
 
+msgid "Updates"
+msgstr "Nuashonruithe"
+
 msgid "Moderated Reviews"
 msgstr "Scrúduithe le Ceannasaí"
 
@@ -5218,6 +5152,9 @@ msgid "Auto Approved Add-ons"
 msgstr "Breiseáin Android"
 
 msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Logs"
@@ -5703,32 +5640,57 @@ msgstr ""
 msgid "Describe your reason for flagging"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Stádas:"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Breiseáin le haghaidh {0}"
+msgstr[1] "Breiseáin le haghaidh {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Nuashonraithe {0}"
+msgstr[1] "Nuashonraithe {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Breiseáin le haghaidh {0}"
+msgstr[1] "Breiseáin le haghaidh {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+msgid "Flagged"
+msgstr ""
+
 msgid "Cannot diff a version against itself"
 msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Tharla earráid agus comhad %s á rochtain."
-
-msgid "That file no longer exists."
-msgstr "Níl an comhad sin ann a thuilleadh."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr "Is comhadlann é an comhad seo."
 
 msgid "Access your data for {name}"
 msgstr ""
@@ -5742,15 +5704,18 @@ msgstr ""
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr ""
+
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil, eilimint <%s> ar iarraidh nó folamh"
 
 msgid "Could not parse uploaded file."
-msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
+msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5868,6 +5833,30 @@ msgstr ""
 msgid "Fetching file."
 msgstr "Comhad á fháil."
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Tharla earráid agus comhad %s á rochtain."
+
+msgid "That file no longer exists."
+msgstr "Níl an comhad sin ann a thuilleadh."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
+msgstr "Is comhadlann é an comhad seo."
+
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
 
@@ -5903,21 +5892,6 @@ msgstr ""
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Maisigh do bhrabhsálaí in ómós do Naomh Pádraig."
-
-msgid "Sit Back and Relax"
-msgstr "Lig Do Scíth"
-
-msgid "Add-ons that help you on your travels!"
-msgstr ""
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
 
 msgid "A+ add-ons for School"
 msgstr "Breiseáin A+ le haghaidh scoile"
@@ -6018,7 +5992,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Go raibh maith agat as %(app)s a úsáid agus as tacaíocht a thabhairt do <a href=\"%(url)s\">Mhisean Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Breiseáin íosluchtaithe:"
+msgstr "Breiseáin íoslódáilte:"
 
 msgid "Active Users"
 msgstr "Úsáideoirí Gníomhacha"
@@ -6742,7 +6716,7 @@ msgid "Add-on Developer FAQ"
 msgstr ""
 
 #, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
 msgstr ""
 
 msgid "What is a \".xpi\" file?"
@@ -6761,9 +6735,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
+"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -6852,8 +6826,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
-"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
 msgid "How do I submit my add-on?"
@@ -6862,7 +6836,7 @@ msgstr ""
 #, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -7110,7 +7084,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 #, python-format
@@ -7171,7 +7145,7 @@ msgstr "Tá Polasaí Príobháideachta ag an mbreiseán seo"
 #, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -7180,7 +7154,7 @@ msgstr ""
 #, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 
 msgid "How much do add-ons cost to purchase?"
@@ -7536,9 +7510,8 @@ msgstr ""
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ní féidir leat tuilleadh comhad a uasluchtú le haghaidh an leagain seo."
+msgstr "Níl cead agat níos mó ná léirmheas amháin a dhéanamh ar leagan amháin de bhreiseán."
 
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Go raibh maith agat; cuireadh bratach leis an léirmheas seo agus déanfaidh eagarthóir iniúchadh air."
@@ -7699,19 +7672,6 @@ msgstr "Sórtáil De Réir"
 msgid "Relevance"
 msgstr "Ábharthacht"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Torthaí {0} - {1} as {2} le haghaidh <strong>{3}</strong> ar taispeáint"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "{0} - {1} as {2} toradh ar taispeáint"
-
 msgid "All Add-ons"
 msgstr "Gach Breiseán"
 
@@ -7732,6 +7692,9 @@ msgstr "Torthaí Cuardaigh ar {0} i mBailiúcháin"
 msgid "Collection Search Results"
 msgstr "Torthaí Cuardaigh i mBailiúcháin"
 
+msgid "Search Results"
+msgstr "Torthaí an Chuardaigh"
+
 msgid "Search Unavailable"
 msgstr ""
 
@@ -7744,6 +7707,14 @@ msgstr ""
 
 msgid "Themes Search Results"
 msgstr ""
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: Cuardaigh"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "Torthaí an Chuardaigh: \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7769,6 +7740,19 @@ msgstr "Catagóir"
 
 msgid "Tag"
 msgstr "Clib"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "Torthaí {0} - {1} as {2} le haghaidh <strong>{3}</strong> ar taispeáint"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "{0} - {1} as {2} toradh ar taispeáint"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -7844,7 +7828,7 @@ msgid "Add-ons Created"
 msgstr "Breiseáin cruthaithe"
 
 msgid "Add-ons Downloaded"
-msgstr "Breiseáin Íosluchtaithe"
+msgstr "Breiseáin Íoslódáilte"
 
 msgid "Add-ons Updated"
 msgstr "Breiseáin Nuashonraithe"
@@ -7934,7 +7918,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr "Sonraí is déanaí á luchtú&hellip;"
+msgstr "Sonraí is déanaí á lódáil&hellip;"
 
 msgid "No data available."
 msgstr "Níl aon sonraí ar fáil."
@@ -7993,7 +7977,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr "Á Luchtú..."
+msgstr "Á Lódáil..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -8023,7 +8007,7 @@ msgid "Reviews Created by Date"
 msgstr ""
 
 msgid "Download sources by Date"
-msgstr "Foinsí Íosluchtaithe de réir Dáta"
+msgstr "Foinsí Íoslódála de réir Dáta"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -8132,7 +8116,7 @@ msgstr "<a href=\"%(reg)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil iste
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íosluchtaigh <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
+msgstr "Chun triail a bhaint as na mílte breiseán ar fáil anseo, íoslódáil <a href=\"%(url)s\">Mozilla Firefox</a>, bealach tapa, saor in aisce leis an nGréasán a bhrabhsáil!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
@@ -8217,10 +8201,6 @@ msgstr ""
 msgid "Please enter at least one name to be denied."
 msgstr "Cuir isteach deontas molta, níos lú ná ${0}."
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "eile"
-
 msgid "No user with that email."
 msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
 
@@ -8250,7 +8230,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
@@ -8365,7 +8345,8 @@ msgstr "Scrios an grianghraf reatha"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
 
-msgid "Allowed HTML: {0}. Links are forbidden."
+#, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
@@ -8535,18 +8516,16 @@ msgstr[4] "%(num)s breiseán"
 msgid "Average rating of developer's add-ons"
 msgstr "Meánrátáil ar bhreiseáin an fhorbróra seo"
 
+msgctxt "user_list_others"
+msgid "others"
+msgstr "eile"
+
 #, python-format
 msgid "%s Version History"
 msgstr "Stair na Leaganacha %s"
 
 msgid "Version History with Changelogs"
 msgstr "Stair na Leaganacha le Logchomhaid Athruithe"
-
-msgid "Add-on uses binary components."
-msgstr "Úsáideann an breiseán seo comhpháirteanna dénártha."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} agus níos déanaí"
@@ -8583,18 +8562,6 @@ msgstr "Bí cúramach le seanleaganacha!"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr ""
 
-msgid "Current Max. Version"
-msgstr "An leagan is mó faoi láthair"
-
-msgid "Target Version"
-msgstr "Spriocleagan"
-
-msgid "Email when finished"
-msgstr "Ríomhphost nuair a bheidh sé críochnaithe"
-
-msgid "Log emails instead of sending"
-msgstr ""
-
 msgid "Deleted versions can`t be changed."
 msgstr "Ní féidir leaganacha scriosta a athrú."
 
@@ -8603,23 +8570,3 @@ msgstr "Dénártha"
 
 msgid "Non-binary"
 msgstr "Neamhdhénártha"
-
-msgid "Message ID"
-msgstr "Aitheantas teachtaireachta"
-
-msgid "Message"
-msgstr "Teachtaireacht"
-
-#, fuzzy
-msgid "Compat Type"
-msgstr "Cuir i gComparáid"
-
-#, fuzzy
-msgid "Addons Affected"
-msgstr "Breiseáin cruthaithe"
-
-msgid "Addon"
-msgstr "Breiseán"
-
-msgid "Validation Result"
-msgstr "Toradh an Bhailíochtaithe"

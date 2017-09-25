@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-02-08 02:06+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -45,7 +45,7 @@ msgid "Cancel"
 msgstr "Cealaigh"
 
 msgid "Uploading {0}"
-msgstr "{0} á uasluchtú"
+msgstr "{0} á uaslódáil"
 
 msgid "Error with {0}"
 msgstr "Earráid le {0}"
@@ -75,7 +75,9 @@ msgstr "Tuairisc iomlán ón bhailíochtóir"
 msgid "Validating {0}"
 msgstr "{0} á bhailíochtú"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fuarthas freagra folamh ón bhfreastalaí; stádas: {0}"
 
@@ -143,10 +145,13 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Ní aithnítear cineál an chomhaid a d'uasluchtaigh tú."
+msgstr "Ní aithnítear cineál an chomhaid a d'uaslódáil tú."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
-msgstr "Chealaigh tú an t-uasluchtú."
+msgstr "Chealaigh tú an uaslódáil."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
@@ -246,7 +251,7 @@ msgid "{0} installs"
 msgstr ""
 
 msgid "Downloads"
-msgstr "Íosluchtuithe"
+msgstr "Íoslódálacha"
 
 msgid "Daily Users"
 msgstr "Úsáideoirí Laethúla"
@@ -274,7 +279,7 @@ msgid "Add-ons Created"
 msgstr "Breiseáin Cruthaithe"
 
 msgid "Add-ons Downloaded"
-msgstr "Breiseáin Íosluchtaithe"
+msgstr "Breiseáin Íoslódáilte"
 
 msgid "Add-ons Updated"
 msgstr "Breiseáin Nuashonraithe"
@@ -437,11 +442,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Íosluchtuithe agus Úsáideoirí Laethúla, le {0} lá anuas"
+msgstr "Íoslódálacha agus Úsáideoirí Laethúla, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Íosluchtuithe agus Úsáideoirí Laethúla ó {0} go {1}"
+msgstr "Íoslódálacha agus Úsáideoirí Laethúla ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -453,11 +458,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Íosluchtuithe, le {0} lá anuas"
+msgstr "Íoslódálacha, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Íosluchtuithe ó {0} go {1}"
+msgstr "Íoslódálacha ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -509,7 +514,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Foinsí Íosluchtaithe, le {0} lá anuas"
+msgstr "Foinsí Íoslódáilte, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -541,7 +546,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Breiseáin Íosluchtaithe, le {0} lá anuas"
+msgstr "Breiseáin Íoslódáilte, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -666,31 +671,23 @@ msgstr "Glac Leis agus Suiteáil"
 msgid "Add to {0}"
 msgstr "Cuir le {0}"
 
-msgid "Download Now"
-msgstr "Íosluchtaigh Anois"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Suiteáil ar {0} mar sin féin"
 
 msgid "Download for {0} anyway"
-msgstr "Íosluchtaigh le haghaidh {0} mar sin féin"
+msgstr "Íoslódáil le haghaidh {0} mar sin féin"
 
 msgid "Not available for your platform"
 msgstr "Níl sé ar fáil ar d'ardán"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Níl sé ar fáil le haghaidh {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
+
+msgid "View other versions"
+msgstr "Féach ar leaganacha eile"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Feidhmíonn sé le {app} {min} - {max}"
@@ -698,16 +695,7 @@ msgstr "Feidhmíonn sé le {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Feidhmíonn sé le {app}"
 
-msgid "View other versions"
-msgstr "Féach ar leaganacha eile"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Download now"
-msgstr "Íosluchtaigh anois"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -771,7 +759,7 @@ msgid "Enter a new author's email address"
 msgstr ""
 
 msgid "There was an error uploading your file."
-msgstr "Tharla earráid agus do chomhad á uasluchtú."
+msgstr "Tharla earráid agus do chomhad á uaslódáil."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -814,7 +802,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr "Á luchtú&hellip;"
+msgstr "Á lódáil&hellip;"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -838,7 +826,7 @@ msgid "Number of Reviews"
 msgstr ""
 
 msgid "Loading..."
-msgstr "Á Luchtú..."
+msgstr "Á Lódáil..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."

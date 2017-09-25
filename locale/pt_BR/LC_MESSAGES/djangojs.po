@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-05-24 01:31+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-27 16:08+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,9 @@ msgstr "Ver relatório de validação completo"
 msgid "Validating {0}"
 msgstr "Validando {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Sua extensão excede o tamanho máximo de {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida uma resposta vazia do servidor; estado: {0}"
 
@@ -100,7 +102,7 @@ msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
-"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários tem o WebExtension instalado, não serão capazes de instalar um complemento assinado."
+"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários possuam o WebExtension instalado, não serão capazes de instalar uma extensão legada."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Portando uma extensão obsoleta do Firefox no MDN"
@@ -132,6 +134,9 @@ msgstr "Desculpe, nenhuma plataforma suportada foi encontrada."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de arquivo que você enviou não foi reconhecido."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Seu arquivo excede o tamanho máximo de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Você cancelou o envio."
@@ -648,18 +653,6 @@ msgstr "Aceitar e Instalar"
 msgid "Add to {0}"
 msgstr "Adicionar ao {0}"
 
-msgid "Download Now"
-msgstr "Baixar agora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "A extensão não foi atualizada para suportar a compatibilidade por padrão."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Você precisa usar o Firefox 10.0 ou superior."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla marcou essa versão como sendo incompatível com a sua versão do Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instalar no {0} mesmo assim"
@@ -670,9 +663,12 @@ msgstr "Baixar para o {0} mesmo assim"
 msgid "Not available for your platform"
 msgstr "Indisponível para a sua plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Indisponível para o {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Esta extensão não é compatível com a sua versão do {0}."
+
+msgid "View other versions"
+msgstr "Ver outras versões"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona com {app} {min} - {max}"
@@ -680,17 +676,8 @@ msgstr "Funciona com {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funciona com {app}"
 
-msgid "View other versions"
-msgstr "Ver outras versões"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Apenas com o Firefox — Obter o Firefox agora!"
-
-msgid "Download now"
-msgstr "Baixe agora"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Apenas disponível no Firefox para computadores"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sentimos, mas você precisa de um navegador baseado no Mozilla (como o Firefox) para instalar um plug-in de pesquisa."

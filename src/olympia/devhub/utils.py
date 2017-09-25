@@ -6,13 +6,13 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 from celery import chain
-from validator.version import Version as VersionString
 
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import is_beta, parse_addon
+from olympia.versions.compare import version_int
 
 from . import tasks
 
@@ -144,6 +144,16 @@ def fix_addons_linter_output(validation, listed=True):
         for name, path in validation['metadata'].get('jsLibs', {}).items()
     }
 
+    # Essential metadata.
+    metadata = {
+        'listed': listed,
+        'identified_files': identified_files,
+        'processed_by_addons_linter': True,
+        'is_webextension': True
+    }
+    # Add metadata already set by the linter.
+    metadata.update(validation.get('metadata', {}))
+
     return {
         'success': not validation['errors'],
         'compatibility_summary': {
@@ -155,12 +165,7 @@ def fix_addons_linter_output(validation, listed=True):
         'warnings': validation['summary']['warnings'],
         'errors': validation['summary']['errors'],
         'messages': list(_merged_messages()),
-        'metadata': {
-            'listed': listed,
-            'identified_files': identified_files,
-            'processed_by_addons_linter': True,
-            'is_webextension': True
-        },
+        'metadata': metadata,
         # The addons-linter only deals with WebExtensions and no longer
         # outputs this itself, so we hardcode it.
         'detected_type': 'extension',
@@ -176,41 +181,41 @@ def find_previous_version(addon, file, version_string, channel):
     if not addon or not version_string:
         return
 
-    version = VersionString(version_string)
-
-    # Find any previous version of this add-on with the correct status
-    # to match the given file.
-    files = File.objects.filter(version__addon=addon, version__channel=channel)
-
-    if (channel == amo.RELEASE_CHANNEL_LISTED and
-            (file and file.status != amo.STATUS_BETA)):
-        # TODO: We'll also need to implement this for FileUploads
-        # when we can accurately determine whether a new upload
-        # is a beta version.
-        files = files.filter(status=amo.STATUS_PUBLIC)
-    else:
-        files = files.filter(Q(status=amo.STATUS_PUBLIC) |
-                             Q(status=amo.STATUS_BETA, is_signed=True))
+    is_version_beta = is_beta(version_string)
+    statuses = [amo.STATUS_PUBLIC]
+    if is_version_beta:
+        # Only include beta versions if the version string passed corresponds
+        # to a beta version. This is not perfect because even if the version
+        # string *looks* like a beta, the developer might want to use it as a
+        # regular listed upload, and in that case including previous betas in
+        # the list is wrong, but it's the best we can do when we're dealing
+        # with a FileUpload, since it's too early to know what the developer
+        # intends to do.
+        statuses.append(amo.STATUS_BETA)
+    # Find all previous files of this add-on with the correct status and in
+    # the right channel.
+    qs = File.objects.filter(
+        version__addon=addon, version__channel=channel, status__in=statuses)
 
     if file:
-
         # Add some extra filters if we're validating a File instance,
         # to try to get the closest possible match.
-        files = (files.exclude(pk=file.pk)
-                 # Files which are not for the same platform, but have
-                 # other files in the same version which are.
-                 .exclude(~Q(platform=file.platform) &
-                          Q(version__files__platform=file.platform))
-                 # Files which are not for either the same platform or for
-                 # all platforms, but have other versions in the same
-                 # version which are.
-                 .exclude(~Q(platform__in=(file.platform,
-                                           amo.PLATFORM_ALL.id)) &
-                          Q(version__files__platform=amo.PLATFORM_ALL.id)))
+        qs = (qs.exclude(pk=file.pk)
+              # Files which are not for the same platform, but have
+              # other files in the same version which are.
+                .exclude(~Q(platform=file.platform) &
+                         Q(version__files__platform=file.platform))
+              # Files which are not for either the same platform or for
+              # all platforms, but have other versions in the same
+              # version which are.
+                .exclude(~Q(platform__in=(file.platform,
+                                          amo.PLATFORM_ALL.id)) &
+                         Q(version__files__platform=amo.PLATFORM_ALL.id)))
 
-    for file_ in files.order_by('-id'):
+    vint = version_int(version_string)
+    for file_ in qs.order_by('-id'):
         # Only accept versions which come before the one we're validating.
-        if VersionString(file_.version.version) < version:
+        if file_.version.version_int < vint:
             return file_
 
 
@@ -229,19 +234,22 @@ class Validator(object):
                        amo.RELEASE_CHANNEL_UNLISTED)
             save = tasks.handle_upload_validation_result
             is_webextension = False
+            is_mozilla_signed = False
+
             # We're dealing with a bare file upload. Try to extract the
             # metadata that we need to match it against a previous upload
             # from the file itself.
             try:
-                addon_data = parse_addon(file_, check=False)
-                is_webextension = addon_data.get('is_webextension', False)
+                addon_data = parse_addon(file_, minimal=True)
+                is_webextension = addon_data['is_webextension']
+                is_mozilla_signed = addon_data.get(
+                    'is_mozilla_signed_extension', False)
             except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
-
             validate = self.validate_upload(file_, channel, is_webextension)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
@@ -250,6 +258,7 @@ class Validator(object):
             assert listed is None
 
             channel = file_.version.channel
+            is_mozilla_signed = file_.is_mozilla_signed_extension
             save = tasks.handle_file_validation_result
             validate = self.validate_file(file_)
 
@@ -263,13 +272,15 @@ class Validator(object):
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
         on_error = save.subtask(
-            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel],
+            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel,
+             is_mozilla_signed],
             immutable=True)
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
-        self.task = chain(validate, save.subtask([file_.pk, channel],
-                                                 link_error=on_error))
+        self.task = chain(validate, save.subtask(
+            [file_.pk, channel, is_mozilla_signed],
+            link_error=on_error))
 
         # Create a cache key for the task, so multiple requests to
         # validate the same object do not result in duplicate tasks.

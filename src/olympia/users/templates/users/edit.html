@@ -15,7 +15,7 @@ data-default-locale="{{ request.LANG|lower }}"
 {% block content %}
 {% include 'users/includes/navigation.html' %}
 <div id="user_edit" class="primary prettyform grid" role="main">
-  {% if user.has_anonymous_display_name() %}
+  {% if user.has_anonymous_display_name %}
     <div class="notification-box error anonymous">
       <h2>{{ _('Please set your display name') }}</h2>
       <p>{{ _('Please set your display name or username to complete the registration process.') }}</p>

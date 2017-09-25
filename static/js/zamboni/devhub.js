@@ -90,7 +90,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function(xhr) {
-                    var errors = $.parseJSON(xhr.responseText);
+                    var errors = JSON.parse(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $('#upload-file-finish').prop('disabled', false);
@@ -118,10 +118,10 @@ $(document).ready(function() {
                 $src_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"',
                                           'src': $this.attr('data-ogv') });
 
-            $(window).bind('keydown.lightboxDismiss', function(e) {
+            $(window).on('keydown.lightboxDismiss', function(e) {
                 if (e.which == 27) {
                     $overlay.remove();
-                    $(window).unbind('keydown.lightboxDismiss');
+                    $(window).off('keydown.lightboxDismiss');
                 }
             });
             $overlay.append($video);
@@ -133,7 +133,7 @@ $(document).ready(function() {
             $video.click(function(e){ e.stopPropagation(); });
             $overlay.click(function() {
                 $(this).remove();
-                $(window).unbind('keydown.lightboxDismiss');
+                $(window).off('keydown.lightboxDismiss');
             });
         }));
     }
@@ -150,7 +150,7 @@ $(document).ready(function() {
         $('#edit-addon-media').attr('data-checkurl') !== undefined) {
         imageStatus.start();
     }
-    $('#edit-addon-media').bind('click', function() {
+    $('#edit-addon-media').on('click', function() {
         imageStatus.cancel();
     });
 
@@ -190,7 +190,7 @@ $(document).ready(function() {
     // Show a confirmation modal for forms that have [data-confirm="selector"].
     // This is specifically used for the request full review form for unlisted
     // add-ons.
-    $(document.body).delegate('[data-confirm]', 'submit', function(e) {
+    $(document.body).on('submit', '[data-confirm]', function(e) {
         e.preventDefault();
         var $form = $(e.target);
         var $modal = $form.data('modal');
@@ -199,19 +199,19 @@ $(document).ready(function() {
             $form.data('modal', $modal);
         }
         $modal.render();
-        $modal.delegate('.cancel', 'click', function(e) {
+        $modal.on('click', '.cancel', function(e) {
             e.preventDefault();
             e.stopPropagation();
             $modal.trigger('close');
         });
-        $modal.delegate('form', 'submit', function(e) {
+        $modal.on('submit', 'form', function(e) {
             e.preventDefault();
             $form.removeAttr('data-confirm');
             $form.submit();
         });
     });
 
-    $('.enable-addon').bind('click', function() {
+    $('.enable-addon').on('click', function() {
         $.ajax({
             'type': 'POST',
             'url': $(this).data('url'),
@@ -303,7 +303,7 @@ $(document).ready(function() {
         $primary.find("span.handle, a.remove").hide();
         $(".primary h3 a.button").remove();
         $(document).ready(function() {
-            $els.unbind().undelegate();
+            $els.off().off();
         });
     }
 })();
@@ -319,7 +319,7 @@ function truncateFields() {
     // $(els.join(', ')).each(function(i,el) {
     //     var $el = $(el),
     //         originalHTML = $el.html();
-    //     $el.delegate("a.truncate_expand", "click", function(e) {
+    //     $el.on("click", "a.truncate_expand", function(e) {
     //         e.preventDefault();
     //         $el.html(originalHTML).css('max-height','none');
     //     })
@@ -392,7 +392,7 @@ function initEditAddon() {
     if (z.noEdit) return;
 
     // Load the edit form.
-    $('#edit-addon').delegate('h3 a', 'click', function(e){
+    $('#edit-addon').on('click', 'h3 a', function(e){
         e.preventDefault();
 
         var a = e.target;
@@ -556,18 +556,18 @@ function initUploadPreview() {
     }
 
     if (z.capabilities.fileAPI) {
-        $f.delegate('#screenshot_upload', "upload_finished", upload_finished)
-          .delegate('#screenshot_upload', "upload_success", upload_success)
-          .delegate('#screenshot_upload', "upload_start", upload_start)
-          .delegate('#screenshot_upload', "upload_errors", upload_errors)
-          .delegate('#screenshot_upload', "upload_start_all", upload_start_all)
-          .delegate('#screenshot_upload', "upload_finished_all", upload_finished_all)
-          .delegate('#screenshot_upload', 'change', function(e){
+        $f.on("upload_finished", '#screenshot_upload', upload_finished)
+          .on("upload_success", '#screenshot_upload', upload_success)
+          .on("upload_start", '#screenshot_upload', upload_start)
+          .on("upload_errors", '#screenshot_upload', upload_errors)
+          .on("upload_start_all", '#screenshot_upload', upload_start_all)
+          .on("upload_finished_all", '#screenshot_upload', upload_finished_all)
+          .on('change', '#screenshot_upload', function(e){
                 $(this).imageUploader();
           });
     }
 
-    $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
+    $("#edit-addon-media, #submit-media").on("click", "#file-list .remove", function(e){
         e.preventDefault();
         var row = $(this).closest(".preview");
         row.find(".delete input").prop("checked", true);
@@ -584,7 +584,7 @@ function initInvisibleUploads() {
 function initUploadIcon() {
     initInvisibleUploads();
 
-    $('#edit-addon-media, #submit-media').delegate('#icons_default a', 'click', function(e){
+    $('#edit-addon-media, #submit-media').on('click', '#icons_default a', function(e){
         e.preventDefault();
 
         var $error_list = $('#icon_preview').parent().find(".errorlist"),
@@ -639,11 +639,11 @@ function initUploadIcon() {
             $('.edit-media-button button').prop('disabled', false);
         };
 
-    $f.delegate('#id_icon_upload', "upload_success", upload_success)
-      .delegate('#id_icon_upload', "upload_start", upload_start)
-      .delegate('#id_icon_upload', "upload_finished", upload_finished)
-      .delegate('#id_icon_upload', "upload_errors", upload_errors)
-      .delegate('#id_icon_upload', 'change', function(e) {
+    $f.on("upload_success", '#id_icon_upload', upload_success)
+      .on("upload_start", '#id_icon_upload', upload_start)
+      .on("upload_finished", '#id_icon_upload', upload_finished)
+      .on("upload_errors", '#id_icon_upload', upload_errors)
+      .on('change', '#id_icon_upload', function(e) {
         if (z.capabilities.fileAPI) {
             $(this).imageUploader();
         } else {
@@ -721,7 +721,7 @@ function initVersions() {
     function loadReviewHistory(div, nextLoad) {
         div.removeClass("hidden");
         replybox = div.children('.dev-review-reply')
-        if (replybox.size() == 1) {
+        if (replybox.length == 1) {
             replybox[0].scrollIntoView(false);
         }
         var token = div.data('token');
@@ -826,10 +826,10 @@ function initSubmit() {
     var dl = $('body').attr('data-default-locale');
     var el = format('#trans-name [lang="{0}"]', dl);
     $(el).attr('id', "id_name");
-    $('#submit-describe').delegate(el, 'keyup', slugify)
-        .delegate(el, 'blur', slugify)
-        .delegate('#edit_slug', 'click', show_slug_edit)
-        .delegate('#id_slug', 'change', function() {
+    $('#submit-describe').on('keyup', el, slugify)
+        .on('blur', el, slugify)
+        .on('click', '#edit_slug', show_slug_edit)
+        .on('change', '#id_slug', function() {
             $('#id_slug').attr('data-customized', 1);
             var v = $('#id_slug').val();
             if (!v) {
@@ -884,7 +884,7 @@ function initEditVersions() {
                     $modal.hideMe();
                 },
                 error: function(xhr) {
-                    var errors = $.parseJSON(xhr.responseText);
+                    var errors = JSON.parse(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $modal.setPos();
@@ -893,14 +893,14 @@ function initEditVersions() {
         });
     }
 
-    $("#file-list").delegate("a.remove", "click", function() {
+    $("#file-list").on("click", "a.remove", function() {
         var row = $(this).closest("tr");
         $("input:first", row).prop("checked", true);
         row.hide();
         row.next().show();
     });
 
-    $("#file-list").delegate("a.undo", "click", function() {
+    $("#file-list").on("click", "a.undo", function() {
         var row = $(this).closest("tr").prev();
         $("input:first", row).prop("checked", false);
         row.show();
@@ -923,7 +923,7 @@ function initPayments(delegate) {
     img.hide().appendTo($("body"));
     moz.parent().after(
         $("<a class='extra' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
-    $(".nag").delegate("a.extra", "mouseover", function(e) {
+    $(".nag").on("mouseover", "a.extra", function(e) {
         var tgt = $(this);
         img.attr("src", tgt.attr("href")).css({
             position: 'absolute',
@@ -935,11 +935,11 @@ function initPayments(delegate) {
         to = setTimeout(function() {
             img.fadeIn(100);
         }, 300);
-    }).delegate("a.extra", "mouseout", function(e) {
+    }).on("mouseout", "a.extra", function(e) {
         clearTimeout(to);
         img.fadeOut(100);
     })
-    .delegate("a.extra", "click", function(e) {
+    .on("click", "a.extra", function(e) {
         e.preventDefault();
     });
     $("#do-setup").click(_pd(function (e) {
@@ -975,10 +975,13 @@ function initPayments(delegate) {
 function initCatFields(delegate) {
     var $delegate = $(delegate || '#addon-categories-edit');
     $delegate.find('div.addon-app-cats').each(function() {
-        var $parent = $(this).closest("[data-max-categories]"),
-            $main = $(this).find(".addon-categories"),
-            $misc = $(this).find(".addon-misc-category"),
-            maxCats = parseInt($parent.attr("data-max-categories"), 10);
+        var main_selector = ".addon-categories",
+            misc_selector = ".addon-misc-category"
+        var $parent = $(this);
+        var $grand_parent = $(this).closest("[data-max-categories]"),
+            $main = $parent.find(main_selector),
+            $misc = $parent.find(misc_selector),
+            maxCats = parseInt($grand_parent.attr("data-max-categories"), 10);
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
@@ -993,8 +996,8 @@ function initCatFields(delegate) {
             $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
-        $(document).on('change', $main.selector + ' input', checkMain);
-        $(document).on('change', $misc.selector + ' input', checkOther);
+        $parent.on('change', main_selector + ' input', checkMain);
+        $parent.on('change', misc_selector + ' input', checkOther);
     });
 }
 
@@ -1053,9 +1056,9 @@ function initAuthorFields() {
     });
 
     $("#author_list")
-        .delegate(".email-autocomplete", "keypress", validateUser)
-        .delegate(".email-autocomplete", "keyup", validateUser)
-        .delegate(".remove", "click", function (e) {
+        .on("keypress", ".email-autocomplete", validateUser)
+        .on("keyup", ".email-autocomplete", validateUser)
+        .on("click", ".remove", function (e) {
             e.preventDefault();
             var tgt = $(this),
                 row = tgt.parents("li");
@@ -1120,7 +1123,7 @@ function initCompatibility() {
 
         $('.new-apps', outer).toggle();
 
-        $('.new-apps ul').delegate('a', 'click', _pd(function(e) {
+        $('.new-apps ul').on('click', 'a', _pd(function(e) {
             var $this = $(this),
                 sel = format('tr.app-extra td[class="{0}"]', [$this.attr('class')]),
                 $row = $(sel, outer);
@@ -1380,12 +1383,12 @@ function initMerchantAccount() {
         current = $paypal_field.val(),
         keyup = true;
 
-    $paypal_field.bind('keyup', function(e) {
+    $paypal_field.on('keyup', function(e) {
         if($paypal_field.val() != current) {
             if(ajax) {
                 ajax.abort();
             }
-            $paypal_verify.removeAttr('class');
+            $paypal_verify.removeClass();
             keyup = true;
         }
         current = $paypal_field.val();

@@ -65,7 +65,7 @@
 
 {% if personas %}
   <div id="my-themes" class="island c">
-    <a href="{{ profile.get_user_url('themes') }}" class="button view-all">
+    <a href="{{ profile.get_themes_url_path() }}" class="button view-all">
       {{ _('View all') }}</a>
     {% if limited_personas %}
       <h2>{{ _("My Most Popular Themes") }}</h2>

@@ -4,8 +4,8 @@
   data-removeurl="{{ url('collections.ajax_remove') }}"
   data-newurl="{{ url('collections.ajax_new') }}"
   data-addonid="{{ addon.id }}"
-  title="{{ _('Add to collection') if condensed }}"
+  title="{{ _('Add to collection') if condensed else '' }}"
   href="#"
   >
-  {{ _('Add to collection') if not condensed }}
+  {{ _('Add to collection') if not condensed else '' }}
 </a>

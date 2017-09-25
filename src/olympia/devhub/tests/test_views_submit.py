@@ -120,7 +120,6 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
         response = self.client.post(reverse('devhub.submit.agreement'), {
             'distribution_agreement': 'on',
             'review_policy': 'on',
-            'review_rules': 'on',
         })
         assert response.status_code == 302
         self.user.reload()
@@ -135,7 +134,6 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
         assert form.errors == {
             'distribution_agreement': [u'This field is required.'],
             'review_policy': [u'This field is required.'],
-            'review_rules': [u'This field is required.']
         }
         doc = pq(response.content)
         for id_ in form.errors.keys():
@@ -292,7 +290,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
         assert Addon.objects.count() == 0
@@ -391,7 +389,8 @@ class TestAddonSubmitDetails(TestSubmitBase):
     def get_dict(self, minimal=True, **kw):
         result = {}
         describe_form = {'name': 'Test name', 'slug': 'testname',
-                         'summary': 'Hello!', 'is_experimental': True}
+                         'summary': 'Hello!', 'is_experimental': True,
+                         'requires_payment': True}
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
@@ -439,6 +438,7 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert addon.slug == 'testname'
         assert addon.summary == 'Hello!'
         assert addon.is_experimental
+        assert addon.requires_payment
         assert addon.all_categories[0].id == 22
 
         # Test add-on log activity.
@@ -1110,7 +1110,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         return reverse('devhub.submit.version.finish', args=[
             self.addon.slug, version.pk])
 
-    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @mock.patch('olympia.editors.utils.sign_file')
     def test_success(self, mock_sign_file):
         """Sign automatically."""
         # No validation errors or warning.

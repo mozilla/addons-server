@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-10-27 14:27+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-12 22:11+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,9 @@ msgstr "Прочесть весь отчёт о валидации"
 msgid "Validating {0}"
 msgstr "Валидация {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Размер вашего дополнения превышает максимально допустимый размер {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
@@ -137,6 +139,9 @@ msgstr "К сожалению поддерживаемых платформ не
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип загруженного вами файла не распознан."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Размер вашего файла превышает максимально допустимый размер {0}."
 
 msgid "You cancelled the upload."
 msgstr "Вы отменили загрузку."
@@ -655,18 +660,6 @@ msgstr "Принять и установить"
 msgid "Add to {0}"
 msgstr "Добавить в {0}"
 
-msgid "Download Now"
-msgstr "Загрузить сейчас"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Дополнение не было обновлено для поддержки совместимости-по-умолчанию."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Вам необходимо использовать Firefox 10.0 или выше."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla отметила эту версию как несовместимую с вашей версией Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Всё равно установить для {0}"
@@ -677,9 +670,12 @@ msgstr "Всё равно загрузить для {0}"
 msgid "Not available for your platform"
 msgstr "Недоступно для вашей платформы"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Недоступно для {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Это дополнение несовместимо с вашей версией {0}."
+
+msgid "View other versions"
+msgstr "Просмотреть другие версии"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Работает с {app} {min} - {max}"
@@ -687,17 +683,8 @@ msgstr "Работает с {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Работает с {app}"
 
-msgid "View other versions"
-msgstr "Просмотреть другие версии"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Только в Firefox — Загрузить Firefox сейчас!"
-
-msgid "Download now"
-msgstr "Загрузить сейчас"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Доступно только в Firefox для компьютера"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Извините, для установки поискового плагина вам нужен браузер из семейства Mozilla (например, Firefox)."

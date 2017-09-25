@@ -8,7 +8,7 @@ import pytest
 from olympia import amo
 from olympia.amo.tests import user_factory
 from olympia.addons.models import Addon
-from olympia.editors.templatetags import jinja_helpers
+from olympia.editors.utils import ReviewAddon, ReviewFiles, ReviewHelper
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -42,21 +42,21 @@ def addon_with_files(db):
         # New addon request full.
         # scenario0: should succeed, files approved.
         ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         jinja_helpers.ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
+         ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario1: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         jinja_helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
+         ReviewAddon, 'nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
 
         # Approved addon with a new file.
         # scenario2: should succeed, files approved.
         ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         jinja_helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC,
+         ReviewFiles, 'pending', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         jinja_helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,
+         ReviewFiles, 'pending', amo.STATUS_NOMINATED,
          amo.STATUS_DISABLED),
     ])
 def test_review_scenario(mock_request, addon_with_files, review_action,
@@ -69,7 +69,7 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     version.files.filter(
         status=amo.STATUS_AWAITING_REVIEW).update(status=file_status)
     # Get the review helper.
-    helper = jinja_helpers.ReviewHelper(mock_request, addon, version)
+    helper = ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)
     helper.get_review_type(mock_request)
     assert helper.handler.review_type == review_type

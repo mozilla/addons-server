@@ -10,6 +10,7 @@ import pytest
 import jinja2
 from mock import patch
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, legacy_api
 from olympia.addons.models import (
@@ -77,6 +78,7 @@ class UtilsTest(TestCase):
         assert d['summary'] == 'i &lt;3 amo!'
         assert d['description'] == 'i &lt;3 amo!'
 
+    @override_switch('simple-contributions', active=False)
     def test_contrib_info(self):
         self.a.wants_contributions = True
         self.a.suggested_amount = 5
@@ -85,6 +87,7 @@ class UtilsTest(TestCase):
         d = addon_to_dict(self.a)
         assert d['contribution']['suggested_amount'] == 5
 
+    @override_switch('simple-contributions', active=False)
     def test_no_contrib_info_until_approved(self):
         self.a.wants_contributions = True
         self.a.suggested_amount = 5
@@ -93,6 +96,14 @@ class UtilsTest(TestCase):
         self.a.save()
         d = addon_to_dict(self.a)
         assert 'contribution' not in d
+
+    @override_switch('simple-contributions', active=True)
+    def test_simple_contributions(self):
+        self.a.update(contributions='https://paypal.me/blah')
+        d = addon_to_dict(self.a)
+        assert d['contribution']['meet_developers'] == self.a.contributions
+        assert 'suggested_amount' not in d['contribution']
+        assert 'link' not in d['contribution']
 
 
 class No500ErrorsTest(TestCase):
@@ -392,7 +403,8 @@ class APITest(TestCase):
         expected = '%s/firefox/downloads/file' % settings.SITE_URL
         assert url.startswith(expected), url
 
-    def test_15_addon_detail(self):
+    @override_switch('simple-contributions', active=False)
+    def test_15_addon_detail_paypal_contributions(self):
         """
         For an api>1.5 we need to verify we have:
         # Contributions information, including a link to contribute, suggested
@@ -473,11 +485,90 @@ class APITest(TestCase):
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
 
+    @override_switch('simple-contributions', active=True)
+    def test_15_addon_detail(self):
+        """
+        For an api>1.5 we need to verify we have:
+        # Contributions information, which is now just the contributions url,
+        # sent as the link to Meet the Developers
+        # Number of user reviews and link to view them
+        # Total downloads, weekly downloads, and latest daily user counts
+        # Add-on creation date
+        # Link to the developer's profile
+        # File size
+        """
+        def urlparams(x, *args, **kwargs):
+            return jinja2.escape(jinja_helpers.urlparams(x, *args, **kwargs))
+
+        needles = (
+            '<addon id="4664">',
+            '<contribution_data>',
+            '<meet_developers>',
+            'https://patreon.com/blah',
+            '</meet_developers>',
+            '<reviews num="131">',
+            '%s/en-US/firefox/addon/4664/reviews/?src=api' % settings.SITE_URL,
+            '<total_downloads>1352192</total_downloads>',
+            '<weekly_downloads>13849</weekly_downloads>',
+            '<daily_users>67075</daily_users>',
+            '<author id="2519"',
+            '%s/en-US/firefox/user/cfinke/?src=api</link>' % settings.SITE_URL,
+            '<previews>',
+            'preview position="0">',
+            '<caption>TwitterBar places an icon in the address bar.</caption>',
+            'full type="image/png">',
+            '<thumbnail type="image/png">',
+            ('<developer_comments>Embrace hug love hug meow meow'
+             '</developer_comments>'),
+            'size="100352"',
+            ('<homepage>http://www.chrisfinke.com/addons/twitterbar/'
+             '</homepage>'),
+            '<support>http://www.chrisfinke.com/addons/twitterbar/</support>')
+
+        # For urls with several parameters, we need to use self.assertUrlEqual,
+        # as the parameters could be in random order. Dicts aren't ordered!
+        # We need to subtract 7 hours from the modified time since May 3, 2008
+        # is during daylight savings time.
+        url_needles = {
+            "full": urlparams(
+                '{previews}full/20/20397.png'.format(
+                    previews=jinja_helpers.user_media_url('previews')),
+                src='api', modified=1209834208 - 7 * 3600),
+            "thumbnail": urlparams(
+                '{previews}thumbs/20/20397.png'.format(
+                    previews=jinja_helpers.user_media_url('previews')),
+                src='api', modified=1209834208 - 7 * 3600),
+        }
+
+        response = make_call('addon/4664', version=1.5)
+        doc = pq(response.content)
+
+        tags = {
+            'created': ({'epoch': '1174109035'}, '2007-03-17T05:23:55Z'),
+            'last_updated': ({'epoch': '1272301783'}, '2010-04-26T17:09:43Z')}
+
+        for tag, v in tags.items():
+            attrs, text = v
+            el = doc(tag)
+            for attr, val in attrs.items():
+                assert el.attr(attr) == val
+
+            assert el.text() == text
+
+        for needle in needles:
+            self.assertContains(response, needle)
+
+        for tag, needle in url_needles.iteritems():
+            url = doc(tag).text()
+            self.assertUrlEqual(url, needle)
+
+    @override_switch('simple-contributions', active=False)
     def test_no_contribs_until_approved(self):
         Addon.objects.filter(id=4664).update(status=amo.STATUS_NOMINATED)
         response = make_call('addon/4664', version=1.5)
         self.assertNotContains(response, 'contribution_data')
 
+    @override_switch('simple-contributions', active=False)
     def test_no_suggested_amount(self):
         Addon.objects.filter(id=4664).update(suggested_amount=None)
         response = make_call('addon/4664', version=1.5)
@@ -669,8 +760,8 @@ class AddonFilterTest(TestCase):
     def setUp(self):
         super(AddonFilterTest, self).setUp()
         # Start with 2 compatible add-ons.
-        self.addon1 = addon_factory(version_kw=dict(max_app_version='5.0'))
-        self.addon2 = addon_factory(version_kw=dict(max_app_version='6.0'))
+        self.addon1 = addon_factory(version_kw={'max_app_version': '5.0'})
+        self.addon2 = addon_factory(version_kw={'max_app_version': '6.0'})
         self.addons = [self.addon1, self.addon2]
 
     def _defaults(self, **kwargs):
@@ -722,8 +813,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_version_less_than_min(self):
         # Ensure we filter out addons with a higher min than our app.
-        addon3 = addon_factory(version_kw=dict(min_app_version='12.0',
-                                               max_app_version='14.0'))
+        addon3 = addon_factory(version_kw={
+            'min_app_version': '12.0', 'max_app_version': '14.0'})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='ignore'))
@@ -731,8 +822,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_filter_normal_strict_opt_in(self):
         # Ensure we filter out strict opt-in addons in normal mode.
-        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
-                               file_kw=dict(strict_compatibility=True))
+        addon3 = addon_factory(version_kw={'max_app_version': '7.0'},
+                               file_kw={'strict_compatibility': True})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
@@ -740,8 +831,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_filter_normal_binary_components(self):
         # Ensure we filter out strict opt-in addons in normal mode.
-        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
-                               file_kw=dict(binary_components=True))
+        addon3 = addon_factory(version_kw={'max_app_version': '7.0'},
+                               file_kw={'binary_components': True})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
@@ -823,6 +914,15 @@ class TestGuidSearch(TestCase):
         # We should get back the fr version, not the en-US one.
         response = make_call(self.good, lang='fr')
         self.assertContains(response, '<summary>Francais')
+
+    def test_api_caching_app(self):
+        response = make_call(self.good)
+        assert 'en-US/firefox/addon/None/reviews/?src=api' in response.content
+        assert 'en-US/android/addon/None/reviews/' not in response.content
+
+        response = make_call(self.good, app='android')
+        assert 'en-US/android/addon/None/reviews/?src=api' in response.content
+        assert 'en-US/firefox/addon/None/reviews/' not in response.content
 
     def test_xss(self):
         addon_factory(guid='test@xss', name='<script>alert("test");</script>')
@@ -998,12 +1098,12 @@ class SearchTest(ESTestCase):
 
     def test_total_results(self):
         """
-        The search for firefox should result in 3 total addons, even though we
+        The search for firefox should result in 2 total addons, even though we
         limit (and therefore show) only 1.
         """
         response = self.client.get(
-            "/en-US/firefox/api/1.2/search/firefox/all/1")
-        self.assertContains(response, """<searchresults total_results="3">""")
+            "/en-US/firefox/api/1.2/search/fox/all/1")
+        self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
 
     def test_unlisted_are_ignored(self):

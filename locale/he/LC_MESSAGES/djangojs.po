@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-01 18:15+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-14 16:44+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -66,7 +66,9 @@ msgstr ""
 msgid "Validating {0}"
 msgstr ""
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "התוספת שלך חורגת מהגודל המירבי של {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "התקבלה תגובה ריקה מהשרת; סטטוס: {0}"
 
@@ -129,6 +131,9 @@ msgstr "מצטערים, לא נמצאה פלטפורמה נתמכת."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "סוג הקובץ שהעלית אינו מזוהה."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "הקובץ שלך חורג מהגודל המירבי של {0}."
 
 msgid "You cancelled the upload."
 msgstr "העלאה בוטלה."
@@ -646,18 +651,6 @@ msgstr "לקבל ולהתקין"
 msgid "Add to {0}"
 msgstr "הוספה אל {0}"
 
-msgid "Download Now"
-msgstr "הורדה כעת"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "עליך להשתמש ב־Firefox 10.0 ומעלה."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "התקנה עבור {0} בכל זאת"
@@ -668,9 +661,13 @@ msgstr "הורדה עבור {0} בכל זאת"
 msgid "Not available for your platform"
 msgstr "לא זמין לפלטפורמה שלך"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "לא זמין עבור {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
+
+msgid "View other versions"
+msgstr "צפייה בגרסאות אחרות"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "עובד עם {app} {min} - {max}"
@@ -678,17 +675,8 @@ msgstr "עובד עם {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "עובד עם {app}"
 
-msgid "View other versions"
-msgstr "צפייה בגרסאות אחרות"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "רק עם Firefox — קבלו את Firefox כעת!"
-
-msgid "Download now"
-msgstr "הורדה כעת"
-
-msgid "Only available on Firefox Desktop"
-msgstr "זמין רק ב־Firefox שולחני"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."

@@ -702,8 +702,7 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
         assert not self.update_user.called
 
     def test_login_success(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com')
+        user = user_factory(username='foobar', email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.post(
@@ -764,6 +763,7 @@ class TestRegisterView(BaseAuthenticationView):
         user = UserProfile(username='foobar', email=identity['email'])
         self.register_user.return_value = user
         self.fxa_identify.return_value = identity
+        user.groups_list = []
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
@@ -940,6 +940,7 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_profile_url_404(self):
         response = self.client.get(reverse('account-profile'))  # No auth.
@@ -962,12 +963,26 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
-    def test_no_private_data_without_auth(self):
+    def test_is_not_public_because_not_developer(self):
+        assert not self.user.is_public
+        response = self.client.get(self.url)  # No auth.
+        assert response.status_code == 404
+        # Login as a random user and check it's still not visible.
+        self.client.login_api(user_factory())
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_is_public_because_developer(self):
+        addon_factory(users=[self.user])
+        assert self.user.is_developer and self.user.is_public
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
-        assert 'email' not in response.data
+        assert 'email' not in response.data  # Don't expose private data.
+        # They are a developer so we should link to account profile url
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_admin_view(self):
         self.grant_permission(self.user, 'Users:Edit')
@@ -979,6 +994,8 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+        assert response.data['url'] == absolutify(
+            self.random_user.get_url_path())
 
     def test_self_view_slug(self):
         # Check it works the same with an account slug rather than pk.
@@ -986,11 +1003,11 @@ class TestAccountViewSet(TestCase):
                            kwargs={'pk': self.user.username})
         self.test_self_view()
 
-    def test_no_private_data_without_auth_slug(self):
+    def test_is_public_because_developer_slug(self):
         # Check it works the same with an account slug rather than pk.
         self.url = reverse('account-detail',
                            kwargs={'pk': self.user.username})
-        self.test_no_private_data_without_auth()
+        self.test_is_public_because_developer()
 
     def test_admin_view_slug(self):
         # Check it works the same with an account slug rather than pk.
@@ -1003,6 +1020,8 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+        assert response.data['url'] == absolutify(
+            self.random_user.get_url_path())
 
 
 class TestProfileViewWithJWT(APIKeyAuthTestCase):

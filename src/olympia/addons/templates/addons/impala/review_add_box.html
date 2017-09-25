@@ -30,12 +30,14 @@
       </p>
       {% if addon.support_url or addon.support_email %}
         <p>
-          {% with support=request.path + '#support' %}
-            {% trans %}
-              See this add-on's <a href="{{ support }}">support section</a> to find out if assistance is available.
-              You can also try asking the <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
-            {% endtrans %}
-          {% endwith %}
+          See this add-on's 
+          {% if addon.support_url %}
+            <a class="support" href="{{ addon.support_url|external_url }}">{{ _('support section') }}</a>
+          {% elif addon.support_email %}
+            {{ emaillink(addon.support_email.localized_string, _('support email')) }}
+          {% endif %}
+          to find out if assistance is available.
+          You can also try asking the <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
         </p>
       {% endif %}
       <p><a href="{{ url('pages.review_guide') }}">{{ _('Review Guidelines') }}</a></p>

@@ -9,12 +9,14 @@ from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, core, paypal
 from olympia.activity.models import ActivityLog
@@ -313,7 +315,12 @@ class TestUpdateCompatibility(TestCase):
 
     def test_compat(self):
         addon = Addon.objects.get(pk=3615)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
+        assert not cu
 
+        addon.current_version.files.update(strict_compatibility=True)
         response = self.client.get(self.url)
         doc = pq(response.content)
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
@@ -330,6 +337,8 @@ class TestUpdateCompatibility(TestCase):
         assert doc('.item[data-addonid="3615"] .compat-update-modal')
 
     def test_incompat_firefox(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.current_version.files.update(strict_compatibility=True)
         versions = ApplicationsVersions.objects.all()[0]
         versions.max = AppVersion.objects.get(version='2.0')
         versions.save()
@@ -337,6 +346,8 @@ class TestUpdateCompatibility(TestCase):
         assert doc('.item[data-addonid="3615"] .tooltip.compat-error')
 
     def test_incompat_android(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.current_version.files.update(strict_compatibility=True)
         appver = AppVersion.objects.get(version='2.0')
         appver.update(application=amo.ANDROID.id)
         av = ApplicationsVersions.objects.all()[0]
@@ -412,6 +423,19 @@ class TestVersionStats(TestCase):
         self.assertDictEqual(data, exp)
 
 
+@override_switch('simple-contributions', active=True)
+class TestPayments404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.no_cache().get(id=3615)
+        url = addon.get_dev_url('payments')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.get(url).status_code == 404
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestEditPayments(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -693,6 +717,7 @@ class TestDisablePayments(TestCase):
         assert not Addon.objects.no_cache().get(id=3615).wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestPaymentsProfile(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -871,6 +896,12 @@ class TestHome(TestCase):
         self.assertTemplateUsed(response, 'devhub/index.html')
         assert 'Customize Firefox' in response.content
 
+    def test_default_lang_selected(self):
+        self.client.logout()
+        doc = self.get_pq()
+        selected_value = doc('#language option:selected').attr('value')
+        assert selected_value == 'en-us'
+
     def test_basic_logged_in(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1048,6 +1079,19 @@ class TestActivityFeed(TestCase):
         assert len(doc('#recent-activity .item')) == 1
 
 
+@override_switch('simple-contributions', active=True)
+class TestProfile404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.get(id=3615)
+        url = addon.get_dev_url('profile')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.post(url).status_code == 404
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestProfileBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1080,6 +1124,7 @@ class TestProfileBase(TestCase):
                 assert getattr(addon, k) == v
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfileStatusBar(TestProfileBase):
 
     def setUp(self):
@@ -1140,6 +1185,7 @@ class TestProfileStatusBar(TestProfileBase):
         assert not addon.wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
@@ -1381,6 +1427,11 @@ class TestUploadDetail(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '51.0a1')
+
+        call_command('dump_apps')
+
         assert self.client.login(email='regular@mozilla.com')
 
     def create_appversion(self, name, version):
@@ -1518,7 +1569,6 @@ class TestUploadDetail(BaseUploadTest):
             str(p) for p in amo.MOBILE_PLATFORMS])
 
     def test_webextension_supports_all_platforms(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
 
         # Android is only supported 48+
@@ -1528,7 +1578,6 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('valid_webextension.xpi', [])
 
     def test_webextension_android_excluded_if_no_48_support(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '47.*')
         self.create_appversion('firefox', '48.*')
@@ -1625,6 +1674,58 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1, u'message': u'You cannot submit an add-on with a '
                                      u'guid ending "@mozilla.org"',
              u'fatal': True, u'type': u'error'}]
+
+    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
+    def test_mozilla_signed_allowed(self, mock_validator, mock_get_signature):
+        user_factory(email='redpanda@mozilla.com')
+        assert self.client.login(email='redpanda@mozilla.com')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        mock_get_signature.return_value = "Mozilla Extensions"
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
+
+    @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
+    def test_mozilla_signed_not_allowed_not_mozilla(self, mock_get_signature):
+        user_factory(email='bluepanda@notzilla.com')
+        assert self.client.login(email='bluepanda@notzilla.com')
+        mock_get_signature.return_value = 'Mozilla Extensions'
+        self.upload_file(
+            '../../../files/fixtures/files/webextension_signed_already.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == [
+            {u'tier': 1,
+             u'message': u'You cannot submit a Mozilla Signed Extension',
+             u'fatal': True, u'type': u'error'}]
+
+    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
+        """Legacy add-ons that are signed with the mozilla certificate
+        should be allowed to be submitted ignoring most compatibility
+        checks.
+
+        See https://github.com/mozilla/addons-server/issues/6424 for more
+        information.
+        """
+        user_factory(email='verypinkpanda@mozilla.com')
+        assert self.client.login(email='verypinkpanda@mozilla.com')
+        self.upload_file(os.path.join(
+            settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',
+            'legacy-addon-already-signed-0.1.0.xpi'))
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+
+        assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_system_addon_update_allowed(self, mock_validator):

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-03-18 12:26+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-10 11:23+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -66,7 +66,9 @@ msgstr "Volledig validatierapport bekijken"
 msgid "Validating {0}"
 msgstr "{0} wordt gevalideerd"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Uw add-on overschrijdt de maximale grootte van {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons van server ontvangen; status: {0}"
 
@@ -135,6 +137,9 @@ msgstr "Sorry, geen ondersteund platform gevonden."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Het door u geüploade bestandstype wordt niet herkend."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Uw bestand overschrijdt de maximale grootte van {0}."
 
 msgid "You cancelled the upload."
 msgstr "U hebt de upload geannuleerd."
@@ -485,11 +490,11 @@ msgstr "Talen van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Add-on-versies, laatste {0} dagen"
+msgstr "Add-onversies, laatste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Add-on-versies van {0} tot {1}"
+msgstr "Add-onversies van {0} tot {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -653,18 +658,6 @@ msgstr "Accepteren en installeren"
 msgid "Add to {0}"
 msgstr "Toevoegen aan {0}"
 
-msgid "Download Now"
-msgstr "Nu downloaden"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Add-on is niet bijgewerkt om standaard-compatibel te ondersteunen."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "U dient Firefox 10.0 of hoger te gebruiken."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla heeft deze versie als niet compatibel met uw Firefox-versie gemarkeerd."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Toch installeren voor {0}"
@@ -675,9 +668,12 @@ msgstr "Toch downloaden voor {0}"
 msgid "Not available for your platform"
 msgstr "Niet beschikbaar voor uw platform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Niet beschikbaar voor {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Deze add-on is niet compatibel met uw versie van {0}."
+
+msgid "View other versions"
+msgstr "Overige versies bekijken"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Werkt met {app} {min} - {max}"
@@ -685,17 +681,8 @@ msgstr "Werkt met {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Werkt met {app}"
 
-msgid "View other versions"
-msgstr "Overige versies bekijken"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Alleen bij Firefox – Download Firefox nu!"
-
-msgid "Download now"
-msgstr "Nu downloaden"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Alleen beschikbaar in Firefox voor desktops"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een zoekplug-in te kunnen installeren."

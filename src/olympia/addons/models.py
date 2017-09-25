@@ -262,9 +262,10 @@ class Addon(OnChangeMixin, ModelBase):
                                       db_column='defaultlocale')
 
     type = models.PositiveIntegerField(
-        choices=amo.ADDON_TYPE.items(), db_column='addontype_id', default=0)
+        choices=amo.ADDON_TYPE.items(), db_column='addontype_id',
+        default=amo.ADDON_EXTENSION)
     status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=0)
+        choices=STATUS_CHOICES.items(), db_index=True, default=amo.STATUS_NULL)
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
     homepage = TranslatedField()
@@ -285,6 +286,8 @@ class Addon(OnChangeMixin, ModelBase):
                                         db_column='bayesianrating')
     total_reviews = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
+    text_reviews_count = models.PositiveIntegerField(
+        default=0, db_column='textreviewscount')
     weekly_downloads = models.PositiveIntegerField(
         default=0, db_column='weeklydownloads', db_index=True)
     total_downloads = models.PositiveIntegerField(
@@ -318,6 +321,7 @@ class Addon(OnChangeMixin, ModelBase):
         max_length=255, blank=True, null=True,
         help_text="For dictionaries and language packs")
 
+    contributions = models.URLField(max_length=255, blank=True)
     wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
     charity = models.ForeignKey('Charity', null=True)
@@ -326,9 +330,6 @@ class Addon(OnChangeMixin, ModelBase):
         max_digits=9, decimal_places=2, blank=True,
         null=True, help_text=_('Users have the option of contributing more '
                                'or less than this amount.'))
-
-    total_contributions = models.DecimalField(max_digits=9, decimal_places=2,
-                                              blank=True, null=True)
 
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
@@ -356,6 +357,7 @@ class Addon(OnChangeMixin, ModelBase):
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
     reputation = models.SmallIntegerField(default=0, null=True)
+    requires_payment = models.BooleanField(default=False)
 
     # The order of those managers is very important:
     # The first one discovered, if it has "use_for_related_fields = True"
@@ -598,6 +600,9 @@ class Addon(OnChangeMixin, ModelBase):
         if not data.get('is_webextension') or not default_locale:
             # Don't change anything if we don't meet the requirements
             return data
+
+        # find_language might have expanded short to full locale, so update it.
+        data['default_locale'] = default_locale
 
         fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
@@ -1062,7 +1067,6 @@ class Addon(OnChangeMixin, ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.weekly_downloads = persona.popularity
 
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
@@ -1129,7 +1133,9 @@ class Addon(OnChangeMixin, ModelBase):
         latest_version = self.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
 
-        return latest_version is not None and latest_version.files.exists()
+        return (latest_version is not None and
+                latest_version.files.exists() and
+                not any(file.reviewed for file in latest_version.all_files))
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
@@ -1208,15 +1214,24 @@ class Addon(OnChangeMixin, ModelBase):
         return get_featured_ids(app, lang)
 
     @property
-    def requires_restart(self):
+    def is_restart_required(self):
         """Whether the add-on current version requires a browser restart to
         work."""
-        return self.current_version and self.current_version.requires_restart
+        return (
+            self.current_version and self.current_version.is_restart_required)
 
-    def is_featured(self, app, lang=None):
+    def is_featured(self, app=None, lang=None):
         """Is add-on globally featured for this app and language?"""
-        if app:
-            return self.id in get_featured_ids(app, lang)
+        return self.id in get_featured_ids(app, lang)
+
+    def get_featured_by_app(self):
+        qset = (self.collections.filter(featuredcollection__isnull=False)
+                .distinct().values_list('featuredcollection__application',
+                                        'featuredcollection__locale'))
+        out = collections.defaultdict(set)
+        for app, locale in qset:
+            out[app].add(locale)
+        return out
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -1417,6 +1432,10 @@ def watch_status(old_attr=None, new_attr=None, instance=None,
     old_status = old_attr.get('status')
     latest_version = instance.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
+
+    # Update the author's account profile visibility
+    if new_status != old_status:
+        [author.update_is_public() for author in instance.authors.all()]
 
     if (new_status not in amo.VALID_ADDON_STATUSES or
             not new_status or not latest_version):
@@ -1625,7 +1644,9 @@ class Persona(caching.CachingMixin, models.Model):
                          addon.all_categories else ''),
             # TODO: Change this to be `addons_users.user.display_name`.
             'author': self.display_username,
-            'description': unicode(addon.description),
+            'description': (unicode(addon.description)
+                            if addon.description is not None
+                            else addon.description),
             'header': self.header_url,
             'footer': self.footer_url or '',
             'headerURL': self.header_url,
@@ -1677,7 +1698,8 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return get_creatured_ids(category, lang)
 
 
-class AddonUser(caching.CachingMixin, models.Model):
+class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
+                models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
@@ -1694,6 +1716,14 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
+
+
+@AddonUser.on_change
+def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
+                     **kwargs):
+    # Update ES because authors is included.
+    update_search_index(sender=sender, instance=instance.addon, **kwargs)
+    instance.user.update_is_public()
 
 
 class AddonDependency(models.Model):
@@ -1821,13 +1851,19 @@ class Category(OnChangeMixin, ModelBase):
         return staticcategory
 
     @classmethod
-    def from_static_category(cls, static_category):
+    def from_static_category(cls, static_category, save=False):
         """Return a Category instance created from a StaticCategory.
 
-        Does not save it into the database. Useful in tests."""
-        data = static_category.__dict__.copy()
-        del data['name']  # Not accepted as part of a Category.
-        return cls(**data)
+        Does not save it into the database by default. Useful in tests."""
+        # we need to drop description as it's a StaticCategory only property.
+        _dict = dict(static_category.__dict__)
+        del _dict['description']
+        if save:
+            category, _ = Category.objects.get_or_create(
+                id=static_category.id, defaults=_dict)
+            return category
+        else:
+            return cls(**_dict)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,
@@ -2129,6 +2165,16 @@ def update_incompatible_versions(sender, instance, **kw):
     versions = instance.compat.addon.versions.values_list('id', flat=True)
     for chunk in chunked(versions, 50):
         tasks.update_incompatible_appversions.delay(chunk)
+
+
+class ReplacementAddon(ModelBase):
+    guid = models.CharField(max_length=255, unique=True, null=True)
+    path = models.CharField(max_length=255, null=True,
+                            help_text=_('Addon and collection paths need to '
+                                        'end with "/"'))
+
+    class Meta:
+        db_table = 'replacement_addons'
 
 
 models.signals.post_save.connect(update_incompatible_versions,

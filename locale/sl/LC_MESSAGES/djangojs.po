@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-11-04 10:22+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-12 12:48+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,9 @@ msgstr "Oglejte si popolno poročilo o preverjanju veljavnosti"
 msgid "Validating {0}"
 msgstr "Preverjanje veljavnosti {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Dodatek presega največjo velikost {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
@@ -141,6 +143,9 @@ msgstr "Podprtega okolja ni bilo mogoče najti."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Vrsta datoteke, ki ste jo naložili, ni prepoznana."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Datoteka presega največjo velikost {0}."
 
 msgid "You cancelled the upload."
 msgstr "Preklicali ste nalaganje."
@@ -661,18 +666,6 @@ msgstr "Sprejmi in namesti"
 msgid "Add to {0}"
 msgstr "Dodaj v {0}"
 
-msgid "Download Now"
-msgstr "Prenesi zdaj"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Dodatek ni bil posodobljen, da bi podpiral privzeto-na-združljivo."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Uporabljati morate Firefox 10.0 ali novejšega."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla je označila to različico kot nezdružljivo z vašo različico Firefoxa."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Vseeno namesti za {0}"
@@ -683,9 +676,12 @@ msgstr "Vseeno prenesi za {0}"
 msgid "Not available for your platform"
 msgstr "Ni na voljo za vašo podlago"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Ni na voljo za {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ta dodatek ni združljiv z vašo različico {0}a."
+
+msgid "View other versions"
+msgstr "Ogled drugih različic"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Deluje s {app} {min} - {max}"
@@ -693,17 +689,8 @@ msgstr "Deluje s {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Deluje s {app}"
 
-msgid "View other versions"
-msgstr "Ogled drugih različic"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Samo pri Firefoxu – namestite ga!"
-
-msgid "Download now"
-msgstr "Prenesi zdaj"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Na voljo samo za namizni Firefox"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi Mozille (kot je Firefox)."

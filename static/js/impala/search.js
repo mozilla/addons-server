@@ -5,10 +5,10 @@
     function autofillPlatform(context) {
         var $context = $(context || document.body);
 
-        $('#search', $context).bind('autofill', function(e) {
+        $('#search', $context).on('autofill', function(e) {
             var $this = $(this);
 
-            // Bail if we're searching within apps.
+            // Bail if search is present but not the appver input somehow.
             if (!appver_input.length) {
                 return;
             }
@@ -21,7 +21,12 @@
             if (!!(gv.appver)) { // Defined in URL parameter
                 appver_input.val(gv.appver);
             } else if (z.appMatchesUserAgent) { // Fallback to detected
-                appver_input.val(z.browserVersion);
+                // Only do this if firefox 57 or higher. Lower versions default
+                // to searching for all add-ons even if they might be
+                // incompatible. https://github.com/mozilla/addons-server/issues/5482
+                if (VersionCompare.compareVersions(z.browserVersion, '57.0') >= 0) {
+                    appver_input.val(z.browserVersion);
+                }
             }
 
             if (!!(gv.platform)) { // Defined in URL parameter
@@ -37,7 +42,7 @@
 
 
     $(function() {
-        $('#search-facets').delegate('li.facet', 'click', function(e) {
+        $('#search-facets').on('click', 'li.facet', function(e) {
             var $this = $(this);
             if ($this.hasClass('active')) {
                 if ($(e.target).is('a')) {
@@ -48,24 +53,24 @@
                 $this.closest('ul').find('.active').removeClass('active');
                 $this.addClass('active');
             }
-        }).delegate('a', 'highlight', function(e) {
+        }).on('highlight', 'a', function(e) {
             // Highlight selection on sidebar.
             var $this = $(this);
             $this.closest('.facet-group').find('.selected').removeClass('selected');
             $this.closest('li').addClass('selected');
-        }).delegate('.cnt', 'recount', function(e, newCount) {
+        }).on('recount', '.cnt', function(e, newCount) {
             // Update # of results on sidebar.
             var $this = $(this);
             if (newCount.length && $this.html() != newCount.html()) {
                 $this.replaceWith(newCount);
             }
-        }).delegate('a[data-params]', 'rebuild', function(e) {
+        }).on('rebuild', 'a[data-params]', function(e) {
             var $this = $(this),
                 url = rebuildLink($this.attr('href'), $this.attr('data-params'));
             $this.attr('href', url);
         });
         if ($('body').hasClass('pjax') && $.support.pjax && z.capabilities.JSON) {
-            $('#pjax-results').initSearchPjax($('#search-facets'));
+            $('#pjax-results').initSearchPjax($('#search-facets'), '#pjax-results');
         }
     });
 
@@ -77,9 +82,9 @@
     }
 
 
-    $.fn.initSearchPjax = function($filters) {
+    $.fn.initSearchPjax = function($filters, containerSelector) {
         var $container = $(this),
-            container = $container.selector,
+            container = containerSelector,
             $triggered;
 
         function pjaxOpen(url) {

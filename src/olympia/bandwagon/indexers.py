@@ -21,16 +21,16 @@ class CollectionIndexer(BaseSearchIndexer):
                     'app': {'type': 'byte'},
                     'boost': {'type': 'float', 'null_value': 1.0},
                     'created': {'type': 'date'},
-                    'description': {'type': 'string', 'analyzer': 'snowball'},
-                    'modified': {'type': 'date', 'index': 'no'},
+                    'description': {'type': 'text', 'analyzer': 'snowball'},
+                    'modified': {'type': 'date', 'index': False},
                     # Turn off analysis on name so we can sort by it.
-                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'name_sort': {'type': 'keyword'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
-                    'name': {'type': 'string',
+                    'name': {'type': 'text',
                              'analyzer': 'standardPlusWordDelimiter'},
                     'type': {'type': 'byte'},
-                    'slug': {'type': 'string'},
+                    'slug': {'type': 'keyword'},
 
                 },
             }

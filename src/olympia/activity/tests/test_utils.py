@@ -242,9 +242,9 @@ class TestLogAndNotify(TestCase):
             assert reply_to.endswith(settings.INBOUND_EMAIL_DOMAIN)
         return recipients
 
-    def _check_email(self, call, url, action_text, reason_text):
-        assert call[0][0] == u'Mozilla Add-ons: %s %s %s' % (
-            self.addon.name, self.version.version, action_text)
+    def _check_email(self, call, url, reason_text):
+        assert call[0][0] == u'Mozilla Add-ons: %s %s' % (
+            self.addon.name, self.version.version)
         assert ('visit %s' % url) in call[0][1]
         assert ('receiving this email because %s' % reason_text) in call[0][1]
 
@@ -266,7 +266,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -278,7 +278,6 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review',
@@ -286,8 +285,7 @@ class TestLogAndNotify(TestCase):
                             'channel': 'listed'},
                     add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
         assert not self.version.has_info_request
 
@@ -306,7 +304,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.reviewer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -318,11 +316,9 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Reviewer Reply',
                           'you are an author of this add-on.')
         self._check_email(send_mail_mock.call_args_list[1],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Reviewer Reply',
                           'you are an author of this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -339,7 +335,7 @@ class TestLogAndNotify(TestCase):
         assert not logs[0].details  # No details json because no comment.
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -368,7 +364,7 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
 
         recipients = self._recipients(send_mail_mock)
-        sender = '"%s" <notifications@%s>' % (
+        sender = '%s <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
@@ -381,7 +377,7 @@ class TestLogAndNotify(TestCase):
                             'channel': 'listed'},
                     add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
+                          review_url,
                           'you are member of the activity email cc group.')
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -446,14 +442,12 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review', add_prefix=False,
                     kwargs={'channel': 'listed', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_review_url_unlisted(self, send_mail_mock):
@@ -484,14 +478,12 @@ class TestLogAndNotify(TestCase):
 
         self._check_email(send_mail_mock.call_args_list[0],
                           absolutify(self.addon.get_dev_url('versions')),
-                          'Developer Reply',
                           'you are an author of this add-on.')
         review_url = absolutify(
             reverse('editors.review', add_prefix=False,
                     kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url, 'Developer Reply',
-                          'you reviewed this add-on.')
+                          review_url, 'you reviewed this add-on.')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_from_name_escape(self, send_mail_mock):
@@ -503,8 +495,8 @@ class TestLogAndNotify(TestCase):
         comments = u'Thîs ïs a revïewer replyîng'
         log_and_notify(action, comments, self.reviewer, self.version)
 
-        sender = '"%s" <notifications@%s>' % (
-            'mr \"quote\" escape', settings.INBOUND_EMAIL_DOMAIN)
+        sender = r'"mr \"quote\" escape" <notifications@%s>' % (
+            settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
 
 
@@ -518,18 +510,24 @@ def test_send_activity_mail():
     user = user_factory()
     recipients = [user, ]
     from_email = 'bob@bob.bob'
+    action = ActivityLog.create(amo.LOG.DEVELOPER_REPLY_VERSION, user=user)
     send_activity_mail(
-        subject, message, latest_version, recipients, from_email)
+        subject, message, latest_version, recipients, from_email, action.id)
 
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
-    reference_header = '{addon}/{version}@{site}'.format(
+    uuid = latest_version.token.get(user=user).uuid.hex
+    reference_header = '<{addon}/{version}@{site}>'.format(
         addon=latest_version.addon.id, version=latest_version.id,
         site=settings.INBOUND_EMAIL_DOMAIN)
+    message_id = '<{addon}/{version}/{action}@{site}>'.format(
+        addon=latest_version.addon.id, version=latest_version.id,
+        action=action.id, site=settings.INBOUND_EMAIL_DOMAIN)
+
     assert mail.outbox[0].extra_headers['In-Reply-To'] == reference_header
     assert mail.outbox[0].extra_headers['References'] == reference_header
+    assert mail.outbox[0].extra_headers['Message-ID'] == message_id
 
-    uuid = latest_version.token.get(user=user).uuid.hex
     reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)
     assert mail.outbox[0].reply_to == [reply_email]

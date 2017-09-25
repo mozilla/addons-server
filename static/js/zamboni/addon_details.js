@@ -25,11 +25,4 @@ $(document).ready(function() {
 
     var etiquette_box = $("#addons-display-review-etiquette").hide();
     $("#short-review").focus(function() { etiquette_box.show("fast"); } );
-
-    /* Restart required box. (Only shown in Fx4+). */
-    var requires_restart = $('#addon-summary #requires-restart');
-    if (requires_restart.length && z.browser.firefox
-        && VersionCompare.compareVersions(z.browserVersion, '4.0a1') > 0) {
-        requires_restart.show();
-    }
 });

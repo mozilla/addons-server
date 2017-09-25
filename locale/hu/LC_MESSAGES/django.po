@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-15 05:45+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-22 13:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -78,6 +78,9 @@ msgstr "Értékelési megjegyzés"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
 
+msgid "- Add-on not on AMO -"
+msgstr "- A kiegészítő nincs az AMO-n -"
+
 msgid "Download Now"
 msgstr "Letöltés most"
 
@@ -135,6 +138,10 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "A címkéknek legalább {0} karakterből kell állnia."
 msgstr[1] "A címkéknek legalább {0} karakterből kell állnia."
 
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
+
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Láthatóság"
 
@@ -163,9 +170,6 @@ msgstr "Írja le a témát."
 msgid "Enter a new author's email address"
 msgstr "Írjon be egy új szerzői e-mail címet"
 
-msgid "Not Reviewed"
-msgstr "Nem értékelt"
-
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "A felhasználóknak lehetőségük van ennél többet vagy kevesebbet adni."
 
@@ -176,10 +180,13 @@ msgstr "A Kiegészítőkezelőben a felhasználók mindig megkérdezésre kerül
 msgid "Listed"
 msgstr "Felsorolva"
 
+msgid "Addon and collection paths need to end with \"/\""
+msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
+
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
 msgid "Contribution for {0}"
-msgstr "Adomány ennek: {0}"
+msgstr "Támogatás ennek: {0}"
 
 msgid "Abuse reported."
 msgstr "Visszaélést jelentettek."
@@ -245,11 +252,11 @@ msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosys
 msgstr "A Mozilla elkötelezett a pezsgő és egészséges fejlesztői ökoszisztéma támogatása iránt. Az önkéntes adománya segít folytatni a kiegészítő fejlesztését."
 
 msgid "Make a Contribution"
-msgstr "Közreműködés"
+msgstr "Támogatás"
 
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Támogassa a(z) <strong>%(addon_name)s</strong> kiegészítő folyamatos fejlesztését <a href=\"%(paypal_url)s\">Paypal</a>on keresztüli hozzájárulással."
+msgstr "Támogassa a(z) <strong>%(addon_name)s</strong> kiegészítő folyamatos fejlesztését <a href=\"%(paypal_url)s\">Paypal</a>on keresztüli adománnyal."
 
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
@@ -260,7 +267,7 @@ msgstr ""
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"A fejlesztő adományt kér a(z) <b>%(addon_name)s</b> kiegészítő fejlesztéséért, <a href=\"%(paypal_url)s\">Paypalon</a> keresztül a(z) <a href=\"%(charity_url)s\">%(charity_name)s</a> szervezet "
+"A fejlesztő támogatást kér a(z) <b>%(addon_name)s</b> kiegészítő fejlesztéséhez, <a href=\"%(paypal_url)s\">PayPalon</a> keresztül, a(z) <a href=\"%(charity_url)s\">%(charity_name)s</a> szervezet "
 "számára."
 
 msgid "How much would you like to contribute?"
@@ -475,83 +482,11 @@ msgstr "Még nem osztályozott"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> felhasználó"
 
-msgid "{0} Daily Users"
-msgstr "{0} napi felhasználó"
-
-msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "A kiegészítő telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla ingyenes és nyílt böngészőjét."
-
-msgid "Learn more about Firefox"
-msgstr "Tudjon meg többet a Firefox böngészőről."
-
-msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "vagy <b><a class=\"button installer\" href=\"{url}\">letöltés mindenképp</a></b>"
-
-msgid ""
-"<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
-"button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>Hogyan telepítse Thunderbirdben</strong> <ol> <li>Töltse le és mentse a fájlt merevlemezére.</li> <li>A Mozilla Thunderbirdben nyissa meg a Kiegészítők pontot az Eszközök menüből.</li> <li>A"
-" kiegészítőkereső mező melletti beállítások gomb menüjéből válassza a „Kiegészítő telepítése fájlból” pontot, és keresse meg a letöltött kiegészítőt.</li> </ol>"
-
-msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr "A téma telepítéséhez <b>töltse le a Thunderbird</b>öt, a Mozilla ingyenes és nyílt forrású levelezőprogramját és telepítse a Personas Plus kiegészítőt."
-
-msgid "Learn more about Thunderbird"
-msgstr "Tudjon meg többet a Thunderbird levelezőprogramról"
-
-msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "A téma telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla ingyenes és nyílt böngészőjét."
-
-#, python-format
-msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "A kiegészítő nem lett frissítve, hogy ezzel a %(app)s verzióval használni lehessen."
-
-msgid "Install Anyway"
-msgstr "Telepítés mindenképpen"
-
-msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Ennek a kiegészítőnek olyan Firefox verzióra van szüksége, amely még nem jelent meg."
-
-msgid "Help test new Firefox Versions"
-msgstr "Segítsen az új Firefox verzió tesztelésében"
-
-#, python-format
-msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "A kiegészítő számára a %(app)s {new_version} verzióra van szükség. Jelenleg a %(app)s {old_version} verzióját használja."
-
-#. {0} is an app name, like Firefox.
-msgid "Upgrade {0}"
-msgstr "{0} frissítése"
-
-#, python-format
-msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "vagy nézze meg a <a href=\"%(href)s\">kiegészítő régebbi verzióit</a>."
-
-#, python-format
-msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr "A persona számára a %(app)s %(new_version)s verzióra van szükség. Jelenleg a %(app)s  {old_version} verzióját használja."
-
-msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr ""
-"<strong>Figyelmeztetés:</strong> Ezt a kiegészítőt a Mozilla nem értékelte, és Firefox 43 és újabb verziókhoz nem telepíthető. Legyen óvatos, mikor harmadik féltől származó szoftvert telepít, mert "
-"ezek kárt okozhatnak számítógépében."
-
-msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Megjegyzés:</strong> Ez a kiegészítő nem kompatibilis az operációs rendszerével."
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Ez a kiegészítő az alábbi okok miatt nem kompatibilis ezzel a %(app)s verzióval:"
-
-msgid "View other versions"
-msgstr "Egyéb verziók megtekintése"
-
-#, python-format
-msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ez a kiegészítő nem kompatibilis ezzel a %(app)s verzióval."
+#. {0} is the number of users.
+msgid "{0} Daily User"
+msgid_plural "{0} Daily Users"
+msgstr[0] "{0} napi felhasználó"
+msgstr[1] "{0} napi felhasználó"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -561,30 +496,16 @@ msgstr "{0} adatvédelmi irányelvei"
 msgid "Privacy Policy"
 msgstr "Adatvédelmi irányelvek"
 
-msgid "QR code for add-on"
-msgstr "QR kód a kiegészítőhöz"
-
-msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
-"Szeretné a(z) {0} kiegészítőt a mobilos Firefoxon? Olvassa le a QR-kódot a közvetlen telepítéshez. (Ehhez egy QR-olvasó alkalmazásra lesz szüksége. Amennyiben nincs ilyen alkalmazása, keressen a "
-"telefonhoz elérhető alkalmazások között.)"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Replacement Add-ons for {0}"
-msgstr "Cserekiegészítő e helyett: {0}"
-
 msgid "Report Abuse"
 msgstr "Visszaélés jelentése"
 
 #, python-format
 msgid ""
-"If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
-"other reason."
+"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
+"form for any other reason."
 msgstr ""
-"Ha úgy gondolja, hogy ez a kiegészítő megsérti az <a href=\"%(url)s\">irányelveinket</a> vagy biztonsági, adatvédelmi problémák vannak vele kapcsolatban, akkor írja le az alábbi űrlapon az ezzel "
-"kapcsolatos aggodalmait. Ne használja ezt az űrlapot bármely más ok miatt."
+"Ha úgy gondolja, hogy ez a kiegészítő megsérti az %(amo_policy_link_open)sirányelveinket%(link_close)s vagy biztonsági, adatvédelmi problémák vannak vele kapcsolatban, akkor írja le az alábbi "
+"űrlapon az ezzel kapcsolatos aggodalmait. Ne használja ezt az űrlapot más okok miatt."
 
 msgid "Send Report"
 msgstr "Jelentés küldése"
@@ -651,6 +572,9 @@ msgstr "Ikonja: {0}"
 msgid "by %(users)s"
 msgstr "írta: %(users)s"
 
+msgid "Download Anyway"
+msgstr "Letöltés mégis"
+
 msgid "[Warning]"
 msgstr "[Figyelmeztetés]"
 
@@ -659,9 +583,6 @@ msgstr "Engedélyek"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "A kiegészítőt a készítői kísérletiként jelölték meg"
-
-msgid "Download Anyway"
-msgstr "Letöltés mégis"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
@@ -806,6 +727,12 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Ez a kiegészítő ezeket teheti:"
 
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz. Mivel Öné a Firefox irányítása, így az Ön döntése ezen kérések engedélyezése vagy elutasítása."
+
+msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
+msgstr "Vegye figyelembe, hogy ez a kiegészítő örökölt technológiát használ, amely engedély kérése nélkül ad hozzáférést a böngésző funkcióihoz."
+
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
 msgstr "Köszönjük, hogy telepítette a(z) {0} kiegészítőt"
@@ -848,6 +775,12 @@ msgstr "{addon} forráskód licence"
 #. The License for this add-on.
 msgid "Source Code License"
 msgstr "Forráskód licence"
+
+msgid "support section"
+msgstr "támogatási szakasz"
+
+msgid "support email"
+msgstr "támogatási e-mail"
 
 msgid "permalink"
 msgstr "közvetlen hivatkozás"
@@ -907,6 +840,9 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> letöltés hetente"
 msgstr[1] "<strong>{0}</strong> letöltés hetente"
 
+msgid "Not Reviewed"
+msgstr "Nem értékelt"
+
 msgid "Tools"
 msgstr "Eszközök"
 
@@ -954,19 +890,6 @@ msgstr "Hiba a bemenet ellenőrzésekor, kérjük próbálja meg újra."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ennek érvényes hexakódnak kell lennie, mint például: #000000."
-
-msgid "Collections"
-msgstr "Gyűjtemények"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Szótárak és nyelvi csomagok"
-
-msgid "Add-ons"
-msgstr "Kiegészítők"
-
-#. L10n: relative time in the past, like '4 days ago'
-msgid "{0} ago"
-msgstr "{0} elteltével"
 
 msgid "Not allowed"
 msgstr "Nem engedélyezett"
@@ -1086,6 +1009,9 @@ msgstr "Még több testreszabhatóságot szeretne? Próbálja ki a <b>Teljes té
 msgid "Most Followers"
 msgstr "Legtöbb követő"
 
+msgid "Collections"
+msgstr "Gyűjtemények"
+
 msgid "Collections I've Made"
 msgstr "Saját gyűjtemények"
 
@@ -1100,6 +1026,9 @@ msgstr "Tovább&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Kiegészítők a Mobile-hoz"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Szótárak és nyelvi csomagok"
 
 msgid "Search Tools"
 msgstr "Keresőeszközök"
@@ -1123,6 +1052,13 @@ msgstr "Ugrás az utolsó oldalra"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> / <b>%(count)s</b> megjelenítése"
+
+msgid "Add-ons"
+msgstr "Kiegészítők"
+
+#. L10n: relative time in the past, like '4 days ago'
+msgid "{0} ago"
+msgstr "{0} elteltével"
 
 msgid "Title"
 msgstr "Cím"
@@ -1175,12 +1111,9 @@ msgstr ""
 "Mozilla Kiegészítők közé benyújtott kiegészítőnek kell legyen egy jegyzékfájlja, mely legalább egyet támogat az alábbi alkalmazások közül. Ezeknek az alkalmazásoknak csak az alább felsorolt verziói "
 "engedélyezettek."
 
-msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-
 #, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr "Vegye figyelembe, hogy a WebExtensionök nem fogadják el a „*” karaktert a <a href=\"%(version_url)s\">strict_min_version</a> értékeként."
+msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Vegye figyelembe, hogy a WebExtensionök nem fogadják el a „*” karaktert a %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s értékeként."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1188,12 +1121,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Verziók"
 
-msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
-
 #, python-format
-msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az <a href=\"%(url)s\">itt</a> meghatározott tartalommal."
+msgid ""
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az %(amo_manifests_mdn_link_open)sitt%(amo_manifests_mdn_link_close)s meghatározott tartalommal."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1239,27 +1171,6 @@ msgstr "Ezt az URL-t egy másik gyűjtemény használja"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
-
-msgid "Add a positive vote for this collection"
-msgstr "Pozitív szavazat erre a gyűjteményre"
-
-msgid "Add a negative vote for this collection"
-msgstr "Negatív szavazat erre a gyűjteményre"
-
-msgid "Remove my vote for this collection"
-msgstr "Szavazatom törlése erről a gyűjteményről"
-
-msgid "Log in to vote for this collection"
-msgstr "Jelentkezzen be, hogy szavazhasson"
-
-msgid "Add to favorites"
-msgstr "Hozzáadás a kedvencekhez"
-
-msgid "Favorite"
-msgstr "Kedvenc"
-
-msgid "Remove from favorites"
-msgstr "Eltávolítás a kedvencek közül"
 
 msgid "This slug is already in use by another one of your collections."
 msgstr "Ezt a SEO URL-t már használja egy másik gyűjteménye."
@@ -1553,6 +1464,12 @@ msgstr "Folytatás"
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr "vagy <a id=\"change-owner-cancel\" href=\"#\">Mégsem</a>"
 
+msgid "Remove from favorites"
+msgstr "Eltávolítás a kedvencek közül"
+
+msgid "Add to favorites"
+msgstr "Hozzáadás a kedvencekhez"
+
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "{0} gyűjteményei"
@@ -1583,6 +1500,10 @@ msgstr ""
 
 msgid "Subscribe"
 msgstr "Feliratkozás"
+
+#, python-format
+msgid "by %(author_link)s"
+msgstr "szerző: %(author_link)s"
 
 msgid "Following"
 msgstr "Követés"
@@ -1631,6 +1552,21 @@ msgstr "Megjegyzés hozzáadása"
 
 msgid "Remove this add-on from the collection"
 msgstr "Kiegészítő eltávolítása a gyűjteményből"
+
+msgid "Add a positive vote for this collection"
+msgstr "Pozitív szavazat erre a gyűjteményre"
+
+msgid "Add a negative vote for this collection"
+msgstr "Negatív szavazat erre a gyűjteményre"
+
+msgid "Remove my vote for this collection"
+msgstr "Szavazatom törlése erről a gyűjteményről"
+
+msgid "Log in to vote for this collection"
+msgstr "Jelentkezzen be, hogy szavazhasson"
+
+msgid "Favorite"
+msgstr "Kedvenc"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1707,6 +1643,14 @@ msgstr "Szótár letöltése"
 msgid "Download Language Pack"
 msgstr "Nyelvi csomag letöltése"
 
+#, python-format
+msgid ""
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
+msgstr ""
+"A szótár kiegészítő telepítése új nyelvi lehetőséget az a %(app_name)s helyesírás-ellenőrzőjébe, amely ellenőrzi a helyesírást, amikor webes űrlapokat tölt ki. A nyelvi csomag kiegészítőkkel a "
+"teljes alkalmazás nyelvét átállíthatja."
+
 msgid "Available in your locale"
 msgstr "Elérhető ezen a nyelven"
 
@@ -1754,14 +1698,15 @@ msgid "Additional Resources"
 msgstr "További források"
 
 #. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "Tudjon meg többet a {0} <a href=\"http://support.mozilla.com/kb/Search+bar\">keresőmezőjéről</a>."
+msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
+msgstr "Tudjon meg többet a {0} <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">keresősávjáről</a>."
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Tallózzon még több keresési szolgáltató között a <a href=\"http://mycroftproject.com/\">mycroftproject.com</a> oldalon"
 
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Készítse el saját</a> keresőjét"
+#, python-format
+msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
+msgstr "%(amo_mdn_link_open)sKészítse el a saját%(amo_mdn_link_close)s keresőeszközét"
 
 msgid "Most Popular Extensions"
 msgstr "Legnépszerűbb kiterjesztések"
@@ -1958,7 +1903,7 @@ msgid "{0.name} ({1}) removed from {addon}."
 msgstr "{0.name} ({1})eltávolítva a(z) {addon} kiegészítőből."
 
 msgid "Contributions for {addon}."
-msgstr "Adományok a(z) {addon} kiegészítőhöz."
+msgstr "Támogatás a(z) {addon} kiegészítőhöz."
 
 msgid "{addon} disabled."
 msgstr "{addon} kiegészítő letiltva."
@@ -2243,9 +2188,6 @@ msgstr "Szemlélő"
 msgid "Support"
 msgstr "Támogatás"
 
-msgid "Any"
-msgstr "Bármely"
-
 msgid "Extension"
 msgstr "Bővítmény"
 
@@ -2369,10 +2311,10 @@ msgstr "Előzetes témaértékelés"
 msgid "Updated Complete Theme Review"
 msgstr "Frissített teljes témaértékelés"
 
-msgid "Moderated Addon Review"
-msgstr "Moderált kiegészítőértékelés"
+msgid "Moderated Add-on Review"
+msgstr "Kiegészítőértékelés moderálva"
 
-msgid "Addon Review Moderation Reverted"
+msgid "Add-on Review Moderation Reverted"
 msgstr "Kiegészítő értékelés moderálás visszaállítva"
 
 msgid "Level 1"
@@ -2678,6 +2620,9 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
+msgid "Any"
+msgstr "Bármely"
+
 msgid "All Platforms"
 msgstr "Összes platform"
 
@@ -2847,23 +2792,11 @@ msgstr ""
 "Saját maga. <span class=\"helptext\">A beküldése azonnal aláírásra kerül saját terjesztéshez. A frissítéseket Önnek kell kezelnie egy frissítési URL-en keresztül, vagy külső "
 "alkalmazásfrissítéssel.</span>"
 
-msgid "Add-on Documentation :: Developer Hub"
-msgstr "Kiegészítődokumentáció :: Fejlesztőközpont"
-
-#. L10n: first parameter is the number of errors
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} hiba"
-msgstr[1] "{0} hiba"
-
-#. L10n: first parameter is the number of warnings
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} figyelmeztetés"
-msgstr[1] "{0} figyelmeztetés"
-
-msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Az örökölt kiegészítők nem kompatibilisek a Firefox 57-tel, vagy későbbi verziókkal. Használjon 56.* vagy alacsonyabb maxVersion értéket."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
@@ -2950,6 +2883,9 @@ msgstr "Ilyen típusú kiegészítőt nem küldhet be"
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "Nem nyújthat be „@mozilla.org” GUID-dal végződő kiegészítőt"
 
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
+
 msgid "Icons cannot be animated."
 msgstr "Az ikon nem lehet animált."
 
@@ -3000,12 +2936,28 @@ msgstr "Új API kulcs létrehozva"
 msgid "API key revoked"
 msgstr "API kulcs visszavonva"
 
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
+msgstr ""
+"Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
+"hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
+
+msgid "Firefox Add-on Distribution Agreement"
+msgstr "Firefox kiegészítő terjesztési megállapodás"
+
+msgid "Review Policies and Rules"
+msgstr "Értékelési irányelvek és szabályok"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Kezdés előtt kérjük olvassa el és fogadja el a Firefox kiegészítő terjesztési megállapodásunkat. Ez hivatkozza az adatvédelmi nyilatkozatunkat is, amely elmagyarázza, hogy adatait hogyan kezeljük."
 
 msgid "Printable Version"
 msgstr "Nyomtatható verzió"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
 
 msgid "I Accept this Agreement"
 msgstr "Elfogadom a megállapodást"
@@ -3015,29 +2967,6 @@ msgstr "vagy <a href=\"{0}\">Mégsem</a>"
 
 msgid "Back to Add-ons"
 msgstr "Vissza a kiegészítőkhöz"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Keresés"
-
-msgid "Search"
-msgstr "Keresés"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Találatok a következőre: „{0}”"
-
-msgid "Search Results"
-msgstr "Találatok"
-
-msgid "Please enter some search terms."
-msgstr "Írjon be keresőkifejezéseket."
-
-msgid "Loading results&hellip;"
-msgstr "Találatok betöltése&hellip;"
-
-msgid "No results found."
-msgstr "A keresés eredménytelen."
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -3089,8 +3018,15 @@ msgstr "További erőforrások"
 msgid "Search Developer Docs"
 msgstr "Keresés fejlesztői doksiban"
 
+msgid "Search"
+msgstr "Keresés"
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
+
+#, python-format
+msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
+msgstr "Ez az eszköz csak örököl kiegészítőkkel működik. A WebExtension API-k részletesen <a href=\"%(webext_doc_url)s\">dokumentáltak itt</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "A feltöltést követően számos automatikus ellenőrzés fut le a kompatibilitás vizsgálatához az alábbi alkalmazásverzióhoz:"
@@ -3124,6 +3060,9 @@ msgstr "{0} aktuális tevékenységei"
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time>, %(user)s"
+
+msgid "No results found."
+msgstr "A keresés eredménytelen."
 
 msgid "Refine Activity"
 msgstr "Tevékenység pontosítása"
@@ -3250,11 +3189,8 @@ msgstr "Megjelenés megtekintése"
 msgid "Summary"
 msgstr "Összefoglalás"
 
-msgid ""
-"A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Egy rövid leírás a kiegészítője céljáról, felhasználhatóságáról, ami a keresési és böngészési találatokban jelenik meg, valamint a kiegészítőjét leíró oldal tetején. Mindez csak a listázott "
-"kiegészítőkre vonatkozik."
+msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+msgstr "Ez a leírás be kellene mutassa, hogy pontosan mit csinál a kiegészítő. Meg fog jelenni a listázásokban és a kereséseken, valamit az értékelők is ez alapján fogják tesztelni a kiegészítőt."
 
 msgid "Experimental?"
 msgstr "Kísérleti?"
@@ -3267,6 +3203,18 @@ msgstr "Ez a kiegészítő kísérleti."
 
 msgid "This add-on is ready for general use."
 msgstr "Ez a kiegészítő általános használatra kész."
+
+msgid "Requires Payment?"
+msgstr "Fizetést igényel?"
+
+msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr "Jelölje be a négyzetet, ha a kiegészítő fő funkcionalitásához valamilyen előre-, vagy próbaidő után történő fizetés szükséges."
+
+msgid "This add-on requires payment, non-free services or software, or additional hardware."
+msgstr "Ehhez a kiegészítőhöz fizetés, fizetős szolgáltatások vagy szoftver, vagy további hardver szükséges."
+
+msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr "Ehhez a kiegészítőhöz nem szükséges fizetés, fizetős szolgáltatás vagy szoftver, vagy további hardver."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3295,6 +3243,12 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Foglalt címke:"
 msgstr[1] "Foglalt címkék:"
+
+msgid "Contributions URL"
+msgstr "Támogatási URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Ha pénzbeli támogatást szeretne kérni a felhasználóktól, akkor állítsa be úgy ezt az oldalt, hogy megtehessék."
 
 msgid "Add-on Details"
 msgstr "Kiegészítő részletei"
@@ -3648,9 +3602,6 @@ msgstr "Csak betűket, számokat, aláhúzásokat és kötőjeleket használjon 
 msgid "Summary:"
 msgstr "Összegzés:"
 
-msgid "This summary will be shown in listings and searches."
-msgstr "Ez az összefoglaló jelenik meg a listákban és keresésekben."
-
 msgid "This add-on is experimental"
 msgstr "Ez a kiegészítő kísérleti"
 
@@ -3683,8 +3634,14 @@ msgstr "Van valami, amit az értékelőknek tudniuk kell a kiegészítő érték
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ezeket a megjegyzéseket csak Ön és az értékelőink láthatják."
 
+msgid "Cancel and Disable Version"
+msgstr "Megszakítás és a verzió letiltása"
+
 msgid "Cancel Review and Disable Version"
 msgstr "Értékelés megszakítása és a verzió letiltása"
+
+msgid "Submit Version"
+msgstr "Új verzió beküldése"
 
 msgid "Submit Version for Review"
 msgstr "Verzió beküldése jóváhagyásra"
@@ -3712,6 +3669,12 @@ msgstr "A benyújtási folyamat kész"
 
 msgid "You’re done!"
 msgstr "Kész is van!"
+
+msgid "Version Submitted"
+msgstr "Verzió beküldve"
+
+msgid "You’re done! This version will be available on our site shortly."
+msgstr "Kész van! Ez a verzió hamarosan elérhető lesz az oldalunkon."
 
 msgid "Version Submitted for Review"
 msgstr "Verzió értékelésre benyújtva"
@@ -3789,9 +3752,6 @@ msgstr "Fájl beküldése"
 
 msgid "Sign Add-on"
 msgstr "Kiegészítő aláírása"
-
-msgid "Firefox Add-on Distribution Agreement"
-msgstr "Firefox kiegészítő terjesztési megállapodás"
 
 msgid "API Credentials"
 msgstr "API hitelesítési adatok"
@@ -3904,6 +3864,9 @@ msgstr "Fejlesztői profil kezelése"
 msgid "Create a Developer Profile"
 msgstr "Fejlesztői profil létrehozása"
 
+msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
+msgstr "Ez az oldal hamarosan eltávolításra kerül, és leváltja az Adományozási URL mező a fő Szerkesztés lapon. Győződjön meg róla, hogy az Adományozások be vannak kapcsolva."
+
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
@@ -3960,9 +3923,10 @@ msgstr ""
 "                  amelyeket engedélyezni kíván a forráskódon.\n"
 "                  Ez csak listázott kiegészítőkre vonatkozik."
 
-#. {0} is a list of HTML tags.
-msgid "Allowed HTML: {0}"
-msgstr "Engedélyezett HTML tagok: {0}"
+#. %s is a list of HTML tags.
+#, python-format
+msgid "Allowed HTML: %(allowed_html)s"
+msgstr "Engedélyezett HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Némi HTML támogatva."
@@ -4007,8 +3971,8 @@ msgstr "Olvasson tovább a blogunkon"
 msgid "Resources"
 msgstr "Erőforrások"
 
-msgid "WebExtensions"
-msgstr "WebExtensionök"
+msgid "Porting"
+msgstr "Portolás"
 
 msgid "Community"
 msgstr "Közösség"
@@ -4026,8 +3990,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kapcsolat"
 
-msgid "Review Policies"
-msgstr "Értékelési irányelvek"
+msgid "Policies"
+msgstr "Irányelvek"
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4096,11 +4060,11 @@ msgstr "Kiegészítő kezelése"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 
-msgid "Evolution in Add-on Development"
-msgstr "Evolúció a bővítményfejlesztésben"
+msgid "Update Your Legacy Extension"
+msgstr "Frissítse az örökölt kiterjesztését"
 
-msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "A WebExtensionök a Firefox kiegészítők fejlesztésének szabványai. Frissítenie kell az örökölt kiegészítőit, hogy kompatibilisek maradjanak."
+msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgstr "Létezik egy új, keresztplatformos szabvány a Firefox kiegészítők fejlesztésére. Frissítenie kell az örökölt kiegészítőit, hogy kompatibilisek maradjanak."
 
 msgid "Learn How"
 msgstr "Tudja meg hogyan"
@@ -4108,13 +4072,11 @@ msgstr "Tudja meg hogyan"
 msgid "What's New"
 msgstr "Újdonságok"
 
-msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
-msgstr ""
-"Régi kiegészítőjével akar áttérni WebExtensionökre? Kapjon személyre szabott segítséget munkaidőben, vagy küldjön e-mailt a <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-"
-"support@mozilla.org</a> címre."
+msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
+msgstr "Készen áll a kiegészítő beküldésére? Olvassa el a lépésről lépesre történő ismertetőnket a beküldési folyamatról."
 
-msgid "See Schedule"
-msgstr "Lásd: ütemterv"
+msgid "See Tutorial"
+msgstr "Ismertető megtekintése"
 
 msgid "View All Submissions"
 msgstr "Összes beküldés megtekintése"
@@ -4150,11 +4112,11 @@ msgstr "Firefox testreszabása"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
+"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"A kiegészítők Firefox felhasználók millióinak javítják a böngészési élményét. Ha ismeri a <a href=\"%(html_link)s\">HTML</a>-t, <a href=\"%(js_link)s\">JavaScript</a>et, és <a "
-"href=\"%(css_link)s\">CSS</a>-t, máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
+"A kiegészítők Firefox felhasználók millióinak javítják a böngészési élményét. Ha ismeri a %(html_link_open)sHTML%(link_close)s-t, %(js_link_open)sJavaScript%(link_close)set, és "
+"%(css_link_open)sCSS%(link_close)s-t, máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
@@ -4198,10 +4160,10 @@ msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
 msgstr "A közreműködői oldala: <a href=\"%(url)s\">%(url_full)s</a>"
 
 msgid "Disable Contributions"
-msgstr "Adományok letiltása"
+msgstr "Támogatás letiltása"
 
 msgid "Voluntary Contributions"
-msgstr "Önkéntes adományok"
+msgstr "Önkéntes támogatás"
 
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
 msgstr "Azok a kiegészítők, amelyek jelentkeznek a közreműködői programba, anyagi támogatást kérhetnek a felhasználóktól"
@@ -4213,20 +4175,20 @@ msgid "Choose when and how users are asked to contribute"
 msgstr "Válassza ki, hogy a felhasználók mikor és hogyan járuljanak hozzá"
 
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Adományokat kaphat a PayPal számlájára, vagy elküldheti egy kiválasztott szervezetnek."
+msgstr "Támogatást kaphat a PayPal számlájára, vagy elküldheti egy kiválasztott szervezetnek."
 
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Az adományozás csak a listázott verziókkal rendelkező kiegészítőknél elérhető."
+msgstr "A támogatás csak a listázott verziókkal rendelkező kiegészítőknél érhető el."
 
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Az adományozás csak a <a href=\"%(url)s\">teljes fejlesztői profillal</a> rendelkező kiegészítőknél elérhető."
+msgstr "A támogatás csak a <a href=\"%(url)s\">teljes fejlesztői profillal</a> rendelkező kiegészítőknél érhető el."
 
 msgid "Contributions are only available for approved add-ons."
-msgstr "Az adományozás csak a jóváhagyott kiegészítőknél érhető el."
+msgstr "A támogatás csak a jóváhagyott kiegészítőknél érhető el."
 
 msgid "Set up Contributions"
-msgstr "Adományozás beállítása"
+msgstr "Támogatás beállítása"
 
 msgid "Step 2. Pricing and Availability"
 msgstr "2. lépés: árazás és elérhetőség"
@@ -4236,13 +4198,13 @@ msgid "or <a href=\"%(cancel)s\">Cancel</a>"
 msgstr "vagy <a href=\"%(cancel)s\">Mégse</a>"
 
 msgid "Contributions"
-msgstr "Adományok"
+msgstr "Támogatás"
 
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Töltse ki az alábbi mezőket, ha közösségi hozzájárulást kíván kérni a felhasználóktól."
+msgstr "Töltse ki az alábbi mezőket, ha közösségi támogatást kíván kérni a felhasználóktól."
 
 msgid "Who will receive contributions to this add-on?"
-msgstr "Ki kapja meg a kiegészítőkhöz érkező hozzájárulást?"
+msgstr "Ki kapja meg a kiegészítőkhöz érkező támogatást?"
 
 msgid "What is the name of the organization?"
 msgstr "Mi a szervezet neve?"
@@ -4266,7 +4228,7 @@ msgid "(Example: 3.99)"
 msgstr "(Például: 3.99)"
 
 msgid "When should users be asked for contributions?"
-msgstr "Mikor kellene megkérdezni a felhasználókat az adományokról?"
+msgstr "Mikor kellene megkérdezni a felhasználókat a támogatásról?"
 
 msgid "Send a thank-you note?"
 msgstr "Küld köszönő üzenetet?"
@@ -4282,7 +4244,7 @@ msgstr ""
 "kiegészítőket."
 
 msgid "Activate Contributions"
-msgstr "Adományozás engedélyezése"
+msgstr "Támogatás engedélyezése"
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "vagy <a id=\"setup-cancel\" href=\"#\">Mégsem</a>"
@@ -4408,11 +4370,11 @@ msgstr "Adjon egy nevet a témának."
 
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Egyetértek a <a href=\"%(agreement_url)s\">Firefox kiegészítő-terjesztési megállapodással</a>, és azzal hogy az információimat a <a href=\"%(privacy_notice_url)s\">Weboldalakra, kommunikációra és a "
-"sütikre vonatkozó adatvédelmi értesítés</a> szerint kezelik."
+"Egyetértek a %(agreement_link_open)sFirefox kiegészítő-terjesztési megállapodással%(link_close)s, és azzal hogy az információimat a %(privacy_notice_link_open)sWeboldalakra, kommunikációra és a "
+"sütikre vonatkozó adatvédelmi nyilatkozat%(link_close)s szerint kezelik."
 
 msgid "Submit Theme"
 msgstr "Téma benyújtása"
@@ -4642,29 +4604,44 @@ msgstr "Az értékelési kérelem megszakításával a kiegészítő befejezetle
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Biztosan megszakítja az értékelési kérést?"
 
+msgid "Add-on Documentation :: Developer Hub"
+msgstr "Kiegészítődokumentáció :: Fejlesztőközpont"
+
+#. L10n: first parameter is the number of errors
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} hiba"
+msgstr[1] "{0} hiba"
+
+#. L10n: first parameter is the number of warnings
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} figyelmeztetés"
+msgstr[1] "{0} figyelmeztetés"
+
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lapok testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Set the page you see every time you open a new tab."
+msgstr "Állítsa be az oldalt, amit minden új lapon látni fog."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Tucatnyi elképesztő emodzsi – egyetlen kattintásnyira."
+
+msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Fejlessze az írását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgstr "25+ nyelvet támogatva, ez a kiegészítő egy korrektort tesz közvetlenül a böngészőbe."
+
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tegye jobbá a videókat a {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
-
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emodzsi kifejezések {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Lenyűgöző emodzsik tucatjai minden alkalomra – mindig csak egy kattintásnyira."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Több, mint egyszerű képernyőképek, az Awesome Screenshot Plus lehetővé teszi a képek feliratozását szöveggel és grafikákkal. A fájlok tárolása és megosztása gyerekjáték."
 
 msgid "Approved reviews"
 msgstr "Jóváhagyott értékelések"
@@ -4765,35 +4742,62 @@ msgstr "Kihagyás"
 msgid "Delete review"
 msgstr "Értékelés törlése"
 
-msgid "Rejected or Unreviewed"
-msgstr "Visszautasított vagy nem értékelt"
+msgid "Admin Review"
+msgstr "Adminisztrátori értékelés"
 
-#, python-format
-msgid "[status:%s]"
-msgstr "[állapot: %s]"
+msgid "Jetpack Add-on"
+msgstr "Jetpack kiegészítők"
 
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Új kiegészítő ({0})"
-msgstr[1] "Új kiegészítők ({0})"
+msgid "More Information Requested"
+msgstr "További információ szükséges"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Frissítés ({0})"
-msgstr[1] "Frissítések ({0})"
+msgid "Contains Reviewer Comment"
+msgstr "Értékelői hozzászólást tartalmaz"
 
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderált értékelés ({0})"
-msgstr[1] "Moderált értékelések ({0})"
+msgid "Sources provided"
+msgstr "Megadott források"
 
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Automatikusan jóváhagyott kiegészítő ({0})"
-msgstr[1] "Automatikusan jóváhagyott kiegészítők ({0})"
+msgid "WebExtension"
+msgstr "WebExtension"
 
-msgid "All Unlisted Add-ons"
-msgstr "Minden nem listázott kiegészítő"
+msgid "Uses a custom CSP."
+msgstr "Egyéni CSP-t használ."
+
+msgid "Uses nativeMessaging permission."
+msgstr "NativeMessaging engedélyt használ."
+
+msgid "Uses a content script for all URLs."
+msgstr "Tartalom parancsfájlt használ minden URL-hez."
+
+msgid "Has too many daily users."
+msgstr "Túl sok napi felhasználó van."
+
+msgid "Has too few consecutive human-approved updates."
+msgstr "Túl kevés egymást követő, ember által jóváhagyott frissítése van."
+
+msgid "Has a pending info request."
+msgstr "Egy információs kérés várakozik."
+
+msgid "Is flagged for admin review."
+msgstr "Adminisztrátori értékelésre jelölve."
+
+msgid "Is locked by a reviewer."
+msgstr "Egy szerkesztő zárolta."
+
+msgid "Duplicate Submission"
+msgstr "Ismételt beküldés"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Köszönjük, hogy beküldte témáját"
+
+msgid "A problem with your Theme submission"
+msgstr "Probléma a téma beküldésével"
+
+msgid "Theme submission flagged for review"
+msgstr "Téma beküldés megjelölve értékelésre"
+
+msgid "A question about your Theme submission"
+msgstr "Kérdés a téma beküldéséhez"
 
 msgid "Type"
 msgstr "Típus"
@@ -4869,69 +4873,6 @@ msgstr "Amennyiben aggályai vannak a kiegészítővel, amit jó lenne egy admin
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
-
-msgid "Flagged"
-msgstr "Megjelölve"
-
-msgid "Updates"
-msgstr "Frissítések"
-
-msgid "Admin Review"
-msgstr "Adminisztrátori értékelés"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack kiegészítők"
-
-msgid "More Information Requested"
-msgstr "További információ szükséges"
-
-msgid "Contains Reviewer Comment"
-msgstr "Értékelői hozzászólást tartalmaz"
-
-msgid "Sources provided"
-msgstr "Megadott források"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Egyéni CSP-t használ."
-
-msgid "Uses nativeMessaging permission."
-msgstr "NativeMessaging engedélyt használ."
-
-msgid "Uses a content script for all URLs."
-msgstr "Tartalom parancsfájlt használ minden URL-hez."
-
-msgid "Has too many daily users."
-msgstr "Túl sok napi felhasználó van."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Túl kevés egymást követő, ember által jóváhagyott frissítése van."
-
-msgid "Has a pending info request."
-msgstr "Egy információs kérés várakozik."
-
-msgid "Is flagged for admin review."
-msgstr "Adminisztrátori értékelésre jelölve."
-
-msgid "Is locked by a reviewer."
-msgstr "Egy szerkesztő zárolta."
-
-msgid "Duplicate Submission"
-msgstr "Ismételt beküldés"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Köszönjük, hogy beküldte témáját"
-
-msgid "A problem with your Theme submission"
-msgstr "Probléma a téma beküldésével"
-
-msgid "Theme submission flagged for review"
-msgstr "Téma beküldés megjelölve értékelésre"
-
-msgid "A question about your Theme submission"
-msgstr "Kérdés a téma beküldéséhez"
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Új kiegészítők (5 napnál frissebbek)"
@@ -5012,6 +4953,9 @@ msgstr "Visszaélés-jelentések"
 msgid "View Privacy Policy"
 msgstr "Adatvédelmi irányelvek megtekintése"
 
+msgid "Requires Payment"
+msgstr "Fizetést igényel"
+
 msgid "EULA"
 msgstr "EULA"
 
@@ -5035,23 +4979,6 @@ msgstr "További tudnivalók a kiegészítőről"
 msgid "Image Gallery"
 msgstr "Képgaléria"
 
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"A Fejlesztői csatorna segítségével a hivatalos megjelenés előtt kipróbálhatja a kiegészítő legfrissebb verzióját. A fejlesztői verzió telepítését követően folyamatosan érkeznek a frissítések erről a"
-" csatornáról."
-
-msgid "Install development version"
-msgstr "Fejlesztői verzió telepítése"
-
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Figyelem:</strong> A Fejlesztői verziót még nem értékelte a Mozilla. A Fejlesztői verzió telepítését követően közvetlenül a fejlesztőtől fogja kapni a frissítéseket. A frissítések "
-"leállításához a fenti hivatkozás használatával telepítse újra az alapértelmezett verziót."
-
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nincs itt semmi látnivaló! A fejlesztő nem adott meg részleteket."
 
@@ -5064,6 +4991,9 @@ msgstr "Várakozási sorok"
 msgid "New Add-ons"
 msgstr "Új kiegészítők"
 
+msgid "Updates"
+msgstr "Frissítések"
+
 msgid "Moderated Reviews"
 msgstr "Moderált értékelések"
 
@@ -5072,6 +5002,9 @@ msgstr "Automatikusan jóváhagyott kiegészítők"
 
 msgid "Unlisted Queues"
 msgstr "Titkos sorok"
+
+msgid "All Unlisted Add-ons"
+msgstr "Minden nem listázott kiegészítő"
 
 msgid "Logs"
 msgstr "Naplók"
@@ -5539,32 +5472,38 @@ msgstr "Kérdés az alkotóhoz"
 msgid "Describe your reason for flagging"
 msgstr "Írja le a megjelölés okát"
 
+msgid "Rejected or Unreviewed"
+msgstr "Visszautasított vagy nem értékelt"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[állapot: %s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Új kiegészítő ({0})"
+msgstr[1] "Új kiegészítők ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Frissítés ({0})"
+msgstr[1] "Frissítések ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Moderált értékelés ({0})"
+msgstr[1] "Moderált értékelések ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Automatikusan jóváhagyott kiegészítő ({0})"
+msgstr[1] "Automatikusan jóváhagyott kiegészítők ({0})"
+
+msgid "Flagged"
+msgstr "Megjelölve"
+
 msgid "Cannot diff a version against itself"
 msgstr "Nem hasonlítható össze egy verzió saját magával"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "A fájlmegjelenítő zárolva van, a(z) %s kibontása lehet folyamatban. Próbálja újra körülbelül 5 perc múlva."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Hiba történt a(z) %s fájl elérésekor."
-
-msgid "That file no longer exists."
-msgstr "Ez fájl már nem érhető el."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "A fájlméret a(z) {0} korlát felett van."
-
-msgid "Problems decoding {0}."
-msgstr "Problémák a(z) {0} dekódolása során."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Ez a fájl nem érhető el online. Töltse le a fájlt, ha meg kívánja tekinteni a tartalmát."
-
-msgid "This file is a directory."
-msgstr "Ez a fájl egy könyvtár."
 
 msgid "Access your data for {name}"
 msgstr "Hozzáférés az adataihoz itt: {name}"
@@ -5577,6 +5516,9 @@ msgstr "Hozzéférés az adataihoz minden weboldalon"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 és korábbi verziókhoz GUID szükséges."
+
+msgid "Lowest supported \"strict_min_version\" is 42.0."
+msgstr "A legkisebb támogatott „strict_min_version” érték: 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Nem található a legkisebb/legnagyobb verzió. Lehet, hogy a „strict_min_version” vagy a „strict_max_version” nem támogatott verziót tartalmaz?"
@@ -5706,6 +5648,30 @@ msgstr "Nincsenek fájlok a feltöltött fájlban."
 msgid "Fetching file."
 msgstr "Fájl feldolgozása."
 
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "A fájlmegjelenítő zárolva van, a(z) %s kibontása lehet folyamatban. Próbálja újra körülbelül 5 perc múlva."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Hiba történt a(z) %s fájl elérésekor."
+
+msgid "That file no longer exists."
+msgstr "Ez fájl már nem érhető el."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "A fájlméret a(z) {0} korlát felett van."
+
+msgid "Problems decoding {0}."
+msgstr "Problémák a(z) {0} dekódolása során."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Ez a fájl nem érhető el online. Töltse le a fájlt, ha meg kívánja tekinteni a tartalmát."
+
+msgid "This file is a directory."
+msgstr "Ez a fájl egy könyvtár."
+
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "Az API verzió, amit használ ({0:.1f}), érvénytelen. Frissítsen a jelenlegi, {1:.1f} API verzióra."
 
@@ -5741,21 +5707,6 @@ msgstr "Szt. Patrik napi témák"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ünnepelje a Szent Patrik napot a böngészője dekorálásával."
-
-msgid "Sit Back and Relax"
-msgstr "Dőljön hátra és lazítson"
-
-msgid "Add-ons that help you on your travels!"
-msgstr "Kiegészítők, melyek segítik az utazásaiban!"
-
-msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Megjeleníti az ország zászlóját, ahol a jelenlegi weboldal kiszolgálója található, és még többet."
-
-msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr "A FoxClocks lehetővé teszi, hogy szemmel tartsa az időt a világ körül."
-
-msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr "Automatikusan a legalacsonyabb árat kapja, ha az interneten vásárol vagy repülőjegyet keres."
 
 msgid "A+ add-ons for School"
 msgstr "Csillagos 5-ös kiegészítők a sulihoz"
@@ -6597,8 +6548,10 @@ msgid "Add-on Developer FAQ"
 msgstr "Kiegészítő-fejlesztői GYIK"
 
 #, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<h3>Hogyan készítek egy kiegészítőt?</h3> <p>A Mozilla a <a href=\"%(url)s\">Mozilla fejlesztői hálózaton</a> keresztül biztosít dokumentációt arról, hogy hogyan készítsen el egy kiegészítőt.</p>"
+msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
+msgstr ""
+"<h3>Hogyan készítek egy kiegészítőt?</h3> <p>A Mozilla a %(addons_link_open)sMozilla fejlesztői hálózaton%(link_close)s keresztül biztosít dokumentációt ahhoz, hogy hogyan készítsen el egy "
+"kiegészítőt.</p>"
 
 msgid "What is a \".xpi\" file?"
 msgstr "Mi az a „.xpi” fájl?"
@@ -6618,13 +6571,13 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
-"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
-"legacy Firefox add-on</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
+"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
+" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
-"<strong>Megjegyzés:</strong> A XUL egy elavult technológia a Firefoxban, és a XUL-t használó kiegészítők a Firefox 57-től kezdődően nem fognak betöltődni. Használja a <a "
-"href=\"%(webext_url)s\">WebExtensions</a> API-kat az új kiegészítők fejlesztésére. Ha van egy örökölt kiegészítője, akkor fontolja meg a WebExtensionsre történő áttérést. További információkért az "
-"áttérésről, keresse fel az <a href=\"%(portlegacy_url)s\">Örökölt Firefox kiegészítő portolása</a> lapot."
+"<strong>Megjegyzés:</strong> A XUL egy elavult technológia a Firefoxban, és a XUL-t használó kiegészítők a Firefox 57-től kezdődően nem fognak betöltődni. Használja a "
+"%(webext_link_open)sWebExtensions%(link_close)s API-kat az új kiegészítők fejlesztésére. Ha van egy örökölt kiegészítője, akkor fontolja meg a WebExtensionsre történő áttérést. További "
+"információkért az áttérésről, keresse fel az %(portlegacy_link_open)sÖrökölt Firefox kiegészítő portolása%(link_close)s lapot."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Hogyan tesztelheti a kompatibilitást a legfrissebb Mozilla szoftverekkel?"
@@ -6723,11 +6676,11 @@ msgstr "Van-e a Mozillának érvényben lévő szabályzata arról, hogy mik az 
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
-" the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
+"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészítő értékelési szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a szerkesztői"
-" csapat a <a href=\"%(g_url)s\">Kiegészítőértékelési útmutatót</a> használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
+"Igen. A Mozilla %(policy_link_open)skiegészítő értékelési szabályzata%(link_close)s leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a "
+"szerkesztői csapat a %(guide_link_open)sKiegészítőértékelési útmutatót%(link_close)s használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
 
 msgid "How do I submit my add-on?"
 msgstr "Hogyan kell benyújtani a kiegészítőjét?"
@@ -6735,10 +6688,10 @@ msgstr "Hogyan kell benyújtani a kiegészítőjét?"
 #, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
+" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 "A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt kiegészítőket nyújthat be. Mielőtt beküldi a "
-"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a>, hogy meggyőződjön arról, hogy a kiegészítője betartja-e az irányelveinket."
+"kiegészítőjét, olvassa el a %(review_policy_link_open)sSzerkesztői értékelési útmutatót%(link_close)s, hogy meggyőződjön arról, hogy a kiegészítője betartja-e az irányelveinket."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Milyen operációs rendszer kell megadni a kiegészítőjéhez?"
@@ -7024,10 +6977,10 @@ msgstr "Biztonságos telepíteni a kiegészítőket?"
 #, python-format
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
+"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Legyen óvatos, ha a kiegészítőket telepít, mivel kárt okozhatnak a számítógépében, vagy sérthetik az adatvédelmét. Az ezen az oldalon található kiegészítőket a Mozilla értékelői csapata értékeli, a "
-"felhasználók pedig visszajelzést adnak, így általánosságban biztonságosan telepíthetőek. <a href=\"%(learnmore_url)s\">Ismerje meg az értékelési folyamatot</a>"
+"felhasználók pedig visszajelzést adnak, így általánosságban biztonságosan telepíthetőek. %(learnmore_link_open)sIsmerje meg az értékelési folyamatot%(link_close)s"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7100,10 +7053,10 @@ msgstr "Mit jelent, ha a kiegészítő „kísérleti”?"
 #, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "A kísérleti kiegészítőket a fejlesztők megjelölték, hogy nem széles közönségnek megfelelőek. Lehetnek bennük hibák vagy a működésük lehet, hogy nem megfelelő. Legyen óvatos a kísérleti kiegészítők "
-"telepítésekor, és amennyiben bármilyen problémát észlel azonnal távolítsa el. <a href=\"%(url)s\">Tudjon meg többet az értékelési folyamatról</a></dd>"
+"telepítésekor, és amennyiben bármilyen problémát észlel azonnal távolítsa el. %(learnmore_link_open)sTudjon meg többet az értékelési folyamatról%(link_close)s"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr ""
@@ -7113,10 +7066,10 @@ msgstr ""
 #, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
 msgstr ""
 "Ha közvetlen hivatkozást kap egy olyan kiegészítőhöz, amely azt mondja, hogy még nem lett értékelve, akkor az azt jelenti, hogy még a Mozilla értékelésére vár. Legyen óvatos az ilyen kiegészítők "
-"telepítésekor, mivel azok károsíthatják rendszerét vagy sérthetik személyes adatait. <a href=\"%(url)s\">Ismerje meg az értékelési folyamatot</a></dd>"
+"telepítésekor, mivel azok károsíthatják rendszerét vagy sérthetik személyes adatait. %(learnmore_link_open)sIsmerje meg az értékelési folyamatot%(link_close)s</dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Mennyibe kerül a kiegészítő?"
@@ -7125,14 +7078,14 @@ msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr "A galériában található kiegészítők ingyenesek, ellenkező esetben ezek egyértelműen jelölve vannak."
 
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Mit jelent, ha egy kiegészítő adományt kér?"
+msgstr "Mit jelent, ha egy kiegészítő támogatást kér?"
 
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Néhány kiegészítőfejlesztő adományt kér a kiegészítőjének fejlesztésének támogatásához. Ez az adomány közvetlenül a fejlesztőhöz megy, kivéve, ha azt a fejlesztő harmadik félnek nem ajánlotta fel, "
-"például a nonprofit Mozilla Foundation számára."
+"Néhány kiegészítőfejlesztő támogatást kér a kiegészítőjének fejlesztéséhez. Ez a támogatás közvetlenül a fejlesztőhöz megy, kivéve, ha azt a fejlesztő harmadik félnek nem ajánlotta fel, például a "
+"nonprofit Mozilla Foundation számára."
 
 msgid "What are beta add-ons?"
 msgstr "Mik azok a beta kiegészítők?"
@@ -7658,19 +7611,6 @@ msgstr "Rendezés"
 msgid "Relevance"
 msgstr "Relevancia"
 
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "{2} találat erre: <strong>{3}</strong>, megjelenítve {0} - {1}"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "{2} találat, megjelenítve {0} - {1}"
-
 msgid "All Add-ons"
 msgstr "Összes kiegészítő"
 
@@ -7691,6 +7631,9 @@ msgstr "{0} gyűjtemény találatai"
 msgid "Collection Search Results"
 msgstr "Gyűjteménytalálatok"
 
+msgid "Search Results"
+msgstr "Találatok"
+
 msgid "Search Unavailable"
 msgstr "A keresés nem érhető el"
 
@@ -7703,6 +7646,14 @@ msgstr "{0} téma találatai"
 
 msgid "Themes Search Results"
 msgstr "Tématalálatok"
+
+#. {0} is a search term, such as Firebug.
+msgid "{0} :: Search"
+msgstr "{0} :: Keresés"
+
+#. {0} is a search term, such as Firebug.
+msgid "Search Results for \"{0}\""
+msgstr "Találatok a következőre: „{0}”"
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7725,6 +7676,19 @@ msgstr "Kategória"
 
 msgid "Tag"
 msgstr "Címke"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+# {3} is the word the person is searching for
+msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
+msgstr "{2} találat erre: <strong>{3}</strong>, megjelenítve {0} - {1}"
+
+# {0} is a number
+# {1} is a number
+# {2} is a number
+msgid "Showing {0} - {1} of {2} results"
+msgstr "{2} találat, megjelenítve {0} - {1}"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Hamarosan újra teljes kapacitással fog működni az oldal."
@@ -7898,7 +7862,7 @@ msgid "This dashboard is currently <b>public</b>."
 msgstr "A vezérlőpult jelenleg <b>nyilvános</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr "A hozzájárulási statisztika jelenleg <b>privát</b>."
+msgstr "A támogatási statisztika jelenleg <b>privát</b>."
 
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Az vezérlőpult jelenleg <b>privát</b>."
@@ -7925,7 +7889,7 @@ msgid "Collections Created by Date"
 msgstr "Létrehozott gyűjtemények dátum szerint"
 
 msgid "Contributions by Date"
-msgstr "Hozzájárulások dátum szerint"
+msgstr "Támogatások dátum szerint"
 
 msgid "Downloaded by Date"
 msgstr "Letöltve dátum szerint"
@@ -8180,10 +8144,6 @@ msgstr "Az anonimizáláshoz adja meg a változás okát, de ne változtasson me
 msgid "Please enter at least one name to be denied."
 msgstr "Írjon be legalább egy letiltandó nevet."
 
-msgctxt "user_list_others"
-msgid "others"
-msgstr "mások"
-
 msgid "No user with that email."
 msgstr "Nincs ilyen felhasználó ilyen e-mail címmel."
 
@@ -8196,7 +8156,7 @@ msgid "My Mobile Add-ons"
 msgstr "Saját Mobile kiegészítők"
 
 msgid "an add-on developer thanks me for a contribution"
-msgstr "egy kiegészítő fejlesztője megköszöni a hozzájárulást"
+msgstr "egy kiegészítő fejlesztője megköszöni a támogatást"
 
 msgid "an add-on developer replies to my review"
 msgstr "egy kiegészítő fejlesztője válaszol az értékelésemre"
@@ -8213,8 +8173,8 @@ msgstr "az sdk-alapú kiegészítő frissítése sikeres"
 msgid "someone writes a review of my add-on"
 msgstr "valaki értékelést ír a kiegészítőmhöz"
 
-msgid "stay up-to-date with news and events relevant to add-on developers"
-msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára releváns eseményekkel"
+msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
+msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára releváns eseményekkel (köztük az about:addons hírlevéllel)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a kiegészítő kompatibilitása nem frissíthető"
@@ -8330,8 +8290,9 @@ msgstr "Jelenlegi fotó törlése"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Mutatkozzon be a közösségnek! Ez a szöveg meg fog jelenni a nyilvános adatlapján."
 
-msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr "Engedélyezett HTML: {0}. A hivatkozások tiltottak."
+#, python-format
+msgid "Allowed HTML: %(html)s. Links are forbidden."
+msgstr "Engedélyezett HTML: %(html)s. A hivatkozások tiltottak."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Döntse el mely gyűjtemények jelenlenek meg a profiljában."
@@ -8494,18 +8455,16 @@ msgstr[1] "%(num)s kiegészítő"
 msgid "Average rating of developer's add-ons"
 msgstr "A fejlesztő kiegészítőinek átlagos értékelése"
 
+msgctxt "user_list_others"
+msgid "others"
+msgstr "mások"
+
 #, python-format
 msgid "%s Version History"
 msgstr "%s verziótörténet"
 
 msgid "Version History with Changelogs"
 msgstr "Verziótörténet a módosítások naplójával"
-
-msgid "Add-on uses binary components."
-msgstr "A kiegészítő bináris komponenseket használ."
-
-msgid "Add-on has opted into strict compatibility checking."
-msgstr "A kiegészítő feliratkozott a szigorú kompatibilitás-ellenőrzésre."
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} és frissebbek"
@@ -8539,18 +8498,6 @@ msgstr "Legyen óvatos a régi verziókkal!"
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "Ezek a verziók csak tanulmányozás és tesztelés céljából jelennek meg. Mindig a kiegészítő <a href=\"%(url)s\">legújabb verzióját</a> használja."
 
-msgid "Current Max. Version"
-msgstr "Jelenlegi legmagasabb verzió"
-
-msgid "Target Version"
-msgstr "Célverzió"
-
-msgid "Email when finished"
-msgstr "Küldjön levelet, ha végzett"
-
-msgid "Log emails instead of sending"
-msgstr "Levelek naplózása, küldés helyett"
-
 msgid "Deleted versions can`t be changed."
 msgstr "A törölt verziók nem változtathatóak meg."
 
@@ -8559,21 +8506,3 @@ msgstr "Bináris"
 
 msgid "Non-binary"
 msgstr "Nem bináris"
-
-msgid "Message ID"
-msgstr "Üzenetazonosító"
-
-msgid "Message"
-msgstr "Üzenet"
-
-msgid "Compat Type"
-msgstr "Kompatibilitási típus"
-
-msgid "Addons Affected"
-msgstr "Érintett kiegészítők"
-
-msgid "Addon"
-msgstr "Kiegészítő"
-
-msgid "Validation Result"
-msgstr "Ellenőrzés eredménye"

@@ -4,9 +4,9 @@ import jinja2
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 
-from olympia import amo
 from olympia.addons.models import Addon
-from olympia.bandwagon.models import Collection, MonthlyPick as MP
+from olympia.bandwagon.models import (
+    Collection, MonthlyPick as MonthlyPickModel)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
 
@@ -66,15 +66,23 @@ class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
     template = 'legacy_discovery/modules/monthly.html'
 
+    def get_pick(self, locale):
+        monthly_pick = MonthlyPickModel.objects.filter(locale=locale)[0]
+        if not monthly_pick.addon.is_public():
+            raise IndexError
+        return monthly_pick
+
     def context(self, **kwargs):
         try:
-            pick = MP.objects.filter(locale=self.request.LANG)[0]
+            monthly_pick = self.get_pick(self.request.LANG)
         except IndexError:
             try:
-                pick = MP.objects.filter(locale='')[0]
+                # No MonthlyPick available in the user's locale, use '' to get
+                # the global pick if there is one.
+                monthly_pick = self.get_pick('')
             except IndexError:
-                pick = None
-        return {'pick': pick, 'module_context': 'discovery'}
+                monthly_pick = None
+        return {'pick': monthly_pick, 'module_context': 'discovery'}
 
 
 class CollectionPromo(PromoModule):
@@ -100,26 +108,34 @@ class CollectionPromo(PromoModule):
         return {}
 
     def get_addons(self):
-        addons = self.collection.addons.filter(status=amo.STATUS_PUBLIC)
-        kw = dict(addon_type='ALL', limit=self.limit, app=self.request.APP,
-                  platform=self.platform, version=self.version,
-                  compat_mode=self.compat_mode)
+        addons = self.collection.addons.public()
+        kw = {
+            'addon_type': 'ALL',
+            'limit': self.limit,
+            'app': self.request.APP,
+            'platform': self.platform,
+            'version': self.version,
+            'compat_mode': self.compat_mode
+        }
 
-        def f():
+        def _filter():
             return addon_filter(addons, **kw)
 
-        return caching.cached_with(addons, f, repr(kw))
+        return caching.cached_with(addons, _filter, repr(kw))
 
     def render(self, module_context='discovery'):
         if module_context == 'home':
             self.platform = 'ALL'
             self.version = None
-        c = dict(promo=self, module_context=module_context,
-                 descriptions=self.get_descriptions())
+        context = {
+            'promo': self,
+            'module_context': module_context,
+            'descriptions': self.get_descriptions()
+        }
         if self.collection:
-            c.update(addons=self.get_addons())
+            context['addons'] = self.get_addons()
         return jinja2.Markup(render_to_string(
-            self.template, c, request=self.request))
+            self.template, context, request=self.request))
 
 
 class ShoppingCollection(CollectionPromo):
@@ -174,25 +190,6 @@ class StPatricksPersonas(CollectionPromo):
     title = _(u'St. Patrick&rsquo;s Day Themes')
     subtitle = _(u'Decorate your browser to celebrate '
                  'St. Patrick&rsquo;s Day.')
-
-
-class TravelCollection(CollectionPromo):
-    slug = 'Travelers Pack'
-    collection_author, collection_slug = 'mozilla', 'travel'
-    id = 'travel'
-    cls = 'promo'
-    title = _(u'Sit Back and Relax')
-    subtitle = _(u'Add-ons that help you on your travels!')
-
-    def get_descriptions(self):
-        return {
-            5791: _(u"Displays a country flag depicting the location of the "
-                    "current website's server and more."),
-            1117: _(u'FoxClocks let you keep an eye on the time around the '
-                    'world.'),
-            11377: _(u'Automatically get the lowest price when you shop '
-                     'online or search for flights.')
-        }
 
 
 class SchoolCollection(CollectionPromo):

@@ -31,7 +31,7 @@
       {{ form.summary }}
       {{ form.summary.errors }}
       <div class="edit-addon-details">
-        {{ _('This summary will be shown in listings and searches.') }}
+        {{ _('This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on.') }}
         <div class="char-count"
              data-for-startswith="{{ form.summary.auto_id }}_"
              data-maxlength="{{ form.summary.field.max_length }}"></div>
@@ -47,6 +47,18 @@
                         'or otherwise not ready for general use.  The '
                         'add-on will be listed but will have reduced '
                         'visibility.  You can change this setting later.')
+                  }}">?</span>
+    </div>
+    <div class="addon-submission-field">
+      <label for="{{ form.requires_payment.auto_id }}">
+      {{ form.requires_payment }}
+      {{ _('This add-on requires payment, non-free services or software, or '
+           'additional hardware.') }}
+      </label>
+      <span class="tip tooltip"
+            title="{{ _("Check this box if this add-on's core features require "
+                        "some form of payment upfront or after a trial period "
+                        "in order to work.")
                   }}">?</span>
     </div>
     <div id="addon-categories-edit" class="addon-submission-field"

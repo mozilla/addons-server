@@ -819,7 +819,7 @@ class TestThemesProfile(TestCase):
     def setUp(self):
         super(TestThemesProfile, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
-        self.url = self.user.get_user_url('themes')
+        self.url = self.user.get_themes_url_path()
 
     def _test_good(self, res):
         assert res.status_code == 200
@@ -866,20 +866,19 @@ class TestThemesProfile(TestCase):
         cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
 
         res = self.client.get(
-            self.user.get_user_url('themes', args=[cat.slug]))
+            self.user.get_themes_url_path(args=[cat.slug]))
         assert res.status_code == 200
 
     def test_themes_category(self):
         static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['fashion'])
-        category, _ = Category.objects.get_or_create(
-            id=static_category.id, defaults=static_category.__dict__)
+        category = Category.from_static_category(static_category, True)
 
         self.theme = amo.tests.addon_factory(
             type=amo.ADDON_PERSONA, users=[self.user], category=category)
 
         res = self.client.get(
-            self.user.get_user_url('themes', args=[category.slug]))
+            self.user.get_themes_url_path(args=[category.slug]))
         self._test_good(res)
 
 

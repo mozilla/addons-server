@@ -38,10 +38,12 @@
 
 {% macro addon_flags(addon, version) %}
     {% if version %}
-      {% if version.requires_restart %}
-        <span class="requires-restart">{{ _('Requires Restart') }}</span>
-      {% elif version.is_webextension %}
-        <a href="https://support.mozilla.org/kb/firefox-add-technology-modernizing" class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">{{ _('Compatible with Firefox 57+') }}</a>
+      {% if version.is_restart_required %}
+        <span class="is-restart-required">{{ _('Requires Restart') }}</span>
+      {% elif version.is_webextension or version.is_mozilla_signed %}
+        <a href="https://support.mozilla.org/kb/firefox-add-technology-modernizing" class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">
+          {{ _('Compatible with Firefox 57+') }}
+        </a>
       {% endif %}
     {% endif %}
 {% endmacro %}

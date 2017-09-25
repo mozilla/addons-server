@@ -6,8 +6,8 @@
   data-removeurl="{{ remove_url }}"
   data-favedtext="{{ faved_text }}"
   data-unfavedtext="{{ unfaved_text }}"
-  title="{{ title if condensed }}"
+  title="{{ title if condensed else '' }}"
   href="#"
   >
-  {{ text if not condensed }}
+  {{ text if not condensed else '' }}
 </a>

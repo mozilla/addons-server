@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2016-02-15 10:49+0000\n"
 "Last-Translator: Abdalrahman Hwoij <howij1995@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -79,7 +79,9 @@ msgstr "مشاهدة تقرير التحقق كاملاً"
 msgid "Validating {0}"
 msgstr "يتم التحقق {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
@@ -149,6 +151,9 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
@@ -674,18 +679,6 @@ msgstr "قبول وتثبيت"
 msgid "Add to {0}"
 msgstr "أضِف إلى {0}"
 
-msgid "Download Now"
-msgstr "نزّل الآن"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "ثبّت لـ {0} على كل حال"
@@ -696,9 +689,13 @@ msgstr "نزّل لـ {0} على كل حال"
 msgid "Not available for your platform"
 msgstr "غير متوفر لمنصتك"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "غير متوفر لـ {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
+
+msgid "View other versions"
+msgstr "عرض الإصدارات الأخرى"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "تعمل مع {app} {min} - {max}"
@@ -707,17 +704,7 @@ msgstr "تعمل مع {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "تعمل مع {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "عرض الإصدارات الأخرى"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "نزّل الآن"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

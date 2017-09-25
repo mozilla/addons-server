@@ -104,7 +104,8 @@ class TestPendingQueue(TestQueue):
                         'created': self.days_ago(1)})
         version_factory(
             addon=addon, version=version, channel=self.channel,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'no_restart': True})
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
+                     'is_restart_required': False})
         return addon
 
     def new_search_ext(self, name, version, **kw):
@@ -146,12 +147,12 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         assert q.flags == [('jetpack', 'Jetpack Add-on')]
 
-    def test_flags_requires_restart(self):
+    def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
-            no_restart=False)
+            is_restart_required=True)
 
         q = self.Queue.objects.get()
-        assert q.flags == [('requires_restart', 'Requires Restart')]
+        assert q.flags == [('is_restart_required', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
         self.new_addon().find_latest_version(self.channel).update(
@@ -698,9 +699,12 @@ class TestRereviewQueueTheme(TestCase):
 
 class TestAutoApprovalSummary(TestCase):
     def setUp(self):
-        self.addon = addon_factory(average_daily_users=666)
+        self.addon = addon_factory(
+            average_daily_users=666, version_kw={'version': '1.0'})
+        self.current_file_validation = FileValidation.objects.create(
+            file=self.addon.current_version.all_files[0], validation=u'{}')
         self.version = version_factory(
-            addon=self.addon, file_kw={
+            addon=self.addon, version='1.1', file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         self.file = self.version.all_files[0]
@@ -728,7 +732,11 @@ class TestAutoApprovalSummary(TestCase):
             'uses_eval_or_document_write': 0,
             'uses_implied_eval': 0,
             'uses_innerhtml': 0,
-            'uses_native_messaging': 0
+            'uses_native_messaging': 0,
+            'size_of_code_changes': 0,
+            'uses_remote_scripts': 0,
+            'uses_unknown_minified_code': 0,
+            'violates_mozilla_conditions': 0,
         }
         assert weight_info == expected_result
 
@@ -906,9 +914,11 @@ class TestAutoApprovalSummary(TestCase):
                      'status': amo.STATUS_DISABLED})
 
         # Approved version, does not count.
-        version_factory(
+        new_approved_version = version_factory(
             addon=self.addon,
             file_kw={'reviewed': self.days_ago(11)})
+        FileValidation.objects.create(
+            file=new_approved_version.all_files[0], validation=u'{}')
 
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
@@ -1009,6 +1019,179 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 20
         assert weight_info['uses_native_messaging'] == 20
 
+    def test_calculate_weight_uses_remote_scripts(self):
+        validation_data = {
+            'messages': [{
+                'id': ['REMOTE_SCRIPT'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 40
+        assert weight_info['uses_remote_scripts'] == 40
+
+    def test_calculate_weight_violates_mozilla_conditions_of_use(self):
+        validation_data = {
+            'messages': [{
+                'id': ['MOZILLA_COND_OF_USE'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['violates_mozilla_conditions'] == 20
+
+    def test_calculate_weight_uses_unknown_minified_code_nothing(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': []  # Empty list: no weight.
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+        validation_data = {
+            'metadata': {
+                # Missing property: no weight.
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+        validation_data = {
+            # Missing metadata: no weight.
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0
+        assert weight_info['uses_unknown_minified_code'] == 0
+
+    def test_calculate_weight_uses_unknown_minified_code(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': ['something']
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 10
+        assert weight_info['uses_unknown_minified_code'] == 10
+
+    def test_calculate_size_of_code_changes_no_current_validation(self):
+        # Delete the validation for the current version and reload the version
+        # we're testing (otherwise the file validation has already been loaded
+        # and is still attached to the instance...)
+        self.current_file_validation.delete()
+        self.version = Version.objects.get(pk=self.version.pk)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 200
+        assert weight_info['no_validation_result'] == 200
+
+    def test_calculate_size_of_code_changes_no_new_validation(self):
+        # Delete the validation for the new version and reload that version.
+        # (otherwise the file validation has already been loaded and is still
+        # attached to the instance...)
+        self.file_validation.delete()
+        self.version = Version.objects.get(pk=self.version.pk)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 200
+        assert weight_info['no_validation_result'] == 200
+
+    def test_calculate_size_of_code_changes_no_reported_size(self):
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.calculate_size_of_code_changes() == 0
+        assert summary.weight == 0
+        assert weight_info['size_of_code_changes'] == 0
+
+    def test_calculate_size_of_code_changes_no_current_version(self):
+        validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 15000,
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 15000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 3
+        assert weight_info['size_of_code_changes'] == 3
+
+    def test_calculate_size_of_code_changes(self):
+        old_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 5000,
+            }
+        }
+        self.current_file_validation.update(
+            validation=json.dumps(old_validation_data))
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 15000,
+            }
+        }
+        self.file_validation.update(
+            validation=json.dumps(new_validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 10000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 2
+        assert weight_info['size_of_code_changes'] == 2
+
+    def test_calculate_size_of_code_changes_no_negative(self):
+        old_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 20000,
+            }
+        }
+        self.current_file_validation.update(
+            validation=json.dumps(old_validation_data))
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 5000,
+            }
+        }
+        self.file_validation.update(
+            validation=json.dumps(new_validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 15000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 3
+        assert weight_info['size_of_code_changes'] == 3
+
+    def test_calculate_size_of_code_changes_max(self):
+        old_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 50000000,
+            }
+        }
+        self.current_file_validation.update(
+            validation=json.dumps(old_validation_data))
+        new_validation_data = {
+            'metadata': {
+                'totalScannedFileSize': 0,
+            }
+        }
+        self.file_validation.update(
+            validation=json.dumps(new_validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        assert summary.calculate_size_of_code_changes() == 50000000
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['size_of_code_changes'] == 100
+
     def test_calculate_weight_sum(self):
         validation_data = {
             'messages': [
@@ -1033,7 +1216,11 @@ class TestAutoApprovalSummary(TestCase):
             'uses_eval_or_document_write': 20,
             'uses_implied_eval': 5,
             'uses_innerhtml': 20,
-            'uses_native_messaging': 0
+            'uses_native_messaging': 0,
+            'size_of_code_changes': 0,
+            'uses_remote_scripts': 0,
+            'uses_unknown_minified_code': 0,
+            'violates_mozilla_conditions': 0,
         }
         assert weight_info == expected_result
 

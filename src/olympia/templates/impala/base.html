@@ -9,7 +9,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ STATIC_URL}}img/favicon.ico">
+          href="{{ static('img/favicon.ico') }}">
 
     {% block rss_feed %}{% endblock %}
 
@@ -199,7 +199,6 @@
     {% block site_js %}
       <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
       {{ js('impala') }}
-      <script async defer src="{{ CDN_HOST }}{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block js_extras %}{% endblock %}

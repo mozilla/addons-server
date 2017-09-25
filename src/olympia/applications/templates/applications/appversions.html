@@ -15,9 +15,11 @@ one of the below applications supported. Only the versions listed below are
 allowed for these applications.
 {% endtrans %}</p>
 
-<p>{% trans version_url=_('https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications') %}
-  Please be aware that WebExtensions will not accept a "*" in <a href="{{ version_url }}">strict_min_version</a>.
-{% endtrans %}</p>
+<p>{% trans amo_version_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/manifest.json/applications">'|safe,
+            amo_version_link_close='</a>'|safe %}
+      Please be aware that WebExtensions will not accept a "*" in {{ amo_version_link_open }}strict_min_version{{ amo_version_link_close }}.
+   {% endtrans %}
+</p>
 
 {% for app in apps %}
 <div class="appversion prose">
@@ -32,10 +34,13 @@ allowed for these applications.
 </div>
 {% endfor %}
 
-<p>{% trans url=_('http://developer.mozilla.org/en/docs/Install_Manifests') %}
-If your supported application does not require a manifest file, you still
-must include one with the required properties as specified
-<a href="{{ url }}">here</a>.
-{% endtrans %}</p>
+<p>
+  {% trans amo_manifests_mdn_link_open='<a href="http://developer.mozilla.org/en/docs/Install_Manifests">'|safe,
+            amo_manifests_mdn_link_close='</a>'|safe %}
+    If your supported application does not require a manifest file, you still
+    must include one with the required properties as specified
+    {{ amo_manifests_mdn_link_open }}here{{ amo_manifests_mdn_link_close }}.
+  {% endtrans %}
+</p>
 
 {% endblock %}

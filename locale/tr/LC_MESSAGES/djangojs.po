@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-02-15 16:57+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-15 12:23+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -47,7 +47,7 @@ msgid "Error with {0}"
 msgstr "{0} hatası"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Eklentinizi işlemek için yeni bir linter etkinleştirdik. Herhangi bir sorun yaşarsanız lütfen GitHub'da bize bildirin"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -63,7 +63,9 @@ msgstr "Tam doğrulama raporuna bak"
 msgid "Validating {0}"
 msgstr "{0} doğrulanıyor"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Eklentiniz maksimum {0} olan boyutu aşıyor."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Sunucudan boş yanıt alındı. Durum: {0}"
 
@@ -97,7 +99,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Yükseltmeye izin veriyoruz ve hatta öneriyoruz ama bu işlemi geri alamazsınız. Kullanıcılarınız WebExtension'ı yükledikten sonra eski nesil eklentiyi yükleyemezler."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN'de eski bir Firefox eklentisini dönüştürme ile ilgili bilgiler"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
@@ -126,6 +128,9 @@ msgstr "Üzgünüz, desteklenen platform bulunamadı."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Yüklediğiniz dosya türü tanınmıyor."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Dosyanız maksimum {0} boyutunu aşıyor."
 
 msgid "You cancelled the upload."
 msgstr "Yüklemeyi iptal ettiniz."
@@ -640,18 +645,6 @@ msgstr "Kabul et ve kur"
 msgid "Add to {0}"
 msgstr "{0}'a Ekle"
 
-msgid "Download Now"
-msgstr "Şimdi İndir"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 ve üstü bir sürüm kullanmanız gerek."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla bu sürümü Firefox sürümünüz ile uyumsuz olarak işaretledi."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Yine de {0} için yükle"
@@ -662,9 +655,12 @@ msgstr "Yine de {0} için indir"
 msgid "Not available for your platform"
 msgstr "Sizin platformunuz için mevcut değil"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} için mevcut değil"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Bu eklenti sizin {0} sürümünüzle uyumlu değil."
+
+msgid "View other versions"
+msgstr "Diğer sürümleri görüntüle"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ile çalışır"
@@ -672,17 +668,8 @@ msgstr "{app} {min} - {max} ile çalışır"
 msgid "Works with {app}"
 msgstr "{app} ile çalışır"
 
-msgid "View other versions"
-msgstr "Diğer sürümleri görüntüle"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
-
-msgid "Download now"
-msgstr "Hemen indir"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Yalnızca masaüstü Firefox'ta kullanılabilir"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
@@ -798,7 +785,7 @@ msgid "Review notes found"
 msgstr "İnceleme notları bulundu"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "İncelemelerin Ortalaması"
 
 msgid "Number of Reviews"
 msgstr "İncelemelerin Sayısı"

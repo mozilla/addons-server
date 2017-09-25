@@ -85,38 +85,38 @@ class TestUserProfile(TestCase):
     def test_has_anonymous_username_no_names(self):
         user = UserProfile(display_name=None)
         user.anonymize_username()
-        assert user.has_anonymous_username()
+        assert user.has_anonymous_username
 
     def test_has_anonymous_username_username_set(self):
         user = UserProfile(username='bob', display_name=None)
-        assert not user.has_anonymous_username()
+        assert not user.has_anonymous_username
 
     def test_has_anonymous_username_display_name_set(self):
         user = UserProfile(display_name='Bob Bobbertson')
         user.anonymize_username()
-        assert user.has_anonymous_username()
+        assert user.has_anonymous_username
 
     def test_has_anonymous_username_both_names_set(self):
         user = UserProfile(username='bob', display_name='Bob Bobbertson')
-        assert not user.has_anonymous_username()
+        assert not user.has_anonymous_username
 
     def test_has_anonymous_display_name_no_names(self):
         user = UserProfile(display_name=None)
         user.anonymize_username()
-        assert user.has_anonymous_display_name()
+        assert user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_username_set(self):
         user = UserProfile(username='bob', display_name=None)
-        assert not user.has_anonymous_display_name()
+        assert not user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_display_name_set(self):
         user = UserProfile(display_name='Bob Bobbertson')
         user.anonymize_username()
-        assert not user.has_anonymous_display_name()
+        assert not user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_both_names_set(self):
         user = UserProfile(username='bob', display_name='Bob Bobbertson')
-        assert not user.has_anonymous_display_name()
+        assert not user.has_anonymous_display_name
 
     def test_add_admin_powers(self):
         user = UserProfile.objects.get(username='jbalogh')
@@ -332,6 +332,44 @@ class TestUserProfile(TestCase):
                 read_dev_agreement=older_date).has_read_developer_agreement()
             assert UserProfile(
                 read_dev_agreement=now).has_read_developer_agreement()
+
+    def test_is_public(self):
+        user = UserProfile.objects.get(id=4043307)
+        assert not user.addonuser_set.exists()
+        assert not user.is_public
+
+        addon = Addon.objects.get(pk=3615)
+        addon_user = addon.addonuser_set.create(user=user)
+        assert user.is_public
+
+        # Only developer and owner roles make a profile public.
+        addon_user.update(role=amo.AUTHOR_ROLE_VIEWER)
+        assert not user.is_public
+        addon_user.update(role=amo.AUTHOR_ROLE_DEV)
+        assert user.is_public
+        addon_user.update(role=amo.AUTHOR_ROLE_SUPPORT)
+        assert not user.is_public
+        addon_user.update(role=amo.AUTHOR_ROLE_OWNER)
+        assert user.is_public
+        # But only if they're listed
+        addon_user.update(role=amo.AUTHOR_ROLE_OWNER, listed=False)
+        assert not user.is_public
+        addon_user.update(listed=True)
+        assert user.is_public
+        addon_user.update(role=amo.AUTHOR_ROLE_DEV, listed=False)
+        assert not user.is_public
+        addon_user.update(listed=True)
+        assert user.is_public
+
+        # The add-on needs to be public.
+        self.make_addon_unlisted(addon)  # Easy way to toggle status
+        assert not user.reload().is_public
+        self.make_addon_listed(addon)
+        addon.update(status=amo.STATUS_PUBLIC)
+        assert user.reload().is_public
+
+        addon.delete()
+        assert not user.reload().is_public
 
 
 class TestDeniedName(TestCase):

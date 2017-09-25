@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-05-21 07:31+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-28 13:16+0000\n"
+"Last-Translator: wenke <wenketel@live.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,9 @@ msgstr "查看完整的验证报告"
 msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "您的附加组件超出大小限制 {0}。"
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
 
@@ -124,6 +126,9 @@ msgstr "抱歉，找不到支持的平台。"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "无法识别您上传的文件格式。"
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "您的文件超过大小限制 {0}。"
 
 msgid "You cancelled the upload."
 msgstr "您已取消上传。"
@@ -638,18 +643,6 @@ msgstr "同意并安装"
 msgid "Add to {0}"
 msgstr "添加到 {0}"
 
-msgid "Download Now"
-msgstr "立即下载"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "附加组件尚未更新以支持默认兼容。"
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "您需要使用 Firefox 10.0 或更高的版本。"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla 已标记此版本为不兼容您的 Firefox 版本。"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "继续安装 {0} 版本"
@@ -660,9 +653,12 @@ msgstr "仍要下载 {0}"
 msgid "Not available for your platform"
 msgstr "不适用于您的操作系统"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "不适用于 {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "此附加组件不兼容您所使用的 {0} 版本。"
+
+msgid "View other versions"
+msgstr "查看其他版本"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "兼容于 {app} {min} - {max}"
@@ -670,17 +666,8 @@ msgstr "兼容于 {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "可用于 {app}"
 
-msgid "View other versions"
-msgstr "查看其他版本"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只能用于 Firefox — 获取 Firefox！"
-
-msgid "Download now"
-msgstr "立即下载"
-
-msgid "Only available on Firefox Desktop"
-msgstr "仅可在 Firefox 桌面版使用"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"

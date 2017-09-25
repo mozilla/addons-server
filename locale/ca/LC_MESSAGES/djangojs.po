@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2012-06-22 09:07+0200\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,9 @@ msgstr "Consulteu l'informe de validació complet"
 msgid "Validating {0}"
 msgstr "S'està validant {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S'ha rebut una resposta buida des del servidor; l'estat: {0}"
 
@@ -127,6 +129,9 @@ msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "El tipus de fitxer que heu pujat no es pot reconèixer."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Heu cancel·lat la pujada."
@@ -644,18 +649,6 @@ msgstr "Accepta i instal·la"
 msgid "Add to {0}"
 msgstr "Afegeix al {0}"
 
-msgid "Download Now"
-msgstr "Baixa-ho ara"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "El complement no ha estat actualitzat per acceptar la compatibilitat per defecte."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Heu de fer servir el Firefox 10.0 o superior."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla ha marcat aquesta versió com a incompatible amb la vostra versió del Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instal·la al {0} de totes maneres"
@@ -666,9 +659,13 @@ msgstr "Baixa per al {0} de totes maneres"
 msgid "Not available for your platform"
 msgstr "No està disponible per a la vostra plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "No està disponible per al {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Aquest tema és incompatible amb la vostra versió de {0}"
+
+msgid "View other versions"
+msgstr "Vegeu altres versions"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona amb {app} {min} - {max}"
@@ -677,17 +674,7 @@ msgstr "Funciona amb {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funciona amb {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Vegeu altres versions"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Baixa-ho ara"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

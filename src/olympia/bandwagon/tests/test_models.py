@@ -4,12 +4,13 @@ import random
 import mock
 
 from olympia import amo, core
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionUser, CollectionWatcher)
+    Collection, CollectionAddon, CollectionUser, CollectionWatcher,
+    FeaturedCollection)
 from olympia.bandwagon import tasks
 from olympia.users.models import UserProfile
 
@@ -216,3 +217,68 @@ class TestCollectionQuerySet(TestCase):
         collection.add_addon(addon)
 
         assert qset.first().has_addon
+
+
+class TestFeaturedCollectionSignals(TestCase):
+    """The signal needs to fire for all cases when Addon.is_featured would
+    potentially change"""
+    MOCK_TARGET = 'olympia.bandwagon.models.Collection.update_featured_status'
+
+    def setUp(self):
+        super(TestFeaturedCollectionSignals, self).setUp()
+        self.collection = collection_factory()
+        self.collection.add_addon(addon_factory())
+
+    def test_addon_added_to_featured_collection(self):
+        FeaturedCollection.objects.create(
+            collection=self.collection,
+            application=self.collection.application)
+
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            self.collection.add_addon(addon_factory())
+            function_mock.assert_called()
+
+    def test_addon_removed_from_featured_collection(self):
+        addon = addon_factory()
+        self.collection.add_addon(addon)
+        FeaturedCollection.objects.create(
+            collection=self.collection,
+            application=self.collection.application)
+
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            self.collection.remove_addon(addon)
+            function_mock.assert_called()
+
+    def test_featured_collection_deleted(self):
+        FeaturedCollection.objects.create(
+            collection=self.collection,
+            application=self.collection.application)
+
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            self.collection.delete()
+            function_mock.assert_called()
+
+    def test_collection_becomes_featured(self):
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            FeaturedCollection.objects.create(
+                collection=self.collection,
+                application=self.collection.application)
+            function_mock.assert_called()
+
+    def test_collection_stops_being_featured(self):
+        featured = FeaturedCollection.objects.create(
+            collection=self.collection,
+            application=self.collection.application)
+
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            featured.delete()
+            function_mock.assert_called()
+
+    def test_signal_only_with_featured(self):
+        with mock.patch(self.MOCK_TARGET) as function_mock:
+            addon = addon_factory()
+            collection = collection_factory()
+            collection.add_addon(addon)
+            collection.remove_addon(addon)
+            collection.delete()
+            function_mock.assert_not_called()

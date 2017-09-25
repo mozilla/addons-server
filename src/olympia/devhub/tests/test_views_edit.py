@@ -42,6 +42,7 @@ class BaseTestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
     listed = True
+    __test__ = False  # this is an abstract test case
 
     def setUp(self):
         # Make new for each test.
@@ -81,6 +82,7 @@ class BaseTestEdit(TestCase):
         if self.listed:
             fs = formset(self.cat_initial, initial_count=1)
             result.update({'is_experimental': True,
+                           'requires_payment': True,
                            'tags': ', '.join(self.tags)})
             result.update(fs)
 
@@ -89,6 +91,7 @@ class BaseTestEdit(TestCase):
 
 
 class BaseTestEditBasic(BaseTestEdit):
+    __test__ = False  # this is an abstract test case
 
     def setUp(self):
         super(BaseTestEditBasic, self).setUp()
@@ -232,7 +235,7 @@ class BaseTestEditBasic(BaseTestEdit):
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
 
-    def test_nav_links(self):
+    def test_nav_links(self, show_compat_reporter=True):
         if self.listed:
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
@@ -240,21 +243,22 @@ class BaseTestEditBasic(BaseTestEdit):
                 self.addon.get_dev_url('profile'),  # Manage Developer Profile
                 self.addon.get_dev_url('payments'),  # Manage Payments
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
-
                 self.addon.get_url_path(),  # View Listing
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
                 reverse('stats.overview', args=[self.addon.slug]),  # Stats
-                reverse('compat.reporter_detail', args=[self.addon.guid]),
             ]
         else:
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
                 self.addon.get_dev_url('owner'),  # Manage Authors
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
-
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
-                reverse('compat.reporter_detail', args=[self.addon.guid]),
             ]
+
+        if show_compat_reporter:
+            # Compatibility Reporter. Only shown for legacy extensions.
+            links.append(
+                reverse('compat.reporter_detail', args=[self.addon.guid]))
 
         response = self.client.get(self.url)
         doc_links = [
@@ -262,8 +266,21 @@ class BaseTestEditBasic(BaseTestEdit):
             for a in pq(response.content)('#edit-addon-nav').find('li a')]
         assert links == doc_links
 
+    def test_nav_links_webextensions(self):
+        self.addon.find_latest_version(None).files.update(is_webextension=True)
+        self.test_nav_links(show_compat_reporter=False)
+
 
 class TestEditBasicListed(BaseTestEditBasic):
+    __test__ = True
+
+    def test_edit_page_not_editable(self):
+        # The /edit page is the entry point for the individual edit sections,
+        # and should never display the actual forms, so it should always pass
+        # editable=False to the templates it renders.
+        # See https://github.com/mozilla/addons-server/issues/6208
+        response = self.client.get(self.url)
+        assert response.context['editable'] is False
 
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
@@ -543,14 +560,6 @@ class TestEditBasicListed(BaseTestEditBasic):
         doc = pq(response.content)
         assert doc('#addon-flags').text() == 'None'
 
-    def test_nav_links(self):
-        activity_url = reverse('devhub.feed', args=['a3615'])
-        response = self.client.get(self.url)
-        doc = pq(response.content)('#edit-addon-nav')
-        assert doc('ul:last').find('li a').eq(1).attr('href') == (
-            activity_url)
-        assert doc('.view-stats').length == 1
-
     def test_nav_links_admin(self):
         assert self.client.login(email='admin@mozilla.com')
         response = self.client.get(self.url)
@@ -575,6 +584,21 @@ class TestEditBasicListed(BaseTestEditBasic):
         doc = pq(response.content)
         assert doc('#experimental-edit').text() == (
             'This add-on is experimental.')
+
+    def test_not_requires_payment_flag(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#requires-payment-edit').text() == (
+            'This add-on doesn\'t require any additional payments, '
+            'paid services or software, or additional hardware.')
+
+    def test_requires_payment_flag(self):
+        self.get_addon().update(requires_payment=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#requires-payment-edit').text() == (
+            'This add-on requires payment, non-free services or '
+            'software, or additional hardware.')
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',
@@ -603,8 +627,45 @@ class TestEditBasicListed(BaseTestEditBasic):
             assert pq(
                 response.content)('#l10n-menu').attr('data-default') == 'fr'
 
+    def test_contributions_url_not_url(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='foooo')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions', 'Enter a valid URL.')
+
+    def test_contributions_url_not_valid_domain(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://foo.baa/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions',
+            'URL domain must be one of [%s], or a subdomain.' %
+            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
+
+    def test_contributions_url_valid_domain(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://paypal.me/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == 'http://paypal.me/'
+
+    def test_contributions_url_valid_domain_sub(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://sub.paypal.me/random/?path')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == (
+            'http://sub.paypal.me/random/?path')
+
 
 class TestEditMedia(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(TestEditMedia, self).setUp()
@@ -933,6 +994,7 @@ class TestEditMedia(BaseTestEdit):
 
 
 class BaseTestEditDetails(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
@@ -1047,6 +1109,7 @@ class TestEditDetailsListed(BaseTestEditDetails):
 
 
 class TestEditSupport(BaseTestEdit):
+    __test__ = True
 
     def setUp(self):
         super(TestEditSupport, self).setUp()
@@ -1094,6 +1157,7 @@ class TestEditSupport(BaseTestEdit):
 
 
 class TestEditTechnical(BaseTestEdit):
+    __test__ = True
     fixtures = BaseTestEdit.fixtures + [
         'addons/persona', 'base/addon_40', 'base/addon_1833_yoono',
         'base/addon_4664_twitterbar.json',
@@ -1366,6 +1430,7 @@ class TestEditTechnical(BaseTestEdit):
 
 class TestEditBasicUnlisted(BaseTestEditBasic):
     listed = False
+    __test__ = True
 
 
 class TestEditDetailsUnlisted(BaseTestEditDetails):
@@ -1373,6 +1438,7 @@ class TestEditDetailsUnlisted(BaseTestEditDetails):
 
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
+    __test__ = True
     listed = False
 
     def test_whiteboard(self):

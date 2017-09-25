@@ -18,7 +18,9 @@ from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
-from olympia.users.utils import system_addon_submission_allowed
+from olympia.users.utils import (
+    mozilla_signed_extension_submission_allowed,
+    system_addon_submission_allowed)
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 from olympia.signing.serializers import FileUploadSerializer
@@ -140,6 +142,9 @@ class VersionView(APIView):
                 ugettext(u'You cannot submit an add-on with a guid ending '
                          u'"@mozilla.org"'),
                 status.HTTP_400_BAD_REQUEST)
+        if not mozilla_signed_extension_submission_allowed(request.user, pkg):
+            raise forms.ValidationError(
+                ugettext(u'You cannot submit a Mozilla Signed Extension'))
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = ugettext(

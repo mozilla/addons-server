@@ -15,7 +15,7 @@
           </span>
         {% endif %}
       </span>
-      {% if version.compatible_apps %}
+      {% if version.compatible_apps and addon.type not in amo.NO_COMPAT %}
         <span class="meta compat">
           {# L10n: This refers to this version's compatible applications, such as Firefox 8.0 #}
           {{ _('Works with') }}
@@ -57,9 +57,9 @@
   </div>
   <div class="action">
     {% if skip_contrib %}
-      {{ install_button(addon, version=version, impala=impala, show_contrib=False) }}
+      {{ install_button(addon, version=version, impala=impala, show_contrib=False, show_download_anyway=True) }}
     {% else %}
-      {{ install_button(addon, version=version, impala=impala) }}
+      {{ install_button(addon, version=version, impala=impala, show_download_anyway=True) }}
     {% endif %}
   </div>
 </div>

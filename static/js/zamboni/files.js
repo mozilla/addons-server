@@ -306,7 +306,7 @@ jQuery.fn.numberInput = function(increment) {
         }));
 
         $.each(['change', 'keypress', 'input'], function(i, event) {
-            $self.bind(event, function() {
+            $self.on(event, function() {
                 $self.val($self.val().replace(/\D+/, ''));
             });
         });
@@ -921,7 +921,7 @@ function bind_viewer(nodes) {
         viewer.toggle_wrap('wrap', true);
     }));
 
-    $(window).bind('popstate', function() {
+    $(window).on('popstate', function() {
         if (viewer.last != location.pathname) {
             viewer.nodes.$files.find('.file').each(function() {
                 if ($(this).attr('href') == location.pathname) {
@@ -947,7 +947,7 @@ function bind_viewer(nodes) {
     });
 
     var buffer = '';
-    $(document).bind('keypress', function(e) {
+    $(document).on('keypress', function(e) {
         if (e.charCode && !(e.altKey || e.ctrlKey || e.metaKey) &&
                 ![HTMLInputElement, HTMLSelectElement, HTMLTextAreaElement]
                     .some(function (iface) { return e.target instanceof iface })) {

@@ -87,3 +87,9 @@ def system_addon_submission_allowed(user, parsed_addon_data):
     return (
         not guid.endswith(u'@mozilla.org') or
         user.email.endswith(u'@mozilla.com'))
+
+
+def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
+    return (
+        not parsed_addon_data.get('is_mozilla_signed_extension') or
+        user.email.endswith(u'@mozilla.com'))

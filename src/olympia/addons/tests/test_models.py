@@ -16,7 +16,8 @@ from mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import (
+    addon_factory, collection_factory, TestCase, version_factory)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
@@ -24,7 +25,7 @@ from olympia.addons.models import (
     Category, Charity, CompatOverride, CompatOverrideRange, FrozenAddon,
     IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
-from olympia.bandwagon.models import Collection
+from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
@@ -736,25 +737,53 @@ class TestAddonModels(TestCase):
         addon.disabled_by_user = True
         assert not addon.is_public()
 
-    def test_requires_restart(self):
+    def test_is_restart_required(self):
         addon = Addon.objects.get(pk=3615)
         file_ = addon.current_version.all_files[0]
-        assert not file_.no_restart
-        assert file_.requires_restart
-        assert addon.requires_restart
+        assert not file_.is_restart_required
+        assert not addon.is_restart_required
 
-        file_.update(no_restart=True)
-        assert not Addon.objects.get(pk=3615).requires_restart
+        file_.update(is_restart_required=True)
+        assert Addon.objects.get(pk=3615).is_restart_required
 
         addon.versions.all().delete()
         addon._current_version = None
-        assert not addon.requires_restart
+        assert not addon.is_restart_required
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
         a = Addon.objects.get(pk=1003)
         assert a.is_featured(amo.FIREFOX, 'en-US'), (
             'globally featured add-on not recognized')
+
+    def test_get_featured_by_app(self):
+        addon = Addon.objects.get(pk=1003)
+        featured_coll = addon.collections.get().featuredcollection_set.get()
+        assert featured_coll.locale is None
+        # Get the applications this addon is featured for.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
+
+        featured_coll.update(locale='fr')
+        # Check the locale works.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr'}}
+
+        pt_coll = collection_factory()
+        pt_coll.add_addon(addon)
+        FeaturedCollection.objects.create(collection=pt_coll,
+                                          application=amo.FIREFOX.id,
+                                          locale='pt-PT')
+        # Add another featured collection for the same application.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr', 'pt-PT'}}
+
+        mobile_coll = collection_factory()
+        mobile_coll.add_addon(addon)
+        FeaturedCollection.objects.create(collection=mobile_coll,
+                                          application=amo.ANDROID.id,
+                                          locale='pt-PT')
+        # Add a featured collection for the a different application.
+        assert addon.get_featured_by_app() == {
+            amo.FIREFOX.id: {'fr', 'pt-PT'},
+            amo.ANDROID.id: {'pt-PT'}}
 
     def test_has_full_profile(self):
         """Test if an add-on's developer profile is complete (public)."""
@@ -1948,6 +1977,7 @@ class TestPersonaModel(TestCase):
         self.persona = self.addon.persona
         self.persona.header = 'header.png'
         self.persona.footer = 'footer.png'
+        self.persona.popularity = 12345
         self.persona.save()
         modified = int(time.mktime(self.persona.addon.modified.timetuple()))
         self.p = lambda fn: '/15663/%s?%s' % (fn, modified)
@@ -2060,6 +2090,10 @@ class TestPersonaModel(TestCase):
         data = self.persona.theme_data
         assert data['footerURL'] == ''
         assert data['footer'] == ''
+
+    def test_theme_data_with_null_description(self):
+        addon = addon_factory(type=amo.ADDON_PERSONA, description=None)
+        assert addon.persona.theme_data['description'] is None
 
 
 class TestPreviewModel(TestCase):
@@ -2419,7 +2453,7 @@ class TestAddonFromUpload(UploadTest):
     def test_webext_resolve_translations_corrects_locale(self, parse_addon):
         """Make sure we correct invalid `default_locale` values"""
         parse_addon.return_value = {
-            'default_locale': u'en',
+            'default_locale': u'sv',
             'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
@@ -2435,8 +2469,8 @@ class TestAddonFromUpload(UploadTest):
             self.get_upload('notify-link-clicks-i18n.xpi'),
             [self.platform])
 
-        # Normalized from `en` to `en-US`
-        assert addon.default_locale == 'en-US'
+        # Normalized from `sv` to `sv-SE`
+        assert addon.default_locale == 'sv-SE'
 
     @patch('olympia.addons.models.parse_addon')
     def test_webext_resolve_translations_unknown_locale(self, parse_addon):

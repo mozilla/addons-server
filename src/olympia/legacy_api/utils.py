@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.html import strip_tags
 
+import waffle
+
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -72,13 +74,18 @@ def addon_to_dict(addon, disco=False, src='api'):
     if addon.developer_comments:
         d['dev_comments'] = unicode(addon.developer_comments)
 
-    if addon.takes_contributions:
+    simple_contributions = waffle.switch_is_active('simple-contributions')
+    if addon.takes_contributions and not simple_contributions:
         contribution = {
             'link': url(addon.contribution_url, src=src),
             'meet_developers': url(addon.meet_the_dev_url(), src=src),
             'suggested_amount': addon.suggested_amount,
         }
         d['contribution'] = contribution
+    elif addon.contributions and simple_contributions:
+        d['contribution'] = {
+            'meet_developers': addon.contributions,
+        }
 
     if addon.type == amo.ADDON_PERSONA:
         d['previews'] = [addon.persona.preview_url]

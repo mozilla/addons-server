@@ -63,10 +63,10 @@ class TestPackaged(TestCase):
         monkeypatch.setattr('requests.post', mock_post_call)
 
     @pytest.fixture(autouse=True)
-    def mock_get_signature_serial_number(self, monkeypatch):
+    def mock_get_signer_serial_number(self, monkeypatch):
         """Fake a standard signing-client response."""
         monkeypatch.setattr(
-            'olympia.lib.crypto.packaged.get_signature_serial_number',
+            'olympia.lib.crypto.packaged.get_signer_serial_number',
             lambda pkcs7: 'serial number')
 
     def assert_not_signed(self):
@@ -87,34 +87,28 @@ class TestPackaged(TestCase):
         max_appversion = self.version.apps.first().max
 
         # Old, and not default to compatible.
-        max_appversion.update(version=settings.MIN_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_D2C_VERSION))
+        max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
+        self.assert_signed()
 
     def test_supports_firefox_android_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
         # Old, and not default to compatible.
         max_appversion.update(application=amo.ANDROID.id,
-                              version=settings.MIN_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_D2C_VERSION))
+                              version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
+        self.assert_signed()
 
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
         # Old, and default to compatible.
-        max_appversion.update(version=settings.MIN_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_D2C_VERSION))
+        max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
@@ -125,9 +119,7 @@ class TestPackaged(TestCase):
 
         # Old, and default to compatible.
         max_appversion.update(application=amo.ANDROID.id,
-                              version=settings.MIN_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_D2C_VERSION))
+                              version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
@@ -137,9 +129,7 @@ class TestPackaged(TestCase):
         max_appversion = self.version.apps.first().max
 
         # Recent, default to compatible.
-        max_appversion.update(version=settings.MIN_NOT_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_NOT_D2C_VERSION))
+        max_appversion.update(version='37', version_int=version_int('37'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
@@ -150,9 +140,7 @@ class TestPackaged(TestCase):
 
         # Recent, not default to compatible.
         max_appversion.update(application=amo.ANDROID.id,
-                              version=settings.MIN_NOT_D2C_VERSION,
-                              version_int=version_int(
-                                  settings.MIN_NOT_D2C_VERSION))
+                              version='37', version_int=version_int('37'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
@@ -203,6 +191,12 @@ class TestPackaged(TestCase):
             self.addon.update(guid=hotfix_guid)
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
             self.assert_not_signed()
+
+    def test_no_sign_again_mozilla_signed_extensions(self):
+        """Don't try to resign mozilla signed extensions."""
+        self.file_.update(is_mozilla_signed_extension=True)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
 
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
@@ -291,9 +285,9 @@ class TestTasks(TestCase):
         self.addon = amo.tests.addon_factory(version_kw={'version': '1.3'})
         self.version = self.addon.current_version
         # Make sure our file/version is at least compatible with FF
-        # MIN_NOT_D2C_VERSION.
+        # '37'.
         self.max_appversion = self.version.apps.first().max
-        self.set_max_appversion(settings.MIN_NOT_D2C_VERSION)
+        self.set_max_appversion('37')
         self.file_ = self.version.all_files[0]
         self.file_.update(filename='jetpack.xpi')
 
@@ -384,7 +378,7 @@ class TestTasks(TestCase):
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
-            for app in packaged.SIGN_FOR_APPS:
+            for app in (amo.ANDROID.id, amo.FIREFOX.id):
                 self.max_appversion.update(application=app)
                 tasks.sign_addons([self.addon.pk])
                 mock_sign_file.assert_called_with(
@@ -398,32 +392,6 @@ class TestTasks(TestCase):
         assert self.version.version_int == version_int('1.3')
         assert file_hash == self.file_.generate_hash()
         self.assert_no_backup()
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
-        """Don't sign files which are too old, or not default to compatible."""
-        fpath = fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
-        with amo.tests.copy_file(fpath, self.file_.file_path):
-            file_hash = self.file_.generate_hash()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-
-            # Too old, don't sign.
-            self.set_max_appversion('1')  # Very very old.
-            tasks.sign_addons([self.addon.pk])
-            self.assert_not_signed(mock_sign_file, file_hash)
-
-            # MIN_D2C_VERSION, but strict compat: don't sign.
-            self.set_max_appversion(settings.MIN_D2C_VERSION)
-            self.file_.update(strict_compatibility=True)
-            tasks.sign_addons([self.addon.pk])
-            self.assert_not_signed(mock_sign_file, file_hash)
-
-            # MIN_D2C_VERSION, but binary component: don't sign.
-            self.file_.update(strict_compatibility=False,
-                              binary_components=True)
-            tasks.sign_addons([self.addon.pk])
-            self.assert_not_signed(mock_sign_file, file_hash)
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_other_applications(self, mock_sign_file):
@@ -487,7 +455,7 @@ class TestTasks(TestCase):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
-            self.set_max_appversion(settings.MIN_D2C_VERSION)
+            self.set_max_appversion('4')
             tasks.sign_addons([self.addon.pk])
             assert mock_sign_file.called
             self.version.reload()

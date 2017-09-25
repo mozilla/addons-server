@@ -12,42 +12,52 @@ Account
 .. _`account`:
 
 This endpoint returns information about a user's account, by the account id.
+Only :ref:`developer <developer_account>` accounts are publicly viewable - other user's accounts will return a 404 not found response code.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
+
+.. _`developer_account`:
+
+A developer is defined as a user who is listed as a developer or owner of one or more approved add-ons.
+
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object:
 
-    :>json int id: The numeric user id.
-    :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
-    :>json string name: The name chosen by the user, or the username if not set.
     :>json float average_addon_rating: The average rating for addons the developer has listed on the website.
-    :>json int num_addons_listed: The number of addons the developer has listed on the website.
     :>json string|null biography: More details about the user.
     :>json string created: The date when this user first logged in and created this account.
-    :>json string|null homepage: The user's website.
-    :>json string|null location: The location of the user.
-    :>json string|null occupation: The occupation of the user.
-    :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
-    :>json string|null picture_type: the image type (only 'image/png' is supported) if a user defined photo has been provided, or none if no photo has been provided.
+    :>json boolean has_anonymous_display_name: The user has chosen neither a name nor a username.
+    :>json boolean has_anonymous_username: The user hasn't chosen a username.:>json string|null homepage: The user's website.
+    :>json int id: The numeric user id.
     :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
     :>json boolean is_artist: The user has developed and listed themes on this website.
+    :>json string|null location: The location of the user.
+    :>json string name: The name chosen by the user, or the username if not set.
+    :>json int num_addons_listed: The number of addons the developer has listed on the website.
+    :>json string|null occupation: The occupation of the user.
+    :>json string|null picture_type: the image type (only 'image/png' is supported) if a user defined photo has been provided, or none if no photo has been provided.
+    :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
+    :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
+
 
 
 If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.
+You can always access your account, regardless of whether you are a developer or not.
 If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object-self:
 
-    :>json string email: Email address used by the user to login and create this account.
-    :>json string|null display_name: The name chosen by the user.
-    :>json boolean is_verified: The user has been verified via FirefoxAccounts.
-    :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
     :>json boolean deleted: Is the account deleted.
+    :>json string|null display_name: The name chosen by the user.
+    :>json string email: Email address used by the user to login and create this account.
     :>json string last_login: The date of the last successful log in to the website.
     :>json string last_login_ip: The IP address of the last successfull log in to the website.
+    :>json boolean is_verified: The user has been verified via FirefoxAccounts.
+    :>json array permissions: A list of the additional :ref:`permissions <login-response-permissions>` this user has.
+    :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
 
 
     :statuscode 200: account found.

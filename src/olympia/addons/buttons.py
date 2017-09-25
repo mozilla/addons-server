@@ -1,20 +1,20 @@
-from django.db.transaction import non_atomic_requests
 from django.template.loader import render_to_string
 from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import render
 
 
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_contrib=True,
                    show_warning=True, src='', collection=None, size='',
-                   detailed=False, impala=False, latest_beta=False):
+                   detailed=False, impala=False, latest_beta=False,
+                   show_download_anyway=False):
     """
     If version isn't given, we use the latest version. You can set latest_beta
     parameter to use latest beta version instead.
@@ -31,15 +31,17 @@ def install_button(context, addon, version=None, show_contrib=True,
                   request.GET.get('collection') or
                   request.GET.get('collection_id') or
                   request.GET.get('collection_uuid'))
-    button = install_button_factory(addon, app, lang, version, show_contrib,
-                                    show_warning, src, collection, size,
-                                    detailed, impala,
-                                    latest_beta)
+    button = install_button_factory(
+        addon, app, lang, version=version, show_contrib=show_contrib,
+        show_warning=show_warning, src=src, collection=collection, size=size,
+        detailed=detailed, impala=impala, latest_beta=latest_beta,
+        show_download_anyway=show_download_anyway)
     installed = (request.user.is_authenticated() and
                  addon.id in request.user.mobile_addons)
     context = {
         'button': button, 'addon': addon, 'version': button.version,
-        'installed': installed}
+        'installed': installed
+    }
     if impala:
         template = 'addons/impala/button.html'
     else:
@@ -51,8 +53,9 @@ def install_button(context, addon, version=None, show_contrib=True,
 def big_install_button(context, addon, **kwargs):
     from olympia.addons.templatetags.jinja_helpers import statusflags
     flags = jinja2.escape(statusflags(context, addon))
-    button = install_button(context, addon, detailed=True, size='prominent',
-                            **kwargs)
+    button = install_button(
+        context, addon, detailed=True, show_download_anyway=True,
+        size='prominent', **kwargs)
     markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
     return jinja2.Markup(markup)
 
@@ -80,8 +83,8 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None, show_contrib=True,
                  show_warning=True, src='', collection=None, size='',
-                 detailed=False, impala=False,
-                 latest_beta=False):
+                 detailed=False, impala=False, latest_beta=False,
+                 show_download_anyway=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version
@@ -92,6 +95,7 @@ class InstallButton(object):
         self.collection = collection
         self.size = size
         self.detailed = detailed
+        self.show_download_anyway = show_download_anyway
         self.impala = impala
 
         self.is_beta = self.version and self.version.is_beta
@@ -105,8 +109,10 @@ class InstallButton(object):
                          addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
-        self._show_contrib = show_contrib
-        self.show_contrib = (show_contrib and addon.takes_contributions and
+        simple_contributions = waffle.switch_is_active('simple-contributions')
+        self._show_contrib = show_contrib and not simple_contributions
+        self.show_contrib = (show_contrib and not simple_contributions and
+                             addon.takes_contributions and
                              addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_warning = show_warning and self.unreviewed
 
@@ -136,6 +142,8 @@ class InstallButton(object):
             rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
+        if addon.type in amo.NO_COMPAT:
+            rv['data-no-compat-necessary'] = 'true'
         return rv
 
     def links(self):
@@ -145,8 +153,9 @@ class InstallButton(object):
         files = [f for f in self.version.all_files
                  if f.status in amo.VALID_FILE_STATUSES]
         for file in files:
-            text, url, os = self.file_details(file)
-            rv.append(Link(text, self.fix_link(url), os, file))
+            text, url, download_url, os = self.file_details(file)
+            rv.append(Link(text, self.fix_link(url),
+                           self.fix_link(download_url), os, file))
         return rv
 
     def file_details(self, file):
@@ -154,10 +163,13 @@ class InstallButton(object):
         if self.latest and not self.is_beta and (
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
+            download_url = file.latest_xpi_url(attachment=True)
         elif self.latest and self.is_beta and self.addon.show_beta:
             url = file.latest_xpi_url(beta=True)
+            download_url = file.latest_xpi_url(beta=True, attachment=True)
         else:
             url = file.get_url_path(self.src)
+            download_url = file.get_url_path(self.src, attachment=True)
 
         if platform == amo.PLATFORM_ALL.id:
             text, os = ugettext('Download Now'), None
@@ -170,7 +182,7 @@ class InstallButton(object):
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, version=self.version.version)
 
-        return text, url, os
+        return text, url, download_url, os
 
     def fix_link(self, url):
         if self.src:
@@ -212,11 +224,6 @@ class PersonaInstallButton(InstallButton):
 
 class Link(object):
 
-    def __init__(self, text, url, os=None, file=None):
-        self.text, self.url, self.os, self.file = text, url, os, file
-
-
-@non_atomic_requests
-def js(request):
-    return render(request, 'addons/popups.html',
-                  content_type='text/javascript')
+    def __init__(self, text, url, download_url=None, os=None, file=None):
+        self.text, self.url, self.download_url, self.os, self.file = (
+            text, url, download_url, os, file)

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2017-06-12 02:49+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,9 @@ msgstr "전체 검사 보고서 보기"
 msgid "Validating {0}"
 msgstr "{0} 검사중"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
 
@@ -126,6 +128,9 @@ msgstr "죄송합니다, 지원되는 플랫폼을 찾지 못하였습니다."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "업로드한 파일 형식을 인식할 수 없습니다."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "업로드를 취소했습니다."
@@ -641,18 +646,6 @@ msgstr "동의 및 설치"
 msgid "Add to {0}"
 msgstr "{0}에 추가"
 
-msgid "Download Now"
-msgstr "다운로드"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "부가 기능이 기본으로 호환성을 갖출 수 있도록 업데이트 되지 않았습니다."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 이상 버전이 필요합니다."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla에서 이 버전이 현재 사용중인 Firefox 버전과 호환되지 않음을 표시하고 있습니다."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "{0}용 강제 설치"
@@ -663,9 +656,13 @@ msgstr "{0}용 강제 다운로드"
 msgid "Not available for your platform"
 msgstr "현재 플랫폼에서 사용 불가"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1}에서 사용 불가"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
+
+msgid "View other versions"
+msgstr "다른 버전 보기"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max}에서 작동"
@@ -674,18 +671,8 @@ msgstr "{app} {min} - {max}에서 작동"
 msgid "Works with {app}"
 msgstr "{app} {min} - {max}에서 작동"
 
-msgid "View other versions"
-msgstr "다른 버전 보기"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
-
-#, fuzzy
-msgid "Download now"
-msgstr "다운로드"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Firefox 데스크톱에서만 이용 가능함"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."

@@ -42,14 +42,14 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
-from olympia.api.paginator import ESPageNumberPagination
+from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
-    AddonAppFilterParam, AddonCategoryFilterParam, AddonTypeFilterParam,
+    AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.stats.models import Contribution
@@ -59,10 +59,11 @@ from olympia.versions.models import Version
 from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .indexers import AddonIndexer
-from .models import Addon, Persona, FrozenAddon
+from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
+    AddonSerializer, AddonSerializerWithUnlistedData,
+    ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     VersionSerializer, StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
@@ -363,6 +364,7 @@ def privacy(request, addon):
 
 @addon_view
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
@@ -385,6 +387,7 @@ def developers(request, addon, page):
 @anonymous_csrf_exempt
 @post_required
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def contribute(request, addon):
 
     # Enforce paypal-imposed comment length limit
@@ -463,6 +466,7 @@ def contribute(request, addon):
 @csrf_exempt
 @addon_view
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def paypal_result(request, addon, status):
     uuid = request.GET.get('uuid')
     if not uuid:
@@ -538,11 +542,21 @@ def icloud_bookmarks_redirect(request):
         return addon_detail(request, 'icloud-bookmarks')
 
 
+DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
+FIND_REPLACEMENT_SRC = 'find-replacement'
+
+
 def find_replacement_addon(request):
     guid = request.GET.get('guid')
     if not guid:
         raise http.Http404
-    return render(request, 'addons/replacement_addons.html')
+    try:
+        path = ReplacementAddon.objects.get(guid=guid).path
+    except ReplacementAddon.DoesNotExist:
+        path = DEFAULT_FIND_REPLACEMENT_PATH
+    replace_url = '%s%s?src=%s' % (
+        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
+    return redirect(replace_url, permanent=False)
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
@@ -561,7 +575,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated() and self.request.user.is_staff:
+        if (self.request.user.is_authenticated() and
+                acl.action_allowed(self.request,
+                                   amo.permissions.ADDONS_VIEW_DELETED)):
             return Addon.unfiltered.all()
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
@@ -615,7 +631,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 
 
 class AddonChildMixin(object):
-    """Mixin containing method to retrive the parent add-on object."""
+    """Mixin containing method to retrieve the parent add-on object."""
 
     def get_addon_object(self, permission_classes=None, lookup='addon_pk'):
         """Return the parent Addon object using the URL parameter passed
@@ -650,9 +666,9 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         requested = self.request.GET.get('filter')
         if self.action == 'list':
             if requested == 'all_with_deleted':
-                # To see deleted versions, you need Admin:%.
+                # To see deleted versions, you need Addons:ViewDeleted.
                 self.permission_classes = [
-                    GroupPermission(amo.permissions.ADMIN)]
+                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)]
             elif requested == 'all_with_unlisted':
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
@@ -677,8 +693,8 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if (obj.deleted and
-            not GroupPermission(amo.permissions.ADMIN).has_object_permission(
-                request, self, obj)):
+                not GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(request, self, obj)):
             raise http.Http404
 
         if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -694,7 +710,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                 AllowRelatedObjectPermissions(
                     'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
             ]
-
         super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
     def get_queryset(self):
@@ -751,14 +766,50 @@ class AddonSearchView(ListAPIView):
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
-        return Search(using=amo.search.get_es(),
-                      index=AddonIndexer.get_index_alias(),
-                      doc_type=AddonIndexer.get_doctype_name())
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'excludes': AddonIndexer.hidden_fields})
 
     @classmethod
     def as_view(cls, **kwargs):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+
+class AddonAutoCompleteSearchView(AddonSearchView):
+    pagination_class = None
+    serializer_class = ESAddonAutoCompleteSerializer
+
+    def get_queryset(self):
+        # Minimal set of fields from ES that we need to build our results.
+        # It's the opposite tactic used by the regular search endpoint, which
+        # excludes a specific set of fields - because we know that autocomplete
+        # only needs to return very few things.
+        included_fields = (
+            'icon_type',  # Needed for icon_url.
+            'id',  # Needed for... id.
+            'modified',  # Needed for icon_url.
+            'name_translations',  # Needed for... name.
+            'default_locale',  # Needed for translations to work.
+            'persona',  # Needed for icon_url (sadly).
+            'slug',  # Needed for url.
+            'type',  # Needed to attach the Persona for icon_url (sadly).
+        )
+
+        return Search(
+            using=amo.search.get_es(),
+            index=AddonIndexer.get_index_alias(),
+            doc_type=AddonIndexer.get_doctype_name()).extra(
+                _source={'includes': included_fields})
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (slice directly) but do wrap the data in a
+        # 'results' property to mimic what the search API does.
+        queryset = self.filter_queryset(self.get_queryset())[:10]
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})
 
 
 class AddonFeaturedView(GenericAPIView):
@@ -793,10 +844,10 @@ class AddonFeaturedView(GenericAPIView):
             # If a category is passed then the app and type parameters are
             # mandatory because we need to find a category in the constants to
             # pass to get_creatured_ids(), and category slugs are not unique.
-            # AddonCategoryFilterParam parses the request parameters for us to
+            # AddonCategoryQueryParam parses the request parameters for us to
             # determine the category.
             try:
-                category = AddonCategoryFilterParam(self.request).get_value()
+                category = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
                 raise ParseError(
                     'Invalid app, category and/or type parameter(s).')
@@ -807,11 +858,11 @@ class AddonFeaturedView(GenericAPIView):
             # to pick addons from. It can optionally filter by type, so we
             # parse request for that as well.
             try:
-                app = AddonAppFilterParam(
+                app = AddonAppQueryParam(
                     self.request).get_object_from_reverse_dict()
                 type_ = None
                 if 'type' in self.request.GET:
-                    type_ = AddonTypeFilterParam(self.request).get_value()
+                    type_ = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
                 raise ParseError(
                     'Invalid app, category and/or type parameter(s).')
@@ -847,3 +898,29 @@ class StaticCategoryView(ListAPIView):
             request, response, *args, **kwargs)
         patch_cache_control(response, max_age=60 * 60 * 6)
         return response
+
+
+class LanguageToolsView(ListAPIView):
+    authentication_classes = []
+    pagination_class = None
+    permission_classes = []
+    serializer_class = LanguageToolsSerializer
+
+    def get_queryset(self):
+        try:
+            application_id = AddonAppQueryParam(self.request).get_value()
+        except ValueError:
+            raise ParseError('Invalid app parameter.')
+
+        types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
+        return Addon.objects.public().filter(
+            appsupport__app=application_id, type__in=types,
+            target_locale__isnull=False).exclude(target_locale='')
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (return everything) but do wrap the data in a
+        # 'results' property to mimic what the default implementation of list()
+        # does in DRF.
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})

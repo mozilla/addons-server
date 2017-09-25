@@ -4,14 +4,11 @@
   {% set is_watching = c.id in request.user.watching %}
   {% set watch_msg = _('Stop Following') if is_watching else
                      _('Follow this Collection') %}
-      <a title="{{ (_('Stop Following') if is_watching else _('Follow this Collection')) if condensed }}"
-         class="widget tooltip watch{{ ' watching' if is_watching }}{{ ' condensed' if condensed }}"
-         href="{{ c.watch_url() }}">{{ watch_msg if not condensed }}</a>
+      <a title="{% if condensed %}{{ (_('Stop Following') if is_watching else _('Follow this Collection')) }}{% endif %}"
+         class="widget tooltip watch{{ ' watching' if is_watching else '' }}{{ ' condensed' if condensed else '' }}"
+         href="{{ c.watch_url() }}">{{ watch_msg if not condensed else '' }}</a>
 {% endif %}
 {% if authenticated %}
-      {#
-      <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>
-      #}
       {% if request.check_ownership(c, require_owner=False) and condensed %}
         <a title="{{ _('Edit this Collection') }}"
            class="widget edit tooltip condensed" href="{{ c.edit_url() }}"></a>

@@ -48,7 +48,7 @@ def global_settings(request):
                               'href': profile.get_url_path()})
         if user.is_artist:
             account_links.append({'text': ugettext('My Themes'),
-                                  'href': profile.get_user_url('themes')})
+                                  'href': profile.get_themes_url_path()})
 
         account_links.append({'text': ugettext('Account Settings'),
                               'href': reverse('users.edit')})
@@ -88,7 +88,7 @@ def global_settings(request):
         if (acl.action_allowed(request, amo.permissions.ADMIN) or
                 acl.action_allowed(request, amo.permissions.ADMIN_TOOLS_VIEW)):
             tools_links.append({'text': ugettext('Admin Tools'),
-                                'href': reverse('zadmin.home')})
+                                'href': reverse('zadmin.index')})
 
         context['user'] = request.user
     else:

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
+from django.db.models.functions import Func, Coalesce
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -32,12 +33,19 @@ user_log = olympia.core.logger.getLogger('z.users')
 VIEW_QUEUE_FLAGS = (
     ('admin_review', 'admin-review', _('Admin Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
-    ('requires_restart', 'requires_restart', _('Requires Restart')),
+    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('has_info_request', 'info', _('More Information Requested')),
     ('has_editor_comment', 'editor', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
+
+
+# Django 1.8 does not have Cast(), so this is a simple dumb implementation
+# that only handles Cast(..., DateTimeField())
+class DateTimeCast(Func):
+    function = 'CAST'
+    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -129,7 +137,7 @@ class ViewQueue(RawSQLModel):
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
-    is_restartless = models.BooleanField()
+    is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
@@ -153,7 +161,7 @@ class ViewQueue(RawSQLModel):
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
-                ('is_restartless', 'MAX(files.no_restart)'),
+                ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
                 ('waiting_time_days',
@@ -180,10 +188,6 @@ class ViewQueue(RawSQLModel):
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
             ],
             'group_by': 'id'}
-
-    @property
-    def requires_restart(self):
-        return not self.is_restartless
 
     @property
     def sources_provided(self):
@@ -383,7 +387,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    score = models.SmallIntegerField()
+    score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
                                         default=0)
@@ -724,7 +728,8 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_weight(self):
         """Calculate the weight value for this version according to various
-        risk factors.
+        risk factors, setting the weight property on the instance and returning
+        a dict of risk factors.
 
         That value is then used in editor tools to prioritize add-ons in the
         auto-approved queue."""
@@ -773,7 +778,9 @@ class AutoApprovalSummary(ModelBase):
         return factors
 
     def calculate_static_analysis_weight_factors(self):
-        """Calculate the static analysis risk factors.
+        """Calculate the static analysis risk factors, returning a dict of
+        risk factors.
+
         Used by calculate_weight()."""
         try:
             factors = {
@@ -795,14 +802,54 @@ class AutoApprovalSummary(ModelBase):
                 'uses_native_messaging': (
                     20 if self.check_uses_native_messaging(self.version) else
                     0),
+                # remote scripts: 40.
+                'uses_remote_scripts': (
+                    40 if self.check_uses_remote_scripts(self.version) else 0),
+                # violates mozilla conditions of use: 20.
+                'violates_mozilla_conditions': (
+                    20 if self.check_violates_mozilla_conditions(self.version)
+                    else 0),
+                # libraries of unreadable code: 10.
+                'uses_unknown_minified_code': (
+                    10 if self.check_uses_unknown_minified_code(self.version)
+                    else 0),
+                # Size of code changes: 5kB is one point, up to a max of 100.
+                'size_of_code_changes': min(
+                    self.calculate_size_of_code_changes() / 5000, 100)
             }
         except AutoApprovalNoValidationResultError:
             # We should have a FileValidationResult... since we don't and
-            # something is wrong, increase the weight by 100.
+            # something is wrong, increase the weight by 200.
             factors = {
-                'no_validation_result': 100,
+                'no_validation_result': 200,
             }
         return factors
+
+    def calculate_size_of_code_changes(self):
+        """Return the size of code changes between the version being
+        approved and the previous public one."""
+        def find_code_size(version):
+            # There could be multiple files: if that's the case, take the
+            # total for all files and divide it by the number of files.
+            number_of_files = len(version.all_files) or 1
+            total_code_size = 0
+            for file_ in version.all_files:
+                data = json.loads(file_.validation.validation)
+                total_code_size += (
+                    data.get('metadata', {}).get('totalScannedFileSize', 0))
+            return total_code_size / number_of_files
+
+        try:
+            old_version = self.version.addon.current_version
+            old_size = find_code_size(old_version) if old_version else 0
+            new_size = find_code_size(self.version)
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        # We don't really care about whether it's a negative or positive change
+        # in size, we just need the absolute value (if there is no current
+        # public version, that value ends up being the total code size of the
+        # version we're approving).
+        return abs(old_size - new_size)
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
@@ -882,6 +929,31 @@ class AutoApprovalSummary(ModelBase):
                        for message in validation_data.get('messages', []))
         return any(_check_for_linter_flag_in_file(file_)
                    for file_ in version.all_files)
+
+    @classmethod
+    def check_for_metadata_property(cls, version, prop):
+        def _check_for_property_in_linter_metadata_in_file(file_):
+            try:
+                validation = file_.validation
+            except FileValidation.DoesNotExist:
+                raise AutoApprovalNoValidationResultError()
+            validation_data = json.loads(validation.validation)
+            return validation_data.get(
+                'metadata', {}).get(prop)
+        return any(_check_for_property_in_linter_metadata_in_file(file_)
+                   for file_ in version.all_files)
+
+    @classmethod
+    def check_uses_unknown_minified_code(cls, version):
+        return cls.check_for_metadata_property(version, 'unknownMinifiedFiles')
+
+    @classmethod
+    def check_violates_mozilla_conditions(cls, version):
+        return cls.check_for_linter_flag(version, 'MOZILLA_COND_OF_USE')
+
+    @classmethod
+    def check_uses_remote_scripts(cls, version):
+        return cls.check_for_linter_flag(version, 'REMOTE_SCRIPT')
 
     @classmethod
     def check_uses_eval_or_document_write(cls, version):
@@ -976,6 +1048,29 @@ class AutoApprovalSummary(ModelBase):
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info
+
+    @classmethod
+    def get_auto_approved_queue(cls):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        return (
+            Addon.objects.public()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict,
+                # Was auto-approved after the last human review, so its
+                # approval hasn't been confirmed yet.
+                _current_version__autoapprovalsummary__created__gt=(
+                    # MySQL straight up refuses to compare NULL values
+                    # (ignoring that row completely!) if we don't use
+                    # Coalesce(). This forces NULLs to be considered as being
+                    # an arbitrary old date, January 1st, 2000.
+                    Coalesce(
+                        'addonapprovalscounter__last_human_review',
+                        DateTimeCast(datetime(2000, 1, 1))
+                    ))
+            )
+        )
 
 
 class RereviewQueueThemeManager(ManagerBase):

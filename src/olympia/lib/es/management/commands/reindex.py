@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 import time
 
 from celery import group
@@ -19,6 +18,7 @@ from olympia.lib.es.utils import (
     timestamp_index)
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
+
 time_limits = settings.CELERY_TIME_LIMITS[
     'olympia.lib.es.management.commands.reindex']
 
@@ -46,47 +46,50 @@ def get_modules(with_stats=True):
     return rval
 
 
-def log(msg, stdout=sys.stdout):
-    stdout.write(msg + '\n')
-
-
 @task
-def delete_indexes(indexes, stdout=sys.stdout):
+def delete_indexes(indexes):
     indices = ','.join(indexes)
-    log('Removing indices %r' % indices, stdout=stdout)
+    logger.info('Removing indices %r' % indices)
     ES.indices.delete(indices, ignore=[404, 500])
 
 
 @task
-def update_aliases(actions, stdout=sys.stdout):
-    log('Rebuilding aliases with actions: %s' % actions, stdout=stdout)
+def update_aliases(actions):
+    logger.info('Rebuilding aliases with actions: %s' % actions)
     ES.indices.update_aliases({'actions': actions})
 
 
-@task
-def create_new_index(alias, new_index, stdout=sys.stdout):
-    log('Create the index {0}, for alias: {1}'.format(new_index, alias),
-        stdout=stdout)
+@task(ignore_result=False)
+def create_new_index(alias, new_index):
+    logger.info(
+        'Create the index {0}, for alias: {1}'.format(new_index, alias))
     get_modules()[alias].create_new_index(new_index)
 
 
-@task(timeout=time_limits['hard'], soft_timeout=time_limits['soft'])
-def index_data(alias, index, stdout=sys.stdout):
-    log('Reindexing {0}'.format(index), stdout=stdout)
-    get_modules()[alias].reindex(index)
+@task(ignore_result=False, timeout=time_limits['hard'],
+      soft_timeout=time_limits['soft'])
+def index_data(alias, index):
+    logger.info('Reindexing {0}'.format(index))
+
+    try:
+        get_modules()[alias].reindex(index)
+    except Exception, exc:
+        index_data.retry(
+            args=(alias, index), exc=exc, max_retries=3)
+        raise
 
 
-@task
-def flag_database(new_index, old_index, alias, stdout=sys.stdout):
+@task(ignore_result=False)
+def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
-    log('Flagging the database to start the reindexation', stdout=stdout)
+    logger.info('Flagging the database to start the reindexation')
     flag_reindexing_amo(new_index=new_index, old_index=old_index, alias=alias)
 
 
 @task
-def unflag_database(stdout=sys.stdout):
+def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
-    log('Unflagging the database', stdout=stdout)
+    logger.info('Unflagging the database')
     unflag_reindexing_amo()
 
 
@@ -143,7 +146,7 @@ class Command(BaseCommand):
             raise CommandError('Indexation already occurring - use --force to '
                                'bypass')
 
-        log('Starting the reindexation', stdout=self.stdout)
+        self.stdout.write('Starting the reindexation')
 
         modules = get_modules(with_stats=kwargs.get('with_stats', False))
 
@@ -158,13 +161,13 @@ class Command(BaseCommand):
                     confirm = raw_input('Please enter either "yes" or "no": ')
 
             if (confirm == 'yes' or skip_confirmation):
-                unflag_database(stdout=self.stdout)
+                unflag_database()
                 for index in set(modules.keys()):
                     ES.indices.delete(index, ignore=404)
             else:
                 raise CommandError("Aborted.")
         elif force:
-            unflag_database(stdout=self.stdout)
+            unflag_database()
 
         alias_actions = []
 
@@ -175,7 +178,7 @@ class Command(BaseCommand):
             alias_actions.append(action)
 
         # Creating a task chain.
-        log('Building the task chain', stdout=self.stdout)
+        self.stdout.write('Building the task chain')
 
         to_remove = []
         workflow = []
@@ -185,7 +188,7 @@ class Command(BaseCommand):
             old_index = None
 
             try:
-                olds = ES.indices.get_aliases(alias)
+                olds = ES.indices.get_alias(alias)
                 for old_index in olds:
                     # Mark the index to be removed later.
                     to_remove.append(old_index)
@@ -228,7 +231,7 @@ class Command(BaseCommand):
             workflow |= delete_indexes.si(to_remove)
 
         # Let's do it.
-        log('Running all indexation tasks', stdout=self.stdout)
+        self.stdout.write('Running all indexation tasks')
 
         os.environ['FORCE_INDEXING'] = '1'
 
@@ -237,16 +240,16 @@ class Command(BaseCommand):
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
                 time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():
-                sys.stdout.write('.')
-                sys.stdout.flush()
+                self.stdout.write('.')
+                self.stdout.flush()
                 time.sleep(5)
         finally:
             del os.environ['FORCE_INDEXING']
 
-        sys.stdout.write('\n')
+        self.stdout.write('\n')
 
         # Let's return the /_aliases values.
-        aliases = ES.indices.get_aliases()
+        aliases = ES.indices.get_alias()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
         summary = _SUMMARY % (len(modules), aliases)
-        log(summary, stdout=self.stdout)
+        self.stdout.write(summary)

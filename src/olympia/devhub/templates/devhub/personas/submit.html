@@ -192,9 +192,9 @@
       <p class="legal">
         <label>
           {{ form.agreed.as_widget(attrs={'required': ''}) }}
-          {% trans agreement_url='https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Agreement',
-                   privacy_notice_url='https://www.mozilla.org/en-US/privacy/websites/' %}
-            I agree to the <a href="{{ agreement_url }}">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href="{{ privacy_notice_url }}">Websites, Communications and Cookies Privacy Notice</a>.
+          {% trans agreement_link_open='<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Agreement">'|safe,
+                   privacy_notice_link_open='<a href="https://www.mozilla.org/en-US/privacy/websites/">'|safe, link_close='</a>'|safe %}
+            I agree to the {{ agreement_link_open }}Firefox Add-on Distribution Agreement{{ link_close }} and to my information being handled as described in the {{ privacy_notice_link_open }}Websites, Communications and Cookies Privacy Notice{{ link_close }}.
           {% endtrans %}
         </label>
         {{ form.agreed.errors }}

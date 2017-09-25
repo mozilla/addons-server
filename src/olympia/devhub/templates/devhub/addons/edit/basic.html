@@ -49,10 +49,9 @@
               <label data-for="summary">
                 {{ _("Summary") }}
                 {{ tip(None,
-                       _("A short explanation of your add-on's basic "
-                         "functionality that is displayed in search and browse "
-                         "listings, as well as at the top of your add-on's "
-                         "details page. It is only relevant for listed add-ons.")) }}
+                       _("This summary should clearly explain what your add-on "
+                         "does. It will be shown in listings and searches, and "
+                         "it will be used by reviewers to test your add-on.")) }}
               </label>
             </th>
             <td>
@@ -79,6 +78,21 @@
               {{ flags(_("This add-on is experimental."),
                        addon.is_experimental if not editable else form.is_experimental, editable,
                        _("This add-on is ready for general use.")) }}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_('Requires Payment?'),
+                     _("Check this box if this add-on's core features require "
+                       "some form of payment upfront or after a trial period "
+                       "in order to work.")) }}
+            </th>
+            <td id="requires-payment-edit">
+              {{ flags(_('This add-on requires payment, non-free services or '
+                         'software, or additional hardware.'),
+                       addon.requires_payment if not editable else form.requires_payment, editable,
+                       _("This add-on doesn't require any additional payments, "
+                         "paid services or software, or additional hardware.")) }}
             </td>
           </tr>
           <tr>
@@ -155,6 +169,22 @@
                 {% call empty_unless(tags) %}
                   {{ tags|join(', ') }}
                 {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Contributions URL"),
+                     _("If you would like to request monetary contributions "
+                       "from your users, set this to a page where they can do so.")) }}
+            </th>
+            <td>
+              {% if editable %}
+                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
+                <p>{{ form.contributions }}</p>
+                {{ form.contributions.errors }}
+              {% else %}
+                {{ addon.contributions }}
               {% endif %}
             </td>
           </tr>

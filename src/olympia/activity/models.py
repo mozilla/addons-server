@@ -429,7 +429,7 @@ class ActivityLog(ModelBase):
     @classmethod
     def create(cls, action, *args, **kw):
         """
-        e.g. ActivityLog.create(amo.LOG.CREATE_ADDON, []),
+        e.g. ActivityLog.create(amo.LOG.CREATE_ADDON, addon),
              ActivityLog.create(amo.LOG.ADD_FILE_TO_VERSION, file, version)
         In case of circular import you can use `olympia.activity.log_create()`
         """

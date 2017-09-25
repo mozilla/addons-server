@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-05-25 11:21+0000\n"
-"Last-Translator: Amin Mahmudian <amin.mahmudian@gmail.com>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-22 07:03+0000\n"
+"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -59,12 +59,14 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 
 msgid "See full validation report"
-msgstr ""
+msgstr "مشاهده گزارش کامل اعتبارسنچی"
 
 msgid "Validating {0}"
 msgstr "در حال اعتبار سنجی {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "یک پاسخ خالی از سرور دریافت شد، وضعیت: {0}"
 
@@ -126,30 +128,33 @@ msgstr ""
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
-msgid "You cancelled the upload."
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
+
+msgid "You cancelled the upload."
+msgstr "شما بارگذاری را لغو کرده‌اید."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "تصاویر بایستی یکی از موارد PNG یا JPG باشد."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "فیلم بایستی WebM باشد."
 
 msgid "Follow this Collection"
 msgstr "این مجموعه را دنبال کن"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "توقف دنبال کردن"
 
 msgid "Following"
-msgstr ""
+msgstr "دنبال کردن"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "کلیه حقوق محفوظ است"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -185,7 +190,7 @@ msgid "Updating results&hellip;"
 msgstr "نتایج به روز رسانی&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "دسته‌بندی"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr ""
@@ -203,7 +208,7 @@ msgid "Week of {0}"
 msgstr ""
 
 msgid " downloads"
-msgstr ""
+msgstr " بارگیری‌ها"
 
 msgid "{0} users"
 msgstr "{0} کاربر"
@@ -227,7 +232,7 @@ msgid "{0} installs"
 msgstr "{0} نصب"
 
 msgid "Downloads"
-msgstr ""
+msgstr "بارگیری‌ها"
 
 msgid "Daily Users"
 msgstr "کاربر روزانه"
@@ -270,19 +275,19 @@ msgid "Subscribers"
 msgstr "مشترکان"
 
 msgid "Ratings"
-msgstr ""
+msgstr "رتبه‌بندی‌ها"
 
 msgid "Sales"
-msgstr ""
+msgstr "فروش"
 
 msgid "Installs"
-msgstr ""
+msgstr "نصب‌ها"
 
 msgid "Unknown"
-msgstr ""
+msgstr "نامشخص"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "مدیریت افزودنی‌ها"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -327,7 +332,7 @@ msgid "Others By Author"
 msgstr ""
 
 msgid "Dependencies"
-msgstr ""
+msgstr "وابستگی‌ها"
 
 msgid "Upsell"
 msgstr ""
@@ -336,13 +341,13 @@ msgid "Meet the Developer"
 msgstr ""
 
 msgid "User Profile"
-msgstr ""
+msgstr "نمایه کاربر"
 
 msgid "Version History"
-msgstr ""
+msgstr "تاریخچه نسخه‌ها"
 
 msgid "Sharing"
-msgstr ""
+msgstr "به‌اشتراک گذاری"
 
 msgid "Category Pages"
 msgstr ""
@@ -639,18 +644,6 @@ msgstr "قبول و نصب"
 msgid "Add to {0}"
 msgstr "افزودن به {0}"
 
-msgid "Download Now"
-msgstr "هم‌اکنون بارگیری کن"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr ""
@@ -661,9 +654,12 @@ msgstr ""
 msgid "Not available for your platform"
 msgstr "برای سیستم عامل شما موجود نیست"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "برای {0} {1} موجود نیست"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr ""
+
+msgid "View other versions"
+msgstr "نمایش سایر نسخه‌ها"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "با {app} {min} - {max} کار می‌کند"
@@ -672,17 +668,7 @@ msgstr "با {app} {min} - {max} کار می‌کند"
 msgid "Works with {app}"
 msgstr "با {app} {min} - {max} کار می‌کند"
 
-msgid "View other versions"
-msgstr "نمایش سایر نسخه‌ها"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "هم‌اکنون بارگیری کن"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -843,7 +829,7 @@ msgid "Reviewer"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "وضعیت"
 
 msgid "All tests passed successfully."
 msgstr ""
@@ -852,10 +838,10 @@ msgid "These tests were not run."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "آزمونها"
 
 msgid "Error"
-msgstr ""
+msgstr "خطا"
 
 msgid "Warning"
 msgstr ""
@@ -878,18 +864,18 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} خطا"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} هشدار"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} اعلامیه"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "خطای درونی کارگزار"

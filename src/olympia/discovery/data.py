@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.utils.translation import string_concat, ugettext_lazy as _
 
+from olympia import amo
+
 
 class DiscoItem(object):
     def __init__(self, *args, **kwargs):
@@ -8,6 +10,13 @@ class DiscoItem(object):
         self.addon_name = kwargs.get('addon_name')
         self.heading = kwargs.get('heading')
         self.description = kwargs.get('description')
+        self.type = kwargs.get('type', amo.ADDON_EXTENSION)
+        self.is_recommendation = kwargs.get('is_recommendation', False)
+
+    def __repr__(self):
+        return 'DiscoItem(%s, %s, %s, %s, %s)' % (
+            self.addon_id, self.addon_name, self.heading, self.description,
+            self.type)
 
 
 # At the moment the disco pane items are hardcoded in this file in the repos,
@@ -15,8 +24,42 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Sebastian Kitty' theme.
-    DiscoItem(addon_id=283823, addon_name='Sebastian Kitty'),
+    # 'Pearlescent' theme.
+    DiscoItem(addon_id=696234, type=amo.ADDON_PERSONA),
+
+    # New Tab Override.
+    DiscoItem(
+        addon_id=626810,
+        heading=_(u'Tab Customization {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Set the page you see every time you open a new tab.'),
+            '</blockquote>')),
+
+    # Emoji Cheatsheet.
+    DiscoItem(
+        addon_id=511962,
+        heading=_(u'Up your emoji game {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis—always a click away.'),
+            '</blockquote>')),
+
+    # 'Dog Pichu' theme.
+    DiscoItem(addon_id=265123, type=amo.ADDON_PERSONA),
+
+    # LanguageTool Grammar Checker
+    DiscoItem(
+        addon_id=708770,
+        heading=_(u'Improve your writing {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Supporting 25+ languages, this extension puts a proofreader '
+              u'right in your browser.'),
+            '</blockquote>')),
 
     # Enhancer for YouTube
     DiscoItem(
@@ -29,44 +72,6 @@ discopane_items = [
               u'ad blocking, auto-play control, and more.'),
             '</blockquote>')),
 
-    # uBlock Origin
-    DiscoItem(
-        addon_id=607454,
-        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'A lightweight and effective ad blocker. uBlock Origin '
-              u'enforces thousands of content filters without chewing up a '
-              u'bunch of memory.'),
-            '</blockquote>')),
-
-    # 'Vintage Fabric' theme.
-    DiscoItem(addon_id=492244, addon_name='Vintage Fabric'),
-
-    # Emoji Keyboard
-    DiscoItem(
-        addon_id=674732,
-        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis for every occasion—always just one '
-              u'click away.'),
-            '</blockquote>')),
-
-    # Awesome Screenshot Plus
-    DiscoItem(
-        addon_id=287841,
-        heading=_(u'Take screenshots {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'More than just screenshots, Awesome Screenshot Plus lets you '
-              u'annotate images with text and graphics. Storing and sharing '
-              u'files is a breeze.'),
-            '</blockquote>')),
-
-    # 'Festival of Lights' theme.
-    DiscoItem(addon_id=372503, addon_name='Festival of Lights'),
+    # 'Fall Painting' theme.
+    DiscoItem(addon_id=644254, type=amo.ADDON_PERSONA),
 ]

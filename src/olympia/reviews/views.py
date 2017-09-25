@@ -21,7 +21,7 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
-from olympia.api.paginator import OneOrZeroPageNumberPagination
+from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner,
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)

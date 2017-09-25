@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-10-25 12:17+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-09-10 11:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -67,7 +67,9 @@ msgstr "Teljes ellenőrzési jelentés megjelenítése"
 msgid "Validating {0}"
 msgstr "{0} ellenőrzése"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "A kiegészítője túllépi a maximális méretet, ami {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
@@ -134,6 +136,9 @@ msgstr "Elnézést, nem található támogatott platform."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "A feltöltött fájl típusa nem ismerhető fel."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "A fájl mérete túllépi a maximális méretet, ami {0}."
 
 msgid "You cancelled the upload."
 msgstr "A feltöltés megszakítva."
@@ -245,7 +250,7 @@ msgid "Amount, in USD"
 msgstr "Mennyiség, USD-ben"
 
 msgid "Number of Contributions"
-msgstr "Hozzájárulások száma"
+msgstr "Támogatások száma"
 
 msgid "More Info..."
 msgstr "Tovább…"
@@ -399,7 +404,7 @@ msgid "Total Amount Contributed"
 msgstr "Teljes adomány"
 
 msgid "Average Contribution"
-msgstr "Átlagos adomány"
+msgstr "Átlagos támogatás"
 
 msgid "Usage"
 msgstr "Használat"
@@ -507,11 +512,11 @@ msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Adományok az elmúlt {0} napban"
+msgstr "Támogatások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Adományok {0} és {1} között"
+msgstr "Támogatások {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -650,18 +655,6 @@ msgstr "Elfogadás és telepítés"
 msgid "Add to {0}"
 msgstr "Hozzáadás ehhez: {0}"
 
-msgid "Download Now"
-msgstr "Letöltés most"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett kompatibilitást."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10.0 vagy annál frissebb verziót kell használnia."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "A Mozilla szerint ez a verzió nem működik a Firefox verziójával."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Telepítés mindenképpen erre: {0}"
@@ -672,9 +665,12 @@ msgstr "Letöltés mindenképpen erre: {0}"
 msgid "Not available for your platform"
 msgstr "Nem érhető el ezen a platformon"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nem érhető el a(z) {0} {1} verzióhoz"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ez a kiegészítő nem kompatibilis ezzel a {0} verzióval."
+
+msgid "View other versions"
+msgstr "További verziók megtekintése"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Ezzel működik: {app} {min} - {max}"
@@ -682,17 +678,8 @@ msgstr "Ezzel működik: {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Ezzel működik: {app}"
 
-msgid "View other versions"
-msgstr "További verziók megtekintése"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Csak a Firefoxszal – szerezze be a Firefoxot most!"
-
-msgid "Download now"
-msgstr "Letöltés most"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Csak a Firefox asztali változatán érhető el"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."

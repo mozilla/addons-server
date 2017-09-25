@@ -96,13 +96,16 @@
     </dd>
 
     <dt>{{ _('Are add-ons safe to install?') }}</dt>
-    <dd>{% trans learnmore_url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
-        Use caution when installing add-ons, as they may harm your computer or
-        violate your privacy. Add-ons available from this site may be subject to
-        review by Mozilla's team of reviewers, and user feedback is closely
-        monitored, so they should generally be safe to install.
-        <a href="{{ learnmore_url }}">Learn more about our review
-        process</a>{% endtrans %}</dd>
+    <dd>{% trans learnmore_link_open='<a href ="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews">'|safe,
+                 link_close='</a>'|safe %}
+           Use caution when installing add-ons, as they may harm your computer or
+           violate your privacy. Add-ons available from this site may be subject to
+           review by Mozilla's team of reviewers, and user feedback is closely
+           monitored, so they should generally be safe to install.
+           {{ learnmore_link_open }}Learn more about our review
+           process{{ link_close }}
+        {% endtrans %}
+    </dd>
 
 
     <dt>{% trans app_name=request.APP.pretty %}Can add-ons make
@@ -160,21 +163,24 @@
          <a href="{{ forum_url }}">Add-ons forum</a>.{% endtrans %}</dd>
 
     <dt id="experimental">{{ _('What does it mean if an add-on is "experimental"?') }}</dt>
-    <dd>{% trans url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
-         Experimental add-ons have been marked by their developers as not suitable
-         for a wide audience.  They may have bugs or not work properly. Use
-         caution when installing experimental add-ons and uninstall the add-on
-         immediately if you notice problems.
-         <a href="{{ url }}">Learn more about our review process</a></dd>
-         {% endtrans %}
+    <dd>{% trans learnmore_link_open='<a href ="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews">'|safe,
+                 link_close='</a>'|safe %}
+          Experimental add-ons have been marked by their developers as not suitable
+          for a wide audience.  They may have bugs or not work properly. Use
+          caution when installing experimental add-ons and uninstall the add-on
+          immediately if you notice problems.
+          {{ learnmore_link_open }}Learn more about our review process{{ link_close }}
+        {% endtrans %}
+    </dd>
 
     <dt id="unreviewed">{{ _('What does it mean if an add-on is "not reviewed"?') }}</dt>
-    <dd>{% trans url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
+    <dd>{% trans learnmore_link_open='<a href ="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews">'|safe,
+                 link_close='</a>'|safe %}
          If you receive a direct link to an add-on that says it hasn't yet been
          reviewed, it means it's currently awaiting review by Mozilla. Use
          caution when installing these add-ons, as they could harm your computer
          or violate your privacy.
-         <a href="{{ url }}">Learn more about our review process</a></dd>
+         {{ learnmore_link_open }}Learn more about our review process{{ link_close }}</dd>
          {% endtrans %}
 
     <dt>{{ _('How much do add-ons cost to purchase?') }}</dt>

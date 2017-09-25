@@ -27,7 +27,12 @@
     }
 
     $.fn.addonUploader = function( options ) {
-        var settings = {'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
+        var settings = {
+            'filetypes': ['zip', 'xpi', 'crx', 'jar', 'xml'],
+            'getErrors': getErrors,
+            'cancel': $(),
+            'maxSize': 200 * 1024 * 1024 // 200M
+        };
 
         if (options) {
             $.extend( settings, options );
@@ -87,7 +92,6 @@
             $upload_field.fileUploader(settings);
 
             function textSize(bytes) {
-                // Based on code by Cary Dunn (http://bit.ly/d8qbWc).
                 var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
                 if(bytes === 0) return bytes + " " + s[1];
                 var e = Math.floor( Math.log(bytes) / Math.log(1024) );
@@ -111,7 +115,7 @@
 
             /* Bind the events */
 
-            $upload_field.bind("upload_start", function(e, _file){
+            $upload_field.on("upload_start", function(e, _file){
                 file = _file;
 
                 /* Remove old upload box */
@@ -169,12 +173,12 @@
                 }));
             });
 
-            $upload_field.bind("upload_progress", function(e, file, pct) {
+            $upload_field.on("upload_progress", function(e, file, pct) {
                 upload_progress_inside.animate({'width': pct + '%'},
                     {duration: 300, step:function(i){ updateStatus(i, file.size); } });
             });
 
-            $upload_field.bind("upload_errors", function(e, file, errors, results){
+            $upload_field.on("upload_errors", function(e, file, errors, results){
                 var all_errors = $.extend([], errors);  // be nice to other handlers
                 upload_progress_inside.stop().css({'width': '100%'});
 
@@ -233,12 +237,12 @@
                 }
             });
 
-            $upload_field.bind("upload_finished", function() {
+            $upload_field.on("upload_finished", function() {
                 upload_box.removeClass("ajax-loading");
                 upload_status_cancel.remove();
             });
 
-            $upload_field.bind("upload_success", function(e, file, results) {
+            $upload_field.on("upload_success", function(e, file, results) {
                 upload_title.html(format(gettext('Validating {0}'), [escape_(file.name)]));
 
                 var animateArgs = {duration: 300, step:function(i){ updateStatus(i, file.size); }, complete: function() {
@@ -249,7 +253,7 @@
                 $('.binary-source').show();
             });
 
-            $upload_field.bind("upload_onreadystatechange", function(e, file, xhr, aborted) {
+            $upload_field.on("upload_onreadystatechange", function(e, file, xhr, aborted) {
                 var errors = [],
                     $form = $upload_field.closest('form'),
                     json = {},
@@ -277,9 +281,18 @@
                     $upload_field.trigger("upload_finished", [file]);
 
                 } else if(xhr.readyState == 4 && !aborted) {
-                    // L10n: first argument is an HTTP status code
-                    errors = [format(gettext("Received an empty response from the server; status: {0}"),
-                                     [xhr.status])];
+                    if (xhr.status == 413) {
+                        errors.push(
+                            format(
+                                gettext("Your add-on exceeds the maximum size of {0}."),
+                                [textSize(settings.maxSize)]));
+                    } else {
+                        // L10n: first argument is an HTTP status code
+                        errors.push(
+                            format(
+                                gettext("Received an empty response from the server; status: {0}"),
+                                [xhr.status]));
+                    }
 
                     $upload_field.trigger("upload_errors", [file, errors]);
                 }
@@ -338,14 +351,14 @@
                                                          'checked': false});
               $('.upload-status').remove();
             }
-            $isUnlistedCheckbox.bind('change', updateListedStatus);
+            $isUnlistedCheckbox.on('change', updateListedStatus);
             if ($isUnlistedCheckbox.length) updateListedStatus();
 
-            $('#id_is_manual_review').bind('change', function() {
+            $('#id_is_manual_review').on('change', function() {
                 $('.addon-upload-dependant').prop('disabled', !($(this).is(':checked')));
             });
 
-            $upload_field.bind("upload_success_results", function(e, file, results) {
+            $upload_field.on("upload_success_results", function(e, file, results) {
                 // If the addon is detected as beta, automatically check
                 // the "beta" input, but only if the addon is listed.
                 var $beta = $('#id_beta');
@@ -443,7 +456,7 @@
                         )).appendTo(warning_box);
 
                         $('<a>').text(gettext('Porting a legacy Firefox add-on on MDN'))
-                                .attr('href', 'https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on')
+                                .attr('href', 'https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on')
                                 .attr('target', '_blank')
                                 .attr('rel', 'noopener noreferrer')
                                 .appendTo(warning_box);
@@ -457,6 +470,11 @@
                                 gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
                             ],
                             warnings_id = [
+                                'NO_DOCUMENT_WRITE',
+                                'DANGEROUS_EVAL',
+                                'NO_IMPLIED_EVAL',
+                                'UNSAFE_VAR_ASSIGNMENT',
+                                'MANIFEST_CSP',
                                 'set_innerHTML',
                                 'namespace_pollution',
                                 'dangerous_global'
@@ -492,7 +510,11 @@
                             $('<h6>').text(gettext("The validation process found these issues that can lead to rejections:")).appendTo(checklist_box);
                             var messages_ul = $('<ul>');
                             $.each(messages, function (i) {
-                                $('<li>').text(messages[i]).appendTo(messages_ul);
+                                // Note: validation messages are supposed to be already escaped by
+                                // devhub.views.json_upload_detail(), which does an escape_all()
+                                // call on messages. So we need to use html() and not text() to
+                                // display them, since they can contain HTML entities.
+                                $('<li>').html(messages[i]).appendTo(messages_ul);
                             });
                             messages_ul.appendTo(checklist_box);
                         }

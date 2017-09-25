@@ -7,7 +7,7 @@
   <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder(search_placeholder) }}"
-         value="{{ query_term }}">
+         value="{{ query_term|default('') }}">
   {% if search_form.cat.value() %}
     {{ search_form.cat }}
   {% endif %}

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-10-31 12:31+0000\n"
-"Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-15 09:12+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,9 @@ msgstr "Ver el informe completo de validación"
 msgid "Validating {0}"
 msgstr "Validando {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Tu complemento excede el tamaño máximo de {0}."
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Se ha recibido una respuesta vacía del servidor; estado: {0}"
 
@@ -132,6 +134,9 @@ msgstr "Lo sentimos, no se ha encontrado ninguna plataforma compatible."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "No se reconoce el tipo de archivo que has subido."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Tu archivo excede el tamaño máximo de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Has cancelado la subida."
@@ -648,18 +653,6 @@ msgstr "Aceptar e instalar"
 msgid "Add to {0}"
 msgstr "Agregar a {0}"
 
-msgid "Download Now"
-msgstr "Descargar ahora"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "El complemento no se ha actualizado para que permita la opción de ser compatible de forma predeterminada."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Tienes que usar Firefox 10.0 o una versión superior."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla ha marcado que esta versión es incompatible con tu versión de Firefox."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instalar en {0} de todas formas"
@@ -670,9 +663,12 @@ msgstr "Descargar para {0} de todas formas"
 msgid "Not available for your platform"
 msgstr "No está disponible para tu plataforma"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "No está disponible para {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Este complemento no es compatible con tu versión de {0}."
+
+msgid "View other versions"
+msgstr "Ver otras versiones"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona con {app} {min} - {max}"
@@ -680,17 +676,8 @@ msgstr "Funciona con {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Funciona con {app}"
 
-msgid "View other versions"
-msgstr "Ver otras versiones"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Solo con Firefox - ¡Descárgalo ahora!"
-
-msgid "Download now"
-msgstr "Descargar ahora"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Solo disponible en Firefox para escritorio"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Lo sentimos, necesitas un navegador basado en Mozilla (como Firefox) para instalar un plugin de búsqueda."

@@ -6,8 +6,8 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from olympia.activity.views import VersionReviewNotesViewSet
 
 from .views import (
-    AddonFeaturedView, AddonSearchView, AddonVersionViewSet, AddonViewSet,
-    StaticCategoryView)
+    AddonAutoCompleteSearchView, AddonFeaturedView, AddonSearchView,
+    AddonVersionViewSet, AddonViewSet, LanguageToolsView, StaticCategoryView)
 
 
 addons = SimpleRouter()
@@ -24,7 +24,11 @@ urlpatterns = [
     url(r'', include(addons.urls)),
     url(r'', include(sub_addons.urls)),
     url(r'', include(sub_versions.urls)),
+    url(r'^autocomplete/$', AddonAutoCompleteSearchView.as_view(),
+        name='addon-autocomplete'),
     url(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
     url(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
     url(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
+    url(r'^language-tools/$', LanguageToolsView.as_view(),
+        name='addon-language-tools'),
 ]

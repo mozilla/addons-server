@@ -38,7 +38,7 @@
         "model": "files.file",
         "fields": {
             "status": 1,
-            "no_restart": false,
+            "is_restart_required": true,
             "hash": "sha256:1a496e35dd56fb377bb3dea306e285f0a3ff3e684fb758aaa04018e86da2ffaa",
             "created": "2010-08-27 21:15:32",
             "modified": "2010-08-27 21:15:32",
@@ -61,7 +61,6 @@
             "developer_comments": 1277089,
             "_current_version": 116367,
             "average_daily_downloads": 9,
-            "total_contributions": "0.00",
             "guid": "qlt@vik.josh",
             "weekly_downloads": 0,
             "support_url": null,

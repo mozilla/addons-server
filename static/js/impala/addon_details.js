@@ -26,7 +26,7 @@ $(function () {
         function showLightbox() {
             $lightbox.show();
             showImage(this);
-            $(window).bind('keydown.lightboxDismiss', function(e) {
+            $(window).on('keydown.lightboxDismiss', function(e) {
                 switch(e.which) {
                     case z.keys.ESCAPE:
                         e.preventDefault();
@@ -53,7 +53,7 @@ $(function () {
             setTimeout(function() {
                 $lightbox.hide();
             }, 500);
-            $(window).unbind('keydown.lightboxDismiss');
+            $(window).off('keydown.lightboxDismiss');
         }
         function showImage(a) {
             var $a = $(a),
@@ -71,7 +71,7 @@ $(function () {
             } else {
                 $img = $(lbImage([current, $a.attr("href")]));
                 $content.append($img);
-                $img.load(function(e) {
+                $img.on("load", function(e) {
                     $oldimg.css({"opacity": "0", "z-index": "0"});
                     $img.css({
                         "opacity": "1", "z-index": "1"

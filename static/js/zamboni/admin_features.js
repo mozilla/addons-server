@@ -24,7 +24,7 @@ $(document).ready(function(){
         });
     });
 
-    $('#features').delegate('.app select', 'change', function() {
+    $('#features').on('change', '.app select', function() {
         // Update application id and toggle disabled attr on autocomplete field.
         var $this = $(this),
             $tr = $this.closest('tr'),
@@ -32,16 +32,16 @@ $(document).ready(function(){
         $tr.attr('data-app', val);
         $tr.find('.collection-ac').prop('disabled', !val);
     });
-    $('#features').delegate('.remove', 'click', _pd(function() {
+    $('#features').on('click', '.remove', _pd(function() {
         $(this).closest('tr').hide();
         $(this).closest('td').find('input').prop('checked', true);
     }));
-    $('#features').delegate('.replace', 'click', _pd(function() {
+    $('#features').on('click', '.replace', _pd(function() {
         var $td = $(this).closest('td');
         $td.find('.collection-ac').show();
         $td.find('input[type=hidden]').val('');
         $(this).parent().html('');
-    })).delegate('.collection-ac', 'collectionAdd', function() {
+    })).on('collectionAdd', '.collection-ac', function() {
         // Autocomplete for collection add form.
         var $input = $(this),
             $tr = $input.closest('tr'),

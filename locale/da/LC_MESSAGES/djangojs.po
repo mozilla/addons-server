@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-05-24 11:32+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-11 15:37+0000\n"
+"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "Select a file..."
 msgstr "Vælg en fil..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Din tilføjelse skal ende på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -57,7 +57,7 @@ msgstr[1] "Validering af din tilføjelse mislykkedes, der var {0} fejl."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip;og {0} mere"
 msgstr[1] ""
 
 msgid "See full validation report"
@@ -66,9 +66,11 @@ msgstr "Se den fulde valideringsrapport"
 msgid "Validating {0}"
 msgstr "Validerer {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Din tilføjelse overstiger maximumstørrelsen på {0}."
+
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Modtog et tomt svar fra serveren, status: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Uventet serverfejl under valideringen."
@@ -81,16 +83,16 @@ msgstr "Valideringen af din tilføjelse udløb, den vil blive manuelt bedømt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din tilføjelse blev valideret som fejlfri og med {0} advarsel."
+msgstr[1] "Din tilføjelse blev valideret som fejlfri og med {0} advarsler."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Din tilføjelse blev valideret som fejlfri og med {0} meddelelse."
+msgstr[1] "Din tilføjelse blev valideret som fejlfri og med {0} meddelelser."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Din tilføjelse er valideret uden fejl eller advarsler."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
@@ -128,6 +130,9 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
+msgstr ""
+
+msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
@@ -645,18 +650,6 @@ msgstr "Accepter og installer"
 msgid "Add to {0}"
 msgstr "Føj til {0}"
 
-msgid "Download Now"
-msgstr "Hent nu"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Du nødt til at bruge Firefox 10.0 eller højere."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markeret denne version som værende inkompatibel med din Firefox-version."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Installer til {0} alligevel"
@@ -667,9 +660,12 @@ msgstr "Hent til {0} alligevel"
 msgid "Not available for your platform"
 msgstr "Er ikke tilgængelig til din platform"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Er ikke tilgængelig til {0} {1}"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Denne tilføjelse er ikke kompatibel med din version af {0}."
+
+msgid "View other versions"
+msgstr "Vis andre versioner"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
@@ -677,17 +673,8 @@ msgstr "Virker med {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Virker med {app}"
 
-msgid "View other versions"
-msgstr "Vis andre versioner"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Kun med Firefox — Hent Firefox nu!"
-
-msgid "Download now"
-msgstr "Hent nu"
-
-msgid "Only available on Firefox Desktop"
-msgstr "Kun tilgængelig på Firefox til computer"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."

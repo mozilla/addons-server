@@ -8,9 +8,8 @@ import datetime
 from django.conf import settings
 from django.core.cache import cache
 
-from celery import Celery
+from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
-from celery.task.sets import TaskSet
 from django_statsd.clients import statsd
 from raven import Client
 from raven.contrib.celery import register_signal, register_logger_signal
@@ -108,11 +107,20 @@ class TaskTimer(object):
         return 'task_start_time.{}'.format(task_id)
 
 
-def create_subtasks(task, qs, chunk_size, *args):
+def create_subtasks(task, qs, chunk_size, countdown=None, task_args=None):
     """
     Splits a task depending on a queryset into a bunch of subtasks of the
     specified chunk_size, passing a chunked queryset and optional additional
     arguments to each."""
-    ts = [task.subtask(args=(chunk,) + args)
-          for chunk in chunked(qs, chunk_size)]
-    TaskSet(ts).apply_async()
+    if task_args is None:
+        task_args = ()
+
+    job = group([
+        task.subtask(args=(chunk,) + task_args)
+        for chunk in chunked(qs, chunk_size)
+    ])
+
+    if countdown is not None:
+        job.apply_async(countdown=countdown)
+    else:
+        job.apply_async()

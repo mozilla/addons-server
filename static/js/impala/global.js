@@ -1,5 +1,5 @@
 //bind pager controls to our addon grids
-$('.island .listing-grid').bind('grid.init', function(e, data) {
+$('.island .listing-grid').on('grid.init', function(e, data) {
     var $grid = data.self,
         numPages = data.maxPage;
 
@@ -11,7 +11,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
         }
         $nav.append('<a href="#" class="next">&raquo;</a>');
         $grid.parent().prepend($nav);
-        $nav.delegate('a', 'click', function(e) {
+        $nav.on('click', 'a', function(e) {
             e.preventDefault();
             var $tgt = $(this);
             if ($tgt.hasClass('dot')) {
@@ -22,7 +22,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
                 $grid.nextPage();
             }
         });
-        $grid.bind('grid.update', function(e, data) {
+        $grid.on('grid.update', function(e, data) {
             $nav.find('.dot').removeClass('selected')
                 .eq(data.current).addClass('selected');
         });
@@ -44,12 +44,12 @@ function hoverTruncate(grid) {
         $grid = $grid.parent();
     }
     $grid.find('.hovercard h3').truncate();
-    $grid.delegate('.hovercard', 'mouseover', function() {
+    $grid.on('mouseover', '.hovercard', function() {
         var $el = $(this);
         setTimeout(function() {
             $el.find('h3').untruncate();
         }, 100);
-    }).delegate('.hovercard', 'mouseout', function() {
+    }).on('mouseout', '.hovercard', function() {
         var $el = $(this);
         setTimeout(function() {
             $el.find('h3').truncate();
@@ -115,7 +115,7 @@ $(function() {
         $this.text(em).css('direction', 'ltr');
     });
 
-    $('#page').delegate('.expando .toggle', 'click', _pd(function() {
+    $('#page').on('click', '.expando .toggle', _pd(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
 
@@ -128,7 +128,7 @@ $(function() {
             $target.addClass('expanded');
     }
 
-    $('#page').delegate('.scrollto', 'click', function(e) {
+    $('#page').on('click', '.scrollto', function(e) {
         e.preventDefault();
         var href = $(this).attr('href'),
             $target = $(href.match(/#.*$/)[0]);
@@ -160,7 +160,7 @@ function initBanners(delegate) {
     }
 
     // Allow dismissal of site-balloons.
-    $delegate.delegate('.site-balloon .close, .site-tip .close', 'click', _pd(function() {
+    $delegate.on('click', '.site-balloon .close, .site-tip .close', _pd(function() {
         var $parent = $(this).closest('.site-balloon, .site-tip');
         $parent.fadeOut();
         if ($parent.is('#site-nonfx')) {

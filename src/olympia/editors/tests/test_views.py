@@ -16,6 +16,8 @@ from lxml.html import fromstring, HTMLParser
 import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from freezegun import freeze_time
+from waffle.testutils import override_switch
 
 from olympia import amo, core, reviews
 from olympia.amo.tests import (
@@ -240,6 +242,42 @@ class TestReviewLog(EditorTest):
         assert r.status_code == 200
         assert pq(r.content)('#log-listing tr:not(.hide)').length == 3
 
+    def test_start_filter(self):
+        with freeze_time('2017-08-01 10:00'):
+            self.make_approvals()
+
+        # Make sure we show the stuff we just made.
+        r = self.client.get(self.url, {'start': '2017-07-31'})
+
+        assert r.status_code == 200
+
+        doc = pq(r.content)('#log-listing tbody')
+
+        assert doc('tr:not(.hide)').length == 2
+        assert doc('tr.hide').eq(0).text() == 'youwin'
+
+    def test_start_default_filter(self):
+        with freeze_time('2017-07-31 10:00'):
+            self.make_approvals()
+
+        with freeze_time('2017-08-01 10:00'):
+            addon = Addon.objects.first()
+
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION, addon, addon.current_version,
+                user=self.get_user(), details={'comments': 'youwin'})
+
+        # Make sure the default 'start' to the 1st of a month works properly
+        with freeze_time('2017-08-03 11:00'):
+            r = self.client.get(self.url)
+
+            assert r.status_code == 200
+
+            doc = pq(r.content)('#log-listing tbody')
+
+            assert doc('tr:not(.hide)').length == 1
+            assert doc('tr.hide').eq(0).text() == 'youwin'
+
     def test_search_comment_exists(self):
         """Search by comment."""
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW, comment='hello')
@@ -350,25 +388,32 @@ class TestReviewLog(EditorTest):
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
             'commented')
 
+    @freeze_time('2017-08-03')
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
         unlisted_version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        al = ActivityLog.create(
+        ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon, addon.current_version,
             user=self.get_user(), details={'comments': 'foo'})
 
-        al.update(created=self.days_ago(1))
         r = self.client.get(self.url)
         url = reverse('editors.review', args=[addon.slug])
-        assert pq(r.content)('#log-listing tr td a').eq(1).attr('href') == url
 
-        ActivityLog.create(
+        link = pq(r.content)('#log-listing tbody tr[data-addonid] a').eq(1)
+        assert link.attr('href') == url
+
+        entry = ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon,
             unlisted_version,
             user=self.get_user(), details={'comments': 'foo'})
+
+        # Force the latest entry to be at the top of the list so that we can
+        # pick it more reliably later from the HTML
+        entry.update(created=datetime.now() + timedelta(days=1))
+
         r = self.client.get(self.url)
         url = reverse(
             'editors.review',
@@ -705,8 +750,8 @@ class QueueTest(EditorTest):
         assert a.attr('href') == self.url
 
     def _test_results(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
         expected = []
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
@@ -718,10 +763,10 @@ class QueueTest(EditorTest):
             channel = ['unlisted'] if not self.listed else []
             url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
-        check_links(
-            expected,
-            pq(r.content)('#addon-queue tr.addon-row td a:not(.app-icon)'),
-            verify=False)
+        links = pq(
+            response.content)('#addon-queue tr.addon-row td a:not(.app-icon)')
+        check_links(expected, links, verify=False)
+        assert len(links) == len(self.expected_addons)
 
 
 class TestQueueBasics(QueueTest):
@@ -909,12 +954,12 @@ class TestQueueBasics(QueueTest):
         assert rows.find('td').eq(1).text() == 'Jetpack 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 1
 
-    def test_flags_requires_restart(self):
+    def test_flags_is_restart_required(self):
         addon = addon_factory(
             status=amo.STATUS_NOMINATED, name='Some Add-on',
             version_kw={'version': '0.1'},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'no_restart': False})
+                     'is_restart_required': True})
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -923,14 +968,14 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Some Add-on 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
-        assert rows.find('.ed-sprite-requires_restart').length == 1
+        assert rows.find('.ed-sprite-is_restart_required').length == 1
 
-    def test_flags_no_restart(self):
+    def test_flags_is_restart_required_false(self):
         addon = addon_factory(
             status=amo.STATUS_NOMINATED, name='Restartless',
             version_kw={'version': '0.1'},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'no_restart': True})
+                     'is_restart_required': False})
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -939,7 +984,7 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
-        assert rows.find('.ed-sprite-requires_restart').length == 0
+        assert rows.find('.ed-sprite-is_restart_required').length == 0
 
     def test_theme_redirect(self):
         users = []
@@ -978,6 +1023,27 @@ class TestPendingQueue(QueueTest):
 
     def test_get_queue(self):
         self._test_get_queue()
+
+    @override_switch('post-review', active=False)
+    def test_webextensions_not_filtered_out_without_post_review(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # Without the post-review waffle enabled, the webextension should still
+        # be present.
+        self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_webextensions_filtered_out_with_post_review(self):
+        version = self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # With the post-review waffle enabled, the webextension should be
+        # filtered out.
+        self.expected_addons = [self.addons['Pending One']]
+        self._test_results()
 
 
 class TestNominatedQueue(QueueTest):
@@ -1036,6 +1102,27 @@ class TestNominatedQueue(QueueTest):
 
     def test_get_queue(self):
         self._test_get_queue()
+
+    @override_switch('post-review', active=False)
+    def test_webextensions_not_filtered_out_without_post_review(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # Without the post-review waffle enabled, the webextension should still
+        # be present.
+        self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_webextensions_filtered_out_with_post_review(self):
+        version = self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.files.update(is_webextension=True)
+
+        # With the post-review waffle enabled, the webextension should be
+        # filtered out.
+        self.expected_addons = [self.addons['Nominated One']]
+        self._test_results()
 
 
 class TestModeratedQueue(QueueTest):
@@ -1248,6 +1335,10 @@ class TestUnlistedAllList(QueueTest):
     def test_results(self):
         self._test_results()
 
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_enabled(self):
+        self._test_results()
+
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1291,6 +1382,15 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED)
+        # Has been auto-approved, but that auto-approval has been confirmed by
+        # a human already.
+        extra_addon3 = addon_factory(name=u'Extra Addôn 3')
+        extra_summary3 = AutoApprovalSummary.objects.create(
+            version=extra_addon3.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon3, counter=1,
+            last_human_review=extra_summary3.created)
 
         # Has been auto-approved and reviewed by a human before.
         addon1 = addon_factory(name=u'Addôn 1')
@@ -1326,6 +1426,8 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED,
             weight=500)
+        AddonApprovalsCounter.objects.create(
+            addon=addon4, counter=0, last_human_review=self.days_ago(1))
         self.expected_addons = [addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
@@ -1343,6 +1445,10 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
         self._test_results()
+
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_waffle(self):
+        self.test_results()
 
     def test_queue_count(self):
         self.login_with_permission()
@@ -1857,13 +1963,13 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_not_flags(self):
-        self.addon.current_version.files.update(no_restart=True)
+        self.addon.current_version.files.update(is_restart_required=False)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
     def test_flag_admin_review(self):
-        self.addon.current_version.files.update(no_restart=True)
+        self.addon.current_version.files.update(is_restart_required=False)
         self.addon.update(admin_review=True)
         response = self.client.get(self.url)
         assert len(response.context['flags']) == 1
@@ -2037,7 +2143,7 @@ class TestReview(ReviewBase):
 
         self.addon.current_version.delete(hard=True)
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_item_history_deleted(self, mock_sign):
         self.generate_deleted_versions()
 
@@ -2388,7 +2494,7 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def review_version(self, version, url, mock_sign):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
@@ -2437,6 +2543,19 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertContains(r, 'View Privacy Policy')
+
+    def test_requires_payment_indicator(self):
+        assert not self.addon.requires_payment
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert 'No' in doc('tr.requires-payment td').text()
+
+        self.addon.update(requires_payment=True)
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert 'Yes' in doc('tr.requires-payment td').text()
 
     def test_viewing(self):
         url = reverse('editors.review_viewing')
@@ -2603,7 +2722,7 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
@@ -2650,11 +2769,17 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.login_as_senior_editor()
-        response = self.client.post(
-            self.url, {'action': 'confirm_auto_approved'})
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
         assert response.status_code == 302
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
 
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
@@ -2937,7 +3062,7 @@ class TestReviewPending(ReviewBase):
     def pending_dict(self):
         return self.get_dict(action='public')
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2974,7 +3099,7 @@ class TestReviewPending(ReviewBase):
         assert unreviewed.filename in response.content
         assert self.file.filename in response.content
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,
@@ -3337,7 +3462,7 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
             u'Select a valid choice. public is not one of the available '
             u'choices.']
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file')
+    @patch('olympia.editors.utils.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version.update(nomination=datetime.now() - timedelta(days=1))

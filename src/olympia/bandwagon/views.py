@@ -40,7 +40,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
-from .permissions import AllowCollectionAuthor
+from .permissions import AllowCollectionAuthor, AllowCollectionContributor
 from .serializers import CollectionAddonSerializer, CollectionSerializer
 from . import forms, tasks
 
@@ -320,7 +320,7 @@ def collection_vote(request, username, slug, direction):
 
 
 def initial_data_from_request(request):
-    return dict(author=request.user, application=request.APP.id)
+    return {'author': request.user, 'application': request.APP.id}
 
 
 def collection_message(request, collection, option):
@@ -376,12 +376,12 @@ def add(request):
 def ajax_new(request):
     form = forms.CollectionForm(
         request.POST or None,
-        initial={'author': request.user, 'application': request.APP.id},
-    )
+        initial=initial_data_from_request(request))
 
     if request.method == 'POST' and form.is_valid():
         collection = form.save()
         addon_id = request.POST['addon_id']
+
         collection.add_addon(Addon.objects.get(pk=addon_id))
         log.info('Created collection %s' % collection.id)
         return http.HttpResponseRedirect(reverse('collections.ajax_list') +
@@ -652,6 +652,11 @@ class CollectionViewSet(ModelViewSet):
         AnyOf(
             # Collection authors can do everything.
             AllowCollectionAuthor,
+            # Collection contributors can access an existing collection, and
+            # change it's addons, but can't delete or edit it's details.
+            AllOf(AllowCollectionContributor,
+                  PreventActionPermission(['create', 'list', 'update',
+                                           'destroy', 'partial_update'])),
             # Admins can do everything except create.
             AllOf(GroupPermission(amo.permissions.COLLECTIONS_EDIT),
                   PreventActionPermission('create')),

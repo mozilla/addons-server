@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,9 @@ msgstr "Pogledajte potpuni izveštaj pregleda"
 msgid "Validating {0}"
 msgstr "Proveravam {0}"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr ""
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
@@ -130,6 +132,9 @@ msgstr "Nažalost nije nađena ni jedna podržana platforma."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tip datoteke koju ste poslali nije prepoznat."
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr ""
 
 msgid "You cancelled the upload."
 msgstr "Otkazali ste otpremanje."
@@ -647,18 +652,6 @@ msgstr "Prihvati i instaliraj"
 msgid "Add to {0}"
 msgstr "Dodaj u {0}"
 
-msgid "Download Now"
-msgstr "Preuzmi odmah"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Dodatak nije ažuriran da podržava default-to-compatible."
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Morate koristiti Firefox 10.0 ili novije."
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla je označila ovu verziju kao nekompatabilnu sa Vašom verzijom Firefox-a."
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "Instaliraj za {0} u svakom slučaju"
@@ -669,9 +662,13 @@ msgstr "Preuzmi za {0} u svakom slučaju"
 msgid "Not available for your platform"
 msgstr "Nije dostupno za Vašu platformu"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "Nije dostupno za {0} {1}"
+#. L10n: {0} is an app name.
+#, fuzzy
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
+
+msgid "View other versions"
+msgstr "Pogledaj ostale verzije"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "Radi sa {app} {min} - {max}"
@@ -680,17 +677,7 @@ msgstr "Radi sa {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "Radi sa {app} {min} - {max}"
 
-msgid "View other versions"
-msgstr "Pogledaj ostale verzije"
-
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-#, fuzzy
-msgid "Download now"
-msgstr "Preuzmi odmah"
-
-msgid "Only available on Firefox Desktop"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

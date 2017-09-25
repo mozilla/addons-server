@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-03-27 06:56+0000\n"
+"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"PO-Revision-Date: 2017-08-30 04:33+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -63,7 +63,9 @@ msgstr "検証レポートの詳細を見る"
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
-#. L10n: first argument is an HTTP status code
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "このアドオンは最大サイズ {0} を超えています。"
+
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバーから空の応答が返りました。ステータス: {0}"
 
@@ -94,11 +96,10 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension へのアップグレード"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
+msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、旧式のアドオンをインストールすることはできなくなります。"
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "従来型 Firefox アドオンの移植に関する MDN の記事"
+msgstr "旧式 Firefox アドオンの移植に関する MDN の記事"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "詳しいバージョンノートを含める (これは次のステップで行えます)。"
@@ -127,6 +128,9 @@ msgstr "申し訳ありませんが、対応プラットフォームがひとつ
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
+
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "このファイルは最大サイズ {0} を超えています。"
 
 msgid "You cancelled the upload."
 msgstr "アップロードがキャンセルされました。"
@@ -641,18 +645,6 @@ msgstr "同意してインストール"
 msgid "Add to {0}"
 msgstr "{0} へ追加"
 
-msgid "Download Now"
-msgstr "今すぐダウンロード"
-
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "アドオンが自動的に互換性を保つバージョンへ更新されていません。"
-
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Firefox 10 以上のバージョンを使ってください。"
-
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "このバージョンは、お使いの Firefox のバージョンと互換性がありません。"
-
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
 msgstr "{0} へ強制インストール"
@@ -663,9 +655,12 @@ msgstr "{0} へ強制ダウンロード"
 msgid "Not available for your platform"
 msgstr "お使いの OS には対応していません"
 
-#. L10n: {0} is an app name, {1} is the app version.
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} には対応していません"
+#. L10n: {0} is an app name.
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "このアドオンはお使いのバージョンの {0} と互換性がありません。"
+
+msgid "View other versions"
+msgstr "他のバージョンを見る"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "動作環境: {app} {min} - {max}"
@@ -673,17 +668,8 @@ msgstr "動作環境: {app} {min} - {max}"
 msgid "Works with {app}"
 msgstr "{app} で動作します"
 
-msgid "View other versions"
-msgstr "他のバージョンを見る"
-
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
-
-msgid "Download now"
-msgstr "今すぐダウンロード"
-
-msgid "Only available on Firefox Desktop"
-msgstr "デスクトップ版 Firefox でのみ使用可能"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザーが必要です。"

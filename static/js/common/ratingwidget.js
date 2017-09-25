@@ -47,7 +47,7 @@ $.fn.ratingwidget = function(classes) {
             }
         }).mouseout(function() {
             showStars(rating || 0);
-        }).bind('touchmove touchend', function(e) {
+        }).on('touchmove touchend', function(e) {
             var wid = $widget.width();
             var left = $widget.offset().left;
             var r = (e.originalEvent.changedTouches[0].clientX - left) / wid * 5 + 1;

@@ -56,7 +56,7 @@ jQuery.fn.tooltip = function(tip_el) {
         }, delay);
     }
 
-    $(document.body).bind("tooltip_change", setTip);
+    $(document.body).on("tooltip_change", setTip);
 
     function mouseover(e) {
         $tgt = $(this);
@@ -184,9 +184,8 @@ $.fn.popup = function(click_target, o) {
 
     $popup.hideMe = function() {
         $popup.hide();
-        $popup.unbind();
-        $popup.undelegate();
-        $(document.body).unbind('click.'+uid, $popup.hider);
+        $popup.off();
+        $(document.body).off('click.'+uid, $popup.hider);
         return $popup;
     };
 
@@ -213,10 +212,10 @@ $.fn.popup = function(click_target, o) {
         };
         if (p.hideme) {
             setTimeout(function(){
-                $(document.body).bind('click.'+uid, $popup.hider);
+                $(document.body).on('click.'+uid, $popup.hider);
             }, 0);
         }
-        $popup.delegate('.close', 'click', function(e) {
+        $popup.on('click', '.close', function(e) {
             e.preventDefault();
             $popup.hideMe();
         });
@@ -233,7 +232,7 @@ $.fn.popup = function(click_target, o) {
     };
 
     if ($popup.o.delegate) {
-        $($popup.o.delegate).delegate(click_target, "click", handler);
+        $($popup.o.delegate).on("click", click_target, handler);
     } else {
         $ct.click(handler);
     }
@@ -310,11 +309,10 @@ $.fn.modal = function(click_target, o) {
     $modal.hideMe = function() {
         var p = $modal.o;
         $modal.hide();
-        $modal.unbind();
-        $modal.undelegate();
-        $(document.body).unbind('click newmodal', $modal.hider);
-        $(window).unbind('keydown.lightboxDismiss');
-        $(window).bind('resize', p.onresize);
+        $modal.off();
+        $(document.body).off('click newmodal', $modal.hider);
+        $(window).off('keydown.lightboxDismiss');
+        $(window).on('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;
     };
@@ -338,8 +336,7 @@ $.fn.modal = function(click_target, o) {
         if (p.hideme) {
             try {
                 setTimeout(function(){
-                    $('.modal-overlay, .close').bind('click modal',
-                                                     $modal.hider);
+                    $('.modal-overlay, .close').on('click modal', $modal.hider);
                 }, 0);
             } catch (err) {
                 // TODO(Kumar) handle this more gracefully. See bug 701221.
@@ -353,11 +350,11 @@ $.fn.modal = function(click_target, o) {
             $modal.append(close);
         }
         $('.popup').hide();
-        $modal.delegate('.close', 'click', function(e) {
+        $modal.on('click', '.close', function(e) {
             e.preventDefault();
             $modal.trigger('close');
         });
-        $modal.bind('close', function(e) {
+        $modal.on('close', function(e) {
             if (p.emptyme) {
                 $modal.empty();
             }
@@ -376,8 +373,8 @@ $.fn.modal = function(click_target, o) {
             $modal.show();
         }, 0);
 
-        $(window).bind('resize', p.onresize)
-        .bind('keydown.lightboxDismiss', function(e) {
+        $(window).on('resize', p.onresize)
+        .on('keydown.lightboxDismiss', function(e) {
             if (e.which == 27) {
                 $modal.hideMe();
             }
@@ -386,7 +383,7 @@ $.fn.modal = function(click_target, o) {
     };
 
     if ($modal.o.delegate) {
-        $($modal.o.delegate).delegate(click_target, "click", handler);
+        $($modal.o.delegate).on("click", click_target, handler);
     } else {
         $ct.click(handler);
     }
@@ -484,7 +481,7 @@ function initCharCount() {
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.bind('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
+        $el.on('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
     });
 }
 
@@ -577,7 +574,7 @@ $.fn.exists = function(callback, args){
 };
 
 // Bind to the mobile site if a mobile link is clicked.
-$(document).delegate('.mobile-link', 'click', function() {
+$(document).on('click', '.mobile-link', function() {
     $.cookie('mamo', 'on', {expires:30, path: '/'});
     window.location.reload();
 });

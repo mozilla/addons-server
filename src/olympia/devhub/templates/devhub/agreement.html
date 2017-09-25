@@ -9,9 +9,8 @@
     {% endtrans %}
     </p>
     <ul class="agreement-links">
-      <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
-      <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policy') }}</a> {{ agreement_form.review_policy.errors }}</li>
-      <li>{{ agreement_form.review_rules }}<a href="{{ url('devhub.docs', 'policies/rules') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Rules') }}</a> {{ agreement_form.review_rules.errors }}</li>
+      <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
+      <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
     </ul>
   {% else %}
     <p>
