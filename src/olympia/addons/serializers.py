@@ -275,7 +275,7 @@ class AddonSerializer(serializers.ModelSerializer):
             data['homepage'] = self.outgoingify(data['homepage'])
         if 'support_url' in data:
             data['support_url'] = self.outgoingify(data['support_url'])
-        if data.get('type') == amo.ADDON_TYPE_CHOICES_API[amo.ADDON_PERSONA]:
+        if obj.type == amo.ADDON_PERSONA:
             if 'weekly_downloads' in data:
                 # weekly_downloads don't make sense for lightweight themes.
                 data.pop('weekly_downloads')
