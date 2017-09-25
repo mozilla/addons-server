@@ -24,6 +24,10 @@ class TestPages(TestCase):
         for page in pages:
             self._check(page, 200)
 
+    def test_search_console(self):
+        resp = self.client.get('/google231a41e803e464e9.html')
+        assert resp.status_code == 200
+
 
 class TestRedirects(TestCase):
 
