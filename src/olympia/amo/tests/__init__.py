@@ -24,6 +24,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
+from django.utils.encoding import force_str
 from django.utils.http import urlencode
 
 import mock
@@ -1035,7 +1036,7 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     """
     locals_ = locals_ or {}
     try:
-        exec(string, globals_ or globals(), locals_)
+        exec(force_str(string), globals_ or globals(), locals_)
     except Exception as e:
         if value:
             raise AssertionError(

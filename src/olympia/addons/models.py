@@ -26,8 +26,8 @@ from jinja2.filters import do_dictsort
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.amo.models import (
-    BaseQuerySet, SlugField, OnChangeMixin, ModelBase, ManagerBase,
-    manual_order)
+    manual_order, ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin,
+    SlugField)
 from olympia.access import acl
 from olympia.addons.utils import (
     get_creatured_ids, get_featured_ids, generate_addon_guid)
@@ -131,7 +131,7 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonQuerySet(BaseQuerySet):
+class AddonQuerySet(caching.CachingQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
