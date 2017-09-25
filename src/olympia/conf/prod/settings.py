@@ -249,3 +249,7 @@ RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
 GITHUB_API_USER = env('GITHUB_API_USER')
 GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
+
+RECOMMENDATION_ENGINE_URL = env(
+    'RECOMMENDATION_ENGINE_URL',
+    default='https://taar.prod.mozaws.net/api/recommendations/')
