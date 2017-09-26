@@ -271,7 +271,8 @@ SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
-    'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
+    'google231a41e803e464e9.html', 'robots.txt', 'statistics', 'services',
+    'sunbird', 'static', 'user-media',
     '__version__',
 )
 DEFAULT_APP = 'firefox'
@@ -280,8 +281,9 @@ DEFAULT_APP = 'firefox'
 # This needs to be kept in sync with addons-frontend's validLocaleUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONLOCALES = (
-    'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
-    'downloads', 'static', 'user-media', '__version__',
+    'contribute.json', 'google1f3e37b7351799a5.html',
+    'google231a41e803e464e9.html', 'robots.txt', 'services', 'downloads',
+    'static', 'user-media', '__version__',
 )
 
 # Make this unique, and don't share it with anybody.
