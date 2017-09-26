@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-09-26 12:31+0000\n"
+"PO-Revision-Date: 2017-09-26 12:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4277,9 +4277,8 @@ msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
 msgid "Transfer ownership"
 msgstr "Sahipliği aktar"
 
-#, fuzzy
 msgid "Theme Details"
-msgstr "Tema İnceleme"
+msgstr "Tema ayrıntıları"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Açıklama sayfanız için okunaklı bir URL ekleyin."
@@ -4294,9 +4293,8 @@ msgstr "Temanızı Tanımlayın."
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
 
-#, fuzzy
 msgid "Theme License"
-msgstr "Lisans"
+msgstr "Tema Lisansı"
 
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Kaynak gösterildiği sürece başkaları temanızı paylaşabilir mi?"
@@ -4333,13 +4331,11 @@ msgstr "Temanız şu lisansla yayımlanacaktır:"
 msgid "Select a different license."
 msgstr "Farklı bir lisans seçin."
 
-#, fuzzy
 msgid "Select a license for your Theme."
-msgstr "Temanızı Tanımlayın."
+msgstr "Temanız için bir lisans seçin."
 
-#, fuzzy
 msgid "Theme Design"
-msgstr "Tema İnceleme"
+msgstr "Tema tasarımı"
 
 msgid "Upload New Design"
 msgstr "Yeni tasarım yükle"
@@ -4383,13 +4379,11 @@ msgstr "Arka plan"
 msgid "This is the color of the tabs."
 msgstr "Bu renk, sekmelerin rengidir."
 
-#, fuzzy
 msgid "Preview"
-msgstr "Önceki"
+msgstr "Ön izleme"
 
-#, fuzzy
 msgid "Your Theme's Name"
-msgstr "Temanıza Bir Adı Verin."
+msgstr "Temanızın adı"
 
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
@@ -4403,9 +4397,8 @@ msgstr "Kendi Temanızı Oluşturun"
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
-#, fuzzy
 msgid "Give your Theme a name."
-msgstr "Temanıza Bir Adı Verin."
+msgstr "Temanıza bir ad verin."
 
 #, python-format
 msgid ""
@@ -4502,7 +4495,6 @@ msgstr "İncelenmemiş"
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
 
-#, fuzzy
 msgid "Source code"
 msgstr "Kaynak kodu"
 
@@ -4520,9 +4512,8 @@ msgstr ""
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
-#, fuzzy
 msgid "Status & Versions"
-msgstr "Sürümler"
+msgstr "Durum ve sürümler"
 
 # 76%
 # 100%
@@ -4539,9 +4530,8 @@ msgstr "Sürümü yeniden etkinleştir"
 msgid "Close Review History"
 msgstr "İnceleme Geçmişi"
 
-#, fuzzy
 msgid "Not validated."
-msgstr "İzin verilmiyor"
+msgstr "Doğrulanmadı."
 
 msgid "Validate now."
 msgstr "Şimdi doğrulayın."
@@ -4602,13 +4592,11 @@ msgstr "Sil"
 msgid "Next version of this add-on"
 msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Diğer sürümleri görün"
+msgstr "Diğer sürümler"
 
-#, fuzzy
 msgid "All versions"
-msgstr "Tüm sürümleri göster"
+msgstr "Tüm sürümler"
 
 msgid "Upload a New Version"
 msgstr "Yeni bir sürüm yükleyin"
@@ -4631,17 +4619,14 @@ msgstr "Bu sürümü silmek istediğinizden emin misiniz?"
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Delete Version"
-msgstr "Koleksiyonu Sil"
+msgstr "Sürümü sil"
 
-#, fuzzy
 msgid "Disable Version"
-msgstr "Sürüm"
+msgstr "Sürümü devre dışı bırak"
 
-#, fuzzy
 msgid "Hide Add-on"
-msgstr "Eklenti"
+msgstr "Eklentiyi gizle"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "Eklentinizi gizlemek, galerimizin herhangi bir yerinde görünmesini önleyecek ve kullanıcıların otomatik güncellemeleri almasını engelleyecektir."
@@ -4744,41 +4729,35 @@ msgstr "eklenti, editör veya yorum"
 msgid "Search by add-on name / author email"
 msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
 
-#, fuzzy
 msgid "yes"
-msgstr "Evet"
+msgstr "evet"
 
-#, fuzzy
 msgid "no"
-msgstr "Bilgi"
+msgstr "hayır"
 
 #, fuzzy
 msgid "Admin Flag"
 msgstr "Yönetici Sayfası"
 
-#, fuzzy
 msgid "Add-on Types"
-msgstr "Eklentiler"
+msgstr "Eklenti türleri"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
 
-#, fuzzy
 msgid "Max. Version"
-msgstr "Sürüm"
+msgstr "En yüksek sürüm"
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Comments:"
-msgstr "Yorum"
+msgstr "Yorumlar:"
 
 msgid "Operating systems:"
 msgstr "İşletim sistemleri:"
 
-#, fuzzy
 msgid "Applications:"
-msgstr "Uygulama sürümü"
+msgstr "Uygulamalar:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
@@ -4811,19 +4790,16 @@ msgstr ""
 msgid "Skip for now"
 msgstr "Şimdilik geç"
 
-#, fuzzy
 msgid "Delete review"
-msgstr "İnceleme yazın"
+msgstr "İncelemeyi sil"
 
 #, fuzzy
 msgid "Admin Review"
 msgstr "İnceleme Bekliyor"
 
-#, fuzzy
 msgid "Jetpack Add-on"
-msgstr "Engellenen Eklentiler"
+msgstr "Jetpack eklentisi"
 
-#, fuzzy
 msgid "More Information Requested"
 msgstr "Daha fazla bilgi istendi"
 
@@ -4835,9 +4811,8 @@ msgstr "tema, inceleyen veya yorum"
 msgid "Sources provided"
 msgstr "Kaynak kodu"
 
-#, fuzzy
 msgid "WebExtension"
-msgstr "Uzantı"
+msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
 msgstr ""
@@ -4885,9 +4860,8 @@ msgstr ""
 msgid "Type"
 msgstr "Türü"
 
-#, fuzzy
 msgid "Waiting Time"
-msgstr "İnceleme Bekliyor"
+msgstr "Bekleme süresi"
 
 msgid "Flags"
 msgstr "Bayraklar"
@@ -4896,34 +4870,28 @@ msgid "moments ago"
 msgstr ""
 
 #. L10n: first argument is number of minutes
-#, fuzzy
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] "{0} kullanıcı"
+msgstr[0] "{0} dakika"
 
 #. L10n: first argument is number of hours
-#, fuzzy
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] "{0} kullanıcı"
+msgstr[0] "{0} saat"
 
 #. L10n: first argument is number of days
-#, fuzzy
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "{0} önce"
+msgstr[0] "{0} gün"
 
-#, fuzzy
 msgid "Last Review"
-msgstr "İncelenmemiş"
+msgstr "Son inceleme"
 
-#, fuzzy
 msgid "Last Update"
-msgstr "Son Güncellenme:"
+msgstr "Son güncelleme"
 
-#, fuzzy
 msgid "No Reviews"
-msgstr "İncelemeler"
+msgstr "Hiç inceleme yok"
 
 msgid "Weight"
 msgstr ""
@@ -4934,9 +4902,8 @@ msgstr ""
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Onay bekliyor"
+msgstr "Onayı doğrula"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
@@ -4950,7 +4917,6 @@ msgstr "Koleksiyonu Sil"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "İnceleyenin yanıtı"
 
@@ -4988,26 +4954,21 @@ msgstr ""
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "was approved"
-msgstr "Onaylandı"
+msgstr "onaylandı"
 
-#, fuzzy
 msgid "given preliminary review"
-msgstr "{addon} {version} ön incelemesi yapıldı."
+msgstr "ön incelemesi yapıldı"
 
-#, fuzzy
 msgid "rejected"
-msgstr "Reddedildi."
+msgstr "reddedildi"
 
-#, fuzzy
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr "Oluşturma"
+msgstr "yükseltildi"
 
-#, fuzzy
 msgid "needs more information"
-msgstr "Sürüm Bilgisi"
+msgstr "daha fazla bilgi gerekiyor"
 
 #, fuzzy
 msgid "needs super review"
