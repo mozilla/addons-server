@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-22 08:52+0000\n"
-"PO-Revision-Date: 2017-09-26 12:11+0000\n"
+"PO-Revision-Date: 2017-09-26 12:31+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -626,9 +626,8 @@ msgstr "İstatistikleri göster"
 msgid "Manage"
 msgstr "Yönet"
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Eklenti İnceleme Süreci"
+msgstr "Eklenti İncelemesi"
 
 msgid "Admin Manage"
 msgstr "Yönetici Yönetimi"
@@ -717,9 +716,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Bu eklenti şunları yapabilir:"
 
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. (Örneğin, sekme yönetimi yapan bir eklenti, tarayıcınızın sekme sistemine erişmek için izin isteyecektir.)"
+msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. Firefox’un kontrolü tamamen sizde olduğu için bu istekleri kabul veya reddetme kararı size aittir."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
@@ -2269,9 +2267,8 @@ msgstr "Persona"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Eklenti İnceleme Süreci"
+msgstr "Yeni Eklenti İncelemesi"
 
 msgid "Preliminary Add-on Review"
 msgstr "Eklenti Ön İncelemesi"
@@ -2329,9 +2326,8 @@ msgstr ""
 msgid "Moderated Add-on Review"
 msgstr "Güncellenmiş Eklenti İncelemesi"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Performans"
+msgstr ""
 
 msgid "Level 1"
 msgstr "1. Düzey"
@@ -2672,16 +2668,14 @@ msgstr "Çekirdek"
 msgid "Recent Changes for %s"
 msgstr "Yakın Zamandaki %s Değişiklikleri"
 
-#, fuzzy
 msgid "Recent Changes for My Add-ons"
-msgstr "Eklentilerinize Ait Raporlar"
+msgstr "Eklentilerimdeki Yakın Zamandaki Değişiklikler"
 
 msgid "Must have at least one owner."
 msgstr "En az bir sahibi olmalı."
 
-#, fuzzy
 msgid "At least one author must be listed."
-msgstr "Bir lisans seçilmelidir."
+msgstr "En az bir yazar listelenmeli."
 
 msgid "An author can only be listed once."
 msgstr "Bir yazar sadece bir kez listelenebilir."
@@ -2782,9 +2776,8 @@ msgstr "Sürüm eşleşmedi"
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} sürümü daha önce yüklenip silinmiş."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "Sürüm hâlihazırda mevcut."
+msgstr "{version} sürümü zaten mevcut."
 
 msgid "Continue with existing upload instead?"
 msgstr "Bunun yerine varolan yükleme ile devam edilsin mi?"
@@ -2886,13 +2879,11 @@ msgstr "URL adı yanlış. Eklenti silinmedi."
 msgid "An author has been added to your add-on"
 msgstr "Eklentinize bir yazar eklendi"
 
-#, fuzzy
 msgid "An author has a role changed on your add-on"
-msgstr "{addon} için {0.name} rolü {1} olarak değiştirildi."
+msgstr "Eklentinizdeki bir yazarın rolü değişti"
 
-#, fuzzy
 msgid "An author has been removed from your add-on"
-msgstr "{addon} eklentisinden {tag} silindi."
+msgstr "Eklentinizdeki bir yazar silindi"
 
 msgid "There were errors in your submission."
 msgstr "Gönderinizde hatalar vardı."
@@ -2903,9 +2894,8 @@ msgstr "Eklentiyi doğrula"
 msgid "Check Add-on Compatibility"
 msgstr "Eklenti uyumluluğunu denetle"
 
-#, fuzzy
 msgid "You cannot submit this type of add-on"
-msgstr "Bu eklenti hakkında daha fazla bilgi"
+msgstr "Bu türden eklenti gönderemezsiniz"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
@@ -2930,13 +2920,13 @@ msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
 msgid "There was an error uploading your preview."
 msgstr "Ön izlemenizi yüklerken bir hata oluştu."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s disabled."
-msgstr "{addon} devre dışı bırakıldı."
+msgstr "%s sürümü devre dışı bırakıldı."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s deleted."
-msgstr "{addon} eklentisinden {0} sürümü silindi."
+msgstr "%s sürümü silindi."
 
 #, python-format
 msgid "Version %s re-enabled."
@@ -2971,9 +2961,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "İnceleme notu"
+msgstr ""
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Başlamadan önce lütfen Firefox Eklenti Dağıtım Sözleşmesi'ni okuyup kabul edin. Ayrıca bu sözleşme bilgilerinizi nasıl işlediğimizi açıklayan Gizlilik Bildirimimize de bağlantı sağlar."
@@ -2987,9 +2976,8 @@ msgstr ""
 msgid "I Accept this Agreement"
 msgstr "Sözleşmeyi kabul ediyorum"
 
-#, fuzzy
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
+msgstr "veya <a href=\"{0}\">vazgeç</a>"
 
 msgid "Back to Add-ons"
 msgstr "Eklentilere dön"
@@ -3014,9 +3002,8 @@ msgstr "daha fazla eklenti..."
 msgid "Documentation"
 msgstr "Belgelendirme"
 
-#, fuzzy
 msgid "Extension Development"
-msgstr "Web Geliştirme"
+msgstr "Eklenti geliştirme"
 
 msgid "Lightweight Themes"
 msgstr "Hafif Temalar"
@@ -3030,9 +3017,8 @@ msgstr "Eklenti Doğrulayıcı"
 msgid "Add-on Compatibility Checker"
 msgstr "Eklenti Uyumluluğu Denetçisi"
 
-#, fuzzy
 msgid "Development Add-ons"
-msgstr "Geliştirme Kanalı"
+msgstr "Geliştirme eklentileri"
 
 msgid "Community & Support"
 msgstr "Topluluk ve Destek"
@@ -3146,9 +3132,9 @@ msgstr "Kapat"
 msgid "Recent Activity"
 msgstr "Yakındaki Etkinlikler"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(ago)s by %(user)s"
-msgstr "%(users)s tarafından"
+msgstr "%(user)s tarafından %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr "Eklentilerimin önceki etkinlikleri"
@@ -3205,20 +3191,17 @@ msgid "Basic Information"
 msgstr "Temel Bilgi"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Basic Information for {0}"
-msgstr "{0} Eklenti Bilgileri"
+msgstr "{0} Temel Bilgileri"
 
-#, fuzzy
 msgid "Add-on URL"
-msgstr "Eklenti"
+msgstr "Eklenti URL'si"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Eklentiniz için kısa ve benzersiz bir kısa URL seçin."
 
-#, fuzzy
 msgid "View Listing"
-msgstr "İstatistikleri Göster"
+msgstr "Listelemeyi gör"
 
 msgid "Summary"
 msgstr "Özet"
@@ -3238,9 +3221,8 @@ msgstr "Bu eklenti deneyseldir."
 msgid "This add-on is ready for general use."
 msgstr "Eklenti genel kullanım için hazır."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Yeniden başlatma gerektirir"
+msgstr "Ücretli mi?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3293,9 +3275,8 @@ msgstr "Eklenti Ayrıntıları"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Add-on Details for {0}"
-msgstr "{0} Eklentileri"
+msgstr "{0} Eklenti Ayrıntıları"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr "Özellikler, işlevler ve diğer ilgili bilgiler için daha uzun bir açıklama. Bu alan yalnızca eklentinin ayrıntılar sayfasında görüntülenir. Yalnızca listelenen eklentiler için geçerlidir."
@@ -3321,9 +3302,8 @@ msgid "Support Information"
 msgstr "Destek Bilgisi"
 
 #. {0} is an addon name
-#, fuzzy
 msgid "Support Information for {0}"
-msgstr "{0} Eklenti Bilgileri"
+msgstr "{0} Destek Bilgileri"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -3368,9 +3348,8 @@ msgstr "Eklenti İşaretleri"
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on requires external software."
-msgstr "Bu eklenti düzgün çalışmak için şu eklentilere ihtiyaç duyuyor:"
+msgstr "Bu eklenti için harici bir yazılım gerekiyor."
 
 msgid "View Source?"
 msgstr "Kaynak görüntülensin mi?"
@@ -3397,9 +3376,8 @@ msgstr "Bu eklenti henüz incelenmemiş."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Hayır, bu eklentinin istatistikleri herkese açık olarak görüntülenemez."
 
-#, fuzzy
 msgid "Upgrade SDK?"
-msgstr "{0} uygulamasını yükseltin"
+msgstr "SDK yükseltilsin mi?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr "Seçilirse, SDK'nın yeni bir sürümü çıktığında eklentinizi otomatik olarak yeni yükseltmeye çalışacağız. Yalnızca listelenen eklentiler için geçerlidir."
@@ -3430,29 +3408,25 @@ msgstr ""
 msgid "Remove this dependent add-on"
 msgstr "Bu bağımlı eklentiyi kaldır"
 
-#, fuzzy
 msgid "Enter the name of an add-on"
-msgstr "Eklenecek eklentinin adını girin"
+msgstr "Bir eklentinin adını girin"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Add-on Media for {0}"
-msgstr "{0} Eklentileri"
+msgstr "{0} Eklenti Medyası"
 
-#, fuzzy
 msgid "Add-on icon"
-msgstr "Eklenti"
+msgstr "Eklenti simgesi"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
 
-#, fuzzy
 msgid "Select an icon for your add-on:"
-msgstr "Eklentilerinize Ait Raporlar"
+msgstr "Eklentiniz için bir simge seçin:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -3554,9 +3528,8 @@ msgstr "Bu eklentiyi sil."
 msgid "Delete"
 msgstr "Sil"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Bu eklenti hakkında daha fazla bilgi"
+msgstr "Bu eklenti hakkındaki bilgileri düzenle."
 
 msgid "Upload a new version of this add-on."
 msgstr "Bu eklentinin yeni bir sürümünü yükle."
@@ -3567,9 +3540,8 @@ msgstr "Yeni sürüm"
 msgid "Daily statistics on downloads and users."
 msgstr "İndirme ve kullanıcılarla ilgili günlük istatistikler."
 
-#, fuzzy
 msgid "Statistics"
-msgstr "İstatistikleri Göster"
+msgstr "İstatistikler"
 
 msgid "Manage Payments"
 msgstr "Ödemeleri Yönet"
@@ -3609,9 +3581,8 @@ msgstr "Bu temayı sil."
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Bu eklenti %(app)s sürümünüzle uyumlu değil."
+msgstr "Bu eklentinin hiç sürümü yok."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3619,9 +3590,8 @@ msgstr ""
 msgid "Status:"
 msgstr "Durum:"
 
-#, fuzzy
 msgid "Disabled"
-msgstr "e10s etkin"
+msgstr "Devre dışı"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -3632,23 +3602,19 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Yeni Tema Gönder"
+msgstr "Yeni dosya gönder"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Yeni Eklenti Gönder"
+msgstr "Yeni sürüm gönder"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Daha Fazla Eklenti"
+msgstr "Eklentinizi tanımlayın"
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Eklenti"
+msgstr "Eklenti URL'si:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Lütfen URL'nizde yalnızca harf, rakam, alt çizgi ve tire kullanın."
@@ -3656,9 +3622,8 @@ msgstr "Lütfen URL'nizde yalnızca harf, rakam, alt çizgi ve tire kullanın."
 msgid "Summary:"
 msgstr "Özet:"
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
+msgstr "Bu eklenti deneyseldir"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Eklentiniz deneyselse veya genel kullanım için hazır değilse bu seçeneği işaretleyin. Eklenti listelenir ama daha az görünür. Bu ayarı daha sonra değiştirebilirsiniz."
@@ -3666,9 +3631,8 @@ msgstr "Eklentiniz deneyselse veya genel kullanım için hazır değilse bu seç
 msgid "Support email:"
 msgstr "Destek e-postası:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "Destek sitesi"
+msgstr "Destek sitesi:"
 
 msgid "License:"
 msgstr "Lisans:"
@@ -3679,9 +3643,8 @@ msgstr "Lütfen kaynak kodunuzda verdiğiniz haklara uygun bir lisans seçin."
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Eklentiniz kullanıcı bilgisayarından herhangi bir veri iletiyorsa, hangi verilerin gönderildiğini ve nasıl kullanıldığını açıklayan bir gizlilik ilkesi gereklidir."
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "İncelenmemiş"
+msgstr ""
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3689,29 +3652,23 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "İnceleme talep edildi"
+msgstr ""
 
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "İnceleme talep edildi"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Yeni Eklenti Gönder"
+msgstr "Sürümü gönder"
 
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "İnceleme gönder"
+msgstr "Sürümü incelemeye gönder"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "Açıklama"
+msgstr "Sürümü tanımlayın"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Yayımla"
+msgstr "Sürüm notları:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3731,16 +3688,14 @@ msgstr "Gönderim tamamlandı"
 msgid "You’re done!"
 msgstr "İşlem tamam!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Sürüm Notları"
+msgstr "Sürüm gönderildi"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "İnceleme gönder"
+msgstr "Sürüm incelemeye gönderildi"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -3748,27 +3703,23 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Başvurularımı Yönet"
+msgstr "Listelemeyi yönet"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Sürüm {0}"
+msgstr "{0} sürümünü düzenle"
 
-#, fuzzy
 msgid "File Signed"
-msgstr "Sürüm Notları"
+msgstr "Dosya imzalandı"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "Sürüm Notları"
+msgstr "Sürüm imzalandı"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3784,16 +3735,14 @@ msgstr ""
 msgid "Upload File"
 msgstr "Dosya yükle"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Başvurularımı Yönet"
+msgstr "Gönderilerime git"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Eklenti Dağıtım Sözleşmesi"
 
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Engellenen Eklentiler"
+msgstr "Eklenti yükle"
 
 msgid "Where to Host File"
 msgstr ""
@@ -3801,9 +3750,8 @@ msgstr ""
 msgid "Where to Host Version"
 msgstr ""
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "Uygulama sürümü"
+msgstr "Sürüm yükle"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın ve varsa platform kısıtlamalarını seçin. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
@@ -3817,13 +3765,11 @@ msgstr "Bu sürüm sadece beta kanalımda yayımlansın."
 msgid "Administrative overrides"
 msgstr "Yönetsel kural istisnaları"
 
-#, fuzzy
 msgid "Submit File"
-msgstr "Yeni Tema Gönder"
+msgstr "Dosyayı gönder"
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Eklenti"
+msgstr "Eklentiyi imzala"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
@@ -3877,9 +3823,8 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Created:"
-msgstr "Oluşturma"
+msgstr "Oluşturma:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, python-format
@@ -3895,9 +3840,8 @@ msgstr "Çok İşlemli Firefox (e10s) ile eklenti uyumluluğu."
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Sürüm"
+msgstr "Listelenen sürüm:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr "Bu, birisi eklentinizin addons.mozilla.org'daki Yükle düğmesini tıklarsa yüklenecek olan sürümüdür."
@@ -3960,7 +3904,6 @@ msgstr ""
 msgid "Upload New Version"
 msgstr "Yeni sürüm yükle"
 
-#, fuzzy
 msgid "View All"
 msgstr "Tümünü göster"
 
@@ -3972,13 +3915,11 @@ msgstr "İncelenmemiş"
 msgid "Unlisted Review Page"
 msgstr "Listelenmemiş"
 
-#, fuzzy
 msgid "View Statistics Dashboard"
-msgstr "İstatistikleri Göster"
+msgstr "İstatistik panosunu göster"
 
-#, fuzzy
 msgid "Compatibility Reports"
-msgstr "Eklenti Uyumluluk Raporları"
+msgstr "Uyumluluk raporları"
 
 #, fuzzy
 msgid "{0} failure reports"
@@ -4005,9 +3946,8 @@ msgstr ""
 msgid "Some HTML supported."
 msgstr "Bazı HTML kodları desteklenir."
 
-#, fuzzy
 msgid "Remove this application"
-msgstr "Bu koleksiyondaki oyumu kaldır"
+msgstr "Bu uygulamayı kaldır"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -4038,20 +3978,17 @@ msgstr "Son Haberler"
 msgid "Read more in our Blog"
 msgstr ""
 
-#, fuzzy
 msgid "Resources"
-msgstr "Ekstra Kaynaklar"
+msgstr "Kaynaklar"
 
 # 100%
-#, fuzzy
 msgid "Porting"
-msgstr "Puan"
+msgstr "Dönüştürme"
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Community"
-msgstr "Yorum"
+msgstr "Topluluk"
 
 msgid "About"
 msgstr "Hakkında"
@@ -4065,28 +4002,23 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Bize Ulaşın"
 
-#, fuzzy
 msgid "Policies"
-msgstr "Eklentiler"
+msgstr "İlkeler"
 
 msgid "FAQ"
 msgstr "S.S.S."
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "Suistimal rapor et"
+msgstr "Hata bildir"
 
-#, fuzzy
 msgid "Site Status"
-msgstr "Durum"
+msgstr "Site durumu"
 
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Eklenti Uyumluluk Merkezi"
+msgstr "Uyumluluk Denetçisi"
 
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Eklenti Uyumluluk Raporları"
+msgstr "Uyumululuk Habercisi"
 
 msgid "Promote"
 msgstr ""
@@ -4103,9 +4035,8 @@ msgstr "\"Eklentiyi indir\" düğmesi"
 msgid "Legal"
 msgstr "Yasal"
 
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "Suistimal rapor et"
+msgstr "Marka ihlali bildir"
 
 msgid "Legal Notices"
 msgstr "Yasal uyarılar"
@@ -4126,13 +4057,11 @@ msgstr "Kod yazın"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Kodlama becerilerinizle katkıda bulunarak eklentileri iyileştirmemize yardımcı olun."
 
-#, fuzzy
 msgid "Get started"
 msgstr "Başlarken"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Kişiselleştirmenin diğer yolları"
+msgstr "Katkıda bulunmanın diğer yolları"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr "En özelleştirilebilir tarayıcıyı Firefox'u kullanabilmeniz için kodlama becerisine ihtiyacınız yok!"
@@ -4142,28 +4071,24 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Manage Your Add-on"
-msgstr "Daha Fazla Eklenti"
+msgstr "Eklentinizi yönetin"
 
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Eklentinizi düzenlemek ve güncellemek için giriş yapın"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Öne Çıkan Uzantılar"
+msgstr "Eski teknoloji eklentinizi güncelleyin"
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "Daha fazla bilgi"
+msgstr "Nasıl yapılacağını öğren"
 
 # 100%
-#, fuzzy
 msgid "What's New"
-msgstr "Bu nedir?"
+msgstr "Yeni neler var?"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
@@ -4179,17 +4104,14 @@ msgstr "Tüm sürümleri göster"
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Yeni Eklenti Gönder"
+msgstr "İlk eklentinizi gönderin"
 
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Yeni Tema Gönder"
+msgstr "İlk temanızı gönderin"
 
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Geliştirici Merkezi"
+msgstr "Eklenti Geliştirici Merkezi"
 
 msgid "Docs"
 msgstr "Belgeler"
@@ -4200,13 +4122,12 @@ msgstr "Çıkış yap"
 msgid "User Photo"
 msgstr "Kullanıcı Fotoğrafı"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "Sayfa <a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(register)s\">Kaydol</a> veya <a href=\"%(login)s\">giriş yap</a>"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Firefox için kullanımı kolay temalar"
+msgstr "Firefox’u özelleştirin"
 
 #, python-format
 msgid ""
@@ -4214,21 +4135,18 @@ msgid ""
 "and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Eklentilerim"
+msgstr "Eklenti yapmayı öğrenin"
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Popüler Uzantılar"
+msgstr "Chrome uzantısını dönüştürün"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Eklentilerinizi yayımlayın!"
+msgstr "Eklentinizi yayımlayın"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
