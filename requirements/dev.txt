@@ -45,6 +45,6 @@ freezegun==0.3.9 \
     --hash=sha256:783ccccd7f60968bfe49ad9e114c18ea2b63831faaaf61c1f1f71ddfde1c0eee
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
-responses==0.7.0 \
-    --hash=sha256:860f2ac3aed6954b6dfc79ee27a229d423c77ad7a4c242f26c1489bdd702d8e4 \
-    --hash=sha256:912da86d9d9ca6e02f00e5ecd61d08992ab1511858260bd5df8b2b1e51a6dc9f
+responses==0.8.0 \
+    --hash=sha256:2a4822d890aaf00f0011c440d05122417bfbd8a2c8daa36c5221862682536272 \
+    --hash=sha256:a7f8947875d8f0f44c35627bf86bc6fc38cb474dacd8a19497a8a4b4ac13888c
