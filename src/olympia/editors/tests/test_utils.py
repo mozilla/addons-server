@@ -725,8 +725,9 @@ class TestReviewHelper(TestCase):
     def test_public_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
-        AutoApprovalSummary.objects.create(
+        summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
+        assert summary.confirmed is None
         self.create_paths()
 
         # Safeguards.
@@ -737,6 +738,8 @@ class TestReviewHelper(TestCase):
 
         self.helper.handler.confirm_auto_approved()
 
+        summary.reload()
+        assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1

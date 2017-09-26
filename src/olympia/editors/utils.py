@@ -610,6 +610,7 @@ class ReviewBase(object):
         # and accidently submitted some comments from another action.
         self.data['comments'] = ''
         if self.version.channel == amo.RELEASE_CHANNEL_LISTED:
+            self.version.autoapprovalsummary.update(confirmed=True)
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
 

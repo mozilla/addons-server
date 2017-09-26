@@ -722,6 +722,7 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
     weight = models.IntegerField(default=0)
+    confirmed = models.NullBooleanField(default=None)
 
     def __unicode__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
