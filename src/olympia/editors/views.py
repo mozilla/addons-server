@@ -647,12 +647,6 @@ def review(request, addon, channel=None):
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
-    if channel == amo.RELEASE_CHANNEL_LISTED:
-        queue_type = form.helper.handler.review_type
-        redirect_url = reverse('editors.queue_%s' % queue_type)
-    else:
-        redirect_url = reverse('editors.unlisted_queue_all')
-
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     is_post_reviewer = acl.action_allowed(request,
                                           amo.permissions.ADDONS_POST_REVIEW)
@@ -679,6 +673,14 @@ def review(request, addon, channel=None):
             (Review.without_replies
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
+
+        if was_auto_approved and is_post_reviewer:
+            queue_type = 'auto_approved'
+        else:
+            queue_type = form.helper.handler.review_type
+        redirect_url = reverse('editors.queue_%s' % queue_type)
+    else:
+        redirect_url = reverse('editors.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
