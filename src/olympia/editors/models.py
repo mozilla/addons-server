@@ -859,9 +859,11 @@ class AutoApprovalSummary(ModelBase):
             failure_verdict = amo.NOT_AUTO_APPROVED
 
         if post_review:
-            # If post_review is enabled, add-ons always get a successful
-            # verdict, so verdict_info must be an empty dict.
-            verdict_info = {}
+            # If post_review is enabled, the only thing that can prevent
+            # approval is a reviewer lock.
+            verdict_info = {
+                'is_locked': self.is_locked,
+            }
         else:
             # We need everything in that dict to be False for verdict to be
             # successful.

@@ -1483,13 +1483,32 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_calculate_verdict_post_review(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=1, approved_updates=2)
+            version=self.version, average_daily_users=2, approved_updates=2,
+            uses_custom_csp=True, uses_native_messaging=True,
+            uses_content_script_for_all_urls=True)
         info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
+            max_average_daily_users=summary.average_daily_users - 1,
             min_approved_updates=summary.approved_updates + 1,
             post_review=True)
-        assert info == {}
+        assert info == {
+            'is_locked': False,
+        }
+        # Regardless of the many flags that are set, it's approved because we
+        # are in post-review mode.
         assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_post_review_but_locked(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, average_daily_users=2, approved_updates=2,
+            is_locked=True)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users - 1,
+            min_approved_updates=summary.approved_updates + 1,
+            post_review=True)
+        assert info == {
+            'is_locked': True,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_calculate_verdict_post_review_dry_run(self):
         summary = AutoApprovalSummary.objects.create(
@@ -1498,7 +1517,9 @@ class TestAutoApprovalSummary(TestCase):
             max_average_daily_users=summary.average_daily_users + 1,
             min_approved_updates=summary.approved_updates + 1,
             post_review=True, dry_run=True)
-        assert info == {}
+        assert info == {
+            'is_locked': False,
+        }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
