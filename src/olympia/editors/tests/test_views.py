@@ -2769,6 +2769,7 @@ class TestReview(ReviewBase):
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('editors.queue_auto_approved'))
 
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
