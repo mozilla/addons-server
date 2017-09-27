@@ -62,8 +62,7 @@ def call_signing(file_obj, endpoint):
         temp_filename = temp_file.name
 
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_obj.file_path),
-                       outpath=temp_filename)
+    jar = JarExtractor(path=storage.open(file_obj.file_path))
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
@@ -81,7 +80,11 @@ def call_signing(file_obj, endpoint):
 
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     cert_serial_num = get_signer_serial_number(pkcs7)
-    jar.make_signed(pkcs7, sigpath=u'mozilla')
+    jar.make_signed(
+        signed_manifest=unicode(jar.signatures),
+        signature=pkcs7,
+        sigpath=u'mozilla',
+        outpath=temp_filename)
     shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
 
