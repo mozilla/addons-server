@@ -1,0 +1,153 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@font-face {
+  font-family: 'Fira Sans';
+  src:
+    local("Fira Sans"),
+    local("Fira Sans Regular"),
+    url("../../fonts/fira/woff2/FiraSans-Regular.woff2") format("woff2"),
+    url("../../fonts/fira/woff/FiraSans-Regular.woff") format("woff"),
+    url("../../fonts/fira/otf/FiraSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src:
+    local("Fira Sans Bold"),
+    url("../../fonts/fira/woff2/FiraSans-Bold.woff2") format("woff2"),
+    url("../../fonts/fira/woff/FiraSans-Bold.woff") format("woff"),
+    url("../../fonts/fira/otf/FiraSans-Bold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Fira Sans, sans-serif;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+
+  background-color: #1e4488;
+  background-image: radial-gradient(ellipse 250% 100% at center 140%,#737ffd 0,#0065b8 50%,#1e4488 100%);
+  color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+.page-container {
+  background-attachment: fixed;
+  background-image: url("../../img/pioneer/stars.png");
+  background-size: 1180px 346px;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+@media
+(min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .page-container {
+    background-image: url("../../img/pioneer/stars@2x.png");
+  }
+}
+
+.wordmark {
+  height: 70px;
+}
+
+.header {
+  margin: 20px 0 10px;
+}
+
+.layout-wrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.banner {
+  background: hsla(0,0%,100%,.05);
+  box-shadow: inset 0 -4px 0 hsla(0,0%,100%,.05),0 1px 0 rgba(0,0,0,.1);
+  line-height: 100px;
+}
+
+.banner .icon-container {
+  float: right;
+  line-height: 100px;
+}
+
+.banner .icon {
+  height: 66px;
+  vertical-align: middle;
+}
+
+.banner .banner-text {
+  margin: 0;
+}
+
+.program-header {
+  margin: 40px 0 15px;
+}
+
+.footer {
+  text-align: center;
+  margin: 100px 0;
+}
+
+.mozilla-logo {
+  max-width: 200px;
+}
+
+.enroll-button {
+  background: #57bd35;
+  color: #fff;
+  border: 1px solid #40a624;
+  padding: 24px 12px;
+  width: 320px;
+  text-align: center;
+  font-weight: 500;
+  margin: 40px auto 0;
+  display: block;
+  font-size: 23px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.enroll-button:hover {
+  background: #40a624;
+  border: 1px solid #399320;
+}
+
+.enroll-button:active {
+  background: #399320;
+  border: 1px solid #2e761a;
+}
+
+.enroll-button.enrolled {
+  background: none;
+  border: none;
+  cursor: default;
+}
+
+a:visited {
+  color: #f9f9f9;
+}
