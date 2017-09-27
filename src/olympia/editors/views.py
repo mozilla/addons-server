@@ -36,7 +36,7 @@ from olympia.editors.models import (
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.editors.utils import (
-    AutoApprovedTable, is_limited_reviewer, ReviewHelper,
+    AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
@@ -482,12 +482,24 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
+    AUTO_APPROVED = amo.AUTO_APPROVED
+    a_year_ago = datetime.now() - timedelta(days=365)
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
         'moderated': Review.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue().count),
+        'content_review': (
+            Addon.objects.valid()
+            .select_related('addonapprovalscounter')
+            .filter(
+                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
+            .filter(
+                Q(addonapprovalscounter__last_content_review=None) |
+                Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
+            .order_by('addonapprovalscounter__last_content_review').count
+        ),
     }
     if unlisted:
         counts = {
@@ -565,6 +577,23 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
+@permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
+def queue_content_review(request):
+    a_year_ago = datetime.now() - timedelta(days=365)
+    qs = (
+        Addon.objects.valid()
+        .select_related('addonapprovalscounter')
+        .filter(
+            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+        .filter(
+            Q(addonapprovalscounter__last_content_review=None) |
+            Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
+        .order_by('addonapprovalscounter__last_content_review', 'created')
+    )
+    return _queue(request, ContentReviewTable, 'content_review',
+                  qs=qs, SearchForm=None)
+
+
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     qs = (
@@ -625,12 +654,22 @@ def _get_comments_for_hard_deleted_versions(addon):
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
+    content_review_only = False
     # channel is passed in as text, but we want the constant.
+    if channel == 'content':
+        # 'content' is not a real channel, just a different review mode for
+        # listed add-ons.
+        content_review_only = True
+        channel = 'listed'
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel, amo.RELEASE_CHANNEL_LISTED)
     unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
                      not addon.has_listed_versions())
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
+
+    if content_review_only and not acl.action_allowed(
+            request, amo.permissions.ADDONS_CONTENT_REVIEW):
         raise PermissionDenied
 
     version = addon.find_latest_version(
@@ -644,7 +683,9 @@ def review(request, addon, channel=None):
     # Get the current info request state to set as the default.
     form_initial = {'info_request': version and version.has_info_request}
 
-    form_helper = ReviewHelper(request=request, addon=addon, version=version)
+    form_helper = ReviewHelper(
+        request=request, addon=addon, version=version,
+        content_review_only=content_review_only)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
@@ -674,7 +715,9 @@ def review(request, addon, channel=None):
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
 
-        if was_auto_approved and is_post_reviewer:
+        if content_review_only:
+            queue_type = 'content_review'
+        elif was_auto_approved and is_post_reviewer:
             queue_type = 'auto_approved'
         else:
             queue_type = form.helper.handler.review_type
@@ -806,7 +849,8 @@ def review(request, addon, channel=None):
                   is_post_reviewer=is_post_reviewer,
                   auto_approval_info=auto_approval_info,
                   reports=reports, user_reviews=user_reviews,
-                  was_auto_approved=was_auto_approved)
+                  was_auto_approved=was_auto_approved,
+                  content_review_only=content_review_only)
 
     return render(request, 'editors/review.html', ctx)
 

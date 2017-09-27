@@ -14,7 +14,7 @@
     "model": "access.group",
     "fields": {
         "name": "Staff",
-        "rules": "Addons:Review,Addons:PostReview,Apps:Review,Personas:Review,Reviews:Edit,Addons:Edit,Addons:Configure,Users:Edit,Stats:View,CollectionStats:View,Collections:Edit,AdminTools:View,SeniorPersonasTools:View,Apps:Configure,AccountLookup:View,AppLookup:View,Lookup:View,FeaturedApps:View,FeaturedApps:Edit,Stats:View,Apps:ReviewPrivileged,Apps:Publisher,Apps:ReviewRegionCN",
+        "rules": "Addons:Review,Addons:ContentReview,Addons:PostReview,Apps:Review,Personas:Review,Reviews:Edit,Addons:Edit,Addons:Configure,Users:Edit,Stats:View,CollectionStats:View,Collections:Edit,AdminTools:View,SeniorPersonasTools:View,Apps:Configure,AccountLookup:View,AppLookup:View,Lookup:View,FeaturedApps:View,FeaturedApps:Edit,Stats:View,Apps:ReviewPrivileged,Apps:Publisher,Apps:ReviewRegionCN",
         "created": "2010-09-08 07:06:05",
         "modified": "2010-09-08 07:06:05"
     }
@@ -34,7 +34,7 @@
     "model": "access.group",
     "fields": {
         "name": "Senior Add-on Reviewers",
-        "rules": "Addons:Review,Addons:PostReview,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Addons:ReviewUnlisted",
+        "rules": "Addons:Review,Addons:ContentReview,Addons:PostReview,Reviews:Edit,CollectionStats:View,Addons:Edit,Spam:Flag,ReviewerAdminTools:View,Addons:ReviewUnlisted",
         "created": "2010-09-08 07:06:05",
         "modified": "2010-09-08 07:06:05"
     }
