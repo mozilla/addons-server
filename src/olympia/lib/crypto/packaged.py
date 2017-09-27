@@ -63,9 +63,7 @@ def call_signing(file_obj, endpoint):
 
     # Extract jar signature.
     jar = JarExtractor(path=storage.open(file_obj.file_path),
-                       outpath=temp_filename,
-                       omit_signature_sections=True,
-                       extra_newlines=True)
+                       outpath=temp_filename)
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
