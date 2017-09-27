@@ -102,8 +102,9 @@ bleach==1.5.0 \
 celery==3.1.23 \
     --hash=sha256:eaf5dee3becbc35c7754a2d4482d53bdf72ea3f85dd258525259983262081474 \
     --hash=sha256:1a359c815837f9dbf193a7dbc6addafa34612c077ff70c66e3b16e14eebd2418 # pyup: ==3.1.23
-certifi==0.0.8 \
-    --hash=sha256:46ecf5f7526a08cc1f8bc8232adf0cffce046f46ceff95539daec42ebc4849ef # pyup: ==0.0.8
+certifi==2017.7.27.1 \
+    --hash=sha256:54a07c09c586b0e4c619f02a5e94e36619da8e2b053e20f594348c0611803704 \
+    --hash=sha256:40523d2efb60523e113b44602298f0960e900388cf3bb6043f645cf57ea9e3f5
 # cffi is required by cryptography
 cffi==1.11.0 \
     --hash=sha256:eddf6bd95b100f34c56a226847be92bde416d028213e87fd700bc593cbf3e9da \
