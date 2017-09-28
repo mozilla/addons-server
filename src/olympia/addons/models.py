@@ -547,9 +547,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
-                         addon.default_locale in (
-                             settings.AMO_LANGUAGES +
-                             settings.HIDDEN_LANGUAGES) and
+                         addon.default_locale in settings.AMO_LANGUAGES and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
