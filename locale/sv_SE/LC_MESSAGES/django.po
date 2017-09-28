@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 10:34+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2017-09-28 15:51+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1105,7 +1105,6 @@ msgstr ""
 "Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt "
 "specifikationen%(amo_manifests_mdn_link_open)shär%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
 msgstr "Bidragsgivare"
 
@@ -4117,7 +4116,7 @@ msgstr "<a href=\"%(register)s\">Registrera</a> eller <a href=\"%(login)s\">Logg
 msgid "Customize Firefox"
 msgstr "Anpassa Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
@@ -8024,16 +8023,16 @@ msgid "Download Firefox"
 msgstr "Ladda ner Firefox"
 
 msgid "Android Browser"
-msgstr "Android webbläsare"
+msgstr "Webbläsare för Android"
 
 msgid "iOS Browser"
-msgstr "iOS webbläsare"
+msgstr "Webbläsare för iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Webbläsaren Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Webbläsare för datorer"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Beta, Nightly, Developer Edition"
