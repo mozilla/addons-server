@@ -64,7 +64,7 @@ from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
-    VersionSerializer, StaticCategorySerializer)
+    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -924,3 +924,9 @@ class LanguageToolsView(ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data})
+
+
+class ReplacementAddonView(ListAPIView):
+    authentication_classes = []
+    queryset = ReplacementAddon.objects.all()
+    serializer_class = ReplacementAddonSerializer
