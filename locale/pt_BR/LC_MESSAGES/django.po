@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 12:10+0000\n"
+"PO-Revision-Date: 2017-09-28 12:12+0000\n"
 "Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4221,13 +4221,13 @@ msgstr "<a href=\"%(register)s\">Registre-se</a> ou <a href=\"%(login)s\">Inicie
 msgid "Customize Firefox"
 msgstr "Personalize o Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"As extensões permitem que milhões de usuários do Firefox personalizem a sua experiência de navegação. Se você sabe %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, e "
-"%(css_link_open)sCSS%(link_close)s, então já tem todas as habilidades necessárias para fazer uma ótima extensão."
+"As extensões permitem que milhões de usuários do Firefox personalizem a sua experiência de navegação. Se você sabe %(html_link_open)s HTML %(link_close)s, %(js_link_open)s JavaScript %(link_close)s,"
+" e %(css_link_open)s CSS %(link_close)s, então já tem todas as habilidades necessárias para fazer uma ótima extensão."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Aprenda a fazer uma extensão"
@@ -8209,22 +8209,20 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "conheça as <b>extensões</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Baixar arquivos"
+msgstr "Baixe o Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Complementos para Android"
+msgstr "Navegador para Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Navegador para iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus Browser"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Navegador para Desktop"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
