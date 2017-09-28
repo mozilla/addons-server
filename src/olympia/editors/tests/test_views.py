@@ -3220,6 +3220,27 @@ class TestReviewPending(ReviewBase):
             doc('.auto_approval li').eq(2).text() ==
             'Uses a custom CSP.')
 
+    @override_switch('post-review', active=True)
+    def test_auto_approval_summary_with_post_review(self):
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            uses_custom_csp=True,
+            approved_updates=1,
+            average_daily_users=10000,
+            is_locked=True,
+        )
+        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
+        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # Only one reason (locked by a reviewer) is shown, the other don't
+        # matter when post-review is enabled.
+        assert len(doc('.auto_approval li')) == 1
+        assert doc('.auto_approval li').eq(0).text() == (
+            'Is locked by a reviewer.')
+
 
 class TestEditorMOTD(EditorTest):
 

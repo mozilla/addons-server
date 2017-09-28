@@ -754,6 +754,7 @@ def review(request, addon, channel=None):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
+    is_post_review_enabled = waffle.switch_is_active('post-review')
     max_average_daily_users = int(
         get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
     min_approved_updates = int(
@@ -776,7 +777,7 @@ def review(request, addon, channel=None):
         verdict_info = summary.calculate_verdict(
             max_average_daily_users=max_average_daily_users,
             min_approved_updates=min_approved_updates,
-            pretty=True)
+            pretty=True, post_review=is_post_review_enabled)
         auto_approval_info[a_version.pk] = verdict_info
 
     if version:
