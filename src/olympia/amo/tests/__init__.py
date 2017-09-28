@@ -682,6 +682,9 @@ def addon_factory(
     if type_ != amo.ADDON_PERSONA:
         # Personas don't have a summary.
         kwargs['summary'] = u'Summary for %s' % name
+    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
+        # Personas and search engines don't need guids
+        kwargs['guid'] = kw.pop('guid', '{%s}' % unicode(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.

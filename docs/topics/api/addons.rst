@@ -460,3 +460,23 @@ on AMO.
     :>json string results[].url: The (absolute) add-on detail URL.
 
 .. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
+
+
+-------------------
+Replacement Add-ons
+-------------------
+
+.. _addon-replacement-addons:
+
+This endpoint returns a list of suggested replacements for legacy add-ons that are unsupported in Firefox 57.  Added to support the TAAR recommendation service.
+
+.. http:get:: /api/v3/addons/replacement-addon/
+
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :>json int count: The total number of replacements.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of replacements matches.
+    :>json string results[].guid: The extension identifier of the legacy add-on.
+    :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.

@@ -7,6 +7,7 @@ import re
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.utils.http import urlunquote
 from django.test.client import Client
 
 import waffle
@@ -3339,3 +3340,39 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+
+
+class TestReplacementAddonView(TestCase):
+    client_class = APITestClient
+
+    def test_basic(self):
+        # Add a single addon replacement
+        rep_addon1 = addon_factory()
+        ReplacementAddon.objects.create(
+            guid='legacy2addon@moz',
+            path=urlunquote(rep_addon1.get_url_path()))
+        # Add a collection replacement
+        author = user_factory()
+        collection = collection_factory(author=author)
+        rep_addon2 = addon_factory()
+        rep_addon3 = addon_factory()
+        collection.set_addons([rep_addon2.id, rep_addon3.id])
+        ReplacementAddon.objects.create(
+            guid='legacy2collection@moz',
+            path=urlunquote(collection.get_url_path()))
+        # Add an invalid path
+        ReplacementAddon.objects.create(
+            guid='notgonnawork@moz',
+            path='/addon/áddonmissing/')
+
+        response = self.client.get(reverse('addon-replacement-addon'))
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 3
+        assert ({'guid': 'legacy2addon@moz',
+                 'replacement': [rep_addon1.guid]} in results)
+        assert ({'guid': 'legacy2collection@moz',
+                 'replacement': [rep_addon2.guid, rep_addon3.guid]} in results)
+        assert ({'guid': 'notgonnawork@moz',
+                 'replacement': []} in results)
