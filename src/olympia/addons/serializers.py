@@ -625,7 +625,7 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             collection = Collection.objects.get(**get_args)
         except Collection.DoesNotExist:
             return []
-        valid_q = Addon.objects.get_queryset().valid_q()
+        valid_q = Addon.objects.get_queryset().valid_q([amo.STATUS_PUBLIC])
         return list(
             collection.addons.filter(valid_q).values_list('guid', flat=True))
 
