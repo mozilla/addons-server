@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1116,6 +1116,10 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
+
+#, fuzzy
+msgid "Contributors"
+msgstr "ਹਿੱਸੇਦਾਰ"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4187,7 +4191,7 @@ msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਵਰਤਣ ਵਿੱਚ ਆਸਾਨ �
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
@@ -8082,6 +8086,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "ਫ਼ਾਈਲਾਂ ਡਾਊਨਲੋਡ ਕਰੋ"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"

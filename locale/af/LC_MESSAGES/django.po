@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1140,6 +1140,12 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
+
+# 81%
+# 100%
+#, fuzzy
+msgid "Contributors"
+msgstr "Bydraer"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4204,7 +4210,7 @@ msgstr "Maklik-om-te-gebruik temas vir Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -8009,6 +8015,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "leer ken <b>byvoegings</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Laai nou af"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Android"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Ander tale"

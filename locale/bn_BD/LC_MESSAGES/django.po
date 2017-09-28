@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1107,6 +1107,10 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
+
+#, fuzzy
+msgid "Contributors"
+msgstr "অবদানকারী"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4077,7 +4081,7 @@ msgstr "ফায়ারফক্সে যুক্ত করুন"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -7830,6 +7834,26 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
+msgstr ""
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "ডাউনলোড করুন"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"

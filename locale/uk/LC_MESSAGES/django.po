@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -1140,6 +1140,10 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Навіть якщо підтримуваний Вами застосунок не вимагає файлу маніфесту, Вам все одно необхідно вказати %(amo_manifests_mdn_link_open)sтут%(amo_manifests_mdn_link_close)s властивості, що вимагаються."
+
+#, fuzzy
+msgid "Contributors"
+msgstr "Помічник"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4146,9 +4150,9 @@ msgstr "<a href=\"%(register)s\">Зареєструйтеся</a> або <a href
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знаєте %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s та "
@@ -8061,6 +8065,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "дізнайтеся про <b>додатки</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Завантажити файли"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Додатки для Android"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Інші мови"

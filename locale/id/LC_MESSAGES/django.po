@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1112,6 +1112,10 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Jika aplikasi anda yang didukung tidak memerlukan berkas keterangan, anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan <a href=\"%(url)s\">di sini</a>."
+
+#, fuzzy
+msgid "Contributors"
+msgstr "Kontributor"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4228,7 +4232,7 @@ msgstr "Tema yang mudah digunakan untuk Firefox"
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a href=\"https://developer.mozilla.org/docs/Web/"
@@ -8198,6 +8202,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "mengenal <b>pengaya</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Unduh berkas"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Pengaya Android"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Bahasa lainnya"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1134,6 +1134,12 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
+
+# 81%
+# 100%
+#, fuzzy
+msgid "Contributors"
+msgstr "Avustaja"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4276,7 +4282,7 @@ msgstr "Helppokäyttöisiä teemoja Firefoxille"
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Lisäosat antavat miljoonille Firefox-käyttäjille mahdollisuuden muokata ja parannella selainkokemustaan. Jos olet verkon kehittäjä ja hallitset<a href=\"https://developer.mozilla.org/docs/Web/HTML"
@@ -8132,6 +8138,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "opi tuntemaan <b>lisäosat</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Lataa nyt"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Android-lisäosat"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Muut kielet"
