@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 08:59+0000\n"
+"PO-Revision-Date: 2017-09-28 09:37+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4370,7 +4370,7 @@ msgid "This is the color of the tab text."
 msgstr "Ceci est la couleur du texte de l’onglet."
 
 msgid "Background"
-msgstr "Arrière plan"
+msgstr "Arrière-plan"
 
 msgid "This is the color of the tabs."
 msgstr "Ceci est la couleur des onglets."
@@ -4390,7 +4390,7 @@ msgstr "Créer un nouveau thème"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Les thèmes d’arrière plan vous permettent de facilement personnaliser le look de votre Firefox. Envoyez le votre ci-dessous, ou <a href=\"%(submit_url)s\">apprenez comment en créer un</a> !"
+msgstr "Les thèmes d’arrière-plan vous permettent de facilement personnaliser le look de votre Firefox. Envoyez le votre ci-dessous, ou <a href=\"%(submit_url)s\">apprenez comment en créer un</a> !"
 
 msgid "Give your Theme a name."
 msgstr "Donnez un nom à votre thème."
@@ -6967,7 +6967,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Thèmes complets</a></strong> pour ch
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Thèmes</a></strong> sont des thèmes légers qui utilisent une image d’arrière plan pour personnaliser vos barres d’outils dans %(app_name)s."
+msgstr "<strong><a href=\"%(browse_url)s\">Thèmes</a></strong> sont des thèmes légers qui utilisent une image d’arrière-plan pour personnaliser vos barres d’outils dans %(app_name)s."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -6988,7 +6988,7 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"Dans la plupart des cas, les modules peuvent être simplement installés en cliquant sur le bouton d’installation fournis. Les modules peuvent être gérés, désactivés ou désinstallés depuis le "
+"Dans la plupart des cas, les modules peuvent être simplement installés en cliquant sur le bouton d’installation fourni. Les modules peuvent être gérés, désactivés ou désinstallés depuis le "
 "gestionnaire de modules de %(app_name)s. Pour des instructions plus détaillées, référez-vous à <a href=\"%(extension_url)s\">cet article sur les extensions</a> ou <a href=\"%(theme_url)s\">celui-ci "
 "pour les thèmes et les thèmes complets</a>. Si vous rencontrez des difficultés à installer des modules, consultez <a href=\"%(troubleshooting_url)s\">Résolutions des problèmes d’extensions et de "
 "thèmes</a>."
@@ -7008,7 +7008,7 @@ msgid ""
 "feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
 "Faites attention lorsque vous utilisez des modules complémentaires, ces derniers pourraient endommager votre ordinateur ou compromettre votre vie privée. Les modules disponibles sur ce site sont "
-"susceptibles d’être validé par l’équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
+"susceptibles d’être validés par l’équipe de testeurs Mozilla, les commentaires des utilisateurs sont aussi pris en compte. Ainsi les modules de ce site sont a priori dignes de confiance et peuvent "
 "être installés en toute sécurité. %(learnmore_link_open)sEn apprendre plus sur le process de validation%(link_close)s"
 
 #, python-format
@@ -7151,7 +7151,7 @@ msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr "Merci de consulter notre <a href=\"%(contact_url)s\">page de contact</a>."
 
 msgid "What is a Source Code License?"
-msgstr "Qu’est-ce qu’une licence de code souce ?"
+msgstr "Qu’est-ce qu’une licence de code source ?"
 
 #, python-format
 msgid ""
@@ -8071,16 +8071,16 @@ msgid "Android Browser"
 msgstr "Navigateur pour Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Navigateur pour iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Navigateur Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Navigateur pour ordinateur"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Autres langues"
