@@ -57,15 +57,8 @@ def get_id(addon):
 
 def call_signing(file_obj, endpoint):
     """Get the jar signature and send it to the signing server to be signed."""
-    # We only want the (unique) temporary file name.
-    with tempfile.NamedTemporaryFile() as temp_file:
-        temp_filename = temp_file.name
-
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_obj.file_path),
-                       outpath=temp_filename,
-                       omit_signature_sections=True,
-                       extra_newlines=True)
+    jar = JarExtractor(path=storage.open(file_obj.file_path))
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
@@ -83,7 +76,16 @@ def call_signing(file_obj, endpoint):
 
     pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
     cert_serial_num = get_signer_serial_number(pkcs7)
-    jar.make_signed(pkcs7, sigpath=u'mozilla')
+
+    # We only want the (unique) temporary file name.
+    with tempfile.NamedTemporaryFile() as temp_file:
+        temp_filename = temp_file.name
+
+    jar.make_signed(
+        signed_manifest=unicode(jar.signatures),
+        signature=pkcs7,
+        sigpath=u'mozilla',
+        outpath=temp_filename)
     shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
 
