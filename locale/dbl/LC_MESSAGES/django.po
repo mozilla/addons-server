@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1107,6 +1107,9 @@ msgid ""
 msgstr ""
 "Īƒ ẏǿŭř şŭƥƥǿřŧḗḓ ȧƥƥŀīƈȧŧīǿƞ ḓǿḗş ƞǿŧ řḗɋŭīřḗ ȧ ḿȧƞīƒḗşŧ ƒīŀḗ, ẏǿŭ şŧīŀŀ ḿŭşŧ īƞƈŀŭḓḗ ǿƞḗ ẇīŧħ ŧħḗ řḗɋŭīřḗḓ ƥřǿƥḗřŧīḗş ȧş şƥḗƈīƒīḗḓ %(amo_manifests_mdn_link_open)sħḗřḗ"
 "%(amo_manifests_mdn_link_close)s."
+
+msgid "Contributors"
+msgstr "Ƈǿƞŧřīƀŭŧǿřş"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4067,10 +4070,10 @@ msgstr "Ƈŭşŧǿḿīẑḗ Ƒīřḗƒǿẋ"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Aḓḓ-ǿƞş ŀḗŧ ḿīŀŀīǿƞş ǿƒ Ƒīřḗƒǿẋ ŭşḗřş ḗƞħȧƞƈḗ ŧħḗīř ƀřǿẇşīƞɠ ḗẋƥḗřīḗƞƈḗ. Īƒ ẏǿŭ ķƞǿẇ %(html_link_open)sĦŦḾĿ%(link_close)s, %(js_link_open)sĴȧṽȧŞƈřīƥŧ%(link_close)s, ȧƞḓ%(css_link_open)sƇŞŞ"
+"Aḓḓ-ǿƞş ŀḗŧ ḿīŀŀīǿƞş ǿƒ Ƒīřḗƒǿẋ ŭşḗřş ḗƞħȧƞƈḗ ŧħḗīř ƀřǿẇşīƞɠ ḗẋƥḗřīḗƞƈḗ. Īƒ ẏǿŭ ķƞǿẇ %(html_link_open)sĦŦḾĿ%(link_close)s, %(js_link_open)sĴȧṽȧŞƈřīƥŧ%(link_close)s, ȧƞḓ %(css_link_open)sƇŞŞ"
 "%(link_close)s, ẏǿŭ ȧŀřḗȧḓẏ ħȧṽḗ ȧŀŀ ŧħḗ ƞḗƈḗşşȧřẏ şķīŀŀş ŧǿ ḿȧķḗ ȧ ɠřḗȧŧ ȧḓḓ-ǿƞ."
 
 msgid "Learn How to Make an Add-on"
@@ -7935,6 +7938,24 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "ɠḗŧ ŧǿ ķƞǿẇ <b>ȧḓḓ-ǿƞş</b>"
+
+msgid "Download Firefox"
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ"
+
+msgid "Android Browser"
+msgstr "Aƞḓřǿīḓ Ɓřǿẇşḗř"
+
+msgid "iOS Browser"
+msgstr "īǾŞ Ɓřǿẇşḗř"
+
+msgid "Focus Browser"
+msgstr "Ƒǿƈŭş Ɓřǿẇşḗř"
+
+msgid "Desktop Browser"
+msgstr "Ḓḗşķŧǿƥ Ɓřǿẇşḗř"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Ɓḗŧȧ, Ƞīɠħŧŀẏ, Ḓḗṽḗŀǿƥḗř Ḗḓīŧīǿƞ"
 
 msgid "Other languages"
 msgstr "Ǿŧħḗř ŀȧƞɠŭȧɠḗş"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-09-09 12:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1160,6 +1160,10 @@ msgid ""
 msgstr ""
 "Si la vostra aplicació no requereix un fitxer de manifest, n'haureu d'incloure un igualment amb les propietats obligatòries, tal com s'especifica %(amo_manifests_mdn_link_open)saquí"
 "%(amo_manifests_mdn_link_close)s."
+
+#, fuzzy
+msgid "Contributors"
+msgstr "Coŀlaborador"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4216,7 +4220,7 @@ msgstr "Temes d'ús fàcil per al Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -8069,6 +8073,30 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "per saber-ne més dels <b>complements</b>"
+
+# This is the text that appears on buttons to download add-ons.
+# %$1s is an optional string that only appears if the add-on is only available for
+# a certain platform.  Examples:  (Windows)  or  (Linux)
+# Note that the parentheses are included in the string. :(
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Baixa'l ara"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Android"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Altres idiomes"

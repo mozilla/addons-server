@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-09-14 01:26+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1112,6 +1112,10 @@ msgid ""
 msgstr ""
 "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
 "れています。"
+
+#, fuzzy
+msgid "Contributors"
+msgstr "協力者"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4062,9 +4066,9 @@ msgstr "<a href=\"%(register)s\">ユーザー登録</a> / <a href=\"%(login)s\">
 msgid "Customize Firefox"
 msgstr "Firefox をカスタマイズ"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし %(html_link_open)sHTML%(link_close)s や %(js_link_open)sJavaScript%(link_close)s、%(css_link_open)sCSS"
@@ -7823,6 +7827,26 @@ msgstr ""
 # フッタ左端
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>アドオン</b> について知る"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "ファイルをダウンロード"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Android 向けアドオン"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "他の言語"

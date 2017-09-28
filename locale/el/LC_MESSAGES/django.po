@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-22 08:52+0000\n"
+"POT-Creation-Date: 2017-09-28 06:51+0000\n"
 "PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1140,6 +1140,10 @@ msgid ""
 msgstr ""
 "Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται %(amo_manifests_mdn_link_open)sεδώ"
 "%(amo_manifests_mdn_link_close)s."
+
+#, fuzzy
+msgid "Contributors"
+msgstr "Συντελεστής"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -4102,7 +4106,7 @@ msgstr "Προσαρμογή του Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -7896,6 +7900,26 @@ msgstr ""
 # χωρίς τόνο στο «πρόσθετα» λόγω του text-transform:uppercase
 msgid "get to know <b>add-ons</b>"
 msgstr "Γνωρίστε τα <b>πρόσθετα</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Λήψη αρχείων"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Πρόσθετα Android"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 # the string is affected by text-transform:uppercase so there should not be
 # any accents
