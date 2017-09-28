@@ -7761,10 +7761,10 @@ msgid "Focus Browser"
 msgstr "Focus 瀏覽器"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "桌面版瀏覽器"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta、Nightly、Developer Edition"
 
 msgid "Other languages"
 msgstr "其他語言"
