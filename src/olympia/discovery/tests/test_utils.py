@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
 import mock
 import pytest
+import requests
 
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.discovery.data import DiscoItem
-from olympia.discovery.utils import get_recommendations, replace_extensions
+from olympia.discovery.utils import (
+    call_recommendation_server, get_recommendations, replace_extensions)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.discovery.utils.requests.post')
+def test_call_recommendation_server_fails_nice(requests_post):
+    requests_post.side_effect = requests.exceptions.RequestException()
+    # Check the exception in requests.post is handled okay.
+    assert call_recommendation_server('123456') == []
 
 
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
