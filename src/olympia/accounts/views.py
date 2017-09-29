@@ -305,24 +305,6 @@ class LoginStartView(LoginStartBaseView):
     ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
 
-class LoginBaseView(FxAConfigMixin, APIView):
-
-    @with_user(format='json')
-    def post(self, request, user, identity, next_path):
-        if user is None:
-            return Response({'error': ERROR_NO_USER}, status=422)
-        else:
-            update_user(user, identity)
-            serializer = LoginUserProfileSerializer(user)
-            response = Response(serializer.data)
-            add_api_token_to_response(response, user)
-            log.info('Logging in user {} from FxA'.format(user))
-            return response
-
-    def options(self, request):
-        return Response()
-
-
 class RegisterView(APIView):
     authentication_classes = (SessionAuthentication,)
 

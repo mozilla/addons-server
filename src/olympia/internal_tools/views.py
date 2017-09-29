@@ -2,7 +2,7 @@ from django.conf import settings
 
 import olympia.core.logger
 from olympia import amo
-from olympia.accounts.views import LoginBaseView, LoginStartBaseView
+from olympia.accounts.views import LoginStartBaseView
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonViewSet, AddonSearchView
 from olympia.addons.serializers import (
@@ -50,8 +50,4 @@ class InternalAddonViewSet(AddonViewSet):
 
 
 class LoginStartView(LoginStartBaseView):
-    DEFAULT_FXA_CONFIG_NAME = settings.INTERNAL_FXA_CONFIG_NAME
-
-
-class LoginView(LoginBaseView):
     DEFAULT_FXA_CONFIG_NAME = settings.INTERNAL_FXA_CONFIG_NAME
