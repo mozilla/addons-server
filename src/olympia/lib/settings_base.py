@@ -200,6 +200,8 @@ AMO_LANGUAGES = (
     'zh-TW',  # Chinese (Traditional)
 )
 
+# Bidirectional languages.
+# Locales in here *must* be in `AMO_LANGUAGES` too.
 LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
