@@ -594,8 +594,8 @@ class LanguageToolsSerializer(AddonSerializer):
     class Meta:
         model = Addon
         fields = ('id', 'current_version', 'default_locale',
-                  'locale_disambiguation', 'name', 'target_locale', 'type',
-                  'url', )
+                  'locale_disambiguation', 'name', 'slug', 'target_locale',
+                  'type', 'url', )
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):
