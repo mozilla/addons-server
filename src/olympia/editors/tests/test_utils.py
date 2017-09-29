@@ -215,9 +215,11 @@ class TestReviewHelper(TestCase):
     def test_no_request(self):
         self.request = None
         helper = self.get_helper()
+        assert helper.content_review_only is False
         assert helper.actions == {}
 
         helper = self.get_helper(content_review_only=True)
+        assert helper.content_review_only is True
         assert helper.actions == {}
 
     def test_type_nominated(self):
