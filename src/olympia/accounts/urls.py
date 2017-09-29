@@ -26,7 +26,6 @@ notifications.register(r'notifications', views.AccountNotificationViewSet,
 urlpatterns = [
     url(r'^authenticate/$', views.AuthenticateView.as_view(),
         name='accounts.authenticate'),
-    url(r'^login/$', views.LoginView.as_view(), name='accounts.login'),
     url(r'^login/start/$',
         views.LoginStartView.as_view(),
         name='accounts.login_start'),

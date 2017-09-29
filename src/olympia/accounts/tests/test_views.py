@@ -151,49 +151,6 @@ endpoint_overrides = [
     for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
 
 
-@override_settings(
-    FXA_CONFIG={'default': FXA_CONFIG},
-    CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
-class TestLoginView(BaseAuthenticationView):
-    client_class = APITestClient
-    view_name = 'accounts.login'
-
-    def setUp(self):
-        super(TestLoginView, self).setUp()
-        self.client.defaults['HTTP_ORIGIN'] = 'https://addons-frontend'
-        self.state = 'stateaosidoiajsdaagdsasi'
-        self.initialize_session({'fxa_state': self.state})
-        self.code = 'codeaosidjoiajsdioasjdoa'
-        self.update_user = self.patch(
-            'olympia.accounts.views.update_user')
-
-    def options(self, url, origin):
-        return self.client_class(HTTP_ORIGIN=origin).options(url)
-
-    def test_correct_config_is_used(self):
-        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local'])
-
-    def test_cors_addons_frontend(self):
-        response = self.options(self.url, origin='https://addons-frontend')
-        assert has_cors_headers(response, origin='https://addons-frontend')
-        assert response.status_code == 200
-
-    def test_cors_localhost(self):
-        response = self.options(self.url, origin='http://localhost:3000')
-        assert has_cors_headers(response, origin='http://localhost:3000')
-        assert response.status_code == 200
-
-    def test_cors_other(self):
-        response = self.options(self.url, origin='https://attacker.com')
-        assert 'Access-Control-Allow-Origin' not in response
-        assert 'Access-Control-Allow-Methods' not in response
-        assert 'Access-Control-Allow-Headers' not in response
-        assert 'Access-Control-Allow-Credentials' not in response
-        assert response.status_code == 200
-
-
 class TestLoginStartView(TestCase):
 
     def test_default_config_is_used(self):
@@ -341,7 +298,7 @@ class TestRenderErrorJSON(TestCase):
         self.addCleanup(patcher.stop)
 
     def make_request(self):
-        return APIRequestFactory().post(reverse('accounts.login'))
+        return APIRequestFactory().post(reverse('accounts.authenticate'))
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')

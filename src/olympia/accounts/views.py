@@ -323,11 +323,6 @@ class LoginBaseView(FxAConfigMixin, APIView):
         return Response()
 
 
-class LoginView(LoginBaseView):
-    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
-    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
-
-
 class RegisterView(APIView):
     authentication_classes = (SessionAuthentication,)
 
