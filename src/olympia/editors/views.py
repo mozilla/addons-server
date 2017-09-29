@@ -638,22 +638,24 @@ def _get_comments_for_hard_deleted_versions(addon):
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
-    content_review_only = False
-    # channel is passed in as text, but we want the constant.
     if channel == 'content':
         # 'content' is not a real channel, just a different review mode for
         # listed add-ons.
         content_review_only = True
         channel = 'listed'
+    else:
+        content_review_only = False
+    # channel is passed in as text, but we want the constant.
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel, amo.RELEASE_CHANNEL_LISTED)
-    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
-                     not addon.has_listed_versions())
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
 
     if content_review_only and not acl.action_allowed(
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
+        raise PermissionDenied
+
+    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
+                     not addon.has_listed_versions())
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise PermissionDenied
 
     version = addon.find_latest_version(
