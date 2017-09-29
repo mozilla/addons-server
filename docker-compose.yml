@@ -1,69 +1,74 @@
-worker: &worker
-  image: addons/addons-server
-  command: supervisord -n -c /code/docker/supervisor-celery.conf
-  entrypoint: ./scripts/start-docker.sh
-  volumes:
-    - .:/code
-  links:
-    - memcached
-    - mysqld
-    - elasticsearch
-    - redis
-    - rabbitmq
-  environment:
-    - BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
-    - CELERY_RESULT_BACKEND=redis://redis:6379/1
-    - DATABASE_URL=mysql://root:@mysqld/olympia
-    - ELASTICSEARCH_LOCATION=elasticsearch:9200
-    - MEMCACHE_LOCATION=memcached:11211
-    - MYSQL_DATABASE=olympia
-    - MYSQL_ROOT_PASSWORD=docker
-    - OLYMPIA_SITE_URL=http://olympia.dev
-    - PYTHONDONTWRITEBYTECODE=1
-    - PYTHONUNBUFFERED=1
-    - RECURSION_LIMIT=10000
-    - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
-    - TERM=xterm-256color
+version: "2"
 
-web:
-  <<: *worker
-  command: supervisord -n -c /code/docker/supervisor.conf
+services:
+  worker: &worker
+    image: addons/addons-server
+    command: supervisord -n -c /code/docker/supervisor-celery.conf
+    entrypoint: ./scripts/start-docker.sh
+    volumes:
+      - .:/code
+    environment:
+      - BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+      - DATABASE_URL=mysql://root:@mysqld/olympia
+      - ELASTICSEARCH_LOCATION=elasticsearch:9200
+      - MEMCACHE_LOCATION=memcached:11211
+      - MYSQL_DATABASE=olympia
+      - MYSQL_ROOT_PASSWORD=docker
+      - OLYMPIA_SITE_URL=http://olympia.dev
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+      - RECURSION_LIMIT=10000
+      - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
+      - TERM=xterm-256color
+    extra_hosts:
+     - "olympia.dev:127.0.0.1"
 
-nginx:
-  image: addons/addons-nginx
-  volumes:
-    - ./static:/srv/static
-    - ./site-static:/srv/site-static
-  links:
-    - web:web
+  web:
+    <<: *worker
+    command: supervisord -n -c /code/docker/supervisor.conf
 
-memcached:
-  image: memcached:1.4
+  nginx:
+    image: addons/addons-nginx
+    volumes:
+      - ./static:/srv/static
+      - ./site-static:/srv/site-static
 
-mysqld:
-  image: mysql:5.7
-  environment:
-    - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-    - MYSQL_DATABASE=olympia
-  volumes:
-    - ./docker/etc/mysql/conf.d/:/etc/mysql/conf.d/
+  memcached:
+    image: memcached:1.4
 
-elasticsearch:
-  image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
-  environment:
-    - xpack.security.enabled=false
-    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  mem_limit: 2g
+  mysqld:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=olympia
 
-redis:
-  image: redis:2.8
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    environment:
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 2g
 
-rabbitmq:
-  image: rabbitmq:3.5
-  hostname: olympia
-  expose:
-    - "5672"
-  environment:
-    - RABBITMQ_DEFAULT_USER=olympia
-    - RABBITMQ_DEFAULT_PASS=olympia
-    - RABBITMQ_DEFAULT_VHOST=olympia
+  redis:
+    image: redis:2.8
+
+  rabbitmq:
+    image: rabbitmq:3.5
+    hostname: olympia
+    expose:
+      - "5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=olympia
+      - RABBITMQ_DEFAULT_PASS=olympia
+      - RABBITMQ_DEFAULT_VHOST=olympia
+
+  selenium-firefox:
+    image: selenium/standalone-firefox-debug
+    expose:
+      - "4444"
+    ports:
+      - "5900"
+    shm_size: 2g
+    links:
+     - "web:olympia.dev"

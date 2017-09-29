@@ -80,6 +80,7 @@ ENV SWIG_FEATURES="-D__x86_64__"
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
     make update_deps && \
+    make install_certifi && \
     rm -r /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
