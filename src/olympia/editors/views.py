@@ -482,8 +482,6 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
-    AUTO_APPROVED = amo.AUTO_APPROVED
-    a_year_ago = datetime.now() - timedelta(days=365)
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
@@ -491,15 +489,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue().count),
         'content_review': (
-            Addon.objects.valid()
-            .select_related('addonapprovalscounter')
-            .filter(
-                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
-            .filter(
-                Q(addonapprovalscounter__last_content_review=None) |
-                Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
-            .order_by('addonapprovalscounter__last_content_review').count
-        ),
+            AutoApprovalSummary.get_content_review_queue().count),
     }
     if unlisted:
         counts = {
@@ -579,15 +569,9 @@ def application_versions_json(request):
 
 @permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
-    a_year_ago = datetime.now() - timedelta(days=365)
     qs = (
-        Addon.objects.valid()
+        AutoApprovalSummary.get_content_review_queue()
         .select_related('addonapprovalscounter')
-        .filter(
-            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
-        .filter(
-            Q(addonapprovalscounter__last_content_review=None) |
-            Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
         .order_by('addonapprovalscounter__last_content_review', 'created')
     )
     return _queue(request, ContentReviewTable, 'content_review',
