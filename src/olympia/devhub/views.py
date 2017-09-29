@@ -1185,13 +1185,13 @@ def version_delete(request, addon_id, addon):
         messages.success(
             request,
             ugettext('Version %s disabled.') % version.version)
-        version.is_user_disabled = True
+        version.is_user_disabled = True  # Will update the files/activity log.
         version.addon.update_status()
     else:
         messages.success(
             request,
             ugettext('Version %s deleted.') % version.version)
-        version.delete()
+        version.delete()  # Will also activity log.
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1204,7 +1204,7 @@ def version_reenable(request, addon_id, addon):
     messages.success(
         request,
         ugettext('Version %s re-enabled.') % version.version)
-    version.is_user_disabled = False
+    version.is_user_disabled = False  # Will update the files/activity log.
     version.addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 

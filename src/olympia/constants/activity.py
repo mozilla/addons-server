@@ -554,6 +554,16 @@ class CONFIRM_AUTO_APPROVED(_LOG):
     review_queue = True
 
 
+class ENABLE_VERSION(_LOG):
+    id = 145
+    format = _(u'{addon} {version} re-enabled.')
+
+
+class DISABLE_VERSION(_LOG):
+    id = 146
+    format = _(u'{addon} {version} disabled.')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
