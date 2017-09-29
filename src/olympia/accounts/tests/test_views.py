@@ -535,38 +535,6 @@ class TestWithUser(TestCase):
         self.fxa_identify.assert_called_with('foo', config=fxa_config)
 
 
-class TestRegisterUser(TestCase):
-
-    def setUp(self):
-        self.request = APIRequestFactory().get('/register')
-        self.identity = {'email': 'me@yeahoo.com', 'uid': '9005'}
-        patcher = mock.patch('olympia.accounts.views.login')
-        self.login = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def test_user_is_created(self):
-        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not user_qs.exists()
-        views.register_user(self.request, self.identity)
-        assert user_qs.exists()
-        user = user_qs.get()
-        assert user.username.startswith('anonymous-')
-        assert user.fxa_id == '9005'
-        assert user.auth_id
-        self.login.assert_called_with(self.request, user)
-
-    def test_username_taken_creates_user(self):
-        UserProfile.objects.create(
-            email='you@yeahoo.com', username='me@yeahoo.com')
-        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
-        assert not user_qs.exists()
-        views.register_user(self.request, self.identity)
-        assert user_qs.exists()
-        user = user_qs.get()
-        assert user.username.startswith('anonymous-')
-        assert user.fxa_id == '9005'
-
-
 @override_settings(FXA_CONFIG={
     'foo': {'FOO': 123},
     'bar': {'BAR': 456},
@@ -610,52 +578,6 @@ class TestFxAConfigMixin(TestCase):
         request = RequestFactory().get('/login?config=bar')
         config = self.MultipleConfigs().get_fxa_config(request)
         assert config == {'BAZ': 789}
-
-
-class TestRegisterView(BaseAuthenticationView):
-    view_name = 'accounts.register'
-
-    def setUp(self):
-        super(TestRegisterView, self).setUp()
-        self.initialize_session({'fxa_state': 'some-blob'})
-        self.register_user = self.patch('olympia.accounts.views.register_user')
-
-    def test_no_code_provided(self):
-        response = self.client.post(self.url)
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_CODE
-        assert not self.register_user.called
-
-    def test_wrong_state(self):
-        response = self.client.post(
-            self.url, {'code': 'foo', 'state': 'wrong-blob'})
-        assert response.status_code == 400
-        assert response.data['error'] == views.ERROR_STATE_MISMATCH
-        assert not self.register_user.called
-
-    def test_no_fxa_profile(self):
-        self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 401
-        assert response.data['error'] == views.ERROR_NO_PROFILE
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.register_user.called
-
-    def test_register_success(self):
-        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
-        user = UserProfile(username='foobar', email=identity['email'])
-        self.register_user.return_value = user
-        self.fxa_identify.return_value = identity
-        user.groups_list = []
-        response = self.client.post(
-            self.url, {'code': 'codes!!', 'state': 'some-blob'})
-        assert response.status_code == 200
-        assert response.data['email'] == 'me@yeahoo.com'
-        assert (response.cookies['api_auth_token'].value ==
-                response.data['token'])
-        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        self.register_user.assert_called_with(mock.ANY, identity)
 
 
 class TestAuthenticateView(BaseAuthenticationView):

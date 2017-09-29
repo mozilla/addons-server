@@ -33,8 +33,6 @@ urlpatterns = [
         name='accounts.session'),
     url(r'', include(accounts.urls)),
     url(r'^profile/$', views.ProfileView.as_view(), name='account-profile'),
-    url(r'^register/$', views.RegisterView.as_view(),
-        name='accounts.register'),
     url(r'^super-create/$', views.AccountSuperCreate.as_view(),
         name='accounts.super-create'),
 
