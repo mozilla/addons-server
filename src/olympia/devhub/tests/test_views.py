@@ -364,6 +364,7 @@ class TestDevRequired(TestCase):
     def setUp(self):
         super(TestDevRequired, self).setUp()
         self.addon = Addon.objects.get(id=3615)
+        self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
         assert self.client.login(email='del@icio.us')
@@ -373,9 +374,12 @@ class TestDevRequired(TestCase):
     def test_anon(self):
         self.client.logout()
         self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
+        self.assertLoginRedirects(self.client.get(
+            self.edit_page_url), self.edit_page_url)
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
@@ -384,6 +388,7 @@ class TestDevRequired(TestCase):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_viewer_post(self):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
