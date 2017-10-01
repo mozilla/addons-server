@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -662,9 +662,8 @@ msgid "Not available for your platform"
 msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
+msgstr ""
 
 msgid "View other versions"
 msgstr "צפייה בגרסאות אחרות"
