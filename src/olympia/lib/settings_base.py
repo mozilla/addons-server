@@ -1776,3 +1776,12 @@ RECOMMENDATION_ENGINE_URL = env(
     default='https://taar.dev.mozaws.net/api/recommendations/')
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
     'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
+
+FXA_SQS_CONFIG = {
+    'aws_region': 'us-east-1',
+    'aws_queue_url': ('https://sqs.us-east-1.amazonaws.com/'
+                      '927034868273/amo-account-change-dev'),
+    'wait_time': 20,
+}
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=None)
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)

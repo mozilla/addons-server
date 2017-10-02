@@ -8,7 +8,6 @@ from django.core.exceptions import PermissionDenied
 from django.db import connection, transaction
 
 import olympia.core.logger
-from olympia.accounts.utils import redirect_for_login
 
 from . import models as context
 
@@ -26,6 +25,8 @@ def login_required(f=None, redirect=True):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, *args, **kw):
+            # Prevent circular ref in accounts.utils
+            from olympia.accounts.utils import redirect_for_login
             if request.user.is_authenticated():
                 return func(request, *args, **kw)
             else:
@@ -194,6 +195,8 @@ def allow_mine(f):
         If the author is `mine` then show the current user's collection
         (or something).
         """
+        # Prevent circular ref in accounts.utils
+        from olympia.accounts.utils import redirect_for_login
         if username == 'mine':
             if not request.user.is_authenticated():
                 return redirect_for_login(request)
