@@ -26,7 +26,6 @@ from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
@@ -434,7 +433,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         if hasattr(qs, 'sql_model') and not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
-                    'waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
+                    'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
 
             if waffle.switch_is_active('post-review'):
                 # Hide webextensions from the queues so that human reviewers
@@ -478,7 +477,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
             query = query.having('waiting_time_days <=', days_max)
         if limited_reviewer:
             query = query.having('waiting_time_hours >=',
-                                 REVIEW_LIMITED_DELAY_HOURS)
+                                 amo.REVIEW_LIMITED_DELAY_HOURS)
 
         return query.count
 
