@@ -661,7 +661,7 @@ class QueueTest(EditorTest):
         self.url = reverse('editors.queue_pending')
         self.addons = OrderedDict()
         self.expected_addons = []
-        self.channel_name = 'unlisted' if not self.listed else None
+        self.channel_name = 'listed' if self.listed else 'unlisted'
 
     def generate_files(self, subset=None, files=None):
         if subset is None:
@@ -763,7 +763,12 @@ class QueueTest(EditorTest):
             assert latest_version
             name = '%s %s' % (unicode(addon.name),
                               latest_version.version)
-            channel = [self.channel_name] if self.channel_name else []
+            if self.channel_name == 'listed':
+                # We typically don't include the channel name if it's the
+                # default one, 'listed'.
+                channel = []
+            else:
+                channel = [self.channel_name]
             url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
         links = pq(
