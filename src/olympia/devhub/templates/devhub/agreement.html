@@ -12,6 +12,9 @@
       <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
       <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
     </ul>
+    <p>
+      {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
+    </p>
   {% else %}
     <p>
     {% trans %}
@@ -36,7 +39,7 @@
       {% csrf_token %}
       <button id="accept-agreement" type="submit">
         {% if waffle.switch('post-review') %}
-          {{ _('I have read and accept this Agreement and the Rules and Policies') }}
+          {{ _('Accept') }}
         {% else %}
           {{ _('I Accept this Agreement') }}
         {% endif %}
