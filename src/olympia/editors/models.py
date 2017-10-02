@@ -1075,6 +1075,21 @@ class AutoApprovalSummary(ModelBase):
             )
         )
 
+    @classmethod
+    def get_content_review_queue(cls):
+        """Return a queryset of Addon objects that have been auto-approved and
+        need content review."""
+        success_verdict = amo.AUTO_APPROVED
+        a_year_ago = datetime.now() - timedelta(days=365)
+        return (
+            Addon.objects.public()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict)
+            .filter(
+                Q(addonapprovalscounter__last_content_review=None) |
+                Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
+        )
+
 
 class RereviewQueueThemeManager(ManagerBase):
 

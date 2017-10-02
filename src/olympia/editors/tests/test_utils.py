@@ -199,9 +199,10 @@ class TestReviewHelper(TestCase):
                 'applications': 'Firefox',
                 'info_request': self.version.has_info_request}
 
-    def get_helper(self):
+    def get_helper(self, content_review_only=False):
         return ReviewHelper(
-            request=self.request, addon=self.addon, version=self.version)
+            request=self.request, addon=self.addon, version=self.version,
+            content_review_only=content_review_only)
 
     def setup_type(self, status):
         self.addon.update(status=status)
@@ -214,6 +215,11 @@ class TestReviewHelper(TestCase):
     def test_no_request(self):
         self.request = None
         helper = self.get_helper()
+        assert helper.content_review_only is False
+        assert helper.actions == {}
+
+        helper = self.get_helper(content_review_only=True)
+        assert helper.content_review_only is True
         assert helper.actions == {}
 
     def test_type_nominated(self):
@@ -274,13 +280,14 @@ class TestReviewHelper(TestCase):
             for k, v in actions.items():
                 assert unicode(v['details']), "Missing details for: %s" % k
 
-    def get_review_actions(self, addon_status, file_status):
+    def get_review_actions(
+            self, addon_status, file_status, content_review_only=False):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
         if self.version:
             del self.version.all_files
-        return self.get_helper().actions
+        return self.get_helper(content_review_only=content_review_only).actions
 
     def test_actions_full_nominated(self):
         expected = ['public', 'reject', 'reply', 'super', 'comment']
@@ -317,6 +324,17 @@ class TestReviewHelper(TestCase):
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
+
+    def test_actions_content_review(self):
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        expected = ['confirm_auto_approved', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC,
+            content_review_only=True).keys() == expected
 
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
@@ -413,7 +431,8 @@ class TestReviewHelper(TestCase):
 
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
-                   channel=amo.RELEASE_CHANNEL_LISTED):
+                   channel=amo.RELEASE_CHANNEL_LISTED,
+                   content_review_only=False):
         if delete is None:
             delete = []
         mail.outbox = []
@@ -424,7 +443,7 @@ class TestReviewHelper(TestCase):
             self.make_addon_unlisted(self.addon)
             self.version.reload()
             self.file.reload()
-        self.helper = self.get_helper()
+        self.helper = self.get_helper(content_review_only=content_review_only)
         data = self.get_data().copy()
         for key in delete:
             del data[key]
@@ -742,6 +761,7 @@ class TestReviewHelper(TestCase):
         assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
         activity = (ActivityLog.objects.for_addons(self.addon)
                                .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
@@ -1060,6 +1080,7 @@ class TestReviewHelper(TestCase):
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.version
@@ -1101,6 +1122,77 @@ class TestReviewHelper(TestCase):
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+    def test_reject_multiple_versions_content_review(self):
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        self.setup_data(
+            amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+            content_review_only=True)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
+            u"didn't pass review")
+        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+                in mail.outbox[0].body)
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
+
+    def test_confirm_auto_approval_content_review(self):
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        self.setup_data(
+            amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+            content_review_only=True)
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approvals_counter.counter == 0
+        assert approvals_counter.last_human_review is None
+        self.assertCloseToNow(approvals_counter.last_content_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.APPROVE_CONTENT.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
+        assert activity.details['comments'] == ''
 
     def test_dev_versions_url_in_context(self):
         self.helper.set_data(self.get_data())

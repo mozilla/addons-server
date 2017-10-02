@@ -18,6 +18,8 @@ urlpatterns = (
         name='editors.application_versions_json'),
     url(r'^queue/auto_approved', views.queue_auto_approved,
         name='editors.queue_auto_approved'),
+    url(r'^queue/content_review', views.queue_content_review,
+        name='editors.queue_content_review'),
     url(r'^unlisted_queue$', views.unlisted_queue,
         name='editors.unlisted_queue'),
     url(r'^unlisted_queue/all$', views.unlisted_list,
@@ -35,7 +37,9 @@ urlpatterns = (
         name='editors.queue_viewing'),
     url(r'^review_viewing$', views.review_viewing,
         name='editors.review_viewing'),
-    url(r'^review(?:-(?P<channel>listed|unlisted))?/%s$' % ADDON_ID,
+    # 'content' is not a channel, but is a special kind of review that we only
+    # do for listed add-ons, so we abuse the channel parameter to handle that.
+    url(r'^review(?:-(?P<channel>listed|unlisted|content))?/%s$' % ADDON_ID,
         views.review, name='editors.review'),
     url(r'^performance/(?P<user_id>\d+)?$', views.performance,
         name='editors.performance'),

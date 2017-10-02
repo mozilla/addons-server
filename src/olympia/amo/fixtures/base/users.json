@@ -224,7 +224,7 @@
         "pk": 50004,
         "model": "access.group",
         "fields": {
-            "rules": "Addons:Review,Addons:PostReview,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
+            "rules": "Addons:Review,Addons:ContentReview,Addons:PostReview,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
             "modified": "2012-01-27 13:32:08",
             "name": "Senior Add-on Reviewers",
             "created": "2012-01-27 12:41:00"

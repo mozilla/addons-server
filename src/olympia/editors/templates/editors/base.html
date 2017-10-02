@@ -54,6 +54,10 @@
           <li><a href="{{ url('editors.queue_auto_approved') }}">
                 {{ _('Auto Approved Add-ons') }} ({{ queue_counts['auto_approved'] }})</a></li>
         {% endif %}
+        {% if action_allowed(amo.permissions.ADDONS_CONTENT_REVIEW) %}
+          <li><a href="{{ url('editors.queue_content_review') }}">
+                {{ _('Content Review') }} ({{ queue_counts['content_review'] }})</a></li>
+        {% endif %}
       </ul>
     </li>
     {% if action_allowed(amo.permissions.ADDONS_REVIEW_UNLISTED) %}

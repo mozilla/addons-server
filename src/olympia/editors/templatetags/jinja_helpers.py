@@ -98,6 +98,14 @@ def queue_tabnav(context):
                             counts['auto_approved'])
                   .format(counts['auto_approved']))),
             )
+        if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
+            tabnav.append(
+                ('content_review', 'queue_content_review',
+                 (ungettext('Content Review ({0})',
+                            'Content Review ({0})',
+                            counts['content_review'])
+                  .format(counts['content_review']))),
+            )
     else:
         tabnav = [
             ('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))
