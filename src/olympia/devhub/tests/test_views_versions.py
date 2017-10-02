@@ -167,6 +167,10 @@ class TestVersion(TestCase):
         self.delete_data['disable_version'] = ''
         self.client.post(self.delete_url, self.delete_data)
         assert Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DELETE_VERSION.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id).count() == 1
 
     def test_reenable_version(self):
         Version.objects.get(pk=81551).all_files[0].update(
@@ -176,12 +180,16 @@ class TestVersion(TestCase):
             self.reenable_url, self.delete_data, follow=True)
         assert response.status_code == 200
         assert not Version.objects.get(pk=81551).is_user_disabled
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_VERSION.id).count() == 1
 
     def test_reenable_deleted_version(self):
         Version.objects.get(pk=81551).delete()
         self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 404
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_VERSION.id).count() == 0
 
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
