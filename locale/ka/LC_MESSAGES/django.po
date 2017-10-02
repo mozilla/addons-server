@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-01 23:46+0000\n"
+"PO-Revision-Date: 2017-10-02 00:27+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -891,7 +891,7 @@ msgstr "დამატების მთავარი გვერდი"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "თუ ბმულს გამოჰყევით, %(open_bug_link)sგთხოვთ მოგვახსენოთ ხარვეზის შესახებ%(close_bug_link)s. გვაცნობეთ, რომელი საიტიდან რომელ გვერდზე გადახვედით და აუცილებლად გავასწორებთ."
+msgstr "თუ ბმულს გამოჰყევით, %(open_bug_link)sგთხოვთ მოგვახსენოთ ხარვეზის შესახებ%(close_bug_link)s. გვაცნობეთ, რომელი გვერდიდან გადმოხვედით, რას ეძებდით და აუცილებლად გავასწორებთ."
 
 msgid "Not Found"
 msgstr "ვერ მოიძებნა"
