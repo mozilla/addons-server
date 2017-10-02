@@ -26,9 +26,11 @@ def call_recommendation_server(telemetry_id):
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
     except requests.exceptions.RequestException as e:
-        msg = u'Calling recommendation engine failed: {0}'.format(e)
-        log.error(msg)
+        log.error(u'Calling recommendation engine failed: {0}'.format(e))
+        statsd.incr('services.recommendations.fail')
         return []
+    else:
+        statsd.incr('services.recommendations.success')
     return json.loads(response.content).get('results', [])
 
 
