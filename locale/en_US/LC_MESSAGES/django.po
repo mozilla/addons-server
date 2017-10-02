@@ -3036,6 +3036,9 @@ msgstr "Printable Version"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "I have read and accept this Agreement and the Rules and Policies"
 
+msgid "Accept"
+msgstr "Accept"
+
 msgid "I Accept this Agreement"
 msgstr "I Accept this Agreement"
 
