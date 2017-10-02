@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-02 23:17+0000\n"
+"PO-Revision-Date: 2017-10-02 23:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1089,11 +1089,10 @@ msgstr "ვერსიები"
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
+msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტ ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "დამხმარე"
+msgstr "წვლილის შემტანები"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1144,7 +1143,7 @@ msgid "This slug is already in use by another one of your collections."
 msgstr "მისამართის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "შეიყვანეთ მისამართის მართებული დაბოლოება, რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
 
 msgid "This slug cannot be used."
 msgstr "მისამართის ამ დაბოლოების გამოყენება შეუძლებელია."
@@ -1457,7 +1456,7 @@ msgstr ""
 "href=\"%(url)s\">თავად შექმენით საკუთარი</a>."
 
 msgid "Subscribe"
-msgstr ""
+msgstr "გამოწერა"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1476,7 +1475,7 @@ msgid "Collection Icon"
 msgstr "კრებულის ხატულა"
 
 msgid "Reset"
-msgstr ""
+msgstr "საწყის მდგომარეობაზე დაბრუნება"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr "PNG და JPG მხარდაჭერილია.  სურათის ზომა შეიცვლება 32x32-ზე."
@@ -1503,7 +1502,7 @@ msgid "Add to Collection"
 msgstr "კრებულში დამატება"
 
 msgid "Pending"
-msgstr ""
+msgstr "ლოდინი"
 
 msgid "Add a comment"
 msgstr "კომენტარის დამატება"
@@ -1569,7 +1568,7 @@ msgid "Recently Added"
 msgstr "ახალი დამატებული"
 
 msgid "Created"
-msgstr ""
+msgstr "შემქმნელი:"
 
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
@@ -1663,7 +1662,7 @@ msgstr "მონახეთ კიდევ უფრო მეტი სა�
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sშექმენით საკუთარი%(amo_mdn_link_close)s საძიებო ხელსაწყო"
 
 msgid "Most Popular Extensions"
 msgstr "ყველაზე ხშირად ჩამოტვირთული გაფართოებები"
@@ -1672,7 +1671,7 @@ msgid "Top-Rated Extensions"
 msgstr "საუკეთესოდ შეფასებული გაფართოებები"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "უახლესი გაფართოებები"
 
 msgid "Extensions by Name"
 msgstr "გაფართოებები სახელის მიხედვით"
@@ -1718,7 +1717,7 @@ msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში \"%(name)s\" &raquo;"
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} თემა"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
@@ -1750,7 +1749,7 @@ msgid "Over 300,000 designs to personalize your browser! Move your mouse over a 
 msgstr "300,000-ზე მეტი გაფორმება, თქვენი ბრაუზერის მოსარგებად! გადაატარეთ ისარი თემის ფონს და გამოსცადეთ თქვენს ბრაუზერზე. <a href=\"%(url)s\" class=\"more-info\">დაიწყეთ მოძიება</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "გსურთ მეტად მორგება?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1785,18 +1784,18 @@ msgid "Reports for your Add-ons"
 msgstr "მოხსენებები, თქვენი დამატებების შესახებ"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "მიუთითეთ დამატების GUID ქვემოთ, მიღებული მოხსენებების სანახავად."
 
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} დამატების მოხსენებები თავსებადობაზე"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} მოხსენება წარმატების შესახებ"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} მოხსენება ხარვეზის შესახებ"
 
 msgid "View all"
 msgstr "ყველას ნახვა"
@@ -1805,22 +1804,22 @@ msgid "Filter by Application"
 msgstr "პროგრამების მიხედვით"
 
 msgid "Report Type"
-msgstr ""
+msgstr "მოხსენების სახე"
 
 msgid "Version"
 msgstr "ვერსია"
 
 msgid "Application Version"
-msgstr ""
+msgstr "პროგრამის ვერსია"
 
 msgid "Application Build"
-msgstr ""
+msgstr "პროგრამის ანაწყობი"
 
 msgid "Platform"
-msgstr ""
+msgstr "პლატფორმა"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s ჩართულია"
 
 msgid "e10s Compatible"
 msgstr "e10s-სთან თავსებადი"
@@ -1829,10 +1828,10 @@ msgid "Submitted"
 msgstr "წარდგენილია"
 
 msgid "Success"
-msgstr ""
+msgstr "წარმატება"
 
 msgid "Problem"
-msgstr ""
+msgstr "ხარვეზი"
 
 msgid "No reports found."
 msgstr "მოხსენებები ვერ მოიძებნა."
