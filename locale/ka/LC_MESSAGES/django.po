@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-02 23:09+0000\n"
+"PO-Revision-Date: 2017-10-02 23:17+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -130,7 +130,7 @@ msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლ�
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL დომენი უნდა წარმოადგენდეს ერთ-ერთი ამათგანს [%s], ან მათ ქვედომენს."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "თქვენი დამატების ამ განაცხადში ყოფნისას კატეგორიის შეცვლა შეუძლებელია."
@@ -551,7 +551,7 @@ msgid "Download Anyway"
 msgstr "მაინც ჩამოტვირთვა"
 
 msgid "[Warning]"
-msgstr ""
+msgstr "[გაფრთხილება]"
 
 msgid "Permissions"
 msgstr "ნებართვები"
@@ -744,13 +744,11 @@ msgstr "{addon}-ის პირველწყარო კოდის ლი�
 msgid "Source Code License"
 msgstr "პირველწყარო კოდის ლიცენზია"
 
-#, fuzzy
 msgid "support section"
-msgstr "მხარდაჭერის გვერდი"
+msgstr "მხარდაჭერის განყოფილება"
 
-#, fuzzy
 msgid "support email"
-msgstr "მხარდაჭერის ელფოსტა:"
+msgstr "მხარდაჭერის ელფოსტა"
 
 msgid "permalink"
 msgstr "პირდაპირი ბმული"
@@ -875,10 +873,10 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-ის დამატებები"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "ვწუხვართ, მაგრამ თქვენ მიერ შეყვანილ მისამართზე, არაფერი მოიძებნა. თუ რომელიმე დამატების ბმულს მიჰყევით, შესაძლოა ეგ დამატება წაშლილი იყოს ავტორის მიერ."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "შემოთავაზებული გვერდები"
 
 msgid "Browse all extensions"
 msgstr "ყველა გაფართოების ნახვა"
@@ -1061,7 +1059,7 @@ msgstr "ენის კოდი {lang_code} არასწორია."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "არასწორი pk ან slug \"%s\" - ობიექტი არ არსებობს."
 
 msgid "Application Versions"
 msgstr "აპლიკაციის ვერსიები"
