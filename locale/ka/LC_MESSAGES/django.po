@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 11:31+0000\n"
+"PO-Revision-Date: 2017-10-03 11:48+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2750,14 +2750,14 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "მოძველებული დამატებები არაა თავსებადი Firefox 57 ან უფრო მაღალ ვერსიებთან. maxVersion მიუთითეთ 56.* ან უფრო დაბალი."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "ჩვენ საშუალებას ვიძლევით და ხელს ვუწყობთ განახლებას, მაგრამ ეს ქმედება შეუქცევადია. თუ თქვენი მომხმარებლები დააყენებენ WebExtension-ს, მოძველებული დამატებების დაყენებას, ვეღარ შეძლებენ."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "WebExtensions დამატების მოძველებული დამატებით განახლება, არ შეგიძლიათ. თქვენი მომხმარებლები ვერ ისარგებლებენ ახალი ვერსიით, რადგან Firefox-ში არაა მხარდაჭერილი, ასეთი სახის განახლება."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s უპასუხა %s-ს (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
