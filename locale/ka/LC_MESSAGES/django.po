@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 12:04+0000\n"
+"PO-Revision-Date: 2017-10-03 12:27+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1398,7 +1398,7 @@ msgid "Email"
 msgstr "ელფოსტა"
 
 msgid "Role"
-msgstr "როლი"
+msgstr "მოვალეობა"
 
 msgid "Enter the email address of the contributor to add"
 msgstr "შეიყვანეთ შემომწირველის ელფოსტის მისამართი, დასამატებლად"
@@ -1853,7 +1853,7 @@ msgstr "{0.name} ({1}) დამატებულია {addon}-ში."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) ამოღებულია {addon}-იდან."
+msgstr "{0.name} ({1}) ამოღებულია {addon}-ის ავტორებიდან."
 
 msgid "Contributions for {addon}."
 msgstr "შემოწირულობა {addon}-სთვის."
@@ -1966,7 +1966,7 @@ msgstr "{0} {1} დამატებულია."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon}-ის {0.name} ფუნქცია შეიცვალა {1}-ით."
+msgstr "{addon} დამატების ავტორის, {0.name} გახდა {1}."
 
 msgid "{addon} is now licensed under {0.name}."
 msgstr "{addon} უკვე ლიცენზირებულია {0.name}-ით."
@@ -2814,13 +2814,13 @@ msgid "An author has been added to your add-on"
 msgstr "თქვენს დამატებას ახალი ავტორი დაემატა"
 
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "თქვენს დამატებაზე ერთ-ერთ თანაავტორს დაეკისრა სხვა მოვალეობა"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "თქვენს დამატებას ერთ-ერთი ავტორი გამოაკლდა"
 
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "შეცდომები წარდგენისას."
 
 msgid "Validate Add-on"
 msgstr "შეამოწმეთ დამატება"
@@ -2832,13 +2832,13 @@ msgid "You cannot submit this type of add-on"
 msgstr "ამ სახის დამატების წარდგენა, არ შეგიძლიათ"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "არ შეგიძლიათ დამატების წარდგენა, რომლის guid ბოლოვდება \"@mozilla.org\"-ით"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Mozilla-ს მიერ დამოწმებული გაფართოების წარდგენა არ შეგიძლიათ"
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "ხატულები არ იმოძრავებს."
 
 msgid "Images cannot be animated."
 msgstr "სურათი ვერ იმოძრავებს."
@@ -2873,7 +2873,7 @@ msgid "Review requested."
 msgstr "საჭიროებს განხილვას."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "გასაგრძელებლად, მეტი ინფორმაციის მითითებაა საჭირო."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "თქვენი ძველი მონაცემები გაუქმებულია და უკვე გამოუსადეგარია. განაახლეთ API კლიენტები, ახალი მონაცემებით."
@@ -2882,7 +2882,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr "თქვენი ძველი მონაცემები გაუქმებულია და მისი გამოყენება დაუშვებელია."
 
 msgid "New API key created"
-msgstr ""
+msgstr "ახალი API გასაღები შექმნილია"
 
 msgid "API key revoked"
 msgstr "API გასაღები გაუქმებულია"
@@ -2897,9 +2897,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "მიმოხილვის დებულება"
+msgstr "მიმოხილვის დებულება და წესები"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -2907,13 +2906,13 @@ msgstr ""
 "ვიყენებთ თქვენს მონაცემებს."
 
 msgid "Printable Version"
-msgstr ""
+msgstr "ამოსაბეჭდი ვერსია"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "წავიკითხე, ვეთანხმები წესებს და დებულებებს და ვუერთდები შეთანახმებას"
 
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "ვეთანხმები ხელშეკრულების პირობებს"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ან <a href=\"{0}\">გაუქმება</a>"
@@ -3087,16 +3086,16 @@ msgid "Authors"
 msgstr ""
 
 msgid "About author roles"
-msgstr ""
+msgstr "ავტორის მოვალეობის შესახებ"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>დამატებას შეიძლება ჰყავდეს ნებისმიერი რაოდენობის ავტორი, რომლებიც შეასრულებენ 3 შესაძლო ფუნქციას:</p> <ul> <li><b>მფლობელი:</b> შეუძლია დამატების გამოქვეყნებასთან დაკავშირებული საკითხების "
-"გადაწყვეტა, მათ შორის ავტორების დამატება და წაშლა</li> <li><b>შემმუშავებელი:</b> შეუძლია დამატების გამოქვეყნებასთან დაკავშირებული საკითხების გადაწყვეტა, გარდა ავტორების დამატების, წაშლისა და "
-"თანხების განკარგვის</li> <li><b>მიმომხილველი:</b> შეუძლია შეამოწმოს დამატების პარამეტრები და სტატისტიკა, მაგრამ ცვლილებების გაკეთების უფლება, არ აქვს</li> </ul>"
+"<p>დამატებას შეიძლება ჰყავდეს ნებისმიერი რაოდენობის თანაავტორი, რომლებიც შეასრულებენ 3 ძირითად მოვალეობას:</p> <ul> <li><b>მფლობელის:</b> რომელსაც შეეძლება დამატების გამოქვეყნებასთან დაკავშირებული "
+"საკითხების გადაწყვეტა, მათ შორის სხვა ავტორების დამატება და წაშლა</li> <li><b>შემმუშავებელის:</b> რომელსაც შეეძლება დამატების გამოქვეყნებასთან დაკავშირებული საკითხების გადაწყვეტა, გარდა ავტორების "
+"დამატების, წაშლისა და თანხების განკარგვის</li> <li><b>მიმომხილველის:</b> შეუძლია შეამოწმოს დამატების პარამეტრები და სტატისტიკა, მაგრამ ცვლილებების გაკეთების უფლება, არ ექნება</li> </ul>"
 
 msgid "Manage Developer Profile"
 msgstr "შემმუშავებლის პროფილის მართვა"
