@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 19:09+0000\n"
+"PO-Revision-Date: 2017-10-03 19:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4386,22 +4386,22 @@ msgstr ""
 "დამატების სამართავ გვერდზეც, განახლებისას."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "მდგომარეობა დამოწმების შესახებ"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "შენიშვნები მიმომხილველებისთვის"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "ამასთან, შეგიძლიათ მიუთითოთ გამოსადეგი ინფორმაცია მიმომხილველებისთვის ამ დამატების შესახებ, როგორიცაა მაგალითად, საცდელი ანგარიშის მონაცემები."
 
 msgid "Source code"
 msgstr "პირველწყარო კოდი"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "თუ თქვენი დამატება შეიცავს ორობით ან ცნობილი ბიბლიოთეკებისგან განსხვავებულ კოდს, განსახილველად განათავსეთ წყაროს კოდი აქ."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "ფაილი {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
