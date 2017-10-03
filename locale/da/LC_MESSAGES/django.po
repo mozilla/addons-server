@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 15:11+0000\n"
+"PO-Revision-Date: 2017-10-03 12:57+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -723,7 +723,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Bemærk at denne tilføjelse bruger forældet teknologi, hvilket giver den adgang til alle browserens funktioner og data, uden at bede om din tilladelse."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
