@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-29 14:25+0000\n"
+"PO-Revision-Date: 2017-10-03 09:45+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -7228,7 +7228,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Отзиви за %s"
 
 msgid "Review History for this Addon"
 msgstr "История на добавката"
@@ -7341,7 +7341,7 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: Отзиви"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Отзиви за {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
@@ -7356,8 +7356,8 @@ msgstr "Отговор от разработчика {0}"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Отзив за %(addon)s от %(user)s"
+msgstr[1] "Отзиви за %(addon)s от %(user)s"
 
 msgid "No reviews found."
 msgstr "Не са намерени отзиви."
