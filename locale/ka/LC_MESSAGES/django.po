@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 11:48+0000\n"
+"PO-Revision-Date: 2017-10-03 12:04+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2761,11 +2761,11 @@ msgstr "%s უპასუხა %s-ს (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "\"%s\"-თან კავშირი ვადაგასულია."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "\"%s\"-თან დაკავშირება ვერ ხერხდება."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2790,28 +2790,28 @@ msgid "User Reviews"
 msgstr "მომხმარებელთა მიმოხილვები"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "ცვლილებები შეინახა წარმატებით."
 
 msgid "Please check the form for errors."
 msgstr "გთხოვთ შეამოწმოთ ველები შეცდომებზე."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "დამატების წაშლა ვერ ხერხდება. სცადეთ მისი ამორთვა."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "თემა წაშლილია."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "დამატება წაშლილია."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL სახელი არასწორია. თემა არ წაშლილა."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL სახელი არასწორია. დამატება არ წაშლილა."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "თქვენს დამატებას ახალი ავტორი დაემატა"
 
 msgid "An author has a role changed on your add-on"
 msgstr ""
