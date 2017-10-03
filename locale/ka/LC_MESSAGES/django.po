@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 13:11+0000\n"
+"PO-Revision-Date: 2017-10-03 13:16+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3362,19 +3362,19 @@ msgstr "გამოჩნდება დამატებების ჩა�
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "გამოჩნდება დამატებების მთავარ გვერდზე."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "საკუთარი ხატულის ატვირთვა..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "მხარდაჭერილია PNG და JPG. ზომების გადაჭარბების შემთხვევაში, ხატულის სიგრძე/სიმაღლე, შემცირდება 64x64 პიქსელამდე."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "ეკრანის სურათები"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "გთხოვთ მოგვაწოდოთ თქვენი დამატების, სულ მცირე ერთი სურათი:"
@@ -3383,7 +3383,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr "გთხოვთ მიუთითოთ წარწერა, სურათზე:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "სურათების დამატება..."
 
 msgid "Tests"
 msgstr "შემოწმება"
@@ -3404,10 +3404,10 @@ msgid "Compatibility Tests"
 msgstr "თავსებადობის შემოწმება"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "შეტყობინებების დამალვა, რომელიც არ საჭიროებს ავტომატურ დამოწმებას"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "შეტყობინებების დამალვა, რომელიც წინა ვერსიაში უგულებელყოფილი იყო"
 
 msgid "Top"
 msgstr "ზემოთა"
@@ -3419,7 +3419,7 @@ msgid "Delete Add-on"
 msgstr "დამატების წაშლა"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "თემის წაშლის შედეგად, იგი სამუდამოდ გაქრება საიტიდან."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
