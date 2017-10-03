@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-02 23:49+0000\n"
+"PO-Revision-Date: 2017-10-03 00:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1925,8 +1925,8 @@ msgstr "{addon} {version} საჭიროებს პროფესიო�
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"თქვენი დამატება მონიშნულია, რომ ადმინისტრაციამ განიხილოს.  ჯერ კიდევ განსახილველთა რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტ ხანს შეიძლება "
-"გაგრძელდეს."
+"თქვენი დამატება ჩანიშნულია, ადმინისტრაციისთვის გადასაგზავნად.  ჯერ კიდევ განსახილველთა რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტ ხანს შეიძლება"
+" გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
 msgstr "კომენტარი {addon} {version}-ზე."
@@ -2072,7 +2072,7 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr "{addon} {version}-ის მისაღები შენიშვნები შეიცვალა."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "ჩანაწერების მიღება შეცვლილია"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "{addon} {version}-ის პირველწყარო კოდი ატვირთულია."
@@ -2087,28 +2087,28 @@ msgid "Auto-Approval confirmed"
 msgstr "ავტომატური მიღება დაშვებულია"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "მობილური"
 
 msgid "Firefox for Android"
 msgstr "Firefox Android"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "უცნობი"
 
 msgid "Incomplete"
 msgstr "დაუსრულებელი"
@@ -2117,31 +2117,31 @@ msgid "Disabled by Mozilla"
 msgstr "გამორთულია Mozilla-ს მიერ"
 
 msgid "Deleted"
-msgstr ""
+msgstr "წაიშალა"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "ელოდება დამოწმებას"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "ჩანიშნულია დამატებითი განხილვისთვის"
 
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 msgid "Unlisted"
 msgstr "სიის გარეთ"
 
 msgid "Developer"
-msgstr ""
+msgstr "დეველოპერი"
 
 msgid "Viewer"
-msgstr ""
+msgstr "წამკითხველი"
 
 msgid "Support"
 msgstr "მხარდაჭერა"
 
 msgid "Extension"
-msgstr ""
+msgstr "გაფართოება"
 
 msgid "Complete Theme"
 msgstr "სრული თემა"
@@ -2156,10 +2156,10 @@ msgid "Language Pack (Add-on)"
 msgstr "ენის პაკეტი (დამატება)"
 
 msgid "Plugin"
-msgstr ""
+msgstr "მოდული"
 
 msgid "Theme"
-msgstr ""
+msgstr "თემა"
 
 msgid "Complete Themes"
 msgstr "სრული თემები"
@@ -2174,7 +2174,7 @@ msgid "Language Packs (Add-on)"
 msgstr "ენის პაკეტები (დამატება)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "მოდულები"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "იკითხეთ, მხოლოდ ამ დამატების გვერდზე, ან შემმუშავებლის პროფილში"
@@ -2183,35 +2183,35 @@ msgid "Ask after users start downloading this add-on"
 msgstr "თხოვნის გამოჩენა მას შემდეგ, რაც მომხმარებლები დაიწყებენ დამატების ჩამოტვირთვას"
 
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "თხოვნის გამოჩენა მანამ, სანამ მომხმარებლებს შეეძლებათ დამატების ჩამოტვირთვა"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "სხვა"
 
 msgid "Exception"
-msgstr ""
+msgstr "გამონაკლისი"
 
 msgid "Release"
-msgstr ""
+msgstr "გამოშვება"
 
 msgid "Change"
-msgstr ""
+msgstr "შეცვლა"
 
 msgid "App"
-msgstr ""
+msgstr "პროგრამა"
 
 msgid "Persona"
-msgstr ""
+msgstr "პიროვნება"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "ქულები მიმოხილვისთვის"
 
 msgid "New Add-on Review"
 msgstr "ახალი დამატების განხილვა"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "დამატების წინასწარი მიმოხილვა"
 
 msgid "Updated Add-on Review"
 msgstr "დამატების განახლებული მიმოხილვა"
@@ -2220,7 +2220,7 @@ msgid "New Dictionary Review"
 msgstr "ახალი ლექსიკონის განხილვა"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "ლექსიკონის წინასწარი მიმოხილვა"
 
 msgid "Updated Dictionary Review"
 msgstr "ლექსიკონის განახლებული მიმოხილვა"
@@ -2238,10 +2238,10 @@ msgid "Bonus for overdue reviews"
 msgstr "შეღავათი, ვადაგადაცილებული მიმოხილვებისთვის"
 
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "დღეების რაოდენობა, წამახალისებელი ქულების მიღებამდე"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "თემის მიმოხილვა"
 
 msgid "New Search Provider Review"
 msgstr "ახალი საძიებო სისტემის მიმოხილვა"
@@ -2268,31 +2268,31 @@ msgid "Add-on Review Moderation Reverted"
 msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
 
 msgid "Level 1"
-msgstr ""
+msgstr "დონე 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "დონე 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "დონე 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "დონე 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "დონე 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "დონე 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "დონე 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "დონე 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "დონე 9"
 
 msgid "Compatible"
 msgstr "თავსებადი"
@@ -2415,7 +2415,7 @@ msgid "Film and TV"
 msgstr "ფილმები და ტელევიზია"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
 msgstr "დღესასწაული"
@@ -2508,34 +2508,34 @@ msgid "Web and Developer Tools"
 msgstr "ვებშემმუშავებლის ხელსაწყოები"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "დამატებითი ინფორმაციის მოთხოვნა"
 
 msgid "Flag"
-msgstr ""
+msgstr "ჩანიშვნა"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "დუბლიკატი"
 
 msgid "Reject"
-msgstr ""
+msgstr "უარყოფა"
 
 msgid "Approve"
-msgstr ""
+msgstr "მიღება"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "ეროტიკული ან პორნოგრაფიული შინაარსის"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "შუსაბამო ან უხამსი შინაარსის"
 
 msgid "Violence, war, or weaponry images"
 msgstr "ძალადობის, ომის, ან შეიარაღების ამსახველი სურათი"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "ფაშისტური ან სიძულვილის ენის შემცველი შინაარსი"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "ცილისმწამებლური შინაარსის"
 
 msgid "Online gambling"
 msgstr ""
@@ -5276,7 +5276,7 @@ msgstr[0] "{num} თემა განსახილველია "
 
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} შერჩეულია განსახილველად"
+msgstr[0] "{num} ჩანიშნულია განსახილველად"
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
