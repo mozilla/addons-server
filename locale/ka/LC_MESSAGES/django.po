@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 16:25+0000\n"
+"PO-Revision-Date: 2017-10-03 17:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3629,7 +3629,7 @@ msgid "Manage Listing"
 msgstr "ნამუშევრების მართვა"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "თქვენ ასევე შეგიძლიათ ამ ვერსიის ჩასწორება შენიშვნების დასამატებლად, ან წყაროს კოდის ჩასასწორებლად, თუ წარდგენილი დამატების კოდი არის ოპტიმიზებული, დაცული ან კომპილირებული."
 
 msgid "Edit version {0}"
 msgstr "{0} ვერსიის ჩასწორება"
@@ -3647,13 +3647,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr "მზადაა! ეს ვერსია დამოწმებულია და ამიერიდან შესაძლებელია მისი გავრცელება. ჩამოსატვირთად, დააჭირეთ ქვემოთ მოცემულ ღილაკს."
 
 msgid "Download {0}"
-msgstr ""
+msgstr "ჩამოტვირთვა {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "წარდგენისას, თქვენ მითითებული გაქვთ, მხოლოდ რამდენიმე ხელმისაწვდომი პლატფორმა. შეგიძლიათ დამატებით ატვირთოთ კიდევ ფაილები, მეტ პლატფორმასთან თავსებადობისთვის:"
 
 msgid "Upload File"
-msgstr ""
+msgstr "ფაილის ატვირთვა"
 
 msgid "Go to My Submissions"
 msgstr "წარდგენილი ნამუშევრები"
@@ -3665,10 +3665,10 @@ msgid "Upload Add-on"
 msgstr "დამატების ატვირთვა"
 
 msgid "Where to Host File"
-msgstr ""
+msgstr "სად გსურთ ფაილის განთავსება"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "სად გსურთ ვერსიის განთავსება"
 
 msgid "Upload Version"
 msgstr "ვერსიის ატვირთვა"
@@ -3680,10 +3680,10 @@ msgid "Which platforms is this file compatible with?"
 msgstr "რომელ სისტემებთანაა თავსებადი?"
 
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "ვერსიის გამოქვეყნება ჩემს beta არხზე."
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "ადმინისტრაციის მოქმედებები"
 
 msgid "Submit File"
 msgstr "ფაილის წარდგენა"
