@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.test import override_settings
 
 import waffle
 
 from olympia import amo
 from olympia.amo.tests import version_factory
-from olympia.accounts.tests.test_views import BaseAuthenticationView
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, TestCase)
@@ -304,49 +301,3 @@ def update_domains(overrides):
     overrides = overrides.copy()
     overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
     return overrides
-
-
-endpoint_overrides = [
-    (regex, update_domains(overrides))
-    for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
-
-
-@override_settings(
-    FXA_CONFIG={'internal': FXA_CONFIG},
-    CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
-class TestLoginView(BaseAuthenticationView):
-    client_class = APITestClient
-    view_name = 'internal-login'
-
-    def setUp(self):
-        super(TestLoginView, self).setUp()
-        self.client.defaults['HTTP_ORIGIN'] = 'https://addons-frontend'
-        self.state = 'stateaosidoiajsdaagdsasi'
-        self.initialize_session({'fxa_state': self.state})
-        self.code = 'codeaosidjoiajsdioasjdoa'
-        self.update_user = self.patch(
-            'olympia.accounts.views.update_user')
-
-    def options(self, url, origin):
-        return self.client_class(HTTP_ORIGIN=origin).options(url)
-
-    def test_internal_config_is_used(self):
-        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'internal'
-
-    def test_cors_addons_frontend(self):
-        response = self.options(self.url, origin='https://addons-frontend')
-        assert has_cors_headers(response, origin='https://addons-frontend')
-        assert response.status_code == 200
-
-    def test_cors_localhost(self):
-        response = self.options(self.url, origin='http://localhost:3000')
-        assert has_cors_headers(response, origin='http://localhost:3000')
-        assert response.status_code == 200
-
-    def test_cors_other(self):
-        response = self.options(self.url, origin='https://attacker.com')
-        assert 'Access-Control-Allow-Origin' not in response
-        assert 'Access-Control-Allow-Methods' not in response
-        assert 'Access-Control-Allow-Headers' not in response
-        assert 'Access-Control-Allow-Credentials' not in response
-        assert response.status_code == 200
