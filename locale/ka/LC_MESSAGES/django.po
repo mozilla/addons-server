@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 16:11+0000\n"
+"PO-Revision-Date: 2017-10-03 16:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3590,13 +3590,13 @@ msgid "Describe Version"
 msgstr "ვერსიის აღწერა"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "გამოშვების შენიშვნები:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "აცნობეთ თქვენს მომხმარებლებს, რა სიახლეები და რა ცვლილებებია, ამ ვერსიაში."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "ეს შენიშვნები გამოჩნდება დამატების გვერდზე."
 
 msgid "How to Distribute this Version"
 msgstr "გავრცელების გზა"
@@ -3605,7 +3605,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr "დამატებითი ინფორმაცია, დამატებების დამოწმების და გავრცელების გზების შესახებ"
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "წარდგენა დასრულებულია"
 
 msgid "You’re done!"
 msgstr "მორჩა!"
@@ -3614,16 +3614,16 @@ msgid "Version Submitted"
 msgstr "ვერსია გადაგზავნილია"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "მზადაა! ეს ვერსია საიტზე ხელმისაწვდომი გახდება მოკლე ხანში."
 
 msgid "Version Submitted for Review"
 msgstr "ვერსია წარდგენილია განსახილველად"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "მზადაა! ეს ვერსია გადაგზავნილია განსახილველად. გეცნობებათ, როგორც კი დასრულდება განხილვა, ან თუ ჩვენს მიმომხილველებს, რამე შეკითხვა გაუჩნდებათ, თქვენს დამატებასთან დაკავშირებით."
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "თქვენი დამატებები იქნება მეტად წარმატებული, თუ დაამატებთ ვრცელ აღწერას და სურათებს. გაამზადეთ ჩამონათვალი გამოსაქვეყნებლად:"
 
 msgid "Manage Listing"
 msgstr "ნამუშევრების მართვა"
