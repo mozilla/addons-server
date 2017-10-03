@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 18:50+0000\n"
+"PO-Revision-Date: 2017-10-03 19:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4164,21 +4164,23 @@ msgid "Send a thank-you note?"
 msgstr "გსურთ, გაეგზავნოთ სამადლობელი წერილი?"
 
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr ""
+msgstr "ჩვენ ავტომატურად გავუგზავნით თქვენს შემომწირველებს წერილს ელფოსტაზე, მითითებული ტექსტით."
 
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"ჩვენ გირჩევთ, გაუგზავნოთ სამადლობელი ტექსტი მომხმარებლებს და მოახსენოთ, როგორი მადლიერი ხართ, მათი მხარდაჭერით. ასევე, შეგიძლიათ აცნობოთ თქვენი დამატების სამომავლო გეგმების შესახებ და შესთავაზოთ "
+"სხვა დამატებებიც."
 
 msgid "Activate Contributions"
-msgstr ""
+msgstr "შემოწირულობების ამოქმედება"
 
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
 msgstr "ან <a id=\"setup-cancel\" href=\"#\">გაუქმება</a>"
 
 msgid "Transfer ownership"
-msgstr ""
+msgstr "საკუთრების გადაცემა"
 
 msgid "Theme Details"
 msgstr "თემის მონაცემები"
@@ -4238,28 +4240,28 @@ msgid "Theme Design"
 msgstr "თემის გაფორმება"
 
 msgid "Upload New Design"
-msgstr ""
+msgstr "ახალი იერსახის ატვირთვა"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "ატვირთვის და წარდგენისთანავე, AMO-ს გუნდი განიხილავს თქვენ მიერ განახლებულ იერსახეს. გარკვეული დროის განმავლობაში, ისევ არსებული იერსახე იქნება საჯაროდ ხელმისაწვდომი."
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "თქვენ უკვე წარდგენილი გაქვთ ეს იერსახე, რომელიც ელოდება განხილვას."
 
 msgid "Pending Header"
-msgstr ""
+msgstr "ზედა სურათი ელოდება განხილვას"
 
 msgid "Pending Footer"
-msgstr ""
+msgstr "ქვედა სურათი ელოდება განხილვას"
 
 msgid "You may update your theme design here once it has been approved."
 msgstr "თემის გაფორმების განახლება შეგეძლებათ აქ, დამოწმების შემდეგ."
 
 msgid "Header"
-msgstr ""
+msgstr "ზედა სურათი"
 
 msgid "Footer"
-msgstr ""
+msgstr "ქვედა სურათი"
 
 msgid "Select colors for your Theme."
 msgstr "ფერების შერჩევა თემისთვის."
@@ -4280,7 +4282,7 @@ msgid "Preview"
 msgstr "წინასწარ გადახედვა"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "თქვენი თემის სახელი"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
@@ -4316,11 +4318,11 @@ msgid "Your theme has been submitted to the Review Queue. You'll receive an emai
 msgstr "თქვენი თემა იმყოფება განსახილველთა სიაში. განხილვის დასრულებისთანავე მიიღებთ წერილს, ელფოსტაზე, ჩვეულებრივ 24 საათში."
 
 msgid "Next steps:"
-msgstr ""
+msgstr "შემდეგი ნაბიჯები:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "დაამატეთ ინფორმაცია თქვენი თემის შესახებ, <a href=\"%(edit_url)s\">მთავარი გვერდის ჩასწორებით</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4361,17 +4363,17 @@ msgid "Select a different footer image"
 msgstr "სხვა ქვედა სურათის არჩევა"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "{0} ვერსიის მართვა"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "{0} მართვა"
 
 msgid "Files"
-msgstr ""
+msgstr "ფაილები"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "სხვა ფაილის ატვირთვა"
 
 msgid "Version Notes"
 msgstr "ვერსიის შენიშვნები"
@@ -4380,6 +4382,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"ინფორმაცია ამ გამოშვების ცვლილებების შესახებ, ახალი შესაძლებლობები, ცნობილი ხარვეზები და სხვა სასარგებლო მონაცემები, უშუალოდ ამ გამოშვება/ვერსიასთან დაკავშირებით. ეს მონაცემები, ასევე გამოჩნდება "
+"დამატების სამართავ გვერდზეც, განახლებისას."
 
 msgid "Approval Status"
 msgstr ""
