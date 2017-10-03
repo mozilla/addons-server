@@ -22,18 +22,11 @@ Fetching the token
 A fresh token, valid for 30 days, is automatically generated and added to the
 responses of the following endpoint:
 
-    * ``/api/v3/internal/accounts/login/start/``
     * ``/api/v3/accounts/authenticate/``
-
-A token may also be obtained through the JSON API as outlined in the
-:ref:`internal login JSON API <internal-login-json-api>` section. This is only
-accessible through the VPN and requires using the following endpoint:
-
-    * ``/api/v3/internal/accounts/login/start/``
 
 The token is available in two forms:
 
-    * For the endpoints mentioned above, as a property called ``token``.
+    * For the endpoint mentioned above, as a property called ``token``.
     * For all endpoints, as a cookie called ``api_auth_token``. This cookie
       expires after 30 days and is set as ``HttpOnly``.
 
