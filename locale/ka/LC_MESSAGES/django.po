@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 15:51+0000\n"
+"PO-Revision-Date: 2017-10-03 16:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3459,31 +3459,31 @@ msgid "Upload a new version of this add-on."
 msgstr "დამატების ახალი ვერსიის ატვირთვა."
 
 msgid "New Version"
-msgstr ""
+msgstr "ახალი ვერსია"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "ჩამოტვირთვებისა და მომხმარებლების დღიური სტატისტიკა."
 
 msgid "Statistics"
-msgstr ""
+msgstr "სტატისტიკური მონაცემები"
 
 msgid "Manage Payments"
-msgstr ""
+msgstr "გადახდების მართვა"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "მდგომარეობისა & ვერსიების მართვა"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "დამატებების ჩამონათვალის ნახვა"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "ბოლო ცვლილებების ნახვა"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "მონაცემების ჩასწორება, თემების ამ ჩამონათვალში."
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "ჩამონათვალის ჩასწორება"
 
 msgid "View the popularity of this theme over time."
 msgstr "ყველა დროის სასურველი გაფორმებების ნახვა."
@@ -3492,37 +3492,37 @@ msgid "View Statistics"
 msgstr "სტატისტიკის ნახვა"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "თემის მფლობელის შეცვლა."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "საკუთრების გადაცემა"
 
 msgid "Delete this theme."
 msgstr "თემის წაშლა"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "დამატებას აკლია საჭირო მონაცემები, რომელიც უნდა შეივსოს საჯაროდ გამოქვეყნებამდე."
 
 msgid "This add-on doesn't have any versions."
 msgstr "დამატებას არ აქვს სხვადასხვა ვერსიები."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "ამ დამატებას არ გააჩნია მიღებული ვერსიები, ასე რომ, მისი საჯარო გვერდები (მათ შორის beta ვერსიების) დამალულია."
 
 msgid "Status:"
-msgstr ""
+msgstr "მდგომარეობა:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "გამორთულია"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>ადგილი რიგში:</b> %(pos)s %(total)s-დან"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> მოქმედი მომხმარებელი"
 
 msgid "Submit a New File"
 msgstr "ახალი ფაილის წარდგენა"
@@ -3540,7 +3540,7 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "გთხოვთ გამოიყენოთ მხოლოდ ასოები, ციფრები, დეფისი და ტირე, თქვენს URL ბმულში."
 
 msgid "Summary:"
-msgstr ""
+msgstr "შეჯამება:"
 
 msgid "This add-on is experimental"
 msgstr "ეს დამატება საცდელია"
@@ -3569,10 +3569,10 @@ msgid "Notes to Reviewer:"
 msgstr "შენიშვნები მიმომხილველისთვის:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "არის რამე ისეთი, რაც გსურთ, რომ ჩვენმა მიმომხილველებმა მხედველობაში მიიღონ, ამ დამატების განხილვისას?"
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "შენიშვნები ხილული იქნება მხოლოდ თქვენთვის და ჩვენი მიმომხილველთათვის."
 
 msgid "Cancel and Disable Version"
 msgstr "გაუქმება და ვერსიის შეზღუდვა"
