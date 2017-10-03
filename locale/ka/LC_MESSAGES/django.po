@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 00:31+0000\n"
+"PO-Revision-Date: 2017-10-03 00:40+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2538,10 +2538,10 @@ msgid "Defamatory content"
 msgstr "ცილისმწამებლური შინაარსის"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "აზარტული თამაშები"
 
 msgid "Spam content"
-msgstr ""
+msgstr "სარეკლამო შინაარსის"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr "უხარისხო, გაწელილი, ან ცარიელი სურათი"
@@ -2571,41 +2571,41 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით - იმავე პირობებით)"
 
 msgid "Any"
-msgstr ""
+msgstr "ნებისმიერი"
 
 msgid "All Platforms"
 msgstr "ყველა პლატფორმა"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
 
 msgid "Core"
-msgstr ""
+msgstr "ბირთვი"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "%s ბოლო ცვლილებები"
 
 msgid "Recent Changes for My Add-ons"
 msgstr "ბოლო ცვლილებები ჩემს დამატებებში"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება."
 
 msgid "At least one author must be listed."
 msgstr "ერთი ავტორი მაინც უნდა იყოს მითითებული."
@@ -2614,7 +2614,7 @@ msgid "An author can only be listed once."
 msgstr "ერთი ავტორი, მხოლოდ ერთხელ შეიძლება მიეთითოს."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "მისამართის დაბოლოება არასწორია."
 
 msgid "Details"
 msgstr "შესახებ"
@@ -2641,19 +2641,19 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
 
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "რატომ შექმენით ეს დამატება?"
 
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "რა იგეგმება, ამ დამატებისთვის?"
 
 msgid "The developers of this add-on"
-msgstr ""
+msgstr "ამ დამატების შემმუშავებლები"
 
 msgid "The Mozilla Foundation"
 msgstr "Mozilla ფონდი"
 
 msgid "An organization of my choice"
-msgstr ""
+msgstr "ჩემ მიერ შერჩეული ორგანიზაცია"
 
 msgid "Please enter a suggested amount greater than 0."
 msgstr "გთხოვთ მიუთითოთ შესათავაზებელი ოდენობა, რომელიც აღემატება 0-ს."
@@ -2671,13 +2671,13 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ფაილის ტიპი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
 
 msgid "View current"
-msgstr ""
+msgstr "ამჟამინდელის ნახვა"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "ვერსიის არასწორი დიაპაზონი."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "საჭიროა სულ მცირე ერთი თავსებადი პროგრამა."
 
 msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
