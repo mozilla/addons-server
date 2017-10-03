@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 09:45+0000\n"
+"PO-Revision-Date: 2017-10-03 11:02+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -509,7 +509,7 @@ msgid "Cancel"
 msgstr "Отказ"
 
 msgid "What do you think?"
-msgstr "Какво мислиш?"
+msgstr "Какво мислите?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
@@ -522,10 +522,10 @@ msgid "Review:"
 msgstr "Отзив:"
 
 msgid "Rating:"
-msgstr "Оценки:"
+msgstr "Оценка:"
 
 msgid "Submit review"
-msgstr "Прати рецензия"
+msgstr "Публикуване на рецензия"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr "Моля, не публикувайте доклади за дефекти в рецензиите. Не даваме имейла ви на разработчиците на добавката, а те може да искат да се свържат с вас, за да ви помогнат да решите проблема си."
@@ -537,7 +537,7 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr "Преглед на насоки"
+msgstr "Насоки за писане на отзиви"
 
 msgid "Reviews"
 msgstr "Рецензии"
@@ -6436,7 +6436,7 @@ msgid "Developer FAQ"
 msgstr "ЧЗВ за разработчици"
 
 msgid "Sections"
-msgstr ""
+msgstr "Раздели"
 
 msgid "Developing an Add-on"
 msgstr ""
@@ -7009,10 +7009,10 @@ msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support w
 msgstr ""
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Няколко съвета за писане на добри отзиви"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Често задавани въпроси за отзивите"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
