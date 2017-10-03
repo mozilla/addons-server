@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 13:16+0000\n"
+"PO-Revision-Date: 2017-10-03 15:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3429,7 +3429,7 @@ msgstr ""
 "რომ სხვებს არ შეეძლებათ, ამ დამატების ID-ს გამოყენებით ვერსიების გადმოგზავნა."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "გადაწყვეტილების დასადასტურებლად, შეიყვანეთ მოცემული ტექსტი: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "გთხოვთ გვაცნობოთ მიზეზი, რატომ შლით თქვენს თემას:"
@@ -3438,13 +3438,13 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr "გთხოვთ გვაცნობოთ მიზეზი, რატომ შლით თქვენს დამატებას:"
 
 msgid "Actions"
-msgstr ""
+msgstr "მოქმედებები"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "დამატების წარდგენის პროცესის გაგრძელება."
 
 msgid "Resume"
-msgstr ""
+msgstr "გაგრძელება"
 
 msgid "Delete this add-on."
 msgstr "დამატების წაშლა"
@@ -3456,7 +3456,7 @@ msgid "Edit information about this add-on."
 msgstr "დამატების მონაცემების შესწორება."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "დამატების ახალი ვერსიის ატვირთვა."
 
 msgid "New Version"
 msgstr ""
