@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 17:50+0000\n"
+"PO-Revision-Date: 2017-10-03 18:06+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3794,7 +3794,7 @@ msgid "This is the newest uploaded unlisted version."
 msgstr "ეს არის ყველაზე ბოლოს ატვირთული, გამოუქვეყნებელი ვერსია."
 
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(საჭირო იქნება, თუ დამატება მიიღებს შემოწირულობებს)"
 
 msgid "Manage Your Developer Profile"
 msgstr "თქვენი შემმუშავებლის პროფილის მართვა"
@@ -3803,7 +3803,7 @@ msgid "Create a Developer Profile"
 msgstr "შემმუშავებლის პროფილის შექმნა"
 
 msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
+msgstr "ეს გვერდი მალე წაიშლება, შემოწირულობის URL ველის მთავარ გვერდზე დასამატებლად. გამოიყენეთ ეს ველი შემოწირულობების შესანარჩუნებლად."
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
@@ -3826,16 +3826,16 @@ msgid "Telling your users what's coming soon will give them something to look fo
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "ახალი ვერსიის ატვირთვა"
 
 msgid "View All"
-msgstr ""
+msgstr "ყველას ნახვა"
 
 msgid "Listed Review Page"
 msgstr "გამოქვეყნებულის განსახილველი გვერდი"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "გამოუქვეყნებელის განსახილველი გვერდი"
 
 msgid "View Statistics Dashboard"
 msgstr ""
@@ -4313,7 +4313,7 @@ msgid "You're done!"
 msgstr "მორჩა!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "თქვენი თემა იმყოფება განსახილველთა სიაში. განხილვის დასრულებისთანავე მიიღებთ წერილს, ელფოსტაზე, ჩვეულებრივ 24 საათში."
 
 msgid "Next steps:"
 msgstr ""
@@ -4764,7 +4764,7 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr ""
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "ამის შედეგად, ეს ვერსია უარყოფილი იქნება და რიგიდან წაიშლება. შეფასებები, გადაეგზავნება შემმუშავებელს."
 
 msgid "Confirm Approval"
 msgstr ""
@@ -5329,7 +5329,7 @@ msgid "Release My Theme Locks"
 msgstr ""
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "ინტერაქტიული თემების რიგი"
 
 msgid "Reviewers' Guide"
 msgstr ""
