@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 17:30+0000\n"
+"PO-Revision-Date: 2017-10-03 17:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3734,7 +3734,7 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "გთხოვთ მიუთითოთ დამატების ვერსია და შეავსოთ ყველა მონაცემი."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "განხილვის დასრულებისთანავე მიიღებთ წერილს ელფოსტაზე. იქამდე, თქვენი დამატება არ გამოჩნდება გალერეაში, მაგრამ ხელმისაწვდომი იქნება პირდაპირ ბმულზე. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "თქვენი დამატება შეტანილია ჩვენს გალერეაში და მომხმარებლები იღებენ ავტომატურ განახლებებს."
@@ -3743,21 +3743,21 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "თქვენი დამატება შეზღუდულია საიტის ადმინისტრატორის მიერ და ამოღებულია გალერეიდან. კითხვების არსებობის შემთხვევაში, გთხოვთ მოგვწეროთ ელფოსტაზე amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "თქვენი დამატება არ გამოჩნდება ძიების შედეგებში, მის გვერდზე კი მიეთითება რომ შეზღუდული გაქვთ წვდომა. ასეთ შემთხვევაში, წარდგენილი ახალი ვერსიები არ მიიღება."
 
 msgid "Created:"
-msgstr ""
+msgstr "შემქმნელი:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b %%e, %%Y"
 
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "დამატების მრავალპროცესიანობა:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "თქვენი დამატება თავსებადია მრავალპროცესიან Firefox (e10s) ვერსიასთან."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. ავტომატური განახლებები იმართება ამ საიტით."
@@ -3775,20 +3775,20 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "ეს არის ყველაზე ბოლოს ატვირთული ვერსია, სავარაუდოდ, ჯერ არ იქნება საიტზე გამოჩენილი."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "განსახილველად გადასაცემთა რიგში, თანმიმდევრობა მკაცრად არ მოწმდება"
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "რიგის ნომერი:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s %(total)s-დან"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "დამოწმებულია თვითგავრცელებისთვის. განახლებებიც თავად უნდა მართოთ."
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "ბოლო ვერსია:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "ეს არის ყველაზე ბოლოს ატვირთული, გამოუქვეყნებელი ვერსია."
@@ -4902,7 +4902,7 @@ msgid "Return to the Reviewer Tools homepage"
 msgstr "მიმომხილველის ხელსაწყოების გვერდზე დაბრუნება"
 
 msgid "Queues"
-msgstr ""
+msgstr "რიგი"
 
 msgid "New Add-ons"
 msgstr "ახალი დამატებები"
@@ -4917,7 +4917,7 @@ msgid "Auto Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
 
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "გამოუქვეყნებლების რიგი"
 
 msgid "All Unlisted Add-ons"
 msgstr "ყველა გამოუქვეყნებელი დამატება"
@@ -5287,7 +5287,7 @@ msgid "Flagged Themes"
 msgstr ""
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "განსახილველად გადასაცემი თემების რიგი"
 
 msgid "Review Options"
 msgstr ""
