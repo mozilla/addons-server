@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 12:27+0000\n"
+"PO-Revision-Date: 2017-10-03 12:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2891,8 +2891,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ ჩვენს შეთანხმებას, Firefox დამატებების გავრცელების შესახებ, ისევე როგორც ჩვენი მიმოხილვის დებულებებს და წესებს. შეთანხმებას Firefox დამატებების გავრცელების"
-" შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
+"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ Firefox დამატებების გავრცელების შესახებ შეთანხმებას, ისევე როგორც ჩვენი მიმოხილვის დებულებებს და წესებს. შეთანხმებას Firefox დამატებების გავრცელების "
+"შესახებ, დართული აქვს პირადი მონაცემების დაცვის დებულებაც, სადაც განმარტებულია, თუ როგორ ვიყენებთ თქვენს მონაცემებს."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
@@ -2902,14 +2902,14 @@ msgstr "მიმოხილვის დებულება და წეს
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ ჩვენს შეთანხმებას, Firefox დამატებების გავრცელების შესახებ. იქვე მოცემულია დანართი, პირადი მონაცემების დაცვის შესახებ, სადაც განმარტებულია, თუ როგორ "
-"ვიყენებთ თქვენს მონაცემებს."
+"დაწყების წინ, გთხოვთ გაეცნოთ და დაეთანხმოთ Firefox დამატებების გავრცელების შესახებ შეთანხმებას. იქვე მოცემულია დანართი, პირადი მონაცემების დაცვის შესახებ, სადაც განმარტებულია, თუ როგორ ვიყენებთ "
+"თქვენს მონაცემებს."
 
 msgid "Printable Version"
 msgstr "ამოსაბეჭდი ვერსია"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "წავიკითხე, ვეთანხმები წესებს და დებულებებს და ვუერთდები შეთანახმებას"
+msgstr "წავიკითხე და ვეთანხმები მოცემული ხელშეკრულებით გათვალისწინებულ წესებსა და დებულებებს"
 
 msgid "I Accept this Agreement"
 msgstr "ვეთანხმები ხელშეკრულების პირობებს"
@@ -2925,7 +2925,7 @@ msgid "{0} Add-ons"
 msgstr "{0} დამატებები"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "DevHub მთავარ გვერდზე დაბრუნება"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -2935,7 +2935,7 @@ msgid "more add-ons..."
 msgstr "სხვა დამატებები..."
 
 msgid "Documentation"
-msgstr ""
+msgstr "საბუთები"
 
 msgid "Extension Development"
 msgstr "გაფართოების შემუშავება"
@@ -3011,7 +3011,7 @@ msgstr "ბოლო მოქმედებები {0}-ზე"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> %(user)s მომხმარებლის მიერ"
 
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
@@ -3041,13 +3041,13 @@ msgid "View and update application compatibility ranges."
 msgstr "გაეცანით და განაახლეთ პროგრამის თავსებადობის ხარისხი."
 
 msgid "Compatibility"
-msgstr ""
+msgstr "თავსებადობა"
 
 msgid "Update Compatibility"
 msgstr "თავსებადობის განახლება"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "პროგრამის მონაცემების აქ მითითება, მომხმარებლებს საშუალებას მისცემს დააყენონ თქვენი დამატება მაშინაც კი, თუ მანიფესტში მითითებულია, რომ დამატება არათავსებადია."
 
 msgid "Supported Versions"
 msgstr "მხარდაჭერილი ვერსიები"
@@ -3056,7 +3056,7 @@ msgid "Add Another Application&hellip;"
 msgstr "სხვა პროგრამის დამატება&hellip;"
 
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 msgid "Recent Activity"
 msgstr "ბოლო მოქმედებები"
@@ -3071,7 +3071,7 @@ msgstr "დამატებებთან დაკავშირებუ�
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> თემა"
 
 msgid "Edit Information"
 msgstr "მონაცემების შესწორება"
@@ -3083,7 +3083,7 @@ msgid "Manage Authors & License"
 msgstr "ავტორების & ლიცენზიის მართვა"
 
 msgid "Authors"
-msgstr ""
+msgstr "ავტორები"
 
 msgid "About author roles"
 msgstr "ავტორის მოვალეობის შესახებ"
@@ -3105,7 +3105,7 @@ msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>publi
 msgstr "თქვენი <a href=\"%(url)s\">შემმუშავებლის პროფილი</a> ამჟამად <strong>საჯაროა</strong> და <strong>საჭიროებს</strong> შემოწირულობას."
 
 msgid "Remove Both"
-msgstr ""
+msgstr "ორივეს წაშლა"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
@@ -3118,26 +3118,26 @@ msgid "Create Profile"
 msgstr "პროფილის შექმნა"
 
 msgid "Basic Information"
-msgstr ""
+msgstr "ძირითადი მონაცემები"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "{0} დამატების ძირითადი მონაცემები"
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "დამატების URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "შეარჩიეთ მოკლე, უნიკალური URL დაბოლოება, თქვენი დამატებისთვის."
 
 msgid "View Listing"
-msgstr ""
+msgstr "ჩამონათვალის ნახვა"
 
 msgid "Summary"
-msgstr ""
+msgstr "შეჯამება"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "ეს შეჯამება ნათლად აჩვენებს თქვენი დამატების რაობას. იგი გამოჩნდება ჩამონათვალსა და ძიებებში, მიმომხილველები კი გამოიყენებენ თქვენი დამატების გამოცდის დროს."
 
 msgid "Experimental?"
 msgstr "საცდელია?"
@@ -3149,7 +3149,7 @@ msgid "This add-on is experimental."
 msgstr "ეს დამატება საცდელია"
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "ეს დამატება მზადაა, ფართო მომხმარებლებისთვის წარსადგენად."
 
 msgid "Requires Payment?"
 msgstr "გადახდა სავალდებულოა?"
@@ -3158,7 +3158,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "მონიშნეთ, თუ თქვენი დამატების ძირითადი შესაძლებლობებით სარგებლობისთვის, ან საცდელი დროის გასვლის შემდეგ, თანხის გადახდაა საჭირო."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "ეს დამატება ითხოვს თანხით ანგარიშსწორებას, ფასიან მომსახურებებს, პროგრამას, ან დამატებით აპარატურას."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
@@ -4301,7 +4301,7 @@ msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"ვუერთდები %(agreement_link_open)sშეთანხმებას, Firefox დამატებების გავრცელების თაობაზე%(link_close)s და თანახმა ვარ ჩემი მონაცემები დამუშავდეს, %(privacy_notice_link_open)sპირადი მონაცემების დაცვის "
+"ვუერთდები %(agreement_link_open)sFirefox დამატებების გავრცელების თაობაზე შეთანხმებას%(link_close)s და თანახმა ვარ ჩემი მონაცემები დამუშავდეს, %(privacy_notice_link_open)sპირადი მონაცემების დაცვის "
 "დებულების%(link_close)s შესაბამისად."
 
 msgid "Submit Theme"
@@ -6586,10 +6586,10 @@ msgstr ""
 "\"სხვა\". AMO გუნდი ხელახლა მიანიჭებს დამატებას სხვა კატეგორიას, თუ აღმოჩნდება, რომ მას უკეთ შეესაბამება."
 
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "შემიძლია სალიცენზიო შეთანხმების მითითება, ჩემს დამატებაზე?"
 
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "დიახ. შეგიძლიათ დაურთოთ სალიცენზიო შეთანხმება დამატებას, წარდგენის დროს. ასევე, შეგიძლიათ მისი განახლება შემმუშავებლის ხელსაწყოების გვერდიდან, დამატების წარდგენის შემდეგაც."
 
 msgid "Can I include a privacy policy for my add-on?"
 msgstr "შემიძლია დამატებისთვის პირადი მონაცემების დაცვის დებულების განსაზღვრა?"
@@ -7150,7 +7150,7 @@ msgid "What will happen next"
 msgstr ""
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>თუ ეთანხმებით</strong> მონაწილეობის მიღება:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr "Firefox-ს შეიძლება დაემატოს მოდულების უსაფრთხოების შესამოწმებელი საშუალებები, დაცულობის და წარმადობის გასაზრდელად."
