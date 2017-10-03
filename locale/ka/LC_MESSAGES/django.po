@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 18:06+0000\n"
+"PO-Revision-Date: 2017-10-03 18:26+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3820,10 +3820,10 @@ msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
 msgstr "<a href=\"%(url)s\"><strong>განაახლეთ თქვენი პროფილი.</strong></a>"
 
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "ეს იყო მაღაზიის რიგში დგომისას, თავში უეცრად მოსული აზრი თუ ცხოვრებისეული პრობლემების გადაჭრის მცდელობა, გაგვიზიარეთ თქვენი ამბავი."
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "აცნობეთ თქვენს მომხმარებლებს, რა სიახლეებს უნდა ელოდონ."
 
 msgid "Upload New Version"
 msgstr "ახალი ვერსიის ატვირთვა"
@@ -3838,19 +3838,19 @@ msgid "Unlisted Review Page"
 msgstr "გამოუქვეყნებელის განსახილველი გვერდი"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "სტატისტიკური მონაცემების გვერდი"
 
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "თავსებადობის მოხსენებები"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} მოხსენება წარუმატებლობის შესახებ"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} მოხსენება წარმატების შესახებ"
 
 msgid "Developer News"
-msgstr ""
+msgstr "დეველოპერის სიახლეები"
 
 msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
@@ -3867,7 +3867,7 @@ msgid "Some HTML supported."
 msgstr "მხარდაჭერილია ზოგიერთი HTML ელემენტი."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "პროგრამის წაშლა"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
