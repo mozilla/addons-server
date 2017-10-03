@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 00:40+0000\n"
+"PO-Revision-Date: 2017-10-03 11:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2695,37 +2695,37 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "მონიშნეთ, თუ გსურთ თავად გაავრცელოთ თქვენი დამატება და Mozilla-სგან მხოლოდ დამოწმება გჭირდებათ."
 
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "ფაილი, რომელიც ბოლოვდება სიმბოლოებით a|alpha|b|beta|pre|rc და დამატებითი ციფრით, აღინიშნება ჩაითვლება საცდელ beta ვერსიად."
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "ამ ვერსიისთვის, მეტი ფაილის ატვირთვა აღარ შეგიძლიათ."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "ვერსიები არ ემთხვევა"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "{version} ვერსია იყო ატვირთული და წაიშალა."
 
 msgid "Version {version} already exists."
 msgstr "{version} ვერსია უკვე არსებობს."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "გაგრძელდეს მიმდინარე ატვირთვა?"
 
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "პლატფორმა \"ყველასთან\" ერთად, სხვა რომელიმე პლატფორმა ვერ მიეთითება."
 
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "პლატფორმა, მხოლოდ ერთხელ შეიძლება მიეთითოს."
 
 msgid "Reputation"
-msgstr ""
+msgstr "რეპუტაცია"
 
 msgid "Application"
-msgstr ""
+msgstr "პროგრამა"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "ჯერ მიუთითეთ პროგრამა"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3-ზე მეტი აუცილებელი დამატების მითითება შეუძლებელია."
@@ -2747,7 +2747,7 @@ msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensi
 msgstr "Firefox 53 ვერსიიდან დაწყებული, ამ საიტზე ნებადართულია მხოლოდ ახალი, WebExtensions დამატებების გამოქვეყნება."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "მოძველებული დამატებები არაა თავსებადი Firefox 57 ან უფრო მაღალ ვერსიებთან. maxVersion მიუთითეთ 56.* ან უფრო დაბალი."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
