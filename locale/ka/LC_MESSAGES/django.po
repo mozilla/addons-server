@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-10-03 12:50+0000\n"
+"PO-Revision-Date: 2017-10-03 13:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3161,7 +3161,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "ეს დამატება ითხოვს თანხით ანგარიშსწორებას, ფასიან მომსახურებებს, პროგრამას, ან დამატებით აპარატურას."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "ეს დამატება არ ითხოვს თანხით ანგარიშსწორებას, ფასიან მომსახურებებს, პროგრამას, ან დამატებით აპარატურას."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "კატეგორიები, მომხმარებლისთვის არის მთავარი საშუალება დამატებების მოსაძიებლად. აირჩიეთ ისეთი, რომელიც ყველაზე მეტად ერგება თქვენი დამატების ფუნქციონალს. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
@@ -3184,13 +3184,13 @@ msgstr "მაგალითად: მუქი, კინო, თრილე
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "სათადარიგო ჭდეები:"
 
 msgid "Contributions URL"
 msgstr "შემოწირულობების URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "თუ გსურთ მომხმარებლებისგან მიიღოთ ფულადი შემოწირულობები, მიუთითეთ გვერდი, სადაც ამას შეძლებენ."
 
 msgid "Add-on Details"
 msgstr "დამატების მონაცემები"
@@ -3203,7 +3203,7 @@ msgstr ""
 "ვრცელი განმარტება ფუნქციების და შესაძლებლობების, ასევე დამატებითი საჭირო ინფორმაცია. მოცემული ველი გამოჩნდება მხოლოდ დამატების სრული მონაცემების გვერდზე. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "ძირითადი ენა"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "დამატების შესახებ ინფორმაცია გამოჩნდება ამ ენაზე, სანამ არ ჩაანაცვლებთ განსაზღვრულ ენაზე თარგმანით. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
@@ -3265,19 +3265,19 @@ msgid "Required Add-ons"
 msgstr "საჭირო დამატებები"
 
 msgid "Limit 3"
-msgstr ""
+msgstr "შეზღუდვა 3"
 
 msgid "Add-on Flags"
-msgstr ""
+msgstr "დამატების აღნიშვნები"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
 msgstr "ეს აღნიშვნები გამოიყენება დამატებების დასაჯგუფებლად. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "ამ დამატებას ესაჭიროება გარე პროგრამა."
 
 msgid "View Source?"
-msgstr ""
+msgstr "წყაროს ნახვა?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებმიმომხილველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
@@ -3289,19 +3289,19 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr "არა, ამ დამატების პირველწყარო კოდი არაა საჯაროდ ხელმისაწვდომი."
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "საჯარო სტატისტიკა?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr "თქვენი დამატების ჩამოტვირთვების და გამოყენების სტატისტიკის ჩვენება ვებმიმომხილველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "ამ დამატების სტატისტიკა საჯაროდ ხელმისაწვდომია."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "არა, ამ დამატების სტატისტიკა, არაა საჯაროდ ხელმისაწვდომი."
 
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "SDK-ს განახლება?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr "თუ მონიშნულია, ჩვენ შევეცდებით ავტომატურად განვაახლოთ თქვენი დამატება, SDK -ს ახალი ვერსიის გამოსვლისთანავე. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
@@ -3316,30 +3316,32 @@ msgid "Universally unique identifier"
 msgstr "უნიკალური იდენტიფიკატორი"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "თქვენი დამატების UUID განასზღვრულია მის მანიფესტში და უნიკალურია. წარდგენის შემდეგ, თქვენი UUID-ს შეცვლა, აღარ შეგიძლიათ."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "თეთრი დაფა"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"თეთრი დაფა არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია, ვერსიის განურჩევლად. გამოიყენეთ დამატების გამოცდის გზებისა და სხვა საჭირო ინფორმაციის მისათითებლად. "
+"არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "დაქვემდებარებული დამატების წაშლა"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "დამატების სახელის მითითება"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "მედია დამატება {0}-სთვის"
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "დამატების ხატულა"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3349,14 +3351,14 @@ msgstr ""
 "მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "ხატულის მითითება დამატებისთვის:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "გამოჩნდება დამატებების ჩამონათვალში, ძიების შედეგებსა და რჩეულ დამატებებში."
 
 #. The size of the icon
 msgid "64x64px"
