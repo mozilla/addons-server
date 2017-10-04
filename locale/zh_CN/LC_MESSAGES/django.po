@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 07:09+0000\n"
+"PO-Revision-Date: 2017-10-04 09:46+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2123,7 +2123,7 @@ msgid "Pending approval"
 msgstr "等待审核"
 
 msgid "Flagged for further review"
-msgstr "标记以做进一步审核"
+msgstr "已标记进一步审核"
 
 msgid "Beta"
 msgstr "公开测试版"
@@ -4681,7 +4681,7 @@ msgid "A problem with your Theme submission"
 msgstr "您所提交主题的问题"
 
 msgid "Theme submission flagged for review"
-msgstr "主题提交标记供审核"
+msgstr "主题提交已标记待审"
 
 msgid "A question about your Theme submission"
 msgstr "您提交的主题的一个问题"
@@ -5069,7 +5069,7 @@ msgstr "由 %(user)s 于 %(date)s %(stars)s（%(locale)s）"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">由 %(user)s 于 %(date)s 标记</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s 于 %(date)s 标记</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "所有评价都已仲裁。做得不错！"
@@ -5265,7 +5265,7 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} 个更新"
 
 msgid "Flagged Themes"
-msgstr "已标记的主题"
+msgstr "待审的主题"
 
 msgid "Theme Review Queue"
 msgstr "主题校验队列"
@@ -5380,7 +5380,7 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "内容审核 ({0})"
 
 msgid "Flagged"
-msgstr "已标记"
+msgstr "待审"
 
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
