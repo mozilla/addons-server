@@ -827,9 +827,7 @@ def find_language(locale):
     if not locale:
         return None
 
-    LANGS = settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES
-
-    if locale in LANGS:
+    if locale in settings.AMO_LANGUAGES:
         return locale
 
     # Check if locale has a short equivalent.
@@ -839,7 +837,7 @@ def find_language(locale):
 
     # Check if locale is something like en_US that needs to be converted.
     locale = to_language(locale)
-    if locale in LANGS:
+    if locale in settings.AMO_LANGUAGES:
         return locale
 
     return None

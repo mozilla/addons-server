@@ -184,7 +184,11 @@ def test_get_locale_from_lang(lang):
     locale = get_locale_from_lang(lang)
 
     debug_languages = ('dbg', 'dbr', 'dbl')
-    expected_language = lang[:2] if lang not in debug_languages else 'en'
+    long_languages = ('hsb', 'dsb', 'kab')
+    expected_language = (
+        lang[:3] if lang in long_languages else (
+            lang[:2] if lang not in debug_languages else 'en'
+        ))
 
     assert isinstance(locale, Locale)
     assert locale.language == expected_language
@@ -194,3 +198,9 @@ def test_get_locale_from_lang(lang):
     if separator:
         territory = lang.split(separator)[1]
         assert locale.territory == territory
+
+
+@pytest.mark.parametrize('lang', settings.LANGUAGES_BIDI)
+def test_bidi_language_in_amo_languages(lang):
+    """Make sure all bidi marked locales are in AMO_LANGUAGES too."""
+    assert lang in settings.AMO_LANGUAGES or lang in settings.DEBUG_LANGUAGES
