@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2146,6 +2146,30 @@ msgstr "Është ripohuar vetëmiratimi për {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "I është ripohuar vetëmiratimi"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} u hodh tej."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} u përshkallëzua."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} u miratua."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "i është ripohuar miratimi"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} u hodh tej."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "hedhur poshtë"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2973,6 +2997,9 @@ msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
 msgid "Review Policies and Rules"
 msgstr "Rregulla Shhqyrtimesh"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Para se t’ia filloni, ju lutemi lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it. E cila përmban gjithashtu edhe lidhje për te Shënimet tona mbi Privatësinë, ku shpjegohet "
@@ -2981,7 +3008,7 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Version i Shtypshëm"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4886,6 +4913,10 @@ msgstr "Pa Shqyrtime"
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Shqyrtimi Më i RI"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Kështu do të miratohet, nënshkruhet dhe publikohet ky version. Komentet do t’i dërgohen zhvilluesit."
 
@@ -4922,6 +4953,13 @@ msgstr "Nëse keni shqetësime rreth kësaj shtese, probleme të cilat duhet t�
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendje ta shohë këtë."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Miratojeni / Hidheni Poshtë"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Shtesa të Reja (Nën 5 ditë)"
@@ -5055,6 +5093,10 @@ msgstr "Shqyrtime të Moderuara"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Shtesa Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Shqyrtim Parashtrimi"
 
 msgid "Unlisted Queues"
 msgstr "Radhë të Paklasifikuarash"
@@ -5253,6 +5295,11 @@ msgstr "Rregulla Shtese"
 
 msgid "Editors' Guide"
 msgstr "Udhërrëfyes Redaktorësh"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Shqyrtoni {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5546,6 +5593,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] "Shtesa të Miratuara Vetvetiu ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Shqyrtim i Moderuar ({0})"
+msgstr[1] "Shqyrtime të Moderuara ({0})"
 
 msgid "Flagged"
 msgstr "Me Shenjë"

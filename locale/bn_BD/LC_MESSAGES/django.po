@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2113,6 +2113,30 @@ msgstr "মন্তব্য করুন {addon} {version}।"
 msgid "Auto-Approval confirmed"
 msgstr "সর্বশেষ হালনাগাদকৃত"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} বৃদ্ধি করা হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+#, fuzzy
+msgid "Content approved"
+msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} এর {version} বাতিল করা হয়েছে।"
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "বাতিল করা হয়েছে"
+
 msgid "Firefox"
 msgstr "ফায়ারফক্স"
 
@@ -2927,13 +2951,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "পর্যালোচনা নোট"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "মুদ্রণযোগ্য সংস্করন"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4806,6 +4833,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4840,6 +4871,13 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "অনুমোদন / বাতিল"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -4971,6 +5009,10 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "পর্যালোচিত হয় নি"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5171,6 +5213,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "পর্যালোকারীর নোট:"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5466,6 +5513,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "{0} জন্য অ্যাড-অন"
 msgstr[1] "{0} জন্য অ্যাড-অন"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr "ফ্ল্যাগকৃত"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2147,6 +2147,30 @@ msgstr "Comentário a {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Estado da aprovação"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} rejeitado."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} escalado."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} aprovado."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "foi aprovado"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} rejeitado."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "rejeitado"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2992,13 +3016,16 @@ msgstr "Acordo de distribuição de extras do Firefox"
 msgid "Review Policies and Rules"
 msgstr "Data da revisão"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuição de extra do Firefox. Também tem uma ligação para a nossa nota de privacidade que explica como gerimos a sua informação."
 
 msgid "Printable Version"
 msgstr "Versão para impressão"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4972,6 +4999,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Submeter revisão"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5016,6 +5047,13 @@ msgstr ""
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faça um comentário sobre esta versão. O autor não será capaz de o ver."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Aprovar / Rejeitar"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novos extras (até 5 dias)"
@@ -5152,6 +5190,10 @@ msgstr "Revisões moderadas"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Extras para o Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Submeter revisão"
 
 msgid "Unlisted Queues"
 msgstr "Filas não listadas"
@@ -5355,6 +5397,11 @@ msgstr "Política do extra"
 
 msgid "Editors' Guide"
 msgstr "Guia do editor"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Revisão {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5652,6 +5699,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Não listar extra"
 msgstr[1] "Não listar extra"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisão moderada ({0})"
+msgstr[1] "Revisões moderadas ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"
