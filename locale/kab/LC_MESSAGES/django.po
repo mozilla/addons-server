@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 07:50+0000\n"
+"PO-Revision-Date: 2017-10-04 07:51+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -133,7 +133,7 @@ msgstr[1] "Yessefk akk tibzimint ad gebrent ma drus {0} n isekkilen."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "Taɣult n URL yessefk ad tettekki ar [%s] neɣ yiwen seg tiɣula-is tisnawanin."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
