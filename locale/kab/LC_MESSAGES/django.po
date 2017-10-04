@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 06:11+0000\n"
+"PO-Revision-Date: 2017-10-04 07:50+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5154,7 +5154,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %(user)s di %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Akk iceggiren ttwagen. Igzrrez uxeddim!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
