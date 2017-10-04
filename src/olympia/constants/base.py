@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -222,7 +223,9 @@ ADDON_TYPE_CHOICES_API = {
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
-MAX_CATEGORIES = 2
+MAX_CATEGORIES = defaultdict(lambda: 2)
+MAX_CATEGORIES[ADDON_STATICTHEME] = 1
+
 VALID_CONTRIBUTION_DOMAINS = ('paypal.me', 'patreon.com', 'micropayment.de')
 
 # Icon upload sizes

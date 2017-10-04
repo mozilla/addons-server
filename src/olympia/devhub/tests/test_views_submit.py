@@ -513,12 +513,28 @@ class TestAddonSubmitDetails(TestSubmitBase):
             ['This field is required.'])
 
     def test_submit_categories_max(self):
-        assert amo.MAX_CATEGORIES == 2
+        assert amo.MAX_CATEGORIES[amo.ADDON_EXTENSION] == 2
         self.cat_initial['categories'] = [22, 1, 71]
         response = self.client.post(
             self.url, self.get_dict(cat_initial=self.cat_initial))
         assert response.context['cat_form'].errors[0]['categories'] == (
             ['You can have only 2 categories.'])
+
+    def test_submit_categories_max_static_theme(self):
+        assert amo.MAX_CATEGORIES[amo.ADDON_STATICTHEME] == 1
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        Category.objects.create(
+            id=320, slug='causes', application=amo.FIREFOX.id,
+            misc=False, type=amo.ADDON_STATICTHEME, weight=0)
+        Category.objects.create(
+            id=324, slug='fashion', application=amo.FIREFOX.id,
+            misc=False, type=amo.ADDON_STATICTHEME, weight=0)
+        self.cat_initial['categories'] = [320, 324]
+
+        response = self.client.post(
+            self.url, self.get_dict(cat_initial=self.cat_initial))
+        assert response.context['cat_form'].errors[0]['categories'] == (
+            ['You can have only 1 category.'])
 
     def test_submit_categories_add(self):
         assert [cat.id for cat in self.get_addon().all_categories] == [22]
