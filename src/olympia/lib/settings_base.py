@@ -202,7 +202,7 @@ AMO_LANGUAGES = (
 
 # Bidirectional languages.
 # Locales in here *must* be in `AMO_LANGUAGES` too.
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
+LANGUAGES_BIDI = ('ar', 'fa', 'he', 'dbr', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
