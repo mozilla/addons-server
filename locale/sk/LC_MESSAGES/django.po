@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-08-27 22:12+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2171,6 +2171,31 @@ msgstr "Automatické schválenie doplnku {addon} {version} potvrdené."
 msgid "Auto-Approval confirmed"
 msgstr "Automatické schválenie potvrdené"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "Doplnok {addon} {version} zamietnutý."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "Pre doplnok {addon} {version} eskalovaná recenzia."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "Doplnok {addon} {version} schválený."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "schválené"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "Doplnok {addon} {version} zamietnutý."
+
+# 87%
+#, fuzzy
+msgid "Content rejected"
+msgstr "zamietnuté"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2987,14 +3012,17 @@ msgstr "Dohoda o distribúcií doplnkov pre Firefox"
 msgid "Review Policies and Rules"
 msgstr "Poznámka ku kontrole"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Verzia pre tlač"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
+msgid "Accept"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Súhlasím s touto zmluvou"
@@ -4916,6 +4944,10 @@ msgstr "Žiadne recenzie"
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Posledná recenzia"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4957,6 +4989,13 @@ msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Pridajte komentár k tejto verzii. Vývojár ho neuvidí."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Schváliť / Zamietnuť"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nové doplnky (za posledných 5 dní)"
@@ -5095,6 +5134,10 @@ msgstr "Moderované recenzie"
 
 msgid "Auto Approved Add-ons"
 msgstr "Automaticky schválené doplnky"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Odoslať kontrolu"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5305,6 +5348,11 @@ msgstr "Zásady ochrany súkromia doplnku"
 
 msgid "Editors' Guide"
 msgstr "Príručka editora"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Recenzia {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5608,6 +5656,13 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Nový doplnok ({0})"
 msgstr[1] "Nové doplnky ({0})"
 msgstr[2] "Nové doplnky ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Moderovaná recenzia ({0})"
+msgstr[1] "Moderované recenzie ({0})"
+msgstr[2] ""
 
 msgid "Flagged"
 msgstr "Označené"

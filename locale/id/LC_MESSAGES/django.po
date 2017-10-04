@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2122,6 +2122,30 @@ msgstr "Komentar untuk {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Status Persetujuan"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} ditolak."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} dieskalasi."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} disetujui."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "telah disetujui"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} ditolak."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "ditolak"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2948,6 +2972,9 @@ msgstr "Kesepakatan Distribusi Pengaya Firefox"
 msgid "Review Policies and Rules"
 msgstr "Catatan ulasan"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Sebelum memulai, harap membaca dan menerima Kesepakatan Distribusi Pengaya Firefox. Ini juga akan berhubungan dengan Pemberitahuan Privasi kami yang menerangkan bagaimana kami menangani informasi "
@@ -2956,7 +2983,7 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Versi Dapat Dicetak"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4991,6 +5018,10 @@ msgstr "Tanpa Ulasan"
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Ulasan Terakhir"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5033,6 +5064,13 @@ msgstr ""
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Berikan komentar untuk versi ini.  Penulis tidak akan dapat melihatnya."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Setujui / Tolak"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Pengaya Baru (Dibawah 5 hari)"
@@ -5167,6 +5205,10 @@ msgstr "Ulasan Dimoderasi"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Pengaya Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Melakukan Ulasan"
 
 msgid "Unlisted Queues"
 msgstr "Antrean Tidak Terdaftar"
@@ -5365,6 +5407,11 @@ msgstr "Kebijakan Pengaya"
 
 msgid "Editors' Guide"
 msgstr "Panduan Editor"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Ulasan {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5658,6 +5705,11 @@ msgstr[0] "Ulasan Dimoderasi ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Ulasan Dimoderasi ({0})"
 
 msgid "Flagged"
 msgstr "Ditandai"

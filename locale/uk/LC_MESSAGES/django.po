@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -2159,6 +2159,30 @@ msgstr "Автосхвалення підтверджено для {addon} {vers
 msgid "Auto-Approval confirmed"
 msgstr "Автосхвалення підтверджено"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} відхилено."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} передано вище."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} схвалено."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "підтверджено як схвалено"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} відхилено."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "відхилено"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2974,6 +2998,9 @@ msgstr "Угода Firefox про розповсюдження додатків"
 msgid "Review Policies and Rules"
 msgstr "Політика перевірки"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Перед початком, будь ласка, прочитайте та погодьтеся з умовами нашої угоди розповсюдження додатків Firefox. Вона також посилається на наше повідомлення про приватність, в якому пояснюється як ми "
@@ -2982,8 +3009,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Версія для друку"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
+msgid "Accept"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Я приймаю цю угоду"
@@ -4880,6 +4907,10 @@ msgstr "Немає відгуків"
 msgid "Weight"
 msgstr "Вага"
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Остання перевірка"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ця дія затвердить, підпише і опублікує дану версію. Коментарі будуть надіслані розробнику."
 
@@ -4912,6 +4943,13 @@ msgstr "Якщо у вас є сумніви щодо цього додатку,
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Залиште коментар для цієї версії. Розробник не зможе його побачити."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Схвалити / Відхилити"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Нові додатки (Менше 5 днів)"
@@ -5037,6 +5075,10 @@ msgstr "Модеровані розгляди"
 
 msgid "Auto Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Внести рецензію"
 
 msgid "Unlisted Queues"
 msgstr "Черги неопублікованих"
@@ -5238,6 +5280,11 @@ msgstr "Політика додатку"
 
 msgid "Editors' Guide"
 msgstr "Інструкції редактора"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Перевірити {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5537,6 +5584,13 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Автоматично схвалений додаток ({0})"
 msgstr[1] "Автоматично схвалені додатки ({0})"
 msgstr[2] "Автоматично схвалених додатків ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Модерований розгляд ({0})"
+msgstr[1] "Модеровані розгляди ({0})"
+msgstr[2] "Модерованих розглядів ({0})"
 
 msgid "Flagged"
 msgstr "Відмічено"

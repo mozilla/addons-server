@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2126,6 +2126,30 @@ msgstr "{addon} {version}의 승인 노트가 변경되었습니다."
 msgid "Auto-Approval confirmed"
 msgstr "승인 상태"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version}이(가) 승인되었습니다."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "이(가) 승인되었습니다"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "이(가) 심사 거부되었습니다"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2960,13 +2984,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "심사 노트"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "사용하기 전에, Firefox 추가 기능의 배포 계약을 읽고 동의해주세요. 동의하시면 개인 정보 보호 정책도 승인한 것으로 간주합니다."
 
 msgid "Printable Version"
 msgstr "인쇄용 버전"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4912,6 +4939,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "심사 완료하기"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4952,6 +4983,13 @@ msgstr "이 부가 기능이 보안, 저작권 등 관리자가 검토해야 한
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "이 버전에 코멘트를 남겨주세요. 제작자는 코멘트를 볼 수 없습니다."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "승인 / 거부"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "신규 부가 기능 (최근 5일 이내)"
@@ -5090,6 +5128,10 @@ msgstr "심사 조정중"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "안드로이드용 부가 기능"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "심사 완료하기"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5301,6 +5343,11 @@ msgstr "부가 기능 정책"
 
 msgid "Editors' Guide"
 msgstr "편집자 지침"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "심사 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5591,6 +5638,11 @@ msgstr[0] "심사 조정 ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "내가 제작한 모든 부가 기능"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "심사 조정 ({0})"
 
 msgid "Flagged"
 msgstr "표시됨"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -2201,6 +2201,27 @@ msgstr "Lisäosan {addon} lähdekoodin lisenssi"
 msgid "Auto-Approval confirmed"
 msgstr "Viimeksi päivitetty"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} otettu käyttöön."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} poistettu käytöstä."
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} luotiin."
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3054,13 +3075,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Arvostelu:"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -5026,6 +5050,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5062,6 +5089,13 @@ msgstr ""
 "vaan vain ylläpidolle."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Hyväksy tai hylkää"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5198,6 +5232,11 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Android-lisäosat"
+
+# 100%
+#, fuzzy
+msgid "Content Review"
+msgstr "Ei tarkastettu"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5406,6 +5445,12 @@ msgstr "Lisäosakäytäntö"
 
 msgid "Editors' Guide"
 msgstr "Toimittajan opas"
+
+# 100%
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Ei tarkastettu"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5711,6 +5756,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "{0}in lisäosat"
 msgstr[1] "{0}in lisäosat"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr ""

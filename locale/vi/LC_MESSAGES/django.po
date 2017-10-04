@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-08-15 11:59+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -2103,6 +2103,30 @@ msgstr "{review} cho {addon} được viết."
 msgid "Auto-Approval confirmed"
 msgstr "Trạng thái Chấp thuận"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} bị từ chối."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} nâng cấp."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} giữ nguyên."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "đã được chấp thuận"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} bị từ chối."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "bị từ chối"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2931,13 +2955,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Ngày Duyệt"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Phiên bản In được"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4856,6 +4883,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4896,6 +4926,13 @@ msgstr ""
 "trị viên, không phải tác giả."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Trạng thái Chấp thuận"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5028,6 +5065,10 @@ msgstr "Xét duyệt Đã được Điều chỉnh"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Thêm Tiện ích"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Chưa duyệt"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5225,6 +5266,11 @@ msgstr "Chính sách Tiện ích"
 
 msgid "Editors' Guide"
 msgstr "Hướng dẫn của Biên tập viên"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Xét duyệt {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5519,6 +5565,11 @@ msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Tiện ích {0}"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
 
 msgid "Flagged"
 msgstr ""

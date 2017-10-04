@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -2148,6 +2148,24 @@ msgstr "رخصة الكود المصدري لـ {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "المحدّثة مؤخرًا"
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+msgid "{addon} {version} disabled."
+msgstr ""
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+msgid "{addon} {version} content rejected."
+msgstr ""
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "فَيَرفُكس"
 
@@ -2984,13 +3002,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "التعليق"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4916,6 +4937,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4953,6 +4977,13 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "إن كنتَ مهتمًا بخصوص أمن هذه الإضافة أو شؤون حقوق نسخها أو أي أمور أخرى ينبغي للمدير أن يطلع عليها، أدخِل تعليقاتك في المساحة أدناه، وستُرسل إلى المدراء لا إلى المؤلف."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "المحتويات"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5085,6 +5116,10 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "إضافات أندرويد"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "غير مراجعة"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5288,6 +5323,11 @@ msgstr "سياسة الإضافة"
 
 msgid "Editors' Guide"
 msgstr "مرشد المحرّرين"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "التعليق على {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5590,6 +5630,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "إضافات {0}"
 msgstr[1] "إضافات {0}"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "التعليق على {0}"
+msgstr[1] "التعليق على {0}"
 
 msgid "Flagged"
 msgstr ""
