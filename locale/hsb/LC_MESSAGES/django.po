@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 18:26+0000\n"
+"PO-Revision-Date: 2017-10-04 18:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4901,9 +4901,8 @@ msgstr "Žane pohódnoćenja"
 msgid "Weight"
 msgstr "Wažnosć"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Poslednje přepruwowanje"
+msgstr "Poslednje přepruwowanje wobsaha"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
@@ -4938,9 +4937,8 @@ msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jó
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Schwalić / Wotpokazać"
+msgstr "Wobsah schwalić"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
@@ -5072,9 +5070,8 @@ msgstr "Moderěrowane přepruwowanja"
 msgid "Auto Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Přepruwowanje wotpósłać"
+msgstr "Přepruwowanje wobsaha"
 
 msgid "Unlisted Queues"
 msgstr "Čakanske rynki za njepodate přidatki"
@@ -5282,9 +5279,8 @@ msgid "Editors' Guide"
 msgstr "Přiručka za redaktorow"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Přepruwowanje {0}"
+msgstr "Přepruwowanje wobsaha {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
