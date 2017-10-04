@@ -478,7 +478,8 @@ class ReviewerScore(ModelBase):
 
     @classmethod
     def award_points(cls, user, addon, status, version=None,
-                     post_review=False, content_review=False):
+                     post_review=False, content_review=False,
+                     extra_note=''):
         """Awards points to user based on an event and the queue.
 
         `event` is one of the `REVIEWED_` keys in constants.
@@ -506,7 +507,7 @@ class ReviewerScore(ModelBase):
 
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
-                               note_key=event)
+                               note_key=event, note=extra_note)
             cls.get_key(invalidate=True)
             user_log.info(
                 (u'Awarding %s points to user %s for "%s" for addon %s' % (

@@ -527,6 +527,15 @@ class TestReviewerScore(TestCase):
         assert ReviewerScore.objects.all()[0].score == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
+    def test_award_points_with_extra_note(self):
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status, extra_note=u'ÔMG!')
+        reviewer_score = ReviewerScore.objects.all()[0]
+        assert reviewer_score.note_key == amo.REVIEWED_ADDON_FULL
+        assert reviewer_score.score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert reviewer_score.note == u'ÔMG!'
+
     def test_award_points_bonus(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         bonus_days = 2
