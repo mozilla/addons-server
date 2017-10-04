@@ -10,4 +10,4 @@ for path in ['../',
              '../../apps']:
     site.addsitedir(os.path.abspath(os.path.join(wsgidir, path)))
 
-from update import application
+from update import application  # noqa
