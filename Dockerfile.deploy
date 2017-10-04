@@ -54,8 +54,7 @@ WORKDIR /data/olympia
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.txt                \
     && [ -f requirements/prod_without_hash.txt ]                                                   \
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_without_hash.txt\
-    && pip install --no-cache-dir --exists-action=w --no-deps -e . \
-    && pip install --no-deps --no-cache-dir --exists-action=w certifi==0.0.8
+    && pip install --no-cache-dir --exists-action=w --no-deps -e .
 
 RUN echo -e "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
