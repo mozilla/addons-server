@@ -2982,6 +2982,9 @@ msgstr "Versione stampabile"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ho letto e accettato il Contratto di licenza, il Regolamento e le linee guida."
 
+msgid "Accept"
+msgstr "Accetto"
+
 msgid "I Accept this Agreement"
 msgstr "Accetto questo accordo"
 
