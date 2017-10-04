@@ -207,7 +207,14 @@ def application(environ, start_response):
 
     status = '200 OK'
     with statsd.timer('services.theme_update'):
-        environ['wsgi.input'].read()
+        try:
+            request_body_size = int(environ.get('CONTENT_LENGTH', 0))
+        except (ValueError):
+            request_body_size = 0
+        else:
+            request_body_size = min(request_body_size, 2*1024*1024)
+
+        environ['wsgi.input'].read(request_body_size)
         try:
             locale, id_ = url_re.match(environ['PATH_INFO']).groups()
             locale = (locale or 'en-US').lstrip('/')

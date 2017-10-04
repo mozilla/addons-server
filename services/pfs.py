@@ -15,6 +15,10 @@ from utils import log_configure
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
+JAVA_PLUGIN_SUMO_URL = ('https://support.mozilla.org/'
+                        'kb/use-java-plugin-to-view-interactive-content')
+
+
 # Go configure the log.
 log_configure()
 
@@ -100,11 +104,9 @@ def get_output(data):
         # We don't want to link users directly to the Java plugin because
         # we want to warn them about ongoing security problems first. Link
         # to SUMO.
-
         plugin.update(
             name='Java Runtime Environment',
-            manualInstallationURL='https://support.mozilla.org/kb/use-java-'
-                                  'plugin-to-view-interactive-content')
+            manualInstallationURL=JAVA_PLUGIN_SUMO_URL)
 
     # End ridiculously huge and embarrassing if-else block.
     return output.substitute(plugin)
