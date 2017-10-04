@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 15:56+0000\n"
+"PO-Revision-Date: 2017-10-04 15:54+0000\n"
 "Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2129,16 +2129,14 @@ msgstr "{addon} {version} genaktiveret."
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} deaktiveret."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} godkendt."
+msgstr "Indholdet i {addon} {version} er godkendt."
 
 msgid "Content approved"
 msgstr "Indhold godkendt"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} afvist."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
 
 msgid "Content rejected"
 msgstr "Indhold afvist"
@@ -4059,7 +4057,7 @@ msgid "Submit Your First Add-on"
 msgstr "Indsend din første tilføjelse"
 
 msgid "Submit Your First Theme"
-msgstr "Tilføj dit første tema"
+msgstr "Indsend dit første tema"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
