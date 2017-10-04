@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 09:44+0000\n"
+"PO-Revision-Date: 2017-10-04 10:21+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2085,29 +2085,23 @@ msgstr "Auto-kelulusan disahkan untuk {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Auto-kelulusan disahkan"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ditolak."
+msgstr "{addon} {version} didayakan semula."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} dipertingkatkan."
+msgstr "{addon} {version} dinyahdayakan."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} diluluskan."
+msgstr "Kandungan {addon} {version} diluluskan."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "disahkan sebagai diluluskan"
+msgstr "Kandungan diluluskan"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} ditolak."
+msgstr "Kandungan {addon} {version} ditolak."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "ditolak"
+msgstr "Kandungan ditolak"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4787,9 +4781,8 @@ msgstr "Tiada Semakan"
 msgid "Weight"
 msgstr "Pertimbangkan"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Semakan Terakhir"
+msgstr "Semakan Kandungan Terakhir"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
@@ -4824,12 +4817,11 @@ msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terh
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Lulus / Tolak"
+msgstr "Kandungan Lulus"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Add-ons Baru (Kurang daripada 5 hari)"
@@ -4955,9 +4947,8 @@ msgstr "Ulasan Moderat"
 msgid "Auto Approved Add-ons"
 msgstr "Add-on Automatik Diluluskan"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Melakukan Semakan"
+msgstr "Semakan Kandungan"
 
 msgid "Unlisted Queues"
 msgstr "Barisan Tiada-disenaraikan"
@@ -5153,9 +5144,8 @@ msgid "Editors' Guide"
 msgstr "Panduan Editor"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Semakan {0}"
+msgstr "Semakan Kandungan {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5442,10 +5432,9 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Add-on Automatik Diluluskan ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Semakan Moderat ({0})"
+msgstr[0] "Semakan Kandungan ({0})"
 
 msgid "Flagged"
 msgstr "Ditandai"
