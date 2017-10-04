@@ -294,7 +294,7 @@ class TestManifestJSONExtractor(TestCase):
 
         utils.check_xpi_info(manifest)
 
-        assert self.parse({'theme': {}})['is_static_theme']
+        assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
     def test_is_e10s_compatible(self):
         data = self.parse({})

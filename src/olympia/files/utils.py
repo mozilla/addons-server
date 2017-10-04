@@ -375,6 +375,7 @@ class ManifestJSONExtractor(object):
     def type(self):
         return (
             amo.ADDON_LPAPP if self.get('langpack_id')
+            else amo.ADDON_STATICTHEME if self.get('theme')
             else amo.ADDON_EXTENSION
         )
 
@@ -479,10 +480,13 @@ class ManifestJSONExtractor(object):
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
-                'permissions': self.get('permissions', []),
-                'content_scripts': self.get('content_scripts', []),
-                'is_static_theme': 'theme' in self.data
             })
+            if self.type == amo.ADDON_EXTENSION:
+                # Only extensions have permissions and content scripts
+                data.update({
+                    'permissions': self.get('permissions', []),
+                    'content_scripts': self.get('content_scripts', []),
+                })
         return data
 
 
@@ -841,7 +845,7 @@ def check_xpi_info(xpi_info, addon=None):
             ugettext('Version numbers should only contain letters, numbers, '
                      'and these punctuation characters: +*.-_.'))
 
-    if is_webextension and xpi_info.get('is_static_theme', False):
+    if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))
