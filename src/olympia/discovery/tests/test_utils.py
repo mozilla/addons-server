@@ -14,19 +14,19 @@ from olympia.discovery.utils import (
 
 @pytest.mark.django_db
 @mock.patch('olympia.discovery.utils.statsd.incr')
-@mock.patch('olympia.discovery.utils.requests.post')
-def test_call_recommendation_server_fails_nice(requests_post, statsd_incr):
-    requests_post.side_effect = requests.exceptions.RequestException()
-    # Check the exception in requests.post is handled okay.
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
+    requests_get.side_effect = requests.exceptions.RequestException()
+    # Check the exception in requests.get is handled okay.
     assert call_recommendation_server('123456') == []
     assert statsd_incr.called_with('services.recommendations.fail')
 
 
 @pytest.mark.django_db
 @mock.patch('olympia.discovery.utils.statsd.incr')
-@mock.patch('olympia.discovery.utils.requests.post')
-def test_call_recommendation_server_succeeds(requests_post, statsd_incr):
-    requests_post.return_value = HttpResponse(
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
+    requests_get.return_value = HttpResponse(
         json.dumps({'results': ['@lolwut']}))
     assert call_recommendation_server('123456') == ['@lolwut']
     assert statsd_incr.called_with('services.recommendations.succeed')

@@ -1,4 +1,5 @@
 import json
+import urlparse
 
 from django.conf import settings
 
@@ -16,11 +17,13 @@ log = olympia.core.logger.getLogger('z.amo')
 
 
 def call_recommendation_server(telemetry_id):
-    endpoint = settings.RECOMMENDATION_ENGINE_URL + telemetry_id
+    endpoint = urlparse.urljoin(
+        settings.RECOMMENDATION_ENGINE_URL,
+        '%s/' % telemetry_id)
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
-            response = requests.post(
+            response = requests.get(
                 endpoint,
                 timeout=settings.RECOMMENDATION_ENGINE_TIMEOUT)
         if response.status_code != 200:
