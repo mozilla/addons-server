@@ -72,6 +72,7 @@ jobs:
             - .tox
   deploy:
     machine: true
+    working_directory: ~/addons-server
     steps:
       - attach_workspace:
           at: ~/addons-server
@@ -84,6 +85,7 @@ jobs:
             docker push ${DOCKERHUB_REPO}:latest
   release:
     machine: true
+    working_directory: ~/addons-server
     steps:
       - attach_workspace:
           at: ~/addons-server
