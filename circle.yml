@@ -79,8 +79,18 @@ jobs:
       - run:
           name: Dockerfile deploy
           command: |
+            printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n' \
+              "$CIRCLE_SHA1"              \
+              "$CIRCLE_TAG"               \
+              "$CIRCLE_PROJECT_USERNAME"  \
+              "$CIRCLE_PROJECT_REPONAME"  \
+              "$CIRCLE_BUILD_URL"         \
+              > version.json
             docker load -i ./docker-cache/built-image.tar
-            docker tag app:build ${DOCKERHUB_REPO}:latest
+            docker create --name add_version_json app:build
+            docker cp version.json add_version_json:/app/version.json
+            docker commit add_version_json app:deploy
+            docker tag app:deploy ${DOCKERHUB_REPO}:latest
             docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:latest
   release:
@@ -92,8 +102,18 @@ jobs:
       - run:
           Name: Release
           command: |
+            printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n' \
+              "$CIRCLE_SHA1"              \
+              "$CIRCLE_TAG"               \
+              "$CIRCLE_PROJECT_USERNAME"  \
+              "$CIRCLE_PROJECT_REPONAME"  \
+              "$CIRCLE_BUILD_URL"         \
+              > version.json
             docker load -i ./docker-cache/built-image.tar
-            docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
+            docker create --name add_version_json app:build
+            docker cp version.json add_version_json:/app/version.json
+            docker commit add_version_json app:deploy
+            docker tag app:deploy ${DOCKERHUB_REPO}:${CIRCLE_TAG}
             docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
 workflows:
