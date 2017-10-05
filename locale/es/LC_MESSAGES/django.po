@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 15:54+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 11:01+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2143,6 +2143,24 @@ msgstr "Autoaprobación confirmada para {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Autoaprobración confirmada"
 
+msgid "{addon} {version} re-enabled."
+msgstr "Se reactivó {addon} {version}."
+
+msgid "{addon} {version} disabled."
+msgstr "Se deshabilitó {addon} {version}."
+
+msgid "{addon} {version} content approved."
+msgstr "Se aprobó el contenido de {addon} {version}."
+
+msgid "Content approved"
+msgstr "Se aprobó el contenido"
+
+msgid "{addon} {version} content rejected."
+msgstr "Se rechazó el contenido de {addon} {version}."
+
+msgid "Content rejected"
+msgstr "Se rechazó el contenido"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2960,6 +2978,9 @@ msgstr "Acuerdo de distribución de complementos de Firefox"
 msgid "Review Policies and Rules"
 msgstr "Normas y políticas de revisión"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "He leído y acepto el Acuerdo y las Normas y políticas"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
@@ -2968,8 +2989,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Versión para imprimir"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "He leído y acepto el Acuerdo y las Normas y políticas"
+msgid "Accept"
+msgstr "Aceptar"
 
 msgid "I Accept this Agreement"
 msgstr "Acepto la licencia"
@@ -4914,6 +4935,9 @@ msgstr "No hay revisiones"
 msgid "Weight"
 msgstr "Tamaño"
 
+msgid "Last Content Review"
+msgstr "Última revisión de contenido"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
 
@@ -4946,6 +4970,12 @@ msgstr "Si crees que un administrador debería revisar este complemento, deja tu
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Haz un comentario de esta versión. El desarrollador no podrá verlo."
+
+msgid "Approve Content"
+msgstr "Aprobar contenido"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Se guardará tu aprobación del contenido de esta versión sin notificárselo al desarrollador."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nuevos complementos (de los últimos 5 días)"
@@ -5074,6 +5104,9 @@ msgstr "Revisiones moderadas"
 
 msgid "Auto Approved Add-ons"
 msgstr "Complementos autoaprobados"
+
+msgid "Content Review"
+msgstr "Revisión de contenido"
 
 msgid "Unlisted Queues"
 msgstr "Colas no listadas"
@@ -5275,6 +5308,10 @@ msgstr "Política sobre complementos"
 
 msgid "Editors' Guide"
 msgstr "Guía de editores"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Revisión de contenido {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5570,6 +5607,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Complemento autoaprobado ({0})"
 msgstr[1] "Complementos autoaprobados ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisión de contenido ({0})"
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr "Marcado"

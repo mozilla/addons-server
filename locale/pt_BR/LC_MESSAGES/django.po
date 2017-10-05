@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-29 02:03+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 11:24+0000\n"
 "Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2178,6 +2178,25 @@ msgstr "Aprovação automática confirmada para {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Aprovação automática confirmada"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} rejeitado."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} desabilitado."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} conteúdo aprovado."
+
+msgid "Content approved"
+msgstr "Conteúdo aprovado"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} conteúdo rejeitado."
+
+msgid "Content rejected"
+msgstr "Conteúdo rejeitado"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3003,6 +3022,9 @@ msgstr "Acordo de distribuição de complementos Firefox"
 msgid "Review Policies and Rules"
 msgstr "Políticas e Regras de Avaliação"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Eu li e aceito o Acordo e as Regras e Políticas"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de complementos Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua informação."
@@ -3010,8 +3032,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Versão para impressão"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Eu li e aceito o Acordo e as Regras e Políticas"
+msgid "Accept"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "Eu aceito esse acordo"
@@ -4972,6 +4994,9 @@ msgstr "Sem revisões"
 msgid "Weight"
 msgstr "Peso"
 
+msgid "Last Content Review"
+msgstr "Última avaliação de conteúdo"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
 
@@ -5004,6 +5029,12 @@ msgstr "Se tiver preocupações sobre este complemento que um revisor administra
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faça um comentário sobre esta versão. O desenvolvedor não poderá ver isto."
+
+msgid "Approve Content"
+msgstr "Aprovar conteúdo"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Extensões novas (menos de 5 dias)"
@@ -5138,6 +5169,9 @@ msgstr "Análises moderadas"
 
 msgid "Auto Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
+
+msgid "Content Review"
+msgstr "Avaliar conteúdo"
 
 msgid "Unlisted Queues"
 msgstr "Filas não listadas"
@@ -5349,6 +5383,11 @@ msgstr "Política do complemento"
 
 msgid "Editors' Guide"
 msgstr "Guia do editor"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Análise {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5646,6 +5685,13 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Extensão aprovada automaticamente ({0})"
 msgstr[1] "Extensões aprovadas automaticamente ({0})"
+
+# %1 is the review count
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Análise moderada ({0})"
+msgstr[1] "Análises moderadas ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"

@@ -196,8 +196,9 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
         rv = None
         for locale, string in dict_.items():
             loc = amo_to_language(locale)
-            if loc not in settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES:
+            if loc not in settings.AMO_LANGUAGES:
                 continue
+
             # The Translation is created and saved in here.
             trans = self.translation_from_string(instance, locale, string)
 

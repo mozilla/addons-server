@@ -203,14 +203,3 @@ class UserNotificationSerializer(serializers.Serializer):
             # Not .update because some of the instances are new.
             instance.save()
         return instance
-
-
-class LoginUserProfileSerializer(BaseUserSerializer):
-    permissions = serializers.SerializerMethodField()
-    picture_url = serializers.SerializerMethodField()
-
-    class Meta(BaseUserSerializer.Meta):
-        fields = BaseUserSerializer.Meta.fields + (
-            'email', 'picture_url', 'permissions',
-        )
-        read_only_fields = fields

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 09:37+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-02 08:21+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2145,6 +2145,28 @@ msgstr "Approbation automatique confirmée pour {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Approbation automatique confirmée"
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+msgid "{addon} {version} disabled."
+msgstr ""
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} approuvée."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "a été approuvé"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} rejeté."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "rejeté"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2966,6 +2988,9 @@ msgstr "Accord de distribution des modules complémentaires Firefox"
 msgid "Review Policies and Rules"
 msgstr "Règles et principes de révision"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique comment"
@@ -2974,8 +2999,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Version imprimable"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
+msgid "Accept"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "J’accepte cet accord"
@@ -3063,7 +3088,7 @@ msgid "Validation Results"
 msgstr "Résultats de la validation"
 
 msgid "Validated at:"
-msgstr "Validé à :"
+msgstr "Validé le :"
 
 msgid "Tested for compatibility against:"
 msgstr "Compatibilité testée avec :"
@@ -4870,6 +4895,10 @@ msgstr "Aucune revue"
 msgid "Weight"
 msgstr "Poids"
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Dernière revue"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
 
@@ -4902,6 +4931,13 @@ msgstr "Si vous pensez que ce module devrait être revu par un relecteur adminis
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le voir."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Approuver / Rejeter"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nouveaux modules (moins de 5 jours)"
@@ -5028,6 +5064,10 @@ msgstr "Revues modérées"
 
 msgid "Auto Approved Add-ons"
 msgstr "Modules complémentaires approuvés automatiquement"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Envoyer la revue"
 
 msgid "Unlisted Queues"
 msgstr "Files pour les modules non répertoriés"
@@ -5225,6 +5265,11 @@ msgstr "Politique du module"
 
 msgid "Editors' Guide"
 msgstr "Guide des éditeurs"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Revue {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5518,6 +5563,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Module complémentaire approuvé automatiquement ({0})"
 msgstr[1] "Modules complémentaires approuvés automatiquement ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revue modérée ({0})"
+msgstr[1] "Revues modérées ({0})"
 
 msgid "Flagged"
 msgstr "Noté"

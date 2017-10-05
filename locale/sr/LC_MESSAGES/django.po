@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2161,6 +2161,30 @@ msgstr "Коментар на {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Статус дозволе"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} је одбијен."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} се ескалирао."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} одобрен."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "је одобрено"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} је одбијен."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "одбијено"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3014,13 +3038,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Датум рецензије"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Верзија за штампање"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4966,6 +4993,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Извршити рецензију"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5008,6 +5039,13 @@ msgstr ""
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Коментаришите ову верзију. Аутор неће бити у могућности да га види."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Дозволи / одбиј"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Нови додатак (испод 5 дана)"
@@ -5142,6 +5180,10 @@ msgstr "Уређене рецензије"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Додаци за Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Извршити рецензију"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5346,6 +5388,11 @@ msgstr "Политика додатка"
 
 msgid "Editors' Guide"
 msgstr "Савети уредника"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Прегледај {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5643,6 +5690,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Сви моји додаци"
 msgstr[1] "Сви моји додаци"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Конторлисан преглед ({0})"
+msgstr[1] "Конторлисана прегледа ({0})"
 
 msgid "Flagged"
 msgstr "Означено"

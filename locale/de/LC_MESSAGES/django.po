@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 18:19+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 15:34+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2142,6 +2142,24 @@ msgstr "Automatische Freischaltung für {addon} {version} bestätigt."
 msgid "Auto-Approval confirmed"
 msgstr "Automatische Freischaltung bestätigt"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} wieder aktiviert."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} deaktiviert."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} Inhalt freigeschaltet."
+
+msgid "Content approved"
+msgstr "Inhalt freigeschaltet"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} Inhalt zurückgewiesen."
+
+msgid "Content rejected"
+msgstr "Inhalt zurückgewiesen"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2959,6 +2977,9 @@ msgstr "Firefox-Add-on-Verteilungsvereinbarung"
 msgid "Review Policies and Rules"
 msgstr "Richtlinien und Regeln zur Überprüfung"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ich habe diese Einverständniserklärung sowie die Regeln und Richtlinien gelesen und akzeptiere sie"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Bevor Sie beginnen, lesen und akzeptieren Sie bitte unsere Einverständniserklärung zur Verteilung von Firefox-Add-ons. Sie verweist auch auf unseren Datenschutzhinweis, der erklärt, wie wir mit "
@@ -2967,8 +2988,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Druckbare Version"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ich habe diese Einverständniserklärung sowie die Regeln und Richtlinien gelesen und akzeptiere sie"
+msgid "Accept"
+msgstr "Annehmen"
 
 msgid "I Accept this Agreement"
 msgstr "Ich akzeptiere diese Vereinbarung."
@@ -4853,6 +4874,9 @@ msgstr "Keine Bewertungen"
 msgid "Weight"
 msgstr "Gewicht"
 
+msgid "Last Content Review"
+msgstr "Letzte Inhaltsüberprüfung"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Dadurch wird diese Version freigeschaltet, signiert und veröffentlicht. Die Kommentare werden an den Entwickler geschickt."
 
@@ -4885,6 +4909,12 @@ msgstr "Wenn Sie Bedenken zu diesem Add-on haben, die sich ein Administrator ans
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Geben Sie einen Kommentar zu dieser Version ab. Der Entwickler kann ihn nicht sehen."
+
+msgid "Approve Content"
+msgstr "Inhalt annehmen"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Dadurch wird Ihre Zustimmung zum Inhalt dieser Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Neue Add-ons (unter 5 Tagen)"
@@ -5011,6 +5041,9 @@ msgstr "Moderierte Überprüfungen"
 
 msgid "Auto Approved Add-ons"
 msgstr "Automatisch freigeschaltete Add-ons"
+
+msgid "Content Review"
+msgstr "Inhaltsüberprüfung"
 
 msgid "Unlisted Queues"
 msgstr "Warteschlangen für nicht aufgeführte Add-ons"
@@ -5208,6 +5241,10 @@ msgstr "Rechtliche Hinweise zum Add-on"
 
 msgid "Editors' Guide"
 msgstr "Moderatorenhandbuch"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Inhaltsüberprüfung {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5500,6 +5537,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Add-on automatisch freigeschaltet ({0})"
 msgstr[1] "Add-ons automatisch freigeschaltet ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Inhaltsüberprüfung ({0})"
+msgstr[1] "Inhaltsüberprüfung ({0})"
 
 msgid "Flagged"
 msgstr "Markiert"

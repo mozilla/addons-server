@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 15:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 15:37+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2110,6 +2110,24 @@ msgstr "Automatisk godkännande bekräftad för {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Automatisk godkännande bekräftad"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} återaktiverad."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} inaktiverad."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} innehåll godkänt."
+
+msgid "Content approved"
+msgstr "Innehåll godkänt"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} innehåll avvisat."
+
+msgid "Content rejected"
+msgstr "Innehåll avvisat"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2923,14 +2941,17 @@ msgstr "Firefox distributionsavtal för tillägg"
 msgid "Review Policies and Rules"
 msgstr "Granskningspolicy och regler"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg. Den länkar också till vår sekretesspolicy som förklarar hur vi hanterar dina uppgifter."
 
 msgid "Printable Version"
 msgstr "Utskriftsvänlig version"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
+msgid "Accept"
+msgstr "Godkänn"
 
 msgid "I Accept this Agreement"
 msgstr "Jag accepterar detta avtal"
@@ -4850,6 +4871,9 @@ msgstr "Inga recensioner"
 msgid "Weight"
 msgstr "Vikt"
 
+msgid "Last Content Review"
+msgstr "Senaste innehållsgranskning"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Detta kommer godkänna, signera och publicera denna version. Kommentarerna kommer att skickas till utvecklaren."
 
@@ -4882,6 +4906,12 @@ msgstr "Om du har frågor om detta tillägg som en administrativ granskare bör 
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Kommentera den här versionen. Utvecklaren kommer inte att kunna se detta."
+
+msgid "Approve Content"
+msgstr "Godkänn innehåll"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Detta registrerar ditt godkännande av innehållet i den här versionen utan att meddela utvecklaren."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nya tillägg (Under 5 dagar)"
@@ -5006,6 +5036,9 @@ msgstr "Modererade granskningar"
 
 msgid "Auto Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
+
+msgid "Content Review"
+msgstr "Innehållsgranskning"
 
 msgid "Unlisted Queues"
 msgstr "Olistade köer"
@@ -5203,6 +5236,10 @@ msgstr "Policy för tillägg"
 
 msgid "Editors' Guide"
 msgstr "Guide för redigerare"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Innehållsgranskning {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5498,6 +5535,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Automatiskt godkänt tillägg ({0})"
 msgstr[1] "Automatiskt godkända tillägg ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Innehållsgranskning ({0})"
+msgstr[1] "Innehållsgranskningar ({0})"
 
 msgid "Flagged"
 msgstr "Flaggad"

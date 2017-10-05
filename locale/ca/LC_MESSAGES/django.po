@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-09-09 12:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -2186,6 +2186,30 @@ msgstr "Comentari sobre {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Estat de l'aprovació"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "S'ha rebutjat la versió {addon} {version}"
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "S'ha decidit escalar la revisió de la versió {addon} {version}"
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "S'ha aprovat el complement {addon} {version}"
+
+#, fuzzy
+msgid "Content approved"
+msgstr "va ser aprovada"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "S'ha rebutjat la versió {addon} {version}"
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "va ser rebutjada"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3009,13 +3033,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Comentari"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Versió per imprimir"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4961,6 +4988,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Valoració actualitzada del complement"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5001,6 +5032,13 @@ msgstr ""
 "s'enviaran als administradors i no a als autors."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Aprovat"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5136,6 +5174,10 @@ msgstr "Revisions moderades"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Més complements"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "No s'ha revisat"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5349,6 +5391,11 @@ msgstr "Normes del complement"
 
 msgid "Editors' Guide"
 msgstr "Guia dels editors"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Revisió {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5650,6 +5697,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Complements del {0} "
 msgstr[1] "Complements del {0} "
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisió moderada ({0})"
+msgstr[1] "Revisions moderades ({0})"
 
 msgid "Flagged"
 msgstr ""

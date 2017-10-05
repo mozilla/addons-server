@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2170,6 +2170,30 @@ msgstr "Comment on {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Approval Status"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} rejected."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} escalated."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} approved."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "was approved"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} rejected."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "rejected"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3027,14 +3051,17 @@ msgstr "Firefox Add-on Distribution Agreement"
 msgid "Review Policies and Rules"
 msgstr "Review Date"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "I have read and accept this Agreement and the Rules and Policies"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
 msgid "Printable Version"
 msgstr "Printable Version"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
+msgstr "Accept"
 
 msgid "I Accept this Agreement"
 msgstr "I Accept this Agreement"
@@ -5022,6 +5049,10 @@ msgstr "No Reviews"
 msgid "Weight"
 msgstr "Weight"
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Last Review"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
 
@@ -5064,6 +5095,13 @@ msgstr ""
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Make a comment on this version.  The author won't be able to see this."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Approve / Reject"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "This records your approbation of the content of this version, without notifying the developer."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "New Add-ons (Under 5 days)"
@@ -5198,6 +5236,10 @@ msgstr "Moderated Reviews"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Android Add-ons"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Commit Review"
 
 msgid "Unlisted Queues"
 msgstr "Unlisted Queues"
@@ -5400,6 +5442,11 @@ msgstr "Add-on Policy"
 
 msgid "Editors' Guide"
 msgstr "Editors' Guide"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Review {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5697,6 +5744,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "All Unlisted Add-ons ({0})"
 msgstr[1] "All Unlisted Add-ons ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Moderated Review ({0})"
+msgstr[1] "Moderated Reviews ({0})"
 
 msgid "Flagged"
 msgstr "Flagged"

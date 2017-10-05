@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 16:59+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 18:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2171,6 +2171,24 @@ msgstr "Awtomatiske schwalenje je za přidatk {addon} {version} wobkrućene."
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske schwalenje je wokrućene"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} znowa zmóžnjeny."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} je znjemóžnjeny."
+
+msgid "{addon} {version} content approved."
+msgstr "Wobsah {addon} {version} schwaleny."
+
+msgid "Content approved"
+msgstr "Wobsah schwaleny"
+
+msgid "{addon} {version} content rejected."
+msgstr "Wobsah {addon} {version} wotpokazany."
+
+msgid "Content rejected"
+msgstr "Wobsah wotpokazany"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2982,6 +3000,9 @@ msgstr "Dojednanje za rozdźělowanje přidatkow Firefox"
 msgid "Review Policies and Rules"
 msgstr "Přepruwowanske zasady a prawidła"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Sym tute dojednanje, prawidła a zasady přečitał a akceptował"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju přidatkow Firefox. Wobsahuje tež wotkaz k našeje pokazce priwatnosće, kotraž wujasnja, kak z wašimi informacijemi "
@@ -2990,8 +3011,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Ćišćomna wersija"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Sym tute dojednanje, prawidła a zasady přečitał a akceptował"
+msgid "Accept"
+msgstr "Akceptować"
 
 msgid "I Accept this Agreement"
 msgstr "Sym přezjedny z tutym dojednanjom"
@@ -4880,6 +4901,9 @@ msgstr "Žane pohódnoćenja"
 msgid "Weight"
 msgstr "Wažnosć"
 
+msgid "Last Content Review"
+msgstr "Poslednje přepruwowanje wobsaha"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
 
@@ -4912,6 +4936,12 @@ msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jó
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
+
+msgid "Approve Content"
+msgstr "Wobsah schwalić"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nowe přidatki (pod 5 dnjemi)"
@@ -5039,6 +5069,9 @@ msgstr "Moderěrowane přepruwowanja"
 
 msgid "Auto Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
+
+msgid "Content Review"
+msgstr "Přepruwowanje wobsaha"
 
 msgid "Unlisted Queues"
 msgstr "Čakanske rynki za njepodate přidatki"
@@ -5244,6 +5277,10 @@ msgstr "Prawidła přidatka"
 
 msgid "Editors' Guide"
 msgstr "Přiručka za redaktorow"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Přepruwowanje wobsaha {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5550,6 +5587,13 @@ msgstr[0] "Awtomatisce schwaleny přidatk ({0})"
 msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
 msgstr[2] "Awtomatisce schwalene přidatki ({0})"
 msgstr[3] "Awtomatisce schwalene přidatki ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Přepruwowanje wobsaha ({0})"
+msgstr[1] "Přepruwowani wobsaha ({0})"
+msgstr[2] "Přepruwowanja wobsaha ({0})"
+msgstr[3] "Přepruwowanjow wobsaha ({0})"
 
 msgid "Flagged"
 msgstr "Markěrowany"

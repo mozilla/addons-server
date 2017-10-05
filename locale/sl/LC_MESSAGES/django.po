@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-29 08:21+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 20:22+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2184,6 +2184,26 @@ msgstr "Samodejna odobritev potrjena za {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Samodejna odobritev potrjena"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} ponovno omogočen."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} onemogočen."
+
+# 77%
+# 100%
+msgid "{addon} {version} content approved."
+msgstr "Vsebina dodatka {addon} {version} odobrena."
+
+msgid "Content approved"
+msgstr "Vsebina odobrena"
+
+msgid "{addon} {version} content rejected."
+msgstr "Vsebina dodatka {addon} {version} zavrnjena."
+
+msgid "Content rejected"
+msgstr "Vsebina zavrnjena"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3001,14 +3021,17 @@ msgstr "Sporazum o razširjanju dodatkov za Firefox"
 msgid "Review Policies and Rules"
 msgstr "Smernice in pravila za preglede"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
 
 msgid "Printable Version"
 msgstr "Različica za tiskanje"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
+msgid "Accept"
+msgstr "Sprejmi"
 
 msgid "I Accept this Agreement"
 msgstr "S tem sporazumom se strinjam"
@@ -4921,6 +4944,9 @@ msgstr "Ni ocen"
 msgid "Weight"
 msgstr "Teža"
 
+msgid "Last Content Review"
+msgstr "Zadnji pregled vsebine"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
 
@@ -4953,6 +4979,12 @@ msgstr "Če imate pri tem dodatku pomisleke glede varnosti, ki bi jih skrbnik mo
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Oddajte pripombo za to različico. Avtor tega ne bo mogel videti."
+
+msgid "Approve Content"
+msgstr "Odobri vsebino"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja razvijalca."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novi dodatki (pod 5 dni)"
@@ -5084,6 +5116,9 @@ msgstr "Moderirani pregledi"
 
 msgid "Auto Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
+
+msgid "Content Review"
+msgstr "Pregled vsebine"
 
 msgid "Unlisted Queues"
 msgstr "Čakalne vrste za nenavedene"
@@ -5298,6 +5333,10 @@ msgstr "Smernice za dodatke"
 
 msgid "Editors' Guide"
 msgstr "Vodič za urednike"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Pregled vsebine {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5605,6 +5644,13 @@ msgstr[0] "Samodejno odobren dodatek ({0})"
 msgstr[1] "Samodejno odobrena dodatka ({0})"
 msgstr[2] "Samodejno odobreni dodatki ({0})"
 msgstr[3] "Samodejno odobreni dodatki ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Pregled vsebine ({0})"
+msgstr[1] "Pregleda vsebine ({0})"
+msgstr[2] "Pregledi vsebine ({0})"
+msgstr[3] "Pregledi vsebine ({0})"
 
 msgid "Flagged"
 msgstr "Označeno"

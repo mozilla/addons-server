@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 11:05+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 10:21+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2085,6 +2085,24 @@ msgstr "Auto-kelulusan disahkan untuk {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Auto-kelulusan disahkan"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} didayakan semula."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} dinyahdayakan."
+
+msgid "{addon} {version} content approved."
+msgstr "Kandungan {addon} {version} diluluskan."
+
+msgid "Content approved"
+msgstr "Kandungan diluluskan"
+
+msgid "{addon} {version} content rejected."
+msgstr "Kandungan {addon} {version} ditolak."
+
+msgid "Content rejected"
+msgstr "Kandungan ditolak"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2897,14 +2915,17 @@ msgstr "Perjanjian Distribusi Add-on Firefox"
 msgid "Review Policies and Rules"
 msgstr "Polisi Semakan dan Peraturan"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox kami. Ini juga ada hubungan dengan Notis Privasi kami yang menjelaskan cara kami mengendalikan maklumat anda."
 
 msgid "Printable Version"
 msgstr "Versi Boleh Cetak"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
+msgid "Accept"
+msgstr "Terima"
 
 msgid "I Accept this Agreement"
 msgstr "Saya Terima Perjanjian ini"
@@ -4760,6 +4781,9 @@ msgstr "Tiada Semakan"
 msgid "Weight"
 msgstr "Pertimbangkan"
 
+msgid "Last Content Review"
+msgstr "Semakan Kandungan Terakhir"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
 
@@ -4792,6 +4816,12 @@ msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terh
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
+
+msgid "Approve Content"
+msgstr "Kandungan Lulus"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Add-ons Baru (Kurang daripada 5 hari)"
@@ -4916,6 +4946,9 @@ msgstr "Ulasan Moderat"
 
 msgid "Auto Approved Add-ons"
 msgstr "Add-on Automatik Diluluskan"
+
+msgid "Content Review"
+msgstr "Semakan Kandungan"
 
 msgid "Unlisted Queues"
 msgstr "Barisan Tiada-disenaraikan"
@@ -5109,6 +5142,10 @@ msgstr "Polisi Add-on"
 
 msgid "Editors' Guide"
 msgstr "Panduan Editor"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Semakan Kandungan {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5394,6 +5431,10 @@ msgstr[0] "Semakan Moderat ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Add-on Automatik Diluluskan ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Semakan Kandungan ({0})"
 
 msgid "Flagged"
 msgstr "Ditandai"

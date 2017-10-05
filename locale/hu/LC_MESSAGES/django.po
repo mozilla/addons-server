@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 11:30+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 09:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2136,6 +2136,24 @@ msgstr "Az automatikus jóváhagyás megerősítve ennél: {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Automatikus jóváhagyás megerősítve"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} újra engedélyezve."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} letiltva."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} tartalma jóváhagyva."
+
+msgid "Content approved"
+msgstr "Tartalom jóváhagyva"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} tartalma elutasítva."
+
+msgid "Content rejected"
+msgstr "Tartalom elutasítva"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2952,6 +2970,9 @@ msgstr "Firefox kiegészítő terjesztési megállapodás"
 msgid "Review Policies and Rules"
 msgstr "Értékelési irányelvek és szabályok"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Kezdés előtt kérjük olvassa el és fogadja el a Firefox kiegészítő terjesztési megállapodásunkat. Ez hivatkozza az adatvédelmi nyilatkozatunkat is, amely elmagyarázza, hogy adatait hogyan kezeljük."
@@ -2959,8 +2980,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Nyomtatható verzió"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
+msgid "Accept"
+msgstr "Elfogadás"
 
 msgid "I Accept this Agreement"
 msgstr "Elfogadom a megállapodást"
@@ -4844,6 +4865,9 @@ msgstr "Nincsenek értékelések"
 msgid "Weight"
 msgstr "Súly"
 
+msgid "Last Content Review"
+msgstr "Legutóbbi tartalomértékelés"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
 
@@ -4876,6 +4900,12 @@ msgstr "Amennyiben aggályai vannak a kiegészítővel, amit jó lenne egy admin
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
+
+msgid "Approve Content"
+msgstr "Tartalom jóváhagyása"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Ez rögzíti, hogy jóváhagyta a verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Új kiegészítők (5 napnál frissebbek)"
@@ -5002,6 +5032,9 @@ msgstr "Moderált értékelések"
 
 msgid "Auto Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
+
+msgid "Content Review"
+msgstr "Tartalom értékelése"
 
 msgid "Unlisted Queues"
 msgstr "Titkos sorok"
@@ -5209,6 +5242,10 @@ msgstr "Irányelvek a kiegészítőkhöz"
 
 msgid "Editors' Guide"
 msgstr "Útmutató szerkesztőknek"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "{0} tartalmának értékelése"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5501,6 +5538,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Automatikusan jóváhagyott kiegészítő ({0})"
 msgstr[1] "Automatikusan jóváhagyott kiegészítők ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Tartalom értékelés ({0})"
+msgstr[1] "Tartalom értékelés ({0})"
 
 msgid "Flagged"
 msgstr "Megjelölve"

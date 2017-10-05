@@ -3300,6 +3300,9 @@ table#addons-list, table#contributors-list {
 #addons-list .comments.hascomment {
     display: block;
 }
+#addons-list .comments.hascomment textarea {
+    resize:vertical;
+}
 td.remove {
     width: 20px;
     text-align:center;

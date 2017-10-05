@@ -153,21 +153,62 @@ LANGUAGE_CODE = 'en-US'
 # Note: If you update this list, don't forget to also update the locale
 # permissions in the database.
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
-    'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
-    'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
-    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'ur',
-    'vi', 'zh-CN', 'zh-TW',
+    'af',  # Afrikaans
+    'ar',  # Arabic
+    'bg',  # Bulgarian
+    'bn-BD',  # Bengali (Bangladesh)
+    'ca',  # Catalan
+    'cs',  # Czech
+    'da',  # Danish
+    'de',  # German
+    'dsb',  # Lower Sorbian
+    'el',  # Greek
+    'en-GB',  # English (British)
+    'en-US',  # English (US)
+    'es',  # Spanish
+    'eu',  # Basque
+    'fa',  # Persian
+    'fi',  # Finnish
+    'fr',  # French
+    'ga-IE',  # Irish
+    'he',  # Hebrew
+    'hsb',  # Upper Sorbian
+    'hu',  # Hungarian
+    'id',  # Indonesian
+    'it',  # Italian
+    'ja',  # Japanese
+    'ka',  # Georgian
+    'kab',  # Kabyle
+    'ko',  # Korean
+    'mk',  # Macedonian
+    'mn',  # Mongolian
+    'nl',  # Dutch
+    'nn-NO',  # Norwegian (Nynorsk)
+    'pl',  # Polish
+    'pt-BR',  # Portuguese (Brazilian)
+    'pt-PT',  # Portuguese (Portugal)
+    'ro',  # Romanian
+    'ru',  # Russian
+    'sk',  # Slovak
+    'sl',  # Slovenian
+    'sq',  # Albanian
+    'sv-SE',  # Swedish
+    'uk',  # Ukrainian
+    'ur',  # Urdu
+    'vi',  # Vietnamese
+    'zh-CN',  # Chinese (Simplified)
+    'zh-TW',  # Chinese (Traditional)
 )
+
+# Bidirectional languages.
+# Locales in here *must* be in `AMO_LANGUAGES` too.
+LANGUAGES_BIDI = ('ar', 'fa', 'he', 'dbr', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
     'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
 
-# Not shown on the site, but .po files exist and these are available on the
-# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
-HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
 DEBUG_LANGUAGES = ('dbr', 'dbl')
 
@@ -198,7 +239,6 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 

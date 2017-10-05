@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 15:11+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 15:54+0000\n"
+"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "Har du brug for hjælp?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Udviklere af tilføjelser kan ikke slette deres konto. Du skal slette alle tilføjelser og temaer forbundet med denne konto, eller overføre den til en anden bruger."
 
 msgid "Review"
 msgstr "Anmeldelse"
@@ -723,7 +723,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Bemærk at denne tilføjelse bruger forældet teknologi, hvilket giver den adgang til alle browserens funktioner og data, uden at bede om din tilladelse."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -2123,6 +2123,24 @@ msgstr ""
 msgid "Auto-Approval confirmed"
 msgstr ""
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} genaktiveret."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} deaktiveret."
+
+msgid "{addon} {version} content approved."
+msgstr "Indholdet i {addon} {version} er godkendt."
+
+msgid "Content approved"
+msgstr "Indhold godkendt"
+
+msgid "{addon} {version} content rejected."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
+
+msgid "Content rejected"
+msgstr "Indhold afvist"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2936,13 +2954,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Anmeldelseshistorik"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4008,13 +4029,11 @@ msgstr "Håndter din tilføjelse"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Log ind for at redigere og opdatere din tilføjelse"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Udvalgte udvidelser"
+msgstr "Opdater din forældede udvidelse"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions er nu standard når det drejer sig om udvikling af tilføjelser til Firefox. Du vil skulle opdatere dine gamle tilføjelser så de vil være kompatible fremover."
+msgstr "Der findes en ny standard, når det drejer sig om udvikling af tilføjelser til Firefox. Du skal opdatere dine gamle tilføjelser, så de vil være kompatible fremover."
 
 msgid "Learn How"
 msgstr "Læs hvordan"
@@ -4023,11 +4042,10 @@ msgid "What's New"
 msgstr "Sidste nyt"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Klar til at indsende en tilføjelse? Læs vores trin-for-trin-vejledning til hvordan du gør."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Se alle"
+msgstr "Læs vejledning"
 
 msgid "View All Submissions"
 msgstr ""
@@ -4039,7 +4057,7 @@ msgid "Submit Your First Add-on"
 msgstr "Indsend din første tilføjelse"
 
 msgid "Submit Your First Theme"
-msgstr "Tilføj dit første tema"
+msgstr "Indsend dit første tema"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -4782,6 +4800,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4813,6 +4834,12 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+msgid "Approve Content"
+msgstr "Godkend indhold"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -4939,6 +4966,10 @@ msgstr ""
 
 msgid "Auto Approved Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Ikke godkendt"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5136,6 +5167,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Anmeld {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5434,6 +5470,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Anmeld {0}"
+msgstr[1] "Anmeld {0}"
 
 msgid "Flagged"
 msgstr ""

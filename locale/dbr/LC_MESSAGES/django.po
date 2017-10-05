@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2112,6 +2112,24 @@ msgstr ".{version} {addon} ɹoɟ pǝɯɹıɟuoɔ ʅɐʌoɹdd∀-oʇn∀"
 msgid "Auto-Approval confirmed"
 msgstr "pǝɯɹıɟuoɔ ʅɐʌoɹdd∀-oʇn∀"
 
+msgid "{addon} {version} re-enabled."
+msgstr ".pǝʅqɐuǝ-ǝɹ {version} {addon}"
+
+msgid "{addon} {version} disabled."
+msgstr ".pǝʅqɐsıp {version} {addon}"
+
+msgid "{addon} {version} content approved."
+msgstr ".pǝʌoɹddɐ ʇuǝʇuoɔ {version} {addon}"
+
+msgid "Content approved"
+msgstr "pǝʌoɹddɐ ʇuǝʇuoↃ"
+
+msgid "{addon} {version} content rejected."
+msgstr ".pǝʇɔǝɾǝɹ ʇuǝʇuoɔ {version} {addon}"
+
+msgid "Content rejected"
+msgstr "pǝʇɔǝɾǝɹ ʇuǝʇuoↃ"
+
 msgid "Firefox"
 msgstr "xoɟǝɹıℲ"
 
@@ -2925,14 +2943,17 @@ msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ"
 msgid "Review Policies and Rules"
 msgstr "sǝʅnᴚ puɐ sǝıɔıʅoԀ ʍǝıʌǝᴚ"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "sǝıɔıʅoԀ puɐ sǝʅnᴚ ǝɥʇ puɐ ʇuǝɯǝǝɹƃ∀ sıɥʇ ʇdǝɔɔɐ puɐ pɐǝɹ ǝʌɐɥ I"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ".uoıʇɐɯɹoɟuı ɹnoʎ ǝʅpuɐɥ ǝʍ ʍoɥ suıɐʅdxǝ ɥɔıɥʍ ǝɔıʇoN ʎɔɐʌıɹԀ ɹno oʇ sʞuıʅ osʅɐ ʇI .ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀ xoɟǝɹıℲ ɹno ʇdǝɔɔɐ puɐ pɐǝɹ ǝsɐǝʅd ´ƃuıʇɹɐʇs ǝɹoɟǝԐ"
 
 msgid "Printable Version"
 msgstr "uoısɹǝɅ ǝʅqɐʇuıɹԀ"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "sǝıɔıʅoԀ puɐ sǝʅnᴚ ǝɥʇ puɐ ʇuǝɯǝǝɹƃ∀ sıɥʇ ʇdǝɔɔɐ puɐ pɐǝɹ ǝʌɐɥ I"
+msgid "Accept"
+msgstr "ʇdǝɔɔ∀"
 
 msgid "I Accept this Agreement"
 msgstr "ʇuǝɯǝǝɹƃ∀ sıɥʇ ʇdǝɔɔ∀ I"
@@ -4794,6 +4815,9 @@ msgstr "sʍǝıʌǝᴚ oN"
 msgid "Weight"
 msgstr "ʇɥƃıǝＭ"
 
+msgid "Last Content Review"
+msgstr "ʍǝıʌǝᴚ ʇuǝʇuoↃ ʇsɐ⅂"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʇuǝs ǝq ʅʅıʍ sʇuǝɯɯoɔ ǝɥ⊥ .uoısɹǝʌ sıɥʇ ɥsıʅqnd puɐ ´uƃıs ´ǝʌoɹddɐ ʅʅıʍ sıɥ⊥"
 
@@ -4826,6 +4850,12 @@ msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ oʇ ʇuǝs ǝq ʇou ʅʅıʍ ʎǝɥ⊥ .ʍoʅǝq
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ".sıɥʇ ǝǝs oʇ ǝʅqɐ ǝq ʇ,uoʍ ɹǝdoʅǝʌǝp ǝɥ⊥ .uoısɹǝʌ sıɥʇ uo ʇuǝɯɯoɔ ɐ ǝʞɐW"
+
+msgid "Approve Content"
+msgstr "ʇuǝʇuoↃ ǝʌoɹdd∀"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ".ɹǝdoʅǝʌǝp ǝɥʇ ƃuıʎɟıʇou ʇnoɥʇıʍ ´uoısɹǝʌ sıɥʇ ɟo ʇuǝʇuoɔ ǝɥʇ ɟo uoıʇɐqoɹddɐ ɹnoʎ spɹoɔǝɹ sıɥ⊥"
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "(sʎɐp 5 ɹǝpu∩) suo-pp∀ ʍǝN"
@@ -4950,6 +4980,9 @@ msgstr "sʍǝıʌǝᴚ pǝʇɐɹǝpoW"
 
 msgid "Auto Approved Add-ons"
 msgstr "suo-pp∀ pǝʌoɹdd∀ oʇn∀"
+
+msgid "Content Review"
+msgstr "ʍǝıʌǝᴚ ʇuǝʇuoↃ"
 
 msgid "Unlisted Queues"
 msgstr "sǝnǝnÒ pǝʇsıʅu∩"
@@ -5147,6 +5180,10 @@ msgstr "ʎɔıʅoԀ uo-pp∀"
 
 msgid "Editors' Guide"
 msgstr "ǝpın⅁ ,sɹoʇıpƎ"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "{0} ʍǝıʌǝᴚ ʇuǝʇuoↃ"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5439,6 +5476,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "({0}) uo-pp∀ pǝʌoɹdd∀ oʇn∀"
 msgstr[1] "({0}) suo-pp∀ pǝʌoɹdd∀ oʇn∀"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "({0}) ʍǝıʌǝᴚ ʇuǝʇuoↃ"
+msgstr[1] "({0}) ʍǝıʌǝᴚ ʇuǝʇuoↃ"
 
 msgid "Flagged"
 msgstr "pǝƃƃɐʅℲ"

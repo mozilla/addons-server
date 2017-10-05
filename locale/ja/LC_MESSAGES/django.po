@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 21:06+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 16:35+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2075,6 +2075,24 @@ msgstr "{addon} {version} の自動承認が確認されました。"
 msgid "Auto-Approval confirmed"
 msgstr "自動承認が確認されました"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} が再有効化されました。"
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} が無効化されました。"
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} のコンテンツが承認されました。"
+
+msgid "Content approved"
+msgstr "コンテンツが承認されました"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} のコンテンツが却下されました。"
+
+msgid "Content rejected"
+msgstr "コンテンツが却下されました"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2885,14 +2903,17 @@ msgstr "Firefox アドオン配布規約"
 msgid "Review Policies and Rules"
 msgstr "審査ポリシーとルール"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "この規約とルール・ポリシーを読み同意しました"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "始める前に、Firefox アドオン配布規約を読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も規約からリンクされています。"
 
 msgid "Printable Version"
 msgstr "印刷版"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "この規約とルール・ポリシーを読み同意しました"
+msgid "Accept"
+msgstr ""
 
 msgid "I Accept this Agreement"
 msgstr "この規約に同意します"
@@ -4715,6 +4736,9 @@ msgstr "レビューなし"
 msgid "Weight"
 msgstr "重み"
 
+msgid "Last Content Review"
+msgstr "最後のコンテンツ審査"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
 
@@ -4747,6 +4771,12 @@ msgstr "このアドオンについて、管理者権限を持った審査担当
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "このバージョンに関するコメントを残してください。開発者がこれを見ることはありません。"
+
+msgid "Approve Content"
+msgstr "コンテンツを承認"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "新着アドオン (5 日以内)"
@@ -4870,6 +4900,9 @@ msgstr "管理者審査"
 
 msgid "Auto Approved Add-ons"
 msgstr "自動承認されたアドオン"
+
+msgid "Content Review"
+msgstr "コンテンツ審査"
 
 msgid "Unlisted Queues"
 msgstr "非掲載アドオンの審査待ち"
@@ -5063,6 +5096,10 @@ msgstr "アドオンポリシー"
 
 msgid "Editors' Guide"
 msgstr "編集者ガイド"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "コンテンツ審査 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5348,6 +5385,10 @@ msgstr[0] "管理者審査 ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "自動承認されたアドオン ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "コンテンツ審査 ({0})"
 
 msgid "Flagged"
 msgstr "フラグ付き"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-09-28 09:53+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -47,9 +47,8 @@ msgstr "נא להשתמש בתמונות הקטנות מ־%d מ״ב."
 msgid "You are already logged in."
 msgstr ""
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
+msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
@@ -483,11 +482,10 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> משתמשים"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} משתמשים יומיים"
-msgstr[1] "{0} משתמשים יומיים"
+msgstr[0] ""
+msgstr[1] ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -774,9 +772,8 @@ msgstr "רישיון קוד מקור עבור {addon}"
 msgid "Source Code License"
 msgstr "רישיון קוד מקור"
 
-#, fuzzy
 msgid "support section"
-msgstr "אתר תמיכה"
+msgstr ""
 
 msgid "support email"
 msgstr "כתובת דוא״ל לתמיכה"
@@ -2169,6 +2166,28 @@ msgstr "רישיון קוד מקור עבור {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "עודכן לאחרונה"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} מופעל."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} מנוטרל."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "התיאור של {addon} נערך."
+
+msgid "Content approved"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "התוספת {addon} נוצרה"
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2984,9 +3003,11 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "סקירה"
+msgstr ""
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -2994,7 +3015,7 @@ msgstr ""
 msgid "Printable Version"
 msgstr "גרסה הניתנת להדפסה"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3268,9 +3289,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "תרומות"
+msgstr ""
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3605,13 +3625,11 @@ msgstr "שליחת גרסה חדשה"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "עוד תוספות"
+msgstr ""
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "תוספות"
+msgstr ""
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "נא להשתמש רק באותיות, מספרים, קווים תחתונים ומפרידים בכתובת שלך."
@@ -3649,25 +3667,22 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "נטרול גרסה"
+msgstr ""
 
 msgid "Cancel Review and Disable Version"
 msgstr "ביטול סקירה ונטרול גרסה"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "שליחת גרסה חדשה"
+msgstr ""
 
 msgid "Submit Version for Review"
 msgstr "שליחת גרסה לסקירה"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Describe Version"
-msgstr "עוד תוספות"
+msgstr ""
 
 msgid "Release Notes:"
 msgstr "הערות שחרור:"
@@ -3690,9 +3705,8 @@ msgstr ""
 msgid "You’re done!"
 msgstr "סיימת!"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "גרסה חתומה"
+msgstr ""
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3706,9 +3720,8 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "תצוגת רשימה"
+msgstr ""
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -3850,16 +3863,14 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Listed Version:"
-msgstr "All Versions"
+msgstr ""
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "גרסה חדשה"
+msgstr ""
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
@@ -3923,13 +3934,11 @@ msgstr "העלאת גרסה חדשה"
 msgid "View All"
 msgstr "הצגת הכל"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "ביקורות משתמשים"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "ביקורות משתמשים"
+msgstr ""
 
 msgid "View Statistics Dashboard"
 msgstr ""
@@ -3997,9 +4006,8 @@ msgid "Resources"
 msgstr "משאבים"
 
 # 100%
-#, fuzzy
 msgid "Porting"
-msgstr "דירוג"
+msgstr ""
 
 msgid "Community"
 msgstr "קהילה"
@@ -4041,9 +4049,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "עוד תוספות"
+msgstr ""
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
@@ -4094,9 +4101,8 @@ msgstr "ניהול התוספת שלך"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "תוספות מומלצות"
+msgstr ""
 
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
 msgstr ""
@@ -4111,9 +4117,8 @@ msgstr "מה חדש"
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
 msgstr ""
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "צפייה בהכל"
+msgstr ""
 
 msgid "View All Submissions"
 msgstr ""
@@ -4128,9 +4133,8 @@ msgid "Submit Your First Theme"
 msgstr "שליחת ערכת הנושא הראשונה שלך"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "מפתח תוספות"
+msgstr ""
 
 msgid "Docs"
 msgstr ""
@@ -4159,9 +4163,8 @@ msgstr ""
 msgid "Learn How to Make an Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "תוספות מומלצות"
+msgstr ""
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
@@ -4567,9 +4570,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "גרסה {0}:"
+msgstr ""
 
 msgid "Currently on AMO"
 msgstr ""
@@ -4878,6 +4880,10 @@ msgstr "ללא סקירות"
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "הסקירה האחרונה"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4892,9 +4898,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "עוד תוספות"
+msgstr ""
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
@@ -4912,6 +4917,13 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "אושר"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5001,9 +5013,8 @@ msgstr "תשלום נדרש"
 msgid "EULA"
 msgstr "הסכם רישיון"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "עודכן לאחרונה"
+msgstr ""
 
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
@@ -5011,9 +5022,8 @@ msgstr ""
 msgid "Abuse Reports ({num})"
 msgstr "דיווחים על שימוש לרעה ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "ביקורות משתמשים"
+msgstr ""
 
 msgid "More about this add-on"
 msgstr "עוד על התוספת הזאת"
@@ -5025,9 +5035,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 # {0} is the application name.  Example:  Firefox
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "חזור לדף הבית של תוספות עבור {0}"
+msgstr ""
 
 msgid "Queues"
 msgstr ""
@@ -5047,6 +5056,9 @@ msgstr ""
 # 100%
 msgid "Auto Approved Add-ons"
 msgstr "תוספות שאושרו אוטומטית"
+
+msgid "Content Review"
+msgstr ""
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5250,6 +5262,10 @@ msgstr ""
 msgid "Editors' Guide"
 msgstr ""
 
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr ""
+
 #. "Review [add-on name]"
 msgid "Review {0}"
 msgstr "סקירת {0}"
@@ -5278,9 +5294,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "עוד תוספות"
+msgstr ""
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5550,6 +5565,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "תוספת שאושרה אוטומטית ({0})"
 msgstr[1] "תוספות שאושרו אוטומטית ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr ""

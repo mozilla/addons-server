@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 11:30+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 09:51+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2068,6 +2068,24 @@ msgstr "{addon} {version} 的自动批准已确认。"
 msgid "Auto-Approval confirmed"
 msgstr "自动批准已确认"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} 已重新启用。"
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} 已禁用。"
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} 内容已批准。"
+
+msgid "Content approved"
+msgstr "内容已批准"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} 内容被退回。"
+
+msgid "Content rejected"
+msgstr "内容被退回"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2105,7 +2123,7 @@ msgid "Pending approval"
 msgstr "等待审核"
 
 msgid "Flagged for further review"
-msgstr "标记以做进一步审核"
+msgstr "已标记进一步审核"
 
 msgid "Beta"
 msgstr "公开测试版"
@@ -2878,14 +2896,17 @@ msgstr "Firefox 附加组件分发协议"
 msgid "Review Policies and Rules"
 msgstr "审核政策及规则"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已阅读并同意本协议和规则与政策"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议。它还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
 msgid "Printable Version"
 msgstr "可打印版本"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "我已阅读并同意本协议和规则与政策"
+msgid "Accept"
+msgstr "接受"
 
 msgid "I Accept this Agreement"
 msgstr "我同意这个协议"
@@ -4660,7 +4681,7 @@ msgid "A problem with your Theme submission"
 msgstr "您所提交主题的问题"
 
 msgid "Theme submission flagged for review"
-msgstr "主题提交标记供审核"
+msgstr "主题提交已标记待审"
 
 msgid "A question about your Theme submission"
 msgstr "您提交的主题的一个问题"
@@ -4704,6 +4725,9 @@ msgstr "没有审核"
 msgid "Weight"
 msgstr "加权"
 
+msgid "Last Content Review"
+msgstr "上次内容审核"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
@@ -4736,6 +4760,12 @@ msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "对此版本进行注释。其开发者不会看到这些。"
+
+msgid "Approve Content"
+msgstr "核准内容"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "这将记录您接受此版本的内容，不会通知开发者。"
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
@@ -4859,6 +4889,9 @@ msgstr "提请仲裁的评价"
 
 msgid "Auto Approved Add-ons"
 msgstr "自动批准的附加组件"
+
+msgid "Content Review"
+msgstr "内容审核"
 
 msgid "Unlisted Queues"
 msgstr "未上架队列"
@@ -5036,7 +5069,7 @@ msgstr "由 %(user)s 于 %(date)s %(stars)s（%(locale)s）"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">由 %(user)s 于 %(date)s 标记</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s 于 %(date)s 标记</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "所有评价都已仲裁。做得不错！"
@@ -5052,6 +5085,10 @@ msgstr "附加组件政策"
 
 msgid "Editors' Guide"
 msgstr "审核员指南"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "内容审核 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5228,7 +5265,7 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} 个更新"
 
 msgid "Flagged Themes"
-msgstr "已标记的主题"
+msgstr "待审的主题"
 
 msgid "Theme Review Queue"
 msgstr "主题校验队列"
@@ -5338,8 +5375,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "自动批准的附加组件 ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "内容审核 ({0})"
+
 msgid "Flagged"
-msgstr "已标记"
+msgstr "待审"
 
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
@@ -7165,7 +7206,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "您不能为同一版本的附加组件留下两条评价。"
 
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "谢谢；该评论已被审核员标记为批准。"
+msgstr "谢谢，已将此评论标为批准。"
 
 msgid "Add a review for {0}"
 msgstr "为 {0} 添加评论"

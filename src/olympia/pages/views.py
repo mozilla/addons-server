@@ -29,9 +29,7 @@ def credits(request):
                       .order_by('display_name')
                       .distinct())
 
-    languages = sorted(list(
-        set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
-        set(['en-US'])))
+    languages = sorted(list(set(settings.AMO_LANGUAGES) - set(['en-US'])))
 
     localizers = []
     for lang in languages:

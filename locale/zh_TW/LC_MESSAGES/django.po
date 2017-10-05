@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 13:11+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-04 07:17+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2072,6 +2072,29 @@ msgstr "已確認自動批准 {addon} {version}。"
 msgid "Auto-Approval confirmed"
 msgstr "已確認自動批准"
 
+# 93%
+# 100%
+msgid "{addon} {version} re-enabled."
+msgstr "已重新啟用 {addon} {version}。"
+
+# 請盡量避免使用升級一詞，容易與軟體升級搞混
+msgid "{addon} {version} disabled."
+msgstr "已停用 {addon} {version}。"
+
+msgid "{addon} {version} content approved."
+msgstr "已審核通過 {addon} {version} 內容。"
+
+msgid "Content approved"
+msgstr "內容審核通過"
+
+# 93%
+# 100%
+msgid "{addon} {version} content rejected."
+msgstr "已退回 {addon} {version} 內容。"
+
+msgid "Content rejected"
+msgstr "已退回內容"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2888,14 +2911,17 @@ msgstr "Firefox 附加元件發行同意書"
 msgid "Review Policies and Rules"
 msgstr "審核政策與規則"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已閱讀並接受此同意書、規則及政策條款"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書。當中亦包含我們的隱私權公告，當中解釋我們會如何處理您的資訊。"
 
 msgid "Printable Version"
 msgstr "可列印版本"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "我已閱讀並接受此同意書、規則及政策條款"
+msgid "Accept"
+msgstr "接受"
 
 msgid "I Accept this Agreement"
 msgstr "我接受這份合約"
@@ -4726,6 +4752,9 @@ msgstr "無評論"
 msgid "Weight"
 msgstr "權重"
 
+msgid "Last Content Review"
+msgstr "上次內容審核"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
 
@@ -4758,6 +4787,12 @@ msgstr "如果您認為管理員應該要調查此附加元件，請在下方輸
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "為此版本加上留言，開發者不會看到。"
+
+msgid "Approve Content"
+msgstr "核准內容"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "將紀錄您對此版本內容的接受或拒絕，而不通知開發者。"
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "新的附加元件 (五天內)"
@@ -4886,6 +4921,9 @@ msgstr "有問題的評論"
 
 msgid "Auto Approved Add-ons"
 msgstr "自動批准的附加元件"
+
+msgid "Content Review"
+msgstr "內容審核"
 
 msgid "Unlisted Queues"
 msgstr "未上架佇列"
@@ -5080,6 +5118,10 @@ msgstr "附加元件政策"
 
 msgid "Editors' Guide"
 msgstr "編輯指南"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "內容審核 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5368,6 +5410,10 @@ msgstr[0] "有問題的評論 ({0})"
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "自動批准的附加元件（{0}）"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "內容審核 ({0})"
 
 msgid "Flagged"
 msgstr "已加上旗標"

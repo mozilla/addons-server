@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -2102,6 +2102,30 @@ msgstr "ความคิดเห็นบน {addon} {version}"
 msgid "Auto-Approval confirmed"
 msgstr ""
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+
+#, fuzzy
+msgid "Content approved"
+msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "{addon} {version} ถูกปฏิเสธ"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2938,13 +2962,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "บทวิจารณ์:"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4833,6 +4860,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4867,6 +4898,13 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "อนุมัติ / ปฏิเสธ"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -4997,6 +5035,10 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "ส่วนเสริมสำหรับระบบ Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "ยังไม่ถูกตรวจสอบ"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5193,6 +5235,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "ยังไม่ถูกตรวจสอบ"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5483,6 +5530,10 @@ msgstr[0] ""
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ส่วนเสริมสำหรับ {0}"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
 
 msgid "Flagged"
 msgstr ""

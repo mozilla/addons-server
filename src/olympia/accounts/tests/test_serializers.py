@@ -7,8 +7,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, days_ago, TestCase, user_factory)
 from olympia.accounts.serializers import (
-    BaseUserSerializer,
-    PublicUserProfileSerializer, LoginUserProfileSerializer,
+    BaseUserSerializer, PublicUserProfileSerializer,
     UserNotificationSerializer, UserProfileSerializer)
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
@@ -204,20 +203,3 @@ class TestUserNotificationSerializer(TestCase):
         assert data['name'] == user_notification.notification.short
         assert data['enabled'] == user_notification.enabled
         assert data['mandatory'] == user_notification.notification.mandatory
-
-
-class TestLoginUserProfileSerializer(TestCase, PermissionsTestMixin):
-    serializer = LoginUserProfileSerializer
-    user_kwargs = {
-        'username': 'amo', 'email': 'amo@amo.amo', 'display_name': u'Ms. Amó'}
-
-    def setUp(self):
-        self.user = user_factory(**self.user_kwargs)
-
-    def test_basic(self):
-        data = self.serializer(self.user).data
-        assert data['id'] == self.user.id
-        assert data['email'] == self.user_kwargs['email']
-        assert data['name'] == self.user_kwargs['display_name']
-        assert data['picture_url'] == absolutify(self.user.picture_url)
-        assert data['username'] == self.user_kwargs['username']

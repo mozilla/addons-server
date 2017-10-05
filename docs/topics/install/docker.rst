@@ -239,7 +239,7 @@ Hacking on the Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you want to test out changes to the Olympia Docker image locally, use the
-normal `Docker commands <https://docs.docker.com/reference/commandline/cli/>`_
+normal `Docker commands <https://docs.docker.com/engine/reference/commandline/docker/>`_
 such as this to build a new image::
 
     cd addons-server

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
 "PO-Revision-Date: 2016-11-23 15:23+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2108,6 +2108,26 @@ msgstr "Llicencia del códigu fonte pa {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "aprobóse"
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "Yá esiste la versión."
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+#, fuzzy
+msgid "Content approved"
+msgstr "aprobóse"
+
+msgid "{addon} {version} content rejected."
+msgstr ""
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2940,13 +2960,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Data de reseña"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -4836,6 +4859,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4869,6 +4895,12 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+msgid "Approve Content"
+msgstr ""
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
@@ -5000,6 +5032,10 @@ msgstr ""
 
 msgid "Auto Approved Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Nun se reseñó"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5200,6 +5236,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Les tos reseñes"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5491,6 +5532,11 @@ msgstr[1] ""
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 

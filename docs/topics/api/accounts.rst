@@ -56,7 +56,7 @@ If you have `Users:Edit` permission you will see these extra fields for all user
     :>json string last_login: The date of the last successful log in to the website.
     :>json string last_login_ip: The IP address of the last successfull log in to the website.
     :>json boolean is_verified: The user has been verified via FirefoxAccounts.
-    :>json array permissions: A list of the additional :ref:`permissions <login-response-permissions>` this user has.
+    :>json array permissions: A list of the additional :ref:`permissions <account-permissions>` this user has.
     :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
 
 
@@ -69,6 +69,28 @@ If you have `Users:Edit` permission you will see these extra fields for all user
 
     * ``Biography`` can contain HTML, or other unsanitized content, and it is the
       responsibiliy of the client to clean and escape it appropriately before display.
+
+
+.. _account-permissions:
+
+    Permissions can be any arbritary string in the format `app:action`. Either `app` or `action` can be
+    the wildcard `*`, so `*:*` means the user has permission to do all actions (i.e. full admin).
+
+    The following are some commonly tested permissions; see https://github.com/mozilla/addons-server/blob/master/src/olympia/constants/permissions.py
+    for the full list.
+
+    ==================  ==========================================================
+                 Value  Description
+    ==================  ==========================================================
+     `AdminTools:View`  Can access the website admin interface index page.  Inner
+                        pages may require other/additional permissions.
+         `Addons:Edit`  Allows viewing and editing of any add-ons details in
+                        developer tools.
+       `Addons:Review`  Can access the add-on reviewer tools to approve/reject
+                        add-on submissions.
+     `Personas:Review`  Can access the theme reviewer tools to approve/reject
+                        theme submissions.
+    ==================  ==========================================================
 
 
 -------

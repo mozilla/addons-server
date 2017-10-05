@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-14 13:59+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-09-30 15:04+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Le etichette devono essere lunghe almeno {0} carattere."
 msgstr[1] "Le etichette devono essere lunghe almeno {0} caratteri."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "L’URL deve fare riferimento ai domini [%s] o loro sottodomini."
 
@@ -1141,9 +1141,8 @@ msgstr ""
 "Anche se l’applicazione per cui è stato sviluppato il componente aggiuntivo non richiede un file manifesto, esso deve essere incluso ugualmente seguendo le istruzioni riportate in "
 "%(amo_manifests_mdn_link_open)squesta pagina%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Collaboratore"
+msgstr "Collaboratori"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -2154,6 +2153,30 @@ msgstr "L’approvazione automatica per {version} è stata confermata."
 msgid "Auto-Approval confirmed"
 msgstr "Approvazione automatica confermata"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} respinto."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} inoltrato."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} approvato."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "Confermato come approvato"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} respinto."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "respinto"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2978,6 +3001,9 @@ msgstr "Contratto di distribuzione per i componenti aggiuntivi di Firefox"
 msgid "Review Policies and Rules"
 msgstr "Norme per le revisioni"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ho letto e accettato il Contratto di licenza, il Regolamento e le linee guida."
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Prima di procedere, leggi e accetta il Contratto di distribuzione per i componenti aggiuntivi di Firefox. Potrai trovare anche un link alla nostra Informativa sulla privacy, in cui sono illustrati "
@@ -2986,8 +3012,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Versione stampabile"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ho letto e accettato il Contratto di licenza, il Regolamento e le linee guida."
+msgid "Accept"
+msgstr "Accetto"
 
 msgid "I Accept this Agreement"
 msgstr "Accetto questo accordo"
@@ -4170,7 +4196,7 @@ msgstr "<a href=\"%(login)s\">Accedi</a> o <a href=\"%(register)s\">Registrati</
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
@@ -4905,6 +4931,10 @@ msgstr "Nessuna revisione"
 msgid "Weight"
 msgstr "Peso"
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Ultima revisione"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
 
@@ -4941,6 +4971,13 @@ msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Approva / rifiuta"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nuovi componenti aggiuntivi (meno di 5 giorni)"
@@ -5067,6 +5104,10 @@ msgstr "Revisioni moderate"
 
 msgid "Auto Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Trasmetti revisione"
 
 msgid "Unlisted Queues"
 msgstr "Code componenti esterni"
@@ -5264,6 +5305,11 @@ msgstr "Policy componente aggiuntivo"
 
 msgid "Editors' Guide"
 msgstr "Guida per revisori"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Revisione {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5558,6 +5604,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Componente aggiuntivo approvato automaticamente ({0})"
 msgstr[1] "Componenti aggiuntivi approvati automaticamente ({0})"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisione moderata ({0})"
+msgstr[1] "Revisioni moderate ({0})"
 
 msgid "Flagged"
 msgstr "Segnalato"
@@ -8113,25 +8165,23 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "Scopri i <b>componenti aggiuntivi</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Scarica i file"
+msgstr "Scarica Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Componenti aggiuntivi per Android"
+msgstr "Browser Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Browser iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Browser Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Browser per computer"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Altre lingue"

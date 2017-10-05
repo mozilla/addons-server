@@ -3051,9 +3051,16 @@ class TestAddonApprovalsCounter(TestCase):
         AddonApprovalsCounter.increment_for_addon(self.addon)
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
+        self.assertCloseToNow(approval_counter.last_human_review)
+        self.assertCloseToNow(approval_counter.last_content_review)
+        approval_counter.update(
+            last_human_review=self.days_ago(100),
+            last_content_review=self.days_ago(100))
         AddonApprovalsCounter.increment_for_addon(self.addon)
         approval_counter.reload()
         assert approval_counter.counter == 2
+        self.assertCloseToNow(approval_counter.last_human_review)
+        self.assertCloseToNow(approval_counter.last_content_review)
 
     def test_increment_non_existing(self):
         approval_counter = AddonApprovalsCounter.objects.create(
@@ -3061,13 +3068,22 @@ class TestAddonApprovalsCounter(TestCase):
         AddonApprovalsCounter.increment_for_addon(self.addon)
         approval_counter.reload()
         assert approval_counter.counter == 1
+        self.assertCloseToNow(approval_counter.last_human_review)
+        self.assertCloseToNow(approval_counter.last_content_review)
 
     def test_reset_existing(self):
         approval_counter = AddonApprovalsCounter.objects.create(
-            addon=self.addon, counter=42)
+            addon=self.addon, counter=42,
+            last_content_review=self.days_ago(60),
+            last_human_review=self.days_ago(30))
         AddonApprovalsCounter.reset_for_addon(self.addon)
         approval_counter.reload()
         assert approval_counter.counter == 0
+        # Dates were not touched.
+        self.assertCloseToNow(
+            approval_counter.last_human_review, now=self.days_ago(30))
+        self.assertCloseToNow(
+            approval_counter.last_content_review, now=self.days_ago(60))
 
     def test_reset_non_existing(self):
         assert not AddonApprovalsCounter.objects.filter(
@@ -3075,3 +3091,26 @@ class TestAddonApprovalsCounter(TestCase):
         AddonApprovalsCounter.reset_for_addon(self.addon)
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 0
+
+    def test_approve_content_non_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=self.addon).exists()
+        AddonApprovalsCounter.approve_content_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+        self.assertCloseToNow(approval_counter.last_content_review)
+
+    def test_approve_content_existing(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon, counter=42,
+            last_content_review=self.days_ago(367),
+            last_human_review=self.days_ago(10))
+        AddonApprovalsCounter.approve_content_for_addon(self.addon)
+        approval_counter.reload()
+        # This was updated to now.
+        self.assertCloseToNow(approval_counter.last_content_review)
+        # Those fields were not touched.
+        assert approval_counter.counter == 42
+        self.assertCloseToNow(
+            approval_counter.last_human_review, now=self.days_ago(10))

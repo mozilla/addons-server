@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-20 00:23+0000\n"
+"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"PO-Revision-Date: 2017-10-03 00:00+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -182,7 +182,7 @@ msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"
 
 msgid "Flagged for review"
-msgstr "განსახილველად მონიშნული"
+msgstr "ჩანიშნულია განსახილველად"
 
 msgid "Your input is required"
 msgstr "საჭიროა მონაცემების შეყვანა"
@@ -675,7 +675,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "მხოლოდ Firefox-ზე — ჩამოტვირთეთ Firefox!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ბოდიში, საძიებო მოდულის დასაინტსტალირებლად გესაჭირეობათ Mozilla-ზე დაფუძნებული ბრაუზერი (მაგალითად Firefox)."
+msgstr "ვწუხვართ, საძიებო მოდულის ჩასადგემლად გესაჭირეობათ Mozilla-ზე დაფუძნებული ბრაუზერი (მაგალითად, Firefox)."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "ემატება რჩეულებში &hellip;"
@@ -705,13 +705,13 @@ msgid "Remove"
 msgstr "ამოღება"
 
 msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის წვლილის შემტანებიდან ამოღება"
+msgstr "ამ მომხმარებლის მოხალისეებიდან ამოღება"
 
 msgid "An email address is required."
 msgstr "ელფოსტის მისამართი საჭიროა."
 
 msgid "You cannot add yourself as a contributor."
-msgstr "საკუთარი თავის წვლილის შემტანად დამატება არ შეგიძლიათ."
+msgstr "საკუთარი თავის მოხალისედ დამატება არ შეგიძლიათ."
 
 msgid "You have already added that user."
 msgstr "ეს მომხმარებელი უკვე დაამატეთ."
@@ -726,7 +726,7 @@ msgid "Stop following"
 msgstr "გამოწერის გაუქმება"
 
 msgid "Your browser does not support the video tag"
-msgstr "თქვენი ბრაუზერს არ აქვს ვიდეო ნაჭდევების მხარდაჭერა"
+msgstr "თქვენს ბრაუზერს არ აქვს ვიდეო ჭდეების მხარდაჭერა"
 
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
@@ -811,7 +811,7 @@ msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"
 
 msgid "Flagged"
-msgstr "დანიშნული"
+msgstr "ჩანიშნულია"
 
 msgid "Duplicate"
 msgstr "დუბლირება"
