@@ -593,7 +593,7 @@ class LanguageToolsSerializer(AddonSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'current_version', 'default_locale',
+        fields = ('id', 'current_version', 'default_locale', 'guid',
                   'locale_disambiguation', 'name', 'slug', 'target_locale',
                   'type', 'url', )
 
