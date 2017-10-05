@@ -6,7 +6,6 @@ python:
 
 env:
   global:
-    - DISPLAY=:99.0
     - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
   matrix:
   - TOXENV=flake8
@@ -19,7 +18,6 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
-  - TOXENV=ui-tests
 
 cache:
   pip: true
@@ -40,7 +38,6 @@ addons:
       - oracle-java8-set-default
       - elasticsearch
       - gettext
-  firefox: latest
 
 before_install:
   - mysql -e 'create database olympia;'
@@ -57,16 +54,6 @@ before_script:
   - node --version
   - java -version
   - curl -v http://localhost:9200/
-  - |
-      if [[ $TOXENV == "ui-tests" ]]; then
-        wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.16.1/geckodriver-v0.16.1-linux64.tar.gz
-        mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver
-        export PATH=$HOME/geckodriver:$PATH
-        firefox --version
-        geckodriver --version
-        sh -e /etc/init.d/xvfb start
-        sleep 10
-      fi
 
 script:
   - |
