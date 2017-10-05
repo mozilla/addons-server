@@ -14,7 +14,12 @@ jobs:
           "$CIRCLE_PROJECT_REPONAME"
           "$CIRCLE_BUILD_URL"
           > version.json
-      - run: docker build -t app:build -f Dockerfile.deploy .
+      - run:
+          name: Build docker image and save to cache
+          command: |
+            docker build -t app:build -f Dockerfile.deploy .
+            mkdir -p docker-cache
+            docker save -o ./docker-cache/built-image.tar app:build
       - persist_to_workspace:
           root: .
           paths: .
@@ -67,23 +72,27 @@ jobs:
             - .tox
   deploy:
     machine: true
+    working_directory: ~/addons-server
     steps:
       - attach_workspace:
           at: ~/addons-server
       - run:
           name: Dockerfile deploy
           command: |
+            docker load -i ./docker-cache/built-image.tar
             docker tag app:build ${DOCKERHUB_REPO}:latest
             docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:latest
   release:
     machine: true
+    working_directory: ~/addons-server
     steps:
       - attach_workspace:
           at: ~/addons-server
       - run:
           Name: Release
           command: |
+            docker load -i ./docker-cache/built-image.tar
             docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
             docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
