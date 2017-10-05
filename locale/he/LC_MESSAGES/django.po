@@ -5057,9 +5057,8 @@ msgstr ""
 msgid "Auto Approved Add-ons"
 msgstr "תוספות שאושרו אוטומטית"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "לא סוקר"
+msgstr ""
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5264,9 +5263,8 @@ msgid "Editors' Guide"
 msgstr ""
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "סקירת {0}"
+msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5568,11 +5566,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "תוספת שאושרה אוטומטית ({0})"
 msgstr[1] "תוספות שאושרו אוטומטית ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "סקירת {0}"
-msgstr[1] "סקירת {0}"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr ""
