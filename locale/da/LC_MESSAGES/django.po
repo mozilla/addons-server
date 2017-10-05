@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-05 11:30+0000\n"
+"PO-Revision-Date: 2017-10-05 11:31+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1584,7 +1584,7 @@ msgstr "Her er nogle få af vores favoritter så du kan komme i gang med at tilp
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr "Søgning relateret til %s"
+msgstr "Søgeværktøjer relateret til %s"
 
 msgid "Search tools and search-related extensions"
 msgstr "Søgeværktøjer og søgerelaterede udvidelser"
