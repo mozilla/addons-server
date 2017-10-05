@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-02 08:21+0000\n"
+"PO-Revision-Date: 2017-10-05 09:57+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4932,9 +4932,8 @@ msgstr "Si vous pensez que ce module devrait être revu par un relecteur adminis
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le voir."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Approuver / Rejeter"
+msgstr "Approuver le contenu"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
