@@ -15,11 +15,11 @@ jobs:
           "$CIRCLE_BUILD_URL"
           > version.json
       - run:
-        name: Build docker image and save to cache
-        command: |
-          docker build -t app:build -f Dockerfile.deploy .
-          mkdir -p docker-cache
-          docker save -o ./docker-cache/built-image.tar app:build
+          name: Build docker image and save to cache
+          command: |
+            docker build -t app:build -f Dockerfile.deploy .
+            mkdir -p docker-cache
+            docker save -o ./docker-cache/built-image.tar app:build
       - persist_to_workspace:
           root: .
           paths: .
