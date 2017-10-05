@@ -831,6 +831,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.addon.pk
         assert result['default_locale'] == self.addon.default_locale
+        assert result['guid'] == self.addon.guid
         assert result['locale_disambiguation'] == (
             self.addon.locale_disambiguation)
         assert result['name'] == {'en-US': self.addon.name}
