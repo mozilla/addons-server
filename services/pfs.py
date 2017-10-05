@@ -15,8 +15,9 @@ from utils import log_configure
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
-JAVA_PLUGIN_SUMO_URL = ('https://support.mozilla.org/'
-                        'kb/use-java-plugin-to-view-interactive-content')
+JAVA_PLUGIN_SUMO_URL = (
+    'https://support.mozilla.org/'
+    'kb/use-java-plugin-to-view-interactive-content')
 
 
 # Go configure the log.
