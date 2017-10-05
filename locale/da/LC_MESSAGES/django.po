@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 15:54+0000\n"
-"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
+"PO-Revision-Date: 2017-10-05 11:30+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -1026,7 +1026,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Ordbøger & sprogpakker"
 
 msgid "Search Tools"
-msgstr "Søgning"
+msgstr "Søgeværktøjer"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1587,10 +1587,10 @@ msgid "Search tools relating to %s"
 msgstr "Søgning relateret til %s"
 
 msgid "Search tools and search-related extensions"
-msgstr "Søgning og søgerelaterede udvidelser"
+msgstr "Søgeværktøjer og søgerelaterede udvidelser"
 
 msgid "Search tools"
-msgstr "Søgning"
+msgstr "Søgeværktøjer"
 
 msgid "Most Users"
 msgstr "Flest brugere"
@@ -1666,7 +1666,7 @@ msgstr "Liste over sprogpakker og ordbøger."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0} :: Søgninger"
+msgstr "{0} :: Søgeværktøjer"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
