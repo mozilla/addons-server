@@ -103,7 +103,7 @@
                        "exposure. It is only relevant for listed add-ons.")) }}
             </th>
             <td id="addon-categories-edit"
-                data-max-categories="{{ amo.MAX_CATEGORIES[addon.type] }}">
+                data-max-categories="{{ amo.MAX_CATEGORIES }}">
               {% if editable %}
                 {{ cat_form.non_form_errors() }}
                 {{ cat_form.management_form }}
@@ -123,7 +123,7 @@
                       {% endtrans %}
                     </p>
                   {% else %}
-                    {{ select_cats(amo.MAX_CATEGORIES[addon.type], form) }}
+                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
                   {% endif %}
                 {% endfor %}
               {% else %}

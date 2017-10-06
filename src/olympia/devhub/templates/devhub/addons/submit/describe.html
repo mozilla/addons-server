@@ -64,11 +64,11 @@
     </div>
     {% endif %}
     <div id="addon-categories-edit" class="addon-submission-field"
-         data-max-categories="{{ amo.MAX_CATEGORIES[addon.type] }}">
+         data-max-categories="{{ amo.MAX_CATEGORIES }}">
       {{ cat_form.non_form_errors() }}
       {{ cat_form.management_form }}
       {% for form in cat_form.initial_forms %}
-        {{ select_cats(amo.MAX_CATEGORIES[addon.type], form) }}
+        {{ select_cats(amo.MAX_CATEGORIES, form) }}
       {% endfor %}
     </div>
     <div class="addon-submission-field">

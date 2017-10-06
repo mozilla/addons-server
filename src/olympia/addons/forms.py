@@ -222,7 +222,7 @@ class CategoryForm(forms.Form):
     def clean_categories(self):
         categories = self.cleaned_data['categories']
         total = categories.count()
-        max_cat = amo.MAX_CATEGORIES[categories[0].type if total else None]
+        max_cat = amo.MAX_CATEGORIES
 
         if getattr(self, 'disabled', False) and total:
             raise forms.ValidationError(ugettext(
