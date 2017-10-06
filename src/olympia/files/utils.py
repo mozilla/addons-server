@@ -392,6 +392,8 @@ class ManifestJSONExtractor(object):
         apps = (
             (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
             (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        ) if self.type != amo.ADDON_STATICTHEME else (
+            (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
         )
 
         doesnt_support_no_id = (
@@ -419,7 +421,8 @@ class ManifestJSONExtractor(object):
         couldnt_find_version = False
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
-                strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+                strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                                         default_min_version)
             else:
                 strict_min_version = (
                     self.strict_min_version or default_min_version)

@@ -61,13 +61,13 @@
   {% endif %}
 
     <div class="platform">
-      <div class="supported-platforms">
+      <div class="supported-platforms{% if not field.errors %} edit_initially_hidden{% endif %}">
         <label>{{ _('Which platforms is this file compatible with?') }}</label>
-        {{ new_addon_form.errors.supported_platforms }}
+        {{ new_addon_form.supported_platforms.errors }}
         {{ new_addon_form.supported_platforms }}
       </div>
-
     </div>
+
     {% if submit_page == 'version' and addon.status == amo.STATUS_PUBLIC %}
       <div class="beta-status hide">
         <label>{{ new_addon_form.beta }} {{ _('Only publish this version to my beta channel.') }}

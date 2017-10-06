@@ -525,6 +525,9 @@ DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 # The default version of Firefox that supports WebExtensions without an id
 DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
 
+# The version of Firefox that first supported static themes.  Not Android yet.
+DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
+
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1
 E10S_COMPATIBLE_WEBEXTENSION = 2

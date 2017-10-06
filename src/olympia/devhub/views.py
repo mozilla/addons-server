@@ -830,6 +830,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 
             # Does the version number look like it's beta?
             result['beta'] = is_beta(pkg.get('version', ''))
+            result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
     return result
