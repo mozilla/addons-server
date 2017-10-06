@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -365,6 +366,41 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.source
         assert Addon.objects.get(pk=addon.pk).admin_review
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_submit_listed(self):
+        assert Addon.objects.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(
+            # Throw in platforms for the lols - they will be ignored
+            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
+        addon = Addon.objects.get()
+        self.assert3xx(
+            response, reverse('devhub.submit.details', args=[addon.slug]))
+        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_submit_unlisted(self):
+        assert Addon.unfiltered.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(
+            # Throw in platforms for the lols - they will be ignored
+            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX],
+            listed=False)
+        addon = Addon.unfiltered.get()
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.assert3xx(
+            response, reverse('devhub.submit.finish', args=[addon.slug]))
+        all_ = sorted([f.filename for f in latest_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
 
 
 class TestAddonSubmitDetails(TestSubmitBase):
@@ -1275,6 +1311,15 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.addon.reload()
         assert self.addon.has_complete_metadata()
         assert self.addon.status == amo.STATUS_PUBLIC
+
+    def test_submit_static_theme_should_redirect(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        assert all(self.get_addon().get_required_metadata())
+        response = self.client.get(self.url)
+        # No extra details for subsequent theme uploads so just redirect.
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
 
 
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):

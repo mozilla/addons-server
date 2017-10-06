@@ -37,6 +37,7 @@
              data-maxlength="{{ form.summary.field.max_length }}"></div>
       </div>
     </div>
+    {% if addon.type != amo.ADDON_STATICTHEME %}
     <div class="addon-submission-field">
       <label for="{{ form.is_experimental.auto_id }}">
       {{ form.is_experimental }}
@@ -61,6 +62,7 @@
                         "in order to work.")
                   }}">?</span>
     </div>
+    {% endif %}
     <div id="addon-categories-edit" class="addon-submission-field"
          data-max-categories="{{ amo.MAX_CATEGORIES[addon.type] }}">
       {{ cat_form.non_form_errors() }}
@@ -107,8 +109,9 @@
           </div>
       </div>
     {% endif %}
-    {% set values = form.data if form.is_bound else form.initial %}
-    <div class="optional-terms">
+    {% if addon.type != amo.ADDON_STATICTHEME %}
+      {% set values = form.data if form.is_bound else form.initial %}
+      <div class="optional-terms">
         <div class="addon-submission-field">
           {{ form.has_priv }}
           {{ form.has_priv.label_tag() }}
@@ -123,15 +126,16 @@
             {{ form.privacy_policy }}
           </div>
         </div>
-    </div>
-    <div class="addon-submission-field">
-      <label for="{{ reviewer_form.approvalnotes.auto_id }}">
-      {{ _('Notes to Reviewer:') }}
-      </label>
-      <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
-      {{ reviewer_form.approvalnotes }}
-      <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
-    </div>
+      </div>
+      <div class="addon-submission-field">
+        <label for="{{ reviewer_form.approvalnotes.auto_id }}">
+          {{ _('Notes to Reviewer:') }}
+        </label>
+        <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
+          {{ reviewer_form.approvalnotes }}
+        <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
+      </div>
+    {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button class="delete-button" type="sumbit"
               formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
