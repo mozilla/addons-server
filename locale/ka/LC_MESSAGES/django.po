@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 21:31+0000\n"
+"PO-Revision-Date: 2017-10-06 21:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4451,7 +4451,7 @@ msgid "0 files"
 msgstr "0 ფაილი"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "ხელახლა ამოქმედებული ვერსია"
 
 msgid "Close Review History"
 msgstr "განხილვების ისტორიის დახურვა"
@@ -4472,32 +4472,32 @@ msgid "Loading Review History..."
 msgstr "განხილვების ისტორიის ჩატვირთვა..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "ხარვეზებია განხილვის მონაცემების მიღებისას"
 
 msgid "Load older..."
-msgstr ""
+msgstr "ძველი ჩატვირთვა..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "პასუხის დატოვება"
 
 msgid "Reply"
-msgstr ""
+msgstr "პასუხი"
 
 msgid "Listing visibility"
 msgstr "დამატებების ხილულობა"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}ხილული:{label_close} ხილული ყველასთვის {site_url} საიტზე, მათ შორის ძიების შედეგებსა და ცალკეულ გვერდებზე."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}უხილავი:{label_close} არ გამოჩნდება არც ძიების შედეგებში, ხოლო მის გვერდზე მითითებული იქნება რომ გამორთულია. ამ პირობებში, ახალი წარდგენილი ვერსიები გამოსაქვეყნებლად, არ მიიღება."
 
 msgid "Listed versions"
 msgstr "გამოქვეყნებული ვერსიები"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "ამჟამად AMO საიტზე"
 
 msgid "Status"
 msgstr "სტატუსი"
@@ -4506,10 +4506,10 @@ msgid "Validation"
 msgstr "შემოწმება"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "წაშლა/გამორთვა"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "დამატების ახალი ვერსია"
 
 msgid "Other versions"
 msgstr "სხვა ვერსიები"
@@ -4518,7 +4518,7 @@ msgid "All versions"
 msgstr "ყველა ვერსია"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "ახალი ვერსიის ატვირთვა"
 
 msgid "Delete Version {version}"
 msgstr "{version} ვერსიის წაშლა"
@@ -4530,10 +4530,10 @@ msgstr ""
 "საჯაროდ გამოქვეყნებული."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "ამ ვერსიის წაშლით, სამუდამოდ წაიშლება:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>მნიშვნელოვანი:</strong> რომელიმე ვერსიის წაშლის შემთხვევაში, ვეღარ შეძლებთ იმავე ვერსიის ნომრით, ახალი ფაილის ატვირთვას."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "ნამდვილად გსურთ ამ ვერსიის წაშლა?"
@@ -4542,19 +4542,19 @@ msgid "Delete Version"
 msgstr "წაშლა"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "ვერსიის გათიშვა"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "დამატების დამალვა"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "დამატების დამალვის შედეგად, გაქრება გალერეიდან და მომხმარებლებს შეუწყდებათ ავტომატური განახლებები."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "ფაილები, რომელიც განხილვას ელოდებოდა, გაითიშება და მოგიწევთ ახალი ვერსიების ატვირთვა."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "ნამდვილად გსურთ დამატების დამალვა?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "მიმოხილვის მოთხოვნის გაუქმებით, თქვენი დამატება არასრულყოფილად მოინიშნება და ყველა განსახილველი ვერსია შეიზღუდება."
@@ -4563,29 +4563,29 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "ნამდვილად გსურთ, მიმოხილვის მოთხოვნის გაუქმება?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "დამატების საბუთები :: შემმუშავებელთა ცენტრი"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} შეცდომა"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} გაფრთხილება"
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ჩანართის გაფორმება {start_sub_heading}{addon_name}-ის საშუალებით{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "დააყენეთ გვერდი, რომელსაც იხილავთ ახალი ჩანართის გახსნისას."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "ასობით უნიკალური სიცილაკი—თქვენს თითებთან ახლოს."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
