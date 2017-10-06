@@ -968,6 +968,8 @@ def reviewlog(request):
         amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
         amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
         amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
+        amo.LOG.APPROVE_CONTENT .id: ugettext('was content approved'),
+        amo.LOG.REJECT_CONTENT.id: ugettext('was content rejected'),
     }
 
     data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
