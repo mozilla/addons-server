@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-10-03 19:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2225,102 +2225,6 @@ msgstr "გამოშვება"
 msgid "Change"
 msgstr "შეცვლა"
 
-msgid "App"
-msgstr "პროგრამა"
-
-msgid "Persona"
-msgstr "პიროვნება"
-
-msgid "Manual Reviewer Points"
-msgstr "ქულები მიმოხილვისთვის"
-
-msgid "New Add-on Review"
-msgstr "ახალი დამატების განხილვა"
-
-msgid "Preliminary Add-on Review"
-msgstr "დამატების წინასწარი მიმოხილვა"
-
-msgid "Updated Add-on Review"
-msgstr "დამატების განახლებული მიმოხილვა"
-
-msgid "New Dictionary Review"
-msgstr "ახალი ლექსიკონის განხილვა"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ლექსიკონის წინასწარი მიმოხილვა"
-
-msgid "Updated Dictionary Review"
-msgstr "ლექსიკონის განახლებული მიმოხილვა"
-
-msgid "New Language Pack Review"
-msgstr "ენის ახალი პაკეტის განხილვა"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ენის პაკეტის წინასწარი მიმოხილვა"
-
-msgid "Updated Language Pack Review"
-msgstr "ენის პაკეტის განახლებული მიმოხილვა"
-
-msgid "Bonus for overdue reviews"
-msgstr "შეღავათი, ვადაგადაცილებული მიმოხილვებისთვის"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "დღეების რაოდენობა, წამახალისებელი ქულების მიღებამდე"
-
-msgid "Theme Review"
-msgstr "თემის მიმოხილვა"
-
-msgid "New Search Provider Review"
-msgstr "ახალი საძიებო სისტემის მიმოხილვა"
-
-msgid "Preliminary Search Provider Review"
-msgstr "საძიებო სისტემის წინასწარი მიმოხილვა"
-
-msgid "Updated Search Provider Review"
-msgstr "განახლებული საძიებო სისტემის მიმოხილვა"
-
-msgid "New Complete Theme Review"
-msgstr "ახალი სრული თემის მიმოხილვა"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "სრული თემის წინასწარი მიმოხილვა"
-
-msgid "Updated Complete Theme Review"
-msgstr "განახლებული სრული თემის მიმოხილვა"
-
-msgid "Moderated Add-on Review"
-msgstr "შემოწმებული დამატების მიმოხილვა"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
-
-msgid "Level 1"
-msgstr "დონე 1"
-
-msgid "Level 2"
-msgstr "დონე 2"
-
-msgid "Level 3"
-msgstr "დონე 3"
-
-msgid "Level 4"
-msgstr "დონე 4"
-
-msgid "Level 5"
-msgstr "დონე 5"
-
-msgid "Level 6"
-msgstr "დონე 6"
-
-msgid "Level 7"
-msgstr "დონე 7"
-
-msgid "Level 8"
-msgstr "დონე 8"
-
-msgid "Level 9"
-msgstr "დონე 9"
-
 msgid "Compatible"
 msgstr "თავსებადი"
 
@@ -2533,6 +2437,112 @@ msgstr "საიტზე მორგებული"
 
 msgid "Web and Developer Tools"
 msgstr "ვებშემმუშავებლის ხელსაწყოები"
+
+msgid "App"
+msgstr "პროგრამა"
+
+msgid "Persona"
+msgstr "პიროვნება"
+
+msgid "Manual Reviewer Points"
+msgstr "ქულები მიმოხილვისთვის"
+
+msgid "New Add-on Review"
+msgstr "ახალი დამატების განხილვა"
+
+msgid "Preliminary Add-on Review"
+msgstr "დამატების წინასწარი მიმოხილვა"
+
+msgid "Updated Add-on Review"
+msgstr "დამატების განახლებული მიმოხილვა"
+
+msgid "New Dictionary Review"
+msgstr "ახალი ლექსიკონის განხილვა"
+
+msgid "Preliminary Dictionary Review"
+msgstr "ლექსიკონის წინასწარი მიმოხილვა"
+
+msgid "Updated Dictionary Review"
+msgstr "ლექსიკონის განახლებული მიმოხილვა"
+
+msgid "New Language Pack Review"
+msgstr "ენის ახალი პაკეტის განხილვა"
+
+msgid "Preliminary Language Pack Review"
+msgstr "ენის პაკეტის წინასწარი მიმოხილვა"
+
+msgid "Updated Language Pack Review"
+msgstr "ენის პაკეტის განახლებული მიმოხილვა"
+
+msgid "Theme Review"
+msgstr "თემის მიმოხილვა"
+
+msgid "New Search Provider Review"
+msgstr "ახალი საძიებო სისტემის მიმოხილვა"
+
+msgid "Preliminary Search Provider Review"
+msgstr "საძიებო სისტემის წინასწარი მიმოხილვა"
+
+msgid "Updated Search Provider Review"
+msgstr "განახლებული საძიებო სისტემის მიმოხილვა"
+
+msgid "New Complete Theme Review"
+msgstr "ახალი სრული თემის მიმოხილვა"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "სრული თემის წინასწარი მიმოხილვა"
+
+msgid "Updated Complete Theme Review"
+msgstr "განახლებული სრული თემის მიმოხილვა"
+
+msgid "Moderated Add-on Review"
+msgstr "შემოწმებული დამატების მიმოხილვა"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "განუხილველია"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "დონე 1"
+
+msgid "Level 2"
+msgstr "დონე 2"
+
+msgid "Level 3"
+msgstr "დონე 3"
+
+msgid "Level 4"
+msgstr "დონე 4"
+
+msgid "Level 5"
+msgstr "დონე 5"
+
+msgid "Level 6"
+msgstr "დონე 6"
+
+msgid "Level 7"
+msgstr "დონე 7"
+
+msgid "Level 8"
+msgstr "დონე 8"
+
+msgid "Level 9"
+msgstr "დონე 9"
 
 msgid "Request More Info"
 msgstr "დამატებითი ინფორმაციის მოთხოვნა"

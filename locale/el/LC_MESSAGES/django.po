@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2293,103 +2293,6 @@ msgstr "Έκδοση"
 msgid "Change"
 msgstr "Αλλαγή"
 
-msgid "App"
-msgstr "Εφαρμογή"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Σημεία χειροκίνητης επιθεώρησης"
-
-msgid "New Add-on Review"
-msgstr "Αξιολόγηση νέου προσθέτου"
-
-msgid "Preliminary Add-on Review"
-msgstr "Πρωταρχική επιθεώρηση προσθέτου"
-
-msgid "Updated Add-on Review"
-msgstr "Ενημερωμένη επιθεώρηση προσθέτου"
-
-msgid "New Dictionary Review"
-msgstr "Αξιολόγηση νέου λεξικού"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Πρωταρχική επιθεώρηση λεξικού"
-
-msgid "Updated Dictionary Review"
-msgstr "Ενημερωμένη επιθεώρηση λεξικού"
-
-msgid "New Language Pack Review"
-msgstr "Αξιολόγηση νέου πακέτου γλώσσας"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Πρωταρχική επιθεώρηση πακέτου γλώσσας"
-
-msgid "Updated Language Pack Review"
-msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσας"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Επιθεώρηση θέματος"
-
-msgid "New Search Provider Review"
-msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Πρωταρχική επιθεώρηση παρόχου ανζήτησης"
-
-msgid "Updated Search Provider Review"
-msgstr "Ενημερωμένη επιθεώρηση παρόχου ανζήτησης"
-
-msgid "New Complete Theme Review"
-msgstr "Αξιολόγηση νέου πλήρους θέματος"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Πρωταρχική επιθεώρηση θέματος"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ενημερωμένη επιθεώρηση θέματος"
-
-msgid "Moderated Add-on Review"
-msgstr "Συντονισμένος έλεγχος προσθέτου"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Διαδικασία αξιολόγησης προσθέτου"
-
-msgid "Level 1"
-msgstr "Επίπεδο 1"
-
-msgid "Level 2"
-msgstr "Επίπεδο 2"
-
-msgid "Level 3"
-msgstr "Επίπεδο 3"
-
-msgid "Level 4"
-msgstr "Επίπεδο 4"
-
-msgid "Level 5"
-msgstr "Επίπεδο 5"
-
-msgid "Level 6"
-msgstr "Επίπεδο 6"
-
-msgid "Level 7"
-msgstr "Επίπεδο 7"
-
-msgid "Level 8"
-msgstr "Επίπεδο 8"
-
-msgid "Level 9"
-msgstr "Επίπεδο 9"
-
 msgid "Compatible"
 msgstr "Συμβατό"
 
@@ -2602,6 +2505,113 @@ msgstr "Συσχετιζόμενες με ιστότοπους"
 
 msgid "Web and Developer Tools"
 msgstr "Εργαλεία ιστού και δημιουργών"
+
+msgid "App"
+msgstr "Εφαρμογή"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Σημεία χειροκίνητης επιθεώρησης"
+
+msgid "New Add-on Review"
+msgstr "Αξιολόγηση νέου προσθέτου"
+
+msgid "Preliminary Add-on Review"
+msgstr "Πρωταρχική επιθεώρηση προσθέτου"
+
+msgid "Updated Add-on Review"
+msgstr "Ενημερωμένη επιθεώρηση προσθέτου"
+
+msgid "New Dictionary Review"
+msgstr "Αξιολόγηση νέου λεξικού"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Πρωταρχική επιθεώρηση λεξικού"
+
+msgid "Updated Dictionary Review"
+msgstr "Ενημερωμένη επιθεώρηση λεξικού"
+
+msgid "New Language Pack Review"
+msgstr "Αξιολόγηση νέου πακέτου γλώσσας"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Πρωταρχική επιθεώρηση πακέτου γλώσσας"
+
+msgid "Updated Language Pack Review"
+msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσας"
+
+msgid "Theme Review"
+msgstr "Επιθεώρηση θέματος"
+
+msgid "New Search Provider Review"
+msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Πρωταρχική επιθεώρηση παρόχου ανζήτησης"
+
+msgid "Updated Search Provider Review"
+msgstr "Ενημερωμένη επιθεώρηση παρόχου ανζήτησης"
+
+msgid "New Complete Theme Review"
+msgstr "Αξιολόγηση νέου πλήρους θέματος"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Πρωταρχική επιθεώρηση θέματος"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ενημερωμένη επιθεώρηση θέματος"
+
+msgid "Moderated Add-on Review"
+msgstr "Συντονισμένος έλεγχος προσθέτου"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Διαδικασία αξιολόγησης προσθέτου"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Υποβολή Επιθεώρησης"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Επίπεδο 1"
+
+msgid "Level 2"
+msgstr "Επίπεδο 2"
+
+msgid "Level 3"
+msgstr "Επίπεδο 3"
+
+msgid "Level 4"
+msgstr "Επίπεδο 4"
+
+msgid "Level 5"
+msgstr "Επίπεδο 5"
+
+msgid "Level 6"
+msgstr "Επίπεδο 6"
+
+msgid "Level 7"
+msgstr "Επίπεδο 7"
+
+msgid "Level 8"
+msgstr "Επίπεδο 8"
+
+msgid "Level 9"
+msgstr "Επίπεδο 9"
 
 msgid "Request More Info"
 msgstr "Απαίτηση περισσότερων πληροφοριών"

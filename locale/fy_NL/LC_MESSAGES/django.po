@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-29 14:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2273,103 +2273,6 @@ msgstr "Utjefte"
 msgid "Change"
 msgstr "Wizigje"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Hânmjittige beoardielerspunten"
-
-msgid "New Add-on Review"
-msgstr "Nije add-on-beoardieling"
-
-msgid "Preliminary Add-on Review"
-msgstr "Foarriedige add-on-beoardieling"
-
-msgid "Updated Add-on Review"
-msgstr "Bywurke add-on-beoardieling"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Nije wurdboek-beoardieling"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Foarriedige wurdboek-beoardieling"
-
-msgid "Updated Dictionary Review"
-msgstr "Bywurke wurdboek-beoardieling"
-
-msgid "New Language Pack Review"
-msgstr "Nije taalpakket-beoardieling"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Foarriedige taalpakket-beoardieling"
-
-msgid "Updated Language Pack Review"
-msgstr "Bywurke taalpakket-beoardieling"
-
-msgid "Bonus for overdue reviews"
-msgstr "Boanus foar ferrûne beoardielingen"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagen eardat boanuspunten tapast wurde"
-
-msgid "Theme Review"
-msgstr "Temabeoardieling"
-
-msgid "New Search Provider Review"
-msgstr "Nije sykprovider-beoardieling"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Foarriedige sykprovider-beoardieling"
-
-msgid "Updated Search Provider Review"
-msgstr "Bywurke sykprovider-beoardieling"
-
-msgid "New Complete Theme Review"
-msgstr "Nije folslein-temabeoardieling"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Foarriedige folslein-temabeoardieling"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bywurke folslein-temabeoardieling"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderearre add-on-beoardieling"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
-
-msgid "Level 1"
-msgstr "Nivo 1"
-
-msgid "Level 2"
-msgstr "Nivo 2"
-
-msgid "Level 3"
-msgstr "Nivo 3"
-
-msgid "Level 4"
-msgstr "Nivo 4"
-
-msgid "Level 5"
-msgstr "Nivo 5"
-
-msgid "Level 6"
-msgstr "Nivo 6"
-
-msgid "Level 7"
-msgstr "Nivo 7"
-
-msgid "Level 8"
-msgstr "Nivo 8"
-
-msgid "Level 9"
-msgstr "Nivo 9"
-
 msgid "Compatible"
 msgstr "Kompatibel"
 
@@ -2583,6 +2486,113 @@ msgstr "Website-spesifyk"
 
 msgid "Web and Developer Tools"
 msgstr "Web- en ûntwikkelhelpmiddelen"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Hânmjittige beoardielerspunten"
+
+msgid "New Add-on Review"
+msgstr "Nije add-on-beoardieling"
+
+msgid "Preliminary Add-on Review"
+msgstr "Foarriedige add-on-beoardieling"
+
+msgid "Updated Add-on Review"
+msgstr "Bywurke add-on-beoardieling"
+
+# Plural in this context means many of the add-on type
+msgid "New Dictionary Review"
+msgstr "Nije wurdboek-beoardieling"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Foarriedige wurdboek-beoardieling"
+
+msgid "Updated Dictionary Review"
+msgstr "Bywurke wurdboek-beoardieling"
+
+msgid "New Language Pack Review"
+msgstr "Nije taalpakket-beoardieling"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Foarriedige taalpakket-beoardieling"
+
+msgid "Updated Language Pack Review"
+msgstr "Bywurke taalpakket-beoardieling"
+
+msgid "Theme Review"
+msgstr "Temabeoardieling"
+
+msgid "New Search Provider Review"
+msgstr "Nije sykprovider-beoardieling"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Foarriedige sykprovider-beoardieling"
+
+msgid "Updated Search Provider Review"
+msgstr "Bywurke sykprovider-beoardieling"
+
+msgid "New Complete Theme Review"
+msgstr "Nije folslein-temabeoardieling"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Foarriedige folslein-temabeoardieling"
+
+msgid "Updated Complete Theme Review"
+msgstr "Bywurke folslein-temabeoardieling"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderearre add-on-beoardieling"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Net beoardiele"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Nivo 1"
+
+msgid "Level 2"
+msgstr "Nivo 2"
+
+msgid "Level 3"
+msgstr "Nivo 3"
+
+msgid "Level 4"
+msgstr "Nivo 4"
+
+msgid "Level 5"
+msgstr "Nivo 5"
+
+msgid "Level 6"
+msgstr "Nivo 6"
+
+msgid "Level 7"
+msgstr "Nivo 7"
+
+msgid "Level 8"
+msgstr "Nivo 8"
+
+msgid "Level 9"
+msgstr "Nivo 9"
 
 msgid "Request More Info"
 msgstr "Mear ynformaasje freegje"

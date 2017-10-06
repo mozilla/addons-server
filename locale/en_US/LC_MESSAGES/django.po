@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2309,109 +2309,6 @@ msgstr "Release"
 msgid "Change"
 msgstr "Change"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Manual Reviewer Points"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Full Add-on Review"
-
-msgid "Preliminary Add-on Review"
-msgstr "Preliminary Add-on Review"
-
-msgid "Updated Add-on Review"
-msgstr "Updated Add-on Review"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Full Dictionary Review"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Preliminary Dictionary Review"
-
-msgid "Updated Dictionary Review"
-msgstr "Updated Dictionary Review"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Full Language Pack Review"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Preliminary Language Pack Review"
-
-msgid "Updated Language Pack Review"
-msgstr "Updated Language Pack Review"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus for overdue reviews"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Days Before Bonus Points Applied"
-
-msgid "Theme Review"
-msgstr "Theme Review"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Full Search Provider Review"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Preliminary Search Provider Review"
-
-msgid "Updated Search Provider Review"
-msgstr "Updated Search Provider Review"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Complete Theme Review"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Preliminary Complete Theme Review"
-
-msgid "Updated Complete Theme Review"
-msgstr "Updated Complete Theme Review"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderated Addon Review"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Addon Review Moderation Reverted"
-
-msgid "Level 1"
-msgstr "Level 1"
-
-msgid "Level 2"
-msgstr "Level 2"
-
-msgid "Level 3"
-msgstr "Level 3"
-
-msgid "Level 4"
-msgstr "Level 4"
-
-msgid "Level 5"
-msgstr "Level 5"
-
-msgid "Level 6"
-msgstr "Level 6"
-
-msgid "Level 7"
-msgstr "Level 7"
-
-msgid "Level 8"
-msgstr "Level 8"
-
-msgid "Level 9"
-msgstr "Level 9"
-
 msgid "Compatible"
 msgstr "Compatible"
 
@@ -2650,6 +2547,119 @@ msgstr "Site Specific"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "Search Developer Docs"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Manual Reviewer Points"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Full Add-on Review"
+
+msgid "Preliminary Add-on Review"
+msgstr "Preliminary Add-on Review"
+
+msgid "Updated Add-on Review"
+msgstr "Updated Add-on Review"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Full Dictionary Review"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Preliminary Dictionary Review"
+
+msgid "Updated Dictionary Review"
+msgstr "Updated Dictionary Review"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Full Language Pack Review"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Preliminary Language Pack Review"
+
+msgid "Updated Language Pack Review"
+msgstr "Updated Language Pack Review"
+
+msgid "Theme Review"
+msgstr "Theme Review"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Full Search Provider Review"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Preliminary Search Provider Review"
+
+msgid "Updated Search Provider Review"
+msgstr "Updated Search Provider Review"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Complete Theme Review"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Preliminary Complete Theme Review"
+
+msgid "Updated Complete Theme Review"
+msgstr "Updated Complete Theme Review"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Moderated Addon Review"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Addon Review Moderation Reverted"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Commit Review"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Post-Approval Add-on Review (Highest Risk)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Post-Approval Add-on Review (High Risk)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Post-Approval Add-on Review (Medium Risk)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Post-Approval Add-on Review (Low Risk)"
+
+msgid "Level 1"
+msgstr "Level 1"
+
+msgid "Level 2"
+msgstr "Level 2"
+
+msgid "Level 3"
+msgstr "Level 3"
+
+msgid "Level 4"
+msgstr "Level 4"
+
+msgid "Level 5"
+msgstr "Level 5"
+
+msgid "Level 6"
+msgstr "Level 6"
+
+msgid "Level 7"
+msgstr "Level 7"
+
+msgid "Level 8"
+msgstr "Level 8"
+
+msgid "Level 9"
+msgstr "Level 9"
 
 msgid "Request More Info"
 msgstr "Request More Info"

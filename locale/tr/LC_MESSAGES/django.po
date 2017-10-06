@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-26 12:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -2291,104 +2291,6 @@ msgstr "Yayımla"
 msgid "Change"
 msgstr "Değiştir"
 
-msgid "App"
-msgstr "Uygulama"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Add-on Review"
-msgstr "Yeni Eklenti İncelemesi"
-
-msgid "Preliminary Add-on Review"
-msgstr "Eklenti Ön İncelemesi"
-
-msgid "Updated Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Yeni sözlük incelemesi"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Sözlük Ön İncelemesi"
-
-msgid "Updated Dictionary Review"
-msgstr "Güncellenmiş Sözlük İncelemesi"
-
-msgid "New Language Pack Review"
-msgstr "Yeni dil paketi incelemesi"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Dil Paketi Ön İncelemesi"
-
-msgid "Updated Language Pack Review"
-msgstr "Güncellenmiş Dil Paketi İncelemesi"
-
-msgid "Bonus for overdue reviews"
-msgstr "Gecikmiş incelemeler için bonus"
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Tema İnceleme"
-
-msgid "New Search Provider Review"
-msgstr "Yeni arama sağlayıcı incelemesi"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "Yeni tam tema incelemesi"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "1. Düzey"
-
-msgid "Level 2"
-msgstr "2. Düzey"
-
-msgid "Level 3"
-msgstr "3. Düzey"
-
-msgid "Level 4"
-msgstr "4. Düzey"
-
-msgid "Level 5"
-msgstr "5. Düzey"
-
-msgid "Level 6"
-msgstr "6. Düzey"
-
-msgid "Level 7"
-msgstr "7. Düzey"
-
-msgid "Level 8"
-msgstr "8. Düzey"
-
-msgid "Level 9"
-msgstr "9. Düzey"
-
 msgid "Compatible"
 msgstr "Uyumlu"
 
@@ -2604,6 +2506,114 @@ msgstr "Siteye Özel"
 
 msgid "Web and Developer Tools"
 msgstr "Web ve Geliştirici Araçları"
+
+msgid "App"
+msgstr "Uygulama"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+msgid "New Add-on Review"
+msgstr "Yeni Eklenti İncelemesi"
+
+msgid "Preliminary Add-on Review"
+msgstr "Eklenti Ön İncelemesi"
+
+msgid "Updated Add-on Review"
+msgstr "Güncellenmiş Eklenti İncelemesi"
+
+# Plural in this context means many of the add-on type
+msgid "New Dictionary Review"
+msgstr "Yeni sözlük incelemesi"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Sözlük Ön İncelemesi"
+
+msgid "Updated Dictionary Review"
+msgstr "Güncellenmiş Sözlük İncelemesi"
+
+msgid "New Language Pack Review"
+msgstr "Yeni dil paketi incelemesi"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Dil Paketi Ön İncelemesi"
+
+msgid "Updated Language Pack Review"
+msgstr "Güncellenmiş Dil Paketi İncelemesi"
+
+msgid "Theme Review"
+msgstr "Tema İnceleme"
+
+msgid "New Search Provider Review"
+msgstr "Yeni arama sağlayıcı incelemesi"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr "Yeni tam tema incelemesi"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Güncellenmiş Eklenti İncelemesi"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "İncelemeyi Tamamla"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "1. Düzey"
+
+msgid "Level 2"
+msgstr "2. Düzey"
+
+msgid "Level 3"
+msgstr "3. Düzey"
+
+msgid "Level 4"
+msgstr "4. Düzey"
+
+msgid "Level 5"
+msgstr "5. Düzey"
+
+msgid "Level 6"
+msgstr "6. Düzey"
+
+msgid "Level 7"
+msgstr "7. Düzey"
+
+msgid "Level 8"
+msgstr "8. Düzey"
+
+msgid "Level 9"
+msgstr "9. Düzey"
 
 msgid "Request More Info"
 msgstr "Daha Fazla Bilgi İste"

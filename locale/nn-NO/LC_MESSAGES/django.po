@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-15 08:57+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2237,103 +2237,6 @@ msgstr "Utgåve"
 msgid "Change"
 msgstr "Endre"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Manuelle vurderarpoeng"
-
-msgid "New Add-on Review"
-msgstr "Ny vurdering av utviding"
-
-msgid "Preliminary Add-on Review"
-msgstr "Foreløpig gjennomgang av utviding"
-
-msgid "Updated Add-on Review"
-msgstr "Oppdatert gjennomgang av utviding"
-
-msgid "New Dictionary Review"
-msgstr "Nye ordboksvurderingar"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Foreløpig gjennomgang av ordbok"
-
-msgid "Updated Dictionary Review"
-msgstr "Oppdatert gjennomgang av ordbok"
-
-msgid "New Language Pack Review"
-msgstr "Ny språkpakke-vurdering"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Foreløpig gjennomgang av språkpakke"
-
-msgid "Updated Language Pack Review"
-msgstr "Oppdatert gjennomgang av språkpakke"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus for forseinka vurderingar"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagar før bonuspoeng vert lagt på"
-
-msgid "Theme Review"
-msgstr "Temavurdering"
-
-msgid "New Search Provider Review"
-msgstr "Ny vurdering av søkjetilbydar"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Foreløpig gjennomgang av søketilbydar"
-
-msgid "Updated Search Provider Review"
-msgstr "Oppdatert gjennomgang av søketilbydar"
-
-msgid "New Complete Theme Review"
-msgstr "Ny vurdering av komplette tema"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Foreløpig gjennomgang av tema"
-
-msgid "Updated Complete Theme Review"
-msgstr "Oppdatert gjennomgang av komplett tema"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderert utvidingsvurdering"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Tilbakestilt moderert utvidingsvurdering"
-
-msgid "Level 1"
-msgstr "Nivå 1"
-
-msgid "Level 2"
-msgstr "Nivå 2"
-
-msgid "Level 3"
-msgstr "Nivå 3"
-
-msgid "Level 4"
-msgstr "Nivå 4"
-
-msgid "Level 5"
-msgstr "Nivå 5"
-
-msgid "Level 6"
-msgstr "Nivå 6"
-
-msgid "Level 7"
-msgstr "Nivå 7"
-
-msgid "Level 8"
-msgstr "Nivå 8"
-
-msgid "Level 9"
-msgstr "Nivå 9"
-
 msgid "Compatible"
 msgstr "Kompatibel"
 
@@ -2546,6 +2449,113 @@ msgstr "Plass-spesifikk"
 
 msgid "Web and Developer Tools"
 msgstr "Web og utviklarverktøy"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Manuelle vurderarpoeng"
+
+msgid "New Add-on Review"
+msgstr "Ny vurdering av utviding"
+
+msgid "Preliminary Add-on Review"
+msgstr "Foreløpig gjennomgang av utviding"
+
+msgid "Updated Add-on Review"
+msgstr "Oppdatert gjennomgang av utviding"
+
+msgid "New Dictionary Review"
+msgstr "Nye ordboksvurderingar"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Foreløpig gjennomgang av ordbok"
+
+msgid "Updated Dictionary Review"
+msgstr "Oppdatert gjennomgang av ordbok"
+
+msgid "New Language Pack Review"
+msgstr "Ny språkpakke-vurdering"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Foreløpig gjennomgang av språkpakke"
+
+msgid "Updated Language Pack Review"
+msgstr "Oppdatert gjennomgang av språkpakke"
+
+msgid "Theme Review"
+msgstr "Temavurdering"
+
+msgid "New Search Provider Review"
+msgstr "Ny vurdering av søkjetilbydar"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Foreløpig gjennomgang av søketilbydar"
+
+msgid "Updated Search Provider Review"
+msgstr "Oppdatert gjennomgang av søketilbydar"
+
+msgid "New Complete Theme Review"
+msgstr "Ny vurdering av komplette tema"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Foreløpig gjennomgang av tema"
+
+msgid "Updated Complete Theme Review"
+msgstr "Oppdatert gjennomgang av komplett tema"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderert utvidingsvurdering"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Tilbakestilt moderert utvidingsvurdering"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Send inn vurderinga"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Nivå 1"
+
+msgid "Level 2"
+msgstr "Nivå 2"
+
+msgid "Level 3"
+msgstr "Nivå 3"
+
+msgid "Level 4"
+msgstr "Nivå 4"
+
+msgid "Level 5"
+msgstr "Nivå 5"
+
+msgid "Level 6"
+msgstr "Nivå 6"
+
+msgid "Level 7"
+msgstr "Nivå 7"
+
+msgid "Level 8"
+msgstr "Nivå 8"
+
+msgid "Level 9"
+msgstr "Nivå 9"
 
 msgid "Request More Info"
 msgstr "Be om meir info"

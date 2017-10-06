@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2274,109 +2274,6 @@ msgstr "ਰਿਲੀਜ਼"
 msgid "Change"
 msgstr "ਬਦਲੋ"
 
-msgid "App"
-msgstr "ਐੱਪ"
-
-msgid "Persona"
-msgstr "ਪਰਸੋਨਾ"
-
-msgid "Manual Reviewer Points"
-msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Add-on Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-msgid "Updated Add-on Review"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
-
-msgid "Updated Dictionary Review"
-msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
-
-msgid "Updated Language Pack Review"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "ਥੀਮ ਸਮੀਖਿਆ"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Search Provider Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
-
-msgid "Updated Search Provider Review"
-msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
-
-msgid "Updated Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
-
-msgid "Level 1"
-msgstr "ਮਿਆਰ 1"
-
-msgid "Level 2"
-msgstr "ਮਿਆਰ 2"
-
-msgid "Level 3"
-msgstr "ਮਿਆਰ 3"
-
-msgid "Level 4"
-msgstr "ਮਿਆਰ 4"
-
-msgid "Level 5"
-msgstr "ਮਿਆਰ 5"
-
-msgid "Level 6"
-msgstr "ਮਿਆਰ 6"
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
-msgstr ""
-
 msgid "Compatible"
 msgstr ""
 
@@ -2614,6 +2511,119 @@ msgstr "ਸਾਈਟ ਖਾਸ਼"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
+
+msgid "App"
+msgstr "ਐੱਪ"
+
+msgid "Persona"
+msgstr "ਪਰਸੋਨਾ"
+
+msgid "Manual Reviewer Points"
+msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Add-on Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+msgid "Updated Add-on Review"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Dictionary Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+
+msgid "Updated Dictionary Review"
+msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Language Pack Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+
+msgid "Updated Language Pack Review"
+msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+msgid "Theme Review"
+msgstr "ਥੀਮ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Search Provider Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
+
+msgid "Updated Search Provider Review"
+msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+
+msgid "Updated Complete Theme Review"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "ਮਿਆਰ 1"
+
+msgid "Level 2"
+msgstr "ਮਿਆਰ 2"
+
+msgid "Level 3"
+msgstr "ਮਿਆਰ 3"
+
+msgid "Level 4"
+msgstr "ਮਿਆਰ 4"
+
+msgid "Level 5"
+msgstr "ਮਿਆਰ 5"
+
+msgid "Level 6"
+msgstr "ਮਿਆਰ 6"
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr "ਹੋਰ ਇੰਫ਼ੋ ਲਈ ਬੇਨਤੀ"

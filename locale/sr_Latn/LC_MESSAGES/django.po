@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2561,109 +2561,6 @@ msgstr "Izdanje"
 msgid "Change"
 msgstr "Izmena"
 
-msgid "App"
-msgstr "Aplikacija"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Poeni samostalnog recenzenta"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Puna recenzija dodatka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Preliminarna recenzija dodatka"
-
-msgid "Updated Add-on Review"
-msgstr "Ažurirana recenzija dodatka"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Puna recenzija rečnika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Preliminarna recenzija rečnika"
-
-msgid "Updated Dictionary Review"
-msgstr "Ažurirana recenzija rečnika"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Puna recenzija jezičkog paketa"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Preliminarna recenzija jezičkog paketa"
-
-msgid "Updated Language Pack Review"
-msgstr "Ažurirana recenzija jezičkog paketa"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Recenzija teme"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Puna recenzija pretraživača"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Preliminarna recenzija pretraživača"
-
-msgid "Updated Search Provider Review"
-msgstr "Ažurirana recenzija pretraživača"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Puna recenzija teme"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Preliminarna recenzija potpune teme"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ažurirana recenzija potpune teme"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Recenzija uređene aplikacije"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija recenzije dodatka je poništena"
-
-msgid "Level 1"
-msgstr "Nivo 1"
-
-msgid "Level 2"
-msgstr "Nivo 2"
-
-msgid "Level 3"
-msgstr "Nivo 3"
-
-msgid "Level 4"
-msgstr "Nivo 4"
-
-msgid "Level 5"
-msgstr "Nivo 5"
-
-msgid "Level 6"
-msgstr "Nivo 6"
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
-msgstr ""
-
 msgid "Compatible"
 msgstr ""
 
@@ -2907,6 +2804,119 @@ msgstr "Posebno za sajt"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "Pretraži Dokumente programera"
+
+msgid "App"
+msgstr "Aplikacija"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Poeni samostalnog recenzenta"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Puna recenzija dodatka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Preliminarna recenzija dodatka"
+
+msgid "Updated Add-on Review"
+msgstr "Ažurirana recenzija dodatka"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Puna recenzija rečnika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Preliminarna recenzija rečnika"
+
+msgid "Updated Dictionary Review"
+msgstr "Ažurirana recenzija rečnika"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Puna recenzija jezičkog paketa"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Preliminarna recenzija jezičkog paketa"
+
+msgid "Updated Language Pack Review"
+msgstr "Ažurirana recenzija jezičkog paketa"
+
+msgid "Theme Review"
+msgstr "Recenzija teme"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Puna recenzija pretraživača"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Preliminarna recenzija pretraživača"
+
+msgid "Updated Search Provider Review"
+msgstr "Ažurirana recenzija pretraživača"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Puna recenzija teme"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Preliminarna recenzija potpune teme"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ažurirana recenzija potpune teme"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Recenzija uređene aplikacije"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija recenzije dodatka je poništena"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Izvršiti recenziju"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Nivo 1"
+
+msgid "Level 2"
+msgstr "Nivo 2"
+
+msgid "Level 3"
+msgstr "Nivo 3"
+
+msgid "Level 4"
+msgstr "Nivo 4"
+
+msgid "Level 5"
+msgstr "Nivo 5"
+
+msgid "Level 6"
+msgstr "Nivo 6"
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr "Zahtevaj više informacija"
