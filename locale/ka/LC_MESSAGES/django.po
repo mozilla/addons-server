@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 21:51+0000\n"
+"PO-Revision-Date: 2017-10-06 21:57+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4588,16 +4588,16 @@ msgid "Dozens of amazing emojis—always a click away."
 msgstr "ასობით უნიკალური სიცილაკი—თქვენს თითებთან ახლოს."
 
 msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "გააუმჯობესეთ წერის ხარისხი {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
 
 msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
 msgstr "25+ ენის მხარდაჭერით, მართლწერის შემოწმება თქვენი ბრაუზერისთვის."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "მოსახერხებლად უყურეთ ვიდეოებს {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატური მართვას და ა.შ."
 
 msgid "Approved reviews"
 msgstr "დამოწმებული მიმოხილვები"
@@ -4606,10 +4606,10 @@ msgid "Deleted reviews"
 msgstr "წაშლილი მიმოხილვები"
 
 msgid "View entries between"
-msgstr ""
+msgstr "იხილეთ ჩანაწერები მათ შორის"
 
 msgid "and"
-msgstr ""
+msgstr "და"
 
 msgid "Filter by type/action"
 msgstr "გაფილტვრა ტიპის/მოქმედების მიხედვით"
@@ -4624,13 +4624,13 @@ msgid "Filter by automatic validation"
 msgstr "ავტომატური შემოწმების მიხედვით გაფილტვრა"
 
 msgid "containing"
-msgstr ""
+msgstr "შემცველი"
 
 msgid "start"
-msgstr ""
+msgstr "დაწყება"
 
 msgid "end"
-msgstr ""
+msgstr "დასრულება"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, editor or comment"
@@ -4640,28 +4640,28 @@ msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
 
 msgid "yes"
-msgstr ""
+msgstr "დიახ"
 
 msgid "no"
-msgstr ""
+msgstr "არა"
 
 msgid "Admin Flag"
-msgstr ""
+msgstr "ადმინისტრატორის მონიშვნა"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "დამატების ტიპი"
 
 msgid "Search by add-on name / author email / guid"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით / სახელმძღვანელოთი"
 
 msgid "Max. Version"
-msgstr ""
+msgstr "უმაღლესი ვერსია"
 
 msgid "Comments:"
-msgstr ""
+msgstr "კომენტარები:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "საოპერაციო სისტემები:"
 
 msgid "Applications:"
 msgstr ""
