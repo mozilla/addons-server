@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 22:49+0000\n"
+"PO-Revision-Date: 2017-10-06 22:58+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4683,26 +4683,26 @@ msgid "theme name"
 msgstr "თემის სახელი"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "ვიღაც სხვა უკვე განიხილავს ამ თემას."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "თემა, მიმომხილველი ან გამოხმაურება"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "განხილვის გაგრძელება; მონიშვნების მოხსნა"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "ამჟამად გამოტოვება"
 
 msgid "Delete review"
 msgstr "მიმოხილვის წაშლა"
 
 msgid "Admin Review"
-msgstr ""
+msgstr "ადმინისტრატორის მიმოხილვა"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack დამატება"
 
 msgid "More Information Requested"
 msgstr ""
