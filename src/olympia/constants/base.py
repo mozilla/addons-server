@@ -137,7 +137,7 @@ ADDON_TYPE = {
     ADDON_LPAPP: _(u'Language Pack (Application)'),
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
-    ADDON_PERSONA: _(u'Theme (LWT)'),
+    ADDON_PERSONA: _(u'Theme'),
     ADDON_STATICTHEME: _(u'Theme (Static)'),
 }
 
@@ -150,7 +150,7 @@ ADDON_TYPES = {
     ADDON_LPAPP: _(u'Language Packs (Application)'),
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
-    ADDON_PERSONA: _(u'Themes (LWT)'),
+    ADDON_PERSONA: _(u'Themes'),
     ADDON_STATICTHEME: _(u'Themes (Static)'),
 }
 
