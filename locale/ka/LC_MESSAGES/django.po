@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 18:01+0000\n"
+"PO-Revision-Date: 2017-10-06 21:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2086,29 +2086,23 @@ msgstr "{addon} {version}-ის ავტომატურად მიღე�
 msgid "Auto-Approval confirmed"
 msgstr "ავტომატური მიღება დაშვებულია"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} უარყოფილია."
+msgstr "{addon} {version} ჩაირთო."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} გაგრძელდა."
+msgstr "{addon} {version} გამორთულია."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} მიღებულია."
+msgstr "{addon} {version} შიგთავსი მიღებულია."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} მიღებულია."
+msgstr "შიგთავსი მიღებულია"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} უარყოფილია."
+msgstr "{addon} {version} შიგთავსი უარყოფილია."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "{addon} {version} უარყოფილია."
+msgstr "შიგთავსი უარყოფილია"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2498,21 +2492,20 @@ msgstr "შემოწმებული დამატების მიმ�
 msgid "Add-on Review Moderation Reverted"
 msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "განუხილველია"
+msgstr "დამატების შიგთავსის მიმოხილვა"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "უკვე მიღებული დამატების განხილვა (ძალიან მაღალი რისკის)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "უკვე მიღებული დამატების განხილვა (მაღალი რისკის)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "უკვე მიღებული დამატების განხილვა (საშუალო რისკის)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "უკვე მიღებული დამატების განხილვა (დაბალი რისკის)"
 
 msgid "Level 1"
 msgstr "დონე 1"
@@ -2946,7 +2939,7 @@ msgid "Printable Version"
 msgstr "ამოსაბეჭდი ვერსია"
 
 msgid "Accept"
-msgstr ""
+msgstr "მიღება"
 
 msgid "I Accept this Agreement"
 msgstr "ვეთანხმები ხელშეკრულების პირობებს"
@@ -4442,20 +4435,20 @@ msgstr "ფაილი {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "შექმნის თარიღია %(created)s და მისი მდგომარეობის %(status)s-ით შეცვლის თარიღია %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "შექმნის თარიღია %(created)s და მდგომარეობა შეცვლილია %(status)s-ით"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "მდგომარეობა & ვერსიები"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "ვერსიის ჩასწორება"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 ფაილი"
 
 msgid "Re-enable Version"
 msgstr ""
