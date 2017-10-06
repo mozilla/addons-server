@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext, pgettext
+from django.utils.translation import ugettext
 
 import waffle
 
