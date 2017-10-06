@@ -386,7 +386,7 @@ class TestReviewLog(EditorTest):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'Comment')
+            'Commented')
 
     def test_content_approval(self):
         self.make_an_approval(amo.LOG.APPROVE_CONTENT)
@@ -2364,7 +2364,7 @@ class TestReview(ReviewBase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#review-files')
-        assert doc('th').eq(1).text() == 'Comment'
+        assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
     def test_files_in_item_history(self):
