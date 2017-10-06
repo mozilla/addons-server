@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -578,7 +578,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/macros.html:42
-#: src/olympia/editors/models.py:36
+#: src/olympia/editors/models.py:39
 #: src/olympia/editors/templates/editors/addon_details_box.html:9
 msgid "Requires Restart"
 msgstr ""
@@ -1818,7 +1818,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html:31
-#: src/olympia/editors/utils.py:124
+#: src/olympia/editors/utils.py:123
 msgid "GUID"
 msgstr ""
 
@@ -2460,10 +2460,10 @@ msgid ""
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
-#: src/olympia/constants/base.py:398
+#: src/olympia/constants/editors.py:13
 #: src/olympia/devhub/templates/devhub/addons/activity.html:59
-#: src/olympia/editors/utils.py:63 src/olympia/editors/utils.py:123
-#: src/olympia/editors/utils.py:188
+#: src/olympia/editors/utils.py:62 src/olympia/editors/utils.py:122
+#: src/olympia/editors/utils.py:187
 msgid "Add-on"
 msgstr ""
 
@@ -2471,7 +2471,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 #: src/olympia/constants/activity.py:215
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
-#: src/olympia/editors/utils.py:402
+#: src/olympia/editors/utils.py:401
 msgid "Comment"
 msgstr ""
 
@@ -3350,7 +3350,7 @@ msgstr ""
 msgid "Mozilla"
 msgstr ""
 
-#: src/olympia/constants/applications.py:152 src/olympia/constants/base.py:522
+#: src/olympia/constants/applications.py:152 src/olympia/constants/base.py:408
 msgid "Unknown"
 msgstr ""
 
@@ -3464,159 +3464,31 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py:386 src/olympia/constants/categories.py:80
+#: src/olympia/constants/base.py:382 src/olympia/constants/categories.py:80
 #: src/olympia/constants/categories.py:128 src/olympia/constants/categories.py:153
 #: src/olympia/devhub/forms.py:144
 #: src/olympia/editors/templates/editors/performance.html:71
 msgid "Other"
 msgstr ""
 
-#: src/olympia/constants/base.py:387
+#: src/olympia/constants/base.py:383
 msgid "Exception"
 msgstr ""
 
-#: src/olympia/constants/base.py:388
+#: src/olympia/constants/base.py:384
 msgid "Release"
 msgstr ""
 
-#: src/olympia/constants/base.py:389
+#: src/olympia/constants/base.py:385
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:20
 msgid "Change"
 msgstr ""
 
-#: src/olympia/constants/base.py:399
-msgid "App"
-msgstr ""
-
-#: src/olympia/constants/base.py:400
-msgid "Persona"
-msgstr ""
-
-#: src/olympia/constants/base.py:434
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#: src/olympia/constants/base.py:435
-msgid "New Add-on Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:436
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:437
-msgid "Updated Add-on Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:438
-msgid "New Dictionary Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:439
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:440
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:441
-msgid "New Language Pack Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:442
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:443
-msgid "Updated Language Pack Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:444
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-#: src/olympia/constants/base.py:445
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-#: src/olympia/constants/base.py:446
-msgid "Theme Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:447
-msgid "New Search Provider Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:448
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:449
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:450
-msgid "New Complete Theme Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:451
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:452
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:453
-msgid "Moderated Add-on Review"
-msgstr ""
-
-#: src/olympia/constants/base.py:454
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-#: src/olympia/constants/base.py:491
-msgid "Level 1"
-msgstr ""
-
-#: src/olympia/constants/base.py:492
-msgid "Level 2"
-msgstr ""
-
-#: src/olympia/constants/base.py:493
-msgid "Level 3"
-msgstr ""
-
-#: src/olympia/constants/base.py:494
-msgid "Level 4"
-msgstr ""
-
-#: src/olympia/constants/base.py:495
-msgid "Level 5"
-msgstr ""
-
-#: src/olympia/constants/base.py:496
-msgid "Level 6"
-msgstr ""
-
-#: src/olympia/constants/base.py:497
-msgid "Level 7"
-msgstr ""
-
-#: src/olympia/constants/base.py:498
-msgid "Level 8"
-msgstr ""
-
-#: src/olympia/constants/base.py:499
-msgid "Level 9"
-msgstr ""
-
-#: src/olympia/constants/base.py:525 src/olympia/constants/base.py:526
+#: src/olympia/constants/base.py:411 src/olympia/constants/base.py:412
 msgid "Compatible"
 msgstr ""
 
-#: src/olympia/constants/base.py:527
+#: src/olympia/constants/base.py:413
 msgid "Incompatible"
 msgstr ""
 
@@ -3906,70 +3778,210 @@ msgstr ""
 msgid "Web and Developer Tools"
 msgstr ""
 
-#: src/olympia/constants/editors.py:17
+#: src/olympia/constants/editors.py:14
+msgid "App"
+msgstr ""
+
+#: src/olympia/constants/editors.py:15
+msgid "Persona"
+msgstr ""
+
+#: src/olympia/constants/editors.py:53
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#: src/olympia/constants/editors.py:54
+msgid "New Add-on Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:55
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:56
+msgid "Updated Add-on Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:57
+msgid "New Dictionary Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:58
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:59
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:60
+msgid "New Language Pack Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:61
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:62
+msgid "Updated Language Pack Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:63
+msgid "Theme Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:64
+msgid "New Search Provider Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:65
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:66
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:67
+msgid "New Complete Theme Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:68
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:69
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:70
+msgid "Moderated Add-on Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:71
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#: src/olympia/constants/editors.py:72
+msgid "Add-on Content Review"
+msgstr ""
+
+#: src/olympia/constants/editors.py:74
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+#: src/olympia/constants/editors.py:76
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+#: src/olympia/constants/editors.py:78
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+#: src/olympia/constants/editors.py:80
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+#: src/olympia/constants/editors.py:128
+msgid "Level 1"
+msgstr ""
+
+#: src/olympia/constants/editors.py:129
+msgid "Level 2"
+msgstr ""
+
+#: src/olympia/constants/editors.py:130
+msgid "Level 3"
+msgstr ""
+
+#: src/olympia/constants/editors.py:131
+msgid "Level 4"
+msgstr ""
+
+#: src/olympia/constants/editors.py:132
+msgid "Level 5"
+msgstr ""
+
+#: src/olympia/constants/editors.py:133
+msgid "Level 6"
+msgstr ""
+
+#: src/olympia/constants/editors.py:134
+msgid "Level 7"
+msgstr ""
+
+#: src/olympia/constants/editors.py:135
+msgid "Level 8"
+msgstr ""
+
+#: src/olympia/constants/editors.py:136
+msgid "Level 9"
+msgstr ""
+
+#: src/olympia/constants/editors.py:157
 #: src/olympia/editors/templates/editors/themes/queue.html:72
 #: src/olympia/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
 msgstr ""
 
-#: src/olympia/constants/editors.py:18
+#: src/olympia/constants/editors.py:158
 #: src/olympia/editors/templates/editors/themes/queue.html:70
 #: src/olympia/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
 msgstr ""
 
-#: src/olympia/constants/editors.py:19
+#: src/olympia/constants/editors.py:159
 #: src/olympia/editors/templates/editors/themes/queue.html:68
 #: src/olympia/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/editors.py:20
+#: src/olympia/constants/editors.py:160
 #: src/olympia/editors/templates/editors/themes/queue.html:67
 #: src/olympia/editors/templates/editors/themes/themes.html:94
-#: src/olympia/editors/utils.py:346
+#: src/olympia/editors/utils.py:345
 msgid "Reject"
 msgstr ""
 
-#: src/olympia/constants/editors.py:21
+#: src/olympia/constants/editors.py:161
 #: src/olympia/editors/templates/editors/themes/queue.html:66
-#: src/olympia/editors/utils.py:336
+#: src/olympia/editors/utils.py:335
 msgid "Approve"
 msgstr ""
 
-#: src/olympia/constants/editors.py:26
+#: src/olympia/constants/editors.py:166
 msgid "Sexual or pornographic content"
 msgstr ""
 
-#: src/olympia/constants/editors.py:27
+#: src/olympia/constants/editors.py:167
 msgid "Inappropriate or offensive content"
 msgstr ""
 
-#: src/olympia/constants/editors.py:28
+#: src/olympia/constants/editors.py:168
 msgid "Violence, war, or weaponry images"
 msgstr ""
 
-#: src/olympia/constants/editors.py:29
+#: src/olympia/constants/editors.py:169
 msgid "Nazi or other hate content"
 msgstr ""
 
-#: src/olympia/constants/editors.py:30
+#: src/olympia/constants/editors.py:170
 msgid "Defamatory content"
 msgstr ""
 
-#: src/olympia/constants/editors.py:31
+#: src/olympia/constants/editors.py:171
 msgid "Online gambling"
 msgstr ""
 
-#: src/olympia/constants/editors.py:32
+#: src/olympia/constants/editors.py:172
 msgid "Spam content"
 msgstr ""
 
-#: src/olympia/constants/editors.py:33
+#: src/olympia/constants/editors.py:173
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
 
-#: src/olympia/constants/editors.py:34
+#: src/olympia/constants/editors.py:174
 msgid "Header image alignment problem"
 msgstr ""
 
@@ -4580,7 +4592,7 @@ msgstr ""
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/validate_addon.html:15
+#: src/olympia/devhub/templates/devhub/validate_addon.html:16
 #, python-format
 msgid ""
 "Note that this tool only works with legacy add-ons. WebExtension APIs are "
@@ -4593,11 +4605,11 @@ msgid ""
 "compatibility with the following application version:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/validate_addon.html:37
+#: src/olympia/devhub/templates/devhub/validate_addon.html:36
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/validate_addon.html:45
+#: src/olympia/devhub/templates/devhub/validate_addon.html:44
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
@@ -4756,7 +4768,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:28
 #: src/olympia/editors/templates/editors/review.html:312
-#: src/olympia/editors/utils.py:125
+#: src/olympia/editors/utils.py:124
 msgid "Authors"
 msgstr ""
 
@@ -7155,59 +7167,59 @@ msgstr ""
 msgid "Delete review"
 msgstr ""
 
-#: src/olympia/editors/models.py:34
+#: src/olympia/editors/models.py:37
 msgid "Admin Review"
 msgstr ""
 
-#: src/olympia/editors/models.py:35
+#: src/olympia/editors/models.py:38
 msgid "Jetpack Add-on"
 msgstr ""
 
-#: src/olympia/editors/models.py:37
+#: src/olympia/editors/models.py:40
 msgid "More Information Requested"
 msgstr ""
 
-#: src/olympia/editors/models.py:38
+#: src/olympia/editors/models.py:41
 msgid "Contains Reviewer Comment"
 msgstr ""
 
-#: src/olympia/editors/models.py:39
+#: src/olympia/editors/models.py:42
 msgid "Sources provided"
 msgstr ""
 
-#: src/olympia/editors/models.py:40
+#: src/olympia/editors/models.py:43
 msgid "WebExtension"
 msgstr ""
 
-#: src/olympia/editors/models.py:907
+#: src/olympia/editors/models.py:950
 msgid "Uses a custom CSP."
 msgstr ""
 
-#: src/olympia/editors/models.py:909
+#: src/olympia/editors/models.py:952
 msgid "Uses nativeMessaging permission."
 msgstr ""
 
-#: src/olympia/editors/models.py:911
+#: src/olympia/editors/models.py:954
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#: src/olympia/editors/models.py:913
+#: src/olympia/editors/models.py:956
 msgid "Has too many daily users."
 msgstr ""
 
-#: src/olympia/editors/models.py:915
+#: src/olympia/editors/models.py:958
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
 
-#: src/olympia/editors/models.py:916
+#: src/olympia/editors/models.py:959
 msgid "Has a pending info request."
 msgstr ""
 
-#: src/olympia/editors/models.py:917
+#: src/olympia/editors/models.py:960
 msgid "Is flagged for admin review."
 msgstr ""
 
-#: src/olympia/editors/models.py:918
+#: src/olympia/editors/models.py:961
 msgid "Is locked by a reviewer."
 msgstr ""
 
@@ -7231,189 +7243,189 @@ msgstr ""
 msgid "A question about your Theme submission"
 msgstr ""
 
-#: src/olympia/editors/utils.py:64
+#: src/olympia/editors/utils.py:63
 msgid "Type"
 msgstr ""
 
-#: src/olympia/editors/utils.py:65
+#: src/olympia/editors/utils.py:64
 msgid "Waiting Time"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:327
-#: src/olympia/editors/utils.py:66 src/olympia/editors/utils.py:192
+#: src/olympia/editors/utils.py:65 src/olympia/editors/utils.py:191
 msgid "Flags"
 msgstr ""
 
-#: src/olympia/editors/utils.py:99
+#: src/olympia/editors/utils.py:98
 msgid "moments ago"
 msgstr ""
 
 #. L10n: first argument is number of minutes
-#: src/olympia/editors/utils.py:102
+#: src/olympia/editors/utils.py:101
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first argument is number of hours
-#: src/olympia/editors/utils.py:107
+#: src/olympia/editors/utils.py:106
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first argument is number of days
-#: src/olympia/editors/utils.py:112
+#: src/olympia/editors/utils.py:111
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/editors/utils.py:127 src/olympia/editors/utils.py:194
+#: src/olympia/editors/utils.py:126 src/olympia/editors/utils.py:193
 msgid "Last Review"
 msgstr ""
 
-#: src/olympia/editors/utils.py:128
+#: src/olympia/editors/utils.py:127
 msgid "Last Update"
 msgstr ""
 
-#: src/olympia/editors/utils.py:150
+#: src/olympia/editors/utils.py:149
 msgid "No Reviews"
 msgstr ""
 
-#: src/olympia/editors/utils.py:197
+#: src/olympia/editors/utils.py:196
 msgid "Weight"
 msgstr ""
 
-#: src/olympia/editors/utils.py:225
+#: src/olympia/editors/utils.py:224
 msgid "Last Content Review"
 msgstr ""
 
-#: src/olympia/editors/utils.py:333
+#: src/olympia/editors/utils.py:332
 msgid ""
 "This will approve, sign, and publish this version. The comments will be sent "
 "to the developer."
 msgstr ""
 
-#: src/olympia/editors/utils.py:347
+#: src/olympia/editors/utils.py:346
 msgid ""
 "This will reject this version and remove it from the queue. The comments will"
 " be sent to the developer."
 msgstr ""
 
-#: src/olympia/editors/utils.py:355
+#: src/olympia/editors/utils.py:354
 msgid "Confirm Approval"
 msgstr ""
 
-#: src/olympia/editors/utils.py:356
+#: src/olympia/editors/utils.py:355
 msgid ""
 "The latest public version of this add-on was automatically approved. This "
 "records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#: src/olympia/editors/utils.py:370
+#: src/olympia/editors/utils.py:369
 msgid "Reject Multiple Versions"
 msgstr ""
 
-#: src/olympia/editors/utils.py:373
+#: src/olympia/editors/utils.py:372
 msgid ""
 "This will reject the selected public versions. The comments will be sent to "
 "the developer."
 msgstr ""
 
-#: src/olympia/editors/utils.py:383
+#: src/olympia/editors/utils.py:382
 msgid "Reviewer reply"
 msgstr ""
 
-#: src/olympia/editors/utils.py:384
+#: src/olympia/editors/utils.py:383
 msgid ""
 "This will send a message to the developer. You will be notified when they "
 "reply."
 msgstr ""
 
-#: src/olympia/editors/utils.py:392
+#: src/olympia/editors/utils.py:391
 msgid "Request super-review"
 msgstr ""
 
-#: src/olympia/editors/utils.py:393
+#: src/olympia/editors/utils.py:392
 msgid ""
 "If you have concerns about this add-on that an admin reviewer should look "
 "into, enter your comments in the area below. They will not be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/editors/utils.py:403
+#: src/olympia/editors/utils.py:402
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#: src/olympia/editors/utils.py:414
+#: src/olympia/editors/utils.py:413
 msgid "Approve Content"
 msgstr ""
 
-#: src/olympia/editors/utils.py:415
+#: src/olympia/editors/utils.py:414
 msgid ""
 "This records your approbation of the content of this version, without "
 "notifying the developer."
 msgstr ""
 
-#: src/olympia/editors/views.py:150
+#: src/olympia/editors/views.py:149
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:151
+#: src/olympia/editors/views.py:150
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:152
+#: src/olympia/editors/views.py:151
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: src/olympia/editors/views.py:544
+#: src/olympia/editors/views.py:543
 msgid "An unknown error occurred"
 msgstr ""
 
-#: src/olympia/editors/views.py:666
+#: src/olympia/editors/views.py:665
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/editors/views.py:722
+#: src/olympia/editors/views.py:721
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/editors/views.py:879
+#: src/olympia/editors/views.py:878
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/editors/views.py:961
+#: src/olympia/editors/views.py:960
 msgid "was approved"
 msgstr ""
 
-#: src/olympia/editors/views.py:963
+#: src/olympia/editors/views.py:962
 msgid "given preliminary review"
 msgstr ""
 
-#: src/olympia/editors/views.py:964
+#: src/olympia/editors/views.py:963
 msgid "rejected"
 msgstr ""
 
-#: src/olympia/editors/views.py:965
+#: src/olympia/editors/views.py:964
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: src/olympia/editors/views.py:967
+#: src/olympia/editors/views.py:966
 msgid "needs more information"
 msgstr ""
 
-#: src/olympia/editors/views.py:968
+#: src/olympia/editors/views.py:967
 msgid "needs super review"
 msgstr ""
 
-#: src/olympia/editors/views.py:969
+#: src/olympia/editors/views.py:968
 msgid "commented"
 msgstr ""
 
-#: src/olympia/editors/views.py:970
+#: src/olympia/editors/views.py:969
 msgid "confirmed as approved"
 msgstr ""
 

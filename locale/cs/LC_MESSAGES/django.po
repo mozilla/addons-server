@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-08-27 11:33+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2302,102 +2302,6 @@ msgstr "Vydání"
 msgid "Change"
 msgstr "Změna"
 
-msgid "App"
-msgstr "Aplikace"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Ruční body redaktora"
-
-msgid "New Add-on Review"
-msgstr "Nová kontrola doplňku"
-
-msgid "Preliminary Add-on Review"
-msgstr "Kontrola doplňku pro předběžné schválení"
-
-msgid "Updated Add-on Review"
-msgstr "Kontrola aktualizace doplňku"
-
-msgid "New Dictionary Review"
-msgstr "Nová kontrola slovníku"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Předběžné kontroly slovníků"
-
-msgid "Updated Dictionary Review"
-msgstr "Kontroly aktualizovaných slovníků"
-
-msgid "New Language Pack Review"
-msgstr "Nová kontrola jazykového balíčku"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Předběžné kontroly jazykových balíčků"
-
-msgid "Updated Language Pack Review"
-msgstr "Kontroly aktualizovaných jazykových balíčků"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za zpožděné kontroly"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny před uplatněním bonusových bodů"
-
-msgid "Theme Review"
-msgstr "Kontrola motivu"
-
-msgid "New Search Provider Review"
-msgstr "Nová kontrola vyhledávacích modulů"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Předběžné kontroly vyhledávacích modulů"
-
-msgid "Updated Search Provider Review"
-msgstr "Kontroly aktualizovaných vyhledávacích modulů"
-
-msgid "New Complete Theme Review"
-msgstr "Nová kontrola plného motivu"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Předběžná kontrola plných motivů"
-
-msgid "Updated Complete Theme Review"
-msgstr "Kontrola aktualizovaných plných motivů"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderovaná recenze doplňku"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Úprava recenze doplňku byla odstraněna"
-
-msgid "Level 1"
-msgstr "Úroveň 1"
-
-msgid "Level 2"
-msgstr "Úroveň 2"
-
-msgid "Level 3"
-msgstr "Úroveň 3"
-
-msgid "Level 4"
-msgstr "Úroveň 4"
-
-msgid "Level 5"
-msgstr "Úroveň 5"
-
-msgid "Level 6"
-msgstr "Úroveň 6"
-
-msgid "Level 7"
-msgstr "Úroveň 7"
-
-msgid "Level 8"
-msgstr "Úroveň 8"
-
-msgid "Level 9"
-msgstr "Úroveň 9"
-
 msgid "Compatible"
 msgstr "Kompatibilní"
 
@@ -2610,6 +2514,112 @@ msgstr "Specifický server"
 
 msgid "Web and Developer Tools"
 msgstr "Vývoj webu"
+
+msgid "App"
+msgstr "Aplikace"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Ruční body redaktora"
+
+msgid "New Add-on Review"
+msgstr "Nová kontrola doplňku"
+
+msgid "Preliminary Add-on Review"
+msgstr "Kontrola doplňku pro předběžné schválení"
+
+msgid "Updated Add-on Review"
+msgstr "Kontrola aktualizace doplňku"
+
+msgid "New Dictionary Review"
+msgstr "Nová kontrola slovníku"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Předběžné kontroly slovníků"
+
+msgid "Updated Dictionary Review"
+msgstr "Kontroly aktualizovaných slovníků"
+
+msgid "New Language Pack Review"
+msgstr "Nová kontrola jazykového balíčku"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Předběžné kontroly jazykových balíčků"
+
+msgid "Updated Language Pack Review"
+msgstr "Kontroly aktualizovaných jazykových balíčků"
+
+msgid "Theme Review"
+msgstr "Kontrola motivu"
+
+msgid "New Search Provider Review"
+msgstr "Nová kontrola vyhledávacích modulů"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Předběžné kontroly vyhledávacích modulů"
+
+msgid "Updated Search Provider Review"
+msgstr "Kontroly aktualizovaných vyhledávacích modulů"
+
+msgid "New Complete Theme Review"
+msgstr "Nová kontrola plného motivu"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Předběžná kontrola plných motivů"
+
+msgid "Updated Complete Theme Review"
+msgstr "Kontrola aktualizovaných plných motivů"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderovaná recenze doplňku"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Úprava recenze doplňku byla odstraněna"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Odeslat kontrolu"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Úroveň 1"
+
+msgid "Level 2"
+msgstr "Úroveň 2"
+
+msgid "Level 3"
+msgstr "Úroveň 3"
+
+msgid "Level 4"
+msgstr "Úroveň 4"
+
+msgid "Level 5"
+msgstr "Úroveň 5"
+
+msgid "Level 6"
+msgstr "Úroveň 6"
+
+msgid "Level 7"
+msgstr "Úroveň 7"
+
+msgid "Level 8"
+msgstr "Úroveň 8"
+
+msgid "Level 9"
+msgstr "Úroveň 9"
 
 msgid "Request More Info"
 msgstr "Požádat o více informací"

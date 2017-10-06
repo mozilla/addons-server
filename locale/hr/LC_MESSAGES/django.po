@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -2314,108 +2314,6 @@ msgstr "Izdanje"
 msgid "Change"
 msgstr "Izmjena"
 
-msgid "App"
-msgstr "Aplikacija"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Revizijski zapis dodatka"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Preliminarna revizija"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Jezični paket"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Tražilice"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Revizijski zapis dodatka"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Revizijski zapis dodatka"
-
-msgid "Level 1"
-msgstr "Razina 1"
-
-msgid "Level 2"
-msgstr "Razina 2"
-
-msgid "Level 3"
-msgstr "Razina 3"
-
-msgid "Level 4"
-msgstr "Razina 4"
-
-msgid "Level 5"
-msgstr "Razina 5"
-
-msgid "Level 6"
-msgstr "Razina 6"
-
-msgid "Level 7"
-msgstr "Razina 7"
-
-msgid "Level 8"
-msgstr "Razina 8"
-
-msgid "Level 9"
-msgstr "Razina 9"
-
 msgid "Compatible"
 msgstr ""
 
@@ -2629,6 +2527,118 @@ msgstr "Specifično za we"
 
 msgid "Web and Developer Tools"
 msgstr "Alati za razvoj weba"
+
+msgid "App"
+msgstr "Aplikacija"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Revizijski zapis dodatka"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Preliminarna revizija"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Jezični paket"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Tražilice"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr ""
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Revizijski zapis dodatka"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Revizijski zapis dodatka"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Nije pregledano"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Razina 1"
+
+msgid "Level 2"
+msgstr "Razina 2"
+
+msgid "Level 3"
+msgstr "Razina 3"
+
+msgid "Level 4"
+msgstr "Razina 4"
+
+msgid "Level 5"
+msgstr "Razina 5"
+
+msgid "Level 6"
+msgstr "Razina 6"
+
+msgid "Level 7"
+msgstr "Razina 7"
+
+msgid "Level 8"
+msgstr "Razina 8"
+
+msgid "Level 9"
+msgstr "Razina 9"
 
 msgid "Request More Info"
 msgstr "Zatraži više informacija"

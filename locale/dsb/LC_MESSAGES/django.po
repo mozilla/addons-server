@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-28 17:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2312,102 +2312,6 @@ msgstr "Wersija"
 msgid "Change"
 msgstr "Změna"
 
-msgid "App"
-msgstr "Nałoženje"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Dypki za manuelne pśeglědanje"
-
-msgid "New Add-on Review"
-msgstr "Nowe pśeglědanje dodanka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nachylne pśeglědanje dodanka"
-
-msgid "Updated Add-on Review"
-msgstr "Pśeglědanje aktualizěrowanego dodanka"
-
-msgid "New Dictionary Review"
-msgstr "Nowe pśeglědanje słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nachylne pśeglědanje słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Pśeglědanje aktualizěrowanego słownika"
-
-msgid "New Language Pack Review"
-msgstr "Nowe pśeglědanje rěcnego pakśika"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nachylne pśeglědanje rěcnego pakśika"
-
-msgid "Updated Language Pack Review"
-msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za zapózdźone pśeglědanja"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny, nježli až bonusowe dypki płaśe"
-
-msgid "Theme Review"
-msgstr "Pśeglědanje drastwy"
-
-msgid "New Search Provider Review"
-msgstr "Nowe pśeglědanje pytańskego póbitowarja"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nachylne pśeglědanje pytańskego póbitowarja"
-
-msgid "Updated Search Provider Review"
-msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
-
-msgid "New Complete Theme Review"
-msgstr "Nowe pśeglědanje dopołneje drastwy"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nachylne pśeglědanje dopołneje drastwy"
-
-msgid "Updated Complete Theme Review"
-msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderěrowane pógódnośenje dodanka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za pógódnośenje dodanka jo se anulěrowała"
-
-msgid "Level 1"
-msgstr "Schójźeńk 1"
-
-msgid "Level 2"
-msgstr "Schójźeńk 2"
-
-msgid "Level 3"
-msgstr "Schójźeńk 3"
-
-msgid "Level 4"
-msgstr "Schójźeńk 4"
-
-msgid "Level 5"
-msgstr "Schójźeńk 5"
-
-msgid "Level 6"
-msgstr "Schójźeńk 6"
-
-msgid "Level 7"
-msgstr "Schójźeńk 7"
-
-msgid "Level 8"
-msgstr "Schójźeńk 8"
-
-msgid "Level 9"
-msgstr "Schójźeńk 9"
-
 msgid "Compatible"
 msgstr "Kompatibelny"
 
@@ -2620,6 +2524,112 @@ msgstr "Specifiske rozšyrjenja websedłow"
 
 msgid "Web and Developer Tools"
 msgstr "Webwuwijarske rědy"
+
+msgid "App"
+msgstr "Nałoženje"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Dypki za manuelne pśeglědanje"
+
+msgid "New Add-on Review"
+msgstr "Nowe pśeglědanje dodanka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Nachylne pśeglědanje dodanka"
+
+msgid "Updated Add-on Review"
+msgstr "Pśeglědanje aktualizěrowanego dodanka"
+
+msgid "New Dictionary Review"
+msgstr "Nowe pśeglědanje słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Nachylne pśeglědanje słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Pśeglědanje aktualizěrowanego słownika"
+
+msgid "New Language Pack Review"
+msgstr "Nowe pśeglědanje rěcnego pakśika"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Nachylne pśeglědanje rěcnego pakśika"
+
+msgid "Updated Language Pack Review"
+msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
+
+msgid "Theme Review"
+msgstr "Pśeglědanje drastwy"
+
+msgid "New Search Provider Review"
+msgstr "Nowe pśeglědanje pytańskego póbitowarja"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Nachylne pśeglědanje pytańskego póbitowarja"
+
+msgid "Updated Search Provider Review"
+msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
+
+msgid "New Complete Theme Review"
+msgstr "Nowe pśeglědanje dopołneje drastwy"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Nachylne pśeglědanje dopołneje drastwy"
+
+msgid "Updated Complete Theme Review"
+msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderěrowane pógódnośenje dodanka"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija za pógódnośenje dodanka jo se anulěrowała"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Pśeglědanje wótpósłaś"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Schójźeńk 1"
+
+msgid "Level 2"
+msgstr "Schójźeńk 2"
+
+msgid "Level 3"
+msgstr "Schójźeńk 3"
+
+msgid "Level 4"
+msgstr "Schójźeńk 4"
+
+msgid "Level 5"
+msgstr "Schójźeńk 5"
+
+msgid "Level 6"
+msgstr "Schójźeńk 6"
+
+msgid "Level 7"
+msgstr "Schójźeńk 7"
+
+msgid "Level 8"
+msgstr "Schójźeńk 8"
+
+msgid "Level 9"
+msgstr "Schójźeńk 9"
 
 msgid "Request More Info"
 msgstr "Dalšne informacije pominaś"
