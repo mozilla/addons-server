@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 19:31+0000\n"
+"PO-Revision-Date: 2017-10-06 19:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2577,9 +2577,8 @@ msgstr "Moderěrowane pohódnoćenje přidatka"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Přepruwowanje wobsaha"
+msgstr "Přepruwowanje wobsaha přidatka"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr "Přepruwowanje přidatka po schwalenju (najwyše riziko)"
@@ -2591,7 +2590,7 @@ msgid "Post-Approval Add-on Review (Medium Risk)"
 msgstr "Přepruwowanje přidatka po schwalenju (srjedźne riziko)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Přepruwowanje přidatka po schwalenju (niske riziko)"
 
 msgid "Level 1"
 msgstr "Schodźenk 1"
