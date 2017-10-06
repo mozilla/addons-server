@@ -29,7 +29,6 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     AutoApprovalSummary, EditorSubscription, ReviewerScore)
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -3663,7 +3662,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
             version = addon.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if version.nomination <= datetime.now() - timedelta(
-                    hours=REVIEW_LIMITED_DELAY_HOURS):
+                    hours=amo.REVIEW_LIMITED_DELAY_HOURS):
                 self.expected_addons.append(addon)
 
         self.create_limited_user()
