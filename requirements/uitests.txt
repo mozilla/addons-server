@@ -20,9 +20,9 @@ pytest==3.2.2 \
 pytest-base-url==1.2.0 \
     --hash=sha256:cbb117787d7327dde0d50b9b9be4203a831986ec0dc658317815bbd24a039ca9 \
     --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
-pytest-html==1.14.0 \
-    --hash=sha256:9d35d1c6431329458f9d45cc2f51456a9365c82ccae629e5c5b3f08f2a8b89cf \
-    --hash=sha256:fcd90a13d41abcc69a0388bf5da8b81c78ed07f92789f8058a1b9da6d2cedb59
+pytest-html==1.16.0 \
+    --hash=sha256:7d0064c2f3a8b9e03c7f10a39403fa68d6c5380ce416f4bd310703455a5bf778 \
+    --hash=sha256:d973b5bc997f117bd55314d01f6e19433f06a4c405530aa7826481d03b778536
 pytest-instafail==0.3.0 \
     --hash=sha256:b4d5fc3ca81e530a8d0e15a7771dc14b06fc9a0930c4b3909a7f4527040572c3
 pytest-metadata==1.5.0 \
