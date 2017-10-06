@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 22:14+0000\n"
+"PO-Revision-Date: 2017-10-06 22:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4667,16 +4667,16 @@ msgid "Applications:"
 msgstr "პროგრამები:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
+msgstr "შეტყობინება, მომავალში ამ დამატების განახლებისას. (მომდევნო განახლებებზე აღარ შეიქმნება ელფოსტის წერილები)"
 
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Is more info requested?"
 msgstr "მოითხოვება დამატებითი ინფორმაცია?"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
