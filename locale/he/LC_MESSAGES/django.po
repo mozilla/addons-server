@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-07 17:09+0000\n"
+"PO-Revision-Date: 2017-10-07 17:16+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5462,10 +5462,10 @@ msgid "Theme Review Queue"
 msgstr ""
 
 msgid "Review Options"
-msgstr ""
+msgstr "אפשרויות סקירה"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "התקדמות אוטומטית לאחר סקירה"
 
 msgid "Enable keyboard shortcuts"
 msgstr "הפעלת קיצורי מקלדת"
@@ -5504,7 +5504,7 @@ msgid "Interactive Theme Queue"
 msgstr ""
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "מדריך לסוקרים"
 
 msgid "Theme Review for {0}"
 msgstr ""
@@ -5526,19 +5526,19 @@ msgid "Approve Theme"
 msgstr ""
 
 msgid "Field required"
-msgstr ""
+msgstr "שדה נדרש"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "נא להזין את המזהה או את הכתובת של הכפיל"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "נא לבחור את סיבת הדחייה"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "נא לתאר את סיבתך לדחייה"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "שליחת שאלה לאמן"
 
 msgid "Describe your reason for flagging"
 msgstr ""
@@ -5548,7 +5548,7 @@ msgstr ""
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[מצב:%s]"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -5620,16 +5620,16 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "ארכיון שגוי."
 
 msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "לא ניתן למצוא מזהה תוספת."
 
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "מזהה התוספת חייב להיות באורך של 64 תווים ומטה."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5662,10 +5662,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "השוואת קבצים :: כלי סוקרים"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "מציג קבצים :: כלי סוקרים"
 
 msgid "Validation failed:"
 msgstr ""
@@ -5690,7 +5690,7 @@ msgid "Hide known files"
 msgstr "הסתרת קבצים ידועים"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "גרסת ה־SDK של התוספת:"
 
 msgid "Tab stops:"
 msgstr ""
@@ -5714,19 +5714,19 @@ msgid "Next note"
 msgstr ""
 
 msgid "Expand all"
-msgstr ""
+msgstr "הרחבת הכל"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "הסתרה או גילוי של העץ"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "גלישה או ביטול גלישה של הטקסט"
 
 msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
+msgstr "הקובץ מתקבל."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5909,475 +5909,475 @@ msgid "Get Started"
 msgstr "תחילת עבודה"
 
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "דירהאם של איחוד האמירויות הערביות"
 
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "אפגני אפגניסטני"
 
 msgid "Albania Lek"
-msgstr ""
+msgstr "לק אלבני"
 
 msgid "Armenia Dram"
-msgstr ""
+msgstr "דראם ארמני"
 
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "פלורין האנטילים ההולנדיים"
 
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "קואנזה אנגולי"
 
 msgid "Argentina Peso"
-msgstr ""
+msgstr "פסו ארגנטינאי"
 
 msgid "Australia Dollar"
-msgstr ""
+msgstr "דולר אוסטרלי"
 
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "פלורין של ארובה"
 
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "מאנאט אזרבייג׳ני חדש"
 
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "המרק הסחיר של בוסניה והרצגובינה"
 
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "דולר של ברבדוס"
 
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "טאקה בנגלדשי"
 
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "לב בולגרי"
 
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "דינר בחרייני"
 
 msgid "Burundi Franc"
-msgstr ""
+msgstr "פרנק של בורונדי"
 
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "דולר של ברמודה"
 
 msgid "Brunei Darussalam Dollar"
 msgstr ""
 
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "בוליביאנו בוליביאני"
 
 msgid "Brazil Real"
-msgstr ""
+msgstr "ריאל ברזילאי"
 
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "דולר בהאמי"
 
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "נגולטרום של בהוטן"
 
 msgid "Botswana Pula"
-msgstr ""
+msgstr "פולה בוטסואני"
 
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "רובל בלארוסי"
 
 msgid "Belize Dollar"
-msgstr ""
+msgstr "דולר של בליז"
 
 msgid "Canada Dollar"
-msgstr ""
+msgstr "דולר קנדי"
 
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "פרנק קונגולזי/קינשאסה"
 
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "פרנק שווייצרי"
 
 msgid "Chile Peso"
-msgstr ""
+msgstr "פסו של צ׳ילה"
 
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "יואן רנמיבי סיני"
 
 msgid "Colombia Peso"
-msgstr ""
+msgstr "פסו קולומביאני"
 
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "קולון קוסטה ריקאי"
 
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "פסו קובני בר-המרה"
 
 msgid "Cuba Peso"
-msgstr ""
+msgstr "פסו קובני"
 
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "אסקודו של כף ורדה"
 
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "קורונה צ׳כית"
 
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "פרנק של ג׳יבוטי"
 
 msgid "Denmark Krone"
-msgstr ""
+msgstr "כתר דני"
 
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "פסו דומיניקני"
 
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "דינר אלג׳ירי"
 
 msgid "Egypt Pound"
-msgstr ""
+msgstr "פאונד מצרי"
 
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "נאקפה אריתראית"
 
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "ביר אתיופי"
 
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "חברות באיחוד האירופי"
 
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "דולר של פיג׳י"
 
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "לירה של פוקלנד (מלבינאס)"
 
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "לירה שטרלינג"
 
 msgid "Georgia Lari"
-msgstr ""
+msgstr "לארי גאורגי"
 
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "לירה של גרנזי"
 
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "סדי גאני"
 
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "לירה של גיברלטר"
 
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "דלסי של גמביה"
 
 msgid "Guinea Franc"
-msgstr ""
+msgstr "פרנק גינאי"
 
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "קצאל גואטמלי"
 
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "דולר גיאני"
 
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "דולר הונג קונגי"
 
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "למפירה של הונדורס"
 
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "קונה קרואטית"
 
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "גורד של האיטי"
 
 msgid "Hungary Forint"
-msgstr ""
+msgstr "פורינט הונגרי"
 
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "רופיה אינדונזית"
 
 msgid "Israel Shekel"
-msgstr ""
+msgstr "שקל ישראלי"
 
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "לירה של האי מאן"
 
 msgid "India Rupee"
-msgstr ""
+msgstr "רופי הודי"
 
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "דינר עיראקי"
 
 msgid "Iran Rial"
-msgstr ""
+msgstr "ריאל איראני"
 
 msgid "Iceland Krona"
-msgstr ""
+msgstr "כתר איסלנדי"
 
 msgid "Jersey Pound"
-msgstr ""
+msgstr "לירה של ג׳רזי"
 
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "דולר ג׳מייקני"
 
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "דינר ירדני"
 
 msgid "Japan Yen"
-msgstr ""
+msgstr "ין יפני"
 
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "שילינג קנייתי"
 
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "סום קירגיזי"
 
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "ריאל קמבודי"
 
 msgid "Comoros Franc"
-msgstr ""
+msgstr "פרנק של קומורו"
 
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "וון צפון קוריאני"
 
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "וון דרום קוריאני"
 
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "דינר כוויתי"
 
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "דולר של איי קיימן"
 
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "טנגה של קזחסטן"
 
 msgid "Laos Kip"
-msgstr ""
+msgstr "קיפ של לאוס"
 
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "לירה לבנונית"
 
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "רופיה סרי לנקית"
 
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "דולר ליברי"
 
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "לוטי של לסוטו"
 
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "ליטאס ליטאי"
 
 msgid "Latvia Lat"
-msgstr ""
+msgstr "לט לטבי"
 
 msgid "Libya Dinar"
-msgstr ""
+msgstr "דינר לובי"
 
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "דירהאם מרוקאי"
 
 msgid "Moldova Leu"
-msgstr ""
+msgstr "לאו מולדובני"
 
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "אריארי של מדגסקר"
 
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "דינר מקדוני"
 
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "צ׳אט מיאנמרי"
 
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "טוגרוג מונגולי"
 
 msgid "Macau Pataca"
-msgstr ""
+msgstr "פטאקה של מקאו"
 
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "אואוגויה של מאוריטניה"
 
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "רופיה של מאוריציוס"
 
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "רופיה מלדיבית"
 
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "קוואצ׳ה מלאווי"
 
 msgid "Mexico Peso"
-msgstr ""
+msgstr "פסו מקסיקני"
 
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "רינגיט מלזי"
 
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "מטיקל מוזמביני"
 
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "דולר נמיבי"
 
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "נאירה ניגרית"
 
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "קורדובה של ניקרגואה"
 
 msgid "Norway Krone"
-msgstr ""
+msgstr "כתר נורווגי"
 
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "רופיה נפאלית"
 
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "דולר ניו זילנדי"
 
 msgid "Oman Rial"
-msgstr ""
+msgstr "ריאל עומאני"
 
 msgid "Panama Balboa"
-msgstr ""
+msgstr "בלבואה של פנמה"
 
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "סול פרואני"
 
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "קינה של פפואה גינאה החדשה"
 
 msgid "Philippines Peso"
-msgstr ""
+msgstr "פסו פיליפיני"
 
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "רופי פקיסטני"
 
 msgid "Poland Zloty"
-msgstr ""
+msgstr "זלוטי פולני"
 
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "גוארני של פרגוואי"
 
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "ריאל קטרי"
 
 msgid "Romania New Leu"
-msgstr ""
+msgstr "לאו רומני חדש"
 
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "דינר סרבי"
 
 msgid "Russia Ruble"
-msgstr ""
+msgstr "רובל רוסי"
 
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "פרנק רואנדי"
 
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "ריאל סעודי"
 
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "דולר איי שלמה"
 
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "רופיה סיישלית"
 
 msgid "Sudan Pound"
-msgstr ""
+msgstr "דינאר סודאני"
 
 msgid "Sweden Krona"
-msgstr ""
+msgstr "קרונה שוודית"
 
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "דולר סינגפורי"
 
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "לירה של סנט הלנה"
 
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "ליאון של סיירה לאון"
 
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "שילינג סומלי"
 
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "לואיג׳ינו של סבורגה"
 
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "דולר סורינאמי"
 
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "דוברה של סאו טומה ופרינסיפה"
 
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "קולון של אל סלוודור"
 
 msgid "Syria Pound"
-msgstr ""
+msgstr "לירה סורית"
 
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "לילנגני סווזילנדי"
 
 msgid "Thailand Baht"
-msgstr ""
+msgstr "באט"
 
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "סומוני טג׳יקי"
 
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "מנאט טוקרמני"
 
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "דינאר תוניזאי"
 
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "פנגה טונגית"
 
 msgid "Turkey Lira"
-msgstr ""
+msgstr "לירה טורקית"
 
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "דולר טרינידדי"
 
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "דולר של טובאלו"
 
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "דולר טייואני חדש"
 
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "שילינג טנזני"
 
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "הריבניה אוקראינית"
 
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "שילינג אוגנדי"
 
 msgid "United States Dollar"
-msgstr ""
+msgstr "דולר אמריקני"
 
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "פסו של אורוגוואי"
 
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "סום אוזבקי"
 
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "בוליבר ונצואליני"
 
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "דונג וייטנאמי"
 
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "ואטו של ונואטו"
 
 msgid "Samoa Tala"
-msgstr ""
+msgstr "טאלה של סמואה"
 
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
 msgstr ""
 
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "דולר מזרח קריבי"
 
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
 msgstr ""
@@ -6389,16 +6389,16 @@ msgid "Comptoirs Français du Pacifique (CFP) Franc"
 msgstr ""
 
 msgid "Yemen Rial"
-msgstr ""
+msgstr "ריאל תימני"
 
 msgid "South Africa Rand"
-msgstr ""
+msgstr "ראנד דרום אפריקאי"
 
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "קוואצ׳ה זמבי"
 
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "דולר זימבבואי"
 
 msgid "About Mozilla Add-ons"
 msgstr "על אודות Mozilla Add-ons"
@@ -6475,7 +6475,7 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "יש לי שאלה"
 
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -6528,7 +6528,7 @@ msgid ""
 msgstr ""
 
 msgid "Thank you!"
-msgstr ""
+msgstr "תודה לך!"
 
 msgid "Site Credits"
 msgstr ""
