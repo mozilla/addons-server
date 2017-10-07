@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-09-14 16:44+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"PO-Revision-Date: 2017-10-04 13:54+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
-msgstr[1] "בדיקת התוספת שלך נכשלה עם {0} שגיאות."
+msgstr[1] "התוספת שלך נכשלה בבדיקה עם {0} שגיאות."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -206,7 +206,7 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "חיפוש תוספות עבור <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "שימוש במקור"
 
 msgid "Week of {0}"
 msgstr ""
@@ -252,7 +252,7 @@ msgstr "מידע נוסף..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "פרטים עבור {0}"
 
 msgid "Collections Created"
 msgstr "אוספים שנוצרו"
@@ -351,7 +351,7 @@ msgid "Version History"
 msgstr "היסטוריית גרסאות"
 
 msgid "Sharing"
-msgstr ""
+msgstr "שיתוף"
 
 msgid "Category Pages"
 msgstr ""
@@ -402,7 +402,7 @@ msgid "Average Contribution"
 msgstr "תרומה ממוצעת"
 
 msgid "Usage"
-msgstr ""
+msgstr "שימוש"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -515,11 +515,11 @@ msgstr "תרומות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "מדדי אתר, {0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "מדדי אתר מ־{0} ועד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -757,7 +757,7 @@ msgid "Image changes being processed"
 msgstr "מתבצע עיבוד שינויים בתמונות"
 
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "חייבת להיות כתובת דוא״ל תקנית."
 
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
