@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-06 23:45+0000\n"
+"PO-Revision-Date: 2017-10-07 00:05+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4714,76 +4714,76 @@ msgid "Sources provided"
 msgstr "წყაროები მოცემულია"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "საკუთარი CSP-ის გამოყენება."
 
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "nativeMessaging ნებართვის გამოყენება."
 
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Content Scrtipt-ის გამოყენება თითოეული URL-სთვის."
 
 msgid "Has too many daily users."
 msgstr "ზედმეტად ბევრი დღიური მომხმარებელი."
 
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "ზედმეტად მცირე თანმიმდევრული განახლებები, ადამიანის მიერ დამოწმებული."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "ელოდება მონაცემების მოთხოვნას."
 
 msgid "Is flagged for admin review."
-msgstr ""
+msgstr "ჩანიშნულია ადმინისტრატორის მიერ განსახილველად."
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "შეჩერებული მიმომხილველის მიერ."
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "განმეორებული წარდგენა"
 
 msgid "Thanks for submitting your Theme"
 msgstr "გმადლობთ, თქვენი თემის წარდგენისთვის"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "ხარვეზი, თემის წარდგენისას"
 
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "წარსადგენი თემა ჩანიშნულია განსახილველად"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "შეკითხვა, თქვენი თემის წარდგენის შესახებ"
 
 msgid "Type"
-msgstr ""
+msgstr "ტიპი"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "ლოდინის დრო"
 
 msgid "Flags"
-msgstr ""
+msgstr "ჩანიშვნები"
 
 msgid "moments ago"
-msgstr ""
+msgstr "წინ"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} წუთი"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} საათი"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} დღე"
 
 msgid "Last Review"
-msgstr ""
+msgstr "ბოლო მიმოხილვა"
 
 msgid "Last Update"
 msgstr "ბოლო განახლება"
@@ -4792,11 +4792,10 @@ msgid "No Reviews"
 msgstr "მიმოხილვები არაა"
 
 msgid "Weight"
-msgstr ""
+msgstr "წონა"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "დამატების განახლებული მიმოხილვა"
+msgstr "შიგთავსის ბოლო განხილვა"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
