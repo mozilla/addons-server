@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-07 06:31+0000\n"
+"PO-Revision-Date: 2017-10-07 06:37+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2092,17 +2092,14 @@ msgstr "{addon} {version} అచేతనమైనది."
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} ఆమోదం."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "ఆమోదించబడినట్లు నిర్ధారించబడింది"
+msgstr "విషయం ఆమోదించబడింది"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} తిరస్కరించబడింది."
+msgstr "{addon} {version} విషయం తిరస్కరించబడింది."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "తిరస్కరించబడింది"
+msgstr "విషయం తిరస్కరించబడింది"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2919,9 +2916,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "సమీక్ష విధానం"
+msgstr "సమీక్ష విధానాలు మరియు నియమాలు"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -3206,9 +3202,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "సహాయకుడు"
+msgstr "సహాయకులు URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -4754,9 +4749,8 @@ msgstr "సమీక్షలు లేవు"
 msgid "Weight"
 msgstr "బరువు"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "చివరి సమీక్ష"
+msgstr "చివరి విషయం సమీక్ష"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -7786,9 +7780,8 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr ""
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
+msgstr "Firefoxను దింపుకోండి"
 
 #, fuzzy
 msgid "Android Browser"
