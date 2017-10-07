@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-07 17:16+0000\n"
+"PO-Revision-Date: 2017-10-07 17:49+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4007,10 +4007,10 @@ msgid "Read more about the source code review policy."
 msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
 
 msgid "Latest News"
-msgstr ""
+msgstr "חדשות אחרונות"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "קראו עוד בבלוג שלנו"
 
 msgid "Resources"
 msgstr "משאבים"
@@ -4159,7 +4159,7 @@ msgstr "תמונת משתמש"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">הרשמה</a> או <a href=\"%(login)s\">התחברות</a>"
 
 msgid "Customize Firefox"
 msgstr "התאמה אישית של Firefox"
@@ -4171,7 +4171,7 @@ msgid ""
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "למדו כיצד ליצור תוספת"
 
 msgid "Port a Chrome Extension"
 msgstr "הסבת הרחבה מ־Chrome"
@@ -4195,13 +4195,13 @@ msgid "Validator"
 msgstr "בדיקה"
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "בדיקות קוד אוטומטיות עבור התוספת שלך."
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "בדקו אם התוספת שלכם צפויה להיות מושפעת משינויים ב־Firefox."
 
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "ספרו לנו אם תוספת עובדת בגרסה מסוימת של Firefox."
 
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr ""
@@ -6435,7 +6435,7 @@ msgstr "ה־<a href=\"%(url)s\">Add-ons Blog</a> שלנו מתעדכן באופ�
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "אנחנו מפרסמים מדי פעם בפעם חדשות, עצות וטריקים בחשבון ה־Twitter שלנו, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
@@ -6486,7 +6486,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "מי עובד באתר הזה?"
 
 #, python-format
 msgid ""
@@ -7963,6 +7963,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"למעט היכן ש<a href=\"https://www.mozilla.org/about/legal/\">צוין</a> אחרת, התוכן באתר זה מוגש בכפוף ל<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">גרסה 3.0 של הרשיון Creative Commons "
+"Attribution Share-Alike</a> או כל גרסה עדכנית יותר."
 
 msgid "get to know <b>add-ons</b>"
 msgstr ""
