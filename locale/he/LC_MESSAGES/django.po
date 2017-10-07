@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-07 17:49+0000\n"
+"PO-Revision-Date: 2017-10-07 18:06+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4017,7 +4017,7 @@ msgstr "משאבים"
 
 # 100%
 msgid "Porting"
-msgstr ""
+msgstr "הסבה"
 
 msgid "Community"
 msgstr "קהילה"
@@ -4055,7 +4055,7 @@ msgid "Compatibility Reporter"
 msgstr "מדווח התאימות"
 
 msgid "Promote"
-msgstr ""
+msgstr "קידום"
 
 # 75%
 # 100%
@@ -4063,10 +4063,10 @@ msgid "Get Your Add-on Featured"
 msgstr "קידום התוספת שלך למומלצים"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "הכפתור ״Get The Add-on״"
 
 msgid "Legal"
-msgstr ""
+msgstr "מידע משפטי"
 
 msgid "Report Trademark Abuse"
 msgstr "דיווח על שימוש לרעה בסימן מסחרי"
@@ -4101,7 +4101,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "למדו כיצד"
 
 # 75%
 # 100%
@@ -4109,7 +4109,7 @@ msgid "Manage Your Add-on"
 msgstr "ניהול התוספת שלך"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "התחברות לעריכה ועדכון התוספת שלך"
 
 msgid "Update Your Legacy Extension"
 msgstr ""
@@ -4169,6 +4169,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"תוספות מאפשרות למיליוני משתמשי Firefox לשפר את חווית הגלישה שלהם. אם יש לך ידע ב־%(html_link_open)sHTML%(link_close)s, ‏%(js_link_open)sJavaScript%(link_close)s ו־%(css_link_open)sCSS%(link_close)s,"
+" יש לך כבר את כל המיומנויות הנדרשות ליצור תוספת מעולה."
 
 msgid "Learn How to Make an Add-on"
 msgstr "למדו כיצד ליצור תוספת"
