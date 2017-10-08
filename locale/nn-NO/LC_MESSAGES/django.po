@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-08 11:43+0000\n"
+"PO-Revision-Date: 2017-10-08 12:08+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -481,13 +481,13 @@ msgstr "Personvernpraksis"
 msgid "Report Abuse"
 msgstr "Rapporter misbruk"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Dersom du mistenkjer at ei utviding strid mot <a href=\"%(url)s\">praksisen vår</a> eller har tryggings- eller personvernproblem, bruk skjemaet nedanfor for å skildre bekymringane dine. Ikkje bruk "
-"skjemaet for andre føremål."
+"Dersom du mistenkjer at ei utviding strid mot %(amo_policy_link_open)spraksisen vår%(link_close)s eller har tryggings- eller personvernproblem, bruk skjemaet nedanfor for å skildre bekymringane "
+"dine. Ikkje bruk skjemaet for andre føremål."
 
 msgid "Send Report"
 msgstr "Send rapport"
@@ -1083,9 +1083,9 @@ msgstr "Gyldige applikasjonsversjonar"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Utvidingar sendt inn til Mozilla Add-ons må ha ein manifest-fil med støtte for minst eitt av programma nedanfor. Berre versjonane lista opp nedanfor er tillatne for desse programma."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Tenk på at WebExtensions ikkje kjem å godta ein \"*\" i <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Tenk på at WebExtensions ikkje kjem til å godta ein \"*\" i %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1093,11 +1093,12 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versjonar"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludereein av følgjande eigenskapar som spesifisert <a href=\"%(url)s\">her</a>."
+msgstr ""
+"Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
 msgid "Contributors"
 msgstr "Bidragsytarar"
@@ -2094,24 +2095,20 @@ msgstr "Auto-godkjenning stadfesta for {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Auto-godkjenning stadfesta"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} aktivert på nytt."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} eskalert."
+msgstr "{addon} {version} deaktivert."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} godkjend."
+msgstr "{addon} {version} innhald godkjent."
 
 msgid "Content approved"
 msgstr "Innhald godkjent"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} innhald avvist."
 
 msgid "Content rejected"
 msgstr "Innhald avvist"
@@ -2501,13 +2498,11 @@ msgstr "Oppdatert gjennomgang av komplett tema"
 msgid "Moderated Add-on Review"
 msgstr "Moderert utvidingsvurdering"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Tilbakestilt moderert utvidingsvurdering"
+msgstr "Utvidingsvurderingsmoderasjon tilbakestilt"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Send inn vurderinga"
+msgstr "Innhaldsvurdering for utviding"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2782,9 +2777,8 @@ msgstr ""
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller eldre."
+msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller lågare."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
