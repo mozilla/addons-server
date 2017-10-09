@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2371,108 +2371,6 @@ msgstr "Leagan"
 msgid "Change"
 msgstr "Athraigh"
 
-msgid "App"
-msgstr "Aip"
-
-msgid "Persona"
-msgstr "Pearsantacht"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Réamhscrúduithe"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Pacáiste Teanga"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Soláthraithe Cuardaigh"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Téama Iomlán"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Scrúduithe le Ceannasaí"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "Leibhéal 1"
-
-msgid "Level 2"
-msgstr "Leibhéal 2"
-
-msgid "Level 3"
-msgstr "Leibhéal 3"
-
-msgid "Level 4"
-msgstr "Leibhéal 4"
-
-msgid "Level 5"
-msgstr "Leibhéal 5"
-
-msgid "Level 6"
-msgstr "Leibhéal 6"
-
-msgid "Level 7"
-msgstr "Leibhéal 7"
-
-msgid "Level 8"
-msgstr "Leibhéal 8"
-
-msgid "Level 9"
-msgstr "Leibhéal 9"
-
 msgid "Compatible"
 msgstr "Comhoiriúnach"
 
@@ -2687,6 +2585,118 @@ msgstr "Sainiúil do Shuíomh"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "Cuardaigh an Doiciméadú Forbartha"
+
+msgid "App"
+msgstr "Aip"
+
+msgid "Persona"
+msgstr "Pearsantacht"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Réamhscrúduithe"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Pacáiste Teanga"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Soláthraithe Cuardaigh"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Téama Iomlán"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Scrúduithe le Ceannasaí"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Gan Léirmheas"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Leibhéal 1"
+
+msgid "Level 2"
+msgstr "Leibhéal 2"
+
+msgid "Level 3"
+msgstr "Leibhéal 3"
+
+msgid "Level 4"
+msgstr "Leibhéal 4"
+
+msgid "Level 5"
+msgstr "Leibhéal 5"
+
+msgid "Level 6"
+msgstr "Leibhéal 6"
+
+msgid "Level 7"
+msgstr "Leibhéal 7"
+
+msgid "Level 8"
+msgstr "Leibhéal 8"
+
+msgid "Level 9"
+msgstr "Leibhéal 9"
 
 msgid "Request More Info"
 msgstr "Iarr Tuilleadh Eolais"

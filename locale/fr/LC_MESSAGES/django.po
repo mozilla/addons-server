@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-05 09:57+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-09 09:55+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2146,18 +2146,17 @@ msgid "Auto-Approval confirmed"
 msgstr "Approbation automatique confirmée"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} réactivé."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} désactivé."
 
 #, fuzzy
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} approuvée."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "a été approuvé"
+msgstr "Contenu approuvé"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
@@ -2281,102 +2280,6 @@ msgstr "Sortie"
 
 msgid "Change"
 msgstr "Changement"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Points de vérification manuel"
-
-msgid "New Add-on Review"
-msgstr "Nouvelle revue du module"
-
-msgid "Preliminary Add-on Review"
-msgstr "Vérification préliminaire de module"
-
-msgid "Updated Add-on Review"
-msgstr "Vérification de module mis à jour"
-
-msgid "New Dictionary Review"
-msgstr "Nouvelle revue du dictionnaire"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Revue préliminaire du dictionnaire"
-
-msgid "Updated Dictionary Review"
-msgstr "Mise à jour de la revue du dictionnaire"
-
-msgid "New Language Pack Review"
-msgstr "Revue de nouveau pack de langue"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Revue préliminaire du pack de langue"
-
-msgid "Updated Language Pack Review"
-msgstr "Mise à jour de la revue du pack de langue"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus pour les revues en retard"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Nombre de jours avant que les points bonus soient appliqués"
-
-msgid "Theme Review"
-msgstr "Revue de thème"
-
-msgid "New Search Provider Review"
-msgstr "Revue de nouveau moteur de recherche"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Revue préliminaire du fournisseur de recherche"
-
-msgid "Updated Search Provider Review"
-msgstr "Mise à jour de la revue du fournisseur de recherche"
-
-msgid "New Complete Theme Review"
-msgstr "Revue de nouveau thème complet"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Revue préliminaire de thème complet"
-
-msgid "Updated Complete Theme Review"
-msgstr "Mise à jour de la revue de thème complet"
-
-msgid "Moderated Add-on Review"
-msgstr "Commentaire du module modéré"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Revue du module annulée lors de la modération"
-
-msgid "Level 1"
-msgstr "Niveau 1"
-
-msgid "Level 2"
-msgstr "Niveau 2"
-
-msgid "Level 3"
-msgstr "Niveau 3"
-
-msgid "Level 4"
-msgstr "Niveau 4"
-
-msgid "Level 5"
-msgstr "Niveau 5"
-
-msgid "Level 6"
-msgstr "Niveau 6"
-
-msgid "Level 7"
-msgstr "Niveau 7"
-
-msgid "Level 8"
-msgstr "Niveau 8"
-
-msgid "Level 9"
-msgstr "Niveau 9"
 
 msgid "Compatible"
 msgstr "Compatible"
@@ -2590,6 +2493,111 @@ msgstr "Pour des sites web précis"
 
 msgid "Web and Developer Tools"
 msgstr "Outils pour développeurs web"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Points de vérification manuel"
+
+msgid "New Add-on Review"
+msgstr "Nouvelle revue du module"
+
+msgid "Preliminary Add-on Review"
+msgstr "Vérification préliminaire de module"
+
+msgid "Updated Add-on Review"
+msgstr "Vérification de module mis à jour"
+
+msgid "New Dictionary Review"
+msgstr "Nouvelle revue du dictionnaire"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Revue préliminaire du dictionnaire"
+
+msgid "Updated Dictionary Review"
+msgstr "Mise à jour de la revue du dictionnaire"
+
+msgid "New Language Pack Review"
+msgstr "Revue de nouveau pack de langue"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Revue préliminaire du pack de langue"
+
+msgid "Updated Language Pack Review"
+msgstr "Mise à jour de la revue du pack de langue"
+
+msgid "Theme Review"
+msgstr "Revue de thème"
+
+msgid "New Search Provider Review"
+msgstr "Revue de nouveau moteur de recherche"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Revue préliminaire du fournisseur de recherche"
+
+msgid "Updated Search Provider Review"
+msgstr "Mise à jour de la revue du fournisseur de recherche"
+
+msgid "New Complete Theme Review"
+msgstr "Revue de nouveau thème complet"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Revue préliminaire de thème complet"
+
+msgid "Updated Complete Theme Review"
+msgstr "Mise à jour de la revue de thème complet"
+
+msgid "Moderated Add-on Review"
+msgstr "Commentaire du module modéré"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Revue du module annulée lors de la modération"
+
+msgid "Add-on Content Review"
+msgstr "Validation du contenu du module"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Validation après approbation (risque le plus élevé)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Validation après approbation (risque élevé)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Validation après approbation (risque moyen)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Validation après approbation (risque faible)"
+
+msgid "Level 1"
+msgstr "Niveau 1"
+
+msgid "Level 2"
+msgstr "Niveau 2"
+
+msgid "Level 3"
+msgstr "Niveau 3"
+
+msgid "Level 4"
+msgstr "Niveau 4"
+
+msgid "Level 5"
+msgstr "Niveau 5"
+
+msgid "Level 6"
+msgstr "Niveau 6"
+
+msgid "Level 7"
+msgstr "Niveau 7"
+
+msgid "Level 8"
+msgstr "Niveau 8"
+
+msgid "Level 9"
+msgstr "Niveau 9"
 
 msgid "Request More Info"
 msgstr "Demander plus d’informations"
@@ -3000,7 +3008,7 @@ msgid "Printable Version"
 msgstr "Version imprimable"
 
 msgid "Accept"
-msgstr ""
+msgstr "Accepter"
 
 msgid "I Accept this Agreement"
 msgstr "J’accepte cet accord"
@@ -4895,9 +4903,8 @@ msgstr "Aucune revue"
 msgid "Weight"
 msgstr "Poids"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Dernière revue"
+msgstr "Dernière validation du contenu"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
@@ -5064,9 +5071,8 @@ msgstr "Revues modérées"
 msgid "Auto Approved Add-ons"
 msgstr "Modules complémentaires approuvés automatiquement"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Envoyer la revue"
+msgstr "Revue du contenu"
 
 msgid "Unlisted Queues"
 msgstr "Files pour les modules non répertoriés"

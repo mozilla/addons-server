@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-30 15:04+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2292,102 +2292,6 @@ msgstr "Versione"
 msgid "Change"
 msgstr "Modifica"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Tema di Personas"
-
-msgid "Manual Reviewer Points"
-msgstr "Manuale per attribuire i punti ai revisori"
-
-msgid "New Add-on Review"
-msgstr "Nuova revisione componente aggiuntivo"
-
-msgid "Preliminary Add-on Review"
-msgstr "Recensione preliminare del componente aggiuntivo"
-
-msgid "Updated Add-on Review"
-msgstr "Recensione per il componente aggiuntivo aggiornato"
-
-msgid "New Dictionary Review"
-msgstr "Nuova revisione dizionario"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Recensione preliminare del dizionario"
-
-msgid "Updated Dictionary Review"
-msgstr "Recensione aggiornata del dizionario"
-
-msgid "New Language Pack Review"
-msgstr "Nuova revisione language pack"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Recensione preliminare del language pack"
-
-msgid "Updated Language Pack Review"
-msgstr "Recensione aggiornata del language pack"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus per le revisioni ritardatarie"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Giorni entro i quali il bonus viene applicato"
-
-msgid "Theme Review"
-msgstr "Revisione tema"
-
-msgid "New Search Provider Review"
-msgstr "Nuova revisione motore di ricerca"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Recensione preliminare del motore di ricerca"
-
-msgid "Updated Search Provider Review"
-msgstr "Recensione aggiornata del motore di ricerca"
-
-msgid "New Complete Theme Review"
-msgstr "Nuova revisione tema completo"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Revisione preliminare tema completo"
-
-msgid "Updated Complete Theme Review"
-msgstr "Revisione aggiornata tema completo"
-
-msgid "Moderated Add-on Review"
-msgstr "Recensione modificata da un moderatore"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Annullate le modifiche del moderatore alla recensione"
-
-msgid "Level 1"
-msgstr "Livello 1"
-
-msgid "Level 2"
-msgstr "Livello 2"
-
-msgid "Level 3"
-msgstr "Livello 3"
-
-msgid "Level 4"
-msgstr "Livello 4"
-
-msgid "Level 5"
-msgstr "Livello 5"
-
-msgid "Level 6"
-msgstr "Livello 6"
-
-msgid "Level 7"
-msgstr "Livello 7"
-
-msgid "Level 8"
-msgstr "Livello 8"
-
-msgid "Level 9"
-msgstr "Livello 9"
-
 msgid "Compatible"
 msgstr "Compatibile"
 
@@ -2600,6 +2504,112 @@ msgstr "Specifici per un sito"
 
 msgid "Web and Developer Tools"
 msgstr "Strumenti per sviluppatori e web-developer"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Tema di Personas"
+
+msgid "Manual Reviewer Points"
+msgstr "Manuale per attribuire i punti ai revisori"
+
+msgid "New Add-on Review"
+msgstr "Nuova revisione componente aggiuntivo"
+
+msgid "Preliminary Add-on Review"
+msgstr "Recensione preliminare del componente aggiuntivo"
+
+msgid "Updated Add-on Review"
+msgstr "Recensione per il componente aggiuntivo aggiornato"
+
+msgid "New Dictionary Review"
+msgstr "Nuova revisione dizionario"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Recensione preliminare del dizionario"
+
+msgid "Updated Dictionary Review"
+msgstr "Recensione aggiornata del dizionario"
+
+msgid "New Language Pack Review"
+msgstr "Nuova revisione language pack"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Recensione preliminare del language pack"
+
+msgid "Updated Language Pack Review"
+msgstr "Recensione aggiornata del language pack"
+
+msgid "Theme Review"
+msgstr "Revisione tema"
+
+msgid "New Search Provider Review"
+msgstr "Nuova revisione motore di ricerca"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Recensione preliminare del motore di ricerca"
+
+msgid "Updated Search Provider Review"
+msgstr "Recensione aggiornata del motore di ricerca"
+
+msgid "New Complete Theme Review"
+msgstr "Nuova revisione tema completo"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Revisione preliminare tema completo"
+
+msgid "Updated Complete Theme Review"
+msgstr "Revisione aggiornata tema completo"
+
+msgid "Moderated Add-on Review"
+msgstr "Recensione modificata da un moderatore"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Annullate le modifiche del moderatore alla recensione"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Trasmetti revisione"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Livello 1"
+
+msgid "Level 2"
+msgstr "Livello 2"
+
+msgid "Level 3"
+msgstr "Livello 3"
+
+msgid "Level 4"
+msgstr "Livello 4"
+
+msgid "Level 5"
+msgstr "Livello 5"
+
+msgid "Level 6"
+msgstr "Livello 6"
+
+msgid "Level 7"
+msgstr "Livello 7"
+
+msgid "Level 8"
+msgstr "Livello 8"
+
+msgid "Level 9"
+msgstr "Livello 9"
 
 msgid "Request More Info"
 msgstr "Richiedi ulteriori informazioni"

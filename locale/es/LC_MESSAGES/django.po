@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-05 10:31+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-08 15:09+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2276,102 +2276,6 @@ msgstr "Lanzamiento"
 msgid "Change"
 msgstr "Cambio"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Puntos para revisores manuales"
-
-msgid "New Add-on Review"
-msgstr "Nueva valoración del complemento"
-
-msgid "Preliminary Add-on Review"
-msgstr "Valoración preliminar del complemento"
-
-msgid "Updated Add-on Review"
-msgstr "Valoración actualizada del complemento"
-
-msgid "New Dictionary Review"
-msgstr "Nueva valoración del diccionario"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Valoración preliminar del diccionario"
-
-msgid "Updated Dictionary Review"
-msgstr "Valoración actualizada del diccionario"
-
-msgid "New Language Pack Review"
-msgstr "Nueva valoración del paquete de idioma"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Valoración preliminar del paquete de idioma"
-
-msgid "Updated Language Pack Review"
-msgstr "Valoración actualizada del paquete de idioma"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonificación por revisiones atrasadas"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Días antes de que se apliquen los puntos de bonificación"
-
-msgid "Theme Review"
-msgstr "Valoración del tema"
-
-msgid "New Search Provider Review"
-msgstr "Nueva valoración del proveedor de búsquedas"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Valoración preliminar del proveedor de búsquedas"
-
-msgid "Updated Search Provider Review"
-msgstr "Valoración actualizada del proveedor de búsquedas"
-
-msgid "New Complete Theme Review"
-msgstr "Nueva valoración del tema completo"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Valoración preliminar del tema completo"
-
-msgid "Updated Complete Theme Review"
-msgstr "Valoración actualizada del tema completo"
-
-msgid "Moderated Add-on Review"
-msgstr "Revisión del complemento moderada"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Se restableció la moderación de la revisión de complemento"
-
-msgid "Level 1"
-msgstr "Nivel 1"
-
-msgid "Level 2"
-msgstr "Nivel 2"
-
-msgid "Level 3"
-msgstr "Nivel 3"
-
-msgid "Level 4"
-msgstr "Nivel 4"
-
-msgid "Level 5"
-msgstr "Nivel 5"
-
-msgid "Level 6"
-msgstr "Nivel 6"
-
-msgid "Level 7"
-msgstr "Nivel 7"
-
-msgid "Level 8"
-msgstr "Nivel 8"
-
-msgid "Level 9"
-msgstr "Nivel 9"
-
 msgid "Compatible"
 msgstr "Compatible"
 
@@ -2584,6 +2488,111 @@ msgstr "Página específica"
 
 msgid "Web and Developer Tools"
 msgstr "Herramientas web y de desarrollo"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Puntos para revisores manuales"
+
+msgid "New Add-on Review"
+msgstr "Nueva valoración del complemento"
+
+msgid "Preliminary Add-on Review"
+msgstr "Valoración preliminar del complemento"
+
+msgid "Updated Add-on Review"
+msgstr "Valoración actualizada del complemento"
+
+msgid "New Dictionary Review"
+msgstr "Nueva valoración del diccionario"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Valoración preliminar del diccionario"
+
+msgid "Updated Dictionary Review"
+msgstr "Valoración actualizada del diccionario"
+
+msgid "New Language Pack Review"
+msgstr "Nueva valoración del paquete de idioma"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Valoración preliminar del paquete de idioma"
+
+msgid "Updated Language Pack Review"
+msgstr "Valoración actualizada del paquete de idioma"
+
+msgid "Theme Review"
+msgstr "Valoración del tema"
+
+msgid "New Search Provider Review"
+msgstr "Nueva valoración del proveedor de búsquedas"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Valoración preliminar del proveedor de búsquedas"
+
+msgid "Updated Search Provider Review"
+msgstr "Valoración actualizada del proveedor de búsquedas"
+
+msgid "New Complete Theme Review"
+msgstr "Nueva valoración del tema completo"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Valoración preliminar del tema completo"
+
+msgid "Updated Complete Theme Review"
+msgstr "Valoración actualizada del tema completo"
+
+msgid "Moderated Add-on Review"
+msgstr "Revisión del complemento moderada"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Se restableció la moderación de la revisión de complemento"
+
+msgid "Add-on Content Review"
+msgstr "Revisión del contenido del complemento"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Revisión del complemento posterior a la aprobación (riesgo alto)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Revisión del complemento posterior a la aprobación (riesgo alto)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Revisión del complemento posterior a la aprobación (riesgo medio)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Revisión del complemento posterior a la aprobación (riesgo bajo)"
+
+msgid "Level 1"
+msgstr "Nivel 1"
+
+msgid "Level 2"
+msgstr "Nivel 2"
+
+msgid "Level 3"
+msgstr "Nivel 3"
+
+msgid "Level 4"
+msgstr "Nivel 4"
+
+msgid "Level 5"
+msgstr "Nivel 5"
+
+msgid "Level 6"
+msgstr "Nivel 6"
+
+msgid "Level 7"
+msgstr "Nivel 7"
+
+msgid "Level 8"
+msgstr "Nivel 8"
+
+msgid "Level 9"
+msgstr "Nivel 9"
 
 msgid "Request More Info"
 msgstr "Solicitar más info"

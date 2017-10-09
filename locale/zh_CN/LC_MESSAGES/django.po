@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 09:51+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 16:32+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2201,102 +2201,6 @@ msgstr "发布"
 msgid "Change"
 msgstr "更改"
 
-msgid "App"
-msgstr "应用"
-
-msgid "Persona"
-msgstr "炫彩风格"
-
-msgid "Manual Reviewer Points"
-msgstr "人工审核员点数"
-
-msgid "New Add-on Review"
-msgstr "新附加组件审核"
-
-msgid "Preliminary Add-on Review"
-msgstr "初步附加组件审核"
-
-msgid "Updated Add-on Review"
-msgstr "已更新附加组件审核"
-
-msgid "New Dictionary Review"
-msgstr "新字典审核"
-
-msgid "Preliminary Dictionary Review"
-msgstr "初步字典审核"
-
-msgid "Updated Dictionary Review"
-msgstr "已更新字典审核"
-
-msgid "New Language Pack Review"
-msgstr "新语言包审核"
-
-msgid "Preliminary Language Pack Review"
-msgstr "首选语言包审核"
-
-msgid "Updated Language Pack Review"
-msgstr "已更新语言包审核"
-
-msgid "Bonus for overdue reviews"
-msgstr "逾期审核奖励点数"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "天后适用奖励点数"
-
-msgid "Theme Review"
-msgstr "主题审核"
-
-msgid "New Search Provider Review"
-msgstr "新搜索提供商审核"
-
-msgid "Preliminary Search Provider Review"
-msgstr "搜索提供商初步审核"
-
-msgid "Updated Search Provider Review"
-msgstr "已更新搜索提供商审核"
-
-msgid "New Complete Theme Review"
-msgstr "新完整主题审核"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "完整主题初步审核"
-
-msgid "Updated Complete Theme Review"
-msgstr "完整主题更新审核"
-
-msgid "Moderated Add-on Review"
-msgstr "提请仲裁的附加组件评价"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "已还原附加组件评价仲裁"
-
-msgid "Level 1"
-msgstr "第1级"
-
-msgid "Level 2"
-msgstr "第2级"
-
-msgid "Level 3"
-msgstr "第3级"
-
-msgid "Level 4"
-msgstr "第4级"
-
-msgid "Level 5"
-msgstr "第5级"
-
-msgid "Level 6"
-msgstr "第6级"
-
-msgid "Level 7"
-msgstr "第7级"
-
-msgid "Level 8"
-msgstr "第8级"
-
-msgid "Level 9"
-msgstr "第9级"
-
 msgid "Compatible"
 msgstr "兼容"
 
@@ -2509,6 +2413,111 @@ msgstr "特定网站"
 
 msgid "Web and Developer Tools"
 msgstr "网页和开发者工具"
+
+msgid "App"
+msgstr "应用"
+
+msgid "Persona"
+msgstr "炫彩风格"
+
+msgid "Manual Reviewer Points"
+msgstr "人工审核员点数"
+
+msgid "New Add-on Review"
+msgstr "新附加组件审核"
+
+msgid "Preliminary Add-on Review"
+msgstr "初步附加组件审核"
+
+msgid "Updated Add-on Review"
+msgstr "已更新附加组件审核"
+
+msgid "New Dictionary Review"
+msgstr "新字典审核"
+
+msgid "Preliminary Dictionary Review"
+msgstr "初步字典审核"
+
+msgid "Updated Dictionary Review"
+msgstr "已更新字典审核"
+
+msgid "New Language Pack Review"
+msgstr "新语言包审核"
+
+msgid "Preliminary Language Pack Review"
+msgstr "首选语言包审核"
+
+msgid "Updated Language Pack Review"
+msgstr "已更新语言包审核"
+
+msgid "Theme Review"
+msgstr "主题审核"
+
+msgid "New Search Provider Review"
+msgstr "新搜索提供商审核"
+
+msgid "Preliminary Search Provider Review"
+msgstr "搜索提供商初步审核"
+
+msgid "Updated Search Provider Review"
+msgstr "已更新搜索提供商审核"
+
+msgid "New Complete Theme Review"
+msgstr "新完整主题审核"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "完整主题初步审核"
+
+msgid "Updated Complete Theme Review"
+msgstr "完整主题更新审核"
+
+msgid "Moderated Add-on Review"
+msgstr "提请仲裁的附加组件评价"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "已还原附加组件评价仲裁"
+
+msgid "Add-on Content Review"
+msgstr "附加组件内容审核"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "先发后审附加组件审核 (最高风险)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "先发后审附加组件审核 (高风险)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "先发后审附加组件审核 (中风险)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "先发后审附加组件审核 (低风险)"
+
+msgid "Level 1"
+msgstr "第1级"
+
+msgid "Level 2"
+msgstr "第2级"
+
+msgid "Level 3"
+msgstr "第3级"
+
+msgid "Level 4"
+msgstr "第4级"
+
+msgid "Level 5"
+msgstr "第5级"
+
+msgid "Level 6"
+msgstr "第6级"
+
+msgid "Level 7"
+msgstr "第7级"
+
+msgid "Level 8"
+msgstr "第8级"
+
+msgid "Level 9"
+msgstr "第9级"
 
 msgid "Request More Info"
 msgstr "要求更多信息"

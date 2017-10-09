@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-05 16:18+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-07 17:11+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2298,102 +2298,6 @@ msgstr "Выпуск"
 msgid "Change"
 msgstr "Изменить"
 
-msgid "App"
-msgstr "Прил."
-
-msgid "Persona"
-msgstr "Обои"
-
-msgid "Manual Reviewer Points"
-msgstr "Очки за проверку вручную"
-
-msgid "New Add-on Review"
-msgstr "Проверка нового дополнения"
-
-msgid "Preliminary Add-on Review"
-msgstr "Предварительная проверка дополнения"
-
-msgid "Updated Add-on Review"
-msgstr "Обновлённая проверка дополнения"
-
-msgid "New Dictionary Review"
-msgstr "Проверка нового словаря"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Предварительная проверка словаря"
-
-msgid "Updated Dictionary Review"
-msgstr "Проверка обновлённого словаря"
-
-msgid "New Language Pack Review"
-msgstr "Проверка новой локали"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Предварительная проверка локали"
-
-msgid "Updated Language Pack Review"
-msgstr "Проверка обновлённой локали"
-
-msgid "Bonus for overdue reviews"
-msgstr "Бонус за задержанные проверки"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Дней до применения бонусных баллов"
-
-msgid "Theme Review"
-msgstr "Проверка темы"
-
-msgid "New Search Provider Review"
-msgstr "Проверка новой поисковой системы"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Предварительная проверка поисковика"
-
-msgid "Updated Search Provider Review"
-msgstr "Проверка обновлённого поисковика"
-
-msgid "New Complete Theme Review"
-msgstr "Проверка новой темы"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Предварительная проверка полной темы"
-
-msgid "Updated Complete Theme Review"
-msgstr "Обновлённая проверка полной темы"
-
-msgid "Moderated Add-on Review"
-msgstr "Проверка модерируемого дополнения"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Откат модерации отзыва на дополнение"
-
-msgid "Level 1"
-msgstr "Уровень 1"
-
-msgid "Level 2"
-msgstr "Уровень 2"
-
-msgid "Level 3"
-msgstr "Уровень 3"
-
-msgid "Level 4"
-msgstr "Уровень 4"
-
-msgid "Level 5"
-msgstr "Уровень 5"
-
-msgid "Level 6"
-msgstr "Уровень 6"
-
-msgid "Level 7"
-msgstr "Уровень 7"
-
-msgid "Level 8"
-msgstr "Уровень 8"
-
-msgid "Level 9"
-msgstr "Уровень 9"
-
 msgid "Compatible"
 msgstr "Совместимое"
 
@@ -2606,6 +2510,111 @@ msgstr "Для определённых сайтов"
 
 msgid "Web and Developer Tools"
 msgstr "Инструменты разработчика"
+
+msgid "App"
+msgstr "Прил."
+
+msgid "Persona"
+msgstr "Обои"
+
+msgid "Manual Reviewer Points"
+msgstr "Очки за проверку вручную"
+
+msgid "New Add-on Review"
+msgstr "Проверка нового дополнения"
+
+msgid "Preliminary Add-on Review"
+msgstr "Предварительная проверка дополнения"
+
+msgid "Updated Add-on Review"
+msgstr "Обновлённая проверка дополнения"
+
+msgid "New Dictionary Review"
+msgstr "Проверка нового словаря"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Предварительная проверка словаря"
+
+msgid "Updated Dictionary Review"
+msgstr "Проверка обновлённого словаря"
+
+msgid "New Language Pack Review"
+msgstr "Проверка новой локали"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Предварительная проверка локали"
+
+msgid "Updated Language Pack Review"
+msgstr "Проверка обновлённой локали"
+
+msgid "Theme Review"
+msgstr "Проверка темы"
+
+msgid "New Search Provider Review"
+msgstr "Проверка новой поисковой системы"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Предварительная проверка поисковика"
+
+msgid "Updated Search Provider Review"
+msgstr "Проверка обновлённого поисковика"
+
+msgid "New Complete Theme Review"
+msgstr "Проверка новой темы"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Предварительная проверка полной темы"
+
+msgid "Updated Complete Theme Review"
+msgstr "Обновлённая проверка полной темы"
+
+msgid "Moderated Add-on Review"
+msgstr "Проверка модерируемого дополнения"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Откат модерации отзыва на дополнение"
+
+msgid "Add-on Content Review"
+msgstr "Проверка содержимого дополнения"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Проверка уже одобренного дополнения (самый высокий риск)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Проверка уже одобренного дополнения (высокий риск)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Проверка уже одобренного дополнения (средний риск)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Проверка уже одобренного дополнения (низкий риск)"
+
+msgid "Level 1"
+msgstr "Уровень 1"
+
+msgid "Level 2"
+msgstr "Уровень 2"
+
+msgid "Level 3"
+msgstr "Уровень 3"
+
+msgid "Level 4"
+msgstr "Уровень 4"
+
+msgid "Level 5"
+msgstr "Уровень 5"
+
+msgid "Level 6"
+msgstr "Уровень 6"
+
+msgid "Level 7"
+msgstr "Уровень 7"
+
+msgid "Level 8"
+msgstr "Уровень 8"
+
+msgid "Level 9"
+msgstr "Уровень 9"
 
 msgid "Request More Info"
 msgstr "Запросить дополнительную информацию"

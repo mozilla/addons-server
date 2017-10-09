@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 07:17+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 17:27+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2210,102 +2210,6 @@ msgstr "釋出"
 msgid "Change"
 msgstr "修改"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "個性面板"
-
-msgid "Manual Reviewer Points"
-msgstr "手動審核點數"
-
-msgid "New Add-on Review"
-msgstr "新附加元件審核"
-
-msgid "Preliminary Add-on Review"
-msgstr "初步附加元件審核"
-
-msgid "Updated Add-on Review"
-msgstr "更新附加元件審核"
-
-msgid "New Dictionary Review"
-msgstr "新字典審核"
-
-msgid "Preliminary Dictionary Review"
-msgstr "初階字典審核"
-
-msgid "Updated Dictionary Review"
-msgstr "更新字典審核"
-
-msgid "New Language Pack Review"
-msgstr "新語言套件審核"
-
-msgid "Preliminary Language Pack Review"
-msgstr "初階語言包審核"
-
-msgid "Updated Language Pack Review"
-msgstr "更新語言包審核"
-
-msgid "Bonus for overdue reviews"
-msgstr "過期審查的加分"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "天後將累計加分點數"
-
-msgid "Theme Review"
-msgstr "主題審核"
-
-msgid "New Search Provider Review"
-msgstr "新搜尋引擎提供商審核"
-
-msgid "Preliminary Search Provider Review"
-msgstr "初步搜尋提供商審核"
-
-msgid "Updated Search Provider Review"
-msgstr "更新搜尋提供商審核"
-
-msgid "New Complete Theme Review"
-msgstr "新完整主題審核"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "完整主題初步審核"
-
-msgid "Updated Complete Theme Review"
-msgstr "已更新的完整佈景主題審核"
-
-msgid "Moderated Add-on Review"
-msgstr "有問題的附加元件評論"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "已還原附加元件評論管理"
-
-msgid "Level 1"
-msgstr "第 1 級"
-
-msgid "Level 2"
-msgstr "第 2 級"
-
-msgid "Level 3"
-msgstr "第 3 級"
-
-msgid "Level 4"
-msgstr "第 4 級"
-
-msgid "Level 5"
-msgstr "第 5 級"
-
-msgid "Level 6"
-msgstr "第 6 級"
-
-msgid "Level 7"
-msgstr "第 7 級"
-
-msgid "Level 8"
-msgstr "第 8 級"
-
-msgid "Level 9"
-msgstr "第 9 級"
-
 msgid "Compatible"
 msgstr "相容"
 
@@ -2518,6 +2422,111 @@ msgstr "特定網站功能"
 
 msgid "Web and Developer Tools"
 msgstr "網頁及開發者工具"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "個性面板"
+
+msgid "Manual Reviewer Points"
+msgstr "手動審核點數"
+
+msgid "New Add-on Review"
+msgstr "新附加元件審核"
+
+msgid "Preliminary Add-on Review"
+msgstr "初步附加元件審核"
+
+msgid "Updated Add-on Review"
+msgstr "更新附加元件審核"
+
+msgid "New Dictionary Review"
+msgstr "新字典審核"
+
+msgid "Preliminary Dictionary Review"
+msgstr "初階字典審核"
+
+msgid "Updated Dictionary Review"
+msgstr "更新字典審核"
+
+msgid "New Language Pack Review"
+msgstr "新語言套件審核"
+
+msgid "Preliminary Language Pack Review"
+msgstr "初階語言包審核"
+
+msgid "Updated Language Pack Review"
+msgstr "更新語言包審核"
+
+msgid "Theme Review"
+msgstr "主題審核"
+
+msgid "New Search Provider Review"
+msgstr "新搜尋引擎提供商審核"
+
+msgid "Preliminary Search Provider Review"
+msgstr "初步搜尋提供商審核"
+
+msgid "Updated Search Provider Review"
+msgstr "更新搜尋提供商審核"
+
+msgid "New Complete Theme Review"
+msgstr "新完整主題審核"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "完整主題初步審核"
+
+msgid "Updated Complete Theme Review"
+msgstr "已更新的完整佈景主題審核"
+
+msgid "Moderated Add-on Review"
+msgstr "有問題的附加元件評論"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "已還原附加元件評論管理"
+
+msgid "Add-on Content Review"
+msgstr "附加元件內容審核"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "附加元件先上後審審核（最高風險）"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "附加元件先上後審審核（高風險）"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "附加元件先上後審審核（中風險）"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "附加元件先上後審審核（低風險）"
+
+msgid "Level 1"
+msgstr "第 1 級"
+
+msgid "Level 2"
+msgstr "第 2 級"
+
+msgid "Level 3"
+msgstr "第 3 級"
+
+msgid "Level 4"
+msgstr "第 4 級"
+
+msgid "Level 5"
+msgstr "第 5 級"
+
+msgid "Level 6"
+msgstr "第 6 級"
+
+msgid "Level 7"
+msgstr "第 7 級"
+
+msgid "Level 8"
+msgstr "第 8 級"
+
+msgid "Level 9"
+msgstr "第 9 級"
 
 msgid "Request More Info"
 msgstr "要求更多資訊"

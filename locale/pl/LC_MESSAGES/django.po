@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2314,109 +2314,6 @@ msgstr "Wydanie"
 msgid "Change"
 msgstr "Zmień"
 
-msgid "App"
-msgstr "Aplikacja"
-
-msgid "Persona"
-msgstr "Minimotyw"
-
-msgid "Manual Reviewer Points"
-msgstr "Punkty recenzenta"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Pełne sprawdzenie dodatku"
-
-msgid "Preliminary Add-on Review"
-msgstr "Wstępne sprawdzenie dodatku"
-
-msgid "Updated Add-on Review"
-msgstr "Sprawdzenie zaktualizowanego dodatku"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Pełne sprawdzenie słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Wstępne sprawdzenie słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Sprawdzenie zaktualizowanego słownika"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Pełne sprawdzenie pakietu językowego"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Wstępne sprawdzenie pakietu językowego"
-
-msgid "Updated Language Pack Review"
-msgstr "Sprawdzenie zaktualizowanego pakietu językowego"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Sprawdzenie motywu"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Pełne sprawdzenie wtyczki wyszukiwarki"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Wstępne sprawdzenie wtyczki wyszukiwarki"
-
-msgid "Updated Search Provider Review"
-msgstr "Sprawdzenie zaktualizowanej wtyczki wyszukiwarki"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Sprawdzenie kompletnego motywu"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Wstępne sprawdzenie kompletnego motywu"
-
-msgid "Updated Complete Theme Review"
-msgstr "Sprawdzenie zaktualizowanego kompletnego motywu"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderowane sprawdzenie dodatku"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Przywrócono moderację sprawdzenia dodatku"
-
-msgid "Level 1"
-msgstr "Poziom 1"
-
-msgid "Level 2"
-msgstr "Poziom 2"
-
-msgid "Level 3"
-msgstr "Poziom 3"
-
-msgid "Level 4"
-msgstr "Poziom 4"
-
-msgid "Level 5"
-msgstr "Poziom 5"
-
-msgid "Level 6"
-msgstr "Poziom 6"
-
-msgid "Level 7"
-msgstr "Poziom 7"
-
-msgid "Level 8"
-msgstr "Poziom 8"
-
-msgid "Level 9"
-msgstr "Poziom 9"
-
 msgid "Compatible"
 msgstr ""
 
@@ -2630,6 +2527,119 @@ msgstr "Związane z konkretnymi witrynami"
 
 msgid "Web and Developer Tools"
 msgstr "Narzędzia twórców witryn"
+
+msgid "App"
+msgstr "Aplikacja"
+
+msgid "Persona"
+msgstr "Minimotyw"
+
+msgid "Manual Reviewer Points"
+msgstr "Punkty recenzenta"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Pełne sprawdzenie dodatku"
+
+msgid "Preliminary Add-on Review"
+msgstr "Wstępne sprawdzenie dodatku"
+
+msgid "Updated Add-on Review"
+msgstr "Sprawdzenie zaktualizowanego dodatku"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Pełne sprawdzenie słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Wstępne sprawdzenie słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Sprawdzenie zaktualizowanego słownika"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Pełne sprawdzenie pakietu językowego"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Wstępne sprawdzenie pakietu językowego"
+
+msgid "Updated Language Pack Review"
+msgstr "Sprawdzenie zaktualizowanego pakietu językowego"
+
+msgid "Theme Review"
+msgstr "Sprawdzenie motywu"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Pełne sprawdzenie wtyczki wyszukiwarki"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Wstępne sprawdzenie wtyczki wyszukiwarki"
+
+msgid "Updated Search Provider Review"
+msgstr "Sprawdzenie zaktualizowanej wtyczki wyszukiwarki"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Sprawdzenie kompletnego motywu"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Wstępne sprawdzenie kompletnego motywu"
+
+msgid "Updated Complete Theme Review"
+msgstr "Sprawdzenie zaktualizowanego kompletnego motywu"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Moderowane sprawdzenie dodatku"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Przywrócono moderację sprawdzenia dodatku"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Wyślij sprawdzenie"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Poziom 1"
+
+msgid "Level 2"
+msgstr "Poziom 2"
+
+msgid "Level 3"
+msgstr "Poziom 3"
+
+msgid "Level 4"
+msgstr "Poziom 4"
+
+msgid "Level 5"
+msgstr "Poziom 5"
+
+msgid "Level 6"
+msgstr "Poziom 6"
+
+msgid "Level 7"
+msgstr "Poziom 7"
+
+msgid "Level 8"
+msgstr "Poziom 8"
+
+msgid "Level 9"
+msgstr "Poziom 9"
 
 msgid "Request More Info"
 msgstr "Poproś o więcej informacji"

@@ -480,10 +480,61 @@ class TestReviewerScore(TestCase):
                         event = None
                 self.check_event(tk, sk, event)
 
+    def test_events_post_review(self):
+        base_args = (self.addon, amo.STATUS_PUBLIC)
+        # No version.
+        assert ReviewerScore.get_event(
+            *base_args, version=None,
+            post_review=True) == amo.REVIEWED_EXTENSION_LOW_RISK
+        # No autoapprovalsummary.
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) == amo.REVIEWED_EXTENSION_LOW_RISK
+        # Now with a summary... low risk.
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=-10)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_LOW_RISK
+        # Medium risk.
+        summary.update(weight=21)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_MEDIUM_RISK
+        # High risk.
+        summary.update(weight=101)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGH_RISK
+        # Highest risk.
+        summary.update(weight=151)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGHEST_RISK
+        # Highest risk again.
+        summary.update(weight=65535)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGHEST_RISK
+        # Content review is always the same.
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version, post_review=True,
+            content_review=True) == amo.REVIEWED_CONTENT_REVIEW
+
     def test_award_points(self):
         self._give_points()
         assert ReviewerScore.objects.all()[0].score == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_award_points_with_extra_note(self):
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status, extra_note=u'ÔMG!')
+        reviewer_score = ReviewerScore.objects.all()[0]
+        assert reviewer_score.note_key == amo.REVIEWED_ADDON_FULL
+        assert reviewer_score.score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert reviewer_score.note == u'ÔMG!'
 
     def test_award_points_bonus(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')

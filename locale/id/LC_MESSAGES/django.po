@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2261,109 +2261,6 @@ msgstr "Rilis"
 msgid "Change"
 msgstr "Ubah"
 
-msgid "App"
-msgstr "Aplikasi"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Poin Pengulas Manual"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Ulasan Lengkap Pengaya"
-
-msgid "Preliminary Add-on Review"
-msgstr "Ulasan Pendahuluan Pengaya"
-
-msgid "Updated Add-on Review"
-msgstr "Ulasan Pengaya yang Diperbarui"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Ulasan Lengkap Kamus"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Ulasan Pendahuluan Kamus"
-
-msgid "Updated Dictionary Review"
-msgstr "Ulasan Kamus yang Diperbarui"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Ulasan Lengkap Paket Bahasa"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Ulasan Pendahuluan Paket Bahasa"
-
-msgid "Updated Language Pack Review"
-msgstr "Ulasan Paket Bahasa yang Diperbarui"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus untuk ulasan yang terlambat"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Hari Sebelum Poin Bonus Diterapkan"
-
-msgid "Theme Review"
-msgstr "Ulasan Tema"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Ulasan Lengkap Penyedia Pencarian"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Ulasan Pendahuluan Penyedia Pencarian"
-
-msgid "Updated Search Provider Review"
-msgstr "Ulasan Penyedia Pencarian yang Diperbarui"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Ulasan Tema Komplet"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Ulasan Pendahuluan Tema Komplet"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ulasan Tema Komplet yang Diperbarui"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Ulasan Pengaya Dimoderasi"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderasi Ulasan Pengaya Dikembalikan"
-
-msgid "Level 1"
-msgstr "Tingkat 1"
-
-msgid "Level 2"
-msgstr "Tingkat 2"
-
-msgid "Level 3"
-msgstr "Tingkat 3"
-
-msgid "Level 4"
-msgstr "Tingkat 4"
-
-msgid "Level 5"
-msgstr "Tingkat 5"
-
-msgid "Level 6"
-msgstr "Tingkat 6"
-
-msgid "Level 7"
-msgstr "Tingkat 7"
-
-msgid "Level 8"
-msgstr "Tingkat 8"
-
-msgid "Level 9"
-msgstr "Tingkat 9"
-
 msgid "Compatible"
 msgstr "Sesuai"
 
@@ -2576,6 +2473,119 @@ msgstr "Khusus Situs Tertentu"
 
 msgid "Web and Developer Tools"
 msgstr "Perangkat Web dan Pengembang"
+
+msgid "App"
+msgstr "Aplikasi"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Poin Pengulas Manual"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Ulasan Lengkap Pengaya"
+
+msgid "Preliminary Add-on Review"
+msgstr "Ulasan Pendahuluan Pengaya"
+
+msgid "Updated Add-on Review"
+msgstr "Ulasan Pengaya yang Diperbarui"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Ulasan Lengkap Kamus"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Ulasan Pendahuluan Kamus"
+
+msgid "Updated Dictionary Review"
+msgstr "Ulasan Kamus yang Diperbarui"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Ulasan Lengkap Paket Bahasa"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Ulasan Pendahuluan Paket Bahasa"
+
+msgid "Updated Language Pack Review"
+msgstr "Ulasan Paket Bahasa yang Diperbarui"
+
+msgid "Theme Review"
+msgstr "Ulasan Tema"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Ulasan Lengkap Penyedia Pencarian"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Ulasan Pendahuluan Penyedia Pencarian"
+
+msgid "Updated Search Provider Review"
+msgstr "Ulasan Penyedia Pencarian yang Diperbarui"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Ulasan Tema Komplet"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Ulasan Pendahuluan Tema Komplet"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ulasan Tema Komplet yang Diperbarui"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Ulasan Pengaya Dimoderasi"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderasi Ulasan Pengaya Dikembalikan"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Melakukan Ulasan"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Tingkat 1"
+
+msgid "Level 2"
+msgstr "Tingkat 2"
+
+msgid "Level 3"
+msgstr "Tingkat 3"
+
+msgid "Level 4"
+msgstr "Tingkat 4"
+
+msgid "Level 5"
+msgstr "Tingkat 5"
+
+msgid "Level 6"
+msgstr "Tingkat 6"
+
+msgid "Level 7"
+msgstr "Tingkat 7"
+
+msgid "Level 8"
+msgstr "Tingkat 8"
+
+msgid "Level 9"
+msgstr "Tingkat 9"
 
 msgid "Request More Info"
 msgstr "Meminta Info Tambahan"

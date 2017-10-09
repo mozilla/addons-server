@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2242,102 +2242,6 @@ msgstr "ǝsɐǝʅǝᴚ"
 msgid "Change"
 msgstr "ǝƃuɐɥↃ"
 
-msgid "App"
-msgstr "dd∀"
-
-msgid "Persona"
-msgstr "ɐuosɹǝԀ"
-
-msgid "Manual Reviewer Points"
-msgstr "sʇuıoԀ ɹǝʍǝıʌǝᴚ ʅɐnuɐW"
-
-msgid "New Add-on Review"
-msgstr "ʍǝıʌǝᴚ uo-pp∀ ʍǝN"
-
-msgid "Preliminary Add-on Review"
-msgstr "ʍǝıʌǝᴚ uo-pp∀ ʎɹɐuıɯıʅǝɹԀ"
-
-msgid "Updated Add-on Review"
-msgstr "ʍǝıʌǝᴚ uo-pp∀ pǝʇɐpd∩"
-
-msgid "New Dictionary Review"
-msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ ʍǝN"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ ʎɹɐuıɯıʅǝɹԀ"
-
-msgid "Updated Dictionary Review"
-msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ pǝʇɐpd∩"
-
-msgid "New Language Pack Review"
-msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ ʍǝN"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ ʎɹɐuıɯıʅǝɹԀ"
-
-msgid "Updated Language Pack Review"
-msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ pǝʇɐpd∩"
-
-msgid "Bonus for overdue reviews"
-msgstr "sʍǝıʌǝɹ ǝnpɹǝʌo ɹoɟ snuoԐ"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "pǝıʅdd∀ sʇuıoԀ snuoԐ ǝɹoɟǝԐ sʎɐᗡ"
-
-msgid "Theme Review"
-msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥"
-
-msgid "New Search Provider Review"
-msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS ʍǝN"
-
-msgid "Preliminary Search Provider Review"
-msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS ʎɹɐuıɯıʅǝɹԀ"
-
-msgid "Updated Search Provider Review"
-msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS pǝʇɐpd∩"
-
-msgid "New Complete Theme Review"
-msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ ʍǝN"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ ʎɹɐuıɯıʅǝɹԀ"
-
-msgid "Updated Complete Theme Review"
-msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ pǝʇɐpd∩"
-
-msgid "Moderated Add-on Review"
-msgstr "ʍǝıʌǝᴚ uo-pp∀ pǝʇɐɹǝpoW"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "pǝʇɹǝʌǝᴚ uoıʇɐɹǝpoW ʍǝıʌǝᴚ uo-pp∀"
-
-msgid "Level 1"
-msgstr "1 ʅǝʌǝ⅂"
-
-msgid "Level 2"
-msgstr "2 ʅǝʌǝ⅂"
-
-msgid "Level 3"
-msgstr "3 ʅǝʌǝ⅂"
-
-msgid "Level 4"
-msgstr "4 ʅǝʌǝ⅂"
-
-msgid "Level 5"
-msgstr "5 ʅǝʌǝ⅂"
-
-msgid "Level 6"
-msgstr "6 ʅǝʌǝ⅂"
-
-msgid "Level 7"
-msgstr "7 ʅǝʌǝ⅂"
-
-msgid "Level 8"
-msgstr "8 ʅǝʌǝ⅂"
-
-msgid "Level 9"
-msgstr "9 ʅǝʌǝ⅂"
-
 msgid "Compatible"
 msgstr "ǝʅqıʇɐdɯoↃ"
 
@@ -2550,6 +2454,111 @@ msgstr "ɔıɟıɔǝds-ǝʇıS"
 
 msgid "Web and Developer Tools"
 msgstr "sʅoo⊥ ɹǝdoʅǝʌǝᗡ puɐ qǝＭ"
+
+msgid "App"
+msgstr "dd∀"
+
+msgid "Persona"
+msgstr "ɐuosɹǝԀ"
+
+msgid "Manual Reviewer Points"
+msgstr "sʇuıoԀ ɹǝʍǝıʌǝᴚ ʅɐnuɐW"
+
+msgid "New Add-on Review"
+msgstr "ʍǝıʌǝᴚ uo-pp∀ ʍǝN"
+
+msgid "Preliminary Add-on Review"
+msgstr "ʍǝıʌǝᴚ uo-pp∀ ʎɹɐuıɯıʅǝɹԀ"
+
+msgid "Updated Add-on Review"
+msgstr "ʍǝıʌǝᴚ uo-pp∀ pǝʇɐpd∩"
+
+msgid "New Dictionary Review"
+msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ ʍǝN"
+
+msgid "Preliminary Dictionary Review"
+msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ ʎɹɐuıɯıʅǝɹԀ"
+
+msgid "Updated Dictionary Review"
+msgstr "ʍǝıʌǝᴚ ʎɹɐuoıʇɔıᗡ pǝʇɐpd∩"
+
+msgid "New Language Pack Review"
+msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ ʍǝN"
+
+msgid "Preliminary Language Pack Review"
+msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ ʎɹɐuıɯıʅǝɹԀ"
+
+msgid "Updated Language Pack Review"
+msgstr "ʍǝıʌǝᴚ ʞɔɐԀ ǝƃɐnƃuɐ⅂ pǝʇɐpd∩"
+
+msgid "Theme Review"
+msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥"
+
+msgid "New Search Provider Review"
+msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS ʍǝN"
+
+msgid "Preliminary Search Provider Review"
+msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS ʎɹɐuıɯıʅǝɹԀ"
+
+msgid "Updated Search Provider Review"
+msgstr "ʍǝıʌǝᴚ ɹǝpıʌoɹԀ ɥɔɹɐǝS pǝʇɐpd∩"
+
+msgid "New Complete Theme Review"
+msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ ʍǝN"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ ʎɹɐuıɯıʅǝɹԀ"
+
+msgid "Updated Complete Theme Review"
+msgstr "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ǝʇǝʅdɯoↃ pǝʇɐpd∩"
+
+msgid "Moderated Add-on Review"
+msgstr "ʍǝıʌǝᴚ uo-pp∀ pǝʇɐɹǝpoW"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "pǝʇɹǝʌǝᴚ uoıʇɐɹǝpoW ʍǝıʌǝᴚ uo-pp∀"
+
+msgid "Add-on Content Review"
+msgstr "ʍǝıʌǝᴚ ʇuǝʇuoↃ uo-pp∀"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "(ʞsıᴚ ʇsǝɥƃıH) ʍǝıʌǝᴚ uo-pp∀ ʅɐʌoɹdd∀-ʇsoԀ"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "(ʞsıᴚ ɥƃıH) ʍǝıʌǝᴚ uo-pp∀ ʅɐʌoɹdd∀-ʇsoԀ"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "(ʞsıᴚ ɯnıpǝW) ʍǝıʌǝᴚ uo-pp∀ ʅɐʌoɹdd∀-ʇsoԀ"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "(ʞsıᴚ ʍo⅂) ʍǝıʌǝᴚ uo-pp∀ ʅɐʌoɹdd∀-ʇsoԀ"
+
+msgid "Level 1"
+msgstr "1 ʅǝʌǝ⅂"
+
+msgid "Level 2"
+msgstr "2 ʅǝʌǝ⅂"
+
+msgid "Level 3"
+msgstr "3 ʅǝʌǝ⅂"
+
+msgid "Level 4"
+msgstr "4 ʅǝʌǝ⅂"
+
+msgid "Level 5"
+msgstr "5 ʅǝʌǝ⅂"
+
+msgid "Level 6"
+msgstr "6 ʅǝʌǝ⅂"
+
+msgid "Level 7"
+msgstr "7 ʅǝʌǝ⅂"
+
+msgid "Level 8"
+msgstr "8 ʅǝʌǝ⅂"
+
+msgid "Level 9"
+msgstr "9 ʅǝʌǝ⅂"
 
 msgid "Request More Info"
 msgstr "oɟuI ǝɹoW ʇsǝnbǝᴚ"

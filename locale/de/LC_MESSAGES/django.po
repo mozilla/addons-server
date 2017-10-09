@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 15:34+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 16:54+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2275,102 +2275,6 @@ msgstr "Veröffentlichung"
 msgid "Change"
 msgstr "Änderung"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Handbuch für Überprüfungspunkte"
-
-msgid "New Add-on Review"
-msgstr "Neue Add-on-Überprüfung"
-
-msgid "Preliminary Add-on Review"
-msgstr "Vorläufige Add-on-Überprüfung"
-
-msgid "Updated Add-on Review"
-msgstr "Überprüfung von aktualisiertem Add-on"
-
-msgid "New Dictionary Review"
-msgstr "Neue Wörterbuch-Überprüfung"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Vorläufige Wörterbuch-Überprüfung"
-
-msgid "Updated Dictionary Review"
-msgstr "Überprüfung von aktualisiertem Wörterbuch"
-
-msgid "New Language Pack Review"
-msgstr "Neue Sprachpaket-Überprüfung"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Vorläufige Sprachpaket-Überprüfung"
-
-msgid "Updated Language Pack Review"
-msgstr "Überprüfung von aktualisiertem Sprachpaket"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus für überfällige Überprüfung"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Tage, bevor Bonuspunkte angewendet werden"
-
-msgid "Theme Review"
-msgstr "Theme-Überprüfung"
-
-msgid "New Search Provider Review"
-msgstr "Neue Suchplugin-Überprüfung"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Vorläufige Suchplugin-Überprüfung"
-
-msgid "Updated Search Provider Review"
-msgstr "Überprüfung von aktualisiertem Suchplugin"
-
-msgid "New Complete Theme Review"
-msgstr "Neue Überprüfung zu vollständigem Theme"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Vorläufige Überprüfung zu vollständigem Theme"
-
-msgid "Updated Complete Theme Review"
-msgstr "Überprüfung zu aktualisiertem vollständigem Theme"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderierte Add-on-Bewertung"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderation für Add-on-Bewertung rückgängig gemacht"
-
-msgid "Level 1"
-msgstr "Stufe 1"
-
-msgid "Level 2"
-msgstr "Stufe 2"
-
-msgid "Level 3"
-msgstr "Stufe 3"
-
-msgid "Level 4"
-msgstr "Stufe 4"
-
-msgid "Level 5"
-msgstr "Stufe 5"
-
-msgid "Level 6"
-msgstr "Stufe 6"
-
-msgid "Level 7"
-msgstr "Stufe 7"
-
-msgid "Level 8"
-msgstr "Stufe 8"
-
-msgid "Level 9"
-msgstr "Stufe 9"
-
 msgid "Compatible"
 msgstr "Kompatibel"
 
@@ -2583,6 +2487,111 @@ msgstr "Seitenabhängige Erweiterungen"
 
 msgid "Web and Developer Tools"
 msgstr "Entwicklerwerkzeuge"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Handbuch für Überprüfungspunkte"
+
+msgid "New Add-on Review"
+msgstr "Neue Add-on-Überprüfung"
+
+msgid "Preliminary Add-on Review"
+msgstr "Vorläufige Add-on-Überprüfung"
+
+msgid "Updated Add-on Review"
+msgstr "Überprüfung von aktualisiertem Add-on"
+
+msgid "New Dictionary Review"
+msgstr "Neue Wörterbuch-Überprüfung"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Vorläufige Wörterbuch-Überprüfung"
+
+msgid "Updated Dictionary Review"
+msgstr "Überprüfung von aktualisiertem Wörterbuch"
+
+msgid "New Language Pack Review"
+msgstr "Neue Sprachpaket-Überprüfung"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Vorläufige Sprachpaket-Überprüfung"
+
+msgid "Updated Language Pack Review"
+msgstr "Überprüfung von aktualisiertem Sprachpaket"
+
+msgid "Theme Review"
+msgstr "Theme-Überprüfung"
+
+msgid "New Search Provider Review"
+msgstr "Neue Suchplugin-Überprüfung"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Vorläufige Suchplugin-Überprüfung"
+
+msgid "Updated Search Provider Review"
+msgstr "Überprüfung von aktualisiertem Suchplugin"
+
+msgid "New Complete Theme Review"
+msgstr "Neue Überprüfung zu vollständigem Theme"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Vorläufige Überprüfung zu vollständigem Theme"
+
+msgid "Updated Complete Theme Review"
+msgstr "Überprüfung zu aktualisiertem vollständigem Theme"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderierte Add-on-Bewertung"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderation für Add-on-Bewertung rückgängig gemacht"
+
+msgid "Add-on Content Review"
+msgstr "Add-on-Inhaltsüberprüfung"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Add-on-Überprüfung nach Freischaltung (höchstes Risiko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Add-on-Überprüfung nach Freischaltung (hohes Risiko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Add-on-Überprüfung nach Freischaltung (mittleres Risiko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Add-on-Überprüfung nach Freischaltung (geringes Risiko)"
+
+msgid "Level 1"
+msgstr "Stufe 1"
+
+msgid "Level 2"
+msgstr "Stufe 2"
+
+msgid "Level 3"
+msgstr "Stufe 3"
+
+msgid "Level 4"
+msgstr "Stufe 4"
+
+msgid "Level 5"
+msgstr "Stufe 5"
+
+msgid "Level 6"
+msgstr "Stufe 6"
+
+msgid "Level 7"
+msgstr "Stufe 7"
+
+msgid "Level 8"
+msgstr "Stufe 8"
+
+msgid "Level 9"
+msgstr "Stufe 9"
 
 msgid "Request More Info"
 msgstr "Weitere Informationen anfordern"

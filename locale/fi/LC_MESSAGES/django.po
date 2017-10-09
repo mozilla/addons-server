@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -2341,112 +2341,6 @@ msgstr ""
 msgid "Change"
 msgstr "Muutos"
 
-# 75%
-msgid "App"
-msgstr "Sovellus"
-
-# 87%
-# 100%
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-# Plural in this context means many of the add-on type
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Oikolukusanastot"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Kielipaketti"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Hakupalvelun tarjoajat"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Täydelliset teemat"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "Taso 1"
-
-msgid "Level 2"
-msgstr "Taso 2"
-
-msgid "Level 3"
-msgstr "Taso 3"
-
-msgid "Level 4"
-msgstr "Taso 4"
-
-msgid "Level 5"
-msgstr "Taso 5"
-
-msgid "Level 6"
-msgstr "Taso 6"
-
-msgid "Level 7"
-msgstr "Taso 7"
-
-msgid "Level 8"
-msgstr "Taso 8"
-
-msgid "Level 9"
-msgstr "Taso 9"
-
 msgid "Compatible"
 msgstr ""
 
@@ -2676,6 +2570,123 @@ msgstr "Sivustokohtaiset"
 
 msgid "Web and Developer Tools"
 msgstr "Web- ja kehittäjätyökalut"
+
+# 75%
+msgid "App"
+msgstr "Sovellus"
+
+# 87%
+# 100%
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Ei vielä lisäosa-arvioita."
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Oikolukusanastot"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Kielipaketti"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Hakupalvelun tarjoajat"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Täydelliset teemat"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Ei vielä lisäosa-arvioita."
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+# 100%
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Ei tarkastettu"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Taso 1"
+
+msgid "Level 2"
+msgstr "Taso 2"
+
+msgid "Level 3"
+msgstr "Taso 3"
+
+msgid "Level 4"
+msgstr "Taso 4"
+
+msgid "Level 5"
+msgstr "Taso 5"
+
+msgid "Level 6"
+msgstr "Taso 6"
+
+msgid "Level 7"
+msgstr "Taso 7"
+
+msgid "Level 8"
+msgstr "Taso 8"
+
+msgid "Level 9"
+msgstr "Taso 9"
 
 msgid "Request More Info"
 msgstr ""

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 09:09+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-07 09:48+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2269,102 +2269,6 @@ msgstr "Kiadás"
 msgid "Change"
 msgstr "Módosítás"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Kézi értékelői pontok"
-
-msgid "New Add-on Review"
-msgstr "Új kiegészítőértékelés"
-
-msgid "Preliminary Add-on Review"
-msgstr "Előzetes kiegészítőértékelés"
-
-msgid "Updated Add-on Review"
-msgstr "Frissített kiegészítőértékelés"
-
-msgid "New Dictionary Review"
-msgstr "Új szótárértékelés"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Előzetes szótárértékelés"
-
-msgid "Updated Dictionary Review"
-msgstr "Frissített szótárértékelés"
-
-msgid "New Language Pack Review"
-msgstr "Új nyelvicsomag-értékelés"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Előzetes nyelvicsomag-értékelés"
-
-msgid "Updated Language Pack Review"
-msgstr "Frissített nyelvicsomag-értékelés"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bónusz késedelmes értékelésekért"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Napok száma a bónusz pontok alkalmazásáig"
-
-msgid "Theme Review"
-msgstr "Témaértékelés"
-
-msgid "New Search Provider Review"
-msgstr "Új keresőszolgáltatás-értékelés"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Előzetes keresőszolgáltatás-értékelés"
-
-msgid "Updated Search Provider Review"
-msgstr "Frissített keresőszolgáltatás-értékelés"
-
-msgid "New Complete Theme Review"
-msgstr "Új teljes témaértékelés"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Előzetes témaértékelés"
-
-msgid "Updated Complete Theme Review"
-msgstr "Frissített teljes témaértékelés"
-
-msgid "Moderated Add-on Review"
-msgstr "Kiegészítőértékelés moderálva"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Kiegészítő értékelés moderálás visszaállítva"
-
-msgid "Level 1"
-msgstr "1. szint"
-
-msgid "Level 2"
-msgstr "2. szint"
-
-msgid "Level 3"
-msgstr "3. szint"
-
-msgid "Level 4"
-msgstr "4. szint"
-
-msgid "Level 5"
-msgstr "5. szint"
-
-msgid "Level 6"
-msgstr "6. szint"
-
-msgid "Level 7"
-msgstr "7. szint"
-
-msgid "Level 8"
-msgstr "8. szint"
-
-msgid "Level 9"
-msgstr "9. szint"
-
 msgid "Compatible"
 msgstr "Kompatibilis"
 
@@ -2577,6 +2481,111 @@ msgstr "Webhelyspecifikus"
 
 msgid "Web and Developer Tools"
 msgstr "Webes és fejlesztői szerszámos láda"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Kézi értékelői pontok"
+
+msgid "New Add-on Review"
+msgstr "Új kiegészítőértékelés"
+
+msgid "Preliminary Add-on Review"
+msgstr "Előzetes kiegészítőértékelés"
+
+msgid "Updated Add-on Review"
+msgstr "Frissített kiegészítőértékelés"
+
+msgid "New Dictionary Review"
+msgstr "Új szótárértékelés"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Előzetes szótárértékelés"
+
+msgid "Updated Dictionary Review"
+msgstr "Frissített szótárértékelés"
+
+msgid "New Language Pack Review"
+msgstr "Új nyelvicsomag-értékelés"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Előzetes nyelvicsomag-értékelés"
+
+msgid "Updated Language Pack Review"
+msgstr "Frissített nyelvicsomag-értékelés"
+
+msgid "Theme Review"
+msgstr "Témaértékelés"
+
+msgid "New Search Provider Review"
+msgstr "Új keresőszolgáltatás-értékelés"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Előzetes keresőszolgáltatás-értékelés"
+
+msgid "Updated Search Provider Review"
+msgstr "Frissített keresőszolgáltatás-értékelés"
+
+msgid "New Complete Theme Review"
+msgstr "Új teljes témaértékelés"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Előzetes témaértékelés"
+
+msgid "Updated Complete Theme Review"
+msgstr "Frissített teljes témaértékelés"
+
+msgid "Moderated Add-on Review"
+msgstr "Kiegészítőértékelés moderálva"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Kiegészítő értékelés moderálás visszaállítva"
+
+msgid "Add-on Content Review"
+msgstr "Kiegészítő tartalmának értékelése"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (legmagasabb kockázat)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (magas kockázat)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (közepes kockázat)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (alacsony kockázat)"
+
+msgid "Level 1"
+msgstr "1. szint"
+
+msgid "Level 2"
+msgstr "2. szint"
+
+msgid "Level 3"
+msgstr "3. szint"
+
+msgid "Level 4"
+msgstr "4. szint"
+
+msgid "Level 5"
+msgstr "5. szint"
+
+msgid "Level 6"
+msgstr "6. szint"
+
+msgid "Level 7"
+msgstr "7. szint"
+
+msgid "Level 8"
+msgstr "8. szint"
+
+msgid "Level 9"
+msgstr "9. szint"
 
 msgid "Request More Info"
 msgstr "További információ kérése"

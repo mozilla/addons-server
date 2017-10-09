@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-06-29 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2265,109 +2265,6 @@ msgstr "Release"
 msgid "Change"
 msgstr "Change"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "페르소나"
-
-msgid "Manual Reviewer Points"
-msgstr "수동 심사 포인트"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "부가 기능 전체 심사"
-
-msgid "Preliminary Add-on Review"
-msgstr "부가 기능 예비 심사"
-
-msgid "Updated Add-on Review"
-msgstr "업데이트된 부가 기능 심사"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "사전 전체 심사"
-
-msgid "Preliminary Dictionary Review"
-msgstr "사전 예비 심사"
-
-msgid "Updated Dictionary Review"
-msgstr "업데이트된 사전 심사"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "언어팩 전체 심사"
-
-msgid "Preliminary Language Pack Review"
-msgstr "언어팩 예비 심사"
-
-msgid "Updated Language Pack Review"
-msgstr "업데이트된 언어팩 심사"
-
-msgid "Bonus for overdue reviews"
-msgstr "기간이 지난 심사에 대한 보너스"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "보너스가 적용되기까지 남은 일"
-
-msgid "Theme Review"
-msgstr "테마 심사"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "검색 도구 전체 심사"
-
-msgid "Preliminary Search Provider Review"
-msgstr "검색 도구 예비 심사"
-
-msgid "Updated Search Provider Review"
-msgstr "업데이트된 검색 도구 심사"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "완전 테마 심사"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "예비 완전 테마 심사"
-
-msgid "Updated Complete Theme Review"
-msgstr "업데이트된 완전 테마 심사"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "완화된 부가 기능 심사"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "부가 기능 심사 과정"
-
-msgid "Level 1"
-msgstr "1단계"
-
-msgid "Level 2"
-msgstr "2단계"
-
-msgid "Level 3"
-msgstr "3단계"
-
-msgid "Level 4"
-msgstr "4단계"
-
-msgid "Level 5"
-msgstr "5단계"
-
-msgid "Level 6"
-msgstr "6단계"
-
-msgid "Level 7"
-msgstr "7단계"
-
-msgid "Level 8"
-msgstr "8단계"
-
-msgid "Level 9"
-msgstr "9단계"
-
 msgid "Compatible"
 msgstr "호환됨"
 
@@ -2586,6 +2483,119 @@ msgstr "웹 사이트별"
 
 msgid "Web and Developer Tools"
 msgstr "웹 개발 도구"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "페르소나"
+
+msgid "Manual Reviewer Points"
+msgstr "수동 심사 포인트"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "부가 기능 전체 심사"
+
+msgid "Preliminary Add-on Review"
+msgstr "부가 기능 예비 심사"
+
+msgid "Updated Add-on Review"
+msgstr "업데이트된 부가 기능 심사"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "사전 전체 심사"
+
+msgid "Preliminary Dictionary Review"
+msgstr "사전 예비 심사"
+
+msgid "Updated Dictionary Review"
+msgstr "업데이트된 사전 심사"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "언어팩 전체 심사"
+
+msgid "Preliminary Language Pack Review"
+msgstr "언어팩 예비 심사"
+
+msgid "Updated Language Pack Review"
+msgstr "업데이트된 언어팩 심사"
+
+msgid "Theme Review"
+msgstr "테마 심사"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "검색 도구 전체 심사"
+
+msgid "Preliminary Search Provider Review"
+msgstr "검색 도구 예비 심사"
+
+msgid "Updated Search Provider Review"
+msgstr "업데이트된 검색 도구 심사"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "완전 테마 심사"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "예비 완전 테마 심사"
+
+msgid "Updated Complete Theme Review"
+msgstr "업데이트된 완전 테마 심사"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "완화된 부가 기능 심사"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "부가 기능 심사 과정"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "심사 완료하기"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "1단계"
+
+msgid "Level 2"
+msgstr "2단계"
+
+msgid "Level 3"
+msgstr "3단계"
+
+msgid "Level 4"
+msgstr "4단계"
+
+msgid "Level 5"
+msgstr "5단계"
+
+msgid "Level 6"
+msgstr "6단계"
+
+msgid "Level 7"
+msgstr "7단계"
+
+msgid "Level 8"
+msgstr "8단계"
+
+msgid "Level 9"
+msgstr "9단계"
 
 msgid "Request More Info"
 msgstr "추가 정보 요청하기"

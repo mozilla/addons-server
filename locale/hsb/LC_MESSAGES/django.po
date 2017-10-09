@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 18:53+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 19:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2301,102 +2301,6 @@ msgstr "Wersija"
 msgid "Change"
 msgstr "Změna"
 
-msgid "App"
-msgstr "Nałoženje"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Dypki za manuelne přepruwowanje"
-
-msgid "New Add-on Review"
-msgstr "Nowe přepruwowanje přidatka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nachwilne přepruwowanje přidatka"
-
-msgid "Updated Add-on Review"
-msgstr "Přepruwowanje zaktualizowaneho přidatka"
-
-msgid "New Dictionary Review"
-msgstr "Nowe přepruwowanje słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nachwilne přepruwowanje słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Přepruwowanje zaktualizowaneho słownika"
-
-msgid "New Language Pack Review"
-msgstr "Nowe přepruwowanje rěčneho pakćika"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nachwilne přepruowanje rěčneho pakćika"
-
-msgid "Updated Language Pack Review"
-msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za pózdnje přepruwowanja"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny, prjedy hač bonusowe dypki płaćiwosć nabudu"
-
-msgid "Theme Review"
-msgstr "Přepruwowanje drasty"
-
-msgid "New Search Provider Review"
-msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
-
-msgid "Updated Search Provider Review"
-msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
-
-msgid "New Complete Theme Review"
-msgstr "Nowe přepruwowanje dospołneje drasty"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nachwilne přepruwowanje dospołneje drasty"
-
-msgid "Updated Complete Theme Review"
-msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderěrowane pohódnoćenje přidatka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
-
-msgid "Level 1"
-msgstr "Schodźenk 1"
-
-msgid "Level 2"
-msgstr "Schodźenk 2"
-
-msgid "Level 3"
-msgstr "Schodźenk 3"
-
-msgid "Level 4"
-msgstr "Schodźenk 4"
-
-msgid "Level 5"
-msgstr "Schodźenk 5"
-
-msgid "Level 6"
-msgstr "Schodźenk 6"
-
-msgid "Level 7"
-msgstr "Schodźenk 7"
-
-msgid "Level 8"
-msgstr "Schodźenk 8"
-
-msgid "Level 9"
-msgstr "Schodźenk 9"
-
 msgid "Compatible"
 msgstr "Kompatibelny"
 
@@ -2609,6 +2513,111 @@ msgstr "Specifiske rozšěrjenja websydłow"
 
 msgid "Web and Developer Tools"
 msgstr "Webwuwiwarske nastroje"
+
+msgid "App"
+msgstr "Nałoženje"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Dypki za manuelne přepruwowanje"
+
+msgid "New Add-on Review"
+msgstr "Nowe přepruwowanje přidatka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Nachwilne přepruwowanje přidatka"
+
+msgid "Updated Add-on Review"
+msgstr "Přepruwowanje zaktualizowaneho přidatka"
+
+msgid "New Dictionary Review"
+msgstr "Nowe přepruwowanje słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Nachwilne přepruwowanje słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Přepruwowanje zaktualizowaneho słownika"
+
+msgid "New Language Pack Review"
+msgstr "Nowe přepruwowanje rěčneho pakćika"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Nachwilne přepruowanje rěčneho pakćika"
+
+msgid "Updated Language Pack Review"
+msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
+
+msgid "Theme Review"
+msgstr "Přepruwowanje drasty"
+
+msgid "New Search Provider Review"
+msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
+
+msgid "Updated Search Provider Review"
+msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
+
+msgid "New Complete Theme Review"
+msgstr "Nowe přepruwowanje dospołneje drasty"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Nachwilne přepruwowanje dospołneje drasty"
+
+msgid "Updated Complete Theme Review"
+msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderěrowane pohódnoćenje přidatka"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
+
+msgid "Add-on Content Review"
+msgstr "Přepruwowanje wobsaha přidatka"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (najwyše riziko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (wysoke riziko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (srjedźne riziko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (niske riziko)"
+
+msgid "Level 1"
+msgstr "Schodźenk 1"
+
+msgid "Level 2"
+msgstr "Schodźenk 2"
+
+msgid "Level 3"
+msgstr "Schodźenk 3"
+
+msgid "Level 4"
+msgstr "Schodźenk 4"
+
+msgid "Level 5"
+msgstr "Schodźenk 5"
+
+msgid "Level 6"
+msgstr "Schodźenk 6"
+
+msgid "Level 7"
+msgstr "Schodźenk 7"
+
+msgid "Level 8"
+msgstr "Schodźenk 8"
+
+msgid "Level 9"
+msgstr "Schodźenk 9"
 
 msgid "Request More Info"
 msgstr "Dalše informacije požadać"

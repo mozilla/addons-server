@@ -215,7 +215,7 @@ django-waffle==0.12.0 \
 # djangorestframework is required by drf-nested-routers
 djangorestframework==3.6.4 \
     --hash=sha256:0f9bfbac702f3376dfb2db4971ad8af4e066bfa35393b1b85e085f7e8b91189a \
-    --hash=sha256:de8ac68b3cf6dd41b98e01dcc92dc0022a5958f096eafc181a17fa975d18ca42
+    --hash=sha256:de8ac68b3cf6dd41b98e01dcc92dc0022a5958f096eafc181a17fa975d18ca42 # pyup: >=3.6,<3.7
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
@@ -424,9 +424,9 @@ six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \
     --hash=sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9
 # spidermonkey is required by amo-validator
-spidermonkey==55.0a1.post2 \
-    --hash=sha256:61a62effe4a6c6e1c8449f1997c4a39c88e53fd3cd6d1a2dc0156e02f22804c1 \
-    --hash=sha256:df311184630b12c3abcca751478ed60fb477b8170423057d0f65ab0cd1509dc5
+spidermonkey==58.0a1.post2 \
+    --hash=sha256:ad85213e8e68b059599460a3f8b69705b8141951fcccc4efa0b5284e04ac8d06 \
+    --hash=sha256:6301903a0cc3f201264aba36ae20cff5bc983f68ae9333c3955430bddb4985af
 # statsd is required by django-statsd-mozilla
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -2295,102 +2295,6 @@ msgstr "Випуск"
 msgid "Change"
 msgstr "Змінити"
 
-msgid "App"
-msgstr "Дод."
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Бали за ручну перевірку"
-
-msgid "New Add-on Review"
-msgstr "Нова перевірка додатка"
-
-msgid "Preliminary Add-on Review"
-msgstr "Попередня перевірка додатка"
-
-msgid "Updated Add-on Review"
-msgstr "Оновлена перевірка додатка"
-
-msgid "New Dictionary Review"
-msgstr "Нова перевірка словника"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Попередня перевірка словника"
-
-msgid "Updated Dictionary Review"
-msgstr "Перевірка оновленого словника"
-
-msgid "New Language Pack Review"
-msgstr "Нова перевірка мовного пакету"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Попередня перевірка мовного пакету"
-
-msgid "Updated Language Pack Review"
-msgstr "Перевірка оновленого мовного пакету"
-
-msgid "Bonus for overdue reviews"
-msgstr "Бонус за прострочені відгуки"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Днів до додання бонусних балів"
-
-msgid "Theme Review"
-msgstr "Перевірка теми"
-
-msgid "New Search Provider Review"
-msgstr "Нова перевірка провайдера пошуку"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Попередня перевірка провайдера пошуку"
-
-msgid "Updated Search Provider Review"
-msgstr "Оновлена перевірка провайдера пошуку"
-
-msgid "New Complete Theme Review"
-msgstr "Нова перевірка повної теми"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Попередня перевірка повної теми"
-
-msgid "Updated Complete Theme Review"
-msgstr "Оновлена перевірка повної теми"
-
-msgid "Moderated Add-on Review"
-msgstr "Перевірка модерованого додатку"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Модерація відгуку на додаток повернена"
-
-msgid "Level 1"
-msgstr "Рівень 1"
-
-msgid "Level 2"
-msgstr "Рівень 2"
-
-msgid "Level 3"
-msgstr "Рівень 3"
-
-msgid "Level 4"
-msgstr "Рівень 4"
-
-msgid "Level 5"
-msgstr "Рівень 5"
-
-msgid "Level 6"
-msgstr "Рівень 6"
-
-msgid "Level 7"
-msgstr "Рівень 7"
-
-msgid "Level 8"
-msgstr "Рівень 8"
-
-msgid "Level 9"
-msgstr "Рівень 9"
-
 msgid "Compatible"
 msgstr "Сумісно"
 
@@ -2603,6 +2507,112 @@ msgstr "Для окремих сайтів"
 
 msgid "Web and Developer Tools"
 msgstr "Інструменти розробника"
+
+msgid "App"
+msgstr "Дод."
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Бали за ручну перевірку"
+
+msgid "New Add-on Review"
+msgstr "Нова перевірка додатка"
+
+msgid "Preliminary Add-on Review"
+msgstr "Попередня перевірка додатка"
+
+msgid "Updated Add-on Review"
+msgstr "Оновлена перевірка додатка"
+
+msgid "New Dictionary Review"
+msgstr "Нова перевірка словника"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Попередня перевірка словника"
+
+msgid "Updated Dictionary Review"
+msgstr "Перевірка оновленого словника"
+
+msgid "New Language Pack Review"
+msgstr "Нова перевірка мовного пакету"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Попередня перевірка мовного пакету"
+
+msgid "Updated Language Pack Review"
+msgstr "Перевірка оновленого мовного пакету"
+
+msgid "Theme Review"
+msgstr "Перевірка теми"
+
+msgid "New Search Provider Review"
+msgstr "Нова перевірка провайдера пошуку"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Попередня перевірка провайдера пошуку"
+
+msgid "Updated Search Provider Review"
+msgstr "Оновлена перевірка провайдера пошуку"
+
+msgid "New Complete Theme Review"
+msgstr "Нова перевірка повної теми"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Попередня перевірка повної теми"
+
+msgid "Updated Complete Theme Review"
+msgstr "Оновлена перевірка повної теми"
+
+msgid "Moderated Add-on Review"
+msgstr "Перевірка модерованого додатку"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Модерація відгуку на додаток повернена"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Внести рецензію"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Рівень 1"
+
+msgid "Level 2"
+msgstr "Рівень 2"
+
+msgid "Level 3"
+msgstr "Рівень 3"
+
+msgid "Level 4"
+msgstr "Рівень 4"
+
+msgid "Level 5"
+msgstr "Рівень 5"
+
+msgid "Level 6"
+msgstr "Рівень 6"
+
+msgid "Level 7"
+msgstr "Рівень 7"
+
+msgid "Level 8"
+msgstr "Рівень 8"
+
+msgid "Level 9"
+msgstr "Рівень 9"
 
 msgid "Request More Info"
 msgstr "Запитати більше інформації"

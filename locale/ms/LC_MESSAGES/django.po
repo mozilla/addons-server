@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 10:21+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 22:57+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2215,102 +2215,6 @@ msgstr "Keluaran"
 msgid "Change"
 msgstr "Tukar"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Poin Penyemak Manual"
-
-msgid "New Add-on Review"
-msgstr "Ulasan Add-on Baru"
-
-msgid "Preliminary Add-on Review"
-msgstr "Ulasan Add-on Awalan"
-
-msgid "Updated Add-on Review"
-msgstr "Ulasan Add-on Dikemaskini"
-
-msgid "New Dictionary Review"
-msgstr "Ulasan Kamus Baru"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Ulasan Kamus Awalan"
-
-msgid "Updated Dictionary Review"
-msgstr "Ulasan Kamus Dikemaskini"
-
-msgid "New Language Pack Review"
-msgstr "Ulasan Pek Bahasa Baru"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Ulasan Pek Bahasa Awalan"
-
-msgid "Updated Language Pack Review"
-msgstr "Ulasan Pek Bahasa Dikemaskini"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus untuk ulasan tertunda"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Hari Sebelum Poin Bonus Diterapkan"
-
-msgid "Theme Review"
-msgstr "Ulasan Tema"
-
-msgid "New Search Provider Review"
-msgstr "Ulasan Penyedia Carian Baru"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Ulasan Penyedia Carian Awalan"
-
-msgid "Updated Search Provider Review"
-msgstr "Ulasan Penyedia Carian Dikemaskini"
-
-msgid "New Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Baru"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Awalan"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Dikemaskini"
-
-msgid "Moderated Add-on Review"
-msgstr "Semakan Add-on Moderat"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderat Semakan Add-on Diterbalikkan"
-
-msgid "Level 1"
-msgstr "Tahap 1"
-
-msgid "Level 2"
-msgstr "Tahap 2"
-
-msgid "Level 3"
-msgstr "Tahap 3"
-
-msgid "Level 4"
-msgstr "Tahap 4"
-
-msgid "Level 5"
-msgstr "Tahap 5"
-
-msgid "Level 6"
-msgstr "Tahap 6"
-
-msgid "Level 7"
-msgstr "Tahap 7"
-
-msgid "Level 8"
-msgstr "Tahap 8"
-
-msgid "Level 9"
-msgstr "Tahap 9"
-
 msgid "Compatible"
 msgstr "Serasi"
 
@@ -2523,6 +2427,111 @@ msgstr "Laman-khusus"
 
 msgid "Web and Developer Tools"
 msgstr "Web dan Alatan Pembangun"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Poin Penyemak Manual"
+
+msgid "New Add-on Review"
+msgstr "Ulasan Add-on Baru"
+
+msgid "Preliminary Add-on Review"
+msgstr "Ulasan Add-on Awalan"
+
+msgid "Updated Add-on Review"
+msgstr "Ulasan Add-on Dikemaskini"
+
+msgid "New Dictionary Review"
+msgstr "Ulasan Kamus Baru"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Ulasan Kamus Awalan"
+
+msgid "Updated Dictionary Review"
+msgstr "Ulasan Kamus Dikemaskini"
+
+msgid "New Language Pack Review"
+msgstr "Ulasan Pek Bahasa Baru"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Ulasan Pek Bahasa Awalan"
+
+msgid "Updated Language Pack Review"
+msgstr "Ulasan Pek Bahasa Dikemaskini"
+
+msgid "Theme Review"
+msgstr "Ulasan Tema"
+
+msgid "New Search Provider Review"
+msgstr "Ulasan Penyedia Carian Baru"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Ulasan Penyedia Carian Awalan"
+
+msgid "Updated Search Provider Review"
+msgstr "Ulasan Penyedia Carian Dikemaskini"
+
+msgid "New Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Baru"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Awalan"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Dikemaskini"
+
+msgid "Moderated Add-on Review"
+msgstr "Semakan Add-on Moderat"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderat Semakan Add-on Diterbalikkan"
+
+msgid "Add-on Content Review"
+msgstr "Semakan Kandungan Add-on"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Tertinggi)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Tinggi)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Medium)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Rendah)"
+
+msgid "Level 1"
+msgstr "Tahap 1"
+
+msgid "Level 2"
+msgstr "Tahap 2"
+
+msgid "Level 3"
+msgstr "Tahap 3"
+
+msgid "Level 4"
+msgstr "Tahap 4"
+
+msgid "Level 5"
+msgstr "Tahap 5"
+
+msgid "Level 6"
+msgstr "Tahap 6"
+
+msgid "Level 7"
+msgstr "Tahap 7"
+
+msgid "Level 8"
+msgstr "Tahap 8"
+
+msgid "Level 9"
+msgstr "Tahap 9"
 
 msgid "Request More Info"
 msgstr "Minta Info Lanjutan"

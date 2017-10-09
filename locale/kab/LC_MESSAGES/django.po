@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 07:51+0000\n"
-"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 18:53+0000\n"
+"Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -2244,104 +2244,6 @@ msgstr "Tuffɣa"
 msgid "Change"
 msgstr "Snifel"
 
-msgid "App"
-msgstr "Asnas"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Tineqqiḍin n usenqed s ufus"
-
-msgid "New Add-on Review"
-msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
-
-msgid "Preliminary Add-on Review"
-msgstr "Asenqed amezwaru n uzegrir"
-
-msgid "Updated Add-on Review"
-msgstr "Asenqed n uzegrir yettwaleqmen"
-
-msgid "New Dictionary Review"
-msgstr "Acegger amaynut n umawal"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Asenqed amezwaru n umawal"
-
-msgid "Updated Dictionary Review"
-msgstr "Aleqqem n ucegger n umawal"
-
-msgid "New Language Pack Review"
-msgstr "Acegger n ukemmus utlayan amaynut"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Asenqed amezwaru n ukemmus utlayan"
-
-msgid "Updated Language Pack Review"
-msgstr "Acegger n ukemmus utlayan yettwaleqmen"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Acegger n usentel"
-
-msgid "New Search Provider Review"
-msgstr "Acegger n umsedday n unadi amaynut"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Acegger amazwaru n umsedday n unadi"
-
-msgid "Updated Search Provider Review"
-msgstr "Acegger n umsedday n unadi yettwaleqmen"
-
-msgid "New Complete Theme Review"
-msgstr "Acegger n usentel yemden amaynut"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Acegger amezwaru n usentel yemden"
-
-msgid "Updated Complete Theme Review"
-msgstr "Acegger n usentel yemden yettwaleqmen"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Asenqed n uzegrir yettwaleqmen"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Timellit n imcegger n uzegrir"
-
-msgid "Level 1"
-msgstr "Aswir 1"
-
-msgid "Level 2"
-msgstr "Aswir 2"
-
-msgid "Level 3"
-msgstr "Aswir 3"
-
-msgid "Level 4"
-msgstr "Aswir 4"
-
-msgid "Level 5"
-msgstr "Aswir 5"
-
-msgid "Level 6"
-msgstr "Aswir 6"
-
-msgid "Level 7"
-msgstr "Aswir 7"
-
-msgid "Level 8"
-msgstr "Aswir 8"
-
-msgid "Level 9"
-msgstr "Aswir 9"
-
 msgid "Compatible"
 msgstr "Amṣadan"
 
@@ -2554,6 +2456,114 @@ msgstr "Asefru n usmel"
 
 msgid "Web and Developer Tools"
 msgstr "Ifecka n uneflay Web"
+
+msgid "App"
+msgstr "Asnas"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Tineqqiḍin n usenqed s ufus"
+
+msgid "New Add-on Review"
+msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
+
+msgid "Preliminary Add-on Review"
+msgstr "Asenqed amezwaru n uzegrir"
+
+msgid "Updated Add-on Review"
+msgstr "Asenqed n uzegrir yettwaleqmen"
+
+msgid "New Dictionary Review"
+msgstr "Acegger amaynut n umawal"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Asenqed amezwaru n umawal"
+
+msgid "Updated Dictionary Review"
+msgstr "Aleqqem n ucegger n umawal"
+
+msgid "New Language Pack Review"
+msgstr "Acegger n ukemmus utlayan amaynut"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Asenqed amezwaru n ukemmus utlayan"
+
+msgid "Updated Language Pack Review"
+msgstr "Acegger n ukemmus utlayan yettwaleqmen"
+
+msgid "Theme Review"
+msgstr "Acegger n usentel"
+
+msgid "New Search Provider Review"
+msgstr "Acegger n umsedday n unadi amaynut"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Acegger amazwaru n umsedday n unadi"
+
+msgid "Updated Search Provider Review"
+msgstr "Acegger n umsedday n unadi yettwaleqmen"
+
+msgid "New Complete Theme Review"
+msgstr "Acegger n usentel yemden amaynut"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Acegger amezwaru n usentel yemden"
+
+msgid "Updated Complete Theme Review"
+msgstr "Acegger n usentel yemden yettwaleqmen"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Asenqed n uzegrir yettwaleqmen"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Timellit n imcegger n uzegrir"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Azen acegger"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Aswir 1"
+
+msgid "Level 2"
+msgstr "Aswir 2"
+
+msgid "Level 3"
+msgstr "Aswir 3"
+
+msgid "Level 4"
+msgstr "Aswir 4"
+
+msgid "Level 5"
+msgstr "Aswir 5"
+
+msgid "Level 6"
+msgstr "Aswir 6"
+
+msgid "Level 7"
+msgstr "Aswir 7"
+
+msgid "Level 8"
+msgstr "Aswir 8"
+
+msgid "Level 9"
+msgstr "Aswir 9"
 
 msgid "Request More Info"
 msgstr "Suter ugar n telɣut"
@@ -2958,7 +2968,7 @@ msgid "Printable Version"
 msgstr "Lqem yettwasaggazen"
 
 msgid "Accept"
-msgstr ""
+msgstr "Qbel"
 
 msgid "I Accept this Agreement"
 msgstr "Qebleɣ amtawa-agi"

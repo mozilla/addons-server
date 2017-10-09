@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2249,103 +2249,6 @@ msgstr "রিলিজ"
 msgid "Change"
 msgstr "পরিবর্তন"
 
-msgid "App"
-msgstr "অ্যাপ"
-
-msgid "Persona"
-msgstr "পারসোনা"
-
-msgid "Manual Reviewer Points"
-msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
-
-msgid "New Add-on Review"
-msgstr "নতুন অ্যাড-অন পর্যালোচনা"
-
-msgid "Preliminary Add-on Review"
-msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
-
-msgid "Updated Add-on Review"
-msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
-
-msgid "New Dictionary Review"
-msgstr "নতুন অভিধান পর্যালোচনা"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr "নতুন ভাষা প্যাক পর্যালোচনা"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "থিম রিভিউ"
-
-msgid "New Search Provider Review"
-msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "নতুন সম্পূর্ণ থিম পর্যালোচনা"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "সম্পূর্ণ থিমের প্রাথমিক পর্যালোচনা"
-
-msgid "Updated Complete Theme Review"
-msgstr "সম্পূর্ণ থিম পর্যালোচনা হালনাগাদ করা হয়েছে"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "লেভেল ১"
-
-msgid "Level 2"
-msgstr "লেভেল 2"
-
-msgid "Level 3"
-msgstr "লেভেল ৩"
-
-msgid "Level 4"
-msgstr "লেভেল ৪"
-
-msgid "Level 5"
-msgstr "লেভেল 5"
-
-msgid "Level 6"
-msgstr "লেভেল 6"
-
-msgid "Level 7"
-msgstr "লেভেল 7"
-
-msgid "Level 8"
-msgstr "লেভেল 8"
-
-msgid "Level 9"
-msgstr "লেভেল 9"
-
 msgid "Compatible"
 msgstr "উপযুক্ত"
 
@@ -2559,6 +2462,113 @@ msgstr "সাইট-নির্দিষ্ট"
 
 msgid "Web and Developer Tools"
 msgstr "ওয়েব এবং ডেভেলোপার টুলস"
+
+msgid "App"
+msgstr "অ্যাপ"
+
+msgid "Persona"
+msgstr "পারসোনা"
+
+msgid "Manual Reviewer Points"
+msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
+
+msgid "New Add-on Review"
+msgstr "নতুন অ্যাড-অন পর্যালোচনা"
+
+msgid "Preliminary Add-on Review"
+msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
+
+msgid "Updated Add-on Review"
+msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
+
+msgid "New Dictionary Review"
+msgstr "নতুন অভিধান পর্যালোচনা"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+msgid "New Language Pack Review"
+msgstr "নতুন ভাষা প্যাক পর্যালোচনা"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr "থিম রিভিউ"
+
+msgid "New Search Provider Review"
+msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr "নতুন সম্পূর্ণ থিম পর্যালোচনা"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "সম্পূর্ণ থিমের প্রাথমিক পর্যালোচনা"
+
+msgid "Updated Complete Theme Review"
+msgstr "সম্পূর্ণ থিম পর্যালোচনা হালনাগাদ করা হয়েছে"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "পর্যালোচিত হয় নি"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "লেভেল ১"
+
+msgid "Level 2"
+msgstr "লেভেল 2"
+
+msgid "Level 3"
+msgstr "লেভেল ৩"
+
+msgid "Level 4"
+msgstr "লেভেল ৪"
+
+msgid "Level 5"
+msgstr "লেভেল 5"
+
+msgid "Level 6"
+msgstr "লেভেল 6"
+
+msgid "Level 7"
+msgstr "লেভেল 7"
+
+msgid "Level 8"
+msgstr "লেভেল 8"
+
+msgid "Level 9"
+msgstr "লেভেল 9"
 
 msgid "Request More Info"
 msgstr "আরো তথ্যের জন্য অনুরোধ করুন"

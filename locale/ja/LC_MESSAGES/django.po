@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 16:35+0000\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-06 17:22+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2208,102 +2208,6 @@ msgstr "リリース"
 msgid "Change"
 msgstr "変更"
 
-msgid "App"
-msgstr "アプリ"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "審査担当者の手作業確認による指摘"
-
-msgid "New Add-on Review"
-msgstr "新しいアドオンの審査"
-
-msgid "Preliminary Add-on Review"
-msgstr "アドオンの事前審査"
-
-msgid "Updated Add-on Review"
-msgstr "アドオンの更新審査"
-
-msgid "New Dictionary Review"
-msgstr "新しいスペルチェック辞書の審査"
-
-msgid "Preliminary Dictionary Review"
-msgstr "スペルチェック事前の事前審査"
-
-msgid "Updated Dictionary Review"
-msgstr "スペルチェック事前の更新審査"
-
-msgid "New Language Pack Review"
-msgstr "新しい言語パックの審査"
-
-msgid "Preliminary Language Pack Review"
-msgstr "言語パックの事前審査"
-
-msgid "Updated Language Pack Review"
-msgstr "言語パックの更新審査"
-
-msgid "Bonus for overdue reviews"
-msgstr "期限切れ審査のためのボーナス"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "ボーナスポイント適用までの日数"
-
-msgid "Theme Review"
-msgstr "テーマの審査"
-
-msgid "New Search Provider Review"
-msgstr "新しい検索プロバイダーの審査"
-
-msgid "Preliminary Search Provider Review"
-msgstr "検索プロバイダーの事前審査"
-
-msgid "Updated Search Provider Review"
-msgstr "検索プロバイダーの更新審査"
-
-msgid "New Complete Theme Review"
-msgstr "新しい完全テーマの審査"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "完全テーマの事前審査"
-
-msgid "Updated Complete Theme Review"
-msgstr "完全テーマの更新審査"
-
-msgid "Moderated Add-on Review"
-msgstr "アドオンの管理者審査"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "アドオンの管理者審査が取り消されました"
-
-msgid "Level 1"
-msgstr "レベル 1"
-
-msgid "Level 2"
-msgstr "レベル 2"
-
-msgid "Level 3"
-msgstr "レベル 3"
-
-msgid "Level 4"
-msgstr "レベル 4"
-
-msgid "Level 5"
-msgstr "レベル 5"
-
-msgid "Level 6"
-msgstr "レベル 6"
-
-msgid "Level 7"
-msgstr "レベル 7"
-
-msgid "Level 8"
-msgstr "レベル 8"
-
-msgid "Level 9"
-msgstr "レベル 9"
-
 msgid "Compatible"
 msgstr "互換"
 
@@ -2516,6 +2420,111 @@ msgstr "サイト連携"
 
 msgid "Web and Developer Tools"
 msgstr "ウェブ開発者向けツール"
+
+msgid "App"
+msgstr "アプリ"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "審査担当者の手作業確認による指摘"
+
+msgid "New Add-on Review"
+msgstr "新しいアドオンの審査"
+
+msgid "Preliminary Add-on Review"
+msgstr "アドオンの事前審査"
+
+msgid "Updated Add-on Review"
+msgstr "アドオンの更新審査"
+
+msgid "New Dictionary Review"
+msgstr "新しいスペルチェック辞書の審査"
+
+msgid "Preliminary Dictionary Review"
+msgstr "スペルチェック事前の事前審査"
+
+msgid "Updated Dictionary Review"
+msgstr "スペルチェック事前の更新審査"
+
+msgid "New Language Pack Review"
+msgstr "新しい言語パックの審査"
+
+msgid "Preliminary Language Pack Review"
+msgstr "言語パックの事前審査"
+
+msgid "Updated Language Pack Review"
+msgstr "言語パックの更新審査"
+
+msgid "Theme Review"
+msgstr "テーマの審査"
+
+msgid "New Search Provider Review"
+msgstr "新しい検索プロバイダーの審査"
+
+msgid "Preliminary Search Provider Review"
+msgstr "検索プロバイダーの事前審査"
+
+msgid "Updated Search Provider Review"
+msgstr "検索プロバイダーの更新審査"
+
+msgid "New Complete Theme Review"
+msgstr "新しい完全テーマの審査"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "完全テーマの事前審査"
+
+msgid "Updated Complete Theme Review"
+msgstr "完全テーマの更新審査"
+
+msgid "Moderated Add-on Review"
+msgstr "アドオンの管理者審査"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "アドオンの管理者審査が取り消されました"
+
+msgid "Add-on Content Review"
+msgstr "アドオンコンテンツ審査"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "レベル 1"
+
+msgid "Level 2"
+msgstr "レベル 2"
+
+msgid "Level 3"
+msgstr "レベル 3"
+
+msgid "Level 4"
+msgstr "レベル 4"
+
+msgid "Level 5"
+msgstr "レベル 5"
+
+msgid "Level 6"
+msgstr "レベル 6"
+
+msgid "Level 7"
+msgstr "レベル 7"
+
+msgid "Level 8"
+msgstr "レベル 8"
+
+msgid "Level 9"
+msgstr "レベル 9"
 
 msgid "Request More Info"
 msgstr "詳しい情報を求める"

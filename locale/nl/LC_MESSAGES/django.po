@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 08:58+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"PO-Revision-Date: 2017-10-08 14:21+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2269,104 +2269,6 @@ msgstr "Uitgave"
 msgid "Change"
 msgstr "Wijzigen"
 
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Handmatige beoordelaarspunten"
-
-msgid "New Add-on Review"
-msgstr "Nieuwe add-on-beoordeling"
-
-msgid "Preliminary Add-on Review"
-msgstr "Voorlopige add-on-beoordeling"
-
-msgid "Updated Add-on Review"
-msgstr "Bijgewerkte add-on-beoordeling"
-
-msgid "New Dictionary Review"
-msgstr "Nieuwe woordenboek-beoordeling"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Voorlopige woordenboek-beoordeling"
-
-msgid "Updated Dictionary Review"
-msgstr "Bijgewerkte woordenboek-beoordeling"
-
-msgid "New Language Pack Review"
-msgstr "Nieuwe taalpakket-beoordeling"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Voorlopige taalpakket-beoordeling"
-
-msgid "Updated Language Pack Review"
-msgstr "Bijgewerkte taalpakket-beoordeling"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus voor verlopen beoordelingen"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagen voordat bonuspunten worden toegepast"
-
-msgid "Theme Review"
-msgstr "Themabeoordeling"
-
-msgid "New Search Provider Review"
-msgstr "Nieuwe zoekprovider-beoordeling"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Voorlopige zoekprovider-beoordeling"
-
-msgid "Updated Search Provider Review"
-msgstr "Bijgewerkte zoekprovider-beoordeling"
-
-# Het gaat om de beoordeling van een compleet thema, dus niet om een complete
-# beoordeling
-msgid "New Complete Theme Review"
-msgstr "Nieuwe volledig-themabeoordeling"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Voorlopige volledig-themabeoordeling"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bijgewerkte volledig-themabeoordeling"
-
-msgid "Moderated Add-on Review"
-msgstr "Gemodereerde add-on-beoordeling"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
-
-msgid "Level 1"
-msgstr "Niveau 1"
-
-msgid "Level 2"
-msgstr "Niveau 2"
-
-msgid "Level 3"
-msgstr "Niveau 3"
-
-msgid "Level 4"
-msgstr "Niveau 4"
-
-msgid "Level 5"
-msgstr "Niveau 5"
-
-msgid "Level 6"
-msgstr "Niveau 6"
-
-msgid "Level 7"
-msgstr "Niveau 7"
-
-msgid "Level 8"
-msgstr "Niveau 8"
-
-msgid "Level 9"
-msgstr "Niveau 9"
-
 msgid "Compatible"
 msgstr "Compatibel"
 
@@ -2579,6 +2481,113 @@ msgstr "Website-specifiek"
 
 msgid "Web and Developer Tools"
 msgstr "Web- en ontwikkelhulpmiddelen"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Handmatige beoordelaarspunten"
+
+msgid "New Add-on Review"
+msgstr "Nieuwe add-on-beoordeling"
+
+msgid "Preliminary Add-on Review"
+msgstr "Voorlopige add-on-beoordeling"
+
+msgid "Updated Add-on Review"
+msgstr "Bijgewerkte add-on-beoordeling"
+
+msgid "New Dictionary Review"
+msgstr "Nieuwe woordenboek-beoordeling"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Voorlopige woordenboek-beoordeling"
+
+msgid "Updated Dictionary Review"
+msgstr "Bijgewerkte woordenboek-beoordeling"
+
+msgid "New Language Pack Review"
+msgstr "Nieuwe taalpakket-beoordeling"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Voorlopige taalpakket-beoordeling"
+
+msgid "Updated Language Pack Review"
+msgstr "Bijgewerkte taalpakket-beoordeling"
+
+msgid "Theme Review"
+msgstr "Themabeoordeling"
+
+msgid "New Search Provider Review"
+msgstr "Nieuwe zoekprovider-beoordeling"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Voorlopige zoekprovider-beoordeling"
+
+msgid "Updated Search Provider Review"
+msgstr "Bijgewerkte zoekprovider-beoordeling"
+
+# Het gaat om de beoordeling van een compleet thema, dus niet om een complete
+# beoordeling
+msgid "New Complete Theme Review"
+msgstr "Nieuwe volledig-themabeoordeling"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Voorlopige volledig-themabeoordeling"
+
+msgid "Updated Complete Theme Review"
+msgstr "Bijgewerkte volledig-themabeoordeling"
+
+msgid "Moderated Add-on Review"
+msgstr "Gemodereerde add-on-beoordeling"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
+
+msgid "Add-on Content Review"
+msgstr "Beoordeling van add-on-inhoud"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Hoogste risico)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Hoog risico)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Middelgroot risico)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Laag risico)"
+
+msgid "Level 1"
+msgstr "Niveau 1"
+
+msgid "Level 2"
+msgstr "Niveau 2"
+
+msgid "Level 3"
+msgstr "Niveau 3"
+
+msgid "Level 4"
+msgstr "Niveau 4"
+
+msgid "Level 5"
+msgstr "Niveau 5"
+
+msgid "Level 6"
+msgstr "Niveau 6"
+
+msgid "Level 7"
+msgstr "Niveau 7"
+
+msgid "Level 8"
+msgstr "Niveau 8"
+
+msgid "Level 9"
+msgstr "Niveau 9"
 
 msgid "Request More Info"
 msgstr "Meer informatie vragen"
