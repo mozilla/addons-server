@@ -1082,13 +1082,14 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL',
-                            'amqp://olympia:olympia@localhost:5672/olympia')
+CELERY_BROKER_URL = os.environ.get(
+    'CELERY_BROKER_URL',
+    'amqp://olympia:olympia@localhost:5672/olympia')
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_BROKER_HEARTBEAT = 60 * 15
 CELERY_TASK_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
-                                       'redis://localhost:6379/1')
+CELERY_RESULT_BACKEND = os.environ.get(
+    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
 
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
