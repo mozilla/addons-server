@@ -28,6 +28,7 @@ services:
   - mysql
   - memcached
   - elasticsearch
+  - redis
 
 addons:
   apt:
