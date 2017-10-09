@@ -20,7 +20,7 @@
     "@claviska/jquery-minicolors": "2.2.6",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
-    "less": "2.7.2",
+    "less": "3.0.0-alpha.3",
     "stylus": "0.54.5",
     "raven-js": "3.18.0",
     "timeago": "1.6.1",
