@@ -4,7 +4,7 @@ from django.core.management import call_command
 from django.db.models import Sum, Max
 
 import waffle
-from celery.task.sets import TaskSet
+from celery import group
 
 import olympia.core.logger
 from olympia.amo.utils import chunked
@@ -26,7 +26,7 @@ def update_addons_collections_downloads():
 
     ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
           for chunk in chunked(d, 100)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 def update_collections_total():
@@ -37,7 +37,7 @@ def update_collections_total():
 
     ts = [tasks.update_collections_total.subtask(args=[chunk])
           for chunk in chunked(d, 50)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 def update_global_totals(date=None):
@@ -57,7 +57,7 @@ def update_global_totals(date=None):
 
     ts = [tasks.update_global_totals.subtask(kwargs=kw)
           for kw in today_jobs + metrics_jobs]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 def update_google_analytics(date=None):

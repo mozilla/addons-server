@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from celery.task.sets import TaskSet
+from celery import group
 
 from olympia.amo.utils import chunked
 from olympia.activity.models import ActivityLog
@@ -16,4 +16,4 @@ class Command(BaseCommand):
 
         ts = [add_versionlog.subtask(args=[chunk])
               for chunk in chunked(pks, 100)]
-        TaskSet(ts).apply_async()
+        group(ts).apply_async()
