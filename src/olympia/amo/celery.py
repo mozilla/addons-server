@@ -24,7 +24,7 @@ log = olympia.core.logger.getLogger('z.task')
 app = Celery('olympia')
 task = app.task
 
-app.config_from_object('django.conf:settings', prefix='CELERY')
+app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 # Hook up Sentry in celery.
