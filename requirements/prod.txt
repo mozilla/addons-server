@@ -72,9 +72,9 @@ amo-validator==1.10.72 \
     --hash=sha256:f54f65d480bcbdc498975a09dbdd408ce64c74c372f0802705fb07df00ab4e54 \
     --hash=sha256:02938dea6573bfd29852d96bcd9b46d1b95c9c9d6045229bc31b272a5e850f77
 # amqp is required by kombu
-amqp==1.4.9 \
-    --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
-    --hash=sha256:2dea4d16d073c902c3b89d9b96620fb6729ac0f7a923bbc777cb4ad827c0c61a # pyup: >=1.4.9,<2.0
+amqp==2.2.2 \
+    --hash=sha256:4e28d3ea61a64ae61830000c909662cb053642efddbe96503db0e7783a6ee85b \
+    --hash=sha256:cba1ace9d4ff6049b190d8b7991f9c1006b443a5238021aca96dd6ad2ac9da22
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba

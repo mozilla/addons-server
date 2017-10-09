@@ -3,7 +3,8 @@ from datetime import date
 from django.db import connection
 from django.db.models import Count
 
-from celery.task.sets import TaskSet
+
+from celery import group
 
 import olympia.core.logger
 from olympia import amo
@@ -25,7 +26,7 @@ def update_collections_subscribers():
 
     ts = [_update_collections_subscribers.subtask(args=[chunk])
           for chunk in chunked(d, 1000)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -66,11 +67,11 @@ def update_collections_votes():
 
     ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_up'])
           for chunk in chunked(up, 1000)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
     ts = [_update_collections_votes.subtask(args=[chunk, 'new_votes_down'])
           for chunk in chunked(down, 1000)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task(rate_limit='15/m')
@@ -100,4 +101,4 @@ def reindex_collections(index=None):
     taskset = [tasks.index_collections.subtask(args=[chunk],
                                                kwargs=dict(index=index))
                for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(taskset).apply_async()
+    group(taskset).apply_async()

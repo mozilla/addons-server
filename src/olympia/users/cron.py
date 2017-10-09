@@ -1,7 +1,7 @@
 from django.db import connections
 
 import multidb
-from celery.task.sets import TaskSet
+from celery import group
 
 
 import olympia.core.logger
@@ -42,4 +42,5 @@ def update_user_ratings():
 
     ts = [update_user_ratings_task.subtask(args=[chunk])
           for chunk in chunked(d, 1000)]
-    TaskSet(ts).apply_async()
+
+    group(ts).apply_async()
