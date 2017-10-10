@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 14:12+0000\n"
+"PO-Revision-Date: 2017-10-10 14:32+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -197,7 +197,7 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "Nicio versiune compatibilă"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
@@ -343,7 +343,7 @@ msgid "Most Popular"
 msgstr "Cele mai populare"
 
 msgid "All »"
-msgstr ""
+msgstr "Toate »"
 
 msgid "See all »"
 msgstr "Vezi toate »"
@@ -506,7 +506,7 @@ msgid "Privacy Policy"
 msgstr ""
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "Raportează un abuz"
 
 #, python-format
 msgid ""
@@ -680,7 +680,7 @@ msgid "Add-on home page"
 msgstr "Pagina de start a suplimentului"
 
 msgid "Support site"
-msgstr ""
+msgstr "Site pentru suport"
 
 msgid "Support E-mail"
 msgstr ""
@@ -711,7 +711,7 @@ msgid "See complete version history"
 msgstr ""
 
 msgid "Development Channel"
-msgstr ""
+msgstr "Canalul de dezvoltare"
 
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
@@ -722,7 +722,7 @@ msgid "<strong>Caution:</strong> Development versions of this add-on have not be
 msgstr ""
 
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Vezi istoricul complet al canalului de dezvoltare"
 
 msgid "close"
 msgstr ""
@@ -884,19 +884,19 @@ msgid "Log out"
 msgstr "Deconectare"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Gestionează propunerile mele"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Trimite un supliment nou"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Trimite o temă nouă"
 
 msgid "Developer Hub"
 msgstr "Hubul dezvoltatorilor"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gestionează cheile API"
 
 #, fuzzy
 msgid "Reviewer Tools"
@@ -1007,7 +1007,7 @@ msgid ""
 msgstr ""
 
 msgid "Top Rated"
-msgstr ""
+msgstr "Cele mai apreciate"
 
 msgid "Newest"
 msgstr ""
@@ -1027,7 +1027,7 @@ msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
 msgid "Most Followers"
-msgstr ""
+msgstr "Cei mai mulți urmăritori"
 
 msgid "Collections"
 msgstr "Colecții"
@@ -1155,7 +1155,7 @@ msgid "Collections :: %s"
 msgstr "Colecții :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Colecțiile sunt grupuri de suplimente conexe pe care oricine le poate crea și partaja."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
@@ -1280,9 +1280,9 @@ msgstr ""
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(num)s</span> urmăritor"
+msgstr[1] "<span>%(num)s</span> urmăritori"
+msgstr[2] "<span>%(num)s</span> de urmăritori"
 
 msgid "About this Collection"
 msgstr ""
@@ -1318,9 +1318,9 @@ msgstr[2] ""
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s supliment în această colecție"
+msgstr[1] "%(num)s suplimente în această colecție"
+msgstr[2] "%(num)s de suplimente în această colecție"
 
 msgid "Go"
 msgstr ""
@@ -1363,9 +1363,9 @@ msgstr[2] ""
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(followers)s</span> urmăritor"
+msgstr[1] "<span>%(followers)s</span> urmăritori"
+msgstr[2] "<span>%(followers)s</span> de urmăritori"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1374,18 +1374,18 @@ msgstr[2] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s urmăritor săptămânal"
+msgstr[1] "%(num)s urmăritori săptămânali"
+msgstr[2] "%(num)s de urmăritori săptămânali"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s urmăritor lunar"
+msgstr[1] "%(num)s urmăritori lunari"
+msgstr[2] "%(num)s de urmăritori lunari"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1394,9 +1394,9 @@ msgstr[2] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s urmăritor"
+msgstr[1] "%(num)s urmăritori"
+msgstr[2] "%(num)s de urmăritori"
 
 msgid "by {0}"
 msgstr "de {0}"
@@ -1405,7 +1405,7 @@ msgid "Stop Following"
 msgstr ""
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Urmărește această colecție"
 
 msgid "Edit this Collection"
 msgstr ""
@@ -1520,7 +1520,7 @@ msgstr ""
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Colecțiile sunt grupuri de suplimente conexe pe care oricine le poate crea și partaja. Explorează colecțiile create de alți utilizatori sau <a href=\"%(url)s\">creează una poprie</a>."
 
 msgid "Subscribe"
 msgstr ""
@@ -1577,13 +1577,11 @@ msgstr ""
 msgid "Remove this add-on from the collection"
 msgstr ""
 
-#, fuzzy
 msgid "Add a positive vote for this collection"
-msgstr "Adaugă la o colecție:"
+msgstr "Adaugă un vot pozitiv pentru această colecție"
 
-#, fuzzy
 msgid "Add a negative vote for this collection"
-msgstr "Adaugă la o colecție:"
+msgstr "Adaugă un vot negativ pentru această colecție"
 
 #, fuzzy
 msgid "Remove my vote for this collection"
@@ -1636,7 +1634,7 @@ msgid "Up & Coming"
 msgstr ""
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Adăugate recent"
 
 msgid "Created"
 msgstr "Creat"
@@ -1800,10 +1798,10 @@ msgid "View Profile"
 msgstr ""
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Creează-ți propria temă"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Browserul tău, stilul tău! Îmbracă-te cu un design care îți aparține!"
 
 msgid "Learn more"
 msgstr "Află mai multe"
@@ -2198,7 +2196,7 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox pentru Android"
 
 msgid "Mozilla"
 msgstr "Mozilla"
@@ -2322,10 +2320,10 @@ msgid "Download Management"
 msgstr "Gestionare descărcări"
 
 msgid "Feeds, News & Blogging"
-msgstr "Fluxuri, ştiri şi blogare"
+msgstr "Fluxuri, ştiri şi blogging"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Jocuri și divertisment"
 
 msgid "Language Support"
 msgstr "Suport pentru limbi"
@@ -2439,7 +2437,7 @@ msgid "Solid"
 msgstr ""
 
 msgid "Websites"
-msgstr ""
+msgstr "Site-uri web"
 
 msgid "Device Features & Location"
 msgstr ""
@@ -2447,9 +2445,8 @@ msgstr ""
 msgid "Experimental"
 msgstr ""
 
-#, fuzzy
 msgid "Feeds, News, & Blogging"
-msgstr "Fluxuri, ştiri şi blogare"
+msgstr "Fluxuri, ştiri şi blogging"
 
 #, fuzzy
 msgid "Performance"
@@ -2515,7 +2512,7 @@ msgid "Photos and Media"
 msgstr "Foto, audio şi video"
 
 msgid "RSS, News and Blogging"
-msgstr "RSS, ştiri şi blogare"
+msgstr "RSS, ştiri şi blogging"
 
 msgid "Site-specific"
 msgstr "Pentru anumite saituri"
@@ -3053,7 +3050,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Hubul dezvoltatorilor de <small>suplimente</small>"
 
 msgid "more add-ons..."
 msgstr "mai multe suplimente..."
@@ -3172,7 +3169,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Versiuni suportate"
 
 msgid "Add Another Application&hellip;"
 msgstr ""
@@ -3639,13 +3636,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Versiune nouă"
+msgstr "Trimite un fișier nou"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Versiune nouă"
+msgstr "Trimite o versiune nouă"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -4157,9 +4152,8 @@ msgid "Submit Your First Theme"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Add-ons Developer"
+msgstr "Hubul dezvoltatorilor de suplimente"
 
 msgid "Docs"
 msgstr ""
@@ -4542,7 +4536,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Stare și versiuni"
 
 msgid "Edit this version"
 msgstr ""
@@ -4594,9 +4588,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "Versiune nouă"
+msgstr "Versiunile listate"
 
 msgid "Currently on AMO"
 msgstr ""
@@ -4615,13 +4608,11 @@ msgstr ""
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Versiune nouă"
+msgstr "Alte versiuni"
 
-#, fuzzy
 msgid "All versions"
-msgstr "Versiuni"
+msgstr "Toate versiunile"
 
 msgid "Upload a New Version"
 msgstr ""
@@ -4667,7 +4658,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Documentație privind suplimentele :: Hubul dezvoltatorilor"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4926,9 +4917,8 @@ msgstr ""
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Suplimente %s"
+msgstr "Respinge multiple versiuni"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
@@ -5017,9 +5007,8 @@ msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
-#, fuzzy
 msgid "Works with"
-msgstr "Works with"
+msgstr "Funcționează cu"
 
 msgid "Visibility"
 msgstr ""
@@ -5336,7 +5325,7 @@ msgid "This version has not been reviewed."
 msgstr ""
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai sus."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -7140,7 +7129,7 @@ msgid "What is a collection?"
 msgstr ""
 
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Colecțiile sunt grupuri de suplimente conexe create de utilizatori pentru a le partaja."
 
 msgid "What is the My Favorites collection?"
 msgstr ""
@@ -7402,7 +7391,7 @@ msgstr ""
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Evaluată cu %d din 5 stele"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -7546,7 +7535,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Evaluată cu {0} din 5 stele"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
@@ -7957,7 +7946,7 @@ msgid "User Signups by Date"
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Versiunile aplicațiiei în funcție de dată"
 
 msgid "Mozilla Add-ons"
 msgstr ""
@@ -8474,12 +8463,12 @@ msgstr "Istoricul versiunilor {0}"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> versiune"
+msgstr[1] "<b>{0}</b> versiuni"
+msgstr[2] "<b>{0}</b> de versiuni"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Fii atent cu versiunile vechi!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
