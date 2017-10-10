@@ -72,3 +72,5 @@ services:
     shm_size: 2g
     links:
      - "web:olympia.dev"
+    extra_hosts:
+     - "olympia.dev:web"
