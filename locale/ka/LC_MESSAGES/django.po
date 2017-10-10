@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 22:30+0000\n"
+"PO-Revision-Date: 2017-10-10 22:47+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6233,31 +6233,31 @@ msgid "Uruguay Peso"
 msgstr "ურუგვაის პესო"
 
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "უზბეკური სომი"
 
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "ვენესუელური ბოლივარი"
 
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "ვიეტნამური დონგი"
 
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "ვანუატუს ვატუ"
 
 msgid "Samoa Tala"
-msgstr ""
+msgstr "სამოური ტალა"
 
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "ცენტრალური აფრიკის ფინანსური თანამშრომლობის (BEAC) ფრანკი"
 
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "აღმოსავლეთ კარიბული დოლარი"
 
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "საერთაშორისო სავალუტო ფონდის (სსფ) სპეციალური სასესხო უფლებები"
 
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "დასავლეთ აფრიკის ფინანსური თანამშრომლობის (BCEAO) ფრანკი "
 
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
 msgstr ""
