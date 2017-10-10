@@ -481,7 +481,8 @@ class TestReviewerScore(TestCase):
                 self.check_event(tk, sk, event)
 
     def test_events_post_review(self):
-        base_args = (self.addon, amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        base_args = (self.addon, self.addon.status)
         # No version.
         assert ReviewerScore.get_event(
             *base_args, version=None,
@@ -553,6 +554,33 @@ class TestReviewerScore(TestCase):
                     (amo.REVIEWED_OVERDUE_BONUS * bonus_days))
 
         assert score.score == expected
+
+    def test_award_points_no_bonus_for_content_review(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(nomination=self.days_ago(28))
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=100)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=False, content_review=True)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[amo.REVIEWED_CONTENT_REVIEW]
+
+    def test_award_points_no_bonus_for_post_review(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(nomination=self.days_ago(29))
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=100)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=True, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_EXTENSION_HIGH_RISK]
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
