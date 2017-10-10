@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 20:37+0000\n"
+"PO-Revision-Date: 2017-10-10 20:57+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5999,31 +5999,31 @@ msgid "Kenya Shilling"
 msgstr "კენიური შილინგი"
 
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "ყირგიზული სომი"
 
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "კამბოჯური რიელი"
 
 msgid "Comoros Franc"
-msgstr ""
+msgstr "კომორის ფრანკი"
 
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "ჩრდილოეთ კორეული ვონი"
 
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "სამხრეთ კორეული ვონი"
 
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "ქუვეითური დინარი"
 
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "კაიმანის დოლარი"
 
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "ყაზახური ტენგი"
 
 msgid "Laos Kip"
-msgstr ""
+msgstr "ლაოსური კიპი"
 
 msgid "Lebanon Pound"
 msgstr ""
