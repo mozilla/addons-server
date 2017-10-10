@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-05 18:04+0000\n"
-"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
+"PO-Revision-Date: 2017-10-09 09:55+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2146,18 +2146,17 @@ msgid "Auto-Approval confirmed"
 msgstr "Approbation automatique confirmée"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} réactivé."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} désactivé."
 
 #, fuzzy
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} approuvée."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "a été approuvé"
+msgstr "Contenu approuvé"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
@@ -2558,21 +2557,20 @@ msgstr "Commentaire du module modéré"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Revue du module annulée lors de la modération"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Envoyer la revue"
+msgstr "Validation du contenu du module"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Validation après approbation (risque le plus élevé)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Validation après approbation (risque élevé)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Validation après approbation (risque moyen)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Validation après approbation (risque faible)"
 
 msgid "Level 1"
 msgstr "Niveau 1"
@@ -4905,9 +4903,8 @@ msgstr "Aucune revue"
 msgid "Weight"
 msgstr "Poids"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Dernière revue"
+msgstr "Dernière validation du contenu"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
@@ -5074,9 +5071,8 @@ msgstr "Revues modérées"
 msgid "Auto Approved Add-ons"
 msgstr "Modules complémentaires approuvés automatiquement"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Envoyer la revue"
+msgstr "Revue du contenu"
 
 msgid "Unlisted Queues"
 msgstr "Files pour les modules non répertoriés"

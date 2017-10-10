@@ -68,9 +68,9 @@ PyJWT==1.5.3 \
     --hash=sha256:500be75b17a63f70072416843dc80c8821109030be824f4d14758f114978bae7
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.72 \
-    --hash=sha256:f54f65d480bcbdc498975a09dbdd408ce64c74c372f0802705fb07df00ab4e54 \
-    --hash=sha256:02938dea6573bfd29852d96bcd9b46d1b95c9c9d6045229bc31b272a5e850f77
+amo-validator==1.10.73 \
+    --hash=sha256:49e01d13b2794bcf3e9ba0dfacd9ec648e163a4a43976b3688de70549f7d22d9 \
+    --hash=sha256:2d75369941a1bddc99e4a57c36c476741114e926397c36aac01351d36f1c8314
 # amqp is required by kombu
 amqp==2.2.2 \
     --hash=sha256:4e28d3ea61a64ae61830000c909662cb053642efddbe96503db0e7783a6ee85b \
@@ -354,9 +354,9 @@ pyquery==1.2.17 \
     --hash=sha256:554335a65570b4871051320a30919836f7548dbb2f2616d6e1f7c3f887096ef3 \
     --hash=sha256:6aa0133b30d9a0229ad65d3a7708c4e853bf46808fb359d06ca56f5039102af6
 # pytest is required by amo-validator
-pytest==3.2.2 \
-    --hash=sha256:b84f554f8ddc23add65c411bf112b2d88e2489fd45f753b1cae5936358bdf314 \
-    --hash=sha256:f46e49e0340a532764991c498244a60e3a37d7424a532b3ff1a6a7653f1a403a
+pytest==3.2.3 \
+    --hash=sha256:81a25f36a97da3313e1125fce9e7bbbba565bc7fec3c5beb14c262ddab238ac1 \
+    --hash=sha256:27fa6617efc2869d3e969a3e75ec060375bfb28831ade8b5cdd68da3a741dc3c
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.1 \
     --hash=sha256:95511bae634d69bc7329ba55e646499a842bc4ec342ad54a8cdb65645a0aad3c \
@@ -421,9 +421,9 @@ six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \
     --hash=sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9
 # spidermonkey is required by amo-validator
-spidermonkey==55.0a1.post2 \
-    --hash=sha256:61a62effe4a6c6e1c8449f1997c4a39c88e53fd3cd6d1a2dc0156e02f22804c1 \
-    --hash=sha256:df311184630b12c3abcca751478ed60fb477b8170423057d0f65ab0cd1509dc5
+spidermonkey==58.0a1.post2 \
+    --hash=sha256:ad85213e8e68b059599460a3f8b69705b8141951fcccc4efa0b5284e04ac8d06 \
+    --hash=sha256:6301903a0cc3f201264aba36ae20cff5bc983f68ae9333c3955430bddb4985af
 # statsd is required by django-statsd-mozilla
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
