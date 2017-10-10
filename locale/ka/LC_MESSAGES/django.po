@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 14:51+0000\n"
+"PO-Revision-Date: 2017-10-10 15:12+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5262,26 +5262,26 @@ msgid "Files in this version:"
 msgstr "ფაილები ამ ვერსიაში:"
 
 msgid "Contents"
-msgstr ""
+msgstr "შიგთავსი"
 
 msgid "Compare"
-msgstr ""
+msgstr "შედარება"
 
 msgid "Permissions:"
 msgstr "ნებართვები:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>%(user)s-ის მიერ %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "უფრო ძველი"
 
 msgid "Newer"
-msgstr ""
+msgstr "უფრო ახალი"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "ბოლო ქულები"
 
 msgid "No points awarded yet."
 msgstr "მოგებული ქულები ჯერ არ არის."
@@ -5293,33 +5293,33 @@ msgid "No top reviewers yet."
 msgstr "რჩეული მიმომხილველები ჯერ არ არიან."
 
 msgid "All Time"
-msgstr ""
+msgstr "ყველა დროის"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "თქვენ გაქვთ <span>{0}</span> ქულა."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] %(date)s"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "თარიღი წაიშალა"
 
 msgid "No deleted themes found for this period."
 msgstr "დროის ამ მონაკვეთისთვის, წაშლილი თემები ვერ მოიძებნა."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "თემის მიმოხილვის ისტორია {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "მიმოხილვის თარიღი"
 
 msgid "Action"
-msgstr ""
+msgstr "მოქმედება"
 
 msgid "Reason"
-msgstr ""
+msgstr "მიზეზი"
 
 msgid "There are currently no reviews."
 msgstr "ამ დროისთვის მიმოხილვები არაა."
@@ -5337,40 +5337,40 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} განახლება"
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "ჩანიშნული თემები"
 
 msgid "Theme Review Queue"
 msgstr "განსახილველად გადასაცემი თემების რიგი"
 
 msgid "Review Options"
-msgstr ""
+msgstr "მიმოხილვის პარამეტრები"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "წინ წამოწევა მიმოხილვის შემდეგ"
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "კლავიატურის მალსახმობების ჩართვა"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "კლავიატურის მალსახმობები"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "შემდეგი თემა"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "წინა თემა"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "თქვენი მიმოხილვების ისტორია"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "მიმოხილვის წინ წამოწევა"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "მიმოხილვების წინ წამოწევა"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} განხილულია {1}-დან"
 
 msgid "There are currently no Themes to review."
 msgstr "ამ დროისთვის განსახილველი თემები არაა."
@@ -5379,32 +5379,32 @@ msgid "Clear Search"
 msgstr "ძიების გასუფთავება"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "თემაზე შეზღუდვების მოხსნა"
 
 msgid "Interactive Theme Queue"
 msgstr "ინტერაქტიული თემების რიგი"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "მიმომხილველის სახელმძღვანელო"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "თემის მიმოხილვა {0}-ისთვის"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(სავარაუდოდ განმეორებითი წარდგენა)"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "წინა მიმოხილვის შენიშვნები"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "საჭიროა მეტი ინფორმაცია: {0}"
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "ჩანიშნულია: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "თემის მიღება"
 
 msgid "Field required"
 msgstr "ველის შევსება აუცილებელია"
