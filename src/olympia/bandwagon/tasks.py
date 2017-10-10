@@ -6,7 +6,7 @@ from django.db.models import Count
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on
+from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import attach_trans_dict, resize_image
 from olympia.tags.models import Tag
@@ -20,22 +20,22 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task
+@write
 def collection_votes(*ids, **kw):
     log.info('[%s@%s] Updating collection votes.' %
              (len(ids), collection_votes.rate_limit))
-    using = kw.get('using')
-    for collection in ids:
-        v = CollectionVote.objects.filter(collection=collection).using(using)
-        votes = dict(v.values_list('vote').annotate(Count('vote')))
-        c = Collection.objects.get(id=collection)
-        c.upvotes = up = votes.get(1, 0)
-        c.downvotes = down = votes.get(-1, 0)
+    for collection_id in ids:
+        qs = CollectionVote.objects.filter(collection=collection_id)
+        votes = dict(qs.values_list('vote').annotate(Count('vote')))
+        collection = Collection.objects.get(id=collection_id)
+        collection.upvotes = up = votes.get(1, 0)
+        collection.downvotes = down = votes.get(-1, 0)
         try:
             # Use log to limit the effect of the multiplier.
-            c.rating = (up - down) * math.log(up + down)
+            collection.rating = (up - down) * math.log(up + down)
         except ValueError:
-            c.rating = 0
-        c.save()
+            collection.rating = 0
+        collection.save()
 
 
 @task
@@ -66,35 +66,36 @@ def delete_icon(dst, **kw):
 
 
 @task
+@write
 def collection_meta(*ids, **kw):
     log.info('[%s@%s] Updating collection metadata.' %
              (len(ids), collection_meta.rate_limit))
-    using = kw.get('using')
     qs = (CollectionAddon.objects.filter(collection__in=ids)
-          .using(using).values_list('collection'))
+          .values_list('collection'))
     counts = dict(qs.annotate(Count('id')))
     persona_counts = dict(qs.filter(addon__type=amo.ADDON_PERSONA)
                           .annotate(Count('id')))
     tags = (Tag.objects.not_denied().values_list('id')
             .annotate(cnt=Count('id')).filter(cnt__gt=1).order_by('-cnt'))
-    for c in Collection.objects.no_cache().filter(id__in=ids):
-        addon_count = counts.get(c.id, 0)
-        all_personas = addon_count == persona_counts.get(c.id, None)
-        addons = list(c.addons.values_list('id', flat=True))
-        c.top_tags = [t for t, _ in tags.filter(addons__in=addons)[:5]]
-        Collection.objects.filter(id=c.id).update(addon_count=addon_count,
-                                                  all_personas=all_personas)
+    for collection in Collection.objects.no_cache().filter(id__in=ids):
+        addon_count = counts.get(collection.id, 0)
+        all_personas = addon_count == persona_counts.get(collection.id, None)
+        addons = list(collection.addons.values_list('id', flat=True))
+        collection.top_tags = [
+            t for t, _ in tags.filter(addons__in=addons)[:5]]
+        Collection.objects.filter(id=collection.id).update(
+            addon_count=addon_count, all_personas=all_personas)
 
 
 @task
+@write
 def collection_watchers(*ids, **kw):
     log.info('[%s@%s] Updating collection watchers.' %
              (len(ids), collection_watchers.rate_limit))
-    using = kw.get('using')
     for pk in ids:
         try:
             watchers = (CollectionWatcher.objects.filter(collection=pk)
-                                         .using(using).count())
+                                         .count())
             Collection.objects.filter(pk=pk).update(subscribers=watchers)
             log.info('Updated collection watchers: %s' % pk)
         except Exception, e:
@@ -116,6 +117,6 @@ def attach_translations(collections):
 
 @task
 def unindex_collections(ids, **kw):
-    for id in ids:
-        log.debug('Removing collection [%s] from search index.' % id)
-        Collection.unindex(id)
+    for pk in ids:
+        log.debug('Removing collection [%s] from search index.' % pk)
+        Collection.unindex(pk)
