@@ -1,7 +1,12 @@
+import mimetypes
 import random
 
+from django.conf import settings
+from django.utils.translation import activate
+from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework import serializers
 
+from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
 from olympia.addons.forms import icons
 from olympia.addons.models import AddonUser, Preview
@@ -12,8 +17,10 @@ from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
-from olympia.ratings.models import Rating
+from olympia.reviews.models import Review
+from olympia.files.tests.test_helpers import get_file
 from olympia.users.models import UserProfile
+from olympia.editors.utils import ReviewHelper
 
 
 class GenerateAddonsSerializer(serializers.Serializer):
@@ -84,6 +91,56 @@ class GenerateAddonsSerializer(serializers.Serializer):
             'Created addon {0} for testing successfully'
             .format(addon.name))
 
+    def create_featured_addon_with_version_for_install(self):
+        """Creates a custom addon named 'Ui-Addon'.
+
+        This addon will be a featured addon and will have a featured collecton
+        attatched to it. It will belong to the user uitest.
+
+        It has 1 preview, 5 reviews, and 2 authors. The second author is named
+        'ui-tester2'. It has a version number as well as a beta version.
+
+        """
+        default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            type=ADDON_EXTENSION,
+            average_daily_users=5000,
+            users=[UserProfile.objects.get(username='uitest')],
+            average_rating=5,
+            description=u'My Addon description',
+            file_kw={
+                'platform': amo.PLATFORM_ALL.id,
+                'is_webextension': True
+            },
+            guid=generate_addon_guid(),
+            icon_type=random.choice(default_icons),
+            name=u'Ui-Addon-Install',
+            public_stats=True,
+            slug='ui-test-2',
+            summary=u'My Addon summary',
+            tags=['some_tag', 'another_tag', 'ui-testing',
+                  'selenium', 'python'],
+            total_reviews=500,
+            weekly_downloads=9999999,
+            developer_comments='This is a testing addon.',
+        )
+        Preview.objects.create(addon=addon, position=1)
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        addon.save()
+        generate_collection(addon, app=FIREFOX)
+        print(
+            'Created addon {0} for testing successfully'
+            .format(addon.name))
+        return addon
+
     def create_featured_theme(self):
         """Creates a custom theme named 'Ui-Test Theme'.
 
@@ -148,3 +205,53 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(6):
             addon = addon_factory(status=STATUS_PUBLIC, type=ADDON_PERSONA)
             generate_collection(addon, app=FIREFOX)
+
+    def create_installable_addon(self):
+
+        activate('en-US')
+
+        # using whatever add-on you already have should work imho, otherwise fall back
+        # to a new one for test purposes
+        addon = self.create_featured_addon_with_version_for_install()
+
+        # the user the add-on gets created with
+        user = UserProfile.objects.get(username='uitest')
+
+        user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
+                                          email='admin@mozilla.com',
+                                          username='admin')
+
+        # generate a proper uploaded file that simulates what django requires as
+        # request.POST
+        file_to_upload = 'webextension_no_id.xpi'
+        file_path = get_file(file_to_upload)
+
+        # make sure we are not using the file in the source-tree but a temporary
+        # one to avoid the files get moved somewhere else and deleted from source
+        # tree
+        with copy_file_to_temp(file_path) as temporary_path:
+            data = open(temporary_path).read()
+            filedata = SimpleUploadedFile(
+                file_to_upload,
+                data,
+                content_type=mimetypes.guess_type(file_to_upload)[0])
+
+            # now, lets upload the file into the system
+            from olympia.devhub.views import handle_upload
+
+            upload = handle_upload(
+                filedata=filedata,
+                user=user,
+                channel=amo.RELEASE_CHANNEL_LISTED,
+                addon=addon,
+                submit=True
+            )
+
+            # find the latest version that we just uploaded (should be version 1.0
+            # which is what webextension_no_id.xpi defines)
+            latest_version = upload.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
+
+            # now process the add-on and publish it
+            helper = ReviewHelper(addon=upload.addon, version=latest_version)
+            helper.handler.data = {'comments': ''}
+            helper.handler.process_public()

@@ -137,7 +137,7 @@ ui-tests:
 	python manage.py loaddata src/olympia/access/fixtures/initial.json
 	python manage.py waffle_switch super-create-accounts on
 	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia.dev
-	python manage.py reindex --wipe --force --noinput
+	python manage.py reindex --force --noinput
 	python manage.py generate_ui_test_addons
 
 initialize: update_deps initialize_db update_assets populate_data

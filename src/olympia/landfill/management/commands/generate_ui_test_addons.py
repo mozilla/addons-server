@@ -28,5 +28,6 @@ class Command(BaseCommand):
         serializer.create_featured_theme()
         serializer.create_featured_collections()
         serializer.create_featured_themes()
+        serializer.create_installable_addon()
         cache.clear()
         call_command('clear_cache')
