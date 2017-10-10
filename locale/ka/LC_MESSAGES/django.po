@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 17:11+0000\n"
+"PO-Revision-Date: 2017-10-10 17:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5798,58 +5798,58 @@ msgid "Netherlands Antilles Guilder"
 msgstr "ჰოლანდიური ანტილების გულდენი"
 
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "ანგოლური კვანზა"
 
 msgid "Argentina Peso"
-msgstr ""
+msgstr "არგენტინული პესო"
 
 msgid "Australia Dollar"
-msgstr ""
+msgstr "ავსტრალიური დოლარი"
 
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "არუბული ფლორინი"
 
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "აზერბაიჯანული მანათი"
 
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "ბოსნიისა და ჰერცოგოვინის კონვერტირებადი მარკა"
 
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "ბარბადოსის დოლარი"
 
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "ბანგლადეშური ტაკა"
 
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "ბულგარული ლევი"
 
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "ბაჰრეინული დინარი"
 
 msgid "Burundi Franc"
-msgstr ""
+msgstr "ბურუნდის ფრანკი"
 
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "ბერმუდული დოლარი"
 
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "ბრუნეიული დოლარი"
 
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "ბოლივიური ბოლივიანო"
 
 msgid "Brazil Real"
-msgstr ""
+msgstr "ბრაზილიური რეალი"
 
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "ბაჰამური დოლარი"
 
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "ბუტანური ნგულტრუმი"
 
 msgid "Botswana Pula"
-msgstr ""
+msgstr "ბოტსვანური პულა"
 
 msgid "Belarus Ruble"
 msgstr ""
