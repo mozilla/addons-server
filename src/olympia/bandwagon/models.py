@@ -353,7 +353,7 @@ class Collection(ModelBase):
         from . import tasks
         if kwargs.get('raw'):
             return
-        tasks.collection_meta.delay(instance.id, using='default')
+        tasks.collection_meta.delay(instance.id)
         tasks.index_collections.delay([instance.id])
         if instance.is_featured():
             Collection.update_featured_status(sender, instance, **kwargs)
@@ -414,7 +414,7 @@ class CollectionAddon(ModelBase):
     def post_save_or_delete(sender, instance, **kwargs):
         """Update Collection.addon_count."""
         from . import tasks
-        tasks.collection_meta.delay(instance.collection_id, using='default')
+        tasks.collection_meta.delay(instance.collection_id)
 
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
@@ -438,7 +438,7 @@ class CollectionWatcher(ModelBase):
     @staticmethod
     def post_save_or_delete(sender, instance, **kw):
         from . import tasks
-        tasks.collection_watchers(instance.collection_id, using='default')
+        tasks.collection_watchers(instance.collection_id)
 
 
 models.signals.post_save.connect(CollectionWatcher.post_save_or_delete,
@@ -473,7 +473,7 @@ class CollectionVote(models.Model):
         # collection exists before trying to update it in the task.
         if Collection.objects.filter(id=instance.collection_id).exists():
             from . import tasks
-            tasks.collection_votes(instance.collection_id, using='default')
+            tasks.collection_votes(instance.collection_id)
 
 
 models.signals.post_save.connect(CollectionVote.post_save_or_delete,

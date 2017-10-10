@@ -46,13 +46,15 @@
                   {% else %}
                     {% set channel = 0 %}
                   {% endif %}
-                  {% if channel == amo.RELEASE_CHANNEL_LISTED %}
+                  {% if item.action == amo.LOG.REJECT_CONTENT.id or item.action == amo.LOG.APPROVE_CONTENT.id %}
+                    {% set review_url = url('editors.review', 'content', item.arguments[0].slug ) %}
+                  {% elif channel == amo.RELEASE_CHANNEL_LISTED %}
                     {% set review_url = url('editors.review', item.arguments[0].slug) %}
                   {% else %}
                     {% set review_url = url('editors.review', 'unlisted', item.arguments[0].slug) %}
                   {% endif %}
                   <a href="{{ review_url }}">
-                    {{ ACTION_DICT.get(item.action) }}
+                    {{ item.log.short }}
                   </a>
                 {% else %}
                     {{ _('Add-on has been deleted.') }}

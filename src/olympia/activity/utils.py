@@ -78,8 +78,8 @@ class ActivityEmailParser(object):
             return split_email[0]
 
     def get_uuid(self):
-        addresses = [to.get('EmailAddress', '')
-                     for to in self.email.get('To', [])]
+        recipients = self.email.get('To', None) or []
+        addresses = [to.get('EmailAddress', '') for to in recipients]
         to_notifications_alias = False
         for address in addresses:
             if address.startswith(self.address_prefix):

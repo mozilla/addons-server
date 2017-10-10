@@ -1595,6 +1595,21 @@ class TestUploadDetail(BaseUploadTest):
             str(amo.PLATFORM_ANDROID.id)
         ])
 
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_supports_all_desktop_platforms(self):
+        # Support was added in 53
+        self.create_appversion('firefox', '53.0')
+
+        # No Android support yet, but make sure.
+        self.create_appversion('android', '53.0')
+        self.create_appversion('android', '42.*')
+        self.create_appversion('android', '47.*')
+        self.create_appversion('android', '48.*')
+        self.create_appversion('android', '*')
+
+        self.check_excluded_platforms('static_theme.zip', [
+            str(amo.PLATFORM_ANDROID.id)])
+
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
 

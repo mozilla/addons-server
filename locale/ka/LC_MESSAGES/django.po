@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 03:24+0000\n"
+"PO-Revision-Date: 2017-10-10 18:37+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1072,7 +1072,7 @@ msgstr "აპლიკაციის მართებული ვერს�
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Mozilla-ს დამატებების საიტისთვის წარდგენილ დამატებას, თან უნდა ახლდეს მანიფესტ ფაილი, ქვემოთ მოცემული პროგრამებიდან, ერთ-ერთის მხარდაჭერით მაინც. ამ პროგრამებისთვის, მხოლოდ ქვემოთ მითითებული "
+"Mozilla-ს დამატებების საიტისთვის წარდგენილ დამატებას, თან უნდა ახლდეს მანიფესტის ფაილი, ქვემოთ მოცემული პროგრამებიდან, ერთ-ერთის მხარდაჭერით მაინც. ამ პროგრამებისთვის, მხოლოდ ქვემოთ მითითებული "
 "ვესიებია დასაშვები."
 
 #, python-format
@@ -1089,7 +1089,7 @@ msgstr "ვერსიები"
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტ ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
+msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტის ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
 
 msgid "Contributors"
 msgstr "წვლილის შემტანები"
@@ -4894,7 +4894,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: მოხსენება დარღვევის შესახებ"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "დარღვევის შესახებ მოხსენებები, {addon} და მის შემმუშავებლებთან ({num}) დაკავშირებით"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -4925,7 +4925,7 @@ msgid "Last Approval Date"
 msgstr "მიღების ბოლო თარიღი"
 
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "მიღების შესახებ გადაწყვეტილებები, ბოლო ავტომატური განხილვის შემდგომ"
 
 msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
@@ -4971,35 +4971,35 @@ msgid "All Unlisted Add-ons"
 msgstr "ყველა გამოუქვეყნებელი დამატება"
 
 msgid "Logs"
-msgstr ""
+msgstr "აღრიცხვა"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "დამატების განხილვის აღრიცხვა"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "შემოწმებული განხილვის აღრიცხვა"
 
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
 
 msgid "Announcement"
-msgstr ""
+msgstr "გამოცხადება"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
 msgstr "ფილტრი"
 
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 msgid "Event"
-msgstr ""
+msgstr "მოვლენა"
 
 msgid "More details."
 msgstr "უფრო ვრცლად."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "დროის ამ მონაკვეთისთვის მოვლენები ვერ მოიძებნა."
 
 msgid "Log details"
 msgstr "აღრიცხვის მონაცემები"
@@ -5009,22 +5009,22 @@ msgstr "მიმოხილვის ავტორი"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "დამატების სათაური"
 
 msgid "Review Title"
-msgstr ""
+msgstr "მიმოხილვის სათაური"
 
 msgid "Review Text"
-msgstr ""
+msgstr "მიმოხილვის ტექსტი"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "მიმოხილვა მონიშნულია წასაშლელად."
 
 msgid "Undelete"
-msgstr ""
+msgstr "წაშლილის აღდგენა"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
@@ -5035,7 +5035,7 @@ msgid_plural "Updates ({num})"
 msgstr[0] "განახლებები ({num})"
 
 msgid "Current waiting times:"
-msgstr ""
+msgstr "ლოდინის მიმდინარე დროები:"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -5043,7 +5043,7 @@ msgstr[0] "{0} დამატება"
 
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 msgid "Total Reviews"
 msgstr "სულ მიმოხილვები"
@@ -5063,64 +5063,64 @@ msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "შემოწმებული მიმოხილვები ({num})"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "მიმომხილველთა ჩამონათვალი"
 
 msgid "No review points awarded yet."
 msgstr "მომოხილვის ქულები ჯერ არ არის."
 
 msgid "Rank"
-msgstr ""
+msgstr "ადგილი"
 
 msgid "Score"
-msgstr ""
+msgstr "ქულა"
 
 msgid "Update message of the day"
 msgstr "დღის შეტყობინების განახლება"
 
 msgid "Save"
-msgstr ""
+msgstr "შენახვა"
 
 msgid "Add-on Reviewer Performance"
 msgstr "დამატების მიმოხილვის წარმადობა"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "მომხმარებლის სტატისტიკის ნახვა"
 
 msgid "Range"
-msgstr ""
+msgstr "შუალედი"
 
 msgid "Your Reviews"
 msgstr "თქვენი მიმოხილვები"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name}"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "მოქმედი მოხალისეები"
 
 msgid "This Month"
-msgstr ""
+msgstr "ამ თვის"
 
 msgid "This Year"
-msgstr ""
+msgstr "ამ წლის"
 
 msgid "Monthly Performance"
 msgstr "წარმადობა ყოველთვიურად"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "ყველა დროის ქულები, ტიპების მიხედვით"
 
 msgid "Total"
-msgstr ""
+msgstr "სულ"
 
 msgid "Month"
-msgstr ""
+msgstr "თვის"
 
 msgid "Year"
-msgstr ""
+msgstr "წლის"
 
 msgid "All-Time"
-msgstr ""
+msgstr "ყველა დროის"
 
 msgid "Advanced Search"
 msgstr "გაფართოებული ძებნა"
@@ -5132,15 +5132,15 @@ msgid "Process Reviews"
 msgstr "მიმოხილვების დამუშავება"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "შემმოწმებლის მოვალეობები:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "%(user)s-ის მიერ %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong><span class=\"light\">ჩანიშნულია %(user)s-ის მიერ %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
@@ -5149,13 +5149,13 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "ამ სახის არცერთი დამატება არ არის განსახილველად."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "სასარგებლო ბმულები:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "დამატების დებულებები"
 
 msgid "Editors' Guide"
-msgstr ""
+msgstr "შემსწორებლის მითითებები"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -5164,26 +5164,26 @@ msgstr "შემოწმებული მიმოხილვები ({0}
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "მიმოხილვა {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "დამატების მომხმარებლის ცვლილების ისტორია"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "დამატების ისტორია"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "ვერსია %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "თავსებადობა:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "დამატებითი წყაროები:"
 
 msgid "Download files"
-msgstr ""
+msgstr "ფაილების ჩამოტვირთვა"
 
 msgid "The developer has provided source code."
 msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
@@ -5192,96 +5192,96 @@ msgid "Not Auto Approved Because"
 msgstr "ავტომატურად არაა მიღებული, იმიტომ რომ"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "მისაღებად ავტომატური სკრიპტი ამ ვერსიაზე, ჯერ არ გაშვებულა."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "ეს ვერსია, ჯერ არ განხილულა."
 
 msgid "Please select one or more versions in the list above."
 msgstr "გთხოვთ მიუთითოთ ერთი, ან მეტი ვერსია, ზემოთ მოცემული ჩამონათვალიდან."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "ამ შევსებული ველების წარდგენა კიდევ შეგიძლიათ, მხოლოდ იმ შემთხვევაში, თუ იცით რომ არ იქნება წინააღმდეგობრივი."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
 
 msgid "Files:"
-msgstr ""
+msgstr "ფაილები:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "გამოცდის თარიღი:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "თეთრი დაფა არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
 
 msgid "Update the whiteboard"
 msgstr "შენიშვნების განახლება"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(ადმინისტრატორი)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "ადმინისტრატორის გვერდი"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "დამატების მიმოხილვა"
 
 msgid "More Information"
-msgstr ""
+msgstr "დამატებითი ინფორმაცია"
 
 msgid "Resolution"
-msgstr ""
+msgstr "გარჩევადობა"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "მიმომხილველი"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "დამატება წაშლილია."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "კომენტარების ჩვენება"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "კომენტარების დამალვა"
 
 msgid "No reviews found for this period."
 msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] მომხმარებლის მიმოხილვა %(object)s-ის შესახებ %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "განცხადების გამოტოვება"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "ფაილები ამ ვერსიაში:"
 
 msgid "Contents"
-msgstr ""
+msgstr "შიგთავსი"
 
 msgid "Compare"
-msgstr ""
+msgstr "შედარება"
 
 msgid "Permissions:"
 msgstr "ნებართვები:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>%(user)s-ის მიერ %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "უფრო ძველი"
 
 msgid "Newer"
-msgstr ""
+msgstr "უფრო ახალი"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "ბოლო ქულები"
 
 msgid "No points awarded yet."
 msgstr "მოგებული ქულები ჯერ არ არის."
@@ -5293,33 +5293,33 @@ msgid "No top reviewers yet."
 msgstr "რჩეული მიმომხილველები ჯერ არ არიან."
 
 msgid "All Time"
-msgstr ""
+msgstr "ყველა დროის"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "თქვენ გაქვთ <span>{0}</span> ქულა."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] %(date)s"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "თარიღი წაიშალა"
 
 msgid "No deleted themes found for this period."
 msgstr "დროის ამ მონაკვეთისთვის, წაშლილი თემები ვერ მოიძებნა."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "თემის მიმოხილვის ისტორია {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "მიმოხილვის თარიღი"
 
 msgid "Action"
-msgstr ""
+msgstr "მოქმედება"
 
 msgid "Reason"
-msgstr ""
+msgstr "მიზეზი"
 
 msgid "There are currently no reviews."
 msgstr "ამ დროისთვის მიმოხილვები არაა."
@@ -5337,40 +5337,40 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} განახლება"
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "ჩანიშნული თემები"
 
 msgid "Theme Review Queue"
 msgstr "განსახილველად გადასაცემი თემების რიგი"
 
 msgid "Review Options"
-msgstr ""
+msgstr "მიმოხილვის პარამეტრები"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "წინ წამოწევა მიმოხილვის შემდეგ"
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "კლავიატურის მალსახმობების ჩართვა"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "კლავიატურის მალსახმობები"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "შემდეგი თემა"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "წინა თემა"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "თქვენი მიმოხილვების ისტორია"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "მიმოხილვის წინ წამოწევა"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "მიმოხილვების წინ წამოწევა"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} განხილულია {1}-დან"
 
 msgid "There are currently no Themes to review."
 msgstr "ამ დროისთვის განსახილველი თემები არაა."
@@ -5379,57 +5379,57 @@ msgid "Clear Search"
 msgstr "ძიების გასუფთავება"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "თემაზე შეზღუდვების მოხსნა"
 
 msgid "Interactive Theme Queue"
 msgstr "ინტერაქტიული თემების რიგი"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "მიმომხილველის სახელმძღვანელო"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "თემის მიმოხილვა {0}-ისთვის"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(სავარაუდოდ განმეორებითი წარდგენა)"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "წინა მიმოხილვის შენიშვნები"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "საჭიროა მეტი ინფორმაცია: {0}"
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "ჩანიშნულია: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "თემის მიღება"
 
 msgid "Field required"
 msgstr "ველის შევსება აუცილებელია"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "ID ან URL ბმულის მითითება გაორმაგებულისთვის"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "უარყოფის მიზეზის მითითება"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "უარყოფის მიზეზის აღწერა"
 
 msgid "Ask a question to the artist"
 msgstr "მხატვრისთვვის შეკითხვის დასმა"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "ჩანიშვნის მიზეზის აღწერა"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "უარყოფილი ან განუხილველი"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[მდგომარეობა:%s]"
 
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
@@ -5453,10 +5453,10 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "შემოწმებული მიმოხილვები ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "ჩანიშნული"
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "diff ვერსიის საკუთარ თავთან შეპირისპირება შეუძლებელია"
 
 msgid "Access your data for {name}"
 msgstr "{name}-ის მონაცემებთან წვდომა"
@@ -5471,36 +5471,36 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID აუცილებელია Firefox 47 და უფრო ძველ ვერსიებზე."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "უმცირესი მხარდაჭერილი \"strict_min_version\" არის 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "უმცირესი/უდიდესი ვერსიების დადგენა ვერ მოხერხდა. იქნებ \"strict_min_version\" ან \"strict_max_version\" მხარდაუჭერელ ვერსიებს შეიცავს?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "ატვირთული ფაილის დამუშავება ვერ მოხერხდა, <%s> ელემენტი აკლია, ან ცარიელია"
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "ატვირთული ფაილის დამუშავება ვერ მოხერხდა."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "ფაილის უმართებულო სახელი არქივში: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ფაილის ზომა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "უმართებულო არქივი."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "დამატების ID ვერ მოიძებნა."
 
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "დამატების ID უნდა შედგებოდეს 64, ან უფრო ნაკლები სიმბოლოსგან."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5510,39 +5510,39 @@ msgid "Duplicate add-on ID found."
 msgstr "აღმოჩენილია დამატების განმეორებული ID."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "ვერსიის ნომერი უნდა შედგებოდეს 32-ზე ნაკლები სიმბოლოსგან."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "ვერსიის ნომრები უნდა შედგებოდეს მხოლოდ ასოებისგან, ციფრებისგან და მოცემული სიმბოლოებისგან: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "WebExtension თემის ატვირთვები დროებით შეზღუდულია."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> თქვენს intall.rdf (%s) ფაილში, არ ემთხვევა თქვენი დამატების ტიპს AMO საიტზე (%s)"
 
 msgid "Back to review"
-msgstr ""
+msgstr "მიმოხილვაზე დაბრუნება"
 
 msgid "Back to add-on"
 msgstr "დამატების გვერდზე დაბრუნება"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "ვერსია: %(version)s &bull; ზომა: %(size)s &bull; SHA256 ჰეში: %(sha256)s &bull; Mime ტიპი: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "ფაილების შესადარებელი :: მიმომხილველის ხელსაწყოები"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "ფაილის მნახველი :: მიმომხილველის ხელსაწყოები"
 
 msgid "Validation failed:"
 msgstr "შემოწმება წარუმატებლად დასრულდა:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "ფაილის შიგთავსი არაა მხარდაჭერილი სინტაქსური შემოწმებისთვის"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -5555,49 +5555,49 @@ msgid "Fetching validation results..."
 msgstr "შემოწმების შედეგების შეჯერება..."
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "წაშლილი ფაილები:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "ცნობილი ფაილების დამალვა"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "დამატების SDK ვერსია:"
 
 msgid "Tab stops:"
 msgstr "ცხრილის მდებარეობა:"
 
 msgid "Up file"
-msgstr ""
+msgstr "ფაილის ატანა"
 
 msgid "Down file"
-msgstr ""
+msgstr "ფაილის ჩამოტანა"
 
 msgid "Previous diff"
-msgstr ""
+msgstr "წინა ცვლილება"
 
 msgid "Previous note"
-msgstr ""
+msgstr "წინა შენიშვნა"
 
 msgid "Next diff"
-msgstr ""
+msgstr "მომდევნო ცვლილება"
 
 msgid "Next note"
-msgstr ""
+msgstr "მომდევნო შენიშვნა"
 
 msgid "Expand all"
-msgstr ""
+msgstr "ყველას გაშლა"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "ხის დამალვა ან ჩვენება"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "ტექსტის გადატანა ან ერთ ხაზზე დატოვება"
 
 msgid "No files in the uploaded file."
 msgstr "ასატვირთი ფაილები არ არის მითითებული."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "ფაილის თანხვედრა."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5605,29 +5605,29 @@ msgstr "ფაილის მნახველი შეზღუდული�
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "შეცდომა, %s ფაილთან წვდომისას."
 
 msgid "That file no longer exists."
 msgstr "ეს ფაილი აღარ არსებობს."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "ფაილის ზომა აჭარბებს {0} ზღვარს."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "ხარვეზი {0}-ის გაშიფვრისას."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "ამ ფაილის საიტზე ნახვა, ვერ მოხერხდება. გთხოვთ ჩამოტვირთოთ შიგთავსის სანახავად."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "ეს ფაილი წარმოადგენს საქაღალდეს."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "API ვერსია, {0:.1f}, რომლითაც სარგებლობთ დაუმოწმებელია. გთხოვთ განაახლოთ მიმდინარე ვერსიამდე {1:.1f} API."
 
 msgid "Not implemented yet."
-msgstr ""
+msgstr "ჯერ არ დანერგილა."
 
 msgid "Shopping Made Easy"
 msgstr "მარტივი ვაჭრობა"
@@ -5636,7 +5636,7 @@ msgid "Save on your favorite items from the comfort of your browser."
 msgstr "დაზოგეთ თანხები თქვენს საყვარელ ნივთებზე, პირდაპირ ბრაუზერიდან."
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "შექმენით სრულყოფილი ვებსაიტი"
 
 msgid "First time with Add-ons?"
 msgstr "პირველად იყენებთ დამატებებს?"
@@ -5654,7 +5654,7 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr "სწრაფად გაეცანით და შეადარეთ ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "წმ. პატრიკის&rsquo; დღისადმი მიძღვნილი თემები"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "გააფორმეთ თქვენი ბრაუზერი წმ. პატრიკის&rsquo; დღესასწაულისთვის."
@@ -5666,34 +5666,34 @@ msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "დამატებები მასწავლებლებისთვის, მშობლებისა და მოსწავლეებისთვის, სკოლისაკენ."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "გსურთ იცოდეთ, რომელ ვებსაიტებს შეგიძლიათ ენდოთ?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks #1 დამატებაა სანიშნეებისთვის."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "ვებგვერდისა და ტექსტის მთარგმნელი, ლექსიკონი და ა.შ!"
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "სიყვარული დაფრინავს"
 
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "გახადეთ თქვენი Firefox მეტად რომანტიკული."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "ადექით და იმოძრავეთ!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "დააყენეთ ვარჯიშისთვის განკუთვნილი დამატებები, სიჯანსაღისა და ჯანმრთელობის შესანარჩუნებლად."
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "ახალი &amp; ახლა"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "დააყენეთ ამ დროისთვის უახლესი და აუცილებელი დამატებები."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "უდარდელი მოგზაურობა ინტერნეტში"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "დაიცავით თქვენი პირადი მონაცემების უსაფრთხოება, ამ დამატებების კრებულის საშუალებით."
@@ -5708,10 +5708,11 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr "შემატეთ მხიარულება თქვენს Firefox. ითამაშეთ ათასობით თამაში, პირდაპირ თქვენი ბრაუზერიდან—თავსატეხები, სამაგიდო, მოქმედებითი და ა.შ!"
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "აუცილებელი მულტიმედია"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
+"გადაუღეთ ეკრანს სურათები უფრო მარტივად და უკეთესად, გააუმჯობესეთ ვიდეოების შექმნის შესაძლებლობები, ისწავლეთ, როგორ გააკეთოთ GIF და ისარგებლეთ უამრავი სხვა ხელსაწყოებით, მედია ფაილებთან სამუშაოდ."
 
 msgid "Discover Add-ons"
 msgstr "აღმოაჩინეთ ახალი დამატებები"
@@ -5735,7 +5736,7 @@ msgid "See all"
 msgstr "ყველას ნახვა"
 
 msgid "More ways to customize"
-msgstr ""
+msgstr "მეტი საშუალებები მოსარგებად"
 
 msgid "Browse all add-ons"
 msgstr "დამატებების მოძიება"
@@ -5744,24 +5745,24 @@ msgid "See all complete themes"
 msgstr "ყველა სრული გაფორმების ნახვა"
 
 msgid "Close Video"
-msgstr ""
+msgstr "ვიდეოს დახურვა"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr "ვიდეოს გაშვებისას, მითითებული დამატებები გამოჩნდება აქ."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr ""
+msgstr "გამარჯობა, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "გმადლობთ, %(app)s-ით სარგებლობისთვის და <a href=\"%(url)s\">Mozilla-ს მიზნების</a> მხარდაჭერისთვის!"
 
 msgid "Add-ons downloaded:"
 msgstr "ჩამოტვირთული დამატებები:"
 
 msgid "Active Users"
-msgstr ""
+msgstr "მოქმედი მომხმარებლები"
 
 msgid "Last Updated"
 msgstr "ბოლო განახლება"
@@ -5782,142 +5783,142 @@ msgid "Get Started"
 msgstr "მუშაობის დაწყება"
 
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "არაბთა გაერთიანებული საამიროების დირჰამი"
 
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "ავღანური ავღანი"
 
 msgid "Albania Lek"
-msgstr ""
+msgstr "ალბანური ლეკი"
 
 msgid "Armenia Dram"
-msgstr ""
+msgstr "სომხური დრამი"
 
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "ჰოლანდიური ანტილების გულდენი"
 
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "ანგოლური კვანზა"
 
 msgid "Argentina Peso"
-msgstr ""
+msgstr "არგენტინული პესო"
 
 msgid "Australia Dollar"
-msgstr ""
+msgstr "ავსტრალიური დოლარი"
 
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "არუბული ფლორინი"
 
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "აზერბაიჯანული მანათი"
 
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "ბოსნიისა და ჰერცოგოვინის კონვერტირებადი მარკა"
 
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "ბარბადოსის დოლარი"
 
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "ბანგლადეშური ტაკა"
 
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "ბულგარული ლევი"
 
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "ბაჰრეინული დინარი"
 
 msgid "Burundi Franc"
-msgstr ""
+msgstr "ბურუნდის ფრანკი"
 
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "ბერმუდული დოლარი"
 
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "ბრუნეიული დოლარი"
 
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "ბოლივიური ბოლივიანო"
 
 msgid "Brazil Real"
-msgstr ""
+msgstr "ბრაზილიური რეალი"
 
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "ბაჰამური დოლარი"
 
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "ბუტანური ნგულტრუმი"
 
 msgid "Botswana Pula"
-msgstr ""
+msgstr "ბოტსვანური პულა"
 
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "ბელორუსული რუბლი"
 
 msgid "Belize Dollar"
-msgstr ""
+msgstr "ბელიზური დოლარი"
 
 msgid "Canada Dollar"
-msgstr ""
+msgstr "კანადური დოლარი"
 
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "კონგოური/კინშასას ფრანკი"
 
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "შვეიცარიული ფრანკი"
 
 msgid "Chile Peso"
-msgstr ""
+msgstr "ჩილეური პესო"
 
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "ჩინური იუანი (რენმინბი)"
 
 msgid "Colombia Peso"
-msgstr ""
+msgstr "კოლუმბიური პესო"
 
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "კოსტა-რიკული კოლონი"
 
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "კუბური კონვერტირებადი პესო"
 
 msgid "Cuba Peso"
-msgstr ""
+msgstr "კუბური პესო"
 
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "კაბო-ვერდეს ესკუდო"
 
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "ჩეხური კორუნა"
 
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "ჯიბუტური ფრანკი"
 
 msgid "Denmark Krone"
-msgstr ""
+msgstr "დანიური კრონა"
 
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "დომინიკური პესო"
 
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "ალჟირული დინარი"
 
 msgid "Egypt Pound"
-msgstr ""
+msgstr "ეგვიპტური გირვანქა"
 
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "ერიტრეას ნაკფა"
 
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "ეთიოპური ბირი"
 
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "ევროკავშირის წევრი ქვეყნები"
 
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "ფიჯის დოლარი"
 
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "ფოლკლენდის (მალვინის) კუნძულების გირვანქა"
 
 msgid "United Kingdom Pound"
 msgstr ""
@@ -7106,6 +7107,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"დამატების მიმოხილვა არის საშუალება, თქვენი მოსაზრების გამოსახატად დამატების შესახებ. მიმოხილვის შემმოწმებელთა გუნდი იტოვებს უფლებას უარყოს ან წაშალოს ნებისმიერი მიმოხილვა, რომელიც არ შეესაბამება "
+"წესდებას."
 
 msgid "Do:"
 msgstr ""

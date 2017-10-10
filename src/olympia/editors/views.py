@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext, pgettext
+from django.utils.translation import ugettext
 
 import waffle
 
@@ -956,20 +956,7 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    action_dict = {
-        amo.LOG.APPROVE_VERSION.id: ugettext('was approved'),
-        # The log will still show preliminary, even after the migration.
-        amo.LOG.PRELIMINARY_VERSION.id: ugettext('given preliminary review'),
-        amo.LOG.REJECT_VERSION.id: ugettext('rejected'),
-        amo.LOG.ESCALATE_VERSION.id: pgettext(
-            'editors_review_history_nominated_adminreview', 'escalated'),
-        amo.LOG.REQUEST_INFORMATION.id: ugettext('needs more information'),
-        amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
-        amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
-        amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
-    }
-
-    data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
+    data = context(request, form=form, pager=pager,
                    motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 

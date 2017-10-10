@@ -373,19 +373,35 @@ class TestReviewLog(EditorTest):
         self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs more information')
+            'More information requested')
 
     def test_super_review_logs(self):
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs super review')
+            'Super review requested')
 
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'commented')
+            'Commented')
+
+    def test_content_approval(self):
+        self.make_an_approval(amo.LOG.APPROVE_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content approved'
+
+    def test_content_rejection(self):
+        self.make_an_approval(amo.LOG.REJECT_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content rejected'
 
     @freeze_time('2017-08-03')
     def test_review_url(self):
@@ -2347,7 +2363,7 @@ class TestReview(ReviewBase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#review-files')
-        assert doc('th').eq(1).text() == 'Comment'
+        assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
     def test_files_in_item_history(self):

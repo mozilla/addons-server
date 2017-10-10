@@ -19,7 +19,7 @@ class FIREFOX(App):
     pretty = _(u'Firefox')
     browser = True
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
+             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.

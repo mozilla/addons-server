@@ -212,7 +212,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
 class COMMENT_VERSION(_LOG):
     id = 49
     format = _(u'Comment on {addon} {version}.')
-    short = _(u'Comment')
+    short = _(u'Commented')
     keep = True
     review_queue = True
     hide_developer = True
