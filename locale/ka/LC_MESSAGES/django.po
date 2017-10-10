@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 03:24+0000\n"
+"PO-Revision-Date: 2017-10-10 13:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4894,7 +4894,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: მოხსენება დარღვევის შესახებ"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "დარღვევის შესახებ მოხსენებები, {addon} და მის შემმუშავებლებთან ({num}) დაკავშირებით"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -4925,7 +4925,7 @@ msgid "Last Approval Date"
 msgstr "მიღების ბოლო თარიღი"
 
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "მიღების შესახებ გადაწყვეტილებები, ბოლო ავტომატური განხილვის შემდგომ"
 
 msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
@@ -4971,26 +4971,26 @@ msgid "All Unlisted Add-ons"
 msgstr "ყველა გამოუქვეყნებელი დამატება"
 
 msgid "Logs"
-msgstr ""
+msgstr "აღრიცხვა"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "დამატების განხილვის აღრიცხვა"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "შესწორებული განხილვის აღრიცხვა"
 
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
 
 msgid "Announcement"
-msgstr ""
+msgstr "გამოცხადება"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
 msgstr "ფილტრი"
 
 msgid "Date"
-msgstr ""
+msgstr "თარიღი"
 
 msgid "Event"
 msgstr ""
