@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 17:29+0000\n"
+"PO-Revision-Date: 2017-10-10 17:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5852,25 +5852,25 @@ msgid "Botswana Pula"
 msgstr "ბოტსვანური პულა"
 
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "ბელორუსული რუბლი"
 
 msgid "Belize Dollar"
-msgstr ""
+msgstr "ბელიზური დოლარი"
 
 msgid "Canada Dollar"
-msgstr ""
+msgstr "კანადური დოლარი"
 
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "კონგოური/კინშასას ფრანკი"
 
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "შვეიცარიული ფრანკი"
 
 msgid "Chile Peso"
-msgstr ""
+msgstr "ჩილეური პესო"
 
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "ჩინური იუანი (რენმინბი)"
 
 msgid "Colombia Peso"
 msgstr ""
