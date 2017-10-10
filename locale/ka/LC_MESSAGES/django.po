@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 18:09+0000\n"
+"PO-Revision-Date: 2017-10-10 18:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5888,28 +5888,28 @@ msgid "Cape Verde Escudo"
 msgstr "კაბო-ვერდეს ესკუდო"
 
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "ჩეხური კორუნა"
 
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "ჯიბუტური ფრანკი"
 
 msgid "Denmark Krone"
-msgstr ""
+msgstr "დანიური კრონა"
 
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "დომინიკური პესო"
 
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "ალჟირული დინარი"
 
 msgid "Egypt Pound"
-msgstr ""
+msgstr "ეგვიპტური გირვანქა"
 
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "ერიტრეას ნაკფა"
 
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "ეთიოპური ბირი"
 
 msgid "Euro Member Countries"
 msgstr ""
