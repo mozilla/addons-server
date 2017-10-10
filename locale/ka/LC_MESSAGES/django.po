@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 14:11+0000\n"
+"PO-Revision-Date: 2017-10-10 14:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4977,7 +4977,7 @@ msgid "Add-on Review Log"
 msgstr "დამატების განხილვის აღრიცხვა"
 
 msgid "Moderated Review Log"
-msgstr "შესწორებული განხილვის აღრიცხვა"
+msgstr "შემოწმებული განხილვის აღრიცხვა"
 
 msgid "Signed Beta Files Log"
 msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
@@ -5087,40 +5087,40 @@ msgid "View statistics for user"
 msgstr "მომხმარებლის სტატისტიკის ნახვა"
 
 msgid "Range"
-msgstr ""
+msgstr "შუალედი"
 
 msgid "Your Reviews"
 msgstr "თქვენი მიმოხილვები"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name}"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "მოქმედი მოხალისეები"
 
 msgid "This Month"
-msgstr ""
+msgstr "ამ თვის"
 
 msgid "This Year"
-msgstr ""
+msgstr "ამ წლის"
 
 msgid "Monthly Performance"
 msgstr "წარმადობა ყოველთვიურად"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "ყველა დროის ქულები, ტიპების მიხედვით"
 
 msgid "Total"
-msgstr ""
+msgstr "სულ"
 
 msgid "Month"
-msgstr ""
+msgstr "თვის"
 
 msgid "Year"
-msgstr ""
+msgstr "წლის"
 
 msgid "All-Time"
-msgstr ""
+msgstr "ყველა დროის"
 
 msgid "Advanced Search"
 msgstr "გაფართოებული ძებნა"
@@ -5132,15 +5132,15 @@ msgid "Process Reviews"
 msgstr "მიმოხილვების დამუშავება"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "შემმოწმებლის მოვალეობები:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "%(user)s-ის მიერ %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong><span class=\"light\">ჩანიშნულია %(user)s-ის მიერ %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
@@ -5149,13 +5149,13 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "ამ სახის არცერთი დამატება არ არის განსახილველად."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "სასარგებლო ბმულები:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "დამატების დებულებები"
 
 msgid "Editors' Guide"
-msgstr ""
+msgstr "შემსწორებლის მითითებები"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -5164,7 +5164,7 @@ msgstr "შემოწმებული მიმოხილვები ({0}
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "მიმოხილვა {0}"
 
 msgid "Add-on user change history"
 msgstr ""
@@ -7106,6 +7106,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"დამატების მიმოხილვა არის საშუალება, თქვენი მოსაზრების გამოსახატად დამატების შესახებ. მიმოხილვის შემმოწმებელთა გუნდი იტოვებს უფლებას უარყოს ან წაშალოს ნებისმიერი მიმოხილვა, რომელიც არ შეესაბამება "
+"წესდებას."
 
 msgid "Do:"
 msgstr ""
