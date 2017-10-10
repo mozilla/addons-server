@@ -120,11 +120,12 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
+ADDON_STATICTHEME = 10
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
-GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
+GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA, ADDON_STATICTHEME]
 
 # Singular
 ADDON_TYPE = {
@@ -136,6 +137,7 @@ ADDON_TYPE = {
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_PERSONA: _(u'Theme'),
+    ADDON_STATICTHEME: _(u'Theme (Static)'),
 }
 
 # Plural
@@ -148,6 +150,7 @@ ADDON_TYPES = {
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_PERSONA: _(u'Themes'),
+    ADDON_STATICTHEME: _(u'Themes (Static)'),
 }
 
 # Searchable Add-on Types
@@ -159,12 +162,14 @@ ADDON_SEARCH_TYPES = [
     ADDON_SEARCH,
     ADDON_LPAPP,
     ADDON_PERSONA,
+    ADDON_STATICTHEME,
 ]
 
 # Icons
 ADDON_ICONS = {
     ADDON_ANY: 'default-addon.png',
     ADDON_THEME: 'default-theme.png',
+    ADDON_STATICTHEME: 'default-theme.png',
 }
 
 # We use these slugs in browse page urls.
@@ -175,6 +180,7 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     ADDON_PERSONA: 'personas',
     ADDON_SEARCH: 'search-tools',
+    ADDON_STATICTHEME: 'static-themes',
 }
 
 # These are used in the update API.
@@ -187,6 +193,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_LPADDON: 'extension',
     ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
+    ADDON_STATICTHEME: 'static-theme',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -199,6 +206,7 @@ ADDON_SEARCH_SLUGS = {
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
     'persona': ADDON_PERSONA,
+    'statictheme': ADDON_STATICTHEME,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -208,6 +216,7 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
     ADDON_PERSONA: 'persona',
+    ADDON_STATICTHEME: 'statictheme',
 }
 
 # Edit addon information
@@ -400,6 +409,9 @@ DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 
 # The default version of Firefox that supports WebExtensions without an id
 DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
+
+# The version of Firefox that first supported static themes.  Not Android yet.
+DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
 
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1

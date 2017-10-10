@@ -830,6 +830,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 
             # Does the version number look like it's beta?
             result['beta'] = is_beta(pkg.get('version', ''))
+            result['addon_type'] = pkg.get('type', '')
 
     result['platforms_to_exclude'] = plat_exclude
     return result
@@ -1482,9 +1483,15 @@ def submit_file(request, addon_id, addon, version_id):
 
 
 def _submit_details(request, addon, version):
-    if version and version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        # Not a listed version ? Then nothing to do here.
-        return redirect('devhub.submit.version.finish', addon.slug, version.pk)
+    if version:
+        skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
+                             version.is_beta or
+                             (addon.type == amo.ADDON_STATICTHEME and
+                              addon.has_complete_metadata()))
+        if skip_details_step:
+            # Nothing to do here.
+            return redirect(
+                'devhub.submit.version.finish', addon.slug, version.pk)
     # Figure out the latest version early in order to pass the same instance to
     # each form that needs it (otherwise they might overwrite each other).
     latest_version = version or addon.find_latest_version(

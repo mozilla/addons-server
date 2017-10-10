@@ -375,6 +375,7 @@ class ManifestJSONExtractor(object):
     def type(self):
         return (
             amo.ADDON_LPAPP if self.get('langpack_id')
+            else amo.ADDON_STATICTHEME if 'theme' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -391,6 +392,8 @@ class ManifestJSONExtractor(object):
         apps = (
             (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
             (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        ) if self.type != amo.ADDON_STATICTHEME else (
+            (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
         )
 
         doesnt_support_no_id = (
@@ -418,7 +421,8 @@ class ManifestJSONExtractor(object):
         couldnt_find_version = False
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
-                strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+                strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                                         default_min_version)
             else:
                 strict_min_version = (
                     self.strict_min_version or default_min_version)
@@ -479,10 +483,13 @@ class ManifestJSONExtractor(object):
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
-                'permissions': self.get('permissions', []),
-                'content_scripts': self.get('content_scripts', []),
-                'is_static_theme': 'theme' in self.data
             })
+            if self.type == amo.ADDON_EXTENSION:
+                # Only extensions have permissions and content scripts
+                data.update({
+                    'permissions': self.get('permissions', []),
+                    'content_scripts': self.get('content_scripts', []),
+                })
         return data
 
 
@@ -841,7 +848,7 @@ def check_xpi_info(xpi_info, addon=None):
             ugettext('Version numbers should only contain letters, numbers, '
                      'and these punctuation characters: +*.-_.'))
 
-    if is_webextension and xpi_info.get('is_static_theme', False):
+    if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))
