@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 21:51+0000\n"
+"PO-Revision-Date: 2017-10-10 22:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6089,76 +6089,76 @@ msgid "Mozambique Metical"
 msgstr "მოზამბიკური მეტიკალი"
 
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "ნამიბიური დოლარი"
 
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "ნიგერიული ნაირა"
 
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "ნიკარაგუის კორდობა"
 
 msgid "Norway Krone"
-msgstr ""
+msgstr "ნორვეგიული კრონი"
 
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "ნეპალური რუპია"
 
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "ახალ ზელანდიური დოლარი"
 
 msgid "Oman Rial"
-msgstr ""
+msgstr "ომანური რიალი"
 
 msgid "Panama Balboa"
-msgstr ""
+msgstr "პანამური ბალბოა"
 
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "პერუს ნუევო სოლი"
 
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "პაპუა-ახალი გვინეის კინა"
 
 msgid "Philippines Peso"
-msgstr ""
+msgstr "ფილიპინური პესო"
 
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "პაკისტანური რუპია"
 
 msgid "Poland Zloty"
-msgstr ""
+msgstr "პოლონური ზლოტი"
 
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "პარაგვაული გუარანი"
 
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "კატარული რიალი"
 
 msgid "Romania New Leu"
-msgstr ""
+msgstr "რუმინული ლეუ"
 
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "სერბული დინარი"
 
 msgid "Russia Ruble"
-msgstr ""
+msgstr "რუსული რუბლი"
 
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "რუანდის ფრანკი"
 
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "საუდის რიალი"
 
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "სოლომონის კუნძულების დოლარი"
 
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "სეიშელის რუპია"
 
 msgid "Sudan Pound"
-msgstr ""
+msgstr "სუდანური გირვანქა"
 
 msgid "Sweden Krona"
-msgstr ""
+msgstr "შვედური კრონა"
 
 msgid "Singapore Dollar"
 msgstr ""
