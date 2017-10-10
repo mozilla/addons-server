@@ -74,6 +74,7 @@ jobs:
             docker-compose run -d elasticsearch
             docker-compose run -d selenium-firefox
             sleep 30
+            docker-compose ps
             docker-compose exec web bash /code/scripts/ui-test.sh
       - store_artifacts:
           path: ui-test-results
