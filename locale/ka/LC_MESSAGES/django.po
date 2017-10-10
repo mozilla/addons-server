@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 03:11+0000\n"
+"PO-Revision-Date: 2017-10-10 03:24+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4828,60 +4828,60 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა ადმინისტრატორმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "კომენტარის დატოვება ამ ვერსიაზე. შემმუშავებელი ვერ იხილავს."
 
 #, fuzzy
 msgid "Approve Content"
 msgstr "მიღება / უარყოფა"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "ამის შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "ახალი დამატებები (5 დღეზე ნაკლები)"
 
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "დამაკმაყოფილებელი (5-დან 10 დღემდე)"
 
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "ვადაგადაცილებული (10 დღეზე მეტი)"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "უცნობი შეცდომა"
 
 msgid "Self-reviews are not allowed."
 msgstr "თვითმიმოხილვა არაა ნებადართული."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "მიმოხილვა წარმატებით შესრულდა."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "მიმოხილვის შეზღუდვის ზღვარი მიღწეულია"
 
 msgid "was approved"
-msgstr ""
+msgstr "მიღებულია"
 
 msgid "given preliminary review"
-msgstr ""
+msgstr "წინასწარი განხილვა"
 
 msgid "rejected"
-msgstr ""
+msgstr "უარყოფილია"
 
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ამოწეულია ზემოთ"
 
 msgid "needs more information"
-msgstr ""
+msgstr "საჭიროებს დამატებით მონაცემებს"
 
 msgid "needs super review"
-msgstr ""
+msgstr "საჭიროებს განსაკუთრებულ განხილვას"
 
 msgid "commented"
-msgstr ""
+msgstr "კომენტარი დამატებულია"
 
 msgid "confirmed as approved"
-msgstr ""
+msgstr "დადასტურებულია მიღებულად"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4891,7 +4891,7 @@ msgid "Your theme locks have successfully been released. Other reviewers may now
 msgstr "თქვენი დაყოვნებული თემა, წარმატებით გაეშვა. სხვა მიმომხილველებს, შეეძლებათ ამ ახალი გამოშვებების ნახვა. ქვემოთ მოცემულ ცხრილში ცვლილებების ასახვისთვის, გვერდის განახლებაა საჭირო."
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: მოხსენება დარღვევის შესახებ"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
