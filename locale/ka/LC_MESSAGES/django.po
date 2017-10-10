@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 17:50+0000\n"
+"PO-Revision-Date: 2017-10-10 18:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5873,19 +5873,19 @@ msgid "China Yuan Renminbi"
 msgstr "ჩინური იუანი (რენმინბი)"
 
 msgid "Colombia Peso"
-msgstr ""
+msgstr "კოლუმბიური პესო"
 
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "კოსტა-რიკული კოლონი"
 
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "კუბური კონვერტირებადი პესო"
 
 msgid "Cuba Peso"
-msgstr ""
+msgstr "კუბური პესო"
 
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "კაბო-ვერდეს ესკუდო"
 
 msgid "Czech Republic Koruna"
 msgstr ""
