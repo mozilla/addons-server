@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 14:32+0000\n"
+"PO-Revision-Date: 2017-10-10 14:36+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -113,7 +113,7 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Etichetă nevalidă: {0}"
 msgstr[1] "Etichete nevalide: {0}"
-msgstr[2] ""
+msgstr[2] "Etichete nevalide: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
@@ -442,7 +442,7 @@ msgid "Artist"
 msgstr ""
 
 msgid "Rating"
-msgstr ""
+msgstr "Evaluare"
 
 msgid "Daily Users"
 msgstr "Utilizatori zilnici"
@@ -537,7 +537,7 @@ msgid "Rating:"
 msgstr "Evaluare:"
 
 msgid "Submit review"
-msgstr ""
+msgstr "Trimite recenzia"
 
 #, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
@@ -617,7 +617,7 @@ msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
 msgid "Average"
-msgstr ""
+msgstr "Media"
 
 msgid "Write a review"
 msgstr "Scrie o recenzie"
@@ -1606,7 +1606,7 @@ msgstr "Teme %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Suplimente deosebite :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1644,11 +1644,11 @@ msgstr ""
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Suplimente deosebite"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Niciun supliment deosebit în {0}."
 
 msgid "Featured Add-ons"
 msgstr "Suplimente deosebite"
@@ -4762,7 +4762,7 @@ msgid "Comments:"
 msgstr ""
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Sisteme de operare:"
 
 msgid "Applications:"
 msgstr ""
@@ -7539,7 +7539,7 @@ msgstr "Evaluată cu {0} din 5 stele"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Evaluată cu %(rating)s din 5 stele"
 
 msgid "Most popular this week"
 msgstr "Cele mai populare în săptămâna asta"
@@ -7716,7 +7716,7 @@ msgid "Subscribers"
 msgstr ""
 
 msgid "Ratings"
-msgstr ""
+msgstr "Evaluări"
 
 msgid "Add-on Statistics"
 msgstr ""
@@ -7900,7 +7900,7 @@ msgid "See more platforms&hellip;"
 msgstr ""
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Evaluări în funcție de dată"
 
 msgid "Reviews Created by Date"
 msgstr ""
