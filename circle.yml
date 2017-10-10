@@ -63,7 +63,16 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            docker-compose up -d
+            docker-compose run -d web
+            docker-compose run -d worker
+            docker-compose run -d nginx
+            docker-compose run -d memcached
+            docker-compose run -d mysqld
+            docker-compose run -d elasticsearch
+            docker-compose run -d redis
+            docker-compose run -d rabbitmq
+            docker-compose run -d elasticsearch
+            docker-compose run -d selenium-firefox
             sleep 30
             docker-compose exec web bash /code/scripts/ui-test.sh
       - store_artifacts:
@@ -88,6 +97,21 @@ jobs:
           key: uitest-cache-
           paths:
             - .tox
+    post:
+      - docker logs leadbean_redis_run_1    > $CIRCLE_TEST_REPORTS/redis.log
+      - docker logs leadbean_postgres_run_1 > $CIRCLE_TEST_REPORTS/postgres.log
+      - docker logs leadbean_leadbean_run_1 > $CIRCLE_TEST_REPORTS/leadbean.log
+      - docker logs addonsserver_web_run_1 > $CIRCLE_TEST_REPORTS/web.log
+      - docker logs addonsserver_worker_run_1 > $CIRCLE_TEST_REPORTS/worker.log
+      - docker logs addonsserver_nginx_run_1 > $CIRCLE_TEST_REPORTS/nginx.log
+      - docker logs addonsserver_memcached_run_1 > $CIRCLE_TEST_REPORTS/memcached.log
+      - docker logs addonsserver_mysqld_run_1 > $CIRCLE_TEST_REPORTS/mysqld.log
+      - docker logs addonsserver_elasticsearch_run_1 > $CIRCLE_TEST_REPORTS/elasticsearch.log
+      - docker logs addonsserver_redis_run_1 > $CIRCLE_TEST_REPORTS/redis.log
+      - docker logs addonsserver_rabbitmq_run_1 > $CIRCLE_TEST_REPORTS/rabbitmq.log
+      - docker logs addonsserver_elasticsearch_run_1 > $CIRCLE_TEST_REPORTS/elasticsearch.log
+      - docker logs addonsserver_selenium-firefox_run_1 > $CIRCLE_TEST_REPORTS/selenium-firefox.log
+
 workflows:
   version: 2
   build_test_deploy_release:
