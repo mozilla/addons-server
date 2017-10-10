@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 22:47+0000\n"
+"PO-Revision-Date: 2017-10-10 22:58+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6260,19 +6260,19 @@ msgid "Communauté Financière Africaine (BCEAO) Franc"
 msgstr "დასავლეთ აფრიკის ფინანსური თანამშრომლობის (BCEAO) ფრანკი "
 
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "წყნარი ოკეანის კუნძულების (CFP) ფრანკი"
 
 msgid "Yemen Rial"
-msgstr ""
+msgstr "იემენის რიალი"
 
 msgid "South Africa Rand"
-msgstr ""
+msgstr "სამხრეთ აფრიკული რანდი"
 
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "ზამბიური კვაჩა"
 
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "ზიმბაბვეს დოლარი"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla-ს დამატების შესახებ"
@@ -6387,7 +6387,7 @@ msgid "It’s easy to help us make sure add-ons are updated in time for the rele
 msgstr "მარტივად შეგიძლიათ დაგვეხმაროთ დადგენაში, განახლებულია თუ არა დამატებები, Firefox-ის მომდევნო ვერსიის გამოშვების დროისთვის."
 
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "მითითებები, დამატების თავსებადობის შესახებ, მოხსენების გამოსაგზავნად:"
 
 msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
