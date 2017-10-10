@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 15:51+0000\n"
+"PO-Revision-Date: 2017-10-10 16:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5591,13 +5591,13 @@ msgid "Hide or unhide tree"
 msgstr "ხის დამალვა ან ჩვენება"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "ტექსტის გადატანა ან ერთ ხაზზე დატოვება"
 
 msgid "No files in the uploaded file."
 msgstr "ასატვირთი ფაილები არ არის მითითებული."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "ფაილის თანხვედრა."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5605,29 +5605,29 @@ msgstr "ფაილის მნახველი შეზღუდული�
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "შეცდომა, %s ფაილთან წვდომისას."
 
 msgid "That file no longer exists."
 msgstr "ეს ფაილი აღარ არსებობს."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "ფაილის ზომა აჭარბებს {0} ზღვარს."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "ხარვეზი {0}-ის გაშიფვრისას."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "ამ ფაილის საიტზე ნახვა, ვერ მოხერხდება. გთხოვთ ჩამოტვირთოთ შიგთავსის სანახავად."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "ეს ფაილი წარმოადგენს საქაღალდეს."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "API ვერსია, {0:.1f}, რომლითაც სარგებლობთ დაუმოწმებელია. გთხოვთ განაახლოთ მიმდინარე ვერსიამდე {1:.1f} API."
 
 msgid "Not implemented yet."
-msgstr ""
+msgstr "ჯერ არ დანერგილა."
 
 msgid "Shopping Made Easy"
 msgstr "მარტივი ვაჭრობა"
@@ -5636,7 +5636,7 @@ msgid "Save on your favorite items from the comfort of your browser."
 msgstr "დაზოგეთ თანხები თქვენს საყვარელ ნივთებზე, პირდაპირ ბრაუზერიდან."
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "შექმენით სრულყოფილი ვებსაიტი"
 
 msgid "First time with Add-ons?"
 msgstr "პირველად იყენებთ დამატებებს?"
@@ -5654,7 +5654,7 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr "სწრაფად გაეცანით და შეადარეთ ფასები ინტერნეტ მაღაზიებით სარგებლობისას ან ბილეთების შეძენისას."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "წმ. პატრიკის&rsquo; დღისადმი მიძღვნილი თემები"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "გააფორმეთ თქვენი ბრაუზერი წმ. პატრიკის&rsquo; დღესასწაულისთვის."
@@ -5666,34 +5666,34 @@ msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "დამატებები მასწავლებლებისთვის, მშობლებისა და მოსწავლეებისთვის, სკოლისაკენ."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "გსურთ იცოდეთ, რომელ ვებსაიტებს შეგიძლიათ ენდოთ?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks #1 დამატებაა სანიშნეებისთვის."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "ვებგვერდისა და ტექსტის მთარგმნელი, ლექსიკონი და ა.შ!"
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "სიყვარული დაფრინავს"
 
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "გახადეთ თქვენი Firefox მეტად რომანტიკული."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "ადექით და იმოძრავეთ!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "დააყენეთ ვარჯიშისთვის განკუთვნილი დამატებები, სიჯანსაღისა და ჯანმრთელობის შესანარჩუნებლად."
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "ახალი &amp; ახლა"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "დააყენეთ ამ დროისთვის უახლესი და აუცილებელი დამატებები."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "უდარდელი მოგზაურობა ინტერნეტში"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "დაიცავით თქვენი პირადი მონაცემების უსაფრთხოება, ამ დამატებების კრებულის საშუალებით."
@@ -5708,7 +5708,7 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr "შემატეთ მხიარულება თქვენს Firefox. ითამაშეთ ათასობით თამაში, პირდაპირ თქვენი ბრაუზერიდან—თავსატეხები, სამაგიდო, მოქმედებითი და ა.შ!"
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "აუცილებელი მულტიმედიური მასალა"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
