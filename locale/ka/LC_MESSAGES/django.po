@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 13:51+0000\n"
+"PO-Revision-Date: 2017-10-10 14:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4993,13 +4993,13 @@ msgid "Date"
 msgstr "თარიღი"
 
 msgid "Event"
-msgstr ""
+msgstr "მოვლენა"
 
 msgid "More details."
 msgstr "უფრო ვრცლად."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "დროის ამ მონაკვეთისთვის მოვლენები ვერ მოიძებნა."
 
 msgid "Log details"
 msgstr "აღრიცხვის მონაცემები"
@@ -5009,22 +5009,22 @@ msgstr "მიმოხილვის ავტორი"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "დამატების სათაური"
 
 msgid "Review Title"
-msgstr ""
+msgstr "მიმოხილვის სათაური"
 
 msgid "Review Text"
-msgstr ""
+msgstr "მიმოხილვის ტექსტი"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "მიმოხილვა მონიშნულია წასაშლელად."
 
 msgid "Undelete"
-msgstr ""
+msgstr "წაშლილის აღდგენა"
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
@@ -5035,7 +5035,7 @@ msgid_plural "Updates ({num})"
 msgstr[0] "განახლებები ({num})"
 
 msgid "Current waiting times:"
-msgstr ""
+msgstr "ლოდინის მიმდინარე დროები:"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -5043,7 +5043,7 @@ msgstr[0] "{0} დამატება"
 
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 msgid "Total Reviews"
 msgstr "სულ მიმოხილვები"
@@ -5063,28 +5063,28 @@ msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "შემოწმებული მიმოხილვები ({num})"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "მიმომხილველთა ჩამონათვალი"
 
 msgid "No review points awarded yet."
 msgstr "მომოხილვის ქულები ჯერ არ არის."
 
 msgid "Rank"
-msgstr ""
+msgstr "ადგილი"
 
 msgid "Score"
-msgstr ""
+msgstr "ქულა"
 
 msgid "Update message of the day"
 msgstr "დღის შეტყობინების განახლება"
 
 msgid "Save"
-msgstr ""
+msgstr "შენახვა"
 
 msgid "Add-on Reviewer Performance"
 msgstr "დამატების მიმოხილვის წარმადობა"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "მომხმარებლის სტატისტიკის ნახვა"
 
 msgid "Range"
 msgstr ""
