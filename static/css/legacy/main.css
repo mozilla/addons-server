@@ -3212,7 +3212,9 @@ background-position:left -303px;
     margin-right:0;
     margin-left:220px;
 }
-
+.html-rtl .collector-note {
+    direction:rtl;
+}
 /* @end */
 
 
