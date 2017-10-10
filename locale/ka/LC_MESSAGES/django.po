@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 02:47+0000\n"
+"PO-Revision-Date: 2017-10-10 03:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4807,25 +4807,25 @@ msgid "Confirm Approval"
 msgstr "მიღების დამოწმება"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "დამატების ბოლო გამოქვეყნებული ვერსია ავტომატურად მიღებულია. ამის შედეგად, თქვენი დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
 msgid "Reject Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "ამის შედეგად, მითითებული გამოქვეყნებული ვერსიები გაითიშება. კომენტარები გაეგზავნება შემმუშავებელს."
 
 msgid "Reviewer reply"
 msgstr "მიმომხილველის პასუხი"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "ამის შედეგად, შემმუშავებელს გაეგზავნება შეტყობინება. გამოხმაურებისთანავე, გეცნობებათ."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "განსაკუთრებული განხილვის მოთხოვნა"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა ადმინისტრატორმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
