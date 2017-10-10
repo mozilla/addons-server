@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 22:10+0000\n"
+"PO-Revision-Date: 2017-10-10 22:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6161,76 +6161,76 @@ msgid "Sweden Krona"
 msgstr "შვედური კრონა"
 
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "სინგაპურის დოლარი"
 
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "წმინდა ელენეს კუნძულის გირვანქა"
 
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "სიერა-ლეონეს ლეონე"
 
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "სომალის შილინგი"
 
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "სებორგას ლუიჯინო"
 
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "სურინამული დოლარი"
 
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "სან-ტომე და პრინსიპის დობრა"
 
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "სალვადორული კოლონი"
 
 msgid "Syria Pound"
-msgstr ""
+msgstr "სირიული გირვანქა"
 
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "სვაზილენდური ლილანგენი"
 
 msgid "Thailand Baht"
-msgstr ""
+msgstr "ტაილანდური ბაჰტი"
 
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "ტაჯიკური სომონი"
 
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "თურქმენული მანათი"
 
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "ტუნისის დინარი"
 
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "ტონგას პა'ანგა"
 
 msgid "Turkey Lira"
-msgstr ""
+msgstr "თურქული ლირა"
 
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "ტრინიდადი და ტობაგოს დოლარი"
 
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "ტუვალუს დოლარი"
 
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "ახალი ტაივანური დოლარი"
 
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "ტანზანიური შილინგი"
 
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "უკრაინული გრივნა"
 
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "უგანდური შილინგი"
 
 msgid "United States Dollar"
-msgstr ""
+msgstr "ამერიკული დოლარი"
 
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "ურუგვაის პესო"
 
 msgid "Uzbekistan Som"
 msgstr ""
