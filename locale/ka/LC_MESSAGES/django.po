@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 19:31+0000\n"
+"PO-Revision-Date: 2017-10-10 19:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5936,37 +5936,37 @@ msgid "Gibraltar Pound"
 msgstr "გიბრალტარული გირვანქა"
 
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "გამბიური დალასი"
 
 msgid "Guinea Franc"
-msgstr ""
+msgstr "გვინეის ფრანკი"
 
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "გვატემალის კეტცალი"
 
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "გაიანური დოლარი"
 
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "ჰონკონგის დოლარი"
 
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "ჰონდურასული ლემპირა"
 
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "ხორვატიული კუნა"
 
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "ჰაიტური გურდი"
 
 msgid "Hungary Forint"
-msgstr ""
+msgstr "უნგრული ფორინტი"
 
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "ინდონეზიური რუპია"
 
 msgid "Israel Shekel"
-msgstr ""
+msgstr "ისრაელური შეკელი"
 
 msgid "Isle of Man Pound"
 msgstr ""
