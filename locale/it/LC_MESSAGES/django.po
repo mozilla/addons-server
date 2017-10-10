@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-04 12:01+0000\n"
+"PO-Revision-Date: 2017-10-10 12:39+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2561,16 +2561,16 @@ msgid "Add-on Content Review"
 msgstr ""
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Revisione ad approvazione avvenuta (rischio massimo)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
 msgstr ""
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Revisione ad approvazione avvenuta (rischio medio)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Revisione ad approvazione avvenuta (basso rischio)"
 
 msgid "Level 1"
 msgstr "Livello 1"
@@ -4968,7 +4968,7 @@ msgid "Approve Content"
 msgstr "Approva contenuti"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nuovi componenti aggiuntivi (meno di 5 giorni)"
@@ -5297,9 +5297,8 @@ msgid "Editors' Guide"
 msgstr "Guida per revisori"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Revisione {0}"
+msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
