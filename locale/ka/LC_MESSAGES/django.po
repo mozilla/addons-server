@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 16:10+0000\n"
+"PO-Revision-Date: 2017-10-10 16:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5708,10 +5708,11 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr "შემატეთ მხიარულება თქვენს Firefox. ითამაშეთ ათასობით თამაში, პირდაპირ თქვენი ბრაუზერიდან—თავსატეხები, სამაგიდო, მოქმედებითი და ა.შ!"
 
 msgid "Must-Have Media"
-msgstr "აუცილებელი მულტიმედიური მასალა"
+msgstr "აუცილებელი მულტიმედია"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
+"გადაუღეთ ეკრანს სურათები უფრო მარტივად და უკეთესად, გააუმჯობესეთ ვიდეოების შექმნის შესაძლებლობები, ისწავლეთ, როგორ გააკეთოთ GIF და ისარგებლეთ უამრავი სხვა ხელსაწყოებით, მედია ფაილებთან სამუშაოდ."
 
 msgid "Discover Add-ons"
 msgstr "აღმოაჩინეთ ახალი დამატებები"
@@ -5735,7 +5736,7 @@ msgid "See all"
 msgstr "ყველას ნახვა"
 
 msgid "More ways to customize"
-msgstr ""
+msgstr "მეტი საშუალებები მოსარგებად"
 
 msgid "Browse all add-ons"
 msgstr "დამატებების მოძიება"
@@ -5744,24 +5745,24 @@ msgid "See all complete themes"
 msgstr "ყველა სრული გაფორმების ნახვა"
 
 msgid "Close Video"
-msgstr ""
+msgstr "ვიდეოს დახურვა"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr "ვიდეოს გაშვებისას, მითითებული დამატებები გამოჩნდება აქ."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr ""
+msgstr "გამარჯობა, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "გმადლობთ, %(app)s-ით სარგებლობისთვის და <a href=\"%(url)s\">Mozilla-ს მიზნების</a> მხარდაჭერისთვის!"
 
 msgid "Add-ons downloaded:"
 msgstr "ჩამოტვირთული დამატებები:"
 
 msgid "Active Users"
-msgstr ""
+msgstr "მოქმედი მომხმარებლები"
 
 msgid "Last Updated"
 msgstr "ბოლო განახლება"
@@ -5782,7 +5783,7 @@ msgid "Get Started"
 msgstr "მუშაობის დაწყება"
 
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "არაბთა გაერთიანებული საამიროების დირჰამი"
 
 msgid "Afghanistan Afghani"
 msgstr ""
