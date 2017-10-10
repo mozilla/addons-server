@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-04 11:57+0000\n"
+"PO-Revision-Date: 2017-10-04 12:01+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2160,13 +2160,11 @@ msgstr "Contenuti di {addon} {version} approvati."
 msgid "Content approved"
 msgstr "Contenuti approvati"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} respinto."
+msgstr "Contenuti di {addon} {version} respinti."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "respinto"
+msgstr "Contenuti respinti"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2559,9 +2557,8 @@ msgstr "Recensione modificata da un moderatore"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Annullate le modifiche del moderatore alla recensione"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Trasmetti revisione"
+msgstr ""
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -4927,9 +4924,8 @@ msgstr "Nessuna revisione"
 msgid "Weight"
 msgstr "Peso"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Ultima revisione"
+msgstr "Ultima revisione dei contenuti"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -4968,9 +4964,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Approva / rifiuta"
+msgstr "Approva contenuti"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
@@ -5101,9 +5096,8 @@ msgstr "Revisioni moderate"
 msgid "Auto Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Trasmetti revisione"
+msgstr "Revisione contenuti"
 
 msgid "Unlisted Queues"
 msgstr "Code componenti esterni"
@@ -5601,11 +5595,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Componente aggiuntivo approvato automaticamente ({0})"
 msgstr[1] "Componenti aggiuntivi approvati automaticamente ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Revisione moderata ({0})"
-msgstr[1] "Revisioni moderate ({0})"
+msgstr[0] "Revisione contenuti ({0})"
+msgstr[1] ""
 
 msgid "Flagged"
 msgstr "Segnalato"
