@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-08 12:08+0000\n"
+"PO-Revision-Date: 2017-10-10 11:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -133,7 +133,7 @@ msgstr[1] "Alle tagger må minst ha {0} teikn."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL-dometet må vere eit av [%s] eller eit underdomene."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategorier kan ikkje endrast medan innlegget ditt er framheva for denne appen."
@@ -2505,7 +2505,7 @@ msgid "Add-on Content Review"
 msgstr "Innhaldsvurdering for utviding"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Utvidingsvurdering etter godkjenning (høgst risiko)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
 msgstr ""
