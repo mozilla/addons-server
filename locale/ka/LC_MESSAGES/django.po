@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 14:31+0000\n"
+"PO-Revision-Date: 2017-10-10 14:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5167,23 +5167,23 @@ msgid "Review {0}"
 msgstr "მიმოხილვა {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "დამატების მომხმარებლის ცვლილების ისტორია"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "დამატების ისტორია"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "ვერსია %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "თავსებადობა:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "დამატებითი წყაროები:"
 
 msgid "Download files"
-msgstr ""
+msgstr "ფაილების ჩამოტვირთვა"
 
 msgid "The developer has provided source code."
 msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
@@ -5192,74 +5192,74 @@ msgid "Not Auto Approved Because"
 msgstr "ავტომატურად არაა მიღებული, იმიტომ რომ"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "მისაღებად ავტომატური სკრიპტი ამ ვერსიაზე, ჯერ არ გაშვებულა."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "ეს ვერსია, ჯერ არ განხილულა."
 
 msgid "Please select one or more versions in the list above."
 msgstr "გთხოვთ მიუთითოთ ერთი, ან მეტი ვერსია, ზემოთ მოცემული ჩამონათვალიდან."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "ამ შევსებული ველების წარდგენა კიდევ შეგიძლიათ, მხოლოდ იმ შემთხვევაში, თუ იცით რომ არ იქნება წინააღმდეგობრივი."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
 
 msgid "Files:"
-msgstr ""
+msgstr "ფაილები:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "გამოცდის თარიღი:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "თეთრი დაფა არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
 
 msgid "Update the whiteboard"
 msgstr "შენიშვნების განახლება"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(ადმინისტრატორი)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "ადმინისტრატორის გვერდი"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "დამატების მიმოხილვა"
 
 msgid "More Information"
-msgstr ""
+msgstr "დამატებითი ინფორმაცია"
 
 msgid "Resolution"
-msgstr ""
+msgstr "გარჩევადობა"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "მიმომხილველი"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "დამატება წაშლილია."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "კომენტარების ჩვენება"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "კომენტარების დამალვა"
 
 msgid "No reviews found for this period."
 msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] მომხმარებლის მიმოხილვა %(object)s-ის შესახებ %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "განცხადების გამოტოვება"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "ფაილები ამ ვერსიაში:"
 
 msgid "Contents"
 msgstr ""
