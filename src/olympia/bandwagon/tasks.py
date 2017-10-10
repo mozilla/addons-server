@@ -81,8 +81,12 @@ def collection_meta(*ids, **kw):
         addon_count = counts.get(collection.id, 0)
         all_personas = addon_count == persona_counts.get(collection.id, None)
         addons = list(collection.addons.values_list('id', flat=True))
+        # top_tags is a special object that updates directly in cache when you
+        # set it.
         collection.top_tags = [
             t for t, _ in tags.filter(addons__in=addons)[:5]]
+        # Update addon_count and all_personas, avoiding to hit the post_save
+        # signal by using queryset.update().
         Collection.objects.filter(id=collection.id).update(
             addon_count=addon_count, all_personas=all_personas)
 
