@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-09 09:55+0000\n"
+"PO-Revision-Date: 2017-10-10 22:51+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2162,9 +2162,8 @@ msgstr "Contenu approuvé"
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} rejeté."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "rejeté"
+msgstr "Contenu rejeté"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5569,11 +5568,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Module complémentaire approuvé automatiquement ({0})"
 msgstr[1] "Modules complémentaires approuvés automatiquement ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Revue modérée ({0})"
-msgstr[1] "Revues modérées ({0})"
+msgstr[0] "Revue du contenu ({0})"
+msgstr[1] "Revues du contenu ({0})"
 
 msgid "Flagged"
 msgstr "Noté"
