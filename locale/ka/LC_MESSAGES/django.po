@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 20:57+0000\n"
+"PO-Revision-Date: 2017-10-10 21:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6026,67 +6026,67 @@ msgid "Laos Kip"
 msgstr "ლაოსური კიპი"
 
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "ლიბანური გირვანქა"
 
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "შრი-ლანკური რუპია"
 
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "ლიბერიული დოლარი"
 
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "ლესოთოს ლოტი"
 
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "ლიტვური ლიტი"
 
 msgid "Latvia Lat"
-msgstr ""
+msgstr "ლატვიური ლატი"
 
 msgid "Libya Dinar"
-msgstr ""
+msgstr "ლიბიური დინარი"
 
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "მაროკოული დირჰემი"
 
 msgid "Moldova Leu"
-msgstr ""
+msgstr "მოლდოვური ლეუ"
 
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "მადაგასკარის არიარი"
 
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "მაკედონური დინარი"
 
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "მიანმური (ბირმა) კიატი"
 
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "მონღოლური ტუგრუგი"
 
 msgid "Macau Pataca"
-msgstr ""
+msgstr "მაკაოს პატაცა"
 
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "მავრიტანული ოუგუია"
 
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "მავრიკის რუპია"
 
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "მალდივური (მალდივის კუნძულები) რუპია"
 
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "მალავური კვანჩა"
 
 msgid "Mexico Peso"
-msgstr ""
+msgstr "მექსიკური პესო"
 
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "მალაიზიური რინგიტი"
 
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "მოზამბიკური მეტიკალი"
 
 msgid "Namibia Dollar"
 msgstr ""
