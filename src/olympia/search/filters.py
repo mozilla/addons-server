@@ -1,4 +1,5 @@
 from django.utils import translation
+from django.utils.translation import ugettext
 
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
@@ -239,6 +240,7 @@ class SearchQueryFilter(BaseFilterBackend):
     A django-rest-framework filter backend that performs an ES query according
     to what's in the `q` GET parameter.
     """
+    MAX_QUERY_LENGTH = 100
 
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
@@ -369,6 +371,10 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if not search_query:
             return qs
+
+        if len(search_query) > self.MAX_QUERY_LENGTH:
+            raise serializers.ValidationError(
+                ugettext('Maximum query length exceeded.'))
 
         return self.apply_search_query(search_query, qs)
 
