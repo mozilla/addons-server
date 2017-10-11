@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 03:30+0000\n"
+"PO-Revision-Date: 2017-10-11 03:43+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7128,7 +7128,7 @@ msgstr ""
 "href=\"%(forum_url)s\">ფორუმი</a>."
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "მითითებები, სრულყოფილი მიმოხილვის გასაკეთებლად"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "ხშირად დასმული კითხვები, მიმოხილვის შესახებ"
@@ -7141,48 +7141,50 @@ msgstr ""
 "წესდებას."
 
 msgid "Do:"
-msgstr ""
+msgstr "სასურველია:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "დაწეროთ ისე, თითქოს თქვენს მეგობარს უამბობთ თქვენი გამოცდილების შესახებ, დამატებით სარგებლობასთან დაკავშირებით."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "თქვენი მიმოხილვები იყოს ლაკონური და მარტივად გასაგები."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "საჭირო და დამხმარე მონაცემების მითითება. მაგალითად:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "გაამართლა დამატებამ თქვენი მოლოდინი?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "რომელი შესაძლებლობები მოგეწონათ და რომელი არა?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "იყო სასარგებლო და გამოსადეგი?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "იყო ადვილად გამოსაყენებელი?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "მომავალშიც აპირებთ მის გამოყენებას?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "გადაავლოთ თვალი თქვენს მიმოხილვას წარდგენამდე, მართლწერის შესამოწმებლად."
 
 msgid "Don’t:"
-msgstr ""
+msgstr "არაა სასურველი:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "ერთსიტყვიანი მიმოხილვის გაგზავნა, როგორიცაა \"მშვენიერია!\", \"საოცარია\", ან \"ცუდია\"."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"ტექნიკური ხარვეზების აღნიშვნა, მხარდაჭერის შესახებ მოთხოვნები და ახალი შესაძლებლობების შესახებ, შეთავაზებების გაკეთება. ამისთვის, შეგიძლიათ გამოიყენოთ დამატების მხარდასაჭერი ბმულები, არსებობის "
+"შემთხვევაში. მათი პოვნა, დამატების მთავარი გვერდის მარჯვენა მხარეს არსებულ სვეტში შეიძლება."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "იმ დამატებებზე მიმოხილვის გაკეთება, რომელიც თავად არ გამოგიყენებიათ."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr ""
