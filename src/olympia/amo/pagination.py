@@ -48,7 +48,7 @@ class ESPaginator(Paginator):
         bottom = (number - 1) * self.per_page
         top = bottom + self.per_page
 
-        if (number * self.per_page) > self.max_result_window:
+        if top > self.max_result_window:
             raise InvalidPage(
                 'That page number is too high for the current page size')
 
