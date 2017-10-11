@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 01:31+0000\n"
+"PO-Revision-Date: 2017-10-11 01:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6646,13 +6646,13 @@ msgstr ""
 "%(review_policy_link_open)sდამატების მიმოხილვის დებულებებს%(link_close)s, რომ დარწმუნდეთ, თქვენი დამატების დადგენილ ნორმებთან შესაბამისობაში."
 
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "რომელი საოპერაციო სისტემა უნდა ავირჩიო ჩემი დამატებისთვის?"
 
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "უნდა აირჩიოთ ის სისტემები, რომლებზეც თქვენი დამატება წარმატებით მუშაობს."
 
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "რომელი კატეგორია უნდა შევუსაბამო ჩემს დამატებას?"
 
 msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
@@ -6698,31 +6698,33 @@ msgstr ""
 "href=\"%(url)s\">დამატების მიმოხილვის სახელმძღვანელოს</a> მიხედვით."
 
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "რომელი სახელმძღვანელო გამოიყენება ჩემი დამატების განხილვისას?"
 
 #, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
+"დამატების მიმომხილველთა გუნდი სარგებლობს <a href=\"%(url)s\">დამატებების მიმოხილვის სახელმძღვანელოთი</a>, დამატებების შესამოწმებლად. მნიშვნელოვანია დამატების შემმუშავებლებისთვის, ამ სახელმძღვანელოს "
+"მითითებების გათვალისწინება, ცნობილი ხარვეზების ასარიდებლად, წარდგენის დროს."
 
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "რამდენ ხანს გაგრძელდება ჩემი დამატების განხილვა?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "ჩვენ ვერ გეტყვით წინასწარ მიახლოებით დროს. რადგან ბევრმა ფაქტორმა შეიძლება იმოქმედოს განხილვის პროცესზე:"
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "წარსადგენი დამატებების რაოდენობამ"
 
 #. part of a list (<li>)
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "დამატების კოდის სირთულემ"
 
 #. part of a list (<li>)
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "აღმოჩენილი ხარვეზების რაოდენობამ"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
