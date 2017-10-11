@@ -23,6 +23,7 @@ from django.core.files.storage import (
     default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
+from django.utils.encoding import force_text
 
 import flufl.lock
 import rdflib
@@ -575,6 +576,19 @@ class SafeUnzip(object):
         info_list = zip_file.infolist()
 
         for info in info_list:
+            try:
+                force_text(info.filename)
+            except UnicodeDecodeError:
+                # We can't log the filename unfortunately since it's encoding
+                # is obviously broken :-/
+                log.error('Extraction error, invalid file name encoding in '
+                          'archive: %s' % self.source)
+                # L10n: {0} is the name of the invalid file.
+                msg = ugettext(
+                    'Invalid file name in archive. Please make sure '
+                    'all filenames are utf-8 or latin1 encoded.')
+                raise forms.ValidationError(msg.format(info.filename))
+
             if '..' in info.filename or info.filename.startswith('/'):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
