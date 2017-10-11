@@ -499,8 +499,10 @@ class ReviewerScore(ModelBase):
         # Add bonus to reviews greater than our limit to encourage fixing
         # old reviews. Does not apply to content-review/post-review at the
         # moment, because it would need to be calculated differently.
-        if (version and version.nomination and
-                not post_review and not content_review):
+        award_overdue_bonus = (
+            version and version.nomination and
+            not post_review and not content_review)
+        if award_overdue_bonus:
             waiting_time_days = (datetime.now() - version.nomination).days
             days_over = waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
             if days_over > 0:
