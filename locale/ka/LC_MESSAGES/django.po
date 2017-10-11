@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 00:50+0000\n"
+"PO-Revision-Date: 2017-10-11 01:01+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -70,7 +70,7 @@ msgid "Review note"
 msgstr "მიმოხილვის შენიშვნა"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლესს ვერსიებზე."
+msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლეს ვერსიებზე."
 
 msgid "- Add-on not on AMO -"
 msgstr "- დამატება არაა განთავსებული AMO საიტზე -"
@@ -3059,7 +3059,7 @@ msgstr "არხის გამოწერა"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr "ეს დამატება არათავსებადია <b>%(app_name)s %(app_version)s</b>-სთან, %(app_name)s-ის უახლესს ვერსიასთან. გთხოვთ განაახლოთ თქვენი დამატების თავსებადობის მონაცემები, ან ატვირთოთ ახალი ვერსია."
+msgstr "ეს დამატება არათავსებადია <b>%(app_name)s %(app_version)s</b>-სთან, %(app_name)s-ის უახლეს ვერსიასთან. გთხოვთ განაახლოთ თქვენი დამატების თავსებადობის მონაცემები, ან ატვირთოთ ახალი ვერსია."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -5777,7 +5777,7 @@ msgid "Become a Test Pilot"
 msgstr "გახდით გამომცდელი მფრინავი"
 
 msgid "Unlock early access to experimental browser features."
-msgstr "მიიღეთ წვდომა ბრაუზერის უახლესს, საცდელ შესაძლებლობებზე."
+msgstr "მიიღეთ წვდომა ბრაუზერის უახლეს, საცდელ შესაძლებლობებზე."
 
 msgid "Get Started"
 msgstr "მუშაობის დაწყება"
@@ -6476,14 +6476,14 @@ msgid "Developer FAQ"
 msgstr "შემმუშავებლის ხ.დ.კ."
 
 msgid "Sections"
-msgstr "განყოფილებები"
+msgstr "აბზაცები"
 
 msgid "Developing an Add-on"
 msgstr "დამატების შემუშავება"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
-msgstr "დამხმარე რესურსები"
+msgstr "სასარგებლო ბმულები"
 
 msgid "Contributing your Add-on"
 msgstr "დამატების შემოწირულობა"
@@ -6508,7 +6508,7 @@ msgid "What is a \".xpi\" file?"
 msgstr "რა არის \".xpi\" ფაილი?"
 
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "გაფართოებები შეკრულია ZIP არქივად (გამოითქმის როგორც \"ზიპი\"), რომელსაც გააჩნია XPI ფაილის გაფართოება."
+msgstr "გაფართოებები შეკრულია ZIP არქივად (გამოითქმის როგორც \"ზიპი\"), რომელსაც გააჩნია XPI ფაილის დაბოლოება."
 
 msgid "What is XUL?"
 msgstr "რა არის XUL?"
@@ -6538,7 +6538,7 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Mozilla-ს უახლესს პროგრამასთან თავსებადობის დასადგენად, აუცილებელია განახლებების გამოსვლისთანავე ჩამოტვირთვა და დამატებების შემოწმება, ისევ გამართულად მუშაობს თუ არა. როცა ახალი გამოშვებები მოიცავს "
+"Mozilla-ს უახლეს პროგრამასთან თავსებადობის დასადგენად, აუცილებელია განახლებების გამოსვლისთანავე ჩამოტვირთვა და დამატებების შემოწმება, ისევ გამართულად მუშაობს თუ არა. როცა ახალი გამოშვებები მოიცავს "
 "არქიტექტურულ ცვლილებებსაც, ამას შესაძლოა გავლენა ჰქონდეს თქვენი დამატების მუშაობაზე. ამიტომ მნიშვნელოვანია, ბეტა ტესტირებაში აქტიური მონაწილეობა, რითიც შესაძლებელი იქნება მომხმარებლების მხრიდან, "
 "უარყოფითი შეფასებების თავიდან არიდება, Mozilla-ს პროგრამის საბოლოო ვერსიის გამოშვების შემდეგ."
 
