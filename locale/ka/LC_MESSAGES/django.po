@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 00:12+0000\n"
+"PO-Revision-Date: 2017-10-11 00:31+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6486,32 +6486,32 @@ msgid "Support Resources"
 msgstr "დამხმარე რესურსები"
 
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "დამატების შემოწირულობა"
 
 msgid "Add-on Review Process"
 msgstr "დამატების მიმოხილვის მიმდინარეობა"
 
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "დამატების მართვა"
 
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "ღია წყაროს ლიცენზიების ბმულები"
 
 msgid "Add-on Developer FAQ"
 msgstr "დამატების შემმუშავებელის ხ.დ.კ."
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr ""
+msgstr "<h3>როგორ შევქმნა დამატება?</h3> <p>Mozilla გთავაზობთ დოკუმენტაციას, დამატების შექმნის შესახებ %(addons_link_open)sMozilla შემმუშავებლების გვერდზე%(link_close)s. </p>"
 
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "რა არის \".xpi\" ფაილი?"
 
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "გაფართოებები შეკრულია ZIP არქივად (გამოითქმის როგორც \"ზიპი\"), რომელსაც გააჩნია XPI ფაილის გაფართოება."
 
 msgid "What is XUL?"
-msgstr ""
+msgstr "რა არის XUL?"
 
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
@@ -6531,7 +6531,7 @@ msgstr ""
 "ძველი დამატების ახალ ტექნოლოგიაზე მორგება, გაეცანით %(portlegacy_link_open)sFirefox-ის ძველი დამატების გადატანის ინსტრუქციას%(link_close)s."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "როგორ შევამოწმო თავსებადობა, Mozilla-ს პროგრამის ბოლო ვერსიასთან?"
 
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
@@ -6543,19 +6543,19 @@ msgstr ""
 "უარყოფითი შეფასებების თავიდან არიდება, Mozilla-ს პროგრამის საბოლოო ვერსიის გამოშვების შემდეგ."
 
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "სად ვნახო რჩევები, დამატების შექმნის შესახებ?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (საუბრები დამატებების შექმნის შესახებ)"
 
 #. #amo is the name of the IRC channel.  do not change.
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (დახმარება, დამატებების AMO საიტზე განთავსებასთან დაკავშირებით)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (საუბრები, დამატებების შექმნის და WebExtensions-ზე გადატანის თაობაზე)"
 
 msgid "Add-ons forum"
 msgstr "დამატებების ფორუმი"
