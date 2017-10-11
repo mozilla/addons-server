@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 04:29+0000\n"
+"PO-Revision-Date: 2017-10-11 04:49+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6578,7 +6578,7 @@ msgstr ""
 "ან <a href=\"%(wiki_url)s\">Mozilla Wiki-ის</a> საშუალებით. გთხოვთ გაითვალისწინოთ, რომ Mozilla არ უწევს შემმუშავებლებს რეკომენდაციებს."
 
 msgid "Can I host my own add-on?"
-msgstr "სად შემიძლია საკუთარი დამატების განთავსება?"
+msgstr "შემიძლია საკუთარი დამატების სასურველ საიტზე განთავსება?"
 
 #, python-format
 msgid ""
@@ -7327,10 +7327,10 @@ msgstr ""
 "მომხმარებელზე უკეთ მორგებული Firefox-ის შექმნაში!"
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "წარმდგენი:"
 
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird პროექტზე მუშაობა შეწყვეტილია"
 
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
@@ -7341,7 +7341,7 @@ msgstr ""
 
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ""
+msgstr "გირჩევთ, მის ნაცვლად გამოიყენოთ <a href=\"%(tb_url)s\">Thunderbird</a> და <a href=\"%(lightning_url)s\">Lightning</a>."
 
 msgid "Read more about Sunbird"
 msgstr "შეიტყვეთ მეტი Sunbird-ის შესახებ"
