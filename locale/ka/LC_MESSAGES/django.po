@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 04:49+0000\n"
+"PO-Revision-Date: 2017-10-11 05:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7350,33 +7350,33 @@ msgid "There was an error communicating with PayPal. Please try again later."
 msgstr "PayPal-თან დაკავშირება ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
 
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "შეცდომა, მითითებულ ვალუტასთან დაკავშირებით."
 
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "რაოდენობა მეტად მცირეა, მიმღების ვალუტაზე გადასაყვანად."
 
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "გამყიდველსა და მყიდველს, განსხვავებული PayPal ანგარიშები უნდა ჰქონდეთ."
 
 #. L10n: {0} is the currency.
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "გამყიდველი არ იღებს თანხას %s ვალუტაში."
 
 #, python-format
 msgid "Reviews for %s"
 msgstr "%s-ის მიმოხილვები"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "დამატების მიმოხილვების ისტორია"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "%d შეფასება 5 ვარსკვლავიდან"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
 
 msgid "Other (please specify)"
 msgstr "სხვა (გთხოვთ მიუთითოთ)"
@@ -7385,28 +7385,28 @@ msgid "This field is required."
 msgstr "ამ ველის შევსება აუცილებელია."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "განსახილველი დამატების შეცვლა, არ შეგიძლიათ."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "მიმოხილვაზე გაკეთებულ გამოხმაურებაზე, პასუხის გაცემა აღარ შეგიძლიათ."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "განსახილველი დამატების ვერსიის შეცვლა, არ შეგიძლიათ."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "დამატების ეს ვერსია არ არსებობს, ან არაა საჯარო."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "საკუთარ დამატებაზე მიმოხილვის დატოვება, არ შეგიძლიათ."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
 
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr ""
+msgstr "გმადლობთ; ეს მიმოხილვა მონიშნულია შემსწორებლის მიერ გადახედვისთვის."
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "{0}-ზე მიმოხილვის დატოვება"
 
 #, python-format
 msgid ""
@@ -7425,10 +7425,10 @@ msgstr ""
 "გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "{0}-ის მიმოხილვაზე პასუხი"
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "დაწერეთ პასუხი"
 
 msgid "Submit"
 msgstr "წარდგენა"
@@ -7443,7 +7443,7 @@ msgstr "გთხოვთ მიუთითოთ მიზეზი:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "%(user)s <b>(შემმუშავებელი)</b> %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -7452,26 +7452,26 @@ msgstr "ეს მიმოხილვა გაკეთებულია დ
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
+msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "ჩანიშნულია განსახილველად"
 
 msgid "Report this review"
 msgstr "მოხსენება ამ მიმოხილვაზე"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "პასუხი მიმოხილვაზე"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "პასუხის ჩასწორება"
 
 msgid "Edit review"
-msgstr ""
+msgstr "მიმოხილვის ჩასწორება"
 
 msgid "Delete reply"
 msgstr "პასუხის წაშლა"
@@ -7490,7 +7490,7 @@ msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატებ�
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "{0} შემმუშავებლის პასუხი"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
@@ -7502,24 +7502,24 @@ msgstr "მიმოხილვები ვერ მოიძებნა."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>საშუალო</strong> (%(total)s)"
 
 msgid "Write a New Review"
 msgstr "დაწერეთ მიმოხილვა"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "დატოვეთ მიმოხილვა პირველმა."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} მიმოხილვა"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "{0} შეფასება 5 ვარსკვლავიდან"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
 
 msgid "Most popular this week"
 msgstr "ყველაზე მეტად სასურველი ამ კვირაში"
@@ -7546,7 +7546,7 @@ msgid "search for apps"
 msgstr "პროგრამების ძიება"
 
 msgid "Sort By"
-msgstr ""
+msgstr "დალაგება"
 
 msgid "Relevance"
 msgstr "შესაბამისობა"
@@ -7620,19 +7620,19 @@ msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "{0} - {1} შედეგი {2}-იდან <strong>{3}</strong> ფრაზისთვის"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "ნაჩვენებია {0} - {1} შედეგი {2}-იდან"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ზოგიერთი შესაძლებლობები დროებით შეზღუდულია, ვებსაიტზე ტექნიკური სამუშაოების მიმდინარეობის გამო. მოკლე ხანში, სრული დატვირთვით ამუშავდება."
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "დამატება id ნომრით \"{}\" არ მოიძებნა."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "თქვენ არ ფლობთ ამ დამატებას."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "\"upload\" გასაღები ფაილის მონაცემებში არ მოიძებნა."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
