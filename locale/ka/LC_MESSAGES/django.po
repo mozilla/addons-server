@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 00:31+0000\n"
+"PO-Revision-Date: 2017-10-11 00:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6561,13 +6561,13 @@ msgid "Add-ons forum"
 msgstr "დამატებების ფორუმი"
 
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Mozilla სთავაზობს მომხმარებლებს მომსახურებას პროგრამების შემუშავების სახით?"
 
 msgid "No."
-msgstr ""
+msgstr "არა."
 
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "შემიძლია დავიქირავო მე-3 მხარის შემმუშავებლები, ჩემი დამატების შესაქმნელად?"
 
 #, python-format
 msgid ""
@@ -6578,7 +6578,7 @@ msgstr ""
 "ან <a href=\"%(wiki_url)s\">Mozilla Wiki-ის</a> საშუალებით. გთხოვთ გაითვალისწინოთ, რომ Mozilla არ უწევს შემმუშავებლებს რეკომენდაციებს."
 
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "სად შემიძლია საკუთარი დამატების განთავსება?"
 
 #, python-format
 msgid ""
@@ -6589,19 +6589,21 @@ msgstr ""
 "მომხმარებლისთვის გახდით მას ხელმისაწვდომს, გამომდინარე იქიდან, რომ დიდი რაოდენობით ხალხი შემოდის ამ საიტზე."
 
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Mozilla-ს შეუძლია ჩემი დამატებების საიტზე განთავსება?"
 
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "დიახ. თქვენ შეგიძლიათ თქვენი დამატება განათავსოთ <a href=\"%(url)s\">Mozilla-ს დამატებების ვებსაიტზე</a>."
 
 msgid "What is AMO?"
-msgstr ""
+msgstr "რა არის AMO?"
 
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
+"Mozilla-ს AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) წარმოადგენს საშუალებების და ხელსაწყოების ნაკრებს, რომელიც ეხმარება შემმუშავებლებს შექმნან, გაავრცელონ და "
+"შეიტანონ წვლილი, Mozilla-ს საოცარი პროგრამების შემუშავებაში. ასევე საიტი შესაძლებლობას იძლევა საკუთარი დამატებების შექმნის, მართვის, განთავსების და ფართო საზოგადოებისთვის წარდგენის."
 
 msgid "Does Mozilla keep my account information private?"
 msgstr "Mozilla ინახავს ჩემი ანგარიშის მონაცემებს საიდუმლოდ?"
