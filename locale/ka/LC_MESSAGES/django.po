@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 05:25+0000\n"
+"PO-Revision-Date: 2017-10-11 05:38+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7833,18 +7833,20 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>როგორ ითვლება ჩამოტვირთვები?</h2> <p>ჩამოტვირთვების ანათვალი ახლდება ყოველ საღამოს და მოიცავს უშუალოდ დამატების ჩამოტვირთვებს და არა მისი განახლებების. ჩამოტვირთვები შეიძლება დახარისხდეს იმ "
+"საიტების მიხედვით, საიდანაც მომხმარებლები გადავიდნენ ჩამოტვირთვის ბმულზე. </p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "მომხმარებლის ენები თარიღის მიხედვით"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "სისტემების გამოყენება თარიღის მიხედვით"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> ჩამოტვირთვა"
 
 msgid "Loading..."
-msgstr ""
+msgstr "იტვირთება..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> საშუალო დღიური მომხმარებელი"
@@ -7853,7 +7855,7 @@ msgid "Top Applications"
 msgstr "რჩეული პროგრამები"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "მეტი პროგრამები&hellip;"
 
 msgid "Top Languages"
 msgstr "ძირითადი ენები"
@@ -7865,19 +7867,19 @@ msgid "Top Platforms"
 msgstr "რჩეული სისტემები"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "მეტი სისტემები&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "შეფასებები თარიღის მიხედვით"
 
 msgid "Reviews Created by Date"
 msgstr "მიმოხილვები შექმნის თარიღის მიხედვით"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "ჩამოტვირთვის წყაროები თარიღის მიხედვით"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "გარე წყაროების აღრიცხვის შესახებ..."
 
 #, python-format
 msgid ""
