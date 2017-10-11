@@ -577,7 +577,7 @@ class SafeUnzip(object):
 
         for info in info_list:
             try:
-                filename = force_text(info.filename)
+                force_text(info.filename)
             except UnicodeDecodeError:
                 # We can't log the filename unfortunately since it's encoding
                 # is obviously broken :-/
