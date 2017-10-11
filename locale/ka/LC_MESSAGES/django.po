@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 03:43+0000\n"
+"PO-Revision-Date: 2017-10-11 04:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7187,27 +7187,29 @@ msgid "Write reviews for add-ons which you have not personally used."
 msgstr "იმ დამატებებზე მიმოხილვის გაკეთება, რომელიც თავად არ გამოგიყენებიათ."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "უპატივცემულო, უხამსი ფორმების, ან სიძულვილის ენის გამოყენება."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "HTML კოდების, ბმულების, სკრიპტების დართვა. მიმოხილვები უნდა შედგებოდეს მხოლოდ ტექსტისგან."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "მცდარი მოსაზრებების წარმოდგენა, დამატების ავტორების დამცირება, ან მათთვის პირადი შეურაცხყოფის მიყენება."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "მიუთითეთ თქვენი საკუთარი, ან სხვისი ელფოსტის მისამართი, ტელეფონის ნომერი, ან სხვა პირადი მონაცემი."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "მიმოხილვებში საკუთარი თავის, ან ორგანიზაციის წარდგენა."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"კრიტიკა დამატების იმ მხარეების, რაც წინასწარვე იყო განსაზღვრული. მაგალითად, უარყოფითი მიმოხილვის დატოვება, დამატებაში რეკლამების ჩვენების, ან ინფორმაციის შეგროვების შესახებ, მაშინ როცა ეს ყველაფერი "
+"დამატების დანიშნულებას წარმოადგენს, ან მისი მუშაობისთვისაა აუცილებელი."
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "როგორ გავგზავნო მოხსენება, არასასურველი მიმოხილვის შესახებ?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -7217,7 +7219,7 @@ msgstr ""
 "გუნდი, მიმოხილვის სახელმძღვანელოს მიხედვით გადაწყვეტს, წაშალოს თუ აღადგინოს მიმოხილვა საიტზე."
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "მე ვარ დამატების ავტორი, შემიძლია მიმოხილვაზე გამოხმაურება?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
@@ -7234,7 +7236,7 @@ msgstr ""
 "მოხსენება შეიცავს უკმაყოფილებას იმ საკითხზე, რაც უკვე გამოსწორებულია ახალ ვერსიაში, ჩვენ შეიძლება წავშალოთ ასეთი მიმოხილვა."
 
 msgid "Start Now"
-msgstr ""
+msgstr "დაწყება ახლავე"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -7242,7 +7244,7 @@ msgstr ""
 "საკითხის შესწავლაში!"
 
 msgid "What will happen next"
-msgstr ""
+msgstr "რა მოხდება შემდგომ"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>თუ ეთანხმებით</strong> მონაწილეობის მიღება:"
@@ -7251,13 +7253,13 @@ msgid "We may add security and plugin control features to Firefox to help with o
 msgstr "Firefox-ს შეიძლება დაემატოს მოდულების უსაფრთხოების შესამოწმებელი საშუალებები, დაცულობის და წარმადობის გასაზრდელად."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "განაგრძეთ Firefox-ის გამოყენება ჩვეულებრივ. იმისდა მიხედვით, როგორ იყენებთ ინტერნეტს, შესაძლოა ვერც შეამჩნიოთ რამე სხვაობა."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
 msgstr "რამდენიმე კვირაში, კვლევა თავისთავად დასრულდება. თქვენი Firefox დაუბრუნდება ჩვეულებრივ რეჟიმს."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "ჩვენ შემოგთავაზებთ მცირე კითხვარს, თქვენი გამოცდილების გასაზიარებლად. კითხვარი არ გაგრძელდება 5 წუთზე მეტხანს."
 
 msgid "Leaving the study"
 msgstr "კვლევის დატოვება"
@@ -7269,10 +7271,10 @@ msgid "Type about:addons into the location bar, and press enter."
 msgstr "აკრიფეთ about:addons მისამართების ზოლში და დააჭირეთ Enter ღილაკს."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "მონახეთ Plugin Safety დამატებების ჩამონათვალში."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "დააწკაპეთ წაშლის ღილაკზე."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr "თუ დროზე ადრე გსურთ კვლევის დატოვება, გთხოვთ მიიღოთ მონაწილეობა გამოკითხვაში. ჩვენ მაინც გვსურს მოვისმინოთ თქვენი მოსაზრება, მიუხედავად იმისა, დარჩებით თუ არა მონაწილედ, კვლევის ბოლომდე."
@@ -7284,7 +7286,7 @@ msgid "Your privacy"
 msgstr "პირადი მონაცემების დაცულობა:"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "ყველა Shield კვლევა"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
