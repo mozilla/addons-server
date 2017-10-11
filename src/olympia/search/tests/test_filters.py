@@ -84,6 +84,10 @@ class TestQueryFilter(FilterTestsBase):
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 1
 
+    def test_q_too_long(self):
+        with self.assertRaises(serializers.ValidationError):
+            self._filter(data={'q': 'a' * 101})
+
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
