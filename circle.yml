@@ -66,8 +66,11 @@ jobs:
             docker-compose up -d
             sleep 5
             docker-compose ps
+            # Make sure dependencies get updated in worker and web container
             docker-compose exec worker make -f Makefile-docker update_deps
+            docker-compose exec worker supervisorctl restart all
             docker-compose exec web make -f Makefile-docker update_deps
+            docker-compose exec web supervisorctl restart all
             docker-compose exec web bash /code/scripts/ui-test.sh
       - store_artifacts:
           path: ui-test-results
