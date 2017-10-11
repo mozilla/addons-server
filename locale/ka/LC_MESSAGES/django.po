@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 05:38+0000\n"
+"PO-Revision-Date: 2017-10-11 06:07+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7889,12 +7889,17 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>გარე წყაროების აღრიცხვა</h2> <p> თუ თქვენ დამატების მთავარი გვერდის, ან უშუალოდ ფაილის ბმულს განათავსებთ სხვა საიტზე, როგორიცაა ბლოგი, ან საკუთარი ვებგვერდი, შეგიძლიათ საჭირო პარამეტრების "
+"მითითება, რითიც შეძლებთ, მაგ საიტიდან ჩამოტვირთვების აღრიცხვას. მაგალითად, შემდეგი ბმულის წყაროდ გამოჩნდება თქვენი ბლოგი: <dl> <dt>დამატებების მთავარი გვერდი</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>ფაილის პირდაპირი ბმული</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> </dl> <p> მხოლოდ აღირიცხება ის src პარამეტრები, რომელიც დაიწყება \"external-\" წინსართით, არაუმეტეს 61 სიმბოლომდე. ნებისმიერი ტექსტი \"external-\" წინსართის შემდეგ, გამოდგება"
+" წყაროს აღსაწერად შემდეგნაირად: \"external-blog\", \"external-sidebar\", \"external-campaign225\" და ა.შ. დაშვებულია შემდეგი URL-უსაფრთხო სიმბოლოები: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "დამატების მდგომარეობა თარიღის მიხედვით"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "გამომწერები თარიღის მიხედვით"
 
 msgid "Daily Users by Date"
 msgstr "დღიური მომხმარებელი თარიღის მიხედვით"
@@ -7917,10 +7922,10 @@ msgstr ""
 "მომხმარებლები შეიძლება დაიყოს დამატების ვერსიის, საოპერაციო სისტემის, დამატებების მდგომარეობის, პროგრამის და ენის მიხედვით. </p>"
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "დარეგისტრებული მომხმარებლები თარიღის მიხედვით"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "პროგრამების ვერსიები თარიღის მიხედვით"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-ს დამატებები"
@@ -7935,7 +7940,7 @@ msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "საკუთარი კრებულების შესაქმნელად, საჭიროა Mozilla დამატებების ანგარიში."
 
 msgid "Footer logo"
-msgstr ""
+msgstr "ქვედა ლოგო"
 
 msgid "Choose a category"
 msgstr "კატეგორიის არჩევა"
@@ -7965,16 +7970,16 @@ msgid "Android Browser"
 msgstr "Android დამატებები"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ბრაუზერი"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus ბრაუზერი"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "კომპიუტერისთვის"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer ვერსია"
 
 msgid "Other languages"
 msgstr "სხვა ენები"
@@ -7998,7 +8003,7 @@ msgid "My Account"
 msgstr "ჩემი ანგარიში"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "მოგესალმებათ, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -8017,10 +8022,10 @@ msgstr "აირჩიეთ ათასობით დამატები�
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "დაამატეთ ახალი შესაძლებლობები და გაფორმებები, რომ გახადოთ %(app)s მეტად თქვენებური."
 
 msgid "On the go?"
-msgstr ""
+msgstr "სახლიდან გასვლისას?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "გაეცანით <a class=\"mobile-link\" href=\"#\">მობილურის დამატებების გვერდს</a>."
@@ -8041,13 +8046,13 @@ msgstr "ლოკალიზება: <a id=\"change-locale\" href=\"#\">%(dl)
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "არსებული ენები"
 
 msgid "New Locales"
-msgstr ""
+msgstr "ახალი ენები"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
