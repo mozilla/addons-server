@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-08-27 11:33+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2008,6 +2008,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentář u doplňku {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "okomentováno"
+
 msgid "{tag} added to {addon}."
 msgstr "K doplňku {addon} byl přidán štítek {tag}."
 
@@ -2263,6 +2267,10 @@ msgstr "Zásuvný modul"
 msgid "Theme"
 msgstr "Motiv vzhledu"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Detaily o motivu"
+
 msgid "Complete Themes"
 msgstr "Plné motivy"
 
@@ -2279,6 +2287,10 @@ msgstr "Jazykové balíčky (doplněk)"
 
 msgid "Plugins"
 msgstr "Zásuvné moduly"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Autor motivů"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Žádat pouze na stránce doplňku a profilu vývojáře"
@@ -2374,42 +2386,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Obecné"
-
-msgid "Business"
-msgstr "Business"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Slovníky a encyklopedie"
-
-msgid "Kids"
-msgstr "Pro děti"
-
-msgid "Multiple Search"
-msgstr "Vícenásobné vyhledávání"
-
-msgid "Music"
-msgstr "Hudba"
-
-msgid "News & Blogs"
-msgstr "Novinky a blogy"
-
-msgid "Photos & Images"
-msgstr "Fotografie a obrázky"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupování a e-komerce"
-
-msgid "Social & People"
-msgstr "Sociální sítě a lidé"
-
-msgid "Travel"
-msgstr "Cestování"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktní"
 
@@ -2428,6 +2404,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Svátek"
 
+msgid "Music"
+msgstr "Hudba"
+
 msgid "Scenery"
 msgstr "Krajina"
 
@@ -2439,6 +2418,39 @@ msgstr "Jednoduché"
 
 msgid "Websites"
 msgstr "Stránky"
+
+msgid "General"
+msgstr "Obecné"
+
+msgid "Business"
+msgstr "Business"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Slovníky a encyklopedie"
+
+msgid "Kids"
+msgstr "Pro děti"
+
+msgid "Multiple Search"
+msgstr "Vícenásobné vyhledávání"
+
+msgid "News & Blogs"
+msgstr "Novinky a blogy"
+
+msgid "Photos & Images"
+msgstr "Fotografie a obrázky"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupování a e-komerce"
+
+msgid "Social & People"
+msgstr "Sociální sítě a lidé"
+
+msgid "Travel"
+msgstr "Cestování"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Vlastnosti zařízení a umístění"
@@ -3805,7 +3817,8 @@ msgstr "Kde bude verze hostována"
 msgid "Upload Version"
 msgstr "Nahrát verzi"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pro nahrání balíčku se svým doplňkem a omezení cílových platforem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
 
 msgid "Which platforms is this file compatible with?"
@@ -4683,10 +4696,24 @@ msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
 msgstr[2] "{0} varování"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Užijte si sadu nových funkcí pro YouTube, např. režim kina, blokování reklam, ovládání automatického přehrávání a další."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4694,18 +4721,6 @@ msgstr ""
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zlepšete svůj pravopis {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Kontrola pravopisu ve více než 25 jazycích přímo ve vašem prohlížeči."
-
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Užijte si sadu nových funkcí pro YouTube, např. režim kina, blokování reklam, ovládání automatického přehrávání a další."
 
 msgid "Approved reviews"
 msgstr "Schválené recenze"
@@ -4972,31 +4987,6 @@ msgstr "Kontrola úspěšně provedena."
 
 msgid "Review lock limit reached"
 msgstr "Dosažen limit recenzí"
-
-msgid "was approved"
-msgstr "byl schválen"
-
-msgid "given preliminary review"
-msgstr "byl předběžně zkontrolován"
-
-msgid "rejected"
-msgstr "zamítnuto"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "bude detailně zkontrolován"
-
-msgid "needs more information"
-msgstr "potřeba více informací"
-
-msgid "needs super review"
-msgstr "potřebuje kontrolu administrátory"
-
-msgid "commented"
-msgstr "okomentováno"
-
-msgid "confirmed as approved"
-msgstr "byl potvrzen a schválen"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5625,6 +5615,10 @@ msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je
 
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7655,6 +7649,9 @@ msgstr "Ohodnoceno {0} z 5 hvězdiček"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Nejpopulárnější tento týden"

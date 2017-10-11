@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2257,6 +2257,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Komentariši"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} dodato u {addon}."
 
@@ -2522,6 +2526,10 @@ msgstr "Priključak"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Detalji teme"
+
 msgid "Complete Themes"
 msgstr "Kompletne teme"
 
@@ -2538,6 +2546,10 @@ msgstr "Language Packs (dodatak)"
 
 msgid "Plugins"
 msgstr "Priključci"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Umetnik za teme"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pitajte samo na stranici ovog dodatka ili na profilu programera"
@@ -2647,6 +2659,41 @@ msgstr ""
 msgid "Sports"
 msgstr "Podrška"
 
+msgid "Abstract"
+msgstr ""
+
+msgid "Causes"
+msgstr ""
+
+msgid "Fashion"
+msgstr ""
+
+msgid "Film and TV"
+msgstr ""
+
+msgid "Foxkeh"
+msgstr ""
+
+msgid "Holiday"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Scenery"
+msgstr ""
+
+#, fuzzy
+msgid "Seasonal"
+msgstr "Razlog"
+
+msgid "Solid"
+msgstr ""
+
+#, fuzzy
+msgid "Websites"
+msgstr "Veb sajt"
+
 #, fuzzy
 msgid "General"
 msgstr "Opšti testovi"
@@ -2664,9 +2711,6 @@ msgstr ""
 #, fuzzy
 msgid "Multiple Search"
 msgstr "Brisanje pretrage"
-
-msgid "Music"
-msgstr ""
 
 msgid "News & Blogs"
 msgstr ""
@@ -2687,38 +2731,6 @@ msgstr ""
 #, fuzzy
 msgid "Video"
 msgstr "Zatvori video"
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Causes"
-msgstr ""
-
-msgid "Fashion"
-msgstr ""
-
-msgid "Film and TV"
-msgstr ""
-
-msgid "Foxkeh"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Scenery"
-msgstr ""
-
-#, fuzzy
-msgid "Seasonal"
-msgstr "Razlog"
-
-msgid "Solid"
-msgstr ""
-
-#, fuzzy
-msgid "Websites"
-msgstr "Veb sajt"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -4273,10 +4285,10 @@ msgstr "Ciljana verzija"
 msgid "Upload Version"
 msgstr "Otpremi novu verziju"
 
+#, fuzzy
 msgid ""
-"Use the fields below to upload your add-on package and select any platform "
-"restrictions. After upload, a series of automated validation tests will be "
-"run on your file."
+"Use the fields below to upload your add-on package. After upload, a series "
+"of automated validation tests will be run on your file."
 msgstr ""
 "Iskoristite polja ispod da biste otpremili Vaš paket sa dodatkom i odaberite "
 "bilo koja ograničenja platforme. Nakon postavljanja, niz automatizovanih "
@@ -5374,26 +5386,12 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Set the page you see every time you open a new tab."
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid ""
-"Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid ""
-"Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid ""
-"Supporting 25+ languages, this extension puts a proofreader right in your "
-"browser."
+"A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
+"content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5402,6 +5400,20 @@ msgstr ""
 msgid ""
 "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
 "play control, and more."
+msgstr ""
+
+msgid ""
+"Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid ""
+"Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5706,32 +5718,6 @@ msgstr "Recenzija uspešno procesirana."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "je odobreno"
-
-msgid "given preliminary review"
-msgstr "je data preliminarna recenzija"
-
-msgid "rejected"
-msgstr "odbijeno"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "eskalirano"
-
-msgid "needs more information"
-msgstr "treba više informacija"
-
-msgid "needs super review"
-msgstr "zahteva super recenziju"
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "je odobreno"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
@@ -6393,6 +6379,12 @@ msgstr "Nije moguće raščlaniti otpremljenu datoteku."
 
 msgid "Could not parse uploaded file."
 msgstr "Nije moguće raščlaniti otpremljenu datoteku."
+
+#. L10n: {0} is the name of the invalid file.
+msgid ""
+"Invalid file name in archive. Please make sure all filenames are utf-8 or "
+"latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -8833,6 +8825,9 @@ msgstr "Ocenjeno sa {0} od 5 zvezdica"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Najpopularniji ove sedmice"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-10-03 11:02+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1957,6 +1957,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар на {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Коментар"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} добавен към {addon}."
 
@@ -2214,6 +2218,9 @@ msgstr "Приставка"
 msgid "Theme"
 msgstr "Тема"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Цялостни теми"
 
@@ -2230,6 +2237,9 @@ msgstr "Езикови пакети (добавка)"
 
 msgid "Plugins"
 msgstr "Приставки"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Питай само на страницата на тази добавка и на профила на разработчика"
@@ -2325,42 +2335,6 @@ msgstr "Ретро"
 msgid "Sports"
 msgstr "Спорт"
 
-msgid "General"
-msgstr "Общи"
-
-msgid "Business"
-msgstr "Бизнес"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Речници и енциклопедии"
-
-msgid "Kids"
-msgstr "За деца"
-
-msgid "Multiple Search"
-msgstr "Множествено търсене"
-
-msgid "Music"
-msgstr "Музика"
-
-msgid "News & Blogs"
-msgstr "Новини и блогове"
-
-msgid "Photos & Images"
-msgstr "Снимки и изображения"
-
-msgid "Shopping & E-Commerce"
-msgstr "Пазаруване и е-търговия"
-
-msgid "Social & People"
-msgstr "Социални и хора"
-
-msgid "Travel"
-msgstr "Пътуване"
-
-msgid "Video"
-msgstr "Видео"
-
 msgid "Abstract"
 msgstr "Абстрактни"
 
@@ -2379,6 +2353,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Празнични"
 
+msgid "Music"
+msgstr "Музика"
+
 msgid "Scenery"
 msgstr "Природа"
 
@@ -2390,6 +2367,39 @@ msgstr "Солидни"
 
 msgid "Websites"
 msgstr "Сайтове"
+
+msgid "General"
+msgstr "Общи"
+
+msgid "Business"
+msgstr "Бизнес"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Речници и енциклопедии"
+
+msgid "Kids"
+msgstr "За деца"
+
+msgid "Multiple Search"
+msgstr "Множествено търсене"
+
+msgid "News & Blogs"
+msgstr "Новини и блогове"
+
+msgid "Photos & Images"
+msgstr "Снимки и изображения"
+
+msgid "Shopping & E-Commerce"
+msgstr "Пазаруване и е-търговия"
+
+msgid "Social & People"
+msgstr "Социални и хора"
+
+msgid "Travel"
+msgstr "Пътуване"
+
+msgid "Video"
+msgstr "Видео"
 
 msgid "Device Features & Location"
 msgstr "Системни и местоположение"
@@ -3736,7 +3746,8 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Качване на версия"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Използвайте полетата, за да качите своята добавка и да изберете ограничения на платформите ако има. След качване, върху нея ще бъдат извършени серия от валидации."
 
 msgid "Which platforms is this file compatible with?"
@@ -4601,28 +4612,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4888,31 +4899,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5537,6 +5523,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7457,6 +7447,9 @@ msgstr "Оценена с {0} от 5 звезди"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оценена с %(rating)s от 5 звезди"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Най-популярни тази седмица"

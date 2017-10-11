@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2062,6 +2062,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Nóta tráchta ar {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Nóta"
+
 msgid "{tag} added to {addon}."
 msgstr "Cuireadh clib {tag} le {addon}."
 
@@ -2333,6 +2337,10 @@ msgstr "Forlíontán"
 msgid "Theme"
 msgstr "Téama"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Mionsonraí an Téama"
+
 msgid "Complete Themes"
 msgstr "Téamaí Iomlána"
 
@@ -2348,6 +2356,10 @@ msgstr "Pacáistí Teanga (Breiseán)"
 
 msgid "Plugins"
 msgstr "Forlíontáin"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Mionsonraí an Téama"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2443,42 +2455,6 @@ msgstr "Sean-Nós"
 msgid "Sports"
 msgstr "Spórt"
 
-msgid "General"
-msgstr "Ginearálta"
-
-msgid "Business"
-msgstr "Gnó"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Foclóirí agus Ciclipéidí"
-
-msgid "Kids"
-msgstr "Páistí"
-
-msgid "Multiple Search"
-msgstr "Ilchuardach"
-
-msgid "Music"
-msgstr "Ceol"
-
-msgid "News & Blogs"
-msgstr "Nuacht agus Blagadóireacht"
-
-msgid "Photos & Images"
-msgstr "Grianghraif agus Pictiúir"
-
-msgid "Shopping & E-Commerce"
-msgstr "Siopadóireacht agus R-Thráchtáil"
-
-msgid "Social & People"
-msgstr "Sóisialta agus Daoine"
-
-msgid "Travel"
-msgstr "Taisteal"
-
-msgid "Video"
-msgstr "Físeáin"
-
 msgid "Abstract"
 msgstr "Teibí"
 
@@ -2497,6 +2473,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Saoire"
 
+msgid "Music"
+msgstr "Ceol"
+
 msgid "Scenery"
 msgstr "Radhairc"
 
@@ -2508,6 +2487,39 @@ msgstr "Soladach"
 
 msgid "Websites"
 msgstr "Suímh Ghréasáin"
+
+msgid "General"
+msgstr "Ginearálta"
+
+msgid "Business"
+msgstr "Gnó"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Foclóirí agus Ciclipéidí"
+
+msgid "Kids"
+msgstr "Páistí"
+
+msgid "Multiple Search"
+msgstr "Ilchuardach"
+
+msgid "News & Blogs"
+msgstr "Nuacht agus Blagadóireacht"
+
+msgid "Photos & Images"
+msgstr "Grianghraif agus Pictiúir"
+
+msgid "Shopping & E-Commerce"
+msgstr "Siopadóireacht agus R-Thráchtáil"
+
+msgid "Social & People"
+msgstr "Sóisialta agus Daoine"
+
+msgid "Travel"
+msgstr "Taisteal"
+
+msgid "Video"
+msgstr "Físeáin"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -3879,7 +3891,7 @@ msgstr "Spriocleagan"
 msgid "Upload Version"
 msgstr "Uaslódáil Leagan"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4784,28 +4796,28 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5088,32 +5100,6 @@ msgstr "Próiseáladh an léirmheas."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "ceadaithe"
-
-msgid "given preliminary review"
-msgstr "réamhscrúdú déanta"
-
-msgid "rejected"
-msgstr "diúltaithe"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "géaraithe"
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "ceadaithe"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5784,6 +5770,10 @@ msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil, eilimint <%s> ar i
 
 msgid "Could not parse uploaded file."
 msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7708,6 +7698,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1958,6 +1958,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar untuk {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "dikomentari"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} ditambahkan ke {addon}."
 
@@ -2222,6 +2226,10 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Detil Tema"
+
 msgid "Complete Themes"
 msgstr "Tema Komplet"
 
@@ -2238,6 +2246,10 @@ msgstr "Paket Bahasa (Pengaya)"
 
 msgid "Plugins"
 msgstr "Модулі"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Seniman Tema"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Hanya menanyakan ini pada laman profil pengembang dan pengaya"
@@ -2333,42 +2345,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Olahraga"
 
-msgid "General"
-msgstr "Umum"
-
-msgid "Business"
-msgstr "Bisnis"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Kamus dan Ensiklopedia"
-
-msgid "Kids"
-msgstr "Anak-anak"
-
-msgid "Multiple Search"
-msgstr "Multi-pencarian"
-
-msgid "Music"
-msgstr "Musik"
-
-msgid "News & Blogs"
-msgstr "Blog dan Berita"
-
-msgid "Photos & Images"
-msgstr "Foto dan Gambar"
-
-msgid "Shopping & E-Commerce"
-msgstr "Belanja & E-Commerce"
-
-msgid "Social & People"
-msgstr "Jejaring Sosial & Pertemanan"
-
-msgid "Travel"
-msgstr "Jalan-jalan"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrak"
 
@@ -2387,6 +2363,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Liburan"
 
+msgid "Music"
+msgstr "Musik"
+
 msgid "Scenery"
 msgstr "Pemandangan"
 
@@ -2398,6 +2377,39 @@ msgstr "Polos"
 
 msgid "Websites"
 msgstr "Situs Web"
+
+msgid "General"
+msgstr "Umum"
+
+msgid "Business"
+msgstr "Bisnis"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Kamus dan Ensiklopedia"
+
+msgid "Kids"
+msgstr "Anak-anak"
+
+msgid "Multiple Search"
+msgstr "Multi-pencarian"
+
+msgid "News & Blogs"
+msgstr "Blog dan Berita"
+
+msgid "Photos & Images"
+msgstr "Foto dan Gambar"
+
+msgid "Shopping & E-Commerce"
+msgstr "Belanja & E-Commerce"
+
+msgid "Social & People"
+msgstr "Jejaring Sosial & Pertemanan"
+
+msgid "Travel"
+msgstr "Jalan-jalan"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Fitur Perangkat dan Lokasi"
@@ -3845,7 +3857,8 @@ msgstr "Versi Target"
 msgid "Upload Version"
 msgstr "Unggah Versi Baru"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas anda."
 
@@ -4801,24 +4814,10 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} pesan peringatan"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-#, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-#, fuzzy
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #, fuzzy
@@ -4826,6 +4825,20 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5102,32 +5115,6 @@ msgstr "Ulasan berhasil diproses."
 
 msgid "Review lock limit reached"
 msgstr "Batas pemeriksaan kuncian telah tercapai"
-
-msgid "was approved"
-msgstr "telah disetujui"
-
-msgid "given preliminary review"
-msgstr "diberi ulasan pendahuluan"
-
-msgid "rejected"
-msgstr "ditolak"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "dieskalasi"
-
-msgid "needs more information"
-msgstr "perlu lebih banyak informasi"
-
-msgid "needs super review"
-msgstr "perlu ulasan super"
-
-msgid "commented"
-msgstr "dikomentari"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "telah disetujui"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5751,6 +5738,10 @@ msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat mengurai berkas yang diunggah."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7815,6 +7806,9 @@ msgstr "Peringkat {0} dari 5 bintang"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Peringkat %(rating)s dari 5 bintang"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Paling populer minggu ini"

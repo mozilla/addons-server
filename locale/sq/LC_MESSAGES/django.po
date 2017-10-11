@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1991,6 +1991,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Koment për {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Koment"
+
 msgid "{tag} added to {addon}."
 msgstr "Te {addon} u shtua etiketa {tag}."
 
@@ -2246,6 +2250,10 @@ msgstr "Shtojcë"
 msgid "Theme"
 msgstr "Temë"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Hollësi Teme"
+
 msgid "Complete Themes"
 msgstr "Tema të Plota"
 
@@ -2262,6 +2270,10 @@ msgstr "Paketa Gjuhësore (Shtesë)"
 
 msgid "Plugins"
 msgstr "Shtojca"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Artist Temash"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Kërko vetëm në faqen e kësaj shtese dhe në profilin e zhvilluesit"
@@ -2357,42 +2369,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sporte"
 
-msgid "General"
-msgstr "Të përgjithshme"
-
-msgid "Business"
-msgstr "Biznes"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Fjalorë & Enciklopedi"
-
-msgid "Kids"
-msgstr "Fëmijë"
-
-msgid "Multiple Search"
-msgstr "Kërkime të Shumëfishta"
-
-msgid "Music"
-msgstr "Muzikë"
-
-msgid "News & Blogs"
-msgstr "Lajme & Blogje"
-
-msgid "Photos & Images"
-msgstr "Foto & Pamje"
-
-msgid "Shopping & E-Commerce"
-msgstr "Blerje & E-Tregti"
-
-msgid "Social & People"
-msgstr "Shoqëri & Njerëz"
-
-msgid "Travel"
-msgstr "Udhëtime"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrakte"
 
@@ -2411,6 +2387,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Pushime"
 
+msgid "Music"
+msgstr "Muzikë"
+
 msgid "Scenery"
 msgstr "Peizazhe"
 
@@ -2422,6 +2401,39 @@ msgstr "Solide"
 
 msgid "Websites"
 msgstr "Sajte"
+
+msgid "General"
+msgstr "Të përgjithshme"
+
+msgid "Business"
+msgstr "Biznes"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Fjalorë & Enciklopedi"
+
+msgid "Kids"
+msgstr "Fëmijë"
+
+msgid "Multiple Search"
+msgstr "Kërkime të Shumëfishta"
+
+msgid "News & Blogs"
+msgstr "Lajme & Blogje"
+
+msgid "Photos & Images"
+msgstr "Foto & Pamje"
+
+msgid "Shopping & E-Commerce"
+msgstr "Blerje & E-Tregti"
+
+msgid "Social & People"
+msgstr "Shoqëri & Njerëz"
+
+msgid "Travel"
+msgstr "Udhëtime"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Veçori & Vend Pajisjeje"
@@ -3801,7 +3813,8 @@ msgstr "Ku të Strehohet Versioni"
 msgid "Upload Version"
 msgstr "Ngarkojeni Versionin"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Për ngarkimin e paketës së shtesës suaj dhe përzgjedhjen e çfarëdo kufizimi platforme, përdorni fushat më poshtë. Pas ngarkimit, mbi kartelën tuaj do të xhirohen një varg provash të automatizuara "
 "vleftësimi."
@@ -4695,24 +4708,10 @@ msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-#, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-#, fuzzy
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #, fuzzy
@@ -4720,6 +4719,20 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4991,31 +5004,6 @@ msgstr "Shqyrtimi u krye me sukses."
 
 msgid "Review lock limit reached"
 msgstr "U mbërrit në kufijtë e kyçjes së rishikimit"
-
-msgid "was approved"
-msgstr "qe miratuar"
-
-msgid "given preliminary review"
-msgstr "pati shqyrtim paraprak"
-
-msgid "rejected"
-msgstr "hedhur poshtë"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "shtyrë përpara"
-
-msgid "needs more information"
-msgstr "lyp më tepër të dhëna"
-
-msgid "needs super review"
-msgstr "lyp super-shqyrtim"
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
-msgstr "i është ripohuar miratimi"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5641,6 +5629,10 @@ msgstr "S’u përtyp dot kartela e ngarkuar."
 
 msgid "Could not parse uploaded file."
 msgstr "S’u përtyp dot kartela e ngarkuar."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7697,6 +7689,9 @@ msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Më populloret e kësaj jave"

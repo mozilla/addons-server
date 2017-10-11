@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1950,6 +1950,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "মন্তব্য করুন {addon} {version}।"
 
+#, fuzzy
+msgid "Commented"
+msgstr "মন্তব্য করুন"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} যুক্ত হয়েছে {addon} তে।"
 
@@ -2212,6 +2216,10 @@ msgstr "প্লাগইন"
 msgid "Theme"
 msgstr "থিম"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "থিম এর বিস্তারিত"
+
 msgid "Complete Themes"
 msgstr "সম্পূর্ণ থিম"
 
@@ -2226,6 +2234,10 @@ msgstr "ভাষার প্যাক (অ্যাড-অন)"
 
 msgid "Plugins"
 msgstr "প্লাগইন"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "থিম এর বিস্তারিত"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2322,42 +2334,6 @@ msgstr "রেট্রো"
 msgid "Sports"
 msgstr "খেলাধুলা"
 
-msgid "General"
-msgstr "সাধারন"
-
-msgid "Business"
-msgstr "ব্যবসা"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "অভিধান এবং ভাষা প্যাকসমূহ"
-
-msgid "Kids"
-msgstr "বাচ্চারা"
-
-msgid "Multiple Search"
-msgstr "বহুভাবে খোঁজা"
-
-msgid "Music"
-msgstr "গান"
-
-msgid "News & Blogs"
-msgstr "সংবাদ এবং ব্লগসমূহ"
-
-msgid "Photos & Images"
-msgstr "ছবি ও ইমেজ"
-
-msgid "Shopping & E-Commerce"
-msgstr "কেনাকাটা ও ই-কর্মাস"
-
-msgid "Social & People"
-msgstr "সামাজিক ও জনগন"
-
-msgid "Travel"
-msgstr "ভ্রমণ"
-
-msgid "Video"
-msgstr "ভিডিও"
-
 msgid "Abstract"
 msgstr "সারসংক্ষেপ"
 
@@ -2376,6 +2352,9 @@ msgstr "ফক্সকে"
 msgid "Holiday"
 msgstr "ছুটির দিন"
 
+msgid "Music"
+msgstr "গান"
+
 msgid "Scenery"
 msgstr "দৃশ্য"
 
@@ -2387,6 +2366,39 @@ msgstr "কঠিন"
 
 msgid "Websites"
 msgstr "ওয়েবসাইট"
+
+msgid "General"
+msgstr "সাধারন"
+
+msgid "Business"
+msgstr "ব্যবসা"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "অভিধান এবং ভাষা প্যাকসমূহ"
+
+msgid "Kids"
+msgstr "বাচ্চারা"
+
+msgid "Multiple Search"
+msgstr "বহুভাবে খোঁজা"
+
+msgid "News & Blogs"
+msgstr "সংবাদ এবং ব্লগসমূহ"
+
+msgid "Photos & Images"
+msgstr "ছবি ও ইমেজ"
+
+msgid "Shopping & E-Commerce"
+msgstr "কেনাকাটা ও ই-কর্মাস"
+
+msgid "Social & People"
+msgstr "সামাজিক ও জনগন"
+
+msgid "Travel"
+msgstr "ভ্রমণ"
+
+msgid "Video"
+msgstr "ভিডিও"
 
 msgid "Device Features & Location"
 msgstr "ডিভাইস ফিচার্স ও লোকেশন"
@@ -3728,7 +3740,7 @@ msgstr "হোস্ট সংস্করণ কোথায়"
 msgid "Upload Version"
 msgstr "সংস্করণ আপলোড করুন"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4618,28 +4630,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} টি সতর্কতা"
 msgstr[1] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4909,31 +4921,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr "বাতিল করা হয়েছে"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5558,6 +5545,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7468,6 +7459,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

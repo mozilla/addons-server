@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-07-24 19:35+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1958,6 +1958,10 @@ msgstr "The addon has been flagged for Admin Review.  It's still in our review q
 msgid "Comment on {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "commented"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} added to {addon}."
 
@@ -2212,6 +2216,10 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Theme"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Theme Details"
+
 msgid "Complete Themes"
 msgstr "Complete Themes"
 
@@ -2226,6 +2234,10 @@ msgstr "Language Packs (Add-on)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Themes Artist"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Only ask on this add-on's page and developer profile"
@@ -2321,42 +2333,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sports"
 
-msgid "General"
-msgstr "General"
-
-msgid "Business"
-msgstr "Business"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dictionaries & Encyclopaedias"
-
-msgid "Kids"
-msgstr "Kids"
-
-msgid "Multiple Search"
-msgstr "Multiple Search"
-
-msgid "Music"
-msgstr "Music"
-
-msgid "News & Blogs"
-msgstr "News & Blogs"
-
-msgid "Photos & Images"
-msgstr "Photos & Images"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping & E-Commerce"
-
-msgid "Social & People"
-msgstr "Social & People"
-
-msgid "Travel"
-msgstr "Travel"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstract"
 
@@ -2375,6 +2351,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Holiday"
 
+msgid "Music"
+msgstr "Music"
+
 msgid "Scenery"
 msgstr "Scenery"
 
@@ -2386,6 +2365,39 @@ msgstr "Solid"
 
 msgid "Websites"
 msgstr "Web Sites"
+
+msgid "General"
+msgstr "General"
+
+msgid "Business"
+msgstr "Business"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Dictionaries & Encyclopaedias"
+
+msgid "Kids"
+msgstr "Kids"
+
+msgid "Multiple Search"
+msgstr "Multiple Search"
+
+msgid "News & Blogs"
+msgstr "News & Blogs"
+
+msgid "Photos & Images"
+msgstr "Photos & Images"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping & E-Commerce"
+
+msgid "Social & People"
+msgstr "Social & People"
+
+msgid "Travel"
+msgstr "Travel"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Device Features & Location"
@@ -3784,7 +3796,8 @@ msgstr "Where to Host Version"
 msgid "Upload Version"
 msgstr "Upload Version"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
 msgid "Which platforms is this file compatible with?"
@@ -4672,10 +4685,23 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #, fuzzy
@@ -4684,18 +4710,6 @@ msgstr "Improve your writing {start_sub_heading}with {addon_name}{end_sub_headin
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 
 msgid "Approved reviews"
 msgstr "Approved reviews"
@@ -4959,31 +4973,6 @@ msgstr "Review successfully processed."
 
 msgid "Review lock limit reached"
 msgstr "Review lock limit reached"
-
-msgid "was approved"
-msgstr "was approved"
-
-msgid "given preliminary review"
-msgstr "given preliminary review"
-
-msgid "rejected"
-msgstr "rejected"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "escalated"
-
-msgid "needs more information"
-msgstr "needs more information"
-
-msgid "needs super review"
-msgstr "needs super review"
-
-msgid "commented"
-msgstr "commented"
-
-msgid "confirmed as approved"
-msgstr "confirmed as approved"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5600,6 +5589,10 @@ msgstr "Could not parse uploaded file, missing or empty <%s> element"
 
 msgid "Could not parse uploaded file."
 msgstr "Could not parse uploaded file."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7642,6 +7635,9 @@ msgstr "Rated {0} out of 5 stars"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Rated %(rating)s out of 5 stars"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Most popular this week"

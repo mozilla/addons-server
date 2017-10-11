@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,13 +38,13 @@ msgstr ""
 msgid "This username is already in use."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:119 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:119 src/olympia/devhub/views.py:1048
 #: src/olympia/users/forms.py:181
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:124 src/olympia/bandwagon/forms.py:203
-#: src/olympia/devhub/views.py:1064 src/olympia/users/forms.py:184
+#: src/olympia/devhub/views.py:1065 src/olympia/users/forms.py:184
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
@@ -912,7 +912,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
-#: src/olympia/constants/categories.py:176
+#: src/olympia/constants/categories.py:193
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:146
 msgid "Tags"
 msgstr ""
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:81
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:42
-#: src/olympia/devhub/views.py:1792
+#: src/olympia/devhub/views.py:1799
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1611,7 +1611,7 @@ msgstr ""
 #: src/olympia/browse/feeds.py:100
 #: src/olympia/browse/templates/browse/base_listing.html:7
 #: src/olympia/browse/templates/browse/impala/base_listing.html:33
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:145
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:10
 msgid "Extensions"
 msgstr ""
@@ -1622,7 +1622,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html:6
 #: src/olympia/browse/templates/browse/personas/base.html:42
 #: src/olympia/browse/templates/browse/personas/category_landing.html:37
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:152
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:11
 #: src/olympia/editors/templates/editors/base.html:27
 #: src/olympia/editors/templates/editors/performance.html:69
@@ -1683,8 +1683,8 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/site_nav.html:84 src/olympia/browse/feeds.py:207
 #: src/olympia/browse/templates/browse/search_tools.html:3
-#: src/olympia/constants/base.py:146 src/olympia/constants/categories.py:73
-#: src/olympia/constants/categories.py:208
+#: src/olympia/constants/base.py:148 src/olympia/constants/categories.py:73
+#: src/olympia/constants/categories.py:225
 msgid "Search Tools"
 msgstr ""
 
@@ -1894,7 +1894,7 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:198 src/olympia/devhub/views.py:1045
+#: src/olympia/bandwagon/forms.py:198 src/olympia/devhub/views.py:1046
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
@@ -2344,7 +2344,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:83
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:157
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:93
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:92
 #: src/olympia/devhub/templates/devhub/payments/tier.html:16
 #: src/olympia/editors/templates/editors/themes/themes.html:111
 #: src/olympia/editors/templates/editors/themes/themes.html:128
@@ -2469,7 +2469,6 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: src/olympia/constants/activity.py:215
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
 #: src/olympia/editors/utils.py:401
 msgid "Comment"
@@ -2654,7 +2653,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html:45
 #: src/olympia/browse/templates/browse/language_tools.html:67
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:134
 msgid "Dictionary"
 msgstr ""
 
@@ -3088,6 +3087,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+#: src/olympia/constants/activity.py:215
+msgid "Commented"
+msgstr ""
+
 #: src/olympia/constants/activity.py:225
 msgid "{tag} added to {addon}."
 msgstr ""
@@ -3320,8 +3323,8 @@ msgstr ""
 msgid "Content rejected"
 msgstr ""
 
-#: src/olympia/constants/applications.py:19 src/olympia/constants/categories.py:123
-#: src/olympia/templates/footer.html:13
+#: src/olympia/constants/applications.py:19 src/olympia/constants/categories.py:98
+#: src/olympia/constants/categories.py:140 src/olympia/templates/footer.html:13
 msgid "Firefox"
 msgstr ""
 
@@ -3350,7 +3353,7 @@ msgstr ""
 msgid "Mozilla"
 msgstr ""
 
-#: src/olympia/constants/applications.py:152 src/olympia/constants/base.py:408
+#: src/olympia/constants/applications.py:152 src/olympia/constants/base.py:422
 msgid "Unknown"
 msgstr ""
 
@@ -3399,31 +3402,31 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: src/olympia/constants/base.py:131
+#: src/olympia/constants/base.py:132
 msgid "Extension"
 msgstr ""
 
-#: src/olympia/constants/base.py:132
+#: src/olympia/constants/base.py:133
 msgid "Complete Theme"
 msgstr ""
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:135
 msgid "Search Engine"
 msgstr ""
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:136
 msgid "Language Pack (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:137
 msgid "Language Pack (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Plugin"
 msgstr ""
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:5
 #: src/olympia/editors/templates/editors/themes/deleted.html:14
 #: src/olympia/editors/templates/editors/themes/history_table.html:8
@@ -3431,64 +3434,72 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:140
+msgid "Theme (Static)"
+msgstr ""
+
+#: src/olympia/constants/base.py:146
 msgid "Complete Themes"
 msgstr ""
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:147
 msgid "Dictionaries"
 msgstr ""
 
-#: src/olympia/constants/base.py:147
+#: src/olympia/constants/base.py:149
 msgid "Language Packs (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:150
 msgid "Language Packs (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:151
 msgid "Plugins"
 msgstr ""
 
-#: src/olympia/constants/base.py:249
+#: src/olympia/constants/base.py:153
+msgid "Themes (Static)"
+msgstr ""
+
+#: src/olympia/constants/base.py:260
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
 
-#: src/olympia/constants/base.py:250
+#: src/olympia/constants/base.py:261
 msgid "Ask after users start downloading this add-on"
 msgstr ""
 
-#: src/olympia/constants/base.py:251
+#: src/olympia/constants/base.py:262
 msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py:382 src/olympia/constants/categories.py:80
-#: src/olympia/constants/categories.py:128 src/olympia/constants/categories.py:153
-#: src/olympia/devhub/forms.py:144
+#: src/olympia/constants/base.py:393 src/olympia/constants/categories.py:80
+#: src/olympia/constants/categories.py:103 src/olympia/constants/categories.py:145
+#: src/olympia/constants/categories.py:170 src/olympia/devhub/forms.py:144
 #: src/olympia/editors/templates/editors/performance.html:71
 msgid "Other"
 msgstr ""
 
-#: src/olympia/constants/base.py:383
+#: src/olympia/constants/base.py:394
 msgid "Exception"
 msgstr ""
 
-#: src/olympia/constants/base.py:384
+#: src/olympia/constants/base.py:395
 msgid "Release"
 msgstr ""
 
-#: src/olympia/constants/base.py:385
+#: src/olympia/constants/base.py:396
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:20
 msgid "Change"
 msgstr ""
 
-#: src/olympia/constants/base.py:411 src/olympia/constants/base.py:412
+#: src/olympia/constants/base.py:425 src/olympia/constants/base.py:426
 msgid "Compatible"
 msgstr ""
 
-#: src/olympia/constants/base.py:413
+#: src/olympia/constants/base.py:427
 msgid "Incompatible"
 msgstr ""
 
@@ -3500,8 +3511,8 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: src/olympia/constants/categories.py:60 src/olympia/constants/categories.py:97
-#: src/olympia/constants/categories.py:193
+#: src/olympia/constants/categories.py:60 src/olympia/constants/categories.py:114
+#: src/olympia/constants/categories.py:210
 msgid "Bookmarks"
 msgstr ""
 
@@ -3517,7 +3528,7 @@ msgstr ""
 msgid "Games & Entertainment"
 msgstr ""
 
-#: src/olympia/constants/categories.py:68 src/olympia/constants/categories.py:170
+#: src/olympia/constants/categories.py:68 src/olympia/constants/categories.py:187
 msgid "Language Support"
 msgstr ""
 
@@ -3529,7 +3540,7 @@ msgstr ""
 msgid "Privacy & Security"
 msgstr ""
 
-#: src/olympia/constants/categories.py:74 src/olympia/constants/categories.py:147
+#: src/olympia/constants/categories.py:74 src/olympia/constants/categories.py:164
 msgid "Shopping"
 msgstr ""
 
@@ -3549,7 +3560,7 @@ msgstr ""
 msgid "Animals"
 msgstr ""
 
-#: src/olympia/constants/categories.py:84 src/olympia/constants/categories.py:179
+#: src/olympia/constants/categories.py:84 src/olympia/constants/categories.py:196
 msgid "Compact"
 msgstr ""
 
@@ -3557,19 +3568,19 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-#: src/olympia/constants/categories.py:86 src/olympia/constants/categories.py:173
-#: src/olympia/constants/categories.py:180 src/olympia/constants/categories.py:201
-#: src/olympia/constants/categories.py:214
+#: src/olympia/constants/categories.py:86 src/olympia/constants/categories.py:190
+#: src/olympia/constants/categories.py:197 src/olympia/constants/categories.py:218
+#: src/olympia/constants/categories.py:231
 #: src/olympia/users/templates/users/edit.html:124
 msgid "Miscellaneous"
 msgstr ""
 
-#: src/olympia/constants/categories.py:87 src/olympia/constants/categories.py:181
+#: src/olympia/constants/categories.py:87 src/olympia/constants/categories.py:198
 msgid "Modern"
 msgstr ""
 
-#: src/olympia/constants/categories.py:88 src/olympia/constants/categories.py:127
-#: src/olympia/constants/categories.py:182
+#: src/olympia/constants/categories.py:88 src/olympia/constants/categories.py:102
+#: src/olympia/constants/categories.py:144 src/olympia/constants/categories.py:199
 msgid "Nature"
 msgstr ""
 
@@ -3581,200 +3592,201 @@ msgstr ""
 msgid "Retro"
 msgstr ""
 
-#: src/olympia/constants/categories.py:91 src/olympia/constants/categories.py:111
-#: src/olympia/constants/categories.py:132
+#: src/olympia/constants/categories.py:91 src/olympia/constants/categories.py:107
+#: src/olympia/constants/categories.py:128 src/olympia/constants/categories.py:149
 msgid "Sports"
 msgstr ""
 
-#: src/olympia/constants/categories.py:94 src/olympia/constants/categories.py:101
-#: src/olympia/constants/categories.py:116 src/olympia/constants/categories.py:185
-#: src/olympia/constants/categories.py:188 src/olympia/constants/categories.py:217
-#: src/olympia/constants/categories.py:220
-msgid "General"
-msgstr ""
-
-#: src/olympia/constants/categories.py:98
-msgid "Business"
-msgstr ""
-
-#: src/olympia/constants/categories.py:100
-msgid "Dictionaries & Encyclopedias"
-msgstr ""
-
-#: src/olympia/constants/categories.py:102
-msgid "Kids"
-msgstr ""
-
-#: src/olympia/constants/categories.py:104
-msgid "Multiple Search"
-msgstr ""
-
-#: src/olympia/constants/categories.py:105 src/olympia/constants/categories.py:126
-msgid "Music"
-msgstr ""
-
-#: src/olympia/constants/categories.py:106
-msgid "News & Blogs"
-msgstr ""
-
-#: src/olympia/constants/categories.py:107
-msgid "Photos & Images"
-msgstr ""
-
-#: src/olympia/constants/categories.py:109
-msgid "Shopping & E-Commerce"
-msgstr ""
-
-#: src/olympia/constants/categories.py:110
-msgid "Social & People"
-msgstr ""
-
-#: src/olympia/constants/categories.py:112
-msgid "Travel"
-msgstr ""
-
-#: src/olympia/constants/categories.py:113
-msgid "Video"
-msgstr ""
-
-#: src/olympia/constants/categories.py:119
+#: src/olympia/constants/categories.py:94 src/olympia/constants/categories.py:136
 msgid "Abstract"
 msgstr ""
 
-#: src/olympia/constants/categories.py:120
+#: src/olympia/constants/categories.py:95 src/olympia/constants/categories.py:137
 msgid "Causes"
 msgstr ""
 
-#: src/olympia/constants/categories.py:121
+#: src/olympia/constants/categories.py:96 src/olympia/constants/categories.py:138
 msgid "Fashion"
 msgstr ""
 
-#: src/olympia/constants/categories.py:122
+#: src/olympia/constants/categories.py:97 src/olympia/constants/categories.py:139
 msgid "Film and TV"
 msgstr ""
 
-#: src/olympia/constants/categories.py:124
+#: src/olympia/constants/categories.py:99 src/olympia/constants/categories.py:141
 msgid "Foxkeh"
 msgstr ""
 
-#: src/olympia/constants/categories.py:125
+#: src/olympia/constants/categories.py:100 src/olympia/constants/categories.py:142
 msgid "Holiday"
 msgstr ""
 
-#: src/olympia/constants/categories.py:129
+#: src/olympia/constants/categories.py:101 src/olympia/constants/categories.py:122
+#: src/olympia/constants/categories.py:143
+msgid "Music"
+msgstr ""
+
+#: src/olympia/constants/categories.py:104 src/olympia/constants/categories.py:146
 msgid "Scenery"
 msgstr ""
 
-#: src/olympia/constants/categories.py:130
+#: src/olympia/constants/categories.py:105 src/olympia/constants/categories.py:147
 msgid "Seasonal"
 msgstr ""
 
-#: src/olympia/constants/categories.py:131
+#: src/olympia/constants/categories.py:106 src/olympia/constants/categories.py:148
 msgid "Solid"
 msgstr ""
 
-#: src/olympia/constants/categories.py:133
+#: src/olympia/constants/categories.py:108 src/olympia/constants/categories.py:150
 msgid "Websites"
 msgstr ""
 
-#: src/olympia/constants/categories.py:139
+#: src/olympia/constants/categories.py:111 src/olympia/constants/categories.py:118
+#: src/olympia/constants/categories.py:133 src/olympia/constants/categories.py:202
+#: src/olympia/constants/categories.py:205 src/olympia/constants/categories.py:234
+#: src/olympia/constants/categories.py:237
+msgid "General"
+msgstr ""
+
+#: src/olympia/constants/categories.py:115
+msgid "Business"
+msgstr ""
+
+#: src/olympia/constants/categories.py:117
+msgid "Dictionaries & Encyclopedias"
+msgstr ""
+
+#: src/olympia/constants/categories.py:119
+msgid "Kids"
+msgstr ""
+
+#: src/olympia/constants/categories.py:121
+msgid "Multiple Search"
+msgstr ""
+
+#: src/olympia/constants/categories.py:123
+msgid "News & Blogs"
+msgstr ""
+
+#: src/olympia/constants/categories.py:124
+msgid "Photos & Images"
+msgstr ""
+
+#: src/olympia/constants/categories.py:126
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+#: src/olympia/constants/categories.py:127
+msgid "Social & People"
+msgstr ""
+
+#: src/olympia/constants/categories.py:129
+msgid "Travel"
+msgstr ""
+
+#: src/olympia/constants/categories.py:130
+msgid "Video"
+msgstr ""
+
+#: src/olympia/constants/categories.py:156
 msgid "Device Features & Location"
 msgstr ""
 
-#: src/olympia/constants/categories.py:140
+#: src/olympia/constants/categories.py:157
 msgid "Experimental"
 msgstr ""
 
-#: src/olympia/constants/categories.py:142
+#: src/olympia/constants/categories.py:159
 msgid "Feeds, News, & Blogging"
 msgstr ""
 
-#: src/olympia/constants/categories.py:143
+#: src/olympia/constants/categories.py:160
 #: src/olympia/editors/templates/editors/base.html:74
 msgid "Performance"
 msgstr ""
 
-#: src/olympia/constants/categories.py:144
+#: src/olympia/constants/categories.py:161
 msgid "Photos & Media"
 msgstr ""
 
-#: src/olympia/constants/categories.py:146
+#: src/olympia/constants/categories.py:163
 msgid "Security & Privacy"
 msgstr ""
 
-#: src/olympia/constants/categories.py:149
+#: src/olympia/constants/categories.py:166
 msgid "Social Networking"
 msgstr ""
 
-#: src/olympia/constants/categories.py:150
+#: src/olympia/constants/categories.py:167
 msgid "Sports & Games"
 msgstr ""
 
-#: src/olympia/constants/categories.py:152
+#: src/olympia/constants/categories.py:169
 msgid "User Interface"
 msgstr ""
 
-#: src/olympia/constants/categories.py:159
+#: src/olympia/constants/categories.py:176
 msgid "Appearance and Customization"
 msgstr ""
 
-#: src/olympia/constants/categories.py:161
+#: src/olympia/constants/categories.py:178
 msgid "Calendar and Date/Time"
 msgstr ""
 
-#: src/olympia/constants/categories.py:162
+#: src/olympia/constants/categories.py:179
 msgid "Chat and IM"
 msgstr ""
 
-#: src/olympia/constants/categories.py:164
+#: src/olympia/constants/categories.py:181
 msgid "Message Composition"
 msgstr ""
 
-#: src/olympia/constants/categories.py:165
+#: src/olympia/constants/categories.py:182
 msgid "Contacts"
 msgstr ""
 
-#: src/olympia/constants/categories.py:167
+#: src/olympia/constants/categories.py:184
 msgid "Folders and Filters"
 msgstr ""
 
-#: src/olympia/constants/categories.py:168
+#: src/olympia/constants/categories.py:185
 msgid "Import/Export"
 msgstr ""
 
-#: src/olympia/constants/categories.py:172
+#: src/olympia/constants/categories.py:189
 msgid "Message and News Reading"
 msgstr ""
 
-#: src/olympia/constants/categories.py:175 src/olympia/constants/categories.py:205
+#: src/olympia/constants/categories.py:192 src/olympia/constants/categories.py:222
 msgid "Privacy and Security"
 msgstr ""
 
-#: src/olympia/constants/categories.py:195
+#: src/olympia/constants/categories.py:212
 msgid "Downloading and File Management"
 msgstr ""
 
-#: src/olympia/constants/categories.py:197
+#: src/olympia/constants/categories.py:214
 msgid "Interface Customizations"
 msgstr ""
 
-#: src/olympia/constants/categories.py:199
+#: src/olympia/constants/categories.py:216
 msgid "Language Support and Translation"
 msgstr ""
 
-#: src/olympia/constants/categories.py:203
+#: src/olympia/constants/categories.py:220
 msgid "Photos and Media"
 msgstr ""
 
-#: src/olympia/constants/categories.py:207
+#: src/olympia/constants/categories.py:224
 msgid "RSS, News and Blogging"
 msgstr ""
 
-#: src/olympia/constants/categories.py:209
+#: src/olympia/constants/categories.py:226
 msgid "Site-specific"
 msgstr ""
 
-#: src/olympia/constants/categories.py:211
+#: src/olympia/constants/categories.py:228
 msgid "Web and Developer Tools"
 msgstr ""
 
@@ -4324,11 +4336,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:330 src/olympia/devhub/views.py:334
 #: src/olympia/devhub/views.py:498 src/olympia/devhub/views.py:529
-#: src/olympia/devhub/views.py:582 src/olympia/devhub/views.py:1162
+#: src/olympia/devhub/views.py:582 src/olympia/devhub/views.py:1163
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:338 src/olympia/devhub/views.py:1635
+#: src/olympia/devhub/views.py:338 src/olympia/devhub/views.py:1642
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4388,72 +4400,72 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1051
+#: src/olympia/devhub/views.py:1052
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1053
+#: src/olympia/devhub/views.py:1054
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: src/olympia/devhub/views.py:1078
+#: src/olympia/devhub/views.py:1079
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1085
+#: src/olympia/devhub/views.py:1086
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1187
+#: src/olympia/devhub/views.py:1188
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1193
+#: src/olympia/devhub/views.py:1194
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1206
+#: src/olympia/devhub/views.py:1207
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1218
+#: src/olympia/devhub/views.py:1219
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1674
+#: src/olympia/devhub/views.py:1681
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1676
+#: src/olympia/devhub/views.py:1683
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1769
+#: src/olympia/devhub/views.py:1776
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1786
+#: src/olympia/devhub/views.py:1793
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1800
+#: src/olympia/devhub/views.py:1807
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1811
+#: src/olympia/devhub/views.py:1818
 msgid "API key revoked"
 msgstr ""
 
@@ -4878,14 +4890,14 @@ msgid "Requires Payment?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:86
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:59
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:60
 msgid ""
 "Check this box if this add-on's core features require some form of payment "
 "upfront or after a trial period in order to work."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:91
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:55
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:56
 msgid ""
 "This add-on requires payment, non-free services or software, or additional "
 "hardware."
@@ -5471,74 +5483,74 @@ msgstr ""
 msgid "Summary:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:43
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:44
 msgid "This add-on is experimental"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:46
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:47
 msgid ""
 "Check this option if your add-on is experimental or otherwise not ready for "
 "general use.  The add-on will be listed but will have reduced visibility.  "
 "You can change this setting later."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:74
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:76
 msgid "Support email:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:81
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:83
 msgid "Support website:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:89
 msgid "License:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:89
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:116
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:119
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy "
 "is required that explains what data is sent and how it is used."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:129
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:132
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:20
 msgid "Notes to Reviewer:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:131
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:134
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:22
 msgid ""
 "Is there anything our reviewers should bear in mind when reviewing this add-"
 "on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:133
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:136
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:139
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:143
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:30
 msgid "Cancel and Disable Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:141
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:145
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:32
 msgid "Cancel Review and Disable Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:147
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "Submit Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:149
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:153
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:40
 msgid "Submit Version for Review"
 msgstr ""
@@ -5679,28 +5691,27 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
 msgid ""
-"Use the fields below to upload your add-on package and select any platform "
-"restrictions. After upload, a series of automated validation tests will be "
-"run on your file."
+"Use the fields below to upload your add-on package. After upload, a series of"
+" automated validation tests will be run on your file."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:65
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:64
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:73
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:72
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
 msgid "Administrative overrides"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:95
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:94
 msgid "Submit File"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:98
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:97
 msgid "Sign Add-on"
 msgstr ""
 
@@ -6996,39 +7007,39 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/discovery/data.py:33
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py:37
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-#: src/olympia/discovery/data.py:43
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py:47
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-#: src/olympia/discovery/data.py:56
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py:60
 msgid ""
-"Supporting 25+ languages, this extension puts a proofreader right in your "
-"browser."
+"A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
+"content filters without chewing up a bunch of memory."
 msgstr ""
 
-#: src/olympia/discovery/data.py:67
+#: src/olympia/discovery/data.py:45
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:71
+#: src/olympia/discovery/data.py:49
 msgid ""
 "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
 "play control, and more."
+msgstr ""
+
+#: src/olympia/discovery/data.py:61
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:65
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+#: src/olympia/discovery/data.py:72
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py:76
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 #: src/olympia/editors/forms.py:31
@@ -7191,35 +7202,35 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
-#: src/olympia/editors/models.py:950
+#: src/olympia/editors/models.py:954
 msgid "Uses a custom CSP."
 msgstr ""
 
-#: src/olympia/editors/models.py:952
+#: src/olympia/editors/models.py:956
 msgid "Uses nativeMessaging permission."
 msgstr ""
 
-#: src/olympia/editors/models.py:954
+#: src/olympia/editors/models.py:958
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#: src/olympia/editors/models.py:956
+#: src/olympia/editors/models.py:960
 msgid "Has too many daily users."
 msgstr ""
 
-#: src/olympia/editors/models.py:958
+#: src/olympia/editors/models.py:962
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
 
-#: src/olympia/editors/models.py:959
+#: src/olympia/editors/models.py:963
 msgid "Has a pending info request."
 msgstr ""
 
-#: src/olympia/editors/models.py:960
+#: src/olympia/editors/models.py:964
 msgid "Is flagged for admin review."
 msgstr ""
 
-#: src/olympia/editors/models.py:961
+#: src/olympia/editors/models.py:965
 msgid "Is locked by a reviewer."
 msgstr ""
 
@@ -7394,39 +7405,6 @@ msgstr ""
 
 #: src/olympia/editors/views.py:878
 msgid "Review lock limit reached"
-msgstr ""
-
-#: src/olympia/editors/views.py:960
-msgid "was approved"
-msgstr ""
-
-#: src/olympia/editors/views.py:962
-msgid "given preliminary review"
-msgstr ""
-
-#: src/olympia/editors/views.py:963
-msgid "rejected"
-msgstr ""
-
-#: src/olympia/editors/views.py:964
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-#: src/olympia/editors/views.py:966
-msgid "needs more information"
-msgstr ""
-
-#: src/olympia/editors/views.py:967
-msgid "needs super review"
-msgstr ""
-
-#: src/olympia/editors/views.py:968
-msgid "commented"
-msgstr ""
-
-#: src/olympia/editors/views.py:969
-msgid "confirmed as approved"
 msgstr ""
 
 #: src/olympia/editors/views_themes.py:325
@@ -7959,21 +7937,21 @@ msgstr ""
 msgid "Reviewer"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/reviewlog.html:58
+#: src/olympia/editors/templates/editors/reviewlog.html:60
 msgid "Add-on has been deleted."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/reviewlog.html:63
+#: src/olympia/editors/templates/editors/reviewlog.html:65
 #: src/olympia/editors/templates/editors/themes/logs.html:32
 msgid "Show Comments"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/reviewlog.html:64
+#: src/olympia/editors/templates/editors/reviewlog.html:66
 #: src/olympia/editors/templates/editors/themes/logs.html:33
 msgid "Hide Comments"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/reviewlog.html:76
+#: src/olympia/editors/templates/editors/reviewlog.html:78
 #: src/olympia/editors/templates/editors/themes/logs.html:50
 msgid "No reviews found for this period."
 msgstr ""
@@ -8271,80 +8249,87 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:404
+#: src/olympia/files/utils.py:408
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:415
+#: src/olympia/files/utils.py:419
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:451
+#: src/olympia/files/utils.py:456
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:521
+#: src/olympia/files/utils.py:529
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:537
+#: src/olympia/files/utils.py:545
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:587
+msgid ""
+"Invalid file name in archive. Please make sure all filenames are utf-8 or "
+"latin1 encoded."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+#: src/olympia/files/utils.py:596
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:583
+#: src/olympia/files/utils.py:604
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:635
+#: src/olympia/files/utils.py:656
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:780 src/olympia/files/utils.py:784
+#: src/olympia/files/utils.py:801 src/olympia/files/utils.py:805
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:807
+#: src/olympia/files/utils.py:828
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:822
+#: src/olympia/files/utils.py:843
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:824
+#: src/olympia/files/utils.py:845
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:835
+#: src/olympia/files/utils.py:856
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:838
+#: src/olympia/files/utils.py:859
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:841
+#: src/olympia/files/utils.py:862
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:846
+#: src/olympia/files/utils.py:867
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:872
+#: src/olympia/files/utils.py:893
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -11096,6 +11081,10 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+#: src/olympia/search/filters.py:377
+msgid "Maximum query length exceeded."
 msgstr ""
 
 #: src/olympia/search/forms.py:11
