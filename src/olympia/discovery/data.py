@@ -29,14 +29,14 @@ discopane_items = [
 
     # uBlock Origin
     DiscoItem(
-        addon_id=626810,
+        addon_id=607454,
         heading=_(u'Block ads {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'A lightweight and effective ad blocker. uBlock Origin enforces '
-              u'thousands of content filters without chewing up a bunch of '
-              u'memory.'),
+            _(u'A lightweight and effective ad blocker. uBlock Origin '
+              u'enforces thousands of content filters without chewing up a '
+              u'bunch of memory.'),
             '</blockquote>')),
 
     # Enhancer for YouTube
