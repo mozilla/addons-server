@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 05:11+0000\n"
+"PO-Revision-Date: 2017-10-11 05:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7636,19 +7636,19 @@ msgstr "\"upload\" გასაღები ფაილის მონაც�
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "დამატებაზე, რომლის მდგომარეობაა %s, ახალი ვერსიების მითითება არ შეგიძლიათ."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "ვერსია არ ემთხვევა მანიფესტის ფაილით განსაზღვრულს."
 
 msgid "Version already exists."
-msgstr ""
+msgstr "ვერსია უკვე არსებობს."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "GUID-ის გამოტოვება, მხოლოდ WebExtensions-ის შემთხვევაშია შესაძლებელი"
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "უმართებულო GUID URL ბმულში"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "ამ დამატების გამოქვეყნებულ ვერსიაზე API-ის საშუალებით დამატება არ შეგიძლიათ, არასაკმარისი მონაცემების გამო. გთხოვთ გადმოაგზავნოთ საიტის მეშვეობით"
@@ -7657,34 +7657,34 @@ msgid "No uploaded file for that addon and version."
 msgstr "ამ დამატებისთვის ატვირთული ფაილები არ არის."
 
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "გმადლობთ {addon_name} დამატებისთვის შემოწირულობის გაღებისთვის"
 
 msgid "Overview"
-msgstr ""
+msgstr "ზოგადი მიმოხილვა"
 
 msgid "by Source"
-msgstr ""
+msgstr "წყარო"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "დამატების ვერსია"
 
 msgid "by Application"
-msgstr ""
+msgstr "პროგრამა"
 
 msgid "by Language"
-msgstr ""
+msgstr "ენა"
 
 msgid "by Platform"
-msgstr ""
+msgstr "სისტემა"
 
 msgid "by Add-on Status"
 msgstr "დამატების მდგომარეობით"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "გამომწერები"
 
 msgid "Ratings"
-msgstr ""
+msgstr "შეფასება"
 
 msgid "Add-on Statistics"
 msgstr "დამატების სტატისტიკა"
@@ -7708,19 +7708,19 @@ msgid "Reviews Written"
 msgstr "მიმოხილვები დაწერილია"
 
 msgid "User Signups"
-msgstr ""
+msgstr "დარეგისტრებული მომხმარებლები"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "დაარქივებული მონაცემები"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "დროის მონაკვეთის მითითება"
 
 msgid "From"
-msgstr ""
+msgstr "საწყისი"
 
 msgid "To"
-msgstr ""
+msgstr "საბოლოო"
 
 msgid "Update"
 msgstr "განახლება"
@@ -7733,74 +7733,74 @@ msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: სტატისტიკური მონაცემები :: {1}-ის დამატებები"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: სტატისტიკური მონაცემები"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "სტატისტიკური მონაცემები :: {0}-ის დამატებები"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "{0} დამატების სტატისტიკური მონაცემები"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "სტატისტიკური მონაცემების გვერდი"
 
 msgid "Controls:"
-msgstr ""
+msgstr "სამართავი:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "საწყის ზომაზე დაბრუნება"
 
 msgid "Group by:"
-msgstr ""
+msgstr "დაჯგუფება:"
 
 msgid "day"
-msgstr ""
+msgstr "დღე"
 
 msgid "week"
-msgstr ""
+msgstr "კვირა"
 
 msgid "month"
-msgstr ""
+msgstr "თვე"
 
 msgid "For last:"
-msgstr ""
+msgstr "ბოლო:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 დღე"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 დღე"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 დღე"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 დღე"
 
 msgid "Custom..."
-msgstr ""
+msgstr "მითითებული..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "სტატისტიკის დამუშავება ამჟამად შეჩერებულია, ასე რომ, უახლესი მონაცემები მიუწვდომელია. სტატისტიკური აღრიცხვა ჯერ კიდევ მიმდინარეობს და ეს გვერდიც მალე განახლდება გამოტოვებული მონაცემებით."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "უახლესი მონაცემების ჩატვირთვა&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "მონაცემები არაა ხელმისაწვდომი."
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr "ეს გვერდი ამჟამად <b>საჯაროა</b>."
 
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "შემოწირულობის შესახებ სტატისტიკური მონაცემები <b>არაა საჯარო</b>."
 
 msgid "This dashboard is currently <b>private</b>."
 msgstr "ეს გვერდი ამჟამად <b>პირადია</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "პარამეტრების შეცვლა."
 
 msgid "Add-ons Created by Date"
 msgstr "დამატებები თარიღის მიხედვით"
@@ -7815,19 +7815,19 @@ msgid "Add-ons Updated by Date"
 msgstr "დამატებები, განახლების თარიღის მიხედვით"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "პროგრამის გამოყენება თარიღის მიხედვით"
 
 msgid "Collections Created by Date"
 msgstr "კრებულები შექმნის თარიღის მიხედვით"
 
 msgid "Contributions by Date"
-msgstr ""
+msgstr "შემოწირულობები თარიღის მიხედვით"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "ჩამოტვირთვები თარირის მიხედვით"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "როგორ ითვლება ჩამოტვირთვები?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
