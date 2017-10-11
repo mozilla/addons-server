@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-09-09 12:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -2021,6 +2021,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Comentari sobre {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Comentari"
+
 msgid "{tag} added to {addon}."
 msgstr "S'ha afegit l'etiqueta {tag} al complement {addon}."
 
@@ -2286,6 +2290,9 @@ msgstr "Connector"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr ""
 
@@ -2303,6 +2310,9 @@ msgstr ""
 # Plural in this context means many of the add-on type
 msgid "Plugins"
 msgstr "Connectors"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Només demana-ho a la pàgina del complement i al perfil del desenvolupador"
@@ -2399,42 +2409,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Esports"
 
-msgid "General"
-msgstr "General"
-
-msgid "Business"
-msgstr "Negocis"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Diccionaris i enciclopèdies"
-
-msgid "Kids"
-msgstr "Mainada"
-
-msgid "Multiple Search"
-msgstr "Cerca múltiple"
-
-msgid "Music"
-msgstr "Música"
-
-msgid "News & Blogs"
-msgstr "Notícies i blocs"
-
-msgid "Photos & Images"
-msgstr "Fotos i imatges"
-
-msgid "Shopping & E-Commerce"
-msgstr "Botigues i comerç en línia"
-
-msgid "Social & People"
-msgstr "Social i gent"
-
-msgid "Travel"
-msgstr "Viatge"
-
-msgid "Video"
-msgstr "Vídeo"
-
 msgid "Abstract"
 msgstr "Abstracte"
 
@@ -2453,6 +2427,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Festes"
 
+msgid "Music"
+msgstr "Música"
+
 msgid "Scenery"
 msgstr "Teatre"
 
@@ -2464,6 +2441,39 @@ msgstr "Sòlid"
 
 msgid "Websites"
 msgstr "Llocs web"
+
+msgid "General"
+msgstr "General"
+
+msgid "Business"
+msgstr "Negocis"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Diccionaris i enciclopèdies"
+
+msgid "Kids"
+msgstr "Mainada"
+
+msgid "Multiple Search"
+msgstr "Cerca múltiple"
+
+msgid "News & Blogs"
+msgstr "Notícies i blocs"
+
+msgid "Photos & Images"
+msgstr "Fotos i imatges"
+
+msgid "Shopping & E-Commerce"
+msgstr "Botigues i comerç en línia"
+
+msgid "Social & People"
+msgstr "Social i gent"
+
+msgid "Travel"
+msgstr "Viatge"
+
+msgid "Video"
+msgstr "Vídeo"
 
 msgid "Device Features & Location"
 msgstr "Funcions i posicionament"
@@ -3853,7 +3863,8 @@ msgstr "Suprimeix la versió"
 msgid "Upload Version"
 msgstr "Puja una versió nova"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Utilitzeu els camps següents per pujar el paquet amb el vostre comlement i seleccioneu les restriccions de plataforma. Després de pujar-lo, es realitzaran una sèria de validacions i proves "
 "automàtiques."
@@ -4773,28 +4784,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avís"
 msgstr[1] "{0} avisos"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5071,32 +5082,6 @@ msgstr "La revisió s'ha processat correctament."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "va ser aprovada"
-
-msgid "given preliminary review"
-msgstr "va passar la revisió preliminjar"
-
-msgid "rejected"
-msgstr "va ser rebutjada"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "va ser escalada"
-
-msgid "needs more information"
-msgstr "necessita més informació"
-
-msgid "needs super review"
-msgstr "necessita una super-revisió"
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "va ser aprovada"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5743,6 +5728,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7699,6 +7688,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

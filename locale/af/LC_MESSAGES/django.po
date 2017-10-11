@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -2031,6 +2031,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+msgid "Commented"
+msgstr ""
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2290,6 +2293,9 @@ msgstr "Inprop"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Volledige temas"
 
@@ -2308,6 +2314,9 @@ msgstr ""
 # 100%
 msgid "Plugins"
 msgstr "Inproppe"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2404,42 +2413,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Algemeen"
-
-msgid "Business"
-msgstr "Besigheid"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Woordeboeke en ensiklopedieë"
-
-msgid "Kids"
-msgstr "Kinders"
-
-msgid "Multiple Search"
-msgstr "Veelvuldige soekenjins"
-
-msgid "Music"
-msgstr "Musiek"
-
-msgid "News & Blogs"
-msgstr "Nuus en joernale"
-
-msgid "Photos & Images"
-msgstr "Foto's en prente"
-
-msgid "Shopping & E-Commerce"
-msgstr "Inkopies en e-handel"
-
-msgid "Social & People"
-msgstr "Sosiaal en mense"
-
-msgid "Travel"
-msgstr "Reis"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrak"
 
@@ -2458,6 +2431,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Vakansie"
 
+msgid "Music"
+msgstr "Musiek"
+
 msgid "Scenery"
 msgstr "Landskap"
 
@@ -2469,6 +2445,39 @@ msgstr "Effe kleur"
 
 msgid "Websites"
 msgstr "Webwerwe"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Business"
+msgstr "Besigheid"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Woordeboeke en ensiklopedieë"
+
+msgid "Kids"
+msgstr "Kinders"
+
+msgid "Multiple Search"
+msgstr "Veelvuldige soekenjins"
+
+msgid "News & Blogs"
+msgstr "Nuus en joernale"
+
+msgid "Photos & Images"
+msgstr "Foto's en prente"
+
+msgid "Shopping & E-Commerce"
+msgstr "Inkopies en e-handel"
+
+msgid "Social & People"
+msgstr "Sosiaal en mense"
+
+msgid "Travel"
+msgstr "Reis"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Toestelfunksies en ligging"
@@ -3840,7 +3849,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Toepassingweergawes"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4751,28 +4760,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarskuwing"
 msgstr[1] "{0} waarskuwings"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5042,31 +5051,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5709,6 +5693,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7630,6 +7618,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-10-04 11:24+0000\n"
 "Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2024,6 +2024,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Comentário sobre {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "comentou"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} adicionada a {addon}."
 
@@ -2276,6 +2280,10 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Detalhes do tema"
+
 msgid "Complete Themes"
 msgstr "Temas Completos"
 
@@ -2294,6 +2302,10 @@ msgstr "Pacotes de idioma (extensão)"
 # 100%
 msgid "Plugins"
 msgstr "Plugins"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Artista"
 
 # %1$s is a URL where the user can see an example
 msgid "Only ask on this add-on's page and developer profile"
@@ -2392,43 +2404,6 @@ msgstr "Retrô"
 msgid "Sports"
 msgstr "Esportes"
 
-# This is the name/category for a group of tests
-msgid "General"
-msgstr "Geral"
-
-msgid "Business"
-msgstr "Negócios"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dicionários e enciclopédias"
-
-msgid "Kids"
-msgstr "Infantil"
-
-msgid "Multiple Search"
-msgstr "Múltipla pesquisa"
-
-msgid "Music"
-msgstr "Música"
-
-msgid "News & Blogs"
-msgstr "Notícias e Blogs"
-
-msgid "Photos & Images"
-msgstr "Fotos e Imagens"
-
-msgid "Shopping & E-Commerce"
-msgstr "Compras e e-comércio"
-
-msgid "Social & People"
-msgstr "Social e pessoas"
-
-msgid "Travel"
-msgstr "Viagem"
-
-msgid "Video"
-msgstr "Vídeo"
-
 msgid "Abstract"
 msgstr "Abstrato"
 
@@ -2447,6 +2422,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Feriado"
 
+msgid "Music"
+msgstr "Música"
+
 msgid "Scenery"
 msgstr "Cenário"
 
@@ -2458,6 +2436,40 @@ msgstr "Sólido"
 
 msgid "Websites"
 msgstr "Sites"
+
+# This is the name/category for a group of tests
+msgid "General"
+msgstr "Geral"
+
+msgid "Business"
+msgstr "Negócios"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Dicionários e enciclopédias"
+
+msgid "Kids"
+msgstr "Infantil"
+
+msgid "Multiple Search"
+msgstr "Múltipla pesquisa"
+
+msgid "News & Blogs"
+msgstr "Notícias e Blogs"
+
+msgid "Photos & Images"
+msgstr "Fotos e Imagens"
+
+msgid "Shopping & E-Commerce"
+msgstr "Compras e e-comércio"
+
+msgid "Social & People"
+msgstr "Social e pessoas"
+
+msgid "Travel"
+msgstr "Viagem"
+
+msgid "Video"
+msgstr "Vídeo"
 
 msgid "Device Features & Location"
 msgstr "Características do dispositivo e localização"
@@ -3872,7 +3884,8 @@ msgstr "Onde hospedar a versão"
 msgid "Upload Version"
 msgstr "Enviar versão"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Use os campos abaixo para enviar o pacote do seu complemento e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes de validação automáticos será executada em seu "
 "arquivo."
@@ -4788,29 +4801,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de Aba {start_sub_heading}com {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Defina a página que você verá cada vez que abrir uma nova aba."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore seu uso de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dezenas de emojis incríveis—a um clique de distância."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Ao suportar mais de 25 idiomas, esta extensão coloca um corretor diretamente no seu navegador."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Aproveite uma variedade de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore seu uso de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dezenas de emojis incríveis—a um clique de distância."
 
 msgid "Approved reviews"
 msgstr "Análises aprovadas"
@@ -5073,33 +5088,6 @@ msgstr "Avaliação processada com sucesso."
 
 msgid "Review lock limit reached"
 msgstr "Limite de bloqueio de análise atingido"
-
-msgid "was approved"
-msgstr "foi aprovado"
-
-# 80%
-# 100%
-msgid "given preliminary review"
-msgstr "foi aprovado na análise preliminar"
-
-msgid "rejected"
-msgstr "rejeitado"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "encaminhado para análise superior"
-
-msgid "needs more information"
-msgstr "precisa de mais informações"
-
-msgid "needs super review"
-msgstr "precisa de superanálise"
-
-msgid "commented"
-msgstr "comentou"
-
-msgid "confirmed as approved"
-msgstr "confirmado como aprovado"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5740,6 +5728,10 @@ msgstr "Não foi possível analisar o arquivo carregado, elemento <%s> ausente o
 
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível interpretar o arquivo enviado."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7823,6 +7815,9 @@ msgstr "Avaliado em {0} de 5 estrelas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Avaliado em %(rating)s de 5 estrelas"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Mais populares desta semana"

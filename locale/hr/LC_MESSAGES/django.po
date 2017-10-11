@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -2015,6 +2015,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Komentar"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2277,6 +2281,9 @@ msgstr "Priključak"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Kompletne teme"
 
@@ -2291,6 +2298,9 @@ msgstr ""
 
 msgid "Plugins"
 msgstr "Dodaci za preglednik"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2387,42 +2397,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Opće"
-
-msgid "Business"
-msgstr "Posao"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Rječnici i enciklopedije"
-
-msgid "Kids"
-msgstr "Djeca"
-
-msgid "Multiple Search"
-msgstr "Višestruko pretraživanje"
-
-msgid "Music"
-msgstr "Glazba"
-
-msgid "News & Blogs"
-msgstr "Vijesti i blogovi"
-
-msgid "Photos & Images"
-msgstr "Fotografije i slike"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping i e-komerc"
-
-msgid "Social & People"
-msgstr "Društveno i ljudi"
-
-msgid "Travel"
-msgstr "Putovanje"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktno"
 
@@ -2441,6 +2415,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Blagdan"
 
+msgid "Music"
+msgstr "Glazba"
+
 msgid "Scenery"
 msgstr "Pejzaž"
 
@@ -2452,6 +2429,39 @@ msgstr "Jednobojne"
 
 msgid "Websites"
 msgstr "Web stranice"
+
+msgid "General"
+msgstr "Opće"
+
+msgid "Business"
+msgstr "Posao"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Rječnici i enciklopedije"
+
+msgid "Kids"
+msgstr "Djeca"
+
+msgid "Multiple Search"
+msgstr "Višestruko pretraživanje"
+
+msgid "News & Blogs"
+msgstr "Vijesti i blogovi"
+
+msgid "Photos & Images"
+msgstr "Fotografije i slike"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping i e-komerc"
+
+msgid "Social & People"
+msgstr "Društveno i ljudi"
+
+msgid "Travel"
+msgstr "Putovanje"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Mogućnosti uređaja i lokacija"
@@ -3825,7 +3835,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Dodaj inačicu"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4725,28 +4735,28 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5020,32 +5030,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr "odbijen"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-# 79%
-msgid "needs more information"
-msgstr "treba više informacija"
-
-msgid "needs super review"
-msgstr "treba prvorazrednu reviziju"
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5690,6 +5674,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7615,6 +7603,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

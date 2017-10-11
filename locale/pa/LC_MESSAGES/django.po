@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1975,6 +1975,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 
+#, fuzzy
+msgid "Commented"
+msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
 
@@ -2239,6 +2243,10 @@ msgstr "ਪਲੱਗਇਨ"
 msgid "Theme"
 msgstr "ਥੀਮ"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "ਥੀਮ ਵੇਰਵਾ"
+
 msgid "Complete Themes"
 msgstr "ਮੁਕਮੰਲ ਥੀਮ"
 
@@ -2253,6 +2261,10 @@ msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
 msgid "Plugins"
 msgstr "ਪਲੱਗਇਨ"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "ਥੀਮ ਕਲਾਕਾਰ"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "ਕੇਵਲ ਇਸ ਐਡ-ਆਨ ਸਫ਼ੇ ਅਤੇ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਤੇ ਪੁੱਛੋ"
@@ -2359,6 +2371,41 @@ msgstr ""
 msgid "Sports"
 msgstr "ਸਹਿਯੋਗ"
 
+msgid "Abstract"
+msgstr ""
+
+msgid "Causes"
+msgstr ""
+
+msgid "Fashion"
+msgstr ""
+
+msgid "Film and TV"
+msgstr ""
+
+msgid "Foxkeh"
+msgstr ""
+
+msgid "Holiday"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Scenery"
+msgstr ""
+
+#, fuzzy
+msgid "Seasonal"
+msgstr "ਦਲੀਲ"
+
+msgid "Solid"
+msgstr ""
+
+#, fuzzy
+msgid "Websites"
+msgstr "ਵੈਬਸਾਈਟ"
+
 #, fuzzy
 msgid "General"
 msgstr "ਆਮ ਪਰਖ"
@@ -2376,9 +2423,6 @@ msgstr ""
 #, fuzzy
 msgid "Multiple Search"
 msgstr "ਖੋਜ ਮਿਟਾਓ"
-
-msgid "Music"
-msgstr ""
 
 msgid "News & Blogs"
 msgstr ""
@@ -2398,38 +2442,6 @@ msgstr ""
 #, fuzzy
 msgid "Video"
 msgstr "ਵੀਡੀਓ ਬੰਦ ਕਰੋ"
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Causes"
-msgstr ""
-
-msgid "Fashion"
-msgstr ""
-
-msgid "Film and TV"
-msgstr ""
-
-msgid "Foxkeh"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Scenery"
-msgstr ""
-
-#, fuzzy
-msgid "Seasonal"
-msgstr "ਦਲੀਲ"
-
-msgid "Solid"
-msgstr ""
-
-#, fuzzy
-msgid "Websites"
-msgstr "ਵੈਬਸਾਈਟ"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -3826,7 +3838,8 @@ msgstr "ਟੀਚਾ ਵਰਜਨ"
 msgid "Upload Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
 msgid "Which platforms is this file compatible with?"
@@ -4742,28 +4755,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5042,32 +5055,6 @@ msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵ
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
-
-msgid "given preliminary review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ ਗਈ"
-
-msgid "rejected"
-msgstr "ਰੱਦ ਕੀਤਾ"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "ਵਧਿਆ"
-
-msgid "needs more information"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
-
-msgid "needs super review"
-msgstr "ਉੱਤਮ ਸਮੀਖਿਆ ਦੀ ਲੋੜ"
-
-msgid "commented"
-msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5702,6 +5689,10 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7709,6 +7700,9 @@ msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "ਇਸ ਹਫ਼ਤੇ ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"

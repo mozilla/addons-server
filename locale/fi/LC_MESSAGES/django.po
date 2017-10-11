@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -2040,6 +2040,12 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+# 87%
+# 100%
+#, fuzzy
+msgid "Commented"
+msgstr "Kommentoi"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2302,6 +2308,9 @@ msgstr "Liitännäinen"
 msgid "Theme"
 msgstr "Teema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Täydelliset teemat"
 
@@ -2318,6 +2327,9 @@ msgstr "Kielipaketit (lisäosat)"
 
 msgid "Plugins"
 msgstr "Liitännäiset"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2418,42 +2430,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Urheilu"
 
-msgid "General"
-msgstr "Yleiset"
-
-msgid "Business"
-msgstr "Talous"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Sanakirjat ja tietosanakirjat"
-
-msgid "Kids"
-msgstr "Lapset"
-
-msgid "Multiple Search"
-msgstr "Yhdistetyt haut"
-
-msgid "Music"
-msgstr "Musiikki"
-
-msgid "News & Blogs"
-msgstr "Uutiset ja blogit"
-
-msgid "Photos & Images"
-msgstr "Kuvat"
-
-msgid "Shopping & E-Commerce"
-msgstr "Kaupat"
-
-msgid "Social & People"
-msgstr "Sosiaaliset ja ihmiset"
-
-msgid "Travel"
-msgstr "Matkailu"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktit"
 
@@ -2472,6 +2448,9 @@ msgstr ""
 msgid "Holiday"
 msgstr "Loma"
 
+msgid "Music"
+msgstr "Musiikki"
+
 msgid "Scenery"
 msgstr "Maisema"
 
@@ -2485,6 +2464,39 @@ msgstr "Tasaväriset"
 
 msgid "Websites"
 msgstr "Verkkosivustot"
+
+msgid "General"
+msgstr "Yleiset"
+
+msgid "Business"
+msgstr "Talous"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Sanakirjat ja tietosanakirjat"
+
+msgid "Kids"
+msgstr "Lapset"
+
+msgid "Multiple Search"
+msgstr "Yhdistetyt haut"
+
+msgid "News & Blogs"
+msgstr "Uutiset ja blogit"
+
+msgid "Photos & Images"
+msgstr "Kuvat"
+
+msgid "Shopping & E-Commerce"
+msgstr "Kaupat"
+
+msgid "Social & People"
+msgstr "Sosiaaliset ja ihmiset"
+
+msgid "Travel"
+msgstr "Matkailu"
+
+msgid "Video"
+msgstr "Video"
 
 # 80%
 # 100%
@@ -3901,8 +3913,9 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Lisää versio"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
@@ -4834,28 +4847,28 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5128,31 +5141,6 @@ msgid "Review successfully processed."
 msgstr "Arvio käsiteltiin."
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5802,6 +5790,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7741,6 +7733,9 @@ msgstr "Arvosteltu: {0}/5 tähteä"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

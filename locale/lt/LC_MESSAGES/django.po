@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-06 14:43+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1976,6 +1976,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+#, fuzzy
+msgid "Commented"
+msgstr "Komentuoti"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2230,6 +2234,9 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr ""
 
@@ -2243,6 +2250,9 @@ msgid "Language Packs (Add-on)"
 msgstr ""
 
 msgid "Plugins"
+msgstr ""
+
+msgid "Themes (Static)"
 msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
@@ -2342,6 +2352,40 @@ msgstr ""
 msgid "Sports"
 msgstr ""
 
+msgid "Abstract"
+msgstr ""
+
+msgid "Causes"
+msgstr ""
+
+msgid "Fashion"
+msgstr ""
+
+msgid "Film and TV"
+msgstr ""
+
+msgid "Foxkeh"
+msgstr ""
+
+msgid "Holiday"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Scenery"
+msgstr ""
+
+msgid "Seasonal"
+msgstr ""
+
+msgid "Solid"
+msgstr ""
+
+#, fuzzy
+msgid "Websites"
+msgstr "Svetainė"
+
 msgid "General"
 msgstr ""
 
@@ -2355,9 +2399,6 @@ msgid "Kids"
 msgstr ""
 
 msgid "Multiple Search"
-msgstr ""
-
-msgid "Music"
 msgstr ""
 
 msgid "News & Blogs"
@@ -2377,37 +2418,6 @@ msgstr ""
 
 msgid "Video"
 msgstr ""
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Causes"
-msgstr ""
-
-msgid "Fashion"
-msgstr ""
-
-msgid "Film and TV"
-msgstr ""
-
-msgid "Foxkeh"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Scenery"
-msgstr ""
-
-msgid "Seasonal"
-msgstr ""
-
-msgid "Solid"
-msgstr ""
-
-#, fuzzy
-msgid "Websites"
-msgstr "Svetainė"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -3764,7 +3774,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Versija"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4647,28 +4657,28 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4937,31 +4947,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5599,6 +5584,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7508,6 +7497,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"
