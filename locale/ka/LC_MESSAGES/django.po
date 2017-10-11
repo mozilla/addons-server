@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-10 23:47+0000\n"
+"PO-Revision-Date: 2017-10-11 00:12+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6420,29 +6420,29 @@ msgid "Thank you!"
 msgstr "გმადლობთ!"
 
 msgid "Site Credits"
-msgstr ""
+msgstr "საიტის შემქმნელები"
 
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ""
+msgstr "Mozilla-ს სურს მადლობა გადაუხადოს თითოეულ ამ ადამიანს, addons.mozilla.org პროექტში თავიანთი წვლილის შეტანისთვის, წლების განმავლობაში:"
 
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "შემმუშავებლები &amp; ადმინისტრატორები"
 
 msgid "Localizers"
-msgstr ""
+msgstr "მთარგმნელები"
 
 msgid "Reviewers"
-msgstr ""
+msgstr "მიმომხილველები"
 
 #. {0} is a number (e.g. 1000).
 msgid "More than {0} add-on reviews"
 msgstr "დამატებას გააჩნია {0}-ზე მეტი მიმოხილვა"
 
 msgid "Other Contributors"
-msgstr ""
+msgstr "სხვა შემოწირულობები"
 
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "წინა შემმუშავებლები &amp; ადმინისტრატორები"
 
 msgid "Software and Images"
 msgstr "პროგრამა და სურათები"
@@ -6476,10 +6476,10 @@ msgid "Developer FAQ"
 msgstr "შემმუშავებლის ხ.დ.კ."
 
 msgid "Sections"
-msgstr ""
+msgstr "განყოფილებები"
 
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "დამატების შემუშავება"
 
 #. Heading for a list of resources for developers
 msgid "Support Resources"
