@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-06 14:43+0000\n"
-"PO-Revision-Date: 2017-10-11 06:07+0000\n"
+"PO-Revision-Date: 2017-10-11 06:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4830,9 +4830,8 @@ msgstr "თუ გარკვეული მოსაზრებები გ
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "კომენტარის დატოვება ამ ვერსიაზე. შემმუშავებელი ვერ იხილავს."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "მიღება / უარყოფა"
+msgstr "შიგთავსის მიღება"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "ამის შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
@@ -4960,9 +4959,8 @@ msgstr "შემოწმებული მიმოხილვები"
 msgid "Auto Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "განუხილველია"
+msgstr "შიგთავსის განხილვა"
 
 msgid "Unlisted Queues"
 msgstr "გამოუქვეყნებლების რიგი"
@@ -5158,9 +5156,8 @@ msgid "Editors' Guide"
 msgstr "შემსწორებლის მითითებები"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "შემოწმებული მიმოხილვები ({0})"
+msgstr "{0} შიგთავსის განხილვა"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5447,10 +5444,9 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ავტომატურად მიღებული დამატებები ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "შემოწმებული მიმოხილვები ({0})"
+msgstr[0] "შიგთავსის განხილვა ({0})"
 
 msgid "Flagged"
 msgstr "ჩანიშნული"
@@ -7961,13 +7957,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "გაეცანით <b>დამატებებს</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "ჩამოტვირთვა ახლავე"
+msgstr "Firefox ჩამოტვირთვა"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Android დამატებები"
+msgstr "Android ბრაუზერი"
 
 msgid "iOS Browser"
 msgstr "iOS ბრაუზერი"
@@ -8056,10 +8050,10 @@ msgstr "ახალი ენები"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "თქვენ გაქვთ შეუნახავი ცვლილებები <b>{0}</b> ენაში. გსურთ ცვლილებების შენახვა, ენების გადართვამდე?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "ცვლილებების გაუქმება"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
@@ -8069,7 +8063,7 @@ msgid "Delete Locale"
 msgstr "ენის წაშლა"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "ელფოსტა უნდა იყოს {email}."
 
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
@@ -8087,16 +8081,16 @@ msgid "Profile Photo"
 msgstr "პროფილის სურათი"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "ეს URL ბმული არასწორი ფორმატისაა. მართებული URL ბმულები გამოიყურება შემდეგნაირად: http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "ანონიმურობისთვის, მიუთითეთ ცვლილების მიზეზი, მაგრამ არ შეაფასოთ სხვა ველები."
 
 msgid "Please enter at least one name to be denied."
 msgstr "გთხოვთ შეიყვანოთ სულ მცირე ერთი სახელი, უარყოფილთა სიაში."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "ამ ელფოსტით მომხმარებელი არ იძებნება."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -8116,28 +8110,28 @@ msgid "new add-ons or Firefox features are available"
 msgstr "ახალი დამატებების ან Firefox-ის ახალი შესაძლებლობების გამოსვლისას"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "ჩემი დამატების თავსებადობა განახლდა წარმატებით"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "ჩემი sdk-ზე დაფუძნებული დამატება განახლდა წარმატებით"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "ვიღაცა წერს მიმოხილვას ჩემი დამატების შესახებ"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "გაეცანით სიახლეებსა და დამატებების შემმუშავებლებთან დაკავშირებული ღონისძიებების შესახებ ინფორმაციას (მათ შორის about:addons-ის საინფორმაციო ცნობებს)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "ჩემი დამატების თავსებადობის განახლება ვერ ხერხდება"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "ჩემი sdk-ზე დაფუძნებული დამატების განახლება, ვერ ხერხდება"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "ჩემი დამატება განხილულია მიმომხილველის მიერ"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla ითხოვს ჩემთან დაკავშირებას, ჩემი დამატების თაობაზე"
 
 msgid "User Notifications"
 msgstr "სამომხმარებლო ცნობები"
@@ -8164,10 +8158,10 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "ცვლილებში აღმოჩნდა შეცდომები. გთხოვთ შეასწოროთ და ხელახლა გადმოაგზავნოთ."
 
 msgid "User reported."
-msgstr ""
+msgstr "მოხსენება გაგზავნილია მომხმარებლის შესახებ."
 
 msgid "new"
-msgstr ""
+msgstr "ახალი"
 
 msgid "Delete User Account"
 msgstr "მომხმარებლის ანგარიშის წაშლა"
@@ -8264,7 +8258,7 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr "Mozilla იტოვებს უფლებას, საჭიროებისამებრ პირადად გამოგეხმაუროთ, თქვენს დამატებებთან დაკავშირებულ საკითხებზე."
 
 msgid "Admin"
-msgstr ""
+msgstr "ადმინისტრატორი"
 
 msgid "Delete Account"
 msgstr "ანგარიშის წაშლა"
@@ -8276,19 +8270,19 @@ msgid "none"
 msgstr "არცერთი"
 
 msgid "all"
-msgstr ""
+msgstr "ყველა"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "ანგარიშზე შესვლისთვის, Mozilla დამატებების საიტი გადამისამართდება Firefox ანგარიშების საიტზე. გადადით და დაასრულეთ ანგარიშის მონაცემების შეყვანა."
 
 msgid "User Login"
-msgstr ""
+msgstr "მომხმარებლის შესვლა"
 
 msgid "Log in with Firefox Accounts"
 msgstr "Firefox Accounts-ით შესვლა"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "პაროლის განულება"
 
 msgid "User Info for {0}"
 msgstr "{0} მომხმარებლის მონაცემები"
@@ -8297,7 +8291,7 @@ msgid "Edit profile"
 msgstr "პროფილის ჩასწორება"
 
 msgid "Manage user"
-msgstr ""
+msgstr "მომხმარებლის მართვა"
 
 msgid "Report user"
 msgstr "მოხსენება ამ მომხმარებელზე"
@@ -8318,7 +8312,7 @@ msgid "Add-ons I've created"
 msgstr "ჩემ მიერ შექმნილი დამატებები"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "ჩემი ყველაზე მეტად სასურველი თემები"
 
 msgid "Themes I've created"
 msgstr "ჩემ მიერ შექმნილი თემები"
@@ -8345,26 +8339,26 @@ msgid "Report user {0}"
 msgstr "მოხსენება {0} მომხმარებელზე"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "გამოწერის გაუქმება"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "გამოწერა გაუქმდა წარმატებით!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
 msgstr "<strong>%(email)s</strong> ელფოსტის მისამართზე წერილებს ვეღარ მიიღებთ, როცა:"
 
 msgid "More Actions:"
-msgstr ""
+msgstr "დამატებითი მოქმედებები:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "შეტყობინებების პარამეტრების ჩასწორება"
 
 msgid "edit your profile"
 msgstr "ჩაასწორეთ თქვენი პროფილი"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "გამოწერის გაუქმება ვერ ხერხდება"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -8373,7 +8367,7 @@ msgstr ""
 "გვერდიდან</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "შემმუშავებლის მონაცემები"
 
 msgid "User since"
 msgstr "რეგისტრაციის თარიღი"
@@ -8412,13 +8406,13 @@ msgid "%s Version History"
 msgstr "%s ვერსიის ისტორია"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "ვერსიის ისტორია აღრიცხული ცვლილებებით"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "ამ ვერსიის პირდაპირი ბმული"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
@@ -8430,7 +8424,7 @@ msgstr "პირველწყარო კოდი ვრცელდებ�
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} ვერსიის ისტორია"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
@@ -8445,10 +8439,10 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr "ქვემოთ მოცემული ვერსიები განსახილველად და შესამოწმებლადაა განკუთვნილი. ყოველდღიური მოხმარებისთვის კი მხოლოდ, დამატებების <a href=\"%(url)s\">უახლესი ვერსია</a> უნდა გამოიყენოთ."
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "წაშლილი ვერსიის ცვლილება, შეუძლებელია."
 
 msgid "Binary"
-msgstr ""
+msgstr "ორობითი"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "არაორობითი"
