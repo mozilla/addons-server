@@ -70,6 +70,8 @@ This endpoint allows you to search through public add-ons.
            created  Creation date, descending.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
+            random  Random ordering. Only available when no search query is
+                    passed and when filtering to only return featured add-ons.
             rating  Bayesian rating, descending.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.
@@ -81,7 +83,8 @@ This endpoint allows you to search through public add-ons.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation
-    date, use `sort=downloads,created`.
+    date, use ``sort=downloads,created``. The only exception is the ``random``
+    sort parameter, which is only available alone.
 
 
 ------------
