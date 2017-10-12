@@ -50,7 +50,7 @@ class TestAttachTransDict(TestCase):
         assert addon.translations['whatever'] == []
 
         # No-translated fields should be absent.
-        assert addon.thankyou_note_id is None
+        assert addon.support_url_id is None
         assert None not in translations
 
         # Build expected translations dict.

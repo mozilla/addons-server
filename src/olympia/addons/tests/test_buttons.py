@@ -30,7 +30,6 @@ class ButtonTest(TestCase):
         self.addon.slug = 'a-slug'
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
-        self.addon.annoying = amo.CONTRIB_NONE
 
         self.version = v = Mock(spec=Version)
         self.version.id = 1337
