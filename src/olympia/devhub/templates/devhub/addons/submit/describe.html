@@ -93,20 +93,20 @@
       {{ form.support_url.errors }}
     </div>
     {% if license_form %}
-      <b>{{ _('License:') }}</b>
-      {{ license_form.builtin.errors }}
-      {% if addon.type == amo.ADDON_STATICTHEME %}
-        {% include 'devhub/addons/includes/cc_license_chooser.html' %}
-      <div class="addon-submission-field" id="license-list">
-      {% else %}
-      <div class="addon-submission-field">
-      {% endif %}
-          {{ _('Please choose a license appropriate for the rights you grant.') }}
-          {{ license_form.builtin }}
-          {% set show_other = (license_form.initial.builtin == license_other_val or
-                               (license_form.errors and not license_form.builtin.errors)) %}
-          <div class="license-other {{ 'js-hidden' if not show_other }}"
-               data-val="{{ license_other_val }}">
+        <b>{{ _('License:') }}</b>
+        {{ license_form.builtin.errors }}
+        {% if addon.type == amo.ADDON_STATICTHEME %}
+          {% include 'devhub/addons/includes/cc_license_chooser.html' %}
+          <div class="addon-submission-field" id="license-list">
+        {% else %}
+          <div class="addon-submission-field">
+        {% endif %}
+        {{ _('Please choose a license appropriate for the rights you grant.') }}
+        {{ license_form.builtin }}
+        {% set show_other = (license_form.initial.builtin == license_other_val or
+                            (license_form.errors and not license_form.builtin.errors)) %}
+        <div class="license-other {{ 'js-hidden' if not show_other }}"
+            data-val="{{ license_other_val }}">
             {{ license_form.non_field_errors() }}
             {{ license_form.name.errors }}
             {{ license_form.name.label_tag() }}
