@@ -500,7 +500,7 @@ class SortingFilter(BaseFilterBackend):
                         'function_score', functions=[query.SF('random_score')])
                 else:
                     raise serializers.ValidationError(
-                        'The "random" "sort" parameter can only be specified '
+                        'The "sort" parameter "random" can only be specified '
                         'when the "featured" parameter is also present, and '
                         'the "q" parameter absent.')
 

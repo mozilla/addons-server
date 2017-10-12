@@ -214,7 +214,7 @@ class TestSortingFilter(FilterTestsBase):
         assert context.exception.detail == [expected]
 
     def test_sort_random_restrictions(self):
-        expected = ('The "random" "sort" parameter can only be specified when '
+        expected = ('The "sort" parameter "random" can only be specified when '
                     'the "featured" parameter is also present, and the "q" '
                     'parameter absent.')
 
