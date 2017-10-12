@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-11 20:45+0000\n"
+"PO-Revision-Date: 2017-10-12 19:53+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4591,10 +4591,10 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოსახერხებლად უყურეთ ვიდეოებს {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
+msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატური მართვას და ა.შ."
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატურ მართვას და ა.შ."
 
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
