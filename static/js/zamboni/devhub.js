@@ -1496,19 +1496,19 @@ function initCCLicense() {
     function setLicenseFromWizard() {
         cc_data = $('input[name^="cc-"]:checked').map(function() {
             return this.dataset.cc}).get();
-        radio = $('#submit-describe #license-list input[type=radio][data-cc="'+cc_data.join(' ')+'"]');
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
         if (radio.length) {
             radio.prop('checked', true);
             return radio;
         }
-        cc_data.pop()
-        radio = $('#submit-describe #license-list input[type=radio][data-cc="'+cc_data.join(' ')+'"]');
+        cc_data.pop();
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
         if (radio.length) {
             radio.prop('checked', true);
             return radio;
         }
-        cc_data.pop()
-        radio = $('#submit-describe #license-list input[type=radio][data-cc="'+cc_data.join(' ')+'"]');
+        cc_data.pop();
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
         radio.prop('checked', true);
         return radio;
     }
@@ -1518,7 +1518,7 @@ function initCCLicense() {
         $('input[name^="cc-"]').prop('checked', false);
         $('input[name^="cc-"]:not([data-cc]').prop('checked', true);
         _.each($license.data('cc').split(' '), function(cc) {
-            $('input[type=radio][name^="cc-"][data-cc="'+cc+'"]').prop('checked', true);
+            $('input[type=radio][name^="cc-"][data-cc="' + cc + '"]').prop('checked', true);
             setCopyright(cc == 'copyr');
         });
     }
