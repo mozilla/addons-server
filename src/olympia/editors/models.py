@@ -442,11 +442,11 @@ class ReviewerScore(ModelBase):
                     'No such version/auto approval summary when determining '
                     'event type to award points: %r', exception)
                 weight = 0
-            if weight >= amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
+            if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
-            elif weight >= amo.POST_REVIEW_WEIGHT_HIGH_RISK:
+            elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGH_RISK'
-            elif weight >= amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
+            elif weight > amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_MEDIUM_RISK'
             else:
                 reviewed_score_name = 'REVIEWED_EXTENSION_LOW_RISK'

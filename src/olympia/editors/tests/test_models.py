@@ -573,7 +573,7 @@ class TestReviewerScore(TestCase):
         self.addon.current_version.update(nomination=self.days_ago(29))
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
-            weight=100)
+            weight=101)
         ReviewerScore.award_points(
             self.user, self.addon, self.addon.status,
             version=self.addon.current_version,
