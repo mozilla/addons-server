@@ -9,7 +9,7 @@ import urllib
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-from .settings import settings
+from services.settings import settings
 
 import olympia.core.logger
 from olympia.lib.log_settings_base import formatters, handlers
