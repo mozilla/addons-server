@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 03:44+0000\n"
-"Last-Translator: Yanfang Liu <yliu@mozilla.com>\n"
+"PO-Revision-Date: 2017-10-12 10:28+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1913,7 +1913,6 @@ msgstr "此附加组件已被标记为管理员审核。它仍处于我们的审
 msgid "Comment on {addon} {version}."
 msgstr "对 {addon} {version} 的评论。"
 
-#, fuzzy
 msgid "Commented"
 msgstr "已留言"
 
@@ -2166,9 +2165,8 @@ msgstr "插件"
 msgid "Theme"
 msgstr "主题"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "主题详情"
+msgstr "主题 (静态)"
 
 msgid "Complete Themes"
 msgstr "完整主题"
@@ -2187,9 +2185,8 @@ msgstr "语言包（附加组件）"
 msgid "Plugins"
 msgstr "插件"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "主题作者"
+msgstr "主题 (静态)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "仅在此附加组件页面和开发者简介中询问"
@@ -3669,9 +3666,8 @@ msgstr "版本托管位置"
 msgid "Upload Version"
 msgstr "上传版本"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的平台。在上传完成后，将会对您的文件执行一系列的自动化验证测试。"
+msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
 msgid "Which platforms is this file compatible with?"
 msgstr "此文件与哪个平台兼容？"
@@ -4528,9 +4524,8 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "屏蔽广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
@@ -4541,12 +4536,11 @@ msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_headin
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
 
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "轻松查找图像 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "选中文本并右击以快速执行一次图像搜索。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -5411,7 +5405,7 @@ msgstr "无法解析上传的文件。"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "归档中的文件名无效。请确保文件名为 utf-8 或 latin1 编码。"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7325,7 +7319,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "给 %(rating)s 以5星评价"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "超出最大查询长度。"
 
 msgid "Most popular this week"
 msgstr "本周最热门"
