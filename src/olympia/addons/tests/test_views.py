@@ -30,6 +30,7 @@ from olympia.addons.views import (
     AddonSearchView, AddonAutoCompleteSearchView)
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.reviews.models import Review
 from olympia.users.templatetags.jinja_helpers import users_list
@@ -972,6 +973,22 @@ class TestDetailPage(TestCase):
         a = self.get_pq()('.secondary.metadata .source-license a')
         assert a.attr('href') == g
         assert a.text() == 'License to Kill'
+
+    def test_license_builtin_creative_commons(self):
+        g = 'http://google.com'
+        version = self.addon._current_version
+        constant = LICENSES_BY_BUILTIN[11]
+        license = version.license
+        license.builtin = 11
+        license.name = 'License to Kill'  # Will be overriden by constant
+        license.url = g
+        license.save()
+        assert license._constant == constant
+        assert license.builtin == 11
+        assert license.url == g
+        a = self.get_pq()('.secondary.metadata .source-license a')
+        assert a.attr('href') == g
+        assert a.text() == constant.name
 
     def test_license_link_custom(self):
         version = self.addon._current_version

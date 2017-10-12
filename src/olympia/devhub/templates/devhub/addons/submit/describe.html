@@ -1,4 +1,5 @@
 {% from "devhub/includes/macros.html" import some_html_tip, select_cats %}
+{% from "includes/forms.html" import tip %}
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
@@ -93,12 +94,14 @@
     </div>
     {% if license_form %}
       <b>{{ _('License:') }}</b>
+      {{ license_form.builtin.errors }}
+      {% if addon.type == amo.ADDON_STATICTHEME %}
+        {% include 'devhub/addons/includes/cc_license_chooser.html' %}
+      <div class="addon-submission-field" id="license-list">
+      {% else %}
       <div class="addon-submission-field">
-          {% trans %}
-          Please choose a license appropriate for the rights you grant on your
-          source code.
-          {% endtrans %}
-          {{ license_form.builtin.errors }}
+      {% endif %}
+          {{ _('Please choose a license appropriate for the rights you grant.') }}
           {{ license_form.builtin }}
           {% set show_other = (license_form.initial.builtin == license_other_val or
                                (license_form.errors and not license_form.builtin.errors)) %}

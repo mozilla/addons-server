@@ -1,0 +1,81 @@
+        <div id="cc-chooser">
+          <h3>{{ _("Can others share your Add-on, as long as you're given credit?") }}</h3>
+          <ul class="radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-attrib" value="0" data-cc="cc-attrib">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work, including for '
+                               'commercial purposes.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-attrib" value="1" data-cc="copyr">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work for non-commercial '
+                               'purposes only.')) }}
+              </label>
+            </li>
+          </ul>
+          <h3 class="noncc">{{ _('Can others make commercial use of your Add-on?') }}</h3>
+          <ul class="noncc radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-noncom" value="0">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work, including for '
+                               'commercial purposes.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noncom" value="1" data-cc="cc-noncom">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display, and perform the work for non-commercial '
+                               'purposes only.')) }}
+              </label>
+            </li>
+          </ul>
+          <h3 class="noncc">{{ _('Can others create derivative works from your Add-on?') }}</h3>
+          <ul class="noncc radios">
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="0">
+                {{ _('Yes') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute, '
+                               'display and perform the work, as well as make '
+                               'derivative works based on it.')) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="1" data-cc="cc-share">
+                {{ _('Yes, as long as they share alike') }}
+                {{ tip(None, _('The licensor permits others to distribute derivative'
+                               'works only under the same license or one compatible '
+                               "with the one that governs the licensor's work.")) }}
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="cc-noderiv" value="2" data-cc="cc-noderiv">
+                {{ _('No') }}
+                {{ tip(None, _('The licensor permits others to copy, distribute and '
+                               'transmit only unaltered copies of the work — not '
+                               'derivative works based on it.')) }}
+              </label>
+            </li>
+          </ul>
+          <div id="persona-license">
+            <p>{{ _('Your Add-on will be released under the following license:') }}</p>
+            <p id="cc-license" class="license icon"></p>
+            <p class="select-license">
+              <a href="#">{{ _('Select a different license.') }}</a>
+            </p>
+          </div>
+        </div>
