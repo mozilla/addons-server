@@ -18,7 +18,6 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
 from olympia.lib.es.utils import raise_if_reindex_in_progress
-from olympia.stats.models import Contribution
 
 from . import tasks
 
@@ -35,14 +34,6 @@ def gc(test_result=True):
     logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
             .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
 
-    # Paypal only keeps retrying to verify transactions for up to 3 days. If we
-    # still have an unverified transaction after 6 days, we might as well get
-    # rid of it.
-    contributions_to_delete = (
-        Contribution.objects
-        .filter(transaction_id__isnull=True, created__lt=days_ago(6))
-        .values_list('id', flat=True))
-
     collections_to_delete = (
         Collection.objects.filter(created__lt=days_ago(2),
                                   type=amo.COLLECTION_ANONYMOUS)
@@ -50,8 +41,6 @@ def gc(test_result=True):
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
-    for chunk in chunked(contributions_to_delete, 100):
-        tasks.delete_stale_contributions.delay(chunk)
     for chunk in chunked(collections_to_delete, 100):
         tasks.delete_anonymous_collections.delay(chunk)
     # Incomplete addons cannot be deleted here because when an addon is

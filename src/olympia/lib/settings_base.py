@@ -623,7 +623,6 @@ MINIFY_BUNDLES = {
             'css/impala/expando.less',
             'css/impala/popups.less',
             'css/impala/l10n.less',
-            'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/prose.less',
             'css/impala/abuse.less',
@@ -757,7 +756,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/reviews.js',
@@ -855,7 +853,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/reviews.js',
@@ -1044,28 +1041,6 @@ LOGOUT_REDIRECT_URL = '/'
 # of times.
 MAX_GEN_USERNAME_TRIES = 50
 
-# PayPal Settings
-PAYPAL_API_VERSION = '78'
-PAYPAL_APP_ID = ''
-
-# URLs for various calls.
-PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
-PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
-PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
-PAYPAL_PERMISSIONS_URL = 'https://svcs.paypal.com/Permissions/'
-PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
-
-# Permissions for the live or sandbox servers
-PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
-
-# The PayPal cert that we'll use for checking.
-# When None, the Mozilla CA bundle is used to look it up.
-PAYPAL_CERT = None
-
-# Contribution limit, one time and monthly
-MAX_CONTRIBUTION = 1000
-
 # Email settings
 ADDONS_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
 DEFAULT_FROM_EMAIL = ADDONS_EMAIL
@@ -1181,7 +1156,6 @@ CELERY_TASK_ROUTES = {
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
-    'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
@@ -1359,18 +1333,13 @@ CSP_FONT_SRC = (
 )
 CSP_CHILD_SRC = (
     "'self'",
-    'https://ic.paypal.com',
-    'https://paypal.com',
     'https://www.google.com/recaptcha/',
-    'https://www.paypal.com',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    'https://www.paypal.com/webapps/checkout/',  # Needed for contrib.
-    'https://www.paypal.com/webapps/hermes/api/logger',  # Needed for contrib.
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
@@ -1385,7 +1354,6 @@ CSP_SCRIPT_SRC = (
     'https://ssl.google-analytics.com/ga.js',
     'https://www.google.com/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
-    PAYPAL_JS_URL,
     PROD_CDN_HOST,
 )
 CSP_STYLE_SRC = (

@@ -12,9 +12,6 @@ $(document).ready(function() {
         initLicenseFields();
     });
 
-    //Payments
-    $('.payments').exists(initPayments);
-
     // Edit Versions
     $('.edit-version').exists(initEditVersions);
 
@@ -27,9 +24,6 @@ $(document).ready(function() {
         initCharCount();
         initSubmit();
     });
-
-    // Merchant Account Setup
-    $('#id_paypal_id').exists(initMerchantAccount);
 
     // Validate addon (standalone)
     $('.validate-addon').exists(initSubmit);
@@ -221,11 +215,6 @@ $(document).ready(function() {
             }
         });
     });
-
-    // In-app payments config.
-    if ($('#in-app-config').length) {
-        initInAppConfig($('#in-app-config'));
-    }
 });
 
 function initPlatformChooser() {
@@ -914,65 +903,6 @@ function initEditVersions() {
 
 }
 
-function initPayments(delegate) {
-  var $delegate = $(delegate || document.body);
-    if (z.noEdit) return;
-    var static_url = $("body").attr("data-static-url");
-    var to = false;
-    var img = $("<img id='contribution-preview' alt='' />");
-    var moz = $("input[value='moz']");
-    img.hide().appendTo($("body"));
-    moz.parent().after(
-        $("<a class='extra' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
-    $(".nag").on("mouseover", "a.extra", function(e) {
-        var tgt = $(this);
-        img.attr("src", tgt.attr("href")).css({
-            position: 'absolute',
-            'pointer-events': 'none',
-            top: tgt.offset().top-350,
-            left: ($(document).width()-755)/2
-        });
-        clearTimeout(to);
-        to = setTimeout(function() {
-            img.fadeIn(100);
-        }, 300);
-    }).on("mouseout", "a.extra", function(e) {
-        clearTimeout(to);
-        img.fadeOut(100);
-    })
-    .on("click", "a.extra", function(e) {
-        e.preventDefault();
-    });
-    $("#do-setup").click(_pd(function (e) {
-        $("#setup").removeClass("hidden").show();
-        $(".intro, .intro-blah").hide();
-    }));
-    $("#setup-cancel").click(_pd(function (e) {
-        $(".intro, .intro-blah").show();
-        $("#setup").hide();
-    }));
-    $("#do-marketplace").click(_pd(function (e) {
-        $("#marketplace-confirm").removeClass("hidden").show();
-        $(".intro, .intro-blah").hide();
-    }));
-    $("#marketplace-cancel").click(_pd(function (e) {
-        $(".intro, .intro-blah").show();
-        $("#marketplace-confirm").hide();
-    }));
-    $(".recipient").change(function (e) {
-        var v = $(this).val();
-        $(".paypal").hide(200);
-        $(format("#org-{0}", [v])).removeClass("hidden").show(200);
-    });
-    $("#id_enable_thankyou").change(function (e) {
-        if ($(this).prop("checked")) {
-            $(".thankyou-note").show().removeClass("hidden");
-        } else {
-            $(".thankyou-note").hide();
-        }
-    }).change();
-}
-
 function initCatFields(delegate) {
     var $delegate = $(delegate || '#addon-categories-edit');
     $delegate.find('div.addon-app-cats').each(function() {
@@ -1376,57 +1306,6 @@ function initAddonCompatCheck($doc) {
     }
 }
 
-function initMerchantAccount() {
-    var ajax = false,
-        $paypal_field = $('#id_paypal_id'),
-        $paypal_verify = $('#paypal-id-verify'),
-        $paypal_support = $('#id_support_email'),
-        current = $paypal_field.val(),
-        keyup = true;
-
-    $paypal_field.on('keyup', function(e) {
-        if($paypal_field.val() != current) {
-            if(ajax) {
-                ajax.abort();
-            }
-            $paypal_verify.removeClass();
-            keyup = true;
-        }
-        current = $paypal_field.val();
-    }).blur(function() {
-        // `keyup` makes sure we don't re-fetch without changes.
-        if(! keyup || current === "") return;
-        keyup = false;
-
-        if(ajax) {
-            ajax.abort();
-        }
-        $paypal_verify.attr('class', 'pp-unknown');
-
-        if(!$paypal_field.val().match(/.+@.+\..+/)) {
-            $paypal_verify.attr('class', 'pp-error');
-            $('#paypal-id-error').text(gettext('Must be a valid e-mail address.'));
-            return;
-        }
-
-        // Update support email to match
-        if(!$paypal_support.val() || $paypal_support.data('auto')) {
-          $paypal_support.val($paypal_field.val());
-          $paypal_support.data('auto', true);
-        }
-
-        ajax = $.post($paypal_verify.attr('data-url'), {'email': $paypal_field.val()}, function(d) {
-            $paypal_verify.attr('class', d.valid ? 'pp-success' : 'pp-error');
-            $('#paypal-id-error').text(d.message);
-        });
-    }).trigger('blur');
-
-    // If support has been changed, don't auto-fill
-    $('#id_support_email').change(function() {
-      $('#id_support_email').data('auto', false);
-    });
-}
-
 function initTruncateSummary() {
     // If the summary from a manifest is too long, truncate it!
     // EN-US only, since it'll be way too hard to accomodate all languages properly.
@@ -1454,31 +1333,6 @@ function initTruncateSummary() {
             }
         }
     }
-}
-
-function initInAppConfig($dom) {
-    $('#in-app-private-key .generator', $dom).click(_pd(function() {
-        var $generator = $(this),
-            url = $generator.attr('data-url'),
-            $secret = $('#in-app-private-key .secret', $dom);
-        $.ajax({type: 'GET',
-                url: url,
-                success: function(privateKey) {
-                    $generator.hide();
-                    $secret.show().val(privateKey);
-                    // Hide the secret key after 2 minutes.
-                    setTimeout(function() {
-                        $secret.val('').hide();
-                        $generator.show();
-                    }, 1000 * 60 * 2);
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    if (typeof console !== 'undefined') {
-                        console.log(XMLHttpRequest, textStatus, errorThrown);
-                    }
-                },
-                dataType: 'text'});
-    }));
 }
 
 function initCCLicense() {

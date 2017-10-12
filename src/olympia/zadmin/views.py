@@ -73,10 +73,9 @@ def langpacks(request):
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
-    # Retain this so that legacy PAYPAL_CGI_AUTH variables in local settings
-    # are not exposed.
-    for i in ['PAYPAL_EMBEDDED_AUTH', 'PAYPAL_CGI_AUTH',
-              'GOOGLE_ANALYTICS_CREDENTIALS']:
+    # Retain this so that GOOGLE_ANALYTICS_CREDENTIALS variables in local
+    # settings are not exposed.
+    for i in ['GOOGLE_ANALYTICS_CREDENTIALS']:
         settings_dict[i] = debug.cleanse_setting(i,
                                                  getattr(settings, i, {}))
 

@@ -145,15 +145,6 @@ class ThemeUpdateCountBulk(models.Model):
         db_table = 'theme_update_counts_bulk'
 
 
-class ContributionError(Exception):
-
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
-
-
 class Contribution(amo.models.ModelBase):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
