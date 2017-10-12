@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 09:02+0000\n"
+"PO-Revision-Date: 2017-10-12 09:29+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5570,7 +5570,7 @@ msgstr "Nem sikerült feldolgozni a feltöltött fájlt."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Érvénytelen fájlnév az archívumban. Ellenőrizze, hogy az összes fájlnév utf-8 vagy latin1 kódolású."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7624,7 +7624,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s csillagra értékelve az 5-ből"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Túllépte a maximális lekérdezés hosszt."
 
 msgid "Most popular this week"
 msgstr "A hét legnépszerűbbje"
