@@ -192,7 +192,6 @@ class TestOldContributionRedirects(TestCase):
         self.assert3xx(response, self.detail_url, 301)
 
 
-@override_switch('simple-contributions', active=True)
 class TestContributionsURL(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
@@ -705,16 +704,6 @@ class TestDetailPage(TestCase):
         r = self.client.get(a.get_url_path())
         assert pq(r.content)('#detail-relnotes .compat').length == 0
 
-    def test_show_profile(self):
-        selector = '.author a[href="%s"]' % self.addon.meet_the_dev_url()
-
-        assert not (self.addon.the_reason or self.addon.the_future)
-        assert not pq(self.client.get(self.url).content)(selector)
-
-        self.addon.the_reason = self.addon.the_future = '...'
-        self.addon.save()
-        assert pq(self.client.get(self.url).content)(selector)
-
     def test_is_restart_required(self):
         span_is_restart_required = (
             '<span class="is-restart-required">Requires Restart</span>')
@@ -1018,16 +1007,6 @@ class TestDetailPage(TestCase):
                     for c in self.addon.categories.filter(
                         application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
-
-    def test_paypal_js_is_present_if_contributions_are_enabled(self):
-        self.addon = Addon.objects.get(id=592)
-        assert self.addon.takes_contributions
-        self.url = self.addon.get_url_path()
-        assert self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
-
-    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
-        assert not self.addon.takes_contributions
-        assert not self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
 
 
 class TestPersonas(object):

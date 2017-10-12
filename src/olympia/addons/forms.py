@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from decimal import Decimal
 from urlparse import urlsplit
 
 from django import forms
@@ -705,7 +704,3 @@ class EditThemeOwnerForm(happyforms.Form):
             self.instance.save()
 
         return data
-
-
-class ContributionForm(happyforms.Form):
-    amount = forms.DecimalField(required=True, min_value=Decimal('0.01'))

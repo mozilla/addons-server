@@ -20,8 +20,7 @@
 </article>
 <ul id="install" class="install-action">
   <li>
-    {{ install_button(addon, version=version, show_contrib=False,
-                      show_warning=False) }}
+    {{ install_button(addon, version=version, show_warning=False) }}
   </li>
   <li><a href="{{ services_url('discovery.addons.detail', addon.slug, src=src) }}" class="button">
     {{ _('Cancel Installation') }}</a></li>
