@@ -1,19 +1,12 @@
-import hashlib
-import json
-import uuid
-
 from django import http
-from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import ugettext
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import cache_control
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
-import jinja2
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
@@ -25,13 +18,12 @@ from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
-from session_csrf import anonymous_csrf_exempt
+
 
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo import messages
-from olympia.amo.decorators import post_required
 from olympia.amo.forms import AbuseForm
 from olympia.amo.utils import randslice, render
 from olympia.amo.models import manual_order
@@ -39,9 +31,7 @@ from olympia.amo import urlresolvers
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import Collection
-from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia import paypal
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
@@ -52,12 +42,10 @@ from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
-from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
-from .forms import ContributionForm
 from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon, ReplacementAddon
 from .serializers import (
@@ -360,125 +348,6 @@ def privacy(request, addon):
         return http.HttpResponseRedirect(addon.get_url_path())
 
     return render(request, 'addons/privacy.html', {'addon': addon})
-
-
-@addon_view
-@non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def developers(request, addon, page):
-    if addon.is_persona():
-        raise http.Http404()
-    if 'src' in request.GET:
-        contribution_src = src = request.GET['src']
-    else:
-        page_srcs = {
-            'developers': ('developers', 'meet-developers'),
-            'installed': ('meet-the-developer-post-install', 'post-download'),
-            'roadblock': ('meetthedeveloper_roadblock', 'roadblock'),
-        }
-        # Download src and contribution_src are different.
-        src, contribution_src = page_srcs.get(page)
-    return render(request, 'addons/impala/developers.html',
-                  {'addon': addon, 'page': page, 'src': src,
-                   'contribution_src': contribution_src})
-
-
-@addon_view
-@anonymous_csrf_exempt
-@post_required
-@non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def contribute(request, addon):
-
-    # Enforce paypal-imposed comment length limit
-    commentlimit = PAYPAL_MAX_COMMENT_LENGTH
-
-    contrib_type = request.POST.get('type', 'suggested')
-    is_suggested = contrib_type == 'suggested'
-    source = request.POST.get('source', '')
-    comment = request.POST.get('comment', '')
-
-    amount = {
-        'suggested': addon.suggested_amount,
-        'onetime': request.POST.get('onetime-amount', '')
-    }.get(contrib_type, '')
-    if not amount:
-        amount = settings.DEFAULT_SUGGESTED_CONTRIBUTION
-
-    form = ContributionForm({'amount': amount})
-    if len(comment) > commentlimit or not form.is_valid():
-        return http.HttpResponse(json.dumps({'error': 'Invalid data.',
-                                             'status': '', 'url': '',
-                                             'paykey': ''}),
-                                 content_type='application/json')
-
-    contribution_uuid = hashlib.sha256(str(uuid.uuid4())).hexdigest()
-
-    if addon.charity:
-        # TODO(andym): Figure out how to get this in the addon authors
-        # locale, rather than the contributors locale.
-        name, paypal_id = (u'%s: %s' % (addon.name, addon.charity.name),
-                           addon.charity.paypal)
-    else:
-        name, paypal_id = addon.name, addon.paypal_id
-    # l10n: {0} is the addon name
-    contrib_for = ugettext(u'Contribution for {0}').format(jinja2.escape(name))
-
-    paykey, error, status = '', '', ''
-    try:
-        paykey, status = paypal.get_paykey(
-            dict(amount=amount,
-                 email=paypal_id,
-                 ip=request.META.get('REMOTE_ADDR'),
-                 memo=contrib_for,
-                 pattern='addons.paypal',
-                 slug=addon.slug,
-                 uuid=contribution_uuid))
-    except paypal.PaypalError as error:
-        log.error(
-            'Error getting paykey, contribution for addon '
-            '(addon: %s, contribution: %s)'
-            % (addon.pk, contribution_uuid), exc_info=True)
-
-    if paykey:
-        contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,
-                               amount=amount, source=source,
-                               source_locale=request.LANG,
-                               annoying=addon.annoying,
-                               uuid=str(contribution_uuid),
-                               is_suggested=is_suggested,
-                               suggested_amount=addon.suggested_amount,
-                               comment=comment, paykey=paykey)
-        contrib.save()
-
-    url = '%s?paykey=%s' % (settings.PAYPAL_FLOW_URL, paykey)
-    if request.GET.get('result_type') == 'json' or request.is_ajax():
-        # If there was an error getting the paykey, then JSON will
-        # not have a paykey and the JS can cope appropriately.
-        return http.HttpResponse(json.dumps({'url': url,
-                                             'paykey': paykey,
-                                             'error': str(error),
-                                             'status': status}),
-                                 content_type='application/json')
-    return http.HttpResponseRedirect(url)
-
-
-@csrf_exempt
-@addon_view
-@non_atomic_requests
-@waffle.decorators.waffle_switch('!simple-contributions')
-def paypal_result(request, addon, status):
-    uuid = request.GET.get('uuid')
-    if not uuid:
-        raise http.Http404()
-    if status == 'cancel':
-        log.info('User cancelled contribution: %s' % uuid)
-    else:
-        log.info('User completed contribution: %s' % uuid)
-    response = render(request, 'addons/paypal_result.html',
-                      {'addon': addon, 'status': status})
-    response['x-frame-options'] = 'allow'
-    return response
 
 
 @addon_view

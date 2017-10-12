@@ -22,13 +22,13 @@ class TestRedirects(TestCase):
         r = self.client.get(u'/addon/5326/about', follow=True)
         redirect = r.redirect_chain[-1][0]
         assert redirect.endswith(
-            '/en-US/firefox/addon/5326/contribute/installed/')
+            '/en-US/firefox/addon/5326/')
 
     def test_contribute(self):
         """`/addons/contribute/$id` should go to `/addon/$id/contribute`."""
         response = self.client.get(u'/addon/5326/contribute', follow=True)
         redirect = response.redirect_chain[-1][0]
-        assert redirect.endswith('/en-US/firefox/addon/5326/contribute/')
+        assert redirect.endswith('/en-US/firefox/addon/5326/')
 
     def test_utf8(self):
         """Without proper unicode handling this will fail."""
