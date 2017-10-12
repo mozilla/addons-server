@@ -11,7 +11,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
 
-import olympia.core.logger
 from olympia.access import acl
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -36,9 +35,6 @@ from olympia.versions.models import (
     ApplicationsVersions, License, VALID_SOURCE_EXTENSIONS, Version)
 
 from . import tasks
-
-
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):

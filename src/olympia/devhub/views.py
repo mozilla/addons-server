@@ -62,7 +62,6 @@ from . import forms, tasks, feeds, signals
 
 
 log = olympia.core.logger.getLogger('z.devhub')
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.
