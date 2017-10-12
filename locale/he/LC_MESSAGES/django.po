@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-08 18:01+0000\n"
+"PO-Revision-Date: 2017-10-12 16:29+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -818,7 +818,7 @@ msgid "Edit Theme"
 msgstr "עריכת ערכת נושא"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "אישור / דחייה"
 
 msgid "Review History"
 msgstr "היסטורית סקירה"
@@ -830,7 +830,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr ""
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "הערת האספן"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -860,7 +860,7 @@ msgid "Log out"
 msgstr "התנתקות"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "ניהול ההגשות שלי"
 
 msgid "Submit a New Add-on"
 msgstr "שליחת תוספת חדשה"
@@ -884,10 +884,10 @@ msgid "Incorrect, please try again."
 msgstr "שגוי, נא לנסות שוב."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "אירעה שגיאה בעת אימות הקלט, נא לנסות שוב."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "הערך חייב להיות קוד צבע הקסדצימלי תקף, כגון #000000."
 
 msgid "Not allowed"
 msgstr "לא מורשה"
@@ -1444,13 +1444,13 @@ msgid "Make Owner"
 msgstr ""
 
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "הסרת משתמש זה כתורם"
 
 msgid "Remove"
 msgstr "הסרה"
 
 msgid "Collection Contributors"
-msgstr ""
+msgstr "תורמים לאוסף"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
@@ -1555,7 +1555,7 @@ msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr "ישנה תמיכה בתבניות PNG ו־JPG.  גודלה של התמונה ישתנה ל־32x32."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "ישנן שגיאות בטופס זה.  נא לתקן אותן להלן."
 
 msgid "Add-ons in Your Collection"
 msgstr "תוספות שבאוסף שלך"
@@ -1576,7 +1576,7 @@ msgid "Add to Collection"
 msgstr "הוספה לאוסף"
 
 msgid "Pending"
-msgstr ""
+msgstr "בהמתנה"
 
 msgid "Add a comment"
 msgstr "הוספת תגובה"
@@ -1679,7 +1679,7 @@ msgstr "הורדת חבילת שפה"
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
-msgstr ""
+msgstr "התקנת תוספת מילון תוסיף אפשרות שפה חדשה בבודק האיות שלך ב־%(app_name)s, שתבדוק את האיות שלך בעת מילוי טפסים מקוונים. תוספות חבילות שפה משנות את שפת היישום כולו."
 
 msgid "Available in your locale"
 msgstr "זמין בשפה שלך"
@@ -1739,7 +1739,7 @@ msgstr "עיון במאגר ספקי חיפוש גדול אפילו יותר ב�
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "יצירת כלי חיפוש %(amo_mdn_link_open)sמשלך%(amo_mdn_link_close)s"
 
 msgid "Most Popular Extensions"
 msgstr "ההרחבות הפופולריות ביותר"
@@ -1857,7 +1857,7 @@ msgid ""
 msgstr ""
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "דיווחים על התוספות שלך"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
@@ -1905,7 +1905,7 @@ msgid "e10s Compatible"
 msgstr "תומך בריבוי תהליכים"
 
 msgid "Submitted"
-msgstr ""
+msgstr "נשלח"
 
 msgid "Success"
 msgstr "הצלחה"
@@ -1971,7 +1971,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "לאחר אישור טרומי"
 
 msgid "{addon} {version} rejected."
 msgstr ""
@@ -2154,7 +2154,7 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr ""
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "הערות האישור השתנו"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "קוד מקור הועלה עבור {addon} {version}."
@@ -2183,14 +2183,14 @@ msgid "{addon} {version} content approved."
 msgstr "התיאור של {addon} נערך."
 
 msgid "Content approved"
-msgstr ""
+msgstr "התוכן אושר"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "התוספת {addon} נוצרה"
 
 msgid "Content rejected"
-msgstr ""
+msgstr "התוכן נדחה"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2226,10 +2226,10 @@ msgid "Deleted"
 msgstr "נמחק"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "בהמתנה לאישור"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "סומן בדגל לסקירה נוספת"
 
 msgid "Beta"
 msgstr "בטא"
@@ -2269,7 +2269,7 @@ msgid "Theme"
 msgstr "ערכת נושא"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "ערכת נושא (סטטית)"
 
 msgid "Complete Themes"
 msgstr ""
@@ -2646,13 +2646,13 @@ msgid "Flag"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "שכפול"
 
 msgid "Reject"
-msgstr ""
+msgstr "דחייה"
 
 msgid "Approve"
-msgstr ""
+msgstr "אישור"
 
 msgid "Sexual or pornographic content"
 msgstr "תכנים מיניים או פורנוגרפיים"
@@ -2731,10 +2731,10 @@ msgstr "ליבה"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "שינויים אחרונים עבור %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "שינויים אחרונים עבור התוספות שלי"
 
 msgid "Must have at least one owner."
 msgstr ""
@@ -2803,22 +2803,22 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "View current"
-msgstr ""
+msgstr "צפייה בנוכחי"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "טווח הגרסאות שגוי."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "נדרש לפחות יישום תואם אחד."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "אירעה שגיאה עם ההעלאה שלך. נא לנסות שוב."
 
 msgid "Override failed validation"
 msgstr ""
 
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "שליחת התוספת שלי לסקירה ידנית."
 
 msgid "Do not list my add-on on this site"
 msgstr "לא להציג את התוספת שלי באתר זה"
@@ -2851,7 +2851,7 @@ msgid "A platform can only be chosen once."
 msgstr "ניתן לבחור פלטפורמה רק פעם אחת."
 
 msgid "Reputation"
-msgstr ""
+msgstr "מוניטין"
 
 msgid "Application"
 msgstr "יישום"
@@ -2860,7 +2860,7 @@ msgid "Select an application first"
 msgstr "נא לבחור תחילה ביישום"
 
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "לא יכולות להיות למעלה מ־3 תוספות נדרשות."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2892,7 +2892,7 @@ msgstr ""
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2967,21 +2967,21 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "אי אפשר להנפיש סמלים."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "אי אפשר להנפיש תמונות."
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "התמונות לא יכולות להיות גדולות מ־%d ק״ב."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "התמונה חייבת להיות ברוחב של {0} פיקסלים ובגובה של {1} פיקסלים בדיוק."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "אירעה שגיאה בהעלאת התצוגה המקדימה שלך."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3069,7 +3069,7 @@ msgid "Extension Development"
 msgstr "פיתוח הרחבה"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "ערכות נושא קלות משקל"
 
 msgid "Add-on Policies"
 msgstr "מדיניות תוספות"
@@ -3102,7 +3102,7 @@ msgid "Search"
 msgstr "חיפוש"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "יש להשתמש בשדה שלהלן כדי להעלות את חבילת התוספת שלך."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
@@ -3131,11 +3131,11 @@ msgid "Tested for compatibility against:"
 msgstr "נבדקה תאימות מול:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "פעילות אחרונה עבור התוספות שלי"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "פעילות אחרונה עבור {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -3185,14 +3185,14 @@ msgid "Close"
 msgstr "סגירה"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "פעילות אחרונה"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s על ידי %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "פעילות קודמת עבור התוספות שלי"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -3229,11 +3229,11 @@ msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>publi
 msgstr ""
 
 msgid "Remove Both"
-msgstr ""
+msgstr "הסרת שניהם"
 
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "<a href=\"%(url)s\">פרופיל המפתח</a> שלך הוא <strong>ציבורי</strong> כרגע."
 
 msgid "Remove Profile"
 msgstr "הסרת פרופיל"
@@ -3273,7 +3273,7 @@ msgid "This add-on is experimental."
 msgstr "תוספת זו הינה ניסיונית."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "תוספת זו מוכנה לשימוש כללי."
 
 msgid "Requires Payment?"
 msgstr "תשלום נדרש?"
@@ -3427,7 +3427,7 @@ msgid "This add-on will be automatically upgraded to new versions of the Add-on 
 msgstr ""
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "לא, תוספת זו תשודרג ידנית."
 
 msgid "Universally unique identifier"
 msgstr ""
@@ -3452,7 +3452,7 @@ msgid "Remove this dependent add-on"
 msgstr ""
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "נא להקליד שם של תוספת"
 
 msgid "Add-on Media for {0}"
 msgstr ""
