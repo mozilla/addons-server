@@ -745,7 +745,7 @@ class TestReviewHelper(TestCase):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=150)
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=151)
         assert summary.confirmed is None
         self.create_paths()
 
@@ -1051,7 +1051,7 @@ class TestReviewHelper(TestCase):
         old_version = self.version
         self.version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=100)
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
         # An extra file should not change anything.
         file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
@@ -1096,7 +1096,7 @@ class TestReviewHelper(TestCase):
         # Add yet another version we don't want to reject.
         self.version = version_factory(addon=self.addon, version='42.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=20)
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=21)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
 
         # Safeguards.
