@@ -482,7 +482,6 @@ INSTALLED_APPS = (
     'olympia.editors',
     'olympia.files',
     'olympia.github',
-    'olympia.internal_tools',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
