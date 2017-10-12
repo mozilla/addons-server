@@ -16,14 +16,15 @@ import olympia.core.logger
 from olympia.access import acl
 from olympia import amo, paypal
 from olympia.activity.models import ActivityLog
-from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
-    Addon, AddonDependency, AddonUser, Charity, Preview)
+    Addon, AddonCategory, AddonDependency, AddonUser, Charity, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.applications.models import AppVersion
+from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib import happyforms
@@ -878,3 +879,47 @@ class DistributionChoiceForm(happyforms.Form):
 class AgreementForm(happyforms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
+
+
+class SingleCategoryForm(happyforms.Form):
+    category = forms.ChoiceField(widget=forms.RadioSelect)
+
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        self.request = kw.pop('request', None)
+        super(SingleCategoryForm, self).__init__(*args, **kw)
+
+        form = self.fields['category']
+        # Hack because we know this is only used for Static Themes that only
+        # support Firefox.  Hoping to unify per-app categories in the meantime.
+        app = amo.FIREFOX
+        sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
+                             key=lambda (slug, cat): slug)
+        choices = [
+            (c.id, c.name) for _, c in sorted_cats]
+        form.choices = choices  # sorted(choices, key=lambda x: x.name)
+
+        initials = self.addon.app_categories.get(app.id, [])
+        if len(initials) > 0:
+            form.initial = initials[0]
+
+        # If this add-on is featured for this application, category changes are
+        # forbidden.
+        if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
+            form.disabled = (app and self.addon.is_featured(app))
+
+    def save(self):
+        category = self.cleaned_data['category']
+        # Clear any old categor[y|ies]
+        self.addon.categories.all().delete()
+        # Add new category
+        AddonCategory(addon=self.addon, category_id=category).save()
+        # Remove old, outdated categories cache on the model.
+        del self.addon.all_categories
+
+    def clean_categories(self):
+        if getattr(self, 'disabled', False) and self.cleaned_data['category']:
+            raise forms.ValidationError(ugettext(
+                'Categories cannot be changed while your add-on is featured.'))
+
+        return self.cleaned_data['category']

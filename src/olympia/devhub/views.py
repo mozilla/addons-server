@@ -1483,26 +1483,32 @@ def submit_file(request, addon_id, addon, version_id):
 
 
 def _submit_details(request, addon, version):
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = (version.channel == amo.RELEASE_CHANNEL_UNLISTED or
                              version.is_beta or
-                             (addon.type == amo.ADDON_STATICTHEME and
-                              addon.has_complete_metadata()))
+                             (static_theme and addon.has_complete_metadata()))
         if skip_details_step:
             # Nothing to do here.
             return redirect(
                 'devhub.submit.version.finish', addon.slug, version.pk)
-    # Figure out the latest version early in order to pass the same instance to
-    # each form that needs it (otherwise they might overwrite each other).
-    latest_version = version or addon.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_LISTED)
-    if not latest_version:
-        # No listed version ? Then nothing to do in the listed submission flow.
-        return redirect('devhub.submit.finish', addon.slug)
+        latest_version = version
+    else:
+        # Figure out the latest version early in order to pass the same
+        # instance to each form that needs it (otherwise they might overwrite
+        # each other).
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        if not latest_version:
+            # No listed version ? Then nothing to do in the listed submission
+            # flow.
+            return redirect('devhub.submit.finish', addon.slug)
+
     forms_list = []
     context = {
         'addon': addon,
         'version': version,
+        'submit_page': 'version' if version else 'addon',
     }
     post_data = request.POST if request.method == 'POST' else None
     show_all_fields = not version or not addon.has_complete_metadata()
@@ -1510,17 +1516,19 @@ def _submit_details(request, addon, version):
     if show_all_fields:
         describe_form = forms.DescribeForm(
             post_data, instance=addon, request=request)
-        cat_form = addon_forms.CategoryFormSet(
-            post_data, addon=addon, request=request)
+        cat_form_class = (addon_forms.CategoryFormSet if not static_theme
+                          else forms.SingleCategoryForm)
+        cat_form = cat_form_class(post_data, addon=addon, request=request)
         license_form = forms.LicenseForm(
             post_data, version=latest_version, prefix='license')
         context.update(license_form.get_context())
         context.update(form=describe_form, cat_form=cat_form)
         forms_list.extend([describe_form, cat_form, context['license_form']])
-    reviewer_form = forms.VersionForm(
-        post_data, instance=latest_version)
-    context.update(reviewer_form=reviewer_form)
-    forms_list.append(reviewer_form)
+    if not static_theme:
+        # Static themes don't need this form
+        reviewer_form = forms.VersionForm(post_data, instance=latest_version)
+        context.update(reviewer_form=reviewer_form)
+        forms_list.append(reviewer_form)
 
     if request.method == 'POST' and all(
             form.is_valid() for form in forms_list):
@@ -1528,11 +1536,12 @@ def _submit_details(request, addon, version):
             addon = describe_form.save()
             cat_form.save()
             license_form.save(log=False)
-            reviewer_form.save()
+            if not static_theme:
+                reviewer_form.save()
             if addon.status == amo.STATUS_NULL:
                 addon.update(status=amo.STATUS_NOMINATED)
             signals.submission_done.send(sender=addon)
-        else:
+        elif not static_theme:
             reviewer_form.save()
 
         if not version:
@@ -1540,7 +1549,6 @@ def _submit_details(request, addon, version):
         else:
             return redirect('devhub.submit.version.finish',
                             addon.slug, version.id)
-    context.update(addon=addon, submit_page='version' if version else 'addon')
     template = 'devhub/addons/submit/%s' % (
         'describe.html' if show_all_fields else 'describe_minimal.html')
     return render(request, template, context)
