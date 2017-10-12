@@ -51,7 +51,6 @@ from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
-from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
@@ -501,89 +500,6 @@ def ownership(request, addon_id, addon):
 
     ctx.update(addon=addon, user_form=user_form)
     return render(request, 'devhub/addons/owner.html', ctx)
-
-
-@dev_required(owner_for_post=True)
-@waffle.decorators.waffle_switch('!simple-contributions')
-def payments(request, addon_id, addon):
-    charity = None if addon.charity_id == amo.FOUNDATION_ORG else addon.charity
-
-    charity_form = forms.CharityForm(request.POST or None, instance=charity,
-                                     prefix='charity')
-    contrib_form = forms.ContribForm(request.POST or None, instance=addon,
-                                     initial=forms.ContribForm.initial(addon))
-    profile_form = forms.ProfileForm(request.POST or None, instance=addon,
-                                     required=True)
-    if request.method == 'POST':
-        if contrib_form.is_valid():
-            addon = contrib_form.save(commit=False)
-            addon.wants_contributions = True
-            valid = _save_charity(addon, contrib_form, charity_form)
-            if not addon.has_full_profile():
-                valid &= profile_form.is_valid()
-                if valid:
-                    profile_form.save()
-            if valid:
-                addon.save()
-                messages.success(
-                    request, ugettext('Changes successfully saved.'))
-                ActivityLog.create(amo.LOG.EDIT_CONTRIBUTIONS, addon)
-
-                return redirect(addon.get_dev_url('payments'))
-    errors = charity_form.errors or contrib_form.errors or profile_form.errors
-    if errors:
-        messages.error(
-            request, ugettext('There were errors in your submission.'))
-
-    return render(request, 'devhub/payments/payments.html',
-                  dict(addon=addon, errors=errors, charity_form=charity_form,
-                       contrib_form=contrib_form, profile_form=profile_form))
-
-
-def _save_charity(addon, contrib_form, charity_form):
-    recipient = contrib_form.cleaned_data['recipient']
-    if recipient == 'dev':
-        addon.charity = None
-    elif recipient == 'moz':
-        addon.charity_id = amo.FOUNDATION_ORG
-    elif recipient == 'org':
-        if charity_form.is_valid():
-            addon.charity = charity_form.save()
-        else:
-            return False
-    return True
-
-
-@dev_required
-@post_required
-def disable_payments(request, addon_id, addon):
-    addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('payments'))
-
-
-@dev_required
-@post_required
-def remove_profile(request, addon_id, addon):
-    delete_translation(addon, 'the_reason')
-    delete_translation(addon, 'the_future')
-    if addon.wants_contributions:
-        addon.update(wants_contributions=False)
-    return redirect(addon.get_dev_url('profile'))
-
-
-@dev_required
-@waffle.decorators.waffle_switch('!simple-contributions')
-def profile(request, addon_id, addon):
-    profile_form = forms.ProfileForm(request.POST or None, instance=addon)
-
-    if request.method == 'POST' and profile_form.is_valid():
-        profile_form.save()
-        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
-        messages.success(request, ugettext('Changes successfully saved.'))
-        return redirect(addon.get_dev_url('profile'))
-
-    return render(request, 'devhub/addons/profile.html',
-                  dict(addon=addon, profile_form=profile_form))
 
 
 @login_required

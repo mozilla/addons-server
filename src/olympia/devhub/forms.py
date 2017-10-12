@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import socket
 
 from django import forms
 from django.conf import settings
@@ -14,11 +13,11 @@ import jinja2
 
 import olympia.core.logger
 from olympia.access import acl
-from olympia import amo, paypal
+from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonUser, Charity, Preview)
+    Addon, AddonCategory, AddonDependency, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.urlresolvers import reverse
@@ -260,116 +259,6 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
                                self.instance)
 
         return ob
-
-
-def ProfileForm(*args, **kw):
-    # If the add-on takes contributions, then both fields are required.
-    addon = kw['instance']
-    fields_required = (kw.pop('required', False) or
-                       bool(addon.takes_contributions))
-    the_reason_label = ugettext('Why did you make this add-on?')
-    the_future_label = ugettext('What\'s next for this add-on?')
-
-    class _Form(TranslationFormMixin, happyforms.ModelForm):
-        the_reason = TransField(widget=TransTextarea(),
-                                required=fields_required,
-                                label=the_reason_label)
-        the_future = TransField(widget=TransTextarea(),
-                                required=fields_required,
-                                label=the_future_label)
-
-        class Meta:
-            model = Addon
-            fields = ('the_reason', 'the_future')
-
-    return _Form(*args, **kw)
-
-
-class CharityForm(happyforms.ModelForm):
-    url = Charity._meta.get_field('url').formfield()
-
-    class Meta:
-        model = Charity
-        fields = ('name', 'url', 'paypal')
-
-    def clean_paypal(self):
-        check_paypal_id(self.cleaned_data['paypal'])
-        return self.cleaned_data['paypal']
-
-    def save(self, commit=True):
-        # We link to the charity row in contrib stats, so we force all charity
-        # changes to create a new row so we don't forget old charities.
-        if self.changed_data and self.instance.id:
-            self.instance.id = None
-        return super(CharityForm, self).save(commit)
-
-
-class ContribForm(TranslationFormMixin, happyforms.ModelForm):
-    RECIPIENTS = (('dev', _(u'The developers of this add-on')),
-                  ('moz', _(u'The Mozilla Foundation')),
-                  ('org', _(u'An organization of my choice')))
-
-    recipient = forms.ChoiceField(
-        choices=RECIPIENTS,
-        widget=forms.RadioSelect(attrs={'class': 'recipient'}))
-    thankyou_note = TransField(widget=TransTextarea(), required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('paypal_id', 'suggested_amount', 'annoying',
-                  'enable_thankyou', 'thankyou_note')
-        widgets = {
-            'annoying': forms.RadioSelect(),
-            'suggested_amount': forms.TextInput(attrs={'class': 'short'}),
-            'paypal_id': forms.TextInput(attrs={'size': '50'})
-        }
-
-    @staticmethod
-    def initial(addon):
-        if addon.charity:
-            recip = 'moz' if addon.charity_id == amo.FOUNDATION_ORG else 'org'
-        else:
-            recip = 'dev'
-        return {'recipient': recip,
-                'annoying': addon.annoying or amo.CONTRIB_PASSIVE}
-
-    def clean(self):
-        data = self.cleaned_data
-        try:
-            if not self.errors and data['recipient'] == 'dev':
-                check_paypal_id(data['paypal_id'])
-        except forms.ValidationError, e:
-            self.errors['paypal_id'] = self.error_class(e.messages)
-        # thankyou_note is a dict since it's a Translation.
-        if not (data.get('enable_thankyou') and
-                any(data.get('thankyou_note').values())):
-            data['thankyou_note'] = {}
-            data['enable_thankyou'] = False
-        return data
-
-    def clean_suggested_amount(self):
-        amount = self.cleaned_data['suggested_amount']
-        if amount is not None and amount <= 0:
-            msg = ugettext(u'Please enter a suggested amount greater than 0.')
-            raise forms.ValidationError(msg)
-        if amount > settings.MAX_CONTRIBUTION:
-            msg = ugettext(
-                u'Please enter a suggested amount less than ${0}.').format(
-                settings.MAX_CONTRIBUTION)
-            raise forms.ValidationError(msg)
-        return amount
-
-
-def check_paypal_id(paypal_id):
-    if not paypal_id:
-        raise forms.ValidationError(
-            ugettext('PayPal ID required to accept contributions.'))
-    try:
-        valid, msg = paypal.check_paypal_id(paypal_id)
-        if not valid:
-            raise forms.ValidationError(msg)
-    except socket.error:
-        raise forms.ValidationError(ugettext('Could not validate PayPal id.'))
 
 
 class WithSourceMixin(object):
