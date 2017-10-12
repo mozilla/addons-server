@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 09:09+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-12 09:29+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1981,6 +1981,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Hozzászólás ehhez: {addon} {version}."
 
+msgid "Commented"
+msgstr "Hozzászólva"
+
 msgid "{tag} added to {addon}."
 msgstr "A(z) {tag} címke hozzáadásra került a(z) {addon} kiegészítőhöz."
 
@@ -2230,6 +2233,9 @@ msgstr "Bővítmény"
 msgid "Theme"
 msgstr "Téma"
 
+msgid "Theme (Static)"
+msgstr "Téma (statikus)"
+
 msgid "Complete Themes"
 msgstr "Teljes témák"
 
@@ -2246,6 +2252,9 @@ msgstr "Nyelvi csomagok (kiegészítő)"
 
 msgid "Plugins"
 msgstr "Bővítmények"
+
+msgid "Themes (Static)"
+msgstr "Témák (statikus)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Csak ezen a kiegészítő oldalon és a fejlesztői profilon kérdezzen"
@@ -2268,102 +2277,6 @@ msgstr "Kiadás"
 
 msgid "Change"
 msgstr "Módosítás"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Kézi értékelői pontok"
-
-msgid "New Add-on Review"
-msgstr "Új kiegészítőértékelés"
-
-msgid "Preliminary Add-on Review"
-msgstr "Előzetes kiegészítőértékelés"
-
-msgid "Updated Add-on Review"
-msgstr "Frissített kiegészítőértékelés"
-
-msgid "New Dictionary Review"
-msgstr "Új szótárértékelés"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Előzetes szótárértékelés"
-
-msgid "Updated Dictionary Review"
-msgstr "Frissített szótárértékelés"
-
-msgid "New Language Pack Review"
-msgstr "Új nyelvicsomag-értékelés"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Előzetes nyelvicsomag-értékelés"
-
-msgid "Updated Language Pack Review"
-msgstr "Frissített nyelvicsomag-értékelés"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bónusz késedelmes értékelésekért"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Napok száma a bónusz pontok alkalmazásáig"
-
-msgid "Theme Review"
-msgstr "Témaértékelés"
-
-msgid "New Search Provider Review"
-msgstr "Új keresőszolgáltatás-értékelés"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Előzetes keresőszolgáltatás-értékelés"
-
-msgid "Updated Search Provider Review"
-msgstr "Frissített keresőszolgáltatás-értékelés"
-
-msgid "New Complete Theme Review"
-msgstr "Új teljes témaértékelés"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Előzetes témaértékelés"
-
-msgid "Updated Complete Theme Review"
-msgstr "Frissített teljes témaértékelés"
-
-msgid "Moderated Add-on Review"
-msgstr "Kiegészítőértékelés moderálva"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Kiegészítő értékelés moderálás visszaállítva"
-
-msgid "Level 1"
-msgstr "1. szint"
-
-msgid "Level 2"
-msgstr "2. szint"
-
-msgid "Level 3"
-msgstr "3. szint"
-
-msgid "Level 4"
-msgstr "4. szint"
-
-msgid "Level 5"
-msgstr "5. szint"
-
-msgid "Level 6"
-msgstr "6. szint"
-
-msgid "Level 7"
-msgstr "7. szint"
-
-msgid "Level 8"
-msgstr "8. szint"
-
-msgid "Level 9"
-msgstr "9. szint"
 
 msgid "Compatible"
 msgstr "Kompatibilis"
@@ -2437,42 +2350,6 @@ msgstr "Retró"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Általános"
-
-msgid "Business"
-msgstr "Üzlet"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Szótárak és enciklopédiák"
-
-msgid "Kids"
-msgstr "Gyerekek"
-
-msgid "Multiple Search"
-msgstr "Többszörös keresés"
-
-msgid "Music"
-msgstr "Zene"
-
-msgid "News & Blogs"
-msgstr "Hírek és blogok"
-
-msgid "Photos & Images"
-msgstr "Fotók és képek"
-
-msgid "Shopping & E-Commerce"
-msgstr "Vásárlás és e-kereskedelem"
-
-msgid "Social & People"
-msgstr "Közösség és emberek"
-
-msgid "Travel"
-msgstr "Utazás"
-
-msgid "Video"
-msgstr "Videó"
-
 msgid "Abstract"
 msgstr "Absztrakt"
 
@@ -2491,6 +2368,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Szabadság"
 
+msgid "Music"
+msgstr "Zene"
+
 msgid "Scenery"
 msgstr "Tájkép"
 
@@ -2502,6 +2382,39 @@ msgstr "Kiforrott"
 
 msgid "Websites"
 msgstr "Weboldalak"
+
+msgid "General"
+msgstr "Általános"
+
+msgid "Business"
+msgstr "Üzlet"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Szótárak és enciklopédiák"
+
+msgid "Kids"
+msgstr "Gyerekek"
+
+msgid "Multiple Search"
+msgstr "Többszörös keresés"
+
+msgid "News & Blogs"
+msgstr "Hírek és blogok"
+
+msgid "Photos & Images"
+msgstr "Fotók és képek"
+
+msgid "Shopping & E-Commerce"
+msgstr "Vásárlás és e-kereskedelem"
+
+msgid "Social & People"
+msgstr "Közösség és emberek"
+
+msgid "Travel"
+msgstr "Utazás"
+
+msgid "Video"
+msgstr "Videó"
 
 msgid "Device Features & Location"
 msgstr "Eszközfunkciók és helymeghatározás"
@@ -2577,6 +2490,111 @@ msgstr "Webhelyspecifikus"
 
 msgid "Web and Developer Tools"
 msgstr "Webes és fejlesztői szerszámos láda"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Kézi értékelői pontok"
+
+msgid "New Add-on Review"
+msgstr "Új kiegészítőértékelés"
+
+msgid "Preliminary Add-on Review"
+msgstr "Előzetes kiegészítőértékelés"
+
+msgid "Updated Add-on Review"
+msgstr "Frissített kiegészítőértékelés"
+
+msgid "New Dictionary Review"
+msgstr "Új szótárértékelés"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Előzetes szótárértékelés"
+
+msgid "Updated Dictionary Review"
+msgstr "Frissített szótárértékelés"
+
+msgid "New Language Pack Review"
+msgstr "Új nyelvicsomag-értékelés"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Előzetes nyelvicsomag-értékelés"
+
+msgid "Updated Language Pack Review"
+msgstr "Frissített nyelvicsomag-értékelés"
+
+msgid "Theme Review"
+msgstr "Témaértékelés"
+
+msgid "New Search Provider Review"
+msgstr "Új keresőszolgáltatás-értékelés"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Előzetes keresőszolgáltatás-értékelés"
+
+msgid "Updated Search Provider Review"
+msgstr "Frissített keresőszolgáltatás-értékelés"
+
+msgid "New Complete Theme Review"
+msgstr "Új teljes témaértékelés"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Előzetes témaértékelés"
+
+msgid "Updated Complete Theme Review"
+msgstr "Frissített teljes témaértékelés"
+
+msgid "Moderated Add-on Review"
+msgstr "Kiegészítőértékelés moderálva"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Kiegészítő értékelés moderálás visszaállítva"
+
+msgid "Add-on Content Review"
+msgstr "Kiegészítő tartalmának értékelése"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (legmagasabb kockázat)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (magas kockázat)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (közepes kockázat)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Jóváhagyást követő kiegészítőértékelés (alacsony kockázat)"
+
+msgid "Level 1"
+msgstr "1. szint"
+
+msgid "Level 2"
+msgstr "2. szint"
+
+msgid "Level 3"
+msgstr "3. szint"
+
+msgid "Level 4"
+msgstr "4. szint"
+
+msgid "Level 5"
+msgstr "5. szint"
+
+msgid "Level 6"
+msgstr "6. szint"
+
+msgid "Level 7"
+msgstr "7. szint"
+
+msgid "Level 8"
+msgstr "8. szint"
+
+msgid "Level 9"
+msgstr "9. szint"
 
 msgid "Request More Info"
 msgstr "További információ kérése"
@@ -3759,8 +3777,8 @@ msgstr "Hol terjeszti a verziót"
 msgid "Upload Version"
 msgstr "Verzió feltöltése"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez és állítsa be a platformkorlátozást. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el és vizsgálja meg a fájlt."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el, és vizsgálja meg a fájlt."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Mely platformokkal kompatibilis a fájl?"
@@ -4643,29 +4661,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lapok testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Állítsa be az oldalt, amit minden új lapon látni fog."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tegye jobbá a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Találjon könnyen képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Jelöljön ki tetszőleges szöveget, és kattintson a jobb egérgombbal a gyors képkereséshez."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tucatnyi elképesztő emodzsi – egyetlen kattintásnyira."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fejlessze az írását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "25+ nyelvet támogatva, ez a kiegészítő egy korrektort tesz közvetlenül a böngészőbe."
-
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tegye jobbá a videókat a {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
 
 msgid "Approved reviews"
 msgstr "Jóváhagyott értékelések"
@@ -4927,31 +4945,6 @@ msgstr "Az értékelés sikeresen megtörtént."
 
 msgid "Review lock limit reached"
 msgstr "Értékelések zárolási korlátja elérve"
-
-msgid "was approved"
-msgstr "jóváhagyva"
-
-msgid "given preliminary review"
-msgstr "előzetesen értékelt"
-
-msgid "rejected"
-msgstr "elutasított"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "továbbított"
-
-msgid "needs more information"
-msgstr "további információ szükséges"
-
-msgid "needs super review"
-msgstr "teljes értékelés szükséges"
-
-msgid "commented"
-msgstr "hozzászólva"
-
-msgid "confirmed as approved"
-msgstr "megerősítve jóváhagyottként"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5574,6 +5567,10 @@ msgstr "Nem sikerült feldolgozni a feltöltött fájlt, hiányzó vagy üres <%
 
 msgid "Could not parse uploaded file."
 msgstr "Nem sikerült feldolgozni a feltöltött fájlt."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Érvénytelen fájlnév az archívumban. Ellenőrizze, hogy az összes fájlnév utf-8 vagy latin1 kódolású."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7625,6 +7622,9 @@ msgstr "{0} csillagra értékelve az 5-ből"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s csillagra értékelve az 5-ből"
+
+msgid "Maximum query length exceeded."
+msgstr "Túllépte a maximális lekérdezés hosszt."
 
 msgid "Most popular this week"
 msgstr "A hét legnépszerűbbje"

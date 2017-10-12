@@ -21,7 +21,6 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     get_flags, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
@@ -297,7 +296,7 @@ class ReviewHelper(object):
             (self.version and
                 self.version.nomination is not None and
                 (datetime.datetime.now() - self.version.nomination >=
-                    datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
+                    datetime.timedelta(hours=amo.REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = (
             self.version and
             len(self.version.is_unreviewed) > 0)
@@ -682,6 +681,8 @@ class ReviewBase(object):
         version is listed, incrementing AddonApprovalsCounter, which also
         resets the last human review date to now, and log it so that it's
         displayed later in the review page."""
+        status = self.addon.status
+        latest_version = self.version
         # The confirm auto-approval action should not show the comment box,
         # so override the text in case the reviewer switched between actions
         # and accidently submitted some comments from another action.
@@ -698,11 +699,18 @@ class ReviewBase(object):
                 AddonApprovalsCounter.increment_for_addon(addon=self.addon)
             self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
 
+        # Assign reviewer incentive scores.
+        if self.request:
+            ReviewerScore.award_points(
+                self.request.user, self.addon, status, version=latest_version,
+                post_review=True, content_review=self.content_review_only)
+
     def reject_multiple_versions(self):
         """Reject a list of versions."""
         # self.version and self.files won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
+        status = self.addon.status
         latest_version = self.version
         self.version = None
         self.files = None
@@ -730,6 +738,12 @@ class ReviewBase(object):
                 self.addon,
                 u', '.join(unicode(v.pk) for v in self.data['versions'])))
         log.info(u'Sending email for %s' % (self.addon))
+
+        # Assign reviewer incentive scores.
+        if self.request:
+            ReviewerScore.award_points(
+                self.request.user, self.addon, status, version=latest_version,
+                post_review=True, content_review=self.content_review_only)
 
 
 class ReviewAddon(ReviewBase):

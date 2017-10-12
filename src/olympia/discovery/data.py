@@ -24,41 +24,19 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Pearlescent' theme.
-    DiscoItem(addon_id=696234, type=amo.ADDON_PERSONA),
+    # 'All Fall' theme.
+    DiscoItem(addon_id=44686, type=amo.ADDON_PERSONA, addon_name='All Fall'),
 
-    # New Tab Override.
+    # uBlock Origin
     DiscoItem(
-        addon_id=626810,
-        heading=_(u'Tab Customization {start_sub_heading}with {addon_name}'
+        addon_id=607454,
+        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Set the page you see every time you open a new tab.'),
-            '</blockquote>')),
-
-    # Emoji Cheatsheet.
-    DiscoItem(
-        addon_id=511962,
-        heading=_(u'Up your emoji game {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis—always a click away.'),
-            '</blockquote>')),
-
-    # 'Dog Pichu' theme.
-    DiscoItem(addon_id=265123, type=amo.ADDON_PERSONA),
-
-    # LanguageTool Grammar Checker
-    DiscoItem(
-        addon_id=708770,
-        heading=_(u'Improve your writing {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Supporting 25+ languages, this extension puts a proofreader '
-              u'right in your browser.'),
+            _(u'A lightweight and effective ad blocker. uBlock Origin '
+              u'enforces thousands of content filters without chewing up a '
+              u'bunch of memory.'),
             '</blockquote>')),
 
     # Enhancer for YouTube
@@ -72,6 +50,36 @@ discopane_items = [
               u'ad blocking, auto-play control, and more.'),
             '</blockquote>')),
 
-    # 'Fall Painting' theme.
-    DiscoItem(addon_id=644254, type=amo.ADDON_PERSONA),
+    # 'Snub Nosed Dog' theme.
+    DiscoItem(
+        addon_id=376685, type=amo.ADDON_PERSONA, addon_name='Snub Nosed Dog'),
+
+    # Search Image
+    DiscoItem(
+        addon_id=455926,
+        addon_name='Search Image',
+        heading=_(u'Easily find images {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Highlight any text and right-click to quickly perform an '
+              u'image search.'),
+            '</blockquote>')),
+
+    # Emoji Cheatsheet.
+    DiscoItem(
+        addon_id=511962,
+        heading=_(u'Up your emoji game {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis—always a click away.'),
+            '</blockquote>')),
+
+
+    # 'Butterfly Fantasies' theme.
+    DiscoItem(
+        addon_id=208568,
+        type=amo.ADDON_PERSONA,
+        addon_name='Butterfly Fantasies'),
 ]

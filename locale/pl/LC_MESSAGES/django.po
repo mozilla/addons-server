@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2005,6 +2005,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Skomentuj dodatek {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Komentarz"
+
 msgid "{tag} added to {addon}."
 msgstr "Do dodatku {addon} dodano etykietę {tag}."
 
@@ -2270,6 +2274,10 @@ msgstr "Wtyczka"
 msgid "Theme"
 msgstr "Motyw"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Szczegóły motywu"
+
 msgid "Complete Themes"
 msgstr "Kompletne motywy"
 
@@ -2286,6 +2294,10 @@ msgstr "Pakiety językowe (dodatek)"
 
 msgid "Plugins"
 msgstr "Wtyczki"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Autorzy motywów"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Wyświetlaj prośbę tylko na stronie dodatku i w profilu autora"
@@ -2313,109 +2325,6 @@ msgstr "Wydanie"
 
 msgid "Change"
 msgstr "Zmień"
-
-msgid "App"
-msgstr "Aplikacja"
-
-msgid "Persona"
-msgstr "Minimotyw"
-
-msgid "Manual Reviewer Points"
-msgstr "Punkty recenzenta"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Pełne sprawdzenie dodatku"
-
-msgid "Preliminary Add-on Review"
-msgstr "Wstępne sprawdzenie dodatku"
-
-msgid "Updated Add-on Review"
-msgstr "Sprawdzenie zaktualizowanego dodatku"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Pełne sprawdzenie słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Wstępne sprawdzenie słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Sprawdzenie zaktualizowanego słownika"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Pełne sprawdzenie pakietu językowego"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Wstępne sprawdzenie pakietu językowego"
-
-msgid "Updated Language Pack Review"
-msgstr "Sprawdzenie zaktualizowanego pakietu językowego"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Sprawdzenie motywu"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Pełne sprawdzenie wtyczki wyszukiwarki"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Wstępne sprawdzenie wtyczki wyszukiwarki"
-
-msgid "Updated Search Provider Review"
-msgstr "Sprawdzenie zaktualizowanej wtyczki wyszukiwarki"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Sprawdzenie kompletnego motywu"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Wstępne sprawdzenie kompletnego motywu"
-
-msgid "Updated Complete Theme Review"
-msgstr "Sprawdzenie zaktualizowanego kompletnego motywu"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderowane sprawdzenie dodatku"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Przywrócono moderację sprawdzenia dodatku"
-
-msgid "Level 1"
-msgstr "Poziom 1"
-
-msgid "Level 2"
-msgstr "Poziom 2"
-
-msgid "Level 3"
-msgstr "Poziom 3"
-
-msgid "Level 4"
-msgstr "Poziom 4"
-
-msgid "Level 5"
-msgstr "Poziom 5"
-
-msgid "Level 6"
-msgstr "Poziom 6"
-
-msgid "Level 7"
-msgstr "Poziom 7"
-
-msgid "Level 8"
-msgstr "Poziom 8"
-
-msgid "Level 9"
-msgstr "Poziom 9"
 
 msgid "Compatible"
 msgstr ""
@@ -2490,42 +2399,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sportowe"
 
-msgid "General"
-msgstr "Ogólne"
-
-msgid "Business"
-msgstr "Biznes i gospodarka"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Słowniki i encyklopedie"
-
-msgid "Kids"
-msgstr "Dla dzieci"
-
-msgid "Multiple Search"
-msgstr "Wyszukiwanie równoległe"
-
-msgid "Music"
-msgstr "Muzyka"
-
-msgid "News & Blogs"
-msgstr "Wiadomości i blogi"
-
-msgid "Photos & Images"
-msgstr "Zdjęcia i obrazki"
-
-msgid "Shopping & E-Commerce"
-msgstr "Zakupy i e-biznes"
-
-msgid "Social & People"
-msgstr "Ludzie i społeczności"
-
-msgid "Travel"
-msgstr "Podróże"
-
-msgid "Video"
-msgstr "Wideo"
-
 msgid "Abstract"
 msgstr "Abstrakcyjne"
 
@@ -2544,6 +2417,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Wakacje"
 
+msgid "Music"
+msgstr "Muzyka"
+
 msgid "Scenery"
 msgstr "Krajobrazy"
 
@@ -2555,6 +2431,39 @@ msgstr "Proste"
 
 msgid "Websites"
 msgstr "Witryny"
+
+msgid "General"
+msgstr "Ogólne"
+
+msgid "Business"
+msgstr "Biznes i gospodarka"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Słowniki i encyklopedie"
+
+msgid "Kids"
+msgstr "Dla dzieci"
+
+msgid "Multiple Search"
+msgstr "Wyszukiwanie równoległe"
+
+msgid "News & Blogs"
+msgstr "Wiadomości i blogi"
+
+msgid "Photos & Images"
+msgstr "Zdjęcia i obrazki"
+
+msgid "Shopping & E-Commerce"
+msgstr "Zakupy i e-biznes"
+
+msgid "Social & People"
+msgstr "Ludzie i społeczności"
+
+msgid "Travel"
+msgstr "Podróże"
+
+msgid "Video"
+msgstr "Wideo"
 
 msgid "Device Features & Location"
 msgstr "Funkcje urządzenia i lokalizacja"
@@ -2630,6 +2539,119 @@ msgstr "Związane z konkretnymi witrynami"
 
 msgid "Web and Developer Tools"
 msgstr "Narzędzia twórców witryn"
+
+msgid "App"
+msgstr "Aplikacja"
+
+msgid "Persona"
+msgstr "Minimotyw"
+
+msgid "Manual Reviewer Points"
+msgstr "Punkty recenzenta"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Pełne sprawdzenie dodatku"
+
+msgid "Preliminary Add-on Review"
+msgstr "Wstępne sprawdzenie dodatku"
+
+msgid "Updated Add-on Review"
+msgstr "Sprawdzenie zaktualizowanego dodatku"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Pełne sprawdzenie słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Wstępne sprawdzenie słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Sprawdzenie zaktualizowanego słownika"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Pełne sprawdzenie pakietu językowego"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Wstępne sprawdzenie pakietu językowego"
+
+msgid "Updated Language Pack Review"
+msgstr "Sprawdzenie zaktualizowanego pakietu językowego"
+
+msgid "Theme Review"
+msgstr "Sprawdzenie motywu"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Pełne sprawdzenie wtyczki wyszukiwarki"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Wstępne sprawdzenie wtyczki wyszukiwarki"
+
+msgid "Updated Search Provider Review"
+msgstr "Sprawdzenie zaktualizowanej wtyczki wyszukiwarki"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Sprawdzenie kompletnego motywu"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Wstępne sprawdzenie kompletnego motywu"
+
+msgid "Updated Complete Theme Review"
+msgstr "Sprawdzenie zaktualizowanego kompletnego motywu"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Moderowane sprawdzenie dodatku"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Przywrócono moderację sprawdzenia dodatku"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Wyślij sprawdzenie"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Poziom 1"
+
+msgid "Level 2"
+msgstr "Poziom 2"
+
+msgid "Level 3"
+msgstr "Poziom 3"
+
+msgid "Level 4"
+msgstr "Poziom 4"
+
+msgid "Level 5"
+msgstr "Poziom 5"
+
+msgid "Level 6"
+msgstr "Poziom 6"
+
+msgid "Level 7"
+msgstr "Poziom 7"
+
+msgid "Level 8"
+msgstr "Poziom 8"
+
+msgid "Level 9"
+msgstr "Poziom 9"
 
 msgid "Request More Info"
 msgstr "Poproś o więcej informacji"
@@ -3845,7 +3867,8 @@ msgstr "Docelowa wersja"
 msgid "Upload Version"
 msgstr "Ładowanie nowej wersji"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Użyj poniższego formularza, by przesłać spakowany plik dodatku i określić systemy operacyjne. Po przesłaniu dodatku zostanie uruchomiona seria automatycznych testów sprawdzających."
 
 msgid "Which platforms is this file compatible with?"
@@ -4774,28 +4797,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5076,32 +5099,6 @@ msgstr "Sprawdzenie zakończone pomyślnie."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "zaakceptowany"
-
-msgid "given preliminary review"
-msgstr "wstępnie sprawdzony"
-
-msgid "rejected"
-msgstr "odrzucony"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "rozszerzone"
-
-msgid "needs more information"
-msgstr "potrzebuje więcej informacji"
-
-msgid "needs super review"
-msgstr "potrzebuje specjalnego sprawdzenia"
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "zaakceptowany"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5736,6 +5733,10 @@ msgstr "Nie można przetworzyć przesłanego pliku."
 
 msgid "Could not parse uploaded file."
 msgstr "Nie można przetworzyć przesłanego pliku."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7785,6 +7786,9 @@ msgstr "Oceniono na {0} z 5 możliwych gwiazdek"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Oceniony jako %(rating)s/5"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Najpopularniejsze w tym tygodniu"

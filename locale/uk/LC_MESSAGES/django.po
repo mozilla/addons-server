@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-09-03 14:42+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -2004,6 +2004,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар про {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "прокоментовано"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} додано до {addon}."
 
@@ -2258,6 +2262,10 @@ msgstr "Плагін"
 msgid "Theme"
 msgstr "Тему"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Інформація про тему"
+
 msgid "Complete Themes"
 msgstr "Повні теми"
 
@@ -2272,6 +2280,10 @@ msgstr "Мовні пакети (Додаток)"
 
 msgid "Plugins"
 msgstr "Плагіни"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Художник тем"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Запитувати лише на сторінці цього додатку та профілю розробника"
@@ -2294,102 +2306,6 @@ msgstr "Випуск"
 
 msgid "Change"
 msgstr "Змінити"
-
-msgid "App"
-msgstr "Дод."
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Бали за ручну перевірку"
-
-msgid "New Add-on Review"
-msgstr "Нова перевірка додатка"
-
-msgid "Preliminary Add-on Review"
-msgstr "Попередня перевірка додатка"
-
-msgid "Updated Add-on Review"
-msgstr "Оновлена перевірка додатка"
-
-msgid "New Dictionary Review"
-msgstr "Нова перевірка словника"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Попередня перевірка словника"
-
-msgid "Updated Dictionary Review"
-msgstr "Перевірка оновленого словника"
-
-msgid "New Language Pack Review"
-msgstr "Нова перевірка мовного пакету"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Попередня перевірка мовного пакету"
-
-msgid "Updated Language Pack Review"
-msgstr "Перевірка оновленого мовного пакету"
-
-msgid "Bonus for overdue reviews"
-msgstr "Бонус за прострочені відгуки"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Днів до додання бонусних балів"
-
-msgid "Theme Review"
-msgstr "Перевірка теми"
-
-msgid "New Search Provider Review"
-msgstr "Нова перевірка провайдера пошуку"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Попередня перевірка провайдера пошуку"
-
-msgid "Updated Search Provider Review"
-msgstr "Оновлена перевірка провайдера пошуку"
-
-msgid "New Complete Theme Review"
-msgstr "Нова перевірка повної теми"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Попередня перевірка повної теми"
-
-msgid "Updated Complete Theme Review"
-msgstr "Оновлена перевірка повної теми"
-
-msgid "Moderated Add-on Review"
-msgstr "Перевірка модерованого додатку"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Модерація відгуку на додаток повернена"
-
-msgid "Level 1"
-msgstr "Рівень 1"
-
-msgid "Level 2"
-msgstr "Рівень 2"
-
-msgid "Level 3"
-msgstr "Рівень 3"
-
-msgid "Level 4"
-msgstr "Рівень 4"
-
-msgid "Level 5"
-msgstr "Рівень 5"
-
-msgid "Level 6"
-msgstr "Рівень 6"
-
-msgid "Level 7"
-msgstr "Рівень 7"
-
-msgid "Level 8"
-msgstr "Рівень 8"
-
-msgid "Level 9"
-msgstr "Рівень 9"
 
 msgid "Compatible"
 msgstr "Сумісно"
@@ -2463,42 +2379,6 @@ msgstr "Ретро"
 msgid "Sports"
 msgstr "Спорт"
 
-msgid "General"
-msgstr "Загальне"
-
-msgid "Business"
-msgstr "Бізнес"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Словники та Енциклопедії"
-
-msgid "Kids"
-msgstr "Дитячі"
-
-msgid "Multiple Search"
-msgstr "Багатосайтові"
-
-msgid "Music"
-msgstr "Музичні"
-
-msgid "News & Blogs"
-msgstr "Новини та блоги"
-
-msgid "Photos & Images"
-msgstr "Фото та малюнки"
-
-msgid "Shopping & E-Commerce"
-msgstr "Торгівля"
-
-msgid "Social & People"
-msgstr "Спільноти та люди"
-
-msgid "Travel"
-msgstr "Подорожі"
-
-msgid "Video"
-msgstr "Відео"
-
 msgid "Abstract"
 msgstr "Абстрактні"
 
@@ -2517,6 +2397,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Святкові"
 
+msgid "Music"
+msgstr "Музичні"
+
 msgid "Scenery"
 msgstr "Пейзажі"
 
@@ -2528,6 +2411,39 @@ msgstr "Суцільні"
 
 msgid "Websites"
 msgstr "Веб-сайти"
+
+msgid "General"
+msgstr "Загальне"
+
+msgid "Business"
+msgstr "Бізнес"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Словники та Енциклопедії"
+
+msgid "Kids"
+msgstr "Дитячі"
+
+msgid "Multiple Search"
+msgstr "Багатосайтові"
+
+msgid "News & Blogs"
+msgstr "Новини та блоги"
+
+msgid "Photos & Images"
+msgstr "Фото та малюнки"
+
+msgid "Shopping & E-Commerce"
+msgstr "Торгівля"
+
+msgid "Social & People"
+msgstr "Спільноти та люди"
+
+msgid "Travel"
+msgstr "Подорожі"
+
+msgid "Video"
+msgstr "Відео"
 
 msgid "Device Features & Location"
 msgstr "Функції пристрою і розташування"
@@ -2603,6 +2519,112 @@ msgstr "Для окремих сайтів"
 
 msgid "Web and Developer Tools"
 msgstr "Інструменти розробника"
+
+msgid "App"
+msgstr "Дод."
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Бали за ручну перевірку"
+
+msgid "New Add-on Review"
+msgstr "Нова перевірка додатка"
+
+msgid "Preliminary Add-on Review"
+msgstr "Попередня перевірка додатка"
+
+msgid "Updated Add-on Review"
+msgstr "Оновлена перевірка додатка"
+
+msgid "New Dictionary Review"
+msgstr "Нова перевірка словника"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Попередня перевірка словника"
+
+msgid "Updated Dictionary Review"
+msgstr "Перевірка оновленого словника"
+
+msgid "New Language Pack Review"
+msgstr "Нова перевірка мовного пакету"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Попередня перевірка мовного пакету"
+
+msgid "Updated Language Pack Review"
+msgstr "Перевірка оновленого мовного пакету"
+
+msgid "Theme Review"
+msgstr "Перевірка теми"
+
+msgid "New Search Provider Review"
+msgstr "Нова перевірка провайдера пошуку"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Попередня перевірка провайдера пошуку"
+
+msgid "Updated Search Provider Review"
+msgstr "Оновлена перевірка провайдера пошуку"
+
+msgid "New Complete Theme Review"
+msgstr "Нова перевірка повної теми"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Попередня перевірка повної теми"
+
+msgid "Updated Complete Theme Review"
+msgstr "Оновлена перевірка повної теми"
+
+msgid "Moderated Add-on Review"
+msgstr "Перевірка модерованого додатку"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Модерація відгуку на додаток повернена"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Внести рецензію"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Рівень 1"
+
+msgid "Level 2"
+msgstr "Рівень 2"
+
+msgid "Level 3"
+msgstr "Рівень 3"
+
+msgid "Level 4"
+msgstr "Рівень 4"
+
+msgid "Level 5"
+msgstr "Рівень 5"
+
+msgid "Level 6"
+msgstr "Рівень 6"
+
+msgid "Level 7"
+msgstr "Рівень 7"
+
+msgid "Level 8"
+msgstr "Рівень 8"
+
+msgid "Level 9"
+msgstr "Рівень 9"
 
 msgid "Request More Info"
 msgstr "Запитати більше інформації"
@@ -3802,7 +3824,8 @@ msgstr "Де розмістити версію"
 msgid "Upload Version"
 msgstr "Вивантажити версію"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Для завантаження пакету свого додатку і вибору обмежень щодо платформи користуйтеся полями нижче. Після завантаження ваш файл буде перевірено з використанням серії автоматичних тестів валідації."
 
@@ -4681,10 +4704,23 @@ msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, контроль авто-відтворення та інших."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #, fuzzy
@@ -4693,18 +4729,6 @@ msgstr "Покращуйте свою орфографію {start_sub_heading}з
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Підтримуючи більше 25 мов, це розширення перевіряє граматику прямо у вашому браузері."
-
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, контроль авто-відтворення та інших."
 
 msgid "Approved reviews"
 msgstr "Схвалені розгляди"
@@ -4971,31 +4995,6 @@ msgstr "Перевірка успішно оброблена."
 
 msgid "Review lock limit reached"
 msgstr "Досягнуто межі блокування перевірки"
-
-msgid "was approved"
-msgstr "було схвалено"
-
-msgid "given preliminary review"
-msgstr "надано попередній розгляд"
-
-msgid "rejected"
-msgstr "відхилено"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "передано вище"
-
-msgid "needs more information"
-msgstr "потребує додаткову інформацію"
-
-msgid "needs super review"
-msgstr "потребує супер-перегляду"
-
-msgid "commented"
-msgstr "прокоментовано"
-
-msgid "confirmed as approved"
-msgstr "підтверджено як схвалено"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5622,6 +5621,10 @@ msgstr "Не вдалося розібрати завантажений файл
 
 msgid "Could not parse uploaded file."
 msgstr "Не вдалося розібрати завантажений файл."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7676,6 +7679,9 @@ msgstr "Оцінка {0} з 5 зірок"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцінено на %(rating)s з 5 зірок"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Найпопулярніші цього тижня"

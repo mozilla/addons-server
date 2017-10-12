@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-08-15 11:59+0000\n"
-"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-11 10:21+0000\n"
+"Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Không tìm thấy tài khoản Firefox của bạn. Hãy thử lại."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Bạn không thể đăng nhập. Vui lòng thử lại."
@@ -161,7 +161,7 @@ msgid "Users have the option of contributing more or less than this amount."
 msgstr "Người dùng được quyền chọn đóng góp nhiều hoặc ít hơn khoản này."
 
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Người dùng sẽ luôn được hỏi trong trình Quản lí Tiện ích (Firefox 4 trở lên). Chỉ áp dụng với desktop."
 
 # Column name in a table.
 msgid "Listed"
@@ -365,10 +365,10 @@ msgid "Requires Restart"
 msgstr "Bắt buộc khởi động lại"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Tiện ích này được xây dựng với công nghệ mới tương thích với Firefox 57 và hơn thế nữa."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Tương thích với Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -1939,6 +1939,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+#, fuzzy
+msgid "Commented"
+msgstr "Bình luận"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} được thêm vào {addon}."
 
@@ -2203,6 +2207,9 @@ msgstr "Phần bổ trợ"
 msgid "Theme"
 msgstr "Giao diện"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr ""
 
@@ -2219,6 +2226,9 @@ msgstr ""
 
 msgid "Plugins"
 msgstr "Phần bổ trợ"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Chỉ hỏi trên trang của tiện ích này và hồ sơ nhà phát triển"
@@ -2240,108 +2250,6 @@ msgid "Release"
 msgstr ""
 
 msgid "Change"
-msgstr ""
-
-msgid "App"
-msgstr ""
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Quản trị Xét duyệt"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Xét duyệt Sơ bộ"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Gói ngôn ngữ"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Nhà cung cấp Tìm kiếm"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Giao diện Đầy đủ Xếp hạng Cao nhất"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Xét duyệt Đã được Điều chỉnh"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr ""
-
-msgid "Level 2"
-msgstr ""
-
-msgid "Level 3"
-msgstr ""
-
-msgid "Level 4"
-msgstr ""
-
-msgid "Level 5"
-msgstr ""
-
-msgid "Level 6"
-msgstr ""
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
@@ -2417,42 +2325,6 @@ msgstr "Hoài niệm"
 msgid "Sports"
 msgstr "Thể thao"
 
-msgid "General"
-msgstr "Tổng quát"
-
-msgid "Business"
-msgstr "Kinh doanh"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Từ điển & Bách khoa Toàn thư"
-
-msgid "Kids"
-msgstr "Trẻ em"
-
-msgid "Multiple Search"
-msgstr "Tìm kiếm Nhiều nguồn"
-
-msgid "Music"
-msgstr "Âm nhạc"
-
-msgid "News & Blogs"
-msgstr "Tin tức & Blog"
-
-msgid "Photos & Images"
-msgstr "Hình & Ảnh"
-
-msgid "Shopping & E-Commerce"
-msgstr "Mua sắm & Thương mại Điện tử"
-
-msgid "Social & People"
-msgstr "Giao lưu & Con người"
-
-msgid "Travel"
-msgstr "Du lịch"
-
-msgid "Video"
-msgstr "Phim"
-
 msgid "Abstract"
 msgstr "Trừu tượng"
 
@@ -2471,6 +2343,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Ngày lễ"
 
+msgid "Music"
+msgstr "Âm nhạc"
+
 msgid "Scenery"
 msgstr "Phong cảnh"
 
@@ -2482,6 +2357,39 @@ msgstr "Màu đồng nhất"
 
 msgid "Websites"
 msgstr "Trang web"
+
+msgid "General"
+msgstr "Tổng quát"
+
+msgid "Business"
+msgstr "Kinh doanh"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Từ điển & Bách khoa Toàn thư"
+
+msgid "Kids"
+msgstr "Trẻ em"
+
+msgid "Multiple Search"
+msgstr "Tìm kiếm Nhiều nguồn"
+
+msgid "News & Blogs"
+msgstr "Tin tức & Blog"
+
+msgid "Photos & Images"
+msgstr "Hình & Ảnh"
+
+msgid "Shopping & E-Commerce"
+msgstr "Mua sắm & Thương mại Điện tử"
+
+msgid "Social & People"
+msgstr "Giao lưu & Con người"
+
+msgid "Travel"
+msgstr "Du lịch"
+
+msgid "Video"
+msgstr "Phim"
 
 msgid "Device Features & Location"
 msgstr "Địa điểm & Tính năng Thiết bị"
@@ -2563,6 +2471,118 @@ msgstr "Chuyên biệt cho Trang web"
 
 msgid "Web and Developer Tools"
 msgstr "Công cụ Web và Nhà phát triển"
+
+msgid "App"
+msgstr ""
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Quản trị Xét duyệt"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Xét duyệt Sơ bộ"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Gói ngôn ngữ"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Nhà cung cấp Tìm kiếm"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Giao diện Đầy đủ Xếp hạng Cao nhất"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Xét duyệt Đã được Điều chỉnh"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Chưa duyệt"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr ""
+
+msgid "Level 2"
+msgstr ""
+
+msgid "Level 3"
+msgstr ""
+
+msgid "Level 4"
+msgstr ""
+
+msgid "Level 5"
+msgstr ""
+
+msgid "Level 6"
+msgstr ""
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr "Yêu cầu Thêm Thông tin"
@@ -3748,7 +3768,8 @@ msgstr "Xóa phiên bản"
 msgid "Upload Version"
 msgstr "Tải lên một Phiên bản Mới"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Dùng các trường bên dưới để tải lên gói tiện ích của bạn và chọn giới hạn nền tảng. Sau khi tải lên, một loạt bài kiểm định tự động sẽ được chạy trên tập tin của bạn."
 
 msgid "Which platforms is this file compatible with?"
@@ -4140,9 +4161,8 @@ msgstr "Xóa Hình ảnh Người dùng"
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
 msgstr "<a href=\"%(reg)s\">Đăng kí</a> hoặc <a href=\"%(login)s\">Đăng nhập</a>"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Thêm vào Firefox"
+msgstr "Tùy biến Firefox"
 
 #, python-format
 msgid ""
@@ -4660,28 +4680,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4955,32 +4975,6 @@ msgstr "Việc xét duyệt được tiến hành thành công."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "đã được chấp thuận"
-
-msgid "given preliminary review"
-msgstr "được xét duyệt sơ bộ"
-
-msgid "rejected"
-msgstr "bị từ chối"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "được nâng cấp"
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "đã được chấp thuận"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5587,7 +5581,7 @@ msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID phải có với Firefox 47 và thấp hơn."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -5600,6 +5594,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7549,6 +7547,9 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr "Thông dụng nhất tuần này"
 
@@ -7984,9 +7985,8 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "biết thêm về <b>tiện ích</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Tải xuống ngay"
+msgstr "Tải xuống Firefox"
 
 #, fuzzy
 msgid "Android Browser"
@@ -8039,7 +8039,7 @@ msgstr ""
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Chào mừng đến với tiện ích {0}."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
@@ -8247,7 +8247,7 @@ msgid "Email Address"
 msgstr "Địa chỉ Email"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Quản lý tài khoản Firefox..."
 
 msgid "Profile"
 msgstr ""
@@ -8311,7 +8311,7 @@ msgid "User Login"
 msgstr "Đăng nhập Người dùng"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Đăng nhập với tài khoản Firefox"
 
 msgid "Password Reset"
 msgstr "Khôi phục Mật khẩu"

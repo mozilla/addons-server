@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -2015,6 +2015,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Komentar"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2277,6 +2281,9 @@ msgstr "Priključak"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Kompletne teme"
 
@@ -2291,6 +2298,9 @@ msgstr ""
 
 msgid "Plugins"
 msgstr "Dodaci za preglednik"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2313,108 +2323,6 @@ msgstr "Izdanje"
 
 msgid "Change"
 msgstr "Izmjena"
-
-msgid "App"
-msgstr "Aplikacija"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Revizijski zapis dodatka"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Preliminarna revizija"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Jezični paket"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Tražilice"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Revizijski zapis dodatka"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Revizijski zapis dodatka"
-
-msgid "Level 1"
-msgstr "Razina 1"
-
-msgid "Level 2"
-msgstr "Razina 2"
-
-msgid "Level 3"
-msgstr "Razina 3"
-
-msgid "Level 4"
-msgstr "Razina 4"
-
-msgid "Level 5"
-msgstr "Razina 5"
-
-msgid "Level 6"
-msgstr "Razina 6"
-
-msgid "Level 7"
-msgstr "Razina 7"
-
-msgid "Level 8"
-msgstr "Razina 8"
-
-msgid "Level 9"
-msgstr "Razina 9"
 
 msgid "Compatible"
 msgstr ""
@@ -2489,42 +2397,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Opće"
-
-msgid "Business"
-msgstr "Posao"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Rječnici i enciklopedije"
-
-msgid "Kids"
-msgstr "Djeca"
-
-msgid "Multiple Search"
-msgstr "Višestruko pretraživanje"
-
-msgid "Music"
-msgstr "Glazba"
-
-msgid "News & Blogs"
-msgstr "Vijesti i blogovi"
-
-msgid "Photos & Images"
-msgstr "Fotografije i slike"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping i e-komerc"
-
-msgid "Social & People"
-msgstr "Društveno i ljudi"
-
-msgid "Travel"
-msgstr "Putovanje"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktno"
 
@@ -2543,6 +2415,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Blagdan"
 
+msgid "Music"
+msgstr "Glazba"
+
 msgid "Scenery"
 msgstr "Pejzaž"
 
@@ -2554,6 +2429,39 @@ msgstr "Jednobojne"
 
 msgid "Websites"
 msgstr "Web stranice"
+
+msgid "General"
+msgstr "Opće"
+
+msgid "Business"
+msgstr "Posao"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Rječnici i enciklopedije"
+
+msgid "Kids"
+msgstr "Djeca"
+
+msgid "Multiple Search"
+msgstr "Višestruko pretraživanje"
+
+msgid "News & Blogs"
+msgstr "Vijesti i blogovi"
+
+msgid "Photos & Images"
+msgstr "Fotografije i slike"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping i e-komerc"
+
+msgid "Social & People"
+msgstr "Društveno i ljudi"
+
+msgid "Travel"
+msgstr "Putovanje"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Mogućnosti uređaja i lokacija"
@@ -2629,6 +2537,118 @@ msgstr "Specifično za we"
 
 msgid "Web and Developer Tools"
 msgstr "Alati za razvoj weba"
+
+msgid "App"
+msgstr "Aplikacija"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Revizijski zapis dodatka"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Preliminarna revizija"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Jezični paket"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Tražilice"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr ""
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Revizijski zapis dodatka"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Revizijski zapis dodatka"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Nije pregledano"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Razina 1"
+
+msgid "Level 2"
+msgstr "Razina 2"
+
+msgid "Level 3"
+msgstr "Razina 3"
+
+msgid "Level 4"
+msgstr "Razina 4"
+
+msgid "Level 5"
+msgstr "Razina 5"
+
+msgid "Level 6"
+msgstr "Razina 6"
+
+msgid "Level 7"
+msgstr "Razina 7"
+
+msgid "Level 8"
+msgstr "Razina 8"
+
+msgid "Level 9"
+msgstr "Razina 9"
 
 msgid "Request More Info"
 msgstr "Zatraži više informacija"
@@ -3815,7 +3835,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Dodaj inačicu"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4715,28 +4735,28 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5010,32 +5030,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr "odbijen"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-# 79%
-msgid "needs more information"
-msgstr "treba više informacija"
-
-msgid "needs super review"
-msgstr "treba prvorazrednu reviziju"
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5680,6 +5674,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7605,6 +7603,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

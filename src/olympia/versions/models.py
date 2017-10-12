@@ -180,8 +180,8 @@ class Version(OnChangeMixin, ModelBase):
         # queries completely.
         version.compatible_apps = compatible_apps
 
-        if addon.type == amo.ADDON_SEARCH:
-            # Search extensions are always for all platforms.
+        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
+            # Search extensions and static themes are always for all platforms.
             platforms = [amo.PLATFORM_ALL.id]
         else:
             platforms = cls._make_safe_platform_files(platforms)

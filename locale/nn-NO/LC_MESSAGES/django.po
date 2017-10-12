@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-09-15 08:57+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-10 11:13+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -133,7 +133,7 @@ msgstr[1] "Alle tagger må minst ha {0} teikn."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL-dometet må vere eit av [%s] eller eit underdomene."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategorier kan ikkje endrast medan innlegget ditt er framheva for denne appen."
@@ -485,13 +485,13 @@ msgstr "Personvernpraksis"
 msgid "Report Abuse"
 msgstr "Rapporter misbruk"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Dersom du mistenkjer at ei utviding strid mot <a href=\"%(url)s\">praksisen vår</a> eller har tryggings- eller personvernproblem, bruk skjemaet nedanfor for å skildre bekymringane dine. Ikkje bruk "
-"skjemaet for andre føremål."
+"Dersom du mistenkjer at ei utviding strid mot %(amo_policy_link_open)spraksisen vår%(link_close)s eller har tryggings- eller personvernproblem, bruk skjemaet nedanfor for å skildre bekymringane "
+"dine. Ikkje bruk skjemaet for andre føremål."
 
 msgid "Send Report"
 msgstr "Send rapport"
@@ -759,13 +759,11 @@ msgstr "Kjeldekodelisens for {addon}"
 msgid "Source Code License"
 msgstr "Kjeldekodelisens"
 
-#, fuzzy
 msgid "support section"
-msgstr "Brukarstøttenettstad"
+msgstr "brukarstøtteavdeling"
 
-#, fuzzy
 msgid "support email"
-msgstr "E-post for brukarstøtte:"
+msgstr "brukarstøtte e-post"
 
 msgid "permalink"
 msgstr "permalenke"
@@ -1089,9 +1087,9 @@ msgstr "Gyldige applikasjonsversjonar"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Utvidingar sendt inn til Mozilla Add-ons må ha ein manifest-fil med støtte for minst eitt av programma nedanfor. Berre versjonane lista opp nedanfor er tillatne for desse programma."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Tenk på at WebExtensions ikkje kjem å godta ein \"*\" i <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr "Tenk på at WebExtensions ikkje kjem til å godta ein \"*\" i %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1099,15 +1097,15 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "Versjonar"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
-msgstr "Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludereein av følgjande eigenskapar som spesifisert <a href=\"%(url)s\">her</a>."
+msgstr ""
+"Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Bidragsytar"
+msgstr "Bidragsytarar"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1946,6 +1944,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "kommentert"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} lagt til på {addon}."
 
@@ -2101,29 +2103,23 @@ msgstr "Auto-godkjenning stadfesta for {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Auto-godkjenning stadfesta"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} aktivert på nytt."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} eskalert."
+msgstr "{addon} {version} deaktivert."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} godkjend."
+msgstr "{addon} {version} innhald godkjent."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "stadfesta som godkjent"
+msgstr "Innhald godkjent"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} innhald avvist."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "avvist"
+msgstr "Innhald avvist"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2200,6 +2196,10 @@ msgstr "Programtillegg"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Temadetaljar"
+
 msgid "Complete Themes"
 msgstr "Fullstendige tema"
 
@@ -2214,6 +2214,10 @@ msgstr "Språkpakkar (utvidingar)"
 
 msgid "Plugins"
 msgstr "Programtillegg"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Tema-artist"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Berre spør på denne utvidinga si side og utviklarprofil"
@@ -2236,103 +2240,6 @@ msgstr "Utgåve"
 
 msgid "Change"
 msgstr "Endre"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Manuelle vurderarpoeng"
-
-msgid "New Add-on Review"
-msgstr "Ny vurdering av utviding"
-
-msgid "Preliminary Add-on Review"
-msgstr "Foreløpig gjennomgang av utviding"
-
-msgid "Updated Add-on Review"
-msgstr "Oppdatert gjennomgang av utviding"
-
-msgid "New Dictionary Review"
-msgstr "Nye ordboksvurderingar"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Foreløpig gjennomgang av ordbok"
-
-msgid "Updated Dictionary Review"
-msgstr "Oppdatert gjennomgang av ordbok"
-
-msgid "New Language Pack Review"
-msgstr "Ny språkpakke-vurdering"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Foreløpig gjennomgang av språkpakke"
-
-msgid "Updated Language Pack Review"
-msgstr "Oppdatert gjennomgang av språkpakke"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus for forseinka vurderingar"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagar før bonuspoeng vert lagt på"
-
-msgid "Theme Review"
-msgstr "Temavurdering"
-
-msgid "New Search Provider Review"
-msgstr "Ny vurdering av søkjetilbydar"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Foreløpig gjennomgang av søketilbydar"
-
-msgid "Updated Search Provider Review"
-msgstr "Oppdatert gjennomgang av søketilbydar"
-
-msgid "New Complete Theme Review"
-msgstr "Ny vurdering av komplette tema"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Foreløpig gjennomgang av tema"
-
-msgid "Updated Complete Theme Review"
-msgstr "Oppdatert gjennomgang av komplett tema"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderert utvidingsvurdering"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Tilbakestilt moderert utvidingsvurdering"
-
-msgid "Level 1"
-msgstr "Nivå 1"
-
-msgid "Level 2"
-msgstr "Nivå 2"
-
-msgid "Level 3"
-msgstr "Nivå 3"
-
-msgid "Level 4"
-msgstr "Nivå 4"
-
-msgid "Level 5"
-msgstr "Nivå 5"
-
-msgid "Level 6"
-msgstr "Nivå 6"
-
-msgid "Level 7"
-msgstr "Nivå 7"
-
-msgid "Level 8"
-msgstr "Nivå 8"
-
-msgid "Level 9"
-msgstr "Nivå 9"
 
 msgid "Compatible"
 msgstr "Kompatibel"
@@ -2406,42 +2313,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Generelt"
-
-msgid "Business"
-msgstr "Business"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Ordbøker og allkunnebøker"
-
-msgid "Kids"
-msgstr "Born"
-
-msgid "Multiple Search"
-msgstr "Kombinert søking"
-
-msgid "Music"
-msgstr "Musikk"
-
-msgid "News & Blogs"
-msgstr "Nyheiter og bloggar"
-
-msgid "Photos & Images"
-msgstr "Foto og bilde"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping og e-handel"
-
-msgid "Social & People"
-msgstr "Sosialt og menneske"
-
-msgid "Travel"
-msgstr "Reise"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -2460,6 +2331,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Ferie"
 
+msgid "Music"
+msgstr "Musikk"
+
 msgid "Scenery"
 msgstr "Landskap"
 
@@ -2471,6 +2345,39 @@ msgstr "Fast"
 
 msgid "Websites"
 msgstr "Nettstadar"
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "Business"
+msgstr "Business"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Ordbøker og allkunnebøker"
+
+msgid "Kids"
+msgstr "Born"
+
+msgid "Multiple Search"
+msgstr "Kombinert søking"
+
+msgid "News & Blogs"
+msgstr "Nyheiter og bloggar"
+
+msgid "Photos & Images"
+msgstr "Foto og bilde"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping og e-handel"
+
+msgid "Social & People"
+msgstr "Sosialt og menneske"
+
+msgid "Travel"
+msgstr "Reise"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Eininga sin funksjon og plassering"
@@ -2546,6 +2453,111 @@ msgstr "Plass-spesifikk"
 
 msgid "Web and Developer Tools"
 msgstr "Web og utviklarverktøy"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Manuelle vurderarpoeng"
+
+msgid "New Add-on Review"
+msgstr "Ny vurdering av utviding"
+
+msgid "Preliminary Add-on Review"
+msgstr "Foreløpig gjennomgang av utviding"
+
+msgid "Updated Add-on Review"
+msgstr "Oppdatert gjennomgang av utviding"
+
+msgid "New Dictionary Review"
+msgstr "Nye ordboksvurderingar"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Foreløpig gjennomgang av ordbok"
+
+msgid "Updated Dictionary Review"
+msgstr "Oppdatert gjennomgang av ordbok"
+
+msgid "New Language Pack Review"
+msgstr "Ny språkpakke-vurdering"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Foreløpig gjennomgang av språkpakke"
+
+msgid "Updated Language Pack Review"
+msgstr "Oppdatert gjennomgang av språkpakke"
+
+msgid "Theme Review"
+msgstr "Temavurdering"
+
+msgid "New Search Provider Review"
+msgstr "Ny vurdering av søkjetilbydar"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Foreløpig gjennomgang av søketilbydar"
+
+msgid "Updated Search Provider Review"
+msgstr "Oppdatert gjennomgang av søketilbydar"
+
+msgid "New Complete Theme Review"
+msgstr "Ny vurdering av komplette tema"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Foreløpig gjennomgang av tema"
+
+msgid "Updated Complete Theme Review"
+msgstr "Oppdatert gjennomgang av komplett tema"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderert utvidingsvurdering"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Utvidingsvurderingsmoderasjon tilbakestilt"
+
+msgid "Add-on Content Review"
+msgstr "Innhaldsvurdering for utviding"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Utvidingsvurdering etter godkjenning (høgst risiko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Utvidingsvurdering etter godkjenning (høg risiko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Utvidingsvurdering etter godkjenning (middelshøg risiko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Utvidingsvurdering etter godkjenning (låg risiko)"
+
+msgid "Level 1"
+msgstr "Nivå 1"
+
+msgid "Level 2"
+msgstr "Nivå 2"
+
+msgid "Level 3"
+msgstr "Nivå 3"
+
+msgid "Level 4"
+msgstr "Nivå 4"
+
+msgid "Level 5"
+msgstr "Nivå 5"
+
+msgid "Level 6"
+msgstr "Nivå 6"
+
+msgid "Level 7"
+msgstr "Nivå 7"
+
+msgid "Level 8"
+msgstr "Nivå 8"
+
+msgid "Level 9"
+msgstr "Nivå 9"
 
 msgid "Request More Info"
 msgstr "Be om meir info"
@@ -2782,9 +2794,8 @@ msgstr ""
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller eldre."
+msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller lågare."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2932,9 +2943,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox distribusjonsavtale for utvidingar"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Vurderingspraksis"
+msgstr "Vurderingspraksis og reglar"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Eg har lese og godteke denne avtalen, reglane og retningslinjene"
@@ -2946,7 +2956,7 @@ msgid "Printable Version"
 msgstr "Utskriftsvennleg versjon"
 
 msgid "Accept"
-msgstr ""
+msgstr "Godta"
 
 msgid "I Accept this Agreement"
 msgstr "Eg godtek denne avtalen"
@@ -3696,8 +3706,9 @@ msgstr "Kvar skal versjonar husast"
 msgid "Upload Version"
 msgstr "Last opp versjon"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Etter opplasting vil ei rad automatiserte valideringstenester køyrast på fila di."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Kva for plattformer er denne fila kompatibel med?"
@@ -4553,23 +4564,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} åtvaring"
 msgstr[1] "{0} åtvaringar"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tilpass faner {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
 #, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer skrivinga di betre med {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer skrivinga di betre med {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4577,6 +4576,19 @@ msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Kos deg med ein serie av nye YouTube-funksjonar, som kinomodus, annonseblokkering, automatisk avspelingskontroll og mykje meir."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bli betre på emoji {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr ""
 
 msgid "Approved reviews"
 msgstr "Godkjende vurderingar"
@@ -4776,9 +4788,8 @@ msgstr "Ingen vurderingar"
 msgid "Weight"
 msgstr "Vekt"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Siste vurdering"
+msgstr "Siste innhaldsvurdering"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4813,9 +4824,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Godkjenn/Avvis"
+msgstr "Godkjenn innhald"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
@@ -4840,31 +4850,6 @@ msgstr "Vurdering behandla."
 
 msgid "Review lock limit reached"
 msgstr "Grensa for granskingslås er nådd"
-
-msgid "was approved"
-msgstr "vart godkjend"
-
-msgid "given preliminary review"
-msgstr "gjeven førebels vurdering"
-
-msgid "rejected"
-msgstr "avvist"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "opptrappa"
-
-msgid "needs more information"
-msgstr "treng meir informasjon"
-
-msgid "needs super review"
-msgstr "treng supervurdering"
-
-msgid "commented"
-msgstr "kommentert"
-
-msgid "confirmed as approved"
-msgstr "stadfesta som godkjent"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4944,9 +4929,8 @@ msgstr "Modererte vurderingar"
 msgid "Auto Approved Add-ons"
 msgstr "Automatisk godkjende tillegg"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Send inn vurderinga"
+msgstr "Innhaldsvurdering"
 
 msgid "Unlisted Queues"
 msgstr "Ikkje-oppførte køar"
@@ -5146,9 +5130,8 @@ msgid "Editors' Guide"
 msgstr "Guide for redigerarar"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Vurder {0}"
+msgstr "Innhaldsvurdering {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5442,11 +5425,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Automatisk godkjend tillegg ({0})"
 msgstr[1] "Automatisk godkjende tillegg ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Moderert vurdering({0})"
-msgstr[1] "Modererte vurderingar ({0})"
+msgstr[0] "Innhaldsvurdering({0})"
+msgstr[1] "Innhaldsvurderingar ({0})"
 
 msgid "Flagged"
 msgstr "Flagga"
@@ -5477,6 +5459,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7384,6 +7370,9 @@ msgstr "Vurdert til {0} av 5 stjerner"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Vurdert til %(rating)s av 5 stjerner"
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr "Mest populære denne veka"
 
@@ -7812,13 +7801,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "bli kjend med <b>utvidingar</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Last ned filer"
+msgstr "Last ned Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Utvidingar for Android"
+msgstr "Nettlesar for Android"
 
 msgid "iOS Browser"
 msgstr ""

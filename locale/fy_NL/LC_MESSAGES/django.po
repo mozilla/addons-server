@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-09-29 14:55+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-09 11:19+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1979,6 +1979,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Opmerking oer {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Opmerking"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} oan {addon} tafoege."
 
@@ -2134,29 +2138,23 @@ msgstr "Automatyske goedkarring befêstige foar {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Automatyske goedkarring befêstige"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ôfwêzen."
+msgstr "{addon} {version} opnij ynskeakele."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} is eskalearre."
+msgstr "{addon} {version} útskeakele."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} goedkard."
+msgstr "Ynhâld {addon} {version} goedkard."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} goedkard."
+msgstr "Ynhâld goedkard"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} ôfwêzen."
+msgstr "Ynhâld {addon} {version} ôfwêzen."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "{addon} {version} ôfwêzen."
+msgstr "Ynhâld ôfwêzen"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2234,6 +2232,10 @@ msgstr "Ynstekker"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Tema-details"
+
 msgid "Complete Themes"
 msgstr "Folsleine tema’s"
 
@@ -2250,6 +2252,10 @@ msgstr "Taalpakketten (add-on)"
 
 msgid "Plugins"
 msgstr "Ynstekkers"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Tema-details"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Allinnich fragen op de side fan dizze add-on en it ûntwikkelersprofyl"
@@ -2272,103 +2278,6 @@ msgstr "Utjefte"
 
 msgid "Change"
 msgstr "Wizigje"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Hânmjittige beoardielerspunten"
-
-msgid "New Add-on Review"
-msgstr "Nije add-on-beoardieling"
-
-msgid "Preliminary Add-on Review"
-msgstr "Foarriedige add-on-beoardieling"
-
-msgid "Updated Add-on Review"
-msgstr "Bywurke add-on-beoardieling"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Nije wurdboek-beoardieling"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Foarriedige wurdboek-beoardieling"
-
-msgid "Updated Dictionary Review"
-msgstr "Bywurke wurdboek-beoardieling"
-
-msgid "New Language Pack Review"
-msgstr "Nije taalpakket-beoardieling"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Foarriedige taalpakket-beoardieling"
-
-msgid "Updated Language Pack Review"
-msgstr "Bywurke taalpakket-beoardieling"
-
-msgid "Bonus for overdue reviews"
-msgstr "Boanus foar ferrûne beoardielingen"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagen eardat boanuspunten tapast wurde"
-
-msgid "Theme Review"
-msgstr "Temabeoardieling"
-
-msgid "New Search Provider Review"
-msgstr "Nije sykprovider-beoardieling"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Foarriedige sykprovider-beoardieling"
-
-msgid "Updated Search Provider Review"
-msgstr "Bywurke sykprovider-beoardieling"
-
-msgid "New Complete Theme Review"
-msgstr "Nije folslein-temabeoardieling"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Foarriedige folslein-temabeoardieling"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bywurke folslein-temabeoardieling"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderearre add-on-beoardieling"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
-
-msgid "Level 1"
-msgstr "Nivo 1"
-
-msgid "Level 2"
-msgstr "Nivo 2"
-
-msgid "Level 3"
-msgstr "Nivo 3"
-
-msgid "Level 4"
-msgstr "Nivo 4"
-
-msgid "Level 5"
-msgstr "Nivo 5"
-
-msgid "Level 6"
-msgstr "Nivo 6"
-
-msgid "Level 7"
-msgstr "Nivo 7"
-
-msgid "Level 8"
-msgstr "Nivo 8"
-
-msgid "Level 9"
-msgstr "Nivo 9"
 
 msgid "Compatible"
 msgstr "Kompatibel"
@@ -2442,43 +2351,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Algemien"
-
-msgid "Business"
-msgstr "Saaklik"
-
-# Plural in this context means many of the add-on type
-msgid "Dictionaries & Encyclopedias"
-msgstr "Wurdboeken en ensyklopedyen"
-
-msgid "Kids"
-msgstr "Bern"
-
-msgid "Multiple Search"
-msgstr "Mearfâldich sykje"
-
-msgid "Music"
-msgstr "Muzyk"
-
-msgid "News & Blogs"
-msgstr "Nijs en blogs"
-
-msgid "Photos & Images"
-msgstr "Foto’s en ôfbyldingen"
-
-msgid "Shopping & E-Commerce"
-msgstr "Winkelje en e-kommersje"
-
-msgid "Social & People"
-msgstr "Sosjaal en persoanen"
-
-msgid "Travel"
-msgstr "Reizigje"
-
-msgid "Video"
-msgstr "Fideo"
-
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -2497,6 +2369,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Fakânsje"
 
+msgid "Music"
+msgstr "Muzyk"
+
 msgid "Scenery"
 msgstr "Lânskip"
 
@@ -2508,6 +2383,40 @@ msgstr "Fêst"
 
 msgid "Websites"
 msgstr "Websites"
+
+msgid "General"
+msgstr "Algemien"
+
+msgid "Business"
+msgstr "Saaklik"
+
+# Plural in this context means many of the add-on type
+msgid "Dictionaries & Encyclopedias"
+msgstr "Wurdboeken en ensyklopedyen"
+
+msgid "Kids"
+msgstr "Bern"
+
+msgid "Multiple Search"
+msgstr "Mearfâldich sykje"
+
+msgid "News & Blogs"
+msgstr "Nijs en blogs"
+
+msgid "Photos & Images"
+msgstr "Foto’s en ôfbyldingen"
+
+msgid "Shopping & E-Commerce"
+msgstr "Winkelje en e-kommersje"
+
+msgid "Social & People"
+msgstr "Sosjaal en persoanen"
+
+msgid "Travel"
+msgstr "Reizigje"
+
+msgid "Video"
+msgstr "Fideo"
 
 msgid "Device Features & Location"
 msgstr "Apparaatfunksjes en -lokaasje"
@@ -2583,6 +2492,112 @@ msgstr "Website-spesifyk"
 
 msgid "Web and Developer Tools"
 msgstr "Web- en ûntwikkelhelpmiddelen"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Hânmjittige beoardielerspunten"
+
+msgid "New Add-on Review"
+msgstr "Nije add-on-beoardieling"
+
+msgid "Preliminary Add-on Review"
+msgstr "Foarriedige add-on-beoardieling"
+
+msgid "Updated Add-on Review"
+msgstr "Bywurke add-on-beoardieling"
+
+# Plural in this context means many of the add-on type
+msgid "New Dictionary Review"
+msgstr "Nije wurdboek-beoardieling"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Foarriedige wurdboek-beoardieling"
+
+msgid "Updated Dictionary Review"
+msgstr "Bywurke wurdboek-beoardieling"
+
+msgid "New Language Pack Review"
+msgstr "Nije taalpakket-beoardieling"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Foarriedige taalpakket-beoardieling"
+
+msgid "Updated Language Pack Review"
+msgstr "Bywurke taalpakket-beoardieling"
+
+msgid "Theme Review"
+msgstr "Temabeoardieling"
+
+msgid "New Search Provider Review"
+msgstr "Nije sykprovider-beoardieling"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Foarriedige sykprovider-beoardieling"
+
+msgid "Updated Search Provider Review"
+msgstr "Bywurke sykprovider-beoardieling"
+
+msgid "New Complete Theme Review"
+msgstr "Nije folslein-temabeoardieling"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Foarriedige folslein-temabeoardieling"
+
+msgid "Updated Complete Theme Review"
+msgstr "Bywurke folslein-temabeoardieling"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderearre add-on-beoardieling"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
+
+msgid "Add-on Content Review"
+msgstr "Beoardieling fan add-on-ynhâld"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Nivo 1"
+
+msgid "Level 2"
+msgstr "Nivo 2"
+
+msgid "Level 3"
+msgstr "Nivo 3"
+
+msgid "Level 4"
+msgstr "Nivo 4"
+
+msgid "Level 5"
+msgstr "Nivo 5"
+
+msgid "Level 6"
+msgstr "Nivo 6"
+
+msgid "Level 7"
+msgstr "Nivo 7"
+
+msgid "Level 8"
+msgstr "Nivo 8"
+
+msgid "Level 9"
+msgstr "Nivo 9"
 
 msgid "Request More Info"
 msgstr "Mear ynformaasje freegje"
@@ -3765,7 +3780,8 @@ msgstr "Wêr't de ferzje host wurdt"
 msgid "Upload Version"
 msgstr "Ferzje oplade"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Brûk ûndersteande fjilden om jo add-onpakket op te laden en selektearje eventuele platfoarmbeheiningen. Nei de oplaad wurdt in oantal automatisearre falidaasjetests op jo bestân útfierd."
 
 msgid "Which platforms is this file compatible with?"
@@ -4649,28 +4665,30 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
 msgstr[1] "{0} warskôgingen"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje jo skriuwstyl {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4871,9 +4889,8 @@ msgstr "Gjin beoardielingen"
 msgid "Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Lêste beoardieling"
+msgstr "Lêste ynhâldsbeoardieling"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4908,9 +4925,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Akseptearje / wegerje"
+msgstr "Ynhâld goedkarre"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
@@ -4934,31 +4950,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5039,9 +5030,8 @@ msgstr ""
 msgid "Auto Approved Add-ons"
 msgstr "Automatysk goedkarre add-ons"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Net beoardiele"
+msgstr "Ynhâldsbeoardieling"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5241,9 +5231,8 @@ msgid "Editors' Guide"
 msgstr ""
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Oanpaste beoardieling ({0})"
+msgstr "Ynhâldsbeoardieling {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5539,11 +5528,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Oanpaste beoardieling ({0})"
-msgstr[1] "Oanpaste beoardielingen ({0})"
+msgstr[0] "Ynhâldsbeoardieling ({0})"
+msgstr[1] "Ynhâldsbeoardieling ({0})"
 
 msgid "Flagged"
 msgstr ""
@@ -5574,6 +5562,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7477,6 +7469,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

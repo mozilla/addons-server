@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1999,6 +1999,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "σχολίασε"
+
 msgid "{tag} added to {addon}."
 msgstr "Προστέθηκε η ετικέτα {tag} στο {addon}."
 
@@ -2254,6 +2258,10 @@ msgstr "Πρόσθετη λειτουργία"
 msgid "Theme"
 msgstr "Θέμα"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Λεπτομέρειες θέματος"
+
 msgid "Complete Themes"
 msgstr "Πλήρη θέματα"
 
@@ -2270,6 +2278,10 @@ msgstr "Πακέτα γλώσσας (Πρόσθετο)"
 
 msgid "Plugins"
 msgstr "Πρόσθετες λειτουργίες"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Καλλιτέχνης θεμάτων"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Ερώτηση μόνο στη σελίδα του πρόσθετου και στο προφίλ δημιουργού"
@@ -2292,103 +2304,6 @@ msgstr "Έκδοση"
 
 msgid "Change"
 msgstr "Αλλαγή"
-
-msgid "App"
-msgstr "Εφαρμογή"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Σημεία χειροκίνητης επιθεώρησης"
-
-msgid "New Add-on Review"
-msgstr "Αξιολόγηση νέου προσθέτου"
-
-msgid "Preliminary Add-on Review"
-msgstr "Πρωταρχική επιθεώρηση προσθέτου"
-
-msgid "Updated Add-on Review"
-msgstr "Ενημερωμένη επιθεώρηση προσθέτου"
-
-msgid "New Dictionary Review"
-msgstr "Αξιολόγηση νέου λεξικού"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Πρωταρχική επιθεώρηση λεξικού"
-
-msgid "Updated Dictionary Review"
-msgstr "Ενημερωμένη επιθεώρηση λεξικού"
-
-msgid "New Language Pack Review"
-msgstr "Αξιολόγηση νέου πακέτου γλώσσας"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Πρωταρχική επιθεώρηση πακέτου γλώσσας"
-
-msgid "Updated Language Pack Review"
-msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσας"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Επιθεώρηση θέματος"
-
-msgid "New Search Provider Review"
-msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Πρωταρχική επιθεώρηση παρόχου ανζήτησης"
-
-msgid "Updated Search Provider Review"
-msgstr "Ενημερωμένη επιθεώρηση παρόχου ανζήτησης"
-
-msgid "New Complete Theme Review"
-msgstr "Αξιολόγηση νέου πλήρους θέματος"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Πρωταρχική επιθεώρηση θέματος"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ενημερωμένη επιθεώρηση θέματος"
-
-msgid "Moderated Add-on Review"
-msgstr "Συντονισμένος έλεγχος προσθέτου"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Διαδικασία αξιολόγησης προσθέτου"
-
-msgid "Level 1"
-msgstr "Επίπεδο 1"
-
-msgid "Level 2"
-msgstr "Επίπεδο 2"
-
-msgid "Level 3"
-msgstr "Επίπεδο 3"
-
-msgid "Level 4"
-msgstr "Επίπεδο 4"
-
-msgid "Level 5"
-msgstr "Επίπεδο 5"
-
-msgid "Level 6"
-msgstr "Επίπεδο 6"
-
-msgid "Level 7"
-msgstr "Επίπεδο 7"
-
-msgid "Level 8"
-msgstr "Επίπεδο 8"
-
-msgid "Level 9"
-msgstr "Επίπεδο 9"
 
 msgid "Compatible"
 msgstr "Συμβατό"
@@ -2462,42 +2377,6 @@ msgstr "Ρετρό"
 msgid "Sports"
 msgstr "Αθλητικά"
 
-msgid "General"
-msgstr "Γενικά"
-
-msgid "Business"
-msgstr "Επαγγελματικά"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Λεξικά και εγκυκλοπαίδειες"
-
-msgid "Kids"
-msgstr "Παιδικά"
-
-msgid "Multiple Search"
-msgstr "Πολλαπλής αναζήτησης"
-
-msgid "Music"
-msgstr "Μουσική"
-
-msgid "News & Blogs"
-msgstr "Ειδήσεις & ιστολόγια"
-
-msgid "Photos & Images"
-msgstr "Φωτογραφίες & εικόνες"
-
-msgid "Shopping & E-Commerce"
-msgstr "Αγορές & ηλεκτρονικό εμπόριο"
-
-msgid "Social & People"
-msgstr "Άνθρωποι & κοινωνική δικτύωση"
-
-msgid "Travel"
-msgstr "Ταξίδια"
-
-msgid "Video"
-msgstr "Βίντεο"
-
 msgid "Abstract"
 msgstr "Αφηρημένα"
 
@@ -2516,6 +2395,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Γιορτές"
 
+msgid "Music"
+msgstr "Μουσική"
+
 msgid "Scenery"
 msgstr "Τοπία"
 
@@ -2527,6 +2409,39 @@ msgstr "Συμπαγή"
 
 msgid "Websites"
 msgstr "Ιστοσελίδες"
+
+msgid "General"
+msgstr "Γενικά"
+
+msgid "Business"
+msgstr "Επαγγελματικά"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Λεξικά και εγκυκλοπαίδειες"
+
+msgid "Kids"
+msgstr "Παιδικά"
+
+msgid "Multiple Search"
+msgstr "Πολλαπλής αναζήτησης"
+
+msgid "News & Blogs"
+msgstr "Ειδήσεις & ιστολόγια"
+
+msgid "Photos & Images"
+msgstr "Φωτογραφίες & εικόνες"
+
+msgid "Shopping & E-Commerce"
+msgstr "Αγορές & ηλεκτρονικό εμπόριο"
+
+msgid "Social & People"
+msgstr "Άνθρωποι & κοινωνική δικτύωση"
+
+msgid "Travel"
+msgstr "Ταξίδια"
+
+msgid "Video"
+msgstr "Βίντεο"
 
 msgid "Device Features & Location"
 msgstr "Χαρακτηριστικά συσκευών & τοποθεσίες"
@@ -2602,6 +2517,113 @@ msgstr "Συσχετιζόμενες με ιστότοπους"
 
 msgid "Web and Developer Tools"
 msgstr "Εργαλεία ιστού και δημιουργών"
+
+msgid "App"
+msgstr "Εφαρμογή"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Σημεία χειροκίνητης επιθεώρησης"
+
+msgid "New Add-on Review"
+msgstr "Αξιολόγηση νέου προσθέτου"
+
+msgid "Preliminary Add-on Review"
+msgstr "Πρωταρχική επιθεώρηση προσθέτου"
+
+msgid "Updated Add-on Review"
+msgstr "Ενημερωμένη επιθεώρηση προσθέτου"
+
+msgid "New Dictionary Review"
+msgstr "Αξιολόγηση νέου λεξικού"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Πρωταρχική επιθεώρηση λεξικού"
+
+msgid "Updated Dictionary Review"
+msgstr "Ενημερωμένη επιθεώρηση λεξικού"
+
+msgid "New Language Pack Review"
+msgstr "Αξιολόγηση νέου πακέτου γλώσσας"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Πρωταρχική επιθεώρηση πακέτου γλώσσας"
+
+msgid "Updated Language Pack Review"
+msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσας"
+
+msgid "Theme Review"
+msgstr "Επιθεώρηση θέματος"
+
+msgid "New Search Provider Review"
+msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Πρωταρχική επιθεώρηση παρόχου ανζήτησης"
+
+msgid "Updated Search Provider Review"
+msgstr "Ενημερωμένη επιθεώρηση παρόχου ανζήτησης"
+
+msgid "New Complete Theme Review"
+msgstr "Αξιολόγηση νέου πλήρους θέματος"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Πρωταρχική επιθεώρηση θέματος"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ενημερωμένη επιθεώρηση θέματος"
+
+msgid "Moderated Add-on Review"
+msgstr "Συντονισμένος έλεγχος προσθέτου"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Διαδικασία αξιολόγησης προσθέτου"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Υποβολή Επιθεώρησης"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Επίπεδο 1"
+
+msgid "Level 2"
+msgstr "Επίπεδο 2"
+
+msgid "Level 3"
+msgstr "Επίπεδο 3"
+
+msgid "Level 4"
+msgstr "Επίπεδο 4"
+
+msgid "Level 5"
+msgstr "Επίπεδο 5"
+
+msgid "Level 6"
+msgstr "Επίπεδο 6"
+
+msgid "Level 7"
+msgstr "Επίπεδο 7"
+
+msgid "Level 8"
+msgstr "Επίπεδο 8"
+
+msgid "Level 9"
+msgstr "Επίπεδο 9"
 
 msgid "Request More Info"
 msgstr "Απαίτηση περισσότερων πληροφοριών"
@@ -3760,7 +3782,8 @@ msgstr "Τοποθεσία φιλοξενίας έκδοσης"
 msgid "Upload Version"
 msgstr "Μεταφόρτωση έκδοσης"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Χρησιμοποιήστε τα παρακάτω πεδία για να αποστείλετε το πακέτο του πρόσθετου σας και να επιλέξετε τυχόν περιορισμούς λειτουργικού συστήματος. Μετά την αποστολή, θα διεξαχθεί στο αρχείο σας μια σειρά "
 "αυτοματοποιημένων δοκιμών και ελέγχων."
@@ -4634,28 +4657,30 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα έγγραφά σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4920,31 +4945,6 @@ msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "εγκρίθηκε"
-
-msgid "given preliminary review"
-msgstr "δόθηκε εισαγωγική αξιολόγηση"
-
-msgid "rejected"
-msgstr "απορρίφθηκε"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "κλιμακώθηκε"
-
-msgid "needs more information"
-msgstr "χρειάζονται περισσότερες πληροφορίες"
-
-msgid "needs super review"
-msgstr "χρειάζεται αξιολόγηση συντάκτη"
-
-msgid "commented"
-msgstr "σχολίασε"
-
-msgid "confirmed as approved"
-msgstr "επιβεβαιώθηκε ως εγκεκριμένο"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5563,6 +5563,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7516,6 +7520,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Most popular this week"

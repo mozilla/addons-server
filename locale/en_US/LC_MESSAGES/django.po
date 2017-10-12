@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2005,6 +2005,10 @@ msgstr "The addon has been flagged for Admin Review.  It's still in our review q
 msgid "Comment on {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "commented"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} added to {addon}."
 
@@ -2270,6 +2274,10 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Theme"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Theme Details"
+
 msgid "Complete Themes"
 msgstr "Complete Themes"
 
@@ -2286,6 +2294,10 @@ msgstr "Language Packs (Add-on)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Themes Artist"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Only ask on this add-on's page and developer profile"
@@ -2308,109 +2320,6 @@ msgstr "Release"
 
 msgid "Change"
 msgstr "Change"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Manual Reviewer Points"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Full Add-on Review"
-
-msgid "Preliminary Add-on Review"
-msgstr "Preliminary Add-on Review"
-
-msgid "Updated Add-on Review"
-msgstr "Updated Add-on Review"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Full Dictionary Review"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Preliminary Dictionary Review"
-
-msgid "Updated Dictionary Review"
-msgstr "Updated Dictionary Review"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Full Language Pack Review"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Preliminary Language Pack Review"
-
-msgid "Updated Language Pack Review"
-msgstr "Updated Language Pack Review"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus for overdue reviews"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Days Before Bonus Points Applied"
-
-msgid "Theme Review"
-msgstr "Theme Review"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Full Search Provider Review"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Preliminary Search Provider Review"
-
-msgid "Updated Search Provider Review"
-msgstr "Updated Search Provider Review"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Complete Theme Review"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Preliminary Complete Theme Review"
-
-msgid "Updated Complete Theme Review"
-msgstr "Updated Complete Theme Review"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderated Addon Review"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Addon Review Moderation Reverted"
-
-msgid "Level 1"
-msgstr "Level 1"
-
-msgid "Level 2"
-msgstr "Level 2"
-
-msgid "Level 3"
-msgstr "Level 3"
-
-msgid "Level 4"
-msgstr "Level 4"
-
-msgid "Level 5"
-msgstr "Level 5"
-
-msgid "Level 6"
-msgstr "Level 6"
-
-msgid "Level 7"
-msgstr "Level 7"
-
-msgid "Level 8"
-msgstr "Level 8"
-
-msgid "Level 9"
-msgstr "Level 9"
 
 msgid "Compatible"
 msgstr "Compatible"
@@ -2495,6 +2404,41 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Support"
 
+msgid "Abstract"
+msgstr "Abstract"
+
+msgid "Causes"
+msgstr "Causes"
+
+msgid "Fashion"
+msgstr "Fashion"
+
+msgid "Film and TV"
+msgstr "Film and TV"
+
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+msgid "Holiday"
+msgstr "Holiday"
+
+msgid "Music"
+msgstr "Music"
+
+msgid "Scenery"
+msgstr "Scenery"
+
+#, fuzzy
+msgid "Seasonal"
+msgstr "Reason"
+
+msgid "Solid"
+msgstr "Solid"
+
+#, fuzzy
+msgid "Websites"
+msgstr "Website"
+
 #, fuzzy
 msgid "General"
 msgstr "General Tests"
@@ -2512,9 +2456,6 @@ msgstr "Kids"
 #, fuzzy
 msgid "Multiple Search"
 msgstr "Clear Search"
-
-msgid "Music"
-msgstr "Music"
 
 msgid "News & Blogs"
 msgstr "News & Blogs"
@@ -2534,38 +2475,6 @@ msgstr "Travel"
 #, fuzzy
 msgid "Video"
 msgstr "Close Video"
-
-msgid "Abstract"
-msgstr "Abstract"
-
-msgid "Causes"
-msgstr "Causes"
-
-msgid "Fashion"
-msgstr "Fashion"
-
-msgid "Film and TV"
-msgstr "Film and TV"
-
-msgid "Foxkeh"
-msgstr "Foxkeh"
-
-msgid "Holiday"
-msgstr "Holiday"
-
-msgid "Scenery"
-msgstr "Scenery"
-
-#, fuzzy
-msgid "Seasonal"
-msgstr "Reason"
-
-msgid "Solid"
-msgstr "Solid"
-
-#, fuzzy
-msgid "Websites"
-msgstr "Website"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -2650,6 +2559,119 @@ msgstr "Site Specific"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "Search Developer Docs"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Manual Reviewer Points"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Full Add-on Review"
+
+msgid "Preliminary Add-on Review"
+msgstr "Preliminary Add-on Review"
+
+msgid "Updated Add-on Review"
+msgstr "Updated Add-on Review"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Full Dictionary Review"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Preliminary Dictionary Review"
+
+msgid "Updated Dictionary Review"
+msgstr "Updated Dictionary Review"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Full Language Pack Review"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Preliminary Language Pack Review"
+
+msgid "Updated Language Pack Review"
+msgstr "Updated Language Pack Review"
+
+msgid "Theme Review"
+msgstr "Theme Review"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Full Search Provider Review"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Preliminary Search Provider Review"
+
+msgid "Updated Search Provider Review"
+msgstr "Updated Search Provider Review"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Complete Theme Review"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Preliminary Complete Theme Review"
+
+msgid "Updated Complete Theme Review"
+msgstr "Updated Complete Theme Review"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Moderated Addon Review"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Addon Review Moderation Reverted"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Commit Review"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Post-Approval Add-on Review (Highest Risk)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Post-Approval Add-on Review (High Risk)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Post-Approval Add-on Review (Medium Risk)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Post-Approval Add-on Review (Low Risk)"
+
+msgid "Level 1"
+msgstr "Level 1"
+
+msgid "Level 2"
+msgstr "Level 2"
+
+msgid "Level 3"
+msgstr "Level 3"
+
+msgid "Level 4"
+msgstr "Level 4"
+
+msgid "Level 5"
+msgstr "Level 5"
+
+msgid "Level 6"
+msgstr "Level 6"
+
+msgid "Level 7"
+msgstr "Level 7"
+
+msgid "Level 8"
+msgstr "Level 8"
+
+msgid "Level 9"
+msgstr "Level 9"
 
 msgid "Request More Info"
 msgstr "Request More Info"
@@ -3879,7 +3901,8 @@ msgstr "Target Version"
 msgid "Upload Version"
 msgstr "Upload New Version"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
 msgid "Which platforms is this file compatible with?"
@@ -4818,25 +4841,11 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Set the page you see every time you open a new tab."
-
-#, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dozens of amazing emojis—always a click away."
-
-#, fuzzy
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 
 #, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4844,6 +4853,20 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Highlight any text and right-click to quickly perform an image search."
+
+#, fuzzy
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dozens of amazing emojis—always a click away."
 
 msgid "Approved reviews"
 msgstr "Approved reviews"
@@ -5123,32 +5146,6 @@ msgstr "Review successfully processed."
 
 msgid "Review lock limit reached"
 msgstr "Review lock limit reached"
-
-msgid "was approved"
-msgstr "was approved"
-
-msgid "given preliminary review"
-msgstr "given preliminary review"
-
-msgid "rejected"
-msgstr "rejected"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "escalated"
-
-msgid "needs more information"
-msgstr "needs more information"
-
-msgid "needs super review"
-msgstr "needs super review"
-
-msgid "commented"
-msgstr "commented"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "was approved"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5783,6 +5780,10 @@ msgstr "Could not parse uploaded file."
 
 msgid "Could not parse uploaded file."
 msgstr "Could not parse uploaded file."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7828,6 +7829,9 @@ msgstr "Rated {0} out of 5 stars"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Rated %(rating)s out of 5 stars"
+
+msgid "Maximum query length exceeded."
+msgstr "Maximum query length exceeded."
 
 msgid "Most popular this week"
 msgstr "Most popular this week"

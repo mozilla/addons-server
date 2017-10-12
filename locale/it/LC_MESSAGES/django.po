@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-09-30 15:04+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-10 16:40+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1998,6 +1998,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Commento su {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "ha scritto"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} aggiunto a {addon}."
 
@@ -2153,29 +2157,23 @@ msgstr "L’approvazione automatica per {version} è stata confermata."
 msgid "Auto-Approval confirmed"
 msgstr "Approvazione automatica confermata"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} respinto."
+msgstr "{addon} {version} riattivato."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} inoltrato."
+msgstr "{addon} {version} disattivato."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} approvato."
+msgstr "Contenuti di {addon} {version} approvati."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "Confermato come approvato"
+msgstr "Contenuti approvati"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} respinto."
+msgstr "Contenuti di {addon} {version} respinti."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "respinto"
+msgstr "Contenuti respinti"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2253,6 +2251,10 @@ msgstr "plugin"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Scheda del tema"
+
 msgid "Complete Themes"
 msgstr "Temi completi"
 
@@ -2269,6 +2271,10 @@ msgstr "Language Pack (componenti aggiuntivi)"
 
 msgid "Plugins"
 msgstr "Plugin"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Artista del tema"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Chiedi solo nella pagina del componente aggiuntivo e nel profilo dello sviluppatore"
@@ -2291,102 +2297,6 @@ msgstr "Versione"
 
 msgid "Change"
 msgstr "Modifica"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Tema di Personas"
-
-msgid "Manual Reviewer Points"
-msgstr "Manuale per attribuire i punti ai revisori"
-
-msgid "New Add-on Review"
-msgstr "Nuova revisione componente aggiuntivo"
-
-msgid "Preliminary Add-on Review"
-msgstr "Recensione preliminare del componente aggiuntivo"
-
-msgid "Updated Add-on Review"
-msgstr "Recensione per il componente aggiuntivo aggiornato"
-
-msgid "New Dictionary Review"
-msgstr "Nuova revisione dizionario"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Recensione preliminare del dizionario"
-
-msgid "Updated Dictionary Review"
-msgstr "Recensione aggiornata del dizionario"
-
-msgid "New Language Pack Review"
-msgstr "Nuova revisione language pack"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Recensione preliminare del language pack"
-
-msgid "Updated Language Pack Review"
-msgstr "Recensione aggiornata del language pack"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus per le revisioni ritardatarie"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Giorni entro i quali il bonus viene applicato"
-
-msgid "Theme Review"
-msgstr "Revisione tema"
-
-msgid "New Search Provider Review"
-msgstr "Nuova revisione motore di ricerca"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Recensione preliminare del motore di ricerca"
-
-msgid "Updated Search Provider Review"
-msgstr "Recensione aggiornata del motore di ricerca"
-
-msgid "New Complete Theme Review"
-msgstr "Nuova revisione tema completo"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Revisione preliminare tema completo"
-
-msgid "Updated Complete Theme Review"
-msgstr "Revisione aggiornata tema completo"
-
-msgid "Moderated Add-on Review"
-msgstr "Recensione modificata da un moderatore"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Annullate le modifiche del moderatore alla recensione"
-
-msgid "Level 1"
-msgstr "Livello 1"
-
-msgid "Level 2"
-msgstr "Livello 2"
-
-msgid "Level 3"
-msgstr "Livello 3"
-
-msgid "Level 4"
-msgstr "Livello 4"
-
-msgid "Level 5"
-msgstr "Livello 5"
-
-msgid "Level 6"
-msgstr "Livello 6"
-
-msgid "Level 7"
-msgstr "Livello 7"
-
-msgid "Level 8"
-msgstr "Livello 8"
-
-msgid "Level 9"
-msgstr "Livello 9"
 
 msgid "Compatible"
 msgstr "Compatibile"
@@ -2460,42 +2370,6 @@ msgstr "Retrò"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Generale"
-
-msgid "Business"
-msgstr "Lavoro"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dizionari ed enciclopedie"
-
-msgid "Kids"
-msgstr "Ragazzi"
-
-msgid "Multiple Search"
-msgstr "Ricerche multiple"
-
-msgid "Music"
-msgstr "Musica"
-
-msgid "News & Blogs"
-msgstr "Notizie e blog"
-
-msgid "Photos & Images"
-msgstr "Foto e immagini"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping ed e-commerce"
-
-msgid "Social & People"
-msgstr "Social & persone"
-
-msgid "Travel"
-msgstr "Viaggi"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Astratto"
 
@@ -2514,6 +2388,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Vacanze"
 
+msgid "Music"
+msgstr "Musica"
+
 msgid "Scenery"
 msgstr "Paesaggio"
 
@@ -2525,6 +2402,39 @@ msgstr "Colori uniformi"
 
 msgid "Websites"
 msgstr "Siti web"
+
+msgid "General"
+msgstr "Generale"
+
+msgid "Business"
+msgstr "Lavoro"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Dizionari ed enciclopedie"
+
+msgid "Kids"
+msgstr "Ragazzi"
+
+msgid "Multiple Search"
+msgstr "Ricerche multiple"
+
+msgid "News & Blogs"
+msgstr "Notizie e blog"
+
+msgid "Photos & Images"
+msgstr "Foto e immagini"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping ed e-commerce"
+
+msgid "Social & People"
+msgstr "Social & persone"
+
+msgid "Travel"
+msgstr "Viaggi"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Funzioni del dispositivo e localizzazione"
@@ -2600,6 +2510,111 @@ msgstr "Specifici per un sito"
 
 msgid "Web and Developer Tools"
 msgstr "Strumenti per sviluppatori e web-developer"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Tema di Personas"
+
+msgid "Manual Reviewer Points"
+msgstr "Manuale per attribuire i punti ai revisori"
+
+msgid "New Add-on Review"
+msgstr "Nuova revisione componente aggiuntivo"
+
+msgid "Preliminary Add-on Review"
+msgstr "Recensione preliminare del componente aggiuntivo"
+
+msgid "Updated Add-on Review"
+msgstr "Recensione per il componente aggiuntivo aggiornato"
+
+msgid "New Dictionary Review"
+msgstr "Nuova revisione dizionario"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Recensione preliminare del dizionario"
+
+msgid "Updated Dictionary Review"
+msgstr "Recensione aggiornata del dizionario"
+
+msgid "New Language Pack Review"
+msgstr "Nuova revisione language pack"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Recensione preliminare del language pack"
+
+msgid "Updated Language Pack Review"
+msgstr "Recensione aggiornata del language pack"
+
+msgid "Theme Review"
+msgstr "Revisione tema"
+
+msgid "New Search Provider Review"
+msgstr "Nuova revisione motore di ricerca"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Recensione preliminare del motore di ricerca"
+
+msgid "Updated Search Provider Review"
+msgstr "Recensione aggiornata del motore di ricerca"
+
+msgid "New Complete Theme Review"
+msgstr "Nuova revisione tema completo"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Revisione preliminare tema completo"
+
+msgid "Updated Complete Theme Review"
+msgstr "Revisione aggiornata tema completo"
+
+msgid "Moderated Add-on Review"
+msgstr "Recensione modificata da un moderatore"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Annullate le modifiche del moderatore alla recensione"
+
+msgid "Add-on Content Review"
+msgstr "Revisione contenuti del componente aggiuntivo"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Revisione ad approvazione avvenuta (rischio massimo)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Revisione ad approvazione avvenuta (rischio elevato)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Revisione ad approvazione avvenuta (rischio medio)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Revisione ad approvazione avvenuta (basso rischio)"
+
+msgid "Level 1"
+msgstr "Livello 1"
+
+msgid "Level 2"
+msgstr "Livello 2"
+
+msgid "Level 3"
+msgstr "Livello 3"
+
+msgid "Level 4"
+msgstr "Livello 4"
+
+msgid "Level 5"
+msgstr "Livello 5"
+
+msgid "Level 6"
+msgstr "Livello 6"
+
+msgid "Level 7"
+msgstr "Livello 7"
+
+msgid "Level 8"
+msgstr "Livello 8"
+
+msgid "Level 9"
+msgstr "Livello 9"
 
 msgid "Request More Info"
 msgstr "Richiedi ulteriori informazioni"
@@ -3810,7 +3825,8 @@ msgstr "Il server da cui distribuire questa versione"
 msgid "Upload Version"
 msgstr "Carica versione"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Utilizza il seguente campo per caricare il pacchetto del tuo componente aggiuntivo e specificare eventuali limitazioni sul sistema operativo. Una volta completato il caricamento verranno eseguiti "
 "dei test automatici sul tuo file."
@@ -4709,29 +4725,31 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avviso"
 msgstr[1] "{0} avvisi"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Imposta la pagina che viene mostrata ogni qualvolta apri una nuova scheda."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Decine di fantastiche emoji a portata di clic."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rendi i tuoi testi impeccabili {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Con oltre 25 lingue supportate, questa estensione trasforma il tuo browser in un vero e proprio correttore di bozze."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Prova un’intera raccolta di nuove funzionalità per YouTube: modalità cinema, blocco annunci pubblicitari, controllo riproduzione automatica e altro ancora."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Decine di fantastiche emoji a portata di clic."
 
 msgid "Approved reviews"
 msgstr "Revisioni approvate"
@@ -4931,9 +4949,8 @@ msgstr "Nessuna revisione"
 msgid "Weight"
 msgstr "Peso"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Ultima revisione"
+msgstr "Ultima revisione dei contenuti"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -4972,12 +4989,11 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Approva / rifiuta"
+msgstr "Approva contenuti"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nuovi componenti aggiuntivi (meno di 5 giorni)"
@@ -4999,31 +5015,6 @@ msgstr "Revisione elaborata correttamente."
 
 msgid "Review lock limit reached"
 msgstr "Raggiunto il limite di recensioni esaminabili"
-
-msgid "was approved"
-msgstr "è stato approvato"
-
-msgid "given preliminary review"
-msgstr "revisione preliminare"
-
-msgid "rejected"
-msgstr "respinto"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "inoltrato"
-
-msgid "needs more information"
-msgstr "richieste ulteriori informazioni"
-
-msgid "needs super review"
-msgstr "richiesta super revisione"
-
-msgid "commented"
-msgstr "ha scritto"
-
-msgid "confirmed as approved"
-msgstr "Confermato come approvato"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5105,9 +5096,8 @@ msgstr "Revisioni moderate"
 msgid "Auto Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Trasmetti revisione"
+msgstr "Revisione contenuti"
 
 msgid "Unlisted Queues"
 msgstr "Code componenti esterni"
@@ -5307,9 +5297,8 @@ msgid "Editors' Guide"
 msgstr "Guida per revisori"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Revisione {0}"
+msgstr "Revisione contenuti per {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5605,11 +5594,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Componente aggiuntivo approvato automaticamente ({0})"
 msgstr[1] "Componenti aggiuntivi approvati automaticamente ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Revisione moderata ({0})"
-msgstr[1] "Revisioni moderate ({0})"
+msgstr[0] "Revisione contenuti ({0})"
+msgstr[1] "Revisione contenuti ({0})"
 
 msgid "Flagged"
 msgstr "Segnalato"
@@ -5643,6 +5631,10 @@ msgstr "Impossibile analizzare il file caricato: l’elemento <%s> non è presen
 
 msgid "Could not parse uploaded file."
 msgstr "Impossibile analizzare il file caricato."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7714,6 +7706,9 @@ msgstr "Assegnate {0} su 5 stelle"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Valutazione: %(rating)s su 5 stelle"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Più popolari di questa settimana"

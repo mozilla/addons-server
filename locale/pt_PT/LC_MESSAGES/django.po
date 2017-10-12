@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 12:15+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-11 20:02+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1974,6 +1974,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Comentário em {addon} {version}."
 
+msgid "Commented"
+msgstr "Comentado"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} adicionada a {addon}."
 
@@ -2225,6 +2228,9 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr "Tema (estático)"
+
 msgid "Complete Themes"
 msgstr "Temas completos"
 
@@ -2241,6 +2247,9 @@ msgstr "Pacotes de idioma (extra)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+msgid "Themes (Static)"
+msgstr "Temas (estáticos)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pedir apenas na página deste extra e no perfil do programador"
@@ -2263,102 +2272,6 @@ msgstr "Lançamento"
 
 msgid "Change"
 msgstr "Alterar"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Pontos do manual do revisor"
-
-msgid "New Add-on Review"
-msgstr "Nova revisão de extra"
-
-msgid "Preliminary Add-on Review"
-msgstr "Análise preliminar do extra"
-
-msgid "Updated Add-on Review"
-msgstr "Análise atualizada do extra"
-
-msgid "New Dictionary Review"
-msgstr "Nova revisão de dicionário"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Análise preliminar do dicionário"
-
-msgid "Updated Dictionary Review"
-msgstr "Análise atualizada do dicionário"
-
-msgid "New Language Pack Review"
-msgstr "Nova revisão de pacote de idioma"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Análise preliminar do pacote de idioma"
-
-msgid "Updated Language Pack Review"
-msgstr "Análise atualizada do pacote de idioma"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bónus por revisões atrasadas"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dias antes dos pontos bónus serem aplicados"
-
-msgid "Theme Review"
-msgstr "Análise do tema"
-
-msgid "New Search Provider Review"
-msgstr "Nova revisão de mecanismo de pesquisa"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Análise preliminar do mecanismo de pesquisa"
-
-msgid "Updated Search Provider Review"
-msgstr "Análise atualizada do mecanismo de pesquisa"
-
-msgid "New Complete Theme Review"
-msgstr "Nova revisão de tema completo"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Análise preliminar do tema completo"
-
-msgid "Updated Complete Theme Review"
-msgstr "Análise de tema completo atualizada"
-
-msgid "Moderated Add-on Review"
-msgstr "Análise de extra moderada"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderação de revisão do extra revertida"
-
-msgid "Level 1"
-msgstr "Nível 1"
-
-msgid "Level 2"
-msgstr "Nível 2"
-
-msgid "Level 3"
-msgstr "Nível 3"
-
-msgid "Level 4"
-msgstr "Nível 4"
-
-msgid "Level 5"
-msgstr "Nível 5"
-
-msgid "Level 6"
-msgstr "Nível 6"
-
-msgid "Level 7"
-msgstr "Nível 7"
-
-msgid "Level 8"
-msgstr "Nível 8"
-
-msgid "Level 9"
-msgstr "Nível 9"
 
 msgid "Compatible"
 msgstr "Compatível"
@@ -2432,42 +2345,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Desportos"
 
-msgid "General"
-msgstr "Geral"
-
-msgid "Business"
-msgstr "Negócio"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dicionários e enciclopédias"
-
-msgid "Kids"
-msgstr "Crianças"
-
-msgid "Multiple Search"
-msgstr "Múltipla pesquisa"
-
-msgid "Music"
-msgstr "Música"
-
-msgid "News & Blogs"
-msgstr "Notícias e blogs"
-
-msgid "Photos & Images"
-msgstr "Fotos e imagens"
-
-msgid "Shopping & E-Commerce"
-msgstr "Compras e e-comércio"
-
-msgid "Social & People"
-msgstr "Social e pessoas"
-
-msgid "Travel"
-msgstr "Viagem"
-
-msgid "Video"
-msgstr "Vídeo"
-
 msgid "Abstract"
 msgstr "Abstrato"
 
@@ -2486,6 +2363,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Férias"
 
+msgid "Music"
+msgstr "Música"
+
 msgid "Scenery"
 msgstr "Cenário"
 
@@ -2497,6 +2377,39 @@ msgstr "Sólido"
 
 msgid "Websites"
 msgstr "Websites"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Business"
+msgstr "Negócio"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Dicionários e enciclopédias"
+
+msgid "Kids"
+msgstr "Crianças"
+
+msgid "Multiple Search"
+msgstr "Múltipla pesquisa"
+
+msgid "News & Blogs"
+msgstr "Notícias e blogs"
+
+msgid "Photos & Images"
+msgstr "Fotos e imagens"
+
+msgid "Shopping & E-Commerce"
+msgstr "Compras e e-comércio"
+
+msgid "Social & People"
+msgstr "Social e pessoas"
+
+msgid "Travel"
+msgstr "Viagem"
+
+msgid "Video"
+msgstr "Vídeo"
 
 msgid "Device Features & Location"
 msgstr "Funcionalidades do dispositivo e localização"
@@ -2572,6 +2485,111 @@ msgstr "Específico do site"
 
 msgid "Web and Developer Tools"
 msgstr "Ferramentas web e de programador"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Pontos do manual do revisor"
+
+msgid "New Add-on Review"
+msgstr "Nova revisão de extra"
+
+msgid "Preliminary Add-on Review"
+msgstr "Análise preliminar do extra"
+
+msgid "Updated Add-on Review"
+msgstr "Análise atualizada do extra"
+
+msgid "New Dictionary Review"
+msgstr "Nova revisão de dicionário"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Análise preliminar do dicionário"
+
+msgid "Updated Dictionary Review"
+msgstr "Análise atualizada do dicionário"
+
+msgid "New Language Pack Review"
+msgstr "Nova revisão de pacote de idioma"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Análise preliminar do pacote de idioma"
+
+msgid "Updated Language Pack Review"
+msgstr "Análise atualizada do pacote de idioma"
+
+msgid "Theme Review"
+msgstr "Análise do tema"
+
+msgid "New Search Provider Review"
+msgstr "Nova revisão de mecanismo de pesquisa"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Análise preliminar do mecanismo de pesquisa"
+
+msgid "Updated Search Provider Review"
+msgstr "Análise atualizada do mecanismo de pesquisa"
+
+msgid "New Complete Theme Review"
+msgstr "Nova revisão de tema completo"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Análise preliminar do tema completo"
+
+msgid "Updated Complete Theme Review"
+msgstr "Análise de tema completo atualizada"
+
+msgid "Moderated Add-on Review"
+msgstr "Análise de extra moderada"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderação de revisão do extra revertida"
+
+msgid "Add-on Content Review"
+msgstr "Revisão de conteúdo de extra"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Revisão de extra pós-aprovação (risco mais alto)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Revisão de extra pós-aprovação (alto risco)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Revisão de extra pós-aprovação (médio risco)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Revisão de extra pós-aprovação (baixo risco)"
+
+msgid "Level 1"
+msgstr "Nível 1"
+
+msgid "Level 2"
+msgstr "Nível 2"
+
+msgid "Level 3"
+msgstr "Nível 3"
+
+msgid "Level 4"
+msgstr "Nível 4"
+
+msgid "Level 5"
+msgstr "Nível 5"
+
+msgid "Level 6"
+msgstr "Nível 6"
+
+msgid "Level 7"
+msgstr "Nível 7"
+
+msgid "Level 8"
+msgstr "Nível 8"
+
+msgid "Level 9"
+msgstr "Nível 9"
 
 msgid "Request More Info"
 msgstr "Solicitar mais informações"
@@ -3751,8 +3769,8 @@ msgstr "Onde hospedar a versão"
 msgid "Upload Version"
 msgstr "Carregar versão"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Use os campos em baixo para carregar o pacote do seu extra e selecionar restrições de plataformas. Após carregar. uma série de testes automatizados irão ser executados no seu ficheiro."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Utilize os campos abaixo para carregar o pacote do seu extra. Após carregar, uma série de testes automatizados irão ser executados no seu ficheiro."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
@@ -4645,29 +4663,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Defina a página que vê sempre que abrir um novo separador."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore a sua escrita {start_sub_heading}com {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Ao suportar 25+ idiomas, esta extensão coloca um revisor no seu navegador."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin aplica milhares de filtros de conteúdo sem mastigar um monte de memória."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Desfrute de uma suíte de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, controlo de auto-reprodução, e mais."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Encontre imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Destaque qualquer texto e clique com o lado direito para realizar rapidamente uma pesquisa de imagem."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dezenas de emojis fantásticos—sempre a um clique de distância."
 
 msgid "Approved reviews"
 msgstr "Revisões aprovadas"
@@ -4929,31 +4947,6 @@ msgstr "Revisão processada com sucesso."
 
 msgid "Review lock limit reached"
 msgstr "Limite de bloqueio de revisão atingido"
-
-msgid "was approved"
-msgstr "foi aprovado"
-
-msgid "given preliminary review"
-msgstr "efetuada revisão preliminar"
-
-msgid "rejected"
-msgstr "rejeitado"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "escalado"
-
-msgid "needs more information"
-msgstr "necessita de mais informação"
-
-msgid "needs super review"
-msgstr "necessita de super revisão"
-
-msgid "commented"
-msgstr "comentado"
-
-msgid "confirmed as approved"
-msgstr "confirmado como aprovado"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5569,6 +5562,10 @@ msgstr "Não foi possível analisar o ficheiro carregado. Existe um elemento <%s
 
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível analisar o ficheiro carregado."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Nome de ficheiro inválido no arquivo. Por favor certifique-se que todos os nomes de ficheiros são codificados em utf-8 ou latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7628,6 +7625,9 @@ msgstr "Avaliado com {0} de 5 estrelas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Avaliado com %(rating)s de 5 estrelas"
+
+msgid "Maximum query length exceeded."
+msgstr "Comprimento máximo de consulta excedido."
 
 msgid "Most popular this week"
 msgstr "Mais populares esta semana"

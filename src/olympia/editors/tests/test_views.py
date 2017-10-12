@@ -29,7 +29,6 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     AutoApprovalSummary, EditorSubscription, ReviewerScore)
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -374,19 +373,35 @@ class TestReviewLog(EditorTest):
         self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs more information')
+            'More information requested')
 
     def test_super_review_logs(self):
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs super review')
+            'Super review requested')
 
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'commented')
+            'Commented')
+
+    def test_content_approval(self):
+        self.make_an_approval(amo.LOG.APPROVE_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content approved'
+
+    def test_content_rejection(self):
+        self.make_an_approval(amo.LOG.REJECT_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content rejected'
 
     @freeze_time('2017-08-03')
     def test_review_url(self):
@@ -2348,7 +2363,7 @@ class TestReview(ReviewBase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#review-files')
-        assert doc('th').eq(1).text() == 'Comment'
+        assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
     def test_files_in_item_history(self):
@@ -3663,7 +3678,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
             version = addon.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if version.nomination <= datetime.now() - timedelta(
-                    hours=REVIEW_LIMITED_DELAY_HOURS):
+                    hours=amo.REVIEW_LIMITED_DELAY_HOURS):
                 self.expected_addons.append(addon)
 
         self.create_limited_user()

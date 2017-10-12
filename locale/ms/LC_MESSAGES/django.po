@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 10:21+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-12 02:15+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1008,7 +1008,7 @@ msgid "Jump to first page"
 msgstr "Pergi ke halaman pertama"
 
 msgid "Previous"
-msgstr "Terdahulu"
+msgstr "Dahulu"
 
 msgid "Jump to last page"
 msgstr "Pergi ke halaman terakhir"
@@ -1930,6 +1930,9 @@ msgstr "Add-on ini telah ditanda untuk Semakan Pentadbir.  Masih dalam giliran s
 msgid "Comment on {addon} {version}."
 msgstr "Komen untuk {addon} {version}."
 
+msgid "Commented"
+msgstr "Komen"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} ditanda untuk {addon}."
 
@@ -2178,6 +2181,9 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr "Tema (Statik)"
+
 msgid "Complete Themes"
 msgstr "Tema Lengkap"
 
@@ -2192,6 +2198,9 @@ msgstr "Pek Bahasa (Add-on)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+msgid "Themes (Static)"
+msgstr "Tema (Statik)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Minta hanya halaman add-on ini dan profil pembangun"
@@ -2214,102 +2223,6 @@ msgstr "Keluaran"
 
 msgid "Change"
 msgstr "Tukar"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Poin Penyemak Manual"
-
-msgid "New Add-on Review"
-msgstr "Ulasan Add-on Baru"
-
-msgid "Preliminary Add-on Review"
-msgstr "Ulasan Add-on Awalan"
-
-msgid "Updated Add-on Review"
-msgstr "Ulasan Add-on Dikemaskini"
-
-msgid "New Dictionary Review"
-msgstr "Ulasan Kamus Baru"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Ulasan Kamus Awalan"
-
-msgid "Updated Dictionary Review"
-msgstr "Ulasan Kamus Dikemaskini"
-
-msgid "New Language Pack Review"
-msgstr "Ulasan Pek Bahasa Baru"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Ulasan Pek Bahasa Awalan"
-
-msgid "Updated Language Pack Review"
-msgstr "Ulasan Pek Bahasa Dikemaskini"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus untuk ulasan tertunda"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Hari Sebelum Poin Bonus Diterapkan"
-
-msgid "Theme Review"
-msgstr "Ulasan Tema"
-
-msgid "New Search Provider Review"
-msgstr "Ulasan Penyedia Carian Baru"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Ulasan Penyedia Carian Awalan"
-
-msgid "Updated Search Provider Review"
-msgstr "Ulasan Penyedia Carian Dikemaskini"
-
-msgid "New Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Baru"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Awalan"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Dikemaskini"
-
-msgid "Moderated Add-on Review"
-msgstr "Semakan Add-on Moderat"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderat Semakan Add-on Diterbalikkan"
-
-msgid "Level 1"
-msgstr "Tahap 1"
-
-msgid "Level 2"
-msgstr "Tahap 2"
-
-msgid "Level 3"
-msgstr "Tahap 3"
-
-msgid "Level 4"
-msgstr "Tahap 4"
-
-msgid "Level 5"
-msgstr "Tahap 5"
-
-msgid "Level 6"
-msgstr "Tahap 6"
-
-msgid "Level 7"
-msgstr "Tahap 7"
-
-msgid "Level 8"
-msgstr "Tahap 8"
-
-msgid "Level 9"
-msgstr "Tahap 9"
 
 msgid "Compatible"
 msgstr "Serasi"
@@ -2383,42 +2296,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sukan"
 
-msgid "General"
-msgstr "Umum"
-
-msgid "Business"
-msgstr "Perniagaan"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Kamus & Ensiklopedia"
-
-msgid "Kids"
-msgstr "Kanak-kanak"
-
-msgid "Multiple Search"
-msgstr "Pelbagai Carian"
-
-msgid "Music"
-msgstr "Muzik"
-
-msgid "News & Blogs"
-msgstr "Berita & Blog"
-
-msgid "Photos & Images"
-msgstr "Foto & Imej"
-
-msgid "Shopping & E-Commerce"
-msgstr "Beli-belah & E-Dagang"
-
-msgid "Social & People"
-msgstr "Sosial & Manusia"
-
-msgid "Travel"
-msgstr "Pelancongan"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrak"
 
@@ -2437,6 +2314,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Percutian"
 
+msgid "Music"
+msgstr "Muzik"
+
 msgid "Scenery"
 msgstr "Pemandangan"
 
@@ -2448,6 +2328,39 @@ msgstr "Padu"
 
 msgid "Websites"
 msgstr "Laman web"
+
+msgid "General"
+msgstr "Umum"
+
+msgid "Business"
+msgstr "Perniagaan"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Kamus & Ensiklopedia"
+
+msgid "Kids"
+msgstr "Kanak-kanak"
+
+msgid "Multiple Search"
+msgstr "Pelbagai Carian"
+
+msgid "News & Blogs"
+msgstr "Berita & Blog"
+
+msgid "Photos & Images"
+msgstr "Foto & Imej"
+
+msgid "Shopping & E-Commerce"
+msgstr "Beli-belah & E-Dagang"
+
+msgid "Social & People"
+msgstr "Sosial & Manusia"
+
+msgid "Travel"
+msgstr "Pelancongan"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Ciri & Lokasi Peranti"
@@ -2523,6 +2436,111 @@ msgstr "Laman-khusus"
 
 msgid "Web and Developer Tools"
 msgstr "Web dan Alatan Pembangun"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Poin Penyemak Manual"
+
+msgid "New Add-on Review"
+msgstr "Ulasan Add-on Baru"
+
+msgid "Preliminary Add-on Review"
+msgstr "Ulasan Add-on Awalan"
+
+msgid "Updated Add-on Review"
+msgstr "Ulasan Add-on Dikemaskini"
+
+msgid "New Dictionary Review"
+msgstr "Ulasan Kamus Baru"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Ulasan Kamus Awalan"
+
+msgid "Updated Dictionary Review"
+msgstr "Ulasan Kamus Dikemaskini"
+
+msgid "New Language Pack Review"
+msgstr "Ulasan Pek Bahasa Baru"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Ulasan Pek Bahasa Awalan"
+
+msgid "Updated Language Pack Review"
+msgstr "Ulasan Pek Bahasa Dikemaskini"
+
+msgid "Theme Review"
+msgstr "Ulasan Tema"
+
+msgid "New Search Provider Review"
+msgstr "Ulasan Penyedia Carian Baru"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Ulasan Penyedia Carian Awalan"
+
+msgid "Updated Search Provider Review"
+msgstr "Ulasan Penyedia Carian Dikemaskini"
+
+msgid "New Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Baru"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Awalan"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ulasan Tema Lengkap Dikemaskini"
+
+msgid "Moderated Add-on Review"
+msgstr "Semakan Add-on Moderat"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderat Semakan Add-on Diterbalikkan"
+
+msgid "Add-on Content Review"
+msgstr "Semakan Kandungan Add-on"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Tertinggi)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Tinggi)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Medium)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Rendah)"
+
+msgid "Level 1"
+msgstr "Tahap 1"
+
+msgid "Level 2"
+msgstr "Tahap 2"
+
+msgid "Level 3"
+msgstr "Tahap 3"
+
+msgid "Level 4"
+msgstr "Tahap 4"
+
+msgid "Level 5"
+msgstr "Tahap 5"
+
+msgid "Level 6"
+msgstr "Tahap 6"
+
+msgid "Level 7"
+msgstr "Tahap 7"
+
+msgid "Level 8"
+msgstr "Tahap 8"
+
+msgid "Level 9"
+msgstr "Tahap 9"
 
 msgid "Request More Info"
 msgstr "Minta Info Lanjutan"
@@ -3689,8 +3707,8 @@ msgstr "Di mana untuk Host Versi"
 msgid "Upload Version"
 msgstr "Muat naik Versi"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda dan pilih mana-mana sekatan platform. Selepas memuat naik, siri ujian pengesahan automatik akan dijalankan kepada fail anda."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda. Selepas dimuat naik, satu siri ujian pengesahan automatik akan dijalankan kepada fail anda."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Platform mana yang serasi dengan fail ini?"
@@ -4562,29 +4580,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Tetapkan halaman yang akan dipaparkan setiap kali anda buka tab baru."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan penulisan anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Menyokong 25+ bahasa, ekstensi ini menyediakan pembaca pruf terus dari dalam pelayar anda."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Nikmati satu set ciri YouTube yang baru, seperti mod sinema, menyekat iklan, kawalan auto-main dan banyak lagi."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Serlahkan teks dan klik-kanan untuk melaksanakan carian imej dengan pantas."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
 
 msgid "Approved reviews"
 msgstr "Semakan diluluskan"
@@ -4843,31 +4861,6 @@ msgstr "Semakan berjaya diproses."
 
 msgid "Review lock limit reached"
 msgstr "Mencapai had semakan dikunci"
-
-msgid "was approved"
-msgstr "telah diluluskan"
-
-msgid "given preliminary review"
-msgstr "diberikan semakan awalan"
-
-msgid "rejected"
-msgstr "ditolak"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "dipertingkatkan"
-
-msgid "needs more information"
-msgstr "perlu maklumat lanjut"
-
-msgid "needs super review"
-msgstr "perlu semakan teliti"
-
-msgid "commented"
-msgstr "komen"
-
-msgid "confirmed as approved"
-msgstr "disahkan sebagai diluluskan"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5466,6 +5459,10 @@ msgstr "Tidak dapat menghuraikan fail dimuat naik, elemen  <%s> hilang atau koso
 
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Nama fail dalam arkib tidak sah. Sila pastikan semua nama fail dalam kod utf-8 atau latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7504,6 +7501,9 @@ msgstr "Tahap {0} daripada 5 bintang"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Tahap %(rating)s daripada 5 bintang"
+
+msgid "Maximum query length exceeded."
+msgstr "Melebihi panjang pertanyaan maksimum."
 
 msgid "Most popular this week"
 msgstr "Paling popular minggu ini"

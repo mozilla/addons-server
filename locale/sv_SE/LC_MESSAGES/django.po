@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2017-10-04 15:37+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-11 22:56+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1955,6 +1955,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar till {addon} {version}."
 
+msgid "Commented"
+msgstr "Kommenterad"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} lades till {addon}."
 
@@ -2203,6 +2206,9 @@ msgstr "Insticksmodul"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr "Tema (Statisk)"
+
 msgid "Complete Themes"
 msgstr "Kompletta teman"
 
@@ -2217,6 +2223,9 @@ msgstr "Språkpaket (tillägg)"
 
 msgid "Plugins"
 msgstr "Insticksmoduler"
+
+msgid "Themes (Static)"
+msgstr "Teman (Statisk)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Fråga endast på detta tilläggs sida och utvecklarprofil"
@@ -2239,102 +2248,6 @@ msgstr "Utgåva"
 
 msgid "Change"
 msgstr "Ändra"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Manuella granskningspoäng"
-
-msgid "New Add-on Review"
-msgstr "Ny granskning av tillägg"
-
-msgid "Preliminary Add-on Review"
-msgstr "Preliminär tilläggsgranskning"
-
-msgid "Updated Add-on Review"
-msgstr "Uppdaterad tilläggsgranskning"
-
-msgid "New Dictionary Review"
-msgstr "Ny granskning av ordlista"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Preliminär ordlistsgranskning"
-
-msgid "Updated Dictionary Review"
-msgstr "Uppdaterad ordlistsgranskning"
-
-msgid "New Language Pack Review"
-msgstr "Ny granskning av språkpaket"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Preliminär språkpaketsgranskning"
-
-msgid "Updated Language Pack Review"
-msgstr "Uppdaterad språkpaketsgranskning"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus för försenade granskningar"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagar innan bonuspoäng läggs på"
-
-msgid "Theme Review"
-msgstr "Temagranskning"
-
-msgid "New Search Provider Review"
-msgstr "Ny granskning av sökleverantör"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Preliminär sökleverantörsgranskning"
-
-msgid "Updated Search Provider Review"
-msgstr "Uppdaterad sökleverantörsgranskning"
-
-msgid "New Complete Theme Review"
-msgstr "Ny granskning av kompletta teman"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Preliminär komplett temagranskning"
-
-msgid "Updated Complete Theme Review"
-msgstr "Uppdaterad komplett temagranskning"
-
-msgid "Moderated Add-on Review"
-msgstr "Modererad tilläggsgranskning"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Återställd modererad tilläggsgranskning"
-
-msgid "Level 1"
-msgstr "Nivå 1"
-
-msgid "Level 2"
-msgstr "Nivå 2"
-
-msgid "Level 3"
-msgstr "Nivå 3"
-
-msgid "Level 4"
-msgstr "Nivå 4"
-
-msgid "Level 5"
-msgstr "Nivå 5"
-
-msgid "Level 6"
-msgstr "Nivå 6"
-
-msgid "Level 7"
-msgstr "Nivå 7"
-
-msgid "Level 8"
-msgstr "Nivå 8"
-
-msgid "Level 9"
-msgstr "Nivå 9"
 
 msgid "Compatible"
 msgstr "Kompatibel"
@@ -2408,42 +2321,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Allmänt"
-
-msgid "Business"
-msgstr "Företag"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Ordböcker & uppslagsverk"
-
-msgid "Kids"
-msgstr "Barn"
-
-msgid "Multiple Search"
-msgstr "Multipla sökningar"
-
-msgid "Music"
-msgstr "Musik"
-
-msgid "News & Blogs"
-msgstr "Nyheter & Bloggar"
-
-msgid "Photos & Images"
-msgstr "Foton & bilder"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping & E-handel"
-
-msgid "Social & People"
-msgstr "Socialt & människor"
-
-msgid "Travel"
-msgstr "Resa"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -2462,6 +2339,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Semester"
 
+msgid "Music"
+msgstr "Musik"
+
 msgid "Scenery"
 msgstr "Landskap"
 
@@ -2473,6 +2353,39 @@ msgstr "Enfärgad"
 
 msgid "Websites"
 msgstr "Webbplatser"
+
+msgid "General"
+msgstr "Allmänt"
+
+msgid "Business"
+msgstr "Företag"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Ordböcker & uppslagsverk"
+
+msgid "Kids"
+msgstr "Barn"
+
+msgid "Multiple Search"
+msgstr "Multipla sökningar"
+
+msgid "News & Blogs"
+msgstr "Nyheter & Bloggar"
+
+msgid "Photos & Images"
+msgstr "Foton & bilder"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping & E-handel"
+
+msgid "Social & People"
+msgstr "Socialt & människor"
+
+msgid "Travel"
+msgstr "Resa"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Enhetens funktioner & plats"
@@ -2548,6 +2461,111 @@ msgstr "Platsspecifik"
 
 msgid "Web and Developer Tools"
 msgstr "Webb och utvecklarverktyg"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Manuella granskningspoäng"
+
+msgid "New Add-on Review"
+msgstr "Ny granskning av tillägg"
+
+msgid "Preliminary Add-on Review"
+msgstr "Preliminär tilläggsgranskning"
+
+msgid "Updated Add-on Review"
+msgstr "Uppdaterad tilläggsgranskning"
+
+msgid "New Dictionary Review"
+msgstr "Ny granskning av ordlista"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Preliminär ordlistsgranskning"
+
+msgid "Updated Dictionary Review"
+msgstr "Uppdaterad ordlistsgranskning"
+
+msgid "New Language Pack Review"
+msgstr "Ny granskning av språkpaket"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Preliminär språkpaketsgranskning"
+
+msgid "Updated Language Pack Review"
+msgstr "Uppdaterad språkpaketsgranskning"
+
+msgid "Theme Review"
+msgstr "Temagranskning"
+
+msgid "New Search Provider Review"
+msgstr "Ny granskning av sökleverantör"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Preliminär sökleverantörsgranskning"
+
+msgid "Updated Search Provider Review"
+msgstr "Uppdaterad sökleverantörsgranskning"
+
+msgid "New Complete Theme Review"
+msgstr "Ny granskning av kompletta teman"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Preliminär komplett temagranskning"
+
+msgid "Updated Complete Theme Review"
+msgstr "Uppdaterad komplett temagranskning"
+
+msgid "Moderated Add-on Review"
+msgstr "Modererad tilläggsgranskning"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Återställd modererad tilläggsgranskning"
+
+msgid "Add-on Content Review"
+msgstr "Innehållsgranskning för tillägg"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Tilläggsgranskning efter godkännande (högst risk)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Tilläggsgranskning efter godkännande (hög risk)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Tilläggsgranskning efter godkännande (medelhög risk)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Tilläggsgranskning efter godkännande (låg risk)"
+
+msgid "Level 1"
+msgstr "Nivå 1"
+
+msgid "Level 2"
+msgstr "Nivå 2"
+
+msgid "Level 3"
+msgstr "Nivå 3"
+
+msgid "Level 4"
+msgstr "Nivå 4"
+
+msgid "Level 5"
+msgstr "Nivå 5"
+
+msgid "Level 6"
+msgstr "Nivå 6"
+
+msgid "Level 7"
+msgstr "Nivå 7"
+
+msgid "Level 8"
+msgstr "Nivå 8"
+
+msgid "Level 9"
+msgstr "Nivå 9"
 
 msgid "Request More Info"
 msgstr "Begär mer information"
@@ -3759,8 +3777,8 @@ msgstr "Var ska versionen hysas"
 msgid "Upload Version"
 msgstr "Ladda upp version"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket och välj eventuella plattformsbegränsningar. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Vilka plattformar är denna fil kompatibel med?"
@@ -4649,29 +4667,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Ange den sida du ser varje gång du öppnar en ny flik."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt skrivande {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Med stöd för 25+ språk sätter detta tillägg en korrekturläsare direkt i din webbläsare."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "En lätt och effektiv annonsblockerare. uBlock Origin använder tusentals filter utan att använda en massa minne."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Njut av en serie av nya YouTube-funktioner, som biografläge, annonsblockering, automatisk spelkontroll och mycket mer."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Hitta enkelt bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Markera vilken text som helst och högerklicka för att snabbt utföra en bildsökning."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bli bättre på emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dussintals fantastiska emojis—alltid ett klick bort."
 
 msgid "Approved reviews"
 msgstr "Godkända granskningar"
@@ -4933,31 +4951,6 @@ msgstr "Granskning behandlad."
 
 msgid "Review lock limit reached"
 msgstr "Gränsen för granskningslås har nåtts"
-
-msgid "was approved"
-msgstr "godkändes"
-
-msgid "given preliminary review"
-msgstr "beviljad preliminär granskning"
-
-msgid "rejected"
-msgstr "avvisad"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "upptrappad"
-
-msgid "needs more information"
-msgstr "behöver mer information"
-
-msgid "needs super review"
-msgstr "behöver supergranskning"
-
-msgid "commented"
-msgstr "kommenterade"
-
-msgid "confirmed as approved"
-msgstr "bekräftad som godkänd"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5571,6 +5564,10 @@ msgstr "Kunde inte tolka uppladdad fil, saknas eller tomt <%s>-element"
 
 msgid "Could not parse uploaded file."
 msgstr "Det gick inte att tolka uppladdad fil."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Ogiltigt filnamn i arkivet. Se till att alla filnamn är kodade i utf-8 eller latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7619,6 +7616,9 @@ msgstr "Betygsatt {0} utav 5 stjärnor"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Betygsatt %(rating)s utav 5 stjärnor"
+
+msgid "Maximum query length exceeded."
+msgstr "Maximal längd för förfrågan överskriven."
 
 msgid "Most popular this week"
 msgstr "Mest populära denna vecka"

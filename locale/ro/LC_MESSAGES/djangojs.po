@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
-"PO-Revision-Date: 2016-08-15 15:10+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-01-29 19:32+0000\n"
+"Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} din {1}"
 
 msgid "Cancel"
 msgstr "Renunță"
@@ -266,7 +266,7 @@ msgid "Add-ons in Use"
 msgstr ""
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Suplimente create"
 
 msgid "Add-ons Downloaded"
 msgstr "Suplimente descărcate"
@@ -284,7 +284,7 @@ msgid "Subscribers"
 msgstr ""
 
 msgid "Ratings"
-msgstr ""
+msgstr "Evaluări"
 
 msgid "Sales"
 msgstr ""
@@ -456,11 +456,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Utilizatori zilnici, în ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Utilizatori zilnici din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -668,9 +668,8 @@ msgid "Not available for your platform"
 msgstr "Indisponibil pentru platforma ta"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Această temă este incompatibilă cu versiunea ta de {0}"
+msgstr "Acest supliment nu este compatibil cu versiunea ta de {0}."
 
 msgid "View other versions"
 msgstr "Vezi alte versiuni"
@@ -679,7 +678,7 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Funcționează cu {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "Funcționează împreună cu {app}"
+msgstr "Funcționează cu {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Numai cu Firefox — Obține Firefox acum!"
@@ -755,9 +754,9 @@ msgstr[2] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} recenzie a utilizatorilor"
+msgstr[1] "{reviews} recenzii ale utilizatorilor"
+msgstr[2] "{reviews} de recenzii ale utilizatorilor"
 
 msgid "Learn more"
 msgstr ""

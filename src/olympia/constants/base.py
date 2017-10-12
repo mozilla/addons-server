@@ -120,11 +120,12 @@ ADDON_LPADDON = 6
 ADDON_PLUGIN = 7
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 ADDON_PERSONA = 9
+ADDON_STATICTHEME = 10
 
 # Addon type groupings.
 GROUP_TYPE_ADDON = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
                     ADDON_LPADDON, ADDON_PLUGIN, ADDON_API]
-GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA]
+GROUP_TYPE_THEME = [ADDON_THEME, ADDON_PERSONA, ADDON_STATICTHEME]
 
 # Singular
 ADDON_TYPE = {
@@ -136,6 +137,7 @@ ADDON_TYPE = {
     ADDON_LPADDON: _(u'Language Pack (Add-on)'),
     ADDON_PLUGIN: _(u'Plugin'),
     ADDON_PERSONA: _(u'Theme'),
+    ADDON_STATICTHEME: _(u'Theme (Static)'),
 }
 
 # Plural
@@ -148,6 +150,7 @@ ADDON_TYPES = {
     ADDON_LPADDON: _(u'Language Packs (Add-on)'),
     ADDON_PLUGIN: _(u'Plugins'),
     ADDON_PERSONA: _(u'Themes'),
+    ADDON_STATICTHEME: _(u'Themes (Static)'),
 }
 
 # Searchable Add-on Types
@@ -159,12 +162,14 @@ ADDON_SEARCH_TYPES = [
     ADDON_SEARCH,
     ADDON_LPAPP,
     ADDON_PERSONA,
+    ADDON_STATICTHEME,
 ]
 
 # Icons
 ADDON_ICONS = {
     ADDON_ANY: 'default-addon.png',
     ADDON_THEME: 'default-theme.png',
+    ADDON_STATICTHEME: 'default-theme.png',
 }
 
 # We use these slugs in browse page urls.
@@ -175,6 +180,7 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     ADDON_PERSONA: 'personas',
     ADDON_SEARCH: 'search-tools',
+    ADDON_STATICTHEME: 'static-themes',
 }
 
 # These are used in the update API.
@@ -187,6 +193,7 @@ ADDON_SLUGS_UPDATE = {
     ADDON_LPADDON: 'extension',
     ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
+    ADDON_STATICTHEME: 'static-theme',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -199,6 +206,7 @@ ADDON_SEARCH_SLUGS = {
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
     'persona': ADDON_PERSONA,
+    'statictheme': ADDON_STATICTHEME,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -208,13 +216,16 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_SEARCH: 'search',
     ADDON_LPAPP: 'language',
     ADDON_PERSONA: 'persona',
+    ADDON_STATICTHEME: 'statictheme',
 }
 
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
-VALID_CONTRIBUTION_DOMAINS = ('paypal.me', 'patreon.com', 'micropayment.de')
+VALID_CONTRIBUTION_DOMAINS = (
+    'paypal.me', 'paypal.com', 'patreon.com', 'micropayment.de'
+)
 
 # Icon upload sizes
 ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
@@ -372,10 +383,6 @@ VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
                               """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
-# Reviewer Tools
-EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
-EDITOR_REVIEW_LOCK_LIMIT = 3  # How many pages can an editor "watch"
-
 # Types of SiteEvent
 SITE_EVENT_OTHER = 1
 SITE_EVENT_EXCEPTION = 2
@@ -389,119 +396,9 @@ SITE_EVENT_CHOICES = {
     SITE_EVENT_CHANGE: _('Change'),
 }
 
-# Types of Canned Responses for reviewer tools.
-CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_APP = 2  # Unused, should be removed
-CANNED_RESPONSE_PERSONA = 3
-
-CANNED_RESPONSE_CHOICES = {
-    CANNED_RESPONSE_ADDON: _('Add-on'),
-    CANNED_RESPONSE_APP: _('App'),
-    CANNED_RESPONSE_PERSONA: _('Persona'),
-}
-
 # For use in urls.
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
-
-# Reviewer Incentive Scores.
-# Note: Don't change these since they're used as keys in the database.
-REVIEWED_MANUAL = 0
-REVIEWED_ADDON_FULL = 10
-_REVIEWED_ADDON_PRELIM = 11  # Deprecated for new reviews - no more prelim.
-REVIEWED_ADDON_UPDATE = 12
-REVIEWED_DICT_FULL = 20
-_REVIEWED_DICT_PRELIM = 21  # Deprecated for new reviews - no more prelim.
-REVIEWED_DICT_UPDATE = 22
-REVIEWED_LP_FULL = 30
-_REVIEWED_LP_PRELIM = 31  # Deprecated for new reviews - no more prelim.
-REVIEWED_LP_UPDATE = 32
-REVIEWED_OVERDUE_BONUS = 2
-REVIEWED_OVERDUE_LIMIT = 7
-REVIEWED_PERSONA = 40
-# TODO: Leaving room for persona points based on queue.
-REVIEWED_SEARCH_FULL = 50
-_REVIEWED_SEARCH_PRELIM = 51  # Deprecated for new reviews - no more prelim.
-REVIEWED_SEARCH_UPDATE = 52
-REVIEWED_THEME_FULL = 60
-_REVIEWED_THEME_PRELIM = 61  # Deprecated for new reviews - no more prelim.
-REVIEWED_THEME_UPDATE = 62
-REVIEWED_ADDON_REVIEW = 80
-REVIEWED_ADDON_REVIEW_POORLY = 81
-
-# We need to keep the deprecated choices for existing points in the database.
-REVIEWED_CHOICES = {
-    REVIEWED_MANUAL: _('Manual Reviewer Points'),
-    REVIEWED_ADDON_FULL: _('New Add-on Review'),
-    _REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
-    REVIEWED_ADDON_UPDATE: _('Updated Add-on Review'),
-    REVIEWED_DICT_FULL: _('New Dictionary Review'),
-    _REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
-    REVIEWED_DICT_UPDATE: _('Updated Dictionary Review'),
-    REVIEWED_LP_FULL: _('New Language Pack Review'),
-    _REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
-    REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
-    REVIEWED_OVERDUE_BONUS: _('Bonus for overdue reviews'),
-    REVIEWED_OVERDUE_LIMIT: _('Days Before Bonus Points Applied'),
-    REVIEWED_PERSONA: _('Theme Review'),
-    REVIEWED_SEARCH_FULL: _('New Search Provider Review'),
-    _REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
-    REVIEWED_SEARCH_UPDATE: _('Updated Search Provider Review'),
-    REVIEWED_THEME_FULL: _('New Complete Theme Review'),
-    _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
-    REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
-    REVIEWED_ADDON_REVIEW: _('Moderated Add-on Review'),
-    REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
-}
-
-REVIEWED_SCORES = {
-    REVIEWED_MANUAL: 0,
-    REVIEWED_ADDON_FULL: 120,
-    REVIEWED_ADDON_UPDATE: 80,
-    REVIEWED_DICT_FULL: 60,
-    REVIEWED_DICT_UPDATE: 60,
-    REVIEWED_LP_FULL: 60,
-    REVIEWED_LP_UPDATE: 60,
-    REVIEWED_OVERDUE_BONUS: 2,
-    REVIEWED_OVERDUE_LIMIT: 7,
-    REVIEWED_PERSONA: 5,
-    REVIEWED_SEARCH_FULL: 30,
-    REVIEWED_SEARCH_UPDATE: 30,
-    REVIEWED_THEME_FULL: 80,
-    REVIEWED_THEME_UPDATE: 80,
-    REVIEWED_ADDON_REVIEW: 1,
-    REVIEWED_ADDON_REVIEW_POORLY: -1,  # -REVIEWED_ADDON_REVIEW
-}
-
-REVIEWED_AMO = (
-    REVIEWED_ADDON_FULL,
-    REVIEWED_ADDON_UPDATE,
-    REVIEWED_DICT_FULL,
-    REVIEWED_DICT_UPDATE,
-    REVIEWED_LP_FULL,
-    REVIEWED_LP_UPDATE,
-    REVIEWED_SEARCH_FULL,
-    REVIEWED_SEARCH_UPDATE,
-    REVIEWED_THEME_FULL,
-    REVIEWED_THEME_UPDATE,
-    REVIEWED_ADDON_REVIEW,
-)
-
-REVIEWED_LEVELS = [
-    {'name': _('Level 1'), 'points': 2160},
-    {'name': _('Level 2'), 'points': 4320},
-    {'name': _('Level 3'), 'points': 8700},
-    {'name': _('Level 4'), 'points': 21000},
-    {'name': _('Level 5'), 'points': 45000},
-    {'name': _('Level 6'), 'points': 96000},
-    {'name': _('Level 7'), 'points': 300000},
-    {'name': _('Level 8'), 'points': 1200000},
-    {'name': _('Level 9'), 'points': 3000000},
-]
-
-# Amount of hours to hide add-on reviews from users with permission
-# Addons:DelayedReviews
-REVIEW_LIMITED_DELAY_HOURS = 20
 
 # Default strict_min_version and strict_max_version for WebExtensions
 DEFAULT_WEBEXT_MIN_VERSION = '42.0'
@@ -512,6 +409,9 @@ DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 
 # The default version of Firefox that supports WebExtensions without an id
 DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
+
+# The version of Firefox that first supported static themes.  Not Android yet.
+DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
 
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1

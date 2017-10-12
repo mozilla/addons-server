@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-08-27 22:12+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2012,6 +2012,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
 
+#, fuzzy
+msgid "Commented"
+msgstr "s komentárom"
+
 msgid "{tag} added to {addon}."
 msgstr "Doplnku {addon} pridaná značka {tag}."
 
@@ -2272,6 +2276,10 @@ msgstr "Zásuvný modul"
 msgid "Theme"
 msgstr "Téma"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Detaily o téme"
+
 msgid "Complete Themes"
 msgstr "Plné témy vzhľadu"
 
@@ -2288,6 +2296,10 @@ msgstr "Jazykové balíčky (doplnok)"
 
 msgid "Plugins"
 msgstr "Zásuvné moduly"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Autor tém"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pýtať len na stránke doplnku a v profile vývojára"
@@ -2310,104 +2322,6 @@ msgstr "Vydanie"
 
 msgid "Change"
 msgstr "Zmeniť"
-
-msgid "App"
-msgstr "Aplikácia"
-
-msgid "Persona"
-msgstr "Téma Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Ručné body kontroly redaktora"
-
-msgid "New Add-on Review"
-msgstr "Nová kontrola doplnku"
-
-msgid "Preliminary Add-on Review"
-msgstr "Predbežná kontrola doplnku"
-
-msgid "Updated Add-on Review"
-msgstr "Kontrola aktualizácie doplnku"
-
-msgid "New Dictionary Review"
-msgstr "Nová kontrola slovníka"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Predbežná kontrola slovníka"
-
-msgid "Updated Dictionary Review"
-msgstr "Kontrola aktualizovaného slovníka"
-
-msgid "New Language Pack Review"
-msgstr "Nová kontrola jazykového balíka"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Predbežná kontrola jazykového balíka"
-
-msgid "Updated Language Pack Review"
-msgstr "Kontrola aktualizovaného jazykového balíka"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za oneskorené kontroly"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dni pred uplatnením bonusových bodov"
-
-msgid "Theme Review"
-msgstr "Kontrola témy"
-
-msgid "New Search Provider Review"
-msgstr "Nová kontrola vyhľadávacieho modulu"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Predbežná kontrola vyhľadávacieho modulu"
-
-msgid "Updated Search Provider Review"
-msgstr "Kontrola aktualizovaného vyhľadávacieho modulu"
-
-msgid "New Complete Theme Review"
-msgstr "Nová kontrola plnej témy vzhľadu"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Predbežná kontrola plných tém"
-
-msgid "Updated Complete Theme Review"
-msgstr "Kontrola aktualizácie plných tém"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderovaná kontrola doplnkov"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Úprava recenzie doplnkov bola zrušená"
-
-msgid "Level 1"
-msgstr "Úroveň 1"
-
-msgid "Level 2"
-msgstr "Úroveň 2"
-
-msgid "Level 3"
-msgstr "Úroveň 3"
-
-msgid "Level 4"
-msgstr "Úroveň 4"
-
-msgid "Level 5"
-msgstr "Úroveň 5"
-
-msgid "Level 6"
-msgstr "Úroveň 6"
-
-msgid "Level 7"
-msgstr "Úroveň 7"
-
-msgid "Level 8"
-msgstr "Úroveň 8"
-
-msgid "Level 9"
-msgstr "Úroveň 9"
 
 msgid "Compatible"
 msgstr "Kompatibilný"
@@ -2481,42 +2395,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Šport"
 
-msgid "General"
-msgstr "Všeobecné"
-
-msgid "Business"
-msgstr "Podnikanie"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Slovníky a encyklopédie"
-
-msgid "Kids"
-msgstr "Deti"
-
-msgid "Multiple Search"
-msgstr "Viacnásobné hľadanie"
-
-msgid "Music"
-msgstr "Hudba"
-
-msgid "News & Blogs"
-msgstr "Správy a blogovanie"
-
-msgid "Photos & Images"
-msgstr "Fotografie a obrázky"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupovanie a elektronický obchod"
-
-msgid "Social & People"
-msgstr "Sociálne siete a ľudia"
-
-msgid "Travel"
-msgstr "Cestovanie"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktné"
 
@@ -2535,6 +2413,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Prázdniny a dovolenky"
 
+msgid "Music"
+msgstr "Hudba"
+
 msgid "Scenery"
 msgstr "Scenérie"
 
@@ -2546,6 +2427,39 @@ msgstr "Jednoduché"
 
 msgid "Websites"
 msgstr "Webové stránky"
+
+msgid "General"
+msgstr "Všeobecné"
+
+msgid "Business"
+msgstr "Podnikanie"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Slovníky a encyklopédie"
+
+msgid "Kids"
+msgstr "Deti"
+
+msgid "Multiple Search"
+msgstr "Viacnásobné hľadanie"
+
+msgid "News & Blogs"
+msgstr "Správy a blogovanie"
+
+msgid "Photos & Images"
+msgstr "Fotografie a obrázky"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupovanie a elektronický obchod"
+
+msgid "Social & People"
+msgstr "Sociálne siete a ľudia"
+
+msgid "Travel"
+msgstr "Cestovanie"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Funkcie zariadenia a lokality"
@@ -2621,6 +2535,114 @@ msgstr "Pre špecifickú stránku"
 
 msgid "Web and Developer Tools"
 msgstr "Webové a vývojárske nástroje"
+
+msgid "App"
+msgstr "Aplikácia"
+
+msgid "Persona"
+msgstr "Téma Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Ručné body kontroly redaktora"
+
+msgid "New Add-on Review"
+msgstr "Nová kontrola doplnku"
+
+msgid "Preliminary Add-on Review"
+msgstr "Predbežná kontrola doplnku"
+
+msgid "Updated Add-on Review"
+msgstr "Kontrola aktualizácie doplnku"
+
+msgid "New Dictionary Review"
+msgstr "Nová kontrola slovníka"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Predbežná kontrola slovníka"
+
+msgid "Updated Dictionary Review"
+msgstr "Kontrola aktualizovaného slovníka"
+
+msgid "New Language Pack Review"
+msgstr "Nová kontrola jazykového balíka"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Predbežná kontrola jazykového balíka"
+
+msgid "Updated Language Pack Review"
+msgstr "Kontrola aktualizovaného jazykového balíka"
+
+msgid "Theme Review"
+msgstr "Kontrola témy"
+
+msgid "New Search Provider Review"
+msgstr "Nová kontrola vyhľadávacieho modulu"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Predbežná kontrola vyhľadávacieho modulu"
+
+msgid "Updated Search Provider Review"
+msgstr "Kontrola aktualizovaného vyhľadávacieho modulu"
+
+msgid "New Complete Theme Review"
+msgstr "Nová kontrola plnej témy vzhľadu"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Predbežná kontrola plných tém"
+
+msgid "Updated Complete Theme Review"
+msgstr "Kontrola aktualizácie plných tém"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Moderovaná kontrola doplnkov"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Úprava recenzie doplnkov bola zrušená"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Odoslať kontrolu"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Úroveň 1"
+
+msgid "Level 2"
+msgstr "Úroveň 2"
+
+msgid "Level 3"
+msgstr "Úroveň 3"
+
+msgid "Level 4"
+msgstr "Úroveň 4"
+
+msgid "Level 5"
+msgstr "Úroveň 5"
+
+msgid "Level 6"
+msgstr "Úroveň 6"
+
+msgid "Level 7"
+msgstr "Úroveň 7"
+
+msgid "Level 8"
+msgstr "Úroveň 8"
+
+msgid "Level 9"
+msgstr "Úroveň 9"
 
 msgid "Request More Info"
 msgstr "Požiadať doplnkové informácie"
@@ -3802,7 +3824,8 @@ msgstr "Cieľová verzia"
 msgid "Upload Version"
 msgstr "Nahrať verziu"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pre načítanie balíčka so svojim doplnkom a výber cieľových platforiem použite pole nižšie. Po načítaní bude spustená sada automatizovaných testov, ktoré váš balíček skontrolujú."
 
 msgid "Which platforms is this file compatible with?"
@@ -4712,10 +4735,23 @@ msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
 #, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tvorte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Používajte sadu nových funkcií pre YouTube, napríklad režim kina, blokovanie reklám, ovládanie automatického prehrávania a ďalšie."
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #, fuzzy
@@ -4724,18 +4760,6 @@ msgstr "Zlepšite svoj pravopis {start_sub_heading}s doplnkom {addon_name}{end_s
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zlepšite svoj pravopis {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Kontrola pravopisu vo viac ako 25 jazykoch priamo vo vašom prehliadači."
-
-msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite videá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Používajte sadu nových funkcií pre YouTube, napríklad režim kina, blokovanie reklám, ovládanie automatického prehrávania a ďalšie."
 
 msgid "Approved reviews"
 msgstr "Schválené recenzie"
@@ -5019,35 +5043,6 @@ msgstr "Recenzia úspešne spracovaná."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "schválené"
-
-# 80%
-msgid "given preliminary review"
-msgstr "predbežne skontrolované"
-
-# 87%
-msgid "rejected"
-msgstr "zamietnuté"
-
-# 88%
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "bude detailne skontrolované"
-
-msgid "needs more information"
-msgstr "potrebuje dodatočné informácie"
-
-msgid "needs super review"
-msgstr "potrebuje super-kontrolu"
-
-msgid "commented"
-msgstr "s komentárom"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "schválené"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5696,6 +5691,10 @@ msgstr "Odoslaný súbor nebolo možné spracovať."
 
 msgid "Could not parse uploaded file."
 msgstr "Odoslaný súbor nebolo možné spracovať."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7716,6 +7715,9 @@ msgstr "Ohodnotené {0} z 5 hviezdičiek"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnotené %(rating)s z 5 hviezdičiek"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Najpopulárnejšie za tento týždeň"

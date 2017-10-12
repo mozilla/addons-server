@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-04 06:36+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-09-26 12:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1993,6 +1993,12 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} için yorum yapın."
 
+# 87%
+# 100%
+#, fuzzy
+msgid "Commented"
+msgstr "Yorum"
+
 msgid "{tag} added to {addon}."
 msgstr "{addon} eklentisine {tag} eklendi."
 
@@ -2250,6 +2256,10 @@ msgstr "Yan Uygulama"
 msgid "Theme"
 msgstr "Tema"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Tema ayrıntıları"
+
 msgid "Complete Themes"
 msgstr "Tam Temalar"
 
@@ -2268,6 +2278,10 @@ msgstr "Dil Paketi (Eklenti)"
 # 100%
 msgid "Plugins"
 msgstr "Eklentiler"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Sanatçı"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Sadece bu eklentinin sayfasında ve geliştirici kimliğinde sor"
@@ -2290,104 +2304,6 @@ msgstr "Yayımla"
 
 msgid "Change"
 msgstr "Değiştir"
-
-msgid "App"
-msgstr "Uygulama"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Add-on Review"
-msgstr "Yeni Eklenti İncelemesi"
-
-msgid "Preliminary Add-on Review"
-msgstr "Eklenti Ön İncelemesi"
-
-msgid "Updated Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Yeni sözlük incelemesi"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Sözlük Ön İncelemesi"
-
-msgid "Updated Dictionary Review"
-msgstr "Güncellenmiş Sözlük İncelemesi"
-
-msgid "New Language Pack Review"
-msgstr "Yeni dil paketi incelemesi"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Dil Paketi Ön İncelemesi"
-
-msgid "Updated Language Pack Review"
-msgstr "Güncellenmiş Dil Paketi İncelemesi"
-
-msgid "Bonus for overdue reviews"
-msgstr "Gecikmiş incelemeler için bonus"
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Tema İnceleme"
-
-msgid "New Search Provider Review"
-msgstr "Yeni arama sağlayıcı incelemesi"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "Yeni tam tema incelemesi"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "1. Düzey"
-
-msgid "Level 2"
-msgstr "2. Düzey"
-
-msgid "Level 3"
-msgstr "3. Düzey"
-
-msgid "Level 4"
-msgstr "4. Düzey"
-
-msgid "Level 5"
-msgstr "5. Düzey"
-
-msgid "Level 6"
-msgstr "6. Düzey"
-
-msgid "Level 7"
-msgstr "7. Düzey"
-
-msgid "Level 8"
-msgstr "8. Düzey"
-
-msgid "Level 9"
-msgstr "9. Düzey"
 
 msgid "Compatible"
 msgstr "Uyumlu"
@@ -2462,42 +2378,6 @@ msgstr "Eski Moda"
 msgid "Sports"
 msgstr "Spor"
 
-msgid "General"
-msgstr "Genel"
-
-msgid "Business"
-msgstr "İş"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Sözlükler ve Ansiklopediler"
-
-msgid "Kids"
-msgstr "Çocuklar"
-
-msgid "Multiple Search"
-msgstr "Çoklu arama"
-
-msgid "Music"
-msgstr "Müzik"
-
-msgid "News & Blogs"
-msgstr "Haberler ve Bloglar"
-
-msgid "Photos & Images"
-msgstr "Fotoğraf ve Resimler"
-
-msgid "Shopping & E-Commerce"
-msgstr "Alışveriş ve E-ticaret"
-
-msgid "Social & People"
-msgstr "Sosyal ve İnsanlar"
-
-msgid "Travel"
-msgstr "Seyahat"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Soyut"
 
@@ -2516,6 +2396,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Tatil"
 
+msgid "Music"
+msgstr "Müzik"
+
 msgid "Scenery"
 msgstr "Manzara"
 
@@ -2527,6 +2410,39 @@ msgstr "Katı"
 
 msgid "Websites"
 msgstr "Web Siteleri"
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Business"
+msgstr "İş"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Sözlükler ve Ansiklopediler"
+
+msgid "Kids"
+msgstr "Çocuklar"
+
+msgid "Multiple Search"
+msgstr "Çoklu arama"
+
+msgid "News & Blogs"
+msgstr "Haberler ve Bloglar"
+
+msgid "Photos & Images"
+msgstr "Fotoğraf ve Resimler"
+
+msgid "Shopping & E-Commerce"
+msgstr "Alışveriş ve E-ticaret"
+
+msgid "Social & People"
+msgstr "Sosyal ve İnsanlar"
+
+msgid "Travel"
+msgstr "Seyahat"
+
+msgid "Video"
+msgstr "Video"
 
 # 80%
 # 100%
@@ -2604,6 +2520,114 @@ msgstr "Siteye Özel"
 
 msgid "Web and Developer Tools"
 msgstr "Web ve Geliştirici Araçları"
+
+msgid "App"
+msgstr "Uygulama"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+msgid "New Add-on Review"
+msgstr "Yeni Eklenti İncelemesi"
+
+msgid "Preliminary Add-on Review"
+msgstr "Eklenti Ön İncelemesi"
+
+msgid "Updated Add-on Review"
+msgstr "Güncellenmiş Eklenti İncelemesi"
+
+# Plural in this context means many of the add-on type
+msgid "New Dictionary Review"
+msgstr "Yeni sözlük incelemesi"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Sözlük Ön İncelemesi"
+
+msgid "Updated Dictionary Review"
+msgstr "Güncellenmiş Sözlük İncelemesi"
+
+msgid "New Language Pack Review"
+msgstr "Yeni dil paketi incelemesi"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Dil Paketi Ön İncelemesi"
+
+msgid "Updated Language Pack Review"
+msgstr "Güncellenmiş Dil Paketi İncelemesi"
+
+msgid "Theme Review"
+msgstr "Tema İnceleme"
+
+msgid "New Search Provider Review"
+msgstr "Yeni arama sağlayıcı incelemesi"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr "Yeni tam tema incelemesi"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Güncellenmiş Eklenti İncelemesi"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "İncelemeyi Tamamla"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "1. Düzey"
+
+msgid "Level 2"
+msgstr "2. Düzey"
+
+msgid "Level 3"
+msgstr "3. Düzey"
+
+msgid "Level 4"
+msgstr "4. Düzey"
+
+msgid "Level 5"
+msgstr "5. Düzey"
+
+msgid "Level 6"
+msgstr "6. Düzey"
+
+msgid "Level 7"
+msgstr "7. Düzey"
+
+msgid "Level 8"
+msgstr "8. Düzey"
+
+msgid "Level 9"
+msgstr "9. Düzey"
 
 msgid "Request More Info"
 msgstr "Daha Fazla Bilgi İste"
@@ -3793,7 +3817,8 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Sürüm yükle"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın ve varsa platform kısıtlamalarını seçin. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
 
 msgid "Which platforms is this file compatible with?"
@@ -4696,28 +4721,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 #, fuzzy
@@ -5004,36 +5029,6 @@ msgstr ""
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "onaylandı"
-
-msgid "given preliminary review"
-msgstr "ön incelemesi yapıldı"
-
-msgid "rejected"
-msgstr "reddedildi"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "yükseltildi"
-
-msgid "needs more information"
-msgstr "daha fazla bilgi gerekiyor"
-
-#, fuzzy
-msgid "needs super review"
-msgstr "Tüm kullanıcı incelemelerini gör"
-
-# 87%
-# 100%
-#, fuzzy
-msgid "commented"
-msgstr "Yorum"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "Onaylandı"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5702,6 +5697,10 @@ msgstr ""
 
 msgid "Could not parse uploaded file."
 msgstr "Yüklenen dosya çözümlenemedi."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7696,6 +7695,9 @@ msgstr ""
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
+msgid "Maximum query length exceeded."
 msgstr ""
 
 #, fuzzy

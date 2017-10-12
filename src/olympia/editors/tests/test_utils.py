@@ -745,7 +745,7 @@ class TestReviewHelper(TestCase):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED)
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=151)
         assert summary.confirmed is None
         self.create_paths()
 
@@ -768,6 +768,9 @@ class TestReviewHelper(TestCase):
                                .get())
         assert activity.arguments == [self.addon, self.version]
         assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
@@ -1047,6 +1050,8 @@ class TestReviewHelper(TestCase):
     def test_reject_multiple_versions(self):
         old_version = self.version
         self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
         # An extra file should not change anything.
         file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
@@ -1082,11 +1087,16 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_HIGH_RISK)
+
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.version
         extra_version = version_factory(addon=self.addon, version='3.1')
         # Add yet another version we don't want to reject.
         self.version = version_factory(addon=self.addon, version='42.0')
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=21)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
 
         # Safeguards.
@@ -1123,6 +1133,9 @@ class TestReviewHelper(TestCase):
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_reject_multiple_versions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
@@ -1193,6 +1206,9 @@ class TestReviewHelper(TestCase):
                                .get())
         assert activity.arguments == [self.addon, self.version]
         assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
 
     def test_dev_versions_url_in_context(self):
         self.helper.set_data(self.get_data())
