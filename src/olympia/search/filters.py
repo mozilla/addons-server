@@ -423,17 +423,6 @@ class SearchParameterFilter(BaseFilterBackend):
         return qs.query(query.Bool(**bool_kwargs)) if bool_kwargs else qs
 
 
-class InternalSearchParameterFilter(SearchParameterFilter):
-    """Like SearchParameterFilter, but also allows searching by status. Don't
-    use in the public search API, should only be available in the internal
-    search tool, with the right set of permissions."""
-    # FIXME: also allow searching by listed/unlisted, deleted or not,
-    # disabled or not.
-    available_filters = SearchParameterFilter.available_filters + [
-        AddonStatusQueryParam
-    ]
-
-
 class ReviewedContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only reviewed items in
