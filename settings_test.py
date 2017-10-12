@@ -44,7 +44,7 @@ AUTHENTICATION_BACKENDS = (
     'olympia.users.backends.TestUserBackend',
 )
 
-CELERY_TASK_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = True
 DEBUG = False
 
 # We won't actually send an email.

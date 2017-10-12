@@ -1081,33 +1081,23 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-CELERY_BROKER_URL = os.environ.get(
-    'CELERY_BROKER_URL',
-    'amqp://olympia:olympia@localhost:5672/olympia')
-CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
-CELERY_BROKER_HEARTBEAT = 60 * 15
-CELERY_TASK_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get(
-    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
+BROKER_URL = os.environ.get('BROKER_URL',
+                            'amqp://olympia:olympia@localhost:5672/olympia')
+BROKER_CONNECTION_TIMEOUT = 0.1
+BROKER_HEARTBEAT = 60 * 15
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
+                                       'redis://localhost:6379/1')
 
-CELERY_TASK_IGNORE_RESULT = True
+CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
-CELERY_WORKER_HIJACK_ROOT_LOGGER = False
-
-# Allow upgrading to Celery 4.x (JSON only)
-# Explicitly force task serializer and result serializer to create tasks
-# using the JSON format but still accept pickled messages.
-# TODO: Remove `pickle` once the upgrade is done and seems stable.
-CELERY_ACCEPT_CONTENT = ['pickle', 'json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
+CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
 )
 
-CELERY_TASK_QUEUES = (
+CELERY_QUEUES = (
     Queue('default', routing_key='default'),
     Queue('priority', routing_key='priority'),
     Queue('devhub', routing_key='devhub'),
@@ -1132,7 +1122,7 @@ CELERY_TASK_QUEUES = (
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
-CELERY_TASK_ROUTES = {
+CELERY_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
@@ -1288,12 +1278,12 @@ CELERY_TIME_LIMITS = {
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
 # The task can catch that and recover but should exit ASAP. Note that there is
 # a separate, shorter timeout for validation tasks.
-CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
+CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
@@ -1555,7 +1545,7 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 
 # Testing responsiveness without rate limits.
-CELERY_WORKER_DISABLE_RATE_LIMITS = True
+CELERY_DISABLE_RATE_LIMITS = True
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'

@@ -46,7 +46,7 @@ USE_MOZLOG = False
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
-CELERY_TASK_ALWAYS_EAGER = False
+CELERY_ALWAYS_EAGER = False
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.

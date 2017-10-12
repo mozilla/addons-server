@@ -6,7 +6,6 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.utils import translation
-from celery.exceptions import Retry
 
 import mock
 
@@ -281,12 +280,10 @@ class TestSendMail(BaseTestCase):
             send_mail('test subject',
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
-
-        with self.assertRaises(Retry):
-            send_mail('test subject',
-                      'test body',
-                      async=True,
-                      recipient_list=['somebody@mozilla.org'])
+        send_mail('test subject',
+                  'test body',
+                  async=True,
+                  recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):
