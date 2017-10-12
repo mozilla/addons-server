@@ -1,0 +1,34 @@
+## Requirements needed to be installed *before* any other requirements.
+## This makes sure we have the latest version of pip, setuptools and relevant
+## OpenSSL packages to ensure our actual downloads are as safe as possible.
+
+# appdirs is required by setuptools
+appdirs==1.4.3 \
+    --hash=sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e \
+    --hash=sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92
+ndg-httpsclient==0.4.3 \
+    --hash=sha256:5b1e1b1991990487e28e5b95e062c9d06f8f00e3cd79eaddc448ce06c5e3b776 \
+    --hash=sha256:28d62f2fc93dcd20793ddf2ce9ec1ab9f3458a11a784105a6d67f218ca53de63 \
+    --hash=sha256:7bfd8c5cfcbc241a93ca6a4e45f952650f5c7ecf7c49b1dbcf5f4d390240be0b
+# packaging is required by setuptools
+packaging==16.8 \
+    --hash=sha256:99276dc6e3a7851f32027a68f1095cd3f77c148091b092ea867a351811cfe388 \
+    --hash=sha256:5d50835fdf0a7edf0b55e311b7c887786504efea1177abd7e69329a8e5ea619e
+pip==9.0.1 \
+    --hash=sha256:690b762c0a8460c303c089d5d0be034fb15a5ea2b75bdf565f40421f542fefb0 \
+    --hash=sha256:09f243e1a7b461f654c26a725fa373211bb7ff17a9300058b205c61658ca940d
+pyOpenSSL==17.3.0 \
+    --hash=sha256:aade9985b93eaec51b0c0a2a60d14bb8dcff1ff8e36fe542e3c22812ec07315e \
+    --hash=sha256:29630b9064a82e04d8242ea01d7c93d70ec320f5e3ed48e95fcabc6b1d0f6c76
+pyasn1==0.3.7 \
+    --hash=sha256:8fa8884056bd5b2c92ca1685e6344121b6b43718b44f0c6eb223958003c9d14a \
+    --hash=sha256:16e896433f84575f0636cd9aa8b24659689268a62e00f17235e1fc23c6b00b25 \
+    --hash=sha256:187f2a66d617683f8e82d5c00033b7c8a0287e1da88a9d577aebec321cad4965
+# setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
+setuptools==36.6.0 \
+    --hash=sha256:904356c95cf90e6fdc21915afafbc9ad3d11409c7afeee7c85156f469b353efb \
+    --hash=sha256:62074589522a798da243f47348f38020d55b6c945652e2f2c09d3a96299812b7
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
+six==1.11.0 \
+    --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \
+    --hash=sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9

@@ -92,13 +92,12 @@ populate_data:
 	python manage.py update_permissions_from_mc
 
 install_python_dependencies:
-	pip install six
-	pip install --upgrade pip setuptools
-	pip install -e .
+	pip install --no-deps --exists-action=w -r requirements/system.txt
 	pip install --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
 

@@ -56,16 +56,6 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN yum install -y python-pip
-RUN pip install --upgrade six
-RUN pip install --upgrade pip setuptools
-
-# Until https://github.com/shazow/urllib3/commit/959d47d926e1331ad571dbfc150c9a3acb7a1eb9 lands
-RUN pip install pyOpenSSL ndg-httpsclient pyasn1 certifi urllib3
-
-# ipython / ipdb for easier debugging, supervisor to run services
-# Remove ipython version restriction when we move to python 3, see
-# https://github.com/mozilla/addons-server/issues/5380
-RUN pip install 'ipython<6' ipdb supervisor
 
 COPY . /code
 WORKDIR /code
