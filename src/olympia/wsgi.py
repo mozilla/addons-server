@@ -8,9 +8,6 @@ log = logging.getLogger('z.startup')
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
 
-# Tell celery that we're using Django.
-os.environ['CELERY_LOADER'] = 'django'
-
 import django
 import django.conf
 from django.core.wsgi import get_wsgi_application
