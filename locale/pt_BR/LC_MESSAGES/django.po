@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 14:57+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2017-10-13 03:35+0000\n"
+"Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -2277,9 +2277,8 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Detalhes do tema"
+msgstr "Tema (Estático)"
 
 msgid "Complete Themes"
 msgstr "Temas Completos"
@@ -2300,9 +2299,8 @@ msgstr "Pacotes de idioma (extensão)"
 msgid "Plugins"
 msgstr "Plugins"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Artista"
+msgstr "Temas (Estático)"
 
 # %1$s is a URL where the user can see an example
 msgid "Only ask on this add-on's page and developer profile"
@@ -4794,9 +4792,8 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Um bloqueador de anúncios leve e efetivo. O uBlock Origin aplica milhares de filtros de conteúdos sem consumir muita memória."
@@ -4807,9 +4804,8 @@ msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Aproveite uma variedade de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
 
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ache imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Selecione qualquer texto e clique com o botão direito para realizar rapidamente para pesquisar imagem."
@@ -5383,9 +5379,8 @@ msgid "Editors' Guide"
 msgstr "Guia do editor"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Análise {0}"
+msgstr "Análise de conteúdo {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5685,11 +5680,10 @@ msgstr[0] "Extensão aprovada automaticamente ({0})"
 msgstr[1] "Extensões aprovadas automaticamente ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Análise moderada ({0})"
-msgstr[1] "Análises moderadas ({0})"
+msgstr[0] "Análise de conteúdo ({0})"
+msgstr[1] "Análises de conteúdo ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"
