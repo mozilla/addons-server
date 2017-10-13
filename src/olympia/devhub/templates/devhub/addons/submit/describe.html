@@ -139,19 +139,11 @@
     <div class="submission-buttons addon-submission-field">
       <button class="delete-button" type="sumbit"
               formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
-          {% if waffle.switch('post-review') and version.is_webextension %}
-            {{ _('Cancel and Disable Version') }}
-          {% else %}
-            {{ _('Cancel Review and Disable Version') }}
-          {% endif %}
+          {{ _('Cancel and Disable Version') }}
       </button>
       &nbsp;
       <button type="submit">
-        {% if waffle.switch('post-review') and version.is_webextension %}
-          {{ _('Submit Version') }}
-        {% else %}
-          {{ _('Submit Version for Review') }}
-        {% endif %}
+        {{ _('Submit Version') }}
       </button>
     </div>
   </form>

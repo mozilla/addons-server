@@ -1,48 +1,24 @@
 <form method="post">
-  {% if waffle.switch('post-review') %}
-    <p>
-    {% trans %}
-      Before starting, please read and accept our Firefox Add-on Distribution
-      Agreement as well as our Review Policies and Rules. The Firefox
-      Add-on Distribution Agreement also links to our Privacy Notice which
-      explains how we handle your information.
-    {% endtrans %}
-    </p>
-    <ul class="agreement-links">
-      <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
-      <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
-    </ul>
-    <p>
-    	{{ _('I have read and accept this Agreement and the Rules and Policies') }}.
-    </p>
-  {% else %}
-    <p>
-    {% trans %}
-      Before starting, please read and accept our Firefox Add-on
-      Distribution Agreement. It also links to our Privacy Notice
-      which explains how we handle your information.
-    {% endtrans %}
-    </p>
-    </p>
-    <div class="agreement-container agreement-links">
-      {% include 'amo/developer_agreement.html' %}
-    </div>
-
-    <div class="agreement-extra-links">
-      <a href="{{ url('devhub.docs', 'policies/agreement') }}"
-         target="_blank" rel="noopener noreferrer">
-        {{ _('Printable Version') }}</a>
-    </div>
-  {% endif %}
+  <p>
+  {% trans %}
+    Before starting, please read and accept our Firefox Add-on Distribution
+    Agreement as well as our Review Policies and Rules. The Firefox
+    Add-on Distribution Agreement also links to our Privacy Notice which
+    explains how we handle your information.
+  {% endtrans %}
+  </p>
+  <ul class="agreement-links">
+    <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
+    <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
+  </ul>
+  <p>
+    {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
+  </p>
 
   <div class="submit-buttons">
       {% csrf_token %}
       <button id="accept-agreement" type="submit">
-        {% if waffle.switch('post-review') %}
-          {{ _('Accept') }}
-        {% else %}
-          {{ _('I Accept this Agreement') }}
-        {% endif %}
+        {{ _('Accept') }}
       </button>
     {{ _('or <a href="{0}">Cancel</a>')|format_html(url('devhub.index')) }}
   </div>

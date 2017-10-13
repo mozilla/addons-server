@@ -1346,29 +1346,6 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_uses_native_messaging(self.version)
             is True)
 
-    def test_check_uses_content_script_for_all_urls(self):
-        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
-            self.version) is False
-
-        webext_permissions = WebextPermission.objects.create(
-            file=self.file, permissions=['https://example.com/*'])
-        del self.file.webext_permissions_list
-        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
-            self.version) is False
-
-        webext_permissions.update(permissions=['<all_urls>'])
-        del self.file.webext_permissions_list
-        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
-            self.version) is True
-
-    def test_check_is_under_admin_review(self):
-        assert AutoApprovalSummary.check_is_under_admin_review(
-            self.version) is False
-
-        self.version.addon.update(admin_review=True)
-        assert AutoApprovalSummary.check_is_under_admin_review(
-            self.version) is True
-
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1378,37 +1355,20 @@ class TestAutoApprovalSummary(TestCase):
         set_reviewing_cache(self.version.addon.pk, settings.TASK_USER_ID + 42)
         assert AutoApprovalSummary.check_is_locked(self.version) is True
 
-    def test_check_has_info_request(self):
-        assert AutoApprovalSummary.check_has_info_request(
-            self.version) is False
-
-        self.version.update(has_info_request=True)
-        assert AutoApprovalSummary.check_has_info_request(self.version) is True
-
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
             self, calculate_verdict_mock, calculate_weight_mock):
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
-            self.version,
-            max_average_daily_users=111, min_approved_updates=222)
+            self.version,)
         assert calculate_weight_mock.call_count == 1
         assert calculate_verdict_mock.call_count == 1
         assert calculate_verdict_mock.call_args == ({
-            'max_average_daily_users': 111,
-            'min_approved_updates': 222,
             'dry_run': False,
-            'post_review': False,
         },)
         assert summary.pk
         assert summary.version == self.version
-        assert summary.uses_custom_csp is False
-        assert summary.uses_native_messaging is False
-        assert summary.uses_content_script_for_all_urls is False
-        assert summary.average_daily_users == self.addon.average_daily_users
-        assert (summary.approved_updates ==
-                self.addon.addonapprovalscounter.counter)
         assert info == {'dummy_verdict': True}
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
@@ -1418,53 +1378,30 @@ class TestAutoApprovalSummary(TestCase):
         self.version.reload()
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
-            self.version,
-            max_average_daily_users=111, min_approved_updates=222)
+            self.version)
         assert summary.pk
-        assert summary.approved_updates == 0
         assert info == {'dummy_verdict': True}
 
     def test_create_summary_already_existing(self):
         # Create a dummy summary manually, then call the method to create a
         # real one. It should have just updated the previous instance.
         summary = AutoApprovalSummary.objects.create(
-            version=self.version,
-            uses_custom_csp=True,
-            uses_native_messaging=True,
-            uses_content_script_for_all_urls=True)
+            version=self.version, is_locked=True)
         assert summary.pk
         assert summary.version == self.version
-        assert summary.uses_custom_csp is True
-        assert summary.uses_native_messaging is True
-        assert summary.uses_content_script_for_all_urls is True
-        assert summary.average_daily_users == 0
-        assert summary.approved_updates == 0
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
         previous_summary_pk = summary.pk
 
         summary, info = AutoApprovalSummary.create_summary_for_version(
-            self.version,
-            max_average_daily_users=self.addon.average_daily_users + 1,
-            min_approved_updates=1)
+            self.version)
 
         assert summary.pk == previous_summary_pk
         assert summary.version == self.version
-        assert summary.uses_custom_csp is False
-        assert summary.uses_native_messaging is False
-        assert summary.uses_content_script_for_all_urls is False
-        assert summary.average_daily_users == self.addon.average_daily_users
-        assert summary.approved_updates == 1
+        assert summary.is_locked is False
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
-            'too_few_approved_updates': False,
-            'too_many_average_daily_users': False,
-            'uses_content_script_for_all_urls': False,
-            'uses_custom_csp': False,
-            'uses_native_messaging': False,
-            'has_info_request': False,
             'is_locked': False,
-            'is_under_admin_review': False,
         }
 
     def test_create_summary_no_files(self):
@@ -1475,100 +1412,41 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_calculate_verdict_failure_dry_run(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=1, approved_updates=2)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates + 1, dry_run=True)
+            version=self.version, is_locked=True)
+        info = summary.calculate_verdict(dry_run=True)
         assert info == {
-            'too_few_approved_updates': True,
-            'too_many_average_daily_users': False,
-            'uses_content_script_for_all_urls': False,
-            'uses_custom_csp': False,
-            'uses_native_messaging': False,
-            'has_info_request': False,
-            'is_locked': False,
-            'is_under_admin_review': False,
+            'is_locked': True,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
     def test_calculate_verdict_failure(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version,
-            uses_custom_csp=True,
-            uses_native_messaging=True,
-            uses_content_script_for_all_urls=True,
-            average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users - 1,
-            min_approved_updates=summary.approved_updates + 1)
+            version=self.version, is_locked=True)
+        info = summary.calculate_verdict()
         assert info == {
-            'too_few_approved_updates': True,
-            'too_many_average_daily_users': True,
-            'uses_content_script_for_all_urls': True,
-            'uses_custom_csp': True,
-            'uses_native_messaging': True,
-            'has_info_request': False,
-            'is_locked': False,
-            'is_under_admin_review': False,
+            'is_locked': True,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_calculate_verdict_success(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version,
-            uses_custom_csp=False,
-            uses_native_messaging=False,
-            uses_content_script_for_all_urls=False,
-            average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates)
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        info = summary.calculate_verdict()
         assert info == {
-            'too_few_approved_updates': False,
-            'too_many_average_daily_users': False,
-            'uses_content_script_for_all_urls': False,
-            'uses_custom_csp': False,
-            'uses_native_messaging': False,
-            'has_info_request': False,
             'is_locked': False,
-            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
     def test_calculate_verdict_success_dry_run(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version,
-            uses_custom_csp=False,
-            uses_native_messaging=False,
-            uses_content_script_for_all_urls=False,
-            average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates, dry_run=True)
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        info = summary.calculate_verdict(dry_run=True)
         assert info == {
-            'too_few_approved_updates': False,
-            'too_many_average_daily_users': False,
-            'uses_content_script_for_all_urls': False,
-            'uses_custom_csp': False,
-            'uses_native_messaging': False,
-            'has_info_request': False,
             'is_locked': False,
-            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
     def test_calculate_verdict_post_review(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=2, approved_updates=2,
-            uses_custom_csp=True, uses_native_messaging=True,
-            uses_content_script_for_all_urls=True)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users - 1,
-            min_approved_updates=summary.approved_updates + 1,
-            post_review=True)
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        info = summary.calculate_verdict()
         assert info == {
             'is_locked': False,
         }
@@ -1576,86 +1454,15 @@ class TestAutoApprovalSummary(TestCase):
         # are in post-review mode.
         assert summary.verdict == amo.AUTO_APPROVED
 
-    def test_calculate_verdict_post_review_but_locked(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=2, approved_updates=2,
-            is_locked=True)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users - 1,
-            min_approved_updates=summary.approved_updates + 1,
-            post_review=True)
-        assert info == {
-            'is_locked': True,
-        }
-        assert summary.verdict == amo.NOT_AUTO_APPROVED
-
-    def test_calculate_verdict_post_review_dry_run(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=1, approved_updates=2)
-        info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates + 1,
-            post_review=True, dry_run=True)
-        assert info == {
-            'is_locked': False,
-        }
-        assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
-
     def test_verdict_info_prettifier(self):
         verdict_info = {
-            'too_few_approved_updates': True,
-            'too_many_average_daily_users': True,
-            'uses_content_script_for_all_urls': True,
-            'uses_custom_csp': True,
-            'uses_native_messaging': True,
-            'has_info_request': True,
             'is_locked': True,
-            'is_under_admin_review': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
-            u'Has a pending info request.',
             u'Is locked by a reviewer.',
-            u'Is flagged for admin review.',
-            u'Has too few consecutive human-approved updates.',
-            u'Has too many daily users.',
-            u'Uses a content script for all URLs.',
-            u'Uses a custom CSP.',
-            u'Uses nativeMessaging permission.'
         ]
 
-        verdict_info = {
-            'too_few_approved_updates': True,
-            'uses_content_script_for_all_urls': True,
-            'uses_native_messaging': True
-        }
-        result = list(
-            AutoApprovalSummary.verdict_info_prettifier(verdict_info))
-        assert result == [
-            u'Has too few consecutive human-approved updates.',
-            u'Uses a content script for all URLs.',
-            u'Uses nativeMessaging permission.'
-        ]
-
-    def test_verdict_info_pretty(self):
-        summary = AutoApprovalSummary.objects.create(
-            version=self.version,
-            uses_custom_csp=True,
-            uses_native_messaging=True,
-            uses_content_script_for_all_urls=True,
-            average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
-        expected_result = list(AutoApprovalSummary.verdict_info_prettifier({
-            'too_few_approved_updates': True,
-            'too_many_average_daily_users': True,
-            'uses_content_script_for_all_urls': True,
-            'uses_custom_csp': True,
-            'uses_native_messaging': True
-        }))
-        result = list(summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users - 1,
-            min_approved_updates=summary.approved_updates + 1,
-            pretty=True))
-        assert result == expected_result
-        assert summary.verdict == amo.NOT_AUTO_APPROVED
+        result = list(AutoApprovalSummary.verdict_info_prettifier({}))
+        assert result == []

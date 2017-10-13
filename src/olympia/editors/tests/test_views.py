@@ -17,7 +17,6 @@ import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 from freezegun import freeze_time
-from waffle.testutils import override_switch
 
 from olympia import amo, core, reviews
 from olympia.amo.tests import (
@@ -1047,24 +1046,13 @@ class TestPendingQueue(QueueTest):
     def test_get_queue(self):
         self._test_get_queue()
 
-    @override_switch('post-review', active=False)
-    def test_webextensions_not_filtered_out_without_post_review(self):
+    def test_webextensions_filtered_out_because_of_post_review(self):
         version = self.addons['Pending Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.files.update(is_webextension=True)
 
-        # Without the post-review waffle enabled, the webextension should still
-        # be present.
-        self._test_results()
-
-    @override_switch('post-review', active=True)
-    def test_webextensions_filtered_out_with_post_review(self):
-        version = self.addons['Pending Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        version.files.update(is_webextension=True)
-
-        # With the post-review waffle enabled, the webextension should be
-        # filtered out.
+        # Webextensions are filtered out from the queue since auto_approve is
+        # taking care of them.
         self.expected_addons = [self.addons['Pending One']]
         self._test_results()
 
@@ -1126,24 +1114,13 @@ class TestNominatedQueue(QueueTest):
     def test_get_queue(self):
         self._test_get_queue()
 
-    @override_switch('post-review', active=False)
-    def test_webextensions_not_filtered_out_without_post_review(self):
+    def test_webextensions_filtered_out_because_of_post_review(self):
         version = self.addons['Nominated Two'].find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.files.update(is_webextension=True)
 
-        # Without the post-review waffle enabled, the webextension should still
-        # be present.
-        self._test_results()
-
-    @override_switch('post-review', active=True)
-    def test_webextensions_filtered_out_with_post_review(self):
-        version = self.addons['Nominated Two'].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        version.files.update(is_webextension=True)
-
-        # With the post-review waffle enabled, the webextension should be
-        # filtered out.
+        # Webextensions are filtered out from the queue since auto_approve is
+        # taking care of them.
         self.expected_addons = [self.addons['Nominated One']]
         self._test_results()
 
@@ -1358,10 +1335,6 @@ class TestUnlistedAllList(QueueTest):
     def test_results(self):
         self._test_results()
 
-    @override_switch('post-review', active=True)
-    def test_results_with_post_review_enabled(self):
-        self._test_results()
-
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1468,10 +1441,6 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
         self._test_results()
-
-    @override_switch('post-review', active=True)
-    def test_results_with_post_review_waffle(self):
-        self.test_results()
 
     def test_queue_count(self):
         self.login_with_permission()
@@ -1610,7 +1579,6 @@ class TestContentReviewQueue(QueueTest):
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 4')
 
-    @override_switch('post-review', active=True)
     def test_navbar_queue_counts(self):
         self.login_with_permission()
         self.generate_files()
@@ -3382,58 +3350,16 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    def test_auto_approval_summary(self):
-        # Hard-delete a version, faking the right ActivityLog so that the view
-        # creates a PseudoVersion instance...
-        deleted_version = version_factory(addon=self.addon)
-        ActivityLog.create(
-            amo.LOG.REJECT_VERSION, self.addon,
-            version=deleted_version, details={
-                'comments': u'Eh, thîs is a deleted version'
-            }, user=user_factory(),
-        )
-        deleted_version.delete(hard=True)
-
-        # Now auto-approve the regular version left.
-        AutoApprovalSummary.objects.create(
-            version=self.version,
-            verdict=amo.NOT_AUTO_APPROVED,
-            uses_custom_csp=True,
-            approved_updates=1,
-            average_daily_users=10000,
-        )
-        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
-        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
-        self.login_as_senior_editor()
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert (
-            doc('.auto_approval li').eq(0).text() ==
-            'Has too few consecutive human-approved updates.')
-        assert (
-            doc('.auto_approval li').eq(1).text() ==
-            'Has too many daily users.')
-        assert (
-            doc('.auto_approval li').eq(2).text() ==
-            'Uses a custom CSP.')
-
-    @override_switch('post-review', active=True)
     def test_auto_approval_summary_with_post_review(self):
         AutoApprovalSummary.objects.create(
             version=self.version,
             verdict=amo.NOT_AUTO_APPROVED,
-            uses_custom_csp=True,
-            approved_updates=1,
-            average_daily_users=10000,
             is_locked=True,
         )
-        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
-        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
         self.login_as_senior_editor()
         response = self.client.get(self.url)
         doc = pq(response.content)
-        # Only one reason (locked by a reviewer) is shown, the other don't
-        # matter when post-review is enabled.
+        # Locked by a reviewer is shown.
         assert len(doc('.auto_approval li')) == 1
         assert doc('.auto_approval li').eq(0).text() == (
             'Is locked by a reviewer.')
