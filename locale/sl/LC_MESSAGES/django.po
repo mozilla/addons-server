@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-13 17:09+0000\n"
+"PO-Revision-Date: 2017-10-13 17:17+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2028,9 +2028,8 @@ msgstr "Dodatek je bil označen za skrbniški pregled.  Še vedno je v čakaln
 msgid "Comment on {addon} {version}."
 msgstr "Komentar o {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "pripombe"
+msgstr "Komentirano"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} dodan {addon}."
@@ -4751,7 +4750,7 @@ msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprosto najdite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Označite besedilo, kliknite ga z desno miškino tipko ter hitro izvedite slikovno iskanje."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
