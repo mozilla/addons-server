@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-15 23:09+0000\n"
+"PO-Revision-Date: 2017-10-15 23:15+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4688,10 +4688,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr "Užijte si sadu nových funkcí pro YouTube, např. režim kina, blokování reklam, ovládání automatického přehrávání a další."
 
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snadné hledání obrázků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr "Najděte obrázky snadno a rychle{start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Označte jakýkoli text a pravým klepnutím k němu snadno vyhledejte obrázek."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
@@ -4940,7 +4940,7 @@ msgid "Approve Content"
 msgstr "Schválit obsah"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Tímto označíte obsah verze jako vámi schválený bez kontaktování vývojáře."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nové doplňky (pod 58 dní)"
@@ -7620,7 +7620,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Překročena maximální délka dotazu."
 
 msgid "Most popular this week"
 msgstr "Nejpopulárnější tento týden"
