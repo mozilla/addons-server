@@ -3793,9 +3793,8 @@ msgstr "איפה לארח את הגרסה"
 msgid "Upload Version"
 msgstr "העלאת גרסה"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "יש להשתמש בשדות שלהלן כדי להעלות את חבילת התוספת שלך ולסמן אם יש מגבלה לפלטפורמה כלשהי. לאחר ההעלאה, תורץ סדרה של בדיקות אימות אוטומטיות על הקובץ שלך."
+msgstr ""
 
 msgid "Which platforms is this file compatible with?"
 msgstr "אילו פלטפורמות נתמכות ע״י קובץ זה?"
@@ -4202,9 +4201,8 @@ msgid "Sign In"
 msgstr "התחברות"
 
 # Header for a column in a table
-#, fuzzy
 msgid "Validator"
-msgstr "בדיקה"
+msgstr ""
 
 msgid "Automated code tests for your add-on."
 msgstr "בדיקות קוד אוטומטיות עבור התוספת שלך."
