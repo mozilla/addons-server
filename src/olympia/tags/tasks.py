@@ -15,7 +15,8 @@ def update_all_tag_stats(pks, **kw):
 
 
 @task(rate_limit='1000/m')
-def update_tag_stat(tag, **kw):
+def update_tag_stat(tag_pk, **kw):
+    tag = Tag.objects.get(pk=tag_pk)
     task_log.info("[1@%s] Calculating stats for tag %s" %
                   (update_tag_stat.rate_limit, tag.pk))
     tag.update_stat()
