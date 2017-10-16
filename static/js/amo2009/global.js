@@ -246,7 +246,6 @@ jQuery(function($) {
 	  },2000);
     });
 
-
 	// account dropdown in auxillary menu
 	var accountDropdown = new DropdownArea();
 	// set up variables for object

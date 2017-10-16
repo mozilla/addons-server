@@ -739,6 +739,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/sortable.js',
 
             'js/zamboni/helpers.js',
+            'js/common/banners.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/common/ratingwidget.js',
@@ -836,6 +837,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
+            'js/common/banners.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
