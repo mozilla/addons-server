@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-06-29 02:15+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-10 07:31+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -22,7 +22,7 @@ msgid "No links are allowed."
 msgstr "링크는 넣을 수 없습니다."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "이 표시 이름은 사용할 수 없습니다."
 
 msgid "Usernames cannot contain only digits."
 msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
@@ -900,7 +900,7 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "추천 페이지"
 
 #, fuzzy
 msgid "Browse all extensions"
@@ -1969,6 +1969,10 @@ msgstr "부가 기능이 관리자 검토를 위해 마크되었습니다.  저�
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version}에 코멘트가 달렸습니다."
 
+#, fuzzy
+msgid "Commented"
+msgstr "코멘트"
+
 msgid "{tag} added to {addon}."
 msgstr "{addon}에 {tag} 태그가 추가되었습니다."
 
@@ -2126,6 +2130,30 @@ msgstr "{addon} {version}의 승인 노트가 변경되었습니다."
 msgid "Auto-Approval confirmed"
 msgstr "승인 상태"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version}이(가) 승인되었습니다."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "이(가) 승인되었습니다"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "이(가) 심사 거부되었습니다"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2202,6 +2230,10 @@ msgstr "플러그인"
 msgid "Theme"
 msgstr "테마"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "테마 상세 정보"
+
 msgid "Complete Themes"
 msgstr "완전 테마"
 
@@ -2218,6 +2250,10 @@ msgstr "언어팩(부가 기능)"
 
 msgid "Plugins"
 msgstr "플러그인"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "테마 제작자"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "이 부가 기능 페이지와 개발자 프로필에서만 요청하기"
@@ -2240,109 +2276,6 @@ msgstr "Release"
 
 msgid "Change"
 msgstr "Change"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "페르소나"
-
-msgid "Manual Reviewer Points"
-msgstr "수동 심사 포인트"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "부가 기능 전체 심사"
-
-msgid "Preliminary Add-on Review"
-msgstr "부가 기능 예비 심사"
-
-msgid "Updated Add-on Review"
-msgstr "업데이트된 부가 기능 심사"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "사전 전체 심사"
-
-msgid "Preliminary Dictionary Review"
-msgstr "사전 예비 심사"
-
-msgid "Updated Dictionary Review"
-msgstr "업데이트된 사전 심사"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "언어팩 전체 심사"
-
-msgid "Preliminary Language Pack Review"
-msgstr "언어팩 예비 심사"
-
-msgid "Updated Language Pack Review"
-msgstr "업데이트된 언어팩 심사"
-
-msgid "Bonus for overdue reviews"
-msgstr "기간이 지난 심사에 대한 보너스"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "보너스가 적용되기까지 남은 일"
-
-msgid "Theme Review"
-msgstr "테마 심사"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "검색 도구 전체 심사"
-
-msgid "Preliminary Search Provider Review"
-msgstr "검색 도구 예비 심사"
-
-msgid "Updated Search Provider Review"
-msgstr "업데이트된 검색 도구 심사"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "완전 테마 심사"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "예비 완전 테마 심사"
-
-msgid "Updated Complete Theme Review"
-msgstr "업데이트된 완전 테마 심사"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "완화된 부가 기능 심사"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "부가 기능 심사 과정"
-
-msgid "Level 1"
-msgstr "1단계"
-
-msgid "Level 2"
-msgstr "2단계"
-
-msgid "Level 3"
-msgstr "3단계"
-
-msgid "Level 4"
-msgstr "4단계"
-
-msgid "Level 5"
-msgstr "5단계"
-
-msgid "Level 6"
-msgstr "6단계"
-
-msgid "Level 7"
-msgstr "7단계"
-
-msgid "Level 8"
-msgstr "8단계"
-
-msgid "Level 9"
-msgstr "9단계"
 
 msgid "Compatible"
 msgstr "호환됨"
@@ -2416,42 +2349,6 @@ msgstr "이전 테마"
 msgid "Sports"
 msgstr "스포츠"
 
-msgid "General"
-msgstr "일반"
-
-msgid "Business"
-msgstr "비지니스"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "백과 사전"
-
-msgid "Kids"
-msgstr "아동"
-
-msgid "Multiple Search"
-msgstr "통합 검색"
-
-msgid "Music"
-msgstr "음악"
-
-msgid "News & Blogs"
-msgstr "뉴스 및 블로그"
-
-msgid "Photos & Images"
-msgstr "사진 및 이미지"
-
-msgid "Shopping & E-Commerce"
-msgstr "쇼핑"
-
-msgid "Social & People"
-msgstr "사람들"
-
-msgid "Travel"
-msgstr "여행"
-
-msgid "Video"
-msgstr "동영상"
-
 msgid "Abstract"
 msgstr "추상"
 
@@ -2470,6 +2367,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "기념일"
 
+msgid "Music"
+msgstr "음악"
+
 msgid "Scenery"
 msgstr "풍경"
 
@@ -2481,6 +2381,39 @@ msgstr "원색"
 
 msgid "Websites"
 msgstr "웹사이트"
+
+msgid "General"
+msgstr "일반"
+
+msgid "Business"
+msgstr "비지니스"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "백과 사전"
+
+msgid "Kids"
+msgstr "아동"
+
+msgid "Multiple Search"
+msgstr "통합 검색"
+
+msgid "News & Blogs"
+msgstr "뉴스 및 블로그"
+
+msgid "Photos & Images"
+msgstr "사진 및 이미지"
+
+msgid "Shopping & E-Commerce"
+msgstr "쇼핑"
+
+msgid "Social & People"
+msgstr "사람들"
+
+msgid "Travel"
+msgstr "여행"
+
+msgid "Video"
+msgstr "동영상"
 
 msgid "Device Features & Location"
 msgstr "위치 기반"
@@ -2562,6 +2495,119 @@ msgstr "웹 사이트별"
 
 msgid "Web and Developer Tools"
 msgstr "웹 개발 도구"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "페르소나"
+
+msgid "Manual Reviewer Points"
+msgstr "수동 심사 포인트"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "부가 기능 전체 심사"
+
+msgid "Preliminary Add-on Review"
+msgstr "부가 기능 예비 심사"
+
+msgid "Updated Add-on Review"
+msgstr "업데이트된 부가 기능 심사"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "사전 전체 심사"
+
+msgid "Preliminary Dictionary Review"
+msgstr "사전 예비 심사"
+
+msgid "Updated Dictionary Review"
+msgstr "업데이트된 사전 심사"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "언어팩 전체 심사"
+
+msgid "Preliminary Language Pack Review"
+msgstr "언어팩 예비 심사"
+
+msgid "Updated Language Pack Review"
+msgstr "업데이트된 언어팩 심사"
+
+msgid "Theme Review"
+msgstr "테마 심사"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "검색 도구 전체 심사"
+
+msgid "Preliminary Search Provider Review"
+msgstr "검색 도구 예비 심사"
+
+msgid "Updated Search Provider Review"
+msgstr "업데이트된 검색 도구 심사"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "완전 테마 심사"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "예비 완전 테마 심사"
+
+msgid "Updated Complete Theme Review"
+msgstr "업데이트된 완전 테마 심사"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "완화된 부가 기능 심사"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "부가 기능 심사 과정"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "심사 완료하기"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "1단계"
+
+msgid "Level 2"
+msgstr "2단계"
+
+msgid "Level 3"
+msgstr "3단계"
+
+msgid "Level 4"
+msgstr "4단계"
+
+msgid "Level 5"
+msgstr "5단계"
+
+msgid "Level 6"
+msgstr "6단계"
+
+msgid "Level 7"
+msgstr "7단계"
+
+msgid "Level 8"
+msgstr "8단계"
+
+msgid "Level 9"
+msgstr "9단계"
 
 msgid "Request More Info"
 msgstr "추가 정보 요청하기"
@@ -2770,7 +2816,7 @@ msgid "Version {version} already exists."
 msgstr "버전 %s 이 이미 존재하거나, 이전에 이미 업로드되어 있습니다."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "대신 기존 업로드로 게속하십니까?"
 
 # 98%
 # 100%
@@ -2960,14 +3006,17 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "심사 노트"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "사용하기 전에, Firefox 추가 기능의 배포 계약을 읽고 동의해주세요. 동의하시면 개인 정보 보호 정책도 승인한 것으로 간주합니다."
 
 msgid "Printable Version"
 msgstr "인쇄용 버전"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgid "Accept"
+msgstr "동의"
 
 msgid "I Accept this Agreement"
 msgstr "약관에 동의합니다"
@@ -3756,7 +3805,8 @@ msgstr "대상 버전"
 msgid "Upload Version"
 msgstr "새 버전 업로드하기"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이용하신 후 플랫폼 제한 사항을 선택해 주세요. 업로드가 끝나면 파일들에 대한 몇가지 검사가 자동으로 이루어질 것입니다."
 
 msgid "Which platforms is this file compatible with?"
@@ -4072,7 +4122,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "가입하기!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -4687,28 +4737,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4901,16 +4951,20 @@ msgid_plural "{0} days"
 msgstr[0] "{0} 일"
 
 msgid "Last Review"
-msgstr ""
+msgstr "최신 리뷰"
 
 msgid "Last Update"
-msgstr ""
+msgstr "최신 업데이트"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "리뷰 없음"
 
 msgid "Weight"
 msgstr ""
+
+#, fuzzy
+msgid "Last Content Review"
+msgstr "심사 완료하기"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -4953,6 +5007,13 @@ msgstr "이 부가 기능이 보안, 저작권 등 관리자가 검토해야 한
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "이 버전에 코멘트를 남겨주세요. 제작자는 코멘트를 볼 수 없습니다."
 
+#, fuzzy
+msgid "Approve Content"
+msgstr "승인 / 거부"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "신규 부가 기능 (최근 5일 이내)"
 
@@ -4973,34 +5034,6 @@ msgstr "심사 작업을 진행 합니다."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "이(가) 승인되었습니다"
-
-msgid "given preliminary review"
-msgstr "이(가) 예비 심사 등급이 주어졌습니다"
-
-msgid "rejected"
-msgstr "이(가) 심사 거부되었습니다"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "이(가) 검토 대상이 되었습니다"
-
-# 79%
-# 100%
-msgid "needs more information"
-msgstr "추가 정보 요구"
-
-msgid "needs super review"
-msgstr "상급 심사 필요"
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "이(가) 승인되었습니다"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5090,6 +5123,10 @@ msgstr "심사 조정중"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "안드로이드용 부가 기능"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "심사 완료하기"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5301,6 +5338,11 @@ msgstr "부가 기능 정책"
 
 msgid "Editors' Guide"
 msgstr "편집자 지침"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "심사 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5592,6 +5634,11 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "내가 제작한 모든 부가 기능"
 
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "심사 조정 ({0})"
+
 msgid "Flagged"
 msgstr "표시됨"
 
@@ -5623,6 +5670,10 @@ msgstr "업로드한 파일을 인식할 수 없습니다."
 
 msgid "Could not parse uploaded file."
 msgstr "업로드한 파일을 인식할 수 없습니다."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7621,6 +7672,9 @@ msgstr "5점중 {0}점 받음"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5점중 %(rating)s점 받음"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "이번 주 최고 인기순"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 15:11+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-14 14:12+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "Har du brug for hjælp?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Udviklere af tilføjelser kan ikke slette deres konto. Du skal slette alle tilføjelser og temaer forbundet med denne konto, eller overføre den til en anden bruger."
 
 msgid "Review"
 msgstr "Anmeldelse"
@@ -723,7 +723,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Bemærk at denne tilføjelse bruger forældet teknologi, hvilket giver den adgang til alle browserens funktioner og data, uden at bede om din tilladelse."
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
@@ -1026,7 +1026,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Ordbøger & sprogpakker"
 
 msgid "Search Tools"
-msgstr "Søgning"
+msgstr "Søgeværktøjer"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1584,13 +1584,13 @@ msgstr "Her er nogle få af vores favoritter så du kan komme i gang med at tilp
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr "Søgning relateret til %s"
+msgstr "Søgeværktøjer relateret til %s"
 
 msgid "Search tools and search-related extensions"
-msgstr "Søgning og søgerelaterede udvidelser"
+msgstr "Søgeværktøjer og søgerelaterede udvidelser"
 
 msgid "Search tools"
-msgstr "Søgning"
+msgstr "Søgeværktøjer"
 
 msgid "Most Users"
 msgstr "Flest brugere"
@@ -1666,7 +1666,7 @@ msgstr "Liste over sprogpakker og ordbøger."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0} :: Søgninger"
+msgstr "{0} :: Søgeværktøjer"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1698,7 +1698,7 @@ msgstr "Gennemse endnu flere søgetjenester på <a href=\"http://mycroftproject.
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sLav dit eget%(amo_mdn_link_close)s søgeværktøj"
 
 msgid "Most Popular Extensions"
 msgstr "Mest populære udvidelser"
@@ -1968,6 +1968,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+#, fuzzy
+msgid "Commented"
+msgstr "Kommentar"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} føjet til {addon}."
 
@@ -2123,6 +2127,24 @@ msgstr ""
 msgid "Auto-Approval confirmed"
 msgstr ""
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} genaktiveret."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} deaktiveret."
+
+msgid "{addon} {version} content approved."
+msgstr "Indholdet i {addon} {version} er godkendt."
+
+msgid "Content approved"
+msgstr "Indhold godkendt"
+
+msgid "{addon} {version} content rejected."
+msgstr "Indholdet i {addon} {version} er blevet afvist."
+
+msgid "Content rejected"
+msgstr "Indhold afvist"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2199,6 +2221,9 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Udvidede temaer"
 
@@ -2215,6 +2240,10 @@ msgstr "Sprogpakker (Tilføjelse)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Temas kunstner"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2237,104 +2266,6 @@ msgstr ""
 
 msgid "Change"
 msgstr ""
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Add-on Review"
-msgstr ""
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr ""
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr ""
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-msgid "New Search Provider Review"
-msgstr ""
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Anmeldelse af tilføjelse"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "Niveau 1"
-
-msgid "Level 2"
-msgstr "Niveau 2"
-
-msgid "Level 3"
-msgstr "Niveau 3"
-
-msgid "Level 4"
-msgstr "Niveau 4"
-
-msgid "Level 5"
-msgstr "Niveau 5"
-
-msgid "Level 6"
-msgstr "Niveau 6"
-
-msgid "Level 7"
-msgstr "Niveau 7"
-
-msgid "Level 8"
-msgstr "Niveau 8"
-
-msgid "Level 9"
-msgstr "Niveau 9"
 
 msgid "Compatible"
 msgstr "Kompatibel"
@@ -2408,42 +2339,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Generelt"
-
-msgid "Business"
-msgstr "Forretning"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Ordbøger & encyklopædier"
-
-msgid "Kids"
-msgstr "Børn"
-
-msgid "Multiple Search"
-msgstr "Kombineret søgning"
-
-msgid "Music"
-msgstr "Musik"
-
-msgid "News & Blogs"
-msgstr "Myheder & blogs"
-
-msgid "Photos & Images"
-msgstr "Fotos & billeder"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping & onlinehandel"
-
-msgid "Social & People"
-msgstr "Socialt & mennesker"
-
-msgid "Travel"
-msgstr "Rejser"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -2462,6 +2357,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Ferie"
 
+msgid "Music"
+msgstr "Musik"
+
 msgid "Scenery"
 msgstr "Landskab"
 
@@ -2473,6 +2371,39 @@ msgstr "Fast"
 
 msgid "Websites"
 msgstr "Websteder"
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "Business"
+msgstr "Forretning"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Ordbøger & encyklopædier"
+
+msgid "Kids"
+msgstr "Børn"
+
+msgid "Multiple Search"
+msgstr "Kombineret søgning"
+
+msgid "News & Blogs"
+msgstr "Myheder & blogs"
+
+msgid "Photos & Images"
+msgstr "Fotos & billeder"
+
+msgid "Shopping & E-Commerce"
+msgstr "Shopping & onlinehandel"
+
+msgid "Social & People"
+msgstr "Socialt & mennesker"
+
+msgid "Travel"
+msgstr "Rejser"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Enhedsfunktioner & position"
@@ -2548,6 +2479,114 @@ msgstr "Webstedsrelateret"
 
 msgid "Web and Developer Tools"
 msgstr "Webudvikling"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+msgid "New Add-on Review"
+msgstr ""
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+msgid "New Dictionary Review"
+msgstr ""
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+msgid "New Language Pack Review"
+msgstr ""
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+msgid "New Search Provider Review"
+msgstr ""
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr ""
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Anmeldelse af tilføjelse"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Ikke godkendt"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Niveau 1"
+
+msgid "Level 2"
+msgstr "Niveau 2"
+
+msgid "Level 3"
+msgstr "Niveau 3"
+
+msgid "Level 4"
+msgstr "Niveau 4"
+
+msgid "Level 5"
+msgstr "Niveau 5"
+
+msgid "Level 6"
+msgstr "Niveau 6"
+
+msgid "Level 7"
+msgstr "Niveau 7"
+
+msgid "Level 8"
+msgstr "Niveau 8"
+
+msgid "Level 9"
+msgstr "Niveau 9"
 
 msgid "Request More Info"
 msgstr ""
@@ -2936,13 +2975,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Anmeldelseshistorik"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3693,7 +3735,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Upload version"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4008,13 +4050,11 @@ msgstr "Håndter din tilføjelse"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Log ind for at redigere og opdatere din tilføjelse"
 
-#, fuzzy
 msgid "Update Your Legacy Extension"
-msgstr "Udvalgte udvidelser"
+msgstr "Opdater din forældede udvidelse"
 
-#, fuzzy
 msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "WebExtensions er nu standard når det drejer sig om udvikling af tilføjelser til Firefox. Du vil skulle opdatere dine gamle tilføjelser så de vil være kompatible fremover."
+msgstr "Der findes en ny standard, når det drejer sig om udvikling af tilføjelser til Firefox. Du skal opdatere dine gamle tilføjelser, så de vil være kompatible fremover."
 
 msgid "Learn How"
 msgstr "Læs hvordan"
@@ -4023,11 +4063,10 @@ msgid "What's New"
 msgstr "Sidste nyt"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr ""
+msgstr "Klar til at indsende en tilføjelse? Læs vores trin-for-trin-vejledning til hvordan du gør."
 
-#, fuzzy
 msgid "See Tutorial"
-msgstr "Se alle"
+msgstr "Læs vejledning"
 
 msgid "View All Submissions"
 msgstr ""
@@ -4039,7 +4078,7 @@ msgid "Submit Your First Add-on"
 msgstr "Indsend din første tilføjelse"
 
 msgid "Submit Your First Theme"
-msgstr "Tilføj dit første tema"
+msgstr "Indsend dit første tema"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -4560,22 +4599,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tilpasning af faneblade {start_sub_heading}med {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bliv bedre til emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Massevis af fantastiske emojis — kun et klik borte."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Skriv bedre med {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4583,6 +4611,19 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
+
+#, fuzzy
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bliv bedre til emojis {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Massevis af fantastiske emojis — kun et klik borte."
 
 msgid "Approved reviews"
 msgstr ""
@@ -4782,6 +4823,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4815,6 +4859,12 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+msgid "Approve Content"
+msgstr "Godkend indhold"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -4834,31 +4884,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr "blev godkendt"
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr "afvist"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -4939,6 +4964,10 @@ msgstr ""
 
 msgid "Auto Approved Add-ons"
 msgstr ""
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Ikke godkendt"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5136,6 +5165,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Anmeld {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5435,6 +5469,12 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Anmeld {0}"
+msgstr[1] "Anmeld {0}"
+
 msgid "Flagged"
 msgstr ""
 
@@ -5464,6 +5504,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7458,6 +7502,9 @@ msgstr "Bedømmelse: {0} ud af 5 stjerner"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Bedømmelse: %(rating)s ud af 5 stjerner"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Popularitet denne uge"

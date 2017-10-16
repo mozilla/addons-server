@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1956,6 +1956,9 @@ msgstr "Ŧħḗ ȧḓḓǿƞ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř Aḓḿī
 msgid "Comment on {addon} {version}."
 msgstr "Ƈǿḿḿḗƞŧ ǿƞ {addon} {version}."
 
+msgid "Commented"
+msgstr "Ƈǿḿḿḗƞŧḗḓ"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} ȧḓḓḗḓ ŧǿ {addon}."
 
@@ -2111,6 +2114,24 @@ msgstr "Aŭŧǿ-Aƥƥřǿṽȧŀ ƈǿƞƒīřḿḗḓ ƒǿř {addon} {version}.
 msgid "Auto-Approval confirmed"
 msgstr "Aŭŧǿ-Aƥƥřǿṽȧŀ ƈǿƞƒīřḿḗḓ"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} řḗ-ḗƞȧƀŀḗḓ."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} ḓīşȧƀŀḗḓ."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} ƈǿƞŧḗƞŧ ȧƥƥřǿṽḗḓ."
+
+msgid "Content approved"
+msgstr "Ƈǿƞŧḗƞŧ ȧƥƥřǿṽḗḓ"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ."
+
+msgid "Content rejected"
+msgstr "Ƈǿƞŧḗƞŧ řḗĵḗƈŧḗḓ"
+
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
@@ -2186,6 +2207,9 @@ msgstr "Ƥŀŭɠīƞ"
 msgid "Theme"
 msgstr "Ŧħḗḿḗ"
 
+msgid "Theme (Static)"
+msgstr "Ŧħḗḿḗ (Şŧȧŧīƈ)"
+
 msgid "Complete Themes"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş"
 
@@ -2200,6 +2224,9 @@ msgstr "Ŀȧƞɠŭȧɠḗ Ƥȧƈķş (Aḓḓ-ǿƞ)"
 
 msgid "Plugins"
 msgstr "Ƥŀŭɠīƞş"
+
+msgid "Themes (Static)"
+msgstr "Ŧħḗḿḗş (Şŧȧŧīƈ)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Ǿƞŀẏ ȧşķ ǿƞ ŧħīş ȧḓḓ-ǿƞ'ş ƥȧɠḗ ȧƞḓ ḓḗṽḗŀǿƥḗř ƥřǿƒīŀḗ"
@@ -2222,102 +2249,6 @@ msgstr "Řḗŀḗȧşḗ"
 
 msgid "Change"
 msgstr "Ƈħȧƞɠḗ"
-
-msgid "App"
-msgstr "Aƥƥ"
-
-msgid "Persona"
-msgstr "Ƥḗřşǿƞȧ"
-
-msgid "Manual Reviewer Points"
-msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
-
-msgid "New Add-on Review"
-msgstr "Ƞḗẇ Aḓḓ-ǿƞ Řḗṽīḗẇ"
-
-msgid "Preliminary Add-on Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Aḓḓ-ǿƞ Řḗṽīḗẇ"
-
-msgid "Updated Add-on Review"
-msgstr "Ŭƥḓȧŧḗḓ Aḓḓ-ǿƞ Řḗṽīḗẇ"
-
-msgid "New Dictionary Review"
-msgstr "Ƞḗẇ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
-
-msgid "Updated Dictionary Review"
-msgstr "Ŭƥḓȧŧḗḓ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
-
-msgid "New Language Pack Review"
-msgstr "Ƞḗẇ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
-
-msgid "Updated Language Pack Review"
-msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
-
-msgid "Bonus for overdue reviews"
-msgstr "Ɓǿƞŭş ƒǿř ǿṽḗřḓŭḗ řḗṽīḗẇş"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Ḓȧẏş Ɓḗƒǿřḗ Ɓǿƞŭş Ƥǿīƞŧş Aƥƥŀīḗḓ"
-
-msgid "Theme Review"
-msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
-
-msgid "New Search Provider Review"
-msgstr "Ƞḗẇ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
-
-msgid "Updated Search Provider Review"
-msgstr "Ŭƥḓȧŧḗḓ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
-
-msgid "New Complete Theme Review"
-msgstr "Ƞḗẇ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ŭƥḓȧŧḗḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
-
-msgid "Moderated Add-on Review"
-msgstr "Ḿǿḓḗřȧŧḗḓ Aḓḓ-ǿƞ Řḗṽīḗẇ"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
-
-msgid "Level 1"
-msgstr "Ŀḗṽḗŀ 1"
-
-msgid "Level 2"
-msgstr "Ŀḗṽḗŀ 2"
-
-msgid "Level 3"
-msgstr "Ŀḗṽḗŀ 3"
-
-msgid "Level 4"
-msgstr "Ŀḗṽḗŀ 4"
-
-msgid "Level 5"
-msgstr "Ŀḗṽḗŀ 5"
-
-msgid "Level 6"
-msgstr "Ŀḗṽḗŀ 6"
-
-msgid "Level 7"
-msgstr "Ŀḗṽḗŀ 7"
-
-msgid "Level 8"
-msgstr "Ŀḗṽḗŀ 8"
-
-msgid "Level 9"
-msgstr "Ŀḗṽḗŀ 9"
 
 msgid "Compatible"
 msgstr "Ƈǿḿƥȧŧīƀŀḗ"
@@ -2391,42 +2322,6 @@ msgstr "Řḗŧřǿ"
 msgid "Sports"
 msgstr "Şƥǿřŧş"
 
-msgid "General"
-msgstr "Ɠḗƞḗřȧŀ"
-
-msgid "Business"
-msgstr "Ɓŭşīƞḗşş"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Ḓīƈŧīǿƞȧřīḗş & Ḗƞƈẏƈŀǿƥḗḓīȧş"
-
-msgid "Kids"
-msgstr "Ķīḓş"
-
-msgid "Multiple Search"
-msgstr "Ḿŭŀŧīƥŀḗ Şḗȧřƈħ"
-
-msgid "Music"
-msgstr "Ḿŭşīƈ"
-
-msgid "News & Blogs"
-msgstr "Ƞḗẇş & Ɓŀǿɠş"
-
-msgid "Photos & Images"
-msgstr "Ƥħǿŧǿş & Īḿȧɠḗş"
-
-msgid "Shopping & E-Commerce"
-msgstr "Şħǿƥƥīƞɠ & Ḗ-Ƈǿḿḿḗřƈḗ"
-
-msgid "Social & People"
-msgstr "Şǿƈīȧŀ & Ƥḗǿƥŀḗ"
-
-msgid "Travel"
-msgstr "Ŧřȧṽḗŀ"
-
-msgid "Video"
-msgstr "Ṽīḓḗǿ"
-
 msgid "Abstract"
 msgstr "Aƀşŧřȧƈŧ"
 
@@ -2445,6 +2340,9 @@ msgstr "Ƒǿẋķḗħ"
 msgid "Holiday"
 msgstr "Ħǿŀīḓȧẏ"
 
+msgid "Music"
+msgstr "Ḿŭşīƈ"
+
 msgid "Scenery"
 msgstr "Şƈḗƞḗřẏ"
 
@@ -2456,6 +2354,39 @@ msgstr "Şǿŀīḓ"
 
 msgid "Websites"
 msgstr "Ẇḗƀşīŧḗş"
+
+msgid "General"
+msgstr "Ɠḗƞḗřȧŀ"
+
+msgid "Business"
+msgstr "Ɓŭşīƞḗşş"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Ḓīƈŧīǿƞȧřīḗş & Ḗƞƈẏƈŀǿƥḗḓīȧş"
+
+msgid "Kids"
+msgstr "Ķīḓş"
+
+msgid "Multiple Search"
+msgstr "Ḿŭŀŧīƥŀḗ Şḗȧřƈħ"
+
+msgid "News & Blogs"
+msgstr "Ƞḗẇş & Ɓŀǿɠş"
+
+msgid "Photos & Images"
+msgstr "Ƥħǿŧǿş & Īḿȧɠḗş"
+
+msgid "Shopping & E-Commerce"
+msgstr "Şħǿƥƥīƞɠ & Ḗ-Ƈǿḿḿḗřƈḗ"
+
+msgid "Social & People"
+msgstr "Şǿƈīȧŀ & Ƥḗǿƥŀḗ"
+
+msgid "Travel"
+msgstr "Ŧřȧṽḗŀ"
+
+msgid "Video"
+msgstr "Ṽīḓḗǿ"
 
 msgid "Device Features & Location"
 msgstr "Ḓḗṽīƈḗ Ƒḗȧŧŭřḗş & Ŀǿƈȧŧīǿƞ"
@@ -2531,6 +2462,111 @@ msgstr "Şīŧḗ-şƥḗƈīƒīƈ"
 
 msgid "Web and Developer Tools"
 msgstr "Ẇḗƀ ȧƞḓ Ḓḗṽḗŀǿƥḗř Ŧǿǿŀş"
+
+msgid "App"
+msgstr "Aƥƥ"
+
+msgid "Persona"
+msgstr "Ƥḗřşǿƞȧ"
+
+msgid "Manual Reviewer Points"
+msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
+
+msgid "New Add-on Review"
+msgstr "Ƞḗẇ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+
+msgid "Preliminary Add-on Review"
+msgstr "Ƥřḗŀīḿīƞȧřẏ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+
+msgid "Updated Add-on Review"
+msgstr "Ŭƥḓȧŧḗḓ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+
+msgid "New Dictionary Review"
+msgstr "Ƞḗẇ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Ƥřḗŀīḿīƞȧřẏ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
+
+msgid "Updated Dictionary Review"
+msgstr "Ŭƥḓȧŧḗḓ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
+
+msgid "New Language Pack Review"
+msgstr "Ƞḗẇ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Ƥřḗŀīḿīƞȧřẏ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
+
+msgid "Updated Language Pack Review"
+msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
+
+msgid "Theme Review"
+msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
+
+msgid "New Search Provider Review"
+msgstr "Ƞḗẇ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Ƥřḗŀīḿīƞȧřẏ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
+
+msgid "Updated Search Provider Review"
+msgstr "Ŭƥḓȧŧḗḓ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
+
+msgid "New Complete Theme Review"
+msgstr "Ƞḗẇ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Ƥřḗŀīḿīƞȧřẏ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ŭƥḓȧŧḗḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
+
+msgid "Moderated Add-on Review"
+msgstr "Ḿǿḓḗřȧŧḗḓ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
+
+msgid "Add-on Content Review"
+msgstr "Aḓḓ-ǿƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħḗşŧ Řīşķ)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħ Řīşķ)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ḿḗḓīŭḿ Řīşķ)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ŀǿẇ Řīşķ)"
+
+msgid "Level 1"
+msgstr "Ŀḗṽḗŀ 1"
+
+msgid "Level 2"
+msgstr "Ŀḗṽḗŀ 2"
+
+msgid "Level 3"
+msgstr "Ŀḗṽḗŀ 3"
+
+msgid "Level 4"
+msgstr "Ŀḗṽḗŀ 4"
+
+msgid "Level 5"
+msgstr "Ŀḗṽḗŀ 5"
+
+msgid "Level 6"
+msgstr "Ŀḗṽḗŀ 6"
+
+msgid "Level 7"
+msgstr "Ŀḗṽḗŀ 7"
+
+msgid "Level 8"
+msgstr "Ŀḗṽḗŀ 8"
+
+msgid "Level 9"
+msgstr "Ŀḗṽḗŀ 9"
 
 msgid "Request More Info"
 msgstr "Řḗɋŭḗşŧ Ḿǿřḗ Īƞƒǿ"
@@ -2924,14 +2960,17 @@ msgstr "Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿ�
 msgid "Review Policies and Rules"
 msgstr "Řḗṽīḗẇ Ƥǿŀīƈīḗş ȧƞḓ Řŭŀḗş"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ī ħȧṽḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ŧħīş Aɠřḗḗḿḗƞŧ ȧƞḓ ŧħḗ Řŭŀḗş ȧƞḓ Ƥǿŀīƈīḗş"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Ɓḗƒǿřḗ şŧȧřŧīƞɠ, ƥŀḗȧşḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ǿŭř Ƒīřḗƒǿẋ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ. Īŧ ȧŀşǿ ŀīƞķş ŧǿ ǿŭř Ƥřīṽȧƈẏ Ƞǿŧīƈḗ ẇħīƈħ ḗẋƥŀȧīƞş ħǿẇ ẇḗ ħȧƞḓŀḗ ẏǿŭř īƞƒǿřḿȧŧīǿƞ."
 
 msgid "Printable Version"
 msgstr "Ƥřīƞŧȧƀŀḗ Ṽḗřşīǿƞ"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ī ħȧṽḗ řḗȧḓ ȧƞḓ ȧƈƈḗƥŧ ŧħīş Aɠřḗḗḿḗƞŧ ȧƞḓ ŧħḗ Řŭŀḗş ȧƞḓ Ƥǿŀīƈīḗş"
+msgid "Accept"
+msgstr "Aƈƈḗƥŧ"
 
 msgid "I Accept this Agreement"
 msgstr "Ī Aƈƈḗƥŧ ŧħīş Aɠřḗḗḿḗƞŧ"
@@ -3701,8 +3740,8 @@ msgstr "Ẇħḗřḗ ŧǿ Ħǿşŧ Ṽḗřşīǿƞ"
 msgid "Upload Version"
 msgstr "Ŭƥŀǿȧḓ Ṽḗřşīǿƞ"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓş ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ ȧƞḓ şḗŀḗƈŧ ȧƞẏ ƥŀȧŧƒǿřḿ řḗşŧřīƈŧīǿƞş. Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓş ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ. Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
@@ -4571,29 +4610,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŧȧƀ Ƈŭşŧǿḿīẑȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Şḗŧ ŧħḗ ƥȧɠḗ ẏǿŭ şḗḗ ḗṽḗřẏ ŧīḿḗ ẏǿŭ ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş—ȧŀẇȧẏş ȧ ƈŀīƈķ ȧẇȧẏ."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Īḿƥřǿṽḗ ẏǿŭř ẇřīŧīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Şŭƥƥǿřŧīƞɠ 25+ ŀȧƞɠŭȧɠḗş, ŧħīş ḗẋŧḗƞşīǿƞ ƥŭŧş ȧ ƥřǿǿƒřḗȧḓḗř řīɠħŧ īƞ ẏǿŭř ƀřǿẇşḗř."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ ƈǿƞŧřǿŀ, ȧƞḓ ḿǿřḗ."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşīŀẏ ƒīƞḓ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ ɋŭīƈķŀẏ ƥḗřƒǿřḿ ȧƞ īḿȧɠḗ şḗȧřƈħ."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş—ȧŀẇȧẏş ȧ ƈŀīƈķ ȧẇȧẏ."
 
 msgid "Approved reviews"
 msgstr "Aƥƥřǿṽḗḓ řḗṽīḗẇş"
@@ -4793,6 +4832,9 @@ msgstr "Ƞǿ Řḗṽīḗẇş"
 msgid "Weight"
 msgstr "Ẇḗīɠħŧ"
 
+msgid "Last Content Review"
+msgstr "Ŀȧşŧ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ, şīɠƞ, ȧƞḓ ƥŭƀŀīşħ ŧħīş ṽḗřşīǿƞ. Ŧħḗ ƈǿḿḿḗƞŧş ẇīŀŀ ƀḗ şḗƞŧ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
@@ -4826,6 +4868,12 @@ msgstr "Īƒ ẏǿŭ ħȧṽḗ ƈǿƞƈḗřƞş ȧƀǿŭŧ ŧħīş ȧḓḓ-�
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Ḿȧķḗ ȧ ƈǿḿḿḗƞŧ ǿƞ ŧħīş ṽḗřşīǿƞ. Ŧħḗ ḓḗṽḗŀǿƥḗř ẇǿƞ'ŧ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ŧħīş."
 
+msgid "Approve Content"
+msgstr "Aƥƥřǿṽḗ Ƈǿƞŧḗƞŧ"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Ŧħīş řḗƈǿřḓş ẏǿŭř ȧƥƥřǿƀȧŧīǿƞ ǿƒ ŧħḗ ƈǿƞŧḗƞŧ ǿƒ ŧħīş ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Ƞḗẇ Aḓḓ-ǿƞş (Ŭƞḓḗř 5 ḓȧẏş)"
 
@@ -4846,31 +4894,6 @@ msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
 msgid "Review lock limit reached"
 msgstr "Řḗṽīḗẇ ŀǿƈķ ŀīḿīŧ řḗȧƈħḗḓ"
-
-msgid "was approved"
-msgstr "ẇȧş ȧƥƥřǿṽḗḓ"
-
-msgid "given preliminary review"
-msgstr "ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
-
-msgid "rejected"
-msgstr "řḗĵḗƈŧḗḓ"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "ḗşƈȧŀȧŧḗḓ"
-
-msgid "needs more information"
-msgstr "ƞḗḗḓş ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
-
-msgid "needs super review"
-msgstr "ƞḗḗḓş şŭƥḗř řḗṽīḗẇ"
-
-msgid "commented"
-msgstr "ƈǿḿḿḗƞŧḗḓ"
-
-msgid "confirmed as approved"
-msgstr "ƈǿƞƒīřḿḗḓ ȧş ȧƥƥřǿṽḗḓ"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4949,6 +4972,9 @@ msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
 
 msgid "Auto Approved Add-ons"
 msgstr "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
+
+msgid "Content Review"
+msgstr "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
 
 msgid "Unlisted Queues"
 msgstr "Ŭƞŀīşŧḗḓ Ɋŭḗŭḗş"
@@ -5146,6 +5172,10 @@ msgstr "Aḓḓ-ǿƞ Ƥǿŀīƈẏ"
 
 msgid "Editors' Guide"
 msgstr "Ḗḓīŧǿřş' Ɠŭīḓḗ"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5439,6 +5469,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞ ({0})"
 msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
+msgstr[1] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
+
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"
 
@@ -5469,6 +5504,10 @@ msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ, ḿīşş�
 
 msgid "Could not parse uploaded file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ȧŀŀ ƒīŀḗƞȧḿḗş ȧřḗ ŭŧƒ-8 ǿř ŀȧŧīƞ1 ḗƞƈǿḓḗḓ."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7497,6 +7536,9 @@ msgstr "Řȧŧḗḓ {0} ǿŭŧ ǿƒ 5 şŧȧřş"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Řȧŧḗḓ %(rating)s ǿŭŧ ǿƒ 5 şŧȧřş"
+
+msgid "Maximum query length exceeded."
+msgstr "Ḿȧẋīḿŭḿ ɋŭḗřẏ ŀḗƞɠŧħ ḗẋƈḗḗḓḗḓ."
 
 msgid "Most popular this week"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ẇḗḗķ"

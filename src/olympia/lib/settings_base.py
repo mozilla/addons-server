@@ -153,21 +153,62 @@ LANGUAGE_CODE = 'en-US'
 # Note: If you update this list, don't forget to also update the locale
 # permissions in the database.
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
-    'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
-    'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
-    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'ur',
-    'vi', 'zh-CN', 'zh-TW',
+    'af',  # Afrikaans
+    'ar',  # Arabic
+    'bg',  # Bulgarian
+    'bn-BD',  # Bengali (Bangladesh)
+    'ca',  # Catalan
+    'cs',  # Czech
+    'da',  # Danish
+    'de',  # German
+    'dsb',  # Lower Sorbian
+    'el',  # Greek
+    'en-GB',  # English (British)
+    'en-US',  # English (US)
+    'es',  # Spanish
+    'eu',  # Basque
+    'fa',  # Persian
+    'fi',  # Finnish
+    'fr',  # French
+    'ga-IE',  # Irish
+    'he',  # Hebrew
+    'hsb',  # Upper Sorbian
+    'hu',  # Hungarian
+    'id',  # Indonesian
+    'it',  # Italian
+    'ja',  # Japanese
+    'ka',  # Georgian
+    'kab',  # Kabyle
+    'ko',  # Korean
+    'mk',  # Macedonian
+    'mn',  # Mongolian
+    'nl',  # Dutch
+    'nn-NO',  # Norwegian (Nynorsk)
+    'pl',  # Polish
+    'pt-BR',  # Portuguese (Brazilian)
+    'pt-PT',  # Portuguese (Portugal)
+    'ro',  # Romanian
+    'ru',  # Russian
+    'sk',  # Slovak
+    'sl',  # Slovenian
+    'sq',  # Albanian
+    'sv-SE',  # Swedish
+    'uk',  # Ukrainian
+    'ur',  # Urdu
+    'vi',  # Vietnamese
+    'zh-CN',  # Chinese (Simplified)
+    'zh-TW',  # Chinese (Traditional)
 )
+
+# Bidirectional languages.
+# Locales in here *must* be in `AMO_LANGUAGES` too.
+LANGUAGES_BIDI = ('ar', 'fa', 'he', 'dbr', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
     'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
 
-# Not shown on the site, but .po files exist and these are available on the
-# L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
-HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
 DEBUG_LANGUAGES = ('dbr', 'dbl')
 
@@ -198,7 +239,6 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr', 'ur')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -442,7 +482,6 @@ INSTALLED_APPS = (
     'olympia.editors',
     'olympia.files',
     'olympia.github',
-    'olympia.internal_tools',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
@@ -1042,23 +1081,33 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-BROKER_URL = os.environ.get('BROKER_URL',
-                            'amqp://olympia:olympia@localhost:5672/olympia')
-BROKER_CONNECTION_TIMEOUT = 0.1
-BROKER_HEARTBEAT = 60 * 15
-CELERY_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
-                                       'redis://localhost:6379/1')
+CELERY_BROKER_URL = os.environ.get(
+    'CELERY_BROKER_URL',
+    'amqp://olympia:olympia@localhost:5672/olympia')
+CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_BROKER_HEARTBEAT = 60 * 15
+CELERY_TASK_DEFAULT_QUEUE = 'default'
+CELERY_RESULT_BACKEND = os.environ.get(
+    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
 
-CELERY_IGNORE_RESULT = True
+CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
-CELERYD_HIJACK_ROOT_LOGGER = False
+CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+
+# Allow upgrading to Celery 4.x (JSON only)
+# Explicitly force task serializer and result serializer to create tasks
+# using the JSON format but still accept pickled messages.
+# TODO: Remove `pickle` once the upgrade is done and seems stable.
+CELERY_ACCEPT_CONTENT = ['pickle', 'json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
 )
 
-CELERY_QUEUES = (
+CELERY_TASK_QUEUES = (
     Queue('default', routing_key='default'),
     Queue('priority', routing_key='priority'),
     Queue('devhub', routing_key='devhub'),
@@ -1083,7 +1132,7 @@ CELERY_QUEUES = (
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
-CELERY_ROUTES = {
+CELERY_TASK_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
@@ -1239,12 +1288,12 @@ CELERY_TIME_LIMITS = {
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+CELERY_TASK_EAGER_PROPAGATES = True
 
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
 # The task can catch that and recover but should exit ASAP. Note that there is
 # a separate, shorter timeout for validation tasks.
-CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
@@ -1506,7 +1555,7 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 
 # Testing responsiveness without rate limits.
-CELERY_DISABLE_RATE_LIMITS = True
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1996,6 +1996,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар на {addon} {version}."
 
+#, fuzzy
+msgid "Commented"
+msgstr "Коментариши"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} додато у {addon}."
 
@@ -2161,6 +2165,30 @@ msgstr "Коментар на {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Статус дозволе"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} је одбијен."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} се ескалирао."
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} одобрен."
+
+#, fuzzy
+msgid "Content approved"
+msgstr "је одобрено"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} је одбијен."
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "одбијено"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2237,6 +2265,10 @@ msgstr "Прикључак"
 msgid "Theme"
 msgstr "Тема"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "Детаљи теме"
+
 msgid "Complete Themes"
 msgstr "Комплетне теме"
 
@@ -2253,6 +2285,10 @@ msgstr "Language Packs (додатак)"
 
 msgid "Plugins"
 msgstr "Прикључци"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "Уметник за теме"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Питајте само на страници овог додатка или на профилу програмера"
@@ -2275,109 +2311,6 @@ msgstr "Издање"
 
 msgid "Change"
 msgstr "Измена"
-
-msgid "App"
-msgstr "Апликација"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Поени самосталног рецензента"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Пуна рецензија додатка"
-
-msgid "Preliminary Add-on Review"
-msgstr "Прелиминарна рецензија додатка"
-
-msgid "Updated Add-on Review"
-msgstr "Ажурирана рецензија додатка"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Пуна рецензија речника"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Прелиминарна рецензија речника"
-
-msgid "Updated Dictionary Review"
-msgstr "Ажурирана рецензија речника"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Пуна рецензија језичког пакета"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Прелиминарна рецензија језичког пакета"
-
-msgid "Updated Language Pack Review"
-msgstr "Ажурирана рецензија језичког пакета"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Рецензија теме"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Пуна рецензија претраживача"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Прелиминарна рецензија претраживача"
-
-msgid "Updated Search Provider Review"
-msgstr "Ажурирана рецензија претраживача"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Пуна рецензија теме"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Прелиминарна рецензија потпуне теме"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ажурирана рецензија потпуне теме"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Рецензија уређене апликације"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Модерација рецензије додатка је поништена"
-
-msgid "Level 1"
-msgstr "Ниво 1"
-
-msgid "Level 2"
-msgstr "Ниво 2"
-
-msgid "Level 3"
-msgstr "Ниво 3"
-
-msgid "Level 4"
-msgstr "Ниво 4"
-
-msgid "Level 5"
-msgstr "Ниво 5"
-
-msgid "Level 6"
-msgstr "Ниво 6"
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
-msgstr ""
 
 msgid "Compatible"
 msgstr ""
@@ -2465,6 +2398,41 @@ msgstr ""
 msgid "Sports"
 msgstr "Подршка"
 
+msgid "Abstract"
+msgstr ""
+
+msgid "Causes"
+msgstr ""
+
+msgid "Fashion"
+msgstr ""
+
+msgid "Film and TV"
+msgstr ""
+
+msgid "Foxkeh"
+msgstr ""
+
+msgid "Holiday"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Scenery"
+msgstr ""
+
+#, fuzzy
+msgid "Seasonal"
+msgstr "Разлог"
+
+msgid "Solid"
+msgstr ""
+
+#, fuzzy
+msgid "Websites"
+msgstr "Веб сајт"
+
 #, fuzzy
 msgid "General"
 msgstr "Општи тестови"
@@ -2482,9 +2450,6 @@ msgstr ""
 #, fuzzy
 msgid "Multiple Search"
 msgstr "Брисање претраге"
-
-msgid "Music"
-msgstr ""
 
 msgid "News & Blogs"
 msgstr ""
@@ -2505,38 +2470,6 @@ msgstr ""
 #, fuzzy
 msgid "Video"
 msgstr "Затвори видео"
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Causes"
-msgstr ""
-
-msgid "Fashion"
-msgstr ""
-
-msgid "Film and TV"
-msgstr ""
-
-msgid "Foxkeh"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Scenery"
-msgstr ""
-
-#, fuzzy
-msgid "Seasonal"
-msgstr "Разлог"
-
-msgid "Solid"
-msgstr ""
-
-#, fuzzy
-msgid "Websites"
-msgstr "Веб сајт"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -2622,6 +2555,119 @@ msgstr "Посебно за сајт"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "Претражи Документе програмера"
+
+msgid "App"
+msgstr "Апликација"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Поени самосталног рецензента"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Пуна рецензија додатка"
+
+msgid "Preliminary Add-on Review"
+msgstr "Прелиминарна рецензија додатка"
+
+msgid "Updated Add-on Review"
+msgstr "Ажурирана рецензија додатка"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Пуна рецензија речника"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Прелиминарна рецензија речника"
+
+msgid "Updated Dictionary Review"
+msgstr "Ажурирана рецензија речника"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Пуна рецензија језичког пакета"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Прелиминарна рецензија језичког пакета"
+
+msgid "Updated Language Pack Review"
+msgstr "Ажурирана рецензија језичког пакета"
+
+msgid "Theme Review"
+msgstr "Рецензија теме"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Пуна рецензија претраживача"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Прелиминарна рецензија претраживача"
+
+msgid "Updated Search Provider Review"
+msgstr "Ажурирана рецензија претраживача"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Пуна рецензија теме"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Прелиминарна рецензија потпуне теме"
+
+msgid "Updated Complete Theme Review"
+msgstr "Ажурирана рецензија потпуне теме"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Рецензија уређене апликације"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "Модерација рецензије додатка је поништена"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Извршити рецензију"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Ниво 1"
+
+msgid "Level 2"
+msgstr "Ниво 2"
+
+msgid "Level 3"
+msgstr "Ниво 3"
+
+msgid "Level 4"
+msgstr "Ниво 4"
+
+msgid "Level 5"
+msgstr "Ниво 5"
+
+msgid "Level 6"
+msgstr "Ниво 6"
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr "Захтевај више информација"
@@ -3014,13 +3060,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Датум рецензије"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr "Верзија за штампање"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3815,7 +3864,8 @@ msgstr "Циљана верзија"
 msgid "Upload Version"
 msgstr "Отпреми нову верзију"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите било која ограничења платформе. Након постављања, низ аутоматизованих тестова за проверу ваљаности ће бити покренути на "
 "Вашој датотеци."
@@ -4738,28 +4788,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4966,6 +5016,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Извршити рецензију"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5009,6 +5063,13 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Коментаришите ову верзију. Аутор неће бити у могућности да га види."
 
+#, fuzzy
+msgid "Approve Content"
+msgstr "Дозволи / одбиј"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Нови додатак (испод 5 дана)"
 
@@ -5029,32 +5090,6 @@ msgstr "Рецензија успешно процесирана."
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "је одобрено"
-
-msgid "given preliminary review"
-msgstr "је дата прелиминарна рецензија"
-
-msgid "rejected"
-msgstr "одбијено"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "ескалирано"
-
-msgid "needs more information"
-msgstr "треба више информација"
-
-msgid "needs super review"
-msgstr "захтева супер рецензију"
-
-msgid "commented"
-msgstr ""
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "је одобрено"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5142,6 +5177,10 @@ msgstr "Уређене рецензије"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Додаци за Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Извршити рецензију"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5346,6 +5385,11 @@ msgstr "Политика додатка"
 
 msgid "Editors' Guide"
 msgstr "Савети уредника"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Прегледај {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5644,6 +5688,12 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Сви моји додаци"
 msgstr[1] "Сви моји додаци"
 
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Конторлисан преглед ({0})"
+msgstr[1] "Конторлисана прегледа ({0})"
+
 msgid "Flagged"
 msgstr "Означено"
 
@@ -5674,6 +5724,10 @@ msgstr "Није могуће рашчланити отпремљену дато
 
 msgid "Could not parse uploaded file."
 msgstr "Није могуће рашчланити отпремљену датотеку."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7633,6 +7687,9 @@ msgstr "Оцењено са {0} од 5 звездица"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцењено са %(rating)s од 5 звездица"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "Најпопуларнији ове седмице"

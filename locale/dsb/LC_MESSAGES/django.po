@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
-"PO-Revision-Date: 2017-09-28 17:01+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-12 20:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2016,6 +2016,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar wó {addon} {version}."
 
+msgid "Commented"
+msgstr "Komentěrowany"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} jo se {addon} pśidało."
 
@@ -2171,6 +2174,24 @@ msgstr "Awtomatiske pśizwólenje jo za dodank {addon} {version} wobkšuśone."
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske pśizwólenje jo wobkšuśone"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} znowego zmóžnjony."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} jo znjemóžnjony."
+
+msgid "{addon} {version} content approved."
+msgstr "Wopśimjeśe {addon} {version} jo pśizwólone."
+
+msgid "Content approved"
+msgstr "Wopśimjeśe jo pśizwólone"
+
+msgid "{addon} {version} content rejected."
+msgstr "Wopśimjeśe {addon} {version} jo wótpokazane."
+
+msgid "Content rejected"
+msgstr "Wopśimjeśe jo wótpokazane"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2246,6 +2267,9 @@ msgstr "Tykac"
 msgid "Theme"
 msgstr "Drastwa"
 
+msgid "Theme (Static)"
+msgstr "Drastwa (statiska)"
+
 msgid "Complete Themes"
 msgstr "Dopołne drastwy"
 
@@ -2260,6 +2284,9 @@ msgstr "Rěcne pakśiki (dodank)"
 
 msgid "Plugins"
 msgstr "Tykace"
+
+msgid "Themes (Static)"
+msgstr "Drastwy (statiske)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Jano na boku toś togo dodanka a w profilu wuwijarja se pšašaś"
@@ -2282,102 +2309,6 @@ msgstr "Wersija"
 
 msgid "Change"
 msgstr "Změna"
-
-msgid "App"
-msgstr "Nałoženje"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Dypki za manuelne pśeglědanje"
-
-msgid "New Add-on Review"
-msgstr "Nowe pśeglědanje dodanka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nachylne pśeglědanje dodanka"
-
-msgid "Updated Add-on Review"
-msgstr "Pśeglědanje aktualizěrowanego dodanka"
-
-msgid "New Dictionary Review"
-msgstr "Nowe pśeglědanje słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nachylne pśeglědanje słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Pśeglědanje aktualizěrowanego słownika"
-
-msgid "New Language Pack Review"
-msgstr "Nowe pśeglědanje rěcnego pakśika"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nachylne pśeglědanje rěcnego pakśika"
-
-msgid "Updated Language Pack Review"
-msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za zapózdźone pśeglědanja"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny, nježli až bonusowe dypki płaśe"
-
-msgid "Theme Review"
-msgstr "Pśeglědanje drastwy"
-
-msgid "New Search Provider Review"
-msgstr "Nowe pśeglědanje pytańskego póbitowarja"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nachylne pśeglědanje pytańskego póbitowarja"
-
-msgid "Updated Search Provider Review"
-msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
-
-msgid "New Complete Theme Review"
-msgstr "Nowe pśeglědanje dopołneje drastwy"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nachylne pśeglědanje dopołneje drastwy"
-
-msgid "Updated Complete Theme Review"
-msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderěrowane pógódnośenje dodanka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za pógódnośenje dodanka jo se anulěrowała"
-
-msgid "Level 1"
-msgstr "Schójźeńk 1"
-
-msgid "Level 2"
-msgstr "Schójźeńk 2"
-
-msgid "Level 3"
-msgstr "Schójźeńk 3"
-
-msgid "Level 4"
-msgstr "Schójźeńk 4"
-
-msgid "Level 5"
-msgstr "Schójźeńk 5"
-
-msgid "Level 6"
-msgstr "Schójźeńk 6"
-
-msgid "Level 7"
-msgstr "Schójźeńk 7"
-
-msgid "Level 8"
-msgstr "Schójźeńk 8"
-
-msgid "Level 9"
-msgstr "Schójźeńk 9"
 
 msgid "Compatible"
 msgstr "Kompatibelny"
@@ -2451,42 +2382,6 @@ msgstr "Klasiske"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Powšykne"
-
-msgid "Business"
-msgstr "Pśekupniske"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Słowniki a encyklopedije"
-
-msgid "Kids"
-msgstr "Źiśi"
-
-msgid "Multiple Search"
-msgstr "Wšakorake pytanje"
-
-msgid "Music"
-msgstr "Muzika"
-
-msgid "News & Blogs"
-msgstr "Powěsći a blogi"
-
-msgid "Photos & Images"
-msgstr "Fota a wobraze"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupowanje a e-wikowanje"
-
-msgid "Social & People"
-msgstr "Socialne seśi a luźe"
-
-msgid "Travel"
-msgstr "Drogowanje"
-
-msgid "Video"
-msgstr "Wideo"
-
 msgid "Abstract"
 msgstr "Abstraktne"
 
@@ -2505,6 +2400,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Dowol"
 
+msgid "Music"
+msgstr "Muzika"
+
 msgid "Scenery"
 msgstr "Krajina"
 
@@ -2516,6 +2414,39 @@ msgstr "Solidne"
 
 msgid "Websites"
 msgstr "Websedła"
+
+msgid "General"
+msgstr "Powšykne"
+
+msgid "Business"
+msgstr "Pśekupniske"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Słowniki a encyklopedije"
+
+msgid "Kids"
+msgstr "Źiśi"
+
+msgid "Multiple Search"
+msgstr "Wšakorake pytanje"
+
+msgid "News & Blogs"
+msgstr "Powěsći a blogi"
+
+msgid "Photos & Images"
+msgstr "Fota a wobraze"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupowanje a e-wikowanje"
+
+msgid "Social & People"
+msgstr "Socialne seśi a luźe"
+
+msgid "Travel"
+msgstr "Drogowanje"
+
+msgid "Video"
+msgstr "Wideo"
 
 msgid "Device Features & Location"
 msgstr "Rědowe funkcije a stojnišćo"
@@ -2591,6 +2522,111 @@ msgstr "Specifiske rozšyrjenja websedłow"
 
 msgid "Web and Developer Tools"
 msgstr "Webwuwijarske rědy"
+
+msgid "App"
+msgstr "Nałoženje"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Dypki za manuelne pśeglědanje"
+
+msgid "New Add-on Review"
+msgstr "Nowe pśeglědanje dodanka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Nachylne pśeglědanje dodanka"
+
+msgid "Updated Add-on Review"
+msgstr "Pśeglědanje aktualizěrowanego dodanka"
+
+msgid "New Dictionary Review"
+msgstr "Nowe pśeglědanje słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Nachylne pśeglědanje słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Pśeglědanje aktualizěrowanego słownika"
+
+msgid "New Language Pack Review"
+msgstr "Nowe pśeglědanje rěcnego pakśika"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Nachylne pśeglědanje rěcnego pakśika"
+
+msgid "Updated Language Pack Review"
+msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
+
+msgid "Theme Review"
+msgstr "Pśeglědanje drastwy"
+
+msgid "New Search Provider Review"
+msgstr "Nowe pśeglědanje pytańskego póbitowarja"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Nachylne pśeglědanje pytańskego póbitowarja"
+
+msgid "Updated Search Provider Review"
+msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
+
+msgid "New Complete Theme Review"
+msgstr "Nowe pśeglědanje dopołneje drastwy"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Nachylne pśeglědanje dopołneje drastwy"
+
+msgid "Updated Complete Theme Review"
+msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderěrowane pógódnośenje dodanka"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija za pógódnośenje dodanka jo se anulěrowała"
+
+msgid "Add-on Content Review"
+msgstr "Pśeglědanje wopśimjeśa dodanka"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Pśeglědowanje dodanka pó pśizwólenju (nejwuše riziko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Pśeglědowanje dodanka pó pśizwólenju (wusoke riziko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Pśeglědowanje dodanka pó pśizwólenju (srědne riziko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Pśeglědowanje dodanka pó pśizwólenju (niske riziko)"
+
+msgid "Level 1"
+msgstr "Schójźeńk 1"
+
+msgid "Level 2"
+msgstr "Schójźeńk 2"
+
+msgid "Level 3"
+msgstr "Schójźeńk 3"
+
+msgid "Level 4"
+msgstr "Schójźeńk 4"
+
+msgid "Level 5"
+msgstr "Schójźeńk 5"
+
+msgid "Level 6"
+msgstr "Schójźeńk 6"
+
+msgid "Level 7"
+msgstr "Schójźeńk 7"
+
+msgid "Level 8"
+msgstr "Schójźeńk 8"
+
+msgid "Level 9"
+msgstr "Schójźeńk 9"
 
 msgid "Request More Info"
 msgstr "Dalšne informacije pominaś"
@@ -2982,6 +3018,9 @@ msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
 msgid "Review Policies and Rules"
 msgstr "Pśeglědowańske zasady a pšawidła"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Som toś to dojadnanje, pšawidła a zasady pśecytał a akceptěrował"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju dodankow Firefox. Wopśimujo teke wótkaz k našomu pokazoju priwatnosći, kótaraž wujasnjujo, kak z wašymi "
@@ -2990,8 +3029,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Śišćobna wersija"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Som toś to dojadnanje, pšawidła a zasady pśecytał a akceptěrował"
+msgid "Accept"
+msgstr "Akceptěrowaś"
 
 msgid "I Accept this Agreement"
 msgstr "Akceptěrujom toś to dojadnanje"
@@ -3773,8 +3812,8 @@ msgstr "Źož se wersija góspodujo"
 msgid "Upload Version"
 msgstr "Wersiju nagraś"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Wužywajśo slědujuce póla, aby swój dodankowy pakśik nagrał a wubjeŕśo platformowe wobgranicowanja. Pó nagraśu se rěd awtomatiskich pśeglědanjow na wašej dataji pśewjeźo."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Wužywajśo slědujuce póla, aby swój dodankowy pakśik nagrał. Pó nagraśu se rěd awtomatiskich pśeglědanjow na wašej dataji pśewjeźo."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Z kótarymiž platformami jo toś ta dataja kompatibelna?"
@@ -4652,29 +4691,29 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměrśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Nastajśo bok, kótaryž kuždy raz wiźiśo, gaž nowy rejtark wócynjaśo."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pólěpšćo swóju emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dwanastki wjelicnych emoźijow - pśecej jano jadno kliknjenje zdalone."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pólěpšćo swój pisański stil {start_sub_heading} z {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Toś to rozšyrjenje 25+ rěcy pódpěra a pśidawa wašomu wobglědowakoju rěd za pšawopisnu kontrolu."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Lažki a efektiwny blokěrowak wabjenja. uBlock Origin wunuźijo towzynty wopśimjeśowych filtrow, mimo až by se wjele składa pśetrjebało."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo wideo {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Wužywajśo rěd nowych funkcijow YouTube ako kinomodus, blokěrowanje wabjenja, wóźenje awtomatiskego wótgrawanja a wěcej."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lažko wobraze namakaś {start_sub_heading} z {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Wuzwigniśo tekst a klikniśo z pšaweju tastu, aby malsne pytanje za wobrazami pśewjadł."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Pólěpšćo swóju emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dwanastki wjelicnych emoźijow - pśecej jano jadno kliknjenje zdalone."
 
 msgid "Approved reviews"
 msgstr "Pśizwólone pśeglědanja"
@@ -4880,6 +4919,9 @@ msgstr "Žedne pógódnośénja"
 msgid "Weight"
 msgstr "Wažnosć"
 
+msgid "Last Content Review"
+msgstr "Slědne pśeglědanje wopśimjeśa"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To pśizwólijo, signěrujo a wózjawijo toś tu. wersiju. Komentary pósćelu se wuwijarjeju."
 
@@ -4913,6 +4955,12 @@ msgstr "Jolic maśo wobmyslenja pśi toś tom dodanku, tak až administrator ma 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentěrujśo toś tu wersiju. Wuwijaŕ njamóžo to wiźeś."
 
+msgid "Approve Content"
+msgstr "Wopśimjeśe pśizwóliś"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To wašo pśizwólenje wopśimjeśe toś teje wersije registrěrujo, mimo až wuwijaŕ powěsć dostanjo."
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nowe dodanki (pód 5 dnjami)"
 
@@ -4933,31 +4981,6 @@ msgstr "Pśeglědanje jo se wuspěšnje pśeźěłało."
 
 msgid "Review lock limit reached"
 msgstr "Limit za pógódnośeńske zawěry dostany"
-
-msgid "was approved"
-msgstr "jo se pśizwólił"
-
-msgid "given preliminary review"
-msgstr "jo se nachylu pśeglědał"
-
-msgid "rejected"
-msgstr "wótpokazany"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "pśiducemu wušemu městnoju dalej dany"
-
-msgid "needs more information"
-msgstr "trjeba dalšne informacije"
-
-msgid "needs super review"
-msgstr "trjeba superpśeglědanje"
-
-msgid "commented"
-msgstr "komentěrowany"
-
-msgid "confirmed as approved"
-msgstr "jo ako pśizwólony wobkšuśony"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5038,6 +5061,9 @@ msgstr "Moderěrowane pśeglědanja"
 
 msgid "Auto Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
+
+msgid "Content Review"
+msgstr "Pśeglědanje wopśimjeśa"
 
 msgid "Unlisted Queues"
 msgstr "Čakańske rědy za njenalicone dodanki"
@@ -5243,6 +5269,10 @@ msgstr "Pšawidła dodanka"
 
 msgid "Editors' Guide"
 msgstr "Pśirucka redaktorow"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Pśeglědanje wopśimjeśa {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5550,6 +5580,13 @@ msgstr[1] "Awtomatiski pśizwólonej dodanka ({0})"
 msgstr[2] "Awtomatiski pśizwólone dodanki ({0})"
 msgstr[3] "Awtomatiski pśizwólone dodanki ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Pśeglědanje wopśimjeśa ({0})"
+msgstr[1] "Pśeglědani wopśimjeśa ({0})"
+msgstr[2] "Pśeglědanja wopśimjeśa ({0})"
+msgstr[3] "Pśeglědanjow wopśimjeśa ({0})"
+
 msgid "Flagged"
 msgstr "Markěrowany"
 
@@ -5580,6 +5617,10 @@ msgstr "Nagrata dataja njedajo se analyzěrowaś, felujucy abo prozny element <%
 
 msgid "Could not parse uploaded file."
 msgstr "Nagrata dataja njedajo se analyzěrowaś."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Njepłaśiwe datajowe mě w archiwje. Pšosym zawěsććo, až wše datajowe mjenja su z UTF-8 abo Latin 1 skoděrowane."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7636,6 +7677,9 @@ msgstr "Z {0} z 5 gwězdkow pógódnośony"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
+
+msgid "Maximum query length exceeded."
+msgstr "Maksimalna dłujkosć napšašowanjow jo pśekšocona."
 
 msgid "Most popular this week"
 msgstr "Nejwěcej woblubowane toś togo tyźenja"

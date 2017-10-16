@@ -39,7 +39,7 @@ This endpoint allows you to search through public add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
-    :query string q: The search query.
+    :query string q: The search query. The maximum length allowed is 100 characters.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
     :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
@@ -70,6 +70,8 @@ This endpoint allows you to search through public add-ons.
            created  Creation date, descending.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
+            random  Random ordering. Only available when no search query is
+                    passed and when filtering to only return featured add-ons.
             rating  Bayesian rating, descending.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.
@@ -81,7 +83,8 @@ This endpoint allows you to search through public add-ons.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation
-    date, use `sort=downloads,created`.
+    date, use ``sort=downloads,created``. The only exception is the ``random``
+    sort parameter, which is only available alone.
 
 
 ------------
@@ -127,12 +130,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
             * authentication
             * reviewer permissions or an account listed as a developer of the add-on
-
-    .. note::
-        This endpoint will have the add-ons it can access reduced to public
-        add-ons and non-public add-ons that you own in the future. If you have
-        permission to access non-public add-ons you do not own please use the
-        :ref:`internal add-on detail API <internal-addon-detail>`.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
@@ -454,6 +451,7 @@ on AMO.
     :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string results[].locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
     :>json string results[].slug: The add-on slug.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.

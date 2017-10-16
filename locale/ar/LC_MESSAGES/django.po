@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-28 06:51+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1987,6 +1987,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+#, fuzzy
+msgid "Commented"
+msgstr "التعليق"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2148,6 +2152,24 @@ msgstr "رخصة الكود المصدري لـ {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "المحدّثة مؤخرًا"
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+msgid "{addon} {version} disabled."
+msgstr ""
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+msgid "{addon} {version} content rejected."
+msgstr ""
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "فَيَرفُكس"
 
@@ -2227,6 +2249,10 @@ msgstr "ملحق"
 msgid "Theme"
 msgstr "سِمة"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "تفاصيل السِمة"
+
 msgid "Complete Themes"
 msgstr "السِمات الكاملة"
 
@@ -2243,6 +2269,10 @@ msgstr ""
 
 msgid "Plugins"
 msgstr "مُلحقات"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "تفاصيل السِمة"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2264,110 +2294,6 @@ msgid "Release"
 msgstr ""
 
 msgid "Change"
-msgstr ""
-
-msgid "App"
-msgstr ""
-
-msgid "Persona"
-msgstr ""
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "أضِف تعليقًا"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-# Plural in this context means many of the add-on type
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "قواميس"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "حزمة اللغة"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-#, fuzzy
-msgid "Theme Review"
-msgstr "تعليق مُفصّل"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "مزودي البحث"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "السِمات الكاملة الأحدث"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "أضِف تعليقًا"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr ""
-
-msgid "Level 2"
-msgstr ""
-
-msgid "Level 3"
-msgstr ""
-
-msgid "Level 4"
-msgstr ""
-
-msgid "Level 5"
-msgstr ""
-
-msgid "Level 6"
-msgstr ""
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
@@ -2448,42 +2374,6 @@ msgstr "سمات رجعية"
 msgid "Sports"
 msgstr "رياضة"
 
-msgid "General"
-msgstr "عامة"
-
-msgid "Business"
-msgstr "إدارة أعمال"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "قواميس و موسوعات"
-
-msgid "Kids"
-msgstr "أطفال"
-
-msgid "Multiple Search"
-msgstr "بحث متعدد"
-
-msgid "Music"
-msgstr "موسيقى"
-
-msgid "News & Blogs"
-msgstr "أخبار ومدوّنات"
-
-msgid "Photos & Images"
-msgstr "صور"
-
-msgid "Shopping & E-Commerce"
-msgstr "تسوّق و تجارة إلكترونية"
-
-msgid "Social & People"
-msgstr "المجتمع والناس"
-
-msgid "Travel"
-msgstr "سفر"
-
-msgid "Video"
-msgstr "فيديو"
-
 msgid "Abstract"
 msgstr "مجرّدة"
 
@@ -2502,6 +2392,9 @@ msgstr "فُكسْكِه"
 msgid "Holiday"
 msgstr "أعياد"
 
+msgid "Music"
+msgstr "موسيقى"
+
 msgid "Scenery"
 msgstr "مشاهد طبيعية"
 
@@ -2513,6 +2406,39 @@ msgstr "جامد"
 
 msgid "Websites"
 msgstr "مواقع"
+
+msgid "General"
+msgstr "عامة"
+
+msgid "Business"
+msgstr "إدارة أعمال"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "قواميس و موسوعات"
+
+msgid "Kids"
+msgstr "أطفال"
+
+msgid "Multiple Search"
+msgstr "بحث متعدد"
+
+msgid "News & Blogs"
+msgstr "أخبار ومدوّنات"
+
+msgid "Photos & Images"
+msgstr "صور"
+
+msgid "Shopping & E-Commerce"
+msgstr "تسوّق و تجارة إلكترونية"
+
+msgid "Social & People"
+msgstr "المجتمع والناس"
+
+msgid "Travel"
+msgstr "سفر"
+
+msgid "Video"
+msgstr "فيديو"
 
 msgid "Device Features & Location"
 msgstr "مزايا وموقع الجهاز"
@@ -2593,6 +2519,120 @@ msgstr "خاصة بمواقع محددة"
 
 msgid "Web and Developer Tools"
 msgstr "أدوات الوب والمطورين"
+
+msgid "App"
+msgstr ""
+
+msgid "Persona"
+msgstr ""
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "أضِف تعليقًا"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "قواميس"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "حزمة اللغة"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+#, fuzzy
+msgid "Theme Review"
+msgstr "تعليق مُفصّل"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "مزودي البحث"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "السِمات الكاملة الأحدث"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "أضِف تعليقًا"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "غير مراجعة"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr ""
+
+msgid "Level 2"
+msgstr ""
+
+msgid "Level 3"
+msgstr ""
+
+msgid "Level 4"
+msgstr ""
+
+msgid "Level 5"
+msgstr ""
+
+msgid "Level 6"
+msgstr ""
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr ""
@@ -2984,13 +3024,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "التعليق"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3775,7 +3818,7 @@ msgstr "الإصدارة الهدف"
 msgid "Upload Version"
 msgstr "رفع إصدارة جديدة"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4689,28 +4732,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "لا تحذيرات"
 msgstr[1] "تحذير واحد"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4916,6 +4959,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4955,6 +5001,13 @@ msgstr "إن كنتَ مهتمًا بخصوص أمن هذه الإضافة أو 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+#, fuzzy
+msgid "Approve Content"
+msgstr "المحتويات"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "إضافات جديدة (أقل من 5 أيام)"
 
@@ -4974,31 +5027,6 @@ msgid "Review successfully processed."
 msgstr "عولج التعليق بنجاح."
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5085,6 +5113,10 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "إضافات أندرويد"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "غير مراجعة"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5288,6 +5320,11 @@ msgstr "سياسة الإضافة"
 
 msgid "Editors' Guide"
 msgstr "مرشد المحرّرين"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "التعليق على {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5591,6 +5628,12 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "إضافات {0}"
 msgstr[1] "إضافات {0}"
 
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "التعليق على {0}"
+msgstr[1] "التعليق على {0}"
+
 msgid "Flagged"
 msgstr ""
 
@@ -5620,6 +5663,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7539,6 +7586,9 @@ msgstr "مقيمة بـ {0} من 5 نجوم"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "مقيمة بـ %(rating)s من 5 نجوم"
+
+msgid "Maximum query length exceeded."
+msgstr ""
 
 msgid "Most popular this week"
 msgstr "الأكثر شعبية هذا الأسبوع"

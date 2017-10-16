@@ -41,9 +41,8 @@ from olympia.users.notifications import NOTIFICATIONS
 
 from . import verify
 from .serializers import (
-    AccountSuperCreateSerializer, LoginUserProfileSerializer,
-    PublicUserProfileSerializer, UserNotificationSerializer,
-    UserProfileSerializer)
+    AccountSuperCreateSerializer, PublicUserProfileSerializer,
+    UserNotificationSerializer, UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 log = olympia.core.logger.getLogger('accounts')
@@ -303,45 +302,6 @@ class LoginStartBaseView(FxAConfigMixin, APIView):
 class LoginStartView(LoginStartBaseView):
     DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
     ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
-
-
-class LoginBaseView(FxAConfigMixin, APIView):
-
-    @with_user(format='json')
-    def post(self, request, user, identity, next_path):
-        if user is None:
-            return Response({'error': ERROR_NO_USER}, status=422)
-        else:
-            update_user(user, identity)
-            serializer = LoginUserProfileSerializer(user)
-            response = Response(serializer.data)
-            add_api_token_to_response(response, user)
-            log.info('Logging in user {} from FxA'.format(user))
-            return response
-
-    def options(self, request):
-        return Response()
-
-
-class LoginView(LoginBaseView):
-    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
-    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
-
-
-class RegisterView(APIView):
-    authentication_classes = (SessionAuthentication,)
-
-    @with_user(format='json')
-    def post(self, request, user, identity, next_path):
-        if user is not None:
-            return Response({'error': 'That account already exists.'},
-                            status=422)
-        else:
-            user = register_user(request, identity)
-            serializer = LoginUserProfileSerializer(user)
-            response = Response(serializer.data)
-            add_api_token_to_response(response, user)
-            return response
 
 
 class AuthenticateView(FxAConfigMixin, APIView):

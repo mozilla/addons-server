@@ -76,7 +76,7 @@ def update_tag_stat_signal(sender, instance, **kw):
     from .tasks import update_tag_stat
     if not kw.get('raw'):
         try:
-            update_tag_stat.delay(instance.tag)
+            update_tag_stat.delay(instance.tag.pk)
         except Tag.DoesNotExist:
             pass
 

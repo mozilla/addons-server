@@ -241,9 +241,12 @@ class TestValidateAddon(TestCase):
         response = self.client.get(reverse('devhub.validate_addon'))
         assert response.status_code == 302
 
-    def test_context(self):
+    def test_context_and_content(self):
         response = self.client.get(reverse('devhub.validate_addon'))
         assert response.status_code == 200
+
+        assert 'this tool only works with legacy' not in response.content
+
         doc = pq(response.content)
         assert doc('#upload-addon').attr('data-upload-url') == (
             reverse('devhub.standalone_upload'))
@@ -697,6 +700,8 @@ class TestUploadCompatCheck(BaseUploadTest):
         assert res.status_code == 200
         doc = pq(res.content)
 
+        assert 'this tool only works with legacy add-ons' in res.content
+
         options = doc('#id_application option')
         expected = [(str(a.id), unicode(a.pretty)) for a in amo.APP_USAGE]
         for idx, element in enumerate(options):
@@ -706,7 +711,6 @@ class TestUploadCompatCheck(BaseUploadTest):
             assert e.text() == text
 
         assert doc('#upload-addon').attr('data-upload-url') == self.upload_url
-        # TODO(Kumar) actually check the form here after bug 671587
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_js_upload_validates_compatibility(self, run_validator):
