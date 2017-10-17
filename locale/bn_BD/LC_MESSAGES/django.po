@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,10 +175,6 @@ msgstr "তালিকাভুক্ত"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0} এর জন্য অনুদান"
 
 msgid "Abuse reported."
 msgstr "অপব্যবহার রিপোর্ট করা হয়েছে।"
@@ -2816,6 +2812,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3610,6 +3610,10 @@ msgstr "অ্যাড-অনটি পরীক্ষামূলক"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "এই অ্যাড-অনের সবগুলো পর্যালোচনা দেখুন"
 
 msgid "Support email:"
 msgstr "সহায়তাকারী ইমেইল:"
@@ -5240,6 +5244,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 #, fuzzy
@@ -7868,6 +7875,12 @@ msgstr "অন্য অ্যাপ্লিকেশনের জন্য অ
 
 msgid "Other Applications"
 msgstr "অন্যান্য অ্যাপ্লিকেশন"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "নিজের সংগ্রহ তৈরির জন্য, আপনার অবশ্যই একটি অ্যাড-অন অ্যাকাউন্ট থাকতে হবে।"

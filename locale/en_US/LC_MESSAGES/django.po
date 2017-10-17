@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -179,11 +179,6 @@ msgstr "Listed"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Addon and collection paths need to end with \"/\""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Contribution for {0}"
 
 msgid "Abuse reported."
 msgstr "Abuse reported."
@@ -2913,6 +2908,10 @@ msgid ""
 msgstr "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
 
 #, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Categories cannot be changed while your add-on is featured for this application."
+
+#, fuzzy
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
 
@@ -3745,6 +3744,10 @@ msgstr "This add-on requires external software."
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Select <b>up to {0}</b> {1} category for this add-on:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5470,6 +5473,10 @@ msgstr "Download files"
 
 msgid "The developer has provided source code."
 msgstr "The developer has provided source code."
+
+#, fuzzy
+msgid "Weight:"
+msgstr "Weight"
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8256,6 +8263,12 @@ msgstr "Find add-ons for other applications"
 
 msgid "Other Applications"
 msgstr "Other Applications"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO is getting a new look. Would you like to see it?"
+
+msgid "Visit the new site"
+msgstr "Visit the new site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "To create your own collections, you must have a Mozilla Add-ons account."

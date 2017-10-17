@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-10-06 17:22+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -173,11 +173,6 @@ msgstr "表示"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
-
-# {0} is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0} への寄付"
 
 msgid "Abuse reported."
 msgstr "不正報告が送信されました。"
@@ -2805,6 +2800,10 @@ msgid ""
 msgstr ""
 "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
@@ -3610,6 +3609,10 @@ msgstr "このアドオンは実験的です"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "アドオンが実験的あるいはその他の理由で一般利用には時期尚早である場合、このオプションにチェックを入れてください。アドオンは掲載されますが、視認性は下げられます。この設定は後から変更できます。"
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "このアドオンの {1} 用カテゴリーを <b>{0} 個まで</b> 選択してください:"
 
 msgid "Support email:"
 msgstr "サポートメールアドレス:"
@@ -5193,6 +5196,10 @@ msgstr "ファイルをダウンロード"
 
 msgid "The developer has provided source code."
 msgstr "開発者がソースコードを提供しています。"
+
+#, fuzzy
+msgid "Weight:"
+msgstr "重み"
 
 msgid "Not Auto Approved Because"
 msgstr "自動承認されなかった理由"
@@ -7849,6 +7856,12 @@ msgstr "他のアプリケーション用のアドオンを探す"
 
 msgid "Other Applications"
 msgstr "他のアプリケーション"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "自分のコレクションを作成するには Mozilla アドオンサイトのアカウントが必要です。"

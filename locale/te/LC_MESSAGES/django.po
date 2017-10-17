@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-10-10 08:39+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
@@ -173,10 +173,6 @@ msgstr "జాబితాచేయబడినవి"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "పొడిగింతల మరియు సేకరణ మార్గాలను \"/\"తో ముగించాలి"
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0} కోసం సహకారం"
 
 msgid "Abuse reported."
 msgstr ""
@@ -2772,6 +2768,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3561,6 +3560,10 @@ msgstr ""
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "ఈ పొడిగింత యొక్క అన్ని సమీక్షలను చూడండి"
 
 msgid "Support email:"
 msgstr "మద్దతు ఇమెయిల్:"
@@ -5130,6 +5133,10 @@ msgstr "ఫైళ్లను దింపుకోళ్ళు చేయం�
 
 msgid "The developer has provided source code."
 msgstr ""
+
+#, fuzzy
+msgid "Weight:"
+msgstr "బరువు"
 
 msgid "Not Auto Approved Because"
 msgstr ""
@@ -7746,6 +7753,12 @@ msgid "Find add-ons for other applications"
 msgstr ""
 
 msgid "Other Applications"
+msgstr ""
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
 msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
