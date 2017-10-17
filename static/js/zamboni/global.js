@@ -611,6 +611,6 @@ function getScrollbarWidth() {
 $(function() {
     "use strict";
 
-// Notification banners that go on every page.
+    // Notification banners that go on every page.
     initBanners();
 });
