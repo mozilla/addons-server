@@ -1096,13 +1096,11 @@ CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 
-# Allow upgrading to Celery 4.x (JSON only)
-# Explicitly force task serializer and result serializer to create tasks
-# using the JSON format but still accept pickled messages.
-# TODO: Remove `pickle` once the upgrade is done and seems stable.
+# Continue serializing in pickle but also accept new JSON format
+# for forwards and backwards compatibility.
 CELERY_ACCEPT_CONTENT = ['pickle', 'json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_RESULT_SERIALIZER = 'pickle'
 
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
