@@ -2334,6 +2334,17 @@ class TestReview(ReviewBase):
         assert icons.eq(1).attr('title') == "SeaMonkey"
         assert icons.eq(2).attr('title') == "Thunderbird"
 
+    def test_item_history_weight(self):
+        """ Make sure the weight is shown on the review page"""
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED,
+            weight=284)
+
+        url = reverse('editors.review', args=[self.addon.slug])
+        doc = pq(self.client.get(url).content)
+        risk = doc('.listing-body .file-weight')
+        assert risk.text() == "Weight: 284"
+
     def test_item_history_notes(self):
         v = self.addon.versions.all()[0]
         v.releasenotes = 'hi'
