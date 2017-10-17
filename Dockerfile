@@ -17,8 +17,6 @@ ADD docker/git.repo /etc/yum.repos.d/git.repo
 
 # Upgrade git
 RUN yum install -y \
-        # Supervisor is being used to start and keep our services running
-        supervisor \
         # General (dev-) dependencies
         bash-completion \
         gcc-c++ \
