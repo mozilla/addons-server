@@ -114,6 +114,15 @@ class TestHomepage(TestCase):
             'Welcome to Thunderbird Add-ons. Add extra features and styles to '
             'make Thunderbird your own.')
 
+    def test_try_new_frontend_banner_presence(self):
+        self.url = '/en-US/firefox/'
+        response = self.client.get(self.url)
+        assert 'AMO is getting a new look.' not in response.content
+
+        with override_switch('try-new-frontend', active=True):
+            response = self.client.get(self.url)
+            assert 'AMO is getting a new look.' in response.content
+
 
 class TestHomepageFeatures(TestCase):
     fixtures = ['base/appversion',
@@ -587,6 +596,14 @@ class TestDetailPage(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
+
+    def test_try_new_frontend_banner_presence(self):
+        response = self.client.get(self.url)
+        assert 'AMO is getting a new look.' not in response.content
+
+        with override_switch('try-new-frontend', active=True):
+            response = self.client.get(self.url)
+            assert 'AMO is getting a new look.' in response.content
 
     def test_304(self):
         response = self.client.get(self.url)

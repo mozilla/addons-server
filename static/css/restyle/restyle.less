@@ -293,6 +293,9 @@ body:not(.home) .amo-header,
 .addon-details .header-bg,
 .home .header-bg {
   min-height: 130px;
+  // prevent margin collapsing, making sure notification area margins are
+  // respected:
+  border-bottom: 1px solid transparent;
 }
 
 .addon-details .header-bg {
@@ -563,7 +566,7 @@ body:not(.home) .amo-header,
   border: 2px solid #1f386e;
   border-radius: 6px;
   color: @default-font-color;
-  margin-top: 22px;
+  margin: 22px 0;
   padding: 15px 45px 15px 15px;
 
   .html-rtl& {
@@ -602,11 +605,16 @@ body:not(.home) .amo-header,
 }
 
 #promos {
+  float: none;
   margin: 20px 0 0;
   min-height: 0;
   opacity: 1;
   visibility: visible;
   width: @pageWidth;
+
+  hgroup {
+    margin: 0 auto 20px;
+  }
 
   &.show {
     display: block;
@@ -1122,7 +1130,7 @@ body:not(.developer-hub) section.secondary {
 }
 
 .secondary {
-  margin: 0 0 12px;
+  margin: 0;
   width: 21.49%;
 
   h2, h3 {
@@ -1234,7 +1242,6 @@ body:not(.developer-hub) section.secondary {
 .addon-details {
   .primary:first-of-type {
     min-height: 257px;
-    padding-bottom: 1em;
   }
 
   .secondary.addon-vitals {

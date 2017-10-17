@@ -115,6 +115,17 @@
                   {% block navbar %}{% endblock %}
                   {% block site_stats %}{% endblock %}
                 </div>
+                {% if APP == amo.FIREFOX and waffle.switch('try-new-frontend') %}
+                  <div class="site-balloon" id="try-new-frontend">
+                    <p>
+                      {{ _('AMO is getting a new look. Would you like to see it?') }}
+                    </p>
+                    <p>
+                      <a href="#" class="mobile-link">{{ _('Visit the new site') }}</a>
+                    </p>
+                    <a href="#" class="close">{{ _('Close') }}</a>
+                  </div>
+                {% endif %}
               </div>
             </div> {# .header-bg #}
           </div> {# .amo-header-wrapper #}

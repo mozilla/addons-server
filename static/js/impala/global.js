@@ -29,15 +29,6 @@ $('.island .listing-grid').on('grid.init', function(e, data) {
     }
 });
 
-z.visitor = z.Storage('visitor');
-z.currentVisit = z.SessionStorage('current-visit');
-(function() {
-    // Show the bad-browser message if it has not been dismissed
-    if (!z.visitor.get('seen_badbrowser_warning') && $('body').hasClass('badbrowser')) {
-        $('#site-nonfx').show();
-    }
-})();
-
 function hoverTruncate(grid) {
     var $grid = $(grid);
     if ($grid.hasClass('hovercard')) {
@@ -88,8 +79,6 @@ function listing_grid() {
 
 $(function() {
     "use strict";
-
-    initBanners();
 
     // Paginate listing grids.
     $('.listing-grid').each(listing_grid);
@@ -143,35 +132,6 @@ $(function() {
 
     $("select[name='rating']").ratingwidget();
 });
-
-
-function initBanners(delegate) {
-    var $delegate = $(delegate || document.body);
-
-    // Show the first visit banner.
-    if (!z.visitor.get('seen_impala_first_visit')) {
-        $('body').addClass('firstvisit');
-        z.visitor.set('seen_impala_first_visit', 1);
-    }
-
-    // Show the ACR pitch if it has not been dismissed.
-    if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
-        $delegate.find('#acr-pitch').show();
-    }
-
-    // Allow dismissal of site-balloons.
-    $delegate.on('click', '.site-balloon .close, .site-tip .close', _pd(function() {
-        var $parent = $(this).closest('.site-balloon, .site-tip');
-        $parent.fadeOut();
-        if ($parent.is('#site-nonfx')) {
-            z.visitor.set('seen_badbrowser_warning', 1);
-        } else if ($parent.is('#acr-pitch')) {
-            z.visitor.set('seen_acr_pitch', 1);
-        } else if ($parent.is('#appruntime-pitch')) {
-            z.visitor.set('seen_appruntime_pitch', 1);
-        }
-    }));
-}
 
 // AJAX form submit
 

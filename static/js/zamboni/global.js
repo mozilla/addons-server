@@ -574,7 +574,8 @@ $.fn.exists = function(callback, args){
 };
 
 // Bind to the mobile site if a mobile link is clicked.
-$(document).on('click', '.mobile-link', function() {
+$(document).on('click', '.mobile-link', function(e) {
+    e.preventDefault();
     $.cookie('mamo', 'on', {expires:30, path: '/'});
     window.location.reload();
 });
@@ -606,3 +607,10 @@ function getScrollbarWidth() {
 
     return widthNoScroll - widthWithScroll;
 }
+
+$(function() {
+    "use strict";
+
+    // Notification banners that go on every page.
+    initBanners();
+});
