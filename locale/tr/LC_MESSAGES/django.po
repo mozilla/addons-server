@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-09-26 12:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -174,11 +174,6 @@ msgstr "Listelenen"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0} için bağış"
 
 msgid "Abuse reported."
 msgstr "İhlal rapor edildi."
@@ -2867,6 +2862,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değiştirilemez."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3691,6 +3690,10 @@ msgstr "Bu eklenti deneyseldir"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Eklentiniz deneyselse veya genel kullanım için hazır değilse bu seçeneği işaretleyin. Eklenti listelenir ama daha az görünür. Bu ayarı daha sonra değiştirebilirsiniz."
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Eklentiniz için bir simge seçin:"
 
 msgid "Support email:"
 msgstr "Destek e-postası:"
@@ -5381,6 +5384,9 @@ msgstr "İndirme"
 
 msgid "The developer has provided source code."
 msgstr "Geliştirici, kaynak kodunu paylaştı."
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8172,6 +8178,12 @@ msgstr "Koleksiyondan eklentiyi kaldır"
 #, fuzzy
 msgid "Other Applications"
 msgstr "Uygulamaya göre süz"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 #, fuzzy
 msgid "To create your own collections, you must have a Mozilla Add-ons account."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -175,10 +175,6 @@ msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0} ਲਈ ਯੋਗਦਾਨ"
 
 msgid "Abuse reported."
 msgstr "ਬਦਸਲੂਕੀ ਦੀ ਸੂਚਨਾ।"
@@ -2871,6 +2867,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3684,6 +3684,10 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ 
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5373,6 +5377,9 @@ msgstr "ਫ਼ਾਈਲਾਂ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 msgid "The developer has provided source code."
 msgstr "ਡਿਵੈਲਪਰ ਨੇ ਸੋਰਸ ਕੋਡ ਮੁਹੱਇਆ ਕਰਵਾਇਆ।"
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8108,6 +8115,12 @@ msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਐਡ-ਆਨ ਖੋ�
 
 msgid "Other Applications"
 msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨਾਂ"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "ਆਪਣੇ ਖੁਦ ਦੇ ਸੰਗ੍ਰਹਿ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਮੌਜੀਲਾ ਐਡ-ਆਨ ਖਾਤਾ ਹੋਣਾ ਚਾਹੀਦਾ।"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -176,11 +176,6 @@ msgstr "Наведене"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Доприноси за {0}"
 
 msgid "Abuse reported."
 msgstr "Злостављање је пријављено."
@@ -2903,6 +2898,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3716,6 +3715,10 @@ msgstr "Овај додатак захтева спољашњи софтвер."
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Изаберите <b>до {0}</b> {1} категорију за овај додатак:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5416,6 +5419,9 @@ msgstr "Преузми датотеке"
 
 msgid "The developer has provided source code."
 msgstr "Програмер је пружио изворни код."
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8108,6 +8114,12 @@ msgstr "Пронађите додатке за остале апликације
 
 msgid "Other Applications"
 msgstr "Остале апликације"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Да бисте направили своју колекцију, морате да имате налог на сајту за Mozilla додатке."
