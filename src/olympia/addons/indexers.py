@@ -75,6 +75,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'filename': {
                             'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
+                        'is_mozilla_signed_extension': {'type': 'boolean'},
                         'is_restart_required': {
                             'type': 'boolean', 'index': False},
                         'platform': {
@@ -106,6 +107,18 @@ class AddonIndexer(BaseSearchIndexer):
                     'current_version': version_mapping,
                     'default_locale': {'type': 'keyword', 'index': False},
                     'description': {'type': 'text', 'analyzer': 'snowball'},
+                    'featured_for': {
+                        'type': 'nested',
+                        'properties': {
+                            'application': {'type': 'byte'},
+                            'locales': {
+                                'type': 'keyword',
+                                # A null locale means not targeted to a locale,
+                                # so shown to all locales.
+                                'null_value': 'ALL',
+                            },
+                        },
+                    },
                     'guid': {'type': 'keyword', 'index': False},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
@@ -197,6 +210,8 @@ class AddonIndexer(BaseSearchIndexer):
                 'filename': file_.filename,
                 'hash': file_.hash,
                 'is_webextension': file_.is_webextension,
+                'is_mozilla_signed_extension': (
+                    file_.is_mozilla_signed_extension),
                 'is_restart_required': file_.is_restart_required,
                 'platform': file_.platform,
                 'size': file_.size,
@@ -265,14 +280,19 @@ class AddonIndexer(BaseSearchIndexer):
             # add-ons stored in ES.
             data['platforms'] = [amo.PLATFORM_ALL.id]
             try:
-                # Boost on popularity.
-                data['boost'] = float(obj.persona.popularity ** .2)
                 data['has_theme_rereview'] = (
                     obj.persona.rereviewqueuetheme_set.exists())
+                # Theme popularity is roughly equivalent to average daily users
+                # (the period is not the same and the methodology differs since
+                # themes don't have updates, but it's good enough).
+                data['average_daily_users'] = obj.persona.popularity
                 # 'weekly_downloads' field is used globally to sort, but
                 # for themes weekly_downloads don't make much sense, use
-                # popularity instead (FIXME: should be the other way around).
-                data['weekly_downloads'] = obj.persona.popularity
+                # popularity instead. To keep it comparable with extensions,
+                # multiply by 7. (FIXME: could we stop sorting by downloads,
+                # even stop exposing downloads numbers in API/pages outside of
+                # the statistic-specific pages?)
+                data['weekly_downloads'] = obj.persona.popularity * 7
                 data['persona'] = {
                     'accentcolor': obj.persona.accentcolor,
                     'author': obj.persona.display_username,
@@ -288,12 +308,11 @@ class AddonIndexer(BaseSearchIndexer):
             if obj.current_version:
                 data['platforms'] = [p.id for p in
                                      obj.current_version.supported_platforms]
-            # Boost by the number of users on a logarithmic scale. The maximum
-            # boost (11,000,000 users for adblock) is about 5x.
-            data['boost'] = float(obj.average_daily_users ** .2)
             data['has_theme_rereview'] = None
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
+        # Boost by the number of users on a logarithmic scale.
+        data['boost'] = float(data['average_daily_users'] ** .2)
         # Quadruple the boost if the add-on is public.
         if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
                 'boost' in data):
@@ -312,6 +331,9 @@ class AddonIndexer(BaseSearchIndexer):
         ]
 
         data['is_featured'] = obj.is_featured(None, None)
+        data['featured_for'] = [
+            {'application': [app], 'locales': list(locales)}
+            for app, locales in obj.get_featured_by_app().items()]
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)

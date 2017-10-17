@@ -7,6 +7,7 @@ import re
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.utils.http import urlunquote
 from django.test.client import Client
 
 import waffle
@@ -17,7 +18,8 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
-from olympia.amo.tests import addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    addon_factory, collection_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
@@ -27,7 +29,7 @@ from olympia.addons.models import (
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
     AddonSearchView, AddonAutoCompleteSearchView)
-from olympia.bandwagon.models import Collection
+from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
@@ -152,6 +154,16 @@ class TestHomepageFeatures(TestCase):
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
+@override_switch('simple-contributions', active=True)
+class TestContributeInstalled404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
+
+    def test_404(self):
+        url = reverse('addons.installed', args=['a592'])
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestContributeInstalled(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
@@ -183,6 +195,18 @@ class TestContributeInstalled(TestCase):
         assert title.startswith('Thank you for installing Gmail S/MIME')
 
 
+@override_switch('simple-contributions', active=True)
+class TestContributeEmbedded404(TestCase):
+    fixtures = ['base/appversion', 'base/addon_592']
+
+    @patch('olympia.paypal.get_paykey')
+    def test_404(self, get_paykey,):
+        get_paykey.return_value = ['abc', '']
+        url = reverse('addons.contribute', args=['a592'])
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestContributeEmbedded(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
@@ -336,6 +360,16 @@ class TestContributeEmbedded(TestCase):
         return self.client.post(urlparams(url, result_type='json'))
 
 
+@override_switch('simple-contributions', active=True)
+class TestDeveloperPages404(TestCase):
+    fixtures = ['base/addon_592', 'base/users']
+
+    def test_404(self):
+        url = reverse('addons.meet', args=['a592'])
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestDeveloperPages(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
@@ -960,16 +994,46 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         assert span_is_restart_required in response.content
 
-    def test_is_webextension(self):
-        file_ = self.addon.current_version.all_files[0]
+    def test_fx57_label_is_webextension(self):
+        """Test that the Firefox 57 label is being shown.
 
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
         assert file_.is_webextension is False
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.is-webextension')
 
         file_.update(is_webextension=True, is_restart_required=False)
         assert file_.is_webextension is True
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('a.is-webextension')
+        assert (
+            link.attr['href'] ==
+            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+        )
+
+    def test_fx57_label_is_mozilla_signed_extension(self):
+        """Test that the Firefox 57 label is being shown.
+
+        That label depends on `is_webextension` being set or
+        if the add-on is a mozilla internally signed add-on.
+        """
+        file_ = self.addon.current_version.all_files[0]
+        assert file_.is_mozilla_signed_extension is False
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.is-webextension')
+
+        file_.update(is_mozilla_signed_extension=True)
+        assert file_.is_mozilla_signed_extension is True
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         link = doc('a.is-webextension')
@@ -2360,7 +2424,7 @@ class TestAddonSearchView(ESTestCase):
 
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
-        assert response.status_code == expected_status
+        assert response.status_code == expected_status, response.content
         data = json.loads(response.content)
         return data
 
@@ -2524,6 +2588,87 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == theme.pk
+
+    @patch('olympia.addons.models.get_featured_ids')
+    def test_filter_by_featured_no_app_no_lang(self, get_featured_ids_mock):
+        addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        get_featured_ids_mock.return_value = [addon.pk]
+        assert addon.is_featured()
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'featured': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+    def test_filter_by_featured_app_and_langs(self):
+        fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.FIREFOX.id)
+        collection.add_addon(fx_addon)
+
+        fx_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Addôn')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.FIREFOX.id, locale='fr')
+        collection.add_addon(fx_fr_addon)
+
+        fn_addon = addon_factory(slug='my-addon', name=u'Featured Addôn 2 go')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.ANDROID.id)
+        collection.add_addon(fn_addon)
+
+        fn_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Mobil')
+        collection = collection_factory()
+        FeaturedCollection.objects.create(
+            collection=collection, application=amo.ANDROID.id, locale='fr')
+        collection.add_addon(fn_fr_addon)
+
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        self.reindex(Addon)
+
+        # Searching for just Firefox should return the two Firefox collections.
+        # The filter should be `Q('term', **{'featured_for.application': app})`
+        data = self.perform_search(self.url, {'featured': 'true',
+                                              'app': 'firefox'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
+
+        # If we specify lang 'fr' too it should be the same collections.
+        # In addition to the app query above, this will be executed too:
+        # `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))`
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
+
+        # But 'en-US' will exclude the 'fr' collection.
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'app': 'firefox',
+                       'lang': 'en-US'})
+        assert data['count'] == 1 == len(data['results'])
+        assert data['results'][0]['id'] == fx_addon.pk
+
+        # If we only search for lang, application is ignored.
+        # Just `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))` now.
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'lang': 'en-US'})
+        assert data['count'] == 2 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id']}
+        self.assertSetEqual(ids, {fx_addon.pk, fn_addon.pk})
+
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'lang': 'fr'})
+        assert data['count'] == 4 == len(data['results'])
+        ids = {data['results'][0]['id'], data['results'][1]['id'],
+               data['results'][2]['id'], data['results'][3]['id']}
+        self.assertSetEqual(
+            ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
@@ -3089,7 +3234,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 97
+        assert len(data) == 113
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3114,7 +3259,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 97
+        assert len(data) == 113
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3195,3 +3340,39 @@ class TestLanguageToolsView(TestCase):
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
+
+
+class TestReplacementAddonView(TestCase):
+    client_class = APITestClient
+
+    def test_basic(self):
+        # Add a single addon replacement
+        rep_addon1 = addon_factory()
+        ReplacementAddon.objects.create(
+            guid='legacy2addon@moz',
+            path=urlunquote(rep_addon1.get_url_path()))
+        # Add a collection replacement
+        author = user_factory()
+        collection = collection_factory(author=author)
+        rep_addon2 = addon_factory()
+        rep_addon3 = addon_factory()
+        collection.set_addons([rep_addon2.id, rep_addon3.id])
+        ReplacementAddon.objects.create(
+            guid='legacy2collection@moz',
+            path=urlunquote(collection.get_url_path()))
+        # Add an invalid path
+        ReplacementAddon.objects.create(
+            guid='notgonnawork@moz',
+            path='/addon/áddonmissing/')
+
+        response = self.client.get(reverse('addon-replacement-addon'))
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        results = data['results']
+        assert len(results) == 3
+        assert ({'guid': 'legacy2addon@moz',
+                 'replacement': [rep_addon1.guid]} in results)
+        assert ({'guid': 'legacy2collection@moz',
+                 'replacement': [rep_addon2.guid, rep_addon3.guid]} in results)
+        assert ({'guid': 'notgonnawork@moz',
+                 'replacement': []} in results)

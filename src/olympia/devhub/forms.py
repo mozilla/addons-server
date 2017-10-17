@@ -448,8 +448,11 @@ class CompatForm(happyforms.ModelForm):
 
         # Legacy extensions can't set compatibility higher than 56.* for
         # Firefox and Firefox for Android.
+        # This does not concern Mozilla Signed Legacy extensions which
+        # are shown the same version choice as WebExtensions.
         if (self.app in (amo.FIREFOX, amo.ANDROID) and
                 not version.is_webextension and
+                not version.is_mozilla_signed and
                 version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)):
             qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))

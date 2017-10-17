@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-08-11 21:24+0000\n"
-"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-11 10:10+0000\n"
+"Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -654,9 +654,8 @@ msgid "Not available for your platform"
 msgstr "Không có sẵn cho nền của bạn"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Mozilla đã đánh dấu phiên bản này là không tương thích với phiên bản Firefox của bạn."
+msgstr "Phiên bản này của tiện ích {0} không tương thích với phiên bản Firefox của bạn."
 
 msgid "View other versions"
 msgstr "Xem các phiên bản khác"

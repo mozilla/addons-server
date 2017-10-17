@@ -2,8 +2,8 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
-from olympia.users.serializers import BaseUserSerializer
 
 
 class ActivityLogSerializer(serializers.ModelSerializer):

@@ -1,9 +1,9 @@
 {% extends "impala/base.html" %}
 
 {% if addon %}
-  {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub gutter {{ editable }}{% endblock %}
+{% block bodyclass %}developer-hub gutter {{ editable_body_class }}{% endblock %}
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}

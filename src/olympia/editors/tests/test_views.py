@@ -29,7 +29,6 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     AutoApprovalSummary, EditorSubscription, ReviewerScore)
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -374,19 +373,35 @@ class TestReviewLog(EditorTest):
         self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs more information')
+            'More information requested')
 
     def test_super_review_logs(self):
         self.make_an_approval(amo.LOG.REQUEST_SUPER_REVIEW)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'needs super review')
+            'Super review requested')
 
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
         r = self.client.get(self.url)
         assert pq(r.content)('#log-listing tr td a').eq(1).text() == (
-            'commented')
+            'Commented')
+
+    def test_content_approval(self):
+        self.make_an_approval(amo.LOG.APPROVE_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content approved'
+
+    def test_content_rejection(self):
+        self.make_an_approval(amo.LOG.REJECT_CONTENT)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
+        assert link.attrib['href'] == '/en-US/editors/review-content/a3615'
+        assert link.text_content().strip() == 'Content rejected'
 
     @freeze_time('2017-08-03')
     def test_review_url(self):
@@ -606,7 +621,9 @@ class TestHome(EditorTest):
 
         # Both listed and unlisted queues for senior reviewers.
         self.login_as_senior_editor()
-        listed_queues_links.append(reverse('editors.queue_auto_approved'))
+        listed_queues_links.extend(
+            [reverse('editors.queue_auto_approved'),
+             reverse('editors.queue_content_review')])
         doc = pq(self.client.get(self.url).content)
         queues = doc('#listed-queues ul li a')  # Listed queues links.
         queues_links = [link.attrib['href'] for link in queues]
@@ -659,6 +676,7 @@ class QueueTest(EditorTest):
         self.url = reverse('editors.queue_pending')
         self.addons = OrderedDict()
         self.expected_addons = []
+        self.channel_name = 'listed' if self.listed else 'unlisted'
 
     def generate_files(self, subset=None, files=None):
         if subset is None:
@@ -760,7 +778,12 @@ class QueueTest(EditorTest):
             assert latest_version
             name = '%s %s' % (unicode(addon.name),
                               latest_version.version)
-            channel = ['unlisted'] if not self.listed else []
+            if self.channel_name == 'listed':
+                # We typically don't include the channel name if it's the
+                # default one, 'listed'.
+                channel = []
+            else:
+                channel = [self.channel_name]
             url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
         links = pq(
@@ -1335,6 +1358,10 @@ class TestUnlistedAllList(QueueTest):
     def test_results(self):
         self._test_results()
 
+    @override_switch('post-review', active=True)
+    def test_results_with_post_review_enabled(self):
+        self._test_results()
+
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1378,6 +1405,15 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED)
+        # Has been auto-approved, but that auto-approval has been confirmed by
+        # a human already.
+        extra_addon3 = addon_factory(name=u'Extra Addôn 3')
+        extra_summary3 = AutoApprovalSummary.objects.create(
+            version=extra_addon3.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon3, counter=1,
+            last_human_review=extra_summary3.created)
 
         # Has been auto-approved and reviewed by a human before.
         addon1 = addon_factory(name=u'Addôn 1')
@@ -1413,6 +1449,8 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED,
             weight=500)
+        AddonApprovalsCounter.objects.create(
+            addon=addon4, counter=0, last_human_review=self.days_ago(1))
         self.expected_addons = [addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
@@ -1457,6 +1495,131 @@ class TestAutoApprovedQueue(QueueTest):
         doc = pq(response.content)
         assert doc('#navbar #listed-queues li').eq(3).text() == (
             'Auto Approved Add-ons (4)'
+        )
+
+
+class TestContentReviewQueue(QueueTest):
+
+    def setUp(self):
+        super(TestContentReviewQueue, self).setUp()
+        self.url = reverse('editors.queue_content_review')
+        self.channel_name = 'content'
+
+    def login_with_permission(self):
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'Addons:ContentReview')
+        self.client.login(email=user.email)
+
+    def get_addon_latest_version(self, addon):
+        """Method used by _test_results() to fetch the version that the queue
+        is supposed to display. Overridden here because in our case, it's not
+        necessarily the latest available version - we display the current
+        public version instead (which is not guaranteed to be the latest
+        auto-approved one, but good enough) for this page."""
+        return addon.current_version
+
+    def generate_files(self):
+        """Generate add-ons needed for these tests."""
+        # Has not been auto-approved.
+        extra_addon = addon_factory(name=u'Extra Addôn 1')
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.NOT_AUTO_APPROVED,
+        )
+        # Has not been auto-approved either, only dry run.
+        extra_addon2 = addon_factory(name=u'Extra Addôn 2')
+        AutoApprovalSummary.objects.create(
+            version=extra_addon2.current_version,
+            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
+        )
+        # Has been auto-approved, but that content has been approved by
+        # a human already.
+        extra_addon3 = addon_factory(name=u'Extra Addôn 3')
+        AutoApprovalSummary.objects.create(
+            version=extra_addon3.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon3, last_content_review=self.days_ago(1))
+
+        # This first add-on has been content reviewed so long ago that we
+        # should do it again.
+        addon1 = addon_factory(name=u'Addön 1')
+        AutoApprovalSummary.objects.create(
+            version=addon1.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=addon1, last_content_review=self.days_ago(370))
+
+        # This one is quite similar, except its last content review is even
+        # older..
+        addon2 = addon_factory(name=u'Addön 1')
+        AutoApprovalSummary.objects.create(
+            version=addon2.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=addon2, last_content_review=self.days_ago(842))
+
+        # This one has never been content-reviewed.
+        addon3 = addon_factory(name=u'Addön 2')
+        addon3.update(created=self.days_ago(2))
+        AutoApprovalSummary.objects.create(
+            version=addon3.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=addon3, last_content_review=None)
+
+        # This one has never been content reviewed either, and it does not even
+        # have an AddonApprovalsCounter.
+        addon4 = addon_factory(name=u'Addön 3')
+        addon4.update(created=self.days_ago(1))
+        AutoApprovalSummary.objects.create(
+            version=addon4.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        assert not AddonApprovalsCounter.objects.no_cache().filter(
+            addon=addon4).exists()
+
+        # Addons with no last_content_review date should be first, ordered by
+        # their creation date, older first.
+        self.expected_addons = [addon3, addon4, addon2, addon1]
+
+    def test_only_viewable_with_specific_permission(self):
+        # Regular addon reviewer does not have access.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_results(self):
+        self.login_with_permission()
+        self.generate_files()
+        self._test_results()
+
+    def test_queue_count(self):
+        self.login_with_permission()
+        self.generate_files()
+
+        response = self.client.get(self.url, {'per_page': 1})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        link = doc('.tabnav li a').eq(3)
+        assert link.text() == 'Content Review (4)'
+        assert link.attr('href') == self.url
+        assert doc('.data-grid-top .num-results').text() == (
+            u'Results 1 \u2013 1 of 4')
+
+    @override_switch('post-review', active=True)
+    def test_navbar_queue_counts(self):
+        self.login_with_permission()
+        self.generate_files()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#navbar #listed-queues li').eq(3).text() == (
+            'Content Review (4)'
         )
 
 
@@ -2171,6 +2334,17 @@ class TestReview(ReviewBase):
         assert icons.eq(1).attr('title') == "SeaMonkey"
         assert icons.eq(2).attr('title') == "Thunderbird"
 
+    def test_item_history_weight(self):
+        """ Make sure the weight is shown on the review page"""
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED,
+            weight=284)
+
+        url = reverse('editors.review', args=[self.addon.slug])
+        doc = pq(self.client.get(url).content)
+        risk = doc('.listing-body .file-weight')
+        assert risk.text() == "Weight: 284"
+
     def test_item_history_notes(self):
         v = self.addon.versions.all()[0]
         v.releasenotes = 'hi'
@@ -2200,7 +2374,7 @@ class TestReview(ReviewBase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#review-files')
-        assert doc('th').eq(1).text() == 'Comment'
+        assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
     def test_files_in_item_history(self):
@@ -2656,31 +2830,93 @@ class TestReview(ReviewBase):
         text = pq(r.content)('.editors-install').eq(1).text()
         assert text == "Windows / Mac OS X"
 
-    def test_no_compare_link(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        info = pq(r.content)('#review-files .file-info')
+    def test_compare_no_link(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        info = pq(response.content)('#review-files .file-info')
         assert info.length == 1
         assert info.find('a.compare').length == 0
 
     def test_compare_link(self):
-        version = Version.objects.create(addon=self.addon, version='0.2')
-        version.created = datetime.today() + timedelta(days=1)
-        version.save()
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(2))
 
-        f1 = self.addon.versions.order_by('created')[0].files.all()[0]
-        f1.status = amo.STATUS_PUBLIC
-        f1.save()
+        new_version = version_factory(addon=self.addon, version='0.2')
+        new_file = new_version.files.all()[0]
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
 
-        f2 = File.objects.create(version=version, status=amo.STATUS_PUBLIC)
-        self.addon.update(_current_version=version)
-        assert self.addon.current_version == version
-
-        r = self.client.get(self.url)
-        assert r.context['show_diff']
-        links = pq(r.content)('#review-files .file-info .compare')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
         expected = [
-            reverse('files.compare', args=[f2.pk, f1.pk]),
+            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_compare_link_auto_approved_ignored(self):
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(3))
+
+        interim_version = version_factory(addon=self.addon, version='0.2')
+        interim_version.update(created=self.days_ago(2))
+        AutoApprovalSummary.objects.create(
+            version=interim_version, verdict=amo.AUTO_APPROVED)
+
+        new_version = version_factory(addon=self.addon, version='0.3')
+        new_file = new_version.files.all()[0]
+
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
+        # Comparison should be betweeen the last version and the first,
+        # ignoring the interim version because it was auto-approved and not
+        # manually confirmed by a human.
+        expected = [
+            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+        ]
+        check_links(expected, links, verify=False)
+
+    def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
+        first_file = self.addon.current_version.files.all()[0]
+        first_file.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(created=self.days_ago(3))
+
+        confirmed_version = version_factory(addon=self.addon, version='0.2')
+        confirmed_version.update(created=self.days_ago(2))
+        confirmed_file = confirmed_version.files.all()[0]
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=confirmed_version,
+            confirmed=True)
+
+        interim_version = version_factory(addon=self.addon, version='0.3')
+        interim_version.update(created=self.days_ago(1))
+        AutoApprovalSummary.objects.create(
+            version=interim_version, verdict=amo.AUTO_APPROVED)
+
+        new_version = version_factory(addon=self.addon, version='0.4')
+        new_file = new_version.files.all()[0]
+
+        self.addon.update(_current_version=new_version)
+        assert self.addon.current_version == new_version
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['show_diff']
+        links = pq(response.content)('#review-files .file-info .compare')
+        # Comparison should be betweeen the last version and the second,
+        # ignoring the third version because it was auto-approved and not
+        # manually confirmed by a human (the second was auto-approved but
+        # was manually confirmed).
+        expected = [
+            reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
         ]
         check_links(expected, links, verify=False)
 
@@ -2750,21 +2986,62 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
 
-    def test_confirm_auto_approval_with_permission(self):
+    def test_attempt_to_use_content_review_permission_for_post_review_actions(
+            self):
+        # Try to use confirm_auto_approved outside of content review, while
+        # only having Addons:ContentReview permission.
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'Addons:ContentReview')
         AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_editor()
+        response = self.client.post(
+            self.url, {'action': 'confirm_auto_approved'})
+        assert response.status_code == 200
+        # Nothing happened: the user did not have the permission to do that.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+
+    def test_confirm_auto_approval_content_review(self):
+        self.url = reverse('editors.review', args=['content', self.addon.slug])
+        summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.login_as_senior_editor()
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
         })
+        summary.reload()
         assert response.status_code == 302
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('editors.queue_content_review'))
+
+    def test_confirm_auto_approval_with_permission(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_senior_editor()
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        summary.reload()
+        assert response.status_code == 302
+        assert summary.confirmed is True
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
         a_log = ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('editors.queue_auto_approved'))
 
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
@@ -3140,6 +3417,27 @@ class TestReviewPending(ReviewBase):
             doc('.auto_approval li').eq(2).text() ==
             'Uses a custom CSP.')
 
+    @override_switch('post-review', active=True)
+    def test_auto_approval_summary_with_post_review(self):
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            uses_custom_csp=True,
+            approved_updates=1,
+            average_daily_users=10000,
+            is_locked=True,
+        )
+        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
+        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # Only one reason (locked by a reviewer) is shown, the other don't
+        # matter when post-review is enabled.
+        assert len(doc('.auto_approval li')) == 1
+        assert doc('.auto_approval li').eq(0).text() == (
+            'Is locked by a reviewer.')
+
 
 class TestEditorMOTD(EditorTest):
 
@@ -3391,7 +3689,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
             version = addon.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if version.nomination <= datetime.now() - timedelta(
-                    hours=REVIEW_LIMITED_DELAY_HOURS):
+                    hours=amo.REVIEW_LIMITED_DELAY_HOURS):
                 self.expected_addons.append(addon)
 
         self.create_limited_user()

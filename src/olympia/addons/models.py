@@ -547,9 +547,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
-                         addon.default_locale in (
-                             settings.AMO_LANGUAGES +
-                             settings.HIDDEN_LANGUAGES) and
+                         addon.default_locale in settings.AMO_LANGUAGES and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
@@ -1066,7 +1064,6 @@ class Addon(OnChangeMixin, ModelBase):
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
-            addon.weekly_downloads = persona.popularity
 
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
@@ -1223,6 +1220,15 @@ class Addon(OnChangeMixin, ModelBase):
     def is_featured(self, app=None, lang=None):
         """Is add-on globally featured for this app and language?"""
         return self.id in get_featured_ids(app, lang)
+
+    def get_featured_by_app(self):
+        qset = (self.collections.filter(featuredcollection__isnull=False)
+                .distinct().values_list('featuredcollection__application',
+                                        'featuredcollection__locale'))
+        out = collections.defaultdict(set)
+        for app, locale in qset:
+            out[app].add(locale)
+        return out
 
     def has_full_profile(self):
         """Is developer profile public (completed)?"""
@@ -1742,11 +1748,19 @@ class AddonFeatureCompatibility(ModelBase):
 class AddonApprovalsCounter(ModelBase):
     """Model holding a counter of the number of times a listed version
     belonging to an add-on has been approved by a human. Reset everytime a
-    listed version is auto-approved for this add-on."""
+    listed version is auto-approved for this add-on.
+
+    Holds 2 additional date fields:
+    - last_human_review, the date of the last time a human fully reviewed the
+      add-on
+    - last_content_review, the date of the last time a human fully reviewed the
+      add-on content (not code).
+    """
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
+    last_content_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
         return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
@@ -1755,12 +1769,15 @@ class AddonApprovalsCounter(ModelBase):
     def increment_for_addon(cls, addon):
         """
         Increment approval counter for the specified addon, setting the last
-        human review date to now. If an AddonApprovalsCounter already exists,
-        it updates it, otherwise it creates and saves a new instance.
+        human review date and last content review date to now.
+        If an AddonApprovalsCounter already exists, it updates it, otherwise it
+        creates and saves a new instance.
         """
+        now = datetime.now()
         data = {
             'counter': 1,
-            'last_human_review': datetime.now(),
+            'last_human_review': now,
+            'last_content_review': now,
         }
         obj, created = cls.objects.get_or_create(
             addon=addon, defaults=data)
@@ -1772,10 +1789,19 @@ class AddonApprovalsCounter(ModelBase):
     @classmethod
     def reset_for_addon(cls, addon):
         """
-        Reset the approval counter for the specified addon.
+        Reset the approval counter (but not the dates) for the specified addon.
         """
         obj, created = cls.objects.update_or_create(
             addon=addon, defaults={'counter': 0})
+        return obj
+
+    @classmethod
+    def approve_content_for_addon(cls, addon):
+        """
+        Set last_content_review for this addon.
+        """
+        obj, created = cls.objects.update_or_create(
+            addon=addon, defaults={'last_content_review': datetime.now()})
         return obj
 
 

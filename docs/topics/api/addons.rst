@@ -39,12 +39,15 @@ This endpoint allows you to search through public add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
-    :query string q: The search query.
+    :query string q: The search query. The maximum length allowed is 100 characters.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
     :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
+    :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
+        If ``app`` is provided as a parameter then only featured collections targeted to that application are taken into account.
+        If ``lang`` is provided then only featured collections targeted to that language, (and collections for all languages), are taken into account. Both ``app`` and ``lang`` can be provided to filter to addons that are featured in collections that application and for that language, (and for all languages).
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
@@ -67,6 +70,8 @@ This endpoint allows you to search through public add-ons.
            created  Creation date, descending.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
+            random  Random ordering. Only available when no search query is
+                    passed and when filtering to only return featured add-ons.
             rating  Bayesian rating, descending.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.
@@ -78,7 +83,8 @@ This endpoint allows you to search through public add-ons.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation
-    date, use `sort=downloads,created`.
+    date, use ``sort=downloads,created``. The only exception is the ``random``
+    sort parameter, which is only available alone.
 
 
 ------------
@@ -125,12 +131,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
             * authentication
             * reviewer permissions or an account listed as a developer of the add-on
 
-    .. note::
-        This endpoint will have the add-ons it can access reduced to public
-        add-ons and non-public add-ons that you own in the future. If you have
-        permission to access non-public add-ons you do not own please use the
-        :ref:`internal add-on detail API <internal-addon-detail>`.
-
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
     .. _addon-detail-object:
@@ -143,7 +143,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string authors[].url: The link to the profile page for an author.
     :>json string authors[].username: The username for an author.
     :>json string authors[].picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set. For performance reasons this field is omitted from the search endpoint.
-    :>json int average_daily_users: The average number of users for the add-on per day.
+    :>json int average_daily_users: The average number of users for the add-on (updated daily).
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
@@ -187,7 +187,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
-    :>json int weekly_downloads: The number of downloads for the add-on per week.
+    :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
 
 
 .. _addon-detail-status:
@@ -451,9 +451,31 @@ on AMO.
     :>json object results[].current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string results[].locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
+    :>json string results[].slug: The add-on slug.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
 
 .. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
+
+
+-------------------
+Replacement Add-ons
+-------------------
+
+.. _addon-replacement-addons:
+
+This endpoint returns a list of suggested replacements for legacy add-ons that are unsupported in Firefox 57.  Added to support the TAAR recommendation service.
+
+.. http:get:: /api/v3/addons/replacement-addon/
+
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :>json int count: The total number of replacements.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of replacements matches.
+    :>json string results[].guid: The extension identifier of the legacy add-on.
+    :>json string results[].replacement[]: An array of guids for the replacements add-ons.  If there is a direct replacement this will be a list of one add-on guid.  The list can be empty if all the replacement add-ons are invalid (e.g. not publicly available on AMO).  The list will also be empty if the replacement is to a url that is not an addon or collection.

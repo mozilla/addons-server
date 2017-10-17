@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 17:41+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-12 19:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -140,7 +140,7 @@ msgstr[2] "Wšě znački dyrbja znajmjeńša {0} znamješka měć."
 msgstr[3] "Wšě znački dyrbja znajmjeńša {0} znamješkow měć."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "URL-domena dyrbi jedna z [%s] abo poddomena być."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1142,6 +1142,9 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće jednu z trěbnymi kajkosćemi přidać, kaž su %(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s podate."
 
+msgid "Contributors"
+msgstr "Sobuskutkowarjo"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -2013,6 +2016,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Komentar k přidatkej {addon} {version}."
 
+msgid "Commented"
+msgstr "Komentowany"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} je so přidatkej {addon} přidała."
 
@@ -2168,6 +2174,24 @@ msgstr "Awtomatiske schwalenje je za přidatk {addon} {version} wobkrućene."
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske schwalenje je wokrućene"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} znowa zmóžnjeny."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} je znjemóžnjeny."
+
+msgid "{addon} {version} content approved."
+msgstr "Wobsah {addon} {version} schwaleny."
+
+msgid "Content approved"
+msgstr "Wobsah schwaleny"
+
+msgid "{addon} {version} content rejected."
+msgstr "Wobsah {addon} {version} wotpokazany."
+
+msgid "Content rejected"
+msgstr "Wobsah wotpokazany"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2243,6 +2267,9 @@ msgstr "Tykač"
 msgid "Theme"
 msgstr "Drasta"
 
+msgid "Theme (Static)"
+msgstr "Drasta (statiska)"
+
 msgid "Complete Themes"
 msgstr "Dospołne drasty"
 
@@ -2257,6 +2284,9 @@ msgstr "Rěčne pakćiki (přidatk)"
 
 msgid "Plugins"
 msgstr "Tykače"
+
+msgid "Themes (Static)"
+msgstr "Drasty (statiske)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Jenož so na stronje tutoho přidatka a w profilu wuwiwarja prašeć"
@@ -2279,102 +2309,6 @@ msgstr "Wersija"
 
 msgid "Change"
 msgstr "Změna"
-
-msgid "App"
-msgstr "Nałoženje"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Dypki za manuelne přepruwowanje"
-
-msgid "New Add-on Review"
-msgstr "Nowe přepruwowanje přidatka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nachwilne přepruwowanje přidatka"
-
-msgid "Updated Add-on Review"
-msgstr "Přepruwowanje zaktualizowaneho přidatka"
-
-msgid "New Dictionary Review"
-msgstr "Nowe přepruwowanje słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nachwilne přepruwowanje słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Přepruwowanje zaktualizowaneho słownika"
-
-msgid "New Language Pack Review"
-msgstr "Nowe přepruwowanje rěčneho pakćika"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nachwilne přepruowanje rěčneho pakćika"
-
-msgid "Updated Language Pack Review"
-msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus za pózdnje přepruwowanja"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dny, prjedy hač bonusowe dypki płaćiwosć nabudu"
-
-msgid "Theme Review"
-msgstr "Přepruwowanje drasty"
-
-msgid "New Search Provider Review"
-msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
-
-msgid "Updated Search Provider Review"
-msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
-
-msgid "New Complete Theme Review"
-msgstr "Nowe přepruwowanje dospołneje drasty"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nachwilne přepruwowanje dospołneje drasty"
-
-msgid "Updated Complete Theme Review"
-msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderěrowane pohódnoćenje přidatka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
-
-msgid "Level 1"
-msgstr "Schodźenk 1"
-
-msgid "Level 2"
-msgstr "Schodźenk 2"
-
-msgid "Level 3"
-msgstr "Schodźenk 3"
-
-msgid "Level 4"
-msgstr "Schodźenk 4"
-
-msgid "Level 5"
-msgstr "Schodźenk 5"
-
-msgid "Level 6"
-msgstr "Schodźenk 6"
-
-msgid "Level 7"
-msgstr "Schodźenk 7"
-
-msgid "Level 8"
-msgstr "Schodźenk 8"
-
-msgid "Level 9"
-msgstr "Schodźenk 9"
 
 msgid "Compatible"
 msgstr "Kompatibelny"
@@ -2448,42 +2382,6 @@ msgstr "Klasiske"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Powšitkowne"
-
-msgid "Business"
-msgstr "Wobchod"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Słowniki a encyklopedije"
-
-msgid "Kids"
-msgstr "Dźěći"
-
-msgid "Multiple Search"
-msgstr "Wjacore pytanja"
-
-msgid "Music"
-msgstr "Hudźba"
-
-msgid "News & Blogs"
-msgstr "Powěsće a blogi"
-
-msgid "Photos & Images"
-msgstr "Fota a wobrazy"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupowanje a e-wikowanje"
-
-msgid "Social & People"
-msgstr "Socialne syće a ludźo"
-
-msgid "Travel"
-msgstr "Pućowanje"
-
-msgid "Video"
-msgstr "Widejo"
-
 msgid "Abstract"
 msgstr "Abstraktne"
 
@@ -2502,6 +2400,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Dowol"
 
+msgid "Music"
+msgstr "Hudźba"
+
 msgid "Scenery"
 msgstr "Krajina"
 
@@ -2513,6 +2414,39 @@ msgstr "Solidne"
 
 msgid "Websites"
 msgstr "Websydła"
+
+msgid "General"
+msgstr "Powšitkowne"
+
+msgid "Business"
+msgstr "Wobchod"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Słowniki a encyklopedije"
+
+msgid "Kids"
+msgstr "Dźěći"
+
+msgid "Multiple Search"
+msgstr "Wjacore pytanja"
+
+msgid "News & Blogs"
+msgstr "Powěsće a blogi"
+
+msgid "Photos & Images"
+msgstr "Fota a wobrazy"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupowanje a e-wikowanje"
+
+msgid "Social & People"
+msgstr "Socialne syće a ludźo"
+
+msgid "Travel"
+msgstr "Pućowanje"
+
+msgid "Video"
+msgstr "Widejo"
 
 msgid "Device Features & Location"
 msgstr "Gratowe funkcije a stejnišćo"
@@ -2588,6 +2522,111 @@ msgstr "Specifiske rozšěrjenja websydłow"
 
 msgid "Web and Developer Tools"
 msgstr "Webwuwiwarske nastroje"
+
+msgid "App"
+msgstr "Nałoženje"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Dypki za manuelne přepruwowanje"
+
+msgid "New Add-on Review"
+msgstr "Nowe přepruwowanje přidatka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Nachwilne přepruwowanje přidatka"
+
+msgid "Updated Add-on Review"
+msgstr "Přepruwowanje zaktualizowaneho přidatka"
+
+msgid "New Dictionary Review"
+msgstr "Nowe přepruwowanje słownika"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Nachwilne přepruwowanje słownika"
+
+msgid "Updated Dictionary Review"
+msgstr "Přepruwowanje zaktualizowaneho słownika"
+
+msgid "New Language Pack Review"
+msgstr "Nowe přepruwowanje rěčneho pakćika"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Nachwilne přepruowanje rěčneho pakćika"
+
+msgid "Updated Language Pack Review"
+msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
+
+msgid "Theme Review"
+msgstr "Přepruwowanje drasty"
+
+msgid "New Search Provider Review"
+msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
+
+msgid "Updated Search Provider Review"
+msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
+
+msgid "New Complete Theme Review"
+msgstr "Nowe přepruwowanje dospołneje drasty"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Nachwilne přepruwowanje dospołneje drasty"
+
+msgid "Updated Complete Theme Review"
+msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderěrowane pohódnoćenje přidatka"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
+
+msgid "Add-on Content Review"
+msgstr "Přepruwowanje wobsaha přidatka"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (najwyše riziko)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (wysoke riziko)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (srjedźne riziko)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Přepruwowanje přidatka po schwalenju (niske riziko)"
+
+msgid "Level 1"
+msgstr "Schodźenk 1"
+
+msgid "Level 2"
+msgstr "Schodźenk 2"
+
+msgid "Level 3"
+msgstr "Schodźenk 3"
+
+msgid "Level 4"
+msgstr "Schodźenk 4"
+
+msgid "Level 5"
+msgstr "Schodźenk 5"
+
+msgid "Level 6"
+msgstr "Schodźenk 6"
+
+msgid "Level 7"
+msgstr "Schodźenk 7"
+
+msgid "Level 8"
+msgstr "Schodźenk 8"
+
+msgid "Level 9"
+msgstr "Schodźenk 9"
 
 msgid "Request More Info"
 msgstr "Dalše informacije požadać"
@@ -2979,6 +3018,9 @@ msgstr "Dojednanje za rozdźělowanje přidatkow Firefox"
 msgid "Review Policies and Rules"
 msgstr "Přepruwowanske zasady a prawidła"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Sym tute dojednanje, prawidła a zasady přečitał a akceptował"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju přidatkow Firefox. Wobsahuje tež wotkaz k našeje pokazce priwatnosće, kotraž wujasnja, kak z wašimi informacijemi "
@@ -2987,8 +3029,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr "Ćišćomna wersija"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Sym tute dojednanje, prawidła a zasady přečitał a akceptował"
+msgid "Accept"
+msgstr "Akceptować"
 
 msgid "I Accept this Agreement"
 msgstr "Sym přezjedny z tutym dojednanjom"
@@ -3770,8 +3812,8 @@ msgstr "Hdźež so wersija hospoduje"
 msgid "Upload Version"
 msgstr "Wersiju nahrać"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał a wubjerće platformowe wobmjezowanja. Po nahraću so rjad awtomatiskich přepruwowanjow na wašej dataji přewjedźe."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał. Po nahraću so rjad awtomatiskich přepruwowanjow na wašej dataji přewjedźe."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Z kotrymiž platformami je tuta dataja kompatibelna?"
@@ -4141,8 +4183,8 @@ msgstr "Firefox přiměrić"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
-"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli so w %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a "
 "%(css_link_open)sCSS%(link_close)s wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
@@ -4649,29 +4691,29 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrće rajtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Nastajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swój pisanski stil {start_sub_heading} z {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Tute rozšěrjenje 25+ rěčow podpěruje a přidawa wašemu wobhladowakej nastroj za prawopisnu kontrolu."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Lochki a efektiwny blokowak wabjenja. uBlock Origin wunuzuje tysacy wobsahowych filtrow, bjez toho zo by so wjele składa přetrjebało."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Polěpšće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Wužiwajće rjad nowych funkcijow YouTube kaž kinomodus, blokowanje wabjenja, wodźenje awtomatiskeho wothrawanja a wjace."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lochko wobrazy namakać {start_sub_heading} z {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Wuzběhńće tekst a klikńće z prawej tastu, zo byšće spěšne pytanje za wobrazami přewjedł."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
 
 msgid "Approved reviews"
 msgstr "Schwalene přepruwowanja"
@@ -4877,6 +4919,9 @@ msgstr "Žane pohódnoćenja"
 msgid "Weight"
 msgstr "Wažnosć"
 
+msgid "Last Content Review"
+msgstr "Poslednje přepruwowanje wobsaha"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
 
@@ -4910,6 +4955,12 @@ msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jó
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
 
+msgid "Approve Content"
+msgstr "Wobsah schwalić"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nowe přidatki (pod 5 dnjemi)"
 
@@ -4930,31 +4981,6 @@ msgstr "Přepruwowanje je so wuspěšnje předźěłało."
 
 msgid "Review lock limit reached"
 msgstr "Limit za pohódnoćenske zawěry docpěty"
-
-msgid "was approved"
-msgstr "je so schwalił"
-
-msgid "given preliminary review"
-msgstr "je so nachwilu přepruwował"
-
-msgid "rejected"
-msgstr "wotpokazany"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "přichodnemu wyšemu městnu dale daty"
-
-msgid "needs more information"
-msgstr "trjeba dalše informacije"
-
-msgid "needs super review"
-msgstr "trjeba superpřepruwowanje"
-
-msgid "commented"
-msgstr "komentowany"
-
-msgid "confirmed as approved"
-msgstr "je jako schwaleny wobkrućeny"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5036,6 +5062,9 @@ msgstr "Moderěrowane přepruwowanja"
 
 msgid "Auto Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
+
+msgid "Content Review"
+msgstr "Přepruwowanje wobsaha"
 
 msgid "Unlisted Queues"
 msgstr "Čakanske rynki za njepodate přidatki"
@@ -5241,6 +5270,10 @@ msgstr "Prawidła přidatka"
 
 msgid "Editors' Guide"
 msgstr "Přiručka za redaktorow"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Přepruwowanje wobsaha {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5548,6 +5581,13 @@ msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
 msgstr[2] "Awtomatisce schwalene přidatki ({0})"
 msgstr[3] "Awtomatisce schwalene přidatki ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Přepruwowanje wobsaha ({0})"
+msgstr[1] "Přepruwowani wobsaha ({0})"
+msgstr[2] "Přepruwowanja wobsaha ({0})"
+msgstr[3] "Přepruwowanjow wobsaha ({0})"
+
 msgid "Flagged"
 msgstr "Markěrowany"
 
@@ -5578,6 +5618,10 @@ msgstr "Nahrata dataja njeda se analyzować, falowacy abo prózdny element <%s>"
 
 msgid "Could not parse uploaded file."
 msgstr "Nahrata dataja njeda so analyzować."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Njepłaćiwe datajowe mjeno w archiwje. Prošu zawěsćće, zo wšě datajowe mjena su z UTF-8 abo Latin 1 skodowane."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7634,6 +7678,9 @@ msgstr "Z {0} z 5 hwěžkow pohódnoćeny"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
 
+msgid "Maximum query length exceeded."
+msgstr "Maksimalna dołhosć naprašowanjow je překročena."
+
 msgid "Most popular this week"
 msgstr "Najbóle woblubowane tutoho tydźenja"
 
@@ -8077,6 +8124,24 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "zeznajće so z <b>přidatkami</b>"
+
+msgid "Download Firefox"
+msgstr "Firefox sćahnyć"
+
+msgid "Android Browser"
+msgstr "Wobhladowak za Android"
+
+msgid "iOS Browser"
+msgstr "Wobhladowak za iOS"
+
+msgid "Focus Browser"
+msgstr "Wobhladowak Klar"
+
+msgid "Desktop Browser"
+msgstr "Wobhladowak za desktop"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Druhe rěče"

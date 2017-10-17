@@ -23,4 +23,4 @@ docs:
 	$(MAKE) -C docs html
 
 flake8:
-	flake8 src/
+	flake8 src/ services/

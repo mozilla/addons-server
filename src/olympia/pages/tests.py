@@ -20,9 +20,14 @@ class TestPages(TestCase):
                  'pages.shield_study_9', 'pages.shield_study_10',
                  'pages.shield_study_11', 'pages.shield_study_12',
                  'pages.shield_study_13', 'pages.shield_study_14',
-                 'pages.shield_study_15', 'pages.shield_study_16']
+                 'pages.shield_study_15', 'pages.shield_study_16',
+                 'pages.pioneer']
         for page in pages:
             self._check(page, 200)
+
+    def test_search_console(self):
+        resp = self.client.get('/google231a41e803e464e9.html')
+        assert resp.status_code == 200
 
 
 class TestRedirects(TestCase):

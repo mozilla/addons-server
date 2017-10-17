@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% if addon %}
-  {% set editable = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub {{ editable }}{% endblock %}
+{% block bodyclass %}developer-hub {{ editable_body_class }}{% endblock %}
 
 {# Don't show the amo header on devhub pages #}
 {% set hide_header = True %}

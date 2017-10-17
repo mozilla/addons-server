@@ -1,7 +1,10 @@
-nginx:
-  ports:
-    - "80:80"
+version: "2"
 
-web:
-  ports:
-    - "8000:8000"
+services:
+  nginx:
+    ports:
+      - "80:80"
+
+  web:
+    ports:
+      - "8000:8000"

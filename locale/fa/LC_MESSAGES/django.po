@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-08-22 08:43+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1113,6 +1113,10 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+#, fuzzy
+msgid "Contributors"
+msgstr "مشارکت کننده"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -1958,6 +1962,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+msgid "Commented"
+msgstr ""
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2121,6 +2128,24 @@ msgstr "مجوّز کد منبع برای {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "آخرین به‌هنگام‌سازی"
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+msgid "{addon} {version} disabled."
+msgstr ""
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+msgid "{addon} {version} content rejected."
+msgstr ""
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "فایرفاکس"
 
@@ -2198,6 +2223,9 @@ msgstr "متصل‌شونده"
 msgid "Theme"
 msgstr ""
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "مضمون‌های کامل"
 
@@ -2215,6 +2243,10 @@ msgstr ""
 #, fuzzy
 msgid "Plugins"
 msgstr "متصل‌شونده"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "هنرمند مضمون‌ها"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2241,108 +2273,6 @@ msgid "Release"
 msgstr ""
 
 msgid "Change"
-msgstr ""
-
-msgid "App"
-msgstr ""
-
-msgid "Persona"
-msgstr ""
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "بازبینی نشده"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-# Plural in this context means many of the add-on type
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "واژه‌نامه‌ها"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "بستهٔ زبان"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-msgid "New Search Provider Review"
-msgstr ""
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "مضمون‌های کامل"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "بازبینی نشده"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr ""
-
-msgid "Level 2"
-msgstr ""
-
-msgid "Level 3"
-msgstr ""
-
-msgid "Level 4"
-msgstr ""
-
-msgid "Level 5"
-msgstr ""
-
-msgid "Level 6"
-msgstr ""
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
@@ -2417,42 +2347,6 @@ msgstr "سبک‌های قدیمی"
 msgid "Sports"
 msgstr "ورزش"
 
-msgid "General"
-msgstr "کلی"
-
-msgid "Business"
-msgstr "کاری"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "فرهنگ‌های لغت و دائرة‌المعارف‌ها"
-
-msgid "Kids"
-msgstr "کودکان"
-
-msgid "Multiple Search"
-msgstr "جست‌وجوی چندگانه"
-
-msgid "Music"
-msgstr "موسیقی"
-
-msgid "News & Blogs"
-msgstr "اخبار و وب‌نوشت‌ها"
-
-msgid "Photos & Images"
-msgstr "عکس‌ها و تصاویر"
-
-msgid "Shopping & E-Commerce"
-msgstr "خرید و تجارت الکترونیکی"
-
-msgid "Social & People"
-msgstr "اجتماعی و مردم"
-
-msgid "Travel"
-msgstr "مسافرت"
-
-msgid "Video"
-msgstr "فیلم"
-
 msgid "Abstract"
 msgstr "تجسمی"
 
@@ -2471,6 +2365,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "تعطیلات"
 
+msgid "Music"
+msgstr "موسیقی"
+
 msgid "Scenery"
 msgstr "منظره"
 
@@ -2482,6 +2379,39 @@ msgstr "تک‌رنگ"
 
 msgid "Websites"
 msgstr "وب‌گاه‌ها"
+
+msgid "General"
+msgstr "کلی"
+
+msgid "Business"
+msgstr "کاری"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "فرهنگ‌های لغت و دائرة‌المعارف‌ها"
+
+msgid "Kids"
+msgstr "کودکان"
+
+msgid "Multiple Search"
+msgstr "جست‌وجوی چندگانه"
+
+msgid "News & Blogs"
+msgstr "اخبار و وب‌نوشت‌ها"
+
+msgid "Photos & Images"
+msgstr "عکس‌ها و تصاویر"
+
+msgid "Shopping & E-Commerce"
+msgstr "خرید و تجارت الکترونیکی"
+
+msgid "Social & People"
+msgstr "اجتماعی و مردم"
+
+msgid "Travel"
+msgstr "مسافرت"
+
+msgid "Video"
+msgstr "فیلم"
 
 msgid "Device Features & Location"
 msgstr "ویژگی‌های دستگاه و موقعیت مکانی"
@@ -2561,6 +2491,118 @@ msgstr "خاص یک وب‌گاه"
 
 msgid "Web and Developer Tools"
 msgstr "ابزارهای وب و توسعه‌دهندگان"
+
+msgid "App"
+msgstr ""
+
+msgid "Persona"
+msgstr ""
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "بازبینی نشده"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "واژه‌نامه‌ها"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "بستهٔ زبان"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+msgid "New Search Provider Review"
+msgstr ""
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "مضمون‌های کامل"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "بازبینی نشده"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "بازبینی نشده"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr ""
+
+msgid "Level 2"
+msgstr ""
+
+msgid "Level 3"
+msgstr ""
+
+msgid "Level 4"
+msgstr ""
+
+msgid "Level 5"
+msgstr ""
+
+msgid "Level 6"
+msgstr ""
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr ""
@@ -2952,13 +2994,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "بررسی"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3727,7 +3772,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr "نسخه‌های برنامه"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4120,7 +4165,7 @@ msgstr "مضمون‌های آسان برای استفاده برای فایرف
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -4619,28 +4664,28 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} هشدار"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4841,6 +4886,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4876,6 +4924,12 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+msgid "Approve Content"
+msgstr ""
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -4895,31 +4949,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5006,6 +5035,10 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "افزودنی‌های بیشتر"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "بازبینی نشده"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5202,6 +5235,11 @@ msgstr ""
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "بازبینی نشده"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5501,6 +5539,10 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "افزودنی‌های {0}"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+
 msgid "Flagged"
 msgstr ""
 
@@ -5530,6 +5572,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7440,6 +7486,9 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr "محبوب‌ترین این هفته"
 
@@ -7880,6 +7929,25 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "آشنایی با <b>افزودنی‌ها</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "هم‌اکنون بارگیری کن"
+
+msgid "Android Browser"
+msgstr ""
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr ""

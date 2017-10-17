@@ -6,11 +6,16 @@ from celery import chord, group
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    add_firefox57_tag, find_inconsistencies_between_es_and_db)
+    add_firefox57_tag, bump_appver_for_legacy_addons,
+    find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
+from olympia.versions.compare import version_int
+
+
+firefox_56_star = version_int('56.*')
 
 
 tasks = {
@@ -26,8 +31,24 @@ tasks = {
     'sign_addons': {'method': sign_addons, 'qs': []},
     'add_firefox57_tag_to_webextensions': {
         'method': add_firefox57_tag,
-        'qs': [Q(status=amo.STATUS_PUBLIC,
-                 _current_version__files__is_webextension=True)]}
+        'qs': [
+            Q(status=amo.STATUS_PUBLIC) & (
+                Q(_current_version__files__is_webextension=True) |
+                Q(_current_version__files__is_mozilla_signed_extension=True)
+            )
+        ]},
+    'bump_appver_for_legacy_addons': {
+        'method': bump_appver_for_legacy_addons,
+        'qs': [
+            Q(
+                type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME),
+                _current_version__files__is_webextension=False,
+                _current_version__apps__max__version_int__lt=firefox_56_star,
+                _current_version__apps__application__in=(
+                    amo.FIREFOX.id, amo.ANDROID.id))
+        ],
+        'pre': lambda values_qs: values_qs.distinct(),
+    },
 }
 
 

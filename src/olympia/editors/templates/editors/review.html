@@ -18,10 +18,17 @@
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
     <img src="{{ addon.icon_url }}" class="icon" alt="" />
-    {# L10n: "Review [add-on name]" #}
-    <span>
-      {{ _('Review {0}')|format_html(addon.name) }}
-    </span>
+    {% if content_review_only %}
+      {# L10n: "Content Review [add-on name]" #}
+      <span>
+        {{ _('Content Review {0}')|format_html(addon.name) }}
+      </span>
+    {% else %}
+      {# L10n: "Review [add-on name]" #}
+      <span>
+        {{ _('Review {0}')|format_html(addon.name) }}
+      </span>
+    {% endif %}
     {% if version %}
       <span class="version">{{ version.version }} ({{ version.get_channel_display() }})</span>
     {% endif %}
@@ -89,6 +96,9 @@
                         {{ _('The developer has provided source code.')}}
                     {% endif %}
                 </div>
+            {% endif %}
+            {% if version.autoapprovalsummary %}
+              <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
             {% endif %}
           </td>
           <td>

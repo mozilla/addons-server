@@ -204,15 +204,18 @@ def check_links(expected, elements, selected=None, verify=True):
             assert bool(e.length) == (text == selected)
 
 
-def assert_url_equal(url, other, compare_host=False):
+def assert_url_equal(url, expected, compare_host=False):
     """Compare url paths and query strings."""
     parsed = urlparse(unicode(url))
-    parsed_other = urlparse(unicode(other))
-    assert parsed.path == parsed_other.path  # Paths are equal.
-    # Params are equal.
-    assert parse_qs(parsed.query) == parse_qs(parsed_other.query)
+    parsed_expected = urlparse(unicode(expected))
+    compare_url_part(parsed.path, parsed_expected.path)
+    compare_url_part(parse_qs(parsed.query), parse_qs(parsed_expected.query))
     if compare_host:
-        assert parsed.netloc == parsed_other.netloc
+        compare_url_part(parsed.netloc, parsed_expected.netloc)
+
+
+def compare_url_part(part, expected):
+    assert part == expected, u'Expected %s, got %s' % (expected, part)
 
 
 def create_sample(name=None, **kw):
@@ -341,9 +344,9 @@ ES_patchers = [
     mock.patch('olympia.amo.search.get_es', spec=True),
     mock.patch('elasticsearch.Elasticsearch'),
     mock.patch('olympia.addons.models.update_search_index', spec=True),
-    mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
-    mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
+    mock.patch('olympia.addons.tasks.index_addons', spec=True),
+    mock.patch('olympia.bandwagon.tasks.index_collections', spec=True),
+    mock.patch('olympia.bandwagon.tasks.unindex_collections', spec=True),
 ]
 
 
@@ -682,6 +685,9 @@ def addon_factory(
     if type_ != amo.ADDON_PERSONA:
         # Personas don't have a summary.
         kwargs['summary'] = u'Summary for %s' % name
+    if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
+        # Personas and search engines don't need guids
+        kwargs['guid'] = kw.pop('guid', '{%s}' % unicode(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.
@@ -696,7 +702,7 @@ def addon_factory(
 
         # Save 3.
         Persona.objects.create(
-            addon=addon, popularity=addon.weekly_downloads,
+            addon=addon, popularity=addon.average_daily_users,
             persona_id=persona_id)
 
     addon.update_version()

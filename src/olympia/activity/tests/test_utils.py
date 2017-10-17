@@ -41,6 +41,16 @@ class TestEmailParser(TestCase):
         with self.assertRaises(ActivityEmailEncodingError):
             ActivityEmailParser('youtube?v=dQw4w9WgXcQ')
 
+    def test_with_empty_to(self):
+        message = copy.deepcopy(sample_message_content['Message'])
+        message['To'] = None
+        parser = ActivityEmailParser(message)
+        with self.assertRaises(ActivityEmailUUIDError):
+            # It should fail, but not because of a Not Iterable TypeError,
+            # instead we handle that gracefully and raise an exception that
+            # we control and catch later.
+            parser.get_uuid()
+
 
 @override_switch('activity-email-bouncing', active=True)
 class TestEmailBouncing(TestCase):

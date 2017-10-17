@@ -1,3 +1,5 @@
+from contextlib import contextmanager
+
 import mock
 
 from django.conf import settings
@@ -8,11 +10,15 @@ import pytest
 
 from olympia import amo
 from olympia.activity.models import AddonLog
-from olympia.addons.management.commands import approve_addons
+from olympia.addons.management.commands import (
+    approve_addons, process_addons as pa)
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import (
+    addon_factory, AMOPaths, TestCase, version_factory)
+from olympia.applications.models import AppVersion
 from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 from olympia.files.models import FileValidation
+from olympia.versions.models import ApplicationsVersions
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -211,24 +217,64 @@ def test_process_addons_invalid_task():
         call_command('process_addons', task='foo')
 
 
+@contextmanager
+def count_subtask_calls(original_function):
+    """Mock a celery tasks subtask method and record it's calls.
+
+    You can't mock a celery task `.subtask` method if that task is used
+    inside a chord or group unfortunately because of some type checking
+    that is use inside Celery 4+.
+
+    So this wraps the original method and restores it and records the calls
+    on it's own.
+    """
+    original_function_subtask = original_function.subtask
+    called = []
+
+    def _subtask_wrapper(*args, **kwargs):
+        called.append({'args': args, 'kwargs': kwargs})
+        return original_function_subtask(*args, **kwargs)
+
+    original_function.subtask = _subtask_wrapper
+
+    yield called
+
+    original_function.subtask = original_function_subtask
+
+
 class AddFirefox57TagTestCase(TestCase):
-    @mock.patch('olympia.addons.tasks.add_firefox57_tag.subtask')
-    def test_affects_only_public_webextensions(self, add_firefox57_tag_mock):
+    def test_affects_only_public_webextensions(self):
         addon_factory()
         addon_factory(file_kw={'is_webextension': True,
                                'status': amo.STATUS_AWAITING_REVIEW},
                       status=amo.STATUS_NOMINATED)
         public_webextension = addon_factory(file_kw={'is_webextension': True})
+        public_mozilla_signed = addon_factory(file_kw={
+            'is_mozilla_signed_extension': True})
+
+        with count_subtask_calls(pa.add_firefox57_tag) as calls:
+            call_command(
+                'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [
+            [public_webextension.pk, public_mozilla_signed.pk]
+        ]
+
+    def test_tag_added_for_is_webextension(self):
+        self.addon = addon_factory(file_kw={'is_webextension': True})
+        assert self.addon.tags.all().count() == 0
 
         call_command(
             'process_addons', task='add_firefox57_tag_to_webextensions')
 
-        assert add_firefox57_tag_mock.call_count == 1
-        add_firefox57_tag_mock.assert_called_with(
-            args=[[public_webextension.pk]], kwargs={})
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
 
-    def test_task_works(self):
-        self.addon = addon_factory(file_kw={'is_webextension': True})
+    def test_tag_added_for_is_mozilla_signed_extension(self):
+        self.addon = addon_factory(
+            file_kw={'is_mozilla_signed_extension': True})
         assert self.addon.tags.all().count() == 0
 
         call_command(
@@ -240,9 +286,7 @@ class AddFirefox57TagTestCase(TestCase):
 
 
 class RecalculateWeightTestCase(TestCase):
-    @mock.patch('olympia.editors.tasks.recalculate_post_review_weight.subtask')
-    def test_only_affects_auto_approved(
-            self, recalculate_post_review_weight_mock):
+    def test_only_affects_auto_approved(self):
         # Non auto-approved add-on, should not be considered.
         addon_factory()
 
@@ -273,12 +317,12 @@ class RecalculateWeightTestCase(TestCase):
         version_factory(
             addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        call_command(
-            'process_addons', task='recalculate_post_review_weight')
+        with count_subtask_calls(pa.recalculate_post_review_weight) as calls:
+            call_command(
+                'process_addons', task='recalculate_post_review_weight')
 
-        assert recalculate_post_review_weight_mock.call_count == 1
-        recalculate_post_review_weight_mock.assert_called_with(
-            args=[[auto_approved_addon.pk]], kwargs={})
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[auto_approved_addon.pk]]
 
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
@@ -295,3 +339,152 @@ class RecalculateWeightTestCase(TestCase):
         summary.reload()
         # Weight should be 10 because of average_daily_users / 10000.
         assert summary.weight == 10
+
+
+class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
+    def setUp(self):
+        self.firefox_56_star, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='56.*')
+        self.firefox_for_android_56_star, _ = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='56.*')
+
+    def test_only_affects_legacy_addons_targeting_firefox_lower_than_56(self):
+        # Should be included:
+        addon = addon_factory(version_kw={'max_app_version': '55.*'})
+        addon2 = addon_factory(version_kw={'application': amo.ANDROID.id})
+        addon3 = addon_factory(type=amo.ADDON_THEME)
+        # Should not be included:
+        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(version_kw={'max_app_version': '56.*'})
+        addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
+        # Also should not be included, this super weird add-on targets both
+        # Firefox and Thunderbird - with a low version for Thunderbird, but a
+        # high enough (56.*) for Firefox to be ignored by the task.
+        weird_addon = addon_factory(
+            version_kw={'application': amo.THUNDERBIRD.id})
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='48.*')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.FIREFOX.id, version=weird_addon.current_version,
+            min=av_min, max=self.firefox_56_star)
+
+        with count_subtask_calls(pa.bump_appver_for_legacy_addons) as calls:
+            call_command(
+                'process_addons', task='bump_appver_for_legacy_addons')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
+    def test_reindex_if_updated_for_firefox_and_android(
+            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        bump_appver_for_addon_if_necessary_mock.return_value = False
+        # Note: technically this add-on is only compatible with Firefox, but
+        # we're mocking the function that does the check anyway... we only care
+        # about how the task behaves when bump_appver_for_legacy_addons()
+        # returns False for both applications.
+        addon = addon_factory()
+        index_addons_mock.reset_mock()
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        assert bump_appver_for_addon_if_necessary_mock.call_count == 2
+
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
+    def test_reindex_if_updated_for_firefox(
+            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        bump_appver_for_addon_if_necessary_mock.side_effect = (False, None)
+        addon = addon_factory()
+        index_addons_mock.reset_mock()
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        assert bump_appver_for_addon_if_necessary_mock.call_count == 2
+
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
+    def test_reindex_if_updated_for_android(
+            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        bump_appver_for_addon_if_necessary_mock.side_effect = (None, False)
+        addon = addon_factory()
+        index_addons_mock.reset_mock()
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        assert bump_appver_for_addon_if_necessary_mock.call_count == 2
+
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
+    def test_no_update_necessary(
+            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        bump_appver_for_addon_if_necessary_mock.return_value = True
+        addon_factory()
+        index_addons_mock.reset_mock()
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        assert bump_appver_for_addon_if_necessary_mock.call_count == 1
+        # 0 index_addons calls since bump_appver_for_addon_if_necessary
+        # returned True.
+        assert index_addons_mock.call_count == 0
+
+        index_addons_mock.reset_mock()
+        bump_appver_for_addon_if_necessary_mock.reset_mock()
+        bump_appver_for_addon_if_necessary_mock.return_value = None
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        # This time, since bump_appver_for_addon_if_necessary_mock returned
+        # None the first time, we had to call a second time...
+        assert bump_appver_for_addon_if_necessary_mock.call_count == 2
+        # ... We still should have 0 add-ons to index.
+        assert index_addons_mock.call_count == 0
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    @mock.patch('olympia.addons.tasks.storage.open')
+    def test_exception_when_reading_xpi(
+            self, open_mock, index_addons_mock):
+        open_mock.side_effect = Exception
+        # Add 2 add-ons for Firefox. We want to make sure both are considered
+        # even though the open() calls are raising an exception (i.e. the
+        # exception is caught and we go to the next add-on).
+        addon_factory()
+        addon_factory()
+        index_addons_mock.reset_mock()
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        assert open_mock.call_count == 2
+
+        # No index_addons call, but eh, we didn't raise an exception in the
+        # middle of running the command/task.
+        assert index_addons_mock.call_count == 0
+
+    def test_correctly_updated(self):
+        # This is a full test without mocks, so the file needs to exist.
+        addon = addon_factory(version_kw={
+            # Might as well match the xpi contents.
+            'min_app_version': '3.0',
+            'max_app_version': '3.6.*'
+        })
+        apv = ApplicationsVersions.objects.get(version=addon.current_version)
+        assert apv.max != self.firefox_56_star
+        self.xpi_copy_over(addon.current_version.all_files[0], 'extension.xpi')
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        apv = ApplicationsVersions.objects.get(version=addon.current_version)
+        assert apv.max == self.firefox_56_star
+
+    def test_correctly_ignored_because_strict_compatibility_is_enabled(self):
+        # This is a full test without mocks, so the file needs to exist.
+        addon = addon_factory(version_kw={
+            # Might as well match the xpi contents.
+            'min_app_version': '3.0',
+            'max_app_version': '3.6.*'
+        })
+        apv = ApplicationsVersions.objects.get(version=addon.current_version)
+        assert apv.max != self.firefox_56_star
+        self.xpi_copy_over(
+            addon.current_version.all_files[0], 'strict-compat.xpi')
+        call_command('process_addons', task='bump_appver_for_legacy_addons')
+        apv = ApplicationsVersions.objects.get(version=addon.current_version)
+        # Shouldn't have been updated to 56.* since strictCompatibilty is true.
+        assert apv.max != self.firefox_56_star

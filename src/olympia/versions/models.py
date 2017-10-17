@@ -180,8 +180,8 @@ class Version(OnChangeMixin, ModelBase):
         # queries completely.
         version.compatible_apps = compatible_apps
 
-        if addon.type == amo.ADDON_SEARCH:
-            # Search extensions are always for all platforms.
+        if addon.type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
+            # Search extensions and static themes are always for all platforms.
             platforms = [amo.PLATFORM_ALL.id]
         else:
             platforms = cls._make_safe_platform_files(platforms)
@@ -279,11 +279,13 @@ class Version(OnChangeMixin, ModelBase):
     def is_user_disabled(self, disable):
         # User wants to disable (and the File isn't already).
         if disable:
+            activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
             for file in self.files.exclude(status=amo.STATUS_DISABLED).all():
                 file.update(original_status=file.status,
                             status=amo.STATUS_DISABLED)
         # User wants to re-enable (and user did the disable, not Mozilla).
         else:
+            activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
             for file in self.files.exclude(
                     original_status=amo.STATUS_NULL).all():
                 file.update(status=file.original_status,
@@ -435,6 +437,20 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def is_webextension(self):
         return any(file_.is_webextension for file_ in self.all_files)
+
+    @property
+    def is_mozilla_signed(self):
+        """Is the file a special "Mozilla Signed Extension"
+
+        See https://wiki.mozilla.org/Add-ons/InternalSigning for more details.
+        We use that information to workaround compatibility limits for legacy
+        add-ons and to avoid them receiving negative boosts compared to
+        WebExtensions.
+
+        See https://github.com/mozilla/addons-server/issues/6424
+        """
+        return all(
+            file_.is_mozilla_signed_extension for file_ in self.all_files)
 
     @property
     def has_files(self):

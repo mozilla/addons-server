@@ -64,7 +64,7 @@ from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
-    VersionSerializer, StaticCategorySerializer)
+    ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -364,6 +364,7 @@ def privacy(request, addon):
 
 @addon_view
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
@@ -386,6 +387,7 @@ def developers(request, addon, page):
 @anonymous_csrf_exempt
 @post_required
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def contribute(request, addon):
 
     # Enforce paypal-imposed comment length limit
@@ -464,6 +466,7 @@ def contribute(request, addon):
 @csrf_exempt
 @addon_view
 @non_atomic_requests
+@waffle.decorators.waffle_switch('!simple-contributions')
 def paypal_result(request, addon, status):
     uuid = request.GET.get('uuid')
     if not uuid:
@@ -921,3 +924,9 @@ class LanguageToolsView(ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data})
+
+
+class ReplacementAddonView(ListAPIView):
+    authentication_classes = []
+    queryset = ReplacementAddon.objects.all()
+    serializer_class = ReplacementAddonSerializer

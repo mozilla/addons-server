@@ -18,8 +18,11 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.storage_utils import rm_stored_dir
-from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
+from olympia.amo.utils import (
+    cache_ns_key, ImageCheck, LocalFileStorage, rm_local_tmp_dir)
+from olympia.applications.models import AppVersion
 from olympia.editors.models import RereviewQueueTheme
+from olympia.files.utils import extract_zip, RDFExtractor
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
@@ -425,3 +428,98 @@ def add_firefox57_tag(ids, **kw):
         # add duplicate tags, manually updating the tag stats, so it's ok for
         # a one-off task.
         Tag(tag_text='firefox57').save_tag(addon)
+
+
+def extract_strict_compatibility_value_for_addon(addon):
+    strict_compatibility = None  # We don't know yet.
+    extracted_dir = None
+    try:
+        # We take a shortcut here and only look at the first file we
+        # find...
+        # Note that we can't use parse_addon() wrapper because it no longer
+        # exposes the real value of `strictCompatibility`...
+        path = addon.current_version.all_files[0].file_path
+        with storage.open(path) as file_:
+            extracted_dir = extract_zip(file_)
+        parser = RDFExtractor(extracted_dir)
+        strict_compatibility = parser.find('strictCompatibility') == 'true'
+    except Exception as exp:
+        # A number of things can go wrong: missing file, path somehow not
+        # existing, etc. In any case, that means the add-on is in a weird
+        # state and should be ignored (this is a one off task).
+        log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
+                      u'received %s when extracting.', addon.pk, unicode(exp))
+    finally:
+        if extracted_dir:
+            rm_local_tmp_dir(extracted_dir)
+    return strict_compatibility
+
+
+def bump_appver_for_addon_if_necessary(
+        addon, application_id, new_max_appver, strict_compatibility=None):
+    # Find the applicationversion for Firefox for the current version of this
+    # addon.
+    application_versions = addon.current_version.compatible_apps.get(
+        amo.APPS_ALL[application_id])
+
+    # Make sure it's not compatible already...
+    if application_versions and (
+            application_versions.max.version_int < new_max_appver.version_int):
+        if strict_compatibility is None:
+            # We don't know yet if the add-on had strictCompatibility enabled
+            # (either because it's the first time we called the function for
+            # this addon, or because it was not neccessary to bump the last
+            # time we called, or because we had an error before). Let's parse
+            # it to find out.
+            strict_compatibility = (
+                extract_strict_compatibility_value_for_addon(addon))
+        if strict_compatibility is False:
+            # It had not enabled strict compatibility. That means we should
+            # bump it!
+            application_versions.max = new_max_appver
+            application_versions.save()
+    return strict_compatibility
+
+
+# Rate limit is per-worker. Kept low to not overload the database with updates.
+# We have 5 workers in the default queue, we have roughly 25.000 add-ons to go
+# through, since process_addons() chunks contain 100 add-ons the task should be
+# fired 250 times. With 5 workers at 5 tasks / minute limit we should do 25
+# tasks in a minute, taking ~ 10 minutes for the whole thing to finish.
+@task(rate_limit='5/m')
+@write
+def bump_appver_for_legacy_addons(ids, **kw):
+    """
+    Task to bump the max appversion to 56.* for legacy add-ons that have not
+    enabled strictCompatibility in their manifest.
+    """
+    addons = Addon.objects.filter(id__in=ids)
+    # The AppVersions we want to point to now.
+    new_max_appversions = {
+        amo.FIREFOX.id: AppVersion.objects.get(
+            application=amo.FIREFOX.id, version='56.*'),
+        amo.ANDROID.id: AppVersion.objects.get(
+            application=amo.ANDROID.id, version='56.*')
+    }
+
+    addons_to_reindex = []
+    for addon in addons:
+        strict_compatibility = bump_appver_for_addon_if_necessary(
+            addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id])
+        # If strict_compatibility is True, we know we should skip bumping this
+        # add-on entirely. Otherwise (False or None), we need to continue with
+        # Firefox for Android, which might have different compat info than
+        # Firefox. We pass the value we already have for strict_compatibility,
+        # if it's not None bump_appver_for_addon_if_necessary() will avoid
+        # re-extracting a second time.
+        if strict_compatibility is not True:
+            android_strict_compatibility = bump_appver_for_addon_if_necessary(
+                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id],
+                strict_compatibility=strict_compatibility)
+
+            if (android_strict_compatibility is False or
+                    strict_compatibility is False):
+                # We did something to that add-on compat, it needs reindexing.
+                addons_to_reindex.append(addon.pk)
+    if addons_to_reindex:
+        index_addons.delay(addons_to_reindex)

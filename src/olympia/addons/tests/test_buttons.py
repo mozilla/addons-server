@@ -3,9 +3,10 @@ import json
 
 import jinja2
 
+import pytest
 from mock import patch, Mock
 from pyquery import PyQuery
-import pytest
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -177,6 +178,7 @@ class TestButton(ButtonTest):
         assert not b.show_contrib
         assert not b.show_warning
 
+    @override_switch('simple-contributions', active=False)
     def test_show_contrib(self):
         b = self.get_button()
         assert not b.show_contrib
@@ -190,6 +192,21 @@ class TestButton(ButtonTest):
         assert b.show_contrib
         assert b.button_class == ['contrib', 'go']
         assert b.install_class == ['contrib']
+
+    @override_switch('simple-contributions', active=True)
+    def test_no_show_contrib(self):
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.takes_contributions = True
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.annoying = amo.CONTRIB_ROADBLOCK
+        b = self.get_button()
+        assert not b.show_contrib
+        assert not b.button_class == ['contrib', 'go']
+        assert not b.install_class == ['contrib']
 
     def test_show_warning(self):
         b = self.get_button()
@@ -242,6 +259,7 @@ class TestButton(ButtonTest):
         assert b.install_class == ['lite']
         assert b.install_text == 'Experimental'
 
+    @override_switch('simple-contributions', active=False)
     def test_attrs(self):
         b = self.get_button()
         assert b.attrs() == {}
@@ -259,6 +277,29 @@ class TestButton(ButtonTest):
 
         b = self.get_button()
         assert b.attrs() == {
+            'data-after': 'contrib',
+            'data-search': 'true',
+            'data-no-compat-necessary': 'true'
+        }
+
+    @override_switch('simple-contributions', active=True)
+    def test_attrs_simple_contributions(self):
+        b = self.get_button()
+        assert b.attrs() == {}
+
+        self.addon.type = amo.ADDON_DICT
+
+        b = self.get_button()
+        assert b.attrs() == {
+            'data-no-compat-necessary': 'true'
+        }
+
+        self.addon.takes_contributions = True
+        self.addon.annoying = amo.CONTRIB_AFTER
+        self.addon.type = amo.ADDON_SEARCH
+
+        b = self.get_button()
+        assert not b.attrs() == {
             'data-after': 'contrib',
             'data-search': 'true',
             'data-no-compat-necessary': 'true'

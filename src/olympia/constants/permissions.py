@@ -33,6 +33,8 @@ ADDONS_REVIEW = AclPermission('Addons', 'Review')
 ADDONS_REVIEW_UNLISTED = AclPermission('Addons', 'ReviewUnlisted')
 # Can access add-ons post-review information.
 ADDONS_POST_REVIEW = AclPermission('Addons', 'PostReview')
+# Can submit a content review for a listed add-on.
+ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 # Can edit the message of the day in the reviewer tools.
 ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 # Can submit an editor review for a background theme (persona).

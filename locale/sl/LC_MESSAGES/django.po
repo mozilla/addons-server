@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 13:21+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-13 17:17+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -139,8 +139,8 @@ msgstr[2] "Vse oznake morajo imeti najmanj {0} znake."
 msgstr[3] "Vse oznake morajo imeti najmanj {0} znakov."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr "Domena spletnega naslova mora biti ena od [%s] ali poddomena., "
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Domena spletnega naslova mora biti ena od [%s] ali poddomena."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati."
@@ -1152,6 +1152,9 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Če vaš podprt program datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene %(amo_manifests_mdn_link_open)stukaj%(amo_manifests_mdn_link_close)s."
 
+msgid "Contributors"
+msgstr "Sodelavci"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -2025,6 +2028,9 @@ msgstr "Dodatek je bil označen za skrbniški pregled.  Še vedno je v čakaln
 msgid "Comment on {addon} {version}."
 msgstr "Komentar o {addon} {version}."
 
+msgid "Commented"
+msgstr "Komentirano"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} dodan {addon}."
 
@@ -2181,6 +2187,26 @@ msgstr "Samodejna odobritev potrjena za {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Samodejna odobritev potrjena"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} ponovno omogočen."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} onemogočen."
+
+# 77%
+# 100%
+msgid "{addon} {version} content approved."
+msgstr "Vsebina dodatka {addon} {version} odobrena."
+
+msgid "Content approved"
+msgstr "Vsebina odobrena"
+
+msgid "{addon} {version} content rejected."
+msgstr "Vsebina dodatka {addon} {version} zavrnjena."
+
+msgid "Content rejected"
+msgstr "Vsebina zavrnjena"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2258,6 +2284,9 @@ msgstr "Vtičnik"
 msgid "Theme"
 msgstr "Tema"
 
+msgid "Theme (Static)"
+msgstr "Tema (statična)"
+
 msgid "Complete Themes"
 msgstr "Celotne teme"
 
@@ -2274,6 +2303,9 @@ msgstr "Jezikovni paketi (dodatek)"
 
 msgid "Plugins"
 msgstr "Vtičniki"
+
+msgid "Themes (Static)"
+msgstr "Teme (statične)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Samo vprašaj na tej strani dodatka in na profilu razvijalca"
@@ -2296,102 +2328,6 @@ msgstr "Izdaja"
 
 msgid "Change"
 msgstr "Spremeni"
-
-msgid "App"
-msgstr "Aplikacija"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Točke ročnega recenzenta"
-
-msgid "New Add-on Review"
-msgstr "Pregled novega dodatka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Predhodni pregled dodatka"
-
-msgid "Updated Add-on Review"
-msgstr "Posodobljen pregled dodatka"
-
-msgid "New Dictionary Review"
-msgstr "Pregled novega slovarja"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Predhodni pregled slovarja"
-
-msgid "Updated Dictionary Review"
-msgstr "Posodobljen pregled slovarja"
-
-msgid "New Language Pack Review"
-msgstr "Pregled novega jezikovnega paketa"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Predhoden pregled jezikovnega paketa"
-
-msgid "Updated Language Pack Review"
-msgstr "Posodobljen pregled jezikovnega paketa"
-
-msgid "Bonus for overdue reviews"
-msgstr "Dodatek za zapadle preglede"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dnevi pred uveljavljanjem dodatnih točk"
-
-msgid "Theme Review"
-msgstr "Pregled teme"
-
-msgid "New Search Provider Review"
-msgstr "Pregled novega ponudnika za iskanje"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Predhoden pregled ponudnika za iskanje"
-
-msgid "Updated Search Provider Review"
-msgstr "Posodobljen pregled ponudnika za iskanje"
-
-msgid "New Complete Theme Review"
-msgstr "Pregled nove celotne teme"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Predhoden pregled celotne teme"
-
-msgid "Updated Complete Theme Review"
-msgstr "Posodobljen pregled celotne teme"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderirana ocena dodatka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija pregleda dodatka je bila obrnjena"
-
-msgid "Level 1"
-msgstr "Raven 1"
-
-msgid "Level 2"
-msgstr "Raven 2"
-
-msgid "Level 3"
-msgstr "Raven 3"
-
-msgid "Level 4"
-msgstr "Raven 4"
-
-msgid "Level 5"
-msgstr "Raven 5"
-
-msgid "Level 6"
-msgstr "Raven 6"
-
-msgid "Level 7"
-msgstr "Raven 7"
-
-msgid "Level 8"
-msgstr "Raven 8"
-
-msgid "Level 9"
-msgstr "Raven 9"
 
 msgid "Compatible"
 msgstr "Združljiv"
@@ -2465,42 +2401,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Šport"
 
-msgid "General"
-msgstr "Splošno"
-
-msgid "Business"
-msgstr "Poslovno"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Slovarji in enciklopedije"
-
-msgid "Kids"
-msgstr "Otroci"
-
-msgid "Multiple Search"
-msgstr "Večkratno iskanje"
-
-msgid "Music"
-msgstr "Glasba"
-
-msgid "News & Blogs"
-msgstr "Novice in blogi"
-
-msgid "Photos & Images"
-msgstr "Fotografije in slike"
-
-msgid "Shopping & E-Commerce"
-msgstr "Nakupi in E-trgovina"
-
-msgid "Social & People"
-msgstr "Družba in ljudje"
-
-msgid "Travel"
-msgstr "Potovanja"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktne"
 
@@ -2519,6 +2419,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Dopust in počitnice"
 
+msgid "Music"
+msgstr "Glasba"
+
 msgid "Scenery"
 msgstr "Naravne lepote"
 
@@ -2530,6 +2433,39 @@ msgstr "Enobarvne"
 
 msgid "Websites"
 msgstr "Spletne strani"
+
+msgid "General"
+msgstr "Splošno"
+
+msgid "Business"
+msgstr "Poslovno"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Slovarji in enciklopedije"
+
+msgid "Kids"
+msgstr "Otroci"
+
+msgid "Multiple Search"
+msgstr "Večkratno iskanje"
+
+msgid "News & Blogs"
+msgstr "Novice in blogi"
+
+msgid "Photos & Images"
+msgstr "Fotografije in slike"
+
+msgid "Shopping & E-Commerce"
+msgstr "Nakupi in E-trgovina"
+
+msgid "Social & People"
+msgstr "Družba in ljudje"
+
+msgid "Travel"
+msgstr "Potovanja"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Funkcije in lokacija naprave"
@@ -2605,6 +2541,111 @@ msgstr "Specifično za spletno stran"
 
 msgid "Web and Developer Tools"
 msgstr "Splet in razvojna orodja"
+
+msgid "App"
+msgstr "Aplikacija"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Točke ročnega recenzenta"
+
+msgid "New Add-on Review"
+msgstr "Pregled novega dodatka"
+
+msgid "Preliminary Add-on Review"
+msgstr "Predhodni pregled dodatka"
+
+msgid "Updated Add-on Review"
+msgstr "Posodobljen pregled dodatka"
+
+msgid "New Dictionary Review"
+msgstr "Pregled novega slovarja"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Predhodni pregled slovarja"
+
+msgid "Updated Dictionary Review"
+msgstr "Posodobljen pregled slovarja"
+
+msgid "New Language Pack Review"
+msgstr "Pregled novega jezikovnega paketa"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Predhoden pregled jezikovnega paketa"
+
+msgid "Updated Language Pack Review"
+msgstr "Posodobljen pregled jezikovnega paketa"
+
+msgid "Theme Review"
+msgstr "Pregled teme"
+
+msgid "New Search Provider Review"
+msgstr "Pregled novega ponudnika za iskanje"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Predhoden pregled ponudnika za iskanje"
+
+msgid "Updated Search Provider Review"
+msgstr "Posodobljen pregled ponudnika za iskanje"
+
+msgid "New Complete Theme Review"
+msgstr "Pregled nove celotne teme"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Predhoden pregled celotne teme"
+
+msgid "Updated Complete Theme Review"
+msgstr "Posodobljen pregled celotne teme"
+
+msgid "Moderated Add-on Review"
+msgstr "Moderirana ocena dodatka"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Moderacija pregleda dodatka je bila obrnjena"
+
+msgid "Add-on Content Review"
+msgstr "Pregled vsebine dodatka"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Pregled dodatka po odobritvi (najvišje tveganje)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Pregled dodatka po odobritvi (visoko tveganje)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Pregled dodatka po odobritvi (srednje tveganje)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Pregled dodatka po odobritvi (nizko tveganje)"
+
+msgid "Level 1"
+msgstr "Raven 1"
+
+msgid "Level 2"
+msgstr "Raven 2"
+
+msgid "Level 3"
+msgstr "Raven 3"
+
+msgid "Level 4"
+msgstr "Raven 4"
+
+msgid "Level 5"
+msgstr "Raven 5"
+
+msgid "Level 6"
+msgstr "Raven 6"
+
+msgid "Level 7"
+msgstr "Raven 7"
+
+msgid "Level 8"
+msgstr "Raven 8"
+
+msgid "Level 9"
+msgstr "Raven 9"
 
 msgid "Request More Info"
 msgstr "Zahteva se dodatne informacije"
@@ -2998,14 +3039,17 @@ msgstr "Sporazum o razširjanju dodatkov za Firefox"
 msgid "Review Policies and Rules"
 msgstr "Smernice in pravila za preglede"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov. Povezuje se tudi na naše Obvestilo o zasebnosti, ki razlaga, kako ravnamo z vašimi podatki."
 
 msgid "Printable Version"
 msgstr "Različica za tiskanje"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
+msgid "Accept"
+msgstr "Sprejmi"
 
 msgid "I Accept this Agreement"
 msgstr "S tem sporazumom se strinjam"
@@ -3787,8 +3831,8 @@ msgstr "Kje bo različica objavljena"
 msgid "Upload Version"
 msgstr "Naloži različico"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Uporabite polja spodaj, da prenesete svoj paket za dodatek in da izberete omejitve glede okolij. Po zaključenem prenosu se bo preverilo veljavnost vaše datoteke z nizom samodejnih preskusov."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Uporabite spodnja polja, da naložite paket dodatka. Po zaključenem prenosu bo veljavnost vaše datoteke preverjena z nizom samodejnih preskusov."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "S katerimi okolji je združljiva ta datoteka?"
@@ -4169,11 +4213,11 @@ msgstr "Prilagodite si Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
-"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Dodatki omogočajo milijonom Firefoxovih uporabnikov boljše brskanje. Če znate %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s in %(css_link_open)sCSS%(link_close)s, že"
-" imate vse potrebno znanje za ustvarjanje imenitnih dodatkov."
+"Dodatki milijonom uporabnikom Firefoxa omogočajo boljše brskanje. Če poznate %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s in %(css_link_open)sCSS%(link_close)s, "
+"imate vso potrebno znanje za ustvarjanje imenitnih dodatkov."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučite se ustvariti dodatek"
@@ -4690,29 +4734,29 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Nastavite stran, ki naj se prikaže vsakič, ko odprete nov zavihek."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Kopica prima smeškov – vedno na dosegu miške."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Izboljšajte svoje pisanje {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Ta razširitev podpira prek 25 jezikov in postavi orodje za lektoriranje neposredno v vaš brskalnik."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Lahko in učinkovito zavračanje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, nadzor samodejnega predvajanja in več."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Preprosto najdite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Označite besedilo, kliknite ga z desno miškino tipko ter hitro izvedite slikovno iskanje."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Kopica prima smeškov – vedno na dosegu miške."
 
 msgid "Approved reviews"
 msgstr "Odobrene ocene"
@@ -4918,6 +4962,9 @@ msgstr "Ni ocen"
 msgid "Weight"
 msgstr "Teža"
 
+msgid "Last Content Review"
+msgstr "Zadnji pregled vsebine"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
 
@@ -4951,6 +4998,12 @@ msgstr "Če imate pri tem dodatku pomisleke glede varnosti, ki bi jih skrbnik mo
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Oddajte pripombo za to različico. Avtor tega ne bo mogel videti."
 
+msgid "Approve Content"
+msgstr "Odobri vsebino"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja razvijalca."
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novi dodatki (pod 5 dni)"
 
@@ -4971,33 +5024,6 @@ msgstr "Pregled uspešno obdelan."
 
 msgid "Review lock limit reached"
 msgstr "Dosežena omejitev za zaklepanje pregledov"
-
-msgid "was approved"
-msgstr "je bil odobren"
-
-msgid "given preliminary review"
-msgstr "je bil predhodno pregledan"
-
-msgid "rejected"
-msgstr "zavrnjen"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "stopnjevan"
-
-# 79%
-# 100%
-msgid "needs more information"
-msgstr "potrebno je več podatkov"
-
-msgid "needs super review"
-msgstr "potrebuje superpregled"
-
-msgid "commented"
-msgstr "pripombe"
-
-msgid "confirmed as approved"
-msgstr "potrjen kot odobren"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5081,6 +5107,9 @@ msgstr "Moderirani pregledi"
 
 msgid "Auto Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
+
+msgid "Content Review"
+msgstr "Pregled vsebine"
 
 msgid "Unlisted Queues"
 msgstr "Čakalne vrste za nenavedene"
@@ -5295,6 +5324,10 @@ msgstr "Smernice za dodatke"
 
 msgid "Editors' Guide"
 msgstr "Vodič za urednike"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Pregled vsebine {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5603,6 +5636,13 @@ msgstr[1] "Samodejno odobrena dodatka ({0})"
 msgstr[2] "Samodejno odobreni dodatki ({0})"
 msgstr[3] "Samodejno odobreni dodatki ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Pregled vsebine ({0})"
+msgstr[1] "Pregleda vsebine ({0})"
+msgstr[2] "Pregledi vsebine ({0})"
+msgstr[3] "Pregledi vsebine ({0})"
+
 msgid "Flagged"
 msgstr "Označeno"
 
@@ -5633,6 +5673,10 @@ msgstr "Naložene datoteke ni bilo mogoče razčleniti, manjkajoč ali prazen el
 
 msgid "Could not parse uploaded file."
 msgstr "Prenesene datoteke ni bilo mogoče razčleniti."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Neveljavno ime datoteke v arhivu. Prepričajte se, da vsa imena datotek uporabljajo kodiranje UTF-8 ali Latin 1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7677,6 +7721,9 @@ msgstr "Ocena {0} od 5 zvezdic"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno z %(rating)s od 5 zvezdic"
 
+msgid "Maximum query length exceeded."
+msgstr "Največja dolžina poizvedbe prekoračena."
+
 msgid "Most popular this week"
 msgstr "Najbolj priljubljeni ta teden"
 
@@ -8139,6 +8186,24 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "seznanite se z <b>dodatki</b>"
+
+msgid "Download Firefox"
+msgstr "Prenesite Firefox"
+
+msgid "Android Browser"
+msgstr "Brskalnik za Android"
+
+msgid "iOS Browser"
+msgstr "Brskalnik za iOS"
+
+msgid "Focus Browser"
+msgstr "Brskalnik Focus"
+
+msgid "Desktop Browser"
+msgstr "Namizni brskalnik"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Drugi jeziki"

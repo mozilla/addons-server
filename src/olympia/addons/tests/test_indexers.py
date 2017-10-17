@@ -50,7 +50,8 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
-            'current_version', 'description', 'has_eula', 'has_privacy_policy',
+            'current_version', 'description', 'featured_for',
+            'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
             'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
@@ -118,8 +119,9 @@ class TestAddonIndexer(TestCase):
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = (
             'id', 'created', 'filename', 'hash', 'is_webextension',
-            'is_restart_required', 'platform', 'size', 'status',
-            'strict_compatibility', 'webext_permissions_list')
+            'is_restart_required', 'is_mozilla_signed_extension', 'platform',
+            'size', 'status', 'strict_compatibility',
+            'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -201,6 +203,34 @@ class TestAddonIndexer(TestCase):
         extracted = self._extract()
         assert extracted['is_featured'] is True
 
+    def test_extract_featured_for(self):
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id)
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None]}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.FIREFOX.id,
+                                          locale='fr')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']}]
+
+        collection = collection_factory()
+        FeaturedCollection.objects.create(collection=collection,
+                                          application=amo.ANDROID.id,
+                                          locale='de-DE')
+        collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None, 'fr']},
+            {'application': [amo.ANDROID.id], 'locales': ['de-DE']}]
+
     def test_extract_eula_privacy_policy(self):
         # Remove eula.
         self.addon.eula_id = None
@@ -223,7 +253,11 @@ class TestAddonIndexer(TestCase):
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
             addon=self.addon,
-            file_kw={'status': amo.STATUS_BETA, 'is_webextension': True})
+            file_kw={
+                'status': amo.STATUS_BETA,
+                'is_webextension': True,
+                'is_mozilla_signed_extension': True,
+            })
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=current_beta_version.all_files[0],
@@ -256,6 +290,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['is_webextension'] == file_.is_webextension
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -286,6 +322,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['is_webextension'] == file_.is_webextension
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
@@ -315,6 +353,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['filename'] == file_.filename
             assert extracted_file['hash'] == file_.hash
             assert extracted_file['is_webextension'] == file_.is_webextension
+            assert extracted_file['is_mozilla_signed_extension'] == (
+                file_.is_mozilla_signed_extension)
             assert extracted_file['is_restart_required'] == (
                 file_.is_restart_required)
             assert extracted_file['platform'] == file_.platform
@@ -425,8 +465,12 @@ class TestAddonIndexer(TestCase):
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
+        persona.popularity = 1000
         persona.save()
         extracted = self._extract()
+        assert extracted['average_daily_users'] == persona.popularity
+        assert extracted['weekly_downloads'] == persona.popularity * 7
+        assert extracted['boost'] == float(persona.popularity ** .2) * 4
         assert extracted['has_theme_rereview'] is False
         assert extracted['persona']['accentcolor'] == persona.accentcolor
         # We need the author that will go in theme_data here, which is

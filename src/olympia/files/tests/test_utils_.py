@@ -294,7 +294,7 @@ class TestManifestJSONExtractor(TestCase):
 
         utils.check_xpi_info(manifest)
 
-        assert self.parse({'theme': {}})['is_static_theme']
+        assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
     def test_is_e10s_compatible(self):
         data = self.parse({})
@@ -307,6 +307,34 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
+
+    def test_moz_signed_extension_no_strict_compat(self):
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        file_obj.update(is_mozilla_signed_extension=True)
+        fixture = (
+            'src/olympia/files/fixtures/files/'
+            'legacy-addon-already-signed-0.1.0.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            parsed = utils.parse_xpi(file_obj.file_path)
+            assert parsed['is_mozilla_signed_extension']
+            assert not parsed['strict_compatibility']
+
+    def test_moz_signed_extension_reuse_strict_compat(self):
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        file_obj.update(is_mozilla_signed_extension=True)
+        fixture = (
+            'src/olympia/files/fixtures/files/'
+            'legacy-addon-already-signed-strict-compat-0.1.0.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            parsed = utils.parse_xpi(file_obj.file_path)
+            assert parsed['is_mozilla_signed_extension']
+
+            # We set `strictCompatibility` in install.rdf
+            assert parsed['strict_compatibility']
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
@@ -392,6 +420,96 @@ class TestManifestJSONExtractor(TestCase):
             'applications': {
                 'gecko': {
                     'strict_min_version': '47.0.0',
+                    'id': '@random'
+                }
+            }
+        }
+
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)['apps']
+
+        assert exc.value.message.startswith('Cannot find min/max version.')
+
+
+class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
+    def parse(self, base_data):
+        base_data.update(theme={})
+        return super(
+            TestManifestJSONExtractorStaticTheme, self).parse(base_data)
+
+    def test_type(self):
+        assert self.parse({})['type'] == amo.ADDON_STATICTHEME
+
+    def create_webext_default_versions(self):
+        self.create_appversion('firefox',
+                               amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        return (super(TestManifestJSONExtractorStaticTheme, self)
+                .create_webext_default_versions())
+
+    def test_apps_use_default_versions_if_applications_is_omitted(self):
+        """
+        Override this because static themes have a higher default version.
+        """
+        self.create_webext_default_versions()
+
+        data = {}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        # Static themes don't support Android yet.  So check they aren't there.
+        self.create_appversion(
+            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        self.create_appversion(
+            'android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
+
+        assert apps == self.parse(data)['apps']  # Same as before.
+
+    def test_apps_use_default_versions_if_none_provided(self):
+        """Use the default min and max versions if none provided."""
+        self.create_webext_default_versions()
+
+        data = {'applications': {'gecko': {'id': 'some-id'}}}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+    def test_apps_use_provided_versions(self):
+        """Use the min and max versions if provided."""
+        firefox_min_version = self.create_appversion('firefox', '54.0')
+        firefox_max_version = self.create_appversion('firefox', '54.*')
+
+        self.create_webext_default_versions()
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=54.0',
+                    'strict_max_version': '=54.*',
+                    'id': '@random'
+                }
+            }
+        }
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min == firefox_min_version
+        assert app.max == firefox_max_version
+
+    def test_apps_contains_wrong_versions(self):
+        """Use the min and max versions if provided."""
+        self.create_webext_default_versions()
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '54.0.0',
                     'id': '@random'
                 }
             }

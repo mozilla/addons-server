@@ -237,6 +237,14 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_tb_choices
         assert list(form.fields['max'].choices) == expected_tb_choices
 
+    def test_form_choices_mozilla_signed_legacy(self):
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(
+            is_webextension=False,
+            is_mozilla_signed_extension=True)
+        del version.all_files
+        self._test_form_choices_expect_all_versions(version)
+
 
 class TestPreviewForm(TestCase):
     fixtures = ['base/addon_3615']

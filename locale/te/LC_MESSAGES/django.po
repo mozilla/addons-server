@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-09 17:59+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-10 08:39+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -131,7 +131,7 @@ msgstr[0] "అన్ని ట్యాగ్లు కనీసం {0} అక�
 msgstr[1] "అన్ని ట్యాగ్లు కనీసం {0} అక్షరాలు కలిగి ఉండాలి."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -467,10 +467,9 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> వాడుకరులు"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} రోజువారీ వాడుకరులు"
+msgstr[0] "{0} రోజువారీ వాడుకరి"
 msgstr[1] "{0} రోజువారీ వాడుకరులు"
 
 #. {0} is the name of the add-on.
@@ -750,13 +749,11 @@ msgstr ""
 msgid "Source Code License"
 msgstr "మూల కోడ్ లైసెన్స్"
 
-#, fuzzy
 msgid "support section"
-msgstr "మదతు సైటు"
+msgstr "మద్దతు విభాగం"
 
-#, fuzzy
 msgid "support email"
-msgstr "మద్దతు ఇమెయిల్:"
+msgstr "మద్దతు ఇమెయిల్"
 
 msgid "permalink"
 msgstr "పెర్మాలింక్"
@@ -1091,6 +1088,9 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
+
+msgid "Contributors"
+msgstr "సహాయకులు"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1927,6 +1927,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} పై వ్యాఖ్యానించండి."
 
+#, fuzzy
+msgid "Commented"
+msgstr "వ్యాఖ్యానింపబడింది"
+
 msgid "{tag} added to {addon}."
 msgstr "{addon}కు {tag} జోడించబడింది."
 
@@ -2082,6 +2086,24 @@ msgstr ""
 msgid "Auto-Approval confirmed"
 msgstr ""
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} తిరిగి చేతనమైనది."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} అచేతనమైనది."
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} విషయం ఆమోదం."
+
+msgid "Content approved"
+msgstr "విషయం ఆమోదించబడింది"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} విషయం తిరస్కరించబడింది."
+
+msgid "Content rejected"
+msgstr "విషయం తిరస్కరించబడింది"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2157,6 +2179,9 @@ msgstr "ప్లగిన్"
 msgid "Theme"
 msgstr "అలంకారం"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr ""
 
@@ -2171,6 +2196,9 @@ msgstr "భాషా ప్యాక్లు (పొడిగింత)"
 
 msgid "Plugins"
 msgstr "ప్లగిన్లు"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "ఈ పొడిగింత యొక్క పేజీ మరియు అభివృద్దికారి ప్రొఫైలులో మాత్రమే అడగండి"
@@ -2193,103 +2221,6 @@ msgstr "విడుదల"
 
 msgid "Change"
 msgstr "మార్చు"
-
-msgid "App"
-msgstr "అనువర్తనం"
-
-msgid "Persona"
-msgstr "పెర్సోనా"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Add-on Review"
-msgstr "కొత్త పొడిగింత సమీక్ష"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr "నవీకరించబడిన పొడిగింత సమీక్ష"
-
-msgid "New Dictionary Review"
-msgstr "కొత్త నిఘంటువు సమీక్ష"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ప్రాథమిక నిఘంటువు సమీక్ష"
-
-msgid "Updated Dictionary Review"
-msgstr "నవీకరించబడిన నిఘంటువు సమీక్ష"
-
-msgid "New Language Pack Review"
-msgstr ""
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-msgid "New Search Provider Review"
-msgstr ""
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "నవీకరించబడిన పొడిగింత సమీక్ష"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "స్థాయి 1"
-
-msgid "Level 2"
-msgstr "స్థాయి 2"
-
-msgid "Level 3"
-msgstr "స్థాయి 3"
-
-msgid "Level 4"
-msgstr "స్థాయి 4"
-
-msgid "Level 5"
-msgstr "స్థాయి 5"
-
-msgid "Level 6"
-msgstr "స్థాయి 6"
-
-msgid "Level 7"
-msgstr "స్థాయి 7"
-
-msgid "Level 8"
-msgstr "స్థాయి 8"
-
-msgid "Level 9"
-msgstr "స్థాయి 9"
 
 msgid "Compatible"
 msgstr "అనుకూలత"
@@ -2363,42 +2294,6 @@ msgstr "రెట్రో"
 msgid "Sports"
 msgstr "క్రీడలు"
 
-msgid "General"
-msgstr "సాధారణం"
-
-msgid "Business"
-msgstr "వ్యాపారం"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr ""
-
-msgid "Kids"
-msgstr "చిన్న పిల్లలు"
-
-msgid "Multiple Search"
-msgstr "బహుళ శోధన"
-
-msgid "Music"
-msgstr "సంగీతము"
-
-msgid "News & Blogs"
-msgstr ""
-
-msgid "Photos & Images"
-msgstr "ఫోటోలు మరియు చిత్రాలు"
-
-msgid "Shopping & E-Commerce"
-msgstr ""
-
-msgid "Social & People"
-msgstr ""
-
-msgid "Travel"
-msgstr "ప్రయాణం"
-
-msgid "Video"
-msgstr "వీడియో"
-
 msgid "Abstract"
 msgstr "సంక్షిప్తము"
 
@@ -2417,6 +2312,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "సెలవు"
 
+msgid "Music"
+msgstr "సంగీతము"
+
 msgid "Scenery"
 msgstr "దృశ్యం"
 
@@ -2428,6 +2326,39 @@ msgstr "ముదురు"
 
 msgid "Websites"
 msgstr ""
+
+msgid "General"
+msgstr "సాధారణం"
+
+msgid "Business"
+msgstr "వ్యాపారం"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr ""
+
+msgid "Kids"
+msgstr "చిన్న పిల్లలు"
+
+msgid "Multiple Search"
+msgstr "బహుళ శోధన"
+
+msgid "News & Blogs"
+msgstr ""
+
+msgid "Photos & Images"
+msgstr "ఫోటోలు మరియు చిత్రాలు"
+
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+msgid "Social & People"
+msgstr ""
+
+msgid "Travel"
+msgstr "ప్రయాణం"
+
+msgid "Video"
+msgstr "వీడియో"
 
 msgid "Device Features & Location"
 msgstr ""
@@ -2503,6 +2434,111 @@ msgstr ""
 
 msgid "Web and Developer Tools"
 msgstr ""
+
+msgid "App"
+msgstr "అనువర్తనం"
+
+msgid "Persona"
+msgstr "పెర్సోనా"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+msgid "New Add-on Review"
+msgstr "కొత్త పొడిగింత సమీక్ష"
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr "నవీకరించబడిన పొడిగింత సమీక్ష"
+
+msgid "New Dictionary Review"
+msgstr "కొత్త నిఘంటువు సమీక్ష"
+
+msgid "Preliminary Dictionary Review"
+msgstr "ప్రాథమిక నిఘంటువు సమీక్ష"
+
+msgid "Updated Dictionary Review"
+msgstr "నవీకరించబడిన నిఘంటువు సమీక్ష"
+
+msgid "New Language Pack Review"
+msgstr ""
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+msgid "New Search Provider Review"
+msgstr ""
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr ""
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+msgid "Moderated Add-on Review"
+msgstr "మోడరేట్ చేసిన పొడిగింత సమీక్ష"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+msgid "Add-on Content Review"
+msgstr "పొడిగింత విషయం సమీక్ష"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "స్థాయి 1"
+
+msgid "Level 2"
+msgstr "స్థాయి 2"
+
+msgid "Level 3"
+msgstr "స్థాయి 3"
+
+msgid "Level 4"
+msgstr "స్థాయి 4"
+
+msgid "Level 5"
+msgstr "స్థాయి 5"
+
+msgid "Level 6"
+msgstr "స్థాయి 6"
+
+msgid "Level 7"
+msgstr "స్థాయి 7"
+
+msgid "Level 8"
+msgstr "స్థాయి 8"
+
+msgid "Level 9"
+msgstr "స్థాయి 9"
 
 msgid "Request More Info"
 msgstr "మరింత సమాచారం కోసం అభ్యర్థన"
@@ -2888,9 +2924,11 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "సమీక్ష విధానం"
+msgstr "సమీక్ష విధానాలు మరియు నియమాలు"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
@@ -2898,8 +2936,8 @@ msgstr ""
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgid "Accept"
+msgstr "అంగీకరించు"
 
 msgid "I Accept this Agreement"
 msgstr ""
@@ -3175,9 +3213,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "సహాయకుడు"
+msgstr "సహాయకులు URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3648,7 +3685,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr ""
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4011,7 +4048,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -4501,28 +4538,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} హెచ్చరిక"
 msgstr[1] "{0} హెచ్చరికలు"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4723,6 +4760,9 @@ msgstr "సమీక్షలు లేవు"
 msgid "Weight"
 msgstr "బరువు"
 
+msgid "Last Content Review"
+msgstr "చివరి విషయం సమీక్ష"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4756,6 +4796,12 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+msgid "Approve Content"
+msgstr "విషయం ఆమోదం"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -4776,31 +4822,6 @@ msgstr ""
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "ఆమోదించబడింది"
-
-msgid "given preliminary review"
-msgstr "ఇచ్చిన ప్రాథమిక సమీక్ష"
-
-msgid "rejected"
-msgstr "తిరస్కరించబడింది"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr "మరింత సమాచారం కావాలి"
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr "వ్యాఖ్యానింపబడింది"
-
-msgid "confirmed as approved"
-msgstr "ఆమోదించబడినట్లు నిర్ధారించబడింది"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4879,6 +4900,9 @@ msgstr ""
 
 msgid "Auto Approved Add-ons"
 msgstr ""
+
+msgid "Content Review"
+msgstr "విషయం సమీక్ష"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5076,6 +5100,10 @@ msgstr "పొడిగింత విధానం"
 
 msgid "Editors' Guide"
 msgstr ""
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "విషయం సమీక్ష {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5369,6 +5397,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "విషయం సమీక్ష ({0})"
+msgstr[1] "విషయం సమీక్ష ({0})"
+
 msgid "Flagged"
 msgstr ""
 
@@ -5398,6 +5431,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7303,6 +7340,9 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr ""
 
@@ -7729,6 +7769,24 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
+msgstr ""
+
+msgid "Download Firefox"
+msgstr "Firefoxను దింపుకోండి"
+
+msgid "Android Browser"
+msgstr "Android విహారిణి"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"

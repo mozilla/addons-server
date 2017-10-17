@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,7 +129,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1089,6 +1089,10 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+#, fuzzy
+msgid "Contributors"
+msgstr "Контакти"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -1924,6 +1928,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+msgid "Commented"
+msgstr ""
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2079,6 +2086,24 @@ msgstr ""
 msgid "Auto-Approval confirmed"
 msgstr ""
 
+msgid "{addon} {version} re-enabled."
+msgstr ""
+
+msgid "{addon} {version} disabled."
+msgstr ""
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+msgid "{addon} {version} content rejected."
+msgstr ""
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2154,6 +2179,9 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr ""
 
@@ -2167,6 +2195,9 @@ msgid "Language Packs (Add-on)"
 msgstr ""
 
 msgid "Plugins"
+msgstr ""
+
+msgid "Themes (Static)"
 msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
@@ -2189,102 +2220,6 @@ msgid "Release"
 msgstr ""
 
 msgid "Change"
-msgstr ""
-
-msgid "App"
-msgstr ""
-
-msgid "Persona"
-msgstr ""
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Add-on Review"
-msgstr ""
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-msgid "New Dictionary Review"
-msgstr ""
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr ""
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-msgid "New Search Provider Review"
-msgstr ""
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-msgid "Moderated Add-on Review"
-msgstr ""
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr ""
-
-msgid "Level 2"
-msgstr ""
-
-msgid "Level 3"
-msgstr ""
-
-msgid "Level 4"
-msgstr ""
-
-msgid "Level 5"
-msgstr ""
-
-msgid "Level 6"
-msgstr ""
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
@@ -2359,42 +2294,6 @@ msgstr "Ретро"
 msgid "Sports"
 msgstr "Спортови"
 
-msgid "General"
-msgstr "Општо"
-
-msgid "Business"
-msgstr "Бизнис"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Речници и енциклопедии"
-
-msgid "Kids"
-msgstr "Деца"
-
-msgid "Multiple Search"
-msgstr "Повеќекратко пребарување"
-
-msgid "Music"
-msgstr "Музика"
-
-msgid "News & Blogs"
-msgstr "Вести и блогови"
-
-msgid "Photos & Images"
-msgstr "Фотографии и слики"
-
-msgid "Shopping & E-Commerce"
-msgstr "Пазарување и е-трговија"
-
-msgid "Social & People"
-msgstr "Социјализација и луѓе"
-
-msgid "Travel"
-msgstr "Патување"
-
-msgid "Video"
-msgstr "Видео"
-
 msgid "Abstract"
 msgstr "Апстрактни"
 
@@ -2413,6 +2312,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Одмор"
 
+msgid "Music"
+msgstr "Музика"
+
 msgid "Scenery"
 msgstr "Пејзажи"
 
@@ -2424,6 +2326,39 @@ msgstr "Еднобојни"
 
 msgid "Websites"
 msgstr "Веб-сајтови"
+
+msgid "General"
+msgstr "Општо"
+
+msgid "Business"
+msgstr "Бизнис"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Речници и енциклопедии"
+
+msgid "Kids"
+msgstr "Деца"
+
+msgid "Multiple Search"
+msgstr "Повеќекратко пребарување"
+
+msgid "News & Blogs"
+msgstr "Вести и блогови"
+
+msgid "Photos & Images"
+msgstr "Фотографии и слики"
+
+msgid "Shopping & E-Commerce"
+msgstr "Пазарување и е-трговија"
+
+msgid "Social & People"
+msgstr "Социјализација и луѓе"
+
+msgid "Travel"
+msgstr "Патување"
+
+msgid "Video"
+msgstr "Видео"
 
 msgid "Device Features & Location"
 msgstr "Својства на уред и местоположба"
@@ -2499,6 +2434,111 @@ msgstr "За веб-сајтови"
 
 msgid "Web and Developer Tools"
 msgstr "Алатки за веб и развивачи"
+
+msgid "App"
+msgstr ""
+
+msgid "Persona"
+msgstr ""
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+msgid "New Add-on Review"
+msgstr ""
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+msgid "New Dictionary Review"
+msgstr ""
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+msgid "New Language Pack Review"
+msgstr ""
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+msgid "New Search Provider Review"
+msgstr ""
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+msgid "New Complete Theme Review"
+msgstr ""
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+msgid "Moderated Add-on Review"
+msgstr ""
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+msgid "Add-on Content Review"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr ""
+
+msgid "Level 2"
+msgstr ""
+
+msgid "Level 3"
+msgstr ""
+
+msgid "Level 4"
+msgstr ""
+
+msgid "Level 5"
+msgstr ""
+
+msgid "Level 6"
+msgstr ""
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr ""
@@ -2888,13 +2928,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Алатки за пребарување"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3645,7 +3688,7 @@ msgstr ""
 msgid "Upload Version"
 msgstr ""
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
@@ -4009,7 +4052,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
@@ -4499,28 +4542,28 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4721,6 +4764,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4755,6 +4801,12 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+msgid "Approve Content"
+msgstr ""
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -4774,31 +4826,6 @@ msgid "Review successfully processed."
 msgstr ""
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -4877,6 +4904,9 @@ msgid "Moderated Reviews"
 msgstr ""
 
 msgid "Auto Approved Add-ons"
+msgstr ""
+
+msgid "Content Review"
 msgstr ""
 
 msgid "Unlisted Queues"
@@ -5074,6 +5104,10 @@ msgid "Add-on Policy"
 msgstr ""
 
 msgid "Editors' Guide"
+msgstr ""
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
 msgstr ""
 
 #. "Review [add-on name]"
@@ -5368,6 +5402,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Flagged"
 msgstr ""
 
@@ -5397,6 +5436,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7303,6 +7346,9 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr ""
 
@@ -7729,6 +7775,25 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
+msgstr ""
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Firefox"
+
+msgid "Android Browser"
+msgstr ""
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"

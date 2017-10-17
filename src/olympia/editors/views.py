@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext, pgettext
+from django.utils.translation import ugettext
 
 import waffle
 
@@ -26,7 +26,6 @@ from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
@@ -36,7 +35,7 @@ from olympia.editors.models import (
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.editors.utils import (
-    AutoApprovedTable, is_limited_reviewer, ReviewHelper,
+    AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
@@ -431,10 +430,10 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         # Those additional restrictions will only work with our RawSQLModel,
         # so we need to make sure we're not dealing with a regular Django ORM
         # queryset first.
-        if hasattr(qs, 'sql_model'):
+        if hasattr(qs, 'sql_model') and not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
-                    'waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
+                    'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
 
             if waffle.switch_is_active('post-review'):
                 # Hide webextensions from the queues so that human reviewers
@@ -478,19 +477,18 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
             query = query.having('waiting_time_days <=', days_max)
         if limited_reviewer:
             query = query.having('waiting_time_hours >=',
-                                 REVIEW_LIMITED_DELAY_HOURS)
+                                 amo.REVIEW_LIMITED_DELAY_HOURS)
 
         return query.count
 
-    AUTO_APPROVED = amo.AUTO_APPROVED
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
         'moderated': Review.objects.all().to_moderate().count,
         'auto_approved': (
-            Addon.objects.public().filter(
-                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
-            .count)
+            AutoApprovalSummary.get_auto_approved_queue().count),
+        'content_review': (
+            AutoApprovalSummary.get_content_review_queue().count),
     }
     if unlisted:
         counts = {
@@ -568,14 +566,23 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
+@permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
+def queue_content_review(request):
+    qs = (
+        AutoApprovalSummary.get_content_review_queue()
+        .select_related('addonapprovalscounter')
+        .order_by('addonapprovalscounter__last_content_review', 'created')
+    )
+    return _queue(request, ContentReviewTable, 'content_review',
+                  qs=qs, SearchForm=None)
+
+
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     qs = (
-        Addon.objects.public()
+        AutoApprovalSummary.get_auto_approved_queue()
         .select_related(
             'addonapprovalscounter', '_current_version__autoapprovalsummary')
-        .filter(
-            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
         .order_by(
             '-_current_version__autoapprovalsummary__weight',
             'addonapprovalscounter__last_human_review',
@@ -630,9 +637,21 @@ def _get_comments_for_hard_deleted_versions(addon):
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
+    if channel == 'content':
+        # 'content' is not a real channel, just a different review mode for
+        # listed add-ons.
+        content_review_only = True
+        channel = 'listed'
+    else:
+        content_review_only = False
     # channel is passed in as text, but we want the constant.
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel, amo.RELEASE_CHANNEL_LISTED)
+
+    if content_review_only and not acl.action_allowed(
+            request, amo.permissions.ADDONS_CONTENT_REVIEW):
+        raise PermissionDenied
+
     unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
                      not addon.has_listed_versions())
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
@@ -649,15 +668,11 @@ def review(request, addon, channel=None):
     # Get the current info request state to set as the default.
     form_initial = {'info_request': version and version.has_info_request}
 
-    form_helper = ReviewHelper(request=request, addon=addon, version=version)
+    form_helper = ReviewHelper(
+        request=request, addon=addon, version=version,
+        content_review_only=content_review_only)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
-    if channel == amo.RELEASE_CHANNEL_LISTED:
-        queue_type = form.helper.handler.review_type
-        redirect_url = reverse('editors.queue_%s' % queue_type)
-    else:
-        redirect_url = reverse('editors.unlisted_queue_all')
-
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     is_post_reviewer = acl.action_allowed(request,
                                           amo.permissions.ADDONS_POST_REVIEW)
@@ -685,6 +700,16 @@ def review(request, addon, channel=None):
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
 
+        if content_review_only:
+            queue_type = 'content_review'
+        elif was_auto_approved and is_post_reviewer:
+            queue_type = 'auto_approved'
+        else:
+            queue_type = form.helper.handler.review_type
+        redirect_url = reverse('editors.queue_%s' % queue_type)
+    else:
+        redirect_url = reverse('editors.unlisted_queue_all')
+
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
         if form.cleaned_data.get('notify'):
@@ -710,8 +735,15 @@ def review(request, addon, channel=None):
     actions = form.helper.actions.items()
 
     try:
+        # Find the previously approved version to compare to.
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
+                # We're looking for a version that was either manually approved
+                # or auto-approved but then confirmed.
+                Q(autoapprovalsummary__isnull=True) |
+                Q(autoapprovalsummary__verdict=amo.AUTO_APPROVED,
+                  autoapprovalsummary__confirmed=True)
+            ).filter(
                 channel=channel,
                 files__isnull=False,
                 created__lt=version.created,
@@ -750,6 +782,7 @@ def review(request, addon, channel=None):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
+    is_post_review_enabled = waffle.switch_is_active('post-review')
     max_average_daily_users = int(
         get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
     min_approved_updates = int(
@@ -772,7 +805,7 @@ def review(request, addon, channel=None):
         verdict_info = summary.calculate_verdict(
             max_average_daily_users=max_average_daily_users,
             min_approved_updates=min_approved_updates,
-            pretty=True)
+            pretty=True, post_review=is_post_review_enabled)
         auto_approval_info[a_version.pk] = verdict_info
 
     if version:
@@ -801,7 +834,8 @@ def review(request, addon, channel=None):
                   is_post_reviewer=is_post_reviewer,
                   auto_approval_info=auto_approval_info,
                   reports=reports, user_reviews=user_reviews,
-                  was_auto_approved=was_auto_approved)
+                  was_auto_approved=was_auto_approved,
+                  content_review_only=content_review_only)
 
     return render(request, 'editors/review.html', ctx)
 
@@ -922,20 +956,7 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    action_dict = {
-        amo.LOG.APPROVE_VERSION.id: ugettext('was approved'),
-        # The log will still show preliminary, even after the migration.
-        amo.LOG.PRELIMINARY_VERSION.id: ugettext('given preliminary review'),
-        amo.LOG.REJECT_VERSION.id: ugettext('rejected'),
-        amo.LOG.ESCALATE_VERSION.id: pgettext(
-            'editors_review_history_nominated_adminreview', 'escalated'),
-        amo.LOG.REQUEST_INFORMATION.id: ugettext('needs more information'),
-        amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
-        amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
-        amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
-    }
-
-    data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
+    data = context(request, form=form, pager=pager,
                    motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-14 01:29+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-11 20:31+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -135,7 +135,7 @@ msgstr[0] "Alle labels dienen uit minstens {0} teken te bestaan."
 msgstr[1] "Alle labels dienen uit minstens {0} tekens te bestaan."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Domein van URL moet er een zijn van [%s], of een subdomein."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1125,6 +1125,9 @@ msgstr ""
 "Als uw ondersteunde toepassing geen manifest-bestand vereist, moet u er toch één toevoegen met de vereiste eigenschappen zoals %(amo_manifests_mdn_link_open)shier%(amo_manifests_mdn_link_close)s "
 "gespecificeerd."
 
+msgid "Contributors"
+msgstr "Medewerkers"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -1976,6 +1979,9 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Opmerking over {addon} {version}."
 
+msgid "Commented"
+msgstr "Met opmerking"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} aan {addon} toegevoegd."
 
@@ -2133,6 +2139,24 @@ msgstr "Automatische goedkeuring bevestigd voor {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Automatische goedkeuring bevestigd"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} opnieuw ingeschakeld."
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} uitgeschakeld."
+
+msgid "{addon} {version} content approved."
+msgstr "Inhoud {addon} {version} goedgekeurd."
+
+msgid "Content approved"
+msgstr "Inhoud goedgekeurd"
+
+msgid "{addon} {version} content rejected."
+msgstr "Inhoud {addon} {version} afgewezen."
+
+msgid "Content rejected"
+msgstr "Inhoud afgewezen"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2209,6 +2233,9 @@ msgstr "Plug-in"
 msgid "Theme"
 msgstr "Thema"
 
+msgid "Theme (Static)"
+msgstr "Thema (statisch)"
+
 msgid "Complete Themes"
 msgstr "Volledige thema’s"
 
@@ -2225,6 +2252,9 @@ msgstr "Taalpakketten (add-on)"
 
 msgid "Plugins"
 msgstr "Plug-ins"
+
+msgid "Themes (Static)"
+msgstr "Thema’s (statisch)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Alleen vragen op de pagina van deze add-on en het ontwikkelaarsprofiel"
@@ -2247,104 +2277,6 @@ msgstr "Uitgave"
 
 msgid "Change"
 msgstr "Wijzigen"
-
-msgid "App"
-msgstr "App"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr "Handmatige beoordelaarspunten"
-
-msgid "New Add-on Review"
-msgstr "Nieuwe add-on-beoordeling"
-
-msgid "Preliminary Add-on Review"
-msgstr "Voorlopige add-on-beoordeling"
-
-msgid "Updated Add-on Review"
-msgstr "Bijgewerkte add-on-beoordeling"
-
-msgid "New Dictionary Review"
-msgstr "Nieuwe woordenboek-beoordeling"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Voorlopige woordenboek-beoordeling"
-
-msgid "Updated Dictionary Review"
-msgstr "Bijgewerkte woordenboek-beoordeling"
-
-msgid "New Language Pack Review"
-msgstr "Nieuwe taalpakket-beoordeling"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Voorlopige taalpakket-beoordeling"
-
-msgid "Updated Language Pack Review"
-msgstr "Bijgewerkte taalpakket-beoordeling"
-
-msgid "Bonus for overdue reviews"
-msgstr "Bonus voor verlopen beoordelingen"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "Dagen voordat bonuspunten worden toegepast"
-
-msgid "Theme Review"
-msgstr "Themabeoordeling"
-
-msgid "New Search Provider Review"
-msgstr "Nieuwe zoekprovider-beoordeling"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Voorlopige zoekprovider-beoordeling"
-
-msgid "Updated Search Provider Review"
-msgstr "Bijgewerkte zoekprovider-beoordeling"
-
-# Het gaat om de beoordeling van een compleet thema, dus niet om een complete
-# beoordeling
-msgid "New Complete Theme Review"
-msgstr "Nieuwe volledig-themabeoordeling"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Voorlopige volledig-themabeoordeling"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bijgewerkte volledig-themabeoordeling"
-
-msgid "Moderated Add-on Review"
-msgstr "Gemodereerde add-on-beoordeling"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
-
-msgid "Level 1"
-msgstr "Niveau 1"
-
-msgid "Level 2"
-msgstr "Niveau 2"
-
-msgid "Level 3"
-msgstr "Niveau 3"
-
-msgid "Level 4"
-msgstr "Niveau 4"
-
-msgid "Level 5"
-msgstr "Niveau 5"
-
-msgid "Level 6"
-msgstr "Niveau 6"
-
-msgid "Level 7"
-msgstr "Niveau 7"
-
-msgid "Level 8"
-msgstr "Niveau 8"
-
-msgid "Level 9"
-msgstr "Niveau 9"
 
 msgid "Compatible"
 msgstr "Compatibel"
@@ -2418,42 +2350,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Sport"
 
-msgid "General"
-msgstr "Algemeen"
-
-msgid "Business"
-msgstr "Zakelijk"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Woordenboeken en encyclopedieën"
-
-msgid "Kids"
-msgstr "Kinderen"
-
-msgid "Multiple Search"
-msgstr "Meervoudig zoeken"
-
-msgid "Music"
-msgstr "Muziek"
-
-msgid "News & Blogs"
-msgstr "Nieuws en blogs"
-
-msgid "Photos & Images"
-msgstr "Foto’s en afbeeldingen"
-
-msgid "Shopping & E-Commerce"
-msgstr "Winkelen en e-commerce"
-
-msgid "Social & People"
-msgstr "Sociaal en personen"
-
-msgid "Travel"
-msgstr "Reizen"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstract"
 
@@ -2472,6 +2368,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "Feestdagen"
 
+msgid "Music"
+msgstr "Muziek"
+
 msgid "Scenery"
 msgstr "Landschap"
 
@@ -2483,6 +2382,39 @@ msgstr "Dekkend"
 
 msgid "Websites"
 msgstr "Websites"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Business"
+msgstr "Zakelijk"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Woordenboeken en encyclopedieën"
+
+msgid "Kids"
+msgstr "Kinderen"
+
+msgid "Multiple Search"
+msgstr "Meervoudig zoeken"
+
+msgid "News & Blogs"
+msgstr "Nieuws en blogs"
+
+msgid "Photos & Images"
+msgstr "Foto’s en afbeeldingen"
+
+msgid "Shopping & E-Commerce"
+msgstr "Winkelen en e-commerce"
+
+msgid "Social & People"
+msgstr "Sociaal en personen"
+
+msgid "Travel"
+msgstr "Reizen"
+
+msgid "Video"
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr "Apparaatfuncties en -locatie"
@@ -2558,6 +2490,113 @@ msgstr "Website-specifiek"
 
 msgid "Web and Developer Tools"
 msgstr "Web- en ontwikkelhulpmiddelen"
+
+msgid "App"
+msgstr "App"
+
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr "Handmatige beoordelaarspunten"
+
+msgid "New Add-on Review"
+msgstr "Nieuwe add-on-beoordeling"
+
+msgid "Preliminary Add-on Review"
+msgstr "Voorlopige add-on-beoordeling"
+
+msgid "Updated Add-on Review"
+msgstr "Bijgewerkte add-on-beoordeling"
+
+msgid "New Dictionary Review"
+msgstr "Nieuwe woordenboek-beoordeling"
+
+msgid "Preliminary Dictionary Review"
+msgstr "Voorlopige woordenboek-beoordeling"
+
+msgid "Updated Dictionary Review"
+msgstr "Bijgewerkte woordenboek-beoordeling"
+
+msgid "New Language Pack Review"
+msgstr "Nieuwe taalpakket-beoordeling"
+
+msgid "Preliminary Language Pack Review"
+msgstr "Voorlopige taalpakket-beoordeling"
+
+msgid "Updated Language Pack Review"
+msgstr "Bijgewerkte taalpakket-beoordeling"
+
+msgid "Theme Review"
+msgstr "Themabeoordeling"
+
+msgid "New Search Provider Review"
+msgstr "Nieuwe zoekprovider-beoordeling"
+
+msgid "Preliminary Search Provider Review"
+msgstr "Voorlopige zoekprovider-beoordeling"
+
+msgid "Updated Search Provider Review"
+msgstr "Bijgewerkte zoekprovider-beoordeling"
+
+# Het gaat om de beoordeling van een compleet thema, dus niet om een complete
+# beoordeling
+msgid "New Complete Theme Review"
+msgstr "Nieuwe volledig-themabeoordeling"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "Voorlopige volledig-themabeoordeling"
+
+msgid "Updated Complete Theme Review"
+msgstr "Bijgewerkte volledig-themabeoordeling"
+
+msgid "Moderated Add-on Review"
+msgstr "Gemodereerde add-on-beoordeling"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
+
+msgid "Add-on Content Review"
+msgstr "Beoordeling van add-on-inhoud"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Hoogste risico)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Hoog risico)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Middelgroot risico)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "Add-on-beoordeling na goedkeuring (Laag risico)"
+
+msgid "Level 1"
+msgstr "Niveau 1"
+
+msgid "Level 2"
+msgstr "Niveau 2"
+
+msgid "Level 3"
+msgstr "Niveau 3"
+
+msgid "Level 4"
+msgstr "Niveau 4"
+
+msgid "Level 5"
+msgstr "Niveau 5"
+
+msgid "Level 6"
+msgstr "Niveau 6"
+
+msgid "Level 7"
+msgstr "Niveau 7"
+
+msgid "Level 8"
+msgstr "Niveau 8"
+
+msgid "Level 9"
+msgstr "Niveau 9"
 
 msgid "Request More Info"
 msgstr "Meer informatie vragen"
@@ -2955,14 +2994,17 @@ msgstr "Firefox-add-on-distributieovereenkomst"
 msgid "Review Policies and Rules"
 msgstr "Beoordelingsregels en -beleid"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ik heb deze Overeenkomst en de Regels en het Beleid gelezen en accepteer deze"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst. Deze verwijst tevens naar onze Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
 
 msgid "Printable Version"
 msgstr "Afdrukbare versie"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ik heb deze Overeenkomst en de Regels en het Beleid gelezen en accepteer deze"
+msgid "Accept"
+msgstr "Accepteren"
 
 msgid "I Accept this Agreement"
 msgstr "Ik accepteer deze Overeenkomst"
@@ -3736,8 +3778,8 @@ msgstr "Waar de versie wordt gehost"
 msgid "Upload Version"
 msgstr "Versie uploaden"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden en selecteer eventuele platformbeperkingen. Na de upload wordt een aantal geautomatiseerde validatietests op uw bestand uitgevoerd."
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden. Na de upload wordt een aantal geautomatiseerde validatietests op uw bestand uitgevoerd."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Met welke platformen is dit bestand compatibel?"
@@ -4112,8 +4154,8 @@ msgstr "Firefox aanpassen"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
-"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren. Als u %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en "
 "%(css_link_open)sCSS%(link_close)s kent, hebt u al de benodigde vaardigheden om een geweldige add-on te maken."
@@ -4619,29 +4661,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarschuwing"
 msgstr[1] "{0} waarschuwingen"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Stel de pagina in die u telkens ziet bij het openen van een nieuw tabblad."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "Tientallen geweldige emoji’s – altijd via één muisklik."
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw schrijfstijl {start_sub_heading}met {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "Deze extensie, die meer dan 25 talen ondersteunt, plaatst een proeflezer in uw browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Een lichtgewicht en effectieve adblocker. uBlock Origin hanteert duizenden inhoudsfilters zonder groot beslag op geheugenruimte te leggen."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbeter video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Geniet van een pakket nieuwe YouTube-functies, zoals bioscoopmodus, advertentieblokkering, beheer voor automatisch afspelen en meer."
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vind eenvoudig afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Markeer willekeurige tekst en rechtsklik om snel een afbeelding te zoeken."
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "Tientallen geweldige emoji’s – altijd via één muisklik."
 
 msgid "Approved reviews"
 msgstr "Goedgekeurde beoordelingen"
@@ -4842,6 +4884,9 @@ msgstr "Geen beoordelingen"
 msgid "Weight"
 msgstr "Gewicht"
 
+msgid "Last Content Review"
+msgstr "Laatste inhoudsbeoordeling"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
@@ -4875,6 +4920,12 @@ msgstr "Als u vraagtekens bij deze add-on hebt waar een beheerder naar zou moete
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Maak een opmerking bij deze versie. De schrijver kan dit niet zien."
 
+msgid "Approve Content"
+msgstr "Inhoud goedkeuren"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar een bericht te sturen."
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nieuwe add-ons (minder dan 5 dagen)"
 
@@ -4895,31 +4946,6 @@ msgstr "Beoordeling met succes verwerkt."
 
 msgid "Review lock limit reached"
 msgstr "Limiet voor beoordelingsvergrendelingen bereikt"
-
-msgid "was approved"
-msgstr "is goedgekeurd"
-
-msgid "given preliminary review"
-msgstr "is voorlopig beoordeeld"
-
-msgid "rejected"
-msgstr "is afgewezen"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "is geëscaleerd"
-
-msgid "needs more information"
-msgstr "heeft meer informatie nodig"
-
-msgid "needs super review"
-msgstr "vereist superbeoordeling"
-
-msgid "commented"
-msgstr "met opmerking"
-
-msgid "confirmed as approved"
-msgstr "bevestigd als goedgekeurd"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5000,6 +5026,9 @@ msgstr "Gemodereerde beoordelingen"
 
 msgid "Auto Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
+
+msgid "Content Review"
+msgstr "Inhoudsbeoordeling"
 
 msgid "Unlisted Queues"
 msgstr "Niet-vermelde wachtrijen"
@@ -5197,6 +5226,10 @@ msgstr "Add-onbeleid"
 
 msgid "Editors' Guide"
 msgstr "Gids voor editors"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Inhoudsbeoordeling {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5490,6 +5523,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Automatisch goedgekeurde add-on ({0})"
 msgstr[1] "Automatisch goedgekeurde add-ons ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Inhoudsbeoordeling ({0})"
+msgstr[1] "Inhoudsbeoordelingen ({0})"
+
 msgid "Flagged"
 msgstr "Gemarkeerd"
 
@@ -5520,6 +5558,10 @@ msgstr "Kon geüploade bestand niet uitpakken; ontbrekend of leeg <%s>-element"
 
 msgid "Could not parse uploaded file."
 msgstr "Kon geüploade bestand niet uitpakken."
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "Ongeldige naam in archief. Zorg ervoor dat alle bestandsnamen in utf-8 of latin 1 zijn gecodeerd."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7563,6 +7605,9 @@ msgstr "Waardering {0} van 5 sterren"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Waardering %(rating)s van 5 sterren"
 
+msgid "Maximum query length exceeded."
+msgstr "Maximale lengte zoekopdracht overschreden."
+
 msgid "Most popular this week"
 msgstr "Populairst deze week"
 
@@ -8015,6 +8060,24 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "maak kennis met <b>add-ons</b>"
+
+msgid "Download Firefox"
+msgstr "Firefox downloaden"
+
+msgid "Android Browser"
+msgstr "Android-browser"
+
+msgid "iOS Browser"
+msgstr "iOS-browser"
+
+msgid "Focus Browser"
+msgstr "Focus-browser"
+
+msgid "Desktop Browser"
+msgstr "Desktopbrowser"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Andere talen"

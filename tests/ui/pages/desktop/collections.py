@@ -6,7 +6,7 @@ from base import Base
 
 class Collections(Base):
     """Collections page."""
-    _item_locator = (By.CSS_SELECTOR, '.item')
+    _item_locator = (By.CSS_SELECTOR, '.items > div')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda _: len(self.collections) > 0 and

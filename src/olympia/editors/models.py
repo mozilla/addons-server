@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
+from django.db.models.functions import Func, Coalesce
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -29,6 +30,9 @@ from olympia.versions.models import Version, version_uploaded
 
 user_log = olympia.core.logger.getLogger('z.users')
 
+log = olympia.core.logger.getLogger('z.editors')
+
+
 VIEW_QUEUE_FLAGS = (
     ('admin_review', 'admin-review', _('Admin Review')),
     ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
@@ -38,6 +42,13 @@ VIEW_QUEUE_FLAGS = (
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
+
+
+# Django 1.8 does not have Cast(), so this is a simple dumb implementation
+# that only handles Cast(..., DateTimeField())
+class DateTimeCast(Func):
+    function = 'CAST'
+    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -402,52 +413,96 @@ class ReviewerScore(ModelBase):
             return '%s:%s' % (ns_key, key)
 
     @classmethod
-    def get_event(cls, addon, status, **kwargs):
+    def get_event(cls, addon, status, version=None, post_review=False,
+                  content_review=False):
         """Return the review event type constant.
 
         This is determined by the addon.type and the queue the addon is
-        currently in (which is determined from the status).
+        currently in (which is determined from the various parameters sent
+        down from award_points()).
 
-        Note: We're not using addon.status because this is called after the
-        status has been updated by the reviewer action.
+        Note: We're not using addon.status or addon.current_version because
+        this is called after the status/current_version might have been updated
+        by the reviewer action.
 
         """
-        queue = ''
-        if status == amo.STATUS_NOMINATED:
-            queue = 'FULL'
-        elif status == amo.STATUS_PUBLIC:
-            queue = 'UPDATE'
-
-        if (addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN,
-                           amo.ADDON_API] and queue):
-            return getattr(amo, 'REVIEWED_ADDON_%s' % queue)
-        elif addon.type == amo.ADDON_DICT and queue:
-            return getattr(amo, 'REVIEWED_DICT_%s' % queue)
-        elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
-            return getattr(amo, 'REVIEWED_LP_%s' % queue)
-        elif addon.type == amo.ADDON_PERSONA:
-            return amo.REVIEWED_PERSONA
-        elif addon.type == amo.ADDON_SEARCH and queue:
-            return getattr(amo, 'REVIEWED_SEARCH_%s' % queue)
-        elif addon.type == amo.ADDON_THEME and queue:
-            return getattr(amo, 'REVIEWED_THEME_%s' % queue)
+        reviewed_score_name = None
+        if content_review:
+            # Content review always gives the same amount of points.
+            reviewed_score_name = 'REVIEWED_CONTENT_REVIEW'
+        elif post_review:
+            # There are 4 tiers of post-review scores depending on the addon
+            # weight.
+            try:
+                if version is None:
+                    raise AutoApprovalSummary.DoesNotExist
+                weight = version.autoapprovalsummary.weight
+            except AutoApprovalSummary.DoesNotExist as exception:
+                log.exception(
+                    'No such version/auto approval summary when determining '
+                    'event type to award points: %r', exception)
+                weight = 0
+            if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
+                reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
+            elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
+                reviewed_score_name = 'REVIEWED_EXTENSION_HIGH_RISK'
+            elif weight > amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
+                reviewed_score_name = 'REVIEWED_EXTENSION_MEDIUM_RISK'
+            else:
+                reviewed_score_name = 'REVIEWED_EXTENSION_LOW_RISK'
         else:
-            return None
+            if status == amo.STATUS_NOMINATED:
+                queue = 'FULL'
+            elif status == amo.STATUS_PUBLIC:
+                queue = 'UPDATE'
+            else:
+                queue = ''
+
+            if (addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN,
+                               amo.ADDON_API] and queue):
+                reviewed_score_name = 'REVIEWED_ADDON_%s' % queue
+            elif addon.type == amo.ADDON_DICT and queue:
+                reviewed_score_name = 'REVIEWED_DICT_%s' % queue
+            elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
+                reviewed_score_name = 'REVIEWED_LP_%s' % queue
+            elif addon.type == amo.ADDON_PERSONA:
+                reviewed_score_name = 'REVIEWED_PERSONA'
+            elif addon.type == amo.ADDON_SEARCH and queue:
+                reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
+            elif addon.type == amo.ADDON_THEME and queue:
+                reviewed_score_name = 'REVIEWED_THEME_%s' % queue
+
+        if reviewed_score_name:
+            return getattr(amo, reviewed_score_name)
+        return None
 
     @classmethod
-    def award_points(cls, user, addon, status, version=None, **kwargs):
+    def award_points(cls, user, addon, status, version=None,
+                     post_review=False, content_review=False,
+                     extra_note=''):
         """Awards points to user based on an event and the queue.
 
         `event` is one of the `REVIEWED_` keys in constants.
         `status` is one of the `STATUS_` keys in constants.
+        `version` is the `Version` object that was affected by the review.
+        `post_review` is set to True if the add-on was auto-approved and the
+                      reviewer is confirming/rejecting post-approval.
+        `content_review` is set to True if it's a content-only review of an
+                         auto-approved add-on.
 
         """
-        event = cls.get_event(addon, status, **kwargs)
+        event = cls.get_event(
+            addon, status, version=version, post_review=post_review,
+            content_review=content_review)
         score = amo.REVIEWED_SCORES.get(event)
 
         # Add bonus to reviews greater than our limit to encourage fixing
-        # old reviews.
-        if version and version.nomination:
+        # old reviews. Does not apply to content-review/post-review at the
+        # moment, because it would need to be calculated differently.
+        award_overdue_bonus = (
+            version and version.nomination and
+            not post_review and not content_review)
+        if award_overdue_bonus:
             waiting_time_days = (datetime.now() - version.nomination).days
             days_over = waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
             if days_over > 0:
@@ -456,7 +511,7 @@ class ReviewerScore(ModelBase):
 
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
-                               note_key=event)
+                               note_key=event, note=extra_note)
             cls.get_key(invalidate=True)
             user_log.info(
                 (u'Awarding %s points to user %s for "%s" for addon %s' % (
@@ -714,6 +769,7 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
     weight = models.IntegerField(default=0)
+    confirmed = models.NullBooleanField(default=None)
 
     def __unicode__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
@@ -859,9 +915,11 @@ class AutoApprovalSummary(ModelBase):
             failure_verdict = amo.NOT_AUTO_APPROVED
 
         if post_review:
-            # If post_review is enabled, add-ons always get a successful
-            # verdict, so verdict_info must be an empty dict.
-            verdict_info = {}
+            # If post_review is enabled, the only thing that can prevent
+            # approval is a reviewer lock.
+            verdict_info = {
+                'is_locked': self.is_locked,
+            }
         else:
             # We need everything in that dict to be False for verdict to be
             # successful.
@@ -1040,6 +1098,44 @@ class AutoApprovalSummary(ModelBase):
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info
+
+    @classmethod
+    def get_auto_approved_queue(cls):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        return (
+            Addon.objects.public()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict,
+                # Was auto-approved after the last human review, so its
+                # approval hasn't been confirmed yet.
+                _current_version__autoapprovalsummary__created__gt=(
+                    # MySQL straight up refuses to compare NULL values
+                    # (ignoring that row completely!) if we don't use
+                    # Coalesce(). This forces NULLs to be considered as being
+                    # an arbitrary old date, January 1st, 2000.
+                    Coalesce(
+                        'addonapprovalscounter__last_human_review',
+                        DateTimeCast(datetime(2000, 1, 1))
+                    ))
+            )
+        )
+
+    @classmethod
+    def get_content_review_queue(cls):
+        """Return a queryset of Addon objects that have been auto-approved and
+        need content review."""
+        success_verdict = amo.AUTO_APPROVED
+        a_year_ago = datetime.now() - timedelta(days=365)
+        return (
+            Addon.objects.public()
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict)
+            .filter(
+                Q(addonapprovalscounter__last_content_review=None) |
+                Q(addonapprovalscounter__last_content_review__lt=a_year_ago))
+        )
 
 
 class RereviewQueueThemeManager(ManagerBase):

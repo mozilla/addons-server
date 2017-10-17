@@ -480,10 +480,62 @@ class TestReviewerScore(TestCase):
                         event = None
                 self.check_event(tk, sk, event)
 
+    def test_events_post_review(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        base_args = (self.addon, self.addon.status)
+        # No version.
+        assert ReviewerScore.get_event(
+            *base_args, version=None,
+            post_review=True) == amo.REVIEWED_EXTENSION_LOW_RISK
+        # No autoapprovalsummary.
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) == amo.REVIEWED_EXTENSION_LOW_RISK
+        # Now with a summary... low risk.
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=-10)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_LOW_RISK
+        # Medium risk.
+        summary.update(weight=21)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_MEDIUM_RISK
+        # High risk.
+        summary.update(weight=101)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGH_RISK
+        # Highest risk.
+        summary.update(weight=151)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGHEST_RISK
+        # Highest risk again.
+        summary.update(weight=65535)
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version,
+            post_review=True) is amo.REVIEWED_EXTENSION_HIGHEST_RISK
+        # Content review is always the same.
+        assert ReviewerScore.get_event(
+            *base_args, version=self.addon.current_version, post_review=True,
+            content_review=True) == amo.REVIEWED_CONTENT_REVIEW
+
     def test_award_points(self):
         self._give_points()
         assert ReviewerScore.objects.all()[0].score == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_award_points_with_extra_note(self):
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status, extra_note=u'ÔMG!')
+        reviewer_score = ReviewerScore.objects.all()[0]
+        assert reviewer_score.note_key == amo.REVIEWED_ADDON_FULL
+        assert reviewer_score.score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert reviewer_score.note == u'ÔMG!'
 
     def test_award_points_bonus(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -502,6 +554,33 @@ class TestReviewerScore(TestCase):
                     (amo.REVIEWED_OVERDUE_BONUS * bonus_days))
 
         assert score.score == expected
+
+    def test_award_points_no_bonus_for_content_review(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(nomination=self.days_ago(28))
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=100)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=False, content_review=True)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[amo.REVIEWED_CONTENT_REVIEW]
+
+    def test_award_points_no_bonus_for_post_review(self):
+        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.current_version.update(nomination=self.days_ago(29))
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=True, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_EXTENSION_HIGH_RISK]
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
@@ -1483,13 +1562,32 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_calculate_verdict_post_review(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=1, approved_updates=2)
+            version=self.version, average_daily_users=2, approved_updates=2,
+            uses_custom_csp=True, uses_native_messaging=True,
+            uses_content_script_for_all_urls=True)
         info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
+            max_average_daily_users=summary.average_daily_users - 1,
             min_approved_updates=summary.approved_updates + 1,
             post_review=True)
-        assert info == {}
+        assert info == {
+            'is_locked': False,
+        }
+        # Regardless of the many flags that are set, it's approved because we
+        # are in post-review mode.
         assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_post_review_but_locked(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, average_daily_users=2, approved_updates=2,
+            is_locked=True)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users - 1,
+            min_approved_updates=summary.approved_updates + 1,
+            post_review=True)
+        assert info == {
+            'is_locked': True,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
 
     def test_calculate_verdict_post_review_dry_run(self):
         summary = AutoApprovalSummary.objects.create(
@@ -1498,7 +1596,9 @@ class TestAutoApprovalSummary(TestCase):
             max_average_daily_users=summary.average_daily_users + 1,
             min_approved_updates=summary.approved_updates + 1,
             post_review=True, dry_run=True)
-        assert info == {}
+        assert info == {
+            'is_locked': False,
+        }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):

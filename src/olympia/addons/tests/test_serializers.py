@@ -4,18 +4,21 @@ from django.utils.translation import override
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
+from olympia.accounts.tests.test_serializers import TestBaseUserSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, collection_factory, ESTestCase, file_factory, TestCase,
     version_factory, user_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona, Preview)
+    Addon, AddonCategory, AddonUser, Category, Persona, Preview,
+    ReplacementAddon)
 from olympia.addons.serializers import (
-    AddonSerializer, AddonSerializerWithUnlistedData,
+    AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     ESAddonAutoCompleteSerializer, ESAddonSerializer,
     ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
-    LicenseSerializer, SimpleVersionSerializer, VersionSerializer)
+    LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
+    VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
@@ -76,6 +79,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['hash'] == file_.hash
         assert result_file['is_restart_required'] == file_.is_restart_required
         assert result_file['is_webextension'] == file_.is_webextension
+        assert (
+            result_file['is_mozilla_signed_extension'] ==
+            file_.is_mozilla_signed_extension)
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
@@ -472,6 +478,7 @@ class AddonSerializerOutputTestMixin(object):
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
+        persona.popularity = 123456
         persona.save()
         assert persona.is_new()
 
@@ -479,6 +486,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['theme_data'] == persona.theme_data
         assert '<script>' not in result['theme_data']['description']
         assert '&lt;script&gt;' in result['theme_data']['description']
+
+        assert result['average_daily_users'] == persona.popularity
+
+        assert 'weekly_downloads' not in result
 
     def test_handle_persona_without_persona_data_in_db(self):
         self.addon = addon_factory(type=amo.ADDON_PERSONA)
@@ -628,6 +639,7 @@ class TestVersionSerializerOutput(TestCase):
             file_kw={
                 'hash': 'fakehash',
                 'is_webextension': True,
+                'is_mozilla_signed_extension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
@@ -667,6 +679,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['hash'] == first_file.hash
         assert result['files'][0]['is_webextension'] == (
             first_file.is_webextension)
+        assert result['files'][0]['is_mozilla_signed_extension'] == (
+            first_file.is_mozilla_signed_extension)
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
         assert result['files'][0]['status'] == 'public'
@@ -678,6 +692,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][1]['hash'] == second_file.hash
         assert result['files'][1]['is_webextension'] == (
             second_file.is_webextension)
+        assert result['files'][1]['is_mozilla_signed_extension'] == (
+            second_file.is_mozilla_signed_extension)
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'
@@ -815,16 +831,24 @@ class TestLanguageToolsSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.addon.pk
         assert result['default_locale'] == self.addon.default_locale
+        assert result['guid'] == self.addon.guid
         assert result['locale_disambiguation'] == (
             self.addon.locale_disambiguation)
         assert result['name'] == {'en-US': self.addon.name}
+        assert result['slug'] == self.addon.slug
         assert result['target_locale'] == self.addon.target_locale
+        assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
         addon_testcase = AddonSerializerOutputTestMixin()
         addon_testcase.addon = self.addon
         addon_testcase._test_version(
             self.addon.current_version, result['current_version'])
+
+    def test_basic_dict(self):
+        self.addon = addon_factory(type=amo.ADDON_DICT)
+        result = self.serialize()
+        assert result['type'] == 'dictionary'
 
 
 class TestESAddonAutoCompleteSerializer(ESTestCase):
@@ -919,3 +943,107 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+
+
+class TestAddonDeveloperSerializer(TestBaseUserSerializer):
+    serializer_class = AddonDeveloperSerializer
+
+    def test_picture(self):
+        serialized = self.serialize()
+        assert ('anon_user.png' in serialized['picture_url'])
+
+        self.user.update(picture_type='image/jpeg')
+        serialized = self.serialize()
+        assert serialized['picture_url'] == absolutify(self.user.picture_url)
+        assert '%s.png' % self.user.id in serialized['picture_url']
+
+
+class TestReplacementAddonSerializer(TestCase):
+
+    def serialize(self, replacement):
+        serializer = ReplacementAddonSerializer()
+        return serializer.to_representation(replacement)
+
+    def test_valid_addon_path(self):
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
+
+        rep = ReplacementAddon.objects.create(
+            guid='legacy@mozilla', path=u'/addon/stuff/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+        # Edge case, but should accept numeric IDs too
+        rep.update(path=u'/addon/%s/' % addon.id)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_invalid_addons(self):
+        """Broken paths, invalid add-ons, etc, should fail gracefully to None.
+        """
+        rep = ReplacementAddon.objects.create(
+            guid='legacy@mozilla', path=u'/addon/stuff/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        # Addon path doesn't exist.
+        assert result['replacement'] == []
+
+        # Add the add-on but make it not public
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla',
+                              status=amo.STATUS_NULL)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Double check that the test is good and it will work once public.
+        addon.update(status=amo.STATUS_PUBLIC)
+        result = self.serialize(rep)
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_valid_collection_path(self):
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
+        me = user_factory(username=u'me')
+        collection = collection_factory(slug=u'bag', author=me)
+        collection.add_addon(addon)
+
+        rep = ReplacementAddon.objects.create(
+            guid=u'legacy@mozilla', path=u'/collections/me/bag/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+        # Edge case, but should accept numeric user IDs too
+        rep.update(path=u'/collections/%s/bag/' % me.id)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == [u'newstuff@mozilla']
+
+    def test_invalid_collections(self):
+        """Broken paths, invalid users or collections, should fail gracefully
+        to None."""
+        rep = ReplacementAddon.objects.create(
+            guid=u'legacy@mozilla', path=u'/collections/me/bag/')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Create the user but not the collection.
+        me = user_factory(username=u'me')
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Create the collection but make the add-on invalid.
+        addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla',
+                              status=amo.STATUS_NULL)
+        collection = collection_factory(slug=u'bag', author=me)
+        collection.add_addon(addon)
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
+        # Double check that the test is good and it will work once public.
+        addon.update(status=amo.STATUS_PUBLIC)
+        result = self.serialize(rep)
+        assert result['replacement'] == [u'newstuff@mozilla']

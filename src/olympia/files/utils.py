@@ -23,6 +23,7 @@ from django.core.files.storage import (
     default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
+from django.utils.encoding import force_text
 
 import flufl.lock
 import rdflib
@@ -119,18 +120,24 @@ class Extractor(object):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
         certificate = os.path.join(path, 'META-INF', 'mozilla.rsa')
+        certificate_info = None
+
+        if os.path.exists(certificate):
+            certificate_info = SigningCertificateInformation(certificate)
+
         if os.path.exists(manifest_json):
-            data = ManifestJSONExtractor(manifest_json).parse(minimal=minimal)
+            data = ManifestJSONExtractor(
+                manifest_json,
+                certinfo=certificate_info).parse(minimal=minimal)
         elif os.path.exists(install_rdf):
             # Note that RDFExtractor is a misnomer, it receives the full path
             # to the file because it might need to read other files than just
             # the rdf to deal with dictionaries, complete themes etc.
-            data = RDFExtractor(path).parse(minimal=minimal)
+            data = RDFExtractor(
+                path, certinfo=certificate_info).parse(minimal=minimal)
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
-        if os.path.exists(certificate):
-            data.update(MozillaSignedCertificateChecker(certificate).parse())
         return data
 
 
@@ -178,8 +185,9 @@ class RDFExtractor(object):
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
-    def __init__(self, path):
+    def __init__(self, path, certinfo=None):
         self.path = path
+        self.certinfo = certinfo
         install_rdf_path = os.path.join(path, 'install.rdf')
         self.rdf = rdflib.Graph().parse(open(install_rdf_path))
         self.package_type = None
@@ -192,6 +200,12 @@ class RDFExtractor(object):
             'version': self.find('version'),
             'is_webextension': False,
         }
+
+        # Populate certificate information (e.g signed by mozilla or not)
+        # early on to be able to verify compatibility based on it
+        if self.certinfo is not None:
+            data.update(self.certinfo.parse())
+
         if not minimal:
             data.update({
                 'name': self.find('name'),
@@ -203,12 +217,23 @@ class RDFExtractor(object):
                 'apps': self.apps(),
                 'is_multi_package': self.package_type == '32',
             })
+
             # We used to simply use the value of 'strictCompatibility' in the
             # rdf to set strict_compatibility, but now we enable it or not for
             # all legacy add-ons depending on their type. This will prevent
             # them from being marked as compatible with Firefox 57.
-            data['strict_compatibility'] = (
-                data['type'] not in amo.NO_COMPAT)
+            # This is not true for legacy add-ons already signed by Mozilla.
+            # For these add-ons we just re-use to whatever
+            # `strictCompatibility` is set.
+            if data['type'] not in amo.NO_COMPAT:
+                if self.certinfo and self.certinfo.is_mozilla_signed_ou:
+                    data['strict_compatibility'] = (
+                        self.find('strictCompatibility') == 'true')
+                else:
+                    data['strict_compatibility'] = True
+            else:
+                data['strict_compatibility'] = False
+
             # `experiment` is detected in in `find_type`.
             data['is_experiment'] = self.is_experiment
             multiprocess_compatible = self.find('multiprocessCompatible')
@@ -277,15 +302,24 @@ class RDFExtractor(object):
             if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
                 continue
             seen_apps.add(app.id)
+
             try:
                 min_appver_text = self.find('minVersion', ctx)
                 max_appver_text = self.find('maxVersion', ctx)
 
-                if (app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
-                        max_appver_text == '*'):
-                    # Rewrite '*' as '56.*' in legacy extensions, since they
-                    # are not compatible with higher versions.
+                # Rewrite '*' as '56.*' in legacy extensions, since they
+                # are not compatible with higher versions.
+                # We don't do that for legacy add-ons that are already
+                # signed by Mozilla to allow them for Firefox 57 onwards.
+                needs_max_56_star = (
+                    app.id in (amo.FIREFOX.id, amo.ANDROID.id) and
+                    max_appver_text == '*' and
+                    not (self.certinfo and self.certinfo.is_mozilla_signed_ou)
+                )
+
+                if needs_max_56_star:
                     max_appver_text = '56.*'
+
                 min_appver, max_appver = get_appversions(
                     app, min_appver_text, max_appver_text)
             except AppVersion.DoesNotExist:
@@ -298,8 +332,9 @@ class RDFExtractor(object):
 
 class ManifestJSONExtractor(object):
 
-    def __init__(self, path, data=''):
+    def __init__(self, path, data='', certinfo=None):
         self.path = path
+        self.certinfo = certinfo
 
         if not data:
             with open(path) as fobj:
@@ -341,6 +376,7 @@ class ManifestJSONExtractor(object):
     def type(self):
         return (
             amo.ADDON_LPAPP if self.get('langpack_id')
+            else amo.ADDON_STATICTHEME if 'theme' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -357,6 +393,8 @@ class ManifestJSONExtractor(object):
         apps = (
             (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
             (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        ) if self.type != amo.ADDON_STATICTHEME else (
+            (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
         )
 
         doesnt_support_no_id = (
@@ -384,7 +422,8 @@ class ManifestJSONExtractor(object):
         couldnt_find_version = False
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
-                strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+                strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+                                         default_min_version)
             else:
                 strict_min_version = (
                     self.strict_min_version or default_min_version)
@@ -427,6 +466,12 @@ class ManifestJSONExtractor(object):
             'version': self.get('version', ''),
             'is_webextension': True,
         }
+
+        # Populate certificate information (e.g signed by mozilla or not)
+        # early on to be able to verify compatibility based on it
+        if self.certinfo is not None:
+            data.update(self.certinfo.parse())
+
         if not minimal:
             data.update({
                 'name': self.get('name'),
@@ -439,14 +484,17 @@ class ManifestJSONExtractor(object):
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                 'default_locale': self.get('default_locale'),
-                'permissions': self.get('permissions', []),
-                'content_scripts': self.get('content_scripts', []),
-                'is_static_theme': 'theme' in self.data
             })
+            if self.type == amo.ADDON_EXTENSION:
+                # Only extensions have permissions and content scripts
+                data.update({
+                    'permissions': self.get('permissions', []),
+                    'content_scripts': self.get('content_scripts', []),
+                })
         return data
 
 
-class MozillaSignedCertificateChecker(object):
+class SigningCertificateInformation(object):
     """Process the signature to determine the addon is a Mozilla Signed
     extension, so is signed already with a special certificate.  We want to
     know this so we don't write over it later, and stop unauthorised people
@@ -528,6 +576,19 @@ class SafeUnzip(object):
         info_list = zip_file.infolist()
 
         for info in info_list:
+            try:
+                force_text(info.filename)
+            except UnicodeDecodeError:
+                # We can't log the filename unfortunately since it's encoding
+                # is obviously broken :-/
+                log.error('Extraction error, invalid file name encoding in '
+                          'archive: %s' % self.source)
+                # L10n: {0} is the name of the invalid file.
+                msg = ugettext(
+                    'Invalid file name in archive. Please make sure '
+                    'all filenames are utf-8 or latin1 encoded.')
+                raise forms.ValidationError(msg.format(info.filename))
+
             if '..' in info.filename or info.filename.startswith('/'):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
@@ -801,7 +862,7 @@ def check_xpi_info(xpi_info, addon=None):
             ugettext('Version numbers should only contain letters, numbers, '
                      'and these punctuation characters: +*.-_.'))
 
-    if is_webextension and xpi_info.get('is_static_theme', False):
+    if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))

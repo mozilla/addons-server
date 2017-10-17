@@ -17,7 +17,7 @@ class CategoriesTests(TestCase):
     def test_categories_addons_generation(self):
         data = generate_categories(APPS['android'], ADDON_EXTENSION)
         assert len(data) == Category.objects.all().count()
-        assert len(data) == 10
+        assert len(data) == 11
 
         category = Category.objects.get(
             id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id)
@@ -26,7 +26,7 @@ class CategoriesTests(TestCase):
         # Re-generating should not create any more.
         data = generate_categories(APPS['android'], ADDON_EXTENSION)
         assert len(data) == Category.objects.all().count()
-        assert len(data) == 10
+        assert len(data) == 11
 
         # Name should still be the same.
         category = Category.objects.get(

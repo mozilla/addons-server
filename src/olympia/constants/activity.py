@@ -212,7 +212,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
 class COMMENT_VERSION(_LOG):
     id = 49
     format = _(u'Comment on {addon} {version}.')
-    short = _(u'Comment')
+    short = _(u'Commented')
     keep = True
     review_queue = True
     hide_developer = True
@@ -552,6 +552,38 @@ class CONFIRM_AUTO_APPROVED(_LOG):
     keep = True
     editor_review_action = True
     review_queue = True
+    hide_developer = True
+
+
+class ENABLE_VERSION(_LOG):
+    id = 145
+    format = _(u'{addon} {version} re-enabled.')
+
+
+class DISABLE_VERSION(_LOG):
+    id = 146
+    format = _(u'{addon} {version} disabled.')
+
+
+class APPROVE_CONTENT(_LOG):
+    id = 147
+    format = _(u'{addon} {version} content approved.')
+    short = _(u'Content approved')
+    keep = True
+    editor_review_action = True
+    review_queue = True
+    hide_developer = True
+
+
+class REJECT_CONTENT(_LOG):
+    id = 148
+    action_class = 'reject'
+    format = _(u'{addon} {version} content rejected.')
+    short = _(u'Content rejected')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    editor_review_action = True
 
 
 LOGS = [x for x in vars().values()

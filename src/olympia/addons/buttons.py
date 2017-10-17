@@ -3,6 +3,7 @@ from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams
@@ -108,8 +109,10 @@ class InstallButton(object):
                          addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
-        self._show_contrib = show_contrib
-        self.show_contrib = (show_contrib and addon.takes_contributions and
+        simple_contributions = waffle.switch_is_active('simple-contributions')
+        self._show_contrib = show_contrib and not simple_contributions
+        self.show_contrib = (show_contrib and not simple_contributions and
+                             addon.takes_contributions and
                              addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_warning = show_warning and self.unreviewed
 

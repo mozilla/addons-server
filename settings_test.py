@@ -44,7 +44,7 @@ AUTHENTICATION_BACKENDS = (
     'olympia.users.backends.TestUserBackend',
 )
 
-CELERY_ALWAYS_EAGER = True
+CELERY_TASK_ALWAYS_EAGER = True
 DEBUG = False
 
 # We won't actually send an email.
@@ -80,20 +80,6 @@ ALLOW_SELF_REVIEWS = True
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
-# These are the default languages. If you want a constrainted set for your
-# tests, you should add those in the tests.
-AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'en-GB', 'es',
-    'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn',
-    'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk',
-    'vi', 'zh-CN', 'zh-TW',
-)
-
-# Make sure we run our tests with debug languages.
-AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
-
-LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = 1337
 
 ES_DEFAULT_NUM_REPLICAS = 0

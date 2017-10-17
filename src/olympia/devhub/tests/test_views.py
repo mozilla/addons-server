@@ -9,12 +9,14 @@ from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.core.management import call_command
 from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, core, paypal
 from olympia.activity.models import ActivityLog
@@ -362,6 +364,7 @@ class TestDevRequired(TestCase):
     def setUp(self):
         super(TestDevRequired, self).setUp()
         self.addon = Addon.objects.get(id=3615)
+        self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
         assert self.client.login(email='del@icio.us')
@@ -371,9 +374,12 @@ class TestDevRequired(TestCase):
     def test_anon(self):
         self.client.logout()
         self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
+        self.assertLoginRedirects(self.client.get(
+            self.edit_page_url), self.edit_page_url)
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
@@ -382,6 +388,7 @@ class TestDevRequired(TestCase):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
         self.au.save()
         assert self.client.get(self.get_url).status_code == 200
+        assert self.client.get(self.edit_page_url).status_code == 200
 
     def test_viewer_post(self):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
@@ -421,6 +428,19 @@ class TestVersionStats(TestCase):
         self.assertDictEqual(data, exp)
 
 
+@override_switch('simple-contributions', active=True)
+class TestPayments404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.no_cache().get(id=3615)
+        url = addon.get_dev_url('payments')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.get(url).status_code == 404
+        assert self.client.post(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestEditPayments(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -702,6 +722,7 @@ class TestDisablePayments(TestCase):
         assert not Addon.objects.no_cache().get(id=3615).wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestPaymentsProfile(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1063,6 +1084,19 @@ class TestActivityFeed(TestCase):
         assert len(doc('#recent-activity .item')) == 1
 
 
+@override_switch('simple-contributions', active=True)
+class TestProfile404(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def test_404(self):
+        addon = Addon.objects.get(id=3615)
+        url = addon.get_dev_url('profile')
+        assert self.client.login(email='del@icio.us')
+        assert self.client.post(url).status_code == 404
+        assert self.client.get(url).status_code == 404
+
+
+@override_switch('simple-contributions', active=False)
 class TestProfileBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
@@ -1095,6 +1129,7 @@ class TestProfileBase(TestCase):
                 assert getattr(addon, k) == v
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfileStatusBar(TestProfileBase):
 
     def setUp(self):
@@ -1155,6 +1190,7 @@ class TestProfileStatusBar(TestProfileBase):
         assert not addon.wants_contributions
 
 
+@override_switch('simple-contributions', active=False)
 class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
@@ -1396,6 +1432,11 @@ class TestUploadDetail(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '51.0a1')
+
+        call_command('dump_apps')
+
         assert self.client.login(email='regular@mozilla.com')
 
     def create_appversion(self, name, version):
@@ -1533,7 +1574,6 @@ class TestUploadDetail(BaseUploadTest):
             str(p) for p in amo.MOBILE_PLATFORMS])
 
     def test_webextension_supports_all_platforms(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
 
         # Android is only supported 48+
@@ -1543,7 +1583,6 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('valid_webextension.xpi', [])
 
     def test_webextension_android_excluded_if_no_48_support(self):
-        self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '47.*')
         self.create_appversion('firefox', '48.*')
@@ -1555,6 +1594,21 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('valid_webextension_max_47.xpi', [
             str(amo.PLATFORM_ANDROID.id)
         ])
+
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_supports_all_desktop_platforms(self):
+        # Support was added in 53
+        self.create_appversion('firefox', '53.0')
+
+        # No Android support yet, but make sure.
+        self.create_appversion('android', '53.0')
+        self.create_appversion('android', '42.*')
+        self.create_appversion('android', '47.*')
+        self.create_appversion('android', '48.*')
+        self.create_appversion('android', '*')
+
+        self.check_excluded_platforms('static_theme.zip', [
+            str(amo.PLATFORM_ANDROID.id)])
 
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
@@ -1671,6 +1725,27 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1,
              u'message': u'You cannot submit a Mozilla Signed Extension',
              u'fatal': True, u'type': u'error'}]
+
+    def test_legacy_mozilla_signed_fx57_compat_allowed(self):
+        """Legacy add-ons that are signed with the mozilla certificate
+        should be allowed to be submitted ignoring most compatibility
+        checks.
+
+        See https://github.com/mozilla/addons-server/issues/6424 for more
+        information.
+        """
+        user_factory(email='verypinkpanda@mozilla.com')
+        assert self.client.login(email='verypinkpanda@mozilla.com')
+        self.upload_file(os.path.join(
+            settings.ROOT, 'src', 'olympia', 'files', 'fixtures', 'files',
+            'legacy-addon-already-signed-0.1.0.xpi'))
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
+
+        assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_system_addon_update_allowed(self, mock_validator):

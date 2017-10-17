@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
-"PO-Revision-Date: 2017-09-16 04:48+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"PO-Revision-Date: 2017-10-12 10:28+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -127,8 +127,8 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
-msgstr "网址域名必须是 [%s] 或其子域。"
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "网址域名必须是 [%s] 之一，或其子域。"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
@@ -743,9 +743,8 @@ msgstr "{addon} 的源代码许可协议"
 msgid "Source Code License"
 msgstr "源代码许可协议"
 
-#, fuzzy
 msgid "support section"
-msgstr "用户支持网站"
+msgstr "用户支持"
 
 msgid "support email"
 msgstr "用户支持邮箱"
@@ -1085,6 +1084,9 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "即便您所支持的应用程序本身不需要一个清单文件，您仍必须按%(amo_manifests_mdn_link_open)s这里%(amo_manifests_mdn_link_close)s的要求附上包含所有必要属性的清单文件。"
+
+msgid "Contributors"
+msgstr "贡献者"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1911,6 +1913,9 @@ msgstr "此附加组件已被标记为管理员审核。它仍处于我们的审
 msgid "Comment on {addon} {version}."
 msgstr "对 {addon} {version} 的评论。"
 
+msgid "Commented"
+msgstr "已留言"
+
 msgid "{tag} added to {addon}."
 msgstr "{addon} 已添加标签 {tag}。"
 
@@ -2066,6 +2071,24 @@ msgstr "{addon} {version} 的自动批准已确认。"
 msgid "Auto-Approval confirmed"
 msgstr "自动批准已确认"
 
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} 已重新启用。"
+
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} 已禁用。"
+
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} 内容已批准。"
+
+msgid "Content approved"
+msgstr "内容已批准"
+
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} 内容被退回。"
+
+msgid "Content rejected"
+msgstr "内容被退回"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2103,7 +2126,7 @@ msgid "Pending approval"
 msgstr "等待审核"
 
 msgid "Flagged for further review"
-msgstr "标记以做进一步审核"
+msgstr "已标记进一步审核"
 
 msgid "Beta"
 msgstr "公开测试版"
@@ -2142,6 +2165,9 @@ msgstr "插件"
 msgid "Theme"
 msgstr "主题"
 
+msgid "Theme (Static)"
+msgstr "主题 (静态)"
+
 msgid "Complete Themes"
 msgstr "完整主题"
 
@@ -2158,6 +2184,9 @@ msgstr "语言包（附加组件）"
 
 msgid "Plugins"
 msgstr "插件"
+
+msgid "Themes (Static)"
+msgstr "主题 (静态)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "仅在此附加组件页面和开发者简介中询问"
@@ -2180,102 +2209,6 @@ msgstr "发布"
 
 msgid "Change"
 msgstr "更改"
-
-msgid "App"
-msgstr "应用"
-
-msgid "Persona"
-msgstr "炫彩风格"
-
-msgid "Manual Reviewer Points"
-msgstr "人工审核员点数"
-
-msgid "New Add-on Review"
-msgstr "新附加组件审核"
-
-msgid "Preliminary Add-on Review"
-msgstr "初步附加组件审核"
-
-msgid "Updated Add-on Review"
-msgstr "已更新附加组件审核"
-
-msgid "New Dictionary Review"
-msgstr "新字典审核"
-
-msgid "Preliminary Dictionary Review"
-msgstr "初步字典审核"
-
-msgid "Updated Dictionary Review"
-msgstr "已更新字典审核"
-
-msgid "New Language Pack Review"
-msgstr "新语言包审核"
-
-msgid "Preliminary Language Pack Review"
-msgstr "首选语言包审核"
-
-msgid "Updated Language Pack Review"
-msgstr "已更新语言包审核"
-
-msgid "Bonus for overdue reviews"
-msgstr "逾期审核奖励点数"
-
-msgid "Days Before Bonus Points Applied"
-msgstr "天后适用奖励点数"
-
-msgid "Theme Review"
-msgstr "主题审核"
-
-msgid "New Search Provider Review"
-msgstr "新搜索提供商审核"
-
-msgid "Preliminary Search Provider Review"
-msgstr "搜索提供商初步审核"
-
-msgid "Updated Search Provider Review"
-msgstr "已更新搜索提供商审核"
-
-msgid "New Complete Theme Review"
-msgstr "新完整主题审核"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "完整主题初步审核"
-
-msgid "Updated Complete Theme Review"
-msgstr "完整主题更新审核"
-
-msgid "Moderated Add-on Review"
-msgstr "提请仲裁的附加组件评价"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "已还原附加组件评价仲裁"
-
-msgid "Level 1"
-msgstr "第1级"
-
-msgid "Level 2"
-msgstr "第2级"
-
-msgid "Level 3"
-msgstr "第3级"
-
-msgid "Level 4"
-msgstr "第4级"
-
-msgid "Level 5"
-msgstr "第5级"
-
-msgid "Level 6"
-msgstr "第6级"
-
-msgid "Level 7"
-msgstr "第7级"
-
-msgid "Level 8"
-msgstr "第8级"
-
-msgid "Level 9"
-msgstr "第9级"
 
 msgid "Compatible"
 msgstr "兼容"
@@ -2349,42 +2282,6 @@ msgstr "复古"
 msgid "Sports"
 msgstr "运动"
 
-msgid "General"
-msgstr "一般"
-
-msgid "Business"
-msgstr "商务"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "字典和百科全书"
-
-msgid "Kids"
-msgstr "儿童"
-
-msgid "Multiple Search"
-msgstr "多重搜索"
-
-msgid "Music"
-msgstr "音乐"
-
-msgid "News & Blogs"
-msgstr "新闻和博客"
-
-msgid "Photos & Images"
-msgstr "照片和图片"
-
-msgid "Shopping & E-Commerce"
-msgstr "购物和电子商务"
-
-msgid "Social & People"
-msgstr "社交和人脉"
-
-msgid "Travel"
-msgstr "旅行"
-
-msgid "Video"
-msgstr "视频"
-
 msgid "Abstract"
 msgstr "抽象"
 
@@ -2403,6 +2300,9 @@ msgstr "Foxkeh"
 msgid "Holiday"
 msgstr "假日"
 
+msgid "Music"
+msgstr "音乐"
+
 msgid "Scenery"
 msgstr "风景"
 
@@ -2414,6 +2314,39 @@ msgstr "纯色"
 
 msgid "Websites"
 msgstr "网站"
+
+msgid "General"
+msgstr "一般"
+
+msgid "Business"
+msgstr "商务"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "字典和百科全书"
+
+msgid "Kids"
+msgstr "儿童"
+
+msgid "Multiple Search"
+msgstr "多重搜索"
+
+msgid "News & Blogs"
+msgstr "新闻和博客"
+
+msgid "Photos & Images"
+msgstr "照片和图片"
+
+msgid "Shopping & E-Commerce"
+msgstr "购物和电子商务"
+
+msgid "Social & People"
+msgstr "社交和人脉"
+
+msgid "Travel"
+msgstr "旅行"
+
+msgid "Video"
+msgstr "视频"
 
 msgid "Device Features & Location"
 msgstr "设备特性和位置"
@@ -2489,6 +2422,111 @@ msgstr "特定网站"
 
 msgid "Web and Developer Tools"
 msgstr "网页和开发者工具"
+
+msgid "App"
+msgstr "应用"
+
+msgid "Persona"
+msgstr "炫彩风格"
+
+msgid "Manual Reviewer Points"
+msgstr "人工审核员点数"
+
+msgid "New Add-on Review"
+msgstr "新附加组件审核"
+
+msgid "Preliminary Add-on Review"
+msgstr "初步附加组件审核"
+
+msgid "Updated Add-on Review"
+msgstr "已更新附加组件审核"
+
+msgid "New Dictionary Review"
+msgstr "新字典审核"
+
+msgid "Preliminary Dictionary Review"
+msgstr "初步字典审核"
+
+msgid "Updated Dictionary Review"
+msgstr "已更新字典审核"
+
+msgid "New Language Pack Review"
+msgstr "新语言包审核"
+
+msgid "Preliminary Language Pack Review"
+msgstr "首选语言包审核"
+
+msgid "Updated Language Pack Review"
+msgstr "已更新语言包审核"
+
+msgid "Theme Review"
+msgstr "主题审核"
+
+msgid "New Search Provider Review"
+msgstr "新搜索提供商审核"
+
+msgid "Preliminary Search Provider Review"
+msgstr "搜索提供商初步审核"
+
+msgid "Updated Search Provider Review"
+msgstr "已更新搜索提供商审核"
+
+msgid "New Complete Theme Review"
+msgstr "新完整主题审核"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "完整主题初步审核"
+
+msgid "Updated Complete Theme Review"
+msgstr "完整主题更新审核"
+
+msgid "Moderated Add-on Review"
+msgstr "提请仲裁的附加组件评价"
+
+msgid "Add-on Review Moderation Reverted"
+msgstr "已还原附加组件评价仲裁"
+
+msgid "Add-on Content Review"
+msgstr "附加组件内容审核"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr "先发后审附加组件审核 (最高风险)"
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr "先发后审附加组件审核 (高风险)"
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr "先发后审附加组件审核 (中风险)"
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr "先发后审附加组件审核 (低风险)"
+
+msgid "Level 1"
+msgstr "第1级"
+
+msgid "Level 2"
+msgstr "第2级"
+
+msgid "Level 3"
+msgstr "第3级"
+
+msgid "Level 4"
+msgstr "第4级"
+
+msgid "Level 5"
+msgstr "第5级"
+
+msgid "Level 6"
+msgstr "第6级"
+
+msgid "Level 7"
+msgstr "第7级"
+
+msgid "Level 8"
+msgstr "第8级"
+
+msgid "Level 9"
+msgstr "第9级"
 
 msgid "Request More Info"
 msgstr "要求更多信息"
@@ -2876,14 +2914,17 @@ msgstr "Firefox 附加组件分发协议"
 msgid "Review Policies and Rules"
 msgstr "审核政策及规则"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已阅读并同意本协议和规则与政策"
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议。它还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
 msgid "Printable Version"
 msgstr "可打印版本"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "我已阅读并同意本协议和规则与政策"
+msgid "Accept"
+msgstr "接受"
 
 msgid "I Accept this Agreement"
 msgstr "我同意这个协议"
@@ -3625,8 +3666,8 @@ msgstr "版本托管位置"
 msgid "Upload Version"
 msgstr "上传版本"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr "使用下面的按钮上传您的附加组件包，并选择可兼容的平台。在上传完成后，将会对您的文件执行一系列的自动化验证测试。"
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
 msgid "Which platforms is this file compatible with?"
 msgstr "此文件与哪个平台兼容？"
@@ -3990,9 +4031,9 @@ msgstr "定制 Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, "
-"and%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr "附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备必要技能能来制作一个绝佳的附加组件了。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr "附加组件让超过数百万的 Firefox 用户能够增强自己的浏览体验。如果您了解 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 和 %(css_link_open)sCSS%(link_close)s，您已经具备了足够的技能来制作一个绝佳的附加组件。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "了解如何制作一个附加组件"
@@ -4483,29 +4524,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "自定义新标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "屏蔽广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "设置每次打开新标签页时看到的页面。"
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr "无数的精美 emoji，只需一键。"
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "校阅写作文字 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
-msgstr "支持超过25种语言，此扩展可为您的浏览器提供文字校阅功能。"
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "轻松查找图像 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "选中文本并右击以快速执行一次图像搜索。"
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis—always a click away."
+msgstr "无数的精美 emoji，只需一键。"
 
 msgid "Approved reviews"
 msgstr "已通过的审核"
@@ -4658,7 +4699,7 @@ msgid "A problem with your Theme submission"
 msgstr "您所提交主题的问题"
 
 msgid "Theme submission flagged for review"
-msgstr "主题提交标记供审核"
+msgstr "主题提交已标记待审"
 
 msgid "A question about your Theme submission"
 msgstr "您提交的主题的一个问题"
@@ -4702,6 +4743,9 @@ msgstr "没有审核"
 msgid "Weight"
 msgstr "加权"
 
+msgid "Last Content Review"
+msgstr "上次内容审核"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
@@ -4735,6 +4779,12 @@ msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "对此版本进行注释。其开发者不会看到这些。"
 
+msgid "Approve Content"
+msgstr "核准内容"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "这将记录您接受此版本的内容，不会通知开发者。"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
 
@@ -4755,31 +4805,6 @@ msgstr "审核处理成功。"
 
 msgid "Review lock limit reached"
 msgstr "达到的审查锁限制"
-
-msgid "was approved"
-msgstr "已通过审核"
-
-msgid "given preliminary review"
-msgstr "已给予初步审核"
-
-msgid "rejected"
-msgstr "被退回"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "已向上呈报"
-
-msgid "needs more information"
-msgstr "需要更多信息"
-
-msgid "needs super review"
-msgstr "需要超级审核"
-
-msgid "commented"
-msgstr "已留言"
-
-msgid "confirmed as approved"
-msgstr "已确认批准"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4857,6 +4882,9 @@ msgstr "提请仲裁的评价"
 
 msgid "Auto Approved Add-ons"
 msgstr "自动批准的附加组件"
+
+msgid "Content Review"
+msgstr "内容审核"
 
 msgid "Unlisted Queues"
 msgstr "未上架队列"
@@ -5034,7 +5062,7 @@ msgstr "由 %(user)s 于 %(date)s %(stars)s（%(locale)s）"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">由 %(user)s 于 %(date)s 标记</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s 于 %(date)s 标记</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "所有评价都已仲裁。做得不错！"
@@ -5050,6 +5078,10 @@ msgstr "附加组件政策"
 
 msgid "Editors' Guide"
 msgstr "审核员指南"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "内容审核 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5226,7 +5258,7 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} 个更新"
 
 msgid "Flagged Themes"
-msgstr "已标记的主题"
+msgstr "待审的主题"
 
 msgid "Theme Review Queue"
 msgstr "主题校验队列"
@@ -5336,8 +5368,12 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "自动批准的附加组件 ({0})"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "内容审核 ({0})"
+
 msgid "Flagged"
-msgstr "已标记"
+msgstr "待审"
 
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
@@ -5366,6 +5402,10 @@ msgstr "无法解析上传的文件，缺少或者空的 <%s> 元素"
 
 msgid "Could not parse uploaded file."
 msgstr "无法解析上传的文件。"
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr "归档中的文件名无效。请确保文件名为 utf-8 或 latin1 编码。"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7163,7 +7203,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "您不能为同一版本的附加组件留下两条评价。"
 
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "谢谢；该评论已被审核员标记为批准。"
+msgstr "谢谢，已将此评论标为批准。"
 
 msgid "Add a review for {0}"
 msgstr "为 {0} 添加评论"
@@ -7277,6 +7317,9 @@ msgstr "评分{0}星，满分5星"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "给 %(rating)s 以5星评价"
+
+msgid "Maximum query length exceeded."
+msgstr "超出最大查询长度。"
 
 msgid "Most popular this week"
 msgstr "本周最热门"
@@ -7715,6 +7758,24 @@ msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">注明</a>�
 
 msgid "get to know <b>add-ons</b>"
 msgstr "认识 <b>附加组件</b>"
+
+msgid "Download Firefox"
+msgstr "下载 Firefox"
+
+msgid "Android Browser"
+msgstr "Android 浏览器"
+
+msgid "iOS Browser"
+msgstr "iOS 浏览器"
+
+msgid "Focus Browser"
+msgstr "Focus 浏览器"
+
+msgid "Desktop Browser"
+msgstr "桌面浏览器"
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr "Beta、Nightly、开发者版本"
 
 msgid "Other languages"
 msgstr "其他语言"

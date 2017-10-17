@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ
 msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1120,6 +1120,10 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+#, fuzzy
+msgid "Contributors"
+msgstr "ਹਿੱਸੇਦਾਰ"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -1969,6 +1973,10 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 
+#, fuzzy
+msgid "Commented"
+msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
+
 msgid "{tag} added to {addon}."
 msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
 
@@ -2134,6 +2142,30 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 msgid "Auto-Approval confirmed"
 msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} {version} ਵਧਾਇਆ।"
+
+#, fuzzy
+msgid "{addon} {version} content approved."
+msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
+
+#, fuzzy
+msgid "Content approved"
+msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+
+#, fuzzy
+msgid "Content rejected"
+msgstr "ਰੱਦ ਕੀਤਾ"
+
 msgid "Firefox"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ"
 
@@ -2209,6 +2241,10 @@ msgstr "ਪਲੱਗਇਨ"
 msgid "Theme"
 msgstr "ਥੀਮ"
 
+#, fuzzy
+msgid "Theme (Static)"
+msgstr "ਥੀਮ ਵੇਰਵਾ"
+
 msgid "Complete Themes"
 msgstr "ਮੁਕਮੰਲ ਥੀਮ"
 
@@ -2223,6 +2259,10 @@ msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
 msgid "Plugins"
 msgstr "ਪਲੱਗਇਨ"
+
+#, fuzzy
+msgid "Themes (Static)"
+msgstr "ਥੀਮ ਕਲਾਕਾਰ"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "ਕੇਵਲ ਇਸ ਐਡ-ਆਨ ਸਫ਼ੇ ਅਤੇ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਤੇ ਪੁੱਛੋ"
@@ -2245,109 +2285,6 @@ msgstr "ਰਿਲੀਜ਼"
 
 msgid "Change"
 msgstr "ਬਦਲੋ"
-
-msgid "App"
-msgstr "ਐੱਪ"
-
-msgid "Persona"
-msgstr "ਪਰਸੋਨਾ"
-
-msgid "Manual Reviewer Points"
-msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Add-on Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-msgid "Updated Add-on Review"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
-
-msgid "Updated Dictionary Review"
-msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
-
-msgid "Updated Language Pack Review"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "ਥੀਮ ਸਮੀਖਿਆ"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Search Provider Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
-
-msgid "Updated Search Provider Review"
-msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
-
-msgid "Updated Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
-
-msgid "Level 1"
-msgstr "ਮਿਆਰ 1"
-
-msgid "Level 2"
-msgstr "ਮਿਆਰ 2"
-
-msgid "Level 3"
-msgstr "ਮਿਆਰ 3"
-
-msgid "Level 4"
-msgstr "ਮਿਆਰ 4"
-
-msgid "Level 5"
-msgstr "ਮਿਆਰ 5"
-
-msgid "Level 6"
-msgstr "ਮਿਆਰ 6"
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
-msgstr ""
 
 msgid "Compatible"
 msgstr ""
@@ -2432,6 +2369,41 @@ msgstr ""
 msgid "Sports"
 msgstr "ਸਹਿਯੋਗ"
 
+msgid "Abstract"
+msgstr ""
+
+msgid "Causes"
+msgstr ""
+
+msgid "Fashion"
+msgstr ""
+
+msgid "Film and TV"
+msgstr ""
+
+msgid "Foxkeh"
+msgstr ""
+
+msgid "Holiday"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Scenery"
+msgstr ""
+
+#, fuzzy
+msgid "Seasonal"
+msgstr "ਦਲੀਲ"
+
+msgid "Solid"
+msgstr ""
+
+#, fuzzy
+msgid "Websites"
+msgstr "ਵੈਬਸਾਈਟ"
+
 #, fuzzy
 msgid "General"
 msgstr "ਆਮ ਪਰਖ"
@@ -2449,9 +2421,6 @@ msgstr ""
 #, fuzzy
 msgid "Multiple Search"
 msgstr "ਖੋਜ ਮਿਟਾਓ"
-
-msgid "Music"
-msgstr ""
 
 msgid "News & Blogs"
 msgstr ""
@@ -2471,38 +2440,6 @@ msgstr ""
 #, fuzzy
 msgid "Video"
 msgstr "ਵੀਡੀਓ ਬੰਦ ਕਰੋ"
-
-msgid "Abstract"
-msgstr ""
-
-msgid "Causes"
-msgstr ""
-
-msgid "Fashion"
-msgstr ""
-
-msgid "Film and TV"
-msgstr ""
-
-msgid "Foxkeh"
-msgstr ""
-
-msgid "Holiday"
-msgstr ""
-
-msgid "Scenery"
-msgstr ""
-
-#, fuzzy
-msgid "Seasonal"
-msgstr "ਦਲੀਲ"
-
-msgid "Solid"
-msgstr ""
-
-#, fuzzy
-msgid "Websites"
-msgstr "ਵੈਬਸਾਈਟ"
 
 #, fuzzy
 msgid "Device Features & Location"
@@ -2586,6 +2523,119 @@ msgstr "ਸਾਈਟ ਖਾਸ਼"
 #, fuzzy
 msgid "Web and Developer Tools"
 msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
+
+msgid "App"
+msgstr "ਐੱਪ"
+
+msgid "Persona"
+msgstr "ਪਰਸੋਨਾ"
+
+msgid "Manual Reviewer Points"
+msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Add-on Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+msgid "Updated Add-on Review"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
+
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Dictionary Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+
+msgid "Updated Dictionary Review"
+msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Language Pack Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+
+msgid "Updated Language Pack Review"
+msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+msgid "Theme Review"
+msgstr "ਥੀਮ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Search Provider Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
+
+msgid "Updated Search Provider Review"
+msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+
+msgid "Preliminary Complete Theme Review"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+
+msgid "Updated Complete Theme Review"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "Add-on Review Moderation Reverted"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
+
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "ਮਿਆਰ 1"
+
+msgid "Level 2"
+msgstr "ਮਿਆਰ 2"
+
+msgid "Level 3"
+msgstr "ਮਿਆਰ 3"
+
+msgid "Level 4"
+msgstr "ਮਿਆਰ 4"
+
+msgid "Level 5"
+msgstr "ਮਿਆਰ 5"
+
+msgid "Level 6"
+msgstr "ਮਿਆਰ 6"
+
+msgid "Level 7"
+msgstr ""
+
+msgid "Level 8"
+msgstr ""
+
+msgid "Level 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr "ਹੋਰ ਇੰਫ਼ੋ ਲਈ ਬੇਨਤੀ"
@@ -2979,13 +3029,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
 
 msgid "Printable Version"
 msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3783,7 +3836,8 @@ msgstr "ਟੀਚਾ ਵਰਜਨ"
 msgid "Upload Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
 msgid "Which platforms is this file compatible with?"
@@ -4183,7 +4237,7 @@ msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਵਰਤਣ ਵਿੱਚ ਆਸਾਨ �
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
@@ -4695,28 +4749,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -4923,6 +4977,10 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+#, fuzzy
+msgid "Last Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4964,6 +5022,13 @@ msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਦੀ �
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖਕ ਇਸ ਨੂੰ ਨਹੀਂ ਵੇਖ ਸਕੇਗਾ।"
 
+#, fuzzy
+msgid "Approve Content"
+msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "ਨਵੇਂ ਐਡ-ਆਨ (5 ਦਿਨਾਂ ਅੰਦਰ)"
 
@@ -4984,32 +5049,6 @@ msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵ
 
 msgid "Review lock limit reached"
 msgstr ""
-
-msgid "was approved"
-msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
-
-msgid "given preliminary review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ ਗਈ"
-
-msgid "rejected"
-msgstr "ਰੱਦ ਕੀਤਾ"
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr "ਵਧਿਆ"
-
-msgid "needs more information"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
-
-msgid "needs super review"
-msgstr "ਉੱਤਮ ਸਮੀਖਿਆ ਦੀ ਲੋੜ"
-
-msgid "commented"
-msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
-
-#, fuzzy
-msgid "confirmed as approved"
-msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5097,6 +5136,10 @@ msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ"
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
 msgid "Unlisted Queues"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
@@ -5299,6 +5342,11 @@ msgstr "ਐਡ-ਆਨ ਨੀਤੀ"
 
 msgid "Editors' Guide"
 msgstr "ਸੰਪਾਦਕ ਗਾਈਡ"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "ਸਮੀਖਿਆ {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5597,6 +5645,12 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
 msgstr[1] "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
 
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+
 msgid "Flagged"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
@@ -5627,6 +5681,10 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
+msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7635,6 +7693,9 @@ msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr "ਇਸ ਹਫ਼ਤੇ ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
 
@@ -8074,6 +8135,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "ਫ਼ਾਈਲਾਂ ਡਾਊਨਲੋਡ ਕਰੋ"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"

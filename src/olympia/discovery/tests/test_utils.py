@@ -1,11 +1,35 @@
 # -*- coding: utf-8 -*-
+import json
 import mock
 import pytest
+import requests
+from django.http import HttpResponse
 
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.discovery.data import DiscoItem
-from olympia.discovery.utils import get_recommendations, replace_extensions
+from olympia.discovery.utils import (
+    call_recommendation_server, get_recommendations, replace_extensions)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.discovery.utils.statsd.incr')
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
+    requests_get.side_effect = requests.exceptions.RequestException()
+    # Check the exception in requests.get is handled okay.
+    assert call_recommendation_server('123456') == []
+    assert statsd_incr.called_with('services.recommendations.fail')
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.discovery.utils.statsd.incr')
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
+    requests_get.return_value = HttpResponse(
+        json.dumps({'results': ['@lolwut']}))
+    assert call_recommendation_server('123456') == ['@lolwut']
+    assert statsd_incr.called_with('services.recommendations.succeed')
 
 
 @mock.patch('olympia.discovery.utils.call_recommendation_server')

@@ -1,21 +1,25 @@
+import re
+
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.users.serializers import (
-    AddonDeveloperSerializer, BaseUserSerializer)
 from olympia.versions.models import ApplicationsVersions, License, Version
+
+from .models import (
+    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview,
+    ReplacementAddon)
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -39,8 +43,8 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ('id', 'created', 'hash', 'is_restart_required',
-                  'is_webextension', 'platform', 'size', 'status', 'url',
-                  'permissions')
+                  'is_webextension', 'is_mozilla_signed_extension',
+                  'platform', 'size', 'status', 'url', 'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -189,6 +193,15 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
         )
 
 
+class AddonDeveloperSerializer(BaseUserSerializer):
+    picture_url = serializers.SerializerMethodField()
+
+    class Meta(BaseUserSerializer.Meta):
+        fields = BaseUserSerializer.Meta.fields + (
+            'picture_url',)
+        read_only_fields = fields
+
+
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
@@ -267,6 +280,16 @@ class AddonSerializer(serializers.ModelSerializer):
             data['homepage'] = self.outgoingify(data['homepage'])
         if 'support_url' in data:
             data['support_url'] = self.outgoingify(data['support_url'])
+        if obj.type == amo.ADDON_PERSONA:
+            if 'weekly_downloads' in data:
+                # weekly_downloads don't make sense for lightweight themes.
+                data.pop('weekly_downloads')
+
+            if ('average_daily_users' in data and
+                    not self.is_broken_persona(obj)):
+                # In addition, their average_daily_users number must come from
+                # the popularity field of the attached Persona.
+                data['average_daily_users'] = obj.persona.popularity
         return data
 
     def outgoingify(self, data):
@@ -386,6 +409,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
             is_webextension=data.get('is_webextension'),
+            is_mozilla_signed_extension=data.get(
+                'is_mozilla_signed_extension'),
             is_restart_required=data.get('is_restart_required', False),
             platform=data['platform'], size=data['size'],
             status=data['status'],
@@ -506,7 +531,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     # "New" Persona do not have a persona_id, it's a relic from
                     # old ones.
                     persona_id=0 if persona_data['is_new'] else 42,
-                    textcolor=persona_data['textcolor']
+                    textcolor=persona_data['textcolor'],
+                    popularity=data.get('average_daily_users'),
                 )
             else:
                 # Sadly, https://code.djangoproject.com/ticket/14368 prevents
@@ -567,6 +593,49 @@ class LanguageToolsSerializer(AddonSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'current_version', 'default_locale',
-                  'locale_disambiguation', 'name', 'target_locale', 'type',
-                  'url', )
+        fields = ('id', 'current_version', 'default_locale', 'guid',
+                  'locale_disambiguation', 'name', 'slug', 'target_locale',
+                  'type', 'url', )
+
+
+class ReplacementAddonSerializer(serializers.ModelSerializer):
+    replacement = serializers.SerializerMethodField()
+    ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
+    COLLECTION_PATH_REGEX = (
+        r"""/collections/(?P<user_id>[^/<>"']+)/(?P<coll_slug>[^/]+)/$""")
+
+    class Meta:
+        model = ReplacementAddon
+        fields = ('guid', 'replacement')
+
+    def _get_addon_guid(self, addon_id):
+        try:
+            addon = Addon.objects.public().id_or_slug(addon_id).get()
+        except Addon.DoesNotExist:
+            return []
+        return [addon.guid]
+
+    def _get_collection_guids(self, user_id, collection_slug):
+        try:
+            get_args = {'slug': collection_slug, 'listed': True}
+            if isinstance(user_id, basestring) and not user_id.isdigit():
+                get_args.update(**{'author__username': user_id})
+            else:
+                get_args.update(**{'author': user_id})
+            collection = Collection.objects.get(**get_args)
+        except Collection.DoesNotExist:
+            return []
+        valid_q = Addon.objects.get_queryset().valid_q([amo.STATUS_PUBLIC])
+        return list(
+            collection.addons.filter(valid_q).values_list('guid', flat=True))
+
+    def get_replacement(self, obj):
+        addon_match = re.search(self.ADDON_PATH_REGEX, obj.path)
+        if addon_match:
+            return self._get_addon_guid(addon_match.group('addon_id'))
+
+        coll_match = re.search(self.COLLECTION_PATH_REGEX, obj.path)
+        if coll_match:
+            return self._get_collection_guids(
+                coll_match.group('user_id'), coll_match.group('coll_slug'))
+        return []

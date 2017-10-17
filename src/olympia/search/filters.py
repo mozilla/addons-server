@@ -1,4 +1,5 @@
 from django.utils import translation
+from django.utils.translation import ugettext
 
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
@@ -207,11 +208,39 @@ class AddonExcludeAddonsQueryParam(AddonQueryParam):
         return filters
 
 
+class AddonFeaturedQueryParam(AddonQueryParam):
+    query_param = 'featured'
+    reverse_dict = {'true': True}
+    valid_values = [True]
+
+    def get_es_query(self):
+        self.get_value()  # Call to validate the value - we only want True.
+        app_filter = AddonAppQueryParam(self.request)
+        app = (app_filter.get_value()
+               if self.request.GET.get(app_filter.query_param) else None)
+        locale = self.request.GET.get('lang')
+        if not app and not locale:
+            # If neither app nor locale is specified fall back on is_featured.
+            return [Q('term', is_featured=True)]
+        queries = []
+        if app:
+            # Search for featured collections targeting `app`.
+            queries.append(
+                Q('term', **{'featured_for.application': app}))
+        if locale:
+            # Search for featured collections targeting `locale` or all locales
+            queries.append(
+                Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
+        return [Q('nested', path='featured_for',
+                  query=query.Bool(must=queries))]
+
+
 class SearchQueryFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that performs an ES query according
     to what's in the `q` GET parameter.
     """
+    MAX_QUERY_LENGTH = 100
 
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
@@ -318,12 +347,16 @@ class SearchQueryFilter(BaseFilterBackend):
             query.SF('field_value_factor', field='boost'),
         ]
         if waffle.switch_is_active('boost-webextensions-in-search'):
+            webext_boost_filter = (
+                Q('term', **{'current_version.files.is_webextension': True}) |
+                Q('term', **{
+                    'current_version.files.is_mozilla_signed_extension': True})
+            )
+
             functions.append(
                 query.SF({
                     'weight': WEBEXTENSIONS_WEIGHT,
-                    'filter': Q(
-                        'term',
-                        **{'current_version.files.is_webextension': True})
+                    'filter': webext_boost_filter
                 })
             )
 
@@ -339,6 +372,10 @@ class SearchQueryFilter(BaseFilterBackend):
         if not search_query:
             return qs
 
+        if len(search_query) > self.MAX_QUERY_LENGTH:
+            raise serializers.ValidationError(
+                ugettext('Maximum query length exceeded.'))
+
         return self.apply_search_query(search_query, qs)
 
 
@@ -350,6 +387,7 @@ class SearchParameterFilter(BaseFilterBackend):
     """
     available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
                          AddonAuthorQueryParam, AddonCategoryQueryParam,
+                         AddonFeaturedQueryParam,
                          AddonPlatformQueryParam, AddonTagQueryParam,
                          AddonTypeQueryParam]
 
@@ -385,17 +423,6 @@ class SearchParameterFilter(BaseFilterBackend):
         return qs.query(query.Bool(**bool_kwargs)) if bool_kwargs else qs
 
 
-class InternalSearchParameterFilter(SearchParameterFilter):
-    """Like SearchParameterFilter, but also allows searching by status. Don't
-    use in the public search API, should only be available in the internal
-    search tool, with the right set of permissions."""
-    # FIXME: also allow searching by listed/unlisted, deleted or not,
-    # disabled or not.
-    available_filters = SearchParameterFilter.available_filters + [
-        AddonStatusQueryParam
-    ]
-
-
 class ReviewedContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only reviewed items in
@@ -421,6 +448,7 @@ class SortingFilter(BaseFilterBackend):
         'downloads': '-weekly_downloads',
         'hotness': '-hotness',
         'name': 'name_sort',
+        'random': '_score',
         'rating': '-bayesian_rating',
         'relevance': '-_score',
         'updated': '-last_updated',
@@ -433,11 +461,37 @@ class SortingFilter(BaseFilterBackend):
         order_by = None
 
         if sort_param is not None:
+            split_sort_params = sort_param.split(',')
             try:
                 order_by = [self.SORTING_PARAMS[name] for name in
-                            sort_param.split(',')]
+                            split_sort_params]
             except KeyError:
                 raise serializers.ValidationError('Invalid "sort" parameter.')
+
+            # Random sort is a bit special.
+            # First, it can't be combined with other sorts.
+            if 'random' in split_sort_params and len(split_sort_params) > 1:
+                raise serializers.ValidationError(
+                    'The "random" "sort" parameter can not be combined.')
+
+            # Second, for perf reasons it's only available when the 'featured'
+            # param is present (to limit the number of documents we'll have to
+            # apply the random score to) and a search query is absent
+            # (to prevent clashing with the score functions coming from a
+            # search query).
+            if sort_param == 'random':
+                is_random_sort_available = (
+                    AddonFeaturedQueryParam.query_param in request.GET and
+                    not search_query_param
+                )
+                if is_random_sort_available:
+                    qs = qs.query(
+                        'function_score', functions=[query.SF('random_score')])
+                else:
+                    raise serializers.ValidationError(
+                        'The "sort" parameter "random" can only be specified '
+                        'when the "featured" parameter is also present, and '
+                        'the "q" parameter absent.')
 
         # The default sort depends on the presence of a query: we sort by
         # relevance if we have a query, otherwise by downloads.

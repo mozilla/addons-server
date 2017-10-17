@@ -977,10 +977,11 @@ function initCatFields(delegate) {
     $delegate.find('div.addon-app-cats').each(function() {
         var main_selector = ".addon-categories",
             misc_selector = ".addon-misc-category"
-        var $parent = $(this).closest("[data-max-categories]"),
-            $main = $(this).find(main_selector),
-            $misc = $(this).find(misc_selector),
-            maxCats = parseInt($parent.attr("data-max-categories"), 10);
+        var $parent = $(this);
+        var $grand_parent = $(this).closest("[data-max-categories]"),
+            $main = $parent.find(main_selector),
+            $misc = $parent.find(misc_selector),
+            maxCats = parseInt($grand_parent.attr("data-max-categories"), 10);
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
@@ -995,8 +996,8 @@ function initCatFields(delegate) {
             $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
-        $(document).on('change', main_selector + ' input', checkMain);
-        $(document).on('change', misc_selector + ' input', checkOther);
+        $parent.on('change', main_selector + ' input', checkMain);
+        $parent.on('change', misc_selector + ' input', checkOther);
     });
 }
 

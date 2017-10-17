@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-09-14 00:06+0000\n"
+"POT-Creation-Date: 2017-10-11 18:22+0000\n"
 "PO-Revision-Date: 2017-05-13 13:27+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -140,7 +140,7 @@ msgstr[0] "Kaikkien tagien tulee olla vähintään {0} merkki pitkä."
 msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain., "
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -1135,6 +1135,12 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+# 81%
+# 100%
+#, fuzzy
+msgid "Contributors"
+msgstr "Avustaja"
+
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
@@ -2034,6 +2040,12 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
+# 87%
+# 100%
+#, fuzzy
+msgid "Commented"
+msgstr "Kommentoi"
+
 msgid "{tag} added to {addon}."
 msgstr ""
 
@@ -2195,6 +2207,27 @@ msgstr "Lisäosan {addon} lähdekoodin lisenssi"
 msgid "Auto-Approval confirmed"
 msgstr "Viimeksi päivitetty"
 
+#, fuzzy
+msgid "{addon} {version} re-enabled."
+msgstr "{addon} otettu käyttöön."
+
+#, fuzzy
+msgid "{addon} {version} disabled."
+msgstr "{addon} poistettu käytöstä."
+
+msgid "{addon} {version} content approved."
+msgstr ""
+
+msgid "Content approved"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} {version} content rejected."
+msgstr "{addon} luotiin."
+
+msgid "Content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2275,6 +2308,9 @@ msgstr "Liitännäinen"
 msgid "Theme"
 msgstr "Teema"
 
+msgid "Theme (Static)"
+msgstr ""
+
 msgid "Complete Themes"
 msgstr "Täydelliset teemat"
 
@@ -2291,6 +2327,9 @@ msgstr "Kielipaketit (lisäosat)"
 
 msgid "Plugins"
 msgstr "Liitännäiset"
+
+msgid "Themes (Static)"
+msgstr ""
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr ""
@@ -2313,112 +2352,6 @@ msgstr ""
 
 msgid "Change"
 msgstr "Muutos"
-
-# 75%
-msgid "App"
-msgstr "Sovellus"
-
-# 87%
-# 100%
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Add-on Review"
-msgstr ""
-
-# Plural in this context means many of the add-on type
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Oikolukusanastot"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Kielipaketti"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Bonus for overdue reviews"
-msgstr ""
-
-msgid "Days Before Bonus Points Applied"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Hakupalvelun tarjoajat"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Täydelliset teemat"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Level 1"
-msgstr "Taso 1"
-
-msgid "Level 2"
-msgstr "Taso 2"
-
-msgid "Level 3"
-msgstr "Taso 3"
-
-msgid "Level 4"
-msgstr "Taso 4"
-
-msgid "Level 5"
-msgstr "Taso 5"
-
-msgid "Level 6"
-msgstr "Taso 6"
-
-msgid "Level 7"
-msgstr "Taso 7"
-
-msgid "Level 8"
-msgstr "Taso 8"
-
-msgid "Level 9"
-msgstr "Taso 9"
 
 msgid "Compatible"
 msgstr ""
@@ -2497,42 +2430,6 @@ msgstr "Retro"
 msgid "Sports"
 msgstr "Urheilu"
 
-msgid "General"
-msgstr "Yleiset"
-
-msgid "Business"
-msgstr "Talous"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Sanakirjat ja tietosanakirjat"
-
-msgid "Kids"
-msgstr "Lapset"
-
-msgid "Multiple Search"
-msgstr "Yhdistetyt haut"
-
-msgid "Music"
-msgstr "Musiikki"
-
-msgid "News & Blogs"
-msgstr "Uutiset ja blogit"
-
-msgid "Photos & Images"
-msgstr "Kuvat"
-
-msgid "Shopping & E-Commerce"
-msgstr "Kaupat"
-
-msgid "Social & People"
-msgstr "Sosiaaliset ja ihmiset"
-
-msgid "Travel"
-msgstr "Matkailu"
-
-msgid "Video"
-msgstr "Video"
-
 msgid "Abstract"
 msgstr "Abstraktit"
 
@@ -2551,6 +2448,9 @@ msgstr ""
 msgid "Holiday"
 msgstr "Loma"
 
+msgid "Music"
+msgstr "Musiikki"
+
 msgid "Scenery"
 msgstr "Maisema"
 
@@ -2564,6 +2464,39 @@ msgstr "Tasaväriset"
 
 msgid "Websites"
 msgstr "Verkkosivustot"
+
+msgid "General"
+msgstr "Yleiset"
+
+msgid "Business"
+msgstr "Talous"
+
+msgid "Dictionaries & Encyclopedias"
+msgstr "Sanakirjat ja tietosanakirjat"
+
+msgid "Kids"
+msgstr "Lapset"
+
+msgid "Multiple Search"
+msgstr "Yhdistetyt haut"
+
+msgid "News & Blogs"
+msgstr "Uutiset ja blogit"
+
+msgid "Photos & Images"
+msgstr "Kuvat"
+
+msgid "Shopping & E-Commerce"
+msgstr "Kaupat"
+
+msgid "Social & People"
+msgstr "Sosiaaliset ja ihmiset"
+
+msgid "Travel"
+msgstr "Matkailu"
+
+msgid "Video"
+msgstr "Video"
 
 # 80%
 # 100%
@@ -2649,6 +2582,123 @@ msgstr "Sivustokohtaiset"
 
 msgid "Web and Developer Tools"
 msgstr "Web- ja kehittäjätyökalut"
+
+# 75%
+msgid "App"
+msgstr "Sovellus"
+
+# 87%
+# 100%
+msgid "Persona"
+msgstr "Persona"
+
+msgid "Manual Reviewer Points"
+msgstr ""
+
+#, fuzzy
+msgid "New Add-on Review"
+msgstr "Ei vielä lisäosa-arvioita."
+
+msgid "Preliminary Add-on Review"
+msgstr ""
+
+msgid "Updated Add-on Review"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "New Dictionary Review"
+msgstr "Oikolukusanastot"
+
+msgid "Preliminary Dictionary Review"
+msgstr ""
+
+msgid "Updated Dictionary Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Language Pack Review"
+msgstr "Kielipaketti"
+
+msgid "Preliminary Language Pack Review"
+msgstr ""
+
+msgid "Updated Language Pack Review"
+msgstr ""
+
+msgid "Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Search Provider Review"
+msgstr "Hakupalvelun tarjoajat"
+
+msgid "Preliminary Search Provider Review"
+msgstr ""
+
+msgid "Updated Search Provider Review"
+msgstr ""
+
+#, fuzzy
+msgid "New Complete Theme Review"
+msgstr "Täydelliset teemat"
+
+msgid "Preliminary Complete Theme Review"
+msgstr ""
+
+msgid "Updated Complete Theme Review"
+msgstr ""
+
+#, fuzzy
+msgid "Moderated Add-on Review"
+msgstr "Ei vielä lisäosa-arvioita."
+
+msgid "Add-on Review Moderation Reverted"
+msgstr ""
+
+# 100%
+#, fuzzy
+msgid "Add-on Content Review"
+msgstr "Ei tarkastettu"
+
+msgid "Post-Approval Add-on Review (Highest Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (High Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Medium Risk)"
+msgstr ""
+
+msgid "Post-Approval Add-on Review (Low Risk)"
+msgstr ""
+
+msgid "Level 1"
+msgstr "Taso 1"
+
+msgid "Level 2"
+msgstr "Taso 2"
+
+msgid "Level 3"
+msgstr "Taso 3"
+
+msgid "Level 4"
+msgstr "Taso 4"
+
+msgid "Level 5"
+msgstr "Taso 5"
+
+msgid "Level 6"
+msgstr "Taso 6"
+
+msgid "Level 7"
+msgstr "Taso 7"
+
+msgid "Level 8"
+msgstr "Taso 8"
+
+msgid "Level 9"
+msgstr "Taso 9"
 
 msgid "Request More Info"
 msgstr ""
@@ -3048,13 +3098,16 @@ msgstr ""
 msgid "Review Policies and Rules"
 msgstr "Arvostelu:"
 
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Printable Version"
 msgstr ""
 
-msgid "I have read and accept this Agreement and the Rules and Policies"
+msgid "Accept"
 msgstr ""
 
 msgid "I Accept this Agreement"
@@ -3860,8 +3913,9 @@ msgstr ""
 msgid "Upload Version"
 msgstr "Lisää versio"
 
-msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+#, fuzzy
+msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
+msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
 msgid "Which platforms is this file compatible with?"
 msgstr ""
@@ -4276,7 +4330,7 @@ msgstr "Helppokäyttöisiä teemoja Firefoxille"
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and%(css_link_open)sCSS"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
 "%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Lisäosat antavat miljoonille Firefox-käyttäjille mahdollisuuden muokata ja parannella selainkokemustaan. Jos olet verkon kehittäjä ja hallitset<a href=\"https://developer.mozilla.org/docs/Web/HTML"
@@ -4793,28 +4847,28 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
-
-msgid "Improve your writing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Supporting 25+ languages, this extension puts a proofreader right in your browser."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr ""
+
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
 msgid "Approved reviews"
@@ -5020,6 +5074,9 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
+msgid "Last Content Review"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5058,6 +5115,13 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
+#, fuzzy
+msgid "Approve Content"
+msgstr "Hyväksy tai hylkää"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr ""
 
@@ -5077,31 +5141,6 @@ msgid "Review successfully processed."
 msgstr "Arvio käsiteltiin."
 
 msgid "Review lock limit reached"
-msgstr ""
-
-msgid "was approved"
-msgstr ""
-
-msgid "given preliminary review"
-msgstr ""
-
-msgid "rejected"
-msgstr ""
-
-msgctxt "editors_review_history_nominated_adminreview"
-msgid "escalated"
-msgstr ""
-
-msgid "needs more information"
-msgstr ""
-
-msgid "needs super review"
-msgstr ""
-
-msgid "commented"
-msgstr ""
-
-msgid "confirmed as approved"
 msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -5192,6 +5231,11 @@ msgstr ""
 #, fuzzy
 msgid "Auto Approved Add-ons"
 msgstr "Android-lisäosat"
+
+# 100%
+#, fuzzy
+msgid "Content Review"
+msgstr "Ei tarkastettu"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5400,6 +5444,12 @@ msgstr "Lisäosakäytäntö"
 
 msgid "Editors' Guide"
 msgstr "Toimittajan opas"
+
+# 100%
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Ei tarkastettu"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5706,6 +5756,11 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "{0}in lisäosat"
 msgstr[1] "{0}in lisäosat"
 
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Flagged"
 msgstr ""
 
@@ -5735,6 +5790,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+#. L10n: {0} is the name of the invalid file.
+msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -7676,6 +7735,9 @@ msgstr "Arvosteltu: {0}/5 tähteä"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
+msgid "Maximum query length exceeded."
+msgstr ""
+
 msgid "Most popular this week"
 msgstr "Suosituin tällä viikolla"
 
@@ -8132,6 +8194,26 @@ msgstr ""
 
 msgid "get to know <b>add-ons</b>"
 msgstr "opi tuntemaan <b>lisäosat</b>"
+
+#, fuzzy
+msgid "Download Firefox"
+msgstr "Lataa nyt"
+
+#, fuzzy
+msgid "Android Browser"
+msgstr "Android-lisäosat"
+
+msgid "iOS Browser"
+msgstr ""
+
+msgid "Focus Browser"
+msgstr ""
+
+msgid "Desktop Browser"
+msgstr ""
+
+msgid "Beta, Nightly, Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr "Muut kielet"

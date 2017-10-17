@@ -5,7 +5,7 @@ from olympia.constants.applications import (
     ANDROID, FIREFOX, SEAMONKEY, THUNDERBIRD)
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
-    ADDON_SLUGS, ADDON_THEME)
+    ADDON_SLUGS, ADDON_THEME, ADDON_STATICTHEME)
 
 
 class StaticCategory(object):
@@ -90,6 +90,23 @@ CATEGORIES = {
             'retro': StaticCategory(id=31, name=_(u'Retro')),
             'sports': StaticCategory(id=26, name=_(u'Sports'))
         },
+        ADDON_STATICTHEME: {
+            'abstract': StaticCategory(id=300, name=_(u'Abstract')),
+            'causes': StaticCategory(id=320, name=_(u'Causes')),
+            'fashion': StaticCategory(id=324, name=_(u'Fashion')),
+            'film-and-tv': StaticCategory(id=326, name=_(u'Film and TV')),
+            'firefox': StaticCategory(id=308, name=_(u'Firefox')),
+            'foxkeh': StaticCategory(id=310, name=_(u'Foxkeh')),
+            'holiday': StaticCategory(id=328, name=_(u'Holiday')),
+            'music': StaticCategory(id=322, name=_(u'Music')),
+            'nature': StaticCategory(id=302, name=_(u'Nature')),
+            'other': StaticCategory(id=314, name=_(u'Other'), weight=333),
+            'scenery': StaticCategory(id=306, name=_(u'Scenery')),
+            'seasonal': StaticCategory(id=312, name=_(u'Seasonal')),
+            'solid': StaticCategory(id=318, name=_(u'Solid')),
+            'sports': StaticCategory(id=304, name=_(u'Sports')),
+            'websites': StaticCategory(id=316, name=_(u'Websites'))
+        },
         ADDON_DICT: {
             'general': StaticCategory(id=95, name=_(u'General'))
         },
@@ -148,7 +165,9 @@ CATEGORIES = {
             'social-networking': StaticCategory(
                 id=148, name=_(u'Social Networking')),
             'sports-games': StaticCategory(id=146, name=_(u'Sports & Games')),
-            'user-interface': StaticCategory(id=152, name=_(u'User Interface'))
+            'user-interface': StaticCategory(
+                id=152, name=_(u'User Interface')),
+            'other': StaticCategory(id=153, name=_(u'Other'), weight=333)
         }
     },
     THUNDERBIRD.id: {
