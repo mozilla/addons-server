@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
 import json
 import random
 import re
@@ -25,16 +24,14 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    Charity, Persona, ReplacementAddon)
+    Persona, ReplacementAddon)
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
     AddonSearchView, AddonAutoCompleteSearchView)
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import WebextPermission, WebextPermissionDescription
-from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
-from olympia.stats.models import Contribution
 from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
@@ -163,316 +160,36 @@ class TestHomepageFeatures(TestCase):
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
-@override_switch('simple-contributions', active=True)
-class TestContributeInstalled404(TestCase):
+class TestOldContributionRedirects(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
-    def test_404(self):
+    def setUp(self):
+        self.detail_url = reverse('addons.detail', args=['a592'])
+
+    def test_installed(self):
         url = reverse('addons.installed', args=['a592'])
-        assert self.client.get(url).status_code == 404
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
 
-
-@override_switch('simple-contributions', active=False)
-class TestContributeInstalled(TestCase):
-    fixtures = ['base/appversion', 'base/addon_592']
-
-    def setUp(self):
-        super(TestContributeInstalled, self).setUp()
-        self.addon = Addon.objects.get(pk=592)
-        self.url = reverse('addons.installed', args=['a592'])
-
-    def test_no_header_block(self):
-        # bug 565493, Port post-install contributions page
-        response = self.client.get(self.url, follow=True)
-        doc = pq(response.content)
-        header = doc('#header')
-        aux_header = doc('#aux-nav')
-        # assert that header and aux_header are empty (don't exist)
-        assert header == []
-        assert aux_header == []
-
-    def test_num_addons_link(self):
-        r = self.client.get(self.url)
-        a = pq(r.content)('.num-addons a')
-        assert a.length == 1
-        author = self.addon.authors.all()[0]
-        assert a.attr('href') == author.get_url_path()
-
-    def test_title(self):
-        r = self.client.get(self.url)
-        title = pq(r.content)('title').text()
-        assert title.startswith('Thank you for installing Gmail S/MIME')
-
-
-@override_switch('simple-contributions', active=True)
-class TestContributeEmbedded404(TestCase):
-    fixtures = ['base/appversion', 'base/addon_592']
-
-    @patch('olympia.paypal.get_paykey')
-    def test_404(self, get_paykey,):
-        get_paykey.return_value = ['abc', '']
+    def test_contribute(self):
         url = reverse('addons.contribute', args=['a592'])
-        assert self.client.post(url).status_code == 404
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
 
-
-@override_switch('simple-contributions', active=False)
-class TestContributeEmbedded(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
-
-    def setUp(self):
-        super(TestContributeEmbedded, self).setUp()
-        self.addon = Addon.objects.get(pk=592)
-        self.detail_url = self.addon.get_url_path()
-
-    @patch('olympia.paypal.get_paykey')
-    def client_post(self, get_paykey, **kwargs):
-        get_paykey.return_value = ['abc', '']
-        url = reverse('addons.contribute', args=kwargs.pop('rev'))
-        if 'qs' in kwargs:
-            url = url + kwargs.pop('qs')
-        return self.client.post(url, kwargs.get('data', {}))
-
-    def test_client_get(self):
-        url = reverse('addons.contribute', args=[self.addon.slug])
-        assert self.client.get(url, {}).status_code == 405
-
-    def test_invalid_is_404(self):
-        """we get a 404 in case of invalid addon id"""
-        response = self.client_post(rev=[1])
-        assert response.status_code == 404
-
-    @patch('olympia.paypal.get_paykey')
-    def test_charity_name(self, get_paykey):
-        get_paykey.return_value = ('payKey', 'paymentExecStatus')
-        self.addon.charity = Charity.objects.create(name=u'foë')
-        self.addon.name = u'foë'
-        self.addon.save()
-        url = reverse('addons.contribute', args=['a592'])
-        self.client.post(url)
-
-    def test_params_common(self):
-        """Test for the some of the common values"""
-        response = self.client_post(rev=['a592'])
-        assert response.status_code == 302
-        con = Contribution.objects.all()[0]
-        assert con.charity_id is None
-        assert con.addon_id == 592
-        assert con.amount == Decimal('20.00')
-
-    def test_custom_amount(self):
-        """Test that we have the custom amount when given."""
-        response = self.client_post(rev=['a592'], data={'onetime-amount': 42,
-                                                        'type': 'onetime'})
-        assert response.status_code == 302
-        assert Contribution.objects.all()[0].amount == Decimal('42.00')
-
-    def test_invalid_amount(self):
-        response = self.client_post(rev=['a592'], data={'onetime-amount': 'f',
-                                                        'type': 'onetime'})
-        data = json.loads(response.content)
-        assert data['paykey'] == ''
-        assert data['error'] == 'Invalid data.'
-
-    def test_amount_length(self):
-        response = self.client_post(rev=['a592'], data={'onetime-amount': '0',
-                                                        'type': 'onetime'})
-        data = json.loads(response.content)
-        assert data['paykey'] == ''
-        assert data['error'] == 'Invalid data.'
-
-    def test_ppal_json_switch(self):
-        response = self.client_post(rev=['a592'], qs='?result_type=json')
-        assert response.status_code == 200
-        response = self.client_post(rev=['a592'])
-        assert response.status_code == 302
-
-    def test_ppal_return_url_not_relative(self):
-        response = self.client_post(rev=['a592'], qs='?result_type=json')
-        assert json.loads(response.content)['url'].startswith('http')
-
-    def test_unicode_comment(self):
-        res = self.client_post(rev=['a592'], data={'comment': u'版本历史记录'})
-        assert res.status_code == 302
-        assert settings.PAYPAL_FLOW_URL in res._headers['location'][1]
-        assert Contribution.objects.all()[0].comment == u'版本历史记录'
-
-    def test_comment_too_long(self):
-        response = self.client_post(rev=['a592'], data={'comment': u'a' * 256})
-
-        data = json.loads(response.content)
-        assert data['paykey'] == ''
-        assert data['error'] == 'Invalid data.'
-
-    def test_organization(self):
-        c = Charity.objects.create(name='moz', url='moz.com',
-                                   paypal='test@moz.com')
-        self.addon.update(charity=c)
-
-        r = self.client_post(rev=['a592'])
-        assert r.status_code == 302
-        assert self.addon.charity_id == (
-            self.addon.contribution_set.all()[0].charity_id)
-
-    def test_no_org(self):
-        r = self.client_post(rev=['a592'])
-        assert r.status_code == 302
-        assert self.addon.contribution_set.all()[0].charity_id is None
-
-    def test_no_suggested_amount(self):
-        self.addon.update(suggested_amount=None)
-        res = self.client_post(rev=['a592'])
-        assert res.status_code == 302
-        assert settings.DEFAULT_SUGGESTED_CONTRIBUTION == (
-            self.addon.contribution_set.all()[0].amount)
-
-    def test_form_suggested_amount(self):
-        res = self.client.get(self.detail_url)
-        doc = pq(res.content)
-        assert len(doc('#contribute-box input[type=radio]')) == 2
-
-    def test_form_no_suggested_amount(self):
-        self.addon.update(suggested_amount=None)
-        res = self.client.get(self.detail_url)
-        doc = pq(res.content)
-        assert len(doc('#contribute-box input[type=radio]')) == 1
-
-    @patch('olympia.paypal.get_paykey')
-    def test_paypal_error_json(self, get_paykey):
-        get_paykey.return_value = (None, None)
-        res = self.contribute()
-        assert not json.loads(res.content)['paykey']
-
-    @patch('olympia.paypal.requests.post')
-    def test_paypal_other_error_json(self, post):
-        post.return_value.text = other_error
-        res = self.contribute()
-        assert not json.loads(res.content)['paykey']
-
-    def _test_result_page(self):
-        url = self.addon.get_detail_url('paypal', ['complete'])
-        doc = pq(self.client.get(url, {'uuid': 'ballin'}).content)
-        assert doc('#paypal-result').length == 1
-        assert doc('#paypal-thanks').length == 0
-
-    def test_addons_result_page(self):
-        self._test_result_page()
-
-    @patch('olympia.paypal.get_paykey')
-    def test_not_split(self, get_paykey):
-        get_paykey.return_value = ('payKey', 'paymentExecStatus')
-        self.contribute()
-        assert 'amount' in get_paykey.call_args[0][0]
-        assert 'chains' not in get_paykey.call_args[0][0]
-
-    def contribute(self):
-        url = reverse('addons.contribute', args=[self.addon.slug])
-        return self.client.post(urlparams(url, result_type='json'))
-
-
-@override_switch('simple-contributions', active=True)
-class TestDeveloperPages404(TestCase):
-    fixtures = ['base/addon_592', 'base/users']
-
-    def test_404(self):
+    def test_meet(self):
         url = reverse('addons.meet', args=['a592'])
-        assert self.client.get(url).status_code == 404
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
 
+    def test_thanks(self):
+        url = reverse('addons.thanks', args=['a592'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
 
-@override_switch('simple-contributions', active=False)
-class TestDeveloperPages(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592',
-                'base/users', 'addons/eula+contrib-addon',
-                'addons/addon_228106_info+dev+bio.json',
-                'addons/addon_228107_multiple-devs.json']
-
-    def test_paypal_js_is_present_if_contributions_are_enabled(self):
-        self.addon = Addon.objects.get(id=592)
-        assert self.addon.takes_contributions
-        response = self.client.get(reverse('addons.meet', args=['a592']))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
-
-    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
-        self.addon = Addon.objects.get(pk=3615)
-        assert not self.addon.takes_contributions
-        response = self.client.get(reverse('addons.meet', args=['a3615']))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
-
-    def test_meet_the_dev_title(self):
-        r = self.client.get(reverse('addons.meet', args=['a592']))
-        title = pq(r.content)('title').text()
-        assert title.startswith('Meet the Gmail S/MIME Developer')
-
-    def test_roadblock_title(self):
-        r = self.client.get(reverse('addons.meet', args=['a592']))
-        title = pq(r.content)('title').text()
-        assert title.startswith('Meet the Gmail S/MIME Developer')
-
-    def test_meet_the_dev_src(self):
-        r = self.client.get(reverse('addons.meet', args=['a11730']))
-        button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=developers')
-
-    def test_nl2br_info(self):
-        r = self.client.get(reverse('addons.meet', args=['a228106']))
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert doc('.biography').html() == (
-            'Bio: This is line one.<br/><br/>This is line two')
-        addon_reasons = doc('#about-addon p')
-        assert addon_reasons.eq(0).html() == (
-            'Why: This is line one.<br/><br/>This is line two')
-        assert addon_reasons.eq(1).html() == (
-            'Future: This is line one.<br/><br/>This is line two')
-
-    def test_nl2br_info_for_multiple_devs(self):
-        # Get an Add-on that has multiple developers,
-        # which will trigger the else block in the template.
-        r = self.client.get(reverse('addons.meet', args=['a228107']))
-        assert r.status_code == 200
-        bios = pq(r.content)('.biography')
-        assert bios.eq(0).html() == (
-            'Bio1: This is line one.<br/><br/>This is line two')
-        assert bios.eq(1).html() == (
-            'Bio2: This is line one.<br/><br/>This is line two')
-
-    def test_roadblock_src(self):
-        url = reverse('addons.roadblock', args=['a11730'])
-        # If they end up at the roadblock we force roadblock on them
-        r = self.client.get(url + '?src=dp-btn-primary')
-        button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=dp-btn-primary')
-
-        # No previous source gets the roadblock page source
-        r = self.client.get(url)
-        button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=meetthedeveloper_roadblock')
-
-    def test_roadblock_different(self):
-        url = reverse('addons.roadblock', args=['a11730'])
-        r = self.client.get(url + '?src=dp-btn-primary')
-        button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=dp-btn-primary')
-        assert pq(r.content)('#contribute-box input[name=source]').val() == (
-            'roadblock')
-
-    def test_contribute_multiple_devs(self):
-        a = Addon.objects.get(pk=592)
-        u = UserProfile.objects.get(pk=999)
-        AddonUser(addon=a, user=u).save()
-        r = self.client.get(reverse('addons.meet', args=['a592']))
-        assert pq(r.content)('#contribute-button').length == 1
-
-    def test_purified(self):
-        addon = Addon.objects.get(pk=592)
-        addon.the_reason = addon.the_future = '<b>foo</b>'
-        addon.save()
-        url = reverse('addons.meet', args=['592'])
-        r = self.client.get(url, follow=True)
-        assert pq(r.content)('#about-addon b').length == 2
+    def test_roadblock(self):
+        url = reverse('addons.roadblock', args=['a592'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
 
 
 @override_switch('simple-contributions', active=True)
@@ -1575,10 +1292,6 @@ class TestXssOnName(amo.tests.TestXss):
 
     def test_detail_page(self):
         url = reverse('addons.detail', args=[self.addon.slug])
-        self.assertNameAndNoXSS(url)
-
-    def test_meet_page(self):
-        url = reverse('addons.meet', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
 
     def test_privacy_page(self):
