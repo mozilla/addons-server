@@ -62,7 +62,6 @@
                         "in order to work.")
                   }}">?</span>
     </div>
-    {% endif %}
     <div id="addon-categories-edit" class="addon-submission-field"
          data-max-categories="{{ amo.MAX_CATEGORIES }}">
       {{ cat_form.non_form_errors() }}
@@ -71,6 +70,13 @@
         {{ select_cats(amo.MAX_CATEGORIES, form) }}
       {% endfor %}
     </div>
+    {% else %}
+    <div id="addon-categories-edit" class="addon-submission-field">
+      <label>{{ _('Select a category for this add-on:') }}</label>
+      {{ cat_form.category.errors }}
+      {{ cat_form.category }}
+    </div>
+    {% endif %}
     <div class="addon-submission-field">
       <label for="{{ form.support_email.auto_id }}">
       {{ _('Support email:') }}
