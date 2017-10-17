@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "addons-linter": "0.27.0",
-    "clean-css": "4.1.7",
+    "clean-css": "4.1.9",
     "clean-css-cli": "4.1.10",
     "jqmodal": "1.4.2",
     "jquery": "3.2.1",
