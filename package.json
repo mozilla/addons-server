@@ -22,7 +22,7 @@
     "jquery-ui": "1.12.1",
     "less": "2.7.2",
     "stylus": "0.54.5",
-    "raven-js": "3.18.0",
+    "raven-js": "3.18.1",
     "timeago": "1.6.1",
     "uglify-js": "3.1.4",
     "underscore": "1.8.3"
