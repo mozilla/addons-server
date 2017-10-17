@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-17 05:44+0000\n"
-"Last-Translator: Elio <elio.gi@gmail.com>\n"
+"PO-Revision-Date: 2017-10-17 17:04+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4717,7 +4717,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Un componente anti-pubblicità leggero ed efficace. uBlock Origin applica migliaia di filtri ai contenuti senza consumare troppa memoria."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Migliora la visualizzazione dei video {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -4729,7 +4729,7 @@ msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ricerca immagini facilmente {start_sub_heading} con {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Evidenzia qualunque testo e utilizza il tasto destro per effettuare agilmente una ricerca immagini."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sperimenta un nuovo livello di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -5620,7 +5620,7 @@ msgstr "Impossibile analizzare il file caricato."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Nome file non valido presente in archivio. Assicurati che tutti i nomi dei file siano codificati in utf-8 oppure latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
