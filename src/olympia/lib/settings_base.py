@@ -1101,8 +1101,8 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 # using the JSON format but still accept pickled messages.
 # TODO: Remove `pickle` once the upgrade is done and seems stable.
 CELERY_ACCEPT_CONTENT = ['pickle', 'json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_RESULT_SERIALIZER = 'pickle'
 
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
