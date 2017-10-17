@@ -604,6 +604,33 @@ body:not(.home) .amo-header,
   }
 }
 
+#try-new-frontend {
+  background: url(../../img/zamboni/promo-background.png) #202340;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 1.6;
+  margin: -12px 0 12px 0;  // header_bg has a 12px bottom margin.
+  padding: 24px 80px;
+
+  .close {
+  }
+
+  a:link, a:visited {
+    color: #0A84FF;
+  }
+
+  p {
+    margin-right: 0.5em;
+  }
+}
+
+.addon-details #try-new-frontend {
+  margin: 0;  // on addon detail page, header_bg has no bottom margin.
+}
+
 #promos {
   float: none;
   margin: 20px 0 0;

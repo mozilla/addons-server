@@ -117,17 +117,6 @@
                       </p>
                       <a href="#" class="close">{{ _('Close') }}</a>
                     </div>
-                    {% if waffle.switch('try-new-frontend') %}
-                      <div class="site-balloon" id="try-new-frontend">
-                        <p>
-                          {{ _('AMO is getting a new look. Would you like to see it?') }}
-                        </p>
-                        <p>
-                          <a href="#" class="mobile-link">{{ _('Visit the new site') }}</a>
-                        </p>
-                        <a href="#" class="close">{{ _('Close') }}</a>
-                      </div>
-                    {% endif %}
                   {% endif %}
                   <div class="site-balloon" id="site-welcome">
                     {# L10n: {0} is an application, such as Firefox. #}
@@ -161,6 +150,17 @@
               </div>
             </div> {# .header-bg #}
           </div> {# .amo-header-wrapper #}
+          {% if APP == amo.FIREFOX and waffle.switch('try-new-frontend') %}
+            <div class="site-balloon" id="try-new-frontend">
+              <p>
+                {{ _('AMO is getting a new look. Would you like to see it?') }}
+              </p>
+              <p>
+                <a href="#" class="mobile-link">{{ _('Visit the new site') }}</a>
+              </p>
+              <a href="#" class="close">{{ _('Close') }}</a>
+            </div>
+          {% endif %}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories
