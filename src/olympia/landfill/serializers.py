@@ -19,6 +19,8 @@ from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
 from olympia.reviews.models import Review
 from olympia.files.tests.test_helpers import get_file
+from olympia.files.models import File
+from olympia.files.utils import parse_addon
 from olympia.users.models import UserProfile
 from olympia.editors.utils import ReviewHelper
 
@@ -109,10 +111,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             users=[UserProfile.objects.get(username='uitest')],
             average_rating=5,
             description=u'My Addon description',
-            file_kw={
-                'platform': amo.PLATFORM_ALL.id,
-                'is_webextension': True
-            },
             guid=generate_addon_guid(),
             icon_type=random.choice(default_icons),
             name=u'Ui-Addon-Install',
@@ -125,15 +123,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
         )
-        Preview.objects.create(addon=addon, position=1)
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
         addon.save()
         generate_collection(addon, app=FIREFOX)
         print(
@@ -217,9 +206,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
         # the user the add-on gets created with
         user = UserProfile.objects.get(username='uitest')
 
-        user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
-                                          email='admin@mozilla.com',
-                                          username='admin')
+        user, _ = UserProfile.objects.get_or_create(
+            pk=settings.TASK_USER_ID,
+            defaults={'email': 'admin@mozilla.com', 'username': 'admin'})
 
         # generate a proper uploaded file that simulates what django requires as
         # request.POST
@@ -250,6 +239,15 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # find the latest version that we just uploaded (should be version 1.0
             # which is what webextension_no_id.xpi defines)
             latest_version = upload.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
+
+            parsed_data = parse_addon(upload)
+
+            File.from_upload(
+                upload=upload,
+                version=latest_version,
+                platform=amo.PLATFORM_ALL.id,
+                is_beta=False,
+                parsed_data=parsed_data)
 
             # now process the add-on and publish it
             helper = ReviewHelper(addon=upload.addon, version=latest_version)
