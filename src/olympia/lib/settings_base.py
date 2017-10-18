@@ -420,6 +420,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
 MIDDLEWARE_CLASSES = (
+    # Gzip (for API only) middleware needs to be executed after every
+    # modification to the response, so it's placed at the top of the list.
+    'olympia.api.middleware.GZipMiddlewareForAPIOnly',
+
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
