@@ -2,7 +2,7 @@ import datetime
 import json
 import os
 import time
-import uuid
+from uuid import UUID, uuid4
 
 from django import forms as django_forms
 from django import http
@@ -65,6 +65,14 @@ log = olympia.core.logger.getLogger('z.devhub')
 # We use a session cookie to make sure people see the dev agreement.
 
 MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
+
+
+def get_fileupload_by_uuid_or_404(value):
+    try:
+        UUID(value)
+    except ValueError:
+        raise http.Http404()
+    return get_object_or_404(FileUpload, uuid=value)
 
 
 class AddonFilter(BaseFilter):
@@ -585,7 +593,7 @@ def upload_for_version(request, addon_id, addon, channel):
 @login_required
 @json_view
 def standalone_upload_detail(request, uuid):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
+    upload = get_fileupload_by_uuid_or_404(uuid)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
     return upload_validation_context(request, upload, url=url)
 
@@ -594,7 +602,7 @@ def standalone_upload_detail(request, uuid):
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
-        upload = get_object_or_404(FileUpload, uuid=uuid)
+        upload = get_fileupload_by_uuid_or_404(uuid)
         response = json_upload_detail(request, upload, addon_slug=addon.slug)
         statsd.incr('devhub.upload_detail_for_addon.success')
         return response
@@ -776,7 +784,7 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
 
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
+    upload = get_fileupload_by_uuid_or_404(uuid)
     if upload.user_id and not request.user.is_authenticated():
         return redirect_for_login(request)
 
@@ -942,7 +950,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         upload_preview = request.FILES['upload_image']
         upload_preview.seek(0)
 
-        upload_hash = uuid.uuid4().hex
+        upload_hash = uuid4().hex
         loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
 
         with storage.open(loc, 'wb') as fd:

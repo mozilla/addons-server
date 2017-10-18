@@ -847,6 +847,11 @@ class TestUpload(BaseUploadTest):
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         self.assert3xx(response, url)
 
+    def test_not_an_uuid(self):
+        url = reverse('devhub.upload_detail', args=['garbage', 'json'])
+        response = self.client.get(url)
+        assert response.status_code == 404
+
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self hosted" addons."""
@@ -927,6 +932,15 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
 
+    def test_upload_detail_for_version_not_an_uuid(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user)
+        url = reverse(
+            'devhub.upload_detail_for_version', args=[addon.slug, 'garbage'])
+        response = self.client.get(url)
+        assert response.status_code == 404
+
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(
@@ -976,6 +990,11 @@ class TestUploadDetail(BaseUploadTest):
             'devhub.standalone_upload_detail',
             args=[upload.uuid.hex])
         assert suite.attr('data-validateurl') == expected
+
+    def test_not_an_uuid_standalon_upload_detail(self):
+        url = reverse('devhub.standalone_upload_detail', args=['garbage'])
+        response = self.client.get(url)
+        assert response.status_code == 404
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def check_excluded_platforms(self, xpi, platforms, v):
