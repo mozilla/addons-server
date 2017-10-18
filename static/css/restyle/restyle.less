@@ -85,6 +85,7 @@ body.restyle {
   font-style: normal;
   line-height: 1.5;
   min-width: @containerWidth;
+  overflow-x: hidden;
 }
 
 h1,
@@ -293,9 +294,6 @@ body:not(.home) .amo-header,
 .addon-details .header-bg,
 .home .header-bg {
   min-height: 130px;
-  // prevent margin collapsing, making sure notification area margins are
-  // respected:
-  border-bottom: 1px solid transparent;
 }
 
 .addon-details .header-bg {
@@ -611,9 +609,9 @@ body:not(.home) .amo-header,
   color: #fff;
   font-size: 17px;
   font-weight: bold;
-  line-height: 1.6;
+  line-height: 26px;
   margin: -12px 0 12px 0;  // header_bg has a 12px bottom margin.
-  padding: 24px 80px;
+  padding: 17px 80px;
 
   .close {
   }
