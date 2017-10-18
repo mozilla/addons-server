@@ -17,7 +17,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -61,7 +60,6 @@ from . import forms, tasks, feeds, signals
 
 
 log = olympia.core.logger.getLogger('z.devhub')
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.

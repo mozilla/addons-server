@@ -66,9 +66,6 @@ urlpatterns = [
     # Services
     url('', include('olympia.amo.urls')),
 
-    # Paypal
-    url('^services/', include('olympia.paypal.urls')),
-
     # Search
     url('^search/', include('olympia.search.urls')),
 
