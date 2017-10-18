@@ -240,8 +240,6 @@ class BaseTestEditBasic(BaseTestEdit):
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
                 self.addon.get_dev_url('owner'),  # Manage Authors
-                self.addon.get_dev_url('profile'),  # Manage Developer Profile
-                self.addon.get_dev_url('payments'),  # Manage Payments
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
                 self.addon.get_url_path(),  # View Listing
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
@@ -601,8 +599,7 @@ class TestEditBasicListed(BaseTestEditBasic):
             'software, or additional hardware.')
 
     def get_l10n_urls(self):
-        paths = ('devhub.addons.edit', 'devhub.addons.profile',
-                 'devhub.addons.owner')
+        paths = ('devhub.addons.edit', 'devhub.addons.owner')
         return [reverse(p, args=['a3615']) for p in paths]
 
     def test_l10n(self):

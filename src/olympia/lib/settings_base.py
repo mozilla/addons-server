@@ -1146,7 +1146,6 @@ CELERY_TASK_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
-    'olympia.devhub.tasks.convert_purified': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {

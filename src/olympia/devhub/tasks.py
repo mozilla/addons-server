@@ -671,25 +671,6 @@ def get_preview_sizes(ids, **kw):
                           % (addon.pk, err))
 
 
-@task
-@write
-def convert_purified(ids, **kw):
-    log.info('[%s@%s] Converting fields to purified starting at id: %s...'
-             % (len(ids), convert_purified.rate_limit, ids[0]))
-    fields = ['the_reason', 'the_future']
-    for addon in Addon.objects.filter(pk__in=ids):
-        flag = False
-        for field in fields:
-            value = getattr(addon, field)
-            if value:
-                value.clean()
-                if (value.localized_string_clean != value.localized_string):
-                    flag = True
-        if flag:
-            log.info('Saving addon: %s to purify fields' % addon.pk)
-            addon.save()
-
-
 def failed_validation(*messages):
     """Return a validation object that looks like the add-on validator."""
     m = []

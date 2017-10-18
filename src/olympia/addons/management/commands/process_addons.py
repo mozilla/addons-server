@@ -9,7 +9,7 @@ from olympia.addons.tasks import (
     add_firefox57_tag, bump_appver_for_legacy_addons,
     find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
-from olympia.devhub.tasks import convert_purified, get_preview_sizes
+from olympia.devhub.tasks import get_preview_sizes
 from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.versions.compare import version_int
@@ -22,7 +22,6 @@ tasks = {
     'find_inconsistencies_between_es_and_db': {
         'method': find_inconsistencies_between_es_and_db, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
-    'convert_purified': {'method': convert_purified, 'qs': []},
     'recalculate_post_review_weight': {
         'method': recalculate_post_review_weight,
         'qs': [
