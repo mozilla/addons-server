@@ -2839,9 +2839,8 @@ msgstr ""
 "Autonomamente. <span class=\"helptext\">Il componente aggiuntivo caricato riceverà una firma digitale che ne autorizza la distribuzione su piattaforme esterne. Gli aggiornamenti dovranno essere "
 "gestiti manualmente tramite un apposito updateURL o una piattaforma software dedicata.</span>"
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Non è possibile cambiare le categorie quando il componente aggiuntivo è consigliato per questa applicazione."
+msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettati solo componenti aggiuntivi realizzati con WebExtensions."
@@ -3682,9 +3681,8 @@ msgstr ""
 "Scegli questa opzione se il componente aggiuntivo è in fase sperimentale o comunque non ancora pronto per l’utilizzo da parte degli utenti. La sua visibilità nelle pagine di AMO sarà limitata. "
 "Potrai sempre modificare questa impostazione più avanti."
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Seleziona <b>al massimo {0}</b> categoria in {1} per questo componente aggiuntivo:"
+msgstr ""
 
 msgid "Support email:"
 msgstr "Email per il supporto:"
