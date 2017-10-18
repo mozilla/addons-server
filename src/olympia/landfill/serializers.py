@@ -9,7 +9,7 @@ from rest_framework import serializers
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
 from olympia.addons.forms import icons
-from olympia.addons.models import AddonUser, Preview
+from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.applications import APPS, FIREFOX
@@ -104,30 +104,34 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
         """
         default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
-        addon = addon_factory(
-            status=STATUS_PUBLIC,
-            type=ADDON_EXTENSION,
-            average_daily_users=5000,
-            users=[UserProfile.objects.get(username='uitest')],
-            average_rating=5,
-            description=u'My Addon description',
-            guid=generate_addon_guid(),
-            icon_type=random.choice(default_icons),
-            name=u'Ui-Addon-Install',
-            public_stats=True,
-            slug='ui-test-2',
-            summary=u'My Addon summary',
-            tags=['some_tag', 'another_tag', 'ui-testing',
-                  'selenium', 'python'],
-            total_reviews=500,
-            weekly_downloads=9999999,
-            developer_comments='This is a testing addon.',
-        )
-        addon.save()
-        generate_collection(addon, app=FIREFOX)
-        print(
-            'Created addon {0} for testing successfully'
-            .format(addon.name))
+        try:
+            addon = Addon.objects.get(guid='@webextension-guid')
+        except Addon.DoesNotExist:
+            addon = addon_factory(
+                status=STATUS_PUBLIC,
+                type=ADDON_EXTENSION,
+                file_kw=False,
+                average_daily_users=5000,
+                users=[UserProfile.objects.get(username='uitest')],
+                average_rating=5,
+                description=u'My Addon description',
+                guid='@webextension-guid',
+                icon_type=random.choice(default_icons),
+                name=u'Ui-Addon-Install',
+                public_stats=True,
+                slug='ui-test-2',
+                summary=u'My Addon summary',
+                tags=['some_tag', 'another_tag', 'ui-testing',
+                      'selenium', 'python'],
+                total_reviews=500,
+                weekly_downloads=9999999,
+                developer_comments='This is a testing addon.',
+            )
+            addon.save()
+            generate_collection(addon, app=FIREFOX)
+            print(
+                'Created addon {0} for testing successfully'
+                .format(addon.name))
         return addon
 
     def create_featured_theme(self):
@@ -212,7 +216,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
         # generate a proper uploaded file that simulates what django requires as
         # request.POST
-        file_to_upload = 'webextension_no_id.xpi'
+        file_to_upload = 'webextension_signed_already.xpi'
         file_path = get_file(file_to_upload)
 
         # make sure we are not using the file in the source-tree but a temporary
@@ -240,9 +244,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # which is what webextension_no_id.xpi defines)
             latest_version = upload.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
 
-            parsed_data = parse_addon(upload)
+            parsed_data = parse_addon(upload, addon=upload.addon)
 
-            File.from_upload(
+            file = File.from_upload(
                 upload=upload,
                 version=latest_version,
                 platform=amo.PLATFORM_ALL.id,
