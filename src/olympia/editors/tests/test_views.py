@@ -785,10 +785,11 @@ class QueueTest(EditorTest):
                 channel = [self.channel_name]
             url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
-        links = pq(
-            response.content)('#addon-queue tr.addon-row td a:not(.app-icon)')
+        doc = pq(response.content)
+        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         check_links(expected, links, verify=False)
         assert len(links) == len(self.expected_addons)
+        return doc
 
 
 class TestQueueBasics(QueueTest):
@@ -1441,6 +1442,40 @@ class TestAutoApprovedQueue(QueueTest):
         self.login_with_permission()
         self.generate_files()
         self._test_results()
+
+    def test_results_weights(self):
+        addon1 = addon_factory(name=u'Addôn 1')
+        AutoApprovalSummary.objects.create(
+            version=addon1.current_version, verdict=amo.AUTO_APPROVED,
+            weight=amo.POST_REVIEW_WEIGHT_HIGHEST_RISK + 1)
+        AddonApprovalsCounter.reset_for_addon(addon1)
+
+        addon2 = addon_factory(name=u'Addôn 2')
+        AutoApprovalSummary.objects.create(
+            version=addon2.current_version, verdict=amo.AUTO_APPROVED,
+            weight=amo.POST_REVIEW_WEIGHT_HIGH_RISK + 1)
+        AddonApprovalsCounter.reset_for_addon(addon2)
+
+        addon3 = addon_factory(name=u'Addôn 3')
+        AutoApprovalSummary.objects.create(
+            version=addon3.current_version, verdict=amo.AUTO_APPROVED,
+            weight=amo.POST_REVIEW_WEIGHT_MEDIUM_RISK + 1)
+        AddonApprovalsCounter.reset_for_addon(addon3)
+
+        addon4 = addon_factory(name=u'Addôn 4')
+        AutoApprovalSummary.objects.create(
+            version=addon4.current_version, verdict=amo.AUTO_APPROVED,
+            weight=1)
+        AddonApprovalsCounter.reset_for_addon(addon4)
+
+        self.expected_addons = [addon1, addon2, addon3, addon4]
+
+        self.login_with_permission()
+        doc = self._test_results()
+        expected = ['risk_highest', 'risk_high', 'risk_medium', 'risk_low']
+        classnames = [
+            item.attrib['class'] for item in doc('.addon-row td:eq(4) span')]
+        assert expected == classnames
 
     def test_queue_count(self):
         self.login_with_permission()
