@@ -13,8 +13,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext
 
-import waffle
-
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
@@ -435,11 +433,10 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                 qs = qs.having(
                     'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
 
-            if waffle.switch_is_active('post-review'):
-                # Hide webextensions from the queues so that human reviewers
-                # don't pick them up: auto-approve cron should take care of
-                # them.
-                qs = qs.filter(**{'files.is_webextension': False})
+            # Hide webextensions from the queues so that human reviewers
+            # don't pick them up: auto-approve cron should take care of
+            # them.
+            qs = qs.filter(**{'files.is_webextension': False})
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -782,11 +779,6 @@ def review(request, addon, channel=None):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
-    is_post_review_enabled = waffle.switch_is_active('post-review')
-    max_average_daily_users = int(
-        get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
-    min_approved_updates = int(
-        get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
     auto_approval_info = {}
     # Now that we've paginated the versions queryset, iterate on them to
     # generate auto approvals info. Note that the variable should not clash
@@ -800,12 +792,7 @@ def review(request, addon, channel=None):
             auto_approval_info[a_version.pk] = None
             continue
         # Call calculate_verdict() again, it will use the data already stored.
-        # Need to pass max_average_daily_users and min_approved_updates current
-        # values.
-        verdict_info = summary.calculate_verdict(
-            max_average_daily_users=max_average_daily_users,
-            min_approved_updates=min_approved_updates,
-            pretty=True, post_review=is_post_review_enabled)
+        verdict_info = summary.calculate_verdict(pretty=True)
         auto_approval_info[a_version.pk] = verdict_info
 
     if version:

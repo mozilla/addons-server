@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
+from datetime import date, timedelta
 
 import django  # noqa
 from django import forms
@@ -7,8 +7,6 @@ from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
 
 import pytest
-from waffle.models import Switch
-from waffle.testutils import override_switch
 
 import olympia  # noqa
 from olympia import amo
@@ -151,11 +149,11 @@ class TestUserProfile(TestCase):
         Test for a preview URL if image is set, or default image otherwise.
         """
         u = UserProfile(id=1234, picture_type='image/png',
-                        modified=datetime.date.today())
+                        modified=date.today())
         u.picture_url.index('/userpics/0/1/1234.png?modified=')
 
         u = UserProfile(id=1234567890, picture_type='image/png',
-                        modified=datetime.date.today())
+                        modified=date.today())
         u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
 
         u = UserProfile(id=1234, picture_type=None)
@@ -297,41 +295,21 @@ class TestUserProfile(TestCase):
         assert hash1 != hash2
 
     def test_has_read_developer_agreement(self):
-        now = self.days_ago(0)
-        recently = self.days_ago(1)
-        older_date = self.days_ago(42)
+        after_change = (
+            UserProfile.last_developer_agreement_change + timedelta(days=1))
+        before_change = (
+            UserProfile.last_developer_agreement_change - timedelta(days=42))
 
         assert not UserProfile().has_read_developer_agreement()
         assert not UserProfile(
             read_dev_agreement=None).has_read_developer_agreement()
+        assert not UserProfile(
+            read_dev_agreement=before_change).has_read_developer_agreement()
+
+        # User has read the agreement after it was modified for
+        # post-review: it should return True.
         assert UserProfile(
-            read_dev_agreement=older_date).has_read_developer_agreement()
-        with override_switch('post-review', active=True):
-            Switch.objects.filter(name='post-review').update(modified=recently)
-
-            # Still False.
-            assert not UserProfile().has_read_developer_agreement()
-
-            # User has read the agreement, before it was modified for
-            # post-review: it should return False.
-            assert not UserProfile(
-                read_dev_agreement=older_date).has_read_developer_agreement()
-            # User has read the agreement after it was modified for
-            # post-review: it should return True.
-            assert UserProfile(
-                read_dev_agreement=now).has_read_developer_agreement()
-
-        with override_switch('post-review', active=False):
-            Switch.objects.filter(name='post-review').update(modified=recently)
-
-            # Still False.
-            assert not UserProfile().has_read_developer_agreement()
-
-            # Both should be True, the date does not matter any more.
-            assert UserProfile(
-                read_dev_agreement=older_date).has_read_developer_agreement()
-            assert UserProfile(
-                read_dev_agreement=now).has_read_developer_agreement()
+            read_dev_agreement=after_change).has_read_developer_agreement()
 
     def test_is_public(self):
         user = UserProfile.objects.get(id=4043307)

@@ -13,7 +13,6 @@ from django.utils.translation import ugettext
 import caching.base
 import jinja2
 from django_statsd.clients import statsd
-from waffle import switch_is_active
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -588,13 +587,8 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
-        addon_statuses = [amo.STATUS_PUBLIC]
-        if switch_is_active('post-review'):
-            # If post-review switch is active, we also accept initial version
-            # submissions, so the add-on can also be NOMINATED.
-            addon_statuses.append(amo.STATUS_NOMINATED)
         return (
-            self.addon.status in addon_statuses and
+            self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
             self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
             self.is_webextension and
             self.is_unreviewed and

@@ -11,7 +11,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
-from django.forms import Form
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -1656,11 +1655,7 @@ def api_key_agreement(request):
 
 
 def render_agreement(request, template, next_step, **extra_context):
-    new_style_agreement = waffle.switch_is_active('post-review')
-    # If using the new style agreement, use AgreementForm, otherwise just an
-    # empty django Form that will always be valid when you POST things to it.
-    form_class = AgreementForm if new_style_agreement else Form
-    form = form_class(request.POST if request.method == 'POST' else None)
+    form = AgreementForm(request.POST if request.method == 'POST' else None)
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step.

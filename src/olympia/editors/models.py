@@ -20,7 +20,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
+from olympia.addons.models import Addon, Persona
 from olympia.editors.sql_model import RawSQLModel
 from olympia.files.models import FileValidation
 from olympia.reviews.models import Review
@@ -757,13 +757,6 @@ class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
-    uses_custom_csp = models.BooleanField(default=False)
-    uses_native_messaging = models.BooleanField(default=False)
-    uses_content_script_for_all_urls = models.BooleanField(default=False)
-    average_daily_users = models.PositiveIntegerField(default=0)
-    approved_updates = models.PositiveIntegerField(default=0)
-    has_info_request = models.BooleanField(default=False)
-    is_under_admin_review = models.BooleanField(default=False)
     is_locked = models.BooleanField(default=False)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
@@ -899,9 +892,7 @@ class AutoApprovalSummary(ModelBase):
         # version we're approving).
         return abs(old_size - new_size)
 
-    def calculate_verdict(
-            self, max_average_daily_users=0, min_approved_updates=0,
-            dry_run=False, pretty=False, post_review=False):
+    def calculate_verdict(self, dry_run=False, pretty=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
 
@@ -914,28 +905,11 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        if post_review:
-            # If post_review is enabled, the only thing that can prevent
-            # approval is a reviewer lock.
-            verdict_info = {
-                'is_locked': self.is_locked,
-            }
-        else:
-            # We need everything in that dict to be False for verdict to be
-            # successful.
-            verdict_info = {
-                'uses_custom_csp': self.uses_custom_csp,
-                'uses_native_messaging': self.uses_native_messaging,
-                'uses_content_script_for_all_urls':
-                    self.uses_content_script_for_all_urls,
-                'too_many_average_daily_users':
-                    self.average_daily_users >= max_average_daily_users,
-                'too_few_approved_updates':
-                    self.approved_updates < min_approved_updates,
-                'has_info_request': self.has_info_request,
-                'is_under_admin_review': self.is_under_admin_review,
-                'is_locked': self.is_locked,
-            }
+        # Currently the only thing that can prevent approval is a reviewer
+        # lock.
+        verdict_info = {
+            'is_locked': self.is_locked,
+        }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
         else:
@@ -951,17 +925,6 @@ class AutoApprovalSummary(ModelBase):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
         mapping = {
-            'uses_custom_csp': ugettext(u'Uses a custom CSP.'),
-            'uses_native_messaging':
-                ugettext(u'Uses nativeMessaging permission.'),
-            'uses_content_script_for_all_urls':
-                ugettext(u'Uses a content script for all URLs.'),
-            'too_many_average_daily_users':
-                ugettext(u'Has too many daily users.'),
-            'too_few_approved_updates':
-                ugettext(u'Has too few consecutive human-approved updates.'),
-            'has_info_request': ugettext(u'Has a pending info request.'),
-            'is_under_admin_review': ugettext(u'Is flagged for admin review.'),
             'is_locked': ugettext('Is locked by a reviewer.'),
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
@@ -1029,27 +992,12 @@ class AutoApprovalSummary(ModelBase):
                    for file_ in version.all_files)
 
     @classmethod
-    def check_uses_content_script_for_all_urls(cls, version):
-        return any(p.name == 'all_urls' for file_ in version.all_files
-                   for p in file_.webext_permissions)
-
-    @classmethod
-    def check_has_info_request(cls, version):
-        return version.has_info_request
-
-    @classmethod
-    def check_is_under_admin_review(cls, version):
-        return version.addon.admin_review
-
-    @classmethod
     def check_is_locked(cls, version):
         locked = get_reviewing_cache(version.addon.pk)
         return bool(locked) and locked != settings.TASK_USER_ID
 
     @classmethod
-    def create_summary_for_version(
-            cls, version, max_average_daily_users=0,
-            min_approved_updates=0, dry_run=False, post_review=False):
+    def create_summary_for_version(cls, version, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
 
@@ -1067,28 +1015,12 @@ class AutoApprovalSummary(ModelBase):
         if len(version.all_files) == 0:
             raise AutoApprovalNotEnoughFilesError()
 
-        addon = version.addon
-        try:
-            approved_updates = addon.addonapprovalscounter.counter
-        except AddonApprovalsCounter.DoesNotExist:
-            approved_updates = 0
-
         data = {
             'version': version,
-            'uses_custom_csp': cls.check_uses_custom_csp(version),
-            'uses_native_messaging': cls.check_uses_native_messaging(version),
-            'uses_content_script_for_all_urls':
-                cls.check_uses_content_script_for_all_urls(version),
-            'has_info_request': cls.check_has_info_request(version),
-            'is_under_admin_review': cls.check_is_under_admin_review(version),
             'is_locked': cls.check_is_locked(version),
-            'average_daily_users': addon.average_daily_users,
-            'approved_updates': approved_updates,
         }
         instance = cls(**data)
-        verdict_info = instance.calculate_verdict(
-            dry_run=dry_run, max_average_daily_users=max_average_daily_users,
-            min_approved_updates=min_approved_updates, post_review=post_review)
+        verdict_info = instance.calculate_verdict(dry_run=dry_run)
         instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where
         # it already existed. So we put the verdict and weight we just

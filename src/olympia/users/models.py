@@ -16,8 +16,6 @@ from django.utils.encoding import force_text
 from django.utils.functional import cached_property, lazy
 
 import caching.base as caching
-import waffle
-from waffle.models import Switch
 
 import olympia.core.logger
 from olympia import amo, core
@@ -156,6 +154,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
+    # Date that the developer agreement last changed (currently, the last
+    # changed happened when we switched to post-review). Used to show the
+    # developer agreement to developers again when it changes.
+    last_developer_agreement_change = datetime(2017, 9, 22, 17, 36)
+
     class Meta:
         db_table = 'users'
 
@@ -185,14 +188,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_read_developer_agreement(self):
         if self.read_dev_agreement is None:
             return False
-        if waffle.switch_is_active('post-review'):
-            # We want to make sure developers read the latest version of the
-            # agreement. The cutover date is the date the switch was last
-            # modified to turn it on. (When removing the waffle, change this
-            # for a static date).
-            switch = Switch.objects.get(name='post-review')
-            return self.read_dev_agreement > switch.modified
-        return True
+        return self.read_dev_agreement > self.last_developer_agreement_change
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 

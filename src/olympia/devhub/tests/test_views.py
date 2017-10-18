@@ -3,7 +3,6 @@ import json
 import os
 from datetime import datetime, timedelta
 
-from django import http
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
@@ -692,20 +691,24 @@ class TestAPIAgreement(TestCase):
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
 
-    def test_agreement_first(self):
-        render_agreement_path = 'olympia.devhub.views.render_agreement'
-        with mock.patch(render_agreement_path) as mock_submit:
-            mock_submit.return_value = http.HttpResponse("Okay")
-            self.client.get(reverse('devhub.api_key_agreement'))
-        assert mock_submit.called
-
-    def test_agreement_second(self):
-        self.user.update(read_dev_agreement=None)
-
-        response = self.client.post(reverse('devhub.api_key_agreement'),
-                                    follow=True)
-
+    def test_agreement_read(self):
+        self.user.update(read_dev_agreement=self.days_ago(0))
+        response = self.client.get(reverse('devhub.api_key_agreement'))
         self.assert3xx(response, reverse('devhub.api_key'))
+
+    def test_agreement_unread(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+
+    def test_agreement_read_but_too_long_ago(self):
+        before_agreement_last_changed = (
+            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
 
 
 class TestAPIKeyPage(TestCase):
