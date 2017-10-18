@@ -18,6 +18,18 @@ def capabilities(capabilities):
 
 
 @pytest.fixture
+def firefox_options(firefox_options):
+    firefox_options.set_preference(
+        'extensions.install.requireBuiltInCerts', False)
+    firefox_options.set_preference('xpinstall.signatures.required', False)
+    firefox_options.set_preference('extensions.webapi.testing', True)
+    firefox_options.set_preference('testpilot.env', 'local')
+    firefox_options.add_argument('-foreground')
+    firefox_options.log.level = 'trace'
+    return firefox_options
+
+
+@pytest.fixture
 def fxa_account(base_url):
     """Account used to login to the AMO site."""
     url = DEV_URL if 'dev' or 'localhost' in base_url else PROD_URL
@@ -77,6 +89,7 @@ def pytest_configure(config):
     prefix_indexes(config)
 
 
+"""
 @pytest.fixture(scope='session')
 def es_test(pytestconfig):
     from olympia.amo.tests import (
@@ -97,3 +110,4 @@ def es_test(pytestconfig):
 
     amo.SEARCH_ANALYZER_MAP = _SEARCH_ANALYZER_MAP
     start_es_mocks()
+"""
