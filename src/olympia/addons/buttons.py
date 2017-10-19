@@ -3,7 +3,6 @@ from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jinja2
-import waffle
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import urlparams
@@ -11,7 +10,7 @@ from olympia.amo.urlresolvers import reverse
 
 
 @jinja2.contextfunction
-def install_button(context, addon, version=None, show_contrib=True,
+def install_button(context, addon, version=None,
                    show_warning=True, src='', collection=None, size='',
                    detailed=False, impala=False, latest_beta=False,
                    show_download_anyway=False):
@@ -32,7 +31,7 @@ def install_button(context, addon, version=None, show_contrib=True,
                   request.GET.get('collection_id') or
                   request.GET.get('collection_uuid'))
     button = install_button_factory(
-        addon, app, lang, version=version, show_contrib=show_contrib,
+        addon, app, lang, version=version,
         show_warning=show_warning, src=src, collection=collection, size=size,
         detailed=detailed, impala=impala, latest_beta=latest_beta,
         show_download_anyway=show_download_anyway)
@@ -81,7 +80,7 @@ class InstallButton(object):
     install_class = []
     install_text = ''
 
-    def __init__(self, addon, app, lang, version=None, show_contrib=True,
+    def __init__(self, addon, app, lang, version=None,
                  show_warning=True, src='', collection=None, size='',
                  detailed=False, impala=False, latest_beta=False,
                  show_download_anyway=False):
@@ -109,25 +108,13 @@ class InstallButton(object):
                          addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
 
-        simple_contributions = waffle.switch_is_active('simple-contributions')
-        self._show_contrib = show_contrib and not simple_contributions
-        self.show_contrib = (show_contrib and not simple_contributions and
-                             addon.takes_contributions and
-                             addon.annoying == amo.CONTRIB_ROADBLOCK)
         self.show_warning = show_warning and self.unreviewed
 
     def prepare(self):
-        """Called after the class is set to manage contributions."""
+        """Called after the class is set to manage additional properties."""
         # Get a copy for this instance.
         self.button_class = list(self.__class__.button_class)
         self.install_class = list(self.__class__.install_class)
-        if self.show_contrib:
-            try:
-                self.button_class.remove('download')
-            except ValueError:
-                pass
-            self.button_class += ['contrib', 'go']
-            self.install_class.append('contrib')
 
         if self.size:
             self.button_class.append(self.size)
@@ -137,9 +124,6 @@ class InstallButton(object):
     def attrs(self):
         rv = {}
         addon = self.addon
-        if (self._show_contrib and addon.takes_contributions and
-                addon.annoying == amo.CONTRIB_AFTER):
-            rv['data-after'] = 'contrib'
         if addon.type == amo.ADDON_SEARCH:
             rv['data-search'] = 'true'
         if addon.type in amo.NO_COMPAT:
@@ -175,12 +159,6 @@ class InstallButton(object):
             text, os = ugettext('Download Now'), None
         else:
             text, os = ugettext('Download'), amo.PLATFORMS[platform]
-
-        if self.show_contrib:
-            # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-            text = jinja2.Markup(ugettext('Continue to Download&nbsp;&rarr;'))
-            roadblock = reverse('addons.roadblock', args=[self.addon.id])
-            url = urlparams(roadblock, version=self.version.version)
 
         return text, url, download_url, os
 

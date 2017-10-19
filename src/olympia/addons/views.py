@@ -57,7 +57,6 @@ from .utils import get_creatured_ids, get_featured_ids
 
 
 log = olympia.core.logger.getLogger('z.addons')
-paypal_log = olympia.core.logger.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)

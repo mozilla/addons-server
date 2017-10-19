@@ -10,10 +10,6 @@
             </div>
           {% endif %}
 
-          {% if addon.takes_contributions %}
-            {{ contribution(addon=addon, src='addon-detail') }}
-          {% endif %}
-
           <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
             {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
               {# L10n: This is a caption for a table. {0} is an add-on name. #}

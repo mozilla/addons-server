@@ -36,9 +36,7 @@
             "locale_disambiguation": "",
             "guid": "el-GR@dictionaries.addons.mozilla.org",
             "weekly_downloads": 1554,
-            "paypal_id": "",
             "average_rating": "5.00",
-            "wants_contributions": 0,
             "average_daily_users": 53476,
             "bayesian_rating": 4.1705500000000004,
             "public_stats": 0,
@@ -50,9 +48,7 @@
             "created": "2006-09-24 09:02:12",
             "type": 3,
             "icon_type": "",
-            "annoying": 0,
             "modified": "2009-03-17 00:01:54",
-            "suggested_amount": "0",
             "total_reviews": 3
         }
     },
@@ -71,9 +67,7 @@
             "locale_disambiguation": "",
             "guid": "en-US@dictionaries.addons.mozilla.org",
             "weekly_downloads": 19445,
-            "paypal_id": "",
             "average_rating": "3.90",
-            "wants_contributions": 0,
             "average_daily_users": 1308443,
             "bayesian_rating": 3.9357199999999999,
             "public_stats": 1,
@@ -85,9 +79,7 @@
             "created": "2006-10-05 12:01:22",
             "type": 3,
             "icon_type": "image/gif",
-            "annoying": 0,
             "modified": "2009-10-05 00:05:30",
-            "suggested_amount": "0",
             "total_reviews": 62
         }
     },
@@ -104,9 +96,7 @@
             "locale_disambiguation": "myspell",
             "guid": "roa-ES-val@dictionaries.addons.mozilla.org",
             "weekly_downloads": 166,
-            "paypal_id": "",
             "average_rating": "3.14",
-            "wants_contributions": 0,
             "average_daily_users": 1468,
             "bayesian_rating": 3.6734100000000001,
             "public_stats": 0,
@@ -118,9 +108,7 @@
             "created": "2007-04-12 13:29:54",
             "type": 3,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-07-28 16:48:16",
-            "suggested_amount": "0",
             "total_reviews": 14
         }
     },
@@ -139,9 +127,7 @@
             "locale_disambiguation": "",
             "guid": "openmedspel@e-medtools.com",
             "weekly_downloads": 12817,
-            "paypal_id": "",
             "average_rating": "4.25",
-            "wants_contributions": 0,
             "average_daily_users": 6852,
             "bayesian_rating": 4.0802100000000001,
             "public_stats": 1,
@@ -153,9 +139,7 @@
             "created": "2008-02-16 09:36:21",
             "type": 3,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-10-05 12:58:02",
-            "suggested_amount": "0",
             "total_reviews": 4
         }
     },
@@ -174,9 +158,7 @@
             "locale_disambiguation": "AVL",
             "guid": "ca-valencia@dictionaries.addons.mozilla.org",
             "weekly_downloads": 148,
-            "paypal_id": "",
             "average_rating": "3.79",
-            "wants_contributions": 0,
             "average_daily_users": 538,
             "bayesian_rating": 3.9215200000000001,
             "public_stats": 0,
@@ -188,9 +170,7 @@
             "created": "2008-10-09 02:02:50",
             "type": 3,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-07-08 15:54:34",
-            "suggested_amount": "0",
             "total_reviews": 19
         }
     },
@@ -209,9 +189,7 @@
             "locale_disambiguation": "",
             "guid": "langpack-roa-ES-val@softwarevalencia.com",
             "weekly_downloads": 73,
-            "paypal_id": "",
             "average_rating": "3.37",
-            "wants_contributions": 0,
             "average_daily_users": 495,
             "bayesian_rating": 3.65801,
             "public_stats": 0,
@@ -223,9 +201,7 @@
             "created": "2006-11-06 12:21:10",
             "type": 5,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-07-28 16:50:43",
-            "suggested_amount": "0",
             "total_reviews": 27
         }
     },
@@ -244,9 +220,7 @@
             "locale_disambiguation": "",
             "guid": "langpack-roa-ES-val@thunderbird.mozilla.org",
             "weekly_downloads": 27,
-            "paypal_id": "",
             "average_rating": "4.82",
-            "wants_contributions": 0,
             "average_daily_users": 45,
             "bayesian_rating": 4.3205999999999998,
             "public_stats": 0,
@@ -258,9 +232,7 @@
             "created": "2007-02-01 12:00:59",
             "type": 5,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-12-25 14:14:12",
-            "suggested_amount": "0",
             "total_reviews": 11
         }
     },
@@ -279,9 +251,7 @@
             "locale_disambiguation": "AVL",
             "guid": "langpack-ca-valencia@firefox.mozilla.org",
             "weekly_downloads": 74,
-            "paypal_id": "",
             "average_rating": "5.00",
-            "wants_contributions": 0,
             "average_daily_users": 332,
             "bayesian_rating": 4.3419999999999996,
             "public_stats": 0,
@@ -293,9 +263,7 @@
             "created": "2008-11-21 08:51:28",
             "type": 5,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2010-01-14 16:20:07",
-            "suggested_amount": "0",
             "total_reviews": 9
         }
     },
@@ -314,9 +282,7 @@
             "locale_disambiguation": "AVL",
             "guid": "langpack-ca-valencia@thunderbird.mozilla.org",
             "weekly_downloads": 29,
-            "paypal_id": "",
             "average_rating": "5.00",
-            "wants_contributions": 0,
             "average_daily_users": 50,
             "bayesian_rating": 4.2368399999999999,
             "public_stats": 0,
@@ -328,9 +294,7 @@
             "created": "2008-11-24 01:02:34",
             "type": 5,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2009-12-19 05:49:48",
-            "suggested_amount": "0",
             "total_reviews": 5
         }
     },
@@ -350,9 +314,7 @@
             "locale_disambiguation": "",
             "guid": "langpack-wa@firefox.mozilla.org",
             "weekly_downloads": 5,
-            "paypal_id": "",
             "average_rating": "0",
-            "wants_contributions": 0,
             "average_daily_users": 7,
             "bayesian_rating": 0.0,
             "public_stats": 0,
@@ -364,9 +326,7 @@
             "created": "2009-11-16 13:36:27",
             "type": 5,
             "icon_type": "image/png",
-            "annoying": 0,
             "modified": "2010-01-15 09:19:03",
-            "suggested_amount": "0",
             "total_reviews": 0
         }
     },

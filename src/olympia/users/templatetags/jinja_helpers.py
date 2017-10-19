@@ -105,11 +105,6 @@ def user_report_abuse(context, hide, profile):
     return new
 
 
-@library.filter
-def contribution_type(type):
-    return amo.CONTRIB_TYPES[type]
-
-
 @library.global_function
 def user_data(user):
     anonymous, currency, email = True, 'USD', ''

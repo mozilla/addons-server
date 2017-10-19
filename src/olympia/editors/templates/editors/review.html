@@ -2,9 +2,6 @@
 
 {% block js %}
   {{ super() }}
-  {% if addon.takes_contributions %}
-    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
-  {% endif %}
 {% endblock %}
 
 {% block title %}

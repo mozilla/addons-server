@@ -3117,22 +3117,6 @@ class TestReview(ReviewBase):
         assert (pq(review_page.content)('#review-files').text() ==
                 pq(listed_review_page.content)('#review-files').text())
 
-    def test_paypal_js_is_present_if_contributions_are_enabled(self):
-        # Note: takes_contributions is used to display the button and include
-        # the js, but it only returns True for public add-ons.
-        self.addon.update(
-            paypal_id='xx', wants_contributions=True, status=amo.STATUS_PUBLIC)
-        assert self.addon.takes_contributions
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
-
-    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
-        assert not self.addon.takes_contributions
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
-
     def test_approvals_info(self):
         approval_info = AddonApprovalsCounter.objects.create(
             addon=self.addon, last_human_review=datetime.now(), counter=42)

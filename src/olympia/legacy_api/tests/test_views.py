@@ -81,7 +81,6 @@ class UtilsTest(TestCase):
         self.a.update(contributions='https://paypal.me/blah')
         d = addon_to_dict(self.a)
         assert d['contribution']['meet_developers'] == self.a.contributions
-        assert 'suggested_amount' not in d['contribution']
         assert 'link' not in d['contribution']
 
 
