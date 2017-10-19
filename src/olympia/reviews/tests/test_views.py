@@ -1943,7 +1943,10 @@ class TestReviewViewSetFlag(TestCase):
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 202
-        assert response.content == ''
+        data = json.loads(response.content)
+        assert data == {
+            'msg': 'Thanks; this review has been flagged for editor approval.'
+        }
         assert ReviewFlag.objects.count() == 1
         flag = ReviewFlag.objects.latest('pk')
         assert flag.flag == 'review_flag_reason_spam'
