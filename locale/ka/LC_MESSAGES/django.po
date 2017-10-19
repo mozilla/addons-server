@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 16:44+0000\n"
+"PO-Revision-Date: 2017-10-19 07:43+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -141,7 +141,7 @@ msgid_plural "You can have only {0} categories."
 msgstr[0] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "კატეგორია \"სხვადასხვა\", ვერ გაერთიანდება სხვა კატეგორიებთან."
+msgstr "კატეგორია „სხვადასხვა“, ვერ გაერთიანდება სხვა კატეგორიებთან."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -1710,7 +1710,7 @@ msgstr "სრული თემები ზრდადი მოთხოვ
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში \"%(name)s\" &raquo;"
+msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში „%(name)s“ &raquo;"
 
 msgid "{0} Themes"
 msgstr "{0} თემა"
