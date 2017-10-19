@@ -68,8 +68,8 @@ MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
 class AddonFilter(BaseFilter):
-    opts = (('name', _(u'Name')),
-            ('updated', _(u'Updated')),
+    opts = (('updated', _(u'Updated')),
+            ('name', _(u'Name')),
             ('created', _(u'Created')),
             ('popular', _(u'Downloads')),
             ('rating', _(u'Rating')))
@@ -82,7 +82,7 @@ class ThemeFilter(BaseFilter):
             ('rating', _(u'Rating')))
 
 
-def addon_listing(request, default='name', theme=False):
+def addon_listing(request, default='updated', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
         qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
