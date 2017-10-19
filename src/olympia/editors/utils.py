@@ -216,6 +216,18 @@ class AutoApprovedTable(EditorQueueTable):
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
 
+    def render_weight(self, value):
+        if value > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
+            classname = 'highest'
+        elif value > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
+            classname = 'high'
+        elif value > amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
+            classname = 'medium'
+        else:
+            classname = 'low'
+
+        return '<span class="risk-%s">%d</span>' % (classname, value)
+
     render_last_content_review = render_last_human_review
 
 
