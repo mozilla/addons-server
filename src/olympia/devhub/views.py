@@ -76,8 +76,8 @@ def get_fileupload_by_uuid_or_404(value):
 
 
 class AddonFilter(BaseFilter):
-    opts = (('name', _(u'Name')),
-            ('updated', _(u'Updated')),
+    opts = (('updated', _(u'Updated')),
+            ('name', _(u'Name')),
             ('created', _(u'Created')),
             ('popular', _(u'Downloads')),
             ('rating', _(u'Rating')))
@@ -97,7 +97,10 @@ def addon_listing(request, default='name', theme=False):
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
             type=amo.ADDON_PERSONA)
-    filter_cls = ThemeFilter if theme else AddonFilter
+    filter_cls = ThemeFilter
+    if not theme:
+        filter_cls = AddonFilter
+        default = 'updated'
     filter_ = filter_cls(request, qs, 'sort', default)
     return filter_.qs, filter_
 
