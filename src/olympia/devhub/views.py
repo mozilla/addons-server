@@ -82,14 +82,17 @@ class ThemeFilter(BaseFilter):
             ('rating', _(u'Rating')))
 
 
-def addon_listing(request, default='updated', theme=False):
+def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
         qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
     else:
         qs = Addon.objects.filter(authors=request.user).exclude(
             type=amo.ADDON_PERSONA)
-    filter_cls = ThemeFilter if theme else AddonFilter
+    filter_cls = ThemeFilter
+    if not theme:
+        filter_cls = AddonFilter
+        default = 'updated'
     filter_ = filter_cls(request, qs, 'sort', default)
     return filter_.qs, filter_
 
