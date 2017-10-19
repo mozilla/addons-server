@@ -2165,24 +2165,21 @@ msgstr "רישיון קוד מקור עבור {addon}"
 msgid "Auto-Approval confirmed"
 msgstr "עודכן לאחרונה"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} מופעל."
+msgstr ""
 
 #, fuzzy
 msgid "{addon} {version} disabled."
 msgstr "{addon} מנוטרל."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "התיאור של {addon} נערך."
+msgstr ""
 
 msgid "Content approved"
 msgstr "התוכן אושר"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "התוספת {addon} נוצרה"
+msgstr ""
 
 msgid "Content rejected"
 msgstr "התוכן נדחה"
