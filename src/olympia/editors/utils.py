@@ -226,7 +226,7 @@ class AutoApprovedTable(EditorQueueTable):
         else:
             classname = 'low'
 
-        return '<span class="risk_%s">%d</span>' % (classname, value)
+        return '<span class="risk-%s">%d</span>' % (classname, value)
 
     render_last_content_review = render_last_human_review
 

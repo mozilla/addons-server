@@ -1472,7 +1472,7 @@ class TestAutoApprovedQueue(QueueTest):
 
         self.login_with_permission()
         doc = self._test_results()
-        expected = ['risk_highest', 'risk_high', 'risk_medium', 'risk_low']
+        expected = ['risk-highest', 'risk-high', 'risk-medium', 'risk-low']
         classnames = [
             item.attrib['class'] for item in doc('.addon-row td:eq(4) span')]
         assert expected == classnames
