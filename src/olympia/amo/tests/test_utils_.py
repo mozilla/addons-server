@@ -30,7 +30,7 @@ class TestAttachTransDict(TestCase):
         addon = addon_factory(
             name='Name', description='Description <script>alert(42)</script>!',
             eula='', summary='Summary', homepage='http://home.pa.ge',
-            developer_comments='Developer Comments', privacy_policy='Policy',
+            developer_comments='Developer Comments',
             support_email='sup@example.com', support_url='http://su.pport.url')
         addon.save()
 
@@ -50,14 +50,12 @@ class TestAttachTransDict(TestCase):
         assert addon.translations['whatever'] == []
 
         # No-translated fields should be absent.
-        assert addon.support_url_id is None
+        assert addon.privacy_policy_id is None
         assert None not in translations
 
         # Build expected translations dict.
         expected_translations = {
             addon.eula_id: [('en-us', unicode(addon.eula))],
-            addon.privacy_policy_id:
-                [('en-us', unicode(addon.privacy_policy))],
             addon.description_id: [
                 ('en-us', unicode(addon.description))],
             addon.developer_comments_id:
