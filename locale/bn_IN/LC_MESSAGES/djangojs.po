@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2016-11-07 11:20+0000\n"
+"PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
@@ -110,13 +110,15 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "বিস্তারিত সংস্করণের নোট প্রবেশ করান (পরবর্তী ধাপে এটা করা যায়)।"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে পারে)।"
+msgstr ""
+"যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে "
+"পারে)।"
 
 msgid "Add-on submission checklist"
 msgstr "অ্যাড-অন জমা দেবার তালিকা"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "আপনার জমা চূড়ান্ত করার আগে নিচের বিষয়গুলো যাচাই করুন। এই পর্যালোচনা প্রক্রিয়া চলাকালীন সময় বিলম্ব বা বিভ্রান্তি হ্রাস করা হবে:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -124,13 +126,13 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "ভ্যালিডেশন প্রক্রিয়া তে পাওয়া গেছে এই ইসুস জেটা খারিজ হতে পারে:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "দুঃখিত, কোন সাহায্যকারী প্লাটফরম খুঁজে পাওয়া যাইনি।"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
@@ -142,10 +144,10 @@ msgid "Images must be either PNG or JPG."
 msgstr "ছবিগুলোকে অবশ্যই হয় PNG বা JPG হতে হবে।"
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "ভিডিও WebM হতে হবে।"
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "সংগ্রহটি অনুসরণ করুন"
 
 msgid "Stop Following"
 msgstr "অনুসরণ করা বন্ধ করুন"
@@ -155,40 +157,40 @@ msgstr "অনুসরণ"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
 
 msgid "All Rights Reserved"
 msgstr "সমস্ত অধিকার সংরক্ষিত"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribuzione-Non Commerciale 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
 msgstr "আপনার থিমের নাম"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "রিভিউয়ের জন্য ফ্ল্যাগ করা হয়েছে"
 
 msgid "Your input is required"
 msgstr "আপনার ইনপুট এর প্রয়োজন আছে"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "মুছে ফেলার জন্য চিহ্নিত করা হয়েছে"
 
 msgid "Updating results&hellip;"
 msgstr "ফলাফল&hellip; আপডেট করা হচ্ছে"
@@ -197,19 +199,19 @@ msgid "Category"
 msgstr "শ্রেণীবিভাগ"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b>র জন্য থিম খুঁজুন"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> এর জন্য অ্যাপস খুঁজুন"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> এর জন্য অ্যাড-অন খুঁজুন"
 
 msgid "Use original"
-msgstr ""
+msgstr "আসল ব্যবহার করুন"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} সপ্তাহে"
 
 msgid " downloads"
 msgstr " ডাউনলোডসমূহ"
@@ -227,22 +229,22 @@ msgid "{0} reviews"
 msgstr "{0} পর্যালোচনা"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} টি বিক্রি"
 
 msgid "{0} refunds"
 msgstr "{0} প্রত্যর্পণ"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} টি ইন্সটল"
 
 msgid "Downloads"
 msgstr "ডাউনলোডসমূহ"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "নিয়মিত ব্যবহারকারী"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "USD তে পরিমান"
 
 msgid "Number of Contributions"
 msgstr "অবদানের সংখ্যা"
@@ -252,28 +254,28 @@ msgstr "আরও তথ্য..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} এর জন্য বিস্তারিত"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "সংগ্রহ তৈরি করা হয়েছে"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "অ্যাড-অনস ব্যাবহৃত হচ্ছে"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "অ্যাড-অনস নির্মিত"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "অ্যাড-অনস ডাউনলোড করা হল"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "অ্যাড-অন আপডেটে করা হয়েছে"
 
 msgid "Reviews Written"
 msgstr "রিভিউ লেখা হয়েছে"
 
 msgid "User Signups"
-msgstr ""
+msgstr "ব্যবহারকারীর সাইনআপ"
 
 msgid "Subscribers"
 msgstr ""
