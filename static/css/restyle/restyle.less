@@ -1,5 +1,6 @@
+@import (less) '../common/fonts';
 // Needed for hovercards
-@import '../impala/hovercards';
+@import (less) '../impala/hovercards';
 
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
@@ -16,43 +17,6 @@
 // Sizes
 @containerWidth: 1018px;
 @pageWidth: 960px;
-
-// Fonts
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'),
-       local('OpenSans'),
-       url('../impala/fonts/OpenSans-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'),
-       local('OpenSans-Bold'),
-       url('../impala/fonts/OpenSans-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Open Sans BoldItalic'),
-       local('OpenSans-BoldItalic'),
-       url('../impala/fonts/OpenSans-BoldItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans Italic'),
-       local('OpenSans-Italic'),
-       url('../impala/fonts/OpenSans-Italic.ttf') format('truetype');
-}
 
 h1,
 h2,
@@ -608,20 +572,38 @@ body:not(.home) .amo-header,
   border-radius: 0;
   color: #fff;
   font-size: 17px;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 26px;
   margin: -12px 0 12px 0;  // header_bg has a 12px bottom margin.
   padding: 17px 80px;
 
   .close {
+    background-color: #FFF;
+    background-image: none;  // override default to use our svg mask instead.
+    mask: url(../../img/impala/x.svg) no-repeat 50% 50%;
+    right: 24px;
+    width: 13px;
+    height: 13px;
+
+    &:focus,
+    &:hover {
+      background-color: #F9F9FA;
+    }
   }
 
   a:link, a:visited {
     color: #0A84FF;
+    font-weight: 600;
   }
 
   p {
     margin-right: 0.5em;
+  }
+
+  * {
+      // This sucks, but there is a font-family: @primary-font !important on
+      // * at the top of this file...
+      font-family: 'Fira Sans', sans-serif !important;
   }
 }
 
