@@ -2168,9 +2168,8 @@ msgstr "עודכן לאחרונה"
 msgid "{addon} {version} re-enabled."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} מנוטרל."
+msgstr ""
 
 msgid "{addon} {version} content approved."
 msgstr ""
