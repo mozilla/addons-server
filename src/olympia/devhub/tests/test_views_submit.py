@@ -17,6 +17,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
@@ -643,7 +644,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         Category.from_static_category(CATEGORIES_BY_ID[308]).save()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=3, on_form=True)
+        License.objects.create(builtin=11, on_form=True, creative_commons=True)
         self.get_addon().update(
             status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
 
@@ -655,7 +656,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
         cat_form = {'category': 300}
-        license_form = {'license-builtin': 3}
+        license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)
         result.update(license_form)
@@ -720,11 +721,26 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         # Only ever one category for Static Themes
         assert category_ids_new == [308]
 
+    def test_creative_commons_licenses(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        assert content('#cc-chooser')  # cc license wizard
+        assert content('#persona-license')  # cc license result
+        assert content('#id_license-builtin')  # license list
+        # There should be one license - 11 we added in setUp - and no 'other'.
+        assert len(content('input.license')) == 1
+        assert content('input.license').attr('value') == '11'
+        assert content('input.license').attr('data-name') == (
+            LICENSES_BY_BUILTIN[11].name)
+
     def test_set_builtin_license_no_log(self):
-        self.is_success(self.get_dict(**{'license-builtin': 3}))
+        self.is_success(self.get_dict(**{'license-builtin': 11}))
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.current_version.license.builtin == 3
+        assert addon.current_version.license.builtin == 11
         log_items = ActivityLog.objects.for_addons(self.get_addon())
         assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id)
 

@@ -22,6 +22,7 @@ from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
 from olympia.applications.models import AppVersion
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
@@ -708,15 +709,16 @@ models.signals.post_delete.connect(
 
 class LicenseManager(ManagerBase):
 
-    def builtins(self):
-        return self.filter(builtin__gt=0).order_by('builtin')
+    def builtins(self, cc=False):
+        return self.filter(
+            builtin__gt=0, creative_commons=cc).order_by('builtin')
 
 
 class License(ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, db_column='url')
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(
@@ -727,6 +729,7 @@ class License(ModelBase):
     icons = models.CharField(
         max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
+    creative_commons = models.BooleanField(default=False)
 
     objects = LicenseManager()
 
@@ -734,7 +737,12 @@ class License(ModelBase):
         db_table = 'licenses'
 
     def __unicode__(self):
-        return unicode(self.name)
+        license = self._constant or self
+        return unicode(license.name)
+
+    @property
+    def _constant(self):
+        return LICENSES_BY_BUILTIN.get(self.builtin)
 
 
 models.signals.pre_save.connect(

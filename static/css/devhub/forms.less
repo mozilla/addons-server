@@ -142,7 +142,50 @@ p.addon-submit-distribute {
     font-weight: bold;
 }
 
-#submit-describe #addon-categories-edit label + ul + ul {
+#submit-describe {
+    #addon-categories-edit #id_category {
+        column-count: 2;
+        li label {
+            font-weight: normal;
+        }
+    }
+    #cc-chooser {
+        h3 {
+            font-size: 1em;
+        }
+        li label {
+            font-weight: normal;
+        }
+    }
+    #license-list {
+        display: none;
+        li label {
+            font-weight: normal;
+        }
+    }
+
+    #persona-license {
+        background-color: darken(#FCFDFE, 10%);
+        border-radius: 5px;
+        padding: 1em;
+        width: 400px;
+
+        p {
+            margin: 0;
+
+            &.license {
+                font-size: 12px;
+                font-weight: bold;
+                height: auto;
+                margin: .5em 0;
+                padding-left: 20px;
+                width: auto;
+            }
+        }
+    }
+}
+
+#submit-describe #addon-categories-edit label + ul {
   column-count: 2;
   li label {
     font-weight: normal;

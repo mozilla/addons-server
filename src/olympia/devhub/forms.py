@@ -101,9 +101,12 @@ class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
         license = choice[1]  # Choice is a tuple (object.id, object).
         link = (u'<a class="xx extra" href="%s" target="_blank" '
                 u'rel="noopener noreferrer">%s</a>')
-        if hasattr(license, 'url'):
+        if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
             self.choice_label = mark_safe(self.choice_label + details)
+        if hasattr(license, 'icons'):
+            self.attrs['data-cc'] = license.icons
+        self.attrs['data-name'] = unicode(license)
 
 
 class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
@@ -132,12 +135,19 @@ class LicenseForm(AMOModelForm):
             if getattr(kwargs['instance'], 'builtin', None):
                 kwargs['initial'] = {'builtin': kwargs['instance'].builtin}
                 kwargs['instance'] = None
+            self.cc_licenses = kwargs.pop(
+                'cc', self.version.addon.type == amo.ADDON_STATICTHEME)
+        else:
+            self.cc_licenses = kwargs.pop(
+                'cc', False)
 
         super(LicenseForm, self).__init__(*args, **kwargs)
-
-        cs = [(x.builtin, x)
-              for x in License.objects.builtins().filter(on_form=True)]
-        cs.append((License.OTHER, ugettext('Other')))
+        licenses = License.objects.builtins(
+            cc=self.cc_licenses).filter(on_form=True)
+        cs = [(x.builtin, x) for x in licenses]
+        if not self.cc_licenses:
+            # creative commons licenses don't have an 'other' option.
+            cs.append((License.OTHER, ugettext('Other')))
         self.fields['builtin'].choices = cs
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
@@ -161,13 +171,10 @@ class LicenseForm(AMOModelForm):
         return data
 
     def get_context(self):
-        """Returns a view context dict having keys license_urls, license_form,
+        """Returns a view context dict having keys license_form,
         and license_other_val.
         """
-        license_urls = dict(License.objects.builtins()
-                            .values_list('builtin', 'url'))
         return {
-            'license_urls': license_urls,
             'version': self.version,
             'license_form': self.version and self,
             'license_other_val': License.OTHER

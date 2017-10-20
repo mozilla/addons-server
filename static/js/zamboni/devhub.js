@@ -39,6 +39,7 @@ $(document).ready(function() {
 
     // Submission > Describe
     $("#submit-describe").exists(initCatFields);
+    $("#submit-describe").exists(initCCLicense);
 
     // Submission > Descript > Summary
     $('.addon-submission-process #submit-describe').exists(initTruncateSummary);
@@ -1478,4 +1479,78 @@ function initInAppConfig($dom) {
                 },
                 dataType: 'text'});
     }));
+}
+
+function initCCLicense() {
+
+    function setCopyright(isCopyr) {
+        // Set the license options based on whether the copyright license is selected.
+        if (isCopyr) {
+            $('.noncc').addClass('disabled');
+            // Choose "No" and "No" for the "commercial" and "derivative" questions.
+            $('input[name="cc-noncom"][value=1], input[name="cc-noderiv"][value=2]').prop('checked', true);
+        } else {
+            $('.noncc').removeClass('disabled');
+        }
+    }
+    function setLicenseFromWizard() {
+        cc_data = $('input[name^="cc-"]:checked').map(function() {
+            return this.dataset.cc}).get();
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
+        if (radio.length) {
+            radio.prop('checked', true);
+            return radio;
+        }
+        cc_data.pop();
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
+        if (radio.length) {
+            radio.prop('checked', true);
+            return radio;
+        }
+        cc_data.pop();
+        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
+        radio.prop('checked', true);
+        return radio;
+    }
+    function setWizardFromLicense($license) {
+        // Update license wizard if license manually selected.
+        $('.noncc.disabled').removeClass('disabled');
+        $('input[name^="cc-"]').prop('checked', false);
+        $('input[name^="cc-"]:not([data-cc]').prop('checked', true);
+        _.each($license.data('cc').split(' '), function(cc) {
+            $('input[type=radio][name^="cc-"][data-cc="' + cc + '"]').prop('checked', true);
+            setCopyright(cc == 'copyr');
+        });
+    }
+    function updateLicenseBox($license) {
+        if ($license.length) {
+            var licenseTxt = $license.data('name');
+            url = $license.next('a');
+            if (url.length) {
+                licenseTxt = format('<a href="{0}">{1}</a>',
+                                     url.attr('href'), licenseTxt);
+            }
+            var $p = $('#persona-license');
+            $p.show().find('#cc-license').html(licenseTxt).attr('class', 'license icon ' + $license.data('cc'));
+        }
+    }
+    function licenseChangeHandler() {
+        $license = $('#submit-describe #license-list input[type=radio][name=license-builtin]:checked');
+        setWizardFromLicense($license);
+        updateLicenseBox($license);
+    }
+
+    $('#submit-describe input[name="cc-attrib"]').change(function() {
+        setCopyright($('input[name="cc-attrib"]:checked').data('cc') == 'copyr');
+    })
+    $('#submit-describe input[name^="cc-"]').change(function() {
+        $license = setLicenseFromWizard();
+        updateLicenseBox($license);
+    })
+    $('#submit-describe #license-list input[type=radio][name=license-builtin]').change(licenseChangeHandler);
+
+    $('#persona-license .select-license').click(_pd(function() {
+        $('#license-list').toggle();
+    }));
+    licenseChangeHandler();
 }

@@ -72,6 +72,9 @@ class TestEditLicense(TestOwnership):
         self.version.save()
         self.license = License.objects.create(builtin=1, name='bsd',
                                               url='license.url', on_form=True)
+        self.cc_license = License.objects.create(
+            builtin=11, name='copyright', url='license.url',
+            creative_commons=True, on_form=True)
 
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
@@ -100,6 +103,15 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.license == self.get_version().license
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_LICENSE.id).count() == 1
+
+    def test_success_add_builtin_creative_commons(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses for themes
+        data = self.formset(builtin=11)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert self.cc_license == self.get_version().license
         assert ActivityLog.objects.filter(
             action=amo.LOG.CHANGE_LICENSE.id).count() == 1
 
