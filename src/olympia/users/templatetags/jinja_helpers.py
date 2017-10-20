@@ -106,17 +106,6 @@ def user_report_abuse(context, hide, profile):
 
 
 @library.global_function
-def user_data(user):
-    anonymous, currency, email = True, 'USD', ''
-    if hasattr(user, 'is_anonymous'):
-        anonymous = user.is_anonymous()
-    if not anonymous:
-        email = user.email
-
-    return {'anonymous': anonymous, 'currency': currency, 'email': email}
-
-
-@library.global_function
 @jinja2.contextfunction
 def manage_fxa_link(context):
     user = context['user']
