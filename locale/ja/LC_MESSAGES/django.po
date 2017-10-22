@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-22 02:31+0000\n"
+"PO-Revision-Date: 2017-10-22 02:32+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5420,7 +5420,7 @@ msgstr "アップロードされたファイルを解析できませんでした
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "アーカイブ内に不正なファイル名が含まれています。ファイル名がすべて UTF-8 または Latin 1 エンコードになっていることを確認してください。"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
