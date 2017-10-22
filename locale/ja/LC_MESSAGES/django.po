@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-22 02:10+0000\n"
+"PO-Revision-Date: 2017-10-22 02:31+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -132,7 +132,7 @@ msgstr[0] "すべてのタグは {0} 文字以上でなければなりません�
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
@@ -1594,7 +1594,7 @@ msgstr "言語パックをダウンロード"
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
-msgstr ""
+msgstr "辞書アドオンをインストールすると、ウェブフォームへの入力時に単語の綴りを確認してくれる %(app_name)s のスペルチェッカーに新しい言語オプションを追加できます。 言語パックアドオンはアプリケーション全体の言語を変更します。"
 
 msgid "Available in your locale"
 msgstr "あなたのロケールに対応しているもの"
@@ -1650,7 +1650,7 @@ msgstr "その他の検索プロバイダーは、<a href=\"http://mycroftprojec
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)s独自の検索ツール%(amo_mdn_link_close)s を作成"
 
 msgid "Most Popular Extensions"
 msgstr "最も人気の拡張機能"
@@ -2492,16 +2492,16 @@ msgid "Add-on Content Review"
 msgstr "アドオンコンテンツ審査"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "承認後アドオンレビュー (最高リスク)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "承認後アドオンレビュー (高リスク)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "承認後アドオンレビュー (中リスク)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "承認後アドオンレビュー (低リスク)"
 
 msgid "Level 1"
 msgstr "レベル 1"
@@ -2929,7 +2929,7 @@ msgid "Printable Version"
 msgstr "印刷版"
 
 msgid "Accept"
-msgstr ""
+msgstr "承認"
 
 msgid "I Accept this Agreement"
 msgstr "この規約に同意します"
@@ -3154,7 +3154,7 @@ msgid "Summary"
 msgstr "概要"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "この要約はアドオンが何をするかを明確に説明すべきです。詳細ページや検索結果に表示され、アドオンをテストする審査担当者にも機能と照らし合わせて確認されます。"
 
 msgid "Experimental?"
 msgstr "実験的？"
@@ -3205,7 +3205,7 @@ msgid "Contributions URL"
 msgstr "寄付 URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "ユーザーから金銭的な寄付を求めたい場合は、これをページに設定することで、彼らが寄付を行えるようになります。"
 
 msgid "Add-on Details"
 msgstr "アドオンの詳細"
@@ -3803,7 +3803,7 @@ msgid "Create a Developer Profile"
 msgstr "開発者プロフィールを作成"
 
 msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
+msgstr "このページはメイン編集ページ上の寄付 URL 欄に置き換えられる形で近く削除されます。引き続き寄付を受け取れるよう、その入力欄を使ってください。"
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
@@ -5128,13 +5128,13 @@ msgid "Not Auto Approved Because"
 msgstr "自動承認されなかった理由"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "このバージョンに対してまだ自動承認スクリプトが実行されていません。"
 
 msgid "This version has not been reviewed."
 msgstr "このバージョンはまだ審査を受けていません。"
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "上のリストからひとつあるいはそれ以上のバージョンを選択してください。"
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "このフォームを送信することはできますが、競合しないと分かっている場合のみ送信してください。"
@@ -5406,7 +5406,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 以前では GUID が必要です。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "対応下限「strict_min_version」は 42.0 です。"
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "min/max バージョンの指定が見つかりません。\"strict_min_version\" または \"strict_max_version\" に未対応のバージョンが含まれている可能性があります。"
@@ -7755,10 +7755,10 @@ msgid "Other Applications"
 msgstr "他のアプリケーション"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO は近く新デザインに切り替わります。一足先に見てみたいですか？"
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "新しいサイトを見る"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "自分のコレクションを作成するには Mozilla アドオンサイトのアカウントが必要です。"
@@ -7791,16 +7791,16 @@ msgid "Android Browser"
 msgstr "Android ブラウザー"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ブラウザー"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus ブラウザー"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "デスクトップブラウザー"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta、Nightly、Developer Edition"
 
 msgid "Other languages"
 msgstr "他の言語"
@@ -7947,7 +7947,7 @@ msgid "someone writes a review of my add-on"
 msgstr "ユーザーによって自分のアドオンのレビューが書かれたとき"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "アドオン開発者向けのニュースやイベントを含む最新情報を購読しましょう (about:addons ニュースレターなど)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "自分のアドオンの互換性が更新できないとき"
