@@ -716,6 +716,9 @@ class ReviewerScore(ModelBase):
 
         for row in query:
             user_id, name, total = row
+            if not name:
+                name = cls.objects.values_list('user__username', flat=True).get(user__id=user_id)
+
             user_level = len(amo.REVIEWED_LEVELS) - 1
             for i, level in enumerate(amo.REVIEWED_LEVELS):
                 if total < level['points']:
