@@ -261,7 +261,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
-            reverse('editors.review', args=[self.addon.pk]))
+            reverse('reviewers.review', args=[self.addon.pk]))
         assert result['slug'] == self.addon.slug
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}

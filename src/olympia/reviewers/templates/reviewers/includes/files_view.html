@@ -1,0 +1,25 @@
+<div><strong>{{ _('Files in this version:') }}</strong></div>
+<ul>
+{% set latest_version_in_channel=addon.find_latest_version(channel=version.channel) %}
+{% for file in distinct_files %}
+<li class="file-info">
+  <span class="light">
+    <strong><a href="{{ file[0].get_url_path('reviewer') }}" class="reviewers-install"
+        data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file[1] }}</a></strong>
+    <div>
+      {{ file_review_status(addon, file[0]) }}
+    </div>
+    <a href="{{ url('devhub.file_validation', addon.slug, file[0].id) }}">{{ _('Validation') }}</a>
+    &middot;
+    <a href="{{ url('files.list', file[0].id) }}">{{ _('Contents') }}</a>
+    {% if show_diff and version == latest_version_in_channel %}
+    &middot;
+    <a class="compare" href="{{ url('files.compare', file[0].id, file_compare(file[0], show_diff)) }}">{{ _('Compare') }}</a>
+    {% endif %}
+    {% if file[0].is_webextension %}
+    <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].webext_permissions_list) or _('None') }}</div>
+    {% endif %}
+  </span>
+</li>
+{% endfor %}
+</ul>

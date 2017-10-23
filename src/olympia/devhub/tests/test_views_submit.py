@@ -264,7 +264,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    @mock.patch('olympia.editors.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
         assert Addon.objects.count() == 0
@@ -1246,7 +1246,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         return reverse('devhub.submit.version.finish', args=[
             self.addon.slug, version.pk])
 
-    @mock.patch('olympia.editors.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success(self, mock_sign_file):
         """Sign automatically."""
         # No validation errors or warning.

@@ -16,10 +16,10 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import (
-    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
+from olympia.reviewers.models import (
+    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     Version, ApplicationsVersions, source_upload_path)

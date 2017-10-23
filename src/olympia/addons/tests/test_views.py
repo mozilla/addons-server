@@ -819,11 +819,11 @@ class TestDetailPage(TestCase):
             self.addon.get_dev_url())
 
         # reviewer gets an 'Add-on Review' button
-        self.client.login(email='editor@mozilla.com')
+        self.client.login(email='reviewer@mozilla.com')
         content = get_detail().content
         assert pq(content)('.manage-button').length == 1
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
-            reverse('editors.review', args=[self.addon.slug]))
+            reverse('reviewers.review', args=[self.addon.slug]))
 
         # admins gets devhub, 'Add-on Review' and 'Admin Manage' button too
         self.client.login(email='admin@mozilla.com')
@@ -832,7 +832,7 @@ class TestDetailPage(TestCase):
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
             self.addon.get_dev_url())
         assert pq(content)('.manage-button a').eq(1).attr('href') == (
-            reverse('editors.review', args=[self.addon.slug]))
+            reverse('reviewers.review', args=[self.addon.slug]))
         assert pq(content)('.manage-button a').eq(2).attr('href') == (
             reverse('zadmin.addon_manage', args=[self.addon.slug]))
 

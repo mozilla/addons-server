@@ -37,9 +37,9 @@
         {{ _('View Listing') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.ADDONS_EDIT) %}
-        <li><a href="{{ url('editors.review', addon.slug) }}">
+        <li><a href="{{ url('reviewers.review', addon.slug) }}">
           {{ _('Listed Review Page') }}</a></li>
-        <li><a href="{{ url('editors.review', 'unlisted', addon.slug) }}">
+        <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}

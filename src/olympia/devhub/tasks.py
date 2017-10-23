@@ -728,4 +728,4 @@ def send_welcome_email(addon_pk, emails, context, **kw):
                                 from_email=settings.NOBODY_EMAIL,
                                 use_deny_list=False,
                                 perm_setting='individual_contact',
-                                headers={'Reply-To': settings.EDITORS_EMAIL})
+                                headers={'Reply-To': settings.REVIEWERS_EMAIL})

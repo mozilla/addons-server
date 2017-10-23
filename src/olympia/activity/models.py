@@ -166,8 +166,8 @@ class ActivityLogManager(ManagerBase):
     def admin_events(self):
         return self.filter(action__in=constants.activity.LOG_ADMINS)
 
-    def editor_events(self):
-        return self.filter(action__in=constants.activity.LOG_EDITORS)
+    def reviewer_events(self):
+        return self.filter(action__in=constants.activity.LOG_REVIEWERS)
 
     def review_queue(self):
         qs = self._by_type()
@@ -177,7 +177,7 @@ class ActivityLogManager(ManagerBase):
     def review_log(self):
         qs = self._by_type()
         return (
-            qs.filter(action__in=constants.activity.LOG_EDITOR_REVIEW_ACTION)
+            qs.filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
             .exclude(user__id=settings.TASK_USER_ID))
 
     def beta_signed_events(self):
@@ -192,7 +192,7 @@ class ActivityLogManager(ManagerBase):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
         action_ids = ([amo.LOG.THEME_REVIEW.id] if theme
-                      else constants.activity.LOG_EDITOR_REVIEW_ACTION)
+                      else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=action_ids)
                   .exclude(user__id=settings.TASK_USER_ID)
@@ -204,12 +204,11 @@ class ActivityLogManager(ManagerBase):
         qs = self._by_type()
         now = datetime.now()
         created_date = datetime(now.year, now.month, 1)
+        actions = ([constants.activity.LOG.THEME_REVIEW.id] if theme
+                   else constants.activity.LOG_REVIEWER_REVIEW_ACTION)
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
-                          action__in=(
-                              [constants.activity.LOG.THEME_REVIEW.id] if theme
-                              else constants.activity.LOG_EDITOR_REVIEW_ACTION)
-                          )
+                          action__in=actions)
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -217,7 +216,7 @@ class ActivityLogManager(ManagerBase):
     def user_approve_reviews(self, user):
         qs = self._by_type()
         return qs.filter(
-            action__in=constants.activity.LOG_EDITOR_REVIEW_ACTION,
+            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION,
             user__id=user.id)
 
     def current_month_user_approve_reviews(self, user):

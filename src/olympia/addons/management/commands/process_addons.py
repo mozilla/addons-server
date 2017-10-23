@@ -10,8 +10,8 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes
-from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
+from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
 
 

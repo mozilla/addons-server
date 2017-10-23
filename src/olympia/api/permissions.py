@@ -118,8 +118,8 @@ class AllowOwner(BasePermission):
 class AllowReviewer(BasePermission):
     """Allow reviewers to access add-ons with listed versions.
 
-    Like editors.decorators.addons_reviewer_required, but as a permission class
-    and not a decorator.
+    Like reviewers.decorators.addons_reviewer_required, but as a
+    permission class and not a decorator.
 
     The user logged in must either be making a read-only request and have the
     'ReviewerTools:View' permission, or simply be a reviewer or admin.
@@ -141,7 +141,7 @@ class AllowReviewerUnlisted(AllowReviewer):
     """Allow unlisted reviewers to access add-ons with unlisted versions, or
     add-ons with no listed versions at all.
 
-    Like editors.decorators.unlisted_addons_reviewer_required, but as a
+    Like reviewers.decorators.unlisted_addons_reviewer_required, but as a
     permission class and not a decorator.
 
     The user logged in must an unlisted add-on reviewer or admin.

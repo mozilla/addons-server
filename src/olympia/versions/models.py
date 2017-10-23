@@ -90,7 +90,8 @@ class Version(OnChangeMixin, ModelBase):
     reviewed = models.DateTimeField(null=True)
 
     has_info_request = models.BooleanField(default=False)
-    has_editor_comment = models.BooleanField(default=False)
+    has_reviewer_comment = models.BooleanField(
+        db_column='has_editor_comment', default=False)
 
     deleted = models.BooleanField(default=False)
 
@@ -294,7 +295,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
-        from olympia.editors.models import (
+        from olympia.reviewers.models import (
             ViewFullReviewQueue, ViewPendingQueue)
 
         if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -598,7 +599,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def was_auto_approved(self):
         """Return whether or not this version was auto-approved."""
-        from olympia.editors.models import AutoApprovalSummary
+        from olympia.reviewers.models import AutoApprovalSummary
         try:
             return self.is_public() and AutoApprovalSummary.objects.filter(
                 version=self).get().verdict == amo.AUTO_APPROVED

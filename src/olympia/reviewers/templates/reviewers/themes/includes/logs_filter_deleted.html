@@ -1,0 +1,15 @@
+<div id="log-filter" class="log-filter-outside">
+  <form action="{{ url('reviewers.themes.deleted') }}" method="get" data-no-csrf>
+    <div class="date_range">
+      {{ form.start.label_tag() }}
+      {{ form.start }}
+      {{ form.end.label_tag() }}
+      {{ form.end }}
+      {{ form.search.label_tag() }}
+      {{ form.search }}
+
+      {# L10n: "Filter" is a button label (verb) #}
+      <button type="submit">{{ _('Filter') }}</button>
+    </div>
+  </form>
+</div>

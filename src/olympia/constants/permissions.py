@@ -21,15 +21,15 @@ ADDONS_EDIT = AclPermission('Addons', 'Edit')
 ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
-# Can view only the reviewer (editor) tools.
+# Can view only the reviewer tools.
 REVIEWER_TOOLS_VIEW = AclPermission('ReviewerTools', 'View')
 
 # These users gain access to the accounts API to super-create users.
 ACCOUNTS_SUPER_CREATE = AclPermission('Accounts', 'SuperCreate')
 
-# Can submit an editor review for a listed add-on.
+# Can review a listed add-on.
 ADDONS_REVIEW = AclPermission('Addons', 'Review')
-# Can submit an editor review for an unlisted add-on.
+# Can review an unlisted add-on.
 ADDONS_REVIEW_UNLISTED = AclPermission('Addons', 'ReviewUnlisted')
 # Can access add-ons post-review information.
 ADDONS_POST_REVIEW = AclPermission('Addons', 'PostReview')
@@ -37,7 +37,7 @@ ADDONS_POST_REVIEW = AclPermission('Addons', 'PostReview')
 ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 # Can edit the message of the day in the reviewer tools.
 ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
-# Can submit an editor review for a background theme (persona).
+# Can review a background theme (persona).
 THEMES_REVIEW = AclPermission('Personas', 'Review')
 
 # Can edit all collections.

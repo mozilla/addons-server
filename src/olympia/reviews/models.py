@@ -122,7 +122,7 @@ class Review(ModelBase):
             'addons.reviews.detail', self.addon.slug, self.id)
 
     def approve(self, user):
-        from olympia.editors.models import ReviewerScore
+        from olympia.reviewers.models import ReviewerScore
 
         activity.log_create(
             amo.LOG.APPROVE_REVIEW, self.addon, self, user=user, details=dict(
@@ -149,7 +149,7 @@ class Review(ModelBase):
         if user_responsible != self.user:
             # Remember moderation state
             review_was_moderated = True
-            from olympia.editors.models import ReviewerScore
+            from olympia.reviewers.models import ReviewerScore
 
             activity.log_create(
                 amo.LOG.DELETE_REVIEW, self.addon, self, user=user_responsible,

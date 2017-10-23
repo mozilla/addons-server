@@ -351,9 +351,9 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
-    def test_file_disabled_ok_for_editor(self):
+    def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(email='editor@mozilla.com')
+        self.client.login(email='reviewer@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_admin(self):
@@ -388,7 +388,7 @@ class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
         super(TestDisabledFileDownloads, self).setUp()
         self.make_addon_unlisted(self.addon)
         self.grant_permission(
-            UserProfile.objects.get(email='editor@mozilla.com'),
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
             'Addons:ReviewUnlisted')
 
 

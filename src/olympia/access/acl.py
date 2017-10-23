@@ -133,7 +133,7 @@ def check_personas_reviewer(request):
     return action_allowed(request, amo.permissions.THEMES_REVIEW)
 
 
-def is_editor(request, addon):
+def is_reviewer(request, addon):
     """Return True if the user is an addons reviewer, or a personas reviewer
     and the addon is a persona."""
     return (check_addons_reviewer(request) or
