@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 09:30+0000\n"
+"PO-Revision-Date: 2017-10-11 20:59+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4678,7 +4678,7 @@ msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vind eenvoudig afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Markeer willekeurige tekst en rechtsklik om snel een afbeelding te zoeken."
+msgstr "Markeer willekeurige tekst en klik met de rechtermuisknop om snel een afbeelding te zoeken."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
@@ -4754,7 +4754,7 @@ msgid "Applications:"
 msgstr "Toepassingen:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Stuur mij een bericht als deze add-on de volgende keer wordt bijgewerkt. (Volgende updates genereren geen e-mailbericht)"
+msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
 
 msgid "Clear Admin Review Flag"
 msgstr "Beoordelingsmarkering voor beheerder wissen"
@@ -4925,7 +4925,7 @@ msgid "Approve Content"
 msgstr "Inhoud goedkeuren"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar een bericht te sturen."
+msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nieuwe add-ons (minder dan 5 dagen)"
@@ -5565,7 +5565,7 @@ msgstr "Kon geüploade bestand niet uitpakken."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr "Ongeldige naam in archief. Zorg ervoor dat alle bestandsnamen in utf-8 of latin 1 zijn gecodeerd."
+msgstr "Ongeldige bestandsnaam in archief. Zorg ervoor dat alle bestandsnamen utf-8- of latin1-gecodeerd zijn."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7610,7 +7610,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Waardering %(rating)s van 5 sterren"
 
 msgid "Maximum query length exceeded."
-msgstr "Maximale lengte zoekopdracht overschreden."
+msgstr "Maximale lengte van zoekopdracht overschreden."
 
 msgid "Most popular this week"
 msgstr "Populairst deze week"
