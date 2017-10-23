@@ -293,10 +293,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.addonuser_set.filter(
                 role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
                 listed=True,
-                addon__status=amo.STATUS_PUBLIC).exists())
-        log.info('Updating %s.is_public from %s to %s' % (
-            self.pk, pre, is_public))
-        self.update(is_public=is_public)
+                addon__status=amo.STATUS_PUBLIC).no_cache().exists())
+        if is_public != pre:
+            log.info('Updating %s.is_public from %s to %s' % (
+                self.pk, pre, is_public))
+            self.update(is_public=is_public)
+        else:
+            log.info('Not changing %s.is_public from %s' % (self.pk, pre))
 
     @property
     def name(self):
