@@ -19,9 +19,9 @@ from olympia.applications.models import AppVersion
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
 from olympia.addons.models import Addon, Category, Persona
 from olympia.devhub import forms
-from olympia.editors.models import RereviewQueueTheme
 from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import FileUpload
+from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import License

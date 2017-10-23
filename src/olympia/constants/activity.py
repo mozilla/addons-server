@@ -128,7 +128,7 @@ class APPROVE_VERSION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class PRELIMINARY_VERSION(_LOG):
@@ -139,7 +139,7 @@ class PRELIMINARY_VERSION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class REJECT_VERSION(_LOG):
@@ -151,7 +151,7 @@ class REJECT_VERSION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class RETAIN_VERSION(_LOG):
@@ -162,7 +162,7 @@ class RETAIN_VERSION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class ESCALATE_VERSION(_LOG):
@@ -193,7 +193,7 @@ class REQUEST_INFORMATION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class REQUEST_SUPER_REVIEW(_LOG):
@@ -206,7 +206,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
                  u'in our review queue, but it will need to be checked by one '
                  u'of our admin reviewers. The review might take longer than '
                  u'usual.')
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class COMMENT_VERSION(_LOG):
@@ -216,7 +216,7 @@ class COMMENT_VERSION(_LOG):
     keep = True
     review_queue = True
     hide_developer = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 class ADD_TAG(_LOG):
@@ -314,9 +314,9 @@ class APPROVE_REVIEW(_LOG):
     id = 40
     action_class = 'approve'
     format = _(u'{review} for {addon} approved.')
-    editor_format = _(u'{user} approved {review} for {addon}.')
+    reviewer_format = _(u'{user} approved {review} for {addon}.')
     keep = True
-    editor_event = True
+    reviewer_event = True
 
 
 class DELETE_REVIEW(_LOG):
@@ -324,9 +324,9 @@ class DELETE_REVIEW(_LOG):
     id = 41
     action_class = 'review'
     format = _(u'Review {review} for {addon} deleted.')
-    editor_format = _(u'{user} deleted {review} for {addon}.')
+    reviewer_format = _(u'{user} deleted {review} for {addon}.')
     keep = True
-    editor_event = True
+    reviewer_event = True
 
 
 class MAX_APPVERSION_UPDATED(_LOG):
@@ -550,7 +550,7 @@ class CONFIRM_AUTO_APPROVED(_LOG):
     format = _(u'Auto-Approval confirmed for {addon} {version}.')
     short = _(u'Auto-Approval confirmed')
     keep = True
-    editor_review_action = True
+    reviewer_review_action = True
     review_queue = True
     hide_developer = True
 
@@ -570,7 +570,7 @@ class APPROVE_CONTENT(_LOG):
     format = _(u'{addon} {version} content approved.')
     short = _(u'Content approved')
     keep = True
-    editor_review_action = True
+    reviewer_review_action = True
     review_queue = True
     hide_developer = True
 
@@ -583,7 +583,7 @@ class REJECT_CONTENT(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
-    editor_review_action = True
+    reviewer_review_action = True
 
 
 LOGS = [x for x in vars().values()
@@ -595,10 +595,10 @@ LOG_BY_ID = dict((l.id, l) for l in LOGS)
 LOG = namedtuple('LogTuple', [l.__name__ for l in LOGS])(*[l for l in LOGS])
 LOG_ADMINS = [l.id for l in LOGS if hasattr(l, 'admin_event')]
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
-LOG_EDITORS = [l.id for l in LOGS if hasattr(l, 'editor_event')]
+LOG_REVIEWERS = [l.id for l in LOGS if hasattr(l, 'reviewer_event')]
 LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
-LOG_EDITOR_REVIEW_ACTION = [
-    l.id for l in LOGS if hasattr(l, 'editor_review_action')]
+LOG_REVIEWER_REVIEW_ACTION = [
+    l.id for l in LOGS if hasattr(l, 'reviewer_review_action')]
 
 # Is the user emailed the message?
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]

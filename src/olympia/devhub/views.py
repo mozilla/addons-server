@@ -43,11 +43,11 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.templatetags.jinja_helpers import get_position
-from olympia.editors.utils import ReviewHelper
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
+from olympia.reviewers.templatetags.jinja_helpers import get_position
+from olympia.reviewers.utils import ReviewHelper
 from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.users.utils import (
@@ -615,7 +615,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
         raise
 
 
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def file_validation(request, addon_id, addon, file_id):
     file_ = get_object_or_404(File, id=file_id)
 
@@ -634,7 +634,7 @@ def file_validation(request, addon_id, addon, file_id):
     return render(request, 'devhub/validation.html', context)
 
 
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def bulk_compat_result(request, addon_id, addon, result_id):
     qs = ValidationResult.objects.exclude(completed=None)
     result = get_object_or_404(qs, pk=result_id)
@@ -672,7 +672,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 
 @json_view
 @csrf_exempt
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
     try:
@@ -691,7 +691,7 @@ def json_file_validation(request, addon_id, addon, file_id):
 @json_view
 @csrf_exempt
 @post_required
-@dev_required(allow_editors=True)
+@dev_required(allow_reviewers=True)
 def json_bulk_compat_result(request, addon_id, addon, result_id):
     result = get_object_or_404(ValidationResult, pk=result_id,
                                completed__isnull=False)

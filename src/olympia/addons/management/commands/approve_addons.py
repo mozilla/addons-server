@@ -5,7 +5,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.utils import chunked
-from olympia.editors.utils import ReviewHelper
+from olympia.reviewers.utils import ReviewHelper
 
 log = olympia.core.logger.getLogger('z.addons')
 

@@ -104,9 +104,9 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "email": "editor@mozilla.com",
+            "email": "reviewer@mozilla.com",
             "notifycompat": false,
-            "username": "editor",
+            "username": "reviewer",
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "127.0.0.1",
@@ -125,9 +125,9 @@
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "email": "senioreditor@mozilla.com",
+            "email": "seniorreviewer@mozilla.com",
             "notifycompat": false,
-            "username": "senioreditor",
+            "username": "seniorreviewer",
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "127.0.0.1",

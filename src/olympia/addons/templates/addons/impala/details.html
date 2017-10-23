@@ -81,7 +81,7 @@
       <p class="manage-button"><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
     {% endif %}
     {% if is_reviewer %}
-      <p class="manage-button"><a href="{{ url('editors.review', addon.slug) }}" class="button"><span>{{ _('Add-on Review') }}</span></a></p>
+      <p class="manage-button"><a href="{{ url('reviewers.review', addon.slug) }}" class="button"><span>{{ _('Add-on Review') }}</span></a></p>
     {% endif %}
     {% if is_staff %}
       <p class="manage-button"><a href="{{ url('zadmin.addon_manage', addon.slug) }}" class="button"><span>{{ _('Admin Manage') }}</span></a></p>

@@ -21,7 +21,7 @@
 
         {% if is_reviewer %}
           {# TODO: Move Reviewer Tools to AMO so we don't need to hack. #}
-          <p><a href="{{ url('editors.themes.single', addon.slug) }}" class="button prominent">
+          <p><a href="{{ url('reviewers.themes.single', addon.slug) }}" class="button prominent">
             {{ _('Approve / Reject') if addon.is_pending() else _('Review History') }}</a>
         {% endif %}
 

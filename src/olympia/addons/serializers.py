@@ -337,7 +337,7 @@ class AddonSerializer(serializers.ModelSerializer):
         return absolutify(obj.get_dev_url())
 
     def get_review_url(self, obj):
-        return absolutify(reverse('editors.review', args=[obj.pk]))
+        return absolutify(reverse('reviewers.review', args=[obj.pk]))
 
     def get_icon_url(self, obj):
         if self.is_broken_persona(obj):

@@ -478,14 +478,14 @@ class TestAddonManagement(TestCase):
         doc = pq(response.content)
 
         first_expected_review_link = reverse(
-            'editors.review', args=(self.addon.slug,))
+            'reviewers.review', args=(self.addon.slug,))
         elms = doc('a[href="%s"]' % first_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(first_version.pk)
         assert elms[0].text == first_version.version
 
         second_expected_review_link = reverse(
-            'editors.review', args=('unlisted', self.addon.slug,))
+            'reviewers.review', args=('unlisted', self.addon.slug,))
         elms = doc('a[href="%s"]' % second_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(second_version.pk)

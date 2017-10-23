@@ -990,7 +990,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         from_email=settings.NOBODY_EMAIL,
         use_deny_list=False,
         perm_setting='individual_contact',
-        headers={'Reply-To': settings.EDITORS_EMAIL})
+        headers={'Reply-To': settings.REVIEWERS_EMAIL})
 
 
 class TestSubmitFile(TestCase):

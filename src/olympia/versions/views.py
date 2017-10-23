@@ -101,7 +101,7 @@ def update_info_redirect(request, version_id):
 # Should accept junk at the end for filename goodness.
 @non_atomic_requests
 def download_file(request, file_id, type=None, file_=None, addon=None):
-    def is_editor(channel):
+    def is_reviewer(channel):
         return (acl.check_addons_reviewer(request)
                 if channel == amo.RELEASE_CHANNEL_LISTED
                 else acl.check_unlisted_addons_reviewer(request))
@@ -114,7 +114,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
     channel = file_.version.channel
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
-        if is_editor(channel) or acl.check_addon_ownership(
+        if is_reviewer(channel) or acl.check_addon_ownership(
                 request, addon, dev=True, viewer=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.guarded_file_path,
@@ -127,7 +127,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
             raise http.Http404()  # Not owner or admin.
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
-        if is_editor(channel) or acl.check_addon_ownership(
+        if is_reviewer(channel) or acl.check_addon_ownership(
                 request, addon, dev=True, viewer=True, ignore_disabled=True):
             return HttpResponseSendFile(
                 request, file_.file_path,

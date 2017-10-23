@@ -33,8 +33,8 @@ class FilesBase(object):
     def login_as_admin(self):
         assert self.client.login(email='admin@mozilla.com')
 
-    def login_as_editor(self):
-        assert self.client.login(email='editor@mozilla.com')
+    def login_as_reviewer(self):
+        assert self.client.login(email='reviewer@mozilla.com')
 
     def setUp(self):
         super(FilesBase, self).setUp()
@@ -58,7 +58,7 @@ class FilesBase(object):
                                           hash='abc123',
                                           filename='dictionary-test.xpi')]
 
-        self.login_as_editor()
+        self.login_as_reviewer()
 
         for file_obj in self.files:
             src = os.path.join(settings.ROOT, dictionary)
@@ -91,11 +91,11 @@ class FilesBase(object):
         self.client.logout()
         self.check_urls(403)
 
-    def test_view_access_editor(self):
+    def test_view_access_reviewer(self):
         self.file_viewer.extract()
         self.check_urls(200)
 
-    def test_view_access_editor_view_source(self):
+    def test_view_access_reviewer_view_source(self):
         # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
@@ -186,7 +186,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         url = res.context['file_link']['url']
-        assert url == reverse('editors.review', args=[self.addon.slug])
+        assert url == reverse('reviewers.review', args=[self.addon.slug])
 
     def test_content_no_file(self):
         self.file_viewer.extract()
@@ -337,7 +337,7 @@ class FilesBase(object):
         assert not file_options.eq(1).text().endswith('[AMO]')
         assert not file_options.eq(2).text().endswith('[AMO]')
 
-    def test_only_listed_versions_shown_for_editor(self):
+    def test_only_listed_versions_shown_for_reviewer(self):
         listed_ver = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
             version='4.0')

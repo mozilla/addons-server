@@ -1,0 +1,87 @@
+{% extends 'reviewers/themes/base.html' %}
+
+{% block extrahead %}
+  {{ css('zamboni/themes_review') }}
+{% endblock %}
+
+{% block content %}
+  <div class="queue-search theme-search island c"
+       data-api-url="{{ url('reviewers.themes.search') }}"
+       data-review-url="{{ url('reviewers.themes.single', '__slug__') }}">
+    <form class="c" data-no-csrf>
+      {{ theme_search_form.q }}
+      <input type="hidden" name="queue_type" value="{{ 'rereview' if rereview else 'flagged' if flagged else '' }}">
+      <button class="search button" type="submit"><span>{{ _('Search') }}</span></button>
+      <a href="#" class="clear-queue-search hidden">{{ _('Clear Search') }}</a>
+      {{ theme_search_form.limit }}
+    </form>
+  </div>
+
+  <div class="theme-list-hat">
+    {{ macros.tabnav('queues', tab, queue_tabnav_themes(), true) }}
+
+    <a class="button release-theme-lock" href="{{ url('reviewers.themes.release_locks') }}">
+      <span>{{ _('Release My Theme Locks') }}</span>
+    </a>
+  </div>
+
+  <section id="queue-island" class="island search-toggle">
+    <h3 class="theme-queue-link c">
+      {% set url_suffix = '_themes' %}
+      {% if flagged %}
+        {% set url_suffix = '_flagged' %}
+      {% elif rereview %}
+        {% set url_suffix = '_rereview' %}
+      {% endif %}
+      <a href="{{ url('reviewers.themes.queue' + url_suffix) }}">
+        {{ _('Interactive Theme Queue') }}
+        <img src="{{ static('img/impala/blue-arrow.png') }}" alt="">
+      </a>
+    </h3>
+
+    {% if addons %}
+      <table id="addon-queue" class="data-grid items"
+             data-url="{{ url('reviewers.queue_viewing') }}">
+        <thead>
+          <tr class="listing-header">
+            <th>&nbsp;</th>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Reviewer') }}</th>
+            <th>{{ _('Status') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for qa in addons %}
+            <tr>
+              <td></td>
+              <td>
+                <a href="{{ url('reviewers.themes.single', qa.slug) }}">
+                  {{ qa.name or qa.slug }}
+                </a>
+              </td>
+              <td>
+                {% if hasOneToOne(qa, 'persona') and hasOneToOne(qa.persona, 'themelock')
+                   and not is_expired_lock(qa.persona.themelock) %}
+                  {{ emaillink(qa.persona.themelock.reviewer.email) }}
+                {% endif %}
+              </td>
+              <td>{{ qa.STATUS_CHOICES[qa.status] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      {{ no_results_amo() }}
+    {% endif %}
+
+    <div class="impala-paginator">{{ pager|impala_paginator }}</div>
+  </section>
+
+  {# Populated by dynamic search #}
+  <section id="search-island" class="island hidden" data-statuses="{{ statuses|json }}"></section>
+
+  <p id="helpfulLinks">
+    {{ _('Helpful Links:') }}
+    <a href="https://wiki.mozilla.org/Marketplace/Reviewers/Themes/Guidelines">{{ _("Reviewers' Guide") }}</a>
+  </p>
+{% endblock %}

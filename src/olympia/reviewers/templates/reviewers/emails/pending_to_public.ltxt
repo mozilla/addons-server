@@ -1,0 +1,12 @@
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Your add-on, {{ name }} {{ number }}, has been approved and is now available for download in our gallery at {{ addon_url }}
+{% include "reviewers/emails/files.ltxt" %}
+Reviewer:
+{{ reviewer }}
+
+Comments:
+{{ comments }}
+
+{{ tested }}
+
+{% endblock %}
