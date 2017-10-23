@@ -273,9 +273,9 @@ polib==1.0.8 \
 puente==0.5.0 \
     --hash=sha256:7ba1d07f9cee9657adf874bd94879b343fea81a783fdfa8e53885520477bf1ea \
     --hash=sha256:4a17958f7d6a83cb9ff92593c40f34911abafaec6ad959916b754aaa3869f11f
-pyquery==1.2.17 \
-    --hash=sha256:554335a65570b4871051320a30919836f7548dbb2f2616d6e1f7c3f887096ef3 \
-    --hash=sha256:6aa0133b30d9a0229ad65d3a7708c4e853bf46808fb359d06ca56f5039102af6
+pyquery==1.3.0 \
+    --hash=sha256:f340df9f2d0b8a19de9540f3cd051628998fde6e733c4dcf3ffdd942a3b0a78f \
+    --hash=sha256:5821ffd02301db701cb30f2483ab96774c2b6b70530f79a44645f49dc5053ab8
 # pytest is required by amo-validator
 pytest==3.2.3 \
     --hash=sha256:81a25f36a97da3313e1125fce9e7bbbba565bc7fec3c5beb14c262ddab238ac1 \
