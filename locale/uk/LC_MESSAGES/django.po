@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-24 11:11+0000\n"
+"PO-Revision-Date: 2017-10-24 11:51+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2152,29 +2152,23 @@ msgstr "Автосхвалення підтверджено для {addon} {vers
 msgid "Auto-Approval confirmed"
 msgstr "Автосхвалення підтверджено"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} відхилено."
+msgstr "{addon} {version} знов увімкнено."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} передано вище."
+msgstr "{addon} {version} вимкнено."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} схвалено."
+msgstr "{addon} {version} вміст схвалено."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "підтверджено як схвалено"
+msgstr "Вміст схвалено"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} відхилено."
+msgstr "{addon} {version} вміст відхилено."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "відхилено"
+msgstr "Вміст відхилено"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2251,9 +2245,8 @@ msgstr "Плагін"
 msgid "Theme"
 msgstr "Тему"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Інформація про тему"
+msgstr "Тема (Статична)"
 
 msgid "Complete Themes"
 msgstr "Повні теми"
@@ -2270,9 +2263,8 @@ msgstr "Мовні пакети (Додаток)"
 msgid "Plugins"
 msgstr "Плагіни"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Художник тем"
+msgstr "Теми (Статичні)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Запитувати лише на сторінці цього додатку та профілю розробника"
@@ -2572,9 +2564,8 @@ msgstr "Перевірка модерованого додатку"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Модерація відгуку на додаток повернена"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Внести рецензію"
+msgstr "Перевірка вмісту додатку"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2850,9 +2841,8 @@ msgstr ""
 "Власними засобами. <span class=\"helptext\">Ваше подання буде негайно підписано для розповсюдження власними засобами. Оновлення повинні проводитися вами вручну через updateURL або зовнішні "
 "оновлення.</span>"
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Категорії не можна змінити поки ваш додаток вибрано для цієї програми."
+msgstr "Категорії не можна змінити поки ваш додаток є обраним."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Починаючи з Firefox 53, нові додатки на цьому сайті можуть бути лише типу WebExtensions."
@@ -3008,9 +2998,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Угода Firefox про розповсюдження додатків"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Політика перевірки"
+msgstr "Політика перевірки й правила"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
@@ -3314,9 +3303,8 @@ msgstr[0] "Зарезервована мітка:"
 msgstr[1] "Зарезервовані мітки:"
 msgstr[2] "Зарезервовані мітки:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Внески"
+msgstr "URL-адреса для внесків"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3690,9 +3678,8 @@ msgstr ""
 "Позначте цю опцію, якщо ваш додаток є експериментальним або з будь-яких причин не готовий до загального використання.  Додаток буде опубліковано, але із зниженим рівнем видимості.  Ви можете пізніше"
 " змінити це налаштування."
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Виберіть <b>не більше {0}</b> {1} категорії для цього додатку:"
+msgstr "Оберіть категорію для цього додатку:"
 
 msgid "Support email:"
 msgstr "Е-пошта підтримки:"
@@ -3817,10 +3804,8 @@ msgstr "Де розмістити версію"
 msgid "Upload Version"
 msgstr "Вивантажити версію"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Для завантаження пакету свого додатку і вибору обмежень щодо платформи користуйтеся полями нижче. Після завантаження ваш файл буде перевірено з використанням серії автоматичних тестів валідації."
+msgstr "Для вивантаження пакунку свого додатку скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
@@ -4193,7 +4178,7 @@ msgstr "<a href=\"%(register)s\">Зареєструйтеся</a> або <a href
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
@@ -4696,9 +4681,8 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
@@ -4709,16 +4693,14 @@ msgstr "Покращуйте відео {start_sub_heading}за допомого
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, контроль авто-відтворення та інших."
 
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Легко знаходьте зображення {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вдоскональте свої емоджі {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
@@ -4924,9 +4906,8 @@ msgstr "Немає відгуків"
 msgid "Weight"
 msgstr "Вага"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Остання перевірка"
+msgstr "Остання перевірка вмісту"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ця дія затвердить, підпише і опублікує дану версію. Коментарі будуть надіслані розробнику."
@@ -4961,9 +4942,8 @@ msgstr "Якщо у вас є сумніви щодо цього додатку,
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Залиште коментар для цієї версії. Розробник не зможе його побачити."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Схвалити / Відхилити"
+msgstr "Схвалити вміст"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
@@ -5068,9 +5048,8 @@ msgstr "Модеровані розгляди"
 msgid "Auto Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Внести рецензію"
+msgstr "Перевірка вмісту"
 
 msgid "Unlisted Queues"
 msgstr "Черги неопублікованих"
@@ -5274,9 +5253,8 @@ msgid "Editors' Guide"
 msgstr "Інструкції редактора"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Перевірити {0}"
+msgstr "Перевірка вмісту {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5304,9 +5282,8 @@ msgstr "Завантажити файли"
 msgid "The developer has provided source code."
 msgstr "Розробник надав програмний код."
 
-#, fuzzy
 msgid "Weight:"
-msgstr "Вага"
+msgstr "Вага:"
 
 msgid "Not Auto Approved Because"
 msgstr "Не схвалені автоматично через"
