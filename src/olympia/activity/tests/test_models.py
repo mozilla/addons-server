@@ -14,7 +14,7 @@ from olympia.amo.tests import (
     addon_factory, user_factory, TestCase, version_factory)
 from olympia.bandwagon.models import Collection
 from olympia.tags.models import Tag
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -150,7 +150,7 @@ class TestActivityLog(TestCase):
         """HTML for Review, and Collection."""
         activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
         user = UserProfile.objects.create()
-        review = Review.objects.create(user=user, addon_id=3615)
+        review = Rating.objects.create(user=user, addon_id=3615)
         activity_log.arguments = [activity_log, review]
         assert '>Review</a> for None written.' in activity_log.to_string()
         activity_log.action = amo.LOG.ADD_TO_COLLECTION.id

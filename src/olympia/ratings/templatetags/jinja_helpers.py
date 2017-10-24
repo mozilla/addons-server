@@ -6,7 +6,7 @@ from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.access import acl
-from olympia.ratings.models import ReviewFlag
+from olympia.ratings.models import RatingFlag
 
 from .. import forms
 
@@ -43,19 +43,19 @@ def impala_reviews_link(addon, collection_uuid=None, link_to_list=False):
 @library.global_function
 @library.render_with('ratings/report_review.html')
 def report_review_popup():
-    return {'ReviewFlag': ReviewFlag, 'flag_form': forms.ReviewFlagForm()}
+    return {'RatingFlag': RatingFlag, 'flag_form': forms.RatingFlagForm()}
 
 
 @library.global_function
 @library.render_with('ratings/edit_review.html')
 def edit_review_form():
-    return {'form': forms.ReviewForm()}
+    return {'form': forms.RatingForm()}
 
 
 @library.global_function
 @library.render_with('ratings/edit_review.html')
 def edit_review_reply_form():
-    return {'form': forms.ReviewReplyForm()}
+    return {'form': forms.RatingReplyForm()}
 
 
 def user_can_delete_review(request, review):

@@ -94,7 +94,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         # Comments should be the santized text rather than the actual content.
         assert result['comments'] == amo.LOG.REQUEST_SUPER_REVIEW.sanitize
         assert result['comments'].startswith(
-            'The addon has been flagged for Admin Review.')
+            'The addon has been flagged for Admin Rating.')
 
     def test_log_entry_without_details(self):
         # Create a log but without a details property.

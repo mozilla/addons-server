@@ -17,63 +17,63 @@ from olympia.translations.templatetags.jinja_helpers import truncate
 log = olympia.core.logger.getLogger('z.ratings')
 
 
-class ReviewManager(ManagerBase):
+class RatingManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
         # declaration/instantiation and understand the consequences.
-        super(ReviewManager, self).__init__()
+        super(RatingManager, self).__init__()
         self.include_deleted = include_deleted
 
     def get_queryset(self):
-        qs = super(ReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
+        qs = super(RatingManager, self).get_queryset()
+        qs = qs._clone(klass=RatingQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
         return qs
 
 
-class WithoutRepliesReviewManager(ManagerBase):
-    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
+class WithoutRepliesRatingManager(ManagerBase):
+    """Manager to fetch ratings that aren't replies (and aren't deleted)."""
 
     def get_queryset(self):
-        qs = super(WithoutRepliesReviewManager, self).get_queryset()
-        qs = qs._clone(klass=ReviewQuerySet)
+        qs = super(WithoutRepliesRatingManager, self).get_queryset()
+        qs = qs._clone(klass=RatingQuerySet)
         qs = qs.exclude(deleted=True)
         return qs.filter(reply_to__isnull=True)
 
 
-class ReviewQuerySet(caching.CachingQuerySet):
+class RatingQuerySet(caching.CachingQuerySet):
     """
     A queryset modified for soft deletion.
     """
     def to_moderate(self):
-        """Return reviews to moderate.
+        """Return ratings to moderate.
 
-        Reviews attached lacking an addon or attached to an addon that is no
-        longer nominated or public are ignored, as well as reviews attached to
+        Ratings attached lacking an addon or attached to an addon that is no
+        longer nominated or public are ignored, as well as ratings attached to
         unlisted versions.
         """
         return self.exclude(
             Q(addon__isnull=True) |
             Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
-            Q(reviewflag__isnull=True)).filter(
+            Q(ratingflag__isnull=True)).filter(
                 editorreview=1, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
-            return super(ReviewQuerySet, self).delete()
+            return super(RatingQuerySet, self).delete()
         else:
-            for review in self:
-                review.delete(user_responsible=user_responsible)
+            for rating in self:
+                rating.delete(user_responsible=user_responsible)
 
 
-class Review(ModelBase):
-    addon = models.ForeignKey('addons.Addon', related_name='_reviews')
-    version = models.ForeignKey('versions.Version', related_name='reviews',
+class Rating(ModelBase):
+    addon = models.ForeignKey('addons.Addon', related_name='_ratings')
+    version = models.ForeignKey('versions.Version', related_name='ratings',
                                 null=True)
-    user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
+    user = models.ForeignKey('users.UserProfile', related_name='_ratings_all')
     reply_to = models.OneToOneField(
         'self', null=True, related_name='reply', db_column='reply_to')
 
@@ -91,16 +91,16 @@ class Review(ModelBase):
     # TODO: index on addon, user, latest
     is_latest = models.BooleanField(
         default=True, editable=False,
-        help_text="Is this the user's latest review for the add-on?")
+        help_text="Is this the user's latest rating for the add-on?")
     previous_count = models.PositiveIntegerField(
         default=0, editable=False,
-        help_text="How many previous reviews by the user for this add-on?")
+        help_text="How many previous ratings by the user for this add-on?")
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
-    unfiltered = ReviewManager(include_deleted=True)
-    objects = ReviewManager()
-    without_replies = WithoutRepliesReviewManager()
+    unfiltered = RatingManager(include_deleted=True)
+    objects = RatingManager()
+    without_replies = WithoutRepliesRatingManager()
 
     class Meta:
         db_table = 'reviews'
@@ -113,7 +113,7 @@ class Review(ModelBase):
 
     def __init__(self, *args, **kwargs):
         user_responsible = kwargs.pop('user_responsible', None)
-        super(Review, self).__init__(*args, **kwargs)
+        super(Rating, self).__init__(*args, **kwargs)
         if user_responsible is not None:
             self.user_responsible = user_responsible
 
@@ -130,8 +130,8 @@ class Review(ModelBase):
                 body=unicode(self.body),
                 addon_id=self.addon.pk,
                 addon_title=unicode(self.addon.name),
-                is_flagged=self.reviewflag_set.exists()))
-        for flag in self.reviewflag_set.all():
+                is_flagged=self.ratingflag_set.exists()))
+        for flag in self.ratingflag_set.all():
             flag.delete()
         self.editorreview = False
         # We've already logged what we want to log, no need to pass
@@ -143,12 +143,12 @@ class Review(ModelBase):
         if user_responsible is None:
             user_responsible = self.user
 
-        review_was_moderated = False
-        # Log deleting reviews to moderation log,
+        rating_was_moderated = False
+        # Log deleting ratings to moderation log,
         # except if the author deletes it
         if user_responsible != self.user:
             # Remember moderation state
-            review_was_moderated = True
+            rating_was_moderated = True
             from olympia.reviewers.models import ReviewerScore
 
             activity.log_create(
@@ -158,11 +158,11 @@ class Review(ModelBase):
                     body=unicode(self.body),
                     addon_id=self.addon.pk,
                     addon_title=unicode(self.addon.name),
-                    is_flagged=self.reviewflag_set.exists()))
-            for flag in self.reviewflag_set.all():
+                    is_flagged=self.ratingflag_set.exists()))
+            for flag in self.ratingflag_set.all():
                 flag.delete()
 
-        log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")',
+        log.info(u'Rating deleted: %s deleted id:%s by %s ("%s": "%s")',
                  user_responsible.name, self.pk, self.user.name,
                  unicode(self.title), unicode(self.body))
         self.update(deleted=True)
@@ -170,7 +170,7 @@ class Review(ModelBase):
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
 
-        if (review_was_moderated):
+        if (rating_was_moderated):
             ReviewerScore.award_moderation_points(user_responsible,
                                                   self.addon,
                                                   self.pk)
@@ -182,9 +182,9 @@ class Review(ModelBase):
         self.update_denormalized_fields()
 
     @classmethod
-    def get_replies(cls, reviews):
-        reviews = [r.id for r in reviews]
-        qs = Review.objects.filter(reply_to__in=reviews)
+    def get_replies(cls, ratings):
+        ratings = [r.id for r in ratings]
+        qs = Rating.objects.filter(reply_to__in=ratings)
         return dict((r.reply_to_id, r) for r in qs)
 
     def send_notification_email(self):
@@ -204,14 +204,13 @@ class Review(ModelBase):
             template = 'ratings/emails/reply_review.ltxt'
             perm_setting = 'reply'
         else:
-            # It's a new review.
+            # It's a new rating.
             reply_url = jinja_helpers.url(
                 'addons.ratings.reply', self.addon.slug, self.pk,
                 add_prefix=False)
             data = {
                 'name': self.addon.name,
-                'rating': '%s out of 5 stars' % self.rating,
-                'review': self.body,
+                'rating': self,
                 'reply_url': jinja_helpers.absolutify(reply_url)
             }
             recipients = [author.email for author in self.addon.authors.all()]
@@ -230,24 +229,24 @@ class Review(ModelBase):
         if hasattr(instance, 'user_responsible'):
             # user_responsible is not a field on the model, so it's not
             # persistent: it's just something the views will set temporarily
-            # when manipulating a Review that indicates a real user made that
+            # when manipulating a Rating that indicates a real user made that
             # change.
             action = 'New' if created else 'Edited'
             if instance.reply_to:
                 log.debug('%s reply to %s: %s' % (
                     action, instance.reply_to_id, instance.pk))
             else:
-                log.debug('%s review: %s' % (action, instance.pk))
+                log.debug('%s rating: %s' % (action, instance.pk))
 
-            # For new reviews - not replies - and all edits (including replies
+            # For new ratings - not replies - and all edits (including replies
             # this time) by users we want to insert a new ActivityLog.
-            new_review_or_edit = not instance.reply_to or not created
-            if new_review_or_edit:
+            new_rating_or_edit = not instance.reply_to or not created
+            if new_rating_or_edit:
                 action = amo.LOG.ADD_REVIEW if created else amo.LOG.EDIT_REVIEW
                 activity.log_create(action, instance.addon, instance,
                                     user=instance.user_responsible)
 
-            # For new reviews and new replies we want to send an email.
+            # For new ratings and new replies we want to send an email.
             if created:
                 instance.send_notification_email()
 
@@ -261,8 +260,8 @@ class Review(ModelBase):
             # Do this immediately so is_latest is correct.
             self.update_denormalized_fields()
 
-        # Review counts have changed, so run the task and trigger a reindex.
-        tasks.addon_review_aggregates.delay(self.addon_id)
+        # Rating counts have changed, so run the task and trigger a reindex.
+        tasks.addon_rating_aggregates.delay(self.addon_id)
         update_search_index(self.addon.__class__, self.addon)
 
     def update_denormalized_fields(self):
@@ -272,14 +271,13 @@ class Review(ModelBase):
         tasks.update_denorm(pair)
 
 
-models.signals.post_save.connect(Review.post_save, sender=Review,
-                                 dispatch_uid='review_post_save')
-models.signals.pre_save.connect(save_signal, sender=Review,
-                                dispatch_uid='review_translations')
+models.signals.post_save.connect(Rating.post_save, sender=Rating,
+                                 dispatch_uid='rating_post_save')
+models.signals.pre_save.connect(save_signal, sender=Rating,
+                                dispatch_uid='rating_translations')
 
 
-# TODO: translate old flags.
-class ReviewFlag(ModelBase):
+class RatingFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
@@ -291,7 +289,7 @@ class ReviewFlag(ModelBase):
         (OTHER, _(u'Other (please specify)')),
     )
 
-    review = models.ForeignKey(Review)
+    review = models.ForeignKey(Rating)
     user = models.ForeignKey('users.UserProfile', null=True)
     flag = models.CharField(max_length=64, default=OTHER,
                             choices=FLAGS, db_column='flag_name')
@@ -310,7 +308,7 @@ class GroupedRating(object):
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
     """
     # Non-critical data, so we always leave it in memcache. Numbers are updated
-    # when a new review comes in.
+    # when a new rating comes in.
     prefix = 'addons:grouped:rating'
 
     @classmethod
@@ -330,7 +328,7 @@ class GroupedRating(object):
 
     @classmethod
     def set(cls, addon, using=None):
-        qs = (Review.without_replies.all().using(using)
+        qs = (Rating.without_replies.all().using(using)
               .filter(addon=addon, is_latest=True)
               .values_list('rating')
               .annotate(models.Count('rating')).order_by())

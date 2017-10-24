@@ -35,8 +35,8 @@ from olympia.api.permissions import (
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.ratings.forms import ReviewForm
-from olympia.ratings.models import Review, GroupedRating
+from olympia.ratings.forms import RatingForm
+from olympia.ratings.models import Rating, GroupedRating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
@@ -115,10 +115,10 @@ def extension_detail(request, addon):
         'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_denied(),
         'grouped_ratings': GroupedRating.get(addon.id),
-        'review_form': ReviewForm(),
-        'reviews': Review.without_replies.all().filter(
+        'review_form': RatingForm(),
+        'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True).exclude(body=None),
-        'get_replies': Review.get_replies,
+        'get_replies': Rating.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
     }
@@ -175,10 +175,10 @@ def persona_detail(request, addon):
     data.update({
         'dev_tags': dev_tags,
         'user_tags': user_tags,
-        'review_form': ReviewForm(),
-        'reviews': Review.without_replies.all().filter(
+        'review_form': RatingForm(),
+        'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True),
-        'get_replies': Review.get_replies,
+        'get_replies': Rating.get_replies,
         'search_cat': 'themes',
         'abuse_form': AbuseForm(request=request),
     })

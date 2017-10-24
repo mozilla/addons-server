@@ -347,7 +347,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
-        qs = self._reviews_all.filter(reply_to=None)
+        qs = self._ratings_all.filter(reply_to=None)
         # Force the query to occur immediately. Several
         # reviews-related tests hang if this isn't done.
         return qs

@@ -2,7 +2,7 @@
   <div class="popup review-reason">
     <h4>{{ _('Please select a reason:') }}</h4>
     <ul>
-      {% for flag, text in ReviewFlag.FLAGS %}
+      {% for flag, text in RatingFlag.FLAGS %}
         <li><a href="#{{ flag }}">{{ text }}</a></li>
       {% endfor %}
     </ul>

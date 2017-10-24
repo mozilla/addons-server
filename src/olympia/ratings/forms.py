@@ -8,10 +8,10 @@ from bleach import TLDS
 
 from olympia.amo.utils import raise_required
 
-from .models import ReviewFlag
+from .models import RatingFlag
 
 
-class ReviewReplyForm(forms.Form):
+class RatingReplyForm(forms.Form):
     form_id = 'review-reply-edit'
 
     title = forms.CharField(
@@ -36,7 +36,7 @@ class ReviewReplyForm(forms.Form):
         return body
 
 
-class ReviewForm(ReviewReplyForm):
+class RatingForm(RatingReplyForm):
     form_id = 'review-edit'
 
     title = forms.CharField(
@@ -76,17 +76,17 @@ class ReviewForm(ReviewReplyForm):
             self.cleaned_data['editorreview'] = True
 
 
-class ReviewFlagForm(forms.ModelForm):
+class RatingFlagForm(forms.ModelForm):
 
     class Meta:
-        model = ReviewFlag
+        model = RatingFlag
         fields = ('flag', 'note', 'review', 'user')
 
     def clean(self):
-        data = super(ReviewFlagForm, self).clean()
+        data = super(RatingFlagForm, self).clean()
         if 'note' in data and data['note'].strip():
-            data['flag'] = ReviewFlag.OTHER
-        elif data.get('flag') == ReviewFlag.OTHER:
+            data['flag'] = RatingFlag.OTHER
+        elif data.get('flag') == RatingFlag.OTHER:
             self.add_error(
                 'note',
                 ugettext(u'A short explanation must be provided when '

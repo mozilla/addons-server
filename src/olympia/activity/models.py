@@ -20,7 +20,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile
@@ -371,7 +371,7 @@ class ActivityLog(ModelBase):
                 else:
                     addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
-            if isinstance(arg, Review) and not review:
+            if isinstance(arg, Rating) and not review:
                 review = self.f(u'<a href="{0}">{1}</a>',
                                 arg.get_url_path(), ugettext('Review'))
                 arguments.remove(arg)

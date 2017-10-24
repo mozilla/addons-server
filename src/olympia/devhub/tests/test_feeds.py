@@ -9,7 +9,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
 from olympia.bandwagon.models import Collection
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
 
@@ -53,7 +53,7 @@ class TestActivity(HubTest):
             ActivityLog.create(amo.LOG.ADD_TAG, self.addon, tag)
 
     def log_review(self, num):
-        review = Review(addon=self.addon)
+        review = Rating(addon=self.addon)
         for i in xrange(num):
             ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, review)
 

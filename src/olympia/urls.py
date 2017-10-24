@@ -135,7 +135,7 @@ urlpatterns = [
     url('^versions/updateInfo/(?P<version_id>\d+)',
         version_views.update_info_redirect),
 
-    url('^addons.ratings/(\d+)/format:rss$',
+    url('^addons/reviews/(\d+)/format:rss$',
         lambda r, id: redirect('addons.ratings.list.rss', id, permanent=True)),
 
     url('^search-engines.*$',

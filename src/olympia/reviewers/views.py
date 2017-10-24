@@ -25,7 +25,7 @@ from olympia.amo.decorators import (
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
-from olympia.ratings.models import Review, ReviewFlag
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
@@ -92,7 +92,7 @@ def eventlog_detail(request, id):
     review = None
     # I really cannot express the depth of the insanity incarnate in
     # our logging code...
-    if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
+    if len(log.arguments) > 1 and isinstance(log.arguments[1], Rating):
         review = log.arguments[1]
 
     is_admin = acl.action_allowed(request,
@@ -482,7 +482,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
-        'moderated': Review.objects.all().to_moderate().count,
+        'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue().count),
         'content_review': (
@@ -520,14 +520,14 @@ def queue_pending(request):
 
 @ratings_moderator_required
 def queue_moderated(request):
-    qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
+    qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
-    flags = dict(ReviewFlag.FLAGS)
+    flags = dict(RatingFlag.FLAGS)
 
-    reviews_formset = forms.ReviewFlagFormSet(request.POST or None,
+    reviews_formset = forms.RatingFlagFormSet(request.POST or None,
                                               queryset=page.object_list,
                                               request=request)
 
@@ -697,7 +697,7 @@ def review(request, addon, channel=None):
                         .filter(Q(addon=addon) | Q(user__in=developers))
                         .order_by('-created')), 5).page(1)
         user_reviews = Paginator(
-            (Review.without_replies
+            (Rating.without_replies
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
 

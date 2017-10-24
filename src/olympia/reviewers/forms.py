@@ -17,7 +17,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
 from olympia.lib import happyforms
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
 from olympia.reviewers.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.reviewers.tasks import (
@@ -516,7 +516,7 @@ class WhiteboardForm(forms.ModelForm):
         fields = ['whiteboard']
 
 
-class ModerateReviewFlagForm(happyforms.ModelForm):
+class ModerateRatingFlagForm(happyforms.ModelForm):
 
     action_choices = [(ratings.REVIEW_MODERATE_KEEP,
                        _(u'Keep review; remove flags')),
@@ -527,15 +527,15 @@ class ModerateReviewFlagForm(happyforms.ModelForm):
                                initial=0, widget=forms.RadioSelect())
 
     class Meta:
-        model = Review
+        model = Rating
         fields = ('action',)
 
 
-class BaseReviewFlagFormSet(BaseModelFormSet):
+class BaseRatingFlagFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
+        super(BaseRatingFlagFormSet, self).__init__(*args, **kwargs)
 
     def save(self):
         for form in self.forms:
@@ -549,6 +549,6 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                     form.instance.approve(user=self.request.user)
 
 
-ReviewFlagFormSet = modelformset_factory(Review, extra=0,
-                                         form=ModerateReviewFlagForm,
-                                         formset=BaseReviewFlagFormSet)
+RatingFlagFormSet = modelformset_factory(Rating, extra=0,
+                                         form=ModerateRatingFlagForm,
+                                         formset=BaseRatingFlagFormSet)

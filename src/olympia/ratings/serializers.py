@@ -8,12 +8,12 @@ from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleVersionSerializer
-from olympia.ratings.forms import ReviewForm
-from olympia.ratings.models import Review
+from olympia.ratings.forms import RatingForm
+from olympia.ratings.models import Rating
 from olympia.versions.models import Version
 
 
-class BaseReviewSerializer(serializers.ModelSerializer):
+class BaseRatingSerializer(serializers.ModelSerializer):
     # title and body are TranslatedFields, but there is never more than one
     # translation for each review - it's essentially useless. Because of that
     # we use a simple CharField in the API, hiding the fact that it's a
@@ -26,7 +26,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     user = BaseUserSerializer(read_only=True)
 
     class Meta:
-        model = Review
+        model = Rating
         fields = ('id', 'addon', 'body', 'created', 'is_latest',
                   'previous_count', 'title', 'user')
 
@@ -43,7 +43,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, data):
-        data = super(BaseReviewSerializer, self).validate(data)
+        data = super(BaseRatingSerializer, self).validate(data)
         request = self.context['request']
 
         data['user_responsible'] = request.user
@@ -80,28 +80,28 @@ class BaseReviewSerializer(serializers.ModelSerializer):
                 data['body'] = re.sub('<br>', '\n', body)
             # Unquote the body when searching for links, in case someone tries
             # 'example%2ecom'.
-            if ReviewForm.link_pattern.search(unquote(body)) is not None:
+            if RatingForm.link_pattern.search(unquote(body)) is not None:
                 data['flag'] = True
                 data['editorreview'] = True
 
         return data
 
 
-class ReviewSerializerReply(BaseReviewSerializer):
+class RatingSerializerReply(BaseRatingSerializer):
     """Serializer used for replies only."""
     body = serializers.CharField(
         allow_null=False, required=True, allow_blank=False)
 
     def to_representation(self, obj):
         should_access_deleted = getattr(
-            self.context['view'], 'should_access_deleted_reviews', False)
+            self.context['view'], 'should_access_deleted_ratings', False)
         if obj.deleted and not should_access_deleted:
             return None
-        return super(ReviewSerializerReply, self).to_representation(obj)
+        return super(RatingSerializerReply, self).to_representation(obj)
 
     def validate(self, data):
-        # review_object is set on the view by the reply() method.
-        data['reply_to'] = self.context['view'].review_object
+        # rating_object is set on the view by the reply() method.
+        data['reply_to'] = self.context['view'].rating_object
 
         # When a reply is made on top of an existing deleted reply, we make
         # an edit instead, so we need to make sure `deleted` is reset.
@@ -114,11 +114,11 @@ class ReviewSerializerReply(BaseReviewSerializer):
                 u'You can\'t reply to a review that is already a reply.')
             raise serializers.ValidationError(msg)
 
-        data = super(ReviewSerializerReply, self).validate(data)
+        data = super(RatingSerializerReply, self).validate(data)
         return data
 
 
-class ReviewVersionSerializer(SimpleVersionSerializer):
+class RatingVersionSerializer(SimpleVersionSerializer):
 
     class Meta:
         model = Version
@@ -127,19 +127,19 @@ class ReviewVersionSerializer(SimpleVersionSerializer):
     def to_internal_value(self, data):
         """Resolve the version only by `id`."""
         # Version queryset is unfiltered, the version is checked more
-        # thoroughly in `ReviewSerializer.validate()` method.
+        # thoroughly in `RatingSerializer.validate()` method.
         field = PrimaryKeyRelatedField(queryset=Version.unfiltered)
         return field.to_internal_value(data)
 
 
-class ReviewSerializer(BaseReviewSerializer):
-    reply = ReviewSerializerReply(read_only=True)
+class RatingSerializer(BaseRatingSerializer):
+    reply = RatingSerializerReply(read_only=True)
     rating = serializers.IntegerField(min_value=1, max_value=5)
-    version = ReviewVersionSerializer()
+    version = RatingVersionSerializer()
 
     class Meta:
-        model = Review
-        fields = BaseReviewSerializer.Meta.fields + (
+        model = Rating
+        fields = BaseRatingSerializer.Meta.fields + (
             'rating', 'reply', 'version')
 
     def validate_version(self, version):
@@ -150,7 +150,7 @@ class ReviewSerializer(BaseReviewSerializer):
 
         addon = self.context['view'].get_addon_object()
         if not addon:
-            # BaseReviewSerializer.validate() should complain about that, not
+            # BaseRatingSerializer.validate() should complain about that, not
             # this method.
             return None
         if version.addon_id != addon.pk or not version.is_public():
@@ -160,16 +160,16 @@ class ReviewSerializer(BaseReviewSerializer):
         return version
 
     def validate(self, data):
-        data = super(ReviewSerializer, self).validate(data)
+        data = super(RatingSerializer, self).validate(data)
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
                     ugettext(u'You can\'t leave a review on your own add-on.'))
 
-            review_exists_on_this_version = Review.objects.filter(
+            rating_exists_on_this_version = Rating.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).exists()
-            if review_exists_on_this_version:
+            if rating_exists_on_this_version:
                 raise serializers.ValidationError(
                     ugettext(u'You can\'t leave more than one review for the '
                              u'same version of an add-on.'))

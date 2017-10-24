@@ -4,15 +4,15 @@ from django.test import RequestFactory
 from mock import mock
 
 from olympia.amo.tests import TestCase
-from olympia.ratings.permissions import CanDeleteReviewPermission
+from olympia.ratings.permissions import CanDeleteRatingPermission
 from olympia.users.models import UserProfile
 
 
-class TestCanDeleteReviewPermission(TestCase):
+class TestCanDeleteRatingPermission(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/')
         self.request.user = AnonymousUser()
-        self.perm = CanDeleteReviewPermission()
+        self.perm = CanDeleteRatingPermission()
 
     def test_has_permission_anonymous(self):
         assert not self.perm.has_permission(self.request, None)

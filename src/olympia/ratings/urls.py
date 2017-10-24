@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 
-from olympia.ratings.feeds import ReviewsRss
+from olympia.ratings.feeds import RatingsRss
 
 from . import views
 
@@ -19,7 +19,7 @@ urlpatterns = [
     url('^$', views.review_list, name='addons.ratings.list'),
     url('^add$', views.add, name='addons.ratings.add'),
     url('^(?P<review_id>\d+)/', include(rating_detail_patterns)),
-    url('^format:rss$', ReviewsRss(), name='addons.ratings.list.rss'),
+    url('^format:rss$', RatingsRss(), name='addons.ratings.list.rss'),
     url('^user:(?P<user_id>\d+)$', views.review_list,
         name='addons.ratings.user'),
 ]

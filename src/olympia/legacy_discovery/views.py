@@ -15,7 +15,7 @@ from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
 from olympia.legacy_api import views as legacy_api_views
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.stats.models import GlobalStat
 from olympia.versions.compare import version_int
 from olympia.zadmin.decorators import admin_required
@@ -177,11 +177,11 @@ def _sync_db_and_registry(qs, app_id):
 @addon_view
 @non_atomic_requests
 def addon_detail(request, addon):
-    reviews = Review.without_replies.all().filter(addon=addon, is_latest=True)
+    reviews = Rating.without_replies.all().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
     return render(request, 'legacy_discovery/addons/detail.html',
                   {'addon': addon, 'reviews': reviews,
-                   'get_replies': Review.get_replies, 'src': src})
+                   'get_replies': Rating.get_replies, 'src': src})
 
 
 @addon_view

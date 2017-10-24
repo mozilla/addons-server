@@ -24,7 +24,7 @@ from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification
 from olympia.users.utils import UnsubscribeCode
@@ -644,7 +644,7 @@ class TestProfileSections(TestCase):
         assert items('a[href="%s"]' % a.get_url_path()).length == 1
 
     def test_my_reviews(self):
-        r = Review.objects.filter(reply_to=None)[0]
+        r = Rating.objects.filter(reply_to=None)[0]
         r.update(user=self.user)
         cache.clear()
         self.assertSetEqual(set(self.user.reviews), {r})
@@ -669,12 +669,12 @@ class TestProfileSections(TestCase):
         moderator = UserProfile.objects.create(
             username='moderator', email='moderator@mozilla.com')
         self.grant_permission(moderator, 'Ratings:Moderate')
-        review = Review.objects.filter(reply_to=None)[0]
-        review.user_id = 999
-        review.save()
+        rating = Rating.objects.filter(reply_to=None)[0]
+        rating.user_id = 999
+        rating.save()
         cache.clear()
-        slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.ratings.delete', args=[slug, review.pk])
+        slug = Addon.objects.get(id=rating.addon_id).slug
+        delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
         # Admins get the Delete Review link.
         r = self._get_reviews(username='admin@mozilla.com')
@@ -699,13 +699,13 @@ class TestProfileSections(TestCase):
         moderator = UserProfile.objects.create(
             username='moderator', email='moderator@mozilla.com')
         self.grant_permission(moderator, 'Ratings:Moderate')
-        review = Review.objects.filter(reply_to=None)[0]
-        review.user_id = 999
-        review.editorreview = True
-        review.save()
+        rating = Rating.objects.filter(reply_to=None)[0]
+        rating.user_id = 999
+        rating.editorreview = True
+        rating.save()
         cache.clear()
-        slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.ratings.delete', args=[slug, review.pk])
+        slug = Addon.objects.get(id=rating.addon_id).slug
+        delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
         # Moderators get the Delete Review link
         # because the review is pending moderation

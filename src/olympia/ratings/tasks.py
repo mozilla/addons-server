@@ -7,7 +7,7 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 
-from .models import Review, GroupedRating
+from .models import Rating, GroupedRating
 
 log = olympia.core.logger.getLogger('z.task')
 
@@ -22,7 +22,7 @@ def update_denorm(*pairs, **kw):
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
     for addon, user in pairs:
-        reviews = list(Review.without_replies.all().no_cache()
+        reviews = list(Rating.without_replies.all().no_cache()
                        .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
@@ -38,23 +38,23 @@ def update_denorm(*pairs, **kw):
 
 @task
 @write
-def addon_review_aggregates(addons, **kw):
+def addon_rating_aggregates(addons, **kw):
     if isinstance(addons, (int, long)):  # Got passed a single addon id.
         addons = [addons]
     log.info('[%s@%s] Updating total reviews and average ratings.' %
-             (len(addons), addon_review_aggregates.rate_limit))
+             (len(addons), addon_rating_aggregates.rate_limit))
     addon_objs = list(Addon.objects.filter(pk__in=addons))
     # The following returns something like
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
-    qs = (Review.without_replies.all().no_cache()
+    qs = (Rating.without_replies.all().no_cache()
           .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
     stats = {x['addon']: (x['rating'], x['count']) for x in qs}
 
-    text_qs = (Review.without_replies.all().no_cache()
+    text_qs = (Rating.without_replies.all().no_cache()
                .filter(addon__in=addons, is_latest=True)
                .exclude(body=None)
                .values('addon')  # Group by addon id.

@@ -1,15 +1,15 @@
 import mock
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.ratings.models import Review
-from olympia.ratings.tasks import addon_review_aggregates
+from olympia.ratings.models import Rating
+from olympia.ratings.tasks import addon_rating_aggregates
 
 
-class TestAddonReviewAggregates(TestCase):
+class TestAddonRatingAggregates(TestCase):
     # Prevent <Review>.refresh() from being fired when setting up test data,
-    # since it'd call addon_review_aggregates too early.
-    @mock.patch.object(Review, 'refresh', lambda x, update_denorm=False: None)
-    def test_addon_review_aggregates(self):
+    # since it'd call addon_rating_aggregates too early.
+    @mock.patch.object(Rating, 'refresh', lambda x, update_denorm=False: None)
+    def test_addon_rating_aggregates(self):
         addon = addon_factory()
         addon2 = addon_factory()
 
@@ -22,22 +22,22 @@ class TestAddonReviewAggregates(TestCase):
         user = user_factory()
         # Add an old review that should not be used to calculate the average,
         # because the same user posts a new one right after that.
-        old_review = Review.objects.create(
+        old_review = Rating.objects.create(
             addon=addon, rating=1, user=user, is_latest=False, body=u'old')
-        new_review = Review.objects.create(addon=addon, rating=3, user=user,
+        new_review = Rating.objects.create(addon=addon, rating=3, user=user,
                                            body=u'new')
-        Review.objects.create(addon=addon, rating=3, user=user_factory(),
+        Rating.objects.create(addon=addon, rating=3, user=user_factory(),
                               body=u'foo')
-        Review.objects.create(addon=addon, rating=2, user=user_factory())
-        Review.objects.create(addon=addon, rating=1, user=user_factory())
+        Rating.objects.create(addon=addon, rating=2, user=user_factory())
+        Rating.objects.create(addon=addon, rating=1, user=user_factory())
 
         # On another addon as well.
-        Review.objects.create(addon=addon2, rating=1, user=user_factory())
-        Review.objects.create(addon=addon2, rating=1, user=user_factory(),
+        Rating.objects.create(addon=addon2, rating=1, user=user_factory())
+        Rating.objects.create(addon=addon2, rating=1, user=user_factory(),
                               body=u'two')
 
-        # addon_review_aggregates should ignore replies, so let's add one.
-        Review.objects.create(
+        # addon_rating_aggregates should ignore replies, so let's add one.
+        Rating.objects.create(
             addon=addon, rating=5, user=user_factory(), reply_to=new_review)
 
         # Make sure old_review is considered old, new_review considered new.
@@ -47,7 +47,7 @@ class TestAddonReviewAggregates(TestCase):
         assert new_review.is_latest is True
 
         # Make sure total_reviews hasn't been updated yet (because we are
-        # mocking Review.refresh()).
+        # mocking Rating.refresh()).
         addon.reload()
         addon2.reload()
         assert addon.total_reviews == 0
@@ -60,7 +60,7 @@ class TestAddonReviewAggregates(TestCase):
         assert addon2.text_reviews_count == 0
 
         # Trigger the task and test results.
-        addon_review_aggregates([addon.pk, addon2.pk])
+        addon_rating_aggregates([addon.pk, addon2.pk])
         addon.reload()
         addon2.reload()
         assert addon.total_reviews == 4
@@ -73,12 +73,12 @@ class TestAddonReviewAggregates(TestCase):
         assert addon2.text_reviews_count == 1
 
         # Trigger the task with a single add-on.
-        Review.objects.create(addon=addon2, rating=5, user=user_factory(),
+        Rating.objects.create(addon=addon2, rating=5, user=user_factory(),
                               body=u'xxx')
         addon2.reload()
         assert addon2.total_reviews == 2
 
-        addon_review_aggregates(addon2.pk)
+        addon_rating_aggregates(addon2.pk)
         addon2.reload()
         assert addon2.total_reviews == 3
         assert addon2.text_reviews_count == 2

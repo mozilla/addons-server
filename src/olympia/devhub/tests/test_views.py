@@ -31,7 +31,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.translations.models import delete_translation, Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
@@ -413,7 +413,7 @@ class TestVersionStats(TestCase):
         version = addon.current_version
         user = UserProfile.objects.get(email='admin@mozilla.com')
         for _ in range(10):
-            Review.objects.create(addon=addon, user=user,
+            Rating.objects.create(addon=addon, user=user,
                                   version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])

@@ -30,7 +30,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
-from olympia.ratings.models import Review, ReviewFlag
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     delete_translation, Translation, TranslationSequence)
 from olympia.users.models import UserProfile
@@ -1158,10 +1158,10 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=999)
         version = addon.current_version
-        new_review = Review(version=version, user=u, rating=2, body='hello',
+        new_review = Rating(version=version, user=u, rating=2, body='hello',
                             addon=addon)
         new_review.save()
-        new_reply = Review(version=version, user=addon.authors.all()[0],
+        new_reply = Rating(version=version, user=addon.authors.all()[0],
                            addon=addon, reply_to=new_review,
                            rating=2, body='my reply')
         new_reply.save()
@@ -1674,16 +1674,16 @@ class TestAddonDelete(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_PUBLIC)
 
-        review = Review.objects.create(addon=addon, rating=1, body='foo',
+        review = Rating.objects.create(addon=addon, rating=1, body='foo',
                                        user=UserProfile.objects.create())
 
-        flag = ReviewFlag(review=review)
+        flag = RatingFlag(review=review)
 
         addon.delete()
 
         assert Addon.unfiltered.filter(pk=addon.pk).exists()
-        assert not Review.objects.filter(pk=review.pk).exists()
-        assert not ReviewFlag.objects.filter(pk=flag.pk).exists()
+        assert not Rating.objects.filter(pk=review.pk).exists()
+        assert not RatingFlag.objects.filter(pk=flag.pk).exists()
 
     def test_delete_with_deleted_versions(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

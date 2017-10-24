@@ -43,7 +43,7 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
     extract_translations, resolve_i18n_message, parse_addon)
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
@@ -483,7 +483,7 @@ class Addon(OnChangeMixin, ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
-            self._reviews.all().delete()
+            self._ratings.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
                                 unicode(self.guid), self)
@@ -659,7 +659,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def reviews(self):
-        return Review.objects.filter(addon=self, reply_to=None)
+        return Rating.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app_id):
         categories = self.app_categories.get(amo.APP_IDS.get(app_id))

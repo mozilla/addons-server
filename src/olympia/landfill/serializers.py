@@ -16,7 +16,7 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
-from olympia.ratings.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
 
@@ -70,14 +70,14 @@ class GenerateAddonsSerializer(serializers.Serializer):
             developer_comments='This is a testing addon.',
         )
         Preview.objects.create(addon=addon, position=1)
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
         version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},

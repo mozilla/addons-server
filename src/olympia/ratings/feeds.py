@@ -5,16 +5,17 @@ from django.utils.translation import ugettext
 
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.feeds import NonAtomicFeed
-from olympia.addons.models import Addon, Review
+from olympia.addons.models import Addon
+from olympia.ratings.models import Rating
 
 
-class ReviewsRss(NonAtomicFeed):
+class RatingsRss(NonAtomicFeed):
 
     addon = None
 
     def get_object(self, request, addon_id=None):
         """Get the Addon for which we are about to output
-           the RSS feed of it Review"""
+           the RSS feed of its Rating"""
         self.addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
         return self.addon
 
@@ -31,41 +32,41 @@ class ReviewsRss(NonAtomicFeed):
         return ugettext('Review History for this Addon')
 
     def items(self, addon):
-        """Return the Reviews for this Addon to be output as RSS <item>'s"""
-        qs = (Review.without_replies.all().filter(
+        """Return the Ratings for this Addon to be output as RSS <item>'s"""
+        qs = (Rating.without_replies.all().filter(
             addon=addon).order_by('-created'))
         return qs.all()[:30]
 
-    def item_link(self, review):
-        """Link for a particular review (<item><link>)"""
+    def item_link(self, rating):
+        """Link for a particular rating (<item><link>)"""
         return jinja_helpers.absolutify(jinja_helpers.url(
-            'addons.ratings.detail', self.addon.slug, review.id))
+            'addons.ratings.detail', self.addon.slug, rating.id))
 
-    def item_title(self, review):
-        """Title for particular review (<item><title>)"""
-        tag_line = rating = ''
-        if getattr(review, 'rating', None):
+    def item_title(self, rating):
+        """Title for particular rating (<item><title>)"""
+        tag_line = title = ''
+        if getattr(rating, 'rating', None):
             # L10n: This describes the number of stars given out of 5
-            rating = ugettext('Rated %d out of 5 stars') % review.rating
-        if getattr(review, 'title', None):
-            tag_line = review.title
-        divider = ' : ' if rating and tag_line else ''
-        return u'%s%s%s' % (rating, divider, tag_line)
+            title = ugettext('Rated %d out of 5 stars') % rating.rating
+        if getattr(rating, 'title', None):
+            tag_line = rating.title
+        divider = ' : ' if title and tag_line else ''
+        return u'%s%s%s' % (title, divider, tag_line)
 
-    def item_description(self, review):
-        """Description for particular review (<item><description>)"""
-        return review.body
+    def item_description(self, rating):
+        """Description for particular rating (<item><description>)"""
+        return rating.body
 
-    def item_guid(self, review):
-        """Guid for a particuar review  (<item><guid>)"""
+    def item_guid(self, rating):
+        """Guid for a particuar rating  (<item><guid>)"""
         guid_url = jinja_helpers.absolutify(
             jinja_helpers.url('addons.ratings.list', self.addon.slug))
-        return guid_url + urllib.quote(str(review.id))
+        return guid_url + urllib.quote(str(rating.id))
 
-    def item_author_name(self, review):
-        """Author for a particuar review  (<item><dc:creator>)"""
-        return review.user.name
+    def item_author_name(self, rating):
+        """Author for a particular rating  (<item><dc:creator>)"""
+        return rating.user.name
 
-    def item_pubdate(self, review):
-        """Pubdate for a particuar review  (<item><pubDate>)"""
-        return review.created
+    def item_pubdate(self, rating):
+        """Pubdate for a particular rating  (<item><pubDate>)"""
+        return rating.created

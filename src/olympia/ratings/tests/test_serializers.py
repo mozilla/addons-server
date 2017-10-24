@@ -4,11 +4,11 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.ratings.models import Review
-from olympia.ratings.serializers import ReviewSerializer
+from olympia.ratings.models import Rating
+from olympia.ratings.serializers import RatingSerializer
 
 
-class TestBaseReviewSerializer(TestCase):
+class TestBaseRatingSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
         self.view = Mock(spec=['get_addon_object'])
@@ -20,31 +20,31 @@ class TestBaseReviewSerializer(TestCase):
             'view': self.view,
         }
         context.update(extra_context)
-        serializer = ReviewSerializer(context=context)
-        return serializer.to_representation(self.review)
+        serializer = RatingSerializer(context=context)
+        return serializer.to_representation(self.rating)
 
     def test_basic(self):
         addon = addon_factory()
         self.view.get_addon_object.return_value = addon
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
 
         result = self.serialize()
 
-        assert result['id'] == self.review.pk
+        assert result['id'] == self.rating.pk
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
         }
-        assert result['body'] == unicode(self.review.body)
+        assert result['body'] == unicode(self.rating.body)
         assert result['created'] == (
-            self.review.created.replace(microsecond=0).isoformat() + 'Z')
-        assert result['title'] == unicode(self.review.title)
-        assert result['previous_count'] == int(self.review.previous_count)
-        assert result['is_latest'] == self.review.is_latest
-        assert result['rating'] == int(self.review.rating)
+            self.rating.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result['title'] == unicode(self.rating.title)
+        assert result['previous_count'] == int(self.rating.previous_count)
+        assert result['is_latest'] == self.rating.is_latest
+        assert result['rating'] == int(self.rating.rating)
         assert result['reply'] is None
         assert result['user'] == {
             'id': self.user.pk,
@@ -53,18 +53,18 @@ class TestBaseReviewSerializer(TestCase):
             'username': self.user.username,
         }
         assert result['version'] == {
-            'id': self.review.version.id,
-            'version': self.review.version.version
+            'id': self.rating.version.id,
+            'version': self.rating.version.version
         }
 
-        self.review.update(version=None)
+        self.rating.update(version=None)
         result = self.serialize()
         assert result['version'] is None
 
     def test_url_for_yourself(self):
         addon = addon_factory()
         self.view.get_addon_object.return_value = addon
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
@@ -76,7 +76,7 @@ class TestBaseReviewSerializer(TestCase):
     def test_url_for_admins(self):
         addon = addon_factory()
         self.view.get_addon_object.return_value = addon
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
@@ -90,14 +90,14 @@ class TestBaseReviewSerializer(TestCase):
     def test_addon_slug_even_if_view_doesnt_return_addon_object(self):
         addon = addon_factory()
         self.view.get_addon_object.return_value = None
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
 
         result = self.serialize()
 
-        assert result['id'] == self.review.pk
+        assert result['id'] == self.rating.pk
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
@@ -105,26 +105,26 @@ class TestBaseReviewSerializer(TestCase):
 
     def test_with_previous_count(self):
         addon = addon_factory()
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
-        self.review.update(is_latest=False, previous_count=42)
+        self.rating.update(is_latest=False, previous_count=42)
         result = self.serialize()
 
-        assert result['id'] == self.review.pk
+        assert result['id'] == self.rating.pk
         assert result['previous_count'] == 42
         assert result['is_latest'] is False
 
     def test_with_reply(self):
         reply_user = user_factory()
         addon = addon_factory(users=[reply_user])
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
-        reply = Review.objects.create(
+        reply = Rating.objects.create(
             addon=addon, user=reply_user, version=addon.current_version,
-            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.rating)
 
         result = self.serialize()
 
@@ -147,12 +147,12 @@ class TestBaseReviewSerializer(TestCase):
     def test_reply_profile_url_for_yourself(self):
         addon = addon_factory()
         reply_user = user_factory()
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
-        Review.objects.create(
+        Rating.objects.create(
             addon=addon, user=reply_user, version=addon.current_version,
-            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.rating)
         # should be the profile for your own requests
         self.request.user = reply_user
         result = self.serialize()
@@ -162,12 +162,12 @@ class TestBaseReviewSerializer(TestCase):
     def test_with_deleted_reply(self):
         addon = addon_factory()
         reply_user = user_factory()
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
-        reply = Review.objects.create(
+        reply = Rating.objects.create(
             addon=addon, user=reply_user, version=addon.current_version,
-            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.rating)
         reply.delete()
 
         result = self.serialize()
@@ -179,12 +179,12 @@ class TestBaseReviewSerializer(TestCase):
         addon = addon_factory(users=[reply_user])
         self.view.get_addon_object.return_value = addon
         self.view.should_access_deleted_reviews = True
-        self.review = Review.objects.create(
+        self.rating = Rating.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
-        reply = Review.objects.create(
+        reply = Rating.objects.create(
             addon=addon, user=reply_user, version=addon.current_version,
-            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.rating)
 
         result = self.serialize()
 
@@ -204,7 +204,7 @@ class TestBaseReviewSerializer(TestCase):
         }
 
     def test_readonly_fields(self):
-        serializer = ReviewSerializer(context={'request': self.request})
+        serializer = RatingSerializer(context={'request': self.request})
         assert serializer.fields['created'].read_only is True
         assert serializer.fields['id'].read_only is True
         assert serializer.fields['reply'].read_only is True

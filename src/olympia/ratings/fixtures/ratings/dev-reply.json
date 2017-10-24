@@ -195,7 +195,7 @@
     },
     {
         "pk": 218207,
-        "model": "ratings.review",
+        "model": "ratings.rating",
         "fields": {
             "body": 1043705,
             "rating": 4,
@@ -213,7 +213,7 @@
     },
     {
         "pk": 218468,
-        "model": "ratings.review",
+        "model": "ratings.rating",
         "fields": {
             "body": 1046853,
             "rating": null,
