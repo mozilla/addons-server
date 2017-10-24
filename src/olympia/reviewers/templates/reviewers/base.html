@@ -16,13 +16,13 @@
     {% if action_allowed(amo.permissions.ADDONS_REVIEW) and action_allowed(amo.permissions.THEMES_REVIEW) %}
       <nav class="pill-nav-amo">
         {% if action_allowed(amo.permissions.ADDONS_REVIEW) %}
-          <a{% if '/reviewers/themes' not in request.path %} class="selected"{% endif %}
+          <a{% if '/editors/themes' not in request.path %} class="selected"{% endif %}
              href="{{ url('reviewers.reviewlog') if '/logs' in request.path
                       else url('reviewers.home') }}">
             {{ _('Add-ons') }}</a>
         {% endif %}
         {% if action_allowed(amo.permissions.THEMES_REVIEW) %}
-          <a{% if '/reviewers/themes' in request.path %} class="selected"{% endif %}
+          <a{% if '/editors/themes' in request.path %} class="selected"{% endif %}
              href="{{ url('reviewers.themes.logs') if '/reviewlog' in request.path
                       else url('reviewers.themes.home') }}">{{ _('Themes') }}</a>
         {% endif %}
