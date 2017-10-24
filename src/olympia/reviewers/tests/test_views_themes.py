@@ -729,8 +729,9 @@ class TestDashboard(TestCase):
 
     def setUp(self):
         super(TestDashboard, self).setUp()
-        self.request = amo.tests.req_factory_factory(
-            reverse('reviewers.themes.home'), user=UserProfile.objects.get())
+        self.url = reverse('reviewers.themes.home')
+        self.user = UserProfile.objects.get()
+        self.request = amo.tests.req_factory_factory(self.url, user=self.user)
         initialize_session(self.request, {})
 
     def test_dashboard_queue_counts(self):
@@ -769,6 +770,14 @@ class TestDashboard(TestCase):
         assert doc('.reviewer-stats-table:first-child td.int').text() == '3'
         # Reviews monthly.
         assert doc('.reviewer-stats-table:last-child td.int').text() == '3'
+
+    def test_themes_is_selected_in_nav(self):
+        self.client.login(email=self.user.email)
+        # Also grant access to addons, so that the nav is shown.
+        self.grant_permission(self.user, 'Addons:Review')
+        doc = pq(self.client.get(self.url).content)
+        assert (doc('.amo-header nav a.selected').attr('href') ==
+                '/en-US/editors/themes')
 
 
 class TestXssOnThemeName(amo.tests.TestXss):

@@ -670,6 +670,13 @@ class TestHome(ReviewerTest):
         assert cols.eq(0).text() != self.user.display_name
         assert cols.eq(0).text() == self.user.name
 
+    def test_addons_is_selected_in_nav(self):
+        # Also grant access to themes, so that the nav is shown.
+        self.grant_permission(self.user, 'Personas:Review')
+        doc = pq(self.client.get(self.url).content)
+        assert (doc('.amo-header nav a.selected').attr('href') ==
+                '/en-US/editors/')
+
 
 class QueueTest(ReviewerTest):
     fixtures = ['base/users']
