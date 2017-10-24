@@ -1694,9 +1694,9 @@ class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
 @AddonUser.on_change
 def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
                      **kwargs):
+    instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-    instance.user.update_is_public()
 
 
 class AddonDependency(models.Model):
