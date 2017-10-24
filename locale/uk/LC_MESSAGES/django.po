@@ -1132,9 +1132,8 @@ msgid ""
 msgstr ""
 "Навіть якщо підтримуваний Вами застосунок не вимагає файлу маніфесту, Вам все одно необхідно вказати %(amo_manifests_mdn_link_open)sтут%(amo_manifests_mdn_link_close)s властивості, що вимагаються."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Помічник"
+msgstr "Помічники"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -1995,9 +1994,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар про {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "прокоментовано"
+msgstr "Прокоментовано"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} додано до {addon}."
