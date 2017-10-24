@@ -674,7 +674,7 @@ class TestProfileSections(TestCase):
         review.save()
         cache.clear()
         slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+        delete_url = reverse('addons.ratings.delete', args=[slug, review.pk])
 
         # Admins get the Delete Review link.
         r = self._get_reviews(username='admin@mozilla.com')
@@ -705,7 +705,7 @@ class TestProfileSections(TestCase):
         review.save()
         cache.clear()
         slug = Addon.objects.get(id=review.addon_id).slug
-        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+        delete_url = reverse('addons.ratings.delete', args=[slug, review.pk])
 
         # Moderators get the Delete Review link
         # because the review is pending moderation

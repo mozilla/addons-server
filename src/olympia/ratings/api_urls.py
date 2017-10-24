@@ -5,9 +5,9 @@ from rest_framework.routers import SimpleRouter
 from olympia.ratings.views import ReviewViewSet
 
 
-reviews = SimpleRouter()
-reviews.register(r'review', ReviewViewSet, base_name='review')
+ratings = SimpleRouter()
+ratings.register(r'review', ReviewViewSet, base_name='ratings')
 
 urlpatterns = [
-    url(r'', include(reviews.urls))
+    url(r'', include(ratings.urls))
 ]

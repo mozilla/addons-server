@@ -213,7 +213,7 @@ class TestReviewModel(TestCase):
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.reviews.reply', addon.slug, review.pk,
+                'addons.ratings.reply', addon.slug, review.pk,
                 add_prefix=False))
         assert email.subject == 'Mozilla Add-on User Review: my addon name'
         assert 'A user has left a review for your add-on,' in email.body
@@ -234,7 +234,7 @@ class TestReviewModel(TestCase):
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.reviews.detail', review.addon.slug, review.pk,
+                'addons.ratings.detail', review.addon.slug, review.pk,
                 add_prefix=False))
         assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
         assert 'A developer has replied to your review' in email.body

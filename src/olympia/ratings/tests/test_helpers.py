@@ -53,7 +53,7 @@ class HelpersTest(TestCase):
         assert pq(s)('strong').text() == 'Not yet rated'
 
         # with link
-        u = reverse('addons.reviews.list', args=['xx'])
+        u = reverse('addons.ratings.list', args=['xx'])
         s = self.render('{{ reviews_link(myaddon, link_to_list=True) }}',
                         {'myaddon': a})
         assert pq(s)('a').attr('href') == u
@@ -78,7 +78,7 @@ class HelpersTest(TestCase):
         assert pq(s)('b').text() == 'Not yet rated'
 
         # with link
-        u = reverse('addons.reviews.list', args=['xx'])
+        u = reverse('addons.ratings.list', args=['xx'])
         s = self.render(
             '{{ impala_reviews_link(myaddon, link_to_list=True) }}',
             {'myaddon': a})

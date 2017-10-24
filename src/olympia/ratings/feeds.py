@@ -39,7 +39,7 @@ class ReviewsRss(NonAtomicFeed):
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
         return jinja_helpers.absolutify(jinja_helpers.url(
-            'addons.reviews.detail', self.addon.slug, review.id))
+            'addons.ratings.detail', self.addon.slug, review.id))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
@@ -59,7 +59,7 @@ class ReviewsRss(NonAtomicFeed):
     def item_guid(self, review):
         """Guid for a particuar review  (<item><guid>)"""
         guid_url = jinja_helpers.absolutify(
-            jinja_helpers.url('addons.reviews.list', self.addon.slug))
+            jinja_helpers.url('addons.ratings.list', self.addon.slug))
         return guid_url + urllib.quote(str(review.id))
 
     def item_author_name(self, review):

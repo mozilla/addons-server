@@ -37,7 +37,7 @@
     {% endif %}
     &middot;
     <a class="permalink"
-      href="{{ url('addons.reviews.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
+      href="{{ url('addons.ratings.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
   </p>
   <p class="description">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
@@ -46,7 +46,7 @@
   {% endif %}
   {% if page != 'user' and review.previous_count %}
   <span class="item-note">
-    {% with user_review_url = url('addons.reviews.user', addon.slug, review.user.id) %}
+    {% with user_review_url = url('addons.ratings.user', addon.slug, review.user.id) %}
       {% if review.is_latest %}
         {% trans num=review.previous_count, cnt=review.previous_count|numberfmt %}
           This user has a <a href="{{ user_review_url }}">previous review</a> of this add-on.
@@ -67,13 +67,13 @@
       <li class="flagged">{{ _('Flagged for review') }}</li>
     {% elif review.user_id != request.user.id %}
       <li>
-        <a class="flag-review" href="{{ url('addons.reviews.flag', addon.slug, review.id) }}">
+        <a class="flag-review" href="{{ url('addons.ratings.flag', addon.slug, review.id) }}">
           {{ _('Report this review') }}</a>
       </li>
     {% endif %}
     {% if not (is_reply or has_reply) and (perms.is_author or perms.is_admin) %}
       <li>
-        <a class="review-reply" href="{{ url('addons.reviews.reply', addon.slug, review.id) }}">
+        <a class="review-reply" href="{{ url('addons.ratings.reply', addon.slug, review.id) }}">
           {{ _('Reply to review') }}</a>
       </li>
     {% endif %}
@@ -93,12 +93,12 @@
     {% if check_review_delete(review) %}
       {% if is_reply %}
         <li>
-          <a class="delete-review" href="{{ url('addons.reviews.delete', addon.slug, review.id) }}">
+          <a class="delete-review" href="{{ url('addons.ratings.delete', addon.slug, review.id) }}">
             {{ _('Delete reply') }}</a>
         </li>
       {% else %}
         <li>
-          <a class="delete-review" href="{{ url('addons.reviews.delete', addon.slug, review.id) }}">
+          <a class="delete-review" href="{{ url('addons.ratings.delete', addon.slug, review.id) }}">
             {{ _('Delete review') }}</a>
         </li>
       {% endif %}

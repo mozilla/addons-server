@@ -18,7 +18,7 @@
   <div class="primary island hero" id="reviews">
     {% include "ratings/review.html" %}
     <form method="post" class="prettyform c"
-          action="{{ url('addons.reviews.reply', addon.slug, review.id) }}">
+          action="{{ url('addons.ratings.reply', addon.slug, review.id) }}">
       {% csrf_token %}
       <fieldset>
         <h2>{{ _('Write a Reply') }}</h2>

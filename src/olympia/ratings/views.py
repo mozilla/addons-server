@@ -168,7 +168,7 @@ def reply(request, addon, review_id):
         }
         reply, created = Review.unfiltered.update_or_create(**kwargs)
         return redirect(jinja_helpers.url(
-            'addons.reviews.detail', addon.slug, review_id))
+            'addons.ratings.detail', addon.slug, review_id))
     ctx = {
         'review': review,
         'form': form,
@@ -193,7 +193,7 @@ def add(request, addon):
                             flag=ReviewFlag.OTHER,
                             note='URLs')
             rf.save()
-        return redirect(jinja_helpers.url('addons.reviews.list', addon.slug))
+        return redirect(jinja_helpers.url('addons.ratings.list', addon.slug))
     return render(request, 'ratings/add.html', {'addon': addon, 'form': form})
 
 

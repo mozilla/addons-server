@@ -1177,7 +1177,7 @@ class TestModeratedQueue(QueueTest):
         super(TestModeratedQueue, self).setUp()
 
         self.url = reverse('reviewers.queue_moderated')
-        url_flag = reverse('addons.reviews.flag', args=['a1865', 218468])
+        url_flag = reverse('addons.ratings.flag', args=['a1865', 218468])
 
         response = self.client.post(url_flag, {'flag': ReviewFlag.SPAM})
         assert response.status_code == 200

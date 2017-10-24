@@ -1,5 +1,5 @@
 {% if link_to_list %}
-  {% set base = url('addons.reviews.list', addon.slug) %}
+  {% set base = url('addons.ratings.list', addon.slug) %}
 {% else %}
   {% set base = addon.get_url_path()|urlparams('reviews') %}
   {% if collection_uuid %}

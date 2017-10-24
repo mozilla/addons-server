@@ -119,7 +119,7 @@ class Review(ModelBase):
 
     def get_url_path(self):
         return jinja_helpers.url(
-            'addons.reviews.detail', self.addon.slug, self.id)
+            'addons.ratings.detail', self.addon.slug, self.id)
 
     def approve(self, user):
         from olympia.reviewers.models import ReviewerScore
@@ -191,7 +191,7 @@ class Review(ModelBase):
         if self.reply_to:
             # It's a reply.
             reply_url = jinja_helpers.url(
-                'addons.reviews.detail', self.addon.slug,
+                'addons.ratings.detail', self.addon.slug,
                 self.reply_to.pk, add_prefix=False)
             data = {
                 'name': self.addon.name,
@@ -206,7 +206,7 @@ class Review(ModelBase):
         else:
             # It's a new review.
             reply_url = jinja_helpers.url(
-                'addons.reviews.reply', self.addon.slug, self.pk,
+                'addons.ratings.reply', self.addon.slug, self.pk,
                 add_prefix=False)
             data = {
                 'name': self.addon.name,

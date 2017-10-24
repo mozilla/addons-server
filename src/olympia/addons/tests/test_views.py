@@ -1295,11 +1295,11 @@ class TestXssOnName(amo.tests.TestXss):
         self.assertNameAndNoXSS(url)
 
     def test_reviews_list(self):
-        url = reverse('addons.reviews.list', args=[self.addon.slug])
+        url = reverse('addons.ratings.list', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
 
     def test_reviews_add(self):
-        url = reverse('addons.reviews.add', args=[self.addon.slug])
+        url = reverse('addons.ratings.add', args=[self.addon.slug])
         self.client.login(email='fligtar@gmail.com')
         self.assertNameAndNoXSS(url)
 

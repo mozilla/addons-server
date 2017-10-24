@@ -9,7 +9,7 @@
       </p>
     {% endif %}
 
-    <form disabled method="post" action="{{ url('addons.reviews.add', addon.slug) }}">
+    <form disabled method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
       {% csrf_token %}
       {{ field(review_form.title, _('Title:'), **attrs) }}

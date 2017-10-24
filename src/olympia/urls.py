@@ -97,10 +97,10 @@ urlpatterns = [
         lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
     url('^reviews/display/(\d+)',
-        lambda r, id: redirect('addons.reviews.list', id, permanent=True)),
+        lambda r, id: redirect('addons.ratings.list', id, permanent=True)),
 
     url('^reviews/add/(\d+)',
-        lambda r, id: redirect('addons.reviews.add', id, permanent=True)),
+        lambda r, id: redirect('addons.ratings.add', id, permanent=True)),
 
     url('^users/info/(\d+)',
         lambda r, id: redirect('users.profile', id, permanent=True)),
@@ -135,8 +135,8 @@ urlpatterns = [
     url('^versions/updateInfo/(?P<version_id>\d+)',
         version_views.update_info_redirect),
 
-    url('^addons/reviews/(\d+)/format:rss$',
-        lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
+    url('^addons.ratings/(\d+)/format:rss$',
+        lambda r, id: redirect('addons.ratings.list.rss', id, permanent=True)),
 
     url('^search-engines.*$',
         lambda r: redirect(urlparams(reverse('search.search'), atype=4),

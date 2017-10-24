@@ -45,7 +45,7 @@
       {% endtrans %}
     </fieldset>
     <form method="post" class="review-form" id="review-form"
-          action="{{ url('addons.reviews.add', addon.slug) }}">
+          action="{{ url('addons.ratings.add', addon.slug) }}">
       {% csrf_token %}
       <fieldset>
         <ul>
