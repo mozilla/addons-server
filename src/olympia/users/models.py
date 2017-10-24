@@ -19,6 +19,7 @@ import caching.base as caching
 
 import olympia.core.logger
 from olympia import amo, core
+from olympia.amo.decorators import write
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
@@ -287,6 +288,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.addonuser_set.filter(
             addon__type=amo.ADDON_PERSONA).exists()
 
+    @write
     def update_is_public(self):
         pre = self.is_public
         is_public = (
