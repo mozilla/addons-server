@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from olympia.reviews.templatetags.jinja_helpers import user_can_delete_review
+from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
 
 
 class CanDeleteReviewPermission(BasePermission):

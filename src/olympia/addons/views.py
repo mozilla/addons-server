@@ -35,8 +35,8 @@ from olympia.api.permissions import (
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.reviews.forms import ReviewForm
-from olympia.reviews.models import Review, GroupedRating
+from olympia.ratings.forms import ReviewForm
+from olympia.ratings.models import Review, GroupedRating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonCategoryQueryParam, AddonTypeQueryParam,
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,

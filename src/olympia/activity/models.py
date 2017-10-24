@@ -20,7 +20,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.tags.models import Tag
 from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile

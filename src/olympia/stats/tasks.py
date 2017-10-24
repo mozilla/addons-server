@@ -16,7 +16,7 @@ from olympia.amo import search as amo_search
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.bandwagon.models import Collection
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 

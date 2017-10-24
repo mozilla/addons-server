@@ -16,12 +16,12 @@ from olympia.amo.tests import (
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.reviews.models import Review, ReviewFlag
+from olympia.ratings.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 
 
 class ReviewTest(TestCase):
-    fixtures = ['reviews/dev-reply.json', 'base/admin']
+    fixtures = ['ratings/dev-reply.json', 'base/admin']
 
     def setUp(self):
         super(ReviewTest, self).setUp()
@@ -68,18 +68,18 @@ class TestViews(ReviewTest):
     def test_abuse_form(self):
         r = self.client.get(jinja_helpers.url(
             'addons.reviews.list', self.addon.slug))
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
+        self.assertTemplateUsed(r, 'ratings/report_review.html')
         r = self.client.get(jinja_helpers.url(
             'addons.reviews.detail', self.addon.slug, 218468))
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
+        self.assertTemplateUsed(r, 'ratings/report_review.html')
 
     def test_edit_review_form(self):
         r = self.client.get(jinja_helpers.url(
             'addons.reviews.list', self.addon.slug))
-        self.assertTemplateUsed(r, 'reviews/edit_review.html')
+        self.assertTemplateUsed(r, 'ratings/edit_review.html')
         r = self.client.get(jinja_helpers.url(
             'addons.reviews.detail', self.addon.slug, 218468))
-        self.assertTemplateUsed(r, 'reviews/edit_review.html')
+        self.assertTemplateUsed(r, 'ratings/edit_review.html')
 
     def test_list(self):
         r = self.client.get(jinja_helpers.url(
@@ -361,7 +361,7 @@ class TestCreate(ReviewTest):
     def test_add_logged(self):
         r = self.client.get(self.add_url)
         assert r.status_code == 200
-        self.assertTemplateUsed(r, 'reviews/add.html')
+        self.assertTemplateUsed(r, 'ratings/add.html')
 
     def test_no_body(self):
         response = self.client.post(self.add_url, {'body': ''})
@@ -392,7 +392,7 @@ class TestCreate(ReviewTest):
         assert len(mail.outbox) == 1
 
         assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
-        self.assertTemplateUsed(response, 'reviews/emails/add_review.ltxt')
+        self.assertTemplateUsed(response, 'ratings/emails/add_review.ltxt')
 
     def test_reply_not_author_or_admin(self):
         url = jinja_helpers.url(
@@ -430,7 +430,7 @@ class TestCreate(ReviewTest):
         assert self.qs.filter(reply_to=review.pk).count() == 1
 
         assert len(mail.outbox) == 1
-        self.assertTemplateUsed(response, 'reviews/emails/reply_review.ltxt')
+        self.assertTemplateUsed(response, 'ratings/emails/reply_review.ltxt')
 
     def test_double_reply(self):
         self.login_dev()
@@ -772,7 +772,7 @@ class TestReviewViewSetGet(TestCase):
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result. In the real world those queries
             # would often be in the cache.
-            with mock.patch('olympia.reviews.views.ReviewViewSet'
+            with mock.patch('olympia.ratings.views.ReviewViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
                 response = self.client.get(self.url, {'addon': self.addon.pk})
@@ -824,7 +824,7 @@ class TestReviewViewSetGet(TestCase):
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result. In the real world those queries
             # would often be in the cache.
-            with mock.patch('olympia.reviews.views.ReviewViewSet'
+            with mock.patch('olympia.ratings.views.ReviewViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
                 response = self.client.get(self.url, {'addon': self.addon.pk})

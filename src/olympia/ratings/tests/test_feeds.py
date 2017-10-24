@@ -2,7 +2,7 @@
 import mock
 
 from olympia.amo.tests import TestCase
-from olympia.reviews import feeds
+from olympia.ratings import feeds
 from olympia.translations.models import Translation
 
 

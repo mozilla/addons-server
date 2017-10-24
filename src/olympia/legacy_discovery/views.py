@@ -15,7 +15,7 @@ from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
 from olympia.legacy_api import views as legacy_api_views
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.stats.models import GlobalStat
 from olympia.versions.compare import version_int
 from olympia.zadmin.decorators import admin_required

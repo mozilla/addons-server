@@ -16,7 +16,7 @@ detail_patterns = [
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^abuse/', views.report_abuse, name='addons.abuse'),
 
-    url('^reviews/', include('olympia.reviews.urls')),
+    url('^reviews/', include('olympia.ratings.urls')),
     url('^statistics/', include(stats_patterns)),
     url('^versions/', include('olympia.versions.urls')),
 

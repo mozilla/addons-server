@@ -12,7 +12,7 @@
       {{ _('Average') }}
     </div>
   {% endif %}
-  {% include "reviews/grouped_ratings.html" %}
+  {% include "ratings/grouped_ratings.html" %}
   {% if addon.can_review(user) %}
     <div>
       <a class="button" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">{{ _('Write a review') }}</a>

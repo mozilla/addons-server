@@ -9,13 +9,13 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
-from olympia.reviews import tasks
-from olympia.reviews.models import GroupedRating, Review, ReviewFlag
+from olympia.ratings import tasks
+from olympia.ratings.models import GroupedRating, Review, ReviewFlag
 from olympia.users.models import UserProfile
 
 
 class TestReviewModel(TestCase):
-    fixtures = ['reviews/test_models']
+    fixtures = ['ratings/test_models']
 
     def test_translations(self):
         translation.activate('en-US')
@@ -52,7 +52,7 @@ class TestReviewModel(TestCase):
         assert review.previous_count == 0
         assert review.is_latest is True
 
-    @mock.patch('olympia.reviews.models.log')
+    @mock.patch('olympia.ratings.models.log')
     def test_soft_delete_user_responsible(self, log_mock):
         user_responsible = user_factory()
         review = Review.objects.get(id=1)
@@ -108,7 +108,7 @@ class TestReviewModel(TestCase):
         # Unfiltered should have them all still.
         assert Review.unfiltered.count() == 3
 
-    @mock.patch('olympia.reviews.models.log')
+    @mock.patch('olympia.ratings.models.log')
     def test_author_delete(self, log_mock):
         review = Review.objects.get(pk=1)
         review.delete(user_responsible=review.user)
@@ -116,7 +116,7 @@ class TestReviewModel(TestCase):
         review.reload()
         assert ActivityLog.objects.count() == 0
 
-    @mock.patch('olympia.reviews.models.log')
+    @mock.patch('olympia.ratings.models.log')
     def test_moderator_delete(self, log_mock):
         moderator = user_factory()
         review = Review.objects.get(pk=1)

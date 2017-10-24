@@ -6,7 +6,7 @@ from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.access import acl
-from olympia.reviews.models import ReviewFlag
+from olympia.ratings.models import ReviewFlag
 
 from .. import forms
 
@@ -19,14 +19,14 @@ def stars(num, large=False):
         return ugettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
-        t = get_template('reviews/impala/reviews_rating.html')
+        t = get_template('ratings/impala/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
         return jinja2.Markup(t.render({'rating': num, 'detailpage': large}))
 
 
 @library.global_function
 def reviews_link(addon, collection_uuid=None, link_to_list=False):
-    t = get_template('reviews/reviews_link.html')
+    t = get_template('ratings/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
                                    'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
@@ -34,26 +34,26 @@ def reviews_link(addon, collection_uuid=None, link_to_list=False):
 
 @library.global_function
 def impala_reviews_link(addon, collection_uuid=None, link_to_list=False):
-    t = get_template('reviews/impala/reviews_link.html')
+    t = get_template('ratings/impala/reviews_link.html')
     return jinja2.Markup(t.render({'addon': addon,
                                    'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
 
 
 @library.global_function
-@library.render_with('reviews/report_review.html')
+@library.render_with('ratings/report_review.html')
 def report_review_popup():
     return {'ReviewFlag': ReviewFlag, 'flag_form': forms.ReviewFlagForm()}
 
 
 @library.global_function
-@library.render_with('reviews/edit_review.html')
+@library.render_with('ratings/edit_review.html')
 def edit_review_form():
     return {'form': forms.ReviewForm()}
 
 
 @library.global_function
-@library.render_with('reviews/edit_review.html')
+@library.render_with('ratings/edit_review.html')
 def edit_review_reply_form():
     return {'form': forms.ReviewReplyForm()}
 

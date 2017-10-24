@@ -4,8 +4,8 @@ from pyquery import PyQuery as pq
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
-from olympia.reviews.models import ReviewFlag
-from olympia.reviews.forms import ReviewForm
+from olympia.ratings.models import ReviewFlag
+from olympia.ratings.forms import ReviewForm
 
 
 class HelpersTest(TestCase):

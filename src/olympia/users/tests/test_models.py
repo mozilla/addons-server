@@ -14,7 +14,7 @@ from olympia.amo.tests import addon_factory, TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.users.models import (
     DeniedName, UserEmailField, UserProfile,
     UserForeignKey)

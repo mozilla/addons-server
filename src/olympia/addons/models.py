@@ -43,7 +43,7 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
     extract_translations, resolve_i18n_message, parse_addon)
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)

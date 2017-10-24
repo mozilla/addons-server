@@ -85,7 +85,7 @@ def review_list(request, addon, review_id=None, user_id=None):
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
         ctx['review_perms'] = {}
-    return render(request, 'reviews/review_list.html', ctx)
+    return render(request, 'ratings/review_list.html', ctx)
 
 
 def get_flags(request, reviews):
@@ -174,7 +174,7 @@ def reply(request, addon, review_id):
         'form': form,
         'addon': addon
     }
-    return render(request, 'reviews/reply.html', ctx)
+    return render(request, 'ratings/reply.html', ctx)
 
 
 @addon_view
@@ -194,7 +194,7 @@ def add(request, addon):
                             note='URLs')
             rf.save()
         return redirect(jinja_helpers.url('addons.reviews.list', addon.slug))
-    return render(request, 'reviews/add.html', {'addon': addon, 'form': form})
+    return render(request, 'ratings/add.html', {'addon': addon, 'form': form})
 
 
 @addon_view

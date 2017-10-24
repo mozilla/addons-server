@@ -16,7 +16,7 @@ from olympia.amo.tests import (
     addon_factory, file_factory, user_factory, version_factory)
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
 from olympia.files.models import FileValidation
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.versions.models import (
     Version, version_uploaded)
 from olympia.files.models import File, WebextPermission

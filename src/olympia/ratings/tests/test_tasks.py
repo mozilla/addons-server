@@ -1,8 +1,8 @@
 import mock
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.reviews.models import Review
-from olympia.reviews.tasks import addon_review_aggregates
+from olympia.ratings.models import Review
+from olympia.ratings.tasks import addon_review_aggregates
 
 
 class TestAddonReviewAggregates(TestCase):

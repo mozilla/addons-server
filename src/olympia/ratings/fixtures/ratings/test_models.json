@@ -88,7 +88,7 @@
     },
     {
         "pk": 1,
-        "model": "reviews.review",
+        "model": "ratings.review",
         "fields": {
             "body": null,
             "rating": 4,
@@ -103,7 +103,7 @@
     },
     {
         "pk": 2,
-        "model": "reviews.review",
+        "model": "ratings.review",
         "fields": {
             "body": null,
             "rating": 4,

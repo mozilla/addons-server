@@ -24,7 +24,7 @@ from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification
 from olympia.users.utils import UnsubscribeCode
@@ -530,7 +530,7 @@ class TestProfileLinks(UserViewBase):
 class TestProfileSections(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
-                'reviews/dev-reply']
+                'ratings/dev-reply']
 
     def setUp(self):
         super(TestProfileSections, self).setUp()
@@ -657,7 +657,7 @@ class TestProfileSections(TestCase):
         assert doc('#review-218207').length == 1
 
         # Edit Review form should be present.
-        self.assertTemplateUsed(r, 'reviews/edit_review.html')
+        self.assertTemplateUsed(r, 'ratings/edit_review.html')
 
     def _get_reviews(self, username):
         self.client.login(email=username)
@@ -779,7 +779,7 @@ class TestProfileSections(TestCase):
 
     def test_review_abuse_form(self):
         r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'reviews/report_review.html')
+        self.assertTemplateUsed(r, 'ratings/report_review.html')
 
     def test_user_abuse_form(self):
         abuse_url = reverse('users.abuse', args=[self.user.id])

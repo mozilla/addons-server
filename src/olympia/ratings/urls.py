@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 
-from olympia.reviews.feeds import ReviewsRss
+from olympia.ratings.feeds import ReviewsRss
 
 from . import views
 

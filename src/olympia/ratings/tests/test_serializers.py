@@ -4,8 +4,8 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.reviews.models import Review
-from olympia.reviews.serializers import ReviewSerializer
+from olympia.ratings.models import Review
+from olympia.ratings.serializers import ReviewSerializer
 
 
 class TestBaseReviewSerializer(TestCase):

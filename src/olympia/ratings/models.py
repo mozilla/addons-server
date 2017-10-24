@@ -14,7 +14,7 @@ from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.templatetags.jinja_helpers import truncate
 
 
-log = olympia.core.logger.getLogger('z.reviews')
+log = olympia.core.logger.getLogger('z.ratings')
 
 
 class ReviewManager(ManagerBase):
@@ -201,7 +201,7 @@ class Review(ModelBase):
             }
             recipients = [self.reply_to.user.email]
             subject = u'Mozilla Add-on Developer Reply: %s' % self.addon.name
-            template = 'reviews/emails/reply_review.ltxt'
+            template = 'ratings/emails/reply_review.ltxt'
             perm_setting = 'reply'
         else:
             # It's a new review.
@@ -216,7 +216,7 @@ class Review(ModelBase):
             }
             recipients = [author.email for author in self.addon.authors.all()]
             subject = u'Mozilla Add-on User Review: %s' % self.addon.name
-            template = 'reviews/emails/add_review.ltxt'
+            template = 'ratings/emails/add_review.ltxt'
             perm_setting = 'new_review'
         send_mail_jinja(
             subject, template, data,

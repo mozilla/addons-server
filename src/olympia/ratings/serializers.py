@@ -8,8 +8,8 @@ from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleVersionSerializer
-from olympia.reviews.forms import ReviewForm
-from olympia.reviews.models import Review
+from olympia.ratings.forms import ReviewForm
+from olympia.ratings.models import Review
 from olympia.versions.models import Version
 
 

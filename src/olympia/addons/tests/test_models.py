@@ -30,7 +30,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
-from olympia.reviews.models import Review, ReviewFlag
+from olympia.ratings.models import Review, ReviewFlag
 from olympia.translations.models import (
     delete_translation, Translation, TranslationSequence)
 from olympia.users.models import UserProfile

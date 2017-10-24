@@ -22,8 +22,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, Persona
 from olympia.files.models import FileValidation
+from olympia.ratings.models import Review
 from olympia.reviewers.sql_model import RawSQLModel
-from olympia.reviews.models import Review
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import Version, version_uploaded
 

@@ -16,7 +16,7 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.users.models import UserProfile
 
 

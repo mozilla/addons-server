@@ -25,7 +25,7 @@
         <form method="post" style="margin-bottom: 2em">
           {% csrf_token %}
           {% with addon = review.addon %}
-            {% include "reviews/review.html" %}
+            {% include "ratings/review.html" %}
           {% endwith %}
           <p style="margin-bottom: .4em">
             For <a href="{{ review.addon.get_url_path() }}">{{ review.addon.name }}</a>

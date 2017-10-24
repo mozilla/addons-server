@@ -4,7 +4,7 @@ from django.test import RequestFactory
 from mock import mock
 
 from olympia.amo.tests import TestCase
-from olympia.reviews.permissions import CanDeleteReviewPermission
+from olympia.ratings.permissions import CanDeleteReviewPermission
 from olympia.users.models import UserProfile
 
 
@@ -21,12 +21,12 @@ class TestCanDeleteReviewPermission(TestCase):
         self.request.user = UserProfile()
         assert self.perm.has_permission(self.request, None)
 
-    @mock.patch('olympia.reviews.permissions.user_can_delete_review')
+    @mock.patch('olympia.ratings.permissions.user_can_delete_review')
     def test_has_object_permission(self, user_can_delete_review_mock):
         user_can_delete_review_mock.return_value = True
         assert self.perm.has_object_permission(self.request, None, object())
 
-    @mock.patch('olympia.reviews.permissions.user_can_delete_review')
+    @mock.patch('olympia.ratings.permissions.user_can_delete_review')
     def test_has_object_permission_false(self, user_can_delete_review_mock):
         user_can_delete_review_mock.return_value = False
         assert not self.perm.has_object_permission(

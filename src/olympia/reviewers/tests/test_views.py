@@ -18,7 +18,7 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 from freezegun import freeze_time
 
-from olympia import amo, core, reviews
+from olympia import amo, core, ratings
 from olympia.amo.tests import (
     addon_factory, file_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
@@ -29,9 +29,9 @@ from olympia.addons.models import (
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.ratings.models import Review, ReviewFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription)
-from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
@@ -1171,7 +1171,7 @@ class TestNominatedQueue(QueueTest):
 
 
 class TestModeratedQueue(QueueTest):
-    fixtures = ['base/users', 'reviews/dev-reply']
+    fixtures = ['base/users', 'ratings/dev-reply']
 
     def setUp(self):
         super(TestModeratedQueue, self).setUp()
@@ -1217,7 +1217,7 @@ class TestModeratedQueue(QueueTest):
         self.assert3xx(response, self.url)
 
     def test_skip(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+        self.setup_actions(ratings.REVIEW_MODERATE_SKIP)
 
         # Make sure it's still there.
         response = self.client.get(self.url)
@@ -1226,7 +1226,7 @@ class TestModeratedQueue(QueueTest):
         assert rows.length == 1
 
     def test_skip_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+        self.setup_actions(ratings.REVIEW_MODERATE_SKIP)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 0
 
@@ -1235,7 +1235,7 @@ class TestModeratedQueue(QueueTest):
 
     def test_remove(self):
         """Make sure the reviewer tools can delete a review."""
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
         logs = self.get_logs(amo.LOG.DELETE_REVIEW)
         assert logs.count() == 1
 
@@ -1264,7 +1264,7 @@ class TestModeratedQueue(QueueTest):
         # Make sure the initial count is as expected
         assert Review.objects.filter(addon=1865).count() == 2
 
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
         logs = self.get_logs(amo.LOG.DELETE_REVIEW)
         assert logs.count() == 0
 
@@ -1276,13 +1276,13 @@ class TestModeratedQueue(QueueTest):
         assert Review.objects.filter(addon=1865).count() == 2
 
     def test_remove_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_keep(self):
         """Make sure the reviewer tools can remove flags and keep a review."""
-        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
+        self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
         logs = self.get_logs(amo.LOG.APPROVE_REVIEW)
         assert logs.count() == 1
 
@@ -1299,7 +1299,7 @@ class TestModeratedQueue(QueueTest):
         assert review.filter(editorreview=1).count() == 0
 
     def test_keep_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
+        self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 

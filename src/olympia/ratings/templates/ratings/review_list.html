@@ -58,7 +58,7 @@
       </section>
     {% endif %}
     <section>
-      {% include "reviews/grouped_ratings.html" %}
+      {% include "ratings/grouped_ratings.html" %}
     </section>
     <section>
       {% if addon.can_review(user) %}
@@ -79,10 +79,10 @@
       {% endif %}
     {% endif %}
     {% for review in reviews.object_list %}
-      {% include "reviews/review.html" %}
+      {% include "ratings/review.html" %}
       {% if review.id in replies %}
         {% with review=replies[review.id] %}
-          {% include "reviews/review.html" %}
+          {% include "ratings/review.html" %}
         {% endwith %}
       {% endif %}
     {% endfor %}

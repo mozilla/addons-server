@@ -16,7 +16,7 @@
   </div>
 
   <div class="primary island hero" id="reviews">
-    {% include "reviews/review.html" %}
+    {% include "ratings/review.html" %}
     <form method="post" class="prettyform c"
           action="{{ url('addons.reviews.reply', addon.slug, review.id) }}">
       {% csrf_token %}

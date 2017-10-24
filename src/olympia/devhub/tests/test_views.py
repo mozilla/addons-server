@@ -31,7 +31,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.translations.models import delete_translation, Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version

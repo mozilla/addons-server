@@ -14,7 +14,7 @@ from olympia.amo.tests import (
     addon_factory, user_factory, TestCase, version_factory)
 from olympia.bandwagon.models import Collection
 from olympia.tags.models import Tag
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 

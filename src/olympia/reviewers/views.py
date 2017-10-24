@@ -25,6 +25,7 @@ from olympia.amo.decorators import (
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
+from olympia.ratings.models import Review, ReviewFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
@@ -35,7 +36,6 @@ from olympia.reviewers.models import (
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
-from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config

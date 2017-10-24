@@ -96,7 +96,7 @@
         {% if hasOneToOne(review, 'addon') %}
           {% set addon = review.addon %}
           {% with show_addon = True %}
-            {% include "reviews/review.html" %}
+            {% include "ratings/review.html" %}
           {% endwith %}
         {% endif %}
       {% else %}

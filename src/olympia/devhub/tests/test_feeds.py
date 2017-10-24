@@ -9,7 +9,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
 from olympia.bandwagon.models import Collection
-from olympia.reviews.models import Review
+from olympia.ratings.models import Review
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
 
