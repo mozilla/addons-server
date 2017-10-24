@@ -122,8 +122,10 @@ class TestAutoApproveCommand(TestCase):
         assert qs[2] == self.version
 
     @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.statsd.incr')
+    @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.ReviewHelper')
-    def test_approve(self, review_helper_mock):
+    def test_approve(self, review_helper_mock, statsd_incr_mock):
         command = auto_approve.Command()
         command.approve(self.version)
         assert review_helper_mock.call_count == 1
@@ -131,6 +133,10 @@ class TestAutoApproveCommand(TestCase):
             (), {'addon': self.addon, 'version': self.version}
         )
         assert review_helper_mock().handler.process_public.call_count == 1
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args == (
+            ('reviewers.auto_approve.approve',), {}
+        )
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_full(self, sign_file_mock):

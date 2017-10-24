@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from django_statsd.clients import statsd
+
 import olympia.core.logger
 from olympia import amo
 from olympia.files.utils import atomic_lock
@@ -119,6 +121,7 @@ class Command(BaseCommand):
                         u'\r\n\r\nThank you!'
         }
         helper.handler.process_public()
+        statsd.incr('reviewers.auto_approve.approve')
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""
