@@ -93,7 +93,7 @@
                     {{ reviewers['user'].name }}
                   </a>
                 </td>
-                <td class="date" title="{{ reviewers['created']|babel_datetime }}">
+                <td class="date" title="{{ reviewers['created']|datetime }}">
                   {{ reviewers['created']|timesince }}
                 </td>
               </tr>
@@ -123,7 +123,7 @@
         </a>
         {% endif %}
         {% with ago=item.created|timesince, iso=item.created|isotime,
-                 pretty=item.created|babel_datetime %}
+                 pretty=item.created|datetime %}
           <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
         {% endwith %}
       </div>

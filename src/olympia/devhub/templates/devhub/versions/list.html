@@ -36,7 +36,7 @@
           {{ _('Version {0}')|format_html(version.version) }}</a>
       </strong>
       <span title="{{ version.created|isotime }}" class="note">
-        {{ version.created|datetime }}
+        {{ version.created|date }}
       </span>
     </td>
     <td class="file-status">

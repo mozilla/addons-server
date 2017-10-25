@@ -3,7 +3,7 @@
     {{ record.log.short }}
   </th>
   <td>
-    {% trans user = record.user|user_link, date = record.created|babel_datetime %}
+    {% trans user = record.user|user_link, date = record.created|datetime %}
       <div>By {{ user }} on {{ date }}</div>
     {% endtrans %}
     {% if record.details %}

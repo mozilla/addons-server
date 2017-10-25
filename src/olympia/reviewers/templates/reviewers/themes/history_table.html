@@ -15,7 +15,7 @@
       {% for theme_review in theme_reviews.object_list %}
         {% set details = theme_review.details %}
         <tr>
-          <td>{{ theme_review.created|datetime('%Y-%m-%d') }}</td>
+          <td>{{ theme_review.created|date('Y-m-d') }}</td>
           {% if not user_history %}
             <td>{{ theme_review.user.display_name }}</td>
           {% else %}

@@ -35,13 +35,13 @@
   <li class="date-created">
     <strong>{{ _('Created:') }}</strong>
       {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-      {{ addon.created|datetime(_('%%b %%e, %%Y')) }}
+      {{ addon.created|date }}
   </li>
 {% else %}
   <li class="date-updated">
     <strong>{{ _('Last Updated:') }}</strong>
       {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-      {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
+      {{ addon.last_updated|date }}
   </li>
 {% endif %}
 {% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}

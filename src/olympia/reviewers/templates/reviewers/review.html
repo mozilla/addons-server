@@ -65,7 +65,7 @@
         {% for version in pager.object_list|reverse %}
         <tr class="listing-header">
           <th colspan="2">
-            {% trans version = version.version, created = version.created|datetime, version_status = version_status(addon, version) %}
+            {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
             Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
             {% endtrans %}
           </th>

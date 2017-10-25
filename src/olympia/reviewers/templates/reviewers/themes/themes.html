@@ -37,7 +37,7 @@
           <a href="{{ category.get_url_path() }}">{{ category.name }}</a>{{ ', ' if not loop.last }}
         {% endfor %}
       </dd>
-      <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|datetime('%Y-%m-%d') }}</dd>
+      <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|date('Y-m-d') }}</dd>
       <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
     </dl>
     <dl class="meta">

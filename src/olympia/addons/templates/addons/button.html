@@ -18,7 +18,7 @@
      data-version="{{ version.version }}"
      data-compatible-apps="{{ version.compatible_apps[request.APP] }}"
      data-lastupdated-isotime="{{ version.created|isotime }}"
-     data-lastupdated-datetime="{{ version.created|datetime }}"
+     data-lastupdated-datetime="{{ version.created|date }}"
   {% endif %}>
   <p class="install-button">
     {% set links = button.links() %}

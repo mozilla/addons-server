@@ -21,7 +21,7 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonUser)
 from olympia.amo.templatetags.jinja_helpers import (
-    url as url_reverse, datetime_filter)
+    url as url_reverse, format_date)
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
@@ -193,7 +193,7 @@ class TestDashboard(HubTest):
         elm = doc('.item-details .date-created')
         assert elm.length == 1
         assert elm.remove('strong').text() == (
-            datetime_filter(self.addon.created, '%b %e, %Y'))
+            format_date(self.addon.created, '%b %e, %Y'))
 
     def test_sort_updated_filter(self):
         response = self.client.get(self.url)
@@ -203,7 +203,7 @@ class TestDashboard(HubTest):
         assert elm.length == 1
         assert elm.remove('strong').text() == (
             trim_whitespace(
-                datetime_filter(self.addon.last_updated, '%b %e, %Y')))
+                format_date(self.addon.last_updated, '%b %e, %Y')))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.
@@ -222,7 +222,7 @@ class TestDashboard(HubTest):
         # There's no "last updated" for themes, so always display "created".
         elm = doc('.item-details .date-created')
         assert elm.remove('strong').text() == (
-            trim_whitespace(datetime_filter(addon.created)))
+            trim_whitespace(format_date(addon.created)))
 
     def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
         self.make_addon_unlisted(self.addon)

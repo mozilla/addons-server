@@ -11,7 +11,7 @@
     {% else %}
       {% set object_name = report.user|user_link %}
     {% endif %}
-    {% trans user=user_link, date=report.created|datetime, ip_address=report.ip_address, object=object_name %}
+    {% trans user=user_link, date=report.created|date, ip_address=report.ip_address, object=object_name %}
         {{ user }} [{{ ip_address }}] reported {{ object }} on {{ date }}
     {% endtrans %}
     <blockquote>{{ report.message }}</blockquote>

@@ -196,7 +196,7 @@
   {% if version %}
     <ul>
       <li>{{ _('Version {0}')|format_html(version.version) }} <a class="scrollto" href="#detail-relnotes">{{ _('Info') }}</a></li>
-      <li>{% trans %}Last Updated:{% endtrans %} {{ version.created|datetime }}</li>
+      <li>{% trans %}Last Updated:{% endtrans %} {{ version.created|date }}</li>
       <li class="source-license">
         {% set license = version.license %}
         {% if license %}

@@ -11,7 +11,7 @@
         {% endif %}
         <p class="description">{{ review.body|nl2br }}</p>
         <p>{{ review.rating|stars }}
-          {% trans user=review.user|user_link, date=review.created|datetime %}
+          {% trans user=review.user|user_link, date=review.created|date %}
             by {{ user }} on {{ date }}
           {% endtrans %}
           {% if replies[review.id] %}

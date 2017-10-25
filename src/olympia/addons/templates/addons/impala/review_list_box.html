@@ -11,7 +11,7 @@
           {{ review.rating|stars }}
         </h3>
         <p class="byline">
-          {% trans user=review.user|user_link, date=review.created|datetime %}
+          {% trans user=review.user|user_link, date=review.created|date %}
             by {{ user }} on {{ date }}
           {% endtrans %}
           &middot;

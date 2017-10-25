@@ -19,7 +19,7 @@
         <tbody>
           {% for item in pager.object_list %}
             <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
-              <td>{{ item.created|babel_datetime }}</td>
+              <td>{{ item.created|datetime }}</td>
               <td>
                 <a href="{{ url('reviewers.themes.single', item.arguments.0.slug) }}">{{ item.arguments.0.name }}</a>
               </td>

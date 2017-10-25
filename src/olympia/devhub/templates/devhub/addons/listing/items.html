@@ -26,7 +26,7 @@
         <ul class="item-details">
           {% if addon.is_persona() %}
             {# L10n: {0} is a date. #}
-            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|format_html(addon.created|datetime)) }}</li>
+            <li class="date-created">{{ _('<strong>Created:</strong> {0}'|format_html(addon.created|date)) }}</li>
             <li id="version-status-item">
               <strong>{{ _('Status:') }}</strong>
               {% if addon.disabled_by_user %}

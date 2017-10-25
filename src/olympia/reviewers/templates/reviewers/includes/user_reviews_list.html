@@ -1,7 +1,7 @@
 <ul class="user_reviews">
   {% for user_review in user_reviews %}
   <li>
-    {% with date=user_review.created|datetime, ip_address=user_review.ip_address %}
+    {% with date=user_review.created|date, ip_address=user_review.ip_address %}
       {% trans user=user_review.user|user_link %}
         {{ user }} on {{ date }} [{{ ip_address }}]
       {% endtrans %}
