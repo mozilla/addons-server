@@ -131,6 +131,13 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
             * authentication
             * reviewer permissions or an account listed as a developer of the add-on
 
+        A 401 or 403 error response will be returned when clients don't meet
+        those requirements. In addition, if an add-on has been disabled by
+        their developer, the error responses will contain the extra
+        `is_disabled_by_developer` boolean property to allow clients to notify
+        users that the add-on they are trying to access has been voluntarily
+        disabled by the developer.
+
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
     .. _addon-detail-object:

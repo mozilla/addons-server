@@ -10,9 +10,9 @@ import caching.base as caching
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
+from rest_framework import exceptions
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
-from rest_framework.exceptions import ParseError
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -482,6 +482,25 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         self.instance = super(AddonViewSet, self).get_object()
         return self.instance
 
+    def check_object_permissions(self, request, obj):
+        """
+        Check if the request should be permitted for a given object.
+        Raises an appropriate exception if the request is not permitted.
+
+        Calls DRF implementation, but adds `is_disabled_by_developer` to the
+        exception being thrown so that clients can tell the difference between
+        a 401/403 returned because an add-on has been disabled by their
+        developer or something else.
+        """
+        try:
+            super(AddonViewSet, self).check_object_permissions(request, obj)
+        except exceptions.APIException as exc:
+            exc.detail = {
+                'detail': exc.detail,
+                'is_disabled_by_developer': obj.disabled_by_user
+            }
+            raise exc
+
     @detail_route()
     def feature_compatibility(self, request, pk=None):
         obj = self.get_object()
@@ -717,7 +736,7 @@ class AddonFeaturedView(GenericAPIView):
             try:
                 category = AddonCategoryQueryParam(self.request).get_value()
             except ValueError:
-                raise ParseError(
+                raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
             ids = get_creatured_ids(category, lang)
         else:
@@ -732,7 +751,7 @@ class AddonFeaturedView(GenericAPIView):
                 if 'type' in self.request.GET:
                     type_ = AddonTypeQueryParam(self.request).get_value()
             except ValueError:
-                raise ParseError(
+                raise exceptions.ParseError(
                     'Invalid app, category and/or type parameter(s).')
             ids = get_featured_ids(app, lang=lang, type=type_)
         # ids is going to be a random list of ids, we just slice it to get
@@ -742,7 +761,7 @@ class AddonFeaturedView(GenericAPIView):
             page_size = int(
                 self.request.GET.get('page_size', api_settings.PAGE_SIZE))
         except ValueError:
-            raise ParseError('Invalid page_size parameter')
+            raise exceptions.ParseError('Invalid page_size parameter')
         ids = ids[:page_size]
         return manual_order(queryset, ids, 'addons.id')
 
@@ -778,7 +797,7 @@ class LanguageToolsView(ListAPIView):
         try:
             application_id = AddonAppQueryParam(self.request).get_value()
         except ValueError:
-            raise ParseError('Invalid app parameter.')
+            raise exceptions.ParseError('Invalid app parameter.')
 
         types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
         return Addon.objects.public().filter(
