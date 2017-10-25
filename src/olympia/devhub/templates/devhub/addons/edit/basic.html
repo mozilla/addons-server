@@ -66,7 +66,7 @@
               {% endif %}
             </td>
           </tr>
-          {% if show_listed_fields %}
+          {% if show_listed_fields and addon.type != amo.ADDON_STATICTHEME %}
           <tr>
             <th>
               {{ tip(_("Experimental?"),
@@ -95,16 +95,18 @@
                          "paid services or software, or additional hardware.")) }}
             </td>
           </tr>
+          {% endif %}
+          {% if show_listed_fields %}
           <tr>
             <th>
               {{ tip(_("Categories"),
                      _("Categories are the primary way users browse through add-ons. "
                        "Choose any that fit your add-on's functionality for the most "
-                       "exposure. It is only relevant for listed add-ons.")) }}
+                       "exposure.")) }}
             </th>
             <td id="addon-categories-edit"
                 data-max-categories="{{ amo.MAX_CATEGORIES }}">
-              {% if editable %}
+              {% if editable and addon.type != amo.ADDON_STATICTHEME %}
                 {{ cat_form.non_form_errors() }}
                 {{ cat_form.management_form }}
                 {% for form in cat_form.initial_forms %}
@@ -126,6 +128,19 @@
                     {{ select_cats(amo.MAX_CATEGORIES, form) }}
                   {% endif %}
                 {% endfor %}
+              {% elif editable %}
+                {{ cat_form.category.errors }}
+                {{ cat_form.category }}
+                {% if cat_form.disabled %}
+                    <p>
+                      {% trans email='amo-admins@mozilla.org' %}
+                        Categories cannot be changed while your add-on is
+                        featured. Please email
+                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                        a reason you need to modify your categories.
+                      {% endtrans %}
+                    </p>
+                {% endif %}
               {% else %}
                 {% set categories = addon.app_categories %}
                 {% call empty_unless(categories) %}
@@ -146,8 +161,7 @@
               {{ tip(_("Tags"),
                      _("Tags help users find your add-on and should be short "
                        "descriptors such as tabs, toolbar, or twitter. You "
-                       "may have a maximum of {0} tags. It is only relevant "
-                       "for listed add-ons.").format(amo.MAX_TAGS)) }}
+                       "may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
             </th>
             <td id="addon_tags_edit">
               {% if editable %}

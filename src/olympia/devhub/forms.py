@@ -779,6 +779,8 @@ class SingleCategoryForm(happyforms.Form):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
+        if len(self.addon.all_categories) > 0:
+            kw['initial'] = {'category': self.addon.all_categories[0].id}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
         form = self.fields['category']
@@ -787,13 +789,8 @@ class SingleCategoryForm(happyforms.Form):
         app = amo.FIREFOX
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
                              key=lambda (slug, cat): slug)
-        choices = [
+        form.choices = [
             (c.id, c.name) for _, c in sorted_cats]
-        form.choices = choices  # sorted(choices, key=lambda x: x.name)
-
-        initials = self.addon.app_categories.get(app.id, [])
-        if len(initials) > 0:
-            form.initial = initials[0]
 
         # If this add-on is featured for this application, category changes are
         # forbidden.

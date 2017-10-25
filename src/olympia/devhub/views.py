@@ -835,15 +835,17 @@ def ajax_dependencies(request, addon_id, addon):
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {'admin': forms.AdminForm}
     if show_listed:
         models.update({
             'basic': addon_forms.AddonFormBasic,
-            'media': addon_forms.AddonFormMedia,
             'details': addon_forms.AddonFormDetails,
             'support': addon_forms.AddonFormSupport,
             'technical': addon_forms.AddonFormTechnical,
         })
+        if not static_theme:
+            models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
             'basic': addon_forms.AddonFormBasicUnlisted,
@@ -859,8 +861,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic' and show_listed:
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
-        cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon, request=request)
+        category_form_class = (forms.SingleCategoryForm if static_theme else
+                               addon_forms.CategoryFormSet)
+        cat_form = category_form_class(
+            request.POST or None, addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
@@ -868,7 +872,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
-    elif section == 'technical' and show_listed:
+    elif section == 'technical' and show_listed and not static_theme:
         dependency_form = forms.DependencyFormSet(
             request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
