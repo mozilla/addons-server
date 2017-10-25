@@ -193,7 +193,7 @@ class TestDashboard(HubTest):
         elm = doc('.item-details .date-created')
         assert elm.length == 1
         assert elm.remove('strong').text() == (
-            format_date(self.addon.created, '%b %e, %Y'))
+            format_date(self.addon.created))
 
     def test_sort_updated_filter(self):
         response = self.client.get(self.url)
@@ -203,7 +203,7 @@ class TestDashboard(HubTest):
         assert elm.length == 1
         assert elm.remove('strong').text() == (
             trim_whitespace(
-                format_date(self.addon.last_updated, '%b %e, %Y')))
+                format_date(self.addon.last_updated)))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.
