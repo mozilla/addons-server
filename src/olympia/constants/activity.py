@@ -295,7 +295,7 @@ class CHANGE_LICENSE(_LOG):
     """ Expects: license, addon """
     id = 37
     action_class = 'edit'
-    format = _(u'{addon} is now licensed under {0.name}.')
+    format = _(u'{addon} is now licensed under {0}.')
 
 
 class CHANGE_POLICY(_LOG):

@@ -198,7 +198,8 @@ class LicenseForm(AMOModelForm):
         builtin = self.cleaned_data['builtin']
         if builtin == '':  # No license chosen, it must be an unlisted add-on.
             return
-        if builtin != License.OTHER:
+        is_other = builtin == License.OTHER
+        if not is_other:
             # We're dealing with a builtin license, there is no modifications
             # allowed to it, just return it.
             license = License.objects.get(builtin=builtin)
@@ -208,7 +209,7 @@ class LicenseForm(AMOModelForm):
             license = super(LicenseForm, self).save(*args, **kw)
 
         if self.version:
-            if changed or license != self.version.license:
+            if (changed and is_other) or license != self.version.license:
                 self.version.update(license=license)
                 if log:
                     ActivityLog.create(amo.LOG.CHANGE_LICENSE, license,

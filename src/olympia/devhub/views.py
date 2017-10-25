@@ -437,9 +437,12 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    policy_form = forms.PolicyForm(post_data, addon=addon)
-    ctx.update(policy_form=policy_form)
-    fs.append(policy_form)
+    if addon.type != amo.ADDON_STATICTHEME:
+        policy_form = forms.PolicyForm(post_data, addon=addon)
+        ctx.update(policy_form=policy_form)
+        fs.append(policy_form)
+    else:
+        policy_form = None
 
     def mail_user_changes(author, title, template_part, recipients):
         from olympia.amo.utils import send_mail
@@ -500,7 +503,7 @@ def ownership(request, addon_id, addon):
 
         if license_form in fs:
             license_form.save()
-        if policy_form in fs:
+        if policy_form and policy_form in fs:
             policy_form.save()
         messages.success(request, ugettext('Changes successfully saved.'))
 
