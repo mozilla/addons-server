@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-26 18:50+0000\n"
+"PO-Revision-Date: 2017-10-26 18:53+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -414,7 +414,7 @@ msgstr "de"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Mai multe teme {0}"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
@@ -1035,7 +1035,7 @@ msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "Mai multe&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Suplimente pentru mobil"
@@ -1293,7 +1293,7 @@ msgid "Learn about collections"
 msgstr "Află mai multe despre colecții"
 
 msgid "More Options:"
-msgstr ""
+msgstr "Mai multe opțiuni:"
 
 msgid "Edit Collection"
 msgstr ""
@@ -3091,7 +3091,7 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "Mai multe resurse"
 
 msgid "Search Developer Docs"
 msgstr ""
@@ -5096,7 +5096,7 @@ msgid "Event"
 msgstr ""
 
 msgid "More details."
-msgstr ""
+msgstr "Mai multe detalii."
 
 msgid "No events found for this period."
 msgstr ""
@@ -8310,7 +8310,7 @@ msgid "Password Reset"
 msgstr "Resetarea parolei"
 
 msgid "User Info for {0}"
-msgstr "Informații despre utilizator pentru {0}"
+msgstr "Informații privind utilizatorul pentru {0}"
 
 msgid "Edit profile"
 msgstr ""
@@ -8322,9 +8322,8 @@ msgid "Report user"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-ons Developer"
-msgstr "Add-ons Developer"
+msgstr "Dezvoltator de suplimente"
 
 msgid "Themes Artist"
 msgstr ""
@@ -8379,7 +8378,7 @@ msgid "The email address <strong>%(email)s</strong> will no longer get messages 
 msgstr ""
 
 msgid "More Actions:"
-msgstr ""
+msgstr "Mai multe acțiuni:"
 
 msgid "edit your notification settings"
 msgstr ""

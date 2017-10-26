@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-01-29 19:32+0000\n"
+"PO-Revision-Date: 2017-01-29 19:40+0000\n"
 "Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -759,7 +759,7 @@ msgstr[1] "{reviews} recenzii ale utilizatorilor"
 msgstr[2] "{reviews} de recenzii ale utilizatorilor"
 
 msgid "Learn more"
-msgstr ""
+msgstr "Află mai multe"
 
 msgid "Image changes being processed"
 msgstr ""
