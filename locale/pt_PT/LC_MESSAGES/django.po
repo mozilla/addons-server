@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-26 13:08+0000\n"
+"PO-Revision-Date: 2017-10-26 20:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5229,7 +5229,7 @@ msgid "Add-on Policy"
 msgstr "Política do extra"
 
 msgid "Editors' Guide"
-msgstr "Guia do editor"
+msgstr "Guia dos editores"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -7274,7 +7274,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr "Leia novamente a sua análise antes de a enviar para minimizar erros ortográficos."
 
 msgid "Don’t:"
-msgstr "O que não fazer:"
+msgstr "Não fazer:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Submeter análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\" ou \"mau\"."
