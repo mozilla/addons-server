@@ -55,7 +55,7 @@ urlpatterns = [
     url('^static-themes/(?P<category>[^/]+)?$',
         lambda r, category: redirect(
             reverse('browse.personas', kwargs={
-                'category': category or ''}))),
+                'category': category or ''})), name='browse.static-themes'),
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
