@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-17 22:43+0000\n"
+"PO-Revision-Date: 2017-10-26 13:08+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2184,7 +2184,7 @@ msgid "Pending approval"
 msgstr "Aguarda aprovação"
 
 msgid "Flagged for further review"
-msgstr "Sinalizado para uma análise mais aprofundada"
+msgstr "Marcado para uma análise mais aprofundada"
 
 msgid "Beta"
 msgstr "Beta"
@@ -2590,7 +2590,7 @@ msgid "Request More Info"
 msgstr "Solicitar mais informações"
 
 msgid "Flag"
-msgstr "Sinalizar"
+msgstr "Marcar"
 
 msgid "Duplicate"
 msgstr "Duplicar"
@@ -6861,7 +6861,7 @@ msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Como eu posso responder a um utilizador que publicou uma análise negativa do meu extra?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Um programador pode responder a qualquer análise publicada para o seu extra desde que tenha sessão iniciada no AMO. Além disso, qualquer utilizador pode denunciar uma análise como:"
+msgstr "Um programador pode responder a qualquer análise publicada para o seu extra desde que tenha sessão iniciada no AMO. Além disso, qualquer utilizador pode marcar uma análise como:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
@@ -6873,7 +6873,7 @@ msgstr "Idioma/diálogo inapropriado"
 
 #. part of a list (<li>)
 msgid "Misplaced bug report or support request"
-msgstr "Relatório de erro mal colocado ou pedido de ajuda"
+msgstr "Relatório de erro mal colocado ou pedido de apoio"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
