@@ -116,14 +116,16 @@ class EventLog(models.Model):
     @staticmethod
     def new_reviewers():
         action = amo.LOG.GROUP_USER_ADDED
-        group = Group.objects.get(name='Add-on Reviewers')
-        items = (ActivityLog.objects.for_group(group)
+        groups = Group.objects.filter(name__startswith='Reviewers: ')
+        items = (ActivityLog.objects.for_groups(groups)
                             .filter(action=action.id)
                             .order_by('-created')[:5])
 
-        return [dict(user=i.arguments[1],
-                     created=i.created)
-                for i in items if i.arguments[1] in group.users.all()]
+        # We re-filter the results by calling is_reviewer(), to make sure to
+        # display only users that are still part of the reviewers groups we've
+        # looked at.
+        return [{'user': i.arguments[1], 'created': i.created}
+                for i in items if i.arguments[1].is_reviewer]
 
 
 def get_flags(record):
@@ -615,32 +617,32 @@ class ReviewerScore(ModelBase):
         return val
 
     @classmethod
-    def _leaderboard_query(cls, since=None, types=None, addon_type=None):
+    def _leaderboard_list(cls, since=None, types=None, addon_type=None):
         """
-        Returns common SQL to leaderboard calls.
+        Returns base leaderboard list. Each item will be a tuple containing
+        (user_id, name, total).
         """
-        query = (cls.objects
-                    .values_list('user__id', 'user__display_name')
-                    .annotate(total=Sum('score'))
-                    .filter(user__groups__name__in=(
-                        'Add-on Reviewers',
-                        'Senior Add-on Reviewers',
-                        'Persona Reviewers',
-                        'Senior Personas Reviewers'))
-                    .exclude(user__groups__name__in=('No Reviewer Incentives',
-                                                     'Staff', 'Admins'))
-                    .order_by('-total'))
+        qs = (cls.objects
+                 .values_list('user__id')
+                 .annotate(total=Sum('score'))
+                 .filter(user__groups__name__startswith='Reviewers: ')
+                 .exclude(user__groups__name__in=('No Reviewer Incentives',
+                                                  'Staff', 'Admins'))
+                 .order_by('-total'))
 
         if since is not None:
-            query = query.filter(created__gte=since)
+            qs = qs.filter(created__gte=since)
 
         if types is not None:
-            query = query.filter(note_key__in=types)
+            qs = qs.filter(note_key__in=types)
 
         if addon_type is not None:
-            query = query.filter(addon__type=addon_type)
+            qs = qs.filter(addon__type=addon_type)
 
-        return query
+        users = UserProfile.objects.in_bulk([item[0] for item in qs])
+        return [
+            (item[0], users.get(item[0], UserProfile()).name, item[1])
+            for item in qs]
 
     @classmethod
     def get_leaderboards(cls, user, days=7, types=None, addon_type=None):
@@ -667,13 +669,14 @@ class ReviewerScore(ModelBase):
         leader_top = []
         leader_near = []
 
-        query = cls._leaderboard_query(since=week_ago, types=types,
-                                       addon_type=addon_type)
+        qs = cls._leaderboard_list(
+            since=week_ago, types=types, addon_type=addon_type)
+
         scores = []
 
         user_rank = 0
         in_leaderboard = False
-        for rank, row in enumerate(query, 1):
+        for rank, row in enumerate(qs, 1):
             user_id, name, total = row
             scores.append({
                 'user_id': user_id,
@@ -711,10 +714,10 @@ class ReviewerScore(ModelBase):
         """
         Returns reviewers ordered by highest total points first.
         """
-        query = cls._leaderboard_query()
+        qs = cls._leaderboard_list()
         scores = []
 
-        for row in query:
+        for row in qs:
             user_id, name, total = row
             user_level = len(amo.REVIEWED_LEVELS) - 1
             for i, level in enumerate(amo.REVIEWED_LEVELS):
@@ -726,7 +729,7 @@ class ReviewerScore(ModelBase):
             if user_level < 0:
                 level = ''
             else:
-                level = amo.REVIEWED_LEVELS[user_level]['name']
+                level = unicode(amo.REVIEWED_LEVELS[user_level]['name'])
 
             scores.append({
                 'user_id': user_id,
@@ -1036,7 +1039,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def get_auto_approved_queue(cls):
-        """Return a queryset of Addon objects that have been auto-approved but
+        """Return a qsset of Addon objects that have been auto-approved but
         not confirmed by a human yet."""
         success_verdict = amo.AUTO_APPROVED
         return (
@@ -1059,7 +1062,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def get_content_review_queue(cls):
-        """Return a queryset of Addon objects that have been auto-approved and
+        """Return a qsset of Addon objects that have been auto-approved and
         need content review."""
         success_verdict = amo.AUTO_APPROVED
         a_year_ago = datetime.now() - timedelta(days=365)

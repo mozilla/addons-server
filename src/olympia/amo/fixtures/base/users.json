@@ -120,33 +120,12 @@
         }
     },
     {
-        "pk": 5497309,
-        "model": "users.userprofile",
-        "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "email": "seniorreviewer@mozilla.com",
-            "notifycompat": false,
-            "username": "seniorreviewer",
-            "failed_login_attempts": 0,
-            "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2010-11-16 10:51:34",
-            "created": "2010-10-19 13:02:25",
-            "modified": "2010-11-16 10:51:34",
-            "last_login_ip": "127.0.0.1",
-            "notifyevents": false,
-            "read_dev_agreement": "2017-09-23 00:00:00",
-            "last_login": "2012-05-22 14:59:28"
-        }
-    },
-    {
         "pk": 5497311,
         "model": "users.userprofile",
         "fields": {
             "display_collections_fav": false,
             "display_collections": false,
-            "email": "persona-reviewer@mozilla.com",
+            "email": "persona_reviewer@mozilla.com",
             "notifycompat": false,
             "username": "Persona Reviewer",
             "failed_login_attempts": 0,
@@ -214,19 +193,9 @@
         "pk": 50002,
         "model": "access.group",
         "fields": {
-            "rules": "Addons:Review,Reviews:Edit",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Add-on Reviewers",
-            "created": "2012-01-27 12:41:00"
-        }
-    },
-    {
-        "pk": 50004,
-        "model": "access.group",
-        "fields": {
-            "rules": "Addons:Review,Addons:ContentReview,Addons:PostReview,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Senior Add-on Reviewers",
+            "rules": "Addons:Review",
+            "modified": "2017-10-26 15:00:00",
+            "name": "Reviewers: Legacy",
             "created": "2012-01-27 12:41:00"
         }
     },
@@ -235,8 +204,8 @@
         "model": "access.group",
         "fields": {
             "rules": "Personas:Review",
-            "modified": "2012-01-27 13:32:08",
-            "name": "Persona Reviewers",
+            "modified": "2017-10-26 15:00:00",
+            "name": "Reviewers: Themes",
             "created": "2012-01-27 12:41:00"
         }
     },
@@ -262,14 +231,6 @@
         "fields": {
             "group": 50002,
             "user": 5497308
-        }
-    },
-    {
-        "pk": 261,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50004,
-            "user": 5497309
         }
     },
     {

@@ -195,36 +195,27 @@ def logs_tabnav_themes(context):
 
     Each tuple contains three elements: (named url, tab_code, tab_text)
     """
-    rv = [
-        ('reviewers.themes.logs', 'themes', ugettext('Reviews'))
-    ]
-    if acl.action_allowed(context['request'],
-                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
-        rv.append(('reviewers.themes.deleted', 'deleted', ugettext('Deleted')))
-
-    return rv
+    return (
+        ('reviewers.themes.logs', 'themes', ugettext('Reviews')),
+        ('reviewers.themes.deleted', 'deleted', ugettext('Deleted')),
+    )
 
 
 @library.global_function
 @jinja2.contextfunction
 def queue_tabnav_themes(context):
     """Similar to queue_tabnav, but for themes."""
-    tabs = []
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
-        tabs.append((
-            'reviewers.themes.list', 'pending_themes', ugettext('Pending'),
-        ))
-    if acl.action_allowed(context['request'],
-                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
-        tabs.append((
-            'reviewers.themes.list_flagged',
-            'flagged_themes',
-            ugettext('Flagged'),
-        ))
-        tabs.append((
-            'reviewers.themes.list_rereview', 'rereview_themes',
-            ugettext('Updates'),
-        ))
+        tabs = (
+            ('reviewers.themes.list', 'pending_themes',
+                ugettext('Pending')),
+            ('reviewers.themes.list_flagged', 'flagged_themes',
+                ugettext('Flagged')),
+            ('reviewers.themes.list_rereview', 'rereview_themes',
+                ugettext('Updates')),
+        )
+    else:
+        tabs = ()
     return tabs
 
 
@@ -232,19 +223,17 @@ def queue_tabnav_themes(context):
 @jinja2.contextfunction
 def queue_tabnav_themes_interactive(context):
     """Tabnav for the interactive shiny theme queues."""
-    tabs = []
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
-        tabs.append((
-            'reviewers.themes.queue_themes', 'pending', ugettext('Pending'),
-        ))
-    if acl.action_allowed(context['request'],
-                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
-        tabs.append((
-            'reviewers.themes.queue_flagged', 'flagged', ugettext('Flagged'),
-        ))
-        tabs.append((
-            'reviewers.themes.queue_rereview', 'rereview', ugettext('Updates'),
-        ))
+        tabs = (
+            ('reviewers.themes.queue_themes', 'pending',
+                ugettext('Pending')),
+            ('reviewers.themes.queue_flagged', 'flagged',
+                ugettext('Flagged')),
+            ('reviewers.themes.queue_rereview', 'rereview',
+                ugettext('Updates')),
+        )
+    else:
+        tabs = ()
     return tabs
 
 

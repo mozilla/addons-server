@@ -614,7 +614,7 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
-        user2 = UserProfile.objects.get(email='persona-reviewer@mozilla.com')
+        user2 = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
@@ -683,7 +683,10 @@ class TestReviewerScore(TestCase):
         assert len(leaders['leader_near']) == 2
 
     def test_all_users_by_score(self):
-        user2 = UserProfile.objects.get(email='seniorreviewer@mozilla.com')
+        user2 = UserProfile.objects.create(
+            username='otherreviewer', email='otherreviewer@mozilla.com')
+        self.grant_permission(
+            user2, 'Personas:Review', name='Reviewers: Themes')
         amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
         self._give_points(status=amo.STATUS_PUBLIC)
@@ -712,7 +715,7 @@ class TestReviewerScore(TestCase):
         with self.assertNumQueries(0):
             ReviewerScore.get_recent(self.user)
 
-        with self.assertNumQueries(1):
+        with self.assertNumQueries(3):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(0):
             ReviewerScore.get_leaderboards(self.user)
@@ -729,7 +732,7 @@ class TestReviewerScore(TestCase):
             ReviewerScore.get_total(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_recent(self.user)
-        with self.assertNumQueries(1):
+        with self.assertNumQueries(3):
             ReviewerScore.get_leaderboards(self.user)
         with self.assertNumQueries(1):
             ReviewerScore.get_breakdown(self.user)

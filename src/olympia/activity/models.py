@@ -151,8 +151,11 @@ class ActivityLogManager(ManagerBase):
                 .values_list('activity_log', flat=True))
         return self.filter(pk__in=list(vals))
 
-    def for_group(self, group):
-        return self.filter(grouplog__group=group)
+    def for_groups(self, groups):
+        if isinstance(groups, Group):
+            groups = (groups,)
+
+        return self.filter(grouplog__group__in=groups)
 
     def for_user(self, user):
         vals = (UserLog.objects.filter(user=user)

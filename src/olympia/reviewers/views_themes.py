@@ -20,7 +20,6 @@ from olympia.reviewers import forms
 from olympia.reviewers.models import (
     RereviewQueueTheme, ReviewerScore, ThemeLock)
 from olympia.reviewers.views import base_context as context
-from olympia.zadmin.decorators import admin_required
 
 from .decorators import personas_reviewer_required
 
@@ -43,16 +42,12 @@ def queue_counts_themes(request):
         'themes': Persona.objects.no_cache()
                                  .filter(addon__status=amo.STATUS_PENDING)
                                  .count(),
+        'flagged_themes': (
+            Persona.objects.no_cache()
+                           .filter(addon__status=amo.STATUS_REVIEW_PENDING)
+                           .count()),
+        'rereview_themes': RereviewQueueTheme.objects.count()
     }
-
-    if acl.action_allowed(request, amo.permissions.THEME_ADMIN_TOOLS_VIEW):
-        counts.update({
-            'flagged_themes': (Persona.objects.no_cache()
-                               .filter(addon__status=amo.STATUS_REVIEW_PENDING)
-                               .count()),
-            'rereview_themes': RereviewQueueTheme.objects.count()
-        })
-
     rv = {}
     if isinstance(type, basestring):
         return counts[type]
@@ -237,7 +232,7 @@ def themes_queue(request):
     return _themes_queue(request)
 
 
-@admin_required(theme_reviewers=True)
+@personas_reviewer_required
 def themes_queue_flagged(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(
@@ -246,7 +241,7 @@ def themes_queue_flagged(request):
     return _themes_queue(request, flagged=True)
 
 
-@admin_required(theme_reviewers=True)
+@personas_reviewer_required
 def themes_queue_rereview(request):
     # By default, redirect back to the queue after a commit.
     request.session['theme_redirect_url'] = reverse(
@@ -445,7 +440,7 @@ def themes_logs(request):
     return render(request, 'reviewers/themes/logs.html', data)
 
 
-@admin_required(theme_reviewers=True)
+@personas_reviewer_required
 def deleted_themes(request):
     data = request.GET.copy()
     deleted = Addon.unfiltered.filter(type=amo.ADDON_PERSONA,

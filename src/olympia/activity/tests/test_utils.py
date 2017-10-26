@@ -220,11 +220,6 @@ class TestLogAndNotify(TestCase):
         self.reviewer = user_factory()
         self.grant_permission(self.reviewer, 'Addons:Review',
                               'Addon Reviewers')
-        self.senior_reviewer = user_factory()
-        self.grant_permission(self.senior_reviewer, 'Addons:Edit',
-                              'Senior Addon Reviewers')
-        self.grant_permission(self.senior_reviewer, 'Addons:Review',
-                              'Senior Addon Reviewers')
 
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(

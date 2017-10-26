@@ -19,28 +19,22 @@
                         queue_counts['themes'])|format_html(num=queue_counts['themes']) }}
           </a>
         </div>
-        {% if action_allowed(amo.permissions.THEME_ADMIN_TOOLS_VIEW) %}
-          <div class="reviewer-stats-title">
-            <a href="{{ url('reviewers.themes.list_flagged') }}">
-              {{ ngettext('{num} Flagged Review',
-                          '{num} Flagged Reviews',
-                          queue_counts['flagged_themes'])|format_html(num=queue_counts['flagged_themes']) }}
-            </a>
-          </div>
-          <div class="reviewer-stats-title">
-            <a href="{{ url('reviewers.themes.list_rereview') }}">
-              {{ ngettext('{num} Update',
-                          '{num} Updates',
-                          queue_counts['rereview_themes'])|format_html(num=queue_counts['rereview_themes']) }}
-            </a>
-          </div>
-        {% endif %}
+        <div class="reviewer-stats-title">
+          <a href="{{ url('reviewers.themes.list_flagged') }}">
+            {{ ngettext('{num} Flagged Review',
+                        '{num} Flagged Reviews',
+                        queue_counts['flagged_themes'])|format_html(num=queue_counts['flagged_themes']) }}
+          </a>
+        </div>
+        <div class="reviewer-stats-title">
+          <a href="{{ url('reviewers.themes.list_rereview') }}">
+            {{ ngettext('{num} Update',
+                        '{num} Updates',
+                        queue_counts['rereview_themes'])|format_html(num=queue_counts['rereview_themes']) }}
+          </a>
+        </div>
         <div class="reviewer-stats">
-          {% if action_allowed(amo.permissions.THEME_ADMIN_TOOLS_VIEW) %}
-            {% set queue_types = ['pending_themes', 'flagged_themes', 'rereview_themes'] %}
-          {% else %}
-            {% set queue_types = ['pending_themes'] %}
-          {% endif %}
+          {% set queue_types = ['pending_themes', 'flagged_themes', 'rereview_themes'] %}
         </div>
       </div>
     </div>

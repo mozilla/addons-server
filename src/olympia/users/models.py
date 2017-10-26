@@ -180,6 +180,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.access import acl
         return acl.action_allowed_user(self, amo.permissions.ADMIN)
 
+    @property
+    def is_reviewer(self):
+        """Whether or not the user is part of a reviewers group. Don't use in
+        to determine access rights, use permissions for that instead."""
+        return self.groups.filter(name__startswith='Reviewers: ').exists()
+
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
