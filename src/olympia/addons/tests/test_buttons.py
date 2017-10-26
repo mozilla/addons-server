@@ -6,7 +6,6 @@ import jinja2
 import pytest
 from mock import patch, Mock
 from pyquery import PyQuery
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -31,7 +30,6 @@ class ButtonTest(TestCase):
         self.addon.slug = 'a-slug'
         self.addon.type = amo.ADDON_EXTENSION
         self.addon.privacy_policy = None
-        self.addon.annoying = amo.CONTRIB_NONE
 
         self.version = v = Mock(spec=Version)
         self.version.id = 1337
@@ -175,38 +173,7 @@ class TestButton(ButtonTest):
         assert b.latest
         assert not b.featured
         assert not b.unreviewed
-        assert not b.show_contrib
         assert not b.show_warning
-
-    @override_switch('simple-contributions', active=False)
-    def test_show_contrib(self):
-        b = self.get_button()
-        assert not b.show_contrib
-
-        self.addon.takes_contributions = True
-        b = self.get_button()
-        assert not b.show_contrib
-
-        self.addon.annoying = amo.CONTRIB_ROADBLOCK
-        b = self.get_button()
-        assert b.show_contrib
-        assert b.button_class == ['contrib', 'go']
-        assert b.install_class == ['contrib']
-
-    @override_switch('simple-contributions', active=True)
-    def test_no_show_contrib(self):
-        b = self.get_button()
-        assert not b.show_contrib
-
-        self.addon.takes_contributions = True
-        b = self.get_button()
-        assert not b.show_contrib
-
-        self.addon.annoying = amo.CONTRIB_ROADBLOCK
-        b = self.get_button()
-        assert not b.show_contrib
-        assert not b.button_class == ['contrib', 'go']
-        assert not b.install_class == ['contrib']
 
     def test_show_warning(self):
         b = self.get_button()
@@ -259,60 +226,22 @@ class TestButton(ButtonTest):
         assert b.install_class == ['lite']
         assert b.install_text == 'Experimental'
 
-    @override_switch('simple-contributions', active=False)
     def test_attrs(self):
         b = self.get_button()
         assert b.attrs() == {}
 
         self.addon.type = amo.ADDON_DICT
-
         b = self.get_button()
         assert b.attrs() == {
             'data-no-compat-necessary': 'true'
         }
 
-        self.addon.takes_contributions = True
-        self.addon.annoying = amo.CONTRIB_AFTER
         self.addon.type = amo.ADDON_SEARCH
-
         b = self.get_button()
         assert b.attrs() == {
-            'data-after': 'contrib',
             'data-search': 'true',
             'data-no-compat-necessary': 'true'
         }
-
-    @override_switch('simple-contributions', active=True)
-    def test_attrs_simple_contributions(self):
-        b = self.get_button()
-        assert b.attrs() == {}
-
-        self.addon.type = amo.ADDON_DICT
-
-        b = self.get_button()
-        assert b.attrs() == {
-            'data-no-compat-necessary': 'true'
-        }
-
-        self.addon.takes_contributions = True
-        self.addon.annoying = amo.CONTRIB_AFTER
-        self.addon.type = amo.ADDON_SEARCH
-
-        b = self.get_button()
-        assert not b.attrs() == {
-            'data-after': 'contrib',
-            'data-search': 'true',
-            'data-no-compat-necessary': 'true'
-        }
-
-    def test_after_no_show_contrib(self):
-        self.addon.takes_contributions = True
-        self.addon.annoying = amo.CONTRIB_AFTER
-        b = self.get_button()
-        assert b.attrs() == {'data-after': 'contrib'}
-
-        b = self.get_button(show_contrib=False)
-        assert b.attrs() == {}
 
     def test_file_details(self):
         file = self.get_file(amo.PLATFORM_ALL.id)
@@ -336,16 +265,6 @@ class TestButton(ButtonTest):
         b.latest = False
         _, url, download_url, _ = b.file_details(file)
         assert url == 'http://testserver/firefox/downloads/file/666/?src='
-        assert download_url == (
-            'http://testserver/firefox/downloads/file/666/type:attachment/'
-            '?src=')
-
-        # Contribution roadblock.
-        b.show_contrib = True
-        text, url, download_url, _ = b.file_details(file)
-        assert text == 'Continue to Download&nbsp;&rarr;'
-        assert url == (
-            '/en-US/firefox/addon/42/contribute/roadblock/?version=2.0.3.8')
         assert download_url == (
             'http://testserver/firefox/downloads/file/666/type:attachment/'
             '?src=')
@@ -484,14 +403,6 @@ class TestButtonHtml(ButtonTest):
         install = self.render()('.install')
         assert 'min version' == install.attr('data-min')
         assert 'max version' == install.attr('data-max')
-
-    def test_contrib_text_with_platform(self):
-        self.version.all_files = self.platform_files
-        self.addon.takes_contributions = True
-        self.addon.annoying = amo.CONTRIB_ROADBLOCK
-        self.addon.meet_the_dev_url.return_value = 'addon.url'
-        doc = self.render()
-        assert doc('.contrib .os').text() == ''
 
     @patch('olympia.addons.buttons.install_button')
     @patch('olympia.addons.templatetags.jinja_helpers.statusflags')

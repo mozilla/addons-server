@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-08-27 22:12+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-16 21:36+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -181,11 +181,6 @@ msgstr "V zozname"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Príspevok pre {0}"
 
 msgid "Abuse reported."
 msgstr "Zneužitie nahlásené."
@@ -2876,6 +2871,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebExtensions."
 
@@ -3686,6 +3685,10 @@ msgstr "Tento doplnok je experimentálny"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Zvoľte <b>{0}</b> kategóriu aplikácie {1} pre tento doplnok:"
 
 msgid "Support email:"
 msgstr "E-mail podpory:"
@@ -5374,6 +5377,9 @@ msgstr "Prevziať súbory"
 
 msgid "The developer has provided source code."
 msgstr "Vývojár poskytol zdrojový kód."
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8139,6 +8145,12 @@ msgstr "Hľadať doplnky pre iné aplikácie"
 msgid "Other Applications"
 msgstr "Ďalšie programy"
 
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
+
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Ak chcete vytvárať svoje vlastné kolekcie, musíte mať zriadený účet Mozilla Add-ons."
 
@@ -8164,13 +8176,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "spoznajte <b>doplnky</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Prevziať súbory"
+msgstr "Prevziať Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Doplnky pre Android"
+msgstr "Prehliadač pre Android"
 
 msgid "iOS Browser"
 msgstr ""

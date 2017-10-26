@@ -11,8 +11,8 @@ from olympia import amo
 from olympia.amo.tests import create_switch, TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
-    InternalSearchParameterFilter, ReviewedContentFilter,
-    SearchParameterFilter, SearchQueryFilter, SortingFilter)
+    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
+    SortingFilter)
 
 
 class FilterTestsBase(TestCase):
@@ -485,36 +485,6 @@ class TestSearchParameterFilter(FilterTestsBase):
         inner = must[0]['nested']['query']['bool']['must']
         assert len(must) == 1
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
-
-
-class TestInternalSearchParameterFilter(TestSearchParameterFilter):
-    filter_classes = [InternalSearchParameterFilter]
-
-    def test_search_by_status_invalid(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'status': unicode(amo.STATUS_PUBLIC + 999)})
-
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'status': 'nosuchstatus'})
-        assert context.exception.detail == ['Invalid "status" parameter.']
-
-    def test_search_by_status_id(self):
-        qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC)})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
-
-        qs = self._filter(data={'status': unicode(amo.STATUS_NULL)})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_NULL}} in must
-
-    def test_search_by_status_string(self):
-        qs = self._filter(data={'status': 'public'})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
-
-        qs = self._filter(data={'status': 'incomplete'})
-        must = qs['query']['bool']['must']
-        assert {'term': {'status': amo.STATUS_NULL}} in must
 
 
 class TestCombinedFilter(FilterTestsBase):

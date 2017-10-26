@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,10 +169,6 @@ msgid "Listed"
 msgstr ""
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
 msgstr ""
 
 msgid "Abuse reported."
@@ -2768,6 +2764,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3556,6 +3555,9 @@ msgid "This add-on is experimental"
 msgstr ""
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+msgid "Select a category for this add-on:"
 msgstr ""
 
 msgid "Support email:"
@@ -5125,6 +5127,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 msgid "Not Auto Approved Because"
@@ -7742,6 +7747,12 @@ msgid "Find add-ons for other applications"
 msgstr ""
 
 msgid "Other Applications"
+msgstr ""
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
 msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."

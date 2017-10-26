@@ -126,16 +126,17 @@ Detail
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. note::
-        Non-public add-ons and add-ons with only unlisted versions require both:
+        Non-public add-ons and add-ons with only unlisted versions require both
+        authentication and reviewer permissions or an account listed as a
+        developer of the add-on.
 
-            * authentication
-            * reviewer permissions or an account listed as a developer of the add-on
+        A 401 or 403 error response will be returned when clients don't meet
+        those requirements. Those responses will contain the following
+        properties:
 
-    .. note::
-        This endpoint will have the add-ons it can access reduced to public
-        add-ons and non-public add-ons that you own in the future. If you have
-        permission to access non-public add-ons you do not own please use the
-        :ref:`internal add-on detail API <internal-addon-detail>`.
+            * ``detail``: string containing a message about the error.
+            * ``is_disabled_by_developer``: boolean set to ``true`` when the add-on has been voluntarily disabled by its developer.
+            * ``is_disabled_by_mozilla``: boolean set to ``true`` when the add-on has been disabled by Mozilla.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 

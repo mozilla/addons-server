@@ -8,7 +8,6 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
-from olympia.stats.models import Contribution
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -58,14 +57,6 @@ def delete_logs(items, **kw):
     log.info('[%s@%s] Deleting logs' % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=amo.LOG_KEEP).delete()
-
-
-@task
-def delete_stale_contributions(items, **kw):
-    log.info('[%s@%s] Deleting stale contributions' %
-             (len(items), delete_stale_contributions.rate_limit))
-    Contribution.objects.filter(
-        transaction_id__isnull=True, pk__in=items).delete()
 
 
 @task

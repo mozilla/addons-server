@@ -8,7 +8,7 @@ from django.db.models import Q, F, Avg
 from django.utils.encoding import force_text
 
 import multidb
-from celery.task.sets import TaskSet
+from celery import group
 import waffle
 
 import olympia.core.logger
@@ -44,7 +44,7 @@ def update_addon_average_daily_users():
 
     ts = [_update_addon_average_daily_users.subtask(args=[chunk])
           for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task
@@ -94,7 +94,7 @@ def update_addon_download_totals():
 
     ts = [_update_addon_download_totals.subtask(args=[chunk])
           for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 @task
@@ -175,7 +175,7 @@ def update_addon_appsupport():
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
     ts = [_update_appsupport.subtask(args=[chunk])
           for chunk in chunked(ids, 20)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 def update_all_appsupport():
@@ -273,7 +273,7 @@ def reindex_addons(index=None, addon_type=None):
         ids = ids.filter(type=addon_type)
     ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
           for chunk in chunked(sorted(list(ids)), 150)]
-    TaskSet(ts).apply_async()
+    group(ts).apply_async()
 
 
 def cleanup_image_files():

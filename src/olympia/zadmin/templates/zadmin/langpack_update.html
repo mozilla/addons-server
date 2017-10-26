@@ -43,7 +43,7 @@
       <td>
         {% set latest_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
         {% if latest_version %}
-          <a href="{{ url('editors.review', addon.slug) }}">{{ latest_version }}</a>
+          <a href="{{ url('reviewers.review', addon.slug) }}">{{ latest_version }}</a>
         {% endif %}
       </td>
       <td>{{ addon.created|datetime('%Y-%m-%d %H:%M:%S') }}</td>

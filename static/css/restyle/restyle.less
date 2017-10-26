@@ -1,5 +1,6 @@
+@import (less) '../common/fonts';
 // Needed for hovercards
-@import '../impala/hovercards';
+@import (less) '../impala/hovercards';
 
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
@@ -16,43 +17,6 @@
 // Sizes
 @containerWidth: 1018px;
 @pageWidth: 960px;
-
-// Fonts
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'),
-       local('OpenSans'),
-       url('../impala/fonts/OpenSans-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Open Sans Bold'),
-       local('OpenSans-Bold'),
-       url('../impala/fonts/OpenSans-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 700;
-  src: local('Open Sans BoldItalic'),
-       local('OpenSans-BoldItalic'),
-       url('../impala/fonts/OpenSans-BoldItalic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: italic;
-  font-weight: 400;
-  src: local('Open Sans Italic'),
-       local('OpenSans-Italic'),
-       url('../impala/fonts/OpenSans-Italic.ttf') format('truetype');
-}
 
 h1,
 h2,
@@ -85,6 +49,7 @@ body.restyle {
   font-style: normal;
   line-height: 1.5;
   min-width: @containerWidth;
+  overflow-x: hidden;
 }
 
 h1,
@@ -563,7 +528,7 @@ body:not(.home) .amo-header,
   border: 2px solid #1f386e;
   border-radius: 6px;
   color: @default-font-color;
-  margin-top: 22px;
+  margin: 22px 0;
   padding: 15px 45px 15px 15px;
 
   .html-rtl& {
@@ -601,12 +566,62 @@ body:not(.home) .amo-header,
   }
 }
 
+#try-new-frontend {
+  background: url(../../img/zamboni/promo-background.png) #202340;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 26px;
+  margin: -12px 0 12px 0;  // header_bg has a 12px bottom margin.
+  padding: 17px 80px;
+
+  .close {
+    background-color: #FFF;
+    background-image: none;  // override default to use our svg mask instead.
+    mask: url(../../img/impala/x.svg) no-repeat 50% 50%;
+    right: 24px;
+    width: 13px;
+    height: 13px;
+
+    &:focus,
+    &:hover {
+      background-color: #F9F9FA;
+    }
+  }
+
+  a:link, a:visited {
+    color: #0A84FF;
+    font-weight: 600;
+  }
+
+  p {
+    margin-right: 0.5em;
+  }
+
+  * {
+      // This sucks, but there is a font-family: @primary-font !important on
+      // * at the top of this file...
+      font-family: 'Fira Sans', sans-serif !important;
+  }
+}
+
+.addon-details #try-new-frontend {
+  margin: 0;  // on addon detail page, header_bg has no bottom margin.
+}
+
 #promos {
+  float: none;
   margin: 20px 0 0;
   min-height: 0;
   opacity: 1;
   visibility: visible;
   width: @pageWidth;
+
+  hgroup {
+    margin: 0 auto 20px;
+  }
 
   &.show {
     display: block;
@@ -1122,7 +1137,7 @@ body:not(.developer-hub) section.secondary {
 }
 
 .secondary {
-  margin: 0 0 12px;
+  margin: 0;
   width: 21.49%;
 
   h2, h3 {
@@ -1234,7 +1249,6 @@ body:not(.developer-hub) section.secondary {
 .addon-details {
   .primary:first-of-type {
     min-height: 257px;
-    padding-bottom: 1em;
   }
 
   .secondary.addon-vitals {
@@ -2169,13 +2183,13 @@ h3.author .transfer-ownership {
   }
 }
 
-/* Editor pages */
-body.editor-tools {
+/* Reviewer pages */
+body.reviewer-tools {
   .site-title strong {
     color: @link-on-color-bg;
   }
 
-  .editor-menu {
+  .reviewer-menu {
     margin-top: 30px;
     width: 660px;
   }
@@ -2254,17 +2268,17 @@ body.editor-tools {
     border-radius: 0;
   }
 
-  #editors-stats-charts, #editors-stats-charts-unlisted, #editors-stats {
+  #reviewers-stats-charts, #reviewers-stats-charts-unlisted, #reviewers-stats {
     border: @detail-border;
     border-radius: 0;
   }
 
-  .editor-stats-dark {
+  .reviewer-stats-dark {
     text-align: center;
     background-color: transparent;
   }
 
-  div.editor-waiting {
+  div.reviewer-waiting {
     border-radius: 0;
     border: @detail-border;
   }
@@ -2273,15 +2287,15 @@ body.editor-tools {
     box-shadow: none;
   }
 
-  .editor-stats-table:first-child > div {
+  .reviewer-stats-table:first-child > div {
     border-left-width: 0;
   }
 
-  .editor-stats-table .int {
+  .reviewer-stats-table .int {
     color: @default-font-color;
   }
 
-  #editors_main, .section {
+  #reviewers_main, .section {
     .results {
       border: @detail-border;
       background-color: #ecf5fe;

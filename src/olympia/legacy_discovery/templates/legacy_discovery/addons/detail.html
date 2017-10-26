@@ -9,8 +9,7 @@
 
 <ul id="install">
   <li class="install-action">
-    {{ install_button(addon, show_contrib=False, show_warning=True,
-                      detailed=False) }}
+    {{ install_button(addon, show_warning=True, detailed=False) }}
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          id="learn-more" class="button">{{ _('Learn More') }}</a></li>

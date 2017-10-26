@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-04 09:44+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-24 04:58+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -96,7 +96,7 @@ msgid "WebExtension upgrade"
 msgstr "升级为 WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla 为您提供了升级的途径，也鼓励您如此，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
+msgstr "Mozilla 为您提供了升级的途径，也鼓励您升级，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "到 MDN 了解如何移植旧式 Firefox 附加组件"

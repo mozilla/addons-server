@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -174,10 +174,6 @@ msgstr "รายการ"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "การบริจาคสำหรับ {0}"
 
 msgid "Abuse reported."
 msgstr "รายงานการละเมิดแล้ว"
@@ -2825,6 +2821,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3626,6 +3625,10 @@ msgstr "ส่วนเสริมนี้ถูกเอาออกโดย
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
 
 #, fuzzy
 msgid "Support email:"
@@ -5260,6 +5263,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 #, fuzzy
@@ -7877,6 +7883,12 @@ msgstr "ค้นหาส่วนเสริมสำหรับแอปพ
 
 msgid "Other Applications"
 msgstr "แอปพลิเคชันอื่น ๆ"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""

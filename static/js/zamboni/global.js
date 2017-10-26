@@ -574,35 +574,15 @@ $.fn.exists = function(callback, args){
 };
 
 // Bind to the mobile site if a mobile link is clicked.
-$(document).on('click', '.mobile-link', function() {
+$(document).on('click', '.mobile-link', function(e) {
+    e.preventDefault();
     $.cookie('mamo', 'on', {expires:30, path: '/'});
     window.location.reload();
 });
 
-// See: http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript
-// Used to remove the width of scrollbars from `.header-bg`
+$(function() {
+    "use strict";
 
-function getScrollbarWidth() {
-    var outer = document.createElement('div');
-    outer.style.visibility = 'hidden';
-    outer.style.width = '100px';
-    outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
-
-    document.body.appendChild(outer);
-
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = 'scroll';
-
-    // add innerdiv
-    var inner = document.createElement('div');
-    inner.style.width = '100%';
-    outer.appendChild(inner);
-
-    var widthWithScroll = inner.offsetWidth;
-
-    // remove divs
-    outer.parentNode.removeChild(outer);
-
-    return widthNoScroll - widthWithScroll;
-}
+    // Notification banners that go on every page.
+    initBanners();
+});

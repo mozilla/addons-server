@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -193,11 +193,6 @@ msgstr "Liostaithe"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Deontais le haghaidh {0}"
 
 msgid "Abuse reported."
 msgstr "Rinneadh tuairisc ar dhrochúsáid."
@@ -2945,6 +2940,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3755,6 +3753,10 @@ msgstr "Is breiseán turgnamhach é seo"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Roghnaigh deilbhín le haghaidh do bhreiseáin:"
 
 msgid "Support email:"
 msgstr "Ríomhphost tacaíochta:"
@@ -5434,6 +5436,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 #, fuzzy
@@ -8118,6 +8123,12 @@ msgstr "Aimsigh breiseáin le haghaidh feidhmchlár eile"
 
 msgid "Other Applications"
 msgstr "Feidhmchláir Eile"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Chun do bhailiúcháin féin a chruthú, ní mór cuntas Breiseáin Mozilla a bheith agat."

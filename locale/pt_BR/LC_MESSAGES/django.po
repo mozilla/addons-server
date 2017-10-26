@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 14:57+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 04:09+0000\n"
+"Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -178,11 +178,6 @@ msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "As rotas da extensão precisam terminar com \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Contribuição para {0}"
 
 msgid "Abuse reported."
 msgstr "Abuso denunciado."
@@ -2021,9 +2016,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Comentário sobre {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "comentou"
+msgstr "Comentado"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} adicionada a {addon}."
@@ -2182,9 +2176,8 @@ msgstr "Aprovação automática confirmada para {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr "Aprovação automática confirmada"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} rejeitado."
+msgstr "{addon} {version} re-habilitado."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} desabilitado."
@@ -2277,9 +2270,8 @@ msgstr "Plugin"
 msgid "Theme"
 msgstr "Tema"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Detalhes do tema"
+msgstr "Tema (Estático)"
 
 msgid "Complete Themes"
 msgstr "Temas Completos"
@@ -2300,9 +2292,8 @@ msgstr "Pacotes de idioma (extensão)"
 msgid "Plugins"
 msgstr "Plugins"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Artista"
+msgstr "Temas (Estático)"
 
 # %1$s is a URL where the user can see an example
 msgid "Only ask on this add-on's page and developer profile"
@@ -2606,9 +2597,8 @@ msgstr "Análise moderada da extensão"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Moderação de análise de extensão revertida"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Avaliar conteúdo"
+msgstr "Revisão do conteúdo da extensão"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr "Revisão pós-aprovação (risco mais alto)"
@@ -2885,6 +2875,9 @@ msgstr ""
 "Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas através de um updateURL ou atualizações de "
 "aplicativos externos.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "As categorias não podem ser alteradas enquanto sua extensão for destaque."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir do Firefox 53, as novas extensões neste site só podem ser WebExtensions."
 
@@ -3055,7 +3048,7 @@ msgid "Printable Version"
 msgstr "Versão para impressão"
 
 msgid "Accept"
-msgstr ""
+msgstr "Aceitar"
 
 msgid "I Accept this Agreement"
 msgstr "Eu aceito esse acordo"
@@ -3754,6 +3747,10 @@ msgstr ""
 "Marque esta opção se seus complementos são experimentais ou não estão pronto para o uso. O complemento será listado mas terá visibilidade reduzida. Você pode alterar esta configuração "
 "posteriormente."
 
+# {1} is the application name (Firefox, Thunderbird)
+msgid "Select a category for this add-on:"
+msgstr "Selecione uma categoria para esta extensão:"
+
 msgid "Support email:"
 msgstr "E-mail de suporte:"
 
@@ -3877,11 +3874,8 @@ msgstr "Onde hospedar a versão"
 msgid "Upload Version"
 msgstr "Enviar versão"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Use os campos abaixo para enviar o pacote do seu complemento e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes de validação automáticos será executada em seu "
-"arquivo."
+msgstr "Use os campos abaixo para fazer o upload do seu pacote de extensão. Após o upload, uma série de testes de validação automatizados serão executados no seu arquivo."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Esse arquivo é compatível com quais plataformas?"
@@ -4794,9 +4788,8 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} alerta"
 msgstr[1] "{0} alertas"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Um bloqueador de anúncios leve e efetivo. O uBlock Origin aplica milhares de filtros de conteúdos sem consumir muita memória."
@@ -4807,9 +4800,8 @@ msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Aproveite uma variedade de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
 
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ache imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Selecione qualquer texto e clique com o botão direito para realizar rapidamente para pesquisar imagem."
@@ -5059,7 +5051,7 @@ msgid "Approve Content"
 msgstr "Aprovar conteúdo"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Registrar a aprovação do conteúdo desta versão, sem notificar o desenvolvedor."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Extensões novas (menos de 5 dias)"
@@ -5383,9 +5375,8 @@ msgid "Editors' Guide"
 msgstr "Guia do editor"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Análise {0}"
+msgstr "Análise de conteúdo {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5412,6 +5403,9 @@ msgstr "Baixar arquivos"
 
 msgid "The developer has provided source code."
 msgstr "O desenvolvedor forneceu o código fonte."
+
+msgid "Weight:"
+msgstr "Peso:"
 
 msgid "Not Auto Approved Because"
 msgstr "Não aprovado automaticamente porque"
@@ -5685,11 +5679,10 @@ msgstr[0] "Extensão aprovada automaticamente ({0})"
 msgstr[1] "Extensões aprovadas automaticamente ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Análise moderada ({0})"
-msgstr[1] "Análises moderadas ({0})"
+msgstr[0] "Análise de conteúdo ({0})"
+msgstr[1] "Análises de conteúdo ({0})"
 
 msgid "Flagged"
 msgstr "Marcado"
@@ -5724,7 +5717,7 @@ msgstr "Não foi possível interpretar o arquivo enviado."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Nome do arquivo inválido. Por favor, tenha certeza que todos os nomes de arquivos usam codificação utf-8 ou latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7807,7 +7800,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Avaliado em %(rating)s de 5 estrelas"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Excedeu tamanho máximo da consulta."
 
 msgid "Most popular this week"
 msgstr "Mais populares desta semana"
@@ -8234,6 +8227,12 @@ msgstr "Procurar complementos para outras aplicações"
 
 msgid "Other Applications"
 msgstr "Outras aplicações"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "O AMO está de cara nova. Gostaria de ver?"
+
+msgid "Visit the new site"
+msgstr "Visite o novo site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, você deve ter uma conta no Mozilla Add-ons."

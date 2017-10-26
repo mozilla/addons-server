@@ -21,9 +21,9 @@ from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import (
     cache_ns_key, ImageCheck, LocalFileStorage, rm_local_tmp_dir)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import RereviewQueueTheme
 from olympia.files.utils import extract_zip, RDFExtractor
 from olympia.lib.es.utils import index_objects
+from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
 

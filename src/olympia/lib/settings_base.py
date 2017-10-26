@@ -72,8 +72,8 @@ CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
-EDITORS_EMAIL = 'amo-editors@mozilla.org'
-SENIOR_EDITORS_EMAIL = 'amo-editors+somethingbad@mozilla.org'
+REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
+SENIOR_REVIEWERS_EMAIL = 'amo-editors+somethingbad@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
@@ -334,7 +334,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^admin\/',
     r'^users\/email',
     r'^reviews\/emails',
-    r'^editors\/emails',
+    r'^reviewers\/emails',
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
@@ -420,6 +420,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
 MIDDLEWARE_CLASSES = (
+    # Gzip (for API only) middleware needs to be executed after every
+    # modification to the response, so it's placed at the top of the list.
+    'olympia.api.middleware.GZipMiddlewareForAPIOnly',
+
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
@@ -479,14 +483,13 @@ INSTALLED_APPS = (
     'olympia.compat',
     'olympia.devhub',
     'olympia.discovery',
-    'olympia.editors',
     'olympia.files',
     'olympia.github',
-    'olympia.internal_tools',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.pages',
+    'olympia.reviewers',
     'olympia.reviews',
     'olympia.search',
     'olympia.stats',
@@ -620,7 +623,6 @@ MINIFY_BUNDLES = {
             'css/impala/expando.less',
             'css/impala/popups.less',
             'css/impala/l10n.less',
-            'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/prose.less',
             'css/impala/abuse.less',
@@ -679,13 +681,13 @@ MINIFY_BUNDLES = {
             'css/devhub/refunds.less',
             'css/impala/devhub-api.less',
         ),
-        'zamboni/editors': (
-            'css/zamboni/editors.styl',
+        'zamboni/reviewers': (
+            'css/zamboni/reviewers.styl',
             'css/zamboni/unlisted.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
-            'css/zamboni/editors.styl',
+            'css/zamboni/reviewers.styl',
             'css/zamboni/themes_review.styl',
         ),
         'zamboni/files': (
@@ -740,6 +742,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/sortable.js',
 
             'js/zamboni/helpers.js',
+            'js/common/banners.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/common/ratingwidget.js',
@@ -753,7 +756,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/reviews.js',
@@ -837,6 +839,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/truncation.js',
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
+            'js/common/banners.js',
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
@@ -850,7 +853,6 @@ MINIFY_BUNDLES = {
 
             # Add-ons details page
             'js/lib/ui.lightbox.js',
-            'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/reviews.js',
@@ -934,9 +936,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/validator.js',
             'js/node_lib/jquery.timeago.js',
         ),
-        'zamboni/editors': (
+        'zamboni/reviewers': (
             'js/lib/highcharts.src.js',
-            'js/zamboni/editors.js',
+            'js/zamboni/reviewers.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
             'js/zamboni/themes_review_templates.js',
@@ -1039,28 +1041,6 @@ LOGOUT_REDIRECT_URL = '/'
 # of times.
 MAX_GEN_USERNAME_TRIES = 50
 
-# PayPal Settings
-PAYPAL_API_VERSION = '78'
-PAYPAL_APP_ID = ''
-
-# URLs for various calls.
-PAYPAL_API_URL = 'https://api-3t.paypal.com/nvp'
-PAYPAL_CGI_URL = 'https://www.paypal.com/cgi-bin/webscr'
-PAYPAL_PAY_URL = 'https://svcs.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = 'https://paypal.com/webapps/adaptivepayment/flow/pay'
-PAYPAL_PERMISSIONS_URL = 'https://svcs.paypal.com/Permissions/'
-PAYPAL_JS_URL = 'https://www.paypalobjects.com/js/external/dg.js'
-
-# Permissions for the live or sandbox servers
-PAYPAL_EMBEDDED_AUTH = {'USER': '', 'PASSWORD': '', 'SIGNATURE': ''}
-
-# The PayPal cert that we'll use for checking.
-# When None, the Mozilla CA bundle is used to look it up.
-PAYPAL_CERT = None
-
-# Contribution limit, one time and monthly
-MAX_CONTRIBUTION = 1000
-
 # Email settings
 ADDONS_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
 DEFAULT_FROM_EMAIL = ADDONS_EMAIL
@@ -1082,23 +1062,31 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
 
 
 # Celery
-BROKER_URL = os.environ.get('BROKER_URL',
-                            'amqp://olympia:olympia@localhost:5672/olympia')
-BROKER_CONNECTION_TIMEOUT = 0.1
-BROKER_HEARTBEAT = 60 * 15
-CELERY_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
-                                       'redis://localhost:6379/1')
+CELERY_BROKER_URL = os.environ.get(
+    'CELERY_BROKER_URL',
+    'amqp://olympia:olympia@localhost:5672/olympia')
+CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_BROKER_HEARTBEAT = 60 * 15
+CELERY_TASK_DEFAULT_QUEUE = 'default'
+CELERY_RESULT_BACKEND = os.environ.get(
+    'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1')
 
-CELERY_IGNORE_RESULT = True
+CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
-CELERYD_HIJACK_ROOT_LOGGER = False
+CELERY_WORKER_HIJACK_ROOT_LOGGER = False
+
+# Continue serializing in pickle but also accept new JSON format
+# for forwards and backwards compatibility.
+CELERY_ACCEPT_CONTENT = ['pickle', 'json']
+CELERY_TASK_SERIALIZER = 'pickle'
+CELERY_RESULT_SERIALIZER = 'pickle'
+
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
 )
 
-CELERY_QUEUES = (
+CELERY_TASK_QUEUES = (
     Queue('default', routing_key='default'),
     Queue('priority', routing_key='priority'),
     Queue('devhub', routing_key='devhub'),
@@ -1109,7 +1097,7 @@ CELERY_QUEUES = (
     Queue('api', routing_key='api'),
     Queue('cron', routing_key='cron'),
     Queue('bandwagon', routing_key='bandwagon'),
-    Queue('editors', routing_key='editors'),
+    Queue('reviewers', routing_key='reviewers'),
     Queue('crypto', routing_key='crypto'),
     Queue('search', routing_key='search'),
     Queue('reviews', routing_key='reviews'),
@@ -1123,7 +1111,7 @@ CELERY_QUEUES = (
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
 # - when adding a queue, be sure to update deploy.py so that it gets restarted
-CELERY_ROUTES = {
+CELERY_TASK_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
@@ -1137,7 +1125,6 @@ CELERY_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
-    'olympia.devhub.tasks.convert_purified': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
@@ -1169,7 +1156,6 @@ CELERY_ROUTES = {
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
-    'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
@@ -1202,12 +1188,12 @@ CELERY_ROUTES = {
     'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
-    # Editors
-    'olympia.editors.tasks.add_commentlog': {'queue': 'editors'},
-    'olympia.editors.tasks.add_versionlog': {'queue': 'editors'},
-    'olympia.editors.tasks.approve_rereview': {'queue': 'editors'},
-    'olympia.editors.tasks.reject_rereview': {'queue': 'editors'},
-    'olympia.editors.tasks.send_mail': {'queue': 'editors'},
+    # Reviewers
+    'olympia.reviewers.tasks.add_commentlog': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.add_versionlog': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.approve_rereview': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.reject_rereview': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.send_mail': {'queue': 'reviewers'},
 
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
@@ -1279,12 +1265,12 @@ CELERY_TIME_LIMITS = {
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+CELERY_TASK_EAGER_PROPAGATES = True
 
 # Time in seconds before celery.exceptions.SoftTimeLimitExceeded is raised.
 # The task can catch that and recover but should exit ASAP. Note that there is
 # a separate, shorter timeout for validation tasks.
-CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
+CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
@@ -1309,7 +1295,7 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.editors.auto_approve': {'handlers': ['syslog', 'console']},
+        'z.reviewers.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }
@@ -1347,18 +1333,13 @@ CSP_FONT_SRC = (
 )
 CSP_CHILD_SRC = (
     "'self'",
-    'https://ic.paypal.com',
-    'https://paypal.com',
     'https://www.google.com/recaptcha/',
-    'https://www.paypal.com',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    'https://www.paypal.com/webapps/checkout/',  # Needed for contrib.
-    'https://www.paypal.com/webapps/hermes/api/logger',  # Needed for contrib.
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
@@ -1373,7 +1354,6 @@ CSP_SCRIPT_SRC = (
     'https://ssl.google-analytics.com/ga.js',
     'https://www.google.com/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
-    PAYPAL_JS_URL,
     PROD_CDN_HOST,
 )
 CSP_STYLE_SRC = (
@@ -1546,7 +1526,7 @@ LOGIN_RATELIMIT_ALL_USERS = '15/m'
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 
 # Testing responsiveness without rate limits.
-CELERY_DISABLE_RATE_LIMITS = True
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'

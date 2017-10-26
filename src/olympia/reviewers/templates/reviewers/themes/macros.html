@@ -1,0 +1,49 @@
+{% macro dropdown_menu(type, title, tabs, is_selected) %}
+{# type -- string (e.g. 'queue', 'log')
+   title -- translation string (e.g. _('Queues'))
+   tabs -- list of url/tab_code/tab_text tuples
+   is_selected -- boolean condition to highlight this element #}
+  {% if tabs %}
+    <li{% if is_selected %} class="selected"{% endif %}>
+      {% set tab_url = tabs[0][0] %}
+      <a href="{{ tab_url if tab_url.startswith('/') else url(tab_url) }}" class="controller trigger-{{ type }}">{{ title }}</a>
+      <ul>
+        {% for url_, tab_code, text in tabs %}
+          <li><a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endif %}
+{% endmacro %}
+
+{% macro tabnav(type, tab, tabs, no_search_toggle) %}
+{# type -- string (e.g. 'queue', 'log')
+   tabs -- list of named_url/tab_code/tab_text tuples #}
+  <ul class="tabnav{{ ' search-toggle' if not no_search_toggle }}">
+    {% for url_, tab_code, text in tabs %}
+      <li{% if tab == tab_code %} class="selected trigger-{{ type }}"{% endif %}>
+        <a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a>
+        <div class="tabnav-sprite hidden"></div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% macro log_filter(type, form) %}
+  {# type -- string (e.g. 'apps', 'themes') #}
+  <div id="log-filter" class="log-filter-outside">
+    <form action="{{ url('reviewers.' + type + '.logs') }}" method="get" data-no-csrf>
+      <div class="date_range">
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+        {{ form.search.label_tag() }}
+        {{ form.search }}
+
+        {# L10n: "Filter" is a button label (verb) #}
+        <button type="submit">{{ _('Filter') }}</button>
+      </div>
+    </form>
+  </div>
+{% endmacro %}

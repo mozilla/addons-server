@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-11 20:02+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-26 20:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -174,11 +174,6 @@ msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Caminhos de extras e coleções têm de acabar com \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Contribuição para {0}"
 
 msgid "Abuse reported."
 msgstr "Abuso reportado."
@@ -2189,7 +2184,7 @@ msgid "Pending approval"
 msgstr "Aguarda aprovação"
 
 msgid "Flagged for further review"
-msgstr "Sinalizado para uma análise mais aprofundada"
+msgstr "Marcado para uma análise mais aprofundada"
 
 msgid "Beta"
 msgstr "Beta"
@@ -2595,7 +2590,7 @@ msgid "Request More Info"
 msgstr "Solicitar mais informações"
 
 msgid "Flag"
-msgstr "Sinalizar"
+msgstr "Marcar"
 
 msgid "Duplicate"
 msgstr "Duplicar"
@@ -2825,6 +2820,9 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 "Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas por si através de um updateURL ou atualizações de "
 "aplicação externas.</span>"
+
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver em destaque."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Começando com o Firefox 53, novos extres neste site só podem ser WebExtensions."
@@ -3644,6 +3642,9 @@ msgstr "Este extra é experimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Selecione esta opção se o seu extra é experimental ou caso não esteja pronto para uso geral.  O extra será listado mas terá visibilidade reduzida.  Poderá alterar esta definição mais tarde."
+
+msgid "Select a category for this add-on:"
+msgstr "Selecione uma categoria para este extra:"
 
 msgid "Support email:"
 msgstr "Email de apoio:"
@@ -5228,7 +5229,7 @@ msgid "Add-on Policy"
 msgstr "Política do extra"
 
 msgid "Editors' Guide"
-msgstr "Guia do editor"
+msgstr "Guia dos editores"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5259,6 +5260,9 @@ msgstr "Descarregar ficheiros"
 
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
+
+msgid "Weight:"
+msgstr "Peso:"
 
 msgid "Not Auto Approved Because"
 msgstr "Não aprovado automaticamente porque"
@@ -6857,7 +6861,7 @@ msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Como eu posso responder a um utilizador que publicou uma análise negativa do meu extra?"
 
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Um programador pode responder a qualquer análise publicada para o seu extra desde que tenha sessão iniciada no AMO. Além disso, qualquer utilizador pode denunciar uma análise como:"
+msgstr "Um programador pode responder a qualquer análise publicada para o seu extra desde que tenha sessão iniciada no AMO. Além disso, qualquer utilizador pode marcar uma análise como:"
 
 #. part of a list (<li>)
 msgid "Spam or otherwise non-review content"
@@ -6869,7 +6873,7 @@ msgstr "Idioma/diálogo inapropriado"
 
 #. part of a list (<li>)
 msgid "Misplaced bug report or support request"
-msgstr "Relatório de erro mal colocado ou pedido de ajuda"
+msgstr "Relatório de erro mal colocado ou pedido de apoio"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
@@ -7152,8 +7156,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Para reportar uma revisão de utilizador de um extra, inicie sessão com a sua conta e visite a página de revisões do extra. Encontre a revisão que pretende reportar, clique \"Reportar esta revisão\" "
-"e selecione uma razão. A nossa equipa editorial irá investigar a revisão e tomar a ação apropriada."
+"Para reportar uma análise de utilizador de um extra, inicie sessão com a sua conta e visite a página de análises do extra. Encontre a análise que pretende reportar, clique \"Reportar esta análise\" "
+"e selecione uma razão. A nossa equipa editorial irá investigar a análise e tomar a ação apropriada."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Como é que reporto um bug ou contacto a equipa dos extras da Mozilla?"
@@ -7270,7 +7274,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr "Leia novamente a sua análise antes de a enviar para minimizar erros ortográficos."
 
 msgid "Don’t:"
-msgstr "O que não fazer:"
+msgstr "Não fazer:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Submeter análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\" ou \"mau\"."
@@ -8059,6 +8063,12 @@ msgstr "Procure extras para outras aplicações"
 
 msgid "Other Applications"
 msgstr "Outras aplicações"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "O AMO está a obter um novo visual. Gostaria de o ver?"
+
+msgid "Visit the new site"
+msgstr "Visitar o novo site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, tem de ter uma conta dos extras da Mozilla."

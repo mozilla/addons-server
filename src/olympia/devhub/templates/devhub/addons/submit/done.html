@@ -12,7 +12,7 @@
       {{ _("You’re done!") }}
     </p>
   {% else %}
-    {% if waffle.switch('post-review') and uploaded_version.is_webextension %}
+    {% if uploaded_version.is_webextension %}
       <h3>{{ _("Version Submitted") }}</h3>
       <p>
         {{ _("You’re done! This version will be available on our site shortly.") }}

@@ -77,7 +77,7 @@ def review_list(request, addon, review_id=None, user_id=None):
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': is_admin,
-            'is_editor': acl.is_editor(request, addon),
+            'is_reviewer': acl.is_reviewer(request, addon),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
         }
@@ -112,7 +112,7 @@ def flag(request, addon, review_id):
         form.save()
         Review.objects.filter(id=review_id).update(editorreview=True)
         return {'msg': ugettext('Thanks; this review has been flagged '
-                                'for editor approval.')}
+                                'for reviewer approval.')}
     else:
         return json_view.error(form.errors)
 
@@ -445,7 +445,8 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         request = request._request
         response = flag(request, self.addon_object.slug, kwargs.get('pk'))
         if response.status_code == 200:
-            response.content = ''
+            # 202 is a little better than 200: we're accepting the request, but
+            # make no promises to act on it :)
             response.status_code = 202
         return response
 

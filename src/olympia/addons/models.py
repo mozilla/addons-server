@@ -276,8 +276,6 @@ class Addon(OnChangeMixin, ModelBase):
     developer_comments = PurifiedField(db_column='developercomments')
     eula = PurifiedField()
     privacy_policy = PurifiedField(db_column='privacypolicy')
-    the_reason = PurifiedField()
-    the_future = PurifiedField()
 
     average_rating = models.FloatField(max_length=255, default=0, null=True,
                                        db_column='averagerating')
@@ -321,24 +319,6 @@ class Addon(OnChangeMixin, ModelBase):
         help_text="For dictionaries and language packs")
 
     contributions = models.URLField(max_length=255, blank=True)
-    wants_contributions = models.BooleanField(default=False)
-    paypal_id = models.CharField(max_length=255, blank=True)
-    charity = models.ForeignKey('Charity', null=True)
-
-    suggested_amount = models.DecimalField(
-        max_digits=9, decimal_places=2, blank=True,
-        null=True, help_text=_('Users have the option of contributing more '
-                               'or less than this amount.'))
-
-    annoying = models.PositiveIntegerField(
-        choices=amo.CONTRIB_CHOICES, default=0,
-        help_text=_(u'Users will always be asked in the Add-ons'
-                    u' Manager (Firefox 4 and above).'
-                    u' Only applies to desktop.'))
-    enable_thankyou = models.BooleanField(
-        default=False, help_text='Should the thank you note be sent to '
-                                 'contributors?')
-    thankyou_note = TranslatedField()
 
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
@@ -1231,12 +1211,10 @@ class Addon(OnChangeMixin, ModelBase):
         return out
 
     def has_full_profile(self):
-        """Is developer profile public (completed)?"""
-        return self.the_reason and self.the_future
+        pass
 
     def has_profile(self):
-        """Is developer profile (partially or entirely) completed?"""
-        return self.the_reason or self.the_future
+        pass
 
     @cached_property
     def tags_partitioned_by_developer(self):
@@ -1280,9 +1258,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def takes_contributions(self):
-        return (self.status == amo.STATUS_PUBLIC and
-                self.wants_contributions and
-                (self.paypal_id or self.charity_id))
+        pass
 
     @classmethod
     def _last_updated_queries(cls):
@@ -1718,9 +1694,9 @@ class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
 @AddonUser.on_change
 def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
                      **kwargs):
+    instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-    instance.user.update_is_public()
 
 
 class AddonDependency(models.Model):

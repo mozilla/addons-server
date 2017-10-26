@@ -14,7 +14,7 @@ env:
   - TOXENV=es
   - TOXENV=addons
   - TOXENV=devhub
-  - TOXENV=editors
+  - TOXENV=reviewers
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
@@ -28,6 +28,7 @@ services:
   - mysql
   - memcached
   - elasticsearch
+  - redis
 
 addons:
   apt:

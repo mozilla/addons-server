@@ -1,0 +1,88 @@
+[
+    {
+        "pk": 116367,
+        "model": "versions.version",
+        "fields": {
+            "created": "2010-08-27 21:15:27",
+            "modified": "2010-08-27 21:15:27",
+            "version": "0.1",
+            "addon": 222197
+        }
+    },
+    {
+        "pk": 1349882,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "We always thrive to perform better.  Moreover this project is still in its Beta version, so we are doing a little more than our Best to make it more user friendly, easier to use and valuable.  For feedback, bugs, comments, compliments or any type of communication, feel free to contact us at quicklinkto@googlemail.com or write a review here.  We will be more than happy to reply.",
+            "created": "2010-08-28 23:22:30",
+            "modified": "2010-08-28 23:22:30",
+            "locale": "en-US",
+            "id": 1277089,
+            "localized_string": "We always thrive to perform better.  Moreover this project is still in its Beta version, so we are doing a little more than our Best to make it more user friendly, easier to use and valuable.  For feedback, bugs, comments, compliments or any type of communication, feel free to contact us at quicklinkto@googlemail.com or write a review here.  We will be more than happy to reply."
+        }
+    },
+    {
+        "pk": 1349883,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string_clean": "Quick Link to the World URL",
+            "created": "2010-08-28 23:22:30",
+            "modified": "2010-08-28 23:22:30",
+            "locale": "en-US",
+            "id": 1276305,
+            "localized_string": "Quick Link to the World URL"
+        }
+    },
+    {
+        "pk": 97656,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "is_restart_required": true,
+            "hash": "sha256:1a496e35dd56fb377bb3dea306e285f0a3ff3e684fb758aaa04018e86da2ffaa",
+            "created": "2010-08-27 21:15:32",
+            "modified": "2010-08-27 21:15:32",
+            "filename": "quick_link_to_the_world-0.1-fx.xpi",
+            "platform": 1,
+            "version": 116367,
+            "datestatuschanged": "2010-08-27 21:14:17",
+            "size": 24
+        }
+    },
+    {
+        "pk": 222197,
+        "model": "addons.addon",
+        "fields": {
+            "dev_agreement": true,
+            "last_updated": "2010-08-27 21:15:32",
+            "view_source": false,
+            "total_downloads": 9,
+            "developer_comments": 1277089,
+            "_current_version": 116367,
+            "average_daily_downloads": 9,
+            "guid": "qlt@vik.josh",
+            "weekly_downloads": 0,
+            "support_url": null,
+            "disabled_by_user": false,
+            "average_rating": 0.0,
+            "average_daily_users": 0,
+            "bayesian_rating": 0.0,
+            "homepage": null,
+            "support_email": null,
+            "public_stats": false,
+            "status": 4,
+            "description": null,
+            "default_locale": "en-US",
+            "admin_review": false,
+            "slug": "quick-link-to-the-world-url",
+            "external_software": false,
+            "name": 1276305,
+            "created": "2010-08-27 21:15:25",
+            "type": 1,
+            "icon_type": "image/png",
+            "modified": "2010-08-28 23:35:42",
+            "summary": null,
+            "total_reviews": 0
+        }
+    }
+]

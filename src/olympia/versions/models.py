@@ -13,7 +13,6 @@ from django.utils.translation import ugettext
 import caching.base
 import jinja2
 from django_statsd.clients import statsd
-from waffle import switch_is_active
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -23,6 +22,7 @@ from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
 from olympia.applications.models import AppVersion
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
@@ -90,7 +90,8 @@ class Version(OnChangeMixin, ModelBase):
     reviewed = models.DateTimeField(null=True)
 
     has_info_request = models.BooleanField(default=False)
-    has_editor_comment = models.BooleanField(default=False)
+    has_reviewer_comment = models.BooleanField(
+        db_column='has_editor_comment', default=False)
 
     deleted = models.BooleanField(default=False)
 
@@ -294,7 +295,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
-        from olympia.editors.models import (
+        from olympia.reviewers.models import (
             ViewFullReviewQueue, ViewPendingQueue)
 
         if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
@@ -588,13 +589,8 @@ class Version(OnChangeMixin, ModelBase):
         Does not necessarily mean that it would be auto-approved, just that it
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
-        addon_statuses = [amo.STATUS_PUBLIC]
-        if switch_is_active('post-review'):
-            # If post-review switch is active, we also accept initial version
-            # submissions, so the add-on can also be NOMINATED.
-            addon_statuses.append(amo.STATUS_NOMINATED)
         return (
-            self.addon.status in addon_statuses and
+            self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
             self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
             self.is_webextension and
             self.is_unreviewed and
@@ -603,7 +599,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def was_auto_approved(self):
         """Return whether or not this version was auto-approved."""
-        from olympia.editors.models import AutoApprovalSummary
+        from olympia.reviewers.models import AutoApprovalSummary
         try:
             return self.is_public() and AutoApprovalSummary.objects.filter(
                 version=self).get().verdict == amo.AUTO_APPROVED
@@ -714,15 +710,16 @@ models.signals.post_delete.connect(
 
 class LicenseManager(ManagerBase):
 
-    def builtins(self):
-        return self.filter(builtin__gt=0).order_by('builtin')
+    def builtins(self, cc=False):
+        return self.filter(
+            builtin__gt=0, creative_commons=cc).order_by('builtin')
 
 
 class License(ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, db_column='url')
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(
@@ -733,6 +730,7 @@ class License(ModelBase):
     icons = models.CharField(
         max_length=255, null=True,
         help_text='Space-separated list of icon identifiers.')
+    creative_commons = models.BooleanField(default=False)
 
     objects = LicenseManager()
 
@@ -740,7 +738,12 @@ class License(ModelBase):
         db_table = 'licenses'
 
     def __unicode__(self):
-        return unicode(self.name)
+        license = self._constant or self
+        return unicode(license.name)
+
+    @property
+    def _constant(self):
+        return LICENSES_BY_BUILTIN.get(self.builtin)
 
 
 models.signals.pre_save.connect(

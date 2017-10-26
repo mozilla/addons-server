@@ -10,7 +10,6 @@ import pytest
 import jinja2
 from mock import patch
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo, legacy_api
 from olympia.addons.models import (
@@ -78,31 +77,10 @@ class UtilsTest(TestCase):
         assert d['summary'] == 'i &lt;3 amo!'
         assert d['description'] == 'i &lt;3 amo!'
 
-    @override_switch('simple-contributions', active=False)
-    def test_contrib_info(self):
-        self.a.wants_contributions = True
-        self.a.suggested_amount = 5
-        self.a.paypal_id = 'alice@example.com'
-        self.a.save()
-        d = addon_to_dict(self.a)
-        assert d['contribution']['suggested_amount'] == 5
-
-    @override_switch('simple-contributions', active=False)
-    def test_no_contrib_info_until_approved(self):
-        self.a.wants_contributions = True
-        self.a.suggested_amount = 5
-        self.a.status = amo.STATUS_NOMINATED
-        self.a.paypal_id = 'alice@example.com'
-        self.a.save()
-        d = addon_to_dict(self.a)
-        assert 'contribution' not in d
-
-    @override_switch('simple-contributions', active=True)
     def test_simple_contributions(self):
         self.a.update(contributions='https://paypal.me/blah')
         d = addon_to_dict(self.a)
         assert d['contribution']['meet_developers'] == self.a.contributions
-        assert 'suggested_amount' not in d['contribution']
         assert 'link' not in d['contribution']
 
 
@@ -403,89 +381,6 @@ class APITest(TestCase):
         expected = '%s/firefox/downloads/file' % settings.SITE_URL
         assert url.startswith(expected), url
 
-    @override_switch('simple-contributions', active=False)
-    def test_15_addon_detail_paypal_contributions(self):
-        """
-        For an api>1.5 we need to verify we have:
-        # Contributions information, including a link to contribute, suggested
-          amount, and Meet the Developers page
-        # Number of user reviews and link to view them
-        # Total downloads, weekly downloads, and latest daily user counts
-        # Add-on creation date
-        # Link to the developer's profile
-        # File size
-        """
-        def urlparams(x, *args, **kwargs):
-            return jinja2.escape(jinja_helpers.urlparams(x, *args, **kwargs))
-
-        needles = (
-            '<addon id="4664">',
-            '<contribution_data>',
-            '%s/en-US/firefox/addon/4664/contribute/?src=api</link>' % (
-                settings.SITE_URL),
-            '<meet_developers>',
-            '%s/en-US/firefox/addon/4664/developers?src=api' % (
-                settings.SITE_URL),
-            '</meet_developers>',
-            '<reviews num="131">',
-            '%s/en-US/firefox/addon/4664/reviews/?src=api' % settings.SITE_URL,
-            '<total_downloads>1352192</total_downloads>',
-            '<weekly_downloads>13849</weekly_downloads>',
-            '<daily_users>67075</daily_users>',
-            '<author id="2519"',
-            '%s/en-US/firefox/user/cfinke/?src=api</link>' % settings.SITE_URL,
-            '<previews>',
-            'preview position="0">',
-            '<caption>TwitterBar places an icon in the address bar.</caption>',
-            'full type="image/png">',
-            '<thumbnail type="image/png">',
-            ('<developer_comments>Embrace hug love hug meow meow'
-             '</developer_comments>'),
-            'size="100352"',
-            ('<homepage>http://www.chrisfinke.com/addons/twitterbar/'
-             '</homepage>'),
-            '<support>http://www.chrisfinke.com/addons/twitterbar/</support>')
-
-        # For urls with several parameters, we need to use self.assertUrlEqual,
-        # as the parameters could be in random order. Dicts aren't ordered!
-        # We need to subtract 7 hours from the modified time since May 3, 2008
-        # is during daylight savings time.
-        url_needles = {
-            "full": urlparams(
-                '{previews}full/20/20397.png'.format(
-                    previews=jinja_helpers.user_media_url('previews')),
-                src='api', modified=1209834208 - 7 * 3600),
-            "thumbnail": urlparams(
-                '{previews}thumbs/20/20397.png'.format(
-                    previews=jinja_helpers.user_media_url('previews')),
-                src='api', modified=1209834208 - 7 * 3600),
-        }
-
-        response = make_call('addon/4664', version=1.5)
-        doc = pq(response.content)
-
-        tags = {
-            'suggested_amount': (
-                {'currency': 'USD', 'amount': '5.00'}, '$5.00'),
-            'created': ({'epoch': '1174109035'}, '2007-03-17T05:23:55Z'),
-            'last_updated': ({'epoch': '1272301783'}, '2010-04-26T17:09:43Z')}
-
-        for tag, v in tags.items():
-            attrs, text = v
-            el = doc(tag)
-            for attr, val in attrs.items():
-                assert el.attr(attr) == val
-
-            assert el.text() == text
-
-        for needle in needles:
-            self.assertContains(response, needle)
-
-        for tag, needle in url_needles.iteritems():
-            url = doc(tag).text()
-            self.assertUrlEqual(url, needle)
-
-    @override_switch('simple-contributions', active=True)
     def test_15_addon_detail(self):
         """
         For an api>1.5 we need to verify we have:
@@ -561,18 +456,6 @@ class APITest(TestCase):
         for tag, needle in url_needles.iteritems():
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
-
-    @override_switch('simple-contributions', active=False)
-    def test_no_contribs_until_approved(self):
-        Addon.objects.filter(id=4664).update(status=amo.STATUS_NOMINATED)
-        response = make_call('addon/4664', version=1.5)
-        self.assertNotContains(response, 'contribution_data')
-
-    @override_switch('simple-contributions', active=False)
-    def test_no_suggested_amount(self):
-        Addon.objects.filter(id=4664).update(suggested_amount=None)
-        response = make_call('addon/4664', version=1.5)
-        assert '<suggested_amount' not in response.content
 
     def test_beta_channel(self):
         """

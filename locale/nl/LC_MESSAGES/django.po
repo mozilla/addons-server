@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-11 20:31+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-11 20:59+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -178,11 +178,6 @@ msgstr "Vermeld"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Paden naar add-ons en collecties dienen met ‘/’ te eindigen"
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Bijdrage voor {0}"
 
 msgid "Abuse reported."
 msgstr "Misbruik gemeld."
@@ -2834,6 +2829,9 @@ msgstr ""
 "Op die van uzelf. <span class=\"helptext\">Uw inzending wordt direct ondertekend voor eigen distributie. Updates dienen door uzelf te worden verzorgd via een updateURL of externe "
 "toepassingsupdates.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on wordt aanbevolen."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Met ingang van Firefox 53 kunnen nieuwe add-ons op deze website alleen WebExtensions zijn."
 
@@ -3654,6 +3652,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Vink deze optie aan als uw add-on experimenteel of anderszins niet gereed is voor algemeen gebruik. De add-on zal worden vermeld, maar verminderde zichtbaarheid hebben. U kunt deze instelling later "
 "wijzigen."
+
+msgid "Select a category for this add-on:"
+msgstr "Selecteer een categorie voor deze add-on:"
 
 msgid "Support email:"
 msgstr "E-mailadres voor ondersteuning:"
@@ -4677,7 +4678,7 @@ msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vind eenvoudig afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Markeer willekeurige tekst en rechtsklik om snel een afbeelding te zoeken."
+msgstr "Markeer willekeurige tekst en klik met de rechtermuisknop om snel een afbeelding te zoeken."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
@@ -4753,7 +4754,7 @@ msgid "Applications:"
 msgstr "Toepassingen:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Stuur mij een bericht als deze add-on de volgende keer wordt bijgewerkt. (Volgende updates genereren geen e-mailbericht)"
+msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
 
 msgid "Clear Admin Review Flag"
 msgstr "Beoordelingsmarkering voor beheerder wissen"
@@ -4924,7 +4925,7 @@ msgid "Approve Content"
 msgstr "Inhoud goedkeuren"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar een bericht te sturen."
+msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nieuwe add-ons (minder dan 5 dagen)"
@@ -5257,6 +5258,9 @@ msgstr "Bestanden downloaden"
 msgid "The developer has provided source code."
 msgstr "De ontwikkelaar heeft een broncode opgegeven."
 
+msgid "Weight:"
+msgstr "Gewicht:"
+
 msgid "Not Auto Approved Because"
 msgstr "Niet automatisch goedgekeurd vanwege"
 
@@ -5561,7 +5565,7 @@ msgstr "Kon geüploade bestand niet uitpakken."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr "Ongeldige naam in archief. Zorg ervoor dat alle bestandsnamen in utf-8 of latin 1 zijn gecodeerd."
+msgstr "Ongeldige bestandsnaam in archief. Zorg ervoor dat alle bestandsnamen utf-8- of latin1-gecodeerd zijn."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7606,7 +7610,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Waardering %(rating)s van 5 sterren"
 
 msgid "Maximum query length exceeded."
-msgstr "Maximale lengte zoekopdracht overschreden."
+msgstr "Maximale lengte van zoekopdracht overschreden."
 
 msgid "Most popular this week"
 msgstr "Populairst deze week"
@@ -8035,6 +8039,12 @@ msgstr "Add-ons voor andere toepassingen zoeken"
 
 msgid "Other Applications"
 msgstr "Andere toepassingen"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO krijgt een nieuw uiterlijk. Wilt u het zien?"
+
+msgid "Visit the new site"
+msgstr "De nieuwe website bezoeken"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Om uw eigen collecties aan te maken, moet u een Mozilla-add-ons-account hebben."

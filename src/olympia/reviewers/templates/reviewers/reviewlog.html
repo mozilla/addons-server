@@ -1,0 +1,87 @@
+{% extends "reviewers/base.html" %}
+
+{% block content %}
+
+  <div id="log-filter" class="log-filter-outside">
+    <form action="{{ url('reviewers.reviewlog') }}" method="get" data-no-csrf>
+      <div class="date_range">
+        {{ form.start.label_tag() }}
+        {{ form.start }}
+        {{ form.end.label_tag() }}
+        {{ form.end }}
+        {{ form.search.label_tag() }}
+        {{ form.search }}
+
+        {# L10n: "Filter" is a button label (verb) #}
+        <button type="submit">
+          {{ _('Filter') }}
+        </button>
+      </div>
+    </form>
+  </div><!-- #log-filter -->
+
+  <h2>{{ _('Add-on Review Log') }}</h2>
+
+  <div class="listing results"><div class="results-inner controls">
+    {% if pager.object_list %}
+      <table id="log-listing" class="data-grid">
+        <thead>
+          <tr class="listing-header">
+            <th>{{ _('Date') }}</th>
+            <th>{{ _('Event') }}</th>
+            <th>{{ _('Reviewer') }}</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in pager.object_list %}
+            <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
+              <td>{{ item.created|babel_datetime }}</td>
+              <td>
+                {% if item.arguments.0 %}
+                  {{ item.arguments.0|link }}
+                  {% if item.arguments|count >= 2 %}
+                    {{ item.arguments[1] }}
+                    {% set channel = item.arguments[1].channel %}
+                  {% else %}
+                    {% set channel = 0 %}
+                  {% endif %}
+                  {% if item.action == amo.LOG.REJECT_CONTENT.id or item.action == amo.LOG.APPROVE_CONTENT.id %}
+                    {% set review_url = url('reviewers.review', 'content', item.arguments[0].slug ) %}
+                  {% elif channel == amo.RELEASE_CHANNEL_LISTED %}
+                    {% set review_url = url('reviewers.review', item.arguments[0].slug) %}
+                  {% else %}
+                    {% set review_url = url('reviewers.review', 'unlisted', item.arguments[0].slug) %}
+                  {% endif %}
+                  <a href="{{ review_url }}">
+                    {{ item.log.short }}
+                  </a>
+                {% else %}
+                    {{ _('Add-on has been deleted.') }}
+                {% endif %}
+              </td>
+              <td>{{ item.user.display_name }}</td>
+              <td>
+                <a class="comments show" href="#">{{ _('Show Comments') }}</a>
+                <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+              </td>
+            </tr>
+            <tr class="comments hide">
+              <td>&nbsp;</td>
+              <td colspan="4">{{ item.details['comments'] }}</td>
+            </tr>
+            <tr class="hide"><td>{{ item.action }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-results">{{ _('No reviews found for this period.') }}</p>
+    {% endif %}
+
+    {% if pager.has_other_pages() %}
+      <div class="listing-footer">
+        {{ pager|paginator }}
+      </div>
+    {% endif %}
+</div></div>
+{% endblock %}

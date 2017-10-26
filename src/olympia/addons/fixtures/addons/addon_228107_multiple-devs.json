@@ -25,30 +25,6 @@
         }
     },
     {
-        "pk": 1399507,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-09-12 07:27:48",
-            "locale": "en-US",
-            "modified": "2010-01-02 12:34:56",
-            "id": 13252965,
-            "localized_string": "Future: This is line one.\n\nThis is line two"
-        }
-    },
-    {
-        "pk": 1399506,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-09-12 07:27:48",
-            "locale": "en-US",
-            "modified": "2010-01-02 12:34:56",
-            "id": 13252964,
-            "localized_string": "Why: This is line one.\n\nThis is line two"
-        }
-    },
-    {
         "pk": 13994991,
         "model": "translations.translation",
         "fields": {
@@ -116,22 +92,17 @@
             "eula": null,
             "last_updated": "2010-09-12 07:17:04",
             "view_source": false,
-            "enable_thankyou": true,
             "total_downloads": 327,
             "developer_comments": null,
             "disabled_by_user": false,
             "average_daily_downloads": 14,
-            "the_future": 13252965,
             "locale_disambiguation": null,
             "guid": "nobody1@nowhere.com",
             "weekly_downloads": 75,
             "support_url": null,
-            "paypal_id": "nobody1@nowhere.com",
             "average_rating": 0.0,
-            "wants_contributions": true,
             "average_daily_users": 38,
             "bayesian_rating": 0.0,
-            "charity": null,
             "homepage": 13252949,
             "support_email": 13252963,
             "public_stats": false,
@@ -140,7 +111,6 @@
             "description": 13252958,
             "default_locale": "en-US",
             "target_locale": null,
-            "thankyou_note": null,
             "admin_review": false,
             "slug": "a228107",
             "external_software": false,
@@ -148,13 +118,10 @@
             "created": "2010-09-12 07:17:04",
             "type": 1,
             "icon_type": "image/png",
-            "annoying": 2,
             "modified": "2010-09-12 15:01:38",
             "summary": 13252951,
-            "suggested_amount": "5.00",
             "_current_version": 1174945,
-            "total_reviews": 0,
-            "the_reason": 13252964
+            "total_reviews": 0
         }
     },
     {

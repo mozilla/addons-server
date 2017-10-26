@@ -290,7 +290,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review',
+            reverse('reviewers.review',
                     kwargs={'addon_id': self.version.addon.pk,
                             'channel': 'listed'},
                     add_prefix=False))
@@ -382,7 +382,7 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
         review_url = absolutify(
-            reverse('editors.review',
+            reverse('reviewers.review',
                     kwargs={'addon_id': self.version.addon.pk,
                             'channel': 'listed'},
                     add_prefix=False))
@@ -454,7 +454,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review', add_prefix=False,
+            reverse('reviewers.review', add_prefix=False,
                     kwargs={'channel': 'listed', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'you reviewed this add-on.')
@@ -490,7 +490,7 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'you are an author of this add-on.')
         review_url = absolutify(
-            reverse('editors.review', add_prefix=False,
+            reverse('reviewers.review', add_prefix=False,
                     kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk}))
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'you reviewed this add-on.')

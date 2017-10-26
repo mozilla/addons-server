@@ -105,16 +105,6 @@ class TestViews(TestCase):
         assert link == self.url_detail
         assert doc('.version').attr('id') == 'version-%s' % version
 
-    def test_version_list_button_skips_contribution_roadblock(self):
-        self.addon.update(
-            wants_contributions=True, annoying=amo.CONTRIB_ROADBLOCK,
-            paypal_id='foobar')
-        version = version_factory(addon=self.addon, version='2.0')
-        file_ = version.files.all()[0]
-        doc = self.get_content()
-        assert (doc('.button')[0].attrib['href'] ==
-                file_.get_url_path(src='version-history'))
-
     def test_version_list_button_shows_download_anyway(self):
         first_version = self.addon.current_version
         first_version.update(created=self.days_ago(1))
@@ -361,9 +351,9 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
-    def test_file_disabled_ok_for_editor(self):
+    def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(email='editor@mozilla.com')
+        self.client.login(email='reviewer@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_admin(self):
@@ -398,7 +388,7 @@ class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
         super(TestDisabledFileDownloads, self).setUp()
         self.make_addon_unlisted(self.addon)
         self.grant_permission(
-            UserProfile.objects.get(email='editor@mozilla.com'),
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
             'Addons:ReviewUnlisted')
 
 

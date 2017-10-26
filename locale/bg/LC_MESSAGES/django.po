@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-03 11:02+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-17 13:24+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -177,11 +177,6 @@ msgstr "В списъка"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Пътищата на добавките и колекциите трябва да завършват с /"
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Принос за {0}"
 
 msgid "Abuse reported."
 msgstr "Злоупотребата докладвана."
@@ -2261,7 +2256,7 @@ msgid "Release"
 msgstr "Издание"
 
 msgid "Change"
-msgstr "Промени"
+msgstr "Променяне"
 
 msgid "Compatible"
 msgstr "Съвместима"
@@ -2821,6 +2816,10 @@ msgid ""
 msgstr ""
 "Самостоятелно. <span class=\"helptext\">Добавката ще бъде подписана за самостоятелно разпространение. Вие ще се грижите за обновяванията посредством updateURL или обновявания на външно приложение.</"
 "span>"
+
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Категориите не могат да се променят, докато добавката ви е препоръчана за това приложение."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Започвайки с Firefox 53 новите добавки на страницата може да са само WebExtensions."
@@ -3621,6 +3620,10 @@ msgstr "Добавката е изпитателна"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Изберете <b>до {0}</b> категория добавки за {1}:"
+
 msgid "Support email:"
 msgstr "Имейл за поддръжка:"
 
@@ -3754,7 +3757,7 @@ msgid "Which platforms is this file compatible with?"
 msgstr "С кои платформи е съвместима?"
 
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Публикуване в канала за бета версии"
 
 msgid "Administrative overrides"
 msgstr ""
@@ -4441,7 +4444,7 @@ msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
-msgstr "Бележки по версията"
+msgstr "Бележки по изданието"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -5210,6 +5213,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 msgid "Not Auto Approved Because"
@@ -7829,7 +7835,7 @@ msgid "Daily Users by Date"
 msgstr "Потребители дневно по дата"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Какво означава „потребители дневно\"?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7855,6 +7861,12 @@ msgstr "Намерете добавки за други приложения"
 
 msgid "Other Applications"
 msgstr "Други приложения"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "За да създадете собствена колекция, трябва да имате сметка в Mozilla Добавки."

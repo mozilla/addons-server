@@ -15,8 +15,6 @@ CSP_BASE_URI += (
 )
 CDN_HOST = 'https://addons-dev-cdn.allizom.org'
 CSP_FONT_SRC += (CDN_HOST,)
-CSP_CHILD_SRC += ('https://www.sandbox.paypal.com',)
-CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
     CDN_HOST,
@@ -100,11 +98,11 @@ SECRET_KEY = env('SECRET_KEY')
 LOG_LEVEL = logging.DEBUG
 
 # Celery
-BROKER_URL = env('BROKER_URL')
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
 
-CELERY_IGNORE_RESULT = True
-CELERY_DISABLE_RATE_LIMITS = True
-CELERYD_PREFETCH_MULTIPLIER = 1
+CELERY_TASK_IGNORE_RESULT = True
+CELERY_WORKER_DISABLE_RATE_LIMITS = True
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
@@ -195,31 +193,6 @@ PERSONA_DEFAULT_PAGES = 2
 
 # Signing
 SIGNING_SERVER = env('SIGNING_SERVER')
-
-# sandbox
-PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
-PAYPAL_FLOW_URL = (
-    'https://www.sandbox.paypal.com/webapps/adaptivepayment/flow/pay')
-PAYPAL_API_URL = 'https://api-3t.sandbox.paypal.com/nvp'
-PAYPAL_EMAIL = env('PAYPAL_EMAIL')
-PAYPAL_APP_ID = env('PAYPAL_APP_ID')
-PAYPAL_PERMISSIONS_URL = 'https://svcs.sandbox.paypal.com/Permissions/'
-PAYPAL_CGI_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr'
-
-PAYPAL_EMBEDDED_AUTH = {
-    'USER': env('PAYPAL_EMBEDDED_AUTH_USER'),
-    'PASSWORD': env('PAYPAL_EMBEDDED_AUTH_PASSWORD'),
-    'SIGNATURE': env('PAYPAL_EMBEDDED_AUTH_SIGNATURE'),
-}
-PAYPAL_CGI_AUTH = {
-    'USER': env('PAYPAL_CGI_AUTH_USER'),
-    'PASSWORD': env('PAYPAL_CGI_AUTH_PASSWORD'),
-    'SIGNATURE': env('PAYPAL_CGI_AUTH_SIGNATURE'),
-}
-
-PAYPAL_CHAINS = (
-    (30, env('PAYPAL_CHAINS_EMAIL')),
-)
 
 SENTRY_DSN = env('SENTRY_DSN')
 

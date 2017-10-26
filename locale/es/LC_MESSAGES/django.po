@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 15:13+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 14:04+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -183,11 +183,6 @@ msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Las rutas del complemento y la colección tienen que terminar con \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Colaboración para {0}"
 
 msgid "Abuse reported."
 msgstr "Informe de uso indebido enviado."
@@ -2839,6 +2834,9 @@ msgstr ""
 "Por ti mismo. <span class=\"helptext\">Esta versión se firmará para distribución propia. Las actualizaciones se gestionan de forma manual a través de una updateURL o de actualizaciones externas de "
 "la aplicación.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Las categorías no pueden cambiarse mientras tu complemento figura como destacado."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir de la versión 53 de Firefox, los nuevos complemento de este sitio solo pueden ser WebExtensions."
 
@@ -3690,6 +3688,9 @@ msgstr "Este complemento está en fase experimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Marca esta opción si tu complemento está en fase experimental no está listo para uso general.  El complemento aparecerá en la lista, pero con visibilidad reducida.  Puedes cambiarlo luego."
+
+msgid "Select a category for this add-on:"
+msgstr "Selecciona una categoría para este complemento:"
 
 msgid "Support email:"
 msgstr "Correo de ayuda:"
@@ -5330,6 +5331,9 @@ msgstr "Descargar archivos"
 
 msgid "The developer has provided source code."
 msgstr "El desarrollador ha proporcionado el código fuente."
+
+msgid "Weight:"
+msgstr "Tamaño:"
 
 msgid "Not Auto Approved Because"
 msgstr "No autoaprobado porque"
@@ -8145,6 +8149,12 @@ msgstr "Encuentra complementos para otras aplicaciones"
 
 msgid "Other Applications"
 msgstr "Otras aplicaciones"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO ha cambiado su aspecto. ¿Quieres verlo?"
+
+msgid "Visit the new site"
+msgstr "Visita la nueva página"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para crear tu propia colección, debes tener una cuenta de Mozilla Add-ons."

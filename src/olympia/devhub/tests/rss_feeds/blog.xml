@@ -49,7 +49,7 @@
 		<category><![CDATA[developers]]></category>
 		<category><![CDATA[documentation]]></category>
 		<category><![CDATA[add-on reviews]]></category>
-		<category><![CDATA[editors]]></category>
+		<category><![CDATA[reviewers]]></category>
 		<category><![CDATA[firefox 5]]></category>
 		<category><![CDATA[firefox 6]]></category>
 		<category><![CDATA[performance]]></category>
@@ -60,10 +60,10 @@
 			<content:encoded><![CDATA[<p>I post these updates every 2 weeks to inform add-on developers about     the status of the review queues and any other important stuff going  on    in the add-ons world.</p>
 <h3>Summary</h3>
 <ul>
-<li>Nominations for full review at the moment are being processed slower     than usual. The   new   review system required hundreds of add-on     developers to   renominate their   add-ons, which has placed a large     workload on the   editor team. Nominations are currently taking several     weeks (~5) to  review.</li>
+<li>Nominations for full review at the moment are being processed slower     than usual. The   new   review system required hundreds of add-on     developers to   renominate their   add-ons, which has placed a large     workload on the   reviewers team. Nominations are currently taking several     weeks (~5) to  review.</li>
 <li>Most updates are being reviewed within a week.</li>
 <li>Most preliminary reviews are being reviewed within 2 weeks.</li>
-<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our  team and helped us cut down review times. If you&#8217;re interested, please  read on <a href="https://wiki.mozilla.org/AMO:Editors/Applying">how to apply</a>.</li>
+<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our  team and helped us cut down review times. If you&#8217;re interested, please  read on <a href="https://wiki.mozilla.org/AMO:Reviewers/Applying">how to apply</a>.</li>
 </ul>
 <h3>The Review Queues</h3>
 <ul>
@@ -164,7 +164,7 @@ window.addEventListener("load", function() { MyObject.init(); }, false);</pre>
 		<category><![CDATA[developers]]></category>
 		<category><![CDATA[documentation]]></category>
 		<category><![CDATA[add-on reviews]]></category>
-		<category><![CDATA[editors]]></category>
+		<category><![CDATA[reviewers]]></category>
 		<category><![CDATA[firefox 5]]></category>
 		<category><![CDATA[firefox 6]]></category>
 		<category><![CDATA[statistics]]></category>
@@ -174,10 +174,10 @@ window.addEventListener("load", function() { MyObject.init(); }, false);</pre>
 			<content:encoded><![CDATA[<p>I post these updates every 2 weeks to inform add-on developers about    the status of the review queues and any other important stuff going on    in the add-ons world.</p>
 <h3>Summary</h3>
 <ul>
-<li>Nominations for full review at the moment are being processed slower    than usual. The   new   review system required hundreds of add-on    developers to   renominate their   add-ons, which has placed a large    workload on the   editor team. Nominations are currently taking several    weeks (~7) to  review.</li>
+<li>Nominations for full review at the moment are being processed slower    than usual. The   new   review system required hundreds of add-on    developers to   renominate their   add-ons, which has placed a large    workload on the   reviewers team. Nominations are currently taking several    weeks (~7) to  review.</li>
 <li>Most updates are being reviewed within a week.</li>
 <li>Most preliminary reviews are being reviewed within 2 weeks.</li>
-<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our team and helped us cut down review times. If you&#8217;re interested, please read on <a href="https://wiki.mozilla.org/AMO:Editors/Applying">how to apply</a>.</li>
+<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our team and helped us cut down review times. If you&#8217;re interested, please read on <a href="https://wiki.mozilla.org/AMO:Reviewers/Applying">how to apply</a>.</li>
 </ul>
 <h3>The Review Queues</h3>
 <ul>
@@ -286,10 +286,10 @@ window.addEventListener("load", function() { MyObject.init(); }, false);</pre>
 			<content:encoded><![CDATA[<p>I post these updates every 2 weeks to inform add-on developers about   the status of the review queues and any other important stuff going on   in the add-ons world.</p>
 <h3>Summary</h3>
 <ul>
-<li>Nominations for full review at the moment are being processed slower   than usual. The   new   review system required hundreds of add-on   developers to   renominate their   add-ons, which has placed a large   workload on the   editor team. Nominations are currently taking several   weeks (~8) to  review.</li>
+<li>Nominations for full review at the moment are being processed slower   than usual. The   new   review system required hundreds of add-on   developers to   renominate their   add-ons, which has placed a large   workload on the   reviewers team. Nominations are currently taking several   weeks (~8) to  review.</li>
 <li>Most updates are being reviewed within a week. An avalanche of   updates were submitted following the final Firefox 4 release, so we have   been spending extra time keeping updates in line.</li>
 <li>Most preliminary reviews are being reviewed within 4 weeks.</li>
-<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our team. If you&#8217;re interested, please read on <a href="https://wiki.mozilla.org/AMO:Editors/Applying">how to apply</a>.</li>
+<li>We posted a <a href="http://blog.mozilla.com/addons/2011/05/04/join-us-help-reviewing-add-ons/">call for new reviewers</a> on our blog recently and many new reviewers have already joined our team. If you&#8217;re interested, please read on <a href="https://wiki.mozilla.org/AMO:Reviewers/Applying">how to apply</a>.</li>
 </ul>
 <h3>The Review Queues</h3>
 <ul>
@@ -317,8 +317,8 @@ window.addEventListener("load", function() { MyObject.init(); }, false);</pre>
 <h3>Notes for Developers</h3>
 <ul>
 <li>Our add-on performance initiative <a href="http://blog.mozilla.com/addons/2011/04/01/improving-add-on-performance/">was launched recently</a>,  beginning with a page that lists add-ons that have been identified as  slow by our Talos testing system and backed up by real world usage data  and manual tests. Some developers have responded negatively to the  release, pointing out a number of <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=648784">bugs in the testing system</a> as well as problems in the wording of the slow add-ons page. We take  these bugs seriously and thank these developers for filing bugs and  being responsive. Many of them have been fixed already. We have also <a href="http://blog.mozilla.com/addons/2011/04/12/update-on-add-on-performance-testing/">scaled down</a> the slow add-ons list until we correct the issues that we consider critical to move forward.</li>
-<li><a href="https://wiki.mozilla.org/Add-ons/Reviewers/Guide">The AMO  Editor Guide</a>.                   This is a comprehensive guide to    the      work            performed by AMO Editors. If you want to have a clear idea of how  we  test add-ons, or you&#8217;re interested in joining us, this is a good  place  to begin.</li>
-<li><a href="https://wiki.mozilla.org/AMO:Editors/InfoAuthors">Useful             Information for Add-on Authors</a>. How to improve review times  for         your    add-on, information about the review process, etc.</li>
+<li><a href="https://wiki.mozilla.org/Add-ons/Reviewers/Guide">The AMO  Reviewer Guide</a>.                   This is a comprehensive guide to    the      work            performed by AMO Reviewers. If you want to have a clear idea of how  we  test add-ons, or you&#8217;re interested in joining us, this is a good  place  to begin.</li>
+<li><a href="https://wiki.mozilla.org/AMO:Reviewers/InfoAuthors">Useful             Information for Add-on Authors</a>. How to improve review times  for         your    add-on, information about the review process, etc.</li>
 </ul>
 ]]></content:encoded>
 			<wfw:commentRss>http://blog.mozilla.com/addons/2011/05/11/add-ons-review-update-30/feed/</wfw:commentRss>

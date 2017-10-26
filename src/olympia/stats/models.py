@@ -1,18 +1,16 @@
 import datetime
 
-from django.conf import settings
 from django.db import models
 from django.utils.translation import (
-    activate, to_locale, get_language, ugettext)
+    activate, to_locale, get_language)
 
-import bleach
 import caching.base
 from babel import Locale, numbers
 from jinja2.filters import do_dictsort
 
 from olympia import amo
 from olympia.amo.models import SearchMixin
-from olympia.amo.utils import get_locale_from_lang, send_mail_jinja
+from olympia.amo.utils import get_locale_from_lang
 
 from .db import LargeStatsDictField, StatsDictField
 
@@ -147,15 +145,6 @@ class ThemeUpdateCountBulk(models.Model):
         db_table = 'theme_update_counts_bulk'
 
 
-class ContributionError(Exception):
-
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
-
-
 class Contribution(amo.models.ModelBase):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
@@ -221,54 +210,6 @@ class Contribution(amo.models.ModelBase):
             lang = self.addon.default_locale
         activate(lang)
         return Locale(to_locale(lang))
-
-    def mail_thankyou(self, request=None):
-        """
-        Mail a thankyou note for a completed contribution.
-
-        Raises a ``ContributionError`` exception when the contribution
-        is not complete or email addresses are not found.
-        """
-        locale = self._switch_locale()
-
-        # Thankyous must be enabled.
-        if not self.addon.enable_thankyou:
-            # Not an error condition, just return.
-            return
-
-        # Contribution must be complete.
-        if not self.transaction_id:
-            raise ContributionError('Transaction not complete')
-
-        # Send from support_email, developer's email, or default.
-        from_email = settings.DEFAULT_FROM_EMAIL
-        if self.addon.support_email:
-            from_email = str(self.addon.support_email)
-
-        # We need the contributor's email.
-        to_email = self.post_data['payer_email']
-        if not to_email:
-            raise ContributionError('Empty payer email')
-
-        # Make sure the url uses the right language.
-        # Setting a prefixer would be nicer, but that requires a request.
-        url_parts = self.addon.meet_the_dev_url().split('/')
-        url_parts[1] = locale.language
-
-        subject = ugettext('Thanks for contributing to {addon_name}').format(
-            addon_name=self.addon.name)
-
-        # Send the email.
-        send_mail_jinja(
-            subject, 'stats/contribution-thankyou-email.ltxt',
-            {'thankyou_note': bleach.clean(unicode(self.addon.thankyou_note),
-                                           strip=True),
-             'addon_name': self.addon.name,
-             'learn_url': '%s%s?src=emailinfo' % (settings.SITE_URL,
-                                                  '/'.join(url_parts)),
-             'domain': settings.DOMAIN},
-            from_email, [to_email], fail_silently=True,
-            perm_setting='dev_thanks')
 
     def get_amount_locale(self, locale=None):
         """Localise the amount paid into the current locale."""

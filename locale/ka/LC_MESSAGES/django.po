@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-11 20:45+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-26 10:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -141,7 +141,7 @@ msgid_plural "You can have only {0} categories."
 msgstr[0] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "კატეგორია \"სხვადასხვა\", ვერ გაერთიანდება სხვა კატეგორიებთან."
+msgstr "კატეგორია „სხვადასხვა“, ვერ გაერთიანდება სხვა კატეგორიებთან."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -170,10 +170,6 @@ msgstr "სიაშია"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს \"/\" სიმბოლოთი"
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "{0}-ის შემომწირველი"
 
 msgid "Abuse reported."
 msgstr "შეტყობინება უკანონოდ გამოყენების შესახებ."
@@ -1714,7 +1710,7 @@ msgstr "სრული თემები ზრდადი მოთხოვ
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში \"%(name)s\" &raquo;"
+msgstr[0] "ყველა (%(cnt)s) გაფართოების ნახვა კატეგორიაში „%(name)s“ &raquo;"
 
 msgid "{0} Themes"
 msgstr "{0} თემა"
@@ -2779,6 +2775,9 @@ msgstr ""
 "საკუთარი ძალისხმევით. <span class=\"helptext\">თქვენ მიერ წარდგენილი დამატება დამოწმებისთანავე, შეგეძლებათ თავადვე გაავრცელოთ. განახლებების სამართავად საჭირო იქნება updateURL, ან ცალკე პროგრამა "
 "განახლებებისთვის.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "რჩეული დამატებისთვის, კატეგორიის შეცვლა შეუძლებელია."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 ვერსიიდან დაწყებული, ამ საიტზე ნებადართულია მხოლოდ ახალი, WebExtensions დამატებების გამოქვეყნება."
 
@@ -3586,6 +3585,9 @@ msgstr "ეს დამატება საცდელია"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "მონიშნეთ, თუ თქვენი დამატება საცდელია, ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი.   ამ პარამეტრის შეცვლა, მომავალშიც შეგეძლებათ."
+
+msgid "Select a category for this add-on:"
+msgstr "მიუთითეთ კატეგორია, დამატებისთვის:"
 
 msgid "Support email:"
 msgstr "მხარდაჭერის ელფოსტა:"
@@ -4585,25 +4587,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
+msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოსახერხებლად უყურეთ ვიდეოებს {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
+msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატური მართვას და ა.შ."
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატურ მართვას და ა.შ."
 
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
+msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name}-ის დახმარებით{end_sub_heading}"
+msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "ასობით უნიკალური სიცილაკი—თქვენს თითებთან ახლოს."
@@ -5168,6 +5170,9 @@ msgstr "ფაილების ჩამოტვირთვა"
 
 msgid "The developer has provided source code."
 msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
+
+msgid "Weight:"
+msgstr "წონა:"
 
 msgid "Not Auto Approved Because"
 msgstr "ავტომატურად არაა მიღებული, იმიტომ რომ"
@@ -7922,6 +7927,12 @@ msgstr "დამატებების მოძიება სხვა პ
 
 msgid "Other Applications"
 msgstr "სხვა პროგრამები"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO იძენს ახალ იერსახეს, გსურთ გამოცადოთ?"
+
+msgid "Visit the new site"
+msgstr "ახალ საიტზე გადასვლა"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "საკუთარი კრებულების შესაქმნელად, საჭიროა Mozilla დამატებების ანგარიში."

@@ -246,7 +246,6 @@ jQuery(function($) {
 	  },2000);
     });
 
-
 	// account dropdown in auxillary menu
 	var accountDropdown = new DropdownArea();
 	// set up variables for object
@@ -282,8 +281,6 @@ jQuery(function($) {
 		notificationHelpDropdown.hide();
 		return false;
 	})
-
-	contributions.init();
 });
 
 /* Initialization things that get run on every page. */

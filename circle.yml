@@ -64,7 +64,13 @@ jobs:
             set -x
             sudo sysctl -w vm.max_map_count=262144
             docker-compose up -d
-            sleep 10
+            sleep 20
+            docker-compose ps
+            # Make sure dependencies get updated in worker and web container
+            docker-compose exec worker make -f Makefile-docker update_deps
+            docker-compose exec worker supervisorctl restart all
+            docker-compose exec web make -f Makefile-docker update_deps
+            docker-compose exec web supervisorctl restart all
             docker-compose exec web bash /code/scripts/ui-test.sh
       - store_artifacts:
           path: ui-test-results
@@ -88,6 +94,7 @@ jobs:
           key: uitest-cache-
           paths:
             - .tox
+
 workflows:
   version: 2
   build_test_deploy_release:
