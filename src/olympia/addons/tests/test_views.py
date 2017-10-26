@@ -1457,6 +1457,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_not_public_no_rights(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -1468,6 +1469,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_not_public_reviewer(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -1493,6 +1495,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is True
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_disabled_by_user_other_user(self):
         self.addon.update(disabled_by_user=True)
@@ -1504,6 +1507,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is True
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_disabled_by_admin_anonymous(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1513,6 +1517,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is True
 
     def test_disabled_by_admin_no_rights(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1524,6 +1529,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is True
 
     def test_get_not_listed(self):
         self.make_addon_unlisted(self.addon)
@@ -1533,6 +1539,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'Authentication credentials were not provided.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
@@ -1544,6 +1551,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1556,6 +1564,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert data['detail'] == (
             'You do not have permission to perform this action.')
         assert data['is_disabled_by_developer'] is False
+        assert data['is_disabled_by_mozilla'] is False
 
     def test_get_not_listed_specific_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1579,8 +1588,10 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 404
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
-        # is_disabled_by_developer is only added for 401/403.
+        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
+        # added for 401/403.
         assert 'is_disabled_by_developer' not in data
+        assert 'is_disabled_by_mozilla' not in data
 
     def test_get_deleted_no_rights(self):
         self.addon.delete()
@@ -1588,6 +1599,12 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == 'Not found.'
+        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
+        # added for 401/403.
+        assert 'is_disabled_by_developer' not in data
+        assert 'is_disabled_by_mozilla' not in data
 
     def test_get_deleted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1596,6 +1613,12 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == 'Not found.'
+        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
+        # added for 401/403.
+        assert 'is_disabled_by_developer' not in data
+        assert 'is_disabled_by_mozilla' not in data
 
     def test_get_deleted_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -1613,6 +1636,12 @@ class AddonAndVersionViewSetDetailMixin(object):
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == 'Not found.'
+        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
+        # added for 401/403.
+        assert 'is_disabled_by_developer' not in data
+        assert 'is_disabled_by_mozilla' not in data
 
     def test_get_addon_not_found(self):
         self._set_tested_url(self.addon.pk + 42)
@@ -1620,8 +1649,10 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 404
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
-        # is_disabled_by_developer is only added for 401/403.
+        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
+        # added for 401/403.
         assert 'is_disabled_by_developer' not in data
+        assert 'is_disabled_by_mozilla' not in data
 
 
 class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
