@@ -90,10 +90,10 @@ class sdk_upgrade_fail(_NOTIFICATION):
     default_checked = True
 
 
-class editor_reviewed(_NOTIFICATION):
+class reviewer_reviewed(_NOTIFICATION):
     id = 11
     group = 'dev'
-    short = 'editor_reviewed'
+    short = 'reviewer_reviewed'
     label = _('my add-on is reviewed by a reviewer')
     mandatory = True
     default_checked = True

@@ -171,14 +171,14 @@ class TestFileValidation(TestCase):
         assert self.client.login(email='regular@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 403
 
-    def test_editor_can_see_results(self):
+    def test_reviewer_can_see_results(self):
         self.client.logout()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.url, follow=True).status_code == 200
 
-    def test_editor_can_see_json_results(self):
+    def test_reviewer_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
     def test_no_html_in_messages(self):
@@ -584,7 +584,7 @@ class TestCompatibilityResults(TestCase):
 
     def setUp(self):
         super(TestCompatibilityResults, self).setUp()
-        assert self.client.login(email='editor@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
         self.addon = Addon.objects.get(slug='addon-compat-results')
         self.result = ValidationResult.objects.get(
             file__version__addon=self.addon)

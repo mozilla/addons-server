@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 09:29+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 07:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -182,11 +182,6 @@ msgstr "Felsorolva"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Támogatás ennek: {0}"
 
 msgid "Abuse reported."
 msgstr "Visszaélést jelentettek."
@@ -2831,6 +2826,9 @@ msgstr ""
 "Saját maga. <span class=\"helptext\">A beküldése azonnal aláírásra kerül saját terjesztéshez. A frissítéseket Önnek kell kezelnie egy frissítési URL-en keresztül, vagy külső "
 "alkalmazásfrissítéssel.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "A kategóriák nem változtathatóak meg, míg kiemelt a kiegészítő."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
 
@@ -3649,6 +3647,9 @@ msgstr "Ez a kiegészítő kísérleti"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Jelölje be ezt a beállítást, ha a kiegészítő kísérleti vagy más okból nincs kész általános használatra. A kiegészítő listázva lesz, de csökkentett láthatósággal. Ezt később megváltoztathatja."
+
+msgid "Select a category for this add-on:"
+msgstr "Válasszon egy kategóriát a kiegészítőhöz:"
 
 msgid "Support email:"
 msgstr "E-mail támogatás:"
@@ -5265,6 +5266,9 @@ msgstr "Fájlok letöltése"
 
 msgid "The developer has provided source code."
 msgstr "A fejlesztő biztosított forráskódot."
+
+msgid "Weight:"
+msgstr "Súly:"
 
 msgid "Not Auto Approved Because"
 msgstr "Nem automatikus jóváhagyás oka"
@@ -8048,6 +8052,12 @@ msgstr "Kiegészítők keresése más alkalmazásokhoz"
 
 msgid "Other Applications"
 msgstr "Más alkalmazások"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "Az AMO új kinézetet kap. Szeretné látni?"
+
+msgid "Visit the new site"
+msgstr "Új oldal felkeresése"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Saját gyűjteményt szeretne készítéséhez Mozilla Add-ons felhasználói fiókkal kell rendelkeznie."

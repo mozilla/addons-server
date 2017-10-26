@@ -2,15 +2,6 @@
 {% set urls = [
   (addon.get_dev_url(), _('Edit Information')),
   (addon.get_dev_url('owner'), _('Manage Authors & License')),
-  ] %}
-
-{% if show_listed and not waffle.switch('simple-contributions') %}
-{% set urls = urls + [
-  (addon.get_dev_url('profile'), _('Manage Developer Profile')),
-  (addon.get_dev_url('payments'), _('Manage Payments')),
-  ] %}
-{% endif %}
-{% set urls = urls + [
   (addon.get_dev_url('versions'), _('Manage Status & Versions')),
   ] %}
 {% set latest_version=addon.find_latest_version(None) %}
@@ -46,9 +37,9 @@
         {{ _('View Listing') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.ADDONS_EDIT) %}
-        <li><a href="{{ url('editors.review', addon.slug) }}">
+        <li><a href="{{ url('reviewers.review', addon.slug) }}">
           {{ _('Listed Review Page') }}</a></li>
-        <li><a href="{{ url('editors.review', 'unlisted', addon.slug) }}">
+        <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}

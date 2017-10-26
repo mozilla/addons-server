@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-10-10 11:13+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,10 +174,6 @@ msgstr "Oppført"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Søkesti for utviding og samling må avsluttast med \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Bidrag til {0}"
 
 msgid "Abuse reported."
 msgstr "Misbruk rapportert."
@@ -2791,6 +2787,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategorier kan ikkje endrast medan innlegget ditt er framheva for denne appen."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3582,6 +3582,10 @@ msgstr "Denne utvidinga er eksperimentell"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Vel <b>opp til {0}</b> {1} kategori for denne utvidinga:"
 
 msgid "Support email:"
 msgstr "E-post for brukarstøtte:"
@@ -5158,6 +5162,10 @@ msgstr "Last ned filer"
 
 msgid "The developer has provided source code."
 msgstr "Utviklaren har kome med kjeldekode."
+
+#, fuzzy
+msgid "Weight:"
+msgstr "Vekt"
 
 msgid "Not Auto Approved Because"
 msgstr "Ikkje auto-godkjent fordi"
@@ -7777,6 +7785,12 @@ msgstr "Finn utvidingar for andre program"
 
 msgid "Other Applications"
 msgstr "Andre appar"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "For å opprette eigne samlingar, må du ha ein konto for Mozilla-utvidingar."

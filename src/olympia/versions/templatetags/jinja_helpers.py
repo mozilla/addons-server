@@ -8,5 +8,5 @@ from olympia.addons.templatetags.jinja_helpers import new_context
 @library.render_with('versions/version.html')
 @jinja2.contextfunction
 def version_detail(context, addon, version, src, impala=False,
-                   skip_contrib=False, itemclass='item'):
+                   itemclass='item'):
     return new_context(**locals())

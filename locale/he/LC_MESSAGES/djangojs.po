@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-04 13:54+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-17 10:06+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -95,10 +95,10 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "התוספת שלך אומתה ללא כל שגיאות או אזהרות."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "ההגשה שלך תיחתם אוטומטית."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "שדרוג WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -330,7 +330,7 @@ msgid "Detail Page (Development Channel)"
 msgstr ""
 
 msgid "Often Used With"
-msgstr ""
+msgstr "לרוב בשימוש עם"
 
 msgid "Others By Author"
 msgstr ""
@@ -354,7 +354,7 @@ msgid "Sharing"
 msgstr "שיתוף"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "דפי קטגוריה"
 
 msgid "Collections"
 msgstr "אוספים"

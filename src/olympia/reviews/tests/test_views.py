@@ -196,7 +196,7 @@ class TestFlag(ReviewTest):
         assert response.status_code == 200
         assert response.content == (
             '{"msg": "Thanks; this review has been '
-            'flagged for editor approval."}')
+            'flagged for reviewer approval."}')
         assert ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count() == 1
         assert Review.objects.filter(editorreview=True).count() == 1
 
@@ -287,7 +287,7 @@ class TestDelete(ReviewTest):
         assert not Review.objects.filter(pk=218468).exists()
 
     def test_reviewer_can_delete_moderated_review(self):
-        # Test an editor can delete a review if not listed as an author.
+        # Test a reviewer can delete a review if not listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
         AddonUser.objects.filter(addon=self.addon).delete()
@@ -308,7 +308,7 @@ class TestDelete(ReviewTest):
         assert not Review.objects.filter(pk=218207).exists()
 
     def test_reviewer_cannot_delete_unmoderated_review(self):
-        # Test an editor can delete a review if not listed as an author.
+        # Test a reviewer can delete a review if not listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
         AddonUser.objects.filter(addon=self.addon).delete()
@@ -325,8 +325,8 @@ class TestDelete(ReviewTest):
         assert Review.objects.count() == cnt
         assert Review.objects.filter(pk=218207).exists()
 
-    def test_editor_own_addon_cannot_delete(self):
-        # Test an editor cannot delete a review if listed as an author.
+    def test_reviewer_own_addon_cannot_delete(self):
+        # Test a reviewer cannot delete a review if listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Make user an add-on reviewer.
         group = Group.objects.create(name='Reviewer', rules='Addons:Review')
@@ -517,7 +517,7 @@ class TestCreate(ReviewTest):
 
     def test_body_has_url(self):
         """ test that both the create and revise reviews segments properly
-            note reviews that contain URL like patterns for editorial review
+            note reviews that contain URL like patterns for review
         """
         for body in ['url http://example.com', 'address 127.0.0.1',
                      'url https://example.com/foo/bar', 'host example.org',
@@ -1374,7 +1374,7 @@ class TestReviewViewSetDelete(TestCase):
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
 
-    def test_delete_editor_moderated(self):
+    def test_delete_reviewer_moderated(self):
         self.review.update(editorreview=True)
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Addons:Review')
@@ -1384,7 +1384,7 @@ class TestReviewViewSetDelete(TestCase):
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
 
-    def test_delete_editor_not_moderated(self):
+    def test_delete_reviewer_not_moderated(self):
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Addons:Review')
         self.client.login_api(admin_user)
@@ -1392,7 +1392,7 @@ class TestReviewViewSetDelete(TestCase):
         assert response.status_code == 403
         assert Review.objects.count() == 1
 
-    def test_delete_editor_but_addon_author(self):
+    def test_delete_reviewer_but_addon_author(self):
         admin_user = user_factory()
         self.addon.addonuser_set.create(user=admin_user)
         self.grant_permission(admin_user, 'Addons:Review')
@@ -1458,11 +1458,11 @@ class TestReviewViewSetEdit(TestCase):
         response = self.client.put(self.url, {'body': u'løl!'})
         assert response.status_code == 405
 
-    def test_edit_no_rights_even_editor(self):
+    def test_edit_no_rights_even_reviewer(self):
         # Only admins can edit a review they didn't write themselves.
-        editor_user = user_factory()
-        self.grant_permission(editor_user, 'Addons:Review')
-        self.client.login_api(editor_user)
+        reviewer_user = user_factory()
+        self.grant_permission(reviewer_user, 'Addons:Review')
+        self.client.login_api(reviewer_user)
         response = self.client.patch(self.url, {'body': u'løl!'})
         assert response.status_code == 403
 
@@ -1943,7 +1943,11 @@ class TestReviewViewSetFlag(TestCase):
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 202
-        assert response.content == ''
+        data = json.loads(response.content)
+        assert data == {
+            'msg':
+                'Thanks; this review has been flagged for reviewer approval.'
+        }
         assert ReviewFlag.objects.count() == 1
         flag = ReviewFlag.objects.latest('pk')
         assert flag.flag == 'review_flag_reason_spam'

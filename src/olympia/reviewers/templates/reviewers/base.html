@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}{{ reviewer_page_title() }}{% endblock %}
+
+{% block bodyclass %}reviewer-tools {% endblock %}
+
+{% block site_header_title %}
+<div class="reviewer-menu">
+  <h1 class="site-title amo">
+    <a href="{{ url('reviewers.home') }}" title="{{ _('Return to the Reviewer Tools homepage') }}">
+      <strong>{{ _('Reviewer Tools') }}</strong>
+    </a>
+  </h1>
+
+  {% block pillnav %}
+    {% if action_allowed(amo.permissions.ADDONS_REVIEW) and action_allowed(amo.permissions.THEMES_REVIEW) %}
+      <nav class="pill-nav-amo">
+        {% if action_allowed(amo.permissions.ADDONS_REVIEW) %}
+          <a{% if '/editors/themes' not in request.path %} class="selected"{% endif %}
+             href="{{ url('reviewers.reviewlog') if '/logs' in request.path
+                      else url('reviewers.home') }}">
+            {{ _('Add-ons') }}</a>
+        {% endif %}
+        {% if action_allowed(amo.permissions.THEMES_REVIEW) %}
+          <a{% if '/editors/themes' in request.path %} class="selected"{% endif %}
+             href="{{ url('reviewers.themes.logs') if '/reviewlog' in request.path
+                      else url('reviewers.themes.home') }}">{{ _('Themes') }}</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+</div>
+  {% endblock %}
+{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/devhub') }}
+  {{ css('zamboni/reviewers') }}
+{% endblock %}
+
+{% block navbar %}
+<div id="navbar">
+  <ul class="top">
+    <li class="top" id="listed-queues">
+      <a href="{{ url('reviewers.queue') }}" class="controller">
+        {{ _('Queues') }}</a>
+      <ul>
+        <li><a href="{{ url('reviewers.queue_nominated') }}">
+              {{ _('New Add-ons') }} ({{ queue_counts['nominated'] }})</a></li>
+        <li><a href="{{ url('reviewers.queue_pending') }}">
+              {{ _('Updates') }} ({{ queue_counts['pending'] }})</a></li>
+        <li><a href="{{ url('reviewers.queue_moderated') }}">
+              {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
+        {% if action_allowed(amo.permissions.ADDONS_POST_REVIEW) %}
+          <li><a href="{{ url('reviewers.queue_auto_approved') }}">
+                {{ _('Auto Approved Add-ons') }} ({{ queue_counts['auto_approved'] }})</a></li>
+        {% endif %}
+        {% if action_allowed(amo.permissions.ADDONS_CONTENT_REVIEW) %}
+          <li><a href="{{ url('reviewers.queue_content_review') }}">
+                {{ _('Content Review') }} ({{ queue_counts['content_review'] }})</a></li>
+        {% endif %}
+      </ul>
+    </li>
+    {% if action_allowed(amo.permissions.ADDONS_REVIEW_UNLISTED) %}
+      <li class="top" id="unlisted-queues">
+        <a href="{{ url('reviewers.unlisted_queue') }}" class="controller">
+          {{ _('Unlisted Queues') }}</a>
+        <ul>
+          <li><a href="{{ url('reviewers.unlisted_queue_all') }}">
+                {{ _('All Unlisted Add-ons') }}</a></li>
+        </ul>
+      </li>
+    {% endif %}
+    <li class="top">
+      <a href="{{ url('reviewers.performance') }}" class="controller">{{ _('Performance') }}</a>
+    </li>
+    <li class="top">
+      <a href="{{ url('reviewers.reviewlog') }}" class="controller">{{ _('Logs') }}</a>
+      <ul>
+        <li><a href="{{ url('reviewers.reviewlog') }}">
+          {{ _('Add-on Review Log') }}</a></li>
+        <li><a href="{{ url('reviewers.eventlog') }}">
+          {{ _('Moderated Review Log') }}</a></li>
+        <li><a href="{{ url('reviewers.beta_signed_log') }}">
+          {{ _('Signed Beta Files Log') }}</a></li>
+      </ul>
+    </li>
+    {% if motd_editable %}
+      <li class="top">
+        <a href="{{ url('reviewers.motd') }}" class="controller">{{ _('Announcement') }}</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js('zamboni/reviewers') }}
+{% endblock %}
+
+{% block outer_content %}
+  {% include "reviewers/includes/daily-message.html" %}
+  {% include "messages.html" %}
+{% endblock %}

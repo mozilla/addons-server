@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 02:15+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 07:03+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -169,10 +169,6 @@ msgstr "Tersenarai"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Laluan add-on dan koleksi perlu berakhir dengan \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Sumbangan untuk {0}"
 
 msgid "Abuse reported."
 msgstr "Salah guna dilapor."
@@ -2776,6 +2772,9 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 "Anda sendiri. <span class=\"helptext\">Serahan anda akan serta-merta ditandatangani untuk mengedarkan-sendiri. Anda akan uruskan sendiri kemaskini via updateURL atau kemaskini aplikasi luar.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategori tidak boleh ditukar semasa add-on anda ini menjadi ciri."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
 
@@ -3583,6 +3582,9 @@ msgstr "Add-on ini masih eksperimen"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 "Tandakan pilihan ini jika add-on anda masih eksperimen ataupun belum bersedia untuk kegunaan umum.  Add-on ini akan disenaraikan tapi kurang dapat dilihat.   Anda boleh ubah tetapan ini kemudian."
+
+msgid "Select a category for this add-on:"
+msgstr "Pilih kategori untuk add-on ini:"
 
 msgid "Support email:"
 msgstr "E-mel Sokongan:"
@@ -5165,6 +5167,9 @@ msgstr "Muat turun fail"
 
 msgid "The developer has provided source code."
 msgstr "Pembangun menyediakan kod sumber."
+
+msgid "Weight:"
+msgstr "Pertimbangkan:"
 
 msgid "Not Auto Approved Because"
 msgstr "Tidak Auto Diluluskan Kerana"
@@ -7919,6 +7924,12 @@ msgstr "Cari add-ons untuk aplikasi lain"
 
 msgid "Other Applications"
 msgstr "Aplikasi Lain"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO kini berwajah baru. Adakah anda mahu melihatnya?"
+
+msgid "Visit the new site"
+msgstr "Lawati laman baru"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Untuk mencipta koleksi anda sendiri, anda mesti ada akaun Add-ons Mozilla."

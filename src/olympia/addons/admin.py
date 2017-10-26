@@ -24,7 +24,7 @@ class AddonAdmin(admin.ModelAdmin):
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
                        'privacy_policy', 'developer_comments', 'icon_type',
-                       'the_reason', 'the_future'),
+                       ),
         }),
         ('Support', {
             'fields': ('support_url', 'support_email'),
@@ -39,10 +39,6 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
                        'public_stats', 'is_experimental', 'admin_review',
                        'external_software', 'dev_agreement'),
-        }),
-        ('Money', {
-            'fields': ('wants_contributions', 'paypal_id', 'suggested_amount',
-                       'annoying'),
         }),
         ('Dictionaries', {
             'fields': ('target_locale', 'locale_disambiguation'),

@@ -1,5 +1,4 @@
 import collections
-import decimal
 import json as jsonlib
 import os
 import random
@@ -197,13 +196,6 @@ def _get_format():
 @library.filter
 def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
-
-
-@library.filter
-def currencyfmt(num, currency):
-    if num is None:
-        return ''
-    return _get_format().currency(decimal.Decimal(num), currency)
 
 
 def page_name(app=None):

@@ -130,8 +130,8 @@ class TestCommon(TestCase):
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
-    def test_tools_editor(self):
-        self.login('editor')
+    def test_tools_reviewer(self):
+        self.login('reviewer')
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert not request.user.is_developer
@@ -143,13 +143,13 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Reviewer Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('reviewers.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
-    def test_tools_developer_and_editor(self):
+    def test_tools_developer_and_reviewer(self):
         # Make them a developer.
-        user = self.login('editor', get=True)
+        user = self.login('reviewer', get=True)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         r = self.client.get(self.url, follow=True)
@@ -164,7 +164,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Reviewer Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('reviewers.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
@@ -183,7 +183,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Reviewer Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('reviewers.home')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
@@ -207,7 +207,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Reviewer Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('reviewers.home')),
             ('Admin Tools', reverse('zadmin.index')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)

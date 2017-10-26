@@ -60,7 +60,7 @@
   {% endif %}
 
     <div class="platform">
-      <div class="supported-platforms{% if not field.errors %} edit_initially_hidden{% endif %}">
+      <div class="supported-platforms{% if not new_addon_form.supported_platforms.errors %} edit_initially_hidden{% endif %}">
         <label>{{ _('Which platforms is this file compatible with?') }}</label>
         {{ new_addon_form.supported_platforms.errors }}
         {{ new_addon_form.supported_platforms }}

@@ -4,7 +4,6 @@ from django.utils.translation import ugettext
 from django_jinja import library
 
 from olympia.amo.utils import chunked
-from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 
 from .. import buttons
 
@@ -45,53 +44,6 @@ def flag(context, addon):
 @library.render_with('addons/impala/dependencies_note.html')
 @jinja2.contextfunction
 def dependencies_note(context, addon, module_context='impala'):
-    return new_context(**locals())
-
-
-@library.global_function
-@library.render_with('addons/contribution.html')
-@jinja2.contextfunction
-def contribution(context, addon, text=None, src='', show_install=False,
-                 show_help=True, large=False, contribution_src=None):
-    """
-    Show a contribution box.
-
-    Parameters:
-        addon
-        text: The begging text at the top of the box.
-        src: The page where the contribution link is coming from.
-        show_install: Whether or not to show the install button.
-        show_help: Show "What's this?" link?
-        contribution_src: The source for the contribution src,
-                          will use src if not provided.
-    """
-    if not contribution_src:
-        contribution_src = src
-    has_suggested = bool(addon.suggested_amount)
-    return new_context(**locals())
-
-
-@library.global_function
-@library.render_with('addons/impala/contribution.html')
-@jinja2.contextfunction
-def impala_contribution(context, addon, text=None, src='', show_install=False,
-                        show_help=True, large=False, contribution_src=None):
-    """
-    Show a contribution box.
-
-    Parameters:
-        addon
-        text: The begging text at the top of the box.
-        src: The page where the contribution link is coming from.
-        show_install: Whether or not to show the install button.
-        show_help: Show "What's this?" link?
-        contribution_src: The source for the contribution src,
-                          will use src if not provided.
-    """
-    if not contribution_src:
-        contribution_src = src
-    has_suggested = bool(addon.suggested_amount)
-    comment_limit = PAYPAL_MAX_COMMENT_LENGTH
     return new_context(**locals())
 
 

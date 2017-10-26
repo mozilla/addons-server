@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-13 17:17+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-19 17:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -184,11 +184,6 @@ msgstr "Na seznamu"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Pot dodatka in zbirke se morata končati s \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Prispevek za {0}"
 
 msgid "Abuse reported."
 msgstr "Zloraba sporočena."
@@ -2882,6 +2877,9 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Po svoje. <span class=\"helptext\">Vaš prispevek bo takoj podpisan za osebno razširjanje. Za posodobitve boste morali skrbeti vi preko updateURL ali zunanjega programa.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategorij ni mogoče spreminjati, ko je vaš dodatek izbran."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Dodatki za Firefox 53 in novejše so lahko samo WebExtensions."
 
@@ -3704,6 +3702,9 @@ msgstr "Ta dodatek je poskusen"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 "To možnost označite, če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo. Dodatek bo naveden, ampak z zmanjšano vidljivostjo. To nastavitev lahko kasneje spremenite."
+
+msgid "Select a category for this add-on:"
+msgstr "Izberite kategorijo za ta dodatek:"
 
 msgid "Support email:"
 msgstr "E-pošta za podporo:"
@@ -5355,6 +5356,9 @@ msgstr "Prenos datotek"
 msgid "The developer has provided source code."
 msgstr "Razvijalec je priskrbel izvorno kodo."
 
+msgid "Weight:"
+msgstr "Teža:"
+
 msgid "Not Auto Approved Because"
 msgstr "Ni samodejno odobreno, ker"
 
@@ -6673,7 +6677,7 @@ msgid "Developer FAQ"
 msgstr "Pogosta vprašanja razvijalcev"
 
 msgid "Sections"
-msgstr "Sekcije"
+msgstr "Odseki"
 
 msgid "Developing an Add-on"
 msgstr "Razvoj dodatkov"
@@ -8161,6 +8165,12 @@ msgstr "Poišči dodatke za druge aplikacije"
 
 msgid "Other Applications"
 msgstr "Ostale aplikacije"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO dobiva novo podobo. Bi si jo radi ogledali?"
+
+msgid "Visit the new site"
+msgstr "Obišči novo stran"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Če želite ustvarjate lastne zbirke, morate imeti račun pri Dodatki Mozille."

@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-09-28 21:35+0000\n"
-"Last-Translator: Yuriy Antonov <yuraantonov11@gmail.com>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-24 12:04+0000\n"
+"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr[2] "Довжина всіх міток повинна бути не ме�
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "Домен в URL повинен бути одним із [%s], або субдоменом."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категорії не можна змінити поки ваш додаток вибрано для цієї програми."
@@ -185,10 +185,6 @@ msgstr "У списку"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Адреси додатків і колекцій мають закінчуватися з \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Внесок до {0}"
 
 msgid "Abuse reported."
 msgstr "Скаргу відправлено."
@@ -781,13 +777,11 @@ msgstr "Ліцензія початкового коду для {addon}"
 msgid "Source Code License"
 msgstr "Ліцензія джерельного коду"
 
-#, fuzzy
 msgid "support section"
-msgstr "Сайт підтримки"
+msgstr "розділ підтримки"
 
-#, fuzzy
 msgid "support email"
-msgstr "Е-пошта підтримки:"
+msgstr "е-пошта підтримки"
 
 msgid "permalink"
 msgstr "постійне посилання"
@@ -1138,9 +1132,8 @@ msgid ""
 msgstr ""
 "Навіть якщо підтримуваний Вами застосунок не вимагає файлу маніфесту, Вам все одно необхідно вказати %(amo_manifests_mdn_link_open)sтут%(amo_manifests_mdn_link_close)s властивості, що вимагаються."
 
-#, fuzzy
 msgid "Contributors"
-msgstr "Помічник"
+msgstr "Помічники"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -2001,9 +1994,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар про {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "прокоментовано"
+msgstr "Прокоментовано"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} додано до {addon}."
@@ -2160,29 +2152,23 @@ msgstr "Автосхвалення підтверджено для {addon} {vers
 msgid "Auto-Approval confirmed"
 msgstr "Автосхвалення підтверджено"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} відхилено."
+msgstr "{addon} {version} знов увімкнено."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} передано вище."
+msgstr "{addon} {version} вимкнено."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} схвалено."
+msgstr "{addon} {version} вміст схвалено."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "підтверджено як схвалено"
+msgstr "Вміст схвалено"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} відхилено."
+msgstr "{addon} {version} вміст відхилено."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "відхилено"
+msgstr "Вміст відхилено"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2259,9 +2245,8 @@ msgstr "Плагін"
 msgid "Theme"
 msgstr "Тему"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Інформація про тему"
+msgstr "Тема (Статична)"
 
 msgid "Complete Themes"
 msgstr "Повні теми"
@@ -2278,9 +2263,8 @@ msgstr "Мовні пакети (Додаток)"
 msgid "Plugins"
 msgstr "Плагіни"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Художник тем"
+msgstr "Теми (Статичні)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Запитувати лише на сторінці цього додатку та профілю розробника"
@@ -2580,21 +2564,20 @@ msgstr "Перевірка модерованого додатку"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Модерація відгуку на додаток повернена"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Внести рецензію"
+msgstr "Перевірка вмісту додатку"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Перевірка вже схваленого додатку (Найвищий ризик)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Перевірка вже схваленого додатку (Високий ризик)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Перевірка вже схваленого додатку (Середній ризик)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Перевірка вже схваленого додатку (Низький ризик)"
 
 msgid "Level 1"
 msgstr "Рівень 1"
@@ -2858,6 +2841,9 @@ msgstr ""
 "Власними засобами. <span class=\"helptext\">Ваше подання буде негайно підписано для розповсюдження власними засобами. Оновлення повинні проводитися вами вручну через updateURL або зовнішні "
 "оновлення.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Категорії не можна змінити поки ваш додаток є обраним."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Починаючи з Firefox 53, нові додатки на цьому сайті можуть бути лише типу WebExtensions."
 
@@ -3012,9 +2998,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Угода Firefox про розповсюдження додатків"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Політика перевірки"
+msgstr "Політика перевірки й правила"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
@@ -3028,7 +3013,7 @@ msgid "Printable Version"
 msgstr "Версія для друку"
 
 msgid "Accept"
-msgstr ""
+msgstr "Схвалити"
 
 msgid "I Accept this Agreement"
 msgstr "Я приймаю цю угоду"
@@ -3318,12 +3303,11 @@ msgstr[0] "Зарезервована мітка:"
 msgstr[1] "Зарезервовані мітки:"
 msgstr[2] "Зарезервовані мітки:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Внески"
+msgstr "URL-адреса для внесків"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Якщо ви бажаєте попросити ваших користувачів про грошовий внесок, вкажіть тут сторінку, на якій вони можуть це зробити."
 
 msgid "Add-on Details"
 msgstr "Інформація про додаток"
@@ -3694,6 +3678,9 @@ msgstr ""
 "Позначте цю опцію, якщо ваш додаток є експериментальним або з будь-яких причин не готовий до загального використання.  Додаток буде опубліковано, але із зниженим рівнем видимості.  Ви можете пізніше"
 " змінити це налаштування."
 
+msgid "Select a category for this add-on:"
+msgstr "Оберіть категорію для цього додатку:"
+
 msgid "Support email:"
 msgstr "Е-пошта підтримки:"
 
@@ -3817,10 +3804,8 @@ msgstr "Де розмістити версію"
 msgid "Upload Version"
 msgstr "Вивантажити версію"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Для завантаження пакету свого додатку і вибору обмежень щодо платформи користуйтеся полями нижче. Після завантаження ваш файл буде перевірено з використанням серії автоматичних тестів валідації."
+msgstr "Для вивантаження пакунку свого додатку скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
@@ -3951,7 +3936,7 @@ msgid "Create a Developer Profile"
 msgstr "Створити профіль розробника"
 
 msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
+msgstr "Невдовзі цю сторінку буде вилучено і замінено на URL-адресу для внесків на головній сторінці. Упевніться в тому, що ви використовуєте це поле, щоб можливість внесків було увімкнено."
 
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
@@ -4193,7 +4178,7 @@ msgstr "<a href=\"%(register)s\">Зареєструйтеся</a> або <a href
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
@@ -4696,12 +4681,11 @@ msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
 msgstr[2] "{0} попереджень"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Легкий і ефективний блокувальник реклами. uBlock Origin застосовує тисячі фільтрів вмісту без значного споживання ресурсів."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -4709,19 +4693,17 @@ msgstr "Покращуйте відео {start_sub_heading}за допомого
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, контроль авто-відтворення та інших."
 
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Легко знаходьте зображення {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Виділіть будь-який текст і клацніть правою кнопкою миші для швидкого пошуку зображень."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте свою орфографію {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вдоскональте свої емоджі {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis—always a click away."
-msgstr ""
+msgstr "Десятки чудових емоджі — на відстані одного натискання."
 
 msgid "Approved reviews"
 msgstr "Схвалені розгляди"
@@ -4924,9 +4906,8 @@ msgstr "Немає відгуків"
 msgid "Weight"
 msgstr "Вага"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Остання перевірка"
+msgstr "Остання перевірка вмісту"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ця дія затвердить, підпише і опублікує дану версію. Коментарі будуть надіслані розробнику."
@@ -4961,12 +4942,11 @@ msgstr "Якщо у вас є сумніви щодо цього додатку,
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Залиште коментар для цієї версії. Розробник не зможе його побачити."
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Схвалити / Відхилити"
+msgstr "Схвалити вміст"
 
 msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
+msgstr "Ця дія записує ваше схвалення вмісту цієї версії без сповіщення розробника."
 
 msgid "New Add-ons (Under 5 days)"
 msgstr "Нові додатки (Менше 5 днів)"
@@ -5068,9 +5048,8 @@ msgstr "Модеровані розгляди"
 msgid "Auto Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Внести рецензію"
+msgstr "Перевірка вмісту"
 
 msgid "Unlisted Queues"
 msgstr "Черги неопублікованих"
@@ -5274,9 +5253,8 @@ msgid "Editors' Guide"
 msgstr "Інструкції редактора"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Перевірити {0}"
+msgstr "Перевірка вмісту {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5303,6 +5281,9 @@ msgstr "Завантажити файли"
 
 msgid "The developer has provided source code."
 msgstr "Розробник надав програмний код."
+
+msgid "Weight:"
+msgstr "Вага:"
 
 msgid "Not Auto Approved Because"
 msgstr "Не схвалені автоматично через"
@@ -5577,12 +5558,11 @@ msgstr[0] "Автоматично схвалений додаток ({0})"
 msgstr[1] "Автоматично схвалені додатки ({0})"
 msgstr[2] "Автоматично схвалених додатків ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Модерований розгляд ({0})"
-msgstr[1] "Модеровані розгляди ({0})"
-msgstr[2] "Модерованих розглядів ({0})"
+msgstr[0] "Перевірка вмісту ({0})"
+msgstr[1] "Перевірка вмісту ({0})"
+msgstr[2] "Перевірка вмісту ({0})"
 
 msgid "Flagged"
 msgstr "Відмічено"
@@ -5603,7 +5583,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Для Firefox версії 47 і нижче GUID є обов'язковим."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Найменша підтримувана \"strict_min_version\" - 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Не вдалося знайти min/max версію. Можливо \"strict_min_version\" або \"strict_max_version\" містить непідтримувану версію?"
@@ -5617,7 +5597,7 @@ msgstr "Не вдалося розібрати завантажений файл
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Неправильна назва файлу в архіві. Переконайтеся, що всі назви файлів мають кодування utf-8 або latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7672,7 +7652,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцінено на %(rating)s з 5 зірок"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Перевищена максимальна довжина запиту."
 
 msgid "Most popular this week"
 msgstr "Найпопулярніші цього тижня"
@@ -8092,6 +8072,12 @@ msgstr "Знайти додатки для іншої програми"
 msgid "Other Applications"
 msgstr "Інші програми"
 
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO буде мати новий вигляд. Бажаєте побачити його?"
+
+msgid "Visit the new site"
+msgstr "Відвідати новий сайт"
+
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Для створення власних збірок, необхідно мати обліковий запис сайту додатків Mozilla."
 
@@ -8117,13 +8103,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "дізнайтеся про <b>додатки</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Завантажити файли"
+msgstr "Завантажити Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Додатки для Android"
+msgstr "Браузер для Android"
 
 msgid "iOS Browser"
 msgstr "Браузер для iOS"

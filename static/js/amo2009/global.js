@@ -281,8 +281,6 @@ jQuery(function($) {
 		notificationHelpDropdown.hide();
 		return false;
 	})
-
-	contributions.init();
 });
 
 /* Initialization things that get run on every page. */

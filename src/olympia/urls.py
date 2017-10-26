@@ -51,8 +51,8 @@ urlpatterns = [
     # Developer Hub.
     url('^developers/', include('olympia.devhub.urls')),
 
-    # Developer Hub.
-    url('editors/', include('olympia.editors.urls')),
+    # Reviewers Hub.
+    url('editors/', include('olympia.reviewers.urls')),
 
     # AMO admin (not django admin).
     url('^admin/', include('olympia.zadmin.urls')),
@@ -65,9 +65,6 @@ urlpatterns = [
 
     # Services
     url('', include('olympia.amo.urls')),
-
-    # Paypal
-    url('^services/', include('olympia.paypal.urls')),
 
     # Search
     url('^search/', include('olympia.search.urls')),

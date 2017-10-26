@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 19:41+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 17:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -184,10 +184,6 @@ msgstr "Nalistowane"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Šćežki přidatkow a zběrkow dyrbja so na \"/\" kónčić"
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Přinošk za {0}"
 
 msgid "Abuse reported."
 msgstr "Znjewužiwanje zdźělene."
@@ -2861,6 +2857,9 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Samostatny. <span class=\"helptext\">Waše zapodaće budźe so hnydom za samorozdźělenje signować. Aktualizacije měli so přez updateURL abo eksterne nałoženske aktualizacije rjadować.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategorije njedadźa so změnić, mjeztym so waš přidatk předstaja."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExtensions być."
 
@@ -3688,6 +3687,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Zmóžńće tute nastajenje, jeli waš přidatk je eksperimentelny abo hewak za powšitkowne wužiwanje hotowy njeje. Přidatk so nalistuje, změje wšak redukowanu widźomnosć. Móžeće tute nastajenje pozdźišo "
 "změnić."
+
+msgid "Select a category for this add-on:"
+msgstr "Wubjerće kategoriju za tutón přidatk:"
 
 msgid "Support email:"
 msgstr "E-mejlowa adresa pomocy:"
@@ -5300,6 +5302,9 @@ msgstr "Dataje sćahnyć"
 
 msgid "The developer has provided source code."
 msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
+
+msgid "Weight:"
+msgstr "Wažnosć:"
 
 msgid "Not Auto Approved Because"
 msgstr "NJeje awtomatisce schwaleny, dokelž"
@@ -8099,6 +8104,12 @@ msgstr "Přidatki za druhe nałoženja pytać"
 
 msgid "Other Applications"
 msgstr "Druhe nałoženja"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO nowy napohlad dóstanje. Chceće jón widźeć?"
+
+msgid "Visit the new site"
+msgstr "Wopytajće nowe sydło"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Zo byšće swójske zběrki wutworił, dyrbiće konto na Mozilla Add-ons měć."

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-13 18:59+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 04:09+0000\n"
+"Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -178,11 +178,6 @@ msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "As rotas da extensão precisam terminar com \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Contribuição para {0}"
 
 msgid "Abuse reported."
 msgstr "Abuso denunciado."
@@ -2880,6 +2875,9 @@ msgstr ""
 "Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas através de um updateURL ou atualizações de "
 "aplicativos externos.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "As categorias não podem ser alteradas enquanto sua extensão for destaque."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir do Firefox 53, as novas extensões neste site só podem ser WebExtensions."
 
@@ -3748,6 +3746,10 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Marque esta opção se seus complementos são experimentais ou não estão pronto para o uso. O complemento será listado mas terá visibilidade reduzida. Você pode alterar esta configuração "
 "posteriormente."
+
+# {1} is the application name (Firefox, Thunderbird)
+msgid "Select a category for this add-on:"
+msgstr "Selecione uma categoria para esta extensão:"
 
 msgid "Support email:"
 msgstr "E-mail de suporte:"
@@ -5401,6 +5403,9 @@ msgstr "Baixar arquivos"
 
 msgid "The developer has provided source code."
 msgstr "O desenvolvedor forneceu o código fonte."
+
+msgid "Weight:"
+msgstr "Peso:"
 
 msgid "Not Auto Approved Because"
 msgstr "Não aprovado automaticamente porque"
@@ -8222,6 +8227,12 @@ msgstr "Procurar complementos para outras aplicações"
 
 msgid "Other Applications"
 msgstr "Outras aplicações"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "O AMO está de cara nova. Gostaria de ver?"
+
+msgid "Visit the new site"
+msgstr "Visite o novo site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, você deve ter uma conta no Mozilla Add-ons."

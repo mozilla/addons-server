@@ -239,7 +239,7 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
     reviewer_context_dict = author_context_dict.copy()
     reviewer_context_dict['url'] = absolutify(
-        reverse('editors.review',
+        reverse('reviewers.review',
                 kwargs={'addon_id': version.addon.pk,
                         'channel': amo.CHANNEL_CHOICES_API[version.channel]},
                 add_prefix=False))
@@ -338,5 +338,5 @@ def bounce_mail(message, reason):
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
         recipient_list=[recipient['EmailAddress']],
-        from_email=settings.EDITORS_EMAIL,
+        from_email=settings.REVIEWERS_EMAIL,
         use_deny_list=False)

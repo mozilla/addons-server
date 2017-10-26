@@ -1,8 +1,0 @@
-{% extends "editors/themes/base.html" %}
-
-{% set title = _('Theme Review History for {0}')|format_html(username) %}
-
-{% block content %}
-  <h1>{{ title }}</h1>
-  {% include "editors/themes/history_table.html" %}
-{% endblock %}

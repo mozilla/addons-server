@@ -37,13 +37,7 @@
     </div>
     <div class="items versions-list">
       {% for version in versions.object_list %}
-        {#
-           We pass skip_contrib=False on purpose, to display the direct link.
-           Otherwise we'd have to show the warning about old versions in the
-           contribute roadblock page too - and make it possible to specify a
-           custom version there - it'd get a bit messy.
-        #}
-        {{ version_detail(addon, version, src='version-history', impala=True, skip_contrib=True) }}
+        {{ version_detail(addon, version, src='version-history', impala=True) }}
       {% endfor %}
     </div>
     {{ versions|impala_paginator }}

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-10-11 10:21+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -169,11 +169,6 @@ msgstr "Liệt kê"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Đóng góp cho {0}"
 
 msgid "Abuse reported."
 msgstr "Sự lạm dụng đã báo cáo."
@@ -2818,6 +2813,9 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3623,6 +3621,10 @@ msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Chọn <b>nhiều nhất {0}</b> {1} phân mục cho tiện ích này:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5290,6 +5292,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 #, fuzzy
@@ -7960,6 +7965,12 @@ msgstr "Tìm tiện ích cho các ứng dụng khác"
 
 msgid "Other Applications"
 msgstr "Ứng dụng Khác"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Để tạo ra bộ sưu tập của riêng mình, bạn phải có một tài khoản trên Tiện ích Mozilla."

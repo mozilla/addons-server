@@ -16,8 +16,8 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import (
     addon_factory, AMOPaths, TestCase, version_factory)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 from olympia.files.models import FileValidation
+from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 from olympia.versions.models import ApplicationsVersions
 
 

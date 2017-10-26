@@ -1,4 +1,5 @@
 {% from "devhub/includes/macros.html" import some_html_tip, select_cats %}
+{% from "includes/forms.html" import tip %}
 {% extends "devhub/addons/submit/base.html" %}
 
 {% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
@@ -62,7 +63,6 @@
                         "in order to work.")
                   }}">?</span>
     </div>
-    {% endif %}
     <div id="addon-categories-edit" class="addon-submission-field"
          data-max-categories="{{ amo.MAX_CATEGORIES }}">
       {{ cat_form.non_form_errors() }}
@@ -71,6 +71,13 @@
         {{ select_cats(amo.MAX_CATEGORIES, form) }}
       {% endfor %}
     </div>
+    {% else %}
+    <div id="addon-categories-edit" class="addon-submission-field">
+      <label>{{ _('Select a category for this add-on:') }}</label>
+      {{ cat_form.category.errors }}
+      {{ cat_form.category }}
+    </div>
+    {% endif %}
     <div class="addon-submission-field">
       <label for="{{ form.support_email.auto_id }}">
       {{ _('Support email:') }}
@@ -86,18 +93,20 @@
       {{ form.support_url.errors }}
     </div>
     {% if license_form %}
-      <b>{{ _('License:') }}</b>
-      <div class="addon-submission-field">
-          {% trans %}
-          Please choose a license appropriate for the rights you grant on your
-          source code.
-          {% endtrans %}
-          {{ license_form.builtin.errors }}
-          {{ license_form.builtin }}
-          {% set show_other = (license_form.initial.builtin == license_other_val or
-                               (license_form.errors and not license_form.builtin.errors)) %}
-          <div class="license-other {{ 'js-hidden' if not show_other }}"
-               data-val="{{ license_other_val }}">
+        <b>{{ _('License:') }}</b>
+        {{ license_form.builtin.errors }}
+        {% if addon.type == amo.ADDON_STATICTHEME %}
+          {% include 'devhub/addons/includes/cc_license_chooser.html' %}
+          <div class="addon-submission-field" id="license-list">
+        {% else %}
+          <div class="addon-submission-field">
+        {% endif %}
+        {{ _('Please choose a license appropriate for the rights you grant.') }}
+        {{ license_form.builtin }}
+        {% set show_other = (license_form.initial.builtin == license_other_val or
+                            (license_form.errors and not license_form.builtin.errors)) %}
+        <div class="license-other {{ 'js-hidden' if not show_other }}"
+            data-val="{{ license_other_val }}">
             {{ license_form.non_field_errors() }}
             {{ license_form.name.errors }}
             {{ license_form.name.label_tag() }}
@@ -139,19 +148,11 @@
     <div class="submission-buttons addon-submission-field">
       <button class="delete-button" type="sumbit"
               formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
-          {% if waffle.switch('post-review') and version.is_webextension %}
-            {{ _('Cancel and Disable Version') }}
-          {% else %}
-            {{ _('Cancel Review and Disable Version') }}
-          {% endif %}
+          {{ _('Cancel and Disable Version') }}
       </button>
       &nbsp;
       <button type="submit">
-        {% if waffle.switch('post-review') and version.is_webextension %}
-          {{ _('Submit Version') }}
-        {% else %}
-          {{ _('Submit Version for Review') }}
-        {% endif %}
+        {{ _('Submit Version') }}
       </button>
     </div>
   </form>

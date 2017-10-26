@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -173,11 +173,6 @@ msgstr "Terdaftar"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-# %1 is an add-on name.
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Sumbangan untuk {0}"
 
 msgid "Abuse reported."
 msgstr "Penyalahgunaan dilaporkan."
@@ -2834,6 +2829,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3699,6 +3698,10 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Periksa opsi ini jika pengaya anda masih bersifat eksperimental atau dinyatakan tidak siap untuk penggunaan umum.  Pengaya akan masuk dalam daftar namun dikurangi visibilitasnya.  Anda dapat "
 "mengubah pengaturan ini nanti."
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Pilih <b>hingga {0}</b> {1} kategori untuk pengaya ini:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5435,6 +5438,9 @@ msgstr "Unduh berkas"
 
 msgid "The developer has provided source code."
 msgstr "Pengembang telah menyediakan kode sumber."
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8231,6 +8237,12 @@ msgstr "Temukan pengaya untuk aplikasi lainnya"
 
 msgid "Other Applications"
 msgstr "Aplikasi Lainnya"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Untuk membuat koleksi Anda sendiri, Anda harus memiliki akun Pengaya Mozilla."
