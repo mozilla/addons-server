@@ -10,18 +10,18 @@ import mock
 import pytest
 from PIL import Image
 
-from olympia import amo, paypal
+from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.models import AppVersion
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
-from olympia.addons.models import Addon, Category, Charity, Persona
+from olympia.addons.models import Addon, Category, Persona
 from olympia.devhub import forms
-from olympia.editors.models import RereviewQueueTheme
 from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import FileUpload
+from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
@@ -80,49 +80,6 @@ class TestNewUploadForm(TestCase):
             addon=addon, request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
-
-
-class TestContribForm(TestCase):
-
-    def test_neg_suggested_amount(self):
-        form = forms.ContribForm({'suggested_amount': -10})
-        assert not form.is_valid()
-        assert form.errors['suggested_amount'][0] == (
-            'Please enter a suggested amount greater than 0.')
-
-    def test_max_suggested_amount(self):
-        form = forms.ContribForm(
-            {'suggested_amount': settings.MAX_CONTRIBUTION + 10})
-        assert not form.is_valid()
-        assert form.errors['suggested_amount'][0] == (
-            'Please enter a suggested amount less than $%s.' %
-            settings.MAX_CONTRIBUTION)
-
-
-class TestCharityForm(TestCase):
-
-    def setUp(self):
-        super(TestCharityForm, self).setUp()
-        self.paypal_mock = mock.Mock()
-        self.paypal_mock.return_value = (True, None)
-        paypal.check_paypal_id = self.paypal_mock
-
-    def test_always_new(self):
-        # Editing a charity should always produce a new row.
-        params = {'name': 'name', 'url': 'http://url.com/', 'paypal': 'paypal'}
-        charity = forms.CharityForm(params).save()
-        for k, v in params.items():
-            assert getattr(charity, k) == v
-        assert charity.id
-
-        # Get a fresh instance since the form will mutate it.
-        instance = Charity.objects.get(id=charity.id)
-        params['name'] = 'new'
-        new_charity = forms.CharityForm(params, instance=instance).save()
-        for k, v in params.items():
-            assert getattr(new_charity, k) == v
-
-        assert new_charity.id != charity.id
 
 
 class TestCompatForm(TestCase):

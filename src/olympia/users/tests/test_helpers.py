@@ -11,7 +11,7 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestPersonas
 from olympia.users.templatetags.jinja_helpers import (
-    addon_users_list, emaillink, manage_fxa_link, user_data, user_link,
+    addon_users_list, emaillink, manage_fxa_link, user_link,
     users_list)
 from olympia.users.models import UserProfile
 
@@ -120,11 +120,6 @@ class TestAddonUsersList(TestPersonas, TestCase):
         """Test that the by... bit works."""
         content = addon_users_list({'amo': amo}, self.addon)
         assert pq(content).text() == 'by %s' % self.addon.authors.all()[0].name
-
-
-def test_user_data():
-    u = user_data(UserProfile(username='foo', pk=1))
-    assert not u['anonymous']
 
 
 def test_manage_fxa_link():

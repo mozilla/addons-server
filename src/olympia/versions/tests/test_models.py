@@ -7,7 +7,6 @@ from django.core.files.storage import default_storage as storage
 import mock
 import pytest
 from pyquery import PyQuery
-from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -17,10 +16,10 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import (
-    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
+from olympia.reviewers.models import (
+    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     Version, ApplicationsVersions, source_upload_path)
@@ -566,18 +565,10 @@ class TestVersion(TestCase):
         version = addon.current_version
         version.all_files = [
             File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+        assert version.is_ready_for_auto_approval
+
+        addon.status = amo.STATUS_DISABLED
         assert not version.is_ready_for_auto_approval
-
-        with override_switch('post-review', active=True):
-            # When the post-review switch is active, we also accept add-ons
-            # with NOMINATED status.
-            assert version.is_ready_for_auto_approval
-
-            addon.status = amo.STATUS_NOMINATED
-            assert version.is_ready_for_auto_approval
-
-            addon.status = amo.STATUS_DISABLED
-            assert not version.is_ready_for_auto_approval
 
     def test_was_auto_approved(self):
         addon = Addon.objects.get(id=3615)

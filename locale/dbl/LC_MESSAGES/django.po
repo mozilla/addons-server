@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,10 +172,6 @@ msgstr "Ŀīşŧḗḓ"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Aḓḓǿƞ ȧƞḓ ƈǿŀŀḗƈŧīǿƞ ƥȧŧħş ƞḗḗḓ ŧǿ ḗƞḓ ẇīŧħ \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
 msgid "Abuse reported."
 msgstr "Aƀŭşḗ řḗƥǿřŧḗḓ."
@@ -2803,6 +2799,9 @@ msgid ""
 msgstr ""
 "Ǿƞ ẏǿŭř ǿẇƞ. <span class=\"helptext\">Ẏǿŭř şŭƀḿīşşīǿƞ ẇīŀŀ ƀḗ īḿḿḗḓīȧŧḗŀẏ şīɠƞḗḓ ƒǿř şḗŀƒ-ḓīşŧřīƀŭŧīǿƞ. Ŭƥḓȧŧḗş şħǿŭŀḓ ƀḗ ħȧƞḓŀḗḓ ƀẏ ẏǿŭ ṽīȧ ȧƞ ŭƥḓȧŧḗŬŘĿ ǿř ḗẋŧḗřƞȧŀ ȧƥƥŀīƈȧŧīǿƞ ŭƥḓȧŧḗş.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Ƈȧŧḗɠǿřīḗş ƈȧƞƞǿŧ ƀḗ ƈħȧƞɠḗḓ ẇħīŀḗ ẏǿŭř ȧḓḓ-ǿƞ īş ƒḗȧŧŭřḗḓ."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Şŧȧřŧīƞɠ ẇīŧħ Ƒīřḗƒǿẋ 53, ƞḗẇ ȧḓḓ-ǿƞş ǿƞ ŧħīş şīŧḗ ƈȧƞ ǿƞŀẏ ƀḗ ẆḗƀḖẋŧḗƞşīǿƞş."
 
@@ -3616,6 +3615,9 @@ msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ḗẋƥḗřīḿḗƞŧȧŀ"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Ƈħḗƈķ ŧħīş ǿƥŧīǿƞ īƒ ẏǿŭř ȧḓḓ-ǿƞ īş ḗẋƥḗřīḿḗƞŧȧŀ ǿř ǿŧħḗřẇīşḗ ƞǿŧ řḗȧḓẏ ƒǿř ɠḗƞḗřȧŀ ŭşḗ.  Ŧħḗ ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ŀīşŧḗḓ ƀŭŧ ẇīŀŀ ħȧṽḗ řḗḓŭƈḗḓ ṽīşīƀīŀīŧẏ.  Ẏǿŭ ƈȧƞ ƈħȧƞɠḗ ŧħīş şḗŧŧīƞɠ ŀȧŧḗř."
+
+msgid "Select a category for this add-on:"
+msgstr "Şḗŀḗƈŧ ȧ ƈȧŧḗɠǿřẏ ƒǿř ŧħīş ȧḓḓ-ǿƞ:"
 
 msgid "Support email:"
 msgstr "Şŭƥƥǿřŧ ḗḿȧīŀ:"
@@ -5202,6 +5204,9 @@ msgstr "Ḓǿẇƞŀǿȧḓ ƒīŀḗş"
 
 msgid "The developer has provided source code."
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř ħȧş ƥřǿṽīḓḗḓ şǿŭřƈḗ ƈǿḓḗ."
+
+msgid "Weight:"
+msgstr "Ẇḗīɠħŧ:"
 
 msgid "Not Auto Approved Because"
 msgstr "Ƞǿŧ Aŭŧǿ Aƥƥřǿṽḗḓ Ɓḗƈȧŭşḗ"
@@ -7955,6 +7960,12 @@ msgstr "Ƒīƞḓ ȧḓḓ-ǿƞş ƒǿř ǿŧħḗř ȧƥƥŀīƈȧŧīǿƞş"
 
 msgid "Other Applications"
 msgstr "Ǿŧħḗř Aƥƥŀīƈȧŧīǿƞş"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AḾǾ īş ɠḗŧŧīƞɠ ȧ ƞḗẇ ŀǿǿķ. Ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ şḗḗ īŧ?"
+
+msgid "Visit the new site"
+msgstr "Ṽīşīŧ ŧħḗ ƞḗẇ şīŧḗ"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Ŧǿ ƈřḗȧŧḗ ẏǿŭř ǿẇƞ ƈǿŀŀḗƈŧīǿƞş, ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş ȧƈƈǿŭƞŧ."

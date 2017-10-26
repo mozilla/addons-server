@@ -1,0 +1,101 @@
+{% extends "reviewers/base.html" %}
+
+{% set types = ('addons', 'themes', 'other') %}
+
+{% block content %}
+  <h2>{{ _('Add-on Reviewer Performance') }}</h2>
+
+  {% if is_admin %}
+  <p>
+    {{ _('View statistics for user') }}
+    <select id="select_user" data-url="{{ url('reviewers.performance') }}">
+      <option value="" selected="selected">{{ current_user.name }}</option>
+      <option value="">-----------------------</option>
+      {% for reviewer in reviewers %}
+        <option value="{{ reviewer.id }}">{{ reviewer.name }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  {% endif %}
+
+  <div class="featured">
+    <div class="featured-inner">
+      <table class="data-grid">
+        <tr class="listing-header">
+          <th>{{ _('Range') }}</th>
+          <th id="reviews_user">
+            {% if is_user: %}
+              {{ _('Your Reviews') }}
+            {% else: %}
+              {{ _('By {user_name}')|format_html(user_name=current_user.display_name) }}
+            {% endif %}
+          </th>
+          <th>{{ _('Total Reviews') }}</th>
+          {# <th>{{ _('Team Average') }}</th> #}
+          <th>{{ _('Active Contributors') }}</th>
+        </tr>
+        <tr>
+          <td><strong>{{ _('This Month') }}</strong></td>
+          <td>{{ performance_month['usercount'] }}</td>
+          <td>{{ performance_month['teamcount'] }}</td>
+          <td>{{ performance_month['teamamt'] }}</td>
+        </tr>
+        <tr>
+          <td><strong>{{ _('This Year') }}</strong></td>
+          <td>{{ performance_year['usercount'] }}</td>
+          <td>{{ performance_year['teamcount'] }}</td>
+          <td>{{ performance_year['teamamt'] }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="featured">
+    <div class="featured-inner listing">
+      <div class="listing-header"><span>{{ _('Monthly Performance') }}</span></div>
+      <div id="monthly" class="highcharts-container" data-chart="{{ monthly_data }}"></div>
+    </div>
+  </div>
+
+  {% if not point_total %}
+    <p>{{ _('No review points awarded yet.') }}</p>
+  {% else %}
+    <h2>{{ _('All-time Point Breakdown by Type') }}</h2>
+    <table class="data-grid incentive-points">
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{ _('Add-ons') }}</th>
+          <th>{{ _('Themes') }}</th>
+          {# L10n: Review points sources other than add-ons and themes. #}
+          <th>{{ _('Other') }}</th>
+          <th>{{ _('Total') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{ _('Month') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['month'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['month'].values()|sum|numberfmt }}</td>
+        </tr>
+        <tr>
+          <th>{{ _('Year') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['year'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['year'].values()|sum|numberfmt }}</td>
+        </tr>
+        <tr>
+          <th>{{ _('All-Time') }}</th>
+          {% for type in types %}
+            <td>{{ breakdown['total'][type]|numberfmt }}</td>
+          {% endfor %}
+          <td>{{ breakdown['total'].values()|sum|numberfmt }}</td>
+        </tr>
+      </tbody>
+    </table>
+  {% endif %}
+
+{% endblock %}

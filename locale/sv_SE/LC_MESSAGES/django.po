@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-11 22:56+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 18:20+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -173,10 +173,6 @@ msgstr "Listad"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Bidrag för {0}"
 
 msgid "Abuse reported."
 msgstr "Missbruk rapporterad."
@@ -2802,6 +2798,9 @@ msgstr ""
 "På egen hand. <span class=\"helptext\">Denna version kommer att signeras omedelbart för egen distribution. Uppdateringar ska hanteras av dig via en updateURL eller externa "
 "programuppdateringar.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategorier kan inte ändras när tillägget är utvalt."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Från och med Firefox 53, kan nya tillägg på denna webbplats endast vara WebExtensions."
 
@@ -3653,6 +3652,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Markera det här alternativet om ditt tillägg är experimentell eller på annat sätt inte är redo för allmänt bruk.  Tillägget kommer att listas, men kommer att ha minskad synlighet.  Du kan ändra "
 "denna inställning senare."
+
+msgid "Select a category for this add-on:"
+msgstr "Välj en kategori för detta tillägg:"
 
 msgid "Support email:"
 msgstr "E-post till support:"
@@ -5259,6 +5261,9 @@ msgstr "Hämta filer"
 
 msgid "The developer has provided source code."
 msgstr "Utvecklaren har lämnat källkod."
+
+msgid "Weight:"
+msgstr "Vikt:"
 
 msgid "Not Auto Approved Because"
 msgstr "Inte automatiskt godkänd eftersom"
@@ -8035,6 +8040,12 @@ msgstr "Hitta tillägg för andra applikationer"
 
 msgid "Other Applications"
 msgstr "Andra applikationer"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO får ett nytt utseende. Vill du se det?"
+
+msgid "Visit the new site"
+msgstr "Besök den nya webbplatsen"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "För att skapa egna samlingar, måste du ha ett konto för Mozilla tillägg."

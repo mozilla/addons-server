@@ -15,7 +15,6 @@
             "support_email": null,
             "average_rating": "3.98",
             "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
             "view_source": 0,
             "external_software": 0,
@@ -27,21 +26,16 @@
             "description": null,
             "target_locale": "",
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
             "guid": "piclens@cooliris.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
             "developer_comments": null,
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "default_locale": "en-US",
-            "the_reason": null
+            "default_locale": "en-US"
         }
     },
     {
@@ -60,7 +54,6 @@
             "support_email": null,
             "average_rating": "3.98",
             "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
             "view_source": 0,
             "external_software": 0,
@@ -72,21 +65,16 @@
             "description": null,
             "target_locale": "",
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
             "guid": "fake@cooliris.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
             "developer_comments": null,
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "default_locale": "en-US",
-            "the_reason": null
+            "default_locale": "en-US"
         }
     },
     {
@@ -104,7 +92,6 @@
             "support_email": null,
             "average_rating": "3.98",
             "locale_disambiguation": "",
-            "the_future": null,
             "total_reviews": 1106,
             "view_source": 0,
             "external_software": 0,
@@ -116,21 +103,16 @@
             "description": null,
             "target_locale": "",
             "support_url": null,
-            "wants_contributions": 0,
-            "suggested_amount": null,
             "privacy_policy": null,
             "guid": "something@mozilla.com",
             "bayesian_rating": 3.9810599999999998,
             "name": null,
             "created": "2007-08-23 23:55:32",
-            "paypal_id": "",
-            "annoying": 0,
             "developer_comments": null,
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "default_locale": "en-US",
-            "the_reason": null
+            "default_locale": "en-US"
         }
     },
     {

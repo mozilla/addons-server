@@ -128,8 +128,6 @@ $(function() {
         $(document.documentElement).animate({ scrollTop: top }, 500);
     });
 
-    contributions.init();
-
     $("select[name='rating']").ratingwidget();
 });
 

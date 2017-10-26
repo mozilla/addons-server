@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-13 09:45+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 15:37+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -185,11 +185,6 @@ msgstr "Опубликованное"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Взнос для {0}"
 
 msgid "Abuse reported."
 msgstr "О злоупотреблении сообщено."
@@ -2860,6 +2855,9 @@ msgstr ""
 "Самостоятельно. <span class=\"helptext\">Ваше представление будет немедленно подписано для самостоятельного распространения. Обновления должны будут распространяться вами через updateURL или через "
 "обновления внешнего приложения.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Категории не могут быть изменены, пока ваше дополнение избрано."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Начиная с Firefox 53, новыми дополнениями на этом сайте могут быть только WebExtensions."
 
@@ -3703,6 +3701,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Установите этот флажок, если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет показано, но его видимость будет "
 "ограничена. Вы сможете изменить эту настройку позже."
+
+msgid "Select a category for this add-on:"
+msgstr "Выберите категорию для этого дополнения:"
 
 msgid "Support email:"
 msgstr "Адрес эл. почты поддержки:"
@@ -5324,6 +5325,9 @@ msgstr "Загрузить файлы"
 
 msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
+
+msgid "Weight:"
+msgstr "Вес:"
 
 msgid "Not Auto Approved Because"
 msgstr "Не одобрено автоматически, потому что"
@@ -8132,6 +8136,12 @@ msgstr "Найти дополнения для других приложений
 
 msgid "Other Applications"
 msgstr "Другие приложения"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "У AMO обновится внешний вид. Хотите его увидеть?"
+
+msgid "Visit the new site"
+msgstr "Посетить новый сайт"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Для создания своих подборок вам необходимо иметь учётную запись на сайте дополнений Mozilla."

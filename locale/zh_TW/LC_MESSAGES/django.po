@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 05:10+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 04:19+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -169,11 +169,6 @@ msgstr "顯示"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "贊助 {0}"
 
 msgid "Abuse reported."
 msgstr "已回報濫用。"
@@ -2774,6 +2769,9 @@ msgstr "在本站。<span class=\"helptext\">您送出的元件通過審查後�
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "您自行處理。<span class=\"helptext\">將立即簽署此版本讓您可自行發布，您需透過 updateURL 或更新外部應用程式來提供此附加元件的更新。</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "您的附加元件成為精選元件時，無法更改分類。"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebExtension。"
 
@@ -3558,6 +3556,9 @@ msgstr "這個附加元件仍在實驗中。"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "若您的附加元件還在實驗中，或尚未準備好供一般大眾使用請勾選此選項。此附加元件將公開展示出來，但曝光度會被降低。您可以稍後再調整此設定。"
+
+msgid "Select a category for this add-on:"
+msgstr "為此附加元件選擇分類:"
 
 msgid "Support email:"
 msgstr "技術支援信箱："
@@ -5137,6 +5138,9 @@ msgstr "下載檔案"
 
 msgid "The developer has provided source code."
 msgstr "開發者提供了原始碼。"
+
+msgid "Weight:"
+msgstr "權重:"
 
 msgid "Not Auto Approved Because"
 msgstr "未通過自動批准，由於"
@@ -7766,6 +7770,12 @@ msgstr "尋找其他應用程式使用的附加元件"
 
 msgid "Other Applications"
 msgstr "其他應用程式"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO 有新介面了，想看看嗎？"
+
+msgid "Visit the new site"
+msgstr "前往新網站"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "如果您要新增自己的收藏集，你必須先申請一個 Mozilla 附加元件的帳號。"

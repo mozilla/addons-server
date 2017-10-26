@@ -63,19 +63,19 @@ def user_can_delete_review(request, review):
 
     People who can delete reviews:
       * The original review author.
-      * Editors, but only if they aren't listed as an author of the add-on
+      * Reviewers, but only if they aren't listed as an author of the add-on
         and the add-on is flagged for moderation
       * Users in a group with "Users:Edit" privileges.
       * Users in a group with "Addons:Edit" privileges.
 
-    Persona editors can't delete addons reviews.
+    Persona reviewers can't delete addons reviews.
 
     """
     is_author = review.addon.has_author(request.user)
     return (
         review.user_id == request.user.id or
         not is_author and (
-            (acl.is_editor(request, review.addon) and review.editorreview) or
+            (acl.is_reviewer(request, review.addon) and review.editorreview) or
             acl.action_allowed(request, amo.permissions.USERS_EDIT) or
             acl.action_allowed(request, amo.permissions.ADDONS_EDIT)))
 

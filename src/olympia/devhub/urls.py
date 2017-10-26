@@ -34,12 +34,6 @@ detail_patterns = [
     url('^cancel$', views.cancel, name='devhub.addons.cancel'),
     url('^ownership$', views.ownership, name='devhub.addons.owner'),
     url('^admin$', views.admin, name='devhub.addons.admin'),
-    url('^payments$', views.payments, name='devhub.addons.payments'),
-    url('^payments/disable$', views.disable_payments,
-        name='devhub.addons.payments.disable'),
-    url('^profile$', views.profile, name='devhub.addons.profile'),
-    url('^profile/remove$', views.remove_profile,
-        name='devhub.addons.profile.remove'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 

@@ -1,0 +1,36 @@
+{% extends "reviewers/base.html" %}
+
+{% block content %}
+  <div class="featured">
+    <div class="featured-inner featured-inner-padded">
+      <h2>{{ _('Log details') }}</h2>
+      <p>{{ log.to_string('reviewer') }}</p>
+      {% if log.details %}
+        <dl>
+          <dt>{{ _("Review Author") }}</dt>
+          {% trans review_author=log.arguments[1].user|user_link %}
+          <dd>{{ review_author }}</dd>
+          {% endtrans %}
+          <dt>{{ _("Add-on Title") }}</dt>
+          <dd>{{ log.details.addon_title }}</dd>
+          <dt>{{ _("Review Title") }}</dt>
+          <dd>{{ log.details.title }}</dd>
+          <dt>{{ _("Review Text") }}</dt>
+          <dd>{{ log.details.body }}</dd>
+        </dl>
+        {% if log.details.is_flagged %}
+          <p><strong>{{ _("Review was flagged prior to deletion.") }}</strong></p>
+        {% endif %}
+      {% endif %}
+
+      {% if can_undelete %}
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="undelete">
+          <input type="submit" id="submit-undelete-review" value="{{ _('Undelete') }}">
+        </form>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

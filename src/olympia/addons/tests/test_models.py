@@ -785,50 +785,6 @@ class TestAddonModels(TestCase):
             amo.FIREFOX.id: {'fr', 'pt-PT'},
             amo.ANDROID.id: {'pt-PT'}}
 
-    def test_has_full_profile(self):
-        """Test if an add-on's developer profile is complete (public)."""
-        def addon():
-            return Addon.objects.get(pk=3615)
-
-        assert not addon().has_full_profile()
-
-        a = addon()
-        a.the_reason = 'some reason'
-        a.save()
-        assert not addon().has_full_profile()
-
-        a.the_future = 'some future'
-        a.save()
-        assert addon().has_full_profile()
-
-        a.the_reason = ''
-        a.the_future = ''
-        a.save()
-        assert not addon().has_full_profile()
-
-    def test_has_profile(self):
-        """Test if an add-on's developer profile is (partially or entirely)
-        completed.
-        """
-        def addon():
-            return Addon.objects.get(pk=3615)
-
-        assert not addon().has_profile()
-
-        a = addon()
-        a.the_reason = 'some reason'
-        a.save()
-        assert addon().has_profile()
-
-        a.the_future = 'some future'
-        a.save()
-        assert addon().has_profile()
-
-        a.the_reason = ''
-        a.the_future = ''
-        a.save()
-        assert not addon().has_profile()
-
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
         addon.privacy_policy = string_before
@@ -1216,25 +1172,6 @@ class TestAddonModels(TestCase):
             'Original review must show up in review list.')
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
-
-    def test_takes_contributions(self):
-        a = Addon(status=amo.STATUS_PUBLIC, wants_contributions=True,
-                  paypal_id='$$')
-        assert a.takes_contributions
-
-        a.status = amo.STATUS_NOMINATED
-        assert not a.takes_contributions
-        a.status = amo.STATUS_PUBLIC
-
-        a.wants_contributions = False
-        assert not a.takes_contributions
-        a.wants_contributions = True
-
-        a.paypal_id = None
-        assert not a.takes_contributions
-
-        a.charity_id = 12
-        assert a.takes_contributions
 
     def test_show_beta(self):
         # Addon.current_beta_version will be empty, so show_beta is False.

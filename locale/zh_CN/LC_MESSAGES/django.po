@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-12 10:28+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-19 10:47+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -169,11 +169,6 @@ msgstr "已上架"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "附加组件和收集路径需要以“/”结尾"
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "捐款给 {0}"
 
 msgid "Abuse reported."
 msgstr "已报告滥用。"
@@ -2759,6 +2754,9 @@ msgstr "在本网站上。<span class=\"helptext\">您提交的作品将在通�
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "我自己托管。<span class=\"helptext\">您的提交将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来处理。</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "您的附加组件列入精选时，不能更改分类。"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
 
@@ -3543,6 +3541,9 @@ msgstr "这个附加组件为实验性"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "如果您的附加组件是实验性或者不准备用作一般用途，请选中此项。此种附加组件将上架但减少可见度。您可以在之后更改此设置。"
 
+msgid "Select a category for this add-on:"
+msgstr "为此附加组件选择一个分类："
+
 msgid "Support email:"
 msgstr "用户支持邮箱："
 
@@ -4017,7 +4018,7 @@ msgid "Docs"
 msgstr "文档"
 
 msgid "Sign Out"
-msgstr "退出登录"
+msgstr "登出"
 
 msgid "User Photo"
 msgstr "用户照片"
@@ -5108,6 +5109,9 @@ msgstr "下载文件"
 
 msgid "The developer has provided source code."
 msgstr "开发者已提供源代码。"
+
+msgid "Weight:"
+msgstr "加权："
 
 msgid "Not Auto Approved Because"
 msgstr "没有自动批准，因为"
@@ -7735,6 +7739,12 @@ msgstr "查找其他应用程序的附加组件"
 
 msgid "Other Applications"
 msgstr "其他应用程序"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO 正在换新颜。要试试看吗？"
+
+msgid "Visit the new site"
+msgstr "查看新版网站"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "创建您自已的收藏集，您必须一个 Mozilla 附加组件账户。"

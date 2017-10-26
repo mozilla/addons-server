@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-17 10:11+0000\n"
-"Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-18 18:00+0000\n"
+"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -175,11 +175,6 @@ msgstr "Angezeigt"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Add-on und Sammlungs-Pfade müssen mit „/“ enden"
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Spende für {0}"
 
 msgid "Abuse reported."
 msgstr "Missbrauch gemeldet."
@@ -2836,6 +2831,9 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Selbstständig. <span class=\"helptext\">Ihre Einreichung wird direkt zur Selbstverteilung signiert. Updates sollten Sie über eine updateURL oder externe Anwendungs-Updates handhaben.</span>"
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Kategorien können nicht geändert werden, während Ihr Add-on vorgestellt wird."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Ab Firefox 53 können neue Add-ons auf dieser Website nur WebExtensions sein."
 
@@ -3657,6 +3655,9 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Wählen Sie diese Option, wenn Ihr Add-on experimentell oder anderweitig nicht zur allgemeinen Verwendung geeignet ist.  Dieses Add-on wird gelistet, aber mit verringerter Sichtbarkeit.   Sie können "
 "diese Einstellung nachträglich ändern."
+
+msgid "Select a category for this add-on:"
+msgstr "Wählen eine Kategorie für dieses Add-on:"
 
 msgid "Support email:"
 msgstr "E-Mail-Adresse für Hilfestellungen:"
@@ -5263,6 +5264,9 @@ msgstr "Dateien herunterladen"
 
 msgid "The developer has provided source code."
 msgstr "Der Entwickler hat Quelltext angegeben."
+
+msgid "Weight:"
+msgstr "Gewicht:"
 
 msgid "Not Auto Approved Because"
 msgstr "Keine automatische Freischaltung wegen"
@@ -8059,6 +8063,12 @@ msgstr "Add-ons für andere Anwendungen finden"
 
 msgid "Other Applications"
 msgstr "Andere Anwendungen"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO erhält ein neues Erscheinungsbild. Möchten Sie es sich ansehen?"
+
+msgid "Visit the new site"
+msgstr "Neue Website besuchen"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Um Ihre eigenen Sammlungen zu erstellen, müssen Sie einen Benutzeraccount bei Mozilla Add-ons haben."

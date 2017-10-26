@@ -31,7 +31,7 @@
         by {{ user }} on {{ date }}
       {% endtrans %}
     {% endif %}
-    {% if (perms.is_admin or perms.is_editor)
+    {% if (perms.is_admin or perms.is_reviewer)
           and review.ip_address != '0.0.0.0' %}
       <span>[{{ review.ip_address }}]</span>
     {% endif %}

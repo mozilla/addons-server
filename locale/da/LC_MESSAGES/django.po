@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-14 14:12+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-04 15:55+0000\n"
+"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -157,10 +157,10 @@ msgid "A license must be selected."
 msgstr ""
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Giv dit tema et navn."
 
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Beskriv dit tema."
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -177,11 +177,6 @@ msgstr "Listet"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-#. l10n: {0} is the addon name
-# %1 is an add-on name.
-msgid "Contribution for {0}"
-msgstr "Bidrag til {0}"
 
 msgid "Abuse reported."
 msgstr "Misbrug rapporteret."
@@ -1642,6 +1637,7 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Hvis du installerer en ordbog, tilføjes et nyt sprog til stavekontrollen i %(app_name)s, som kontrollerer din stavning, mens du udfylder webformularer. Sprogpakker ændrer sproget i hele programmet."
 
 msgid "Available in your locale"
 msgstr "Tilgængelig på dit sprog"
@@ -2819,6 +2815,9 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3609,6 +3608,10 @@ msgstr "Denne tilføjelse er eksperimentel"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Anmeldelseshistorik for denne tilføjelse"
+
 msgid "Support email:"
 msgstr "Supportmail:"
 
@@ -4245,16 +4248,16 @@ msgid "Supply a pretty URL for your detail page."
 msgstr ""
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Vælg den kategori, der bedst beskriver dit tema."
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Tilføj nogle mærkater for at beskrive dit tema."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
 
 msgid "Theme License"
-msgstr ""
+msgstr "Tema-licens"
 
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
@@ -4284,16 +4287,16 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr ""
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Dit tema vil blive udgivet under følgende licens:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Vælg en anden licens."
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Vælg en licens til dit tema."
 
 msgid "Theme Design"
-msgstr ""
+msgstr "Tema-design"
 
 msgid "Upload New Design"
 msgstr ""
@@ -4320,36 +4323,36 @@ msgid "Footer"
 msgstr ""
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Vælg farver til dit tema."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Forgrundstekst"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Dette er farven på tekst i faneblade."
 
 msgid "Background"
-msgstr ""
+msgstr "Baggrund"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Dette er fanebladenes farve."
 
 msgid "Preview"
-msgstr ""
+msgstr "Forhåndsvisning"
 
 msgid "Your Theme's Name"
 msgstr ""
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "af <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Lav et nyt tema"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Med baggrundstemaer kan du nemt tilpasse udseendet på Firefox. Indsend dit design nedenunder eller <a href=\"%(submit_url)s\">lær hvordan du laver et</a>!"
 
 msgid "Give your Theme a name."
 msgstr ""
@@ -4361,7 +4364,7 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Indsend tema"
 
 msgid "You're done!"
 msgstr ""
@@ -4397,7 +4400,7 @@ msgid "PNG or JPG"
 msgstr "PNG eller JPG"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Justeret øverst til højre"
 
 msgid "Select a different header image"
 msgstr ""
@@ -4409,7 +4412,7 @@ msgid "3000 &times; 100 pixels"
 msgstr ""
 
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Justeret nederst til venstre"
 
 msgid "Select a different footer image"
 msgstr ""
@@ -5195,6 +5198,9 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
+msgstr ""
+
+msgid "Weight:"
 msgstr ""
 
 msgid "Not Auto Approved Because"
@@ -7918,6 +7924,12 @@ msgstr "Find tilføjelser til andre programmer"
 
 msgid "Other Applications"
 msgstr "Andre programmer"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr "AMO får et nyt udseende. Har du lyst til at se det?"
+
+msgid "Visit the new site"
+msgstr "Besøg det nye websted"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "For at lave en samling, skal du have en brugerkonto til dette websted."

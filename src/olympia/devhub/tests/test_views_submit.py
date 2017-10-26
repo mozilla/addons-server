@@ -7,7 +7,6 @@ from django.core.files import temp
 
 import mock
 from pyquery import PyQuery as pq
-from waffle.models import Switch
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -17,6 +16,8 @@ from olympia.amo.tests import (
     addon_factory, formset, initial, TestCase, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
+from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
@@ -86,37 +87,7 @@ class TestSubmitBase(TestCase):
         return self.get_addon().versions.latest()
 
 
-class TestAddonSubmitAgreement(TestSubmitBase):
-    def test_submit_agreement_page_links(self):
-        self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        links = doc('.agreement-links a')
-        assert links
-        for ln in links:
-            href = ln.attrib['href']
-            assert href.startswith(('https://', '/', 'mailto:')), (
-                "Looks like link %r to %r is still a placeholder" %
-                (href, ln.text))
-
-    def test_set_read_dev_agreement(self):
-        """Store current date when the user agrees with the user agreement."""
-        self.user.update(read_dev_agreement=None)
-
-        response = self.client.post(reverse('devhub.submit.agreement'))
-        assert response.status_code == 302
-        self.user.reload()
-        self.assertCloseToNow(self.user.read_dev_agreement)
-
-    def test_read_dev_agreement_skip(self):
-        # The current user fixture has already read the agreement so we skip
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
-
-
-@override_switch('post-review', active=True)
-class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
+class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
     def test_set_read_dev_agreement(self):
         response = self.client.post(reverse('devhub.submit.agreement'), {
             'distribution_agreement': 'on',
@@ -127,6 +98,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
         self.assertCloseToNow(self.user.read_dev_agreement)
 
     def test_set_read_dev_agreement_error(self):
+        before_agreement_last_changed = (
+            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
         response = self.client.post(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
@@ -142,13 +116,11 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestAddonSubmitAgreement):
             assert doc(selector).text() == 'This field is required.'
 
     def test_read_dev_agreement_skip(self):
-        # Make the switch modified date older so that the user read dev
-        # agreement date is more recent than the switch.
-        Switch.objects.filter(name='post-review').update(
-            modified=self.user.read_dev_agreement - timedelta(days=1))
-        super(
-            TestAddonSubmitAgreementWithPostReviewEnabled,
-            self).test_read_dev_agreement_skip()
+        after_agreement_last_changed = (
+            UserProfile.last_developer_agreement_change + timedelta(days=1))
+        self.user.update(read_dev_agreement=after_agreement_last_changed)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
 
 
 class TestAddonSubmitDistribution(TestCase):
@@ -183,13 +155,14 @@ class TestAddonSubmitDistribution(TestCase):
             reverse('devhub.submit.distribution'), follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
-        with override_switch('post-review', active=True):
-            # If the post-review waffle is enabled, read_dev_agreement also
-            # needs to be a more recent date than the waffle modification date.
-            self.user.update(read_dev_agreement=self.days_ago(42))
-            response = self.client.get(
-                reverse('devhub.submit.distribution'), follow=True)
-            self.assert3xx(response, reverse('devhub.submit.agreement'))
+        # read_dev_agreement needs to be a more recent date than
+        # the setting.
+        before_agreement_last_changed = (
+            UserProfile.last_developer_agreement_change - timedelta(days=1))
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(
+            reverse('devhub.submit.distribution'), follow=True)
+        self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_listed_redirects_to_next_step(self):
         response = self.client.post(reverse('devhub.submit.distribution'),
@@ -291,7 +264,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    @mock.patch('olympia.editors.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
         assert Addon.objects.count() == 0
@@ -403,46 +376,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
 
 
-class TestAddonSubmitDetails(TestSubmitBase):
-
-    def setUp(self):
-        super(TestAddonSubmitDetails, self).setUp()
-        self.url = reverse('devhub.submit.details', args=['a3615'])
-
-        AddonCategory.objects.filter(
-            addon=self.get_addon(),
-            category=Category.objects.get(id=1)).delete()
-        AddonCategory.objects.filter(
-            addon=self.get_addon(),
-            category=Category.objects.get(id=71)).delete()
-
-        ctx = self.client.get(self.url).context['cat_form']
-        self.cat_initial = initial(ctx.initial_forms[0])
-        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=3, on_form=True)
-        self.get_addon().update(status=amo.STATUS_NULL)
-
-    def get_dict(self, minimal=True, **kw):
-        result = {}
-        describe_form = {'name': 'Test name', 'slug': 'testname',
-                         'summary': 'Hello!', 'is_experimental': True,
-                         'requires_payment': True}
-        if not minimal:
-            describe_form.update({'support_url': 'http://stackoverflow.com',
-                                  'support_email': 'black@hole.org'})
-        cat_initial = kw.pop('cat_initial', self.cat_initial)
-        cat_form = formset(cat_initial, initial_count=1)
-        license_form = {'license-builtin': 3}
-        policy_form = {} if minimal else {
-            'has_priv': True, 'privacy_policy': 'Ur data belongs to us now.'}
-        reviewer_form = {} if minimal else {'approvalnotes': 'approove plz'}
-        result.update(describe_form)
-        result.update(cat_form)
-        result.update(license_form)
-        result.update(policy_form)
-        result.update(reviewer_form)
-        result.update(**kw)
-        return result
+class DetailsPageMixin(object):
+    """ Some common methods between TestAddonSubmitDetails and
+    TestStaticThemeSubmitDetails."""
 
     def is_success(self, data):
         assert self.get_addon().status == amo.STATUS_NULL
@@ -451,50 +387,6 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert response.status_code == 302
         assert self.get_addon().status == amo.STATUS_NOMINATED
         return response
-
-    def test_submit_success_required(self):
-        # Set/change the required fields only
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # Post and be redirected - trying to sneak
-        # in fields that shouldn't be modified via this form.
-        data = self.get_dict(homepage='foo.com',
-                             tags='whatevs, whatever')
-        self.is_success(data)
-
-        addon = self.get_addon()
-
-        # This fields should not have been modified.
-        assert addon.homepage != 'foo.com'
-        assert len(addon.tags.values_list()) == 0
-
-        # These are the fields that are expected to be edited here.
-        assert addon.name == 'Test name'
-        assert addon.slug == 'testname'
-        assert addon.summary == 'Hello!'
-        assert addon.is_experimental
-        assert addon.requires_payment
-        assert addon.all_categories[0].id == 22
-
-        # Test add-on log activity.
-        log_items = ActivityLog.objects.for_addons(addon)
-        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
-            "Setting properties on submit needn't be logged.")
-
-    def test_submit_success_optional_fields(self):
-        # Set/change the optional fields too
-        # Post and be redirected
-        data = self.get_dict(minimal=False)
-        self.is_success(data)
-
-        addon = self.get_addon()
-
-        # These are the fields that are expected to be edited here.
-        assert addon.support_url == 'http://stackoverflow.com'
-        assert addon.support_email == 'black@hole.org'
-        assert addon.privacy_policy == 'Ur data belongs to us now.'
-        assert addon.current_version.approvalnotes == 'approove plz'
 
     def test_submit_name_existing(self):
         """Test that we can submit two add-ons with the same name."""
@@ -540,6 +432,127 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert response.status_code == 200
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(response, 'form', 'summary', error)
+
+    def test_nomination_date_set_only_once(self):
+        self.get_version().update(nomination=None)
+        self.is_success(self.get_dict())
+        self.assertCloseToNow(self.get_version().nomination)
+
+        # Check nomination date is only set once, see bug 632191.
+        nomdate = datetime.now() - timedelta(days=5)
+        self.get_version().update(nomination=nomdate, _signal=False)
+        # Update something else in the addon:
+        self.get_addon().update(slug='foobar')
+        assert self.get_version().nomination.timetuple()[0:5] == (
+            nomdate.timetuple()[0:5])
+
+    def test_submit_details_unlisted_should_redirect(self):
+        version = self.get_addon().versions.latest()
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_step)
+
+    def test_can_cancel_review(self):
+        addon = self.get_addon()
+        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
+
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        versions_url = reverse('devhub.addons.versions', args=['a3615'])
+        response = self.client.post(cancel_url)
+        self.assert3xx(response, versions_url)
+
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NULL
+        version = addon.versions.latest()
+        del version.all_files
+        assert version.statuses == [
+            (version.all_files[0].id, amo.STATUS_DISABLED)]
+
+
+class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
+
+    def setUp(self):
+        super(TestAddonSubmitDetails, self).setUp()
+        self.url = reverse('devhub.submit.details', args=['a3615'])
+
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=1)).delete()
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=71)).delete()
+
+        ctx = self.client.get(self.url).context['cat_form']
+        self.cat_initial = initial(ctx.initial_forms[0])
+        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
+        License.objects.create(builtin=3, on_form=True)
+        self.get_addon().update(status=amo.STATUS_NULL)
+
+    def get_dict(self, minimal=True, **kw):
+        result = {}
+        describe_form = {'name': 'Test name', 'slug': 'testname',
+                         'summary': 'Hello!', 'is_experimental': True,
+                         'requires_payment': True}
+        if not minimal:
+            describe_form.update({'support_url': 'http://stackoverflow.com',
+                                  'support_email': 'black@hole.org'})
+        cat_initial = kw.pop('cat_initial', self.cat_initial)
+        cat_form = formset(cat_initial, initial_count=1)
+        license_form = {'license-builtin': 3}
+        policy_form = {} if minimal else {
+            'has_priv': True, 'privacy_policy': 'Ur data belongs to us now.'}
+        reviewer_form = {} if minimal else {'approvalnotes': 'approove plz'}
+        result.update(describe_form)
+        result.update(cat_form)
+        result.update(license_form)
+        result.update(policy_form)
+        result.update(reviewer_form)
+        result.update(**kw)
+        return result
+
+    def test_submit_success_required(self):
+        # Set/change the required fields only
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # Post and be redirected - trying to sneak
+        # in fields that shouldn't be modified via this form.
+        data = self.get_dict(homepage='foo.com',
+                             tags='whatevs, whatever')
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # This fields should not have been modified.
+        assert addon.homepage != 'foo.com'
+        assert len(addon.tags.values_list()) == 0
+
+        # These are the fields that are expected to be edited here.
+        assert addon.name == 'Test name'
+        assert addon.slug == 'testname'
+        assert addon.summary == 'Hello!'
+        assert addon.is_experimental
+        assert addon.requires_payment
+        assert addon.all_categories[0].id == 22
+
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged.")
+
+    def test_submit_success_optional_fields(self):
+        # Set/change the optional fields too
+        # Post and be redirected
+        data = self.get_dict(minimal=False)
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # These are the fields that are expected to be edited here.
+        assert addon.support_url == 'http://stackoverflow.com'
+        assert addon.support_email == 'black@hole.org'
+        assert addon.privacy_policy == 'Ur data belongs to us now.'
+        assert addon.current_version.approvalnotes == 'approove plz'
 
     def test_submit_categories_required(self):
         del self.cat_initial['categories']
@@ -611,40 +624,133 @@ class TestAddonSubmitDetails(TestSubmitBase):
         self.get_addon().update(eula=None, privacy_policy=None)
         self.is_success(self.get_dict(has_priv=True))
 
-    def test_nomination_date_set_only_once(self):
-        self.get_version().update(nomination=None)
-        self.is_success(self.get_dict())
-        self.assertCloseToNow(self.get_version().nomination)
 
-        # Check nomination date is only set once, see bug 632191.
-        nomdate = datetime.now() - timedelta(days=5)
-        self.get_version().update(nomination=nomdate, _signal=False)
-        # Update something else in the addon:
-        self.get_addon().update(slug='foobar')
-        assert self.get_version().nomination.timetuple()[0:5] == (
-            nomdate.timetuple()[0:5])
+class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
-    def test_submit_details_unlisted_should_redirect(self):
-        version = self.get_addon().versions.latest()
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+    def setUp(self):
+        super(TestStaticThemeSubmitDetails, self).setUp()
+        self.url = reverse('devhub.submit.details', args=['a3615'])
+
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=1)).delete()
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=22)).delete()
+        AddonCategory.objects.filter(
+            addon=self.get_addon(),
+            category=Category.objects.get(id=71)).delete()
+        Category.from_static_category(CATEGORIES_BY_ID[300]).save()
+        Category.from_static_category(CATEGORIES_BY_ID[308]).save()
+
+        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
+        License.objects.create(builtin=11, on_form=True, creative_commons=True)
+        self.get_addon().update(
+            status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+
+    def get_dict(self, minimal=True, **kw):
+        result = {}
+        describe_form = {'name': 'Test name', 'slug': 'testname',
+                         'summary': 'Hello!'}
+        if not minimal:
+            describe_form.update({'support_url': 'http://stackoverflow.com',
+                                  'support_email': 'black@hole.org'})
+        cat_form = {'category': 300}
+        license_form = {'license-builtin': 11}
+        result.update(describe_form)
+        result.update(cat_form)
+        result.update(license_form)
+        result.update(**kw)
+        return result
+
+    def test_submit_success_required(self):
+        # Set/change the required fields only
         response = self.client.get(self.url)
-        self.assert3xx(response, self.next_step)
+        assert response.status_code == 200
 
-    def test_can_cancel_review(self):
-        addon = self.get_addon()
-        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
-
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        versions_url = reverse('devhub.addons.versions', args=['a3615'])
-        response = self.client.post(cancel_url)
-        self.assert3xx(response, versions_url)
+        # Post and be redirected - trying to sneak
+        # in fields that shouldn't be modified via this form.
+        data = self.get_dict(homepage='foo.com',
+                             tags='whatevs, whatever')
+        self.is_success(data)
 
         addon = self.get_addon()
-        assert addon.status == amo.STATUS_NULL
-        version = addon.versions.latest()
-        del version.all_files
-        assert version.statuses == [
-            (version.all_files[0].id, amo.STATUS_DISABLED)]
+
+        # This fields should not have been modified.
+        assert addon.homepage != 'foo.com'
+        assert len(addon.tags.values_list()) == 0
+
+        # These are the fields that are expected to be edited here.
+        assert addon.name == 'Test name'
+        assert addon.slug == 'testname'
+        assert addon.summary == 'Hello!'
+        assert addon.all_categories[0].id == 300
+
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged.")
+
+    def test_submit_success_optional_fields(self):
+        # Set/change the optional fields too
+        # Post and be redirected
+        data = self.get_dict(minimal=False)
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # These are the fields that are expected to be edited here.
+        assert addon.support_url == 'http://stackoverflow.com'
+        assert addon.support_email == 'black@hole.org'
+
+    def test_submit_categories_set(self):
+        assert [cat.id for cat in self.get_addon().all_categories] == []
+        self.is_success(self.get_dict(category=308))
+
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        assert sorted(addon_cats) == [308]
+
+    def test_submit_categories_change(self):
+        category = Category.objects.get(id=300)
+        AddonCategory(addon=self.addon, category=category).save()
+        assert sorted(
+            [cat.id for cat in self.get_addon().all_categories]) == [300]
+
+        self.client.post(self.url, self.get_dict(category=308))
+        category_ids_new = [cat.id for cat in self.get_addon().all_categories]
+        # Only ever one category for Static Themes
+        assert category_ids_new == [308]
+
+    def test_creative_commons_licenses(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        assert content('#cc-chooser')  # cc license wizard
+        assert content('#persona-license')  # cc license result
+        assert content('#id_license-builtin')  # license list
+        # There should be one license - 11 we added in setUp - and no 'other'.
+        assert len(content('input.license')) == 1
+        assert content('input.license').attr('value') == '11'
+        assert content('input.license').attr('data-name') == (
+            LICENSES_BY_BUILTIN[11].name)
+
+    def test_set_builtin_license_no_log(self):
+        self.is_success(self.get_dict(**{'license-builtin': 11}))
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.current_version.license.builtin == 11
+        log_items = ActivityLog.objects.for_addons(self.get_addon())
+        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id)
+
+    def test_license_error(self):
+        response = self.client.post(
+            self.url, self.get_dict(**{'license-builtin': 4}))
+        assert response.status_code == 200
+        self.assertFormError(response, 'license_form', 'builtin',
+                             'Select a valid choice. 4 is not one of '
+                             'the available choices.')
 
 
 class TestAddonSubmitFinish(TestSubmitBase):
@@ -738,10 +844,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # Third back to my submissions.
         assert links[2].attrib['href'] == reverse('devhub.addons')
 
-    @override_switch('post-review', active=True)
-    def test_finish_submitting_listed_addon_with_post_review_enabled(self):
-        self.test_finish_submitting_listed_addon()
-
     def test_finish_submitting_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
 
@@ -761,10 +863,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
             'Download %s' % file_.filename)
         # Second back to my submissions.
         assert links[1].attrib['href'] == reverse('devhub.addons')
-
-    @override_switch('post-review', active=True)
-    def test_finish_submitting_unlisted_addon_with_post_review_enabled(self):
-        self.test_finish_submitting_unlisted_addon()
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_listed_addon(self):
@@ -901,6 +999,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
     def test_listed_last_uses_listed_upload(self, _submit_upload_mock):
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
         self.client.post(self.url)
+        assert _submit_upload_mock.call_count == 1
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon, amo.RELEASE_CHANNEL_LISTED,
@@ -911,6 +1010,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
     def test_unlisted_last_uses_unlisted_upload(self, _submit_upload_mock):
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.client.post(self.url)
+        assert _submit_upload_mock.call_count == 1
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon, amo.RELEASE_CHANNEL_UNLISTED,
@@ -1146,7 +1246,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         return reverse('devhub.submit.version.finish', args=[
             self.addon.slug, version.pk])
 
-    @mock.patch('olympia.editors.utils.sign_file')
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success(self, mock_sign_file):
         """Sign automatically."""
         # No validation errors or warning.
@@ -1229,10 +1329,6 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.version.reload()
         assert self.version.approvalnotes == 'approove plz'
         assert self.version.releasenotes == 'loadsa stuff'
-
-    @override_switch('post-review', active=True)
-    def test_submit_success_with_post_review_enabled(self):
-        self.test_submit_success()
 
     def test_submit_details_unlisted_should_redirect(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

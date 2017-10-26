@@ -40,10 +40,8 @@
           {{ link.text }}
           {% if link.os %}
             <span class="os" data-os="{{ link.os.name }}">
-              {% if not button.show_contrib %}
                 {# L10n: {0} is a platform name like Windows or Mac OS X. #}
                 {{ _('for {0}')|format_html(link.os.name) }}
-              {% endif %}
             </span>
           {% endif %}
         </span>

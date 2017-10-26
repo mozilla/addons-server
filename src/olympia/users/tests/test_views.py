@@ -240,7 +240,7 @@ class TestEditAdmin(UserViewBase):
 
     def test_edit_forbidden(self):
         self.client.logout()
-        self.client.login(email='editor@mozilla.com')
+        self.client.login(email='reviewer@mozilla.com')
         res = self.client.get(self.url)
         assert res.status_code == 403
 
@@ -316,7 +316,7 @@ class TestUnsubscribe(UserViewBase):
 
     def setUp(self):
         super(TestUnsubscribe, self).setUp()
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
 
     def test_correct_url_update_notification(self):
         # Make sure the user is subscribed
@@ -680,7 +680,7 @@ class TestProfileSections(TestCase):
 
         # Editors don't get the Delete Review link
         # (unless it's pending moderation).
-        r = self._get_reviews(username='editor@mozilla.com')
+        r = self._get_reviews(username='reviewer@mozilla.com')
         assert r.length == 0
 
         # Author gets the Delete Review link.
@@ -703,7 +703,7 @@ class TestProfileSections(TestCase):
 
         # Editors get the Delete Review link
         # because the review is pending moderation
-        r = self._get_reviews(username='editor@mozilla.com')
+        r = self._get_reviews(username='reviewer@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 

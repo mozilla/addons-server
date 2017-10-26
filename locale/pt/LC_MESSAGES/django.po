@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,10 +172,6 @@ msgstr "Listado"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Contribuição para {0}"
 
 msgid "Abuse reported."
 msgstr "Abuso reportado."
@@ -2880,6 +2876,10 @@ msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver a ser destacado para esta aplicação."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3710,6 +3710,10 @@ msgstr "Este extra necessita de software externo."
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Selecione <b>até {0}</b> categoria {1} para este extra:"
 
 #, fuzzy
 msgid "Support email:"
@@ -5425,6 +5429,9 @@ msgstr "Descarregar ficheiros"
 
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
+
+msgid "Weight:"
+msgstr ""
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -8211,6 +8218,12 @@ msgstr "Procure extras para outras aplicações"
 
 msgid "Other Applications"
 msgstr "Outras aplicações"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, tem de ter uma conta nos extras da Mozilla."

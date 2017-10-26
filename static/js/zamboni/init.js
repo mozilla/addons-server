@@ -28,16 +28,6 @@ $(document).ready(function(){
             .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))
             .find('input, button, select').prop('disabled', true).addClass('disabled');
     }
-
-    // Set the header background so width of scrollbars is removed from the
-    // 100vw width.
-    // See: https://github.com/mozilla/addons-server/issues/2161
-    if ($('body').hasClass('restyle')) {
-      var scrollbarWidthToRemove = getScrollbarWidth() / 2;
-      $('.header-bg,.restyle .previews').css({
-        width: 'calc(100vw - ' + scrollbarWidthToRemove + 'px)'
-      });
-    }
 });
 
 z.inlineSVG = (function() {

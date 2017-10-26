@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-11 18:22+0000\n"
-"PO-Revision-Date: 2017-10-15 03:30+0000\n"
-"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
+"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"PO-Revision-Date: 2017-10-21 13:56+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -174,10 +174,6 @@ msgstr "Yettwabder"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Abrid n uzegrir akked taggayt isra ad ifak s \"/\""
-
-#. l10n: {0} is the addon name
-msgid "Contribution for {0}"
-msgstr "Attekki i {0}"
 
 msgid "Abuse reported."
 msgstr "Yir aseqdec yettwammel."
@@ -2130,9 +2126,8 @@ msgstr "sentem d akken yettwaqbel"
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} yettwagi."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "yettwagi"
+msgstr "Agbur yettwagi"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2810,6 +2805,10 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
+
+#, fuzzy
+msgid "Categories cannot be changed while your add-on is featured."
+msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
@@ -3605,6 +3604,10 @@ msgstr "Azegrir-agi d armitan"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgstr "Kren <b>arma d {0}</b> {1} n taggayt i uzegrir-agi:"
 
 msgid "Support email:"
 msgstr "Imayl n tallalt:"
@@ -5195,6 +5198,9 @@ msgstr "Sider ifuyla"
 msgid "The developer has provided source code."
 msgstr "Aneflay yefka-d tangalt taɣbalut."
 
+msgid "Weight:"
+msgstr "Taẓayt:"
+
 msgid "Not Auto Approved Because"
 msgstr "Ur ittwaqbel ara s wudem awurman acku"
 
@@ -5461,11 +5467,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Qbel s wudem awurman azegrir ({0})"
 msgstr[1] "Qbel s wudem awurman izegrar ({0})"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Acegger {0}"
-msgstr[1] "Acegger {0}"
+msgstr[0] "Agbur ittwacegger ({0})"
+msgstr[1] "Agbur ittwacegger ({0})"
 
 msgid "Flagged"
 msgstr "Yettwasezmel"
@@ -7869,6 +7874,12 @@ msgstr "Af-d izegrar i yesnasen nniḍen"
 
 msgid "Other Applications"
 msgstr "Isnasen nniḍen"
+
+msgid "AMO is getting a new look. Would you like to see it?"
+msgstr ""
+
+msgid "Visit the new site"
+msgstr ""
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Akken ad ternuḍ tigrummiwin inek, yessefk ad yili ɣur-k umiḍan n izegrar Mozilla."
