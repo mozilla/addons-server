@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-26 06:50+0000\n"
+"PO-Revision-Date: 2017-10-26 06:54+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2096,33 +2096,26 @@ msgstr "Tangalt aɣbalu tuli i {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Tangalt aɣbalu tuli"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Awennit γef {addon} {version}."
+msgstr "Aqbal awurman yentem i {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Addad n usentem"
+msgstr "Aqbal awurman yentem"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} yettwagi."
+msgstr "{addon} {version} yules armad.."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} yuli."
+msgstr "{addon} {version} yensa."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} yettwaqbel."
+msgstr "agbur n {addon} {version} yettwaqbel."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "sentem d akken yettwaqbel"
+msgstr "Agbur yettwaqbel"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} yettwagi."
+msgstr "agbur n {addon} {version} yettwagi."
 
 msgid "Content rejected"
 msgstr "Agbur yettwagi"
@@ -2202,9 +2195,8 @@ msgstr "Azegrir"
 msgid "Theme"
 msgstr "Asentel"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "Talqayt n usentel"
+msgstr "Asentel (Static)"
 
 msgid "Complete Themes"
 msgstr "Isental yemden"
@@ -2221,9 +2213,8 @@ msgstr "Ikemmusen utlayanen (azegrir)"
 msgid "Plugins"
 msgstr "Izegrar"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "Anaẓuṛ n usentel"
+msgstr "Isental (Static)"
 
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Suter kan ɣef usebter-agi n uzegrir akked umaɣnu n uneflay"
@@ -5494,9 +5485,9 @@ msgstr ""
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Ur izmir ara ad isleḍ afaylu yulin."
+msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
 
 msgid "Could not parse uploaded file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
