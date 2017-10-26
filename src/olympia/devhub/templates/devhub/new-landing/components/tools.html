@@ -2,16 +2,16 @@
   <h2>{{ _('Tools') }}</h2>
   <ul>
     <li>
-      <a href="{{ url('devhub.validate_addon') }}">{{ _('Validator') }}</a>
+      <a href="https://github.com/mozilla/web-ext/">{{ _('Web-Ext') }}</a>
+      <p class="meta">{{ _('A command line tool to build, run, and test extensions.') }}</p>
+    </li>
+    <li>
+      <a href="{{ url('devhub.validate_addon') }}">{{ _('Add-on Validator') }}</a>
       <p class="meta">{{ _('Automated code tests for your add-on.') }}</p>
     </li>
     <li>
-      <a href="{{ url('devhub.check_addon_compatibility') }}">{{ _('Compatibility Checker') }}</a>
-      <p class="meta">{{ _('See if your add-on is likely to be affected by changes in Firefox.') }}</p>
-    </li>
-    <li>
-      <a href="https://addons.mozilla.org/firefox/addon/add-on-compatibility-reporter/">{{ _('Compatibility Reporter') }}</a>
-      <p class="meta">{{ _('Tell us if an add-on works in a particular version of Firefox.') }}</p>
+      <a href="https://www.extensiontest.com/">{{ _('Compatibility Test') }}</a>
+      <p class="meta">{{ _('Check to see if your extension is compatible with Firefox.') }}</p>
     </li>
   </ul>
 </section>
