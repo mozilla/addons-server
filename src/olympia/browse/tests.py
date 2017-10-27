@@ -1173,3 +1173,15 @@ class TestPersonas(TestCase):
         self.create_personas(PAGINATE_PERSONAS_BY)
         r = self.client.get(self.created_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
+
+
+class TestStaticThemeRedirects(TestCase):
+    fixtures = ['base/category']
+
+    def redirects(self, from_, to, status_code=302):
+        r = self.client.get('/en-US/firefox' + from_)
+        self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
+
+    def test_redirects(self):
+        self.redirects('/static-themes/', '/themes/')
+        self.redirects('/static-themes/abstract', '/themes/abstract')
