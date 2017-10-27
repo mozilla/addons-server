@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 17:43+0000\n"
+"PO-Revision-Date: 2017-10-27 23:32+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -5006,7 +5006,7 @@ msgid "This records your approbation of the content of this version, without not
 msgstr ""
 
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Yeni Eklentiler (5 günden az)"
 
 msgid "Passable (5 to 10 days)"
 msgstr ""
@@ -5099,7 +5099,7 @@ msgid "Return to the Reviewer Tools homepage"
 msgstr "{0} Eklentileri ana sayfasına dön"
 
 msgid "Queues"
-msgstr ""
+msgstr "Kuyruklar"
 
 # 75%
 # 100%
@@ -7033,7 +7033,7 @@ msgid "Open Source Initiative provides the terms of some of the key open source 
 msgstr ""
 
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Bilinen açık kaynak lisanslarının Wikipedia'da bir karşılaştırması."
 
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
 msgstr ""
@@ -7056,7 +7056,7 @@ msgid ""
 msgstr ""
 
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Eklentiler benim web tarayıcım veya uygulamamla çalışacak mı?"
 
 #, python-format
 msgid ""
@@ -7142,7 +7142,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Bir eklentiyle ilgili sorun yaşarsam ne olur?"
 
 #, python-format
 msgid ""
@@ -7156,7 +7156,7 @@ msgid "Add-on Gallery"
 msgstr "Eklentinin web sitesi"
 
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Aynı şeyi yapan eklentiler arasında nasıl seçim yapabilirim?"
 
 msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
@@ -8221,7 +8221,7 @@ msgid "Desktop Browser"
 msgstr ""
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 #, fuzzy
 msgid "Other languages"
@@ -8321,7 +8321,7 @@ msgid "Delete Locale"
 msgstr "Dili Sil"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-posta {email} olmalı."
 
 msgid "Display Name"
 msgstr "Görünen isim"
