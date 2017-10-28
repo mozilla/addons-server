@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 17:21+0000\n"
+"PO-Revision-Date: 2017-10-28 21:06+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2241,7 +2241,7 @@ msgid "Film and TV"
 msgstr "קולנוע וטלוויזיה"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Holiday"
 msgstr "חופשה"
@@ -2250,13 +2250,13 @@ msgid "Music"
 msgstr "מוזיקה"
 
 msgid "Scenery"
-msgstr ""
+msgstr "נופי"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "עונתי"
 
 msgid "Solid"
-msgstr ""
+msgstr "אחיד"
 
 msgid "Websites"
 msgstr "אתרים"
@@ -2833,7 +2833,7 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "הסכם הפצת תוספת של Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "סקירת מדיניות וכללים"
@@ -5526,7 +5526,7 @@ msgid "What operating system do I choose for my add-on?"
 msgstr "באיזו מערכת הפעלה עלי לבחור עבור התוספת שלי?"
 
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "עליך לבחור במערכות ההפעלה בהן התוספת שלך תתפקד בצורה תקינה."
 
 msgid "What category do I choose for my add-on?"
 msgstr "באיזו קטגוריה עלי לבחור עבור התוספת שלי?"
@@ -7139,11 +7139,11 @@ msgstr[0] "סקירה אחת"
 msgstr[1] "{num} סקירות"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "מדורג {0} מתוך 5 כוכבים"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "מדורג %(rating)s מתוך 5 כוכבים"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7319,7 +7319,7 @@ msgid "Subscribers"
 msgstr "מנויים"
 
 msgid "Ratings"
-msgstr ""
+msgstr "דירוגים"
 
 msgid "Add-on Statistics"
 msgstr ""
@@ -7505,7 +7505,7 @@ msgid "See more platforms&hellip;"
 msgstr "צפייה בפלטפורמות נוספות"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "דירוגים לפי תאריך"
 
 msgid "Reviews Created by Date"
 msgstr ""
