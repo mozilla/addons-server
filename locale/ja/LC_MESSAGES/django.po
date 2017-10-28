@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 17:49+0000\n"
+"PO-Revision-Date: 2017-10-28 17:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3124,11 +3124,10 @@ msgstr "アドオンの UUID は、インストールマニフェスト内で指
 msgid "Whiteboard"
 msgstr "ホワイトボード"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
-msgstr "ホワイトボードはあなたのアドオンおよび各バージョンに関連する情報を編集者に提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは編集者も編集可能です。"
+msgstr "ホワイトボードはあなたのアドオンについての情報をバージョンに関わらず審査担当者へ提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは審査担当者も編集可能です。"
 
 msgid "Remove this dependent add-on"
 msgstr "この依存するアドオンを削除"
@@ -3720,7 +3719,7 @@ msgid "Site Status"
 msgstr "サイトステータス"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: 拡張機能を開発、テスト"
 
 msgid "Compatibility Checker"
 msgstr "互換性チェッカー"
@@ -3858,10 +3857,10 @@ msgid "Sign In"
 msgstr "ログイン"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "拡張機能を開発、実行、テストするためのコマンドラインツール。"
 
 msgid "Automated code tests for your add-on."
 msgstr "このアドオンの自動コードテストです。"
@@ -3870,7 +3869,7 @@ msgid "Compatibility Test"
 msgstr "互換性テスト"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "あなたの拡張機能が Firefox と互換性があるかどうか確認してみましょう。"
 
 msgid "Transfer ownership"
 msgstr "オーナーを変更"
@@ -5079,11 +5078,10 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "これらのアドオンは誰が作っていますか？"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr "このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、リリースされる前に、アドオンの編集チームにより審査されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
+msgstr "このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、公開前に、審査担当者のチームによって審査されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "AMO サイトの動向を知るには？"
@@ -6583,9 +6581,8 @@ msgstr "テスト環境:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong> あなたの前に、別のユーザーがこのページを見ていました。"
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "ホワイトボードは、開発者とエディタの間で (バージョンに関係なく) このアドオンに関する情報を交換する場所です。これは、両者が見ることができます。"
+msgstr "ホワイトボードは、開発者と審査担当者の間で (バージョンに関係なく) このアドオンに関する情報を交換する場所です。これは両者が閲覧、編集可能となっています。"
 
 msgid "Update the whiteboard"
 msgstr "ホワイトボードを更新"
@@ -6863,9 +6860,8 @@ msgstr "自分自身のアドオンにレビューを残すことはできませ
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "アドオンの同一バージョンに複数のレビューを残すことはできません。"
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "ありがとうございます。このレビューはエディタに通知されました。"
+msgstr "ありがとうございます。このレビューは審査担当者へ通知されました。"
 
 msgid "Add a review for {0}"
 msgstr "{0} のレビューを追加"
