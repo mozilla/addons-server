@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 09:59+0000\n"
+"PO-Revision-Date: 2017-10-28 15:52+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3262,13 +3262,12 @@ msgstr "UUID vašega dodatka je naveden v njegovem manifestu za namestitev in ga
 msgid "Whiteboard"
 msgstr "Bela tabla"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Bela oglasna deska je mesto, kjer lahko podate podatke, ki se nanašajo na vaš dodatek za posamezno različico, uredniku. Uporabite jo za določanje načinov preskušanja dodatka in vseh dodatnih "
-"pomožnih podatkov. Belo oglasno desko lahko urejajo tudi uredniki."
+"Bela tabla je mesto, kjer lahko pregledovalcu posredujete informacije o svojem dodatku (ne glede na različico). Prek nje lahko pregledovalcu posredujete možne načine preskušanja dodatka in "
+"kakršnekoli dodatne informacije. Belo tablo lahko urejajo tudi pregledovalci."
 
 msgid "Remove this dependent add-on"
 msgstr "Odstrani ta odvisni dodatek"
@@ -3889,7 +3888,7 @@ msgid "Site Status"
 msgstr "Stanje strani "
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: ustvarite in preskušajte razširitve"
 
 msgid "Compatibility Checker"
 msgstr "Preverjanje združljivosti"
@@ -4027,10 +4026,10 @@ msgid "Sign In"
 msgstr "Prijava"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Orodje za ukazno vrstico za ustvarjanje, zaganjanje in preskušanje razširitev."
 
 msgid "Automated code tests for your add-on."
 msgstr "Samodejno preverjanje kode vašega dodatka."
@@ -4039,7 +4038,7 @@ msgid "Compatibility Test"
 msgstr "Preizkus združljivosti"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Preverite, ali je vaša razširitev združljiva s Firefoxom."
 
 msgid "Transfer ownership"
 msgstr "Prenos lastništva"
@@ -6360,9 +6359,8 @@ msgid "end"
 msgstr "konec"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "dodatek, urednik ali komentar"
+msgstr "dodatek, pregledovalec ali komentar"
 
 msgid "Search by add-on name / author email"
 msgstr "Iskanje po imenu dodatka/e-pošti avtorja"
@@ -6867,9 +6865,8 @@ msgstr "Koristne povezave:"
 msgid "Add-on Policy"
 msgstr "Smernice za dodatke"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Vodnik za recenzente"
+msgstr "Vodnik za pregledovalce"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6928,9 +6925,8 @@ msgstr "Preizkušeno na:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Opozorilo!</strong> Nek drug uporabnik je ogledoval to stran pred vami."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Tabla je mesto, kjer si lahko razvijalec in urednik izmenjujeta podatke o tem dodatku (ne glede na različico). To vidita in urejata oba."
+msgstr "Bela tabla je mesto, kjer si lahko razvijalec in pregledovalec izmenjujeta informacije o tem dodatku (ne glede na različico). Vidita in urejata jo lahko oba."
 
 msgid "Update the whiteboard"
 msgstr "Posodobi tablo"
@@ -7232,9 +7228,8 @@ msgstr "Svojega dodatka ne morete oceniti."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Iste različice dodatka ne morete oceniti večkrat."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Hvala, ta ocena je sedaj označena za postopek uredniške odobritve."
+msgstr "Hvala; ta ocena je bila označena za uredniški pregled."
 
 msgid "Add a review for {0}"
 msgstr "Dodaj pregled za {0}"
