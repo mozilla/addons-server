@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 19:31+0000\n"
+"PO-Revision-Date: 2017-10-28 19:39+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3298,9 +3298,8 @@ msgstr "Будь ласка, додайте заголовок для вашог
 msgid "Add a Screenshot..."
 msgstr "Додати знімок екрана..."
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Чи можуть інші ділитися вашою темою, якщо вас вказують як автора?"
+msgstr "Чи можуть інші ділитися вашим додатком, якщо вас вказують як автора?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу, в тому числі в комерційних цілях."
@@ -3308,13 +3307,11 @@ msgstr "Ліцензіар дозволяє іншим копіювати, ро�
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, відтворювати, а також виконувати роботу тільки в некомерційних цілях."
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Чи можуть інші використовувати вашу тему в комерційних цілях?"
+msgstr "Чи можуть інші використовувати ваш додаток в комерційних цілях?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Чи можуть інші створювати похідні роботи на основі вашої теми?"
+msgstr "Чи можуть інші створювати похідні роботи на основі вашого додатку?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, показувати і виконувати роботу, а також створювати на його основі похідні роботи."
@@ -3328,9 +3325,8 @@ msgstr "Ліцензіар дозволяє іншим розповсюджув�
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати і передавати тільки незмінені копії роботи — не похідні роботи на його основі."
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Ваша тема буде випущена на умовах такої ліцензії:"
+msgstr "Ваш додаток буде випущений на умовах такої ліцензії:"
 
 msgid "Select a different license."
 msgstr "Виберіть іншу ліцензію."
@@ -3511,9 +3507,8 @@ msgstr "Сайт підтримки:"
 msgid "License:"
 msgstr "Ліцензія:"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Оберіть ліцензію у відповідності до прав, які ви обрали для свого програмного коду."
+msgstr "Оберіть ліцензію у відповідності до прав, що ви надаєте."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Якщо ваш додаток передає будь-які дані з комп'ютера користувача, то необхідно мати політику приватності з поясненням, які дані передаються та яким чином вони використовуються."
@@ -4003,9 +3998,8 @@ msgstr "Інструмент командного рядка для створе
 msgid "Automated code tests for your add-on."
 msgstr "Автоматизовані тести коду вашого додатку."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Тести сумісності"
+msgstr "Тест сумісності"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Перевірте, чи ваше розширення сумісне з Firefox."
@@ -5222,7 +5216,6 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Хто створює ці додатки?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
@@ -5990,13 +5983,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Як я можу повідомити про невідповідний відгук чи спам?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "Щоб повідомити про відгук користувача на додаток, увійдіть в систему під своїм обліковим записом і відвідайте сторінку відгуків на додаток. Знайдіть відгук, про який ви хочете повідомити, перейдіть "
-"на сторінку \"Повідомити про цей відгук\" і виберіть причину. Наша команда редакторів розгляне відгук і вживе відповідних заходів."
+"на сторінку \"Повідомити про цей відгук\" і виберіть причину. Наша команда редакторів розгляне відгук і застосує відповідні заходи."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Як я можу повідомити про помилку чи зв'язатися з командою додатків Mozilla?"
@@ -6321,7 +6313,6 @@ msgid "end"
 msgstr "кінцева"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
 msgstr "додаток, редактор чи коментар"
 
@@ -6808,9 +6799,8 @@ msgstr "Корисні посилання:"
 msgid "Add-on Policy"
 msgstr "Політика додатку"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Інструкція редактора"
+msgstr "Настанови редактора"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6869,9 +6859,8 @@ msgstr "Перевірено на:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Увага!</strong> Інший користувач переглядав цю сторінку перед вами."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Ця дошка є місцем для обміну інформацією, яка відноситься до цього додатку (незалежно від версії), між розробником і редактором. Вона видима і доступна для редагування обом."
+msgstr "Ця дошка є місцем для обміну інформацією, яка стосується цього додатку (незалежно від версії), між розробником і редактором. Вона видима і доступна для редагування їм обом."
 
 msgid "Update the whiteboard"
 msgstr "Оновити дошку"
@@ -7164,9 +7153,8 @@ msgstr "Ви не можете залишати відгук для власно
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ви не можете залишати більше одного відгуку для однієї версії додатку."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Дякуємо; цей відгук був помічений для підтвердження редактора."
+msgstr "Дякуємо; цей відгук був позначений для схвалення редактором."
 
 msgid "Add a review for {0}"
 msgstr "Додати відгук для {0}"
