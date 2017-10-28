@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-10-26 06:54+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,10 +79,6 @@ msgstr "Sider tura"
 
 msgid "Download"
 msgstr "Sider"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Kemmel asider &nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Ifaz"
@@ -163,12 +159,6 @@ msgstr "Glem asentel inek."
 msgid "Enter a new author's email address"
 msgstr "Mud tansa imayl n umeskar amaynut"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Iseqdacen zemred ad ttekkin s wayen nniḍen ama ugar neɣ drus γef aya."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Ad yettwasuter yal tikelt i yiseqdacen deg umsefrak n izegrar (Firefox 4 akked ileqman imaynuten). Ur yettwasnas ala γef ileqman n uselkim."
-
 msgid "Listed"
 msgstr "Yettwabder"
 
@@ -200,95 +190,6 @@ msgstr "Azegrir-agi ur tales ara degs tmuγli Mozilla. <a href=\"%(url)s\">Issin
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Azegrir-agi yettwacreḍ d armitan sɣur ineflayen-ines."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Aneflay n uzegrir-agi isutur-ak-d tallalt akken ad iseddu taneflit ines ticki tmuddeḍ-as cwiṭ n tewsa."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Aneflay n uzegrir-agi isutur-ak-d tallalt s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Ttekki"
-
-#. Click Contribute button OR Install button
-msgid "or"
-msgstr "neγ"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Attekki yettusumren: {0}"
-
-msgid "What's this?"
-msgstr "D acu-t wa?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> ma tḥemled aseqdec n uzegrir-agi."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> ma tḥemled aseqdec n uzegrir-agi."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla tesseḥbibir γef unagraw n tasenwennaḍt n uneflay uzmir, iteggen lḥir. Attekki yinek afrayan ad imudd tallalt i tneflit d-iteddun γef uzegrir-agi."
-
-msgid "Make a Contribution"
-msgstr "Ttekki"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Ttekki di tneflit iteddun n <strong>%(addon_name)s</strong> s umuddu n cwiṭ n tewsa s <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "Acu tebγiḍ ad taruḍ?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "Azal afellay n uttekki d {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "Azal adday n uttekki d {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Yessef azal n uttekki ad yili d amḍan."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Asumer n uttekki afus s lqed n {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Attekki asuf n {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Eǧǧ-d awennit neγ suter s uttekki yinek."
-
-msgid "(optional)"
-msgstr "(afrayan)"
-
-msgid "Make Contribution"
-msgstr "Ttekki"
-
-msgid "Contacting PayPal"
-msgstr "Anermes n PayPal"
-
-msgid "No Thanks"
-msgstr "Ala, tanemmirt"
-
-msgid "Contribution made, thank you."
-msgstr "Attekki yettwag, tanemmirt."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -376,15 +277,6 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} aseqdac"
 msgstr[1] "{0} iseqdacen"
-
-msgid "Payment cancelled"
-msgstr "Asellek yettwasefsex"
-
-msgid "Payment completed"
-msgstr "Afru yemmed"
-
-msgid "Return to the addon."
-msgstr "Uγal γer uzegrir."
 
 msgid "by"
 msgstr "sγur"
@@ -488,6 +380,9 @@ msgstr ""
 msgid "Send Report"
 msgstr "Azen aneqqis"
 
+msgid "or"
+msgstr "neγ"
+
 msgid "Cancel"
 msgstr "Sefsex"
 
@@ -518,8 +413,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Wali <a href=\"%(support)s\">tigezmi n tallalt</a> n uzegrir-agi akken ad tafeḍ ma tella tallalt. Tzemreḍ daɣen ad tɛerḍeḍ ad tesutreḍ tallalt i <a href=\"https://discourse.mozilla-community.org/c"
-"/add-ons/add-on-support\">tamezdagunut n uzegrir</a>."
+"Wali <a href=\"%(support)s\">tigezmi n tallalt</a> n uzegrir-agi akken ad tafeḍ ma tella tallalt. Tzemreḍ daɣen ad tɛerḍeḍ ad tesutreḍ tallalt i <a href=\"https://discourse.mozilla-community.org/c/"
+"add-ons/add-on-support\">tamezdagunut n uzegrir</a>."
 
 msgid "Review Guidelines"
 msgstr "Amnir n ucegger"
@@ -561,25 +456,6 @@ msgstr "Tisirag"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Azegrir-agi yettwacreḍ d armitan sɣuṛ ineflayen ines"
-
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> yettusumer"
-
-msgid "Enjoy this add-on?"
-msgstr "Tḥemleḍ azegrir-agi?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessututr afus akken ad ikemmel taneflit s umuddu n cwiṭ n tewsa."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessutur afus s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessutur afus s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Azegrir-agi yesra izegrar-agi akken ad yeddu akken iwata:"
@@ -624,14 +500,14 @@ msgstr "Asefrek n unedbal"
 msgid "Icon of {0}"
 msgstr "Tignit i {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Mlal akked uneflay : <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Mlal ineflayen</a>"
+msgid "Contribute"
+msgstr "Ttekki"
 
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Issin acuɣer {0} yerna u yufa-d d acu ara yilin ɣer zdat ɣef uzegrir agi."
+msgid "Enjoy this add-on?"
+msgstr "Tḥemleḍ azegrir-agi?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "Aneflay n uzegrir-agi isutur-ak-d tallalt akken ad iseddu taneflit ines ticki tmuddeḍ-as cwiṭ n tewsa."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -694,8 +570,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr ""
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
@@ -707,34 +583,6 @@ msgstr ""
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Tanemmirt qef usebded n {0}"
-
-#. {0} is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Mlal akked uneflay {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Send ad tesidreḍ azegrir-agi, tanemmirt ma txemmed ad tmuddeḍ afus i tneflit ines s umuddu n cwiṭ n tewsa."
-
-msgid "Why was {0} created?"
-msgstr "Acuɣer {0} yettwarna?"
-
-msgid "What's next for {0}"
-msgstr "D acu d-iteddun di {0}"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "Γef uneflay"
-msgstr[1] "ɣef ineflayen"
-
-msgid "No Photo"
-msgstr "Ulac tawlaft"
-
-msgid "Who is {0}?"
-msgstr "D anwa i {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Azegrir agi yekkes-it umeskar ines."
@@ -904,16 +752,16 @@ msgstr "Ulac-it"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel nneɣ. Ahat tsiteḍ ɣef useɣwen yemmmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
-"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, ad"
-" neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> Tebɣiḍ"
-" <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a "
-"href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
+"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, "
+"ad neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> "
+"Tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu "
+"ar <a href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ay ay ay"
@@ -950,6 +798,9 @@ msgstr "Kra n tmahilin deg usebter-agi ttwasensent akka tura makken nettseggim a
 
 msgid "Are you human?"
 msgstr "D amdan kečč?"
+
+msgid "What's this?"
+msgstr "D acu-t wa?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1092,11 +943,11 @@ msgstr "Ileqman"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel "
-"%(amo_manifests_mdn_link_open)sdagi%(amo_manifests_mdn_link_close)s."
+"Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel %(amo_manifests_mdn_link_open)sdagi"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "Contributors"
 msgstr "Iwiziwen"
@@ -1209,6 +1060,9 @@ msgstr "Senker tagrumma tamaynut"
 msgid "Name:"
 msgstr "Isem:"
 
+msgid "(optional)"
+msgstr "(afrayan)"
+
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "neɣ <a id=\"collections-new-cancel\" href=\"#\">Sefsex</a>"
 
@@ -1293,12 +1147,12 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-ttwalin"
-" ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
+"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-"
+"ttwalin ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Izegrar yettwabezmen d inurifen s useqdec n  tmahilt <b>Rnu ar inurifen</b> ad d-banen daw-a. Tagrumma-agi akka tura d <b>tusligt</b>, ayen d-immalen d akken ala kečč i yezmren ad tt-waliḍ. Ma "
 "tebɣiḍ akken yal yiwen ad tt-iwali, sit ɣef tqeffalt daw-a akken ad tt-terreḍ d tazayezt."
@@ -1615,8 +1469,8 @@ msgstr "Sider akemmus n tutlayt"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 
 msgid "Available in your locale"
@@ -1787,8 +1641,8 @@ msgstr "Ineqqisen umṣada n izegrar"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Ineqqisen iɣ-d-yewwḍen s <a href=\"%(url_)s\">Amazan n umṣada n uzegrir</a> ttwaleqḍen-d dagi akken ineflayen ad izmiren ad ten-walin. Ineqqisen-agi aɣ-d-mudden tallalt akken ad d-naf "
 "izegraryesran tallalt di lqem d-iteddun n Firefox. </p>"
@@ -2451,6 +2305,51 @@ msgstr "Asefru n usmel"
 msgid "Web and Developer Tools"
 msgstr "Ifecka n uneflay Web"
 
+msgid "All Rights Reserved"
+msgstr "Akk izerfan ttwaḥerzen"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "Win illan"
+
+msgid "All Platforms"
+msgstr "Akk tilɣubliḍin"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Isfuyla"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "Asnas"
 
@@ -2601,51 +2500,6 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr "Ugur deg ureyyec n tugna n uqeṛṛu"
 
-msgid "All Rights Reserved"
-msgstr "Akk izerfan ttwaḥerzen"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Win illan"
-
-msgid "All Platforms"
-msgstr "Akk tilɣubliḍin"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Isfuyla"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Iγes"
 
@@ -2691,33 +2545,6 @@ msgstr "Azegrir-agi ɣur-s tasertit tabaḍnit"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ma ulac aɣilif, mudd-d tasertit n tbadnit n uzegrir inek:"
-
-msgid "Why did you make this add-on?"
-msgstr "Acuɣeṛ teggiḍ azegri-agi?"
-
-msgid "What's next for this add-on?"
-msgstr "D acu yellan sakin i uzegrir-agi?"
-
-msgid "The developers of this add-on"
-msgstr "Aneflay n uzegrir-agi"
-
-msgid "The Mozilla Foundation"
-msgstr "Tasbeddit Mozilla"
-
-msgid "An organization of my choice"
-msgstr "Tuddsa i bɣiɣ"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Ma ulac aɣilif mudd-d tallayt yugaren 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Ma ulac aɣilif mudd-d tallayt daw n {0} $."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "Asulay ID n PayPal yettwasra akken ad yettwaqbel uttekki."
-
-msgid "Could not validate PayPal id."
-msgstr "Ur izmir ara ad isentem asulay id n PayPal."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
@@ -2791,7 +2618,8 @@ msgstr ""
 "Asekrek deg usmel. <span class=\"helptext\">Asumer inek ad yeffeɣ ɣef usmel-agi  akked umsefrak n izegrar n  Firefox  i yefḍan n iseqdacen, ticki yettwag ucegger n tengakt. Ileqman iwurmanen ad "
 "ttwasferken deg usmel-agi. Azegrir-agi ad tt-awi-t Mozillaakken ad tesnerni-t neq ad tger-it deg temzizliyin. Azuzer udmawan n ifuyal yzmer daɣen a yili..</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
 
@@ -2875,9 +2703,6 @@ msgstr "Tamlilt n umeskar tettusnifel ɣef uzegri inek"
 msgid "An author has been removed from your add-on"
 msgstr "Ameskar yettwakkes seg uzegrir inek"
 
-msgid "There were errors in your submission."
-msgstr "Llan tuccḍiwin di tuzna-inek."
-
 msgid "Validate Add-on"
 msgstr "Sentem azegrir"
 
@@ -2945,8 +2770,8 @@ msgstr "Tasarutt API tettwaḥwi"
 
 #, fuzzy
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n izegrar n Firefox. Ayagi yegber aseqwen ar tsertit n tbaḍnit id-yemmalen amek ad nsefrek taɣut icudden ɣur-k."
 
 msgid "Firefox Add-on Distribution Agreement"
@@ -2959,17 +2784,8 @@ msgstr "Tasertit n ucegger"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ɣriɣ yerna qebleɣ amtawa-agi akk d walugen d tsertiyin"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n izegrar n Firefox. Ayagi yegber aseqwen ar tsertit n tbaḍnit id-yemmalen amek ad nsefrek taɣut icudden ɣur-k."
-
-msgid "Printable Version"
-msgstr "Lqem yettwasaggazen"
-
 msgid "Accept"
 msgstr "Qbel"
-
-msgid "I Accept this Agreement"
-msgstr "Qebleɣ amtawa-agi"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "neɣ <a href=\"{0}\">Sefsex</a>"
@@ -3089,8 +2905,12 @@ msgid ""
 msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close"
+"\">Anef</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen."
@@ -3150,26 +2970,6 @@ msgid ""
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 
-msgid "Manage Developer Profile"
-msgstr "Sefrek amaɣnu n uneflay"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "<a href=\"%(url)s\">Amaɣnu inek</a> n uneflay d <strong>azayez</strong>  akka tura udiɣ <strong>yettwasra</strong> deg uttekki."
-
-msgid "Remove Both"
-msgstr "Kkes-iten i sin"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "<a href=\"%(url)s\">Amaɣnu-ik n uneflay</a> d <strong>azayez </strong> akka tura."
-
-msgid "Remove Profile"
-msgstr "Kkes amaɣnu"
-
-msgid "Create Profile"
-msgstr "Rnu amaɣnu"
-
 msgid "Basic Information"
 msgstr "Talγut tazadurt"
 
@@ -3220,7 +3020,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -3281,8 +3082,8 @@ msgid "Support Information for {0}"
 msgstr "Talγut n tallalt i {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3372,8 +3173,8 @@ msgid "Whiteboard"
 msgstr "Tafelwit tamellalt"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Remove this dependent add-on"
@@ -3429,6 +3230,43 @@ msgstr "Ma ulac aɣilif, mudd-d aglam i uzegrir inek:"
 
 msgid "Add a Screenshot..."
 msgstr "Rnu tuṭṭfa n ugdil"
+
+#, fuzzy
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
+#, fuzzy
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
+
+#, fuzzy
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "Yes, as long as they share alike"
+msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ""
+
+#, fuzzy
+msgid "Your Add-on will be released under the following license:"
+msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
+
+msgid "Select a different license."
+msgstr "Fren turagt nniḍen."
 
 msgid "Tests"
 msgstr "Ikayaden"
@@ -3511,9 +3349,6 @@ msgstr "Tidaddanin n yal ass ɣef usider akked iseqdacen."
 
 msgid "Statistics"
 msgstr "Tidaddanin"
-
-msgid "Manage Payments"
-msgstr "Sefrek asellek"
 
 msgid "Manage Status & Versions"
 msgstr "Sefrek addad & ileqman"
@@ -3607,7 +3442,8 @@ msgstr "Asmel n tallalt:"
 msgid "License:"
 msgstr "Turagt:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
+#, fuzzy
+msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Ma ulac aɣilif, fren turagt ilaqen i yizerfan i tebɣiḍ ad tsedduḍ i tengalt inek aɣbalu."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
@@ -3625,14 +3461,8 @@ msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
 msgid "Cancel and Disable Version"
 msgstr "Sefsex sakin sens lqem"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Sefsex acegger sakin sens lqem"
-
 msgid "Submit Version"
 msgstr "Azen lqem"
-
-msgid "Submit Version for Review"
-msgstr "Azen lqem i ucegger"
 
 msgid "Describe Version"
 msgstr "Seglem lqem"
@@ -3758,8 +3588,8 @@ msgstr "Sser JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3839,36 +3669,6 @@ msgstr "Lqem aneggaru:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara."
-
-msgid "(required since this add-on accepts contributions)"
-msgstr "(yettwasra acku azegrir-agi yetteqbal ittekkiyen)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Sefrek amaɣnu yinek n uneflay"
-
-msgid "Create a Developer Profile"
-msgstr "Rnu amaɣnu n uneflay"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-
-msgid "Make sure your user profile is up to date."
-msgstr "Wali ma yella amaɣnu yinek n useqdac yettusmiren."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Smiren amaɣnu yinek n useqdac.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
 
 msgid "Upload New Version"
 msgstr "Sali lqem amaynut"
@@ -3980,11 +3780,11 @@ msgstr "Azen-d abug"
 msgid "Site Status"
 msgstr "Addad n usmel"
 
+msgid "Web-Ext: build & test extensions"
+msgstr ""
+
 msgid "Compatibility Checker"
 msgstr "Asenqad n umṣada"
-
-msgid "Compatibility Reporter"
-msgstr "Amazan n umṣada"
 
 msgid "Promote"
 msgstr "Smel"
@@ -4079,6 +3879,9 @@ msgstr "Isemliyen"
 msgid "Sign Out"
 msgstr "Ffeγ"
 
+msgid "No Photo"
+msgstr "Ulac tawlaft"
+
 msgid "User Photo"
 msgstr "Tawlaft n useqdac"
 
@@ -4091,11 +3894,11 @@ msgstr "Sagen Firefox"
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>,ɣur-k"
-" abrid yeldi akken ad teggeḍ azegrir meqqṛen."
+"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>,ɣur-"
+"k abrid yeldi akken ad teggeḍ azegrir meqqṛen."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Issin amek ara tesniflid azegrir"
@@ -4116,112 +3919,21 @@ msgstr "Γur-k yakan azegrir iheggan? Azen asiɣzef-inek neγ asentel-inek ara d
 msgid "Sign In"
 msgstr "Kcem"
 
-msgid "Validator"
-msgstr "Amsentem"
+msgid "Web-Ext"
+msgstr ""
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr ""
 
 msgid "Automated code tests for your add-on."
 msgstr "Ikayaden n tengalt awurman i uzegrir-inek."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Wali ma yella azgrir inek yezmer ad ittuḥaz s usnifel n Firefox."
+#, fuzzy
+msgid "Compatibility Test"
+msgstr "Ikayaden n umṣada"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Ini-yaɣ-d ma yella azegrir iteddu kan akked yiwen n lqem n Firefox."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "Aqla-k tura tessutureḍ  <b>attekki</b> i yiseqdacen"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Asebter inek n uttekki: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Sens attekki"
-
-msgid "Voluntary Contributions"
-msgstr "Ittekkiyen n twizi"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
+msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Fren melmi ara nini i yiseqdacen ad ttekkin d wamek"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Rmes ittekkiyen deg umiḍan-ik PayPal neɣ azen-iten i tkebbanit i tferneḍ"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Attekki ad yili kan i yezegrar s ileqman id-yettwaseknen."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Attekki yella kan i yizegrar yettwasentmen."
-
-msgid "Set up Contributions"
-msgstr "Sbadu ittekkiyen"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Amecwaṛ 2. Tasqamt akked tilin"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "neɣ <a href=\"%(cancel)s\">Sefsex</a>"
-
-msgid "Contributions"
-msgstr "Ittekkiyen"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Ččaṛ urtan daw-a akken ad tebduḍ asuter n twizi i yiseqdacen."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Anwa ara yeremsen ittekkiyen n uzegrir-agi?"
-
-msgid "What is the name of the organization?"
-msgstr "Isem-is tkebbanit-agi?"
-
-msgid "What is the URL of the organization?"
-msgstr "D acu-tt tensa URL n tkebbanit?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "D acu-t usulay ID PayPal n tkebbanit?"
-
-msgid "What is your PayPal ID?"
-msgstr "D acu-t usulay-ik ID PayPal?"
-
-msgid "Sign up for PayPal"
-msgstr "Jerred di Paypal"
-
-msgid "What is your suggested contribution?"
-msgstr "D acu-t uttekki i d-sumreḍ?"
-
-msgid "(Example: 3.99)"
-msgstr "(Amedya: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Melmi ara nesuter attekki n iseqdacen?"
-
-msgid "Send a thank-you note?"
-msgstr "Azen tazmilt n tanemmirt?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Nettazen s wudem awurman imayl i yiseqdacen ittekkan deg uzegrir akked yizen-agi."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-
-msgid "Activate Contributions"
-msgstr "Rmed attekki"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "neɣ <a id=\"setup-cancel\" href=\"#\">Sefsex</a>"
 
 msgid "Transfer ownership"
 msgstr "Beddel imawlan n uzegrir"
@@ -4247,35 +3959,14 @@ msgstr "Turagt n usentel"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "Yes, as long as they share alike"
-msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
-
-msgid "Select a different license."
-msgstr "Fren turagt nniḍen."
 
 msgid "Select a license for your Theme."
 msgstr "Fren turagt i usentel inek."
@@ -4344,8 +4035,8 @@ msgstr "Mudd isem i usentel inek."
 
 #, fuzzy, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Qebleɣ  <a href=\"%(agreement_url)s\">Amtawat n uzuzer n izegrar Firefox </a> udiq qeble d akken talɣut icudden ɣur-s ad tettwasesfer am akken d-ittummel di <a href=\"%(privacy_notice_url)s\"> "
 "tserstit n tbadnit icudden ar ismal web, ar teɣwalt akked inagan n tuqqna</a>."
@@ -4613,857 +4304,6 @@ msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
-msgid "Approved reviews"
-msgstr "Iceggiren yettwasnetmen"
-
-msgid "Deleted reviews"
-msgstr "Iceggiren yettwaksen"
-
-msgid "View entries between"
-msgstr "Wali inekcumen gar"
-
-msgid "and"
-msgstr "akked"
-
-msgid "Filter by type/action"
-msgstr "Imzizdig s wanaw /action"
-
-msgid "Passed automatic validation"
-msgstr "Aseɣbel awurman ittwasuref"
-
-msgid "Failed automatic validation"
-msgstr "Aseɣbel awurman ur yeddi ara"
-
-msgid "Filter by automatic validation"
-msgstr "Imzizdig s usentem awurman"
-
-msgid "containing"
-msgstr "agbur"
-
-msgid "start"
-msgstr "tazwara"
-
-msgid "end"
-msgstr "tagara"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "azegrir, amaẓrag neɣ awennit"
-
-msgid "Search by add-on name / author email"
-msgstr "Nadi s yisem n uzegrir / imayl n umeskar"
-
-msgid "yes"
-msgstr "ih"
-
-msgid "no"
-msgstr "ala"
-
-msgid "Admin Flag"
-msgstr "Tabzimt n unedbal"
-
-msgid "Add-on Types"
-msgstr "anawen n uzegrir"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Nadi s yisem n uzegrir / imayl n umeskar / guid"
-
-msgid "Max. Version"
-msgstr "Lqem afellay"
-
-msgid "Comments:"
-msgstr "Iwenniten:"
-
-msgid "Operating systems:"
-msgstr "Inagrawen n wammud:"
-
-msgid "Applications:"
-msgstr "Isnasen:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-msgid "Clear Admin Review Flag"
-msgstr ""
-
-msgid "Is more info requested?"
-msgstr "Tesriḍ ugar n talγut?"
-
-msgid "Choose a canned response..."
-msgstr "Fren tiririt yettwakelsen..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "isem n usentel"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Yella win nniden yettceggiren asentel-agi."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "asentel, imcegger, neɣ awennit"
-
-msgid "Keep review; remove flags"
-msgstr ""
-
-msgid "Skip for now"
-msgstr "Suref akka tura"
-
-msgid "Delete review"
-msgstr "Kkes acegger"
-
-msgid "Admin Review"
-msgstr "Acegger n unedbal"
-
-msgid "Jetpack Add-on"
-msgstr "Azegrir Jetpack"
-
-msgid "More Information Requested"
-msgstr "Ugar n telɣut tettusuter"
-
-msgid "Contains Reviewer Comment"
-msgstr "Igber awennit n imcegger"
-
-msgid "Sources provided"
-msgstr "Iγbula d-ittunefken"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Iseqdac CSP udmawan."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Iseqdac tisirag nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr "Isεa aṭas n iseqdacen n yal ass."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr "Ittwawcem i umcegger anedbal."
-
-msgid "Is locked by a reviewer."
-msgstr "Iwḥel sγur imcegger."
-
-msgid "Duplicate Submission"
-msgstr "Tuzna snat n tikal"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Tanemmirt ɣef tuzna n usentel"
-
-msgid "A problem with your Theme submission"
-msgstr "Ugur di tuzna n usentel inek"
-
-msgid "Theme submission flagged for review"
-msgstr "Tuzna n usentel tettwacreḍ i usezmel"
-
-msgid "A question about your Theme submission"
-msgstr "Asteqsi ɣef tuzna n usentel inek"
-
-msgid "Type"
-msgstr "Anaw"
-
-msgid "Waiting Time"
-msgstr "Akud n uṛaǧu"
-
-msgid "Flags"
-msgstr "Anayen"
-
-msgid "moments ago"
-msgstr "kra n wakud aya"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} tasdat"
-msgstr[1] "{0} tisdatin"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} asrag"
-msgstr[1] "{0} isragen"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} ass"
-msgstr[1] "{0} ussan"
-
-msgid "Last Review"
-msgstr "Acegger aneggaru"
-
-msgid "Last Update"
-msgstr "Aleqqem aneggaru"
-
-msgid "No Reviews"
-msgstr "Ulac iceggiren"
-
-msgid "Weight"
-msgstr "Taẓayt"
-
-#, fuzzy
-msgid "Last Content Review"
-msgstr "Acegger aneggaru"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Tigawt-agi ad tagi lqem-agi akk ad t-tekkes seg wedras. Iwenniten ad ttwaznen i uneflay."
-
-msgid "Confirm Approval"
-msgstr "Sentem aqbal"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr "Aggwi aṭas n ilqman"
-
-#, fuzzy
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
-
-msgid "Reviewer reply"
-msgstr "Tiririt n umcegger"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Qbel / Agwi"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Izegrar imaynuten (Daw n 5 n wussan)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Ilemmasen (5 ar 10 n wussan)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Iqbuṛen (Ugar n 10 n wussan)"
-
-msgid "An unknown error occurred"
-msgstr "Taḍra-d tuccda tarussint"
-
-msgid "Self-reviews are not allowed."
-msgstr ""
-
-msgid "Review successfully processed."
-msgstr "Acegger yemmed akken iwata."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-
-msgid "{addon} :: Abuse Reports"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Iteddu s"
-
-msgid "Visibility"
-msgstr "Tametwalant"
-
-msgid "Visible"
-msgstr "Uman"
-
-msgid "Average Daily Users"
-msgstr "Talemmsat n iseqdacen n yal ass"
-
-msgid "Abuse Reports"
-msgstr "Assaγ n uẓekker"
-
-msgid "View Privacy Policy"
-msgstr "Wali tasertit n tbaḍnit"
-
-msgid "Requires Payment"
-msgstr "Yesra asellek"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "Azemz aneggaru n waqbal"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
-msgid "Abuse Reports ({num})"
-msgstr "Assaγ n uẓekker ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Iceggireni ddiri n useqdac ({num})"
-
-msgid "More about this add-on"
-msgstr "Ugar γef uzegrir-agi"
-
-msgid "Image Gallery"
-msgstr "Timidelt n tugniwin"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
-
-msgid "Queues"
-msgstr "Yettwarna ar udras"
-
-msgid "New Add-ons"
-msgstr "Izegrar imaynuten"
-
-msgid "Updates"
-msgstr "Ileqman"
-
-msgid "Moderated Reviews"
-msgstr ""
-
-msgid "Auto Approved Add-ons"
-msgstr "Qbel s wudem awurman izegrar"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Azen acegger"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
-msgstr "Akk izegrar ur yettwabdren ara"
-
-msgid "Logs"
-msgstr "Iɣmisen"
-
-msgid "Add-on Review Log"
-msgstr "Aɣmis n ucegger n uzegrir"
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Tullɣa"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Imzizdig"
-
-msgid "Date"
-msgstr "Azemz"
-
-msgid "Event"
-msgstr "Tadyant"
-
-msgid "More details."
-msgstr "Ugar n telqayt"
-
-msgid "No events found for this period."
-msgstr "Ulac tidyanin yettwafen di twala-agi."
-
-msgid "Log details"
-msgstr "Talqayt n uɣmis"
-
-msgid "Review Author"
-msgstr "Cegger ameskar"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Azwel n uzegrir"
-
-msgid "Review Title"
-msgstr "Azwel n ucegger"
-
-msgid "Review Text"
-msgstr "Aḍris n ucegger"
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr "Sefsex tukksa"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Azegrir amaynut ({num})"
-msgstr[1] "Izegrar imaynuten ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Lqem ({num})"
-msgstr[1] "Ileqman ({num})"
-
-msgid "Current waiting times:"
-msgstr "Akkud n uraǧu anazzal:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} azegrir"
-msgstr[1] "{0} izegrar"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Amḍan amatu n iceggiren"
-
-msgid "Reviews This Month"
-msgstr "Iceggiren n waggur-agi"
-
-msgid "New Reviewers"
-msgstr "Imceggiren imaynuten"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "aqlak d  #{0} akked {1} n iceggiren"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Reviewer Leaderboard"
-msgstr "Agzul n umaẓrag"
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
-msgstr "Agmuḍ"
-
-msgid "Update message of the day"
-msgstr "Snifel izen n wass"
-
-msgid "Save"
-msgstr "Sekles"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Timellit n imcegger n uzegrir"
-
-msgid "View statistics for user"
-msgstr "Sken tidaddanin i useqdac"
-
-msgid "Range"
-msgstr "Azilal"
-
-msgid "Your Reviews"
-msgstr "Iceggiren inek"
-
-msgid "By {user_name}"
-msgstr "Sɣur {user_name}"
-
-msgid "Active Contributors"
-msgstr "Iceggiren inek"
-
-msgid "This Month"
-msgstr "Aggur-agi"
-
-msgid "This Year"
-msgstr "Aseggass-agi"
-
-msgid "Monthly Performance"
-msgstr "Timellit n waggur"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Total"
-msgstr "Asemday"
-
-msgid "Month"
-msgstr "Aggur"
-
-msgid "Year"
-msgstr "Aseggwass"
-
-msgid "All-Time"
-msgstr "Yal tikelt"
-
-msgid "Advanced Search"
-msgstr "Anadi leqqayen"
-
-msgid "clear search"
-msgstr "sfeḍ anadi"
-
-msgid "Process Reviews"
-msgstr "Ddu ar ucegger"
-
-msgid "Moderation actions:"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "sɣuṛ %(user)s di %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %(user)s di %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Akk iceggiren ttwagen. Igzrrez uxeddim!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr ""
-
-msgid "Helpful Links:"
-msgstr "Iseɣwan iwulmen:"
-
-msgid "Add-on Policy"
-msgstr "Tasertit n uzegrir"
-
-msgid "Editors' Guide"
-msgstr "Amnir n umaẓrag"
-
-#. "Content Review [add-on name]"
-#, fuzzy
-msgid "Content Review {0}"
-msgstr "Acegger {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Acegger {0}"
-
-msgid "Add-on user change history"
-msgstr ""
-
-msgid "Add-on History"
-msgstr "Amazray n uzegrir"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Amṣada:"
-
-msgid "Additional sources:"
-msgstr "Tiɣbula nniḍen:"
-
-msgid "Download files"
-msgstr "Sider ifuyla"
-
-msgid "The developer has provided source code."
-msgstr "Aneflay yefka-d tangalt taɣbalut."
-
-msgid "Weight:"
-msgstr "Taẓayt:"
-
-msgid "Not Auto Approved Because"
-msgstr "Ur ittwaqbel ara s wudem awurman acku"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "Lqem-agi ur yettwacegger ara yakan."
-
-msgid "Please select one or more versions in the list above."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr "Sekcem tiririt yettwakelsen..."
-
-msgid "Files:"
-msgstr "Ifuyla:"
-
-msgid "Tested on:"
-msgstr "Yettwasekyed di:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
-
-msgid "Update the whiteboard"
-msgstr "Snifel tafelwit tamellalt"
-
-msgid "(admin)"
-msgstr "(anedbal)"
-
-msgid "Admin Page"
-msgstr "Asebter n unedbal"
-
-msgid "Review This Add-on"
-msgstr "Cegger azegrir-agi"
-
-msgid "More Information"
-msgstr "Ugar n telɣut"
-
-msgid "Resolution"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "Amcegger"
-
-msgid "Add-on has been deleted."
-msgstr "Azegrir yettwakkes."
-
-msgid "Show Comments"
-msgstr "Sken iwenniten"
-
-msgid "Hide Comments"
-msgstr "Ffer iwenniten"
-
-msgid "No reviews found for this period."
-msgstr ""
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
-
-msgid "Dismiss this announcement"
-msgstr ""
-
-msgid "Files in this version:"
-msgstr "Ifuyla di lqem-agi:"
-
-msgid "Contents"
-msgstr "Igburen"
-
-msgid "Compare"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Tisirag:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Sɛuṛ %(user)s di %(date)s</div>"
-
-msgid "Older"
-msgstr "Aqbuṛ"
-
-msgid "Newer"
-msgstr "Amaynut"
-
-msgid "Recent Points"
-msgstr ""
-
-msgid "No points awarded yet."
-msgstr ""
-
-msgid "Top Reviewers (past 7 days)"
-msgstr ""
-
-msgid "No top reviewers yet."
-msgstr ""
-
-msgid "All Time"
-msgstr "Yal tikelt"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Ɣur-k <span> {0} </span> n tneqqiḍin."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s di %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Azemz yettwakkes"
-
-msgid "No deleted themes found for this period."
-msgstr "Ulac isentall yettwakksen i yettwafen deg akud-agi."
-
-msgid "Theme Review History for {0}"
-msgstr "Amazray n ucegger n uselten i {0}"
-
-msgid "Review Date"
-msgstr "Azemz n ucegger"
-
-msgid "Action"
-msgstr "Tigawt"
-
-msgid "Reason"
-msgstr "Acuɣer"
-
-msgid "There are currently no reviews."
-msgstr "Ulac akka tura iceggiren."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Asentel yettṛaǧun asentem"
-msgstr[1] "{num} Isental yettṛaǧun asentem"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Lqem"
-msgstr[1] "{num} Ileqman"
-
-msgid "Flagged Themes"
-msgstr "Isental yettwacegren"
-
-msgid "Theme Review Queue"
-msgstr ""
-
-msgid "Review Options"
-msgstr "Iɣewwaṛen n ucegger"
-
-msgid "Auto-advance after review"
-msgstr ""
-
-msgid "Enable keyboard shortcuts"
-msgstr "Rmed inegzumen n unasiw"
-
-msgid "Keyboard Shortcuts"
-msgstr "Inegzumen n unasiw"
-
-msgid "Next Theme"
-msgstr "Asentel d-iteddun"
-
-msgid "Previous Theme"
-msgstr "Asentel yezrin"
-
-msgid "Your Review History"
-msgstr "Amazray-inek n ucegger"
-
-msgid "Commit Review"
-msgstr "Azen acegger"
-
-msgid "Commit Reviews"
-msgstr ""
-
-msgid "{0} out of {1} reviewed"
-msgstr ""
-
-msgid "There are currently no Themes to review."
-msgstr ""
-
-msgid "Clear Search"
-msgstr "Sfeḍ Anadi"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr ""
-
-msgid "Reviewers' Guide"
-msgstr ""
-
-msgid "Theme Review for {0}"
-msgstr "Acegger n usentel i {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr ""
-
-msgid "Past Review Notes"
-msgstr ""
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Ugar n telɣut tettusuter: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Yettwacreḍ: {0}"
-
-msgid "Approve Theme"
-msgstr "Qbel asentel"
-
-msgid "Field required"
-msgstr "Urti yettwasra"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Sekcem asumlay ID neɣ tansa URL n usilgen"
-
-msgid "Select a reason for rejection"
-msgstr "Fren acuɣer tugin"
-
-msgid "Describe your reason for rejection"
-msgstr "Mudd aglam n wacuqer tugin"
-
-msgid "Ask a question to the artist"
-msgstr "Steqsi anaẓuṛ"
-
-msgid "Describe your reason for flagging"
-msgstr "Ini-d acuɣer acraḍ"
-
-msgid "Rejected or Unreviewed"
-msgstr "Yettwagi neɣ ur ittucegger ara"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[addad:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Azegrir amaynut ({0})"
-msgstr[1] "Izegrar imaynuten ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Lqem ({0})"
-msgstr[1] "Ilqeman ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Qbel s wudem awurman azegrir ({0})"
-msgstr[1] "Qbel s wudem awurman izegrar ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Agbur ittwacegger ({0})"
-msgstr[1] "Agbur ittwacegger ({0})"
-
-msgid "Flagged"
-msgstr "Yettwasezmel"
-
 msgid "Cannot diff a version against itself"
 msgstr "Ur izmir ara ad isiḍen amgired gar sin ileqman yettemcabin"
 
@@ -5566,6 +4406,9 @@ msgstr "Asesfer n ufaylu n uzegrir iteddu, ma ulac aɣilif, ṛǧu."
 
 msgid "Fetching validation results..."
 msgstr ""
+
+msgid "Files:"
+msgstr "Ifuyla:"
 
 msgid "Deleted files:"
 msgstr "Kkes ifuyla:"
@@ -5770,6 +4613,9 @@ msgstr ""
 
 msgid "Add-ons downloaded:"
 msgstr "Izegrar yettwasidren:"
+
+msgid "View Privacy Policy"
+msgstr "Wali tasertit n tbaḍnit"
 
 msgid "Active Users"
 msgstr "Iseqdacen urmiden"
@@ -6300,9 +5146,10 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Anwa i d-yesnulfan izegrar-agi?"
 
+#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Izegrar i d-yettwaseknen dagi rnan-ten ineflayen n tmezdagnut ama d imdanen yeffe q lḥir neɣ tikebbaniyin. Akk izegrar yellan s wudem azayez sneqden-ten trebbaɛ n imaẓragen seld ad d-ffɣen. Izegrar "
 "irmitanen ur ttwasenqden ara ihi ɣur-k ticki ad ten-tesbeddeḍ."
@@ -6344,7 +5191,8 @@ msgstr ""
 "urkad."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Tzemreḍ ad tmuddeḍ tallalt i usnerni n usmel-agi. Ayagi d aɣbalu yeldin, tzemreḍ ad tezneḍ ibugen neɣ ad d-sumreḍ aseɣti. <a href=\"%(url)s\">GitHub</a> tabdart n ibugen imiranen, Bugzilla "
 "yegberibugen imazrayen."
@@ -6366,7 +5214,9 @@ msgid "I have a question"
 msgstr "Ɣur-i asteqsi"
 
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 "Amḍiq ifazen akken ad tebduḍ d <a href=\"%(faq_url)s\"><abbr title=\"Isteqsiyen yettwasnen aṭas\">FAQ</abbr></a>-nneɣ. Ma yella ur tufiḍ-d ara tiririt din-a, tzemreḍ<a href=\"%(forum_url)s\"> "
 "adtessiqsiḍ deg unmager-nneɣ</a>."
@@ -6380,11 +5230,11 @@ msgstr "Anwa i yexedmen deg usmel-agi?"
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"Iseggasen yezrin, deqs n yemdanen ttekkan deg usmel-agi, d iwiziwen n tmezdagnut neɣ d tirebbaɛ n Mozilla. AMO Tabdart n imttekkiyen ifazen tella deg usebter-nneɣ web <a "
-"href=\"%(url)s\">ismaden</a>."
+"Iseggasen yezrin, deqs n yemdanen ttekkan deg usmel-agi, d iwiziwen n tmezdagnut neɣ d tirebbaɛ n Mozilla. AMO Tabdart n imttekkiyen ifazen tella deg usebter-nneɣ web <a href=\"%(url)s\">ismaden</"
+"a>."
 
 msgid "Add-on Compatibility Reporter"
 msgstr "Amazan n umṣada n uzegrir"
@@ -6454,22 +5304,22 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.famfamfam.com/lab/icons/silk/\"> tagrumma n tignitin famfamfam Silk</a>, daw n turagt <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 License</a>."
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.famfamfam.com/lab/icons/silk/\"> tagrumma n tignitin famfamfam Silk</a>, daw n turagt <a href=\"http://creativecommons.org/licenses/"
+"by/2.5/\">Creative Commons Attribution 2.5 License</a>."
 
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.fatcow.com/free-icons/\">Tagrumma n tignitin Web FatCow Farm-Fresh</a>, Daw turagt n <a "
-"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.fatcow.com/free-icons/\">Tagrumma n tignitin Web FatCow Farm-Fresh</a>, Daw turagt n <a href=\"http://creativecommons.org/licenses/"
+"by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Kra nisebtar seqdacen iferdisen n <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), daw n turagt <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Kra nisebtar seqdacen iferdisen n <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), daw n turagt <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
+"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
@@ -6525,9 +5375,9 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use "
-"%(webext_link_open)sWebExtensions%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please"
-" visit %(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
+"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
+"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -6568,8 +5418,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Ih. Tzemreḍ ad tafeḍ ineflayen wis kraḍ deg <a href=\"%(forum_url)s\">unmager n izegrar</a>, <a href=\"%(list_url)s\">tabdart n tnezwit mozilla.jobs</a>, <a href=\"%(mz_url)s\">inmagaren "
 "mozillaZine</a> neɣ di <a href=\"%(wiki_url)s\">wiki Mozilla</a>. Tamawt: Mozilla ur tettweṣṣi ara ɣef ineflayen ibanen."
@@ -6627,8 +5477,8 @@ msgstr "Amek ara yazneɣ azegrir inu?"
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
-" read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
+"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -6641,8 +5491,8 @@ msgid "What category do I choose for my add-on?"
 msgstr "Anta taggayt ara ferneɣ i uzegrir-inu?"
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
@@ -6671,9 +5521,9 @@ msgstr "Anwa ara cegren azegrir-inu?"
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
-" href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
@@ -6770,10 +5620,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr ""
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 msgid ""
@@ -6821,13 +5671,12 @@ msgstr "Izegrar ad ddun akked iminig inu neɣ asnas inu?"
 
 #, fuzzy, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
+"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
 "yemmal-d anwa isnasen neq ileqman anida iteddu, am Firefox 2.0 - 3.6.*. deg izegrar n Firefox, tiqeffalin n usebded mmalent-d ma yella azegrir yemṣada neɣ ala."
 
 msgid "What are the different types of add-ons?"
@@ -6842,8 +5691,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Isiɣzaf</a></strong> Rennun timahinlin timaynutin i %(app_name)s neɣ snifilen tamahilt yellan yakan. Deqs isiɣzaf sirigen asewḥel n udellel, asider n tvidyutin seg"
-" ismal web, aslaɣ akked yesmal web n tmetti, akked timerna n tmahilin i tettwalid deg isnasen nniḍen."
+"<strong><a href=\"%(browse_url)s\">Isiɣzaf</a></strong> Rennun timahinlin timaynutin i %(app_name)s neɣ snifilen tamahilt yellan yakan. Deqs isiɣzaf sirigen asewḥel n udellel, asider n tvidyutin "
+"seg ismal web, aslaɣ akked yesmal web n tmetti, akked timerna n tmahilin i tettwalid deg isnasen nniḍen."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -6957,8 +5806,8 @@ msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
 msgstr ""
-"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen nsen ur ttagen ara i tugett n yemdanen. Ur ttwasneqdecn ara sɣuṛ imazragen-nneɣ akken ad walin ma ulac deg-sen uguren n tɣellist, acu kan zemren ad gebren"
-" tuccḍiwin neq ahat ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-iten ma tufid-d ugur. <a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
+"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen nsen ur ttagen ara i tugett n yemdanen. Ur ttwasneqdecn ara sɣuṛ imazragen-nneɣ akken ad walin ma ulac deg-sen uguren n tɣellist, acu kan zemren ad "
+"gebren tuccḍiwin neq ahat ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-iten ma tufid-d ugur. <a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "D acu d anamek ma yella azegrir \"ur ittwacegger ara\"?"
@@ -6991,11 +5840,11 @@ msgid "What are beta add-ons?"
 msgstr "D acuten izegrar beta?"
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
-"Ileqman beta d ileqman ur yettwaskeyden araicudden ar tneflit leqqayen n uneflayn uzegrir. Ɛas akken imeskaren ɣur-sen isebdaden n tɣara n tengalt beta, tzemreḍ ad tawiḍ izegrar-agi amzun rekdenugar"
-" n ileqman i d-yeffɣen."
+"Ileqman beta d ileqman ur yettwaskeyden araicudden ar tneflit leqqayen n uneflayn uzegrir. Ɛas akken imeskaren ɣur-sen isebdaden n tɣara n tengalt beta, tzemreḍ ad tawiḍ izegrar-agi amzun "
+"rekdenugar n ileqman i d-yeffɣen."
 
 #, fuzzy
 msgid ""
@@ -7008,12 +5857,13 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Amek ara ad d-mleɣ d akken awennit ur ilaq ara neɣ d aspam?"
 
+#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ n"
-" teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
+"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ "
+"n teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Amek ara d-azneɣ abug neɣ ad nermseɣ tarbaɛt n Mozilla?"
@@ -7027,13 +5877,13 @@ msgstr "D acu-tt turagt n tengalt aɣbalu?"
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 "Tangalt aɣbalu yettwasqedcen i tmerna n uzegrir yella daw n copyright (izerfan yettwaḥerzen n umeskar), arama kan yettwammel akken nniḍen di turagt n tengalt aɣbalu. Deqs n izegrar ɣef usmel-agi "
-"ɣur-sen  <a href=\"%(url)s\" lang=\"en\"> turagt tilellit</a> yettarran tangalt taqbalut d tazayezt i unɣal akked useqdec s tewtilin i d-imudd umeskar. Tugett n imeskaren seqdacen turagin tilelliyin"
-" yettwasnen am GPL neɣ BSD, deg umḍiq n tmerna n turagt-nsen."
+"ɣur-sen  <a href=\"%(url)s\" lang=\"en\"> turagt tilellit</a> yettarran tangalt taqbalut d tazayezt i unɣal akked useqdec s tewtilin i d-imudd umeskar. Tugett n imeskaren seqdacen turagin "
+"tilelliyin yettwasnen am GPL neɣ BSD, deg umḍiq n tmerna n turagt-nsen."
 
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
@@ -7065,8 +5915,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i uziraz</a> udiɣ rennun neɣ snifilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i Uziraz"
-" di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
+"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i uziraz</a> udiɣ rennun neɣ snifilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i "
+"Uziraz di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
 
 msgid "Developer Topics"
 msgstr "Isental n uneflay"
@@ -7089,8 +5939,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Isteqsiyen d-ittuɣalen s waṭas ɣef iceggiren"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -7283,22 +6133,831 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Ɣeṛ ugar ɣef Sunbird"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Teḍra-d tuccḍa di teɣwalt akked PayPal. Ma ulac aɣilif, ɛreḍ tikelt nniḍen."
+msgid "Approved reviews"
+msgstr "Iceggiren yettwasnetmen"
 
-msgid "There was an error with this currency."
-msgstr "Tella tuccḍa kked tedrimt-agi."
+msgid "Deleted reviews"
+msgstr "Iceggiren yettwaksen"
 
-msgid "The amount is too small for conversion into the receiver's currency."
+msgid "View entries between"
+msgstr "Wali inekcumen gar"
+
+msgid "and"
+msgstr "akked"
+
+msgid "Filter by type/action"
+msgstr "Imzizdig s wanaw /action"
+
+msgid "Passed automatic validation"
+msgstr "Aseɣbel awurman ittwasuref"
+
+msgid "Failed automatic validation"
+msgstr "Aseɣbel awurman ur yeddi ara"
+
+msgid "Filter by automatic validation"
+msgstr "Imzizdig s usentem awurman"
+
+msgid "containing"
+msgstr "agbur"
+
+msgid "start"
+msgstr "tazwara"
+
+msgid "end"
+msgstr "tagara"
+
+#. L10n: Description of what can be searched for
+#, fuzzy
+msgid "add-on, reviewer or comment"
+msgstr "azegrir, amaẓrag neɣ awennit"
+
+msgid "Search by add-on name / author email"
+msgstr "Nadi s yisem n uzegrir / imayl n umeskar"
+
+msgid "yes"
+msgstr "ih"
+
+msgid "no"
+msgstr "ala"
+
+msgid "Admin Flag"
+msgstr "Tabzimt n unedbal"
+
+msgid "Add-on Types"
+msgstr "anawen n uzegrir"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Nadi s yisem n uzegrir / imayl n umeskar / guid"
+
+msgid "Max. Version"
+msgstr "Lqem afellay"
+
+msgid "Comments:"
+msgstr "Iwenniten:"
+
+msgid "Operating systems:"
+msgstr "Inagrawen n wammud:"
+
+msgid "Applications:"
+msgstr "Isnasen:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
 
-msgid "The buyer and seller must have different PayPal accounts."
+msgid "Clear Admin Review Flag"
 msgstr ""
 
-#. L10n: {0} is the currency.
+msgid "Is more info requested?"
+msgstr "Tesriḍ ugar n talγut?"
+
+msgid "Choose a canned response..."
+msgstr "Fren tiririt yettwakelsen..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "isem n usentel"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Yella win nniden yettceggiren asentel-agi."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "asentel, imcegger, neɣ awennit"
+
+msgid "Keep review; remove flags"
+msgstr ""
+
+msgid "Skip for now"
+msgstr "Suref akka tura"
+
+msgid "Delete review"
+msgstr "Kkes acegger"
+
+msgid "Admin Review"
+msgstr "Acegger n unedbal"
+
+msgid "Jetpack Add-on"
+msgstr "Azegrir Jetpack"
+
+msgid "More Information Requested"
+msgstr "Ugar n telɣut tettusuter"
+
+msgid "Contains Reviewer Comment"
+msgstr "Igber awennit n imcegger"
+
+msgid "Sources provided"
+msgstr "Iγbula d-ittunefken"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Iwḥel sγur imcegger."
+
+msgid "Duplicate Submission"
+msgstr "Tuzna snat n tikal"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Tanemmirt ɣef tuzna n usentel"
+
+msgid "A problem with your Theme submission"
+msgstr "Ugur di tuzna n usentel inek"
+
+msgid "Theme submission flagged for review"
+msgstr "Tuzna n usentel tettwacreḍ i usezmel"
+
+msgid "A question about your Theme submission"
+msgstr "Asteqsi ɣef tuzna n usentel inek"
+
+msgid "Type"
+msgstr "Anaw"
+
+msgid "Waiting Time"
+msgstr "Akud n uṛaǧu"
+
+msgid "Flags"
+msgstr "Anayen"
+
+msgid "moments ago"
+msgstr "kra n wakud aya"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} tasdat"
+msgstr[1] "{0} tisdatin"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} asrag"
+msgstr[1] "{0} isragen"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} ass"
+msgstr[1] "{0} ussan"
+
+msgid "Last Review"
+msgstr "Acegger aneggaru"
+
+msgid "Last Update"
+msgstr "Aleqqem aneggaru"
+
+msgid "No Reviews"
+msgstr "Ulac iceggiren"
+
+msgid "Weight"
+msgstr "Taẓayt"
+
+#, fuzzy
+msgid "Last Content Review"
+msgstr "Acegger aneggaru"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Tigawt-agi ad tagi lqem-agi akk ad t-tekkes seg wedras. Iwenniten ad ttwaznen i uneflay."
+
+msgid "Confirm Approval"
+msgstr "Sentem aqbal"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr ""
+
+msgid "Reject Multiple Versions"
+msgstr "Aggwi aṭas n ilqman"
+
+#, fuzzy
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
+
+msgid "Reviewer reply"
+msgstr "Tiririt n umcegger"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr ""
+
+msgid "Request super-review"
+msgstr ""
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr ""
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+#, fuzzy
+msgid "Approve Content"
+msgstr "Qbel / Agwi"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Izegrar imaynuten (Daw n 5 n wussan)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Ilemmasen (5 ar 10 n wussan)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Iqbuṛen (Ugar n 10 n wussan)"
+
+msgid "An unknown error occurred"
+msgstr "Taḍra-d tuccda tarussint"
+
+msgid "Self-reviews are not allowed."
+msgstr ""
+
+msgid "Review successfully processed."
+msgstr "Acegger yemmed akken iwata."
+
+msgid "Review lock limit reached"
+msgstr ""
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+
+msgid "{addon} :: Abuse Reports"
+msgstr ""
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Iteddu s"
+
+msgid "Visibility"
+msgstr "Tametwalant"
+
+msgid "Visible"
+msgstr "Uman"
+
+msgid "Average Daily Users"
+msgstr "Talemmsat n iseqdacen n yal ass"
+
+msgid "Abuse Reports"
+msgstr "Assaγ n uẓekker"
+
+msgid "Requires Payment"
+msgstr "Yesra asellek"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "Azemz aneggaru n waqbal"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr ""
+
+msgid "Abuse Reports ({num})"
+msgstr "Assaγ n uẓekker ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Iceggireni ddiri n useqdac ({num})"
+
+msgid "More about this add-on"
+msgstr "Ugar γef uzegrir-agi"
+
+msgid "Image Gallery"
+msgstr "Timidelt n tugniwin"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
+
+msgid "Queues"
+msgstr "Yettwarna ar udras"
+
+msgid "New Add-ons"
+msgstr "Izegrar imaynuten"
+
+msgid "Updates"
+msgstr "Ileqman"
+
+msgid "Moderated Reviews"
+msgstr ""
+
+msgid "Auto Approved Add-ons"
+msgstr "Qbel s wudem awurman izegrar"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Azen acegger"
+
+msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
+msgstr "Akk izegrar ur yettwabdren ara"
+
+msgid "Logs"
+msgstr "Iɣmisen"
+
+msgid "Add-on Review Log"
+msgstr "Aɣmis n ucegger n uzegrir"
+
+msgid "Moderated Review Log"
+msgstr ""
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+msgid "Announcement"
+msgstr "Tullɣa"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Imzizdig"
+
+msgid "Date"
+msgstr "Azemz"
+
+msgid "Event"
+msgstr "Tadyant"
+
+msgid "More details."
+msgstr "Ugar n telqayt"
+
+msgid "No events found for this period."
+msgstr "Ulac tidyanin yettwafen di twala-agi."
+
+msgid "Log details"
+msgstr "Talqayt n uɣmis"
+
+msgid "Review Author"
+msgstr "Cegger ameskar"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "Imzenzi ur iqebbell ara asellek s %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Azwel n uzegrir"
+
+msgid "Review Title"
+msgstr "Azwel n ucegger"
+
+msgid "Review Text"
+msgstr "Aḍris n ucegger"
+
+msgid "Review was flagged prior to deletion."
+msgstr ""
+
+msgid "Undelete"
+msgstr "Sefsex tukksa"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Azegrir amaynut ({num})"
+msgstr[1] "Izegrar imaynuten ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Lqem ({num})"
+msgstr[1] "Ileqman ({num})"
+
+msgid "Current waiting times:"
+msgstr "Akkud n uraǧu anazzal:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} azegrir"
+msgstr[1] "{0} izegrar"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Amḍan amatu n iceggiren"
+
+msgid "Reviews This Month"
+msgstr "Iceggiren n waggur-agi"
+
+msgid "New Reviewers"
+msgstr "Imceggiren imaynuten"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "aqlak d  #{0} akked {1} n iceggiren"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Reviewer Leaderboard"
+msgstr "Agzul n umaẓrag"
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
+msgstr "Agmuḍ"
+
+msgid "Update message of the day"
+msgstr "Snifel izen n wass"
+
+msgid "Save"
+msgstr "Sekles"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Timellit n imcegger n uzegrir"
+
+msgid "View statistics for user"
+msgstr "Sken tidaddanin i useqdac"
+
+msgid "Range"
+msgstr "Azilal"
+
+msgid "Your Reviews"
+msgstr "Iceggiren inek"
+
+msgid "By {user_name}"
+msgstr "Sɣur {user_name}"
+
+msgid "Active Contributors"
+msgstr "Iceggiren inek"
+
+msgid "This Month"
+msgstr "Aggur-agi"
+
+msgid "This Year"
+msgstr "Aseggass-agi"
+
+msgid "Monthly Performance"
+msgstr "Timellit n waggur"
+
+msgid "All-time Point Breakdown by Type"
+msgstr ""
+
+msgid "Total"
+msgstr "Asemday"
+
+msgid "Month"
+msgstr "Aggur"
+
+msgid "Year"
+msgstr "Aseggwass"
+
+msgid "All-Time"
+msgstr "Yal tikelt"
+
+msgid "Advanced Search"
+msgstr "Anadi leqqayen"
+
+msgid "clear search"
+msgstr "sfeḍ anadi"
+
+msgid "Process Reviews"
+msgstr "Ddu ar ucegger"
+
+msgid "Moderation actions:"
+msgstr ""
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "sɣuṛ %(user)s di %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %(user)s di %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Akk iceggiren ttwagen. Igzrrez uxeddim!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr ""
+
+msgid "Helpful Links:"
+msgstr "Iseɣwan iwulmen:"
+
+msgid "Add-on Policy"
+msgstr "Tasertit n uzegrir"
+
+#, fuzzy
+msgid "Reviewer's Guide"
+msgstr "Amnir n ucegger"
+
+#. "Content Review [add-on name]"
+#, fuzzy
+msgid "Content Review {0}"
+msgstr "Acegger {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Acegger {0}"
+
+msgid "Add-on user change history"
+msgstr ""
+
+msgid "Add-on History"
+msgstr "Amazray n uzegrir"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "Compatibility:"
+msgstr "Amṣada:"
+
+msgid "Additional sources:"
+msgstr "Tiɣbula nniḍen:"
+
+msgid "Download files"
+msgstr "Sider ifuyla"
+
+msgid "The developer has provided source code."
+msgstr "Aneflay yefka-d tangalt taɣbalut."
+
+msgid "Weight:"
+msgstr "Taẓayt:"
+
+msgid "Not Auto Approved Because"
+msgstr "Ur ittwaqbel ara s wudem awurman acku"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
+msgstr "Lqem-agi ur yettwacegger ara yakan."
+
+msgid "Please select one or more versions in the list above."
+msgstr ""
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr ""
+
+msgid "Insert canned response..."
+msgstr "Sekcem tiririt yettwakelsen..."
+
+msgid "Tested on:"
+msgstr "Yettwasekyed di:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "Update the whiteboard"
+msgstr "Snifel tafelwit tamellalt"
+
+msgid "(admin)"
+msgstr "(anedbal)"
+
+msgid "Admin Page"
+msgstr "Asebter n unedbal"
+
+msgid "Review This Add-on"
+msgstr "Cegger azegrir-agi"
+
+msgid "More Information"
+msgstr "Ugar n telɣut"
+
+msgid "Resolution"
+msgstr ""
+
+msgid "Reviewer"
+msgstr "Amcegger"
+
+msgid "Add-on has been deleted."
+msgstr "Azegrir yettwakkes."
+
+msgid "Show Comments"
+msgstr "Sken iwenniten"
+
+msgid "Hide Comments"
+msgstr "Ffer iwenniten"
+
+msgid "No reviews found for this period."
+msgstr ""
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr ""
+
+msgid "Dismiss this announcement"
+msgstr ""
+
+msgid "Files in this version:"
+msgstr "Ifuyla di lqem-agi:"
+
+msgid "Contents"
+msgstr "Igburen"
+
+msgid "Compare"
+msgstr ""
+
+msgid "Permissions:"
+msgstr "Tisirag:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>Sɛuṛ %(user)s di %(date)s</div>"
+
+msgid "Older"
+msgstr "Aqbuṛ"
+
+msgid "Newer"
+msgstr "Amaynut"
+
+msgid "Recent Points"
+msgstr ""
+
+msgid "No points awarded yet."
+msgstr ""
+
+msgid "Top Reviewers (past 7 days)"
+msgstr ""
+
+msgid "No top reviewers yet."
+msgstr ""
+
+msgid "All Time"
+msgstr "Yal tikelt"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "Ɣur-k <span> {0} </span> n tneqqiḍin."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s di %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Azemz yettwakkes"
+
+msgid "No deleted themes found for this period."
+msgstr "Ulac isentall yettwakksen i yettwafen deg akud-agi."
+
+msgid "Theme Review History for {0}"
+msgstr "Amazray n ucegger n uselten i {0}"
+
+msgid "Review Date"
+msgstr "Azemz n ucegger"
+
+msgid "Action"
+msgstr "Tigawt"
+
+msgid "Reason"
+msgstr "Acuɣer"
+
+msgid "There are currently no reviews."
+msgstr "Ulac akka tura iceggiren."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} Asentel yettṛaǧun asentem"
+msgstr[1] "{num} Isental yettṛaǧun asentem"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} Lqem"
+msgstr[1] "{num} Ileqman"
+
+msgid "Flagged Themes"
+msgstr "Isental yettwacegren"
+
+msgid "Theme Review Queue"
+msgstr ""
+
+msgid "Review Options"
+msgstr "Iɣewwaṛen n ucegger"
+
+msgid "Auto-advance after review"
+msgstr ""
+
+msgid "Enable keyboard shortcuts"
+msgstr "Rmed inegzumen n unasiw"
+
+msgid "Keyboard Shortcuts"
+msgstr "Inegzumen n unasiw"
+
+msgid "Next Theme"
+msgstr "Asentel d-iteddun"
+
+msgid "Previous Theme"
+msgstr "Asentel yezrin"
+
+msgid "Your Review History"
+msgstr "Amazray-inek n ucegger"
+
+msgid "Commit Review"
+msgstr "Azen acegger"
+
+msgid "Commit Reviews"
+msgstr ""
+
+msgid "{0} out of {1} reviewed"
+msgstr ""
+
+msgid "There are currently no Themes to review."
+msgstr ""
+
+msgid "Clear Search"
+msgstr "Sfeḍ Anadi"
+
+msgid "Release My Theme Locks"
+msgstr ""
+
+msgid "Interactive Theme Queue"
+msgstr ""
+
+msgid "Reviewers' Guide"
+msgstr ""
+
+msgid "Theme Review for {0}"
+msgstr "Acegger n usentel i {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr ""
+
+msgid "Past Review Notes"
+msgstr ""
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Ugar n telɣut tettusuter: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Yettwacreḍ: {0}"
+
+msgid "Approve Theme"
+msgstr "Qbel asentel"
+
+msgid "Field required"
+msgstr "Urti yettwasra"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Sekcem asumlay ID neɣ tansa URL n usilgen"
+
+msgid "Select a reason for rejection"
+msgstr "Fren acuɣer tugin"
+
+msgid "Describe your reason for rejection"
+msgstr "Mudd aglam n wacuqer tugin"
+
+msgid "Ask a question to the artist"
+msgstr "Steqsi anaẓuṛ"
+
+msgid "Describe your reason for flagging"
+msgstr "Ini-d acuɣer acraḍ"
+
+msgid "Rejected or Unreviewed"
+msgstr "Yettwagi neɣ ur ittucegger ara"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[addad:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Azegrir amaynut ({0})"
+msgstr[1] "Izegrar imaynuten ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Lqem ({0})"
+msgstr[1] "Ilqeman ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Qbel s wudem awurman azegrir ({0})"
+msgstr[1] "Qbel s wudem awurman izegrar ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Agbur ittwacegger ({0})"
+msgstr[1] "Agbur ittwacegger ({0})"
+
+msgid "Flagged"
+msgstr "Yettwasezmel"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7339,7 +6998,7 @@ msgstr "UR tezmireḍ ara ad ternud acegger i uzegrir-inek."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ur tezmireḍ ara ad ternuḍ ugar n yiwen n ucegger i yiwen n lqem n uzegrir."
 
-msgid "Thanks; this review has been flagged for editor approval."
+msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr ""
 
 msgid "Add a review for {0}"
@@ -7349,10 +7008,10 @@ msgstr "Rnu acegger i {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -7595,9 +7254,6 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Tanemmirt ɣef uttekki di {addon_name}"
-
 msgid "Overview"
 msgstr "Tazwart"
 
@@ -7618,6 +7274,9 @@ msgstr "s Twennaṭ"
 
 msgid "by Add-on Status"
 msgstr "s waddad n uzegrir"
+
+msgid "Contributions"
+msgstr "Ittekkiyen"
 
 msgid "Subscribers"
 msgstr "Imeltaɣen"
@@ -7820,11 +7479,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"

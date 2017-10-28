@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2016-11-23 15:22+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} reseña d'usuariu"
 msgstr[1] "{reviews} reseñes d'usuariu"
 
-msgid "Learn more"
-msgstr "Deprendi más"
-
 msgid "Image changes being processed"
 msgstr "Tán procesándose les camudancies de la imaxe"
 
-msgid "Must be a valid e-mail address."
-msgstr "Ha introducir una direición de corréu válida."
-
 msgid "No results found."
 msgstr "Nun s'alcontraron resultaos."
+
+msgid "Loading..."
+msgstr "Cargando..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Falta <b>{0}</b> caráuter."
+msgstr[1] "Falten <b>{0}</b> caráuteres."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Esta carauterística ta temporalmente deshabilitada entrín facemos el caltenimientu del sitiu. Volvi más sero, por favor."
+
+msgid "Remove this localization"
+msgstr "Desaniciar esti allugamientu"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tuvo viendo esta páxina primero."
@@ -799,21 +808,6 @@ msgstr "Reseñes promediu"
 
 msgid "Number of Reviews"
 msgstr "Númberu de revisores"
-
-msgid "Loading..."
-msgstr "Cargando..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Falta <b>{0}</b> caráuter."
-msgstr[1] "Falten <b>{0}</b> caráuteres."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta carauterística ta temporalmente deshabilitada entrín facemos el caltenimientu del sitiu. Volvi más sero, por favor."
-
-msgid "Remove this localization"
-msgstr "Desaniciar esti allugamientu"
 
 msgid "Requested Info"
 msgstr "Información solicitada"

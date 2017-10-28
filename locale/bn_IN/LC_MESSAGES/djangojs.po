@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -110,9 +110,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "বিস্তারিত সংস্করণের নোট প্রবেশ করান (পরবর্তী ধাপে এটা করা যায়)।"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
-"যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে "
-"পারে)।"
+msgstr "যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে পারে)।"
 
 msgid "Add-on submission checklist"
 msgstr "অ্যাড-অন জমা দেবার তালিকা"
@@ -751,17 +749,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Learn more"
-msgstr "আরও জানুন৷"
-
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
 msgstr "কোন ফলাফল পাওয়া যায়নি।"
+
+msgid "Loading..."
+msgstr "লোড হচ্ছে..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "আমরা ওয়েবসাইট রক্ষণাবেক্ষণের জন্য যখন এই বৈশিষ্ট্যটি অস্থায়ীভাবে নিষ্ক্রিয় করা হয়. একটু পরে আবার চেক করুন"
+
+msgid "Remove this localization"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -797,21 +804,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr "লোড হচ্ছে..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "আমরা ওয়েবসাইট রক্ষণাবেক্ষণের জন্য যখন এই বৈশিষ্ট্যটি অস্থায়ীভাবে নিষ্ক্রিয় করা হয়. একটু পরে আবার চেক করুন"
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"

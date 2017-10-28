@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-10-17 10:06+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -750,17 +750,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "סקירת משתמש אחת"
 msgstr[1] "{reviews} סקירות משתמשים"
 
-msgid "Learn more"
-msgstr "מידע נוסף"
-
 msgid "Image changes being processed"
 msgstr "מתבצע עיבוד שינויים בתמונות"
 
-msgid "Must be a valid e-mail address."
-msgstr "חייבת להיות כתובת דוא״ל תקנית."
-
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
+
+msgid "Loading..."
+msgstr "בטעינה..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "נותר תו <b>אחד</b>."
+msgstr[1] "נותרו <b>{0}</b> תווים."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עושים עבודות תחזוקה באתר. נא לבדוק מאוחר יותר."
+
+msgid "Remove this localization"
+msgstr "להסיר את התרגום הזה"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
@@ -797,21 +806,6 @@ msgstr "ממוצע הסקירות"
 
 msgid "Number of Reviews"
 msgstr "מספר הסקירות"
-
-msgid "Loading..."
-msgstr "בטעינה..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "נותר תו <b>אחד</b>."
-msgstr[1] "נותרו <b>{0}</b> תווים."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עושים עבודות תחזוקה באתר. נא לבדוק מאוחר יותר."
-
-msgid "Remove this localization"
-msgstr "להסיר את התרגום הזה"
 
 msgid "Requested Info"
 msgstr ""

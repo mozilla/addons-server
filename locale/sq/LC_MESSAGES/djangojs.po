@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2016-11-09 11:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -757,17 +757,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} shqyrtim përdoruesi"
 msgstr[1] "{reviews} shqyrtime përdoruesi"
 
-msgid "Learn more"
-msgstr "Mësoni më tepër"
-
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
-msgid "Must be a valid e-mail address."
-msgstr "Duhet të jetë një adresë e-mail e vlefshme."
-
 msgid "No results found."
 msgstr "Nuk u gjetën përfundime."
+
+msgid "Loading..."
+msgstr "Po ngarkohet..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Edhe <b>{0}</b> shenjë."
+msgstr[1] "Edhe <b>{0}</b> shenja."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
+
+msgid "Remove this localization"
+msgstr "Hiqe këtë përkthim"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
@@ -804,21 +813,6 @@ msgstr "Shqyrtime Mesatarisht"
 
 msgid "Number of Reviews"
 msgstr "Numër Shqyrtimesh"
-
-msgid "Loading..."
-msgstr "Po ngarkohet..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Edhe <b>{0}</b> shenjë."
-msgstr[1] "Edhe <b>{0}</b> shenja."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
-
-msgid "Remove this localization"
-msgstr "Hiqe këtë përkthim"
 
 msgid "Requested Info"
 msgstr "Të dhëna të Domosdoshme"

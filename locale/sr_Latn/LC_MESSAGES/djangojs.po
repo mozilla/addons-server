@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -753,17 +753,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} korisnička recenzija"
 msgstr[1] "{reviews} korisničke recenzije"
 
-msgid "Learn more"
-msgstr "Saznajte više"
-
 msgid "Image changes being processed"
 msgstr "Izmene na slici se obrađuju"
 
-msgid "Must be a valid e-mail address."
-msgstr "Adresa e-pošte mora biti ispravna."
-
 msgid "No results found."
 msgstr "Nema rezultata."
+
+msgid "Loading..."
+msgstr "Učitavanje..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> karakter preostao."
+msgstr[1] "<b>{0}</b> karaktera preostala."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
+
+msgid "Remove this localization"
+msgstr "Ukloni ovu lokalizaciju"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} je prvi gledao ovu stranicu."
@@ -800,21 +809,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Učitavanje..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> karakter preostao."
-msgstr[1] "<b>{0}</b> karaktera preostala."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održavanja sajta. Molimo probajte malo kasnije."
-
-msgid "Remove this localization"
-msgstr "Ukloni ovu lokalizaciju"
 
 msgid "Requested Info"
 msgstr "Zahtevane informacije"
