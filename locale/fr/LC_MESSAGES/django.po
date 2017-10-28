@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 08:35+0000\n"
+"PO-Revision-Date: 2017-10-28 14:44+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3294,9 +3294,8 @@ msgstr "Merci de fournir une légende pour cette capture d’écran :"
 msgid "Add a Screenshot..."
 msgstr "Ajouter une capture d’écran…"
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Les autres peuvent-ils partager votre thème du moment qu’ils vous citent comme auteur ?"
+msgstr "Les autres peuvent-ils partager votre module du moment qu’ils vous citent comme auteur ?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "L’ayant droit donne le droit aux autres de copier, distribuer, afficher et utiliser le travail, notamment pour des objectifs commerciaux."
@@ -3304,13 +3303,11 @@ msgstr "L’ayant droit donne le droit aux autres de copier, distribuer, affiche
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr "L’ayant droit donne le droit aux autres de copier, distribuer, afficher et utiliser le travail uniquement dans un but non commercial."
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Les autres peuvent-ils faire une utilisation commerciale de votre thème ?"
+msgstr "Les autres peuvent-ils faire une utilisation commerciale de votre module ?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Les autres peuvent-ils faire des travaux dérivés de votre thème ?"
+msgstr "Les autres peuvent-ils réaliser des créations à partir de votre module ?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "L’ayant droit donne le droit aux autres de copier, distribuer, afficher et utiliser le travail ainsi que d’en faire des dérivés."
@@ -3324,9 +3321,8 @@ msgstr "L’ayant droit donne le droit aux autres de distribuer des travaux dér
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "L’ayant droit donne le droit aux autres de copier, distribuer et transmettre uniquement des copies non altérées de l’œuvre."
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Votre thème sera mis à disposition sous la licence suivante :"
+msgstr "Votre module sera mis à disposition sous la licence suivante :"
 
 msgid "Select a different license."
 msgstr "Sélectionnez une licence différente."
@@ -3506,9 +3502,8 @@ msgstr "Site d’assistance :"
 msgid "License:"
 msgstr "Licence :"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhaitez appliquer à votre code source."
+msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhaitez accorder."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -4002,9 +3997,8 @@ msgstr ""
 msgid "Automated code tests for your add-on."
 msgstr "Faites passer des tests automatiques au code de votre module."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Tests de compatibilité"
+msgstr "Test de compatibilité"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
@@ -5228,13 +5222,13 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Qui créé ces modules ?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"Les modules visibles ici ont été créés par des milliers de développeurs de notre communauté, allant des passionnés jusqu’à de grandes sociétés. Tous les modules disponibles publiquement ont été "
-"vérifiés par une équipe d’éditeurs avant d’être mis à disposition. Les modules marqués Expérimentaux n’ont pas été vérifiés et doivent être installés avec attention."
+"Les modules répertoriés ici ont été développés par des milliers de développeurs du monde entier, que ce soit des personnes qui codent sur leur temps libre ou de grandes entreprises. Tous les modules"
+" disponibles publiquement ont été vérifiés par une équipe de testeurs avant d’être mis à disposition. Les modules signalés comme étant expérimentaux n’ont pas été vérifiés et doivent être installés "
+"avec précaution."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Comment me tenir à jour à propos de ce qui se passe sur AMO ?"
@@ -6009,13 +6003,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Comment notifier un commentaire inapproprié ou spam ?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Pour notifier une revue utilisateur d’un module, connectez-vous avec votre compte et visitez la page de critiques du module. Trouvez la revue que vous souhaitez notifier, et cliquer « Notifier cette"
-" revue », puis choisissez une raison. Notre équipe éditoriale vérifiera la revue et prendra les mesures appropriées."
+"Pour signaler une revue utilisateur d’un module, connectez-vous avec votre compte et visitez la page de critiques du module. Trouvez la revue que vous souhaitez signaler, et cliquez sur « Signaler "
+"un problème avec cette critique », puis choisissez une raison. Notre équipe éditoriale vérifiera la revue et prendra les mesures appropriées."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Comment rapporter un problème ou contacter l’équipe Mozilla Add-ons ?"
@@ -6342,7 +6335,6 @@ msgid "end"
 msgstr "fin"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
 msgstr "module, éditeur ou commentaire"
 
