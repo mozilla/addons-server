@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 14:44+0000\n"
+"PO-Revision-Date: 2017-10-28 17:20+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3849,7 +3849,7 @@ msgid "Site Status"
 msgstr "État du site"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext : compiler et tester des extensions"
 
 msgid "Compatibility Checker"
 msgstr "Vérificateur de compatibilité"
@@ -3989,10 +3989,10 @@ msgid "Sign In"
 msgstr "Connectez-vous"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Un outil en ligne de commande pour créer, exécuter et tester des extensions."
 
 msgid "Automated code tests for your add-on."
 msgstr "Faites passer des tests automatiques au code de votre module."
@@ -4001,7 +4001,7 @@ msgid "Compatibility Test"
 msgstr "Test de compatibilité"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Vérifiez que votre extension est compatible avec Firefox."
 
 msgid "Transfer ownership"
 msgstr "Transférer la propriété"
@@ -4408,7 +4408,7 @@ msgstr "Impossible de lire le fichier envoyé."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Nom de fichier invalide au sein de l’archive. Vérifiez que tous les noms de fichiers sont encodés en utf-8 ou latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -7286,7 +7286,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Noté %(rating)s sur 5 étoiles"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Taille maximale de la requête dépassée."
 
 msgid "Most popular this week"
 msgstr "Les plus populaires cette semaine"
@@ -7715,10 +7715,10 @@ msgid "Other Applications"
 msgstr "Autres applications"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO a été refait de fond en comble, vous voulez y jeter un œil ?"
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "Voir la nouvelle version du site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Pour créer vos propres collections, vous devez avoir un compte Mozilla Add-ons."
