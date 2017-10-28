@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-08-14 19:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -770,17 +770,28 @@ msgstr[1] "{reviews} wužywarskej pógódnośeni"
 msgstr[2] "{reviews} wužywarske pógódnośenja"
 msgstr[3] "{reviews} wužywarskich pógódnośenjow"
 
-msgid "Learn more"
-msgstr "Dalšne informacije"
-
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny se pśeźěłuju"
 
-msgid "Must be a valid e-mail address."
-msgstr "To musy płaśiwa e-mailowa adresa byś."
-
 msgid "No results found."
 msgstr "Žedne wusědki namakane."
+
+msgid "Loading..."
+msgstr "Zacitujo se..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> znamuško wušej."
+msgstr[1] "<b>{0}</b> znamušce wušej."
+msgstr[2] "<b>{0}</b> znamuška wušej."
+msgstr[3] "<b>{0}</b> znamuškow wušej."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy wótwardowańske źěła na websedle. Pšosym wopytajśo pitśku pózdźej hyšći raz."
+
+msgid "Remove this localization"
+msgstr "Toś ten pśełožk wótpóraś"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} jo se toś ten bok ako prědny woglědał."
@@ -817,23 +828,6 @@ msgstr "Pśerězne pógódnośenja"
 
 msgid "Number of Reviews"
 msgstr "Licba pógódnośenjow"
-
-msgid "Loading..."
-msgstr "Zacitujo se..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> znamuško wušej."
-msgstr[1] "<b>{0}</b> znamušce wušej."
-msgstr[2] "<b>{0}</b> znamuška wušej."
-msgstr[3] "<b>{0}</b> znamuškow wušej."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy wótwardowańske źěła na websedle. Pšosym wopytajśo pitśku pózdźej hyšći raz."
-
-msgid "Remove this localization"
-msgstr "Toś ten pśełožk wótpóraś"
 
 msgid "Requested Info"
 msgstr "Informacije pominane"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-06-12 02:49+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -745,17 +745,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 사용자 리뷰"
 
-msgid "Learn more"
-msgstr "자세히 알아보기"
-
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-msgid "Must be a valid e-mail address."
-msgstr "올바른 이메일 주소를 입력해야 합니다."
-
 msgid "No results found."
 msgstr "검색한 결과가 없습니다."
+
+msgid "Loading..."
+msgstr "읽는 중..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b>자 남았습니다."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
+
+msgid "Remove this localization"
+msgstr "이 번역 삭제"
 
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
@@ -792,20 +800,6 @@ msgstr "평균 심사 횟수"
 
 msgid "Number of Reviews"
 msgstr "심사 횟수"
-
-msgid "Loading..."
-msgstr "읽는 중..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b>자 남았습니다."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
-
-msgid "Remove this localization"
-msgstr "이 번역 삭제"
 
 msgid "Requested Info"
 msgstr "요청된 정보"

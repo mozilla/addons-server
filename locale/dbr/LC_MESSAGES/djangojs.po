@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -750,17 +750,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "ʍǝıʌǝɹ ɹǝsn {reviews}"
 msgstr[1] "sʍǝıʌǝɹ ɹǝsn {reviews}"
 
-msgid "Learn more"
-msgstr "ǝɹoɯ uɹɐǝ⅂"
-
 msgid "Image changes being processed"
 msgstr "pǝssǝɔoɹd ƃuıǝq sǝƃuɐɥɔ ǝƃɐɯI"
 
-msgid "Must be a valid e-mail address."
-msgstr ".ssǝɹppɐ ʅıɐɯ-ǝ pıʅɐʌ ɐ ǝq ʇsnW"
-
 msgid "No results found."
 msgstr ".punoɟ sʇʅnsǝɹ oN"
+
+msgid "Loading..."
+msgstr "...ƃuıpɐo⅂"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] ".ʇɟǝʅ ɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+msgstr[1] ".ʇɟǝʅ sɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ".ɹǝʇɐʅ ǝʅʇʇıʅ ɐ ʞɔɐq ʞɔǝɥɔ ǝsɐǝʅԀ .ǝɔuɐuǝʇuıɐɯ ǝʇısqǝʍ ɯɹoɟɹǝd ǝʍ ǝʅıɥʍ pǝʅqɐsıp ʎʅıɹɐɹodɯǝʇ sı ǝɹnʇɐǝɟ sıɥ⊥"
+
+msgid "Remove this localization"
+msgstr "uoıʇɐzıʅɐɔoʅ sıɥʇ ǝʌoɯǝᴚ"
 
 msgid "{name} was viewing this page first."
 msgstr ".ʇsɹıɟ ǝƃɐd sıɥʇ ƃuıʍǝıʌ sɐʍ {name}"
@@ -797,21 +806,6 @@ msgstr "sʍǝıʌǝᴚ ǝƃɐɹǝʌ∀"
 
 msgid "Number of Reviews"
 msgstr "sʍǝıʌǝᴚ ɟo ɹǝqɯnN"
-
-msgid "Loading..."
-msgstr "...ƃuıpɐo⅂"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ".ʇɟǝʅ ɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
-msgstr[1] ".ʇɟǝʅ sɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ".ɹǝʇɐʅ ǝʅʇʇıʅ ɐ ʞɔɐq ʞɔǝɥɔ ǝsɐǝʅԀ .ǝɔuɐuǝʇuıɐɯ ǝʇısqǝʍ ɯɹoɟɹǝd ǝʍ ǝʅıɥʍ pǝʅqɐsıp ʎʅıɹɐɹodɯǝʇ sı ǝɹnʇɐǝɟ sıɥ⊥"
-
-msgid "Remove this localization"
-msgstr "uoıʇɐzıʅɐɔoʅ sıɥʇ ǝʌoɯǝᴚ"
 
 msgid "Requested Info"
 msgstr "oɟuI pǝʇsǝnbǝᴚ"

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-01-29 19:40+0000\n"
 "Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -758,16 +758,26 @@ msgstr[0] "{reviews} recenzie a utilizatorilor"
 msgstr[1] "{reviews} recenzii ale utilizatorilor"
 msgstr[2] "{reviews} de recenzii ale utilizatorilor"
 
-msgid "Learn more"
-msgstr "Află mai multe"
-
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Must be a valid e-mail address."
+msgid "No results found."
 msgstr ""
 
-msgid "No results found."
+msgid "Loading..."
+msgstr "Se încarcă..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> caracter rămas."
+msgstr[1] "<b>{0}</b> caractere rămase."
+msgstr[2] "<b>{0}</b> de caractere rămase."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ""
+
+msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
@@ -804,22 +814,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr "Se încarcă..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> caracter rămas."
-msgstr[1] "<b>{0}</b> caractere rămase."
-msgstr[2] "<b>{0}</b> de caractere rămase."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-08-12 12:35+0000\n"
 "Last-Translator: Michal Vašíček <michalvasicek@icloud.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -762,17 +762,27 @@ msgstr[0] "{reviews} recenze uživatele"
 msgstr[1] "{reviews} recenzí uživatele"
 msgstr[2] "{reviews} recenzí uživatele"
 
-msgid "Learn more"
-msgstr "Dozvědět se více"
-
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku"
 
-msgid "Must be a valid e-mail address."
-msgstr "Musí se jednat o platnou e-mailovou adresu."
-
 msgid "No results found."
 msgstr "Nebyly nalezeny žádné výsledky."
+
+msgid "Loading..."
+msgstr "Probíhá načítání..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Zbývá <b>{0}</b> znak."
+msgstr[1] "Zbývají <b>{0}</b> znaky."
+msgstr[2] "Zbývá <b>{0}</b> znaků."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
+
+msgid "Remove this localization"
+msgstr "Odebrat lokalizaci"
 
 msgid "{name} was viewing this page first."
 msgstr "Uživatel {name} shlédl tuto stránku jako první."
@@ -809,22 +819,6 @@ msgstr "Průměrné hodnocení"
 
 msgid "Number of Reviews"
 msgstr "Počet hodnocení"
-
-msgid "Loading..."
-msgstr "Probíhá načítání..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Zbývá <b>{0}</b> znak."
-msgstr[1] "Zbývají <b>{0}</b> znaky."
-msgstr[2] "Zbývá <b>{0}</b> znaků."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
-
-msgid "Remove this localization"
-msgstr "Odebrat lokalizaci"
 
 msgid "Requested Info"
 msgstr "Požadovány informace"
