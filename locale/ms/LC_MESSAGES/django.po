@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 09:30+0000\n"
+"PO-Revision-Date: 2017-10-28 09:42+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3151,13 +3151,12 @@ msgstr "UUID add-on anda sudah ditetapkan dalam manifes pemasangan dan mengenal 
 msgid "Whiteboard"
 msgstr "Whiteboard"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Whiteboaed ialah tempat untuk menyediakan maklumat berkaitan add-on anda, versi apa saja, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. "
-"Whiteboard juga boleh diedit oleh editor."
+"Papan putih ialah tempat untuk menyediakan maklumat berkaitan add-on anda, apa saja versi, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. Papan "
+"putih juga boleh diedit oleh editor."
 
 msgid "Remove this dependent add-on"
 msgstr "Buang add-on bergantung ini"
@@ -3213,9 +3212,8 @@ msgstr "Sila beri keterangan skrinsyot ini:"
 msgid "Add a Screenshot..."
 msgstr "Tambah Skrinsyot..."
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Bolehkah orang lain berkongsi tema anda, selagi anda diberi penghargaan?"
+msgstr "Bolehkah pihak lain kongsikan Add-on, selagi anda diberi penghargaan?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
@@ -3223,13 +3221,11 @@ msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan mel
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
+msgstr "Bolehkah pihak lain menggunakan Add-on anda bagi tujuan komersial?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Tema anda?"
+msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Add-on anda?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
@@ -3243,9 +3239,8 @@ msgstr "Pemberi lesen membenarkan pihak lain untuk mengedarkan kerja terbitan ha
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Tema anda akan dikeluarkan di bawah lesen berikut:"
+msgstr "Add-on anda akan dikeluarkan di bawah lesen berikut:"
 
 msgid "Select a different license."
 msgstr "Pilih lesen yang lain."
@@ -3423,9 +3418,8 @@ msgstr "Laman web Sokongan:"
 msgid "License:"
 msgstr "Lesen:"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Sila pilih lesen yang bersesuaian dengan hak cipta yang anda beri untuk sumber kod anda."
+msgstr "Sila pilih lesen yang bersesuaian dengan hak cipta yang anda beri."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Jika add-on anda menghantar data daripada komputer pengguna, polisi privasi diperlukan yang menjelaskan jenis data yang dihantar dan cara data itu digunakan."
@@ -3905,17 +3899,16 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Alatan baris arahan untuk membina, melaksana dan menguji ekstensi."
 
 msgid "Automated code tests for your add-on."
 msgstr "Ujian kod automatik untuk add-on anda."
 
-#, fuzzy
 msgid "Compatibility Test"
 msgstr "Ujian Keserasian"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Semak untuk melihat samada ekstensi anda serasi dengan Firefox."
 
 msgid "Transfer ownership"
 msgstr "Pindah pemilikan"
@@ -5130,7 +5123,6 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Siapa yang mencipta add-ons ini?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
@@ -5892,7 +5884,6 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Bagaimana boleh saya laporkan ulasan spam atau tidak sesuai oleh pengguna?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
@@ -6224,9 +6215,8 @@ msgid "end"
 msgstr "akhir"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "add-on, editor atau komen"
+msgstr "add-on, penyemak atau komen"
 
 msgid "Search by add-on name / author email"
 msgstr "Cari mengikut nama add-on / e-mel pengarang"
@@ -6696,7 +6686,6 @@ msgstr "Pautan Berguna:"
 msgid "Add-on Policy"
 msgstr "Polisi Add-on"
 
-#, fuzzy
 msgid "Reviewer's Guide"
 msgstr "Panduan Penyemak"
 
@@ -6757,9 +6746,8 @@ msgstr "Diuji pada:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Amaran!</strong> Ada pengguna lain meninjau halaman ini sebelum anda."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Whiteboard adalah tempat untuk bertukar maklumat berkaitan addon ini (apa sahaja versi), antara pembangun dengan editor. Ini adalah boleh dilihat dan boleh diedit oleh kedua-duanya."
+msgstr "Papan putih iaah tempat untuk bertukar maklumat berkaitan add-on ini (apa sahaja versi), antara pembangun dengan penyemak. Ini boleh dilihat dan diedit oleh kedua-duanya."
 
 msgid "Update the whiteboard"
 msgstr "Kemaskini whiteboard"
@@ -7036,9 +7024,8 @@ msgstr "Anda tidak boleh semak add-on anda sendiri."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan editor."
+msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan penyemak."
 
 msgid "Add a review for {0}"
 msgstr "Beri ulasan untuk {0}"
