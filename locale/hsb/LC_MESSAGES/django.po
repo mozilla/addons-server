@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 10:49+0000\n"
+"PO-Revision-Date: 2017-10-28 11:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3248,13 +3248,12 @@ msgstr "UUID wašeho přidatka so w jeho instalowanskim manifesće podawa a iden
 msgid "Whiteboard"
 msgstr "Informaciska taflička"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Informaciska taflička je městno, hdźež móžeće redaktorej informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a dalše"
-" informacije podał, kotrež móhli pomhać. Informaciska taflička da so tež wot redaktorow wobdźěłać."
+"Informaciska tafla je městno, hdźež móžeće přepruwowarjam informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a "
+"dalše informacije podał, kotrež móhli pomhać. Tuta Informaciska tafla da so tež wot přepruwowarjow wobdźěłać."
 
 msgid "Remove this dependent add-on"
 msgstr "Tutón wotwisny přidatk wotstronić"
@@ -3310,9 +3309,8 @@ msgstr "Prošu podajće pomjenjowanje za tute foto wobrazowki:"
 msgid "Add a Screenshot..."
 msgstr "Foto wobrazowki přidać..."
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Smědźa druzy wašu drastu dźělić, jeli was jako awtora naspominaja?"
+msgstr "Smědźa druzy waš přidatk dźělić, jeli was jako awtora naspominaja?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
@@ -3320,13 +3318,11 @@ msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, poka
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Smědźa druzy wašu drastu komercielnje wužiwać?"
+msgstr "Smědźa druzy waš přidatk komercielnje wužiwać?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Smědźa druzy z wašeje drasty wotwodźene dźěła wutworić?"
+msgstr "Smědźa druzy z wašeho přidatka wotwodźene dźěła wutworić?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
@@ -3340,9 +3336,8 @@ msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho p
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Waša drasta so pod slědowacej licencu wozjewi:"
+msgstr "Waš přidatk so pod slědowacej licencu wozjewi:"
 
 msgid "Select a different license."
 msgstr "Wubjerće hinašu licencu."
@@ -3524,9 +3519,8 @@ msgstr "Sydło pomocy:"
 msgid "License:"
 msgstr "Licenca:"
 
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy kod daće."
+msgstr "Prošu wubjerće licencu, kotraž je přihódna za prawa, kotrež daće."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Jeli waš přidatk daty z ličaka wužiwarja přenošuje, su prawidła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja."
@@ -4011,9 +4005,8 @@ msgstr "Nasatroj přikazoweje linki za wuwiwanje, wuwjedźenje a testowanje roz�
 msgid "Automated code tests for your add-on."
 msgstr "Awtomatiske kodowe testy za waš přidatk."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Testy kompatibelnosće"
+msgstr "Test kompatibelnosće"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Přepruwujće, hač waše rozšěrjenje je kompatibelne z Firefox."
@@ -5237,13 +5230,12 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "Štó tute přidatki wutworja?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Přidatki, kotrež so tu nalistuja, su so wot tysacow wuwiwarjow z našeho zhromadźenstwa wutworili, kotřiž wot jednotliwych programowarjow hač k wulkim předewzaćam sahaja. Wšě zjawnje nalistowane "
-"přidatki so wot teama redaktorow přepruwuja, prjedy hač so wozjewja. Přidatki, kotrež su jako eksperimentelne markěrowane, njejsu přepruwowane a měli so jenož z kedźbliwosću instalować."
+"přidatki so wot teama přepruwowarjow kontroluja, prjedy hač so wozjewja. Přidatki, kotrež su jako eksperimentelne markěrowane, njejsu přepruwowane a měli so jenož z kedźbliwosću instalować."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Kak móžu wo aktiwitach na AMO na běžnym wostać?"
@@ -6005,13 +5997,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kak móžu njepřihódne abo spamowe wužiwarske pohódnoćenje zdźělić?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "Zo byšće wužiwarske pohódnoćenje přidatka zdźělił, přizjewće so pola swojeho konta a wopytajće stronu pohódnoćenjow přidatka. Pytajće pohódnoćenje, kotrež chceće zdźělić, klikńće na „Tute "
-"pohódnoćenje zdźělić“ a wubjerće přičinu. Naš team redaktorow budźe pohódnoćenje přepytować a wotpowědnje jednać."
+"pohódnoćenje zdźělić“ a wubjerće přičinu. Naš team přepruwowarjow budźe pohódnoćenje přepytować a wotpowědnje jednać."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Kak móžu programowy zmylk zdźělić abo so z teamom přidatkow Mozilla do zwiska stajić?"
@@ -6335,9 +6326,8 @@ msgid "end"
 msgstr "kónc"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "přidatk, redaktor abo komentar"
+msgstr "přidatk, přepruwowar abo komentar"
 
 msgid "Search by add-on name / author email"
 msgstr "Za mjenom přidatka / e-mejlowej adresu awtora pytać"
@@ -6831,9 +6821,8 @@ msgstr "Wužitne wotkazy:"
 msgid "Add-on Policy"
 msgstr "Prawidła přidatka"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Příručka přepruwowarja"
+msgstr "Příručka za přepruwowarjow"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6892,9 +6881,9 @@ msgstr "Testowany:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami wobhladał."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Běła deska je městno, hdźež wuwiwar a redaktor móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać."
+msgstr ""
+"Informaciska tafla je městno, hdźež wuwiwar a přepruwowar móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać a wobdźěłać."
 
 msgid "Update the whiteboard"
 msgstr "Pokazki aktualizować"
@@ -7195,9 +7184,8 @@ msgstr "Njemóžeće pohódnoćenje za swójski přidatk zawostajić."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Njemóžeće wjace hač jedne pohódnoćenje za samsnu wersiju přidatka zawostajić."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Dźakujemy so; tute přepruwowanje je so za schwalenje redaktora markěrowało."
+msgstr "Dźakujemy so; tute pohódnocénje je so za schwalenje přepruwowarja markěrowało."
 
 msgid "Add a review for {0}"
 msgstr "Pohódnoćenje za {0} přidać"
