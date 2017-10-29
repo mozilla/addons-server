@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
@@ -57,7 +57,7 @@ msgstr[1] "Validering af din tilføjelse mislykkedes, der var {0} fejl."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;og {0} mere"
+msgstr[0] ""
 msgstr[1] ""
 
 msgid "See full validation report"
