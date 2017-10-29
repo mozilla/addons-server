@@ -633,11 +633,10 @@ msgstr "אחר"
 msgid "Select an application first"
 msgstr "תחילה יש לבחור יישום"
 
-#, fuzzy
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "להגדיר תוספת אחת לגרסת מרבית של {1} ולשלוח מכתב למפתח."
-msgstr[1] "להגדיר {0} תוספות לגרסת מרבית של {1} ולשלוח מכתב למפתח."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
