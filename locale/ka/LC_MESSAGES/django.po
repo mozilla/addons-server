@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-29 02:10+0000\n"
+"PO-Revision-Date: 2017-10-29 02:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3153,7 +3153,6 @@ msgstr "თქვენი დამატების UUID განასზ�
 msgid "Whiteboard"
 msgstr "თეთრი დაფა"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
@@ -3215,9 +3214,8 @@ msgstr "გთხოვთ მიუთითოთ წარწერა, ს�
 msgid "Add a Screenshot..."
 msgstr "სურათების დამატება..."
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "აძლევთ სხვებს უფლებას, გაავრცელონ თქვენი თემა, ავტორის მითითებით?"
+msgstr "აძლევთ სხვებს უფლებას, გაავრცელონ თქვენი დამატება, ავტორის მითითებით?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის მოგების მიზნითაც."
@@ -3225,13 +3223,11 @@ msgstr "ლიცენზიის მფლობელი ნებას რ
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არამომგებიანი დანიშნულებით."
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "აძლევთ სხვებს უფლებას, მოგების მიზნით გამოიყენონ თქვენი თემა?"
+msgstr "აძლევთ სხვებს უფლებას, მოგების მიზნით გამოიყენონ თქვენი დამატება?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "აძლევთ სხვებს, თქვენი თემის გადამუშავების უფლებას?"
+msgstr "აძლევთ სხვებს, თქვენი დამატების გადამუშავების უფლებას?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის, გადამუშავებული სახით."
@@ -3764,7 +3760,7 @@ msgid "Site Status"
 msgstr "საიტის მდგომარეობა"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: შექმენით და გამოცადეთ გაფართოებები"
 
 msgid "Compatibility Checker"
 msgstr "თავსებადობის დამდგენი"
@@ -3902,20 +3898,19 @@ msgid "Sign In"
 msgstr "შესვლა"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "ბრძანების სტრიქონი, გაფართოებების შექმნის, გაშვებისა და გამოცდისთვის."
 
 msgid "Automated code tests for your add-on."
 msgstr "დამატების კოდის ავტომატური შემოწმება."
 
-#, fuzzy
 msgid "Compatibility Test"
 msgstr "თავსებადობის შემოწმება"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "შეამოწმეთ, არის თუ არა თქვენი გაფართოება Firefox-სთან თავსებადი."
 
 msgid "Transfer ownership"
 msgstr "საკუთრების გადაცემა"
@@ -5132,13 +5127,12 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "ვინ ქმნის დამატებებს?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"აქ გამოქვეყნებული დამატებები შექმნილია ათასობით შემმუშავებლის მიერ, ჩვენი დიდი ერთობიდან, დაწყებული დამოუკიდებელი მოხალისეებიდან, დამთავრებული დიდი კორპორაციებით. აქ მოცემული ყველა დამატება "
-"შემოწმებულია ჩვენი სარედაქციო გუნდის მიერ, მათ გამოქვეყნებამდე. გარდა საცდელად მონიშნული დამატებებისა, რომელთა განხილვაც არ ხდება და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
+"აქ გამოქვეყნებული დამატებები შექმნილია ათასობით შემმუშავებლის მიერ, ჩვენი დიდი ერთობიდან, დაწყებული დამოუკიდებელი მოხალისეებიდან, დამთავრებული დიდი კორპორაციებით. აქ მოცემული ყველა დამატება, "
+"გამოქვეყნებამდე შემოწმებულია ჩვენი მიმომხილველთა გუნდის მიერ. გარდა საცდელად მონიშნული დამატებებისა, რომელთა განხილვაც არ ხდება და მათი დაყენებისას, ყურადღების გამოჩენაა საჭირო."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "როგორ მივადევნო თვალი, AMO-სთან დაკავშირებულ სიახლეებს?"
@@ -5893,13 +5887,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "როგორ უნდა გამოვგზავნო მოხსენება, მომხმარებლის მიერ დაწერილი შეუფერებელი, ან სარეკლამო ხასიათის მიმოხილვის შესახებ?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "დამატებაზე, მომხმარებლის მიმოხილვის შესახებ მოხსენების გამოსაგზავნად, შედით თქვენს ანგარიშზე და გადადით დამატების მიმოხილვების გვერდზე. მონახეთ სასურველი მიმოხილვა, დააწკაპეთ ბმულზე \"მოხსენება ამ "
-"მიმოხილვაზე\" და მიუთითეთ მიზეზი. ჩვენი სარედაქციო გუნდი გადახედავს მიმოხილვას და მიიღებს საჭირო ზომებს."
+"მიმოხილვაზე\" და მიუთითეთ მიზეზი. ჩვენი სარედაქციო გუნდი გადახედავს მიმოხილვის ტექსტს და მიიღებს საჭირო ზომებს."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "როგორ გამოვგზავნო მოხსენება ხარვეზის შესახებ, ან როგორ დავუკავშირდე Mozilla-ს დამატებების გუნდს?"
@@ -6223,9 +6216,8 @@ msgid "end"
 msgstr "დასრულება"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "დამატება, შემსწორებელი ან გამოხმაურება"
+msgstr "დამატება, მიმომხილველი, ან გამოხმაურება"
 
 msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
@@ -6694,7 +6686,6 @@ msgstr "სასარგებლო ბმულები:"
 msgid "Add-on Policy"
 msgstr "დამატების დებულებები"
 
-#, fuzzy
 msgid "Reviewer's Guide"
 msgstr "მიმომხილველის სახელმძღვანელო"
 
@@ -6755,9 +6746,8 @@ msgstr "გამოცდის თარიღი:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "თეთრი დაფა არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
+msgstr "თეთრი დაფა არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და მიმომხილველს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
 
 msgid "Update the whiteboard"
 msgstr "შენიშვნების განახლება"
@@ -7034,9 +7024,8 @@ msgstr "საკუთარ დამატებაზე მიმოხი�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "გმადლობთ; ეს მიმოხილვა მონიშნულია შემსწორებლის მიერ გადახედვისთვის."
+msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
 
 msgid "Add a review for {0}"
 msgstr "{0}-ზე მიმოხილვის დატოვება"
