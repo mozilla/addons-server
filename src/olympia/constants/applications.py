@@ -1,8 +1,12 @@
+import re
+
 from django.utils.translation import ugettext_lazy as _
 
 from olympia.versions.compare import version_int as vint
 
-from base import *  # noqa
+from base import (
+    ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+    ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME)
 
 
 class App(object):
@@ -160,6 +164,7 @@ APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
 APP_IDS = {app.id: app for app in APP_USAGE}
 APP_GUIDS = {app.guid: app for app in APP_USAGE}
 APPS_CHOICES = tuple((app.id, app.pretty) for app in APP_USAGE)
+APP_USAGE_STATICTHEME = (FIREFOX,)
 
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:

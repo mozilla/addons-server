@@ -65,6 +65,7 @@
             </td>
           </tr>
           {% endif %}
+          {% if version_form %}
           <tr>
           {% with field = version_form.releasenotes %}
             <th>
@@ -82,6 +83,7 @@
             </td>
           {% endwith %}
           </tr>
+          {% endif %}
           <tr>
             <th>
               {{ _("License") }}
@@ -105,6 +107,7 @@
               </ul>
             </td>
           </tr>
+          {% if version_form %}
           <tr>
           {% with field = version_form.approvalnotes %}
             <th>
@@ -131,6 +134,7 @@
             </td>
           {% endwith %}
           </tr>
+          {% endif %}
         </table>
       </div>
       <div class="listing-footer">

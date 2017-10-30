@@ -1030,16 +1030,19 @@ def upload_image(request, addon_id, addon, upload_type):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
         request.POST or None,
         request.FILES or None,
         instance=version
-    )
+    ) if not static_theme else None
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
 
-    data = {'version_form': version_form, 'file_form': file_form}
+    data = {'file_form': file_form}
+    if version_form:
+        data['version_form'] = version_form
 
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
@@ -1055,7 +1058,6 @@ def version_edit(request, addon_id, addon, version_id):
 
     if (request.method == 'POST' and
             all([form.is_valid() for form in data.values()])):
-        data['version_form'].save()
         data['file_form'].save()
 
         if 'compat_form' in data:
@@ -1071,25 +1073,27 @@ def version_edit(request, addon_id, addon, version_id):
                         'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
 
-        if 'approvalnotes' in version_form.changed_data:
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   addon, version, request.user)
+        if 'version_form' in data:
+            data['version_form'].save()
+            if 'approvalnotes' in version_form.changed_data:
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                       addon, version, request.user)
 
-        if ('source' in version_form.changed_data and
-                version_form.cleaned_data['source']):
-            addon.update(admin_review=True)
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   addon, version, request.user)
+            if ('source' in version_form.changed_data and
+                    version_form.cleaned_data['source']):
+                addon.update(admin_review=True)
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                       addon, version, request.user)
 
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)

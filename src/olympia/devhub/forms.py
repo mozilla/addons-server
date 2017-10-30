@@ -370,10 +370,15 @@ class BaseCompatFormSet(BaseModelFormSet):
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
         qs = kwargs['queryset'].values_list('application', flat=True)
-        apps = [a for a in amo.APP_USAGE if a.id not in qs]
+        version = self.form_kwargs.get('version')
+        static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
+        available_apps = (amo.APP_USAGE if not static_theme
+                          else amo.APP_USAGE_STATICTHEME)
+        self.can_delete = not static_theme  # No tinkering with apps please.
+        apps = [a for a in available_apps if a.id not in qs]
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
-        self.extra = len(amo.APP_GUIDS) - len(self.forms)
+        self.extra = len(available_apps) - len(self.forms)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
@@ -546,7 +551,8 @@ class FileForm(happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
+        addon_type = kw['instance'].version.addon.type
+        if addon_type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()

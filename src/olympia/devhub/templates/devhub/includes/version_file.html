@@ -6,7 +6,7 @@
         {{ file.pretty_filename() }}</a>
     </td>
     <td>{{ file.size|filesizeformat(binary=True) }}</td>
-    <td>{{ form.platform }}</td>
+    <td>{{ form.platform or amo.PLATFORM_ALL.name }}</td>
     <td>{{ choices[file.status] }}</td>
   </tr>
 {% endwith %}
