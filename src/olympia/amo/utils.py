@@ -514,7 +514,7 @@ class ImageCheck(object):
             # just "suitable ones", so let's catch them all.
             self.img.verify()
             return True
-        except:
+        except Exception:
             log.error('Error decoding image', exc_info=True)
             return False
 

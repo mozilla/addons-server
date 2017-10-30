@@ -24,5 +24,5 @@ def run():
             data = parse_addon(file_.file_path, addon=file_.version.addon)
             if data.get('is_multi_package'):
                 file_.update(is_multi_package=True)
-        except:
+        except Exception:
             log.error('Failed checking file {0}'.format(file_.pk))

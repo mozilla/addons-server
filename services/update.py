@@ -334,7 +334,7 @@ def application(environ, start_response):
             update = Update(data, compat_mode)
             output = force_bytes(update.get_rdf())
             start_response(status, update.get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(data)
             raise
     return [output]
