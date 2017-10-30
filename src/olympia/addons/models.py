@@ -2169,6 +2169,14 @@ class ReplacementAddon(ModelBase):
     class Meta:
         db_table = 'replacement_addons'
 
+    @staticmethod
+    def is_external_path(path):
+        scheme = path.split('://')[0].lower()
+        return scheme in ['http', 'https']
+
+    def is_external(self):
+        return self.is_external_path(self.path)
+
 
 models.signals.post_save.connect(update_incompatible_versions,
                                  sender=CompatOverrideRange,

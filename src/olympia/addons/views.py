@@ -22,20 +22,19 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.amo import messages
 from olympia.amo.forms import AbuseForm
-from olympia.amo.utils import randslice, render
 from olympia.amo.models import manual_order
-from olympia.amo import urlresolvers
-from olympia.amo.urlresolvers import reverse
-from olympia.abuse.models import send_abuse_report
-from olympia.bandwagon.models import Collection
-from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
+from olympia.amo.utils import randslice, render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
+from olympia.bandwagon.models import Collection
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -89,7 +88,7 @@ def addon_detail(request, addon):
         except IndexError:
             raise http.Http404
         else:
-            prefixer = urlresolvers.get_url_prefix()
+            prefixer = get_url_prefix()
             prefixer.app = new_app.short
             return http.HttpResponsePermanentRedirect(reverse(
                 'addons.detail', args=[addon.slug]))
@@ -102,7 +101,7 @@ def extension_detail(request, addon):
     # If current version is incompatible with this app, redirect.
     comp_apps = addon.compatible_apps
     if comp_apps and request.APP not in comp_apps:
-        prefixer = urlresolvers.get_url_prefix()
+        prefixer = get_url_prefix()
         prefixer.app = comp_apps.keys()[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
@@ -419,9 +418,14 @@ def find_replacement_addon(request):
     if not guid:
         raise http.Http404
     try:
-        path = ReplacementAddon.objects.get(guid=guid).path
+        replacement = ReplacementAddon.objects.get(guid=guid)
+        path = replacement.path
     except ReplacementAddon.DoesNotExist:
         path = DEFAULT_FIND_REPLACEMENT_PATH
+    else:
+        if replacement.is_external():
+            # It's an external URL:
+            return redirect(get_outgoing_url(path))
     replace_url = '%s%s?src=%s' % (
         ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
     return redirect(replace_url, permanent=False)

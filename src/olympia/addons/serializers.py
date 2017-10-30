@@ -630,6 +630,9 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             collection.addons.filter(valid_q).values_list('guid', flat=True))
 
     def get_replacement(self, obj):
+        if obj.is_external():
+            # It's an external url so no guids.
+            return []
         addon_match = re.search(self.ADDON_PATH_REGEX, obj.path)
         if addon_match:
             return self._get_addon_guid(addon_match.group('addon_id'))

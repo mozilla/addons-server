@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.test import RequestFactory
 
 from olympia.amo.tests import (
@@ -27,6 +28,28 @@ class TestReplacementAddonForm(TestCase):
         form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
             {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
         assert form.is_valid(), form.errors
+
+    def test_url(self):
+        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
+            {'guid': 'foo', 'path': 'https://google.com/'})
+        assert form.is_valid()
+
+    def test_invalid_urls(self):
+        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': 'ftp://google.com/'}).is_valid()
+        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': 'https://88999@~'}).is_valid()
+        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
+
+        path = '/addon/bar/'
+        full_url = settings.SITE_URL + path
+        # path is okay
+        assert ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': path}).is_valid()
+        # but we don't allow full urls for AMO paths
+        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': full_url}).is_valid()
 
 
 class TestReplacementAddonList(TestCase):

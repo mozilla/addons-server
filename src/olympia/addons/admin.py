@@ -1,7 +1,9 @@
 from urllib import urlencode
 
 from django import forms
+from django.conf import settings
 from django.contrib import admin
+from django.core import validators
 from django.core.urlresolvers import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext
@@ -83,8 +85,13 @@ class ReplacementAddonForm(forms.ModelForm):
         path = None
         try:
             path = self.data.get('path')
-            path = ('/' if not path.startswith('/') else '') + path
-            resolve(path)
+            site = settings.SITE_URL
+            if (models.ReplacementAddon.is_external_path(path) and
+                    not path.startswith(site)):
+                validators.URLValidator()(path)
+            else:
+                path = ('/' if not path.startswith('/') else '') + path
+                resolve(path)
         except Exception:
             raise forms.ValidationError('Path [%s] is not valid' % path)
         return super(ReplacementAddonForm, self).clean()
