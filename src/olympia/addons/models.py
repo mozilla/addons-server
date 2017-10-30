@@ -6,6 +6,7 @@ import os
 import posixpath
 import re
 import time
+import urlparse
 from operator import attrgetter
 from datetime import datetime
 
@@ -2170,12 +2171,11 @@ class ReplacementAddon(ModelBase):
         db_table = 'replacement_addons'
 
     @staticmethod
-    def is_external_path(path):
-        scheme = path.split('://')[0].lower()
-        return scheme in ['http', 'https']
+    def path_is_external(path):
+        return urlparse.urlsplit(path).scheme in ['http', 'https']
 
-    def is_external(self):
-        return self.is_external_path(self.path)
+    def has_external_url(self):
+        return self.path_is_external(self.path)
 
 
 models.signals.post_save.connect(update_incompatible_versions,

@@ -43,13 +43,17 @@ class TestReplacementAddonForm(TestCase):
             None)({'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
 
         path = '/addon/bar/'
-        full_url = settings.SITE_URL + path
+        site = settings.SITE_URL
+        full_url = site + path
         # path is okay
         assert ReplacementAddonAdmin(ReplacementAddon, None).get_form(
             None)({'guid': 'foo', 'path': path}).is_valid()
         # but we don't allow full urls for AMO paths
-        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': full_url}).is_valid()
+        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(
+            None)({'guid': 'foo', 'path': full_url})
+        assert not form.is_valid()
+        assert ('Paths for [%s] should be relative, not full URLs including '
+                'the domain name' % site in form.errors['__all__'])
 
 
 class TestReplacementAddonList(TestCase):

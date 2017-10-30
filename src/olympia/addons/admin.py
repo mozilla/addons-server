@@ -86,12 +86,18 @@ class ReplacementAddonForm(forms.ModelForm):
         try:
             path = self.data.get('path')
             site = settings.SITE_URL
-            if (models.ReplacementAddon.is_external_path(path) and
-                    not path.startswith(site)):
+            if models.ReplacementAddon.path_is_external(path):
+                if path.startswith(site):
+                    raise forms.ValidationError(
+                        'Paths for [%s] should be relative, not full URLs '
+                        'including the domain name' % site)
                 validators.URLValidator()(path)
             else:
                 path = ('/' if not path.startswith('/') else '') + path
                 resolve(path)
+        except forms.ValidationError as validation_error:
+            # Re-raise the ValidationError about full paths for SITE_URL.
+            raise validation_error
         except Exception:
             raise forms.ValidationError('Path [%s] is not valid' % path)
         return super(ReplacementAddonForm, self).clean()
