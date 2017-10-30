@@ -679,7 +679,7 @@ def extract_zip(source, remove=False, fatal=True):
     try:
         if zip_file.is_valid(fatal):
             zip_file.extract_to_dest(tempdir)
-    except:
+    except Exception:
         rm_local_tmp_dir(tempdir)
         raise
 

@@ -85,7 +85,7 @@ class ReplacementAddonForm(forms.ModelForm):
             path = self.data.get('path')
             path = ('/' if not path.startswith('/') else '') + path
             resolve(path)
-        except:
+        except Exception:
             raise forms.ValidationError('Path [%s] is not valid' % path)
         return super(ReplacementAddonForm, self).clean()
 

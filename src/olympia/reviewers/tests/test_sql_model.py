@@ -106,7 +106,7 @@ class TestSQLModel(BaseTestCase):
                 drop table if exists sql_model_test_product;
                 """.split(';')
                 execute_all(sql)
-            except:
+            except Exception:
                 pass  # No failing here.
 
         teardown()

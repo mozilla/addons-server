@@ -145,7 +145,7 @@ def sign_addons(addon_ids, force=False, **kw):
                     signed_at_least_a_file = True
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
-            except:
+            except Exception:
                 log.error(u'Failed signing file {0}'.format(file_obj.pk),
                           exc_info=True)
                 # Revert the version bump, restore the backup.

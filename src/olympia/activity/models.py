@@ -283,7 +283,7 @@ class ActivityLog(ModelBase):
             # d is a structure:
             # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
-        except:
+        except Exception:
             log.debug('unserializing data from addon_log failed: %s' % self.id)
             return None
 
