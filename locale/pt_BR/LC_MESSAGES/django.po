@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 13:04+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2017-10-31 11:28+0000\n"
+"Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3361,9 +3361,8 @@ msgid "Add a Screenshot..."
 msgstr "Adicionar uma captura de tela..."
 
 # 88%
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Outras pessoas podem compartilhar seu tema, desde que dando crédito a você?"
+msgstr "Outras pessoas podem compartilhar sua extensão, desde que dando crédito a você?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho, incluindo para fins comerciais."
@@ -3372,14 +3371,12 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho apenas para fins não comerciais."
 
 # 85%
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Outras pessoas podem usar seu tema comercialmente?"
+msgstr "Outras pessoas podem usar sua extensão comercialmente?"
 
 # 86%
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
+msgstr "Outras pessoas podem criar trabalhos derivados de sua extensão?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho, além de poder criar trabalhos derivados baseados nele."
@@ -3394,9 +3391,8 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr "O licenciador permite que outras pessoas copiem, distribuam e transmitam apenas cópias inalteradas do trabalho — e não trabalhos derivados baseados nele."
 
 # 87%
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Seu tema será lançado sob a seguinte licença:"
+msgstr "Sua extensão será lançada sob a seguinte licença:"
 
 msgid "Select a different license."
 msgstr "Selecione uma licença diferente."
@@ -4087,9 +4083,8 @@ msgstr "Uma ferramenta de linha de comando para compilar, executar e testar exte
 msgid "Automated code tests for your add-on."
 msgstr "Testes de código automatizado para sua extensão."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Testes de compatibilidade"
+msgstr "Teste de compatibilidade"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Marque para verificar se sua extensão é compatível com o Firefox."
@@ -6119,13 +6114,12 @@ msgstr ""
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Como eu posso denunciar uma análise inadequada ou spam?"
 
-#, fuzzy
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Para reportar uma análise do usuário de um complemento, entre com a sua conta e acesse a página de análises de complementos. Encontre a análise que deseja reportar, clique em \"Reportar esta "
-"análise\" e selecione um motivo. Nossos time de editores irá investigar a análise e tomar as devidas providências."
+"Para reportar uma análise do usuário de uma extensão, entre com a sua conta e acesse a página de análises de extensões. Encontre a análise que deseja reportar, clique em \"Reportar esta análise\" e "
+"selecione um motivo. Nosso time de editores irá investigar a análise e tomar as devidas providências."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Como eu faço para relatar um bug ou entrar em contato com a equipe do Mozilla Add-ons?"
@@ -6452,9 +6446,8 @@ msgid "end"
 msgstr "fim"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "complemento, editor ou comentário"
+msgstr "extensão, editor ou comentário"
 
 msgid "Search by add-on name / author email"
 msgstr "Procurar pelo nome do complemento / e-mail do autor"
@@ -6953,7 +6946,6 @@ msgstr "Links úteis:"
 msgid "Add-on Policy"
 msgstr "Política do complemento"
 
-#, fuzzy
 msgid "Reviewer's Guide"
 msgstr "Guia dos Revisores"
 
@@ -7309,9 +7301,8 @@ msgstr "Você não pode deixar uma avaliação na sua própria extensão."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Você não pode deixar mais de uma avaliação para a mesma versão de uma extensão."
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Obrigado; esta avaliação foi marcada para aprovação de um editor."
+msgstr "Obrigado; esta análise foi marcada para aprovação de um editor."
 
 # %s is the name of the add-on
 msgid "Add a review for {0}"
