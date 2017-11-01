@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-11-01 18:06+0000\n"
+"PO-Revision-Date: 2017-11-01 18:16+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -598,7 +598,7 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr ""
 
 msgid "This add-on has been removed by its author."
-msgstr "תוספת זו הוסרה על ידי היוצר שלה."
+msgstr ""
 
 msgid "This add-on has been disabled by an administrator."
 msgstr "תוספת זו נוטרלה ע״י מנהל מערכת."
@@ -1778,7 +1778,7 @@ msgstr ""
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "המשתמש {0.name} ({1}) הוסר מהתוספת {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "תרומות עבור {addon}."
@@ -3012,7 +3012,7 @@ msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr "מפתחים"
+msgstr ""
 
 msgid "About author roles"
 msgstr ""
@@ -5851,7 +5851,7 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr "ישנם מחברי תוספות המבקשים ממשתמשים שנהנים מתוספת לתרום להמשך פיתוחה ע״י תרומה כספית. תרומות אלו הולכות ישירות למפתח אלא אם כן צויין גורם צד שלישי, כמו Mozilla Foundation שהיא ללא מטרות רווח."
+msgstr ""
 
 msgid "What are beta add-ons?"
 msgstr ""
@@ -6181,7 +6181,7 @@ msgid "add-on, reviewer or comment"
 msgstr "תוספת, סוקר או הערה"
 
 msgid "Search by add-on name / author email"
-msgstr "חיפוש לפי שם תוספת / כתובת הדוא״ל של היוצר"
+msgstr ""
 
 msgid "yes"
 msgstr "כן"
