@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-28 17:56+0000\n"
+"PO-Revision-Date: 2017-11-01 18:02+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2950,7 +2950,7 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr "この要約はアドオンが何をするかを明確に説明すべきです。詳細ページや検索結果に表示され、アドオンをテストする審査担当者にも機能と照らし合わせて確認されます。"
 
 msgid "Experimental?"
-msgstr "実験的？"
+msgstr "実験的ですか？"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "このアドオンが実験的あるいはその他の理由で一般利用には時期尚早である場合。アドオンは掲載されますが、視認性は下げられます。"
@@ -2962,10 +2962,10 @@ msgid "This add-on is ready for general use."
 msgstr "このアドオンは一般ユーザーの使用に適しています。"
 
 msgid "Requires Payment?"
-msgstr "課金が必要ですか？"
+msgstr "課金しますか？"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr "このアドオンの主要機能を使用するため、試用期間開始前もしくは終了後に何らかの形での支払いを必要とする場合は、ここにチェックを入れてください。"
+msgstr "このアドオンの主要機能を使用するため、試用期間開始前もしくは終了後に何らかの形で課金を求める場合は、ここにチェックを入れてください。"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "このアドオンは、課金、有償のサービスもしくはソフトウェア、あるいは追加のハードウェアを必要とします。"
