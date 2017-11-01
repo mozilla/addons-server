@@ -1,4 +1,3 @@
-import json
 import re
 
 from rest_framework import serializers
@@ -79,7 +78,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'], sizes=json.loads(data.get('sizes', '{}')))
+        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.

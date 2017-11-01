@@ -159,7 +159,8 @@ class AddonSerializerOutputTestMixin(object):
             user=first_author, addon=self.addon, position=1)
         second_preview = Preview.objects.create(
             addon=self.addon, position=2,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            sizes={'thumbnail': [199, 99], 'image': [567, 780]})
         first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
@@ -253,9 +254,10 @@ class AddonSerializerOutputTestMixin(object):
             second_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url)
-        assert result_preview['image_size'] == second_preview.image_size
-        assert result_preview['thumbnail_size'] == (
-            second_preview.thumbnail_size)
+        assert (result_preview['image_size'] == second_preview.image_size ==
+                [567, 780])
+        assert (result_preview['thumbnail_size'] ==
+                second_preview.thumbnail_size == [199, 99])
 
         assert result['ratings'] == {
             'average': self.addon.average_rating,
