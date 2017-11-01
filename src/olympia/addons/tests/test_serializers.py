@@ -240,6 +240,8 @@ class AddonSerializerOutputTestMixin(object):
             first_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             first_preview.thumbnail_url)
+        assert result_preview['image_size'] == first_preview.image_size
+        assert result_preview['thumbnail_size'] == first_preview.thumbnail_size
 
         result_preview = result['previews'][1]
         assert result_preview['id'] == second_preview.pk
@@ -251,6 +253,9 @@ class AddonSerializerOutputTestMixin(object):
             second_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url)
+        assert result_preview['image_size'] == second_preview.image_size
+        assert result_preview['thumbnail_size'] == (
+            second_preview.thumbnail_size)
 
         assert result['ratings'] == {
             'average': self.addon.average_rating,

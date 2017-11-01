@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from itertools import chain
 
 from olympia import amo
@@ -513,11 +515,15 @@ class TestAddonIndexer(TestCase):
         assert extracted['previews'][0]['id'] == first_preview.pk
         assert extracted['previews'][0]['modified'] == first_preview.modified
         assert extracted['previews'][0]['caption_translations'] == []
+        assert extracted['previews'][0]['sizes'] == (
+            json.dumps(first_preview.sizes))
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
         assert extracted['previews'][1]['caption_translations'] == [
             {'lang': 'en-US', 'string': u'My câption'},
             {'lang': 'fr', 'string': u'Mön tîtré'}]
+        assert extracted['previews'][1]['sizes'] == (
+            json.dumps(second_preview.sizes))
 
         # Only raw translations dict should exist, since we don't need the
         # to search against preview captions.
