@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-28 05:35+0000\n"
-"PO-Revision-Date: 2017-10-29 20:31+0000\n"
+"PO-Revision-Date: 2017-11-01 18:06+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -429,7 +429,7 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr "מדריך סקירה"
+msgstr "כללי סקירה"
 
 msgid "Reviews"
 msgstr "סקירות"
@@ -598,7 +598,7 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr ""
 
 msgid "This add-on has been removed by its author."
-msgstr "תוספת זו הוסרה ע״י המחבר שלה."
+msgstr "תוספת זו הוסרה על ידי היוצר שלה."
 
 msgid "This add-on has been disabled by an administrator."
 msgstr "תוספת זו נוטרלה ע״י מנהל מערכת."
