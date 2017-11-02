@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"POT-Creation-Date: 2017-11-02 03:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-#: src/olympia/addons/admin.py:107
+#: src/olympia/addons/admin.py:120
 msgid "- Add-on not on AMO -"
 msgstr ""
 
@@ -224,15 +224,15 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: src/olympia/addons/models.py:1680 src/olympia/constants/base.py:86
+#: src/olympia/addons/models.py:1681 src/olympia/constants/base.py:86
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2166
+#: src/olympia/addons/models.py:2167
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/views.py:380
+#: src/olympia/addons/views.py:379
 msgid "Abuse reported."
 msgstr ""
 
