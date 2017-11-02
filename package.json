@@ -21,6 +21,7 @@
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
     "less": "2.7.2",
+    "source-map": "0.6.1",
     "stylus": "0.54.5",
     "raven-js": "3.19.1",
     "timeago": "1.6.1",
