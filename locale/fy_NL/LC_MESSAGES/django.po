@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-02 12:53+0000\n"
+"PO-Revision-Date: 2017-11-02 14:06+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2878,7 +2878,7 @@ msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Hâld der rekkening mei dat dit helpmiddel allinnich mei ferâldere add-ons wurket. WebExtension-API’s wurde <a href=\"%(webext_doc_url)s\">hjir</a> wiidweidich dokumintearre."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "Nei de oplaad wurdt in oantal automatisearre falidaasjetests útfierd om te kontrolearjen op kompatibiliteit mei de folgjende tapassingsferzje:"
@@ -6960,13 +6960,13 @@ msgid "Other (please specify)"
 msgstr ""
 
 msgid "This field is required."
-msgstr ""
+msgstr "Dit fjild is fereaske."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr "Jo kinne de add-on fan in beoardieling net wizigje as dizze oanmakke is."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Jo kinne net antwurdzje op in beoardieling dy't al in antwurd is."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
 msgstr ""
