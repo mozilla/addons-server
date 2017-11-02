@@ -175,7 +175,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
     :>json string|object|null previews[].caption: The caption describing a preview (See :ref:`translated fields <api-overview-translations>`).
+    :>json int previews[].image_size[]: width, height dimensions of of the preview image.
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
+    :>json int previews[].thumbnail_size[]: width, height dimensions of of the preview image thumbnail.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.

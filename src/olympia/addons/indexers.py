@@ -163,6 +163,14 @@ class AddonIndexer(BaseSearchIndexer):
                         'properties': {
                             'id': {'type': 'long', 'index': False},
                             'modified': {'type': 'date', 'index': False},
+                            'sizes': {
+                                'type': 'object',
+                                'properties': {
+                                    'thumbnail': {'type': 'short',
+                                                  'index': False},
+                                    'image': {'type': 'short', 'index': False},
+                                },
+                            },
                         },
                     },
                     'public_stats': {'type': 'boolean', 'index': False},
@@ -343,7 +351,8 @@ class AddonIndexer(BaseSearchIndexer):
 
         # We can use all_previews because the indexing code goes through the
         # transformer that sets it.
-        data['previews'] = [{'id': preview.id, 'modified': preview.modified}
+        data['previews'] = [{'id': preview.id, 'modified': preview.modified,
+                             'sizes': preview.sizes}
                             for preview in obj.all_previews]
         data['ratings'] = {
             'average': obj.average_rating,

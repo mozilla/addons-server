@@ -59,7 +59,8 @@ class PreviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Preview
-        fields = ('id', 'caption', 'image_url', 'thumbnail_url')
+        fields = ('id', 'caption', 'image_size', 'image_url', 'thumbnail_size',
+                  'thumbnail_url')
 
     def get_image_url(self, obj):
         return absolutify(obj.image_url)
@@ -77,7 +78,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'])
+        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.
