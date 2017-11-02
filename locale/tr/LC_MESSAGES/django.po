@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-02 14:26+0000\n"
+"PO-Revision-Date: 2017-11-02 14:50+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -215,10 +215,10 @@ msgid "Add-ons for {0}"
 msgstr "{0} Eklentileri"
 
 msgid "Featured Extensions"
-msgstr "Öne Çıkan Uzantılar"
+msgstr "Öne Çıkan Eklentiler"
 
 msgid "Popular Extensions"
-msgstr "Popüler Uzantılar"
+msgstr "Popüler Eklentiler"
 
 msgid "Most Popular"
 msgstr "En Popüler"
@@ -230,7 +230,7 @@ msgid "See all »"
 msgstr "Tümünü gör »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr "Yükselişte Olan Uzantılar"
+msgstr "Yükselişte Olan Eklentiler"
 
 msgid "Featured Themes"
 msgstr "Öne Çıkan Temalar"
@@ -831,7 +831,7 @@ msgstr "Keşfedin"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
-msgstr "Uzantılar"
+msgstr "Eklentiler"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -1450,7 +1450,7 @@ msgid "Search tools relating to %s"
 msgstr "%s ile ilgili arama araçları"
 
 msgid "Search tools and search-related extensions"
-msgstr "Arama araçları ve aramayla ilgili uzantılar"
+msgstr "Arama araçları ve aramayla ilgili eklentiler"
 
 msgid "Search tools"
 msgstr "Arama araçları"
@@ -1541,7 +1541,7 @@ msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> eklenti"
 
 msgid "Search Extensions"
-msgstr "Arama Uzantıları"
+msgstr "Arama Eklentileri"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Firefox'a aramayla ilgili işlevler ekleyin"
@@ -1567,25 +1567,25 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr "En Popüler Uzantılar"
+msgstr "En Popüler Eklentiler"
 
 msgid "Top-Rated Extensions"
-msgstr "Yüksek Puanlı Uzantılar"
+msgstr "Yüksek Puanlı Eklentiler"
 
 msgid "Newest Extensions"
-msgstr "En Yeni Uzantılar"
+msgstr "En Yeni Eklentiler"
 
 msgid "Extensions by Name"
-msgstr "İsme göre uzantılar"
+msgstr "İsme göre eklentiler"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Haftalık indirmeye göre eklentiler"
 
 msgid "Recently Updated Extensions"
-msgstr "Son Güncellenen Uzantılar"
+msgstr "Son Güncellenen Eklentiler"
 
 msgid "Up & Coming Extensions"
-msgstr "Yükselişteki Uzantılar"
+msgstr "Yükselişte Olan Eklentiler"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3354,7 +3354,7 @@ msgstr "Güvenlik testleri"
 
 # Plural in this context means many of the add-on type
 msgid "Extension Tests"
-msgstr "Uzantı testleri"
+msgstr "Eklenti testleri"
 
 msgid "Localization Tests"
 msgstr "Yerelleştirme testleri"
@@ -3997,6 +3997,8 @@ msgstr "Chrome uzantısını dönüştürün"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox, çoğu durumda Chrome, Opera ve Edge tarafından desteklenen uzantı API'larıyla uyumlu olan WebExtension API'larını destekler; bu nedenle Firefox'ta uzantılarınız yalnızca birkaç değişiklikle "
+"çalışacaktır."
 
 msgid "Publish Your Add-on"
 msgstr "Eklentinizi yayımlayın"
@@ -7319,13 +7321,11 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#, fuzzy
 msgid "Most popular this week"
-msgstr "En Popüler Uzantılar"
+msgstr "Bu hafta en popüler"
 
-#, fuzzy
 msgid "Most popular this month"
-msgstr "En Popüler Uzantılar"
+msgstr "Bu ay en popüler"
 
 #, fuzzy
 msgid "Most popular all time"
@@ -7722,9 +7722,8 @@ msgstr "Platform"
 msgid "See more platforms&hellip;"
 msgstr "Daha fazla platform gör&hellip;"
 
-#, fuzzy
 msgid "Ratings by Date"
-msgstr "İsme göre uzantılar"
+msgstr "Tarihe göre puanlar"
 
 #, fuzzy
 msgid "Reviews Created by Date"
