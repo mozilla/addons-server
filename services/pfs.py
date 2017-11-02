@@ -138,7 +138,7 @@ def application(environ, start_response):
         try:
             output = get_output(data).encode('utf-8')
             start_response(status, get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(data)
             raise
         return [output]

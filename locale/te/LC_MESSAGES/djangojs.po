@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-07-17 11:29+0000\n"
 "Last-Translator: నితిన్ <sainithin95@gmail.com>\n"
 "Language-Team: none\n"
@@ -749,17 +749,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} వనరుని సమీక్ష"
 msgstr[1] "{reviews} వనరుని సమీక్షలు"
 
-msgid "Learn more"
-msgstr "ఇంకా తెలుసుకోండి"
-
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
 msgstr "ఎటువంటి ఫలితాలు లభించలేదు."
+
+msgid "Loading..."
+msgstr "లోడవుతున్నది..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
+msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr ""
+
+msgid "Remove this localization"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -796,21 +805,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr "సమీక్షల సంఖ్య"
-
-msgid "Loading..."
-msgstr "లోడవుతున్నది..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
-msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
-
-msgid "Remove this localization"
-msgstr ""
 
 msgid "Requested Info"
 msgstr ""

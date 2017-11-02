@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-msgid "Learn more"
-msgstr "ਹੋਰ ਜਾਣੋ"
-
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-msgid "Must be a valid e-mail address."
-msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
+
+msgid "Loading..."
+msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
+
+msgid "Remove this localization"
+msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
@@ -799,21 +808,6 @@ msgstr "ਔਸਤ ਸਮੀਖਿਆ"
 
 msgid "Number of Reviews"
 msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
-
-msgid "Loading..."
-msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
-msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
-
-msgid "Remove this localization"
-msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
 
 msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"

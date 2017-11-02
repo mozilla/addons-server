@@ -1001,6 +1001,12 @@ class TestReplacementAddonSerializer(TestCase):
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
 
+        # But urls aren't resolved - and don't break everything
+        rep.update(path=absolutify(addon.get_url_path()))
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
+
     def test_valid_collection_path(self):
         addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')
         me = user_factory(username=u'me')

@@ -222,7 +222,7 @@ def application(environ, start_response):
                 start_response('404 Not Found', [])
                 return ['']
             start_response(status, update.get_headers(len(output)))
-        except:
+        except Exception:
             log_exception(environ['PATH_INFO'])
             raise
 

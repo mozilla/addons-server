@@ -1409,6 +1409,14 @@ class TestFindReplacement(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+    def test_external_url(self):
+        ReplacementAddon.objects.create(
+            guid='xxx', path='https://mozilla.org/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, get_outgoing_url('https://mozilla.org/'))
+
 
 class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon

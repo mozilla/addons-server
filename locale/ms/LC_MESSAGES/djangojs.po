@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-09-09 02:57+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -745,17 +745,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ulasan pengguna"
 
-msgid "Learn more"
-msgstr "Ketahui selanjutnya"
-
 msgid "Image changes being processed"
 msgstr "Perubahan imej sedang diproses"
 
-msgid "Must be a valid e-mail address."
-msgstr "Mesti alamat e-mel yang sah."
-
 msgid "No results found."
 msgstr "Tiada hasil ditemukan."
+
+msgid "Loading..."
+msgstr "Memuatkan..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> aksara lagi."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar lagi."
+
+msgid "Remove this localization"
+msgstr "Buang lokalisasi ini"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} telah meninjau halaman ini terlebih dahulu."
@@ -792,20 +800,6 @@ msgstr "Purata Ulasan"
 
 msgid "Number of Reviews"
 msgstr "Bilangan Ulasan"
-
-msgid "Loading..."
-msgstr "Memuatkan..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> aksara lagi."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar lagi."
-
-msgid "Remove this localization"
-msgstr "Buang lokalisasi ini"
 
 msgid "Requested Info"
 msgstr "Info diminta"

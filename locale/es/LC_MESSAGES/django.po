@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 14:04+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"PO-Revision-Date: 2017-10-28 21:19+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -85,10 +85,6 @@ msgstr "Descargar ahora"
 
 msgid "Download"
 msgstr "Descargar"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Continuar con la descarga&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Destacados"
@@ -171,12 +167,6 @@ msgstr "Describe tu tema."
 msgid "Enter a new author's email address"
 msgstr "Escribe la dirección de correo de un nuevo autor"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Los usuarios tienen la opción de colaborar más o menos que esta cantidad."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Siempre se le preguntará a los usuarios en el Administrador de complementos (Firefox 4 y superiores). Solo válido para escritorio."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Listado"
@@ -209,99 +199,6 @@ msgstr "Este complemento no ha sido revisado por Mozilla. <a href=\"%(url)s\">M�
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Los desarrolladores han marcado este complemento como experimental."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "El desarrollador de este complemento te pide que le ayudes en su desarrollo continuo realizando una pequeña contribución."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "El desarrollador de este complemento te pide que muestres tu apoyo haciendo una donación a <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "El desarrollador de este complemento solicita que muestres tu apoyo haciendo una pequeña donación a <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Colabora"
-
-#. Click Contribute button OR Install button
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "o"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Colaboración sugerida: {0}"
-
-msgid "What's this?"
-msgstr "¿Qué es esto?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Al desarrollador de este complemento le gustaría que consideres hacer una donación a <a href=\"%(charity_url)s\">%(charity_name)s</a> si disfrutas usando el complemento."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "El desarrollador de este complemento querría que consideres hacer una pequeña donación a <a href=\"%(charity_url)s\">%(charity_name)s</a> si disfrutas usándolo."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla se ha comprometido a apoyar un vibrante y saludable ecosistema de desarrolladores. Tu donación ayuda a sostener el desarrollo de este complemento."
-
-msgid "Make a Contribution"
-msgstr "Realiza una colaboración"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Colabora con el desarrollo continuado de <strong>%(addon_name)s</strong> haciendo una pequeña contribución a través de <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Para mostrar tu apoyo a <b>%(addon_name)s</b>, el desarrollador te pide que hagas una donación a <a href=\"%(charity_url)s\">%(charity_name)s</a> a través de <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Para mostrar tu apoyo a <b>%(addon_name)s</b>, el desarrollador te pide que hagas una pequeña donación a <a href=\"%(charity_url)s\">%(charity_name)s</a> a través de <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "¿Con cuánto te gustaría colaborar?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "El importe máximo de contribución es de {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "El importe mínimo de colaboración es de {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "La cantidad de colaboración debe ser un número."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Una colaboración única sugerida de {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Una única colaboración de {1} {0}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Deja un comentario o petición junto a tu colaboración."
-
-msgid "(optional)"
-msgstr "(opcional)"
-
-msgid "Make Contribution"
-msgstr "Hacer una donación"
-
-msgid "Contacting PayPal"
-msgstr "Contactando con PayPal"
-
-msgid "No Thanks"
-msgstr "No, gracias"
-
-msgid "Contribution made, thank you."
-msgstr "Contribución realizada, gracias."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -392,15 +289,6 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} usuario"
 msgstr[1] "{0} usuarios"
-
-msgid "Payment cancelled"
-msgstr "Pago cancelado"
-
-msgid "Payment completed"
-msgstr "Pago completado"
-
-msgid "Return to the addon."
-msgstr "Volver al complemento."
 
 msgid "by"
 msgstr "por"
@@ -504,6 +392,11 @@ msgstr ""
 msgid "Send Report"
 msgstr "Enviar informe"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "o"
+
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -578,25 +471,6 @@ msgstr "Permisos"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Los desarrolladores han marcado este complemento como experimental"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> sugerido"
-
-msgid "Enjoy this add-on?"
-msgstr "¿Te gusta este complemento?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "El <a href=\"%(meet_url)s\">desarrollador de este complemento</a> pide que contribuyas a continuar su desarrollo realizando una pequeña aportación."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "El <a href=\"%(meet_url)s\">desarrollador de este complemento</a> pide que muestres tu apoyo realizando un donativo a <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "El <a href=\"%(meet_url)s\">desarrollador de este complemento</a> pide que muestres tu apoyo realizando una pequeña aportación a <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Este complemento requiere los siguientes complementos para funcionar correctamente:"
 
@@ -640,15 +514,14 @@ msgstr "Gestión del administrador"
 msgid "Icon of {0}"
 msgstr "Icono de {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Conoce al desarrollador: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Conoce a los desarrolladores</a>"
+msgid "Contribute"
+msgstr "Colabora"
 
-# {0} is an add-on name.
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Descubre por qué se creó {0} y cuál es el futuro de este complemento."
+msgid "Enjoy this add-on?"
+msgstr "¿Te gusta este complemento?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "El desarrollador de este complemento te pide que le ayudes en su desarrollo continuo realizando una pequeña contribución."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -727,37 +600,6 @@ msgstr "Algunos complementos solicitan permiso para realizar determinadas funcio
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ten en cuenta que este complemento utiliza tecnología heredada, permitiendo el acceso a todas las funciones del navegador y a la información sin solicitar permiso."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Gracias por instalar {0}"
-
-#. {0} is an add-on name.
-# %1 is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Conoce al desarrollador de {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Antes de descargar este complemento, piensa en colaborar con el desarrollo haciendo una pequeña colaboración."
-
-# %1 is an add-on name.
-msgid "Why was {0} created?"
-msgstr "¿Por qué se creó {0}?"
-
-# %1 is an add-on name.
-msgid "What's next for {0}"
-msgstr "Cuál es el futuro de {0}"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "Acerca del desarrollador"
-msgstr[1] "Acerca de los desarrolladores"
-
-msgid "No Photo"
-msgstr "Sin foto"
-
-msgid "Who is {0}?"
-msgstr "¿Quién es {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Este complemento ha sido eliminado por su creador."
@@ -976,6 +818,9 @@ msgstr "Algunas características están temporalmente deshabilitadas mientras re
 
 msgid "Are you human?"
 msgstr "¿Eres humano?"
+
+msgid "What's this?"
+msgstr "¿Qué es esto?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1238,6 +1083,9 @@ msgstr "Comenzar una nueva colección"
 
 msgid "Name:"
 msgstr "Nombre:"
+
+msgid "(optional)"
+msgstr "(opcional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancelar</a>"
@@ -2493,6 +2341,51 @@ msgstr "Página específica"
 msgid "Web and Developer Tools"
 msgstr "Herramientas web y de desarrollo"
 
+msgid "All Rights Reserved"
+msgstr "Todos los derechos reservados"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Reconocimiento 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Reconocimiento-No Comercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Reconocimiento-No Comercial-No Derivadas 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Reconocimiento-No Comercial-Compartir Igual 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
+
+msgid "Any"
+msgstr "Cualquiera"
+
+msgid "All Platforms"
+msgstr "Todas las plataformas"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "App"
 
@@ -2640,51 +2533,6 @@ msgstr "Imagen en blanco, deformada o de baja calidad"
 msgid "Header image alignment problem"
 msgstr "Problema de alineación de la imagen en el encabezado"
 
-msgid "All Rights Reserved"
-msgstr "Todos los derechos reservados"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Reconocimiento 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Reconocimiento-No Comercial-Compartir Igual 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Reconocimiento-No Derivadas 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Reconocimiento-Compartir Igual 3.0"
-
-msgid "Any"
-msgstr "Cualquiera"
-
-msgid "All Platforms"
-msgstr "Todas las plataformas"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Core"
 
@@ -2730,33 +2578,6 @@ msgstr "Este complemento tiene una política de privacidad"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Especifica la política de privacidad del complemento:"
-
-msgid "Why did you make this add-on?"
-msgstr "¿Por qué hiciste este complemento?"
-
-msgid "What's next for this add-on?"
-msgstr "¿Cuál es el futuro de este complemento?"
-
-msgid "The developers of this add-on"
-msgstr "Los desarrolladores de este complemento"
-
-msgid "The Mozilla Foundation"
-msgstr "La Fundación Mozilla"
-
-msgid "An organization of my choice"
-msgstr "Una organización de mi elección"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Escribe una cantidad sugerida mayor que 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Escribe una cantidad sugerida menor de ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "Se necesita un ID de PayPal para aceptar colaboraciones."
-
-msgid "Could not validate PayPal id."
-msgstr "No se ha podido validar el id de PayPal."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "No se admite ese tipo de archivo. Por favor, sube un archivo con formato {extensions}."
@@ -2913,9 +2734,6 @@ msgstr "Un autor ha cambiado un rol en tu complemento"
 msgid "An author has been removed from your add-on"
 msgstr "Un autor ha sido eliminado de tu complemento"
 
-msgid "There were errors in your submission."
-msgstr "Ha habido errores en tu envío."
-
 msgid "Validate Add-on"
 msgstr "Validar el complemento"
 
@@ -2997,19 +2815,8 @@ msgstr "Normas y políticas de revisión"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "He leído y acepto el Acuerdo y las Normas y políticas"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-"Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
-"manejaremos tu información."
-
-msgid "Printable Version"
-msgstr "Versión para imprimir"
-
 msgid "Accept"
 msgstr "Aceptar"
-
-msgid "I Accept this Agreement"
-msgstr "Acepto la licencia"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Cancelar</a>"
@@ -3196,26 +3003,6 @@ msgstr ""
 "<p>Los complementos pueden tener cualquier número de autores con 3 funciones posibles:</p> <ul><li><b>Propietario:</b> puede gestionar todos los aspectos del listado del complemento, incluyendo "
 "añadir y eliminar otros autores.</li> <li><b>Desarrollador:</b> puede gestionar todos los aspectos del listado del complemento, excepto añadir y eliminar otros autores y gestionar los pagos</li> "
 "<li><b>Espectador:</b> puede ver las opciones del complemento y sus estadísticas, pero no puede hacer ningún cambio</li> </ul"
-
-msgid "Manage Developer Profile"
-msgstr "Administrar perfil del desarrollador"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Tu <a href=\"%(url)s\">perfil de desarrollador</a> es actualmente <strong>público</strong> y <strong>requiere</strong> colaboraciones."
-
-msgid "Remove Both"
-msgstr "Borrar ambos"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Tu <a href=\"%(url)s\">perfil de desarrollador</a> es actualmente <strong>público</strong>."
-
-msgid "Remove Profile"
-msgstr "Borrar perfil"
-
-msgid "Create Profile"
-msgstr "Crear perfil"
 
 msgid "Basic Information"
 msgstr "Información básica"
@@ -3461,11 +3248,11 @@ msgid "Whiteboard"
 msgstr "Pizarra"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"La pizarra es el lugar para proporcionarle al editor información relevante a tu complemento, sin importar la versión. Úsala para señalar maneras para probar el complemento, y agregar cualquier "
-"información adicional que pueda ayudar. La pizarra también es editable por los editores."
+"En la pizarra puedes proporcionar información relevante al editor sobre tu complemento, sea cual sea la versión. Úsala para indicar la mejor forma de probar el complemento, y agregar cualquier "
+"información adicional que pueda ayudar. Los editores también pueden editar la pizarra."
 
 msgid "Remove this dependent add-on"
 msgstr "Eliminar este complemento dependiente"
@@ -3524,6 +3311,47 @@ msgstr "Proporciona un título para esta captura de pantalla:"
 
 msgid "Add a Screenshot..."
 msgstr "Agregar una captura de pantalla..."
+
+# 88%
+# 100%
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "¿Otras personas podrían compartir tu complemento, siempre que se reconozca que tú eres el autor?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra, incluso con fines comerciales."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra exclusivamente sin fines comerciales."
+
+# 85%
+# 100%
+msgid "Can others make commercial use of your Add-on?"
+msgstr "¿Pueden otros hacer uso comercial de tu complemento?"
+
+# 86%
+# 100%
+msgid "Can others create derivative works from your Add-on?"
+msgstr "¿Pueden otros crear trabajos derivados de tu complemento?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra, y también que creen obras derivadas."
+
+msgid "Yes, as long as they share alike"
+msgstr "Sí, siempre que lo compartan de la misma manera"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "El titular de la licencia permite a otros distribuir obras derivadas sólo bajo la misma licencia o una compatible con la que regula la obra del titular."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "El titular de la licencia permite que otros copien, distribuyan y transmitan únicamente copias no alteradas de la obra, no obras derivadas."
+
+# 87%
+# 100%
+msgid "Your Add-on will be released under the following license:"
+msgstr "Tu complemento se publicará bajo la siguiente licencia:"
+
+msgid "Select a different license."
+msgstr "Selecciona una licencia diferente."
 
 msgid "Tests"
 msgstr "Pruebas"
@@ -3606,9 +3434,6 @@ msgstr "Estadísticas diarias de descargas y usuarios."
 
 msgid "Statistics"
 msgstr "Estadísticas"
-
-msgid "Manage Payments"
-msgstr "Administrar pagos"
 
 msgid "Manage Status & Versions"
 msgstr "Administrar estado y versiones"
@@ -3701,8 +3526,8 @@ msgstr "Página de ayuda:"
 msgid "License:"
 msgstr "Licencia:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Por favor, elige una licencia apropiada para los derechos que garantizas en el código fuente."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Por favor, elige una licencia apropiada para los derechos que garantizas."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Si tu complemento transmite datos desde el equipo del usuario, se requiere una política de privacidad que explique qué datos se envían y cómo se utilizan."
@@ -3719,14 +3544,8 @@ msgstr "Solo tú y nuestros revisores podréis ver estas notas."
 msgid "Cancel and Disable Version"
 msgstr "Cancelar y deshabilitar versión"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Cancelar revisión y deshabilitar versión"
-
 msgid "Submit Version"
 msgstr "Enviar versión"
-
-msgid "Submit Version for Review"
-msgstr "Enviar versión para revisión"
 
 msgid "Describe Version"
 msgstr "Describir la versión"
@@ -3942,38 +3761,6 @@ msgstr "Última versión:"
 msgid "This is the newest uploaded unlisted version."
 msgstr "Esta es la última versión disponible no listada."
 
-msgid "(required since this add-on accepts contributions)"
-msgstr "(obligatorio ya que este complemento acepta colaboradores)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Administrar tu perfil de desarrollador"
-
-msgid "Create a Developer Profile"
-msgstr "Crear un perfil de desarrollador"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "Esta página se eliminará pronto y se sustituirá por el campo URL de contribuciones, en la página principal de edición. Asegúrate de usar ese campo para mantener activas las contribuciones."
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Tu perfil de desarrollador debe contar a los usuarios algo sobre ti, por qué hiciste este complemento y cuáles son las novedades acerca del mismo. Este perfil es requerido para pedir colaboraciones,"
-" pero puede ser útil para cualquier desarrollador interesado en conectar con los usuarios."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Asegúrate de que tu perfil de usuario está actualizado."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Actualiza tu perfil de usuario.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Ya sea una idea que surgió mientras estabas en la cola del supermercado, o la solución a uno de los grandes problemas de la vida, comparte tu historia."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Contarle a tus usuarios qué es lo que viene los hará esperar entusiasmados."
-
 msgid "Upload New Version"
 msgstr "Subir nueva versión"
 
@@ -4089,11 +3876,11 @@ msgstr "Informar de un error"
 msgid "Site Status"
 msgstr "Estado del sitio"
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: extensiones en uso y de prueba"
+
 msgid "Compatibility Checker"
 msgstr "Verificador de compatibilidad"
-
-msgid "Compatibility Reporter"
-msgstr "Informes de compatibilidad"
 
 msgid "Promote"
 msgstr "Apoyar"
@@ -4190,6 +3977,9 @@ msgstr "Documentos"
 msgid "Sign Out"
 msgstr "Cerrar sesión"
 
+msgid "No Photo"
+msgstr "Sin foto"
+
 msgid "User Photo"
 msgstr "Imagen del usuario"
 
@@ -4229,115 +4019,20 @@ msgstr "¿Ya tienes un complemento? Envía tu extensión o tema para que aparezc
 msgid "Sign In"
 msgstr "Iniciar sesión"
 
-# Header for a column in a table
-msgid "Validator"
-msgstr "Validación"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Una línea de comandos para crear, ejecutar y probar extensiones."
 
 msgid "Automated code tests for your add-on."
 msgstr "Pruebas de código automáticas para tu complemento."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Descubre si a tu complemento le afectarían los cambios en Firefox."
+msgid "Compatibility Test"
+msgstr "Prueba de compatibilidad"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Cuéntanos si un complemento funciona en una versión específica de Firefox."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "Estás ahora mismo pidiendo <b>colaboración</b> a los usuarios"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Página con tus contribuciones: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Deshabilitar colaboradores"
-
-msgid "Voluntary Contributions"
-msgstr "Contribuciones voluntarias"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Los complementos asociados a nuestro programa de contribuciones pueden solicitar apoyo financiero voluntario a los usuarios."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Anima a los usuarios a apoyar tu complemento a través de tu perfil de desarrollador"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Elige cuándo y cómo se solicita a los usuarios que colaboren"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Recibe colaboraciones en tu cuenta de PayPal o envíalas a una organización que decidas"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Las colaboraciones sólo están disponibles para los complementos con versiones listadas."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Las contribuciones sólo están disponibles para complementos con un <a href=\"%(url)s\">perfil de desarrollador completo</a>."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Las colaboraciones sólo están disponibles para los complementos aprobados."
-
-msgid "Set up Contributions"
-msgstr "Configurar las contirbuciones"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Paso 2. Precio y disponibilidad"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "o <a href=\"%(cancel)s\">Cancela</a>"
-
-msgid "Contributions"
-msgstr "Colaboraciones"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Rellena los siguientes campos para comenzar a pedir contribuciones voluntarias de los usuarios."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "¿Quién recibirá colaboraciones de este complemento?"
-
-msgid "What is the name of the organization?"
-msgstr "¿Cuál es el nombre de la organización?"
-
-msgid "What is the URL of the organization?"
-msgstr "¿Cuál es el URL de la organización?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "¿Cuál es el ID de PayPal de la organización?"
-
-msgid "What is your PayPal ID?"
-msgstr "¿Cuál es tu ID de PayPal?"
-
-msgid "Sign up for PayPal"
-msgstr "Regístrate en PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "¿Cuál es el colaboración sugerida?"
-
-msgid "(Example: 3.99)"
-msgstr "(Ejemplo: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "¿Cuándo se debe pedir la colaboración a los usuarios?"
-
-msgid "Send a thank-you note?"
-msgstr "¿Enviar una nota de agradecimiento?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Le enviaremos un email a los usuarios que colaboren con tu complemento con este mensaje."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"Te recomendamos agradecer a los usuarios y decirles lo mucho que aprecias su ayuda. También puede que quieras compartir con ellos qué planes tienes para tus complementos y animarles a que prueben "
-"otros complementos tuyos."
-
-msgid "Activate Contributions"
-msgstr "Activar colaboradores"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"setup-cancel\" href=\"#\">Cancelar</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Comprueba si tu extensión es compatible con Firefox."
 
 msgid "Transfer ownership"
 msgstr "Cambiar la titularidad"
@@ -4371,12 +4066,6 @@ msgstr "Licencia del tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "¿Pueden otros compartir tu tema, siempre que se reconozca que tú eres el autor?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra, incluso con fines comerciales."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra exclusivamente sin fines comerciales."
-
 # 85%
 # 100%
 msgid "Can others make commercial use of your Theme?"
@@ -4387,25 +4076,10 @@ msgstr "¿Pueden otros hacer uso comercial de tu tema?"
 msgid "Can others create derivative works from your Theme?"
 msgstr "¿Pueden otros crear trabajos derivados de tu tema?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "El titular de la licencia permite que otros copien, distribuyan, muestren y realicen la obra, y también que creen obras derivadas."
-
-msgid "Yes, as long as they share alike"
-msgstr "Sí, siempre que lo compartan de la misma manera"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "El titular de la licencia permite a otros distribuir obras derivadas sólo bajo la misma licencia o una compatible con la que regula la obra del titular."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "El titular de la licencia permite que otros copien, distribuyan y transmitan únicamente copias no alteradas de la obra, no obras derivadas."
-
 # 87%
 # 100%
 msgid "Your Theme will be released under the following license:"
 msgstr "Tu tema se publicará bajo la siguiente licencia:"
-
-msgid "Select a different license."
-msgstr "Selecciona una licencia diferente."
 
 msgid "Select a license for your Theme."
 msgstr "Selecciona una licencia para tu tema."
@@ -4755,863 +4429,6 @@ msgstr "Sube tu juego de emojis {start_sub_heading}con {addon_name}{end_sub_head
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Decenas de emojis alucinantes—a un solo clic de distancia."
 
-msgid "Approved reviews"
-msgstr "Valoraciones aprobadas"
-
-msgid "Deleted reviews"
-msgstr "Revisiones borradas"
-
-msgid "View entries between"
-msgstr "Ver entradas entre"
-
-msgid "and"
-msgstr "y"
-
-msgid "Filter by type/action"
-msgstr "Filtrar por tipo/acción"
-
-msgid "Passed automatic validation"
-msgstr "Validación automática superada"
-
-msgid "Failed automatic validation"
-msgstr "Falló la validación automática"
-
-msgid "Filter by automatic validation"
-msgstr "Filtrar por validación automática"
-
-msgid "containing"
-msgstr "que contiene"
-
-msgid "start"
-msgstr "inicio"
-
-msgid "end"
-msgstr "límite"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "complemento, editor o comentario"
-
-msgid "Search by add-on name / author email"
-msgstr "Buscar por nombre del complemento / correo electrónico del autor"
-
-msgid "yes"
-msgstr "sí"
-
-msgid "no"
-msgstr "no"
-
-msgid "Admin Flag"
-msgstr "Indicador de administrador"
-
-msgid "Add-on Types"
-msgstr "Tipos de complemento"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Buscar por nombre del complemento /correo del autor / guía"
-
-msgid "Max. Version"
-msgstr "Versión máxima"
-
-msgid "Comments:"
-msgstr "Comentarios:"
-
-msgid "Operating systems:"
-msgstr "Sistemas operativos:"
-
-msgid "Applications:"
-msgstr "Aplicaciones:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Notificarme la próxima vez que se actualice este complemento (las siguientes actualizaciones no generarán un correo electrónico)."
-
-msgid "Clear Admin Review Flag"
-msgstr "Eliminar la marca de valoración del administrador"
-
-msgid "Is more info requested?"
-msgstr "¿Se necesita más información?"
-
-msgid "Choose a canned response..."
-msgstr "Selecciona una respuesta predefinida..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "nombre del tema"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Alguien más está revisando este tema."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "tema, revisor o comentario"
-
-msgid "Keep review; remove flags"
-msgstr "Mantener revisión; eliminar marcadores"
-
-msgid "Skip for now"
-msgstr "Saltar de momento"
-
-msgid "Delete review"
-msgstr "Borrar valoración"
-
-msgid "Admin Review"
-msgstr "Revisión del administrador"
-
-msgid "Jetpack Add-on"
-msgstr "Complemento Jetpack"
-
-msgid "More Information Requested"
-msgstr "Se ha solicitado más información"
-
-msgid "Contains Reviewer Comment"
-msgstr "Contiene un comentario del revisor"
-
-msgid "Sources provided"
-msgstr "Fuentes facilitadas"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Utiliza un CSP a medida."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Utiliza permisos de nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr "Utiliza un script de contenido para todas los URLs."
-
-msgid "Has too many daily users."
-msgstr "Hay demasiados usuarios diarios."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "No hay suficientes actualizaciones consecutivas aprobadas manualmente."
-
-msgid "Has a pending info request."
-msgstr "Tiene una solicitud de información pendiente."
-
-msgid "Is flagged for admin review."
-msgstr "Marcado para revisión del administrador."
-
-msgid "Is locked by a reviewer."
-msgstr "Bloqueado por un revisor."
-
-msgid "Duplicate Submission"
-msgstr "Envío repetido"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Gracias por enviar tu tema"
-
-msgid "A problem with your Theme submission"
-msgstr "Un problema con el envío de tu tema"
-
-msgid "Theme submission flagged for review"
-msgstr "Envío del tema marcado para revisión"
-
-msgid "A question about your Theme submission"
-msgstr "Una pregunta acerca del envío de tu tema"
-
-msgid "Type"
-msgstr "Tipo"
-
-msgid "Waiting Time"
-msgstr "Tiempo en espera"
-
-msgid "Flags"
-msgstr "Marcas"
-
-msgid "moments ago"
-msgstr "hace unos instantes"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuto"
-msgstr[1] "{0} minutos"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
-msgstr[1] "{0} horas"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} día"
-msgstr[1] "{0} días"
-
-msgid "Last Review"
-msgstr "Última revisión"
-
-msgid "Last Update"
-msgstr "Última actualización"
-
-msgid "No Reviews"
-msgstr "No hay revisiones"
-
-msgid "Weight"
-msgstr "Tamaño"
-
-msgid "Last Content Review"
-msgstr "Última revisión de contenido"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Esto eliminará esta versión y la eliminará de la cola de revisiones. Se enviarán los comentarios al desarrollador."
-
-msgid "Confirm Approval"
-msgstr "Confirmar aprobación"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto es un registro de la confirmación de tu aprobación sin enviarle ninguna notificación al desarrollador."
-
-msgid "Reject Multiple Versions"
-msgstr "Rechazar varias versiones"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Esto eliminará las versiones públicas seleccionadas. El desarrollador recibirá los comentarios."
-
-msgid "Reviewer reply"
-msgstr "Respuesta del revisor"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Se enviará un mensaje al desarrollador. Se te notificará cuando respondan."
-
-msgid "Request super-review"
-msgstr "Solicitar una super-revisión"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Si crees que un administrador debería revisar este complemento, deja tus comentarios más abajo. No se enviarán al desarrollador."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Haz un comentario de esta versión. El desarrollador no podrá verlo."
-
-msgid "Approve Content"
-msgstr "Aprobar contenido"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Se guardará tu aprobación del contenido de esta versión sin notificárselo al desarrollador."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nuevos complementos (de los últimos 5 días)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Recientes (5 a 10 días)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Atrasado (Más de 10 días)"
-
-msgid "An unknown error occurred"
-msgstr "Ha sucedido un error desconocido"
-
-msgid "Self-reviews are not allowed."
-msgstr "Las autorevisiones no están permitidas."
-
-msgid "Review successfully processed."
-msgstr "Revisión procesada con éxito."
-
-msgid "Review lock limit reached"
-msgstr "Límite de bloqueo de revisiones alcanzado"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} valoración de tema procesada correctamente (+{1} puntos, {2} total)."
-msgstr[1] "{0} valoraciones de tema procesadas correctamente (+{1} puntos, {2} total)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Tu tema se ha publicado correctamente. Otros revisores pueden revisar ahora los temas publicados. Es posible que tengas que actualizar la página para ver los cambios reflejados en la siguiente "
-"tabla."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Informes de uso indebido"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Informes de uso indebido sobre {addon} y sus desarrolladores ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Funciona con"
-
-msgid "Visibility"
-msgstr "Visibilidad"
-
-msgid "Visible"
-msgstr "Visible"
-
-msgid "Average Daily Users"
-msgstr "Promedio de usuarios diarios"
-
-msgid "Abuse Reports"
-msgstr "Informes de uso indebido"
-
-msgid "View Privacy Policy"
-msgstr "Ver la política de privacidad"
-
-msgid "Requires Payment"
-msgstr "Requiere hacer pagos"
-
-msgid "EULA"
-msgstr "CLUF"
-
-msgid "Last Approval Date"
-msgstr "Última fecha de aprobación"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Aprobaciones desde la última revisión automática"
-
-msgid "Abuse Reports ({num})"
-msgstr "Informes de uso indebido ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Revisión de usuario con mala conducta ({num})"
-
-msgid "More about this add-on"
-msgstr "Más sobre este complemento"
-
-msgid "Image Gallery"
-msgstr "Galería de imágenes"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "¡Nada que mostrar aquí!  El desarrollador no incluyó ningún detalle."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Volver a la página de herramientas del revisor"
-
-msgid "Queues"
-msgstr "Colas"
-
-msgid "New Add-ons"
-msgstr "Nuevos complementos"
-
-# 85%
-# 100%
-msgid "Updates"
-msgstr "Actualizaciones"
-
-msgid "Moderated Reviews"
-msgstr "Revisiones moderadas"
-
-msgid "Auto Approved Add-ons"
-msgstr "Complementos autoaprobados"
-
-msgid "Content Review"
-msgstr "Revisión de contenido"
-
-msgid "Unlisted Queues"
-msgstr "Colas no listadas"
-
-msgid "All Unlisted Add-ons"
-msgstr "Todos los complementos no listados"
-
-msgid "Logs"
-msgstr "Registros"
-
-msgid "Add-on Review Log"
-msgstr "Registro de revisiones del complemento"
-
-# 80%
-# 100%
-msgid "Moderated Review Log"
-msgstr "Registro de revisiones moderadas"
-
-msgid "Signed Beta Files Log"
-msgstr "Registro de archivos beta firmados"
-
-msgid "Announcement"
-msgstr "Anuncio"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filtrar"
-
-msgid "Date"
-msgstr "Fecha"
-
-msgid "Event"
-msgstr "Evento"
-
-msgid "More details."
-msgstr "Más detalles."
-
-msgid "No events found for this period."
-msgstr "No se encontraron eventos para este periodo."
-
-msgid "Log details"
-msgstr "Detalles del registro"
-
-msgid "Review Author"
-msgstr "Autor de la revisión"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Título de complemento"
-
-msgid "Review Title"
-msgstr "Título de revisión"
-
-msgid "Review Text"
-msgstr "Texto de revisión"
-
-msgid "Review was flagged prior to deletion."
-msgstr "La revisión ha sido marcada previamente para su eliminación."
-
-msgid "Undelete"
-msgstr "Deshacer borrar"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nuevo complemento ({num})"
-msgstr[1] "Nuevos complementos ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Actualización ({num})"
-msgstr[1] "Actualizaciones ({num})"
-
-msgid "Current waiting times:"
-msgstr "Tiempos de espera actuales:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} complemento"
-msgstr[1] "{0} complementos"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Valoraciones totales"
-
-msgid "Reviews This Month"
-msgstr "Revisiones este mes"
-
-msgid "New Reviewers"
-msgstr "Nuevos revisores"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Eres el nº {0} con {1} valoraciones"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Revisión moderada ({num})"
-msgstr[1] "Revisiones moderadas ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Panel de calificación del revisor"
-
-msgid "No review points awarded yet."
-msgstr "No se otorgaron puntos todavía."
-
-msgid "Rank"
-msgstr "Posición"
-
-msgid "Score"
-msgstr "Puntuación"
-
-msgid "Update message of the day"
-msgstr "Actualizar mensaje del día"
-
-msgid "Save"
-msgstr "Guardar"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Rendimiento del revisor del complemento"
-
-msgid "View statistics for user"
-msgstr "Ver estadísticas del usuario"
-
-msgid "Range"
-msgstr "Rango"
-
-msgid "Your Reviews"
-msgstr "Tus revisiones"
-
-msgid "By {user_name}"
-msgstr "Por {user_name}"
-
-# 81%
-# 100%
-msgid "Active Contributors"
-msgstr "Colaboradores activos"
-
-msgid "This Month"
-msgstr "Este mes"
-
-msgid "This Year"
-msgstr "Este año"
-
-msgid "Monthly Performance"
-msgstr "Rendimiento mensual"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Desglose de puntuaciones máximas por tipo"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Mes"
-
-msgid "Year"
-msgstr "Año"
-
-msgid "All-Time"
-msgstr "Todos los tiempos"
-
-msgid "Advanced Search"
-msgstr "Búsqueda avanzada"
-
-msgid "clear search"
-msgstr "borrar búsqueda"
-
-msgid "Process Reviews"
-msgstr "Procesar revisiones"
-
-msgid "Moderation actions:"
-msgstr "Acciones de moderación:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "por %(user)s el %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">marcada por %(user)s el %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Todas las revisiones completadas.  ¡Buen trabajo!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "No hay ningún complemento de este tipo para revisar."
-
-msgid "Helpful Links:"
-msgstr "Enlaces útiles:"
-
-msgid "Add-on Policy"
-msgstr "Política sobre complementos"
-
-msgid "Editors' Guide"
-msgstr "Guía de editores"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Revisión de contenido {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Revisión {0}"
-
-msgid "Add-on user change history"
-msgstr "Historial de cambios de usuario de complemento"
-
-msgid "Add-on History"
-msgstr "Historial de complementos"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versión %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Compatibilidad:"
-
-msgid "Additional sources:"
-msgstr "Fuentes alternativas:"
-
-msgid "Download files"
-msgstr "Descargar archivos"
-
-msgid "The developer has provided source code."
-msgstr "El desarrollador ha proporcionado el código fuente."
-
-msgid "Weight:"
-msgstr "Tamaño:"
-
-msgid "Not Auto Approved Because"
-msgstr "No autoaprobado porque"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "El comando de autoaprobación aún no se ha ejecutado en esta versión."
-
-msgid "This version has not been reviewed."
-msgstr "Esta versión no se ha revisado."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Selecciona una o más versiones de la lista de más arriba."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Aún puedes enviar este formulario, pero hazlo sólo si sabes que no habrá conflictos."
-
-msgid "Insert canned response..."
-msgstr "Insertar una respuesta predefinida..."
-
-msgid "Files:"
-msgstr "Archivos:"
-
-msgid "Tested on:"
-msgstr "Probado en:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>¡Atención!</strong> Otro usuario estuvo mirando esta página antes que tú."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
-"La pizarra es el lugar donde intercambiar información sobre el\n"
-"               complemento entre el desarrollador y el editor (cualquier\n"
-"               versión). Es editable y visible por ambos."
-
-msgid "Update the whiteboard"
-msgstr "Actualizar la pizarra"
-
-msgid "(admin)"
-msgstr "(administrador)"
-
-msgid "Admin Page"
-msgstr "Página de administración"
-
-msgid "Review This Add-on"
-msgstr "Revisar este complemento"
-
-msgid "More Information"
-msgstr "Más información"
-
-msgid "Resolution"
-msgstr "Resolución"
-
-msgid "Reviewer"
-msgstr "Revisor"
-
-msgid "Add-on has been deleted."
-msgstr "El complemento ha sido borrado."
-
-msgid "Show Comments"
-msgstr "Mostrar comentarios"
-
-msgid "Hide Comments"
-msgstr "Ocultar comentarios"
-
-msgid "No reviews found for this period."
-msgstr "No se ha encontrado ninguna revisión para este periodo."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] informó sobre %(object)s el %(date)s"
-
-msgid "Dismiss this announcement"
-msgstr "Cerrar este aviso"
-
-msgid "Files in this version:"
-msgstr "Archivos de esta versión:"
-
-msgid "Contents"
-msgstr "Contenidos"
-
-msgid "Compare"
-msgstr "Comparar"
-
-msgid "Permissions:"
-msgstr "Permisos:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>De %(user)s el %(date)s</div>"
-
-msgid "Older"
-msgstr "Anteriores"
-
-msgid "Newer"
-msgstr "Recientes"
-
-msgid "Recent Points"
-msgstr "Puntos recientes"
-
-msgid "No points awarded yet."
-msgstr "No se otorgaron puntos todavía."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Revisores más activos (últimos 7 días)"
-
-msgid "No top reviewers yet."
-msgstr "No hay ningún revisor destacado todavía."
-
-msgid "All Time"
-msgstr "Cualquier rango temporal"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Tienes <span>{0}</span> puntos."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s el %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Fecha de eliminación"
-
-msgid "No deleted themes found for this period."
-msgstr "No se encontró ningún tema eliminado en este periodo."
-
-msgid "Theme Review History for {0}"
-msgstr "Historial de revisiones del tema por {0}"
-
-msgid "Review Date"
-msgstr "Fecha de la revisión"
-
-msgid "Action"
-msgstr "Acción"
-
-msgid "Reason"
-msgstr "Motivo"
-
-msgid "There are currently no reviews."
-msgstr "Actualmente no hay ninguna revisión."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Revisión de temas pendiente"
-msgstr[1] "{num} Revisiones de temas pendientes"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Revisión marcada"
-msgstr[1] "{num} Revisiones marcadas"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Actualización"
-msgstr[1] "{num} Actualizaciones"
-
-msgid "Flagged Themes"
-msgstr "Temas marcados"
-
-msgid "Theme Review Queue"
-msgstr "Cola de revisiones del tema"
-
-msgid "Review Options"
-msgstr "Opciones de revisión"
-
-msgid "Auto-advance after review"
-msgstr "Avance automático tras la revisión"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Habilitar atajos del teclado"
-
-msgid "Keyboard Shortcuts"
-msgstr "Atajos del teclado"
-
-msgid "Next Theme"
-msgstr "Próximo tema"
-
-msgid "Previous Theme"
-msgstr "Tema anterior"
-
-msgid "Your Review History"
-msgstr "Tu historial de revisiones"
-
-msgid "Commit Review"
-msgstr "Remitir revisión"
-
-msgid "Commit Reviews"
-msgstr "Remitir revisiones"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} de {1} revisados"
-
-msgid "There are currently no Themes to review."
-msgstr "Actualmente no hay que revisar ningún tema."
-
-msgid "Clear Search"
-msgstr "Borrar búsqueda"
-
-msgid "Release My Theme Locks"
-msgstr "Liberar los bloqueos de mi tema"
-
-msgid "Interactive Theme Queue"
-msgstr "Cola interactiva de temas"
-
-msgid "Reviewers' Guide"
-msgstr "Guía de revisores"
-
-msgid "Theme Review for {0}"
-msgstr "Revisión del tema para {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Probable envío duplicado)"
-
-msgid "Past Review Notes"
-msgstr "Notas de revisión anteriores"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Solicitada más info: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Marcada: {0}"
-
-msgid "Approve Theme"
-msgstr "Aprobar tema"
-
-msgid "Field required"
-msgstr "Campo obligatorio"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Escribe el ID o la URL del duplicado"
-
-msgid "Select a reason for rejection"
-msgstr "Selecciona un motivo para rechazarla"
-
-msgid "Describe your reason for rejection"
-msgstr "Describe un motivo para rechazarla"
-
-msgid "Ask a question to the artist"
-msgstr "Hazle una pregunta al artista"
-
-msgid "Describe your reason for flagging"
-msgstr "Describe un motivo para marcarla"
-
-msgid "Rejected or Unreviewed"
-msgstr "Rechazados o sin revisar"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nuevo complemento ({0})"
-msgstr[1] "Nuevos complementos ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Actualización ({0})"
-msgstr[1] "Actualizaciones ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Revisión moderada ({0})"
-msgstr[1] "Revisiones moderadas ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Complemento autoaprobado ({0})"
-msgstr[1] "Complementos autoaprobados ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisión moderada ({0})"
-msgstr[1] "Revisión de contenido ({0})"
-
-msgid "Flagged"
-msgstr "Marcado"
-
 msgid "Cannot diff a version against itself"
 msgstr "No se puede comparar una versión consigo misma"
 
@@ -5716,6 +4533,9 @@ msgstr "El complemento ha sido procesado, por favor espere."
 
 msgid "Fetching validation results..."
 msgstr "Recuperando resultados de la validación..."
+
+msgid "Files:"
+msgstr "Archivos:"
 
 msgid "Deleted files:"
 msgstr "Archivos borrados:"
@@ -5922,6 +4742,9 @@ msgstr "¡Gracias por usar %(app)s y apoyar <a href=\"%(url)s\">la misión de Mo
 
 msgid "Add-ons downloaded:"
 msgstr "Complementos descargados:"
+
+msgid "View Privacy Policy"
+msgstr "Ver la política de privacidad"
 
 msgid "Active Users"
 msgstr "Usuarios activos"
@@ -6454,7 +5277,7 @@ msgstr "¿Quién crea estos complementos?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Los complementos listados aquí han sido creados por miles de desarrolladores de nuestra comunidad, desde aficionados particulares hasta grandes corporaciones. Todos los complementos listados "
 "públicamente son revisados por un equipo de editores antes de ser publicados. Los complementos marcados como experimentales no han sido comprobados y debes tener cuidado si decides instalarlos."
@@ -7244,12 +6067,10 @@ msgstr "¿Cómo informar de una reseña inapropiada o spam?"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Para informar sobre el comentario de un complemento, inicia sesión\n"
-"    y ve a la página de revisiones del complemento. Busca el comentario,\n"
-"    haz clic en \"Denunciar este comentario\" y selecciona una razón. Nuestro equipo\n"
-"    editorial lo investigará y aplicará las acciones adecuadas."
+"Para informar sobre el comentario de un complemento, inicia sesión y ve a la página de revisiones del complemento. Busca el comentario, haz clic en \"Denunciar este comentario\" y selecciona una "
+"razón. Nuestro equipo editorial lo investigará y tomará las medidas necesarias."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "¿Cómo informar de un bug o contactar con el equipo de Mozilla Add-ons?"
@@ -7543,22 +6364,832 @@ msgstr "Recomendamos actualizar a<a href=\"%(tb_url)s\">Thunderbird</a> y <a hre
 msgid "Read more about Sunbird"
 msgstr "Leer más sobre Sunbird"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Ha ocurrido un error al comunicarse con PayPal. Por favor, inténtalo más tarde."
+msgid "Approved reviews"
+msgstr "Valoraciones aprobadas"
 
-msgid "There was an error with this currency."
-msgstr "Se ha producido un error con esta divisa."
+msgid "Deleted reviews"
+msgstr "Revisiones borradas"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "La cantidad es demasiado pequeña para convertir a la divisa del receptor."
+msgid "View entries between"
+msgstr "Ver entradas entre"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "El comprador y el vendedor deben tener cuentas PayPal diferentes."
+msgid "and"
+msgstr "y"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "Filtrar por tipo/acción"
+
+msgid "Passed automatic validation"
+msgstr "Validación automática superada"
+
+msgid "Failed automatic validation"
+msgstr "Falló la validación automática"
+
+msgid "Filter by automatic validation"
+msgstr "Filtrar por validación automática"
+
+msgid "containing"
+msgstr "que contiene"
+
+msgid "start"
+msgstr "inicio"
+
+msgid "end"
+msgstr "límite"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "complemento, editor o comentario"
+
+msgid "Search by add-on name / author email"
+msgstr "Buscar por nombre del complemento / correo electrónico del autor"
+
+msgid "yes"
+msgstr "sí"
+
+msgid "no"
+msgstr "no"
+
+msgid "Admin Flag"
+msgstr "Indicador de administrador"
+
+msgid "Add-on Types"
+msgstr "Tipos de complemento"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Buscar por nombre del complemento /correo del autor / guía"
+
+msgid "Max. Version"
+msgstr "Versión máxima"
+
+msgid "Comments:"
+msgstr "Comentarios:"
+
+msgid "Operating systems:"
+msgstr "Sistemas operativos:"
+
+msgid "Applications:"
+msgstr "Aplicaciones:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Notificarme la próxima vez que se actualice este complemento (las siguientes actualizaciones no generarán un correo electrónico)."
+
+msgid "Clear Admin Review Flag"
+msgstr "Eliminar la marca de valoración del administrador"
+
+msgid "Is more info requested?"
+msgstr "¿Se necesita más información?"
+
+msgid "Choose a canned response..."
+msgstr "Selecciona una respuesta predefinida..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "nombre del tema"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Alguien más está revisando este tema."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "tema, revisor o comentario"
+
+msgid "Keep review; remove flags"
+msgstr "Mantener revisión; eliminar marcadores"
+
+msgid "Skip for now"
+msgstr "Saltar de momento"
+
+msgid "Delete review"
+msgstr "Borrar valoración"
+
+msgid "Admin Review"
+msgstr "Revisión del administrador"
+
+msgid "Jetpack Add-on"
+msgstr "Complemento Jetpack"
+
+msgid "More Information Requested"
+msgstr "Se ha solicitado más información"
+
+msgid "Contains Reviewer Comment"
+msgstr "Contiene un comentario del revisor"
+
+msgid "Sources provided"
+msgstr "Fuentes facilitadas"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Bloqueado por un revisor."
+
+msgid "Duplicate Submission"
+msgstr "Envío repetido"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Gracias por enviar tu tema"
+
+msgid "A problem with your Theme submission"
+msgstr "Un problema con el envío de tu tema"
+
+msgid "Theme submission flagged for review"
+msgstr "Envío del tema marcado para revisión"
+
+msgid "A question about your Theme submission"
+msgstr "Una pregunta acerca del envío de tu tema"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Waiting Time"
+msgstr "Tiempo en espera"
+
+msgid "Flags"
+msgstr "Marcas"
+
+msgid "moments ago"
+msgstr "hace unos instantes"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} minuto"
+msgstr[1] "{0} minutos"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} hora"
+msgstr[1] "{0} horas"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} día"
+msgstr[1] "{0} días"
+
+msgid "Last Review"
+msgstr "Última revisión"
+
+msgid "Last Update"
+msgstr "Última actualización"
+
+msgid "No Reviews"
+msgstr "No hay revisiones"
+
+msgid "Weight"
+msgstr "Tamaño"
+
+msgid "Last Content Review"
+msgstr "Última revisión de contenido"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Esto eliminará esta versión y la eliminará de la cola de revisiones. Se enviarán los comentarios al desarrollador."
+
+msgid "Confirm Approval"
+msgstr "Confirmar aprobación"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto es un registro de la confirmación de tu aprobación sin enviarle ninguna notificación al desarrollador."
+
+msgid "Reject Multiple Versions"
+msgstr "Rechazar varias versiones"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Esto eliminará las versiones públicas seleccionadas. El desarrollador recibirá los comentarios."
+
+msgid "Reviewer reply"
+msgstr "Respuesta del revisor"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Se enviará un mensaje al desarrollador. Se te notificará cuando respondan."
+
+msgid "Request super-review"
+msgstr "Solicitar una super-revisión"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Si crees que un administrador debería revisar este complemento, deja tus comentarios más abajo. No se enviarán al desarrollador."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Haz un comentario de esta versión. El desarrollador no podrá verlo."
+
+msgid "Approve Content"
+msgstr "Aprobar contenido"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Se guardará tu aprobación del contenido de esta versión sin notificárselo al desarrollador."
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Nuevos complementos (de los últimos 5 días)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Recientes (5 a 10 días)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Atrasado (Más de 10 días)"
+
+msgid "An unknown error occurred"
+msgstr "Ha sucedido un error desconocido"
+
+msgid "Self-reviews are not allowed."
+msgstr "Las autorevisiones no están permitidas."
+
+msgid "Review successfully processed."
+msgstr "Revisión procesada con éxito."
+
+msgid "Review lock limit reached"
+msgstr "Límite de bloqueo de revisiones alcanzado"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} valoración de tema procesada correctamente (+{1} puntos, {2} total)."
+msgstr[1] "{0} valoraciones de tema procesadas correctamente (+{1} puntos, {2} total)."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+"Tu tema se ha publicado correctamente. Otros revisores pueden revisar ahora los temas publicados. Es posible que tengas que actualizar la página para ver los cambios reflejados en la siguiente "
+"tabla."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: Informes de uso indebido"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Informes de uso indebido sobre {addon} y sus desarrolladores ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Funciona con"
+
+msgid "Visibility"
+msgstr "Visibilidad"
+
+msgid "Visible"
+msgstr "Visible"
+
+msgid "Average Daily Users"
+msgstr "Promedio de usuarios diarios"
+
+msgid "Abuse Reports"
+msgstr "Informes de uso indebido"
+
+msgid "Requires Payment"
+msgstr "Requiere hacer pagos"
+
+msgid "EULA"
+msgstr "CLUF"
+
+msgid "Last Approval Date"
+msgstr "Última fecha de aprobación"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "Aprobaciones desde la última revisión automática"
+
+msgid "Abuse Reports ({num})"
+msgstr "Informes de uso indebido ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Revisión de usuario con mala conducta ({num})"
+
+msgid "More about this add-on"
+msgstr "Más sobre este complemento"
+
+msgid "Image Gallery"
+msgstr "Galería de imágenes"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "¡Nada que mostrar aquí!  El desarrollador no incluyó ningún detalle."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Volver a la página de herramientas del revisor"
+
+msgid "Queues"
+msgstr "Colas"
+
+msgid "New Add-ons"
+msgstr "Nuevos complementos"
+
+# 85%
+# 100%
+msgid "Updates"
+msgstr "Actualizaciones"
+
+msgid "Moderated Reviews"
+msgstr "Revisiones moderadas"
+
+msgid "Auto Approved Add-ons"
+msgstr "Complementos autoaprobados"
+
+msgid "Content Review"
+msgstr "Revisión de contenido"
+
+msgid "Unlisted Queues"
+msgstr "Colas no listadas"
+
+msgid "All Unlisted Add-ons"
+msgstr "Todos los complementos no listados"
+
+msgid "Logs"
+msgstr "Registros"
+
+msgid "Add-on Review Log"
+msgstr "Registro de revisiones del complemento"
+
+# 80%
+# 100%
+msgid "Moderated Review Log"
+msgstr "Registro de revisiones moderadas"
+
+msgid "Signed Beta Files Log"
+msgstr "Registro de archivos beta firmados"
+
+msgid "Announcement"
+msgstr "Anuncio"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "More details."
+msgstr "Más detalles."
+
+msgid "No events found for this period."
+msgstr "No se encontraron eventos para este periodo."
+
+msgid "Log details"
+msgstr "Detalles del registro"
+
+msgid "Review Author"
+msgstr "Autor de la revisión"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "El vendedor no acepta pagos en %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Título de complemento"
+
+msgid "Review Title"
+msgstr "Título de revisión"
+
+msgid "Review Text"
+msgstr "Texto de revisión"
+
+msgid "Review was flagged prior to deletion."
+msgstr "La revisión ha sido marcada previamente para su eliminación."
+
+msgid "Undelete"
+msgstr "Deshacer borrar"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nuevo complemento ({num})"
+msgstr[1] "Nuevos complementos ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Actualización ({num})"
+msgstr[1] "Actualizaciones ({num})"
+
+msgid "Current waiting times:"
+msgstr "Tiempos de espera actuales:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} complemento"
+msgstr[1] "{0} complementos"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Valoraciones totales"
+
+msgid "Reviews This Month"
+msgstr "Revisiones este mes"
+
+msgid "New Reviewers"
+msgstr "Nuevos revisores"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "Eres el nº {0} con {1} valoraciones"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "Revisión moderada ({num})"
+msgstr[1] "Revisiones moderadas ({num})"
+
+msgid "Reviewer Leaderboard"
+msgstr "Panel de calificación del revisor"
+
+msgid "No review points awarded yet."
+msgstr "No se otorgaron puntos todavía."
+
+msgid "Rank"
+msgstr "Posición"
+
+msgid "Score"
+msgstr "Puntuación"
+
+msgid "Update message of the day"
+msgstr "Actualizar mensaje del día"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Rendimiento del revisor del complemento"
+
+msgid "View statistics for user"
+msgstr "Ver estadísticas del usuario"
+
+msgid "Range"
+msgstr "Rango"
+
+msgid "Your Reviews"
+msgstr "Tus revisiones"
+
+msgid "By {user_name}"
+msgstr "Por {user_name}"
+
+# 81%
+# 100%
+msgid "Active Contributors"
+msgstr "Colaboradores activos"
+
+msgid "This Month"
+msgstr "Este mes"
+
+msgid "This Year"
+msgstr "Este año"
+
+msgid "Monthly Performance"
+msgstr "Rendimiento mensual"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "Desglose de puntuaciones máximas por tipo"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Month"
+msgstr "Mes"
+
+msgid "Year"
+msgstr "Año"
+
+msgid "All-Time"
+msgstr "Todos los tiempos"
+
+msgid "Advanced Search"
+msgstr "Búsqueda avanzada"
+
+msgid "clear search"
+msgstr "borrar búsqueda"
+
+msgid "Process Reviews"
+msgstr "Procesar revisiones"
+
+msgid "Moderation actions:"
+msgstr "Acciones de moderación:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "por %(user)s el %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">marcada por %(user)s el %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Todas las revisiones completadas.  ¡Buen trabajo!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "No hay ningún complemento de este tipo para revisar."
+
+msgid "Helpful Links:"
+msgstr "Enlaces útiles:"
+
+msgid "Add-on Policy"
+msgstr "Política sobre complementos"
+
+msgid "Reviewer's Guide"
+msgstr "Guía de revisores"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Revisión de contenido {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Revisión {0}"
+
+msgid "Add-on user change history"
+msgstr "Historial de cambios de usuario de complemento"
+
+msgid "Add-on History"
+msgstr "Historial de complementos"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Versión %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "Compatibility:"
+msgstr "Compatibilidad:"
+
+msgid "Additional sources:"
+msgstr "Fuentes alternativas:"
+
+msgid "Download files"
+msgstr "Descargar archivos"
+
+msgid "The developer has provided source code."
+msgstr "El desarrollador ha proporcionado el código fuente."
+
+msgid "Weight:"
+msgstr "Tamaño:"
+
+msgid "Not Auto Approved Because"
+msgstr "No autoaprobado porque"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "El comando de autoaprobación aún no se ha ejecutado en esta versión."
+
+msgid "This version has not been reviewed."
+msgstr "Esta versión no se ha revisado."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Selecciona una o más versiones de la lista de más arriba."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "Aún puedes enviar este formulario, pero hazlo sólo si sabes que no habrá conflictos."
+
+msgid "Insert canned response..."
+msgstr "Insertar una respuesta predefinida..."
+
+msgid "Tested on:"
+msgstr "Probado en:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>¡Atención!</strong> Otro usuario estuvo mirando esta página antes que tú."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "La pizarra es donde se intercambia información importante del complemento (sea cual sea la versión), entre el desarrollador y el editor. Ambos pueden verla y editarla."
+
+msgid "Update the whiteboard"
+msgstr "Actualizar la pizarra"
+
+msgid "(admin)"
+msgstr "(administrador)"
+
+msgid "Admin Page"
+msgstr "Página de administración"
+
+msgid "Review This Add-on"
+msgstr "Revisar este complemento"
+
+msgid "More Information"
+msgstr "Más información"
+
+msgid "Resolution"
+msgstr "Resolución"
+
+msgid "Reviewer"
+msgstr "Revisor"
+
+msgid "Add-on has been deleted."
+msgstr "El complemento ha sido borrado."
+
+msgid "Show Comments"
+msgstr "Mostrar comentarios"
+
+msgid "Hide Comments"
+msgstr "Ocultar comentarios"
+
+msgid "No reviews found for this period."
+msgstr "No se ha encontrado ninguna revisión para este periodo."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] informó sobre %(object)s el %(date)s"
+
+msgid "Dismiss this announcement"
+msgstr "Cerrar este aviso"
+
+msgid "Files in this version:"
+msgstr "Archivos de esta versión:"
+
+msgid "Contents"
+msgstr "Contenidos"
+
+msgid "Compare"
+msgstr "Comparar"
+
+msgid "Permissions:"
+msgstr "Permisos:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>De %(user)s el %(date)s</div>"
+
+msgid "Older"
+msgstr "Anteriores"
+
+msgid "Newer"
+msgstr "Recientes"
+
+msgid "Recent Points"
+msgstr "Puntos recientes"
+
+msgid "No points awarded yet."
+msgstr "No se otorgaron puntos todavía."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Revisores más activos (últimos 7 días)"
+
+msgid "No top reviewers yet."
+msgstr "No hay ningún revisor destacado todavía."
+
+msgid "All Time"
+msgstr "Cualquier rango temporal"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "Tienes <span>{0}</span> puntos."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s el %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Fecha de eliminación"
+
+msgid "No deleted themes found for this period."
+msgstr "No se encontró ningún tema eliminado en este periodo."
+
+msgid "Theme Review History for {0}"
+msgstr "Historial de revisiones del tema por {0}"
+
+msgid "Review Date"
+msgstr "Fecha de la revisión"
+
+msgid "Action"
+msgstr "Acción"
+
+msgid "Reason"
+msgstr "Motivo"
+
+msgid "There are currently no reviews."
+msgstr "Actualmente no hay ninguna revisión."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} Revisión de temas pendiente"
+msgstr[1] "{num} Revisiones de temas pendientes"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} Revisión marcada"
+msgstr[1] "{num} Revisiones marcadas"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} Actualización"
+msgstr[1] "{num} Actualizaciones"
+
+msgid "Flagged Themes"
+msgstr "Temas marcados"
+
+msgid "Theme Review Queue"
+msgstr "Cola de revisiones del tema"
+
+msgid "Review Options"
+msgstr "Opciones de revisión"
+
+msgid "Auto-advance after review"
+msgstr "Avance automático tras la revisión"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Habilitar atajos del teclado"
+
+msgid "Keyboard Shortcuts"
+msgstr "Atajos del teclado"
+
+msgid "Next Theme"
+msgstr "Próximo tema"
+
+msgid "Previous Theme"
+msgstr "Tema anterior"
+
+msgid "Your Review History"
+msgstr "Tu historial de revisiones"
+
+msgid "Commit Review"
+msgstr "Remitir revisión"
+
+msgid "Commit Reviews"
+msgstr "Remitir revisiones"
+
+msgid "{0} out of {1} reviewed"
+msgstr "{0} de {1} revisados"
+
+msgid "There are currently no Themes to review."
+msgstr "Actualmente no hay que revisar ningún tema."
+
+msgid "Clear Search"
+msgstr "Borrar búsqueda"
+
+msgid "Release My Theme Locks"
+msgstr "Liberar los bloqueos de mi tema"
+
+msgid "Interactive Theme Queue"
+msgstr "Cola interactiva de temas"
+
+msgid "Reviewers' Guide"
+msgstr "Guía de revisores"
+
+msgid "Theme Review for {0}"
+msgstr "Revisión del tema para {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Probable envío duplicado)"
+
+msgid "Past Review Notes"
+msgstr "Notas de revisión anteriores"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Solicitada más info: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Marcada: {0}"
+
+msgid "Approve Theme"
+msgstr "Aprobar tema"
+
+msgid "Field required"
+msgstr "Campo obligatorio"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Escribe el ID o la URL del duplicado"
+
+msgid "Select a reason for rejection"
+msgstr "Selecciona un motivo para rechazarla"
+
+msgid "Describe your reason for rejection"
+msgstr "Describe un motivo para rechazarla"
+
+msgid "Ask a question to the artist"
+msgstr "Hazle una pregunta al artista"
+
+msgid "Describe your reason for flagging"
+msgstr "Describe un motivo para marcarla"
+
+msgid "Rejected or Unreviewed"
+msgstr "Rechazados o sin revisar"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Nuevo complemento ({0})"
+msgstr[1] "Nuevos complementos ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Actualización ({0})"
+msgstr[1] "Actualizaciones ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Revisión moderada ({0})"
+msgstr[1] "Revisiones moderadas ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Complemento autoaprobado ({0})"
+msgstr[1] "Complementos autoaprobados ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Revisión moderada ({0})"
+msgstr[1] "Revisión de contenido ({0})"
+
+msgid "Flagged"
+msgstr "Marcado"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7599,8 +7230,8 @@ msgstr "No puedes escribir una revisión de tu propio complemento."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Gracias. Esta valoración ha sido marcada para que un editor la apruebe."
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Gracias. Se marcó tu comentario para que lo apruebe un editor."
 
 msgid "Add a review for {0}"
 msgstr "Agregar una valoración para {0}"
@@ -7867,9 +7498,6 @@ msgstr "No puedes agregar una versión listada a este complemento a través de l
 msgid "No uploaded file for that addon and version."
 msgstr "Ningún archivo subido para ese complemento o esa versión."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Gracias por colaborar con {addon_name}"
-
 msgid "Overview"
 msgstr "Información general"
 
@@ -7890,6 +7518,9 @@ msgstr "por plataforma"
 
 msgid "by Add-on Status"
 msgstr "por estado del complemento"
+
+msgid "Contributions"
+msgstr "Colaboraciones"
 
 msgid "Subscribers"
 msgstr "Suscriptores"

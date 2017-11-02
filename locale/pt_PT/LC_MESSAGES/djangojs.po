@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-08-10 16:57+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} análise do utilizador"
 msgstr[1] "{reviews} análises do utilizador"
 
-msgid "Learn more"
-msgstr "Saber mais"
-
 msgid "Image changes being processed"
 msgstr "Alterações de imagens em processamento"
 
-msgid "Must be a valid e-mail address."
-msgstr "É necessário um endereço de e-mail válido."
-
 msgid "No results found."
 msgstr "Nenhum resultado encontrado."
+
+msgid "Loading..."
+msgstr "A carregar..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Falta <b>{0}</b> caractere."
+msgstr[1] "Faltam <b>{0}</b> caracteres."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Esta funcionalidade está temporariamente desativada enquanto nós procedemos à manutenção do website. Por favor verifique de novo mais tarde."
+
+msgid "Remove this localization"
+msgstr "Remover esta tradução"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} estava a ver esta página primeiro."
@@ -799,21 +808,6 @@ msgstr "Pontuação média"
 
 msgid "Number of Reviews"
 msgstr "Número de análises"
-
-msgid "Loading..."
-msgstr "A carregar..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Falta <b>{0}</b> caractere."
-msgstr[1] "Faltam <b>{0}</b> caracteres."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta funcionalidade está temporariamente desativada enquanto nós procedemos à manutenção do website. Por favor verifique de novo mais tarde."
-
-msgid "Remove this localization"
-msgstr "Remover esta tradução"
 
 msgid "Requested Info"
 msgstr "Solicitadas mais informações"

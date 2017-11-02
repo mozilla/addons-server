@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 04:19+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"PO-Revision-Date: 2017-10-28 07:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -78,10 +78,6 @@ msgstr "立即下載"
 
 msgid "Download"
 msgstr "下載"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "繼續下載&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "精選"
@@ -157,12 +153,6 @@ msgstr "敘述您的佈景主題。"
 msgid "Enter a new author's email address"
 msgstr "輸入一個新的作者電子郵件地址"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "使用者可以選擇比這個金額更多或較少的捐助。"
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "使用者會在附加元件管理員中（Firefox 4 或更新版）被詢問，只對桌面版有效。"
-
 # Column name in a table.
 msgid "Listed"
 msgstr "顯示"
@@ -195,97 +185,6 @@ msgstr "這個附加元件尚未經過 Mozilla 審查。<a href=\"%(url)s\">了�
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "開發者將此附加元件標示為實驗中。"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "元件開發者希望藉由您的小額捐款，幫助此元件持續進行開發。"
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "此附加元件的開發者希望您捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來展現您的支持。"
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "此附加元件的開發者希望您小額捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來展現您的支持。"
-
-msgid "Contribute"
-msgstr "捐款"
-
-#. Click Contribute button OR Install button
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "或"
-
-msgid "Suggested Contribution: {0}"
-msgstr "建議捐款金額：{0}"
-
-msgid "What's this?"
-msgstr "這是什麼？"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "如果您喜歡此附加元件，開發者希望您可以捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a>。"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "如果您喜歡此附加元件，開發者希望您小額捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a>。"
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla 致力於支持活躍、健全的開發者生態系，您的捐款（非必要）將有助於維持此元件的後續發展。"
-
-msgid "Make a Contribution"
-msgstr "捐款"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "請透過 <a href=\"%(paypal_url)s\">PayPal</a> 小額捐款支持 <strong>%(addon_name)s</strong> 永續開發。"
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "開發者希望您透過 <a href=\"%(paypal_url)s\">PayPal</a> 捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來表達您對 <b>%(addon_name)s</b> 的支持。"
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "開發者希望您透過 <a href=\"%(paypal_url)s\">PayPal</a> 為 <a href=\"%(charity_url)s\">%(charity_name)s</a> 作一點小貢獻，表達您對 <b>%(addon_name)s</b> 的支持。"
-
-msgid "How much would you like to contribute?"
-msgstr "您想要捐款多少？"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "捐款金額上限為 {0}。"
-
-msgid "The minimum contribution amount is {0}."
-msgstr "最低的捐款金額為 {0}。"
-
-msgid "Contribution amount must be a number."
-msgstr "捐款金額必須為數字。"
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "建議單次捐款{0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "單次捐助 {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "在捐款的同時留下您的評論或要求。"
-
-msgid "(optional)"
-msgstr "(選填)"
-
-msgid "Make Contribution"
-msgstr "捐款"
-
-msgid "Contacting PayPal"
-msgstr "聯絡 Paypal"
-
-msgid "No Thanks"
-msgstr "不用了，謝謝"
-
-msgid "Contribution made, thank you."
-msgstr "已完成捐款，感謝您。"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -371,15 +270,6 @@ msgstr[0] "每週下載 {0} 次"
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} 位使用者"
-
-msgid "Payment cancelled"
-msgstr "已取消付款"
-
-msgid "Payment completed"
-msgstr "已完成付款"
-
-msgid "Return to the addon."
-msgstr "回到這個附加元件。"
 
 msgid "by"
 msgstr "作者:"
@@ -479,6 +369,11 @@ msgstr "如果您懷疑本附加元件違反%(amo_policy_link_open)s我們的政
 msgid "Send Report"
 msgstr "回報"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "或"
+
 msgid "Cancel"
 msgstr "取消"
 
@@ -551,25 +446,6 @@ msgstr "權限"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "開發者將此附加元件標示為實驗中。"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "建議 <b>%(amt)s</b>"
-
-msgid "Enjoy this add-on?"
-msgstr "覺得這個附加元件很棒嗎？"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">此附加元件的開發者</a>希望您小額捐款支持附加元件的永續開發。"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">此附加元件的開發者</a>希望您捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來支持附加元件的永續開發。"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">此附加元件的開發者</a>希望您捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來表達您的支持。"
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "這個附加元件需要以下的附加元件才能正常運作:"
 
@@ -611,14 +487,14 @@ msgstr "管理員管理"
 msgid "Icon of {0}"
 msgstr "{0} 的圖示"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "<a href=\"%(url)s\">認識開發者</a>"
+msgid "Contribute"
+msgstr "捐款"
 
-# {0} is an add-on name.
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "了解 {0} 的誕生由來，以及這個附加元件的未來發展。"
+msgid "Enjoy this add-on?"
+msgstr "覺得這個附加元件很棒嗎？"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "元件開發者希望藉由您的小額捐款，幫助此元件持續進行開發。"
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -692,36 +568,6 @@ msgstr "某些附加元件會向您詢問是否要授權進行某些行為。您
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "請注意，此附加元件使用傳統技術，可不經您同意就存取瀏覽器的所有功能與資料。"
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "感謝您安裝 {0}"
-
-#. {0} is an add-on name.
-# %1 is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "認識 {0} 的開發者"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "在下載附加元件前，請考慮以小額捐助，協助此附加元件進行開發。"
-
-# %1 is an add-on name.
-msgid "Why was {0} created?"
-msgstr "{0} 為何誕生？"
-
-# %1 is an add-on name.
-msgid "What's next for {0}"
-msgstr "{0} 的下一步"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "關於開發者"
-
-msgid "No Photo"
-msgstr "無照片"
-
-msgid "Who is {0}?"
-msgstr "{0} 是誰?"
 
 msgid "This add-on has been removed by its author."
 msgstr "作者已經移除此附加元件。"
@@ -933,6 +779,9 @@ msgstr "我們正在進行網站維護，本頁面中部分功能暫時無法使
 
 msgid "Are you human?"
 msgstr "您是人類嗎？"
+
+msgid "What's this?"
+msgstr "這是什麼？"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1188,6 +1037,9 @@ msgstr "建立一個新的收藏集"
 
 msgid "Name:"
 msgstr "名稱:"
+
+msgid "(optional)"
+msgstr "(選填)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "或<a id=\"collections-new-cancel\" href=\"#\">取消</a>"
@@ -2427,6 +2279,57 @@ msgstr "特定網站功能"
 msgid "Web and Developer Tools"
 msgstr "網頁及開發者工具"
 
+msgid "All Rights Reserved"
+msgstr "保留所有權利"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons 姓名標示 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons 姓名標示-非商業性 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons 姓名標示-禁止改作 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
+
+msgid "Any"
+msgstr "不限"
+
+msgid "All Platforms"
+msgstr "所有平台"
+
+# 保留
+msgid "Linux"
+msgstr "Linux"
+
+# 保留
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+# 保留
+msgid "BSD"
+msgstr "BSD"
+
+# 保留
+msgid "Windows"
+msgstr "Windows"
+
+# 保留
+msgid "Solaris"
+msgstr "Solaris"
+
+# 保留
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "App"
 
@@ -2574,57 +2477,6 @@ msgstr "低品質、草稿或者空白圖片"
 msgid "Header image alignment problem"
 msgstr "標題圖片對齊問題"
 
-msgid "All Rights Reserved"
-msgstr "保留所有權利"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons 姓名標示 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons 姓名標示-非商業性 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons 姓名標示-禁止改作 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
-
-msgid "Any"
-msgstr "不限"
-
-msgid "All Platforms"
-msgstr "所有平台"
-
-# 保留
-msgid "Linux"
-msgstr "Linux"
-
-# 保留
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-# 保留
-msgid "BSD"
-msgstr "BSD"
-
-# 保留
-msgid "Windows"
-msgstr "Windows"
-
-# 保留
-msgid "Solaris"
-msgstr "Solaris"
-
-# 保留
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "核心"
 
@@ -2670,33 +2522,6 @@ msgstr "這個附加元件有隱私權保護政策"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "請註明您附加元件的隱私權保護政策:"
-
-msgid "Why did you make this add-on?"
-msgstr "開發這個附加元件的原因？"
-
-msgid "What's next for this add-on?"
-msgstr "這個附加元件的下一步發展？"
-
-msgid "The developers of this add-on"
-msgstr "這個附加元件的開發者"
-
-msgid "The Mozilla Foundation"
-msgstr "Mozilla 基金會"
-
-msgid "An organization of my choice"
-msgstr "我所選擇的組織"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "請輸入大於 0 的建議金額。"
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "請輸入小於 ${0} 的建議金額。"
-
-msgid "PayPal ID required to accept contributions."
-msgstr "必須填寫 PayPal 帳號才能接受捐款。"
-
-msgid "Could not validate PayPal id."
-msgstr "無法驗證 PayPal 帳號。"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
@@ -2848,9 +2673,6 @@ msgstr "您的附加元件的某位作者的角色發生變更"
 msgid "An author has been removed from your add-on"
 msgstr "您的附加元件中的某位作者已被移除"
 
-msgid "There were errors in your submission."
-msgstr "您的提交發生錯誤。"
-
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
 
@@ -2930,17 +2752,8 @@ msgstr "審核政策與規則"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "我已閱讀並接受此同意書、規則及政策條款"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書。當中亦包含我們的隱私權公告，當中解釋我們會如何處理您的資訊。"
-
-msgid "Printable Version"
-msgstr "可列印版本"
-
 msgid "Accept"
 msgstr "接受"
-
-msgid "I Accept this Agreement"
-msgstr "我接受這份合約"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "或<a href=\"{0}\">取消</a>"
@@ -3119,26 +2932,6 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr "<p>一個附加元件可以有許多作者，每個作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項資訊，但不能新增與移除其他作者，或是管理款項。</li><li><b>檢視者:</b>只能看到附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
-
-msgid "Manage Developer Profile"
-msgstr "管理開發者個人檔案"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "您的<a href=\"%(url)s\">開發者個人檔案</a>目前狀態為<strong>公開</strong>且<strong>接受</strong>捐款。"
-
-msgid "Remove Both"
-msgstr "全部移除"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "您的<a href=\"%(url)s\">開發者個人檔案</a>目前狀態為<strong>公開</strong>。"
-
-msgid "Remove Profile"
-msgstr "移除個人檔案"
-
-msgid "Create Profile"
-msgstr "建立個人檔案"
 
 msgid "Basic Information"
 msgstr "基本資訊"
@@ -3340,9 +3133,9 @@ msgid "Whiteboard"
 msgstr "Whiteboard"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
-msgstr "這個「白板」是用來提供您的附加元件與版本無關的資訊給編輯的地方。您可以留下附加元件的測試方式，或是任何其他資訊。編輯也可修改白板中的內容。"
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
+msgstr "這個「白板」是用來提供您的附加元件與版本無關的資訊給審核者的地方。您可以留下附加元件的測試方式，或是任何其他資訊。審核者也可修改白板中的內容。"
 
 msgid "Remove this dependent add-on"
 msgstr "移除這個相依的附加元件"
@@ -3395,6 +3188,43 @@ msgstr "請提供一段有關此擷圖的說明:"
 
 msgid "Add a Screenshot..."
 msgstr "新增螢幕擷圖…"
+
+# 88%
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "他人是否可以在有姓名標示的情況下分享您的附加元件？"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，但不得進行商業用途。"
+
+# 85%
+msgid "Can others make commercial use of your Add-on?"
+msgstr "他人是否可以將您的附加元件以商業用途使用？"
+
+# 86%
+msgid "Can others create derivative works from your Add-on?"
+msgstr "他人是否可以根據您的附加元件創造衍生著作？"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以創造衍生著作。"
+
+msgid "Yes, as long as they share alike"
+msgstr "可以，只要他人以相同方式分享著作"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "此授權條款允許其他人在使用相同或相容的授權下，散佈其衍生作品。"
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "授權人允許其他人重製、散佈或傳送未經改作之著作，但不得創造衍生著作。"
+
+# 87%
+msgid "Your Add-on will be released under the following license:"
+msgstr "您的附加元件將以下列授權條款發佈:"
+
+msgid "Select a different license."
+msgstr "選擇一個授權條款。"
 
 msgid "Tests"
 msgstr "測試"
@@ -3475,9 +3305,6 @@ msgstr "下載數與使用者的每日統計資訊。"
 
 msgid "Statistics"
 msgstr "統計資訊"
-
-msgid "Manage Payments"
-msgstr "管理付款"
 
 msgid "Manage Status & Versions"
 msgstr "管理狀態與版本"
@@ -3569,7 +3396,7 @@ msgstr "技術支援網站："
 msgid "License:"
 msgstr "授權條款："
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgid "Please choose a license appropriate for the rights you grant."
 msgstr "請選擇您的原始碼要使用哪個條款釋出。"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
@@ -3587,14 +3414,8 @@ msgstr "這些註記只有您與審核者看得到。"
 msgid "Cancel and Disable Version"
 msgstr "取消並停用此版本"
 
-msgid "Cancel Review and Disable Version"
-msgstr "取消審查，停用此版本"
-
 msgid "Submit Version"
 msgstr "上傳版本"
-
-msgid "Submit Version for Review"
-msgstr "送出新版本進行審查"
 
 msgid "Describe Version"
 msgstr "描述此版本"
@@ -3803,36 +3624,6 @@ msgstr "最新版本："
 msgid "This is the newest uploaded unlisted version."
 msgstr "這是最新的未上架版本。"
 
-msgid "(required since this add-on accepts contributions)"
-msgstr "（如果您的附加元件接受捐款，則為必填項目）"
-
-msgid "Manage Your Developer Profile"
-msgstr "管理您的開發者個人檔案"
-
-msgid "Create a Developer Profile"
-msgstr "建立開發者個人檔案"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "此頁面即將移除，改為透過主要編輯頁面中的「捐款網址」欄位來設定。請確定填寫該欄位，以便收受捐款。"
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr "您的開發者個人檔案將讓使用者了解您、為什麼要開發這個附加元件與附加元件的未來發展。當附加元件接受募款時，則為必填項目。對於使用者而言，是個非常實用的聯繫管道。"
-
-msgid "Make sure your user profile is up to date."
-msgstr "確認您的使用者個人檔案為最新狀態。"
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>更新您的使用者個人檔案。</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "不論是在雜貨店想到的點子或是一個解決生活問題的好方法，來跟我們分享您的故事吧。"
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "告訴您的使用者什麼功能會即將推出或是他們可以期待的東西。"
-
 msgid "Upload New Version"
 msgstr "上傳新版本"
 
@@ -3943,11 +3734,11 @@ msgstr "回報 Bug"
 msgid "Site Status"
 msgstr "網站狀態"
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: 打造並測試擴充套件"
+
 msgid "Compatibility Checker"
 msgstr "相容性檢查器"
-
-msgid "Compatibility Reporter"
-msgstr "相容性回報器"
 
 msgid "Promote"
 msgstr "推廣"
@@ -4040,6 +3831,9 @@ msgstr "文件"
 msgid "Sign Out"
 msgstr "登出"
 
+msgid "No Photo"
+msgstr "無照片"
+
 msgid "User Photo"
 msgstr "使用者相片"
 
@@ -4075,113 +3869,20 @@ msgstr "寫好附加元件了嗎？請送出您的附加元件或佈景主題，
 msgid "Sign In"
 msgstr "登入"
 
-# Header for a column in a table
-msgid "Validator"
-msgstr "驗證器"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "一套用來打造、執行並測試擴充套件的命令行工具。"
 
 msgid "Automated code tests for your add-on."
 msgstr "自動化測試您附加元件的程式碼。"
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "看看您的附加元件是否有可能受 Firefox 的功能變更影響。"
+msgid "Compatibility Test"
+msgstr "相容性測試"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "告訴我們您的附加元件是否可在某個版本的 Firefox 正常使用。"
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "目前您正在向使用者 <b>募款</b>"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "您的捐款頁面：<a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "停用捐款"
-
-msgid "Voluntary Contributions"
-msgstr "自願性的捐款"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "已申請加入我們的捐款方案的附加元件可以向使用者請求自願性的金錢資助。"
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "在您的個人檔案鼓勵使用者資助您附加元件開發"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "選擇使用者可以在何時以何種方式來捐款"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "捐款可直接匯到您的 Paypal 帳號，或是轉捐給您指定的單位"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "僅有公開上架的附加元件可使用捐款功能。"
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "只有附上<a href=\"%(url)s\">完整開發者個人檔案</a>的附加元件才可以使用募款功能。"
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "僅有通過審核的附加元件可使用捐款功能。"
-
-msgid "Set up Contributions"
-msgstr "設定捐款"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "第二步: 價格與可用範圍"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "或是<a href=\"%(cancel)s\">取消</a>"
-
-msgid "Contributions"
-msgstr "捐款"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "請填寫以下欄位以便開始向使用者收取捐款。"
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "誰將會收到這個附加元件的捐款款項？"
-
-msgid "What is the name of the organization?"
-msgstr "組織名稱為何？"
-
-msgid "What is the URL of the organization?"
-msgstr "組織的網址為何?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "組織的 PayPal ID 為何？"
-
-msgid "What is your PayPal ID?"
-msgstr "您的 PayPal ID 為何？"
-
-msgid "Sign up for PayPal"
-msgstr "註冊 PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "您建議使用者捐款多少金額？"
-
-msgid "(Example: 3.99)"
-msgstr "(例如: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "在什麼情況下使用者會被要求捐款？"
-
-msgid "Send a thank-you note?"
-msgstr "您要寄一封感謝函嗎？"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "我們將會以電子郵件通知，您的附加元件捐款者的名單。"
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr "我們建議您向使用者致謝，告訴他們您多麼感謝他們的資助。您也可以告訴他們您接下來要如何開發您的附加元件，或是其他由您開發，希望他們測試的附加元件。"
-
-msgid "Activate Contributions"
-msgstr "開放捐款"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "或<a id=\"setup-cancel\" href=\"#\">取消</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "看看您的擴充套件是否與 Firefox 相容。"
 
 msgid "Transfer ownership"
 msgstr "移轉擁有權"
@@ -4209,12 +3910,6 @@ msgstr "佈景主題授權條款"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "他人是否可以在姓名標示的情況下分享您的佈景主題?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，但不得進行商業用途。"
-
 # 85%
 msgid "Can others make commercial use of your Theme?"
 msgstr "他人是否可以使用您的佈景主題進行商業用途?"
@@ -4223,24 +3918,9 @@ msgstr "他人是否可以使用您的佈景主題進行商業用途?"
 msgid "Can others create derivative works from your Theme?"
 msgstr "他人是否可以使用您的佈景主題創造衍生著作?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以創造衍生著作。"
-
-msgid "Yes, as long as they share alike"
-msgstr "可以，只要他人以相同方式分享著作"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "此授權條款允許其他人在使用相同或相容的授權下，散佈其衍生作品。"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "授權人允許其他人重製、散佈或傳送未經改作之著作，但不得創造衍生著作。"
-
 # 87%
 msgid "Your Theme will be released under the following license:"
 msgstr "您的佈景主題將以下列授權條款釋出："
-
-msgid "Select a different license."
-msgstr "選擇一個授權條款。"
 
 msgid "Select a license for your Theme."
 msgstr "為您的佈景主題選一個授權條款。"
@@ -4576,841 +4256,6 @@ msgstr "{addon_name} {start_sub_heading}表情符號大補包{end_sub_heading}"
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "好幾打超酷炫的表情符號，讓您點擊輸入。"
 
-msgid "Approved reviews"
-msgstr "已通過的審核"
-
-msgid "Deleted reviews"
-msgstr "已刪除的審核"
-
-msgid "View entries between"
-msgstr "瀏覽內容從"
-
-msgid "and"
-msgstr "至"
-
-msgid "Filter by type/action"
-msgstr "以類型/動作過濾"
-
-msgid "Passed automatic validation"
-msgstr "通過自動驗證"
-
-msgid "Failed automatic validation"
-msgstr "未通過自動驗證"
-
-msgid "Filter by automatic validation"
-msgstr "依照自動驗證過濾"
-
-msgid "containing"
-msgstr "包含"
-
-msgid "start"
-msgstr "開始日期"
-
-msgid "end"
-msgstr "結束日期"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "附加元件，編輯器或意見"
-
-msgid "Search by add-on name / author email"
-msgstr "以附加元件名稱或作者電子郵件搜尋"
-
-msgid "yes"
-msgstr "是"
-
-msgid "no"
-msgstr "否"
-
-msgid "Admin Flag"
-msgstr "管理員標記"
-
-msgid "Add-on Types"
-msgstr "附加元件類型"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "透過元件名稱、作者電郵地址、GUID 搜尋"
-
-msgid "Max. Version"
-msgstr "最新版本"
-
-msgid "Comments:"
-msgstr "評論:"
-
-msgid "Operating systems:"
-msgstr "作業系統:"
-
-msgid "Applications:"
-msgstr "應用程式:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "在此附加元件下次更新的時候通知我。（隨後的更新將不會發送郵件通知）"
-
-msgid "Clear Admin Review Flag"
-msgstr "清除管理員審核旗標"
-
-msgid "Is more info requested?"
-msgstr "有要求更多資訊嗎？"
-
-msgid "Choose a canned response..."
-msgstr "選擇一個制式回覆..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "佈景主題名稱"
-
-msgid "Someone else is reviewing this theme."
-msgstr "他人正在審核此佈景主題。"
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "應用程式、審核者或評論"
-
-msgid "Keep review; remove flags"
-msgstr "保留意見並移除旗標"
-
-msgid "Skip for now"
-msgstr "馬上跳過"
-
-msgid "Delete review"
-msgstr "刪除評論"
-
-msgid "Admin Review"
-msgstr "管理員意見"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack 附加元件"
-
-msgid "More Information Requested"
-msgstr "被要求提供更多資訊"
-
-msgid "Contains Reviewer Comment"
-msgstr "含有審核者的意見"
-
-msgid "Sources provided"
-msgstr "已提供來源"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "使用自訂 CSP。"
-
-msgid "Uses nativeMessaging permission."
-msgstr "需要 nativeMessaging 權限。"
-
-msgid "Uses a content script for all URLs."
-msgstr "針對所有網址使用內容指令碼。"
-
-msgid "Has too many daily users."
-msgstr "有太多日常使用者。"
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "連續由專人審核通過的更新次數太少。"
-
-msgid "Has a pending info request."
-msgstr "有處理中的資訊請求要求。"
-
-msgid "Is flagged for admin review."
-msgstr "已標記由管理員審查。"
-
-msgid "Is locked by a reviewer."
-msgstr "已由審核者鎖定。"
-
-msgid "Duplicate Submission"
-msgstr "重複的提交"
-
-msgid "Thanks for submitting your Theme"
-msgstr "感謝您提交佈景主題"
-
-msgid "A problem with your Theme submission"
-msgstr "您提交的佈景主題發現問題"
-
-msgid "Theme submission flagged for review"
-msgstr "已將送出的佈景主題加上旗標以供審核"
-
-msgid "A question about your Theme submission"
-msgstr "關於您送出佈景主題的問題"
-
-msgid "Type"
-msgstr "類型"
-
-msgid "Waiting Time"
-msgstr "等待時間"
-
-msgid "Flags"
-msgstr "旗標"
-
-msgid "moments ago"
-msgstr "不久前"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} 分鐘"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} 小時"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} 天"
-
-msgid "Last Review"
-msgstr "最後評論"
-
-msgid "Last Update"
-msgstr "最後更新"
-
-msgid "No Reviews"
-msgstr "無評論"
-
-msgid "Weight"
-msgstr "權重"
-
-msgid "Last Content Review"
-msgstr "上次內容審核"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "將會退回此版本並從佇列移除，將傳送留言給開發者。"
-
-msgid "Confirm Approval"
-msgstr "確認批准"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "此附加元件的最新公開版本是系統自動審核通過的，這筆紀錄確認無須通知開發者，直接通過審核。"
-
-msgid "Reject Multiple Versions"
-msgstr "退回多個版本"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "將會退回所選擇的公開版本。留言將會傳送給開發者。"
-
-msgid "Reviewer reply"
-msgstr "審核者回覆"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "將會發送訊息給開發者，當回覆時您會收到通知。"
-
-msgid "Request super-review"
-msgstr "要求超級審核"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "如果您認為管理員應該要調查此附加元件，請在下方輸入您的意見。意見將不會被傳送給開發者。"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "為此版本加上留言，開發者不會看到。"
-
-msgid "Approve Content"
-msgstr "核准內容"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "將紀錄您對此版本內容的接受或拒絕，而不通知開發者。"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "新的附加元件 (五天內)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "可通過 (五至十天)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "逾期 (超過十天)"
-
-msgid "An unknown error occurred"
-msgstr "發生了未知的錯誤"
-
-msgid "Self-reviews are not allowed."
-msgstr "不允許自我審核。"
-
-msgid "Review successfully processed."
-msgstr "審核流程已順利開始。"
-
-msgid "Review lock limit reached"
-msgstr "已達審核鎖定限制"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。"
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "您的佈景主題鎖已經發佈成功。現在其他審查者已可以看到您的佈景主題。您可以重新整理頁面，觀看更新後的內容。"
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: 濫用回報"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "{addon} 及其開發者的濫用回報 ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "相容於"
-
-msgid "Visibility"
-msgstr "公開情況"
-
-msgid "Visible"
-msgstr "公開情況"
-
-msgid "Average Daily Users"
-msgstr "平均每日使用者數"
-
-msgid "Abuse Reports"
-msgstr "濫用回報"
-
-msgid "View Privacy Policy"
-msgstr "檢視隱私權保護政策"
-
-msgid "Requires Payment"
-msgstr "需要付款"
-
-msgid "EULA"
-msgstr "終端使用者授權合約"
-
-msgid "Last Approval Date"
-msgstr "最近批准日期"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "自從上次自動審核通過後，通過的審核"
-
-msgid "Abuse Reports ({num})"
-msgstr "濫用回報 ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "不良的使用者評論 ({num})"
-
-msgid "More about this add-on"
-msgstr "關於此附加元件的更多資訊"
-
-msgid "Image Gallery"
-msgstr "圖片集"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "沒別的東西了！開發者並沒有包含任何詳細資訊。"
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "回到審核者工具首頁"
-
-msgid "Queues"
-msgstr "審核等待區"
-
-msgid "New Add-ons"
-msgstr "新進附加元件"
-
-# 85%
-msgid "Updates"
-msgstr "更新"
-
-msgid "Moderated Reviews"
-msgstr "有問題的評論"
-
-msgid "Auto Approved Add-ons"
-msgstr "自動批准的附加元件"
-
-msgid "Content Review"
-msgstr "內容審核"
-
-msgid "Unlisted Queues"
-msgstr "未上架佇列"
-
-msgid "All Unlisted Add-ons"
-msgstr "所有未上架的附加元件"
-
-msgid "Logs"
-msgstr "歷史記錄"
-
-msgid "Add-on Review Log"
-msgstr "附加元件審核紀錄"
-
-msgid "Moderated Review Log"
-msgstr "有問題的評論之紀錄"
-
-msgid "Signed Beta Files Log"
-msgstr "簽署的 Beta 檔案紀錄"
-
-msgid "Announcement"
-msgstr "消息"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "過濾條件"
-
-msgid "Date"
-msgstr "日期"
-
-msgid "Event"
-msgstr "事件"
-
-msgid "More details."
-msgstr "更多資訊。"
-
-msgid "No events found for this period."
-msgstr "在這段時間沒有活動。"
-
-msgid "Log details"
-msgstr "細節記錄"
-
-msgid "Review Author"
-msgstr "審查作者"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "附加元件標題"
-
-msgid "Review Title"
-msgstr "審核標題"
-
-msgid "Review Text"
-msgstr "審核文字"
-
-msgid "Review was flagged prior to deletion."
-msgstr "刪除前已被標示審核。"
-
-msgid "Undelete"
-msgstr "反刪除"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "新進附加元件（{num}）"
-
-# 86%
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "更新（{num}）"
-
-msgid "Current waiting times:"
-msgstr "目前等待時間:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} 個附加元件"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "總審核數量"
-
-msgid "Reviews This Month"
-msgstr "本月審核數量"
-
-msgid "New Reviewers"
-msgstr "新審核者"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "您是 #{0}，共 {1} 條評論"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "有問題的評論 ({num})篇"
-
-msgid "Reviewer Leaderboard"
-msgstr "審核者排行榜"
-
-msgid "No review points awarded yet."
-msgstr "尚未得到任何審核點數。"
-
-msgid "Rank"
-msgstr "評分"
-
-msgid "Score"
-msgstr "積分"
-
-msgid "Update message of the day"
-msgstr "每日更新訊息"
-
-msgid "Save"
-msgstr "儲存"
-
-msgid "Add-on Reviewer Performance"
-msgstr "附加元件審核者效率"
-
-msgid "View statistics for user"
-msgstr "檢視使用者的統計數據"
-
-msgid "Range"
-msgstr "範圍"
-
-msgid "Your Reviews"
-msgstr "您的審核"
-
-msgid "By {user_name}"
-msgstr "由 {user_name}"
-
-msgid "Active Contributors"
-msgstr "活躍的貢獻者"
-
-msgid "This Month"
-msgstr "這個月"
-
-msgid "This Year"
-msgstr "今年"
-
-msgid "Monthly Performance"
-msgstr "每個月績效"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "點數總排名（按類型）"
-
-msgid "Total"
-msgstr "共計"
-
-msgid "Month"
-msgstr "月"
-
-msgid "Year"
-msgstr "年"
-
-msgid "All-Time"
-msgstr "全部時間"
-
-msgid "Advanced Search"
-msgstr "進階搜尋"
-
-msgid "clear search"
-msgstr "清除搜尋"
-
-msgid "Process Reviews"
-msgstr "審核處理"
-
-msgid "Moderation actions:"
-msgstr "管理行為"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "由 %(user)s 於 %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong><span class=\"light\">在 %(date)s 由 %(user)s 所標記。</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "已處理所有待審項目，讚！"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "目前這個分類沒有附加元件要審核。"
-
-msgid "Helpful Links:"
-msgstr "實用連結："
-
-msgid "Add-on Policy"
-msgstr "附加元件政策"
-
-msgid "Editors' Guide"
-msgstr "編輯指南"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "內容審核 {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "審核 {0}"
-
-msgid "Add-on user change history"
-msgstr "附加元件使用者變更紀錄"
-
-msgid "Add-on History"
-msgstr "附加元件歷史"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "版本 %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "相容性:"
-
-msgid "Additional sources:"
-msgstr "額外的原始碼:"
-
-msgid "Download files"
-msgstr "下載檔案"
-
-msgid "The developer has provided source code."
-msgstr "開發者提供了原始碼。"
-
-msgid "Weight:"
-msgstr "權重:"
-
-msgid "Not Auto Approved Because"
-msgstr "未通過自動批准，由於"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "尚未對此版本執行過自動批准指令碼。"
-
-msgid "This version has not been reviewed."
-msgstr "此版本尚未審核。"
-
-msgid "Please select one or more versions in the list above."
-msgstr "請選擇上列的一或多個版本。"
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "您仍然可以送出這張表單，但請確定在不會發生衝突時才送出。"
-
-msgid "Insert canned response..."
-msgstr "插入罐頭回覆…"
-
-# 83%
-# 100%
-msgid "Files:"
-msgstr "檔案:"
-
-msgid "Tested on:"
-msgstr "已測試於:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>警告！</strong> 有其他使用者在您之前檢視了此頁面。"
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "白板（whiteboard）是一個能夠讓開發者與編輯交換附加元件相關資訊的地方（不論版本），雙方皆可檢視與編輯。"
-
-msgid "Update the whiteboard"
-msgstr "更新白板"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "管理員頁面"
-
-msgid "Review This Add-on"
-msgstr "審核此附加元件"
-
-msgid "More Information"
-msgstr "更多資訊"
-
-msgid "Resolution"
-msgstr "決議"
-
-# 88%
-msgid "Reviewer"
-msgstr "評論者"
-
-msgid "Add-on has been deleted."
-msgstr "附加元件已被刪除。"
-
-msgid "Show Comments"
-msgstr "顯示意見"
-
-msgid "Hide Comments"
-msgstr "隱藏意見"
-
-msgid "No reviews found for this period."
-msgstr "此時間內，尚無審核。"
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] 於 %(date)s 回報了 %(object)s"
-
-msgid "Dismiss this announcement"
-msgstr "略過這個消息"
-
-msgid "Files in this version:"
-msgstr "在這個版本的檔案:"
-
-msgid "Contents"
-msgstr "內容"
-
-msgid "Compare"
-msgstr "比較"
-
-msgid "Permissions:"
-msgstr "權限:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>在 %(date)s 由 %(user)s</div>"
-
-msgid "Older"
-msgstr "較舊的"
-
-msgid "Newer"
-msgstr "較新的"
-
-msgid "Recent Points"
-msgstr "最近的評分"
-
-msgid "No points awarded yet."
-msgstr "尚無任何評分。"
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "頂尖審核者（過去七天中）"
-
-msgid "No top reviewers yet."
-msgstr "還沒有任何頂尖審核者。"
-
-msgid "All Time"
-msgstr "全部時間"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "您有 <span>{0}</span> 點。"
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s 在 %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "日期已刪除"
-
-msgid "No deleted themes found for this period."
-msgstr "在這段時間中沒有刪除的佈景主題。"
-
-msgid "Theme Review History for {0}"
-msgstr "{0} 的佈景主題審核歷史"
-
-msgid "Review Date"
-msgstr "審核日期"
-
-msgid "Action"
-msgstr "動作"
-
-msgid "Reason"
-msgstr "理由"
-
-msgid "There are currently no reviews."
-msgstr "目前沒有任何審核。"
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} 個佈景主題正在審核中{num} 個佈景主題正在審核中"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} 個已標記的審核{num} 個已標記的審核"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} 個更新{num} 個更新"
-
-msgid "Flagged Themes"
-msgstr "已標記的佈景主題"
-
-msgid "Theme Review Queue"
-msgstr "佈景主題待審區"
-
-msgid "Review Options"
-msgstr "審核選項"
-
-msgid "Auto-advance after review"
-msgstr "審核後自動跳至下一個"
-
-msgid "Enable keyboard shortcuts"
-msgstr "啟用鍵盤快速鍵"
-
-msgid "Keyboard Shortcuts"
-msgstr "鍵盤快速鍵"
-
-msgid "Next Theme"
-msgstr "下一個主題"
-
-msgid "Previous Theme"
-msgstr "上一個主題"
-
-msgid "Your Review History"
-msgstr "您的評論歷史"
-
-msgid "Commit Review"
-msgstr "提交審核"
-
-msgid "Commit Reviews"
-msgstr "提交審核"
-
-msgid "{0} out of {1} reviewed"
-msgstr "已審核 {0} / {1}個"
-
-msgid "There are currently no Themes to review."
-msgstr "目前沒有任何可審核的佈景主題。"
-
-msgid "Clear Search"
-msgstr "清除搜尋"
-
-msgid "Release My Theme Locks"
-msgstr "發布我的佈景主題鎖"
-
-msgid "Interactive Theme Queue"
-msgstr "互動佈景主題列表"
-
-msgid "Reviewers' Guide"
-msgstr "審核者指南"
-
-msgid "Theme Review for {0}"
-msgstr "{0} 的佈景主題審核"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(很可能是重複的提交)"
-
-msgid "Past Review Notes"
-msgstr "過去的審核筆記"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "更多訊息： {0}"
-
-msgid "Flagged: {0}"
-msgstr "已被標記: {0}個"
-
-msgid "Approve Theme"
-msgstr "核准佈景主題"
-
-msgid "Field required"
-msgstr "必填項目"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "輸入重複的 ID 或是網址"
-
-msgid "Select a reason for rejection"
-msgstr "選擇一個退回理由"
-
-msgid "Describe your reason for rejection"
-msgstr "敘述您退回的理由"
-
-msgid "Ask a question to the artist"
-msgstr "向作者發問"
-
-msgid "Describe your reason for flagging"
-msgstr "敘述您標記的理由"
-
-msgid "Rejected or Unreviewed"
-msgstr "被退回或未審核"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[狀態：%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "新進附加元件（{0}）"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "更新（{0}）"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "有問題的評論 ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "自動批准的附加元件（{0}）"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "內容審核 ({0})"
-
-msgid "Flagged"
-msgstr "已加上旗標"
-
 msgid "Cannot diff a version against itself"
 msgstr "無法判斷一個版本與其自身的差異"
 
@@ -5514,6 +4359,11 @@ msgstr "正在處理附加元件的檔案，請稍候。"
 
 msgid "Fetching validation results..."
 msgstr "正在擷取驗證結果..."
+
+# 83%
+# 100%
+msgid "Files:"
+msgstr "檔案:"
 
 msgid "Deleted files:"
 msgstr "已刪除的檔案:"
@@ -5718,6 +4568,9 @@ msgstr "感謝使用 %(app)s 並支持 <a href=\"%(url)s\">Mozilla 的使命</a>
 
 msgid "Add-ons downloaded:"
 msgstr "已下載的附加元件："
+
+msgid "View Privacy Policy"
+msgstr "檢視隱私權保護政策"
 
 msgid "Active Users"
 msgstr "活躍的使用者"
@@ -6248,8 +5101,8 @@ msgstr "誰創造了這些附加元件？"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr "在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由編輯人員進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+msgstr "在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由審核團隊進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "我該如何跟上在 AMO 所發生的事情？"
@@ -6916,8 +5769,8 @@ msgstr "我要如何回報不適當的使用者評論？"
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
-msgstr "若要回報使用者對附加元件的評論，請登入您的帳號並前往附加元件的評論頁面，找到您想要回報的評論項目，然後點擊「回報此評論」然後選擇原因。我們的編輯團隊將調查該評論並做出適當的反應。"
+"reviewers team will investigate the review and take appropriate action."
+msgstr "若要回報使用者對附加元件的評論，請登入您的帳號並前往附加元件的評論頁面，找到您想要回報的評論項目，點擊「回報此評論」然後選擇原因。我們的審核者團隊將調查該評論並做出適當的反應。"
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "我要如何回報問題與聯繫 Mozilla 附加元件團隊？"
@@ -7182,22 +6035,811 @@ msgstr "我們建議您升級到 <a href=\"%(tb_url)s\">Thunderbird</a> 與 <a h
 msgid "Read more about Sunbird"
 msgstr "閱讀關於 Sunbird 的資訊"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "與 Paypal 通訊時發生錯誤。請稍後再試。"
+msgid "Approved reviews"
+msgstr "已通過的審核"
 
-msgid "There was an error with this currency."
-msgstr "處理此幣別時發生錯誤。"
+msgid "Deleted reviews"
+msgstr "已刪除的審核"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "此金額低於最低能轉換給收款者的匯率標準。"
+msgid "View entries between"
+msgstr "瀏覽內容從"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "買家與賣家的 PayPal 帳號必須不同。"
+msgid "and"
+msgstr "至"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "以類型/動作過濾"
+
+msgid "Passed automatic validation"
+msgstr "通過自動驗證"
+
+msgid "Failed automatic validation"
+msgstr "未通過自動驗證"
+
+msgid "Filter by automatic validation"
+msgstr "依照自動驗證過濾"
+
+msgid "containing"
+msgstr "包含"
+
+msgid "start"
+msgstr "開始日期"
+
+msgid "end"
+msgstr "結束日期"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "附加元件、審核者或意見"
+
+msgid "Search by add-on name / author email"
+msgstr "以附加元件名稱或作者電子郵件搜尋"
+
+msgid "yes"
+msgstr "是"
+
+msgid "no"
+msgstr "否"
+
+msgid "Admin Flag"
+msgstr "管理員標記"
+
+msgid "Add-on Types"
+msgstr "附加元件類型"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "透過元件名稱、作者電郵地址、GUID 搜尋"
+
+msgid "Max. Version"
+msgstr "最新版本"
+
+msgid "Comments:"
+msgstr "評論:"
+
+msgid "Operating systems:"
+msgstr "作業系統:"
+
+msgid "Applications:"
+msgstr "應用程式:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "在此附加元件下次更新的時候通知我。（隨後的更新將不會發送郵件通知）"
+
+msgid "Clear Admin Review Flag"
+msgstr "清除管理員審核旗標"
+
+msgid "Is more info requested?"
+msgstr "有要求更多資訊嗎？"
+
+msgid "Choose a canned response..."
+msgstr "選擇一個制式回覆..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "佈景主題名稱"
+
+msgid "Someone else is reviewing this theme."
+msgstr "他人正在審核此佈景主題。"
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "應用程式、審核者或評論"
+
+msgid "Keep review; remove flags"
+msgstr "保留意見並移除旗標"
+
+msgid "Skip for now"
+msgstr "馬上跳過"
+
+msgid "Delete review"
+msgstr "刪除評論"
+
+msgid "Admin Review"
+msgstr "管理員意見"
+
+msgid "Jetpack Add-on"
+msgstr "Jetpack 附加元件"
+
+msgid "More Information Requested"
+msgstr "被要求提供更多資訊"
+
+msgid "Contains Reviewer Comment"
+msgstr "含有審核者的意見"
+
+msgid "Sources provided"
+msgstr "已提供來源"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "已由審核者鎖定。"
+
+msgid "Duplicate Submission"
+msgstr "重複的提交"
+
+msgid "Thanks for submitting your Theme"
+msgstr "感謝您提交佈景主題"
+
+msgid "A problem with your Theme submission"
+msgstr "您提交的佈景主題發現問題"
+
+msgid "Theme submission flagged for review"
+msgstr "已將送出的佈景主題加上旗標以供審核"
+
+msgid "A question about your Theme submission"
+msgstr "關於您送出佈景主題的問題"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Waiting Time"
+msgstr "等待時間"
+
+msgid "Flags"
+msgstr "旗標"
+
+msgid "moments ago"
+msgstr "不久前"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} 分鐘"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} 小時"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} 天"
+
+msgid "Last Review"
+msgstr "最後評論"
+
+msgid "Last Update"
+msgstr "最後更新"
+
+msgid "No Reviews"
+msgstr "無評論"
+
+msgid "Weight"
+msgstr "權重"
+
+msgid "Last Content Review"
+msgstr "上次內容審核"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "將會退回此版本並從佇列移除，將傳送留言給開發者。"
+
+msgid "Confirm Approval"
+msgstr "確認批准"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "此附加元件的最新公開版本是系統自動審核通過的，這筆紀錄確認無須通知開發者，直接通過審核。"
+
+msgid "Reject Multiple Versions"
+msgstr "退回多個版本"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "將會退回所選擇的公開版本。留言將會傳送給開發者。"
+
+msgid "Reviewer reply"
+msgstr "審核者回覆"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "將會發送訊息給開發者，當回覆時您會收到通知。"
+
+msgid "Request super-review"
+msgstr "要求超級審核"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "如果您認為管理員應該要調查此附加元件，請在下方輸入您的意見。意見將不會被傳送給開發者。"
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "為此版本加上留言，開發者不會看到。"
+
+msgid "Approve Content"
+msgstr "核准內容"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "將紀錄您對此版本內容的接受或拒絕，而不通知開發者。"
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "新的附加元件 (五天內)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "可通過 (五至十天)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "逾期 (超過十天)"
+
+msgid "An unknown error occurred"
+msgstr "發生了未知的錯誤"
+
+msgid "Self-reviews are not allowed."
+msgstr "不允許自我審核。"
+
+msgid "Review successfully processed."
+msgstr "審核流程已順利開始。"
+
+msgid "Review lock limit reached"
+msgstr "已達審核鎖定限制"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} 佈景主題審查成功（+{1} 點數，共 {2} 點）。"
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr "您的佈景主題鎖已經發佈成功。現在其他審查者已可以看到您的佈景主題。您可以重新整理頁面，觀看更新後的內容。"
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: 濫用回報"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "{addon} 及其開發者的濫用回報 ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "相容於"
+
+msgid "Visibility"
+msgstr "公開情況"
+
+msgid "Visible"
+msgstr "公開情況"
+
+msgid "Average Daily Users"
+msgstr "平均每日使用者數"
+
+msgid "Abuse Reports"
+msgstr "濫用回報"
+
+msgid "Requires Payment"
+msgstr "需要付款"
+
+msgid "EULA"
+msgstr "終端使用者授權合約"
+
+msgid "Last Approval Date"
+msgstr "最近批准日期"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "自從上次自動審核通過後，通過的審核"
+
+msgid "Abuse Reports ({num})"
+msgstr "濫用回報 ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "不良的使用者評論 ({num})"
+
+msgid "More about this add-on"
+msgstr "關於此附加元件的更多資訊"
+
+msgid "Image Gallery"
+msgstr "圖片集"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "沒別的東西了！開發者並沒有包含任何詳細資訊。"
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "回到審核者工具首頁"
+
+msgid "Queues"
+msgstr "審核等待區"
+
+msgid "New Add-ons"
+msgstr "新進附加元件"
+
+# 85%
+msgid "Updates"
+msgstr "更新"
+
+msgid "Moderated Reviews"
+msgstr "有問題的評論"
+
+msgid "Auto Approved Add-ons"
+msgstr "自動批准的附加元件"
+
+msgid "Content Review"
+msgstr "內容審核"
+
+msgid "Unlisted Queues"
+msgstr "未上架佇列"
+
+msgid "All Unlisted Add-ons"
+msgstr "所有未上架的附加元件"
+
+msgid "Logs"
+msgstr "歷史記錄"
+
+msgid "Add-on Review Log"
+msgstr "附加元件審核紀錄"
+
+msgid "Moderated Review Log"
+msgstr "有問題的評論之紀錄"
+
+msgid "Signed Beta Files Log"
+msgstr "簽署的 Beta 檔案紀錄"
+
+msgid "Announcement"
+msgstr "消息"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "過濾條件"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "More details."
+msgstr "更多資訊。"
+
+msgid "No events found for this period."
+msgstr "在這段時間沒有活動。"
+
+msgid "Log details"
+msgstr "細節記錄"
+
+msgid "Review Author"
+msgstr "審查作者"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "賣家不接受 %s 付款。"
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "附加元件標題"
+
+msgid "Review Title"
+msgstr "審核標題"
+
+msgid "Review Text"
+msgstr "審核文字"
+
+msgid "Review was flagged prior to deletion."
+msgstr "刪除前已被標示審核。"
+
+msgid "Undelete"
+msgstr "反刪除"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "新進附加元件（{num}）"
+
+# 86%
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "更新（{num}）"
+
+msgid "Current waiting times:"
+msgstr "目前等待時間:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} 個附加元件"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "總審核數量"
+
+msgid "Reviews This Month"
+msgstr "本月審核數量"
+
+msgid "New Reviewers"
+msgstr "新審核者"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "您是 #{0}，共 {1} 條評論"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "有問題的評論 ({num})篇"
+
+msgid "Reviewer Leaderboard"
+msgstr "審核者排行榜"
+
+msgid "No review points awarded yet."
+msgstr "尚未得到任何審核點數。"
+
+msgid "Rank"
+msgstr "評分"
+
+msgid "Score"
+msgstr "積分"
+
+msgid "Update message of the day"
+msgstr "每日更新訊息"
+
+msgid "Save"
+msgstr "儲存"
+
+msgid "Add-on Reviewer Performance"
+msgstr "附加元件審核者效率"
+
+msgid "View statistics for user"
+msgstr "檢視使用者的統計數據"
+
+msgid "Range"
+msgstr "範圍"
+
+msgid "Your Reviews"
+msgstr "您的審核"
+
+msgid "By {user_name}"
+msgstr "由 {user_name}"
+
+msgid "Active Contributors"
+msgstr "活躍的貢獻者"
+
+msgid "This Month"
+msgstr "這個月"
+
+msgid "This Year"
+msgstr "今年"
+
+msgid "Monthly Performance"
+msgstr "每個月績效"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "點數總排名（按類型）"
+
+msgid "Total"
+msgstr "共計"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Year"
+msgstr "年"
+
+msgid "All-Time"
+msgstr "全部時間"
+
+msgid "Advanced Search"
+msgstr "進階搜尋"
+
+msgid "clear search"
+msgstr "清除搜尋"
+
+msgid "Process Reviews"
+msgstr "審核處理"
+
+msgid "Moderation actions:"
+msgstr "管理行為"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "由 %(user)s 於 %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong><span class=\"light\">在 %(date)s 由 %(user)s 所標記。</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "已處理所有待審項目，讚！"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "目前這個分類沒有附加元件要審核。"
+
+msgid "Helpful Links:"
+msgstr "實用連結："
+
+msgid "Add-on Policy"
+msgstr "附加元件政策"
+
+msgid "Reviewer's Guide"
+msgstr "審核者指南"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "內容審核 {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "審核 {0}"
+
+msgid "Add-on user change history"
+msgstr "附加元件使用者變更紀錄"
+
+msgid "Add-on History"
+msgstr "附加元件歷史"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "版本 %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "Compatibility:"
+msgstr "相容性:"
+
+msgid "Additional sources:"
+msgstr "額外的原始碼:"
+
+msgid "Download files"
+msgstr "下載檔案"
+
+msgid "The developer has provided source code."
+msgstr "開發者提供了原始碼。"
+
+msgid "Weight:"
+msgstr "權重:"
+
+msgid "Not Auto Approved Because"
+msgstr "未通過自動批准，由於"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "尚未對此版本執行過自動批准指令碼。"
+
+msgid "This version has not been reviewed."
+msgstr "此版本尚未審核。"
+
+msgid "Please select one or more versions in the list above."
+msgstr "請選擇上列的一或多個版本。"
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "您仍然可以送出這張表單，但請確定在不會發生衝突時才送出。"
+
+msgid "Insert canned response..."
+msgstr "插入罐頭回覆…"
+
+msgid "Tested on:"
+msgstr "已測試於:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>警告！</strong> 有其他使用者在您之前檢視了此頁面。"
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "白板（whiteboard）是一個能夠讓開發者與審核者交流附加元件相關資訊的地方（不論版本），雙方皆可檢視與編輯。"
+
+msgid "Update the whiteboard"
+msgstr "更新白板"
+
+msgid "(admin)"
+msgstr "(admin)"
+
+msgid "Admin Page"
+msgstr "管理員頁面"
+
+msgid "Review This Add-on"
+msgstr "審核此附加元件"
+
+msgid "More Information"
+msgstr "更多資訊"
+
+msgid "Resolution"
+msgstr "決議"
+
+# 88%
+msgid "Reviewer"
+msgstr "評論者"
+
+msgid "Add-on has been deleted."
+msgstr "附加元件已被刪除。"
+
+msgid "Show Comments"
+msgstr "顯示意見"
+
+msgid "Hide Comments"
+msgstr "隱藏意見"
+
+msgid "No reviews found for this period."
+msgstr "此時間內，尚無審核。"
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] 於 %(date)s 回報了 %(object)s"
+
+msgid "Dismiss this announcement"
+msgstr "略過這個消息"
+
+msgid "Files in this version:"
+msgstr "在這個版本的檔案:"
+
+msgid "Contents"
+msgstr "內容"
+
+msgid "Compare"
+msgstr "比較"
+
+msgid "Permissions:"
+msgstr "權限:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>在 %(date)s 由 %(user)s</div>"
+
+msgid "Older"
+msgstr "較舊的"
+
+msgid "Newer"
+msgstr "較新的"
+
+msgid "Recent Points"
+msgstr "最近的評分"
+
+msgid "No points awarded yet."
+msgstr "尚無任何評分。"
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "頂尖審核者（過去七天中）"
+
+msgid "No top reviewers yet."
+msgstr "還沒有任何頂尖審核者。"
+
+msgid "All Time"
+msgstr "全部時間"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "您有 <span>{0}</span> 點。"
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s 在 %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "日期已刪除"
+
+msgid "No deleted themes found for this period."
+msgstr "在這段時間中沒有刪除的佈景主題。"
+
+msgid "Theme Review History for {0}"
+msgstr "{0} 的佈景主題審核歷史"
+
+msgid "Review Date"
+msgstr "審核日期"
+
+msgid "Action"
+msgstr "動作"
+
+msgid "Reason"
+msgstr "理由"
+
+msgid "There are currently no reviews."
+msgstr "目前沒有任何審核。"
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} 個佈景主題正在審核中{num} 個佈景主題正在審核中"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} 個已標記的審核{num} 個已標記的審核"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} 個更新{num} 個更新"
+
+msgid "Flagged Themes"
+msgstr "已標記的佈景主題"
+
+msgid "Theme Review Queue"
+msgstr "佈景主題待審區"
+
+msgid "Review Options"
+msgstr "審核選項"
+
+msgid "Auto-advance after review"
+msgstr "審核後自動跳至下一個"
+
+msgid "Enable keyboard shortcuts"
+msgstr "啟用鍵盤快速鍵"
+
+msgid "Keyboard Shortcuts"
+msgstr "鍵盤快速鍵"
+
+msgid "Next Theme"
+msgstr "下一個主題"
+
+msgid "Previous Theme"
+msgstr "上一個主題"
+
+msgid "Your Review History"
+msgstr "您的評論歷史"
+
+msgid "Commit Review"
+msgstr "提交審核"
+
+msgid "Commit Reviews"
+msgstr "提交審核"
+
+msgid "{0} out of {1} reviewed"
+msgstr "已審核 {0} / {1}個"
+
+msgid "There are currently no Themes to review."
+msgstr "目前沒有任何可審核的佈景主題。"
+
+msgid "Clear Search"
+msgstr "清除搜尋"
+
+msgid "Release My Theme Locks"
+msgstr "發布我的佈景主題鎖"
+
+msgid "Interactive Theme Queue"
+msgstr "互動佈景主題列表"
+
+msgid "Reviewers' Guide"
+msgstr "審核者指南"
+
+msgid "Theme Review for {0}"
+msgstr "{0} 的佈景主題審核"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(很可能是重複的提交)"
+
+msgid "Past Review Notes"
+msgstr "過去的審核筆記"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "更多訊息： {0}"
+
+msgid "Flagged: {0}"
+msgstr "已被標記: {0}個"
+
+msgid "Approve Theme"
+msgstr "核准佈景主題"
+
+msgid "Field required"
+msgstr "必填項目"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "輸入重複的 ID 或是網址"
+
+msgid "Select a reason for rejection"
+msgstr "選擇一個退回理由"
+
+msgid "Describe your reason for rejection"
+msgstr "敘述您退回的理由"
+
+msgid "Ask a question to the artist"
+msgstr "向作者發問"
+
+msgid "Describe your reason for flagging"
+msgstr "敘述您標記的理由"
+
+msgid "Rejected or Unreviewed"
+msgstr "被退回或未審核"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[狀態：%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "新進附加元件（{0}）"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "更新（{0}）"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "有問題的評論 ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "自動批准的附加元件（{0}）"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "內容審核 ({0})"
+
+msgid "Flagged"
+msgstr "已加上旗標"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7238,8 +6880,8 @@ msgstr "您不能評論自己的附加元件。"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "您不能對同一套附加元件的相同版本評論超過一次。"
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "謝謝您，此意見已經標記為需要審核。"
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "謝謝您，已將這則評論標示為需要審核確認。"
 
 msgid "Add a review for {0}"
 msgstr "新增對 {0} 的意見"
@@ -7498,9 +7140,6 @@ msgstr "由於缺少 metadata，您無法透過 API 為此附加元件新增公�
 msgid "No uploaded file for that addon and version."
 msgstr "該附加元件與版本沒有已上傳的檔案。"
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "感謝您對 {addon_name} 的捐助"
-
 msgid "Overview"
 msgstr "概要"
 
@@ -7521,6 +7160,9 @@ msgstr "依平台"
 
 msgid "by Add-on Status"
 msgstr "依附加元件狀態"
+
+msgid "Contributions"
+msgstr "捐款"
 
 msgid "Subscribers"
 msgstr "訂閱者"

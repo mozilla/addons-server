@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 17:55+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"PO-Revision-Date: 2017-10-28 14:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -79,10 +79,6 @@ msgstr "Nětko sćahnyć"
 
 msgid "Download"
 msgstr "Sćahnyć"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Dale sćahnyć&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Předstajene"
@@ -173,12 +169,6 @@ msgstr "Wopisaj swoju drastu."
 msgid "Enter a new author's email address"
 msgstr "Zapodaj nowu e-mejlowu adresu awtora"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Wužiwarjo móža wjace abo mjenje hač tuteje sumy darić."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Prašeja so wužiwarjow přeco w zrjadowaku přidatkow (Firefox 4 a nowši). Płaći jenož za desktop."
-
 msgid "Listed"
 msgstr "Nalistowane"
 
@@ -210,95 +200,6 @@ msgstr "Tutón přidatk njeje so wot Mozilla přepruwował. <a href=\"%(url)s\">
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tutón přidatk je so wot swojich wuwiwarjow jako eksperimentelny markěrował."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće jeho dalše wuwiwanje přez mały dar podpěrał."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće swoju podpěru přez dar za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće swoju podpěru přez mały přinošk za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
-
-msgid "Contribute"
-msgstr "Darić"
-
-#. Click Contribute button OR Install button
-msgid "or"
-msgstr "abo"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Namjetowany přinošk: {0}"
-
-msgid "What's this?"
-msgstr "Što to je?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće dar za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažił, jeli jón rady wužiwaće."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće mały přinošk za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažił, jeli jón rady wužiwaće."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla je zawjazany, žiwy a strowy wuwiwarski ekosystem podpěrować. Waš dobrowólny přinošk pomha, dalše wuwiwanje tutoho přidatka zachować."
-
-msgid "Make a Contribution"
-msgstr "Darić"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Pomhajće, dalše wuwiwanje <strong>%(addon_name)s</strong> přez mały přinošk přez <a href=\"%(paypal_url)s\">PayPal</a> podpěrać."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Zo byšće swoju podpěru za <b>%(addon_name)s</b> pokazał, wuwiwar was prosy, zo byšće <a href=\"%(charity_url)s\">%(charity_name)s</a> přez <a href=\"%(paypal_url)s\">PayPal</a> darił."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Zo byšće swoju podpěru za <b>%(addon_name)s</b> pokazał, wuwiwar was prosy, zo byšće mały přinošk <a href=\"%(charity_url)s\">%(charity_name)s</a> přez <a href=\"%(paypal_url)s\">PayPal</a> dał."
-
-msgid "How much would you like to contribute?"
-msgstr "Kelko byšće darił?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "Maksimalny darjenski přinošk je {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "Minimalna darjenski přinošk je {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Darjenska suma dyrbi ličba być."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Jónkróćny namjetowany dar {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Jónkróćny přinošk {1} {0}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Zawostajće komentar abo naprašowanje ze swojim darom."
-
-msgid "(optional)"
-msgstr "(opcionalny)"
-
-msgid "Make Contribution"
-msgstr "Darić"
-
-msgid "Contacting PayPal"
-msgstr "PayPal so kontaktuje"
-
-msgid "No Thanks"
-msgstr "Ně, dźakuju so"
-
-msgid "Contribution made, thank you."
-msgstr "Přinošk je so darił, wulki dźak."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -394,15 +295,6 @@ msgstr[0] "{0} wužiwar"
 msgstr[1] "{0} wužiwarjej"
 msgstr[2] "{0} wužiwarjo"
 msgstr[3] "{0} wužiwarjow"
-
-msgid "Payment cancelled"
-msgstr "Płaćenje přetorhnjene"
-
-msgid "Payment completed"
-msgstr "Płaćenje dokónčene"
-
-msgid "Return to the addon."
-msgstr "Wróćo k přidatkej."
 
 msgid "by"
 msgstr "wot"
@@ -510,6 +402,9 @@ msgstr ""
 msgid "Send Report"
 msgstr "Rozprawu pósłać"
 
+msgid "or"
+msgstr "abo"
+
 msgid "Cancel"
 msgstr "Přetorhnyć"
 
@@ -586,25 +481,6 @@ msgstr "Prawa"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Tutón přidatk je so wot swojich wuwiwarjow jako eksperimentelny markěrował"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "Namjet: <b>%(amt)s</b>"
-
-msgid "Enjoy this add-on?"
-msgstr "Spodoba so wam tutón přidatk?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće jeho dalše wuwiwanje přez mały přinošk podpěrował."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće swoju podpěru přez dar za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće swoju podpěru přez mały přinošk za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Tutón přidatk sej slědowace přidatki wužaduje, zo by korektnje fungował:"
 
@@ -652,16 +528,14 @@ msgstr "Rjadowanje administratora"
 msgid "Icon of {0}"
 msgstr "Symbol {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Zeznajće so z wuwiwarjom: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjomaj</a>"
-msgstr[2] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
-msgstr[3] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
+msgid "Contribute"
+msgstr "Darić"
 
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za tutón přidatk."
+msgid "Enjoy this add-on?"
+msgstr "Spodoba so wam tutón přidatk?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "Wuwiwar tutoho přidatka was prosy, zo byšće jeho dalše wuwiwanje přez mały dar podpěrał."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -739,36 +613,6 @@ msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli. D
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Prošu dźiwajće na to, zo tutón přidatk zestarjenu technologiju wužiwa, kotraž jemu přistup na wšě funkcije wobhladowaka a daty bjez toho, zo by wo wašu dowolnosć prosył."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Dźakujemy so za instalaciju přidatka {0}"
-
-#. {0} is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Zeznajće so z wuwiwarjom přidatka {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Prjedy hač tutón přidatk sćehnjeće, přemyslujće nad tym, hač chceće wuwiwanje tutoho přidatka přez mały přinošk podpěrać."
-
-msgid "Why was {0} created?"
-msgstr "Čehodla bu {0} wutworjeny?"
-
-msgid "What's next for {0}"
-msgstr "Što je jako přichodne za {0} planowane"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "Wo wuwiwarju"
-msgstr[1] "Wo wuwiwarjomaj"
-msgstr[2] "Wo wuwiwarjach"
-msgstr[3] "Wo wuwiwarjach"
-
-msgid "No Photo"
-msgstr "Žane foto"
-
-msgid "Who is {0}?"
-msgstr "Štó je {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Tutón přidatk je so wot swojeho awtora wotstronił."
@@ -991,6 +835,9 @@ msgstr "Někotre funkcije na tutej stronje su so nachwilu znjemóžnili, doniž 
 
 msgid "Are you human?"
 msgstr "Sće čłowjek?"
+
+msgid "What's this?"
+msgstr "Što to je?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1248,6 +1095,9 @@ msgstr "Nowu zběrku započeć"
 
 msgid "Name:"
 msgstr "Mjeno:"
+
+msgid "(optional)"
+msgstr "(opcionalny)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "abo <a id=\"collections-new-cancel\" href=\"#\">Přetorhnyć</a>"
@@ -2519,6 +2369,51 @@ msgstr "Specifiske rozšěrjenja websydłow"
 msgid "Web and Developer Tools"
 msgstr "Webwuwiwarske nastroje"
 
+msgid "All Rights Reserved"
+msgstr "Wšě prawa wuměnjene"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "Wšě"
+
+msgid "All Platforms"
+msgstr "Wšě platformy"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "Nałoženje"
 
@@ -2666,51 +2561,6 @@ msgstr "Wobraz niskeje kwality, rozćehnjeny abo prózdny wobraz"
 msgid "Header image alignment problem"
 msgstr "Problem z wusměrjenjom hłowoweho wobraza"
 
-msgid "All Rights Reserved"
-msgstr "Wšě prawa wuměnjene"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Wšě"
-
-msgid "All Platforms"
-msgstr "Wšě platformy"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Jadro"
 
@@ -2756,33 +2606,6 @@ msgstr "Tutón přidatk ma prawidła priwatnosće"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Prošu podajće prawidła priwatnosće swojeho přidatka:"
-
-msgid "Why did you make this add-on?"
-msgstr "Čehodla sće tutón přidatk wutworił?"
-
-msgid "What's next for this add-on?"
-msgstr "Što za tutón přidatk jako přichodne přińdźe?"
-
-msgid "The developers of this add-on"
-msgstr "Wuwiwarjo tutoho přidatka"
-
-msgid "The Mozilla Foundation"
-msgstr "Mozilla Foundation"
-
-msgid "An organization of my choice"
-msgstr "Organizacija mojeje wólby"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Prošu zapodajće namjetowanu sumu, kotraž je wjetša hač 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Prošu zapodajće namjetowanu sumu, kotraž je mjeńša hač ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "ID PayPal je za akceptowanje přinoškow trěbny."
-
-msgid "Could not validate PayPal id."
-msgstr "ID PayPal njeda so přepruwować."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Njepodpěrany datajowy typ, prošu nahrajće archiwowu dataju {extensions}."
@@ -2936,9 +2759,6 @@ msgstr "Awtor ma rólu, kotraž je so za waš přidatk změniła"
 msgid "An author has been removed from your add-on"
 msgstr "Awtor je so z wašeho přidatka wotstronił"
 
-msgid "There were errors in your submission."
-msgstr "Při zapodawanju su zmylki wustupili."
-
 msgid "Validate Add-on"
 msgstr "Přidatk přepruwować"
 
@@ -3020,19 +2840,8 @@ msgstr "Přepruwowanske zasady a prawidła"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Sym tute dojednanje, prawidła a zasady přečitał a akceptował"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-"Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju přidatkow Firefox. Wobsahuje tež wotkaz k našeje pokazce priwatnosće, kotraž wujasnja, kak z wašimi informacijemi "
-"wobchadźamy."
-
-msgid "Printable Version"
-msgstr "Ćišćomna wersija"
-
 msgid "Accept"
 msgstr "Akceptować"
-
-msgid "I Accept this Agreement"
-msgstr "Sym přezjedny z tutym dojednanjom"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "abo <a href=\"{0}\">Přetorhnyć</a>"
@@ -3221,26 +3030,6 @@ msgstr ""
 "<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
 "awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow a rjadowanja płaćenjow</li> <li><b>Wobhladowar:</b> Móže sej "
 "nastajenja a statistiku přidatka wobhladać, ale njemóže změny přewjesć</li> </ul>"
-
-msgid "Manage Developer Profile"
-msgstr "Wuwiwarski profil rjadować"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Waš <a href=\"%(url)s\">wuwiwarski profil</a> je tuchwilu <strong>zjawny</strong> a <strong>trěbny</strong> za přinoški."
-
-msgid "Remove Both"
-msgstr "Wobaj wotstronić"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Waš <a href=\"%(url)s\">wuwiwarski profil</a> je tuchwilu <strong>zjawny</strong>."
-
-msgid "Remove Profile"
-msgstr "Profil wotstronić"
-
-msgid "Create Profile"
-msgstr "Profil załožić"
 
 msgid "Basic Information"
 msgstr "Zakładne informacije"
@@ -3460,11 +3249,11 @@ msgid "Whiteboard"
 msgstr "Informaciska taflička"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Informaciska taflička je městno, hdźež móžeće redaktorej informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a dalše"
-" informacije podał, kotrež móhli pomhać. Informaciska taflička da so tež wot redaktorow wobdźěłać."
+"Informaciska tafla je městno, hdźež móžeće přepruwowarjam informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a "
+"dalše informacije podał, kotrež móhli pomhać. Tuta Informaciska tafla da so tež wot přepruwowarjow wobdźěłać."
 
 msgid "Remove this dependent add-on"
 msgstr "Tutón wotwisny přidatk wotstronić"
@@ -3519,6 +3308,39 @@ msgstr "Prošu podajće pomjenjowanje za tute foto wobrazowki:"
 
 msgid "Add a Screenshot..."
 msgstr "Foto wobrazowki přidać..."
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Smědźa druzy waš přidatk dźělić, jeli was jako awtora naspominaja?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Smědźa druzy waš přidatk komercielnje wužiwać?"
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Smědźa druzy z wašeho přidatka wotwodźene dźěła wutworić?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
+
+msgid "Yes, as long as they share alike"
+msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka jenož pod samsnej licencu rozdźělować, abo pod tajkej, kotraž je kompatibelna z dźěłom licencydawarja."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
+
+msgid "Your Add-on will be released under the following license:"
+msgstr "Waš přidatk so pod slědowacej licencu wozjewi:"
+
+msgid "Select a different license."
+msgstr "Wubjerće hinašu licencu."
 
 msgid "Tests"
 msgstr "Testy"
@@ -3601,9 +3423,6 @@ msgstr "Wšědna statistika wo sćehnjenjach a wužiwarjach."
 
 msgid "Statistics"
 msgstr "Statistika"
-
-msgid "Manage Payments"
-msgstr "Płaćenja rjadować"
 
 msgid "Manage Status & Versions"
 msgstr "Status a wersije rjadować"
@@ -3700,8 +3519,8 @@ msgstr "Sydło pomocy:"
 msgid "License:"
 msgstr "Licenca:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy kod daće."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Prošu wubjerće licencu, kotraž je přihódna za prawa, kotrež daće."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Jeli waš přidatk daty z ličaka wužiwarja přenošuje, su prawidła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja."
@@ -3718,14 +3537,8 @@ msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne
 msgid "Cancel and Disable Version"
 msgstr "Přetorhnyć a wersiju znjemóžnić"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Přepruwowanje přetorhnyć a wersiju znjemóžnić"
-
 msgid "Submit Version"
 msgstr "Wersiju zapodać"
-
-msgid "Submit Version for Review"
-msgstr "Wersiju za přepruwowanje zapodać"
 
 msgid "Describe Version"
 msgstr "Wersiju wopisać"
@@ -3934,38 +3747,6 @@ msgstr "Najnowša wersija:"
 msgid "This is the newest uploaded unlisted version."
 msgstr "To je najnowša nahrata njenalistowana wersija."
 
-msgid "(required since this add-on accepts contributions)"
-msgstr "(trěbny, dokelž tutón přidatk dary akceptuje)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Rjadujće swój wuwiwarski profil"
-
-msgid "Create a Developer Profile"
-msgstr "Załožće wuwiwarski profil"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "Tuta strona so bórze přez polo přinoškoweho URL na hłownej wobdźěłowanskej stronje wuměni. Wužiwajće te polo, zo bychu přinoški zmóžnjene wostali."
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Waš wuwiwarski profil budźe wužiwarjow wo was informować, čehodla sće tutón přidatk wutworił, a što je za přidatk w přichodźe planowane. Tutón profil je trěbny za přidatki, kotrež wo dary proša, ale"
-" móže tež za wuwiwarjow wužitny być, kotřiž su na kontaktach z wužiwarjemi zajimowani."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Zawěsćće, zo waš wužiwarski profil je aktualny."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Aktualizujće swój wužiwarski profil.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Wšojedne hač je wam ideja w rynku w superwikach přišła abo je rozrisanje k jednomu z wulkich problemow žiwjenja, powědajće swoju stawiznu."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Hdyž swojim wužiwarjam zdźěleće, štož bórze přińdźe, móža so na něšto wjeselić."
-
 msgid "Upload New Version"
 msgstr "Najnowšu wersiju nahrać"
 
@@ -4077,11 +3858,11 @@ msgstr "Programowy zmylk zdźělić"
 msgid "Site Status"
 msgstr "Sydłowy status"
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: Rozěrjenja wuwiwać a testować"
+
 msgid "Compatibility Checker"
 msgstr "Kontrola kompatibelnosće"
-
-msgid "Compatibility Reporter"
-msgstr "Rozprawjer kompatibelnosće"
 
 msgid "Promote"
 msgstr "Zamołwić"
@@ -4173,6 +3954,9 @@ msgstr "Dokumenty"
 msgid "Sign Out"
 msgstr "Wotzjewić"
 
+msgid "No Photo"
+msgstr "Žane foto"
+
 msgid "User Photo"
 msgstr "Wužiwarske foto"
 
@@ -4212,114 +3996,20 @@ msgstr "Maće hotowy přidatk? Zapodajće swoje rozšěrjenje abo swoju drastu, 
 msgid "Sign In"
 msgstr "Přizjewić"
 
-msgid "Validator"
-msgstr "Přepruwowar"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Nastroj přikazoweje linki za wuwiwanje, wuwjedźenje a testowanje rozšěrjenjow."
 
 msgid "Automated code tests for your add-on."
 msgstr "Awtomatiske kodowe testy za waš přidatk."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Hladjaće, hač waš přidatk je snano přez změny w Firfox potrjecheny."
+msgid "Compatibility Test"
+msgstr "Test kompatibelnosće"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Zdźělće nam, hač přidatk z wěstej wersiju Firefox funguje."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "Prosyće tuchwilu <b>dary</b> wot wužiwarjow"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Waša darjenska strona: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Přinoški znjemóžnić"
-
-msgid "Voluntary Contributions"
-msgstr "Dobrowólne přinoški"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Přidatki, kotrež su w našim darjenskim programje zregistrowane, móža wo dobrowólne dary wot wužiwarjow prosyć."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Posylńće wužiwarjow, waš přidatk přez wuwiwarski profil z darami podpěrować"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Wubjerće, hdy a kak so wužiwarjow wo dar proša"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Dóstawajće dary na swojim konće PayPal abo sćelće je na organizaciju po swojej wólbje"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Dary su jenož za přidatki z nalistowanymi wersijemi k dispoziciji."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Dary su jenož za přidatki z <a href=\"%(url)s\">dospołnym wuwiwarskim profilom</a> k dispoziciji."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Dary su jenož za schwalen přidatki k dispoziciji."
-
-msgid "Set up Contributions"
-msgstr "Dary nastajić"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Krok 2. Płaćizna a disponibelnosć"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "abo <a href=\"%(cancel)s\">Přetorhnyć</a>"
-
-msgid "Contributions"
-msgstr "Přinoški"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Wupjelńće slědowace pola, zo byšće wužiwarjow wo dobrowólne dary prosył."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Štó dary zběrane za tutón přidatk dóstanje?"
-
-msgid "What is the name of the organization?"
-msgstr "Kajke je mjeno organizacije?"
-
-msgid "What is the URL of the organization?"
-msgstr "Kajki je URL organizacije?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "Kajki je ID PayPal organizacije?"
-
-msgid "What is your PayPal ID?"
-msgstr "Kajki je waš ID PayPal?"
-
-msgid "Sign up for PayPal"
-msgstr "Za PayPal registrować"
-
-msgid "What is your suggested contribution?"
-msgstr "Kajki je waš namjetowany dar?"
-
-msgid "(Example: 3.99)"
-msgstr "(Přikład: 3,99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Hdy měło so wužiwarjow za darami prašeć?"
-
-msgid "Send a thank-you note?"
-msgstr "Dźaknu noticu słać?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Budźemy awtomatisce wužiwarjam, kotřiž za waš přidatk darja, e-mejlku z tutej zdźělenku słać."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"Poručamy wam, so wužiwarjam dźakować a jim zdźělić, kak jara sej jich podpěru wažiće. Móžeće jim tež zdźělić, kotre plany za swój přidatk maće a kotre druhe přidatki sće wuwił, kotrež móža "
-"wupruwować."
-
-msgid "Activate Contributions"
-msgstr "Dary aktiwizować"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "abo <a id=\"setup-cancel\" href=\"#\">Přetorhnyć</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Přepruwujće, hač waše rozšěrjenje je kompatibelne z Firefox."
 
 msgid "Transfer ownership"
 msgstr "Wobsedźenstwo přenošować"
@@ -4345,35 +4035,14 @@ msgstr "Licenca drasty"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Smědźa druzy wašu drastu dźělić, jeli was jako awtora naspominaja?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Smědźa druzy wašu drastu komercielnje wužiwać?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Smědźa druzy z wašeje drasty wotwodźene dźěła wutworić?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
-
-msgid "Yes, as long as they share alike"
-msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka jenož pod samsnej licencu rozdźělować, abo pod tajkej, kotraž je kompatibelna z dźěłom licencydawarja."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Waša drasta so pod slědowacej licencu wozjewi:"
-
-msgid "Select a different license."
-msgstr "Wubjerće hinašu licencu."
 
 msgid "Select a license for your Theme."
 msgstr "Wubjerće licencu za swoju drastu."
@@ -4717,885 +4386,6 @@ msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Dwanastki wulkotnych emodźijow - přeco jenož jedne kliknjenje zdalene."
 
-msgid "Approved reviews"
-msgstr "Schwalene přepruwowanja"
-
-msgid "Deleted reviews"
-msgstr "Zhašane přepruwowanja"
-
-msgid "View entries between"
-msgstr "Zapiski sej wobhladać mjez"
-
-msgid "and"
-msgstr "a"
-
-msgid "Filter by type/action"
-msgstr "Po typje/akciji filtrować"
-
-msgid "Passed automatic validation"
-msgstr "Awtomatiske přepruwowanje wobstało"
-
-msgid "Failed automatic validation"
-msgstr "Awtomatiske přepruwowanje nimokuliło"
-
-msgid "Filter by automatic validation"
-msgstr "Po awtomatiskim přepruwowanju filtrować"
-
-msgid "containing"
-msgstr "z"
-
-msgid "start"
-msgstr "spočatk"
-
-msgid "end"
-msgstr "kónc"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "přidatk, redaktor abo komentar"
-
-msgid "Search by add-on name / author email"
-msgstr "Za mjenom přidatka / e-mejlowej adresu awtora pytać"
-
-msgid "yes"
-msgstr "haj"
-
-msgid "no"
-msgstr "ně"
-
-msgid "Admin Flag"
-msgstr "Adminstratorowe markěrowanje"
-
-msgid "Add-on Types"
-msgstr "Typy přidatkow"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Za mjenom přidatka / e-mejlowej adresu awtora / guid pytać"
-
-msgid "Max. Version"
-msgstr "Maksimalna wersija"
-
-msgid "Comments:"
-msgstr "Komentary:"
-
-msgid "Operating systems:"
-msgstr "Dźěłowe systemy:"
-
-msgid "Applications:"
-msgstr "Nałoženja:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Informujće mje přichodny raz, hdyž so tutón přidatk aktualizuje. (Slědowace aktualizacije e-mejlku njepłodźa)"
-
-msgid "Clear Admin Review Flag"
-msgstr "Marku za přepruwowanje přez administratora wotstronić"
-
-msgid "Is more info requested?"
-msgstr "Su so dalše informacije požadali?"
-
-msgid "Choose a canned response..."
-msgstr "Wubjerće přihotowanu wotmołwu..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "mjeno drasty"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Něchtó druhi tutu drastu přepruwuje."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "drasta, přepruwowar abo komentar"
-
-msgid "Keep review; remove flags"
-msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
-
-msgid "Skip for now"
-msgstr "Nětko přeskočić"
-
-msgid "Delete review"
-msgstr "Pohódnoćenje zhašeć"
-
-msgid "Admin Review"
-msgstr "Přepruwowanje administratora"
-
-msgid "Jetpack Add-on"
-msgstr "Přidatk typa Jetpack"
-
-msgid "More Information Requested"
-msgstr "Dalše informacije požadane"
-
-msgid "Contains Reviewer Comment"
-msgstr "Wobsahuje komentar přepruwowarja"
-
-msgid "Sources provided"
-msgstr "Podate žórła"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Wužiwa swójski CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Wužiwa prawo nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr "Wužiwar wobsahowy skript za wšě URL."
-
-msgid "Has too many daily users."
-msgstr "Ma přewjele wšědnych wužiwarjow."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Ma přemało na so slědowacych aktualizacijow schwalenych přez ludźi."
-
-msgid "Has a pending info request."
-msgstr "Ma wustejace informaciske naprašowanje."
-
-msgid "Is flagged for admin review."
-msgstr "Je za přepruwowanje přez administratora markěrowany."
-
-msgid "Is locked by a reviewer."
-msgstr "Je wot přepruwowarja zawrjeny."
-
-msgid "Duplicate Submission"
-msgstr "Dwójne zapodaće"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Wulki dźak za zapodawanje wašeje drasty"
-
-msgid "A problem with your Theme submission"
-msgstr "Problem ze zapodawanjom wašeje drasty"
-
-msgid "Theme submission flagged for review"
-msgstr "Zapodaće drasty je so za přepruwowanje markěrowało"
-
-msgid "A question about your Theme submission"
-msgstr "Prašenje wo zapodaću wašeje drasty"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Waiting Time"
-msgstr "Čakanski čas"
-
-msgid "Flags"
-msgstr "Markěrowanja"
-
-msgid "moments ago"
-msgstr "před někotrymi wokomikami"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} mjeńšina"
-msgstr[1] "{0} mjeńšinje"
-msgstr[2] "{0} mjeńšiny"
-msgstr[3] "{0} mjeńšin"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} hodźina"
-msgstr[1] "{0} hodźinje"
-msgstr[2] "{0} hodźiny"
-msgstr[3] "{0} hodźin"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dźeń"
-msgstr[1] "{0} dnjej"
-msgstr[2] "{0} dny"
-msgstr[3] "{0} dnjow"
-
-msgid "Last Review"
-msgstr "Poslednje přepruwowanje"
-
-msgid "Last Update"
-msgstr "Poslednja aktualizacija"
-
-msgid "No Reviews"
-msgstr "Žane pohódnoćenja"
-
-msgid "Weight"
-msgstr "Wažnosć"
-
-msgid "Last Content Review"
-msgstr "Poslednje přepruwowanje wobsaha"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
-
-msgid "Confirm Approval"
-msgstr "Schwalenje wobkrućić"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so to wuwiwarjej zdźěliło."
-
-msgid "Reject Multiple Versions"
-msgstr "Wjacore wersije wotpokazać"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "To wubrane zjawne wersije wotpokaza. Komentary so na wuwiwarja pósćelu."
-
-msgid "Reviewer reply"
-msgstr "Wotmołwa přepruwowarja"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "To powěsć na wuwiwarja pósćele. Dóstanjeće zdźělenku, hdyž wotmołwja."
-
-msgid "Request super-review"
-msgstr "Superpřepruwowanje požadać"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jón přepruwować, zapodajće swoje komentary do slědowaceho pola. Na wuwiwarja so njesćelu."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
-
-msgid "Approve Content"
-msgstr "Wobsah schwalić"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nowe přidatki (pod 5 dnjemi)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Akceptabelne (5 hač 10 dnjow)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Zapozdźene (přez 10 dnjow)"
-
-msgid "An unknown error occurred"
-msgstr "Njeznaty zmylk je wustupił"
-
-msgid "Self-reviews are not allowed."
-msgstr "Samopřepruwowanja dowolene njejsu."
-
-msgid "Review successfully processed."
-msgstr "Přepruwowanje je so wuspěšnje předźěłało."
-
-msgid "Review lock limit reached"
-msgstr "Limit za pohódnoćenske zawěry docpěty"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} drastowe přepruwowanje wuspěšnje předźěłane (+{1} dypkow, {2} dohromady)."
-msgstr[1] "{0} drastowej přepruwowani wuspěšnje předźěłanej (+{1} dypkow, {2} dohromady)."
-msgstr[2] "{0} drastowe přepruwowanja wuspěšnje předźěłane (+{1} dypkow, {2} dohromady)."
-msgstr[3] "{0} drastowych přepruwowanjow wuspěšnje předźěłanych (+{1} dypkow, {2} dohromady)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Waše drastowe zawěry su so wuspěšnje wotstronili. Druzy přepruwowarjo móža nětko dopušćene drasty přepruwować. Dyrbiće snano stronu aktualizować, zo byšće so změny w slědowacej tabeli pokazali."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Znjewužiwanske rozprawy"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Funguje z"
-
-msgid "Visibility"
-msgstr "Widźomnosć"
-
-msgid "Visible"
-msgstr "Widźomny"
-
-msgid "Average Daily Users"
-msgstr "Přerězna ličba wšědnych wužiwarjow"
-
-msgid "Abuse Reports"
-msgstr "Rozprawy wo znjewužiwanju"
-
-msgid "View Privacy Policy"
-msgstr "Prawidła priwatnosće pokazać"
-
-msgid "Requires Payment"
-msgstr "Płaćenje trěbne"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "Datum poslednjeho schwalenja"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Schwalenja wot poslednjeho awtomatiskeho přepruwowanja"
-
-msgid "Abuse Reports ({num})"
-msgstr "Znjewužiwanske rozprawy ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Špatne wužiwarske pohódnoćenja ({num})"
-
-msgid "More about this add-on"
-msgstr "Wjace wo tutym přidatku"
-
-msgid "Image Gallery"
-msgstr "Wobrazowa galerija"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Wróćo k startowej stronje nastrojow za přepruwowarjow"
-
-msgid "Queues"
-msgstr "Čakanske rynki"
-
-msgid "New Add-ons"
-msgstr "Nowe přidatki"
-
-msgid "Updates"
-msgstr "Aktualizacije"
-
-msgid "Moderated Reviews"
-msgstr "Moderěrowane přepruwowanja"
-
-msgid "Auto Approved Add-ons"
-msgstr "Awtomatisce schwalene přidatki"
-
-msgid "Content Review"
-msgstr "Přepruwowanje wobsaha"
-
-msgid "Unlisted Queues"
-msgstr "Čakanske rynki za njepodate přidatki"
-
-msgid "All Unlisted Add-ons"
-msgstr "Wšě njenalistowane přidatki"
-
-msgid "Logs"
-msgstr "Protokole"
-
-msgid "Add-on Review Log"
-msgstr "Protokol přidatkowych přepruwowanjow"
-
-msgid "Moderated Review Log"
-msgstr "Protokol moderěrowanych přepruwowanjow"
-
-msgid "Signed Beta Files Log"
-msgstr "Protokol signowanych betadatajow"
-
-msgid "Announcement"
-msgstr "Připowědźenje"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filter"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Event"
-msgstr "Podawk"
-
-msgid "More details."
-msgstr "Dalše podrobnosće."
-
-msgid "No events found for this period."
-msgstr "Za tutu dobu so žane podawki namakali njejsu."
-
-msgid "Log details"
-msgstr "Protokolowe podrobnosće"
-
-msgid "Review Author"
-msgstr "Awtor pohódnoćenja"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Titul přidatka"
-
-msgid "Review Title"
-msgstr "Titul pohódnoćenja"
-
-msgid "Review Text"
-msgstr "Tekst pohódnoćenja"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Pohódnoćenje je so před zhašenjom markěrowało."
-
-msgid "Undelete"
-msgstr "Wotstronjenje cofnyć"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nowy přidatk ({num})"
-msgstr[1] "Nowej přidatkaj ({num})"
-msgstr[2] "Nowe přidatki ({num})"
-msgstr[3] "Nowe přidatki ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Aktualizacija ({num})"
-msgstr[1] "Aktualizaciji ({num})"
-msgstr[2] "Aktualizacije ({num})"
-msgstr[3] "Aktualizacije ({num})"
-
-msgid "Current waiting times:"
-msgstr "Aktualne čakanske časy:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} přidatk"
-msgstr[1] "{0} přidatkaj"
-msgstr[2] "{0} přidatki"
-msgstr[3] "{0} přidatkow"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Pohódnoćenja dohromady"
-
-msgid "Reviews This Month"
-msgstr "Přepruwowanja za tutón měsac"
-
-msgid "New Reviewers"
-msgstr "Žani přepruwowarjo"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Sće {0}. z {1} pohódnoćenjemi"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Moderěrowane přepruwowanje ({num})"
-msgstr[1] "Moderěrowanej přepruwowani ({num})"
-msgstr[2] "Moderěrowane přepruwowanja ({num})"
-msgstr[3] "Moderěrowane přepruwowanja ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Lisćina porjada přepruwowarjow"
-
-msgid "No review points awarded yet."
-msgstr "Hišće žane pohódnoćenske dypki spožčene."
-
-msgid "Rank"
-msgstr "Pozicija"
-
-msgid "Score"
-msgstr "Staw po dypkach"
-
-msgid "Update message of the day"
-msgstr "Powěsć dnja aktualizować"
-
-msgid "Save"
-msgstr "Składować"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Wukon přidatkowych přepruwowarjow"
-
-msgid "View statistics for user"
-msgstr "Statistiku za wužiwarja pokazać"
-
-msgid "Range"
-msgstr "Interwal"
-
-msgid "Your Reviews"
-msgstr "Waše pohódnoćenja"
-
-msgid "By {user_name}"
-msgstr "Wot {user_name}"
-
-msgid "Active Contributors"
-msgstr "Aktiwni sobuskutkowarjo"
-
-msgid "This Month"
-msgstr "Tutón měsac"
-
-msgid "This Year"
-msgstr "Lětsa"
-
-msgid "Monthly Performance"
-msgstr "Měsačny wukon"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Rozdźělenje dypkow po typje za cyłkowny čas"
-
-msgid "Total"
-msgstr "Dohromady"
-
-msgid "Month"
-msgstr "Měsac"
-
-msgid "Year"
-msgstr "Lěto"
-
-msgid "All-Time"
-msgstr "Cyły čas"
-
-msgid "Advanced Search"
-msgstr "Rozšěrjene pytanje"
-
-msgid "clear search"
-msgstr "pytanje zhašeć"
-
-msgid "Process Reviews"
-msgstr "Přepruwowanja předźěłać"
-
-msgid "Moderation actions:"
-msgstr "Akcije moderatora:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "wot %(user)s dnja %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wot %(user)s %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Wšě pohódnoćenja buchu moderěrowane. Dobre dźěło!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Tuchwilu žane přidatki tutoho typa njejsu, kotrež dyrbja so přepruwować."
-
-msgid "Helpful Links:"
-msgstr "Wužitne wotkazy:"
-
-msgid "Add-on Policy"
-msgstr "Prawidła přidatka"
-
-msgid "Editors' Guide"
-msgstr "Přiručka za redaktorow"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Přepruwowanje wobsaha {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Přepruwowanje {0}"
-
-msgid "Add-on user change history"
-msgstr "Historija změnow wužiwarjow přidatka"
-
-msgid "Add-on History"
-msgstr "Historija přidatka"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Kompatibelnosć:"
-
-msgid "Additional sources:"
-msgstr "Přidatne žórłowe teksty:"
-
-msgid "Download files"
-msgstr "Dataje sćahnyć"
-
-msgid "The developer has provided source code."
-msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
-
-msgid "Weight:"
-msgstr "Wažnosć:"
-
-msgid "Not Auto Approved Because"
-msgstr "NJeje awtomatisce schwaleny, dokelž"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Skript za awtomatiske schwalenje njeje so hišće w tutej wersiji wuwjedł."
-
-msgid "This version has not been reviewed."
-msgstr "Tuta wersija njeje so přepruwowała."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Prošu wubjerće jednu wersiju abo wjacore wersije z hornjeje lisćiny."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Móžeće hišće tutón formular wotpósłać, ale čińće to jenož, jeli wěsće, zo konflikt njeje."
-
-msgid "Insert canned response..."
-msgstr "Přihotowanu wotmołwu zasadźić..."
-
-msgid "Files:"
-msgstr "Dataje:"
-
-msgid "Tested on:"
-msgstr "Testowany:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami wobhladał."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "Běła deska je městno, hdźež wuwiwar a redaktor móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać."
-
-msgid "Update the whiteboard"
-msgstr "Pokazki aktualizować"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Strona administratora"
-
-msgid "Review This Add-on"
-msgstr "Tutón přidatk přepruwować"
-
-msgid "More Information"
-msgstr "Dalše informacije"
-
-msgid "Resolution"
-msgstr "Rozsud"
-
-msgid "Reviewer"
-msgstr "Přepruwowar"
-
-msgid "Add-on has been deleted."
-msgstr "Přidatk je so zhašał."
-
-msgid "Show Comments"
-msgstr "Komentary pokazać"
-
-msgid "Hide Comments"
-msgstr "Komentary schować"
-
-msgid "No reviews found for this period."
-msgstr "Žane pohódnoćenja za tutón čas namakane."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] je %(object)s %(date)s zdźělił"
-
-msgid "Dismiss this announcement"
-msgstr "Tute připowědźenje zaćisnyć"
-
-msgid "Files in this version:"
-msgstr "Dataje w tutej wersiji:"
-
-msgid "Contents"
-msgstr "Wobsah"
-
-msgid "Compare"
-msgstr "Přirunać"
-
-msgid "Permissions:"
-msgstr "Prawa:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Wot %(user)s dnja %(date)s</div>"
-
-msgid "Older"
-msgstr "Starše"
-
-msgid "Newer"
-msgstr "Nowše"
-
-msgid "Recent Points"
-msgstr "Najnowše dypki"
-
-msgid "No points awarded yet."
-msgstr "Hišće žane dypki spožčene."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Najlěpši přepruwowarjo (zańdźenych 7 dnjow)"
-
-msgid "No top reviewers yet."
-msgstr "Hišće žani přepruwowarjo njejsu."
-
-msgid "All Time"
-msgstr "Cyły čas"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Maće <span>{0}</span> dypkow."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s dnja %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Datum zhašenja"
-
-msgid "No deleted themes found for this period."
-msgstr "Žane zhašane drasty za tutón čas namakane."
-
-msgid "Theme Review History for {0}"
-msgstr "Historija drastowych přepruwowanjow za {0}"
-
-msgid "Review Date"
-msgstr "Přepruwowanski datum"
-
-msgid "Action"
-msgstr "Akcija"
-
-msgid "Reason"
-msgstr "Přičina"
-
-msgid "There are currently no reviews."
-msgstr "Tuchwilu žane přepruwowanja njejsu."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} wustejace drastowe přepruwowanje"
-msgstr[1] "{num} wustejacej drastowej přepruwowani"
-msgstr[2] "{num} wustejace drastowe přepruwowanja"
-msgstr[3] "{num} wustejacych drastowych přepruwowanjow"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} markěrowane přepruwowanje"
-msgstr[1] "{num} markěrowanej přepruwowani"
-msgstr[2] "{num} markěrowane přepruwowanja"
-msgstr[3] "{num} markěrowanych přepruwowanjow"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} aktualizacija"
-msgstr[1] "{num} aktualizaciji"
-msgstr[2] "{num} aktualizacije"
-msgstr[3] "{num} aktualizacijow"
-
-msgid "Flagged Themes"
-msgstr "Markěrowane drasty"
-
-msgid "Theme Review Queue"
-msgstr "Čakanski rynk drastowych přepruwowanjow"
-
-msgid "Review Options"
-msgstr "Přepruwowanske nastajenja"
-
-msgid "Auto-advance after review"
-msgstr "Po přepruwowanju awtomatisce pokročować"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Tastowe skrótšenki zmóžnić"
-
-msgid "Keyboard Shortcuts"
-msgstr "Tastowe skrótšenki"
-
-msgid "Next Theme"
-msgstr "Přichodna drasta"
-
-msgid "Previous Theme"
-msgstr "Předchadna drasta"
-
-msgid "Your Review History"
-msgstr "Waša historija přepruwowanjow"
-
-msgid "Commit Review"
-msgstr "Přepruwowanje wotpósłać"
-
-msgid "Commit Reviews"
-msgstr "Přepruwowanja wotpósłać"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} z {1} přepruwowanych"
-
-msgid "There are currently no Themes to review."
-msgstr "Tuchwilu žane drasty njejsu, kotrež dyrbja so přepruwować."
-
-msgid "Clear Search"
-msgstr "Pytanje zhašeć"
-
-msgid "Release My Theme Locks"
-msgstr "Drastowe zawěry wotstronić"
-
-msgid "Interactive Theme Queue"
-msgstr "Interaktiwny čakanski rynk za drasty"
-
-msgid "Reviewers' Guide"
-msgstr "Příručka přepruwowarja"
-
-msgid "Theme Review for {0}"
-msgstr "Drastowe přepruwowanje za {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Najskerje dwójne zapodaće)"
-
-msgid "Past Review Notes"
-msgstr "Starše wersijowe pokazki"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Dalše informacije požadane: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Markěrowany: {0}"
-
-msgid "Approve Theme"
-msgstr "Drastu schwalić"
-
-msgid "Field required"
-msgstr "Polo je trěbne"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Zapodajće ID abo URL duplikata"
-
-msgid "Select a reason for rejection"
-msgstr "Wubjerće přičinu za wotpokazanje"
-
-msgid "Describe your reason for rejection"
-msgstr "Wopisajće swoju přičinu za wotpokazanje"
-
-msgid "Ask a question to the artist"
-msgstr "Stajće wuměłcej prašenje"
-
-msgid "Describe your reason for flagging"
-msgstr "Wopisujće swoju přičinu za woznamjenjenje"
-
-msgid "Rejected or Unreviewed"
-msgstr "Wotpokazane abo njepřepruwowane"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nowy přidatk ({0})"
-msgstr[1] "Nowej přidatkaj ({0})"
-msgstr[2] "Nowe přidatki ({0})"
-msgstr[3] "Nowe přidatki ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Aktualizacija ({0})"
-msgstr[1] "Aktualizaciji ({0})"
-msgstr[2] "Aktualizacije ({0})"
-msgstr[3] "Aktualizacije ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderěrowane přepruwowanje ({0})"
-msgstr[1] "Moderěrowanej přepruwowani ({0})"
-msgstr[2] "Moderěrowane přepruwowanja ({0})"
-msgstr[3] "Moderěrowane přepruwowanja ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Awtomatisce schwaleny přidatk ({0})"
-msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
-msgstr[2] "Awtomatisce schwalene přidatki ({0})"
-msgstr[3] "Awtomatisce schwalene přidatki ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Přepruwowanje wobsaha ({0})"
-msgstr[1] "Přepruwowani wobsaha ({0})"
-msgstr[2] "Přepruwowanja wobsaha ({0})"
-msgstr[3] "Přepruwowanjow wobsaha ({0})"
-
-msgid "Flagged"
-msgstr "Markěrowany"
-
 msgid "Cannot diff a version against itself"
 msgstr "Wersija njeda so ze sobu přirunać"
 
@@ -5698,6 +4488,9 @@ msgstr "Přidatkowa dataja so předźěłuje, prošu čakajće."
 
 msgid "Fetching validation results..."
 msgstr "Přepruwowanske wuslědki so wobstaruja..."
+
+msgid "Files:"
+msgstr "Dataje:"
 
 msgid "Deleted files:"
 msgstr "Zhašane dataje:"
@@ -5904,6 +4697,9 @@ msgstr "Dźakujemy so, za %(app)s wužiwaće a <a href=\"%(url)s\">misiju Mozill
 
 msgid "Add-ons downloaded:"
 msgstr "Sćehnjene přidatki:"
+
+msgid "View Privacy Policy"
+msgstr "Prawidła priwatnosće pokazać"
 
 msgid "Active Users"
 msgstr "Aktiwni wužiwarjo"
@@ -6436,10 +5232,10 @@ msgstr "Štó tute přidatki wutworja?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Přidatki, kotrež so tu nalistuja, su so wot tysacow wuwiwarjow z našeho zhromadźenstwa wutworili, kotřiž wot jednotliwych programowarjow hač k wulkim předewzaćam sahaja. Wšě zjawnje nalistowane "
-"přidatki so wot teama redaktorow přepruwuja, prjedy hač so wozjewja. Přidatki, kotrež su jako eksperimentelne markěrowane, njejsu přepruwowane a měli so jenož z kedźbliwosću instalować."
+"přidatki so wot teama přepruwowarjow kontroluja, prjedy hač so wozjewja. Přidatki, kotrež su jako eksperimentelne markěrowane, njejsu přepruwowane a měli so jenož z kedźbliwosću instalować."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Kak móžu wo aktiwitach na AMO na běžnym wostać?"
@@ -7203,10 +5999,10 @@ msgstr "Kak móžu njepřihódne abo spamowe wužiwarske pohódnoćenje zdźěli
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "Zo byšće wužiwarske pohódnoćenje přidatka zdźělił, přizjewće so pola swojeho konta a wopytajće stronu pohódnoćenjow přidatka. Pytajće pohódnoćenje, kotrež chceće zdźělić, klikńće na „Tute "
-"pohódnoćenje zdźělić“ a wubjerće přičinu. Naš team redaktorow budźe pohódnoćenje přepytować a wotpowědnje jednać."
+"pohódnoćenje zdźělić“ a wubjerće přičinu. Naš team přepruwowarjow budźe pohódnoćenje přepytować a wotpowědnje jednać."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Kak móžu programowy zmylk zdźělić abo so z teamom přidatkow Mozilla do zwiska stajić?"
@@ -7496,22 +6292,858 @@ msgstr "Poručamy, zo <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(light
 msgid "Read more about Sunbird"
 msgstr "Čitajće wjace wo Sunbrid"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Při komunikaciji z PayPal je zmylk wustupił. Prošu spytajće pozdźišo hišće raz."
+msgid "Approved reviews"
+msgstr "Schwalene přepruwowanja"
 
-msgid "There was an error with this currency."
-msgstr "Z měnu je zmylk wustupił."
+msgid "Deleted reviews"
+msgstr "Zhašane přepruwowanja"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Suma je přemała za konwersiju do měny přijimarja."
+msgid "View entries between"
+msgstr "Zapiski sej wobhladać mjez"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "Kupc a předawar dyrbitej rozdźělnej konće PayPal měć."
+msgid "and"
+msgstr "a"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "Po typje/akciji filtrować"
+
+msgid "Passed automatic validation"
+msgstr "Awtomatiske přepruwowanje wobstało"
+
+msgid "Failed automatic validation"
+msgstr "Awtomatiske přepruwowanje nimokuliło"
+
+msgid "Filter by automatic validation"
+msgstr "Po awtomatiskim přepruwowanju filtrować"
+
+msgid "containing"
+msgstr "z"
+
+msgid "start"
+msgstr "spočatk"
+
+msgid "end"
+msgstr "kónc"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "přidatk, přepruwowar abo komentar"
+
+msgid "Search by add-on name / author email"
+msgstr "Za mjenom přidatka / e-mejlowej adresu awtora pytać"
+
+msgid "yes"
+msgstr "haj"
+
+msgid "no"
+msgstr "ně"
+
+msgid "Admin Flag"
+msgstr "Adminstratorowe markěrowanje"
+
+msgid "Add-on Types"
+msgstr "Typy přidatkow"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Za mjenom přidatka / e-mejlowej adresu awtora / guid pytać"
+
+msgid "Max. Version"
+msgstr "Maksimalna wersija"
+
+msgid "Comments:"
+msgstr "Komentary:"
+
+msgid "Operating systems:"
+msgstr "Dźěłowe systemy:"
+
+msgid "Applications:"
+msgstr "Nałoženja:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Informujće mje přichodny raz, hdyž so tutón přidatk aktualizuje. (Slědowace aktualizacije e-mejlku njepłodźa)"
+
+msgid "Clear Admin Review Flag"
+msgstr "Marku za přepruwowanje přez administratora wotstronić"
+
+msgid "Is more info requested?"
+msgstr "Su so dalše informacije požadali?"
+
+msgid "Choose a canned response..."
+msgstr "Wubjerće přihotowanu wotmołwu..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "mjeno drasty"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Něchtó druhi tutu drastu přepruwuje."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "drasta, přepruwowar abo komentar"
+
+msgid "Keep review; remove flags"
+msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
+
+msgid "Skip for now"
+msgstr "Nětko přeskočić"
+
+msgid "Delete review"
+msgstr "Pohódnoćenje zhašeć"
+
+msgid "Admin Review"
+msgstr "Přepruwowanje administratora"
+
+msgid "Jetpack Add-on"
+msgstr "Přidatk typa Jetpack"
+
+msgid "More Information Requested"
+msgstr "Dalše informacije požadane"
+
+msgid "Contains Reviewer Comment"
+msgstr "Wobsahuje komentar přepruwowarja"
+
+msgid "Sources provided"
+msgstr "Podate žórła"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Je wot přepruwowarja zawrjeny."
+
+msgid "Duplicate Submission"
+msgstr "Dwójne zapodaće"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Wulki dźak za zapodawanje wašeje drasty"
+
+msgid "A problem with your Theme submission"
+msgstr "Problem ze zapodawanjom wašeje drasty"
+
+msgid "Theme submission flagged for review"
+msgstr "Zapodaće drasty je so za přepruwowanje markěrowało"
+
+msgid "A question about your Theme submission"
+msgstr "Prašenje wo zapodaću wašeje drasty"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Waiting Time"
+msgstr "Čakanski čas"
+
+msgid "Flags"
+msgstr "Markěrowanja"
+
+msgid "moments ago"
+msgstr "před někotrymi wokomikami"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} mjeńšina"
+msgstr[1] "{0} mjeńšinje"
+msgstr[2] "{0} mjeńšiny"
+msgstr[3] "{0} mjeńšin"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} hodźina"
+msgstr[1] "{0} hodźinje"
+msgstr[2] "{0} hodźiny"
+msgstr[3] "{0} hodźin"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} dźeń"
+msgstr[1] "{0} dnjej"
+msgstr[2] "{0} dny"
+msgstr[3] "{0} dnjow"
+
+msgid "Last Review"
+msgstr "Poslednje přepruwowanje"
+
+msgid "Last Update"
+msgstr "Poslednja aktualizacija"
+
+msgid "No Reviews"
+msgstr "Žane pohódnoćenja"
+
+msgid "Weight"
+msgstr "Wažnosć"
+
+msgid "Last Content Review"
+msgstr "Poslednje přepruwowanje wobsaha"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
+
+msgid "Confirm Approval"
+msgstr "Schwalenje wobkrućić"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so to wuwiwarjej zdźěliło."
+
+msgid "Reject Multiple Versions"
+msgstr "Wjacore wersije wotpokazać"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "To wubrane zjawne wersije wotpokaza. Komentary so na wuwiwarja pósćelu."
+
+msgid "Reviewer reply"
+msgstr "Wotmołwa přepruwowarja"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "To powěsć na wuwiwarja pósćele. Dóstanjeće zdźělenku, hdyž wotmołwja."
+
+msgid "Request super-review"
+msgstr "Superpřepruwowanje požadać"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jón přepruwować, zapodajće swoje komentary do slědowaceho pola. Na wuwiwarja so njesćelu."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
+
+msgid "Approve Content"
+msgstr "Wobsah schwalić"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Nowe přidatki (pod 5 dnjemi)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Akceptabelne (5 hač 10 dnjow)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Zapozdźene (přez 10 dnjow)"
+
+msgid "An unknown error occurred"
+msgstr "Njeznaty zmylk je wustupił"
+
+msgid "Self-reviews are not allowed."
+msgstr "Samopřepruwowanja dowolene njejsu."
+
+msgid "Review successfully processed."
+msgstr "Přepruwowanje je so wuspěšnje předźěłało."
+
+msgid "Review lock limit reached"
+msgstr "Limit za pohódnoćenske zawěry docpěty"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} drastowe přepruwowanje wuspěšnje předźěłane (+{1} dypkow, {2} dohromady)."
+msgstr[1] "{0} drastowej přepruwowani wuspěšnje předźěłanej (+{1} dypkow, {2} dohromady)."
+msgstr[2] "{0} drastowe přepruwowanja wuspěšnje předźěłane (+{1} dypkow, {2} dohromady)."
+msgstr[3] "{0} drastowych přepruwowanjow wuspěšnje předźěłanych (+{1} dypkow, {2} dohromady)."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+"Waše drastowe zawěry su so wuspěšnje wotstronili. Druzy přepruwowarjo móža nětko dopušćene drasty přepruwować. Dyrbiće snano stronu aktualizować, zo byšće so změny w slědowacej tabeli pokazali."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: Znjewužiwanske rozprawy"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Funguje z"
+
+msgid "Visibility"
+msgstr "Widźomnosć"
+
+msgid "Visible"
+msgstr "Widźomny"
+
+msgid "Average Daily Users"
+msgstr "Přerězna ličba wšědnych wužiwarjow"
+
+msgid "Abuse Reports"
+msgstr "Rozprawy wo znjewužiwanju"
+
+msgid "Requires Payment"
+msgstr "Płaćenje trěbne"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "Datum poslednjeho schwalenja"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "Schwalenja wot poslednjeho awtomatiskeho přepruwowanja"
+
+msgid "Abuse Reports ({num})"
+msgstr "Znjewužiwanske rozprawy ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Špatne wužiwarske pohódnoćenja ({num})"
+
+msgid "More about this add-on"
+msgstr "Wjace wo tutym přidatku"
+
+msgid "Image Gallery"
+msgstr "Wobrazowa galerija"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Wróćo k startowej stronje nastrojow za přepruwowarjow"
+
+msgid "Queues"
+msgstr "Čakanske rynki"
+
+msgid "New Add-ons"
+msgstr "Nowe přidatki"
+
+msgid "Updates"
+msgstr "Aktualizacije"
+
+msgid "Moderated Reviews"
+msgstr "Moderěrowane přepruwowanja"
+
+msgid "Auto Approved Add-ons"
+msgstr "Awtomatisce schwalene přidatki"
+
+msgid "Content Review"
+msgstr "Přepruwowanje wobsaha"
+
+msgid "Unlisted Queues"
+msgstr "Čakanske rynki za njepodate přidatki"
+
+msgid "All Unlisted Add-ons"
+msgstr "Wšě njenalistowane přidatki"
+
+msgid "Logs"
+msgstr "Protokole"
+
+msgid "Add-on Review Log"
+msgstr "Protokol přidatkowych přepruwowanjow"
+
+msgid "Moderated Review Log"
+msgstr "Protokol moderěrowanych přepruwowanjow"
+
+msgid "Signed Beta Files Log"
+msgstr "Protokol signowanych betadatajow"
+
+msgid "Announcement"
+msgstr "Připowědźenje"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Filter"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Event"
+msgstr "Podawk"
+
+msgid "More details."
+msgstr "Dalše podrobnosće."
+
+msgid "No events found for this period."
+msgstr "Za tutu dobu so žane podawki namakali njejsu."
+
+msgid "Log details"
+msgstr "Protokolowe podrobnosće"
+
+msgid "Review Author"
+msgstr "Awtor pohódnoćenja"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "Předawar płaćenja w %s njeakceptuje."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Titul přidatka"
+
+msgid "Review Title"
+msgstr "Titul pohódnoćenja"
+
+msgid "Review Text"
+msgstr "Tekst pohódnoćenja"
+
+msgid "Review was flagged prior to deletion."
+msgstr "Pohódnoćenje je so před zhašenjom markěrowało."
+
+msgid "Undelete"
+msgstr "Wotstronjenje cofnyć"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nowy přidatk ({num})"
+msgstr[1] "Nowej přidatkaj ({num})"
+msgstr[2] "Nowe přidatki ({num})"
+msgstr[3] "Nowe přidatki ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Aktualizacija ({num})"
+msgstr[1] "Aktualizaciji ({num})"
+msgstr[2] "Aktualizacije ({num})"
+msgstr[3] "Aktualizacije ({num})"
+
+msgid "Current waiting times:"
+msgstr "Aktualne čakanske časy:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} přidatk"
+msgstr[1] "{0} přidatkaj"
+msgstr[2] "{0} přidatki"
+msgstr[3] "{0} přidatkow"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Pohódnoćenja dohromady"
+
+msgid "Reviews This Month"
+msgstr "Přepruwowanja za tutón měsac"
+
+msgid "New Reviewers"
+msgstr "Žani přepruwowarjo"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "Sće {0}. z {1} pohódnoćenjemi"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "Moderěrowane přepruwowanje ({num})"
+msgstr[1] "Moderěrowanej přepruwowani ({num})"
+msgstr[2] "Moderěrowane přepruwowanja ({num})"
+msgstr[3] "Moderěrowane přepruwowanja ({num})"
+
+msgid "Reviewer Leaderboard"
+msgstr "Lisćina porjada přepruwowarjow"
+
+msgid "No review points awarded yet."
+msgstr "Hišće žane pohódnoćenske dypki spožčene."
+
+msgid "Rank"
+msgstr "Pozicija"
+
+msgid "Score"
+msgstr "Staw po dypkach"
+
+msgid "Update message of the day"
+msgstr "Powěsć dnja aktualizować"
+
+msgid "Save"
+msgstr "Składować"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Wukon přidatkowych přepruwowarjow"
+
+msgid "View statistics for user"
+msgstr "Statistiku za wužiwarja pokazać"
+
+msgid "Range"
+msgstr "Interwal"
+
+msgid "Your Reviews"
+msgstr "Waše pohódnoćenja"
+
+msgid "By {user_name}"
+msgstr "Wot {user_name}"
+
+msgid "Active Contributors"
+msgstr "Aktiwni sobuskutkowarjo"
+
+msgid "This Month"
+msgstr "Tutón měsac"
+
+msgid "This Year"
+msgstr "Lětsa"
+
+msgid "Monthly Performance"
+msgstr "Měsačny wukon"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "Rozdźělenje dypkow po typje za cyłkowny čas"
+
+msgid "Total"
+msgstr "Dohromady"
+
+msgid "Month"
+msgstr "Měsac"
+
+msgid "Year"
+msgstr "Lěto"
+
+msgid "All-Time"
+msgstr "Cyły čas"
+
+msgid "Advanced Search"
+msgstr "Rozšěrjene pytanje"
+
+msgid "clear search"
+msgstr "pytanje zhašeć"
+
+msgid "Process Reviews"
+msgstr "Přepruwowanja předźěłać"
+
+msgid "Moderation actions:"
+msgstr "Akcije moderatora:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "wot %(user)s dnja %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wot %(user)s %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Wšě pohódnoćenja buchu moderěrowane. Dobre dźěło!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "Tuchwilu žane přidatki tutoho typa njejsu, kotrež dyrbja so přepruwować."
+
+msgid "Helpful Links:"
+msgstr "Wužitne wotkazy:"
+
+msgid "Add-on Policy"
+msgstr "Prawidła přidatka"
+
+msgid "Reviewer's Guide"
+msgstr "Příručka za přepruwowarjow"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Přepruwowanje wobsaha {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Přepruwowanje {0}"
+
+msgid "Add-on user change history"
+msgstr "Historija změnow wužiwarjow přidatka"
+
+msgid "Add-on History"
+msgstr "Historija přidatka"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%(version_status)s</span>"
+
+msgid "Compatibility:"
+msgstr "Kompatibelnosć:"
+
+msgid "Additional sources:"
+msgstr "Přidatne žórłowe teksty:"
+
+msgid "Download files"
+msgstr "Dataje sćahnyć"
+
+msgid "The developer has provided source code."
+msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
+
+msgid "Weight:"
+msgstr "Wažnosć:"
+
+msgid "Not Auto Approved Because"
+msgstr "NJeje awtomatisce schwaleny, dokelž"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Skript za awtomatiske schwalenje njeje so hišće w tutej wersiji wuwjedł."
+
+msgid "This version has not been reviewed."
+msgstr "Tuta wersija njeje so přepruwowała."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Prošu wubjerće jednu wersiju abo wjacore wersije z hornjeje lisćiny."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "Móžeće hišće tutón formular wotpósłać, ale čińće to jenož, jeli wěsće, zo konflikt njeje."
+
+msgid "Insert canned response..."
+msgstr "Přihotowanu wotmołwu zasadźić..."
+
+msgid "Tested on:"
+msgstr "Testowany:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami wobhladał."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+"Informaciska tafla je městno, hdźež wuwiwar a přepruwowar móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać a wobdźěłać."
+
+msgid "Update the whiteboard"
+msgstr "Pokazki aktualizować"
+
+msgid "(admin)"
+msgstr "(admin)"
+
+msgid "Admin Page"
+msgstr "Strona administratora"
+
+msgid "Review This Add-on"
+msgstr "Tutón přidatk přepruwować"
+
+msgid "More Information"
+msgstr "Dalše informacije"
+
+msgid "Resolution"
+msgstr "Rozsud"
+
+msgid "Reviewer"
+msgstr "Přepruwowar"
+
+msgid "Add-on has been deleted."
+msgstr "Přidatk je so zhašał."
+
+msgid "Show Comments"
+msgstr "Komentary pokazać"
+
+msgid "Hide Comments"
+msgstr "Komentary schować"
+
+msgid "No reviews found for this period."
+msgstr "Žane pohódnoćenja za tutón čas namakane."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] je %(object)s %(date)s zdźělił"
+
+msgid "Dismiss this announcement"
+msgstr "Tute připowědźenje zaćisnyć"
+
+msgid "Files in this version:"
+msgstr "Dataje w tutej wersiji:"
+
+msgid "Contents"
+msgstr "Wobsah"
+
+msgid "Compare"
+msgstr "Přirunać"
+
+msgid "Permissions:"
+msgstr "Prawa:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>Wot %(user)s dnja %(date)s</div>"
+
+msgid "Older"
+msgstr "Starše"
+
+msgid "Newer"
+msgstr "Nowše"
+
+msgid "Recent Points"
+msgstr "Najnowše dypki"
+
+msgid "No points awarded yet."
+msgstr "Hišće žane dypki spožčene."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Najlěpši přepruwowarjo (zańdźenych 7 dnjow)"
+
+msgid "No top reviewers yet."
+msgstr "Hišće žani přepruwowarjo njejsu."
+
+msgid "All Time"
+msgstr "Cyły čas"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "Maće <span>{0}</span> dypkow."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s dnja %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Datum zhašenja"
+
+msgid "No deleted themes found for this period."
+msgstr "Žane zhašane drasty za tutón čas namakane."
+
+msgid "Theme Review History for {0}"
+msgstr "Historija drastowych přepruwowanjow za {0}"
+
+msgid "Review Date"
+msgstr "Přepruwowanski datum"
+
+msgid "Action"
+msgstr "Akcija"
+
+msgid "Reason"
+msgstr "Přičina"
+
+msgid "There are currently no reviews."
+msgstr "Tuchwilu žane přepruwowanja njejsu."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} wustejace drastowe přepruwowanje"
+msgstr[1] "{num} wustejacej drastowej přepruwowani"
+msgstr[2] "{num} wustejace drastowe přepruwowanja"
+msgstr[3] "{num} wustejacych drastowych přepruwowanjow"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} markěrowane přepruwowanje"
+msgstr[1] "{num} markěrowanej přepruwowani"
+msgstr[2] "{num} markěrowane přepruwowanja"
+msgstr[3] "{num} markěrowanych přepruwowanjow"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} aktualizacija"
+msgstr[1] "{num} aktualizaciji"
+msgstr[2] "{num} aktualizacije"
+msgstr[3] "{num} aktualizacijow"
+
+msgid "Flagged Themes"
+msgstr "Markěrowane drasty"
+
+msgid "Theme Review Queue"
+msgstr "Čakanski rynk drastowych přepruwowanjow"
+
+msgid "Review Options"
+msgstr "Přepruwowanske nastajenja"
+
+msgid "Auto-advance after review"
+msgstr "Po přepruwowanju awtomatisce pokročować"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Tastowe skrótšenki zmóžnić"
+
+msgid "Keyboard Shortcuts"
+msgstr "Tastowe skrótšenki"
+
+msgid "Next Theme"
+msgstr "Přichodna drasta"
+
+msgid "Previous Theme"
+msgstr "Předchadna drasta"
+
+msgid "Your Review History"
+msgstr "Waša historija přepruwowanjow"
+
+msgid "Commit Review"
+msgstr "Přepruwowanje wotpósłać"
+
+msgid "Commit Reviews"
+msgstr "Přepruwowanja wotpósłać"
+
+msgid "{0} out of {1} reviewed"
+msgstr "{0} z {1} přepruwowanych"
+
+msgid "There are currently no Themes to review."
+msgstr "Tuchwilu žane drasty njejsu, kotrež dyrbja so přepruwować."
+
+msgid "Clear Search"
+msgstr "Pytanje zhašeć"
+
+msgid "Release My Theme Locks"
+msgstr "Drastowe zawěry wotstronić"
+
+msgid "Interactive Theme Queue"
+msgstr "Interaktiwny čakanski rynk za drasty"
+
+msgid "Reviewers' Guide"
+msgstr "Příručka přepruwowarja"
+
+msgid "Theme Review for {0}"
+msgstr "Drastowe přepruwowanje za {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Najskerje dwójne zapodaće)"
+
+msgid "Past Review Notes"
+msgstr "Starše wersijowe pokazki"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Dalše informacije požadane: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Markěrowany: {0}"
+
+msgid "Approve Theme"
+msgstr "Drastu schwalić"
+
+msgid "Field required"
+msgstr "Polo je trěbne"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Zapodajće ID abo URL duplikata"
+
+msgid "Select a reason for rejection"
+msgstr "Wubjerće přičinu za wotpokazanje"
+
+msgid "Describe your reason for rejection"
+msgstr "Wopisajće swoju přičinu za wotpokazanje"
+
+msgid "Ask a question to the artist"
+msgstr "Stajće wuměłcej prašenje"
+
+msgid "Describe your reason for flagging"
+msgstr "Wopisujće swoju přičinu za woznamjenjenje"
+
+msgid "Rejected or Unreviewed"
+msgstr "Wotpokazane abo njepřepruwowane"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Nowy přidatk ({0})"
+msgstr[1] "Nowej přidatkaj ({0})"
+msgstr[2] "Nowe přidatki ({0})"
+msgstr[3] "Nowe přidatki ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Aktualizacija ({0})"
+msgstr[1] "Aktualizaciji ({0})"
+msgstr[2] "Aktualizacije ({0})"
+msgstr[3] "Aktualizacije ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Moderěrowane přepruwowanje ({0})"
+msgstr[1] "Moderěrowanej přepruwowani ({0})"
+msgstr[2] "Moderěrowane přepruwowanja ({0})"
+msgstr[3] "Moderěrowane přepruwowanja ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Awtomatisce schwaleny přidatk ({0})"
+msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
+msgstr[2] "Awtomatisce schwalene přidatki ({0})"
+msgstr[3] "Awtomatisce schwalene přidatki ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Přepruwowanje wobsaha ({0})"
+msgstr[1] "Přepruwowani wobsaha ({0})"
+msgstr[2] "Přepruwowanja wobsaha ({0})"
+msgstr[3] "Přepruwowanjow wobsaha ({0})"
+
+msgid "Flagged"
+msgstr "Markěrowany"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7552,8 +7184,8 @@ msgstr "Njemóžeće pohódnoćenje za swójski přidatk zawostajić."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Njemóžeće wjace hač jedne pohódnoćenje za samsnu wersiju přidatka zawostajić."
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Dźakujemy so; tute přepruwowanje je so za schwalenje redaktora markěrowało."
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Dźakujemy so; tute pohódnocénje je so za schwalenje přepruwowarja markěrowało."
 
 msgid "Add a review for {0}"
 msgstr "Pohódnoćenje za {0} přidać"
@@ -7824,9 +7456,6 @@ msgstr "Njemóžeće tutomu přidatkej nalistowanu wersiju přez API přidać, d
 msgid "No uploaded file for that addon and version."
 msgstr "Žana nahrata dataja za tutón přidatk a tutu wersiju."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Dźakujemy so, zo sće za {addon_name} darił"
-
 msgid "Overview"
 msgstr "Přehlad"
 
@@ -7847,6 +7476,9 @@ msgstr "po platformje"
 
 msgid "by Add-on Status"
 msgstr "po přidatkowym statusu"
+
+msgid "Contributions"
+msgstr "Přinoški"
 
 msgid "Subscribers"
 msgstr "Abonenća"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-09-10 10:52+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} acegger n useqdac"
 msgstr[1] "{reviews} iceggiren n useqdac"
 
-msgid "Learn more"
-msgstr "Issin ugar"
-
 msgid "Image changes being processed"
 msgstr "Asnifel n tugniwin iteddu"
 
-msgid "Must be a valid e-mail address."
-msgstr "Yessefk ad yili d imayl ameɣtu."
-
 msgid "No results found."
 msgstr "Ulac igmad yettwafen."
+
+msgid "Loading..."
+msgstr "Asali..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> n usekkil yettwattu."
+msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tamahilt-agi tensa akka tura makken nettseggim asmel web. Uɣal-d ticki. Tanemmirt-ik."
+
+msgid "Remove this localization"
+msgstr "Kkes asideg agi"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} yettwali di tazwara asebter-agi."
@@ -799,21 +808,6 @@ msgstr "Icegggiren ilemmasen"
 
 msgid "Number of Reviews"
 msgstr "Amḍan n iceggiren"
-
-msgid "Loading..."
-msgstr "Asali..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> n usekkil yettwattu."
-msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tamahilt-agi tensa akka tura makken nettseggim asmel web. Uɣal-d ticki. Tanemmirt-ik."
-
-msgid "Remove this localization"
-msgstr "Kkes asideg agi"
 
 msgid "Requested Info"
 msgstr "Talɣut n usuter"

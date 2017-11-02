@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-17 10:06+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"PO-Revision-Date: 2017-10-23 19:34+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -116,7 +116,7 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "נא לבדוק את הנקודות הבאות לפני סיום ההגשה. הבדיקה תמזער עיכובים או אי הבנות במהלך הסקירה:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -396,7 +396,7 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "סכום כולל שנתרם"
 
 msgid "Average Contribution"
 msgstr "תרומה ממוצעת"
@@ -633,11 +633,10 @@ msgstr "אחר"
 msgid "Select an application first"
 msgstr "תחילה יש לבחור יישום"
 
-#, fuzzy
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "להגדיר תוספת אחת לגרסת מרבית של {1} ולשלוח מכתב למפתח."
-msgstr[1] "להגדיר {0} תוספות לגרסת מרבית של {1} ולשלוח מכתב למפתח."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
@@ -735,7 +734,7 @@ msgid "Changes Saved"
 msgstr "השינויים נשמרו"
 
 msgid "Enter a new author's email address"
-msgstr "הוספת כתובת דוא״ל של מפתח חדש"
+msgstr ""
 
 msgid "There was an error uploading your file."
 msgstr "אירעה שגיאה בהעלאת הקובץ שלך."
@@ -750,17 +749,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "סקירת משתמש אחת"
 msgstr[1] "{reviews} סקירות משתמשים"
 
-msgid "Learn more"
-msgstr "מידע נוסף"
-
 msgid "Image changes being processed"
 msgstr "מתבצע עיבוד שינויים בתמונות"
 
-msgid "Must be a valid e-mail address."
-msgstr "חייבת להיות כתובת דוא״ל תקנית."
-
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
+
+msgid "Loading..."
+msgstr "בטעינה..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "נותר תו <b>אחד</b>."
+msgstr[1] "נותרו <b>{0}</b> תווים."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עושים עבודות תחזוקה באתר. נא לבדוק מאוחר יותר."
+
+msgid "Remove this localization"
+msgstr "להסיר את התרגום הזה"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
@@ -797,21 +805,6 @@ msgstr "ממוצע הסקירות"
 
 msgid "Number of Reviews"
 msgstr "מספר הסקירות"
-
-msgid "Loading..."
-msgstr "בטעינה..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "נותר תו <b>אחד</b>."
-msgstr[1] "נותרו <b>{0}</b> תווים."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עושים עבודות תחזוקה באתר. נא לבדוק מאוחר יותר."
-
-msgid "Remove this localization"
-msgstr "להסיר את התרגום הזה"
 
 msgid "Requested Info"
 msgstr ""

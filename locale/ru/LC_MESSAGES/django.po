@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 15:37+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
+"PO-Revision-Date: 2017-10-28 15:39+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -84,10 +84,6 @@ msgstr "Загрузить сейчас"
 
 msgid "Download"
 msgstr "Загрузить"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Перейти к загрузке&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Избранное"
@@ -173,12 +169,6 @@ msgstr "Опишите вашу тему."
 msgid "Enter a new author's email address"
 msgstr "Введите новый адрес эл. почты автора"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Пользователи могут решить внести больше или меньше этой суммы."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Пользователей всегда будут спрашивать в менеджере дополнений (Firefox 4 и выше). Приняется только к ПК."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Опубликованное"
@@ -211,99 +201,6 @@ msgstr "Это дополнение не был проверено Mozilla. <a h
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Это дополнение было отмечено разработчиками как экспериментальное."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Разработчик этого дополнения просит вас помочь поддержать его дальнейшее развитие, сделав небольшой взнос."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Разработчик этого дополнения просит вас показать вашу поддержку, сделав взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Разработчик этого дополнения просит вас показать вашу поддержку, сделав небольшой взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Сделайте взнос"
-
-#. Click Contribute button OR Install button
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "или"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Предложенная сумма взноса:  {0}"
-
-msgid "What's this?"
-msgstr "Что это?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Разработчик этого дополнения хотел бы, чтобы вы сделали взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>, если вам нравится использовать это дополнение."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Разработчик этого дополнения хотел бы, чтобы вы сделали небольшой взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>, если вам нравится использовать это дополнение."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla обещает поддерживать здоровую экосистему разработки. Ваше добровольный взнос поможет поддержать дальнейшее развитие этого дополнения."
-
-msgid "Make a Contribution"
-msgstr "Сделать взнос"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Помогите поддержать продолжение разработки <strong>%(addon_name)s</strong> внеся небольшой взнос через <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Чтобы показать свою поддержку <b>%(addon_name)s</b>, разработчик просит вас сделать взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a> через <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Чтобы показать свою поддержку <b>%(addon_name)s</b>, разработчик просит вас сделать небольшой взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a> через <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "Как много вы хотите внести?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "Максимальная сумма взноса: {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "Минимальная сумма взноса - {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Сумма взноса должна быть числом."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Одноразовый предложенный взнос в размере {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Однократный взнос в {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Оставьте вместе с вашим взносом комментарий или запрос."
-
-msgid "(optional)"
-msgstr "(необязательно)"
-
-msgid "Make Contribution"
-msgstr "Сделать взнос"
-
-msgid "Contacting PayPal"
-msgstr "Соединение с PayPal"
-
-msgid "No Thanks"
-msgstr "Нет, спасибо"
-
-msgid "Contribution made, thank you."
-msgstr "Спасибо, взнос сделан."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -398,15 +295,6 @@ msgid_plural "{0} users"
 msgstr[0] "{0} пользователь"
 msgstr[1] "{0} пользователя"
 msgstr[2] "{0} пользователей"
-
-msgid "Payment cancelled"
-msgstr "Платёж отменён"
-
-msgid "Payment completed"
-msgstr "Платёж завершён"
-
-msgid "Return to the addon."
-msgstr "Возвратиться к дополнению."
 
 msgid "by"
 msgstr "автор"
@@ -512,6 +400,11 @@ msgstr ""
 msgid "Send Report"
 msgstr "Отправить сообщение"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "или"
+
 msgid "Cancel"
 msgstr "Отменить"
 
@@ -588,25 +481,6 @@ msgstr "Разрешения"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Это дополнение было отмечено разработчиками как экспериментальное"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "предложено <b>%(amt)s</b>"
-
-msgid "Enjoy this add-on?"
-msgstr "Нравится это дополнение?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Разработчик этого дополнения</a> просит вас помочь поддержать его дальнейшее развитие, сделав небольшой взнос."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Разработчик этого дополнения</a> просит вас показать вашу поддержку, сделав взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Разработчик этого дополнения</a> просит вас показать свою поддержку, сделав небольшой взнос в пользу <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Для корректной работы этого дополнения необходимы следующие дополнения:"
 
@@ -652,16 +526,14 @@ msgstr "Управление администраторами"
 msgid "Icon of {0}"
 msgstr "Значок {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Познакомьтесь с разработчиком: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Познакомьтесь с разработчиками</a>"
-msgstr[2] "<a href=\"%(url)s\">Познакомьтесь с разработчиками</a>"
+msgid "Contribute"
+msgstr "Сделайте взнос"
 
-# {0} is an add-on name.
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Узнайте, почему был создан {0}, и выясните планы развития этого дополнения."
+msgid "Enjoy this add-on?"
+msgstr "Нравится это дополнение?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "Разработчик этого дополнения просит вас помочь поддержать его дальнейшее развитие, сделав небольшой взнос."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -739,38 +611,6 @@ msgstr "Некоторые дополнения запрашивают разр�
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Обратите внимание, что это дополнение использует устаревшую технологию, которая дает ему доступ ко всем функциям и данным браузера без запроса у вас разрешения."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Благодарим вас за установку {0}"
-
-#. {0} is an add-on name.
-# %1 is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Познакомьтесь с разработчиком {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Перед загрузкой этого дополнения, пожалуйста, по возможности поддержите развитие этого дополнения, сделав небольшой взнос."
-
-# %1 is an add-on name.
-msgid "Why was {0} created?"
-msgstr "Почему был создан {0}?"
-
-# %1 is an add-on name.
-msgid "What's next for {0}"
-msgstr "Что запланировано для {0}"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "О разработчике"
-msgstr[1] "О разработчиках"
-msgstr[2] "О разработчиках"
-
-msgid "No Photo"
-msgstr "Нет фото"
-
-msgid "Who is {0}?"
-msgstr "Кто такой {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Это дополнение было удалено автором."
@@ -990,6 +830,9 @@ msgstr "Некоторые функции на этой странице вре�
 
 msgid "Are you human?"
 msgstr "Вы человек?"
+
+msgid "What's this?"
+msgstr "Что это?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1251,6 +1094,9 @@ msgstr "Создать новую подборку"
 
 msgid "Name:"
 msgstr "Имя:"
+
+msgid "(optional)"
+msgstr "(необязательно)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Отменить</a>"
@@ -2515,6 +2361,51 @@ msgstr "Для определённых сайтов"
 msgid "Web and Developer Tools"
 msgstr "Инструменты разработчика"
 
+msgid "All Rights Reserved"
+msgstr "Все права защищены"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Атрибуция 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование — Без производных произведений 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Атрибуция — Без производных произведений 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
+
+msgid "Any"
+msgstr "Любая"
+
+msgid "All Platforms"
+msgstr "Все платформы"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "Прил."
 
@@ -2662,51 +2553,6 @@ msgstr "Низкокачественное, вытянутое или пусто
 msgid "Header image alignment problem"
 msgstr "Проблема выравнивания верхнего изображения"
 
-msgid "All Rights Reserved"
-msgstr "Все права защищены"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Атрибуция 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование — Без производных произведений 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Атрибуция — Без производных произведений 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
-
-msgid "Any"
-msgstr "Любая"
-
-msgid "All Platforms"
-msgstr "Все платформы"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Ядро"
 
@@ -2752,33 +2598,6 @@ msgstr "Это дополнение имеет политику приватно
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Пожалуйста, укажите политику приватности вашего дополнения:"
-
-msgid "Why did you make this add-on?"
-msgstr "Почему вы сделали это дополнение?"
-
-msgid "What's next for this add-on?"
-msgstr "Что запланировано для этого дополнения?"
-
-msgid "The developers of this add-on"
-msgstr "Разработчики этого дополнения"
-
-msgid "The Mozilla Foundation"
-msgstr "Mozilla Foundation"
-
-msgid "An organization of my choice"
-msgstr "Организации по моему выбору"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Пожалуйста, введите предложенную сумму, которая больше 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Пожалуйста, введите предложенную сумму менее ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "Для принятия взносов необходим PayPal ID."
-
-msgid "Could not validate PayPal id."
-msgstr "Не удалось проверить PayPal id."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите архивный файл {extensions}."
@@ -2935,9 +2754,6 @@ msgstr "Автор изменил роль в вашем дополнении"
 msgid "An author has been removed from your add-on"
 msgstr "Из вашего дополнения был удалён автор"
 
-msgid "There were errors in your submission."
-msgstr "При вашей отправке были ошибки."
-
 msgid "Validate Add-on"
 msgstr "Валидировать дополнение"
 
@@ -3019,19 +2835,8 @@ msgstr "Политики проверки и правила"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Я прочитал и принимаю это соглашение, а также правила и политики"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-"Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox. Оно также ссылается на Уведомление об использовании конфиденциальной информации, которое "
-"объясняет, как мы обрабатываем вашу информацию."
-
-msgid "Printable Version"
-msgstr "Версия для печати"
-
 msgid "Accept"
 msgstr "Принять"
-
-msgid "I Accept this Agreement"
-msgstr "Я принимаю это соглашение"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "или<a href=\"{0}\">Отменить</a>"
@@ -3219,26 +3024,6 @@ msgstr ""
 "<p>Дополнения могут иметь любое количество авторов с 3 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
 "авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения  дополнения, кроме добавления и удаления других авторов и управления платежами</li> <li><b>Просматривающий:</b> Может "
 "просматривать настройки и статистику дополнения, но не может вносить никаких изменений</li></ul>"
-
-msgid "Manage Developer Profile"
-msgstr "Управление профилем разработчика"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Ваш <a href=\"%(url)s\">профиль разработчика</a> в настоящее время является <strong>публичным</strong> и <strong>требуется</strong> для сбора взносов."
-
-msgid "Remove Both"
-msgstr "Удалить оба"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Ваш <a href=\"%(url)s\">профиль разработчика</a> в настоящее время является <strong>публичным</strong>."
-
-msgid "Remove Profile"
-msgstr "Удалить профиль"
-
-msgid "Create Profile"
-msgstr "Создать профиль"
 
 msgid "Basic Information"
 msgstr "Основная информация"
@@ -3471,11 +3256,11 @@ msgid "Whiteboard"
 msgstr "Белая доска"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Белая доска является местом для предоставления информации, относящейся к вашему дополнению, независимо от версии, редактору. Используйте её, чтобы обеспечить тестирование дополнения, и для "
-"размещения любой дополнительной информации, которая может помочь. Эта доска может также редактироваться редакторами."
+"Белая доска является местом для предоставления информации, относящейся к вашему дополнению, независимо от версии, проверяющему. Используйте её, чтобы обеспечить тестирование дополнения, и для "
+"размещения любой дополнительной информации, которая может помочь. Эта доска может также редактироваться проверяющими."
 
 msgid "Remove this dependent add-on"
 msgstr "Удалить это зависимое дополнение"
@@ -3534,6 +3319,39 @@ msgstr "Пожалуйста, добавьте заголовок для это�
 
 msgid "Add a Screenshot..."
 msgstr "Добавить скриншот..."
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Могут ли другие делиться вашим дополнением, если вас указывают в качестве автора?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу, в том числе в коммерческих целях."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу только в некоммерческих целях."
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Могут ли другие использовать ваше дополнение в коммерческих целях?"
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Могут ли другие создавать производные работы на основе вашего дополнения?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Лицензиар позволяет другим копировать, распространять, показывать и выполнять работу, а также создавать на его основе производные работы."
+
+msgid "Yes, as long as they share alike"
+msgstr "Да, если они так же делятся"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "Лицензиар позволяет другим распространять производные работы только по той же лицензии или лицензии совместимой с той, под которой распространяется работа лицензиара."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Лицензиар позволяет другим копировать, распространять и передавать только неизменённые копии работ — не производные работы на его основе."
+
+msgid "Your Add-on will be released under the following license:"
+msgstr "Ваше дополнение будет выпущено на условиях следующей лицензии:"
+
+msgid "Select a different license."
+msgstr "Выберите другую лицензию."
 
 msgid "Tests"
 msgstr "Тесты"
@@ -3616,9 +3434,6 @@ msgstr "Ежедневная статистика по загрузкам и п�
 
 msgid "Statistics"
 msgstr "Статистика"
-
-msgid "Manage Payments"
-msgstr "Управление платежами"
 
 msgid "Manage Status & Versions"
 msgstr "Управление статусом и версиями"
@@ -3714,8 +3529,8 @@ msgstr "Сайт поддержки:"
 msgid "License:"
 msgstr "Лицензия:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Пожалуйста, выберите лицензию, подходящую для предоставляемых вами прав."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Если ваше дополнение передаёт какие-либо данные с компьютера пользователя, необходимо иметь политику приватности, которая объясняет, какие данные отправляются и как они используются."
@@ -3732,14 +3547,8 @@ msgstr "Эти замечания будут видны только вам и �
 msgid "Cancel and Disable Version"
 msgstr "Отменить и отключить версию"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Отменить проверку и отключить версию"
-
 msgid "Submit Version"
 msgstr "Представить версию"
-
-msgid "Submit Version for Review"
-msgstr "Представить версию на проверку"
 
 msgid "Describe Version"
 msgstr "Опишите версию"
@@ -3955,38 +3764,6 @@ msgstr "Последняя версия:"
 msgid "This is the newest uploaded unlisted version."
 msgstr "Это новейшая загруженная скрытая версия."
 
-msgid "(required since this add-on accepts contributions)"
-msgstr "(требуется так как это дополнение принимает взносы)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Управление вашим профилем разработчика "
-
-msgid "Create a Developer Profile"
-msgstr "Создать профиль разработчика"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "В ближайшее время эта страница будет удалена и будет заменена на URL для взносов на главной странице редактирования. Обязательно используйте это поле, чтобы не отключать денежные взносы."
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Ваш профиль разработчика расскажет пользователям о вас, о том почему вы сделали это дополнение, и что запланировано для дополнения. Профиль требуется для дополнений с просьбой внести взносы, но "
-"может быть полезным для любого разработчика, заинтересованного в установлении взаимоотношений с пользователями."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Убедитесь, что ваш пользовательский профиль в актуальном состоянии."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Обновите ваш профиль пользователя.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Было ли это идея пришедшая вам в голову в очереди в магазине или решение одной из больших жизненных проблем, поделитесь своей историей."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Рассказав своим пользователям, что произойдёт в ближайшее время, вы дадите им представление, чего можно ждать."
-
 msgid "Upload New Version"
 msgstr "Загрузить новую версию"
 
@@ -4101,11 +3878,11 @@ msgstr "Сообщить об ошибке"
 msgid "Site Status"
 msgstr "Статус сайта "
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: создавайте и тестируйте расширения"
+
 msgid "Compatibility Checker"
 msgstr "Проверка совместимости"
-
-msgid "Compatibility Reporter"
-msgstr "Отчёты о совместимости"
 
 msgid "Promote"
 msgstr "Продвинуть"
@@ -4200,6 +3977,9 @@ msgstr "Документация"
 msgid "Sign Out"
 msgstr "Выйти"
 
+msgid "No Photo"
+msgstr "Нет фото"
+
 msgid "User Photo"
 msgstr "Фото пользователя"
 
@@ -4239,115 +4019,20 @@ msgstr "У вас есть готовое дополнение? Представ
 msgid "Sign In"
 msgstr "Войти"
 
-# Header for a column in a table
-msgid "Validator"
-msgstr "Валидатор"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Командная строка для создания, запуска и тестирования расширений."
 
 msgid "Automated code tests for your add-on."
 msgstr "Автоматические тесты кода вашего дополнения."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Узнавайте, если ваше дополнение, скорее всего, будет затронуто изменениями в Firefox."
+msgid "Compatibility Test"
+msgstr "Тест совместимости"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Сообщает нам, что дополнение работает в той или иной версии Firefox."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "В настоящее время вы просите пользователей сделать <b>взносы</b>"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Ваша страница взносов: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Отключить взносы"
-
-msgid "Voluntary Contributions"
-msgstr "Добровольные взносы"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Дополнения, участвующие в нашей программе взносов, могут просить пользователей оказывать добровольную финансовую поддержку."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Попросите пользователей поддержать ваше дополнение через ваш Профиль разработчика"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Выберите, когда и как просить пользователей сделать взнос"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Получать взносы на ваш счёт в PayPal или отправлять их в организацию по своему выбору"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Взносы доступны только для опубликованных дополнений."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Взносы доступны только для дополнений с <a href=\"%(url)s\">заполненным профилем разработчика</a>."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Взносы доступны только для утверждённых дополнений."
-
-msgid "Set up Contributions"
-msgstr "Настройка взносов"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Шаг 2. Цена и доступность"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "или <a href=\"%(cancel)s\">Отмена</a>"
-
-msgid "Contributions"
-msgstr "Взносы"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Заполните расположенные ниже поля, чтобы начать просить пользователей внести добровольные взносы."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Кто будет получать взносы для этого дополнения?"
-
-msgid "What is the name of the organization?"
-msgstr "Что такое название организации?"
-
-msgid "What is the URL of the organization?"
-msgstr "Что такое URL организации?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "Что такое PayPal ID организации?"
-
-msgid "What is your PayPal ID?"
-msgstr "Какой у вас PayPal ID?"
-
-msgid "Sign up for PayPal"
-msgstr "Войти на PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "Какая у вас предложенная сумма взноса?"
-
-msgid "(Example: 3.99)"
-msgstr "(Пример: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Когда пользователей нужно будет просить сделать взнос?"
-
-msgid "Send a thank-you note?"
-msgstr "Отправить благодарственное письмо?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Мы автоматически отправим по электронной почте, пользователям, которые сделали взнос, письмо с этим сообщением."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"Мы рекомендуем поблагодарить пользователей и написать им, насколько вы цените их поддержку. Вы также можете рассказать им о планах развития вашего дополнения и о любых других сделанных вами "
-"дополнениях, которые вы рекомендуете попробовать."
-
-msgid "Activate Contributions"
-msgstr "Включить взносы"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "или <a id=\"setup-cancel\" href=\"#\">Отменить</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Проверьте, совместимо ли ваше расширение с Firefox."
 
 msgid "Transfer ownership"
 msgstr "Передача владения"
@@ -4373,35 +4058,14 @@ msgstr "Лицензия темы"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Могут ли другие делиться вашей темой, если вас указывают в качестве автора?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу, в том числе в коммерческих целях."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Лицензиар позволяет другим копировать, распространять, отображать, а также выполнять работу только в некоммерческих целях."
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Могут ли другие использовать вашу тему в коммерческих целях?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Могут ли другие создавать производные работы на основе вашей темы?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Лицензиар позволяет другим копировать, распространять, показывать и выполнять работу, а также создавать на его основе производные работы."
-
-msgid "Yes, as long as they share alike"
-msgstr "Да, если они так же делятся"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Лицензиар позволяет другим распространять производные работы только по той же лицензии или лицензии совместимой с той, под которой распространяется работа лицензиара."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Лицензиар позволяет другим копировать, распространять и передавать только неизменённые копии работ — не производные работы на его основе."
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Ваша тема будет выпущена на условиях следующей лицензии:"
-
-msgid "Select a different license."
-msgstr "Выберите другую лицензию."
 
 msgid "Select a license for your Theme."
 msgstr "Выберите лицензию для вашей темы."
@@ -4749,868 +4413,6 @@ msgstr "Улучшите управление эмоджи {start_sub_heading}с
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Десятки удивительных эмоджи — всегда на расстоянии одного щелчка."
 
-msgid "Approved reviews"
-msgstr "Одобренные проверки"
-
-msgid "Deleted reviews"
-msgstr "Удалённые проверки"
-
-msgid "View entries between"
-msgstr "Просмотр записей между"
-
-msgid "and"
-msgstr "и"
-
-msgid "Filter by type/action"
-msgstr "Фильтр по типу/действию"
-
-msgid "Passed automatic validation"
-msgstr "Прошло автоматическую валидацию"
-
-msgid "Failed automatic validation"
-msgstr "Не прошло автоматическую валидацию"
-
-msgid "Filter by automatic validation"
-msgstr "Фильтр по автоматической валидации"
-
-msgid "containing"
-msgstr "содержащая"
-
-msgid "start"
-msgstr "начальная"
-
-msgid "end"
-msgstr "конечная"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "дополнение, проверяющий или комментарий"
-
-msgid "Search by add-on name / author email"
-msgstr "Поиск по имени дополнения/адресу автора"
-
-msgid "yes"
-msgstr "да"
-
-msgid "no"
-msgstr "нет"
-
-msgid "Admin Flag"
-msgstr "Флаг админа"
-
-msgid "Add-on Types"
-msgstr "Типы дополнений"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Поиск по имени дополнения / адресу автора / guid"
-
-msgid "Max. Version"
-msgstr "Макс. версия"
-
-msgid "Comments:"
-msgstr "Комментарии:"
-
-msgid "Operating systems:"
-msgstr "Операционные системы:"
-
-msgid "Applications:"
-msgstr "Приложения:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Уведомить меня при следующем обновлении этого дополнения. (Последующие обновления не приведут к отправке письма)"
-
-msgid "Clear Admin Review Flag"
-msgstr "Снять флаг проверки админом"
-
-msgid "Is more info requested?"
-msgstr "Запрошено больше информации?"
-
-msgid "Choose a canned response..."
-msgstr "Выберите стандартный ответ..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "имя темы"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Кто-то ещё проверяет эту тему."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "тема, редактор или комментарий"
-
-msgid "Keep review; remove flags"
-msgstr "Удержать рецензию; удалить флаги"
-
-msgid "Skip for now"
-msgstr "Пока пропустить"
-
-msgid "Delete review"
-msgstr "Удалить отзыв"
-
-msgid "Admin Review"
-msgstr "Рецензия админа"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack-дополнение"
-
-msgid "More Information Requested"
-msgstr "Запрошено больше информации"
-
-msgid "Contains Reviewer Comment"
-msgstr "Содержит комментарий редактора"
-
-msgid "Sources provided"
-msgstr "Предоставленные исходники"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Использует свой CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Использует разрешение nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr "Использует Content Scripts для всех URL."
-
-msgid "Has too many daily users."
-msgstr "Слишком много ежедневных пользователей."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Слишком мало последовательных обновлений проверенных людьми."
-
-msgid "Has a pending info request."
-msgstr "Имеет запрос информации в ожидании."
-
-msgid "Is flagged for admin review."
-msgstr "Отмечено для проверки администратором."
-
-msgid "Is locked by a reviewer."
-msgstr "Заблокировано редактором."
-
-msgid "Duplicate Submission"
-msgstr "Дублирующее представление"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Спасибо, что представили вашу тему"
-
-msgid "A problem with your Theme submission"
-msgstr "Проблема с представлением вашей темы"
-
-msgid "Theme submission flagged for review"
-msgstr "Представленная тема отмечена для проверки"
-
-msgid "A question about your Theme submission"
-msgstr "Вопрос о представлении вашей темы"
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Waiting Time"
-msgstr "Время ожидания"
-
-msgid "Flags"
-msgstr "Флаги"
-
-msgid "moments ago"
-msgstr "мгновения назад "
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} минута"
-msgstr[1] "{0} минуты"
-msgstr[2] "{0} минут"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} час"
-msgstr[1] "{0} часа"
-msgstr[2] "{0} часов"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} день"
-msgstr[1] "{0} дня"
-msgstr[2] "{0} дней"
-
-msgid "Last Review"
-msgstr "Последняя проверка"
-
-msgid "Last Update"
-msgstr "Последнее обновление"
-
-msgid "No Reviews"
-msgstr "Нет отзывов"
-
-msgid "Weight"
-msgstr "Вес"
-
-msgid "Last Content Review"
-msgstr "Последняя проверка содержимого"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Это действие отклонит эту версию и удалит её из очереди. Разработчику будут отправлены комментарии."
-
-msgid "Confirm Approval"
-msgstr "Подтвердить одобрение"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения, без уведомления разработчика."
-
-msgid "Reject Multiple Versions"
-msgstr "Отклонить несколько версий"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Это действие отклонит выбранные публичные версии. Разработчику будут отправлены комментарии."
-
-msgid "Reviewer reply"
-msgstr "Ответ проверяющего"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Используйте эту форму, чтобы отправить разработчику сообщение. Вас оповестят, когда он ответит."
-
-msgid "Request super-review"
-msgstr "Запросить суперрецензию"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Если у вас есть сомнения насчёт этого дополнения, требующих изучения администратора, введите ваши комментарии в расположенное ниже поле. Они будут отосланы администраторам, а не разработчику."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Прокомментируйте эту версию. Разработчик не сможет это увидеть."
-
-msgid "Approve Content"
-msgstr "Одобрить содержимое"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Это действие записывает ваше одобрение содержимого этой версии, без уведомления разработчика."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Новые дополнения (менее 5 дней)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Сносно (от 5 до 10 дней)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Просрочено (более 10 дней)"
-
-msgid "An unknown error occurred"
-msgstr "Произошла неизвестная ошибка"
-
-msgid "Self-reviews are not allowed."
-msgstr "Самопроверка не разрешена."
-
-msgid "Review successfully processed."
-msgstr "Проверка успешно обработана."
-
-msgid "Review lock limit reached"
-msgstr "Достигнут лимит блокировки проверок"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} тема успешно проверена (+{1} очков, всего - {2})."
-msgstr[1] "{0} темы успешно проверено (+{1} очков, всего - {2})."
-msgstr[2] "{0} тем успешно проверено (+{1} очков, всего - {2})."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "Ваши блокировки тем были успешно сняты. Другие рецензенты теперь могут проверить эти разблокированные темы. Возможно, вам надо обновить страницу, чтобы увидеть внизу изменения в таблице."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Жалобы на нарушения"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Отчёты о злоупотреблениях для {addon} и его разработчиков ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Работает с"
-
-msgid "Visibility"
-msgstr "Видимость"
-
-msgid "Visible"
-msgstr "Видимое"
-
-msgid "Average Daily Users"
-msgstr "Среднее число активных ежедневных пользователей"
-
-msgid "Abuse Reports"
-msgstr "Отчёты о нарушениях"
-
-msgid "View Privacy Policy"
-msgstr "Просмотреть политику приватности"
-
-msgid "Requires Payment"
-msgstr "Требуется оплата"
-
-msgid "EULA"
-msgstr "Лицензионное соглашение с конечным пользователем (EULA)"
-
-msgid "Last Approval Date"
-msgstr "Дата последнего утверждения"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Утверждения с момента последней автоматической проверки"
-
-msgid "Abuse Reports ({num})"
-msgstr "Отчёты о злоупотреблениях ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Плохие отзывы пользователей ({num})"
-
-msgid "More about this add-on"
-msgstr "Подробнее об этом дополнении"
-
-msgid "Image Gallery"
-msgstr "Галерея скриншотов"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Здесь нечего смотреть!  Разработчик не добавил никаких деталей."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Вернуться на страницу Инструментов редакторов"
-
-msgid "Queues"
-msgstr "Очереди"
-
-msgid "New Add-ons"
-msgstr "Новые дополнения"
-
-msgid "Updates"
-msgstr "Обновления"
-
-msgid "Moderated Reviews"
-msgstr "Модерируемые проверки"
-
-msgid "Auto Approved Add-ons"
-msgstr "Автоматически утверждённые дополнения"
-
-msgid "Content Review"
-msgstr "Проверка содержимого"
-
-msgid "Unlisted Queues"
-msgstr "Очереди скрытых"
-
-msgid "All Unlisted Add-ons"
-msgstr "Все скрытые дополнения"
-
-msgid "Logs"
-msgstr "Логи"
-
-msgid "Add-on Review Log"
-msgstr "Журнал проверок дополнений"
-
-msgid "Moderated Review Log"
-msgstr "Журнал модерируемых проверок"
-
-msgid "Signed Beta Files Log"
-msgstr "Лог подписанных файлов беты"
-
-msgid "Announcement"
-msgstr "Объявление"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Фильтр"
-
-msgid "Date"
-msgstr "Дата"
-
-msgid "Event"
-msgstr "Событие"
-
-msgid "More details."
-msgstr "Подробнее."
-
-msgid "No events found for this period."
-msgstr "События за этот период не найдены."
-
-msgid "Log details"
-msgstr "Лог подробностей"
-
-msgid "Review Author"
-msgstr "Автор отзыва"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Заголовок дополнения"
-
-msgid "Review Title"
-msgstr "Заголовок отзыва"
-
-msgid "Review Text"
-msgstr "Текст отзыва"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Отзыв был отмечен до удаления."
-
-msgid "Undelete"
-msgstr "Восстановить"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Новые дополнения ({num})"
-msgstr[1] "Новые дополнения ({num})"
-msgstr[2] "Новые дополнения ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Обновления ({num})"
-msgstr[1] "Обновления ({num})"
-msgstr[2] "Обновления ({num})"
-
-msgid "Current waiting times:"
-msgstr "Текущее время ожидания:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} дополнение"
-msgstr[1] "{0} дополнения"
-msgstr[2] "{0} дополнений"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Всего проверок"
-
-msgid "Reviews This Month"
-msgstr "Проверки за этот месяц"
-
-msgid "New Reviewers"
-msgstr "Новые редакторы"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Вы #{0} с {1} проверками"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Модерируемая проверка ({num})"
-msgstr[1] "Модерируемые проверки ({num})"
-msgstr[2] "Модерируемых проверок ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Панель лидера редакторов"
-
-msgid "No review points awarded yet."
-msgstr "Очков за проверки пока не начислено."
-
-msgid "Rank"
-msgstr "Место"
-
-msgid "Score"
-msgstr "Счёт"
-
-msgid "Update message of the day"
-msgstr "Обновить послание дня"
-
-msgid "Save"
-msgstr "Сохранить"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Производительность Редактора дополнений"
-
-msgid "View statistics for user"
-msgstr "Просмотр статистики пользователя"
-
-msgid "Range"
-msgstr "Диапазон"
-
-msgid "Your Reviews"
-msgstr "Ваши отзывы"
-
-msgid "By {user_name}"
-msgstr "От {user_name}"
-
-msgid "Active Contributors"
-msgstr "Активные участники"
-
-msgid "This Month"
-msgstr "Этот месяц"
-
-msgid "This Year"
-msgstr "Этот год"
-
-msgid "Monthly Performance"
-msgstr "Месячная производительность"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Разбиение точками по типу за всё время"
-
-msgid "Total"
-msgstr "Всего"
-
-msgid "Month"
-msgstr "Месяц"
-
-msgid "Year"
-msgstr "Год"
-
-msgid "All-Time"
-msgstr "Всё время"
-
-msgid "Advanced Search"
-msgstr "Продвинутый поиск"
-
-msgid "clear search"
-msgstr "очистить поиск"
-
-msgid "Process Reviews"
-msgstr "Обработать рецензии"
-
-msgid "Moderation actions:"
-msgstr "Действия для модерации:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "от %(user)s на %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(user)s  в %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Все отзывы проверены.  Хорошая работа!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "В настоящее время нет дополнений данного типа ждущих проверки."
-
-msgid "Helpful Links:"
-msgstr "Полезные ссылки:"
-
-msgid "Add-on Policy"
-msgstr "Политика дополнений"
-
-msgid "Editors' Guide"
-msgstr "Руководство редактора"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Проверка содержимого {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Проверить {0}"
-
-msgid "Add-on user change history"
-msgstr "История изменений пользователя дополнения"
-
-msgid "Add-on History"
-msgstr "История дополнения"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Версия %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Совместимость:"
-
-msgid "Additional sources:"
-msgstr "Дополнительные источники:"
-
-msgid "Download files"
-msgstr "Загрузить файлы"
-
-msgid "The developer has provided source code."
-msgstr "Разработчик предоставил исходный код."
-
-msgid "Weight:"
-msgstr "Вес:"
-
-msgid "Not Auto Approved Because"
-msgstr "Не одобрено автоматически, потому что"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Скрипт автоодобрения ещё не проверял эту версию."
-
-msgid "This version has not been reviewed."
-msgstr "Эта версия не была проверена."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Пожалуйста, выберите одну или более версий из списка выше."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Вы все ещё можете отправить эту форму, но делайте это, только если вы уверены, что это не вызовет конфликт."
-
-msgid "Insert canned response..."
-msgstr "Вставить стандартный ответ..."
-
-msgid "Files:"
-msgstr "Файлы:"
-
-msgid "Tested on:"
-msgstr "Протестировано на:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "Белая доска является местом для обмена информацией, относящейся к этому дополнению (независимо от версии), между разработчиком и редактором. Она видима и редактируема ими обоими."
-
-msgid "Update the whiteboard"
-msgstr "Обновить белую доску"
-
-msgid "(admin)"
-msgstr "(админ)"
-
-msgid "Admin Page"
-msgstr "Страница администратора"
-
-msgid "Review This Add-on"
-msgstr "Проверить это дополнение"
-
-msgid "More Information"
-msgstr "Дополнительная информация"
-
-msgid "Resolution"
-msgstr "Разрешение"
-
-msgid "Reviewer"
-msgstr "Редактор"
-
-msgid "Add-on has been deleted."
-msgstr "Дополнение было удалено."
-
-msgid "Show Comments"
-msgstr "Показать комментарии"
-
-msgid "Hide Comments"
-msgstr "Скрыть комментарии"
-
-msgid "No reviews found for this period."
-msgstr "Отзывы за этот период не найдены."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] сообщил %(date)s о %(object)s"
-
-msgid "Dismiss this announcement"
-msgstr "Игнорировать это объявление"
-
-msgid "Files in this version:"
-msgstr "Файлы в этой версии:"
-
-msgid "Contents"
-msgstr "Содержимое"
-
-msgid "Compare"
-msgstr "Сравнить"
-
-msgid "Permissions:"
-msgstr "Разрешения:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>От %(user)s на %(date)s</div>"
-
-msgid "Older"
-msgstr "Старше"
-
-msgid "Newer"
-msgstr "Новее"
-
-msgid "Recent Points"
-msgstr "Недавние очки"
-
-msgid "No points awarded yet."
-msgstr "Очков пока не начислено."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Топ редакторов (последние 7 дней)"
-
-msgid "No top reviewers yet."
-msgstr "Пока нет топа редакторов."
-
-msgid "All Time"
-msgstr "Всё время"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "У вас <span>{0}</span> очков."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s на %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Дата удаления"
-
-msgid "No deleted themes found for this period."
-msgstr "Удалённых тем за этот период не найдено."
-
-msgid "Theme Review History for {0}"
-msgstr "Журнал проверки темы {0}"
-
-msgid "Review Date"
-msgstr "Дата проверки"
-
-msgid "Action"
-msgstr "Действие"
-
-msgid "Reason"
-msgstr "Причина"
-
-msgid "There are currently no reviews."
-msgstr "В настоящее время проверок нет."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} тема ожидающая проверки"
-msgstr[1] "{num} темы ожидающих проверки"
-msgstr[2] "{num} тем ожидающих проверки"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} выбранный для проверки"
-msgstr[1] "{num} выбранных для проверки"
-msgstr[2] "{num} выбранных для проверки"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Обновление"
-msgstr[1] "{num} Обновления"
-msgstr[2] "{num} Обновлений"
-
-msgid "Flagged Themes"
-msgstr "Отмеченные темы"
-
-msgid "Theme Review Queue"
-msgstr "Очередь проверки тем"
-
-msgid "Review Options"
-msgstr "Параметры проверки"
-
-msgid "Auto-advance after review"
-msgstr "Автопродвижение после проверки"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Включить горячие клавиши"
-
-msgid "Keyboard Shortcuts"
-msgstr "Горячие клавиши"
-
-msgid "Next Theme"
-msgstr "Следующая тeма"
-
-msgid "Previous Theme"
-msgstr "Предыдущая тeма"
-
-msgid "Your Review History"
-msgstr "Ваша история проверок"
-
-msgid "Commit Review"
-msgstr "Внести рецензию"
-
-msgid "Commit Reviews"
-msgstr "Внести рецензии"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} из {1} проверено"
-
-msgid "There are currently no Themes to review."
-msgstr "В данный момент тем для проверки нет."
-
-msgid "Clear Search"
-msgstr "Очистить поиск"
-
-msgid "Release My Theme Locks"
-msgstr "Снять мои блокировки тем"
-
-msgid "Interactive Theme Queue"
-msgstr "Интерактивная очередь тем"
-
-msgid "Reviewers' Guide"
-msgstr "Руководство редактора"
-
-msgid "Theme Review for {0}"
-msgstr "Проверка темы для {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Вероятно дублирующее представление)"
-
-msgid "Past Review Notes"
-msgstr "Предыдущие примечания к выпуску"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Запрошено больше информации: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Отмечено: {0}"
-
-msgid "Approve Theme"
-msgstr "Одобрить тeму"
-
-msgid "Field required"
-msgstr "Это поле обязательно"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Введите ID или URL дубликата"
-
-msgid "Select a reason for rejection"
-msgstr "Выберите причину для отклонения"
-
-msgid "Describe your reason for rejection"
-msgstr "Опишите вашу причину для отклонения"
-
-msgid "Ask a question to the artist"
-msgstr "Задайте вопрос художнику"
-
-msgid "Describe your reason for flagging"
-msgstr "Опишите вашу причину для отметки флагом "
-
-msgid "Rejected or Unreviewed"
-msgstr "Отклонено или не проверено"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[статус:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Новое дополнение ({0})"
-msgstr[1] "Новые дополнения ({0})"
-msgstr[2] "Новые дополнения ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Обновление ({0})"
-msgstr[1] "Обновления ({0})"
-msgstr[2] "Обновления ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Модерируемая проверка ({0})"
-msgstr[1] "Модерируемые проверки ({0})"
-msgstr[2] "Модерируемых проверок ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Автоматически утверждённые дополнения ({0})"
-msgstr[1] "Автоматически утверждённые дополнения ({0})"
-msgstr[2] "Автоматически утверждённые дополнения ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Проверка содержимого ({0})"
-msgstr[1] "Проверка содержимого ({0})"
-msgstr[2] "Проверка содержимого ({0})"
-
-msgid "Flagged"
-msgstr "Отмечено"
-
 msgid "Cannot diff a version against itself"
 msgstr "Нельзя сделать diff версии против самой себя"
 
@@ -5713,6 +4515,9 @@ msgstr "Идёт обработка файла дополнения, пожал�
 
 msgid "Fetching validation results..."
 msgstr "Загрузка результатов валидации..."
+
+msgid "Files:"
+msgstr "Файлы:"
 
 msgid "Deleted files:"
 msgstr "Удалённые файлы:"
@@ -5919,6 +4724,9 @@ msgstr "Спасибо за использование %(app)s и поддерж
 
 msgid "Add-ons downloaded:"
 msgstr "Загруженные дополнения:"
+
+msgid "View Privacy Policy"
+msgstr "Просмотреть политику приватности"
 
 msgid "Active Users"
 msgstr "Активные пользователи"
@@ -6451,10 +5259,10 @@ msgstr "Кто создает эти дополнения?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Расположенные здесь дополнения были созданы тысячами разработчиков из нашего сообщества, начиная от отдельных любителей и заканчивая крупными корпорациями. Все доступные для публики дополнения были "
-"проверены командой редакторов перед их выпуском. Дополнения, помеченные как Экспериментальные, не были проверены, и при их установке нужно соблюдать осторожность."
+"проверены командой проверяющих перед их выпуском. Дополнения, помеченные как Экспериментальные, не были проверены, и при их установке нужно соблюдать осторожность."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Как мне быть в курсе того, что происходит на AMO?"
@@ -7226,10 +6034,10 @@ msgstr "Как мне сообщить о неприемлемом отзыве 
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
-"Чтобы сообщить об отзыве пользователя на дополнение, войдите в систему под своей учетной записью и посетите страницу отзывов на дополнение. Найти отзыв, о котором вы хотите сообщить, щёлкните по "
-"ссылке \"Сообщить об этом отзыве\" и выберите причину. Наша команда редакторов рассмотрит отзыв и примет соответствующие меры."
+"Чтобы сообщить об отзыве пользователя на дополнение, войдите в систему под своей учётной записью и откройте страницу отзывов на дополнение. Найдите отзыв, о котором вы хотите сообщить, щёлкните по "
+"ссылке «Сообщить об этом отзыве» и выберите причину. Наша команда редакторов рассмотрит отзыв и примет соответствующие меры."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Как мне сообщить об ошибке или связаться с командой сайта дополнений Mozilla?"
@@ -7525,22 +6333,840 @@ msgstr "Мы рекомендуем обновиться на <a href=\"%(tb_url
 msgid "Read more about Sunbird"
 msgstr "Узнайте больше о Sunbird"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "При соединении с PayPal произошла ошибка. Пожалуйста, повторите попытку позже."
+msgid "Approved reviews"
+msgstr "Одобренные проверки"
 
-msgid "There was an error with this currency."
-msgstr "С этой валютой произошла ошибка."
+msgid "Deleted reviews"
+msgstr "Удалённые проверки"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Сумма слишком мала для конвертации в валюту получателя."
+msgid "View entries between"
+msgstr "Просмотр записей между"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "Покупатель и продавец должны иметь разные аккаунты PayPal"
+msgid "and"
+msgstr "и"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "Фильтр по типу/действию"
+
+msgid "Passed automatic validation"
+msgstr "Прошло автоматическую валидацию"
+
+msgid "Failed automatic validation"
+msgstr "Не прошло автоматическую валидацию"
+
+msgid "Filter by automatic validation"
+msgstr "Фильтр по автоматической валидации"
+
+msgid "containing"
+msgstr "содержащая"
+
+msgid "start"
+msgstr "начальная"
+
+msgid "end"
+msgstr "конечная"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "дополнение, проверяющий или комментарий"
+
+msgid "Search by add-on name / author email"
+msgstr "Поиск по имени дополнения/адресу автора"
+
+msgid "yes"
+msgstr "да"
+
+msgid "no"
+msgstr "нет"
+
+msgid "Admin Flag"
+msgstr "Флаг админа"
+
+msgid "Add-on Types"
+msgstr "Типы дополнений"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Поиск по имени дополнения / адресу автора / guid"
+
+msgid "Max. Version"
+msgstr "Макс. версия"
+
+msgid "Comments:"
+msgstr "Комментарии:"
+
+msgid "Operating systems:"
+msgstr "Операционные системы:"
+
+msgid "Applications:"
+msgstr "Приложения:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Уведомить меня при следующем обновлении этого дополнения. (Последующие обновления не приведут к отправке письма)"
+
+msgid "Clear Admin Review Flag"
+msgstr "Снять флаг проверки админом"
+
+msgid "Is more info requested?"
+msgstr "Запрошено больше информации?"
+
+msgid "Choose a canned response..."
+msgstr "Выберите стандартный ответ..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "имя темы"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Кто-то ещё проверяет эту тему."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "тема, редактор или комментарий"
+
+msgid "Keep review; remove flags"
+msgstr "Удержать рецензию; удалить флаги"
+
+msgid "Skip for now"
+msgstr "Пока пропустить"
+
+msgid "Delete review"
+msgstr "Удалить отзыв"
+
+msgid "Admin Review"
+msgstr "Рецензия админа"
+
+msgid "Jetpack Add-on"
+msgstr "Jetpack-дополнение"
+
+msgid "More Information Requested"
+msgstr "Запрошено больше информации"
+
+msgid "Contains Reviewer Comment"
+msgstr "Содержит комментарий редактора"
+
+msgid "Sources provided"
+msgstr "Предоставленные исходники"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Заблокировано редактором."
+
+msgid "Duplicate Submission"
+msgstr "Дублирующее представление"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Спасибо, что представили вашу тему"
+
+msgid "A problem with your Theme submission"
+msgstr "Проблема с представлением вашей темы"
+
+msgid "Theme submission flagged for review"
+msgstr "Представленная тема отмечена для проверки"
+
+msgid "A question about your Theme submission"
+msgstr "Вопрос о представлении вашей темы"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Waiting Time"
+msgstr "Время ожидания"
+
+msgid "Flags"
+msgstr "Флаги"
+
+msgid "moments ago"
+msgstr "мгновения назад "
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} минута"
+msgstr[1] "{0} минуты"
+msgstr[2] "{0} минут"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} час"
+msgstr[1] "{0} часа"
+msgstr[2] "{0} часов"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} день"
+msgstr[1] "{0} дня"
+msgstr[2] "{0} дней"
+
+msgid "Last Review"
+msgstr "Последняя проверка"
+
+msgid "Last Update"
+msgstr "Последнее обновление"
+
+msgid "No Reviews"
+msgstr "Нет отзывов"
+
+msgid "Weight"
+msgstr "Вес"
+
+msgid "Last Content Review"
+msgstr "Последняя проверка содержимого"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Это действие отклонит эту версию и удалит её из очереди. Разработчику будут отправлены комментарии."
+
+msgid "Confirm Approval"
+msgstr "Подтвердить одобрение"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения, без уведомления разработчика."
+
+msgid "Reject Multiple Versions"
+msgstr "Отклонить несколько версий"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Это действие отклонит выбранные публичные версии. Разработчику будут отправлены комментарии."
+
+msgid "Reviewer reply"
+msgstr "Ответ проверяющего"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Используйте эту форму, чтобы отправить разработчику сообщение. Вас оповестят, когда он ответит."
+
+msgid "Request super-review"
+msgstr "Запросить суперрецензию"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Если у вас есть сомнения насчёт этого дополнения, требующих изучения администратора, введите ваши комментарии в расположенное ниже поле. Они будут отосланы администраторам, а не разработчику."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Прокомментируйте эту версию. Разработчик не сможет это увидеть."
+
+msgid "Approve Content"
+msgstr "Одобрить содержимое"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Это действие записывает ваше одобрение содержимого этой версии, без уведомления разработчика."
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Новые дополнения (менее 5 дней)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Сносно (от 5 до 10 дней)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Просрочено (более 10 дней)"
+
+msgid "An unknown error occurred"
+msgstr "Произошла неизвестная ошибка"
+
+msgid "Self-reviews are not allowed."
+msgstr "Самопроверка не разрешена."
+
+msgid "Review successfully processed."
+msgstr "Проверка успешно обработана."
+
+msgid "Review lock limit reached"
+msgstr "Достигнут лимит блокировки проверок"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} тема успешно проверена (+{1} очков, всего - {2})."
+msgstr[1] "{0} темы успешно проверено (+{1} очков, всего - {2})."
+msgstr[2] "{0} тем успешно проверено (+{1} очков, всего - {2})."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr "Ваши блокировки тем были успешно сняты. Другие рецензенты теперь могут проверить эти разблокированные темы. Возможно, вам надо обновить страницу, чтобы увидеть внизу изменения в таблице."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: Жалобы на нарушения"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Отчёты о злоупотреблениях для {addon} и его разработчиков ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Работает с"
+
+msgid "Visibility"
+msgstr "Видимость"
+
+msgid "Visible"
+msgstr "Видимое"
+
+msgid "Average Daily Users"
+msgstr "Среднее число активных ежедневных пользователей"
+
+msgid "Abuse Reports"
+msgstr "Отчёты о нарушениях"
+
+msgid "Requires Payment"
+msgstr "Требуется оплата"
+
+msgid "EULA"
+msgstr "Лицензионное соглашение с конечным пользователем (EULA)"
+
+msgid "Last Approval Date"
+msgstr "Дата последнего утверждения"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "Утверждения с момента последней автоматической проверки"
+
+msgid "Abuse Reports ({num})"
+msgstr "Отчёты о злоупотреблениях ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Плохие отзывы пользователей ({num})"
+
+msgid "More about this add-on"
+msgstr "Подробнее об этом дополнении"
+
+msgid "Image Gallery"
+msgstr "Галерея скриншотов"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Здесь нечего смотреть!  Разработчик не добавил никаких деталей."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Вернуться на страницу Инструментов редакторов"
+
+msgid "Queues"
+msgstr "Очереди"
+
+msgid "New Add-ons"
+msgstr "Новые дополнения"
+
+msgid "Updates"
+msgstr "Обновления"
+
+msgid "Moderated Reviews"
+msgstr "Модерируемые проверки"
+
+msgid "Auto Approved Add-ons"
+msgstr "Автоматически утверждённые дополнения"
+
+msgid "Content Review"
+msgstr "Проверка содержимого"
+
+msgid "Unlisted Queues"
+msgstr "Очереди скрытых"
+
+msgid "All Unlisted Add-ons"
+msgstr "Все скрытые дополнения"
+
+msgid "Logs"
+msgstr "Логи"
+
+msgid "Add-on Review Log"
+msgstr "Журнал проверок дополнений"
+
+msgid "Moderated Review Log"
+msgstr "Журнал модерируемых проверок"
+
+msgid "Signed Beta Files Log"
+msgstr "Лог подписанных файлов беты"
+
+msgid "Announcement"
+msgstr "Объявление"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Event"
+msgstr "Событие"
+
+msgid "More details."
+msgstr "Подробнее."
+
+msgid "No events found for this period."
+msgstr "События за этот период не найдены."
+
+msgid "Log details"
+msgstr "Лог подробностей"
+
+msgid "Review Author"
+msgstr "Автор отзыва"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "Этот продавец не принимает платежи в %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Заголовок дополнения"
+
+msgid "Review Title"
+msgstr "Заголовок отзыва"
+
+msgid "Review Text"
+msgstr "Текст отзыва"
+
+msgid "Review was flagged prior to deletion."
+msgstr "Отзыв был отмечен до удаления."
+
+msgid "Undelete"
+msgstr "Восстановить"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Новые дополнения ({num})"
+msgstr[1] "Новые дополнения ({num})"
+msgstr[2] "Новые дополнения ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Обновления ({num})"
+msgstr[1] "Обновления ({num})"
+msgstr[2] "Обновления ({num})"
+
+msgid "Current waiting times:"
+msgstr "Текущее время ожидания:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} дополнение"
+msgstr[1] "{0} дополнения"
+msgstr[2] "{0} дополнений"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Всего проверок"
+
+msgid "Reviews This Month"
+msgstr "Проверки за этот месяц"
+
+msgid "New Reviewers"
+msgstr "Новые редакторы"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "Вы #{0} с {1} проверками"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "Модерируемая проверка ({num})"
+msgstr[1] "Модерируемые проверки ({num})"
+msgstr[2] "Модерируемых проверок ({num})"
+
+msgid "Reviewer Leaderboard"
+msgstr "Панель лидера редакторов"
+
+msgid "No review points awarded yet."
+msgstr "Очков за проверки пока не начислено."
+
+msgid "Rank"
+msgstr "Место"
+
+msgid "Score"
+msgstr "Счёт"
+
+msgid "Update message of the day"
+msgstr "Обновить послание дня"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Производительность Редактора дополнений"
+
+msgid "View statistics for user"
+msgstr "Просмотр статистики пользователя"
+
+msgid "Range"
+msgstr "Диапазон"
+
+msgid "Your Reviews"
+msgstr "Ваши отзывы"
+
+msgid "By {user_name}"
+msgstr "От {user_name}"
+
+msgid "Active Contributors"
+msgstr "Активные участники"
+
+msgid "This Month"
+msgstr "Этот месяц"
+
+msgid "This Year"
+msgstr "Этот год"
+
+msgid "Monthly Performance"
+msgstr "Месячная производительность"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "Разбиение точками по типу за всё время"
+
+msgid "Total"
+msgstr "Всего"
+
+msgid "Month"
+msgstr "Месяц"
+
+msgid "Year"
+msgstr "Год"
+
+msgid "All-Time"
+msgstr "Всё время"
+
+msgid "Advanced Search"
+msgstr "Продвинутый поиск"
+
+msgid "clear search"
+msgstr "очистить поиск"
+
+msgid "Process Reviews"
+msgstr "Обработать рецензии"
+
+msgid "Moderation actions:"
+msgstr "Действия для модерации:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "от %(user)s на %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(user)s  в %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Все отзывы проверены.  Хорошая работа!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "В настоящее время нет дополнений данного типа ждущих проверки."
+
+msgid "Helpful Links:"
+msgstr "Полезные ссылки:"
+
+msgid "Add-on Policy"
+msgstr "Политика дополнений"
+
+msgid "Reviewer's Guide"
+msgstr "Руководство проверяющего"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Проверка содержимого {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Проверить {0}"
+
+msgid "Add-on user change history"
+msgstr "История изменений пользователя дополнения"
+
+msgid "Add-on History"
+msgstr "История дополнения"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Версия %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "Compatibility:"
+msgstr "Совместимость:"
+
+msgid "Additional sources:"
+msgstr "Дополнительные источники:"
+
+msgid "Download files"
+msgstr "Загрузить файлы"
+
+msgid "The developer has provided source code."
+msgstr "Разработчик предоставил исходный код."
+
+msgid "Weight:"
+msgstr "Вес:"
+
+msgid "Not Auto Approved Because"
+msgstr "Не одобрено автоматически, потому что"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Скрипт автоодобрения ещё не проверял эту версию."
+
+msgid "This version has not been reviewed."
+msgstr "Эта версия не была проверена."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Пожалуйста, выберите одну или более версий из списка выше."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "Вы все ещё можете отправить эту форму, но делайте это, только если вы уверены, что это не вызовет конфликт."
+
+msgid "Insert canned response..."
+msgstr "Вставить стандартный ответ..."
+
+msgid "Tested on:"
+msgstr "Протестировано на:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "Белая доска является местом для обмена информацией, относящейся к этому дополнению (независимо от версии), между разработчиком и проверяющим. Она видима и редактируема ими обоими."
+
+msgid "Update the whiteboard"
+msgstr "Обновить белую доску"
+
+msgid "(admin)"
+msgstr "(админ)"
+
+msgid "Admin Page"
+msgstr "Страница администратора"
+
+msgid "Review This Add-on"
+msgstr "Проверить это дополнение"
+
+msgid "More Information"
+msgstr "Дополнительная информация"
+
+msgid "Resolution"
+msgstr "Разрешение"
+
+msgid "Reviewer"
+msgstr "Редактор"
+
+msgid "Add-on has been deleted."
+msgstr "Дополнение было удалено."
+
+msgid "Show Comments"
+msgstr "Показать комментарии"
+
+msgid "Hide Comments"
+msgstr "Скрыть комментарии"
+
+msgid "No reviews found for this period."
+msgstr "Отзывы за этот период не найдены."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] сообщил %(date)s о %(object)s"
+
+msgid "Dismiss this announcement"
+msgstr "Игнорировать это объявление"
+
+msgid "Files in this version:"
+msgstr "Файлы в этой версии:"
+
+msgid "Contents"
+msgstr "Содержимое"
+
+msgid "Compare"
+msgstr "Сравнить"
+
+msgid "Permissions:"
+msgstr "Разрешения:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>От %(user)s на %(date)s</div>"
+
+msgid "Older"
+msgstr "Старше"
+
+msgid "Newer"
+msgstr "Новее"
+
+msgid "Recent Points"
+msgstr "Недавние очки"
+
+msgid "No points awarded yet."
+msgstr "Очков пока не начислено."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Топ редакторов (последние 7 дней)"
+
+msgid "No top reviewers yet."
+msgstr "Пока нет топа редакторов."
+
+msgid "All Time"
+msgstr "Всё время"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "У вас <span>{0}</span> очков."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s на %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Дата удаления"
+
+msgid "No deleted themes found for this period."
+msgstr "Удалённых тем за этот период не найдено."
+
+msgid "Theme Review History for {0}"
+msgstr "Журнал проверки темы {0}"
+
+msgid "Review Date"
+msgstr "Дата проверки"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Reason"
+msgstr "Причина"
+
+msgid "There are currently no reviews."
+msgstr "В настоящее время проверок нет."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} тема ожидающая проверки"
+msgstr[1] "{num} темы ожидающих проверки"
+msgstr[2] "{num} тем ожидающих проверки"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} выбранный для проверки"
+msgstr[1] "{num} выбранных для проверки"
+msgstr[2] "{num} выбранных для проверки"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} Обновление"
+msgstr[1] "{num} Обновления"
+msgstr[2] "{num} Обновлений"
+
+msgid "Flagged Themes"
+msgstr "Отмеченные темы"
+
+msgid "Theme Review Queue"
+msgstr "Очередь проверки тем"
+
+msgid "Review Options"
+msgstr "Параметры проверки"
+
+msgid "Auto-advance after review"
+msgstr "Автопродвижение после проверки"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Включить горячие клавиши"
+
+msgid "Keyboard Shortcuts"
+msgstr "Горячие клавиши"
+
+msgid "Next Theme"
+msgstr "Следующая тeма"
+
+msgid "Previous Theme"
+msgstr "Предыдущая тeма"
+
+msgid "Your Review History"
+msgstr "Ваша история проверок"
+
+msgid "Commit Review"
+msgstr "Внести рецензию"
+
+msgid "Commit Reviews"
+msgstr "Внести рецензии"
+
+msgid "{0} out of {1} reviewed"
+msgstr "{0} из {1} проверено"
+
+msgid "There are currently no Themes to review."
+msgstr "В данный момент тем для проверки нет."
+
+msgid "Clear Search"
+msgstr "Очистить поиск"
+
+msgid "Release My Theme Locks"
+msgstr "Снять мои блокировки тем"
+
+msgid "Interactive Theme Queue"
+msgstr "Интерактивная очередь тем"
+
+msgid "Reviewers' Guide"
+msgstr "Руководство редактора"
+
+msgid "Theme Review for {0}"
+msgstr "Проверка темы для {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Вероятно дублирующее представление)"
+
+msgid "Past Review Notes"
+msgstr "Предыдущие примечания к выпуску"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Запрошено больше информации: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Отмечено: {0}"
+
+msgid "Approve Theme"
+msgstr "Одобрить тeму"
+
+msgid "Field required"
+msgstr "Это поле обязательно"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Введите ID или URL дубликата"
+
+msgid "Select a reason for rejection"
+msgstr "Выберите причину для отклонения"
+
+msgid "Describe your reason for rejection"
+msgstr "Опишите вашу причину для отклонения"
+
+msgid "Ask a question to the artist"
+msgstr "Задайте вопрос художнику"
+
+msgid "Describe your reason for flagging"
+msgstr "Опишите вашу причину для отметки флагом "
+
+msgid "Rejected or Unreviewed"
+msgstr "Отклонено или не проверено"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[статус:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Новое дополнение ({0})"
+msgstr[1] "Новые дополнения ({0})"
+msgstr[2] "Новые дополнения ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Обновление ({0})"
+msgstr[1] "Обновления ({0})"
+msgstr[2] "Обновления ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Модерируемая проверка ({0})"
+msgstr[1] "Модерируемые проверки ({0})"
+msgstr[2] "Модерируемых проверок ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Автоматически утверждённые дополнения ({0})"
+msgstr[1] "Автоматически утверждённые дополнения ({0})"
+msgstr[2] "Автоматически утверждённые дополнения ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Проверка содержимого ({0})"
+msgstr[1] "Проверка содержимого ({0})"
+msgstr[2] "Проверка содержимого ({0})"
+
+msgid "Flagged"
+msgstr "Отмечено"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7581,8 +7207,8 @@ msgstr "Нельзя оставить отзыв на свое дополнен�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Спасибо; этот отзыв помечен и будет рассмотрен редактором."
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Спасибо; этот отзыв помечен и будет рассмотрен проверяющим."
 
 msgid "Add a review for {0}"
 msgstr "Добавить отзыв на {0}"
@@ -7856,9 +7482,6 @@ msgstr "Вы не можете добавить указанную версию 
 msgid "No uploaded file for that addon and version."
 msgstr "Нет загруженного файла для этого дополнения и версии."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Спасибо за то, что внесли свой вклад в {addon_name}"
-
 msgid "Overview"
 msgstr "Обзор"
 
@@ -7879,6 +7502,9 @@ msgstr "по платформе"
 
 msgid "by Add-on Status"
 msgstr "по статусу дополнения"
+
+msgid "Contributions"
+msgstr "Взносы"
 
 msgid "Subscribers"
 msgstr "Подписчики"

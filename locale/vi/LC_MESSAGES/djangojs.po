@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: 2017-10-11 10:10+0000\n"
 "Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -740,17 +740,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} đánh giá của người dùng{reviews} đánh giá của người dùng"
 
-msgid "Learn more"
-msgstr "Xem thêm"
-
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Must be a valid e-mail address."
-msgstr "Yêu cầu địa chỉ thư điện tử hợp lệ."
-
 msgid "No results found."
 msgstr "Không tìm thấy kết quả."
+
+msgid "Loading..."
+msgstr "Đang tải..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] ""
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tôi đang bảo trì trang web. Vui lòng kiểm tra lại sau. "
+
+msgid "Remove this localization"
+msgstr "Xóa bản dịch này"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -787,20 +795,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr "Số lượng review"
-
-msgid "Loading..."
-msgstr "Đang tải..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tôi đang bảo trì trang web. Vui lòng kiểm tra lại sau. "
-
-msgid "Remove this localization"
-msgstr "Xóa bản dịch này"
 
 msgid "Requested Info"
 msgstr "Thông tin được yêu cầu"

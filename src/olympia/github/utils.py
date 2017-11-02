@@ -107,7 +107,7 @@ class GithubRequest(forms.Form):
         for url, method in fields:
             try:
                 self.cleaned_data[url] = self.validate_url(method())
-            except:
+            except Exception:
                 log.error('Invalid data in processing JSON')
                 raise forms.ValidationError('Invalid data')
 

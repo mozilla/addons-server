@@ -267,7 +267,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
     def to_internal_value(self, data):
         try:
             return self.queryset.get(pk=data)
-        except:
+        except Exception:
             try:
                 return self.queryset.get(**{self.slug_field: data})
             except ObjectDoesNotExist:

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-10-28 05:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,8 +827,8 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1356
-#: static/js/zamboni/editors.js:326
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1287
+#: static/js/zamboni/reviewers.js:326
 msgid "Select an application first"
 msgstr ""
 
@@ -957,96 +957,40 @@ msgstr ""
 msgid "Stop following"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:110
+#: static/js/zamboni/devhub.js:105
 msgid "Your browser does not support the video tag"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:373
+#: static/js/zamboni/devhub.js:363
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:379
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:529
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:674
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:677
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:925
-msgid "Learn more"
-msgstr ""
-
-#: static/js/zamboni/devhub.js:1257
+#: static/js/zamboni/devhub.js:1188
 msgid "Image changes being processed"
-msgstr ""
-
-#: static/js/zamboni/devhub.js:1407
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
-
-#: static/js/zamboni/editors.js:130
-msgid "{name} was viewing this page first."
-msgstr ""
-
-#: static/js/zamboni/editors.js:181
-msgid "Receipt checked by app."
-msgstr ""
-
-#: static/js/zamboni/editors.js:183
-msgid "Receipt was not checked by app."
-msgstr ""
-
-#: static/js/zamboni/editors.js:254
-msgid "{name} was viewing this add-on first."
-msgstr ""
-
-#: static/js/zamboni/editors.js:265 static/js/zamboni/editors.js:287
-msgid "Loading&hellip;"
-msgstr ""
-
-#: static/js/zamboni/editors.js:270
-msgid "Version Notes"
-msgstr ""
-
-#: static/js/zamboni/editors.js:275
-msgid "Notes for Reviewers"
-msgstr ""
-
-#: static/js/zamboni/editors.js:280
-msgid "No version notes found"
-msgstr ""
-
-#: static/js/zamboni/editors.js:292
-msgid "Review Text"
-msgstr ""
-
-#: static/js/zamboni/editors.js:297
-msgid "Review notes found"
-msgstr ""
-
-#: static/js/zamboni/editors.js:361
-msgid "Average Reviews"
-msgstr ""
-
-#: static/js/zamboni/editors.js:417
-msgid "Number of Reviews"
 msgstr ""
 
 #: static/js/zamboni/global.js:407
@@ -1068,6 +1012,54 @@ msgstr ""
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:130
+msgid "{name} was viewing this page first."
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:181
+msgid "Receipt checked by app."
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:183
+msgid "Receipt was not checked by app."
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:254
+msgid "{name} was viewing this add-on first."
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:265 static/js/zamboni/reviewers.js:287
+msgid "Loading&hellip;"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:270
+msgid "Version Notes"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:275
+msgid "Notes for Reviewers"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:280
+msgid "No version notes found"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:292
+msgid "Review Text"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:297
+msgid "Review notes found"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:361
+msgid "Average Reviews"
+msgstr ""
+
+#: static/js/zamboni/reviewers.js:417
+msgid "Number of Reviews"
 msgstr ""
 
 #: static/js/zamboni/themes_review.js:176
