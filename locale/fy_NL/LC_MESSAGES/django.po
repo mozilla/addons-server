@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-02 12:50+0000\n"
+"PO-Revision-Date: 2017-11-02 12:53+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2653,10 +2653,10 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foarsteld wurdt."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Mei yngong fan Firefox 53 kinne nije add-ons op dizze website allinnich WebExtensions wêze."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Ferâldere add-ons binne net kompatibel mei Firefox 57 of heger. Brûk in maxVersion fan 56.* of leger."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2740,10 +2740,10 @@ msgid "You cannot submit this type of add-on"
 msgstr "Jo kinne dit type add-on net yntsjinje"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op ‘@mozilla.org’ einiget"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
 msgid "Icons cannot be animated."
 msgstr "Piktogrammen meie net bewegend wêze."
@@ -2781,7 +2781,7 @@ msgid "Review requested."
 msgstr "Beoardieling oanfrege."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Jo moatte mear details opjaan om fierder te gean."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "Jo âlde referinsjes binne ynlutsen en net mear jildich. Soargje derfoar dat jo alle API-clients bywurkje mei de nije referinsjes."
@@ -2809,10 +2809,10 @@ msgid "Review Policies and Rules"
 msgstr "Beoardielingsrigels en -belied"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Ik haw dizze Oerienkomst en de Rigels en it Belied lêzen en akseptearje dizze"
 
 msgid "Accept"
-msgstr ""
+msgstr "Akseptearje"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "of <a href=\"{0}\">Annulearje</a>"
