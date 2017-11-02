@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-02 14:06+0000\n"
+"PO-Revision-Date: 2017-11-02 15:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3746,7 +3746,7 @@ msgstr "Kies in lisinsje dy't tapaslik is foar de rjochten dy't jo op jo boarnek
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Tastiene HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "HTML foar in part stipe."
@@ -3824,7 +3824,7 @@ msgid "Site Status"
 msgstr "Websitesteat"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: útwreidingen bouwe en teste"
 
 msgid "Compatibility Checker"
 msgstr "Kompatibiliteitskontrôle"
@@ -3896,7 +3896,7 @@ msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submissi
 msgstr ""
 
 msgid "See Tutorial"
-msgstr ""
+msgstr "Hantlieding besjen"
 
 msgid "View All Submissions"
 msgstr "Alle ynstjoeringen besjen"
@@ -3962,7 +3962,7 @@ msgid "Sign In"
 msgstr "Oanmelde"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -6016,16 +6016,16 @@ msgid ""
 msgstr ""
 
 msgid "Start Now"
-msgstr ""
+msgstr "No begjinne"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Wat bart hjirnei"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>As jo ynstimme</strong> om diel te nimmen:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
@@ -6052,7 +6052,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr ""
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klik op de fuortsmytknop."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -6064,7 +6064,7 @@ msgid "Your privacy"
 msgstr "Jo privacy"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Alle Shield-ûndersiken"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
@@ -6074,7 +6074,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Dit spesifike ûndersyk"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
@@ -6293,7 +6293,7 @@ msgid "No Reviews"
 msgstr "Gjin beoardielingen"
 
 msgid "Weight"
-msgstr ""
+msgstr "Gewicht"
 
 msgid "Last Content Review"
 msgstr "Lêste ynhâldsbeoardieling"
@@ -6664,7 +6664,7 @@ msgid "The developer has provided source code."
 msgstr ""
 
 msgid "Weight:"
-msgstr ""
+msgstr "Gewicht:"
 
 msgid "Not Auto Approved Because"
 msgstr "Net automatysk goedkard fanwegen"
@@ -7516,7 +7516,7 @@ msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "De nije website besykje"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
@@ -7548,16 +7548,16 @@ msgid "Android Browser"
 msgstr "Android-browser"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS-browser"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus-browser"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Desktopbrowser"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr ""
@@ -7704,7 +7704,7 @@ msgid "someone writes a review of my add-on"
 msgstr ""
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "bliuw by-de-tiid mei foar add-on-ûntwikkelers relevant nijs en eveneminten (wêrûnder de about:addons-nijsbrief)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
@@ -7820,7 +7820,7 @@ msgstr ""
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "Tastiene HTML: %(html)s. Keppelingen binne net tastien."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr ""
