@@ -19,7 +19,7 @@
 
           {% elif extra == 'created' %}
             <span class="created">
-              {{ _('Added {0}')|format_html(addon.created|datetime) }}
+              {{ _('Added {0}')|format_html(addon.created|date) }}
             </span>
           {% elif extra == 'popular' %}
             <span class="users">
@@ -63,9 +63,8 @@
           <div class="details">
             <p>
               {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
-              {% set dt = _('%%Y-%%m-%%d') %}
               {{ _('by {0} on {1}')|format_html(users_list(addon.listed_authors)|safe or persona.display_username|safe,
-                                      addon.created|datetime(dt)) }}
+                                      addon.created|date('Y-m-d')) }}
             </p>
             {% if addon.total_reviews %}
               <a href="{{ url('addons.reviews.list', addon.slug) }}">

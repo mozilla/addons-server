@@ -66,16 +66,6 @@ def xssafe(value):
     return jinja2.Markup(value)
 
 
-@library.filter
-def babel_datetime(dt, format='medium'):
-    return _get_format().datetime(dt, format=format) if dt else ''
-
-
-@library.filter
-def babel_date(date, format='medium'):
-    return _get_format().date(date, format=format) if date else ''
-
-
 @library.global_function
 def locale_url(url):
     """Take a URL and give it the locale prefix."""
@@ -615,18 +605,14 @@ def nl2br(string):
     return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))
 
 
+@library.filter(name='date')
+def format_date(value, format='DATE_FORMAT'):
+    return defaultfilters.date(value, format)
+
+
 @library.filter(name='datetime')
-def datetime_filter(t, fmt=None):
-    """Call ``datetime.strftime`` with the given format string.
-
-    This is a copy from jingo until we have time to port all our templates
-    to use django's datetime filter.
-    """
-    if fmt is None:
-        fmt = u'%B %e, %Y'
-
-    fmt = fmt.encode('utf-8')
-    return smart_text(t.strftime(fmt)) if t else ''
+def format_datetime(value, format='DATETIME_FORMAT'):
+    return defaultfilters.date(value, format)
 
 
 @library.filter

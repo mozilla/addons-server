@@ -4,10 +4,10 @@
       <span class="updated">
         {% if type == 'updated' %}
           {# L10n: {0} is a date. #}
-          {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
+          {{ _('Updated {0}')|format_html(addon.last_updated|date) }}
         {% else %}
           {# L10n: {0} is a date. #}
-          {{ _('Added {0}')|format_html(addon.created|datetime) }}
+          {{ _('Added {0}')|format_html(addon.created|date) }}
         {% endif %}
       </span>
     {% elif type == 'rating' %}
@@ -78,10 +78,10 @@
     <div class="updated">
       {% if field == 'created' %}
         {# L10n: {0} is a date. #}
-        {{ _('Added {0}')|format_html(addon.created|datetime) }}
+        {{ _('Added {0}')|format_html(addon.created|date) }}
       {% else %}
         {# L10n: {0} is a date. #}
-        {{ _('Updated {0}')|format_html(addon.last_updated|datetime) }}
+        {{ _('Updated {0}')|format_html(addon.last_updated|date) }}
       {% endif %}
     </div>
   {% endif %}

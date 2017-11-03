@@ -28,7 +28,7 @@
                 <th>{{ _('Updated') }}</th>
                 <td>
                   <time datetime="{{ addon.last_updated|isotime }}">{{
-                    addon.last_updated|datetime }}</time>
+                    addon.last_updated|date }}</time>
                 </td>
               </tr>
               {% if addon.homepage %}
@@ -140,7 +140,7 @@
               {% if is_post_reviewer and approvals_info %}
                 <tr class="last-approval-date">
                   <th> {{ _('Last Approval Date') }} </th>
-                  <td> {{ approvals_info.last_human_review|datetime }}
+                  <td> {{ approvals_info.last_human_review|date }}
                 </tr>
                 <tr class="approval-counter">
                   <th> {{ _('Approvals Since Last Automatic Review') }} </th>

@@ -34,10 +34,10 @@
           <div class="updated">
             {% if field == 'created' %}
               {# L10n: {0} is a date. #}
-              {{ _('Added {0}')|format_html(c.created|datetime) }}
+              {{ _('Added {0}')|format_html(c.created|date) }}
             {% elif field == 'updated' %}
               {# L10n: {0} is a date. #}
-              {{ _('Updated {0}')|format_html(c.modified|datetime) }}
+              {{ _('Updated {0}')|format_html(c.modified|date) }}
             {% endif %}
           </div>
         {% endif %}

@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.tests import (
     create_switch, ESTestCaseWithAddons, ESTestCase, addon_factory)
 from olympia.amo.templatetags.jinja_helpers import (
-    locale_url, numberfmt, urlparams, datetime_filter)
+    locale_url, numberfmt, urlparams, format_date)
 
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
@@ -991,7 +991,7 @@ class TestCollectionSearch(SearchBase):
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
             assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Added %s' % trim_whitespace(datetime_filter(c.created)))
+                'Added %s' % trim_whitespace(format_date(c.created)))
 
     def test_updated_timestamp(self):
         self._generate()
@@ -999,7 +999,7 @@ class TestCollectionSearch(SearchBase):
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
             assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Updated %s' % trim_whitespace(datetime_filter(c.modified)))
+                'Updated %s' % trim_whitespace(format_date(c.modified)))
 
     def check_followers_count(self, sort, column):
         # Checks that we show the correct type/number of followers.

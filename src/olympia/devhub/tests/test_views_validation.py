@@ -49,7 +49,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
                                        args=[upload.uuid.hex]))
         assert resp.status_code == 200
         doc = pq(resp.content)
-        assert doc('td').text() == 'December  6, 2010'
+        assert doc('td').text() == 'Dec. 6, 2010'
 
     def test_upload_processed_validation_error(self):
         addon_file = open(

@@ -18,7 +18,7 @@
         <tbody>
           {% for addon in pager.object_list %}
             <tr>
-              <td>{{ addon.modified|babel_datetime }}</td>
+              <td>{{ addon.modified|datetime }}</td>
               <td>
                 {{ addon.name }}
               </td>

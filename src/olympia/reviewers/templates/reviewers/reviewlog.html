@@ -36,7 +36,7 @@
         <tbody>
           {% for item in pager.object_list %}
             <tr{% if item.arguments[0] %} data-addonid="{{ item.arguments[0].id }}"{% endif %}>
-              <td>{{ item.created|babel_datetime }}</td>
+              <td>{{ item.created|datetime }}</td>
               <td>
                 {% if item.arguments.0 %}
                   {{ item.arguments.0|link }}

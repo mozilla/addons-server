@@ -46,8 +46,8 @@
           <a href="{{ url('reviewers.review', addon.slug) }}">{{ latest_version }}</a>
         {% endif %}
       </td>
-      <td>{{ addon.created|datetime('%Y-%m-%d %H:%M:%S') }}</td>
-      <td>{{ addon.last_updated|datetime('%Y-%m-%d %H:%M:%S') }}</td>
+      <td>{{ addon.created|date('%Y-%m-%d %H:%M:%S') }}</td>
+      <td>{{ addon.last_updated|date('%Y-%m-%d %H:%M:%S') }}</td>
     </tr>
   {% endfor %}
   </tbody>
