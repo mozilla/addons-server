@@ -125,7 +125,8 @@ class EventLog(models.Model):
         # display only users that are still part of the reviewers groups we've
         # looked at.
         return [{'user': i.arguments[1], 'created': i.created}
-                for i in items if i.arguments[1].is_reviewer]
+                for i in items if i.arguments[1].groups.filter(
+                    name__startswith='Reviewers: ').exists()]
 
 
 def get_flags(record):
@@ -669,14 +670,14 @@ class ReviewerScore(ModelBase):
         leader_top = []
         leader_near = []
 
-        qs = cls._leaderboard_list(
+        leaderboard = cls._leaderboard_list(
             since=week_ago, types=types, addon_type=addon_type)
 
         scores = []
 
         user_rank = 0
         in_leaderboard = False
-        for rank, row in enumerate(qs, 1):
+        for rank, row in enumerate(leaderboard, 1):
             user_id, name, total = row
             scores.append({
                 'user_id': user_id,
@@ -714,10 +715,10 @@ class ReviewerScore(ModelBase):
         """
         Returns reviewers ordered by highest total points first.
         """
-        qs = cls._leaderboard_list()
+        leaderboard = cls._leaderboard_list()
         scores = []
 
-        for row in qs:
+        for row in leaderboard:
             user_id, name, total = row
             user_level = len(amo.REVIEWED_LEVELS) - 1
             for i, level in enumerate(amo.REVIEWED_LEVELS):
@@ -1039,7 +1040,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def get_auto_approved_queue(cls):
-        """Return a qsset of Addon objects that have been auto-approved but
+        """Return a queryset of Addon objects that have been auto-approved but
         not confirmed by a human yet."""
         success_verdict = amo.AUTO_APPROVED
         return (
@@ -1062,7 +1063,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def get_content_review_queue(cls):
-        """Return a qsset of Addon objects that have been auto-approved and
+        """Return a queryset of Addon objects that have been auto-approved and
         need content review."""
         success_verdict = amo.AUTO_APPROVED
         a_year_ago = datetime.now() - timedelta(days=365)
