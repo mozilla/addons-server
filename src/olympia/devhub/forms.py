@@ -198,7 +198,8 @@ class LicenseForm(AMOModelForm):
         builtin = self.cleaned_data['builtin']
         if builtin == '':  # No license chosen, it must be an unlisted add-on.
             return
-        if builtin != License.OTHER:
+        is_other = builtin == License.OTHER
+        if not is_other:
             # We're dealing with a builtin license, there is no modifications
             # allowed to it, just return it.
             license = License.objects.get(builtin=builtin)
@@ -208,7 +209,7 @@ class LicenseForm(AMOModelForm):
             license = super(LicenseForm, self).save(*args, **kw)
 
         if self.version:
-            if changed or license != self.version.license:
+            if (changed and is_other) or license != self.version.license:
                 self.version.update(license=license)
                 if log:
                     ActivityLog.create(amo.LOG.CHANGE_LICENSE, license,
@@ -369,10 +370,15 @@ class BaseCompatFormSet(BaseModelFormSet):
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
         qs = kwargs['queryset'].values_list('application', flat=True)
-        apps = [a for a in amo.APP_USAGE if a.id not in qs]
+        version = self.form_kwargs.get('version')
+        static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
+        available_apps = (amo.APP_USAGE if not static_theme
+                          else amo.APP_USAGE_STATICTHEME)
+        self.can_delete = not static_theme  # No tinkering with apps please.
+        apps = [a for a in available_apps if a.id not in qs]
         self.initial = ([{} for _ in qs] +
                         [{'application': a.id} for a in apps])
-        self.extra = len(amo.APP_GUIDS) - len(self.forms)
+        self.extra = len(available_apps) - len(self.forms)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
@@ -545,7 +551,8 @@ class FileForm(happyforms.ModelForm):
 
     def __init__(self, *args, **kw):
         super(FileForm, self).__init__(*args, **kw)
-        if kw['instance'].version.addon.type == amo.ADDON_SEARCH:
+        addon_type = kw['instance'].version.addon.type
+        if addon_type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
             del self.fields['platform']
         else:
             compat = kw['instance'].version.compatible_platforms()
@@ -779,6 +786,8 @@ class SingleCategoryForm(happyforms.Form):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
+        if len(self.addon.all_categories) > 0:
+            kw['initial'] = {'category': self.addon.all_categories[0].id}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
         form = self.fields['category']
@@ -787,13 +796,8 @@ class SingleCategoryForm(happyforms.Form):
         app = amo.FIREFOX
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
                              key=lambda (slug, cat): slug)
-        choices = [
+        form.choices = [
             (c.id, c.name) for _, c in sorted_cats]
-        form.choices = choices  # sorted(choices, key=lambda x: x.name)
-
-        initials = self.addon.app_categories.get(app.id, [])
-        if len(initials) > 0:
-            form.initial = initials[0]
 
         # If this add-on is featured for this application, category changes are
         # forbidden.

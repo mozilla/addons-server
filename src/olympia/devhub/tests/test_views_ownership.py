@@ -63,6 +63,12 @@ class TestEditPolicy(TestOwnership):
         doc = pq(res.content)
         assert doc('#id_has_eula').attr('checked') == 'checked'
 
+    def test_no_policy_form_for_static_themes(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'policy_form' not in response.context
+
 
 class TestEditLicense(TestOwnership):
 
@@ -428,3 +434,21 @@ class TestEditAuthor(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.context['user_form'].non_form_errors() == (
             ['Must have at least one owner.'])
+
+
+class TestEditAuthorStaticTheme(TestEditAuthor):
+    def setUp(self):
+        super(TestEditAuthorStaticTheme, self).setUp()
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.cc_license = License.objects.create(
+            builtin=11, url='license.url',
+            creative_commons=True, on_form=True)
+
+    def formset(self, *args, **kw):
+        defaults = {'builtin': 11}
+        defaults.update(kw)
+        return formset(*args, **defaults)
+
+    def test_reorder_authors(self):
+        self.get_version().update(license=self.cc_license)
+        super(TestEditAuthorStaticTheme, self).test_reorder_authors()
