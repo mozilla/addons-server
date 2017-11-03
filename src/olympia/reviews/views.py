@@ -77,7 +77,8 @@ def review_list(request, addon, review_id=None, user_id=None):
     if request.user.is_authenticated():
         ctx['review_perms'] = {
             'is_admin': is_admin,
-            'is_reviewer': acl.is_reviewer(request, addon),
+            'is_reviewer': acl.action_allowed(
+                request, amo.permissions.RATINGS_MODERATE),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
         }
@@ -90,7 +91,7 @@ def review_list(request, addon, review_id=None, user_id=None):
 def get_flags(request, reviews):
     reviews = [r.id for r in reviews]
     qs = ReviewFlag.objects.filter(review__in=reviews, user=request.user.id)
-    return dict((r.review_id, r) for r in qs)
+    return {obj.review_id: obj for obj in qs}
 
 
 @addon_view

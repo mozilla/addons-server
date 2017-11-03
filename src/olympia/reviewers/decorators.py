@@ -71,6 +71,26 @@ def personas_reviewer_required(f):
     return wrapper
 
 
+def ratings_moderator_required(f):
+    """Require a ratings moderator user.
+
+    The user logged in must be a ratings moderator or admin, or have the
+    'ReviewerTools:View' permission for GET requests.
+
+    A ratings moderator is someone who is in the group with the following
+    permission: 'Ratings:Moderate'.
+
+    """
+    @login_required
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        if _view_on_get(request) or acl.action_allowed(
+                request, amo.permissions.RATINGS_MODERATE):
+            return f(request, *args, **kw)
+        raise PermissionDenied
+    return wrapper
+
+
 def any_reviewer_required(f):
     """Require an addons or personas reviewer."""
     @functools.wraps(f)

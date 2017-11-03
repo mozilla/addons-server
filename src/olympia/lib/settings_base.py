@@ -73,7 +73,6 @@ UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 REVIEWERS_EMAIL = 'amo-editors@mozilla.org'
-SENIOR_REVIEWERS_EMAIL = 'amo-editors+somethingbad@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'

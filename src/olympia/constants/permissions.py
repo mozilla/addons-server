@@ -13,8 +13,6 @@ ADMIN = AclPermission('Admin', '%')
 ADMIN_TOOLS_VIEW = AclPermission('AdminTools', 'View')
 # Can view add-on reviewer admin tools.
 REVIEWER_ADMIN_TOOLS_VIEW = AclPermission('ReviewerAdminTools', 'View')
-# Can view theme reviewer admin tools.
-THEME_ADMIN_TOOLS_VIEW = AclPermission('SeniorPersonasTools', 'View')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can configure some settings of an add-on.
@@ -56,11 +54,14 @@ EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')
 # Can localize all locales.
 LOCALIZER = AclPermission('Localizer', '%')
 
-# Can edit user accounts:
+# Can edit user accounts.
 USERS_EDIT = AclPermission('Users', 'Edit')
 
-# Can access mailing list
+# Can access mailing list.
 MAILING_LISTS_VIEW = AclPermission('MailingLists', 'View')
+
+# Can moderate add-on ratings submitted by users.
+RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [

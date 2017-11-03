@@ -42,7 +42,7 @@ from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
     addons_reviewer_required, any_reviewer_required,
-    unlisted_addons_reviewer_required)
+    ratings_moderator_required, unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -400,8 +400,8 @@ def is_admin_reviewer(request):
                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
-def exclude_admin_only_addons(queryset):
-    return queryset.filter(admin_review=False)
+def exclude_admin_only_addons(qs):
+    return qs.filter(admin_review=False)
 
 
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
@@ -518,7 +518,7 @@ def queue_pending(request):
     return _queue(request, ViewPendingQueueTable, 'pending')
 
 
-@addons_reviewer_required
+@ratings_moderator_required
 def queue_moderated(request):
     qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
     page = paginate(request, qs, per_page=20)
@@ -925,7 +925,8 @@ def reviewlog(request):
 
     approvals = ActivityLog.objects.review_log()
     if not acl.check_unlisted_addons_reviewer(request):
-        # Display logs related to unlisted versions only to senior reviewers.
+        # Only display logs related to unlisted versions to users with the
+        # right permission.
         list_channel = amo.RELEASE_CHANNEL_LISTED
         approvals = approvals.filter(versionlog__version__channel=list_channel)
 

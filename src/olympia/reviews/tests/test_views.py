@@ -286,13 +286,14 @@ class TestDelete(ReviewTest):
         assert Review.objects.count() == cnt - 1
         assert not Review.objects.filter(pk=218468).exists()
 
-    def test_reviewer_can_delete_moderated_review(self):
-        # Test a reviewer can delete a review if not listed as an author.
+    def test_moderator_can_delete_flagged_review(self):
+        # Test a moderator can delete a review if not listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
         AddonUser.objects.filter(addon=self.addon).delete()
-        # Make user an add-on reviewer.
-        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        # Make user a moderator.
+        group = Group.objects.create(
+            name='Reviewers: Moderators', rules='Ratings:Moderate')
         GroupUser.objects.create(group=group, user=user)
         # Make review pending moderation
         Review.objects.get(pk=218207).update(editorreview=True)
@@ -307,13 +308,14 @@ class TestDelete(ReviewTest):
         assert Review.objects.count() == cnt - 2
         assert not Review.objects.filter(pk=218207).exists()
 
-    def test_reviewer_cannot_delete_unmoderated_review(self):
-        # Test a reviewer can delete a review if not listed as an author.
+    def test_moderator_cannot_delete_unflagged_review(self):
+        # Test a moderator can not delete a review if it's not flagged.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
         AddonUser.objects.filter(addon=self.addon).delete()
-        # Make user an add-on reviewer.
-        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        # Make user an moderator.
+        group = Group.objects.create(
+            name='Reviewers: Moderators', rules='Ratings:Moderate')
         GroupUser.objects.create(group=group, user=user)
 
         self.client.logout()
@@ -325,11 +327,12 @@ class TestDelete(ReviewTest):
         assert Review.objects.count() == cnt
         assert Review.objects.filter(pk=218207).exists()
 
-    def test_reviewer_own_addon_cannot_delete(self):
-        # Test a reviewer cannot delete a review if listed as an author.
+    def test_moderator_own_addon_cannot_delete_review(self):
+        # Test a moderator cannot delete a review if listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
-        # Make user an add-on reviewer.
-        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        # Make user an moderator.
+        group = Group.objects.create(
+            name='Reviewers: Moderators', rules='Ratings:Moderate')
         GroupUser.objects.create(group=group, user=user)
 
         self.client.logout()
@@ -1374,28 +1377,28 @@ class TestReviewViewSetDelete(TestCase):
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
 
-    def test_delete_reviewer_moderated(self):
+    def test_delete_moderator_flagged(self):
         self.review.update(editorreview=True)
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Addons:Review')
+        self.grant_permission(admin_user, 'Ratings:Moderate')
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 204
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
 
-    def test_delete_reviewer_not_moderated(self):
+    def test_delete_moderator_not_flagged(self):
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Addons:Review')
+        self.grant_permission(admin_user, 'Ratings:Moderate')
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 403
         assert Review.objects.count() == 1
 
-    def test_delete_reviewer_but_addon_author(self):
+    def test_delete_moderator_but_addon_author(self):
         admin_user = user_factory()
         self.addon.addonuser_set.create(user=admin_user)
-        self.grant_permission(admin_user, 'Addons:Review')
+        self.grant_permission(admin_user, 'Ratings:Moderate')
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 403

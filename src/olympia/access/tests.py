@@ -50,7 +50,7 @@ def test_match_rules():
         'Personas:Review',
         'Locales:Edit',
         'Locale.de:Edit',
-        'Reviews:Edit',
+        'Users:Edit',
         'None:None',
     )
 
