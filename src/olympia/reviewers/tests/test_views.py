@@ -586,7 +586,7 @@ class TestHome(ReviewerTest):
         assert not p.text()
 
     def test_new_reviewers(self):
-        assert self.user.is_reviewer  # Part of a 'Reviewers: ...' group.
+        assert self.user.groups.filter(name__startswith='Reviewers: ').exists()
         ActivityLog.create(
             amo.LOG.GROUP_USER_ADDED,
             Group.objects.get(name='Reviewers: Legacy'), self.user)
@@ -605,7 +605,8 @@ class TestHome(ReviewerTest):
             amo.LOG.GROUP_USER_ADDED,
             Group.objects.get(name='Reviewers: Legacy'), former_reviewer)
         # This user is not currently part of a 'Reviewers: ...' group.
-        assert not former_reviewer.is_reviewer
+        assert not former_reviewer.groups.filter(
+            name__startswith='Reviewers: ').exists()
 
         doc = pq(self.client.get(self.url).content)
 
