@@ -128,7 +128,7 @@
                     {{ select_cats(amo.MAX_CATEGORIES, form) }}
                   {% endif %}
                 {% endfor %}
-              {% elif editable %}
+              {% elif editable and addon.type == amo.ADDON_STATICTHEME %}
                 {{ cat_form.category.errors }}
                 {{ cat_form.category }}
                 {% if cat_form.disabled %}

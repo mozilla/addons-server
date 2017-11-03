@@ -159,12 +159,12 @@ class UNKNOWN_APP(App):
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
+APP_USAGE_STATICTHEME = (FIREFOX,)
 APPS = {app.short: app for app in APP_USAGE}
 APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
 APP_IDS = {app.id: app for app in APP_USAGE}
 APP_GUIDS = {app.guid: app for app in APP_USAGE}
 APPS_CHOICES = tuple((app.id, app.pretty) for app in APP_USAGE)
-APP_USAGE_STATICTHEME = (FIREFOX,)
 
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:
