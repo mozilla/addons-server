@@ -192,6 +192,7 @@ AMO_LANGUAGES = (
     'sl',  # Slovenian
     'sq',  # Albanian
     'sv-SE',  # Swedish
+    'tr',  # Turkish
     'uk',  # Ukrainian
     'ur',  # Urdu
     'vi',  # Vietnamese
