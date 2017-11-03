@@ -3179,7 +3179,7 @@ class TestReview(ReviewBase):
         report = AbuseReport.objects.create(
             addon=self.addon, message=u'Et mël mazim ludus.',
             ip_address='10.1.2.3')
-        created_at = report.created.strftime('%b. %e, %Y')
+        created_at = report.created.strftime('%b.%e, %Y')
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('.abuse_reports')
@@ -3203,7 +3203,7 @@ class TestReview(ReviewBase):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
             ip_address='10.4.5.6')
-        created_at = report.created.strftime('%b. %e, %Y')
+        created_at = report.created.strftime('%b.%e, %Y')
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         self.login_as_senior_reviewer()
@@ -3220,7 +3220,7 @@ class TestReview(ReviewBase):
         user_review = Review.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = user_review.created.strftime('%b. %e, %Y')
+        created_at = user_review.created.strftime('%b.%e, %Y')
         Review.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
         Review.objects.create(  # Reply to a review, ignored.
