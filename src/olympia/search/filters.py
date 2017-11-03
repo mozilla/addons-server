@@ -263,9 +263,9 @@ class SearchQueryFilter(BaseFilterBackend):
             (query.Match, {
                 'query': search_query, 'boost': 3,
                 'analyzer': 'standard'}),
-            (query.Fuzzy, {
-                'value': search_query, 'boost': 2,
-                'prefix_length': 4}),
+            (query.Match, {
+                'query': search_query, 'boost': 2,
+                'prefix_length': 4, 'fuzziness': 'AUTO'}),
             (query.Prefix, {
                 'value': search_query, 'boost': 1.5}),
         ]

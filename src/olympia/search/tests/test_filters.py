@@ -94,9 +94,10 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'blah'
+                    'boost': 2, 'prefix_length': 4, 'value': 'blah',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
@@ -106,9 +107,10 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'fuzzy': {
+            'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'search terms'
+                    'boost': 2, 'prefix_length': 4, 'value': 'search terms',
+                    'fuzziness': 'AUTO',
                 }
             }
         }
