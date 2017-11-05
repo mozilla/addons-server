@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-10-19 09:14+0000\n"
+"PO-Revision-Date: 2017-10-11 21:19+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5577,7 +5577,7 @@ msgid "How long will it take for my add-on to be reviewed?"
 msgstr "כמה זמן ייקח לתוספת שלי לעבור סקירה?"
 
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "אין לנו אפשרות להעריך את הזמן שיידרש בטרם סקירת תוספת. גורמים רבים משפיעים על זמן ההמתנה לרבות:"
 
 #. part of a list (<li>)
 msgid "number of add-on submissions"
