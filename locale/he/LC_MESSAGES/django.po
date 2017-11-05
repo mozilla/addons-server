@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-01 18:16+0000\n"
+"PO-Revision-Date: 2017-11-05 18:49+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3357,10 +3357,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "נא לספר לנו מדוע בחרת למחוק את ערכת הנושא שלך:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "נא לספר לנו מדוע בחרת למחוק את התוספת שלך:"
 
 msgid "Actions"
 msgstr "פעולות"
@@ -3495,10 +3495,10 @@ msgid "Notes to Reviewer:"
 msgstr "הערות לסוקר:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "האם יש משהו שכדאי לסוקרים לשקול בעת סקירת תוספת זו?"
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "ההערות הללו תהיינה גלויות לך ולסוקרים שלנו בלבד."
 
 msgid "Cancel and Disable Version"
 msgstr "ביטול והשבתת הגרסה"
@@ -3518,7 +3518,7 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "הערות אלו תופענה בעמוד הפרטים."
 
 msgid "How to Distribute this Version"
 msgstr "כיצד להפיץ גרסה זו"
