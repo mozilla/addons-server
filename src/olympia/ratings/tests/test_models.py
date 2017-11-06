@@ -137,7 +137,7 @@ class TestRatingModel(TestCase):
             'title': 'r1 title en'
         }
         assert activity_log.user == moderator
-        assert activity_log.action == amo.LOG.DELETE_REVIEW.id
+        assert activity_log.action == amo.LOG.DELETE_RATING.id
         assert activity_log.arguments == [rating.addon, rating]
 
         assert log_mock.info.call_count == 1
@@ -170,7 +170,7 @@ class TestRatingModel(TestCase):
             'title': 'r1 title en'
         }
         assert activity_log.user == moderator
-        assert activity_log.action == amo.LOG.APPROVE_REVIEW.id
+        assert activity_log.action == amo.LOG.APPROVE_RATING.id
         assert activity_log.arguments == [rating.addon, rating]
 
     def test_filter_for_many_to_many(self):
@@ -207,7 +207,7 @@ class TestRatingModel(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == review_user
         assert activity_log.arguments == [addon, rating]
-        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+        assert activity_log.action == amo.LOG.ADD_RATING.id
 
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
@@ -255,7 +255,7 @@ class TestRatingModel(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == rating.user
         assert activity_log.arguments == [rating.addon, rating]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert mail.outbox == []
 
@@ -273,7 +273,7 @@ class TestRatingModel(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == reply.user
         assert activity_log.arguments == [reply.addon, reply]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert mail.outbox == []
 

@@ -125,7 +125,7 @@ class Rating(ModelBase):
         from olympia.reviewers.models import ReviewerScore
 
         activity.log_create(
-            amo.LOG.APPROVE_REVIEW, self.addon, self, user=user, details=dict(
+            amo.LOG.APPROVE_RATING, self.addon, self, user=user, details=dict(
                 title=unicode(self.title),
                 body=unicode(self.body),
                 addon_id=self.addon.pk,
@@ -152,7 +152,7 @@ class Rating(ModelBase):
             from olympia.reviewers.models import ReviewerScore
 
             activity.log_create(
-                amo.LOG.DELETE_REVIEW, self.addon, self, user=user_responsible,
+                amo.LOG.DELETE_RATING, self.addon, self, user=user_responsible,
                 details=dict(
                     title=unicode(self.title),
                     body=unicode(self.body),
@@ -242,7 +242,7 @@ class Rating(ModelBase):
             # this time) by users we want to insert a new ActivityLog.
             new_rating_or_edit = not instance.reply_to or not created
             if new_rating_or_edit:
-                action = amo.LOG.ADD_REVIEW if created else amo.LOG.EDIT_REVIEW
+                action = amo.LOG.ADD_RATING if created else amo.LOG.EDIT_RATING
                 activity.log_create(action, instance.addon, instance,
                                     user=instance.user_responsible)
 

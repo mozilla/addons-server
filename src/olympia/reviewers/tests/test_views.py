@@ -75,7 +75,7 @@ class TestEventLog(ReviewerTest):
         """
         review = self.make_review(username='b')
         ActivityLog.create(
-            amo.LOG.APPROVE_REVIEW, review, review.addon).update(
+            amo.LOG.APPROVE_RATING, review, review.addon).update(
             created=datetime(2011, 1, 1))
 
         r = self.client.get(self.url, dict(end='2011-01-01'))
@@ -90,8 +90,8 @@ class TestEventLog(ReviewerTest):
         """
         review = self.make_review()
         for i in xrange(2):
-            ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
-            ActivityLog.create(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+            ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
+            ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         r = self.client.get(self.url, dict(filter='deleted'))
         assert pq(r.content)('tbody tr').length == 2
 
@@ -104,7 +104,7 @@ class TestEventLogDetail(TestEventLog):
 
     def test_me(self):
         review = self.make_review()
-        ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
+        ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
         id = ActivityLog.objects.reviewer_events()[0].id
         r = self.client.get(reverse('reviewers.eventlog.detail', args=[id]))
         assert r.status_code == 200
@@ -461,7 +461,7 @@ class TestHome(ReviewerTest):
     def test_approved_review(self):
         review = self.make_review()
         ActivityLog.create(
-            amo.LOG.APPROVE_REVIEW, review, review.addon, details={
+            amo.LOG.APPROVE_RATING, review, review.addon, details={
                 'addon_name': 'test',
                 'addon_id': review.addon.pk,
                 'is_flagged': True,
@@ -1236,7 +1236,7 @@ class TestModeratedQueue(QueueTest):
     def test_remove(self):
         """Make sure the reviewer tools can delete a review."""
         self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
-        logs = self.get_logs(amo.LOG.DELETE_REVIEW)
+        logs = self.get_logs(amo.LOG.DELETE_RATING)
         assert logs.count() == 1
 
         # Make sure it's removed from the queue.
@@ -1265,7 +1265,7 @@ class TestModeratedQueue(QueueTest):
         assert Rating.objects.filter(addon=1865).count() == 2
 
         self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
-        logs = self.get_logs(amo.LOG.DELETE_REVIEW)
+        logs = self.get_logs(amo.LOG.DELETE_RATING)
         assert logs.count() == 0
 
         # Make sure it's not removed from the queue.
@@ -1283,7 +1283,7 @@ class TestModeratedQueue(QueueTest):
     def test_keep(self):
         """Make sure the reviewer tools can remove flags and keep a review."""
         self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
-        logs = self.get_logs(amo.LOG.APPROVE_REVIEW)
+        logs = self.get_logs(amo.LOG.APPROVE_RATING)
         assert logs.count() == 1
 
         # Make sure it's removed from the queue.

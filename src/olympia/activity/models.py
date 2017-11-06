@@ -416,7 +416,7 @@ class ActivityLog(ModelBase):
         try:
             kw = {
                 'addon': addon,
-                'review': rating,
+                'rating': rating,
                 'version': version,
                 'collection': collection,
                 'tag': tag,

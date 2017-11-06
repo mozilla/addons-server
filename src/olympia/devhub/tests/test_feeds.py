@@ -55,7 +55,7 @@ class TestActivity(HubTest):
     def log_rating(self, num):
         rating = Rating(addon=self.addon)
         for i in xrange(num):
-            ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, rating)
+            ActivityLog.create(amo.LOG.ADD_RATING, self.addon, rating)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -115,14 +115,14 @@ class TestActivity(HubTest):
 
     def test_filter_reviews(self):
         self.log_creates(10)
-        self.log_review(10)
+        self.log_rating(10)
         doc = self.get_pq()
         assert len(doc('.item')) == 20
         doc = self.get_pq(action='reviews')
         assert len(doc('.item')) == 10
 
     def test_pagination(self):
-        self.log_review(21)
+        self.log_rating(21)
         doc = self.get_pq()
 
         # 20 items on page 1.

@@ -148,7 +148,7 @@ class TestActivityLog(TestCase):
 
     def test_fancy_rendering(self):
         """HTML for Rating, and Collection."""
-        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
+        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_RATING.id)
         user = UserProfile.objects.create()
         rating = Rating.objects.create(user=user, addon_id=3615)
         activity_log.arguments = [activity_log, rating]

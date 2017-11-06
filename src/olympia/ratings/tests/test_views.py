@@ -380,13 +380,13 @@ class TestCreate(ReviewTest):
         assert len(mail.outbox) == 0
 
     def test_review_success(self):
-        activity_qs = ActivityLog.objects.filter(action=amo.LOG.ADD_REVIEW.id)
+        activity_qs = ActivityLog.objects.filter(action=amo.LOG.ADD_RATING.id)
         old_cnt = self.qs.count()
         log_count = activity_qs.count()
         response = self.client.post(self.add_url, {'body': 'xx', 'rating': 3})
         self.assertRedirects(response, self.list_url, status_code=302)
         assert self.qs.count() == old_cnt + 1
-        # We should have an ADD_REVIEW entry now.
+        # We should have an ADD_RATING entry now.
         assert activity_qs.count() == log_count + 1
 
         assert len(mail.outbox) == 1
@@ -539,7 +539,7 @@ class TestCreate(ReviewTest):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, review]
-        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+        assert activity_log.action == amo.LOG.ADD_RATING.id
 
         assert len(mail.outbox) == 1
 
@@ -569,7 +569,7 @@ class TestCreate(ReviewTest):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == existing_reply.user
         assert activity_log.arguments == [self.addon, existing_reply]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -645,7 +645,7 @@ class TestEdit(ReviewTest):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == user
         assert activity_log.arguments == [self.addon, review]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -663,7 +663,7 @@ class TestEdit(ReviewTest):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == admin_user
         assert activity_log.arguments == [self.addon, review]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -678,7 +678,7 @@ class TestEdit(ReviewTest):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == user
         assert activity_log.arguments == [self.addon, review]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -1492,7 +1492,7 @@ class TestRatingViewSetEdit(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, self.review]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -1540,7 +1540,7 @@ class TestRatingViewSetEdit(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == admin_user
         assert activity_log.arguments == [self.addon, self.review]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -1564,7 +1564,7 @@ class TestRatingViewSetEdit(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == addon_author
         assert activity_log.arguments == [self.addon, reply]
-        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+        assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
 
@@ -1646,7 +1646,7 @@ class TestRatingViewSetPost(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, review]
-        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+        assert activity_log.action == amo.LOG.ADD_RATING.id
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [addon_author.email]

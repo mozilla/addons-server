@@ -628,7 +628,7 @@ class TestActivityFeed(TestCase):
             reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 302
 
-    def add_log(self, action=amo.LOG.ADD_REVIEW):
+    def add_log(self, action=amo.LOG.ADD_RATING):
         core.set_user(UserProfile.objects.get(email='del@icio.us'))
         ActivityLog.create(action, self.addon, self.version)
 

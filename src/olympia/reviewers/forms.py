@@ -31,8 +31,8 @@ log = olympia.core.logger.getLogger('z.reviewers.forms')
 ACTION_FILTERS = (('', ''), ('approved', _(u'Approved reviews')),
                   ('deleted', _(u'Deleted reviews')))
 
-ACTION_DICT = dict(approved=amo.LOG.APPROVE_REVIEW,
-                   deleted=amo.LOG.DELETE_REVIEW)
+ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
+                   deleted=amo.LOG.DELETE_RATING)
 
 
 class EventLogForm(happyforms.Form):

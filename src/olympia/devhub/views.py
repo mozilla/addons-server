@@ -243,7 +243,7 @@ def _get_items(action, addons):
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                                 amo.LOG.REMOVE_FROM_COLLECTION,),
-                   reviews=(amo.LOG.ADD_REVIEW,))
+                   reviews=(amo.LOG.ADD_RATING,))
 
     filter_ = filters.get(action)
     items = (ActivityLog.objects.for_addons(addons)
