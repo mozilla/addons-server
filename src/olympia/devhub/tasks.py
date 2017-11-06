@@ -42,7 +42,7 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, subtask=None):
+def validate(file_, listed=None, subtask=None, synchronous=False):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
@@ -55,14 +55,19 @@ def validate(file_, listed=None, subtask=None):
     validator = Validator(file_, listed=listed)
 
     task_id = cache.get(validator.cache_key)
-    if task_id:
+    if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
         chain = validator.task
         if subtask is not None:
             chain |= subtask
-        result = chain.delay()
-        cache.set(validator.cache_key, result.task_id, 5 * 60)
+
+        if synchronous:
+            result = chain.apply()
+        else:
+            result = chain.delay()
+            cache.set(validator.cache_key, result.task_id, 5 * 60)
+
         return result
 
 
