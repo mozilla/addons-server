@@ -486,9 +486,9 @@ class TestAddonIndexer(TestCase):
         assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
         expected_version_compat = {
             'max': 9999000000200100,
-            'max_human': None,
-            'min': 0,
-            'min_human': None
+            'max_human': '9999',
+            'min': 1000000200100,
+            'min_human': '1.0',
         }
         assert extracted['current_version']['compatible_apps'] == {
             amo.ANDROID.id: expected_version_compat,

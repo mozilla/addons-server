@@ -171,7 +171,7 @@ class AddonSerializerOutputTestMixin(object):
             application=amo.THUNDERBIRD.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         # Reset current_version.compatible_apps now that we've added an app.
-        del self.addon.current_version.compatible_apps
+        del self.addon.current_version._compatible_apps
 
         cat2 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
@@ -553,8 +553,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result_version['compatibility'] == {}
         assert result_version['is_strict_compatibility_enabled'] is False
 
-        # Test an add-on with some compatibility info but which should not have
-        # any because its type is in NO_COMPAT.
+        # Test an add-on with some compatibility info but that should be
+        # ignored because its type is in NO_COMPAT.
         self.addon = addon_factory(type=amo.ADDON_SEARCH)
         av_min = AppVersion.objects.get_or_create(
             application=amo.THUNDERBIRD.id, version='2.0.99')[0]
@@ -564,7 +564,13 @@ class AddonSerializerOutputTestMixin(object):
             application=amo.THUNDERBIRD.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         result_version = self.serialize()['current_version']
-        assert result_version['compatibility'] == {}
+        assert result_version['compatibility'] == {
+            'android': {'max': '9999', 'min': '1.0'},
+            'firefox': {'max': '9999', 'min': '1.0'},
+            'seamonkey': {'max': '9999', 'min': '1.0'},
+            # No thunderbird: it does not support that type, and when we return
+            # fake compatibility data for NO_COMPAT add-ons we do obey that.
+        }
         assert result_version['is_strict_compatibility_enabled'] is False
 
 

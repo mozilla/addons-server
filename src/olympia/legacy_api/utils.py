@@ -19,7 +19,7 @@ log = olympia.core.logger.getLogger('z.api')
 
 def addon_to_dict(addon, disco=False, src='api'):
     """
-    Renders an addon in JSON for the API.
+    Renders an addon into a dict for the legacy API.
     """
     def url(u, **kwargs):
         return settings.SITE_URL + urlparams(u, **kwargs)
@@ -62,10 +62,11 @@ def addon_to_dict(addon, disco=False, src='api'):
     if v:
         d['version'] = v.version
         d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
-        d['compatible_apps'] = [
-            {unicode(amo.APP_IDS[obj.application].pretty): {
-                'min': unicode(obj.min), 'max': unicode(obj.max)}}
-            for obj in v.compatible_apps.values()]
+        d['compatible_apps'] = [{
+            unicode(amo.APP_IDS[obj.application].pretty): {
+                'min': unicode(obj.min) if obj else '1.0',
+                'max': unicode(obj.max) if obj else '9999',
+            }} for obj in v.compatible_apps.values() if obj]
     if addon.eula:
         d['eula'] = unicode(addon.eula)
 

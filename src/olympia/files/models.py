@@ -252,7 +252,7 @@ class File(OnChangeMixin, ModelBase):
         parts.append(name)
         parts.append(self.version.version)
 
-        if self.version.compatible_apps:
+        if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
             apps = '+'.join(sorted([a.shortername for a in
                                     self.version.compatible_apps]))
             parts.append(apps)
