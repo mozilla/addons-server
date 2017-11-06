@@ -635,6 +635,9 @@ def _get_comments_for_hard_deleted_versions(addon):
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
+    whiteboard_url = reverse(
+        'reviewers.whiteboard',
+        args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
     if channel == 'content':
         # 'content' is not a real channel, just a different review mode for
         # listed add-ons.
@@ -808,23 +811,20 @@ def review(request, addon, channel=None):
     user_changes_log = AddonLog.objects.filter(
         activity_log__action__in=user_changes_actions,
         addon=addon).order_by('id')
-    ctx = context(request, version=version, addon=addon,
-                  pager=pager, num_pages=num_pages, count=count, flags=flags,
-                  form=form, canned=canned, is_admin=is_admin,
-                  show_diff=show_diff,
-                  actions=actions, actions_minimal=actions_minimal,
-                  actions_comments=actions_comments,
-                  actions_info_request=actions_info_request,
-                  whiteboard_form=forms.WhiteboardForm(instance=addon),
-                  user_changes=user_changes_log,
-                  unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-                  approvals_info=approvals_info,
-                  is_post_reviewer=is_post_reviewer,
-                  auto_approval_info=auto_approval_info,
-                  reports=reports, user_reviews=user_reviews,
-                  was_auto_approved=was_auto_approved,
-                  content_review_only=content_review_only)
-
+    ctx = context(
+        request, actions=actions, actions_comments=actions_comments,
+        actions_info_request=actions_info_request,
+        actions_minimal=actions_minimal, addon=addon,
+        approvals_info=approvals_info, auto_approval_info=auto_approval_info,
+        canned=canned, content_review_only=content_review_only, count=count,
+        flags=flags, form=form, is_admin=is_admin,
+        is_post_reviewer=is_post_reviewer, num_pages=num_pages, pager=pager,
+        reports=reports, show_diff=show_diff,
+        unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
+        user_changes=user_changes_log, user_reviews=user_reviews,
+        version=version, was_auto_approved=was_auto_approved,
+        whiteboard_form=forms.WhiteboardForm(instance=addon),
+        whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
 
 
@@ -969,12 +969,13 @@ def leaderboard(request):
 
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
-def whiteboard(request, addon):
+def whiteboard(request, addon, channel):
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 
     if form.is_valid():
         addon = form.save()
-        return redirect('reviewers.review', addon.pk)
+        return redirect('reviewers.review', channel,
+                        addon.slug if addon.slug else addon.pk)
     raise PermissionDenied
 
 
