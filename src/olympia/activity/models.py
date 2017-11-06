@@ -356,7 +356,7 @@ class ActivityLog(ModelBase):
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
         addon = None
-        review = None
+        rating = None
         version = None
         collection = None
         tag = None
@@ -371,8 +371,8 @@ class ActivityLog(ModelBase):
                 else:
                     addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
-            if isinstance(arg, Rating) and not review:
-                review = self.f(u'<a href="{0}">{1}</a>',
+            if isinstance(arg, Rating) and not rating:
+                rating = self.f(u'<a href="{0}">{1}</a>',
                                 arg.get_url_path(), ugettext('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
@@ -414,9 +414,16 @@ class ActivityLog(ModelBase):
         user = user_link(self.user)
 
         try:
-            kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user, group=group,
-                      file=file_)
+            kw = {
+                'addon': addon,
+                'review': rating,
+                'version': version,
+                'collection': collection,
+                'tag': tag,
+                'user': user,
+                'group': group,
+                'file': file_,
+            }
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

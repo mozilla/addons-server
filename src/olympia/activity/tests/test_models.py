@@ -147,11 +147,11 @@ class TestActivityLog(TestCase):
         assert url_path not in unicode(entries[0])
 
     def test_fancy_rendering(self):
-        """HTML for Review, and Collection."""
+        """HTML for Rating, and Collection."""
         activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
         user = UserProfile.objects.create()
-        review = Rating.objects.create(user=user, addon_id=3615)
-        activity_log.arguments = [activity_log, review]
+        rating = Rating.objects.create(user=user, addon_id=3615)
+        activity_log.arguments = [activity_log, rating]
         assert '>Review</a> for None written.' in activity_log.to_string()
         activity_log.action = amo.LOG.ADD_TO_COLLECTION.id
         activity_log.arguments = [activity_log, Collection.objects.create()]
