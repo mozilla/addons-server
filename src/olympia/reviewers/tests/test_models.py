@@ -875,17 +875,17 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 10
         assert weight_info['abuse_reports'] == 10
 
-    def test_calculate_weight_negative_reviews(self):
-        # Positive review, does not count.
+    def test_calculate_weight_negative_ratings(self):
+        # Positive rating, does not count.
         Rating.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=5)
 
-        # Negative review, but too old, does not count.
-        old_review = Rating.objects.create(
+        # Negative rating, but too old, does not count.
+        old_rating = Rating.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=1)
-        old_review.update(created=self.days_ago(370))
+        old_rating.update(created=self.days_ago(370))
 
         # Negative review on a different add-on, does not count either.
         extra_addon = addon_factory()
@@ -893,15 +893,15 @@ class TestAutoApprovalSummary(TestCase):
             user=user_factory(), addon=extra_addon,
             version=extra_addon.current_version, rating=1)
 
-        # Recent negative reviews.
-        reviews = [Rating(
+        # Recent negative ratings.
+        ratings = [Rating(
             user=user_factory(), addon=self.addon,
             version=self.version, rating=3) for i in range(0, 49)]
-        Rating.objects.bulk_create(reviews)
+        Rating.objects.bulk_create(ratings)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 0  # Not enough negative reviews yet...
-        assert weight_info['negative_reviews'] == 0
+        assert summary.weight == 0  # Not enough negative ratings yet...
+        assert weight_info['negative_ratings'] == 0
 
         # Create one more to get to weight == 1.
         Rating.objects.create(
@@ -909,17 +909,17 @@ class TestAutoApprovalSummary(TestCase):
             rating=2)
         weight_info = summary.calculate_weight()
         assert summary.weight == 1
-        assert weight_info['negative_reviews'] == 1
+        assert weight_info['negative_ratings'] == 1
 
         # Create 5000 more (sorry!) to make sure it's capped at 100.
-        reviews = [Rating(
+        ratings = [Rating(
             user=user_factory(), addon=self.addon,
             version=self.version, rating=3) for i in range(0, 5000)]
-        Rating.objects.bulk_create(reviews)
+        Rating.objects.bulk_create(ratings)
 
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
-        assert weight_info['negative_reviews'] == 100
+        assert weight_info['negative_ratings'] == 100
 
     def test_calculate_weight_reputation(self):
         summary = AutoApprovalSummary(version=self.version)
