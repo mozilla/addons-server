@@ -527,7 +527,7 @@ class TestCreate(ReviewTest):
                      'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
             self.client.post(self.add_url, {'body': body, 'rating': 2})
             ff = Rating.objects.filter(addon=self.addon)
-            rf = RatingFlag.objects.filter(review=ff[0])
+            rf = RatingFlag.objects.filter(rating=ff[0])
             assert ff[0].flag
             assert ff[0].editorreview
             assert rf[0].note == 'URLs'
@@ -535,7 +535,7 @@ class TestCreate(ReviewTest):
     def test_mail_and_new_activity_log_on_post(self):
         assert not ActivityLog.objects.exists()
         self.client.post(self.add_url, {'body': u'sômething', 'rating': 2})
-        review = self.addon.reviews.latest('pk')
+        review = self.addon.ratings.latest('pk')
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, review]
@@ -548,7 +548,7 @@ class TestCreate(ReviewTest):
         # a get_or_create(), which would make that reply an edit, and that's
         # covered by the other test below.
         Rating.objects.filter(id=218468).delete(hard_delete=True)
-        review = self.addon.reviews.get()
+        review = self.addon.ratings.get()
         ActivityLog.objects.all().delete()
         reply_url = jinja_helpers.url(
             'addons.ratings.reply', self.addon.slug, review.pk)
@@ -559,7 +559,7 @@ class TestCreate(ReviewTest):
         assert len(mail.outbox) == 1
 
     def test_new_activity_log_on_reply_but_no_mail_if_one_already_exists(self):
-        review = self.addon.reviews.get()
+        review = self.addon.ratings.get()
         existing_reply = Rating.objects.get(id=218468)
         assert not ActivityLog.objects.exists()
         reply_url = jinja_helpers.url(
@@ -1353,10 +1353,10 @@ class TestRatingViewSetDelete(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory()
-        self.review = Rating.objects.create(
+        self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body='My review', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.review.pk})
+        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
 
     def test_delete_anonymous(self):
         response = self.client.delete(self.url)
@@ -1378,7 +1378,7 @@ class TestRatingViewSetDelete(TestCase):
         assert Rating.unfiltered.count() == 1
 
     def test_delete_moderator_flagged(self):
-        self.review.update(editorreview=True)
+        self.rating.update(editorreview=True)
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Ratings:Moderate')
         self.client.login_api(admin_user)
@@ -1416,7 +1416,7 @@ class TestRatingViewSetDelete(TestCase):
         self.addon.addonuser_set.create(user=addon_author)
         self.client.login_api(addon_author)
         reply = Rating.objects.create(
-            addon=self.addon, reply_to=self.review,
+            addon=self.addon, reply_to=self.rating,
             body=u'Reply that will be delêted...', user=addon_author)
         self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
 
@@ -1427,7 +1427,7 @@ class TestRatingViewSetDelete(TestCase):
 
     def test_delete_404(self):
         self.client.login_api(self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.review.pk + 42})
+        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk + 42})
         response = self.client.delete(self.url)
         assert response.status_code == 404
         assert Rating.objects.count() == 1
@@ -1440,10 +1440,10 @@ class TestRatingViewSetEdit(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory(username='areviewuser')
-        self.review = Rating.objects.create(
+        self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body=u'My revïew', title=u'Titlé', user=self.user)
-        self.url = reverse('rating-detail', kwargs={'pk': self.review.pk})
+        self.url = reverse('rating-detail', kwargs={'pk': self.rating.pk})
 
     def test_edit_anonymous(self):
         response = self.client.patch(self.url, {'body': u'løl!'})
@@ -1474,24 +1474,24 @@ class TestRatingViewSetEdit(TestCase):
 
     def test_edit_owner_partial(self):
         original_created_date = self.days_ago(1)
-        self.review.update(created=original_created_date)
+        self.rating.update(created=original_created_date)
         self.client.login_api(self.user)
         response = self.client.patch(self.url, {'rating': 2, 'body': u'løl!'})
         assert response.status_code == 200
-        self.review.reload()
-        assert response.data['id'] == self.review.pk
-        assert response.data['body'] == unicode(self.review.body) == u'løl!'
-        assert response.data['title'] == unicode(self.review.title) == u'Titlé'
-        assert response.data['rating'] == self.review.rating == 2
+        self.rating.reload()
+        assert response.data['id'] == self.rating.pk
+        assert response.data['body'] == unicode(self.rating.body) == u'løl!'
+        assert response.data['title'] == unicode(self.rating.title) == u'Titlé'
+        assert response.data['rating'] == self.rating.rating == 2
         assert response.data['version'] == {
-            'id': self.review.version.id,
-            'version': self.review.version.version
+            'id': self.rating.version.id,
+            'version': self.rating.version.version
         }
-        assert self.review.created == original_created_date
+        assert self.rating.created == original_created_date
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == self.user
-        assert activity_log.arguments == [self.addon, self.review]
+        assert activity_log.arguments == [self.addon, self.rating]
         assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
@@ -1520,26 +1520,26 @@ class TestRatingViewSetEdit(TestCase):
             u"created."]
 
     def test_edit_admin(self):
-        original_review_user = self.review.user
+        original_review_user = self.rating.user
         admin_user = user_factory(username='mylittleadmin')
         self.grant_permission(admin_user, 'Addons:Edit')
         self.client.login_api(admin_user)
         response = self.client.patch(self.url, {'body': u'løl!'})
         assert response.status_code == 200
-        self.review.reload()
-        assert response.data['id'] == self.review.pk
-        assert response.data['body'] == unicode(self.review.body) == u'løl!'
-        assert response.data['title'] == unicode(self.review.title) == u'Titlé'
+        self.rating.reload()
+        assert response.data['id'] == self.rating.pk
+        assert response.data['body'] == unicode(self.rating.body) == u'løl!'
+        assert response.data['title'] == unicode(self.rating.title) == u'Titlé'
         assert response.data['version'] == {
-            'id': self.review.version.id,
-            'version': self.review.version.version,
+            'id': self.rating.version.id,
+            'version': self.rating.version.version,
         }
 
-        assert self.review.user == original_review_user
+        assert self.rating.user == original_review_user
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == admin_user
-        assert activity_log.arguments == [self.addon, self.review]
+        assert activity_log.arguments == [self.addon, self.rating]
         assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
@@ -1549,7 +1549,7 @@ class TestRatingViewSetEdit(TestCase):
         self.addon.addonuser_set.create(user=addon_author)
         self.client.login_api(addon_author)
         reply = Rating.objects.create(
-            reply_to=self.review, body=u'This is â reply', user=addon_author,
+            reply_to=self.rating, body=u'This is â reply', user=addon_author,
             addon=self.addon)
         self.url = reverse('rating-detail', kwargs={'pk': reply.pk})
 
@@ -1916,20 +1916,20 @@ class TestRatingViewSetFlag(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.review_user = user_factory()
-        self.review = Rating.objects.create(
+        self.rating_user = user_factory()
+        self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
-            body='My review', user=self.review_user)
-        self.url = reverse('rating-flag', kwargs={'pk': self.review.pk})
+            body='My review', user=self.rating_user)
+        self.url = reverse('rating-flag', kwargs={'pk': self.rating.pk})
 
     def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/flag/' % self.review.pk
+        expected_url = '/api/v3/reviews/review/%d/flag/' % self.rating.pk
         assert self.url == expected_url
 
     def test_flag_anonymous(self):
         response = self.client.post(self.url)
         assert response.status_code == 401
-        assert self.review.reload().editorreview is False
+        assert self.rating.reload().editorreview is False
 
     def test_flag_logged_in_no_flag_field(self):
         self.user = user_factory()
@@ -1938,7 +1938,7 @@ class TestRatingViewSetFlag(TestCase):
         assert response.status_code == 400
         data = json.loads(response.content)
         assert data['flag'] == [u'This field is required.']
-        assert self.review.reload().editorreview is False
+        assert self.rating.reload().editorreview is False
 
     def test_flag_logged_in(self):
         self.user = user_factory()
@@ -1955,8 +1955,8 @@ class TestRatingViewSetFlag(TestCase):
         flag = RatingFlag.objects.latest('pk')
         assert flag.flag == 'review_flag_reason_spam'
         assert flag.user == self.user
-        assert flag.review == self.review
-        assert self.review.reload().editorreview is True
+        assert flag.rating == self.rating
+        assert self.rating.reload().editorreview is True
 
     def test_flag_logged_in_with_note(self):
         self.user = user_factory()
@@ -1970,9 +1970,9 @@ class TestRatingViewSetFlag(TestCase):
         # Flag was changed automatically since a note is being posted.
         assert flag.flag == 'review_flag_reason_other'
         assert flag.user == self.user
-        assert flag.review == self.review
+        assert flag.rating == self.rating
         assert flag.note == u'This is my nøte.'
-        assert self.review.reload().editorreview is True
+        assert self.rating.reload().editorreview is True
 
     def test_flag_reason_other_without_notes_is_forbidden(self):
         self.user = user_factory()
@@ -1994,16 +1994,16 @@ class TestRatingViewSetFlag(TestCase):
         data = json.loads(response.content)
         assert data['flag'] == [
             'Select a valid choice. lol is not one of the available choices.']
-        assert self.review.reload().editorreview is False
+        assert self.rating.reload().editorreview is False
 
     def test_flag_logged_in_flag_already_exists(self):
         other_user = user_factory()
         other_flag = RatingFlag.objects.create(
-            user=other_user, review=self.review,
+            user=other_user, rating=self.rating,
             flag='review_flag_reason_language')
         self.user = user_factory()
         flag = RatingFlag.objects.create(
-            user=self.user, review=self.review,
+            user=self.user, rating=self.rating,
             flag='review_flag_reason_other')
         self.client.login_api(self.user)
         response = self.client.post(
@@ -2016,13 +2016,13 @@ class TestRatingViewSetFlag(TestCase):
         # Flag was changed from other to spam.
         assert flag.flag == 'review_flag_reason_spam'
         assert flag.user == self.user
-        assert flag.review == self.review
+        assert flag.rating == self.rating
         # Other flag was untouched.
         other_flag.reload()
         assert other_flag.user == other_user
         assert other_flag.flag == 'review_flag_reason_language'
-        assert other_flag.review == self.review
-        assert self.review.reload().editorreview is True
+        assert other_flag.rating == self.rating
+        assert self.rating.reload().editorreview is True
 
     def test_flag_logged_in_addon_denied(self):
         self.make_addon_unlisted(self.addon)
@@ -2031,23 +2031,23 @@ class TestRatingViewSetFlag(TestCase):
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 403
-        assert self.review.reload().editorreview is False
+        assert self.rating.reload().editorreview is False
 
     def test_flag_logged_in_no_such_review(self):
-        self.review.delete()
+        self.rating.delete()
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 404
-        assert Rating.unfiltered.get(pk=self.review.pk).editorreview is False
+        assert Rating.unfiltered.get(pk=self.rating.pk).editorreview is False
 
     def test_flag_logged_in_review_author(self):
-        self.client.login_api(self.review_user)
+        self.client.login_api(self.rating_user)
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 403
-        assert self.review.reload().editorreview is False
+        assert self.rating.reload().editorreview is False
 
 
 class TestRatingViewSetReply(TestCase):
@@ -2056,14 +2056,14 @@ class TestRatingViewSetReply(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.review_user = user_factory()
-        self.review = Rating.objects.create(
+        self.rating_user = user_factory()
+        self.rating = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
-            body='My review', user=self.review_user)
-        self.url = reverse('rating-reply', kwargs={'pk': self.review.pk})
+            body='My review', user=self.rating_user)
+        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk})
 
     def test_url(self):
-        expected_url = '/api/v3/reviews/review/%d/reply/' % self.review.pk
+        expected_url = '/api/v3/reviews/review/%d/reply/' % self.rating.pk
         assert self.url == expected_url
 
     def test_get_method_not_allowed(self):
@@ -2078,7 +2078,7 @@ class TestRatingViewSetReply(TestCase):
         assert response.status_code == 401
 
     def test_reply_non_addon_author(self):
-        self.client.login_api(self.review_user)
+        self.client.login_api(self.rating_user)
         response = self.client.post(self.url, data={})
         assert response.status_code == 403
 
@@ -2086,7 +2086,7 @@ class TestRatingViewSetReply(TestCase):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         self.client.login_api(self.addon_author)
-        self.url = reverse('rating-reply', kwargs={'pk': self.review.pk + 42})
+        self.url = reverse('rating-reply', kwargs={'pk': self.rating.pk + 42})
         response = self.client.post(self.url, data={})
         assert response.status_code == 404
 
@@ -2106,7 +2106,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.user == self.admin_user
         assert review.title is None
         assert response.data['title'] is None
-        assert review.reply_to == self.review
+        assert review.reply_to == self.rating
         assert 'reply_to' not in response.data  # It's already in the URL...
         assert review.addon == self.addon
         assert review.version is None
@@ -2132,7 +2132,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.user == self.addon_author
         assert review.title is None
         assert response.data['title'] is None
-        assert review.reply_to == self.review
+        assert review.reply_to == self.rating
         assert 'reply_to' not in response.data  # It's already in the URL...
         assert review.addon == self.addon
         assert review.version is None
@@ -2146,7 +2146,7 @@ class TestRatingViewSetReply(TestCase):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         existing_reply = Rating.objects.create(
-            reply_to=self.review, user=self.addon_author,
+            reply_to=self.rating, user=self.addon_author,
             addon=self.addon, body=u'My existing rêply')
         self.client.login_api(self.addon_author)
         response = self.client.post(self.url, data={
@@ -2162,7 +2162,7 @@ class TestRatingViewSetReply(TestCase):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         existing_reply = Rating.objects.create(
-            reply_to=self.review, user=self.addon_author,
+            reply_to=self.rating, user=self.addon_author,
             addon=self.addon, body=u'My existing rêply')
         existing_reply.delete()  # Soft delete the existing reply.
         assert Rating.objects.count() == 1
@@ -2193,8 +2193,8 @@ class TestRatingViewSetReply(TestCase):
         self.client.login_api(self.addon_author)
         self.original_review = Rating.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
-            body='My review', user=self.review_user)
-        self.review.update(
+            body='My review', user=self.rating_user)
+        self.rating.update(
             user=self.addon_author, rating=None, reply_to=self.original_review)
         response = self.client.post(self.url, data={
             'body': u'LOL øø!'

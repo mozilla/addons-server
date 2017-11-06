@@ -158,11 +158,11 @@ def reply(request, addon, review_id):
     if not (is_admin or is_author):
         raise PermissionDenied
 
-    review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
+    rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     form = forms.RatingReplyForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         kwargs = {
-            'reply_to': review,
+            'reply_to': rating,
             'addon': addon,
             'defaults': _review_details(request, addon, form)
         }
@@ -170,7 +170,7 @@ def reply(request, addon, review_id):
         return redirect(jinja_helpers.url(
             'addons.ratings.detail', addon.slug, review_id))
     ctx = {
-        'review': review,
+        'review': rating,
         'form': form,
         'addon': addon
     }
@@ -186,9 +186,9 @@ def add(request, addon):
     if (request.method == 'POST' and form.is_valid() and
             not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
-        review = Rating.objects.create(**details)
+        rating = Rating.objects.create(**details)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
-            rf = RatingFlag(review=review,
+            rf = RatingFlag(rating=rating,
                             user_id=request.user.id,
                             flag=RatingFlag.OTHER,
                             note='URLs')
@@ -202,20 +202,20 @@ def add(request, addon):
 @login_required(redirect=False)
 @post_required
 def edit(request, addon, review_id):
-    review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
+    rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    if not (request.user.id == review.user.id or is_admin):
+    if not (request.user.id == rating.user.id or is_admin):
         raise PermissionDenied
-    cls = forms.RatingReplyForm if review.reply_to else forms.RatingForm
+    cls = forms.RatingReplyForm if rating.reply_to else forms.RatingForm
     form = cls(request.POST)
     if form.is_valid():
         data = _review_details(request, addon, form, create=False)
         for field, value in data.items():
-            setattr(review, field, value)
-        # Resist the temptation to use review.update(): it'd be more direct but
+            setattr(rating, field, value)
+        # Resist the temptation to use rating.update(): it'd be more direct but
         # doesn't work with extra fields that are not meant to be saved like
         # 'user_responsible'.
-        review.save()
+        rating.save()
         return {}
     else:
         return json_view.error(form.errors)
@@ -386,7 +386,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             else:
                 queryset = Rating.unfiltered.all()
         elif should_access_only_top_level_ratings:
-            # When listing add-on reviews, exclude replies, they'll be
+            # When listing add-on ratings, exclude replies, they'll be
             # included during serialization as children of the relevant
             # ratings instead.
             queryset = Rating.without_replies.all()
