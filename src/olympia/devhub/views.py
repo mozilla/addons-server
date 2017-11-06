@@ -679,16 +679,16 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
     try:
-        v_result = file.validation
+        result = file.validation
     except FileValidation.DoesNotExist:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
-        v_result = tasks.validate(file).get()
+        result = tasks.validate(file, synchronous=True).get()
 
-    return {'validation': v_result.processed_validation, 'error': None}
+    return {'validation': result.processed_validation, 'error': None}
 
 
 @json_view
