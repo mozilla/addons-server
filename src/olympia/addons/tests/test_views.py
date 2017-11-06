@@ -2802,6 +2802,27 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert data['results'][0]['id'] == addon2.pk
 
+    def test_filter_fuzziness(self):
+        with self.activate('de'):
+            addon = addon_factory(slug='my-addon', name={
+                'de': 'Mein Taschenmesser'
+            }, default_locale='de')
+
+            # Won't get matched, we have a prefix length of 4 so that
+            # the first 4 characters are not analyzed for fuzziness
+            addon_factory(slug='my-addon2', name={
+                'de': u'Mein Hufrinnenmesser'
+            }, default_locale='de')
+
+        self.refresh()
+
+        with self.activate('de'):
+            data = self.perform_search(self.url, {'q': 'Taschenmssser'})
+
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient
