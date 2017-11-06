@@ -52,10 +52,10 @@ class TestActivity(HubTest):
             tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
             ActivityLog.create(amo.LOG.ADD_TAG, self.addon, tag)
 
-    def log_review(self, num):
-        review = Rating(addon=self.addon)
+    def log_rating(self, num):
+        rating = Rating(addon=self.addon)
         for i in xrange(num):
-            ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, review)
+            ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, rating)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
