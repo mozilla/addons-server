@@ -30,13 +30,6 @@ from olympia.tags.models import Tag, AddonTag
 from olympia.users.models import UserProfile
 
 
-def get_section_url(addon, section, edit=False):
-    args = [addon.slug, section]
-    if edit:
-        args.append('edit')
-    return reverse('devhub.addons.section', args=args)
-
-
 @override_settings(MEDIA_ROOT=None)  # Make it overridable.
 class BaseTestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
@@ -74,7 +67,21 @@ class BaseTestEdit(TestCase):
         return Addon.objects.no_cache().get(id=3615)
 
     def get_url(self, section, edit=False):
-        return get_section_url(self.addon, section, edit)
+        args = [self.addon.slug, section]
+        if edit:
+            args.append('edit')
+        return reverse('devhub.addons.section', args=args)
+
+
+class BaseTestEditBasic(BaseTestEdit):
+    __test__ = False  # this is an abstract test case
+
+    def setUp(self):
+        super(BaseTestEditBasic, self).setUp()
+        self.basic_edit_url = self.get_url('basic', edit=True)
+        if self.listed:
+            ctx = self.client.get(self.basic_edit_url).context
+            self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
 
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
@@ -89,16 +96,13 @@ class BaseTestEdit(TestCase):
         result.update(**kw)
         return result
 
-
-class BaseTestEditBasic(BaseTestEdit):
-    __test__ = False  # this is an abstract test case
-
-    def setUp(self):
-        super(BaseTestEditBasic, self).setUp()
-        self.basic_edit_url = self.get_url('basic', edit=True)
-        if self.listed:
-            ctx = self.client.get(self.basic_edit_url).context
-            self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
+    def test_edit_page_not_editable(self):
+        # The /edit page is the entry point for the individual edit sections,
+        # and should never display the actual forms, so it should always pass
+        # editable=False to the templates it renders.
+        # See https://github.com/mozilla/addons-server/issues/6208
+        response = self.client.get(self.url)
+        assert response.context['editable'] is False
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
@@ -269,17 +273,7 @@ class BaseTestEditBasic(BaseTestEdit):
         self.test_nav_links(show_compat_reporter=False)
 
 
-class TestEditBasicListed(BaseTestEditBasic):
-    __test__ = True
-
-    def test_edit_page_not_editable(self):
-        # The /edit page is the entry point for the individual edit sections,
-        # and should never display the actual forms, so it should always pass
-        # editable=False to the templates it renders.
-        # See https://github.com/mozilla/addons-server/issues/6208
-        response = self.client.get(self.url)
-        assert response.context['editable'] is False
-
+class TagTestsMixin(object):
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
         self.tags.insert(0, 'tag4')
@@ -378,6 +372,88 @@ class TestEditBasicListed(BaseTestEditBasic):
         self.client.post(self.basic_edit_url, data)
         tag = Tag.objects.all().order_by('-pk')[0]
         assert tag.tag_text == 'scriptalertfooscript'
+
+    def test_edit_restricted_tags(self):
+        addon = self.get_addon()
+        tag = Tag.objects.create(
+            tag_text='i_am_a_restricted_tag', restricted=True)
+        AddonTag.objects.create(tag=tag, addon=addon)
+
+        res = self.client.get(self.basic_edit_url)
+        divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
+        assert len(divs) == 2
+        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
+
+
+class ContributionsTestsMixin(object):
+    def test_contributions_url_not_url(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='foooo')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions', 'Enter a valid URL.')
+
+    def test_contributions_url_not_valid_domain(self):
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://foo.baa/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions',
+            'URL domain must be one of [%s], or a subdomain.' %
+            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
+
+    def test_contributions_url_valid_domain(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://paypal.me/')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == 'http://paypal.me/'
+
+    def test_contributions_url_valid_domain_sub(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(name='blah', slug='test_addon',
+                             contributions='http://sub.paypal.me/random/?path')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert self.addon.reload().contributions == (
+            'http://sub.paypal.me/random/?path')
+
+
+class L10nTestsMixin(object):
+    def get_l10n_urls(self):
+        paths = ('devhub.addons.edit', 'devhub.addons.owner')
+        return [reverse(p, args=['a3615']) for p in paths]
+
+    def test_l10n(self):
+        Addon.objects.get(id=3615).update(default_locale='en-US')
+        for url in self.get_l10n_urls():
+            response = self.client.get(url)
+            assert pq(
+                response.content)('#l10n-menu').attr('data-default') == 'en-us'
+
+    def test_l10n_not_us(self):
+        Addon.objects.get(id=3615).update(default_locale='fr')
+        for url in self.get_l10n_urls():
+            response = self.client.get(url)
+            assert pq(
+                response.content)('#l10n-menu').attr('data-default') == 'fr'
+
+    def test_l10n_not_us_id_url(self):
+        Addon.objects.get(id=3615).update(default_locale='fr')
+        for url in self.get_l10n_urls():
+            url = '/id' + url[6:]
+            response = self.client.get(url)
+            assert pq(
+                response.content)('#l10n-menu').attr('data-default') == 'fr'
+
+
+class TestEditBasicListed(BaseTestEditBasic, TagTestsMixin,
+                          ContributionsTestsMixin, L10nTestsMixin):
+    __test__ = True
 
     def test_edit_categories_add(self):
         assert [c.id for c in self.get_addon().all_categories] == [22]
@@ -534,17 +610,6 @@ class TestEditBasicListed(BaseTestEditBasic):
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
-    def test_edit_restricted_tags(self):
-        addon = self.get_addon()
-        tag = Tag.objects.create(
-            tag_text='i_am_a_restricted_tag', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=addon)
-
-        res = self.client.get(self.basic_edit_url)
-        divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
-        assert len(divs) == 2
-        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
-
     def test_text_not_none_when_has_flags(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -597,68 +662,6 @@ class TestEditBasicListed(BaseTestEditBasic):
         assert doc('#requires-payment-edit').text() == (
             'This add-on requires payment, non-free services or '
             'software, or additional hardware.')
-
-    def get_l10n_urls(self):
-        paths = ('devhub.addons.edit', 'devhub.addons.owner')
-        return [reverse(p, args=['a3615']) for p in paths]
-
-    def test_l10n(self):
-        Addon.objects.get(id=3615).update(default_locale='en-US')
-        for url in self.get_l10n_urls():
-            response = self.client.get(url)
-            assert pq(
-                response.content)('#l10n-menu').attr('data-default') == 'en-us'
-
-    def test_l10n_not_us(self):
-        Addon.objects.get(id=3615).update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            response = self.client.get(url)
-            assert pq(
-                response.content)('#l10n-menu').attr('data-default') == 'fr'
-
-    def test_l10n_not_us_id_url(self):
-        Addon.objects.get(id=3615).update(default_locale='fr')
-        for url in self.get_l10n_urls():
-            url = '/id' + url[6:]
-            response = self.client.get(url)
-            assert pq(
-                response.content)('#l10n-menu').attr('data-default') == 'fr'
-
-    def test_contributions_url_not_url(self):
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='foooo')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'contributions', 'Enter a valid URL.')
-
-    def test_contributions_url_not_valid_domain(self):
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://foo.baa/')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'contributions',
-            'URL domain must be one of [%s], or a subdomain.' %
-            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
-
-    def test_contributions_url_valid_domain(self):
-        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://paypal.me/')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        assert self.addon.reload().contributions == 'http://paypal.me/'
-
-    def test_contributions_url_valid_domain_sub(self):
-        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
-        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://sub.paypal.me/random/?path')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        assert self.addon.reload().contributions == (
-            'http://sub.paypal.me/random/?path')
 
 
 class TestEditMedia(BaseTestEdit):
@@ -1457,6 +1460,120 @@ class TestEditTechnicalUnlisted(BaseTestEdit):
         assert response.context['form'].errors == {}
         addon = self.get_addon()
         assert addon.whiteboard == ''
+
+
+class StaticMixin(object):
+    def setUp(self):
+        super(StaticMixin, self).setUp()
+        addon = self.get_addon()
+        addon.update(type=amo.ADDON_STATICTHEME)
+        if self.listed:
+            AddonCategory.objects.filter(addon=addon).delete()
+            cache.clear()
+
+
+class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
+                                     TagTestsMixin, ContributionsTestsMixin,
+                                     L10nTestsMixin):
+    def get_dict(self, **kw):
+        result = {'name': 'new name', 'slug': 'test_slug',
+                  'summary': 'new summary', 'category': 300,
+                  'tags': ', '.join(self.tags)}
+        result.update(**kw)
+        return result
+
+    def test_edit_categories_set(self):
+        assert [cat.id for cat in self.get_addon().all_categories] == []
+        response = self.client.post(
+            self.basic_edit_url, self.get_dict(category=308))
+        assert set(response.context['addon'].all_categories) == set(
+            self.get_addon().all_categories)
+
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        assert sorted(addon_cats) == [308]
+
+    def test_edit_categories_change(self):
+        category = Category.objects.get(id=300)
+        AddonCategory(addon=self.addon, category=category).save()
+        assert sorted(
+            [cat.id for cat in self.get_addon().all_categories]) == [300]
+
+        self.client.post(self.basic_edit_url, self.get_dict(category=308))
+        category_ids_new = [cat.id for cat in self.get_addon().all_categories]
+        # Only ever one category for Static Themes
+        assert category_ids_new == [308]
+
+    def test_edit_categories_required(self):
+        data = self.get_dict(category='')
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'category', 'This field is required.')
+
+    def test_edit_categories_add_featured(self):
+        """Ensure that categories cannot be changed for featured add-ons."""
+        category = Category.objects.get(id=308)
+        AddonCategory(addon=self.addon, category=category).save()
+        self._feature_addon()
+
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+
+        assert response.context['form'].errors[0]['category'] == (
+            ['Categories cannot be changed while your add-on is featured.'])
+        # This add-on's categories should not change.
+        assert sorted(addon_cats) == [308]
+
+    def test_edit_categories_add_new_creatured_admin(self):
+        """Ensure that admins can change categories for creatured add-ons."""
+        assert self.client.login(email='admin@mozilla.com')
+        category = Category.objects.get(id=308)
+        AddonCategory(addon=self.addon, category=category).save()
+        self._feature_addon()
+
+        response = self.client.get(self.basic_edit_url)
+        doc = pq(response.content)
+        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
+        assert doc('#addon-categories-edit > p').length == 0
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        assert 'category' not in response.context['form'].errors[0]
+        # This add-on's categories should change.
+        assert sorted(addon_cats) == [300]
+
+    def test_edit_categories_disable_creatured(self):
+        """Ensure that other forms are okay when disabling category changes."""
+        self._feature_addon()
+        data = self.get_dict()
+        self.client.post(self.basic_edit_url, data)
+        assert unicode(self.get_addon().name) == data['name']
+
+
+class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
+    def get_dict(self, **kw):
+        result = {'name': 'new name', 'slug': 'test_slug',
+                  'summary': 'new summary'}
+        result.update(**kw)
+        return result
+
+
+class TestEditDetailsStaticThemeListed(StaticMixin, TestEditDetailsListed):
+    pass
+
+
+class TestEditDetailsStaticThemeUnlisted(StaticMixin, TestEditDetailsUnlisted):
+    pass
+
+
+class TestEditTechnicalStaticThemeListed(StaticMixin,
+                                         TestEditTechnicalUnlisted):
+    # Using the Unlisted test case because it's got the right tests for us.
+    listed = True
+
+
+class TestEditTechnicalStaticThemeUnlisted(StaticMixin,
+                                           TestEditTechnicalUnlisted):
+    pass
 
 
 class TestAdmin(TestCase):

@@ -909,11 +909,11 @@ class TestVersionEditFiles(TestVersionEditBase):
             sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
 
 
-class TestPlatformSearch(TestVersionEditMixin, TestCase):
+class TestPlatformSearchEngine(TestVersionEditMixin, TestCase):
     fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
 
     def setUp(self):
-        super(TestPlatformSearch, self).setUp()
+        super(TestPlatformSearchEngine, self).setUp()
         self.client.login(email='admin@mozilla.com')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
@@ -933,6 +933,40 @@ class TestPlatformSearch(TestVersionEditMixin, TestCase):
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
         file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
+        assert amo.PLATFORM_ALL.id == file_.platform
+
+
+class TestPlatformStaticTheme(TestVersionEditMixin, TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.get_addon().update(type=amo.ADDON_STATICTHEME)
+        super(TestPlatformStaticTheme, self).setUp()
+        self.client.login(email='admin@mozilla.com')
+        self.version = self.get_version()
+        self.file = self.version.files.all()[0]
+        self.url = reverse('devhub.versions.edit',
+                           args=[self.version.addon.slug, self.version.id])
+
+    def formset(self, *args, **kw):
+        defaults = dict(self.initial)
+        defaults.update(kw)
+        return super(TestPlatformStaticTheme, self).formset(*args, **defaults)
+
+    def test_no_platform_selector(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('#id_files-0-platform')
+
+    def test_no_changing_platform(self):
+        ctx = self.client.get(self.url).context
+        compat = initial(ctx['compat_form'].forms[0])
+        files = initial(ctx['file_form'].forms[0])
+        files['platform'] = amo.PLATFORM_LINUX.id
+        self.initial = formset(compat, **formset(files, prefix='files'))
+        response = self.client.post(self.url, self.formset())
+        assert response.status_code == 302
+        file_ = self.get_version().files.all()[0]
         assert amo.PLATFORM_ALL.id == file_.platform
 
 

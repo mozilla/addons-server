@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-02 03:33+0000\n"
-"PO-Revision-Date: 2017-11-02 15:00+0000\n"
+"PO-Revision-Date: 2017-11-03 16:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3020,7 +3020,7 @@ msgid "Summary"
 msgstr "Gearfetting"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Dizze gearfetting moat dúdlik útlizze wat jo add-on docht. Dizze ferskynt yn listen en sykopdrachten, en wurdt troch beoardielers brûkt om jo add-on te testen."
 
 msgid "Experimental?"
 msgstr "Eksperiminteel?"
@@ -3038,7 +3038,7 @@ msgid "Requires Payment?"
 msgstr "Betelling fereaske?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Finkje dit fekje oan as de basisfunksjes fan dizze add-on in bepaalde foarm fan betelling foarôf oan of nei in proefperioade fereasket om wurkje te kinnen."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
@@ -4356,26 +4356,26 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Jo gegevens foar {name} benaderje"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Jo gegevens op de folgjende websites benaderje:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Jo gegevens foar alle websites benaderje"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
 
 msgid "Could not parse uploaded file."
 msgstr ""
@@ -4417,7 +4417,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4434,16 +4434,16 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Bestânsfergeliking :: Beoardielershelpmiddelen"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Bestân besjen :: Beoardielershelpmiddelen"
 
 msgid "Validation failed:"
 msgstr ""
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Bestânsynhâld wurdt net stipe foar syntaksismarkearring"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -6040,16 +6040,16 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "It ûndersyk ferlitte"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Typ about:addons yn de lokaasjebalke, en druk op Enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Sykje nei Plugin Safety yn de list mei add-ons."
 
 msgid "Click the remove button."
 msgstr "Klik op de fuortsmytknop."
@@ -6093,7 +6093,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Jo helpe Firefox te ferbetterjen"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -6101,7 +6101,7 @@ msgid ""
 msgstr ""
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Oanbean troch:"
 
 msgid "Sunbird has retired"
 msgstr ""
@@ -6481,7 +6481,7 @@ msgstr "Auteur fan beoardieling"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr ""
@@ -6730,7 +6730,7 @@ msgstr ""
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] hat %(object)s rapportearre op %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -6930,8 +6930,8 @@ msgstr[1] "Oanpaste beoardielingen ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Automatysk goedkarre add-on ({0})"
+msgstr[1] "Automatysk goedkarre add-ons ({0})"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
@@ -7098,7 +7098,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Maksimale lingte fan sykopdracht oerskreaun."
 
 msgid "Most popular this week"
 msgstr ""
@@ -7513,7 +7513,7 @@ msgid "Other Applications"
 msgstr ""
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO krijt in nij úterlik. Wolle jo it sjen?"
 
 msgid "Visit the new site"
 msgstr "De nije website besykje"

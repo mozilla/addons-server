@@ -202,6 +202,18 @@ class TestCompatForm(TestCase):
         del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
+    def test_static_theme(self):
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(is_webextension=True)
+        version.addon.update(type=amo.ADDON_STATICTHEME)
+        del version.all_files
+        self._test_form_choices_expect_all_versions(version)
+
+        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
+        assert formset.can_delete is False  # No deleting Firefox app plz.
+        assert formset.extra == 0  # And lets not extra apps be added.
+
 
 class TestPreviewForm(TestCase):
     fixtures = ['base/addon_3615']

@@ -49,6 +49,7 @@
         {{ form.max.errors }}
       </div>
     </td>
+    {% if form.DELETE %}
     <td class="remove">
       <div>
         <label>{{ form.DELETE.label }} {{ form.DELETE }}</label>
@@ -58,6 +59,7 @@
            title="{{ _('Remove this application') }}">x</a>
       </div>
     </td>
+    {% endif %}
   </tr>
 {% endmacro %}
 
