@@ -259,9 +259,7 @@ class TestFileViewer(TestCase):
             res = self.viewer.read_file()
             assert res == ''
             assert (
-                self.viewer.selected['msg'].startswith(
-                    u'גודל הקובץ חורג'
-            ))
+                self.viewer.selected['msg'].startswith(u'גודל הקובץ חורג'))
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
