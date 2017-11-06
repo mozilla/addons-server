@@ -680,7 +680,7 @@ def review(request, addon, channel=None):
 
     approvals_info = None
     reports = None
-    user_reviews = None
+    user_ratings = None
     was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if addon.current_version:
@@ -696,7 +696,7 @@ def review(request, addon, channel=None):
             (AbuseReport.objects
                         .filter(Q(addon=addon) | Q(user__in=developers))
                         .order_by('-created')), 5).page(1)
-        user_reviews = Paginator(
+        user_ratings = Paginator(
             (Rating.without_replies
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
@@ -821,7 +821,7 @@ def review(request, addon, channel=None):
         is_post_reviewer=is_post_reviewer, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes=user_changes_log, user_reviews=user_reviews,
+        user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,
         whiteboard_form=forms.WhiteboardForm(instance=addon),
         whiteboard_url=whiteboard_url)

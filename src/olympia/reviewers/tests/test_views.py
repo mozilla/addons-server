@@ -3288,20 +3288,20 @@ class TestReview(ReviewBase):
             user=user_factory())
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc('.user_reviews')
+        assert not doc('.user_ratings')
 
         self.grant_permission(self.reviewer, 'Addons:PostReview')
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc('.user_reviews')
+        assert not doc('.user_ratings')
 
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert doc('.user_reviews')
+        assert doc('.user_ratings')
         assert (
-            doc('.user_reviews').text() ==
+            doc('.user_ratings').text() ==
             u'%s on %s [10.5.6.7] Rated 3 out of 5 stars Lôrem ipsum dolor' % (
                 user.username, created_at
             )

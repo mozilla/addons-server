@@ -177,9 +177,9 @@
       {% include "reviewers/includes/abuse_reports_list.html" %}
     {% endif %}
 
-    {% if user_reviews %}
-      <h3><a href="{{ url('addons.ratings.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|format_html(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
-      {% include "reviewers/includes/user_reviews_list.html" %}
+    {% if user_ratings %}
+      <h3><a href="{{ url('addons.ratings.list', addon.slug) }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
+      {% include "reviewers/includes/user_ratings.html" %}
     {% endif %}
   {% endif %}
 
