@@ -96,7 +96,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'blah',
+                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
                     'fuzziness': 'AUTO',
                 }
             }
@@ -109,7 +109,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'value': 'search terms',
+                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
                     'fuzziness': 'AUTO',
                 }
             }
