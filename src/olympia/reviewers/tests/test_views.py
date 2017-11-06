@@ -1287,16 +1287,16 @@ class TestModeratedQueue(QueueTest):
         assert logs.count() == 1
 
         # Make sure it's removed from the queue.
-        r = self.client.get(self.url)
-        assert pq(r.content)('#reviews-flagged .no-results').length == 1
+        response = self.client.get(self.url)
+        assert pq(response.content)('#reviews-flagged .no-results').length == 1
 
-        review = Rating.objects.filter(addon=1865)
+        rating = Rating.objects.filter(addon=1865)
 
         # Make sure it's NOT deleted...
-        assert review.count() == 2
+        assert rating.count() == 2
 
         # ...but it's no longer flagged.
-        assert review.filter(editorreview=1).count() == 0
+        assert rating.filter(editorreview=1).count() == 0
 
     def test_keep_score(self):
         self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
@@ -1308,25 +1308,25 @@ class TestModeratedQueue(QueueTest):
         # a bunch of reviews from different scenarios and make sure they don't
         # count towards the total.
         # Add a review associated with an normal addon
-        review = Rating.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(), user=user_factory(),
             body='show me', editorreview=True)
-        RatingFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         # Add a review associated with an incomplete addon
-        review = Rating.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(status=amo.STATUS_NULL), user=user_factory(),
             title='please', body='dont show me', editorreview=True)
-        RatingFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         # Add a review associated to an unlisted version
         addon = addon_factory()
         version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        review = Rating.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(), version=version, user=user_factory(),
             title='please', body='dont show me either', editorreview=True)
-        RatingFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         self._test_queue_count(2, 'Moderated Reviews', 2)
 
@@ -3272,16 +3272,16 @@ class TestReview(ReviewBase):
             u'anonymous [10.4.5.6] reported regularuser التطب on %s Foo, Bâr!'
             % created_at)
 
-    def test_user_reviews(self):
+    def test_user_ratings(self):
         user = user_factory()
-        user_review = Rating.objects.create(
+        rating = Rating.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = user_review.created.strftime('%b. %d, %Y')
+        created_at = rating.created.strftime('%b. %d, %Y')
         Rating.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
         Rating.objects.create(  # Reply to a review, ignored.
-            body='Replyyyyy', reply_to=user_review,
+            body='Replyyyyy', reply_to=rating,
             addon=self.addon, user=user_factory())
         Rating.objects.create(  # Review with high rating,, ignored.
             body=u'Qui platônem temporibus in', rating=5, addon=self.addon,

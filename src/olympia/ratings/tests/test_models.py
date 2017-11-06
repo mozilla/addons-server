@@ -48,23 +48,23 @@ class TestRatingModel(TestCase):
         assert Rating.without_replies.count() == 1
         assert Rating.unfiltered.count() == 2
 
-        review = Rating.objects.get(id=2)
-        assert review.previous_count == 0
-        assert review.is_latest is True
+        rating = Rating.objects.get(id=2)
+        assert rating.previous_count == 0
+        assert rating.is_latest is True
 
     @mock.patch('olympia.ratings.models.log')
     def test_soft_delete_user_responsible(self, log_mock):
         user_responsible = user_factory()
-        review = Rating.objects.get(id=1)
-        review.delete(user_responsible=user_responsible)
+        rating = Rating.objects.get(id=1)
+        rating.delete(user_responsible=user_responsible)
         assert log_mock.info.call_count == 1
         assert (log_mock.info.call_args[0][0] ==
                 'Rating deleted: %s deleted id:%s by %s ("%s": "%s")')
         assert log_mock.info.call_args[0][1] == user_responsible.name
-        assert log_mock.info.call_args[0][2] == review.pk
-        assert log_mock.info.call_args[0][3] == review.user.name
-        assert log_mock.info.call_args[0][4] == unicode(review.title)
-        assert log_mock.info.call_args[0][5] == unicode(review.body)
+        assert log_mock.info.call_args[0][2] == rating.pk
+        assert log_mock.info.call_args[0][3] == rating.user.name
+        assert log_mock.info.call_args[0][4] == unicode(rating.title)
+        assert log_mock.info.call_args[0][5] == unicode(rating.body)
 
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
@@ -76,20 +76,20 @@ class TestRatingModel(TestCase):
 
     def test_undelete(self):
         self.test_soft_delete()
-        deleted_review = Rating.unfiltered.get(id=1)
-        assert deleted_review.deleted is True
-        deleted_review.undelete()
+        deleted_rating = Rating.unfiltered.get(id=1)
+        assert deleted_rating.deleted is True
+        deleted_rating.undelete()
 
         # The deleted_review was the oldest, so loading the other one we should
         # see an updated previous_count, and is_latest should still be True.
-        review = Rating.objects.get(id=2)
-        assert review.previous_count == 1
-        assert review.is_latest is True
+        rating = Rating.objects.get(id=2)
+        assert rating.previous_count == 1
+        assert rating.is_latest is True
 
     def test_soft_delete_replies_are_hidden(self):
-        review = Rating.objects.get(pk=1)
+        rating = Rating.objects.get(pk=1)
         Rating.objects.create(
-            addon=review.addon, reply_to=review,
+            addon=rating.addon, reply_to=rating,
             user=UserProfile.objects.all()[0])
         assert Rating.objects.count() == 3
         assert Rating.unfiltered.count() == 3
@@ -110,23 +110,23 @@ class TestRatingModel(TestCase):
 
     @mock.patch('olympia.ratings.models.log')
     def test_author_delete(self, log_mock):
-        review = Rating.objects.get(pk=1)
-        review.delete(user_responsible=review.user)
+        rating = Rating.objects.get(pk=1)
+        rating.delete(user_responsible=rating.user)
 
-        review.reload()
+        rating.reload()
         assert ActivityLog.objects.count() == 0
 
     @mock.patch('olympia.ratings.models.log')
     def test_moderator_delete(self, log_mock):
         moderator = user_factory()
-        review = Rating.objects.get(pk=1)
-        review.update(editorreview=True)
-        review.ratingflag_set.create()
-        review.delete(user_responsible=moderator)
+        rating = Rating.objects.get(pk=1)
+        rating.update(editorreview=True)
+        rating.ratingflag_set.create()
+        rating.delete(user_responsible=moderator)
 
-        review.reload()
+        rating.reload()
         assert ActivityLog.objects.count() == 1
-        assert not review.ratingflag_set.exists()
+        assert not rating.ratingflag_set.exists()
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
@@ -138,28 +138,28 @@ class TestRatingModel(TestCase):
         }
         assert activity_log.user == moderator
         assert activity_log.action == amo.LOG.DELETE_REVIEW.id
-        assert activity_log.arguments == [review.addon, review]
+        assert activity_log.arguments == [rating.addon, rating]
 
         assert log_mock.info.call_count == 1
         assert (log_mock.info.call_args[0][0] ==
                 'Rating deleted: %s deleted id:%s by %s ("%s": "%s")')
         assert log_mock.info.call_args[0][1] == moderator.name
-        assert log_mock.info.call_args[0][2] == review.pk
-        assert log_mock.info.call_args[0][3] == review.user.name
-        assert log_mock.info.call_args[0][4] == unicode(review.title)
-        assert log_mock.info.call_args[0][5] == unicode(review.body)
+        assert log_mock.info.call_args[0][2] == rating.pk
+        assert log_mock.info.call_args[0][3] == rating.user.name
+        assert log_mock.info.call_args[0][4] == unicode(rating.title)
+        assert log_mock.info.call_args[0][5] == unicode(rating.body)
 
     def test_moderator_approve(self):
         moderator = user_factory()
-        review = Rating.objects.get(pk=1)
-        review.update(editorreview=True)
-        review.ratingflag_set.create()
-        review.approve(user=moderator)
+        rating = Rating.objects.get(pk=1)
+        rating.update(editorreview=True)
+        rating.ratingflag_set.create()
+        rating.approve(user=moderator)
 
-        review.reload()
+        rating.reload()
         assert ActivityLog.objects.count() == 1
-        assert not review.ratingflag_set.exists()
-        assert review.editorreview is False
+        assert not rating.ratingflag_set.exists()
+        assert rating.editorreview is False
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.details == {
@@ -171,49 +171,49 @@ class TestRatingModel(TestCase):
         }
         assert activity_log.user == moderator
         assert activity_log.action == amo.LOG.APPROVE_REVIEW.id
-        assert activity_log.arguments == [review.addon, review]
+        assert activity_log.arguments == [rating.addon, rating]
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
-        review = Rating.objects.get(id=1)
-        addon = review.addon
-        assert review in addon._ratings.all()
+        rating = Rating.objects.get(id=1)
+        addon = rating.addon
+        assert rating in addon._ratings.all()
 
         # Delete the review: it shouldn't be listed anymore.
-        review.delete()
+        rating.delete()
         addon = Addon.objects.get(pk=addon.pk)
-        assert review not in addon._ratings.all()
+        assert rating not in addon._ratings.all()
 
     def test_no_filter_for_relations(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
-        review = Rating.objects.get(id=1)
-        flag = RatingFlag.objects.create(review=review,
+        rating = Rating.objects.get(id=1)
+        flag = RatingFlag.objects.create(review=rating,
                                          flag='review_flag_reason_spam')
-        assert flag.review == review
+        assert flag.rating == rating
 
         # Delete the review: <RatingFlag>.review should still work.
-        review.delete(user_responsible=review.user)
+        rating.delete(user_responsible=rating.user)
         flag = RatingFlag.objects.get(pk=flag.pk)
-        assert flag.review == review
+        assert flag.rating == rating
 
     def test_creation_triggers_email_and_logging(self):
         addon = Addon.objects.get(pk=4)
         addon_author = addon.authors.first()
         review_user = user_factory()
-        review = Rating.objects.create(
+        rating = Rating.objects.create(
             user=review_user, addon=addon,
             body=u'Rêviiiiiiew', user_responsible=review_user)
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == review_user
-        assert activity_log.arguments == [addon, review]
+        assert activity_log.arguments == [addon, rating]
         assert activity_log.action == amo.LOG.ADD_REVIEW.id
 
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.ratings.reply', addon.slug, review.pk,
+                'addons.ratings.reply', addon.slug, rating.pk,
                 add_prefix=False))
         assert email.subject == 'Mozilla Add-on User Review: my addon name'
         assert 'A user has left a review for your add-on,' in email.body
@@ -223,10 +223,10 @@ class TestRatingModel(TestCase):
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
 
     def test_reply_triggers_email_but_no_logging(self):
-        review = Rating.objects.get(id=1)
+        rating = Rating.objects.get(id=1)
         user = user_factory()
         Rating.objects.create(
-            reply_to=review, user=user, addon=review.addon,
+            reply_to=rating, user=user, addon=rating.addon,
             body=u'Rêply', user_responsible=user)
 
         assert not ActivityLog.objects.exists()
@@ -234,7 +234,7 @@ class TestRatingModel(TestCase):
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.ratings.detail', review.addon.slug, review.pk,
+                'addons.ratings.detail', rating.addon.slug, rating.pk,
                 add_prefix=False))
         assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
         assert 'A developer has replied to your review' in email.body
@@ -244,25 +244,25 @@ class TestRatingModel(TestCase):
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
 
     def test_edit_triggers_logging_but_no_email(self):
-        review = Rating.objects.get(id=1)
+        rating = Rating.objects.get(id=1)
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
 
-        review.user_responsible = review.user
-        review.body = u'Editëd...'
-        review.save()
+        rating.user_responsible = rating.user
+        rating.body = u'Editëd...'
+        rating.save()
 
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.user == review.user
-        assert activity_log.arguments == [review.addon, review]
+        assert activity_log.user == rating.user
+        assert activity_log.arguments == [rating.addon, rating]
         assert activity_log.action == amo.LOG.EDIT_REVIEW.id
 
         assert mail.outbox == []
 
     def test_edit_reply_triggers_logging_but_no_email(self):
-        review = Rating.objects.get(id=1)
+        rating = Rating.objects.get(id=1)
         reply = Rating.objects.create(
-            reply_to=review, user=user_factory(), addon=review.addon)
+            reply_to=rating, user=user_factory(), addon=rating.addon)
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
 
@@ -278,9 +278,9 @@ class TestRatingModel(TestCase):
         assert mail.outbox == []
 
     def test_non_user_edit_triggers_nothing(self):
-        review = Rating.objects.get(pk=1)
-        review.previous_count = 42
-        review.save()
+        rating = Rating.objects.get(pk=1)
+        rating.previous_count = 42
+        rating.save()
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
 
@@ -296,8 +296,8 @@ class TestGroupedRating(TestCase):
         cls.addon = addon_factory()
         user = user_factory()
 
-        # Create a few reviews with various ratings.
-        review = Rating.objects.create(addon=cls.addon, rating=3, user=user)
+        # Create a few ratings with various scores.
+        rating = Rating.objects.create(addon=cls.addon, rating=3, user=user)
         Rating.objects.create(addon=cls.addon, rating=3, user=user_factory())
         Rating.objects.create(addon=cls.addon, rating=2, user=user_factory())
         Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
@@ -306,7 +306,7 @@ class TestGroupedRating(TestCase):
 
         # GroupedRating should ignore replies, so let's add one.
         Rating.objects.create(
-            addon=cls.addon, rating=5, user=user_factory(), reply_to=review)
+            addon=cls.addon, rating=5, user=user_factory(), reply_to=rating)
 
         # GroupedRating should also ignore reviews that aren't the latest for
         # this user and addon, so let's add another one from the same user.
@@ -352,8 +352,8 @@ class TestRefreshTest(ESTestCase):
         assert self.get_bayesian_rating() == 0.0
 
     def get_bayesian_rating(self):
-        q = Addon.search().filter(id=self.addon.id)
-        return q.values_dict('bayesian_rating')[0]['bayesian_rating']
+        qs = Addon.search().filter(id=self.addon.id)
+        return qs.values_dict('bayesian_rating')[0]['bayesian_rating']
 
     def test_created(self):
         assert self.get_bayesian_rating() == 0.0
@@ -364,9 +364,9 @@ class TestRefreshTest(ESTestCase):
     def test_edited(self):
         self.test_created()
 
-        r = self.addon.reviews.all()[0]
-        r.rating = 1
-        r.save()
+        rating = self.addon.ratings.all()[0]
+        rating.rating = 1
+        rating.save()
         self.refresh()
 
         assert self.get_bayesian_rating() == 2.5
@@ -374,8 +374,8 @@ class TestRefreshTest(ESTestCase):
     def test_deleted(self):
         self.test_created()
 
-        r = self.addon.reviews.all()[0]
-        r.delete()
+        rating = self.addon.ratings.all()[0]
+        rating.delete()
         self.refresh()
 
         assert self.get_bayesian_rating() == 0.0

@@ -289,7 +289,7 @@ class RatingFlag(ModelBase):
         (OTHER, _(u'Other (please specify)')),
     )
 
-    review = models.ForeignKey(Rating)
+    rating = models.ForeignKey(Rating, db_column='review_id')
     user = models.ForeignKey('users.UserProfile', null=True)
     flag = models.CharField(max_length=64, default=OTHER,
                             choices=FLAGS, db_column='flag_name')
