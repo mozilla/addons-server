@@ -65,7 +65,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             summary=u'My Addon summary',
             tags=['some_tag', 'another_tag', 'ui-testing',
                   'selenium', 'python'],
-            total_reviews=500,
+            total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
         )
@@ -118,7 +118,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             support_url=u'https://support.example.org/support/ui-theme-addon/',
             tags=['some_tag', 'another_tag', 'ui-testing',
                     'selenium', 'python'],
-            total_reviews=777,
+            total_ratings=777,
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
         )

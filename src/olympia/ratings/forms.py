@@ -80,7 +80,7 @@ class RatingFlagForm(forms.ModelForm):
 
     class Meta:
         model = RatingFlag
-        fields = ('flag', 'note', 'review', 'user')
+        fields = ('flag', 'note', 'rating', 'user')
 
     def clean(self):
         data = super(RatingFlagForm, self).clean()

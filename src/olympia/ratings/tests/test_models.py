@@ -187,7 +187,7 @@ class TestRatingModel(TestCase):
     def test_no_filter_for_relations(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
         rating = Rating.objects.get(id=1)
-        flag = RatingFlag.objects.create(review=rating,
+        flag = RatingFlag.objects.create(rating=rating,
                                          flag='review_flag_reason_spam')
         assert flag.rating == rating
 

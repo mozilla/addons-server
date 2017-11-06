@@ -282,9 +282,9 @@ class Addon(OnChangeMixin, ModelBase):
                                        db_column='averagerating')
     bayesian_rating = models.FloatField(default=0, db_index=True,
                                         db_column='bayesianrating')
-    total_reviews = models.PositiveIntegerField(default=0,
+    total_ratings = models.PositiveIntegerField(default=0,
                                                 db_column='totalreviews')
-    text_reviews_count = models.PositiveIntegerField(
+    text_ratings_count = models.PositiveIntegerField(
         default=0, db_column='textreviewscount')
     weekly_downloads = models.PositiveIntegerField(
         default=0, db_column='weeklydownloads', db_index=True)
@@ -658,7 +658,7 @@ class Addon(OnChangeMixin, ModelBase):
         return cls._meta.get_field('default_locale')
 
     @property
-    def reviews(self):
+    def ratings(self):
         return Rating.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app_id):

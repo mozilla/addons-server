@@ -102,12 +102,12 @@ def flag(request, addon, review_id):
     review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     if review.user_id == request.user.id:
         raise PermissionDenied
-    d = dict(review=review_id, user=request.user.id)
+    data = {'rating': review_id, 'user': request.user.id}
     try:
-        instance = RatingFlag.objects.get(**d)
+        instance = RatingFlag.objects.get(**data)
     except RatingFlag.DoesNotExist:
         instance = None
-    data = dict(request.POST.items(), **d)
+    data = dict(request.POST.items(), **data)
     form = forms.RatingFlagForm(data, instance=instance)
     if form.is_valid():
         form.save()

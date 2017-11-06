@@ -298,7 +298,7 @@ class RatingFlag(ModelBase):
 
     class Meta:
         db_table = 'reviews_moderation_flags'
-        unique_together = (('review', 'user'),)
+        unique_together = (('rating', 'user'),)
 
 
 class GroupedRating(object):

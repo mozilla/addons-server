@@ -351,8 +351,8 @@ class AddonSerializer(serializers.ModelSerializer):
         return {
             'average': obj.average_rating,
             'bayesian_average': obj.bayesian_rating,
-            'count': obj.total_reviews,
-            'text_count': obj.text_reviews_count,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
         }
 
     def get_theme_data(self, obj):
@@ -517,8 +517,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
-        obj.total_reviews = ratings.get('count')
-        obj.text_reviews_count = ratings.get('text_count')
+        obj.total_ratings = ratings.get('count')
+        obj.text_ratings_count = ratings.get('text_count')
 
         obj._is_featured = data.get('is_featured', False)
 

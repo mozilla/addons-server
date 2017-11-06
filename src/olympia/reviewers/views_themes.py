@@ -30,7 +30,7 @@ QUEUE_PER_PAGE = 100
 @personas_reviewer_required
 def home(request):
     data = context(
-        reviews_total=ActivityLog.objects.total_reviews(theme=True)[:5],
+        reviews_total=ActivityLog.objects.total_ratings(theme=True)[:5],
         reviews_monthly=ActivityLog.objects.monthly_reviews(theme=True)[:5],
         queue_counts=queue_counts_themes(request)
     )

@@ -65,8 +65,8 @@ def addon_rating_aggregates(addons, **kw):
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         reviews_with_text = text_stats.get(addon.id, 0)
-        addon.update(total_reviews=reviews, average_rating=rating,
-                     text_reviews_count=reviews_with_text)
+        addon.update(total_ratings=reviews, average_rating=rating,
+                     text_ratings_count=reviews_with_text)
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
@@ -78,7 +78,7 @@ def addon_rating_aggregates(addons, **kw):
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
         return Addon.objects.valid().aggregate(rating=Avg('average_rating'),
-                                               reviews=Avg('total_reviews'))
+                                               reviews=Avg('total_ratings'))
 
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
@@ -95,9 +95,9 @@ def addon_bayesian_rating(*addons, **kw):
         # Update the addon bayesian_rating atomically using F objects (unless
         # it has no reviews, in which case directly set it to 0).
         qs = Addon.objects.filter(id=addon.id)
-        if addon.total_reviews:
-            num = mc + F('total_reviews') * F('average_rating')
-            denom = avg['reviews'] + F('total_reviews')
+        if addon.total_ratings:
+            num = mc + F('total_ratings') * F('average_rating')
+            denom = avg['reviews'] + F('total_ratings')
             qs.update(bayesian_rating=num / denom)
         else:
             qs.update(bayesian_rating=0)

@@ -321,11 +321,11 @@ class TestActivityLogCount(TestCase):
 
     def test_not_total(self):
         ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
-        assert len(ActivityLog.objects.total_reviews()) == 0
+        assert len(ActivityLog.objects.total_ratings()) == 0
 
     def test_total_few(self):
         self.add_approve_logs(5)
-        result = ActivityLog.objects.total_reviews()
+        result = ActivityLog.objects.total_ratings()
         assert len(result) == 1
         assert result[0]['approval_count'] == 5
 
@@ -333,17 +333,17 @@ class TestActivityLogCount(TestCase):
         log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
                                  Addon.objects.get())
         log.update(created=self.lm)
-        result = ActivityLog.objects.total_reviews()
+        result = ActivityLog.objects.total_ratings()
         assert len(result) == 1
         assert result[0]['approval_count'] == 1
         assert result[0]['user'] == self.user.pk
 
-    def test_total_reviews_user_position(self):
+    def test_total_ratings_user_position(self):
         self.add_approve_logs(5)
-        result = ActivityLog.objects.total_reviews_user_position(self.user)
+        result = ActivityLog.objects.total_ratings_user_position(self.user)
         assert result == 1
         user = UserProfile.objects.create(email="no@mozil.la")
-        result = ActivityLog.objects.total_reviews_user_position(user)
+        result = ActivityLog.objects.total_ratings_user_position(user)
         assert result is None
 
     def test_monthly_reviews_user_position(self):

@@ -191,7 +191,7 @@ class ActivityLogManager(ManagerBase):
             amo.LOG.BETA_SIGNED.id,
             amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
 
-    def total_reviews(self, theme=False):
+    def total_ratings(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
         action_ids = ([amo.LOG.THEME_REVIEW.id] if theme
@@ -234,8 +234,8 @@ class ActivityLogManager(ManagerBase):
         except StopIteration:
             return None
 
-    def total_reviews_user_position(self, user, theme=False):
-        return self.user_position(self.total_reviews(theme), user)
+    def total_ratings_user_position(self, user, theme=False):
+        return self.user_position(self.total_ratings(theme), user)
 
     def monthly_reviews_user_position(self, user, theme=False):
         return self.user_position(self.monthly_reviews(theme), user)

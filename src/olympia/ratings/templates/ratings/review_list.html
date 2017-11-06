@@ -45,10 +45,10 @@
     <section>
       {{ addon|sidebar_listing }}
     </section>
-    {% if addon.total_reviews %}
+    {% if addon.total_ratings %}
       <section class="average-rating">
         {{ addon.average_rating|float|stars }}
-        {% trans total=addon.total_reviews|numberfmt %}
+        {% trans total=addon.total_ratings|numberfmt %}
           <strong>Average</strong> ({{ total }})
         {% endtrans %}
       </section>

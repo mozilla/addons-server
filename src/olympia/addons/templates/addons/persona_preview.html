@@ -31,7 +31,7 @@
           {% elif extra == 'rating' %}
             {# TODO(jbalogh): call this rating when remora is gone. #}
             <span class="reviews">
-              {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
+              {{ addon.average_rating|float|stars }} {{ addon.total_ratings|numberfmt }}
             </span>
           {% endif %}
           {% if title %}
@@ -66,10 +66,10 @@
               {{ _('by {0} on {1}')|format_html(users_list(addon.listed_authors)|safe or persona.display_username|safe,
                                       addon.created|date('Y-m-d')) }}
             </p>
-            {% if addon.total_reviews %}
+            {% if addon.total_ratings %}
               <a href="{{ url('addons.ratings.list', addon.slug) }}">
                 {{ addon.average_rating|float|stars }}
-                {{ addon.total_reviews }}</a>
+                {{ addon.total_ratings }}</a>
             {% else %}
               <span>{{ _('Not yet rated') }}</span>
             {% endif %}

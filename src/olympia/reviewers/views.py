@@ -152,7 +152,7 @@ def home(request):
     progress, percentage = _reviewer_progress(
         limited_reviewer=limited_reviewer)
     reviews_max_display = getattr(settings, 'REVIEWER_REVIEWS_MAX_DISPLAY', 5)
-    reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
+    reviews_total = ActivityLog.objects.total_ratings()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
     reviews_total_count = ActivityLog.objects.user_approve_reviews(
@@ -165,7 +165,7 @@ def home(request):
     # If not available, query for it.
     reviews_total_position = (
         ActivityLog.objects.user_position(reviews_total, request.user) or
-        ActivityLog.objects.total_reviews_user_position(request.user))
+        ActivityLog.objects.total_ratings_user_position(request.user))
 
     reviews_monthly_position = (
         ActivityLog.objects.user_position(reviews_monthly, request.user) or

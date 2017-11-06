@@ -37,7 +37,7 @@
 
       <div>
         <a id="reviews-link" href="{{ addon.reviews_url }}">
-          {% trans cnt=addon.total_reviews, num=addon.total_reviews|numberfmt %}
+          {% trans cnt=addon.total_ratings, num=addon.total_ratings|numberfmt %}
             <span itemprop="ratingCount">{{ num }}</span> user review
           {% pluralize %}
             <span itemprop="ratingCount">{{ num }}</span> user reviews

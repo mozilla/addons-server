@@ -1166,7 +1166,7 @@ class TestAddonModels(TestCase):
                            rating=2, body='my reply')
         new_reply.save()
 
-        review_list = [r.pk for r in addon.reviews]
+        review_list = [rating.pk for rating in addon.ratings]
 
         assert new_rating.pk in review_list, (
             'Original review must show up in review list.')
@@ -1674,15 +1674,15 @@ class TestAddonDelete(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
                                      status=amo.STATUS_PUBLIC)
 
-        review = Rating.objects.create(addon=addon, rating=1, body='foo',
+        rating = Rating.objects.create(addon=addon, rating=1, body='foo',
                                        user=UserProfile.objects.create())
 
-        flag = RatingFlag(review=review)
+        flag = RatingFlag(rating=rating)
 
         addon.delete()
 
         assert Addon.unfiltered.filter(pk=addon.pk).exists()
-        assert not Rating.objects.filter(pk=review.pk).exists()
+        assert not Rating.objects.filter(pk=rating.pk).exists()
         assert not RatingFlag.objects.filter(pk=flag.pk).exists()
 
     def test_delete_with_deleted_versions(self):

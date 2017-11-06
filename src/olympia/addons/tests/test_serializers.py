@@ -136,8 +136,8 @@ class AddonSerializerOutputTestMixin(object):
             support_email=u'support@example.org',
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
-            total_reviews=666,
-            text_reviews_count=555,
+            total_ratings=666,
+            text_ratings_count=555,
             version_kw={
                 'license': license,
                 'releasenotes': {
@@ -262,8 +262,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['ratings'] == {
             'average': self.addon.average_rating,
             'bayesian_average': self.addon.bayesian_rating,
-            'count': self.addon.total_reviews,
-            'text_count': self.addon.text_reviews_count,
+            'count': self.addon.total_ratings,
+            'text_count': self.addon.text_ratings_count,
         }
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
