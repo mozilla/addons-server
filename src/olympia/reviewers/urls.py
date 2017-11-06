@@ -42,6 +42,8 @@ urlpatterns = (
     # do for listed add-ons, so we abuse the channel parameter to handle that.
     url(r'^review(?:-(?P<channel>listed|unlisted|content))?/%s$' % ADDON_ID,
         views.review, name='reviewers.review'),
+    url(r'^whiteboard/(?P<channel>listed|unlisted|content)/%s$' % ADDON_ID,
+        views.whiteboard, name='reviewers.whiteboard'),
     url(r'^performance/(?P<user_id>\d+)?$', views.performance,
         name='reviewers.performance'),
     url(r'^motd$', views.motd, name='reviewers.motd'),
@@ -49,8 +51,6 @@ urlpatterns = (
     url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
         name='reviewers.abuse_reports'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
-    url(r'^whiteboard/%s$' % ADDON_ID, views.whiteboard,
-        name='reviewers.whiteboard'),
 
     url('^themes$', views_themes.home,
         name='reviewers.themes.home'),
