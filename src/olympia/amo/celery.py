@@ -23,7 +23,6 @@ from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 log = olympia.core.logger.getLogger('z.task')
 
 
-
 class WaffleablePostRequestTask(PostRequestTask):
     """Same as `PostRequestTask` only that this listens for a waffle-flag."""
     abstract = True
