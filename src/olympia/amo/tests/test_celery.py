@@ -1,19 +1,28 @@
 import datetime
-import unittest
 from datetime import timedelta
 
 import mock
 
+from django.core.signals import request_finished, request_started
+from django.test.testcases import TransactionTestCase
+from waffle.models import Switch
+from post_request_task.task import (
+    _discard_tasks, _stop_queuing_tasks)
+
+from olympia.amo.tests import TestCase, create_switch
 from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 
+fake_task_func = mock.Mock()
+
+
 @task
 def fake_task(**kw):
-    pass
+    fake_task_func()
 
 
-class TestTaskTiming(unittest.TestCase):
+class TestTaskTiming(TestCase):
 
     def setUp(self):
         patch = mock.patch('olympia.amo.celery.cache')
@@ -51,3 +60,52 @@ class TestTaskTiming(unittest.TestCase):
         self.cache.get.return_value = None  # cache miss
         fake_task.delay()
         assert not self.statsd.timing.called
+
+
+class TestTaskQueued(TransactionTestCase):
+    """Test that tasks are queued and only triggered when a request finishes.
+
+    Tests our integration with django-post-request-task.
+    """
+
+    def setUp(self):
+        super(TestTaskQueued, self).setUp()
+        create_switch('activate-django-post-request')
+        fake_task_func.reset_mock()
+        _discard_tasks()
+
+    def tearDown(self):
+        fake_task_func.reset_mock()
+        _discard_tasks()
+        _stop_queuing_tasks()
+
+    def test_not_queued_outside_request_response_cycle(self):
+        fake_task.delay()
+        assert fake_task_func.call_count == 1
+
+    def test_queued_inside_request_response_cycle(self):
+        request_started.send(sender=self)
+        fake_task.delay()
+        assert fake_task_func.call_count == 0
+        request_finished.send_robust(sender=self)
+        assert fake_task_func.call_count == 1
+
+    def test_no_dedupe_outside_request_response_cycle(self):
+        fake_task.delay()
+        fake_task.delay()
+        assert fake_task_func.call_count == 2
+
+    def test_dedupe_inside_request_response_cycle(self):
+        request_started.send(sender=self)
+        fake_task.delay()
+        fake_task.delay()
+        assert fake_task_func.call_count == 0
+        request_finished.send_robust(sender=self)
+        assert fake_task_func.call_count == 1
+
+    def test_can_be_switched_off(self):
+        Switch.objects.filter(name='activate-django-post-request').delete()
+        request_started.send(sender=self)
+        fake_task.delay()
+        fake_task.delay()
+        assert fake_task_func.call_count == 2
