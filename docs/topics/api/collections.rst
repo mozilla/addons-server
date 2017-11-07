@@ -131,6 +131,7 @@ This endpoint lists the add-ons in a collection, together with collector's notes
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
 
+    :query string filter: The :ref:`filter <collection-addon-filtering-param>` to apply.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <collection-addon-list-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
@@ -152,6 +153,22 @@ This endpoint lists the add-ons in a collection, together with collector's notes
 
 All sort parameters can be reversed, e.g. '-added' for descending dates.
 The default sorting is by popularity, descending ('-popularity').
+
+
+.. _collection-addon-filtering-param:
+
+   By default, the collection addon list API will only return public add-ons
+   (excluding add-ons that have no approved listed versions, are disabled or
+   deleted) - you can change that with the ``filter`` query parameter:
+
+    ====================  =====================================================
+                   Value  Description
+    ====================  =====================================================
+            with_deleted  Show all add-ons in the collection, regardless of
+                          state.
+             with_hidden  Show addons that have non-public statuses, but still
+                          exclude deleted add-ons.
+    ====================  =====================================================
 
 
 -------------------------

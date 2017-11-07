@@ -1728,10 +1728,23 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_a = addon_factory(name=u'anteater')
         self.addon_b = addon_factory(name=u'baboon')
         self.addon_c = addon_factory(name=u'cheetah')
+        self.addon_disabled = addon_factory(name=u'antelope_disabled')
+        self.addon_deleted = addon_factory(name=u'buffalo_deleted')
+        self.addon_pending = addon_factory(name=u'pelican_pending')
 
         self.collection.add_addon(self.addon_a)
+        self.collection.add_addon(self.addon_disabled)
         self.collection.add_addon(self.addon_b)
+        self.collection.add_addon(self.addon_deleted)
         self.collection.add_addon(self.addon_c)
+        self.collection.add_addon(self.addon_pending)
+
+        # Set up our filtered-out-by-default addons
+        self.addon_disabled.update(disabled_by_user=True)
+        self.addon_deleted.delete()
+        self.addon_pending.current_version.all_files[0].update(
+            status=amo.STATUS_AWAITING_REVIEW)
+
         self.url = reverse(
             'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
@@ -1761,6 +1774,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert results[0]['addon']['id'] == first.id
         assert results[1]['addon']['id'] == second.id
         assert results[2]['addon']['id'] == third.id
+        assert len(response.data['results']) == 3
 
     def test_sorting(self):
         self.addon_a.update(weekly_downloads=500)
@@ -1809,6 +1823,22 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             self.client.get(self.url + '?sort=-name'),
             self.addon_c, self.addon_b, self.addon_a)
 
+    def test_with_deleted_or_with_hidden(self):
+        response = self.send(self.url)
+        assert response.status_code == 200
+        # Normal
+        assert len(response.data['results']) == 3
+
+        response = self.send(self.url + '?filter=with_hidden')
+        assert response.status_code == 200
+        # Now there should be 2 extra
+        assert len(response.data['results']) == 5
+
+        response = self.send(self.url + '?filter=with_deleted')
+        assert response.status_code == 200
+        # And one more still - with_deleted gets you with_hidden too.
+        assert len(response.data['results']) == 6
+
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
     client_class = APITestClient
@@ -1835,6 +1865,10 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.slug})
+        self.test_basic()
+
+    def test_deleted(self):
+        self.addon.delete()
         self.test_basic()
 
 
@@ -1949,6 +1983,10 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
                              data={'addon': new_addon.id})
         self.check_response(response, data={'notes': None})
 
+    def test_deleted(self):
+        self.addon.delete()
+        self.test_basic()
+
 
 class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
     client_class = APITestClient
@@ -1979,3 +2017,7 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         response = self.send(self.url)
         self.check_response(response)
+
+    def test_deleted(self):
+        self.addon.delete()
+        self.test_basic()
