@@ -1834,7 +1834,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # Now there should be 2 extra
         assert len(response.data['results']) == 5
 
-        response = self.send(self.url + '?filter=with_deleted')
+        response = self.send(self.url + '?filter=with_hidden_and_deleted')
         assert response.status_code == 200
         # And one more still - with_deleted gets you with_hidden too.
         assert len(response.data['results']) == 6

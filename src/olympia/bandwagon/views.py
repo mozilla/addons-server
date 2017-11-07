@@ -714,7 +714,7 @@ class CollectionAddonViewSet(ModelViewSet):
             collection=self.get_collection_viewset().get_object())
         filter_param = self.request.GET.get('filter')
         # We only filter list action.
-        include_deleted = (filter_param == 'with_deleted' or
+        include_deleted = (filter_param == 'with_hidden_and_deleted' or
                            self.action != 'list')
         # If deleted addons are requested, that implies hidden addons.
         include_hidden = filter_param == 'with_hidden' or include_deleted

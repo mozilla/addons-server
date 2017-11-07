@@ -161,14 +161,14 @@ The default sorting is by popularity, descending ('-popularity').
    (excluding add-ons that have no approved listed versions, are disabled or
    deleted) - you can change that with the ``filter`` query parameter:
 
-    ====================  =====================================================
-                   Value  Description
-    ====================  =====================================================
-            with_deleted  Show all add-ons in the collection, regardless of
-                          state.
-             with_hidden  Show addons that have non-public statuses, but still
-                          exclude deleted add-ons.
-    ====================  =====================================================
+    =======================  ==================================================
+                      Value  Description
+    =======================  ==================================================
+                with_hidden  Show addons that have non-public statuses, but
+                             still exclude deleted add-ons.
+    with_hidden_and_deleted  Show all add-ons in the collection, regardless of
+                             state.
+    =======================  ==================================================
 
 
 -------------------------
