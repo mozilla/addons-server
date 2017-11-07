@@ -1829,15 +1829,22 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # Normal
         assert len(response.data['results']) == 3
 
-        response = self.send(self.url + '?filter=with_hidden')
+        response = self.send(self.url + '?filter=all')
         assert response.status_code == 200
         # Now there should be 2 extra
         assert len(response.data['results']) == 5
 
-        response = self.send(self.url + '?filter=with_hidden_and_deleted')
+        response = self.send(self.url + '?filter=all_with_deleted')
         assert response.status_code == 200
         # And one more still - with_deleted gets you with_hidden too.
         assert len(response.data['results']) == 6
+        all_addons_ids = {
+            self.addon_a.id, self.addon_b.id, self.addon_c.id,
+            self.addon_disabled.id, self.addon_deleted.id,
+            self.addon_pending.id}
+        result_ids = {
+            result['addon']['id'] for result in response.data['results']}
+        assert all_addons_ids == result_ids
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
