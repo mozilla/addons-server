@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-31 08:24+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -336,10 +336,6 @@ msgstr "Sunting"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "oleh {0} pada {1}"
 
@@ -522,6 +518,7 @@ msgstr "E-mail dukungan"
 msgid "Info"
 msgstr "Info"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Terakhir Diperbarui:"
 
@@ -1840,7 +1837,8 @@ msgstr "{0} {1} ditambahkan."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} sekarang berlisensi di bawah {0.name}."
 
 msgid "{addon} policy changed."
@@ -3050,7 +3048,8 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Kategori adalah cara utama pengguna menelusuri pengaya.\n"
 "                        Pilihlah pengaya mana saja yang sesuai dengan fungsinya\n"
@@ -3062,7 +3061,13 @@ msgid ""
 msgstr ""
 "Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Tag membantu pengguna menemukan pengaya anda dan harus berisi \n"
 "                        gambaran pendek berisi tab, toolbar, atau twitter.  Anda\n"
@@ -3753,14 +3758,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Dibuat:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b %%e, %%Y"
-
 #, fuzzy
 msgid "Add-on Multi Process Status:"
 msgstr "Status Multi Proses:"
@@ -4023,6 +4025,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "Lihat semuanya"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
 msgstr "Tampilkan Semua Versi"
@@ -6992,6 +6995,9 @@ msgstr "Riwayat Pengaya"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Kompatibilitas:"
 
@@ -7883,7 +7889,11 @@ msgstr "Logo catatan kaki"
 msgid "Choose a category"
 msgstr "Pilih kategori"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Tampilkan Situs Seluler"
 
 #, fuzzy

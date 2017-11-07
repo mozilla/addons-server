@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -345,10 +345,6 @@ msgstr "Përpunoni"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d-%%m-%%Y"
-
 msgid "by {0} on {1}"
 msgstr "nga {0} më {1}"
 
@@ -535,6 +531,7 @@ msgstr "E-mail Asistence"
 msgid "Info"
 msgstr "Të dhëna"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Përditësuar Së Fundi:"
 
@@ -1871,7 +1868,8 @@ msgstr "U shtua {0} {1}."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Roli për {0.name} ndryshoi në {1} për {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} tani qarkullon nën licencën {0.name}."
 
 msgid "{addon} policy changed."
@@ -3073,7 +3071,8 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Kategoritë janë rruga parësore përmes të cilës përdoruesit shfletojnë për shtesa. Zgjidhni cilëndo që i përshtatet funksioneve të shtesës suaj për ekspozim sa më të madh. Kjo vlen vetëm për shtesat "
 "e paraqitura."
@@ -3085,7 +3084,14 @@ msgstr ""
 "Kategoritë s’mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë aplikacion. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën "
 "të modifikoni kategoritë tuaja."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Kategoritë s’mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë aplikacion. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën "
+"të modifikoni kategoritë tuaja."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Etiketat i ndihmojnë përdoruesit të gjejnë shtesën tuaj dhe do të duhej të ishin përshkrues të shkurtër, fjala vjen, skeda, panel, ose Twitter. Mund të përdorni e shumta {0} etiketa. Kjo vlen vetëm "
 "për shtesa të paraqitura."
@@ -3704,14 +3710,11 @@ msgstr "Shtesa juaj është çaktivizuar nga një administrator dhe nuk shfaqet 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Shtesa juaj nuk do të përfshihet në përfundime kërkimesh, dhe faqja për të do të tregojë se e keni çaktivizuar. Nën këtë gjendje nuk do të pranohen parashtrime versionesh të reja."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Krijuar:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%e %%b, %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Gjendje Multiprocesi e Shtesës:"
 
@@ -3945,6 +3948,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "Shihini krejt"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Shihni Tërë Parashtrimet"
 
@@ -6878,6 +6882,9 @@ msgstr "Historik Shtese"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Përputhshmëri:"
 
@@ -7772,7 +7779,11 @@ msgstr "Logo fundfaqeje"
 msgid "Choose a category"
 msgstr "Zgjidhni kategori"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Shihni Sajtin për Celular"
 
 msgid "Report a bug"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-31 14:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -345,10 +345,6 @@ msgstr "Редактиране"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d-%%m-%%Y"
-
 msgid "by {0} on {1}"
 msgstr "от {0} на {1}"
 
@@ -532,6 +528,7 @@ msgstr "Имейл за поддръжка"
 msgid "Info"
 msgstr "Информация"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Обновена на:"
 
@@ -1836,7 +1833,8 @@ msgstr "{0} {1} добавена."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "ролята на {0.name} сменена на {1} за {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} е вече лицензирана под {0.name}."
 
 msgid "{addon} policy changed."
@@ -3027,7 +3025,7 @@ msgstr "Добавката изисква плащане, платени усл�
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Добавката не изисква допълнително заплащане, платени услуги или софтуер, или допълнителен хардуер."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 
 #, python-format
@@ -3035,7 +3033,11 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3630,14 +3632,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Добавката няма да бъде включена в резултатите от търсене, а страницата ѝ ще показва, че сте я изключили. Добавката оставена в това състояние няма да приема нови версии."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr ""
-
 msgid "Add-on Multi Process Status:"
 msgstr "Многопроцесност:"
 
@@ -3862,6 +3861,7 @@ msgstr "Имате готова добавка? Прочетете нашите 
 msgid "See Tutorial"
 msgstr "Вижте уроците"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Всички публикувани"
 
@@ -6635,6 +6635,9 @@ msgstr ""
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr ""
 
@@ -7513,7 +7516,11 @@ msgstr ""
 msgid "Choose a category"
 msgstr ""
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Мобилна версия"
 
 msgid "Report a bug"

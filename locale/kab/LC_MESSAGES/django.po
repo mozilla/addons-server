@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-26 06:54+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,10 +339,6 @@ msgstr "Ẓreg"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "sγuṛ {0} di {1}"
 
@@ -525,6 +521,7 @@ msgstr "Imayl n tallalt"
 msgid "Info"
 msgstr "Talɣut"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Aleqqem aneggaru:"
 
@@ -1838,7 +1835,8 @@ msgstr "{0} {1} yettwarna."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} yuɣal tura {1} i uzegrir {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} hatan tura daw n turagt {0.name}."
 
 msgid "{addon} policy changed."
@@ -3016,7 +3014,7 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 
 #, python-format
@@ -3024,7 +3022,11 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3622,14 +3624,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Yettwarna:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b %%e, %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Addad n agetsekker n izegrar:"
 
@@ -3858,6 +3857,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "Wali akk"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Wali akk tuzniwin"
 
@@ -6673,6 +6673,9 @@ msgstr "Amazray n uzegrir"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Amṣada:"
 
@@ -7538,7 +7541,11 @@ msgstr "Alugu n uḍaṛ"
 msgid "Choose a category"
 msgstr "Fren taggayt"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Sken asmel aziraz"
 
 msgid "Report a bug"

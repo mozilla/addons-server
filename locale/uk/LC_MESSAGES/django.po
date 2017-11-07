@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-28 19:39+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -355,10 +355,6 @@ msgstr "Редагувати"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d.%%m.%%Y"
-
 msgid "by {0} on {1}"
 msgstr "створено {0} {1}"
 
@@ -545,6 +541,7 @@ msgstr "Електронна пошта підтримки"
 msgid "Info"
 msgstr "Інформація"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Останнє оновлення:"
 
@@ -1882,7 +1879,8 @@ msgstr "{0} {1} додано."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Роль {0.name} змінено на {1} для {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "Тепер {addon} ліцензовано на умовах {0.name}."
 
 msgid "{addon} policy changed."
@@ -3061,7 +3059,8 @@ msgstr "Цей додаток потребує оплати, платних по
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Цей додаток не потребує жодної оплати, платних послуг або програмного забезпечення, чи додаткового обладнання."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Категорії - основний критерій, за яким користувачі переглядають додатки.\n"
 "                        Виберіть будь-яку, яка найкращим чином відповідає функціональності вашого додатка.\n"
@@ -3074,7 +3073,14 @@ msgstr ""
 "Якщо Ваш додаток для цієї програми є Обраним, його категорії не можуть бути змінені. Якщо у Вас є причина, через яку Вам необхідно змінити Ваші категорії, будь ласка, напишіть за цією адресою <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Якщо Ваш додаток для цієї програми є Обраним, його категорії не можуть бути змінені. Якщо у Вас є причина, через яку Вам необхідно змінити Ваші категорії, будь ласка, напишіть за цією адресою <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Теги допомагають користувачам знайти ваш додаток і вони повинні бути коротким описом, таким як вкладки, панель чи twitter. Ви можете мати максимум {0} тегів. Це стосується лише додатків, які "
 "знаходяться в списку."
@@ -3693,14 +3699,11 @@ msgstr "Ваш додаток був виключений адміністрат
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Ваш додаток не буде включено в результати пошуку, а його сторінка буде вказувати, що ви його деактивували. В такому стані відправлення нових версій не буде схвалюватись."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Створено:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%e %%b %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Багатопроцесовість додатку:"
 
@@ -3930,6 +3933,7 @@ msgstr "Готові надіслати додаток? Прочитайте н�
 msgid "See Tutorial"
 msgstr "Дивитися посібник"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Переглянути всі подання"
 
@@ -6826,6 +6830,9 @@ msgstr "Історія додатку"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Версія %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Сумісність:"
 
@@ -7722,8 +7729,12 @@ msgstr "Логотип знизу"
 msgid "Choose a category"
 msgstr "Оберіть категорії"
 
-msgid "View Mobile Site"
-msgstr "Переглянути сайт для мобільного"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "Відвідати новий сайт"
 
 msgid "Report a bug"
 msgstr "Повідомити про помилку"

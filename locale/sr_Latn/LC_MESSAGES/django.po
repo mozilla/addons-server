@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -372,10 +372,6 @@ msgstr "Uredi"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr ""
-
 msgid "by {0} on {1}"
 msgstr "od {0} dana {1}"
 
@@ -583,6 +579,7 @@ msgstr "E-pošta podrške"
 msgid "Info"
 msgstr "Informacije"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Poslednje ažuriranje:"
 
@@ -2079,7 +2076,8 @@ msgstr "{0} {1} je dodat."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Uloga korisnika {0.name} je promenjena u {1} za {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} je sada licenciran pod {0.name}."
 
 msgid "{addon} policy changed."
@@ -3398,8 +3396,7 @@ msgstr ""
 
 msgid ""
 "Categories are the primary way users browse through add-ons. Choose any that "
-"fit your add-on's functionality for the most exposure. It is only relevant "
-"for listed add-ons."
+"fit your add-on's functionality for the most exposure."
 msgstr ""
 
 #, python-format
@@ -3412,10 +3409,19 @@ msgstr ""
 "aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</"
 "a> ako postoji razlog za izmenjivanje Vaših kategorija."
 
+#, fuzzy, python-format
+msgid ""
+"Categories cannot be changed while your add-on is featured. Please email <a "
+"href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to "
+"modify your categories."
+msgstr ""
+"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu "
+"aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</"
+"a> ako postoji razlog za izmenjivanje Vaših kategorija."
+
 msgid ""
 "Tags help users find your add-on and should be short descriptors such as "
-"tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only "
-"relevant for listed add-ons."
+"tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
@@ -4145,14 +4151,11 @@ msgid ""
 "accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Napravljeno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr ""
-
 #, fuzzy
 msgid "Add-on Multi Process Status:"
 msgstr "Proces pregleda dodatka"
@@ -4429,6 +4432,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "Pogledajte sve"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
 msgstr "Pogledaj sve verzije"
@@ -7866,6 +7870,9 @@ msgstr ""
 "Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Kompatibilnost:"
 
@@ -8825,7 +8832,11 @@ msgstr ""
 msgid "Choose a category"
 msgstr "Izaberite kategoriju"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Sajt za mobilne uređaje"
 
 #, fuzzy

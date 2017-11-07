@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -341,10 +341,6 @@ msgstr "সম্পাদনা করুন"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "{1} তে {0} দ্বারা"
 
@@ -527,6 +523,7 @@ msgstr "ই-মেইল সহায়তা"
 msgid "Info"
 msgstr "তথ্য"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "সর্বশেষ হালনাগাদ:"
 
@@ -1837,7 +1834,8 @@ msgstr "{0} {1} যোগ করা হয়েছে।"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon} এর জন্য {0.name} এর পদবি পরিবর্তন করে {1} করা হয়েছে।"
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} এখন {0.name} এর অধীনে লাইসেন্স করা।"
 
 msgid "{addon} policy changed."
@@ -3027,7 +3025,7 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 
 #, python-format
@@ -3035,7 +3033,11 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3630,14 +3632,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "তৈরিকৃতঃ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr ""
-
 #, fuzzy
 msgid "Add-on Multi Process Status:"
 msgstr "এড-অন স্ট্যাটাস"
@@ -3880,6 +3879,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "সবগুলো দেখুন"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
 msgstr "সকল সংস্করণগুলো দেখুন"
@@ -6655,6 +6655,9 @@ msgstr ""
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr ""
 
@@ -7526,7 +7529,11 @@ msgstr "ফুটার লগো"
 msgid "Choose a category"
 msgstr "একটি বিষয়শ্রেণী নির্বাচন করুন"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "মোবাইল সাইট দেখুন"
 
 msgid "Report a bug"

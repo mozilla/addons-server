@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-28 15:39+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -358,10 +358,6 @@ msgstr "Правка"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d.%%m.%%Y"
-
 msgid "by {0} on {1}"
 msgstr "от {0} созданы {1}"
 
@@ -551,6 +547,7 @@ msgstr "Адрес эл. почты поддержки"
 msgid "Info"
 msgstr "Информация"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Последнее обновление:"
 
@@ -1892,7 +1889,8 @@ msgstr "{0} {1} добавлено."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "роль {0.name} изменена на {1} для {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} теперь лицензировано на условиях {0.name}."
 
 msgid "{addon} policy changed."
@@ -3075,7 +3073,8 @@ msgstr "Это дополнение требует оплаты, платных 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Это дополнение не требует никаких дополнительных платежей, платных услуг или программного обеспечения, или дополнительного оборудования."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Категории - основной критерий, по которому пользователи просматривают дополнения.\n"
 "                        Выберите любую, которая наилучшим образом соответствует функциональности\n"
@@ -3088,7 +3087,14 @@ msgstr ""
 "Если ваше дополнение для этого приложения является Избранным, его категории не могут быть изменены. Если у вас есть причина, по которой вам нужно изменить ваши категории, пожалуйста, напишите по <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Если ваше дополнение для этого приложения является Избранным, его категории не могут быть изменены. Если у вас есть причина, по которой вам нужно изменить ваши категории, пожалуйста, напишите по <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Метки помогают пользователям найти ваше дополнение и должны быть кратким описанием, таким как вкладки, панели или твиттер. Вы можете иметь максимум {0} меток. Это относится только к опубликованным "
 "дополнениям."
@@ -3719,14 +3725,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Ваше дополнение не будет включено в поисковые результаты, а его страница будет говорить о том, что оно отключено. В этом состоянии не будут приниматься новые версии представления."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Создано:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%e %%b %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Мультипроцессность дополнения:"
 
@@ -3958,6 +3961,7 @@ msgstr "Готовы представить дополнение? Прочтит
 msgid "See Tutorial"
 msgstr "Показать руководство"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Просмотреть все представления"
 
@@ -6881,6 +6885,9 @@ msgstr "История дополнения"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Версия %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Совместимость:"
 
@@ -7785,8 +7792,12 @@ msgstr "Логотип внизу"
 msgid "Choose a category"
 msgstr "Выбрать категорию"
 
-msgid "View Mobile Site"
-msgstr "Посетите мобильный сайт"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "Посетить новый сайт"
 
 msgid "Report a bug"
 msgstr "Сообщить об ошибке"

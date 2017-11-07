@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-29 23:57+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -332,10 +332,6 @@ msgstr "编辑"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "由 {0} 发表于 {1}"
 
@@ -513,6 +509,7 @@ msgstr "用户支持邮箱"
 msgid "Info"
 msgstr "信息"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "最近更新："
 
@@ -1804,7 +1801,8 @@ msgstr "{0} {1} 已添加。"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} 在 {addon} 的角色已更改为 {1}。"
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} 的许可协议已更改为 {0.name}。"
 
 msgid "{addon} policy changed."
@@ -2976,7 +2974,8 @@ msgstr "此附加组件需要付费，非免费服务或软件，或需额外硬
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "此附加组件不需要任何形式的支付、付费服务、付费软件或额外硬件。"
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "分类是许多用户浏览附加组件的主要方式。选择任何您的附加组件的功能适合展示的分类。此项只与上架的附加组件相关。"
 
 #, python-format
@@ -2984,7 +2983,12 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。如果您有理由需要修改其分类，请发送电子邮件到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。如果您有理由需要修改其分类，请发送电子邮件到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "标签可以帮助用户找到您的附加组件，它应该是简短的描述词，例如：tabs, toolbar, twitter 等。您最多可以使用 {0} 个标签。此项只与上架的附加组件相关。"
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3566,14 +3570,11 @@ msgstr "您的附加组件已被一名网站管理员禁用，并将不再展示
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "您的附加组件不会出现在搜索结果中，其详情页面将显示您已禁用它。此状态下提交的新版本将不会被接受。"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "创建于："
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%Y-%%m-%%d"
-
 msgid "Add-on Multi Process Status:"
 msgstr "附加组件多进程状态："
 
@@ -3797,6 +3798,7 @@ msgstr "准备提交附加组件？阅读我们关于提交流程的分步解释
 msgid "See Tutorial"
 msgstr "查看教程"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "查看所有提交"
 
@@ -6588,6 +6590,9 @@ msgstr "附加组件历史"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "版本 %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "兼容性："
 
@@ -7457,8 +7462,12 @@ msgstr "页脚标志"
 msgid "Choose a category"
 msgstr "选择一个分类"
 
-msgid "View Mobile Site"
-msgstr "查看移动版网站"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "查看新版网站"
 
 msgid "Report a bug"
 msgstr "报告缺陷"

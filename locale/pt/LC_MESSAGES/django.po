@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,10 +339,6 @@ msgstr "Editar"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr ""
-
 msgid "by {0} on {1}"
 msgstr "por {0} em {1}"
 
@@ -532,6 +528,7 @@ msgstr "Email de suporte"
 msgid "Info"
 msgstr "Informação"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Última atualização:"
 
@@ -1867,7 +1864,8 @@ msgstr "{0} {1} adicionado."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Perfil de {0.name} alterado para {1} para {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} está agora licenciado sob {0.name}."
 
 msgid "{addon} policy changed."
@@ -3100,7 +3098,8 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "As categorias são o método primário de navegação para os utilizadores encontrarem extras. Escolha qualquer uma que se adeque à funcionalidade do seu extra para uma maior exposição. Isto apenas é "
 "relevante para extras listados."
@@ -3112,7 +3111,14 @@ msgstr ""
 "As categorias não podem ser alteradas enquanto o seu extra estiver em destaque para esta aplicação. Por favor, envie uma mensagem de correio para <a href=\"mailto:%(email)s\">%(email)s</a> se "
 "existir um motivo pelo qual necessite de modificar as suas categorias."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"As categorias não podem ser alteradas enquanto o seu extra estiver em destaque para esta aplicação. Por favor, envie uma mensagem de correio para <a href=\"mailto:%(email)s\">%(email)s</a> se "
+"existir um motivo pelo qual necessite de modificar as suas categorias."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser descritores curtos como separadores, barra de ferramenta, ou twitter. Pode ter um máximo de {0} etiquetas. Isto apenas é "
 "relevante para extras listados."
@@ -3763,14 +3769,11 @@ msgstr "O seu extra foi desativado por um administrador do sítio e já não é 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Criado:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr ""
-
 #, fuzzy
 msgid "Add-on Multi Process Status:"
 msgstr "Processo de revisão de extras"
@@ -4021,6 +4024,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr "Ver tudo"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
 msgstr "Ver todas as versões"
@@ -6980,6 +6984,9 @@ msgstr "Histórico do extra"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Compatibilidade:"
 
@@ -7869,7 +7876,11 @@ msgstr "Logótipo do rodapé"
 msgid "Choose a category"
 msgstr "Escolha uma categoria"
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
 msgstr "Ver versão móvel"
 
 #, fuzzy
