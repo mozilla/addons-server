@@ -25,6 +25,7 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, Category)
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.views import edit_theme
 from olympia.tags.models import Tag, AddonTag
 from olympia.users.models import UserProfile
@@ -272,6 +273,13 @@ class BaseTestEditBasic(BaseTestEdit):
         self.addon.find_latest_version(None).files.update(is_webextension=True)
         self.test_nav_links(show_compat_reporter=False)
 
+    def _feature_addon(self, addon_id=3615):
+        c_addon = CollectionAddon.objects.create(
+            addon_id=addon_id, collection=Collection.objects.create())
+        FeaturedCollection.objects.create(collection=c_addon.collection,
+                                          application=amo.FIREFOX.id)
+        cache.clear()
+
 
 class TagTestsMixin(object):
     def test_edit_add_tag(self):
@@ -463,13 +471,6 @@ class TestEditBasicListed(BaseTestEditBasic, TagTestsMixin,
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [1, 22]
-
-    def _feature_addon(self, addon_id=3615):
-        c_addon = CollectionAddon.objects.create(
-            addon_id=addon_id, collection=Collection.objects.create())
-        FeaturedCollection.objects.create(collection=c_addon.collection,
-                                          application=amo.FIREFOX.id)
-        cache.clear()
 
     def test_edit_categories_add_featured(self):
         """Ensure that categories cannot be changed for featured add-ons."""
@@ -1470,11 +1471,15 @@ class StaticMixin(object):
         if self.listed:
             AddonCategory.objects.filter(addon=addon).delete()
             cache.clear()
+            Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
 
 
 class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
                                      TagTestsMixin, ContributionsTestsMixin,
                                      L10nTestsMixin):
+    __test__ = True
+
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
                   'summary': 'new summary', 'category': 300,
@@ -1502,42 +1507,45 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
         assert category_ids_new == [308]
+        # Check we didn't delete the Category object too!
+        assert category.reload()
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')
         response = self.client.post(self.basic_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response, 'form', 'category', 'This field is required.')
+            response, 'cat_form', 'category', 'This field is required.')
 
     def test_edit_categories_add_featured(self):
         """Ensure that categories cannot be changed for featured add-ons."""
         category = Category.objects.get(id=308)
         AddonCategory(addon=self.addon, category=category).save()
-        self._feature_addon()
+        self._feature_addon(self.addon.id)
 
         response = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
-        assert response.context['form'].errors[0]['category'] == (
-            ['Categories cannot be changed while your add-on is featured.'])
         # This add-on's categories should not change.
         assert sorted(addon_cats) == [308]
+        self.assertFormError(
+            response, 'cat_form', 'category',
+            'Categories cannot be changed while your add-on is featured.')
 
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
         assert self.client.login(email='admin@mozilla.com')
         category = Category.objects.get(id=308)
         AddonCategory(addon=self.addon, category=category).save()
-        self._feature_addon()
+        self._feature_addon(self.addon.id)
 
         response = self.client.get(self.basic_edit_url)
         doc = pq(response.content)
-        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
+        assert doc('#addon-categories-edit').length == 1
         assert doc('#addon-categories-edit > p').length == 0
         response = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'category' not in response.context['form'].errors[0]
+        assert 'category' not in response.context['cat_form'].errors
         # This add-on's categories should change.
         assert sorted(addon_cats) == [300]
 

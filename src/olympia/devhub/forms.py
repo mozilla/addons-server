@@ -790,31 +790,35 @@ class SingleCategoryForm(happyforms.Form):
             kw['initial'] = {'category': self.addon.all_categories[0].id}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
-        form = self.fields['category']
         # Hack because we know this is only used for Static Themes that only
         # support Firefox.  Hoping to unify per-app categories in the meantime.
         app = amo.FIREFOX
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
                              key=lambda (slug, cat): slug)
-        form.choices = [
+        self.fields['category'].choices = [
             (c.id, c.name) for _, c in sorted_cats]
 
         # If this add-on is featured for this application, category changes are
         # forbidden.
+        print "### checking featured"
         if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            form.disabled = (app and self.addon.is_featured(app))
+            f = self.addon.is_featured(app)
+            print "### form.disabled = %s" % f
+            self.disabled = f
 
     def save(self):
         category = self.cleaned_data['category']
         # Clear any old categor[y|ies]
-        self.addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=self.addon).delete()
         # Add new category
         AddonCategory(addon=self.addon, category_id=category).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 
-    def clean_categories(self):
+    def clean_category(self):
+        print "### cleaning category"
         if getattr(self, 'disabled', False) and self.cleaned_data['category']:
+            print "### form is disabled on clean"
             raise forms.ValidationError(ugettext(
                 'Categories cannot be changed while your add-on is featured.'))
 
