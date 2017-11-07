@@ -795,6 +795,14 @@ class TestVersionSerializerOutput(TestCase):
         assert result['name'] == {
             'en-US': unicode(LICENSES_BY_BUILTIN[18].name)}
 
+        accept_request = APIRequestFactory().get('/')
+        accept_request.LANG = 'de'
+        result = LicenseSerializer(
+            context={'request': accept_request}).to_representation(license)
+        # An Accept-Language should result in a different default though.
+        assert result['name'] == {
+            'de': unicode(LICENSES_BY_BUILTIN[18].name)}
+
         # But a requested lang returns a flat string
         lang_request = APIRequestFactory().get('/?lang=fr')
         result = LicenseSerializer(
