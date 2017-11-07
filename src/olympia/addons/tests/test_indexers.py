@@ -482,19 +482,33 @@ class TestAddonIndexer(TestCase):
         assert extracted['persona']['textcolor'] == persona.textcolor
 
         # Personas are always considered compatible with every platform, and
-        # all versions of all apps.
+        # almost all versions of all apps.
         assert extracted['platforms'] == [amo.PLATFORM_ALL.id]
-        expected_version_compat = {
-            'max': 9999000000200100,
-            'max_human': None,
-            'min': 0,
-            'min_human': None
-        }
         assert extracted['current_version']['compatible_apps'] == {
-            amo.ANDROID.id: expected_version_compat,
-            amo.FIREFOX.id: expected_version_compat,
-            amo.THUNDERBIRD.id: expected_version_compat,
-            amo.SEAMONKEY.id: expected_version_compat,
+            amo.ANDROID.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 11000000200100,
+                'min_human': '11.0',
+            },
+            amo.FIREFOX.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 4000000200100,
+                'min_human': '4.0',
+            },
+            amo.THUNDERBIRD.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 5000000200100,
+                'min_human': '5.0',
+            },
+            amo.SEAMONKEY.id: {
+                'max': 9999000000200100,
+                'max_human': '9999',
+                'min': 2010000200100,
+                'min_human': '2.1',
+            },
         }
         self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
         extracted = self._extract()

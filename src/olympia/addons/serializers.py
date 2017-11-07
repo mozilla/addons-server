@@ -150,11 +150,13 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             'versions.edit', args=[obj.pk], prefix_only=True))
 
     def get_compatibility(self, obj):
-        if obj.addon.type in amo.NO_COMPAT:
-            return {}
-        return {app.short: {'min': compat.min.version,
-                            'max': compat.max.version}
-                for app, compat in obj.compatible_apps.items()}
+        return {
+            app.short: {
+                'min': compat.min.version if compat else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': compat.max.version if compat else amo.FAKE_MAX_VERSION
+            } for app, compat in obj.compatible_apps.items()
+        }
 
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
@@ -439,7 +441,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 compatible_apps[app_name] = ApplicationsVersions(
                     min=AppVersion(version=compat_dict.get('min_human', '')),
                     max=AppVersion(version=compat_dict.get('max_human', '')))
-            version.compatible_apps = compatible_apps
+            version._compatible_apps = compatible_apps
         else:
             version = None
         return version
