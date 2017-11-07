@@ -275,16 +275,25 @@
   {% csrf_token %}
   <div class="whiteboard">
     <div class="whiteboard-inner">
-      <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>
-      {{ whiteboard_form.whiteboard }}
-      {{ form.notify.errors }}
+      <label for="id_whiteboard">{{ whiteboard_form.public.label }}</label>
+      {{ whiteboard_form.public }}
       <p>{{ _('The whiteboard is the place to exchange information relevant to '
               'this addon (whatever the version), between the developer and the '
               'reviewer. This is visible and editable by both.') }}</p>
-      <div class="whiteboard-actions">
-        <input type="submit" value="{{ _('Update the whiteboard') }}" />
-      </div>
     </div>
+  </div>
+  <div class="whiteboard private">
+    <div class="whiteboard-inner">
+      <label for="id_private_whiteboard">{{ whiteboard_form.private.label }}</label>
+      {{ whiteboard_form.private }}
+      <p>{{ _('The private whiteboard is used for exchanging information '
+              'between reviewers that is independent of the version. Please '
+              'keep the language objective. It is visible only to reviewers.') }}</p>
+    </div>
+  </div>
+  <div class="whiteboard-actions">
+    {{ form.notify.errors }}
+    <input type="submit" value="{{ _('Update whiteboards') }}" />
   </div>
 </form>
 

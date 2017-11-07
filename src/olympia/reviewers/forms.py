@@ -12,14 +12,15 @@ import olympia.core.logger
 from olympia import amo
 from olympia import ratings
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, Persona
+from olympia.addons.models import Persona
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
 from olympia.lib import happyforms
 from olympia.ratings.models import Rating
 from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
-from olympia.reviewers.models import CannedResponse, ReviewerScore, ThemeLock
+from olympia.reviewers.models import (
+    CannedResponse, ReviewerScore, ThemeLock, Whiteboard)
 from olympia.reviewers.tasks import (
     approve_rereview, reject_rereview, send_mail)
 from olympia.versions.models import Version
@@ -513,8 +514,21 @@ class ReviewThemeLogForm(ReviewLogForm):
 class WhiteboardForm(forms.ModelForm):
 
     class Meta:
-        model = Addon
-        fields = ['whiteboard']
+        model = Whiteboard
+        fields = ['private', 'public']
+        labels = {
+            'private': _('Private Whiteboard'),
+            'public': _('Whiteboard')
+        }
+
+
+class PublicWhiteboardForm(forms.ModelForm):
+    class Meta:
+        model = Whiteboard
+        fields = ['public']
+        labels = {
+            'public': _('Whiteboard')
+        }
 
 
 class ModerateRatingFlagForm(happyforms.ModelForm):

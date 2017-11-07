@@ -1200,7 +1200,7 @@ class TestEditTechnical(BaseTestEdit):
             'developer_comments': 'Test comment!',
             'external_software': 'on',
             'view_source': 'on',
-            'whiteboard': 'Whiteboard info.'
+            'whiteboard-public': 'Whiteboard info.'
         }
 
         response = self.client.post(
@@ -1211,8 +1211,8 @@ class TestEditTechnical(BaseTestEdit):
         for k in data:
             if k == 'developer_comments':
                 assert unicode(getattr(addon, k)) == unicode(data[k])
-            elif k == 'whiteboard':
-                assert unicode(getattr(addon, k)) == unicode(data[k])
+            elif k == 'whiteboard-public':
+                assert unicode(addon.whiteboard.public) == unicode(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
@@ -1448,21 +1448,21 @@ class TestEditTechnicalUnlisted(BaseTestEdit):
         edit_url = self.get_url('technical', edit=True)
 
         # It's okay to post empty whiteboard instructions.
-        response = self.client.post(edit_url, {'whiteboard': ''})
+        response = self.client.post(edit_url, {'whiteboard-public': ''})
         assert response.context['form'].errors == {}
 
         # Let's update it.
         response = self.client.post(
-            edit_url, {'whiteboard': 'important stuff'})
+            edit_url, {'whiteboard-public': 'important stuff'})
         assert response.context['form'].errors == {}
         addon = self.get_addon()
-        assert addon.whiteboard == 'important stuff'
+        assert addon.whiteboard.public == 'important stuff'
 
         # And clear it again.
-        response = self.client.post(edit_url, {'whiteboard': ''})
+        response = self.client.post(edit_url, {'whiteboard-public': ''})
         assert response.context['form'].errors == {}
         addon = self.get_addon()
-        assert addon.whiteboard == ''
+        assert addon.whiteboard.public == ''
 
 
 class StaticMixin(object):

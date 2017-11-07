@@ -17,7 +17,8 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.models import ManagerBase, ModelBase, skip_cache
+from olympia.amo.models import (
+    ManagerBase, ModelBase, OnChangeMixin, skip_cache)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, Persona
@@ -1170,3 +1171,33 @@ class ThemeLock(ModelBase):
 
     class Meta:
         db_table = 'theme_locks'
+
+
+class Whiteboard(OnChangeMixin, ModelBase):
+    addon = models.OneToOneField(
+        Addon, on_delete=models.CASCADE, primary_key=True)
+    private = models.TextField(blank=True)
+    public = models.TextField(blank=True)
+
+    class Meta:
+        db_table = 'review_whiteboard'
+
+    def __unicode__(self):
+        return u'[%s] private: |%s| public: |%s|' % (
+            self.addon.name, self.private, self.public)
+
+
+@Whiteboard.on_change
+def watch_public_whiteboard_changes(old_attr=None, new_attr=None,
+                                    instance=None, sender=None, **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
+
+    whiteboard_changed = (
+        new_attr.get('public') and
+        old_attr.get('public') != new_attr.get('public'))
+
+    if whiteboard_changed:
+        instance.addon.versions.update(has_info_request=False)

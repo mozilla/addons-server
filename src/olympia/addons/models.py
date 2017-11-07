@@ -348,8 +348,6 @@ class Addon(OnChangeMixin, ModelBase):
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
 
-    whiteboard = models.TextField(blank=True)
-
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
     reputation = models.SmallIntegerField(default=0, null=True)
@@ -1480,13 +1478,10 @@ def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
-    whiteboard_changed = (
-        new_attr.get('whiteboard') and
-        old_attr.get('whiteboard') != new_attr.get('whiteboard'))
     developer_comments_changed = (new_attr.get('_developer_comments_cache') and
                                   old_attr.get('_developer_comments_cache') !=
                                   new_attr.get('_developer_comments_cache'))
-    if whiteboard_changed or developer_comments_changed:
+    if developer_comments_changed:
         instance.versions.update(has_info_request=False)
 
 

@@ -34,7 +34,7 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
-    ReviewerSubscription)
+    ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
@@ -3818,42 +3818,75 @@ class TestWhiteboard(ReviewBase):
         return self.addon.pk if self.addon.is_deleted else self.addon.slug
 
     def test_whiteboard_addition(self):
-        whiteboard_info = u'Whiteboard info.'
+        public_whiteboard_info = u'Public whiteboard info.'
+        private_whiteboard_info = u'Private whiteboard info.'
         url = reverse(
             'reviewers.whiteboard', args=['listed', self.addon_param])
-        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
         self.assert3xx(response, reverse(
             'reviewers.review', args=('listed', self.addon_param)))
-        assert self.addon.reload().whiteboard == whiteboard_info
+        addon = self.addon.reload()
+        assert addon.whiteboard.public == public_whiteboard_info
+        assert addon.whiteboard.private == private_whiteboard_info
 
     def test_whiteboard_addition_content_review(self):
-        whiteboard_info = u'Whiteboard info for content.'
+        public_whiteboard_info = u'Public whiteboard info for content.'
+        private_whiteboard_info = u'Private whiteboard info for content.'
         url = reverse(
             'reviewers.whiteboard', args=['content', self.addon_param])
-        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
         assert response.status_code == 403  # Not a content reviewer.
 
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ContentReview')
         self.login_as_reviewer()
 
-        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
         self.assert3xx(response, reverse(
             'reviewers.review', args=('content', self.addon_param)))
-        assert self.addon.reload().whiteboard == whiteboard_info
+        addon = self.addon.reload()
+        assert addon.whiteboard.public == public_whiteboard_info
+        assert addon.whiteboard.private == private_whiteboard_info
 
     def test_whiteboard_addition_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
-        whiteboard_info = u'Whiteboard info.'
+        public_whiteboard_info = u'Public whiteboard info unlisted.'
+        private_whiteboard_info = u'Private whiteboard info unlisted.'
         url = reverse(
             'reviewers.whiteboard', args=['unlisted', self.addon_param])
-        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
         self.assert3xx(response, reverse(
             'reviewers.review', args=('unlisted', self.addon_param)))
-        assert self.addon.reload().whiteboard == whiteboard_info
+
+        addon = self.addon.reload()
+        assert addon.whiteboard.public == public_whiteboard_info
+        assert addon.whiteboard.private == private_whiteboard_info
+
+    def test_delete_empty(self):
+        url = reverse(
+            'reviewers.whiteboard', args=['listed', self.addon_param])
+        response = self.client.post(url, {
+            'whiteboard-private': '',
+            'whiteboard-public': ''
+        })
+        self.assert3xx(response, reverse(
+            'reviewers.review', args=('listed', self.addon_param)))
+        assert not Whiteboard.objects.filter(pk=self.addon.pk)
 
 
 class TestWhiteboardDeleted(TestWhiteboard):

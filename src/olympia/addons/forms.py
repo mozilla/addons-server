@@ -395,13 +395,13 @@ class AddonFormTechnical(AddonFormBase):
     class Meta:
         model = Addon
         fields = ('developer_comments', 'view_source', 'external_software',
-                  'auto_repackage', 'public_stats', 'whiteboard')
+                  'auto_repackage', 'public_stats')
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):
     class Meta:
         model = Addon
-        fields = ('whiteboard',)
+        fields = ()
 
 
 class AbuseForm(happyforms.Form):
