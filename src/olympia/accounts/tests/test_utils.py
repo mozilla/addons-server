@@ -123,7 +123,9 @@ class TestProcessSqsQueue(TestCase):
     @mock.patch('olympia.accounts.utils.process_fxa_event')
     @mock.patch('boto3.client')
     def test_process_sqs_queue(self, client, process_fxa_event):
-        messages = [{'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}]
+        messages = [
+            {'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}, None,
+            {'Body': 'thisonetoo'}]
         sqs = mock.MagicMock(
             **{'receive_message.side_effect': [{'Messages': messages}]})
         delete_mock = mock.MagicMock()
@@ -137,8 +139,10 @@ class TestProcessSqsQueue(TestCase):
 
         client.assert_called()
         process_fxa_event.assert_called()
+        # The 'None' in messages would cause an exception, but it should be
+        # handled, and the remaining message(s) still processed.
         process_fxa_event.assert_has_calls(
-            [mock.call('foo'), mock.call('bar')])
+            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')])
         delete_mock.assert_called_once()  # Receipt handle is present in foo.
         delete_mock.assert_called_with(
             QueueUrl='https://nowh.ere/', ReceiptHandle='$$$')
