@@ -800,11 +800,8 @@ class SingleCategoryForm(happyforms.Form):
 
         # If this add-on is featured for this application, category changes are
         # forbidden.
-        print "### checking featured"
         if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            f = self.addon.is_featured(app)
-            print "### form.disabled = %s" % f
-            self.disabled = f
+            self.disabled = self.addon.is_featured(app)
 
     def save(self):
         category = self.cleaned_data['category']
@@ -816,9 +813,7 @@ class SingleCategoryForm(happyforms.Form):
         del self.addon.all_categories
 
     def clean_category(self):
-        print "### cleaning category"
         if getattr(self, 'disabled', False) and self.cleaned_data['category']:
-            print "### form is disabled on clean"
             raise forms.ValidationError(ugettext(
                 'Categories cannot be changed while your add-on is featured.'))
 
