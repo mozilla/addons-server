@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-07 19:30+0000\n"
+"PO-Revision-Date: 2017-11-07 19:43+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3087,9 +3087,8 @@ msgstr "Ta dodatek zahteva plačilo, plačljive storitve ali programsko opremo a
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ta dodatek ne zahteva dodatnih plačil, plačljivih storitev ali programske opreme ali dodatne strojne opreme."
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Kategorije so primarni način, kako uporabniki brskajo med dodatki. Za kar najboljšo izpostavljenost izberite take, ki ustrezajo funkcionalnosti dodatka. Velja samo za dodatke na seznamu."
+msgstr "Kategorije so glavni način, kako uporabniki brskajo med dodatki. Za kar najboljšo izpostavljenost izberite take, ki ustrezajo funkcionalnosti dodatka."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3097,17 +3096,12 @@ msgstr ""
 "Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati. Pišite nam na naslednji naslov<a href=\"mailto:%(email)s\">%(email)s</a>, če imate razlog za "
 "spremembe v svojih kategorijah."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati. Pišite nam na naslednji naslov<a href=\"mailto:%(email)s\">%(email)s</a>, če imate razlog za "
-"spremembe v svojih kategorijah."
+msgstr "Če je vaš dodatek izbran, mu kategorij ni mogoče spreminjati. Pišite nam na <a href=\"mailto:%(email)s\">%(email)s</a>, če imate razlog za spremembe svojih kategorij."
 
-#, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-"Oznake pomagajo uporabnikom poiskati dodatek, morajo pa biti kratke besede, povezane z delovanjem dodatka, kot npr. zavihek, orodna vrstica, Twitter. Imate lahko največ {0} oznak. Velja samo za "
-"dodatke na seznamu."
+msgstr "Oznake pomagajo uporabnikom najti dodatek, morajo pa biti kratke besede, povezane z delovanjem dodatka, npr. zavihki, orodna vrstica, twitter ... Imate lahko največ {0} oznak."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
