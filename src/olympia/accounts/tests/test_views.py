@@ -1076,7 +1076,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         assert res.status_code == 404, res.content
 
     def test_requesting_user_must_have_access(self):
-        self.user.groups.all().delete()
+        GroupUser.objects.filter(user=self.user).delete()
         res = self.post(self.url, {})
         assert res.status_code == 403, res.content
         assert res.data['detail'] == (
