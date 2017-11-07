@@ -24,7 +24,9 @@ jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
 @claviska/jquery-minicolors/jquery.minicolors.js \
 jquery-pjax/jquery.pjax.js \
+jszip/dist/jszip.js \
 raven-js/dist/raven.js \
+svg.js/dist/svg.js \
 timeago/jquery.timeago.js \
 underscore/underscore.js \
 

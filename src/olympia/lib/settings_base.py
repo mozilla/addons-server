@@ -667,6 +667,8 @@ MINIFY_BUNDLES = {
             'css/devhub/refunds.less',
             'css/devhub/buttons.less',
             'css/devhub/in-app-config.less',
+            'css/devhub/static-theme.less',
+            'css/node_lib/jquery.minicolors.css',
         ),
         'zamboni/devhub_impala': (
             'css/impala/developers.less',
@@ -935,6 +937,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/node_lib/jquery.timeago.js',
+            'js/zamboni/static_theme.js',
+            'js/node_lib/jquery.minicolors.js',
+            'js/node_lib/jszip.js',
+            'js/node_lib/svg.js'
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',

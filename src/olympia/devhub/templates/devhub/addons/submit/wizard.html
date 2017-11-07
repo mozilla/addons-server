@@ -1,0 +1,80 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% block title %}
+{{ dev_page_title(_('Theme generate'), addon) }}
+{% endblock %}
+
+{% block primary %}
+  <h3>{{ _('Theme generator') }}</h3>
+  <div id="theme-wizard">
+    <div>
+        <h3>Theme name</h3>
+        <input type="text" id="theme-name"/>
+    </div>
+    <div id="theme-header" class="row">
+      <label class="row" for="header-img">
+        {{ _('Select a header image for your Theme.') }}
+      </label>
+      <input data-allowed-types="image/jpeg|image/png|image/apng|image/svg|image/gif"
+             id="header-img" name="header" type="file">
+      <ul class="note">
+        <li>{{ _('Image height should be 200 pixels') }}</li>
+        <li>{{ _('PNG, JPG, APNG, SVG or GIF (not animated)') }}</li>
+        <li>{{ _('Aligned to top-right') }}</li>
+      </ul>
+      <ul class="errorlist"></ul>
+      <img class="preview" alt="">
+      <a href="#" class="reset">
+        {{ _('Select a different header image') }}</a>
+    </div>
+    <div class="colors">
+      <h3>{{ _('Select colors for your Theme.') }}</h4>
+      {% set colors = [
+        ('accentcolor', _('Header area background (accentcolor)'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image.')),
+        ('textcolor', _('Header area text (textcolor)'), _('The color of the text displayed in the header area.')),
+        ('toolbar', _('Toolbar area background (toolbar).  Optional'), _('The background color for the navigation bar, the bookmarks bar, and the selected tab.')),
+        ('toolbar_text', _('Toolbar area text (toolbar_text).  Optional'), _('The color of toolbar text.')),
+        ('toolbar_field', _('Toolbar field area background (toolbar_field).  Optional'), _('The background color for fields in the toolbar, such as the URL bar.')),
+        ('toolbar_field_text', _('Toolbar field area text (toolbar_field_text).  Optional'), _('The color of text in fields in the toolbar, such as the URL bar'))] %}
+
+      <ul class="colors">
+        {% for (property, label, tip) in colors %}
+        <li class="row">
+          <label class="row" for="{{ property }}">
+            {{ label }}
+            <span class="tip tooltip" title="{{ tip }}" data-oldtitle="">?</span>
+          </label>
+          <input class="color-picker" id="{{ property }}" name="{{ property }}" type="text">
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+        <h3>{{ _('Browser Preview') }}</h3>
+        <div id="browser-preview"></div>
+    </div>
+    <textarea id="manifest"></textarea>
+
+    <form method="post" id="submit-describe" class="item">
+      {% csrf_token %}
+      <div class="hidden">
+        {{ new_addon_form.upload }}
+        {{ new_addon_form.supported_platforms.errors }}
+        {{ new_addon_form.supported_platforms }}
+      </div>
+      {{ new_addon_form.non_field_errors() }}
+      <div class="submission-buttons addon-submission-field">
+        <button class="delete-button" type="sumbit"
+                formaction="{{ url('devhub.submit.upload', 'unlisted'
+                if channel == amo.RELEASE_CHANNEL_UNLISTED else 'listed') }}">
+            {{ _('Back') }}
+        </button>
+        &nbsp;
+        <button class="button upload"
+            formaction="{{ url('devhub.upload' + (
+                '_unlisted' if channel == amo.RELEASE_CHANNEL_UNLISTED else '')) }}"
+            data-uploading-text="{{ _('Uploading Theme') }}">{{ _('Upload Theme') }}</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

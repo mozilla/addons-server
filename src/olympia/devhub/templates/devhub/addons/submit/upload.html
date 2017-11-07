@@ -4,8 +4,10 @@
 
 {% block primary %}
 
+{% set channel_param = 'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
+
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
-    data-addon-is-listed="{% if listed %}true{% else %}false{% endif %}">
+    data-addon-is-listed="{% if channel_param == 'listed' %}true{% else %}false{% endif %}">
   {% csrf_token %}
   {% if submit_page in ['version', 'file']%}
     {% if submit_page == 'file' %}
@@ -16,7 +18,6 @@
     <p class="addon-submit-distribute">
       {{ channel_choice_text|safe }}
       {% if submit_page == 'version' %}
-        {% set channel_param = 'listed' if listed else 'unlisted' %}
         <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?channel={{ channel_param }}">{{ _('Change') }}</a>
       {% endif %}
     </p>
@@ -39,19 +40,19 @@
   </div>
   <input type="file" id="upload-addon"
   {% if addon %}
-    {% if listed %}
-      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'listed') }}"
-    {% else %}
-      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'unlisted') }}"
-    {% endif %}
+      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
   {% else %}
-    {% if listed %}
+    {% if channel == amo.RELEASE_CHANNEL_LISTED %}
       data-upload-url="{{ url('devhub.upload') }}"
     {% else %}
       data-upload-url="{{ url('devhub.upload_unlisted') }}"
     {% endif %}
   {% endif %}
   >
+  {% if submit_page == 'addon' and waffle.switch('allow-static-theme-uploads') %}
+    <a class="button" id="wizardlink" href="{{ url('devhub.submit.wizard', channel_param) }}"
+      >Create a Theme</a>
+  {% endif %}
 
   {{ new_addon_form.non_field_errors() }}
 
@@ -87,7 +88,7 @@
     {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-        {% if listed %}
+        {% if channel == amo.RELEASE_CHANNEL_LISTED %}
           {% if submit_page != 'file' %}
             {{ _('Continue') }}
           {% else %}

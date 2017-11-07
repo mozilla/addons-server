@@ -78,6 +78,11 @@
             $upload_field.wrap(ui_parent);
             $upload_field.before(ui_link);
             $upload_field.parent().after(ui_details);
+            $upload_field.after($('#wizardlink'));
+
+            $('#wizardlink').on('click', function() {
+                window.location = this.href;
+            });
 
             if (!z.capabilities.fileAPI) {
                 $('.invisible-upload').addClass('legacy');

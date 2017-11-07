@@ -147,6 +147,8 @@ urlpatterns = decorate(write, [
         name='devhub.submit.distribution'),
     url('^addon/submit/upload-(?P<channel>listed|unlisted)$',
         views.submit_addon_upload, name='devhub.submit.upload'),
+    url('^addon/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_addon_theme_wizard, name='devhub.submit.wizard'),
 
     # Submission API
     url('^addon/agreement/$', views.api_key_agreement,
