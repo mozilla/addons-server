@@ -362,10 +362,16 @@ def search(request, tag_name=None):
         extra_params = {'sort': {'newest': 'created'}}
     else:
         extra_params = None
+
     fixed = fix_search_query(request.GET, extra_params=extra_params)
     if fixed is not request.GET:
-        return http.HttpResponsePermanentRedirect(urlparams(request.path,
-                                                            **fixed))
+        # We generally want a 301, except if it's a "type", because that's only
+        # here to support the new frontend, so a permanent redirect could mess
+        # things up when the user is going back and forth between the old and
+        # new frontend. https://github.com/mozilla/addons-server/issues/6846
+        status = 302 if 'type' in request.GET else 301
+        return http.HttpResponseRedirect(
+            urlparams(request.path, **fixed), status=status)
 
     facets = request.GET.copy()
 
@@ -571,6 +577,7 @@ def fix_search_query(query, extra_params=None):
     keys = {
         'lver': 'appver',
         'pid': 'platform',
+        'type': 'atype',
     }
     for old, new in keys.items():
         if old in query:
@@ -588,7 +595,9 @@ def fix_search_query(query, extra_params=None):
         },
         'platform': {
             str(p.id): p.shortname
-            for p in amo.PLATFORMS.values()}
+            for p in amo.PLATFORMS.values()
+        },
+        'atype': {k: str(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()},
     }
     if extra_params:
         params.update(extra_params)
