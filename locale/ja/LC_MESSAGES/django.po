@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-11-01 18:02+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -337,10 +337,6 @@ msgstr "編集"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "投稿者: {0} - 投稿日時: {1}"
 
@@ -522,6 +518,7 @@ msgstr "サポートメールアドレス"
 msgid "Info"
 msgstr "情報"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "最終更新日:"
 
@@ -1834,7 +1831,8 @@ msgstr "{0} {1} が追加されました。"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon} における {0.name} の役割が {1} へ変更されました。"
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} のライセンスが {0.name} へ変更されました。"
 
 msgid "{addon} policy changed."
@@ -3009,7 +3007,8 @@ msgstr "このアドオンは、課金、有償のサービスもしくはソフ
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "このアドオンは、追加の課金、有償のサービスもしくはソフトウェア、あるいは追加のハードウェアを一切必要としません。"
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "カテゴリーはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリーをすべて選んでください。当該アドオンにのみ関係します。"
 
 #, python-format
@@ -3019,7 +3018,14 @@ msgstr ""
 "カテゴリーは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメー"
 "ルでお知らせください。"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"カテゴリーは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメー"
+"ルでお知らせください。"
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0} 個のタグを指定できます。当該アドオンにのみ関係します。"
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3617,14 +3623,11 @@ msgstr "このアドオンはサイト管理者によって無効化されてお
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "あなたのアドオンは検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "作成日:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%Y 年 %%m 月 %%e 日"
-
 msgid "Add-on Multi Process Status:"
 msgstr "アドオンのマルチプロセス対応状況:"
 
@@ -3852,6 +3855,7 @@ msgstr "アドオンを登録する準備ができましたか？ 登録手順�
 msgid "See Tutorial"
 msgstr "チュートリアルを見る"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "すべての登録アイテムを表示"
 
@@ -6627,6 +6631,9 @@ msgstr "アドオンの履歴"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "バージョン %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "互換性:"
 
@@ -7494,8 +7501,12 @@ msgstr "フッターロゴ"
 msgid "Choose a category"
 msgstr "カテゴリーを選択"
 
-msgid "View Mobile Site"
-msgstr "モバイル用サイトを表示"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "新しいサイトを見る"
 
 msgid "Report a bug"
 msgstr "バグを報告"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-28 15:55+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -362,10 +362,6 @@ msgstr "Uredi"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d. %%m. %%Y"
-
 msgid "by {0} on {1}"
 msgstr "od {0} dne {1}"
 
@@ -559,6 +555,7 @@ msgstr "E-pošta za podporo"
 msgid "Info"
 msgstr "Informacije"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Nazadnje posodobljeno:"
 
@@ -1909,7 +1906,8 @@ msgstr "Dodano {0} {1}"
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Vloga {0.name} spremenjena v {1} za {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} je sedaj pod licenco {0.name}."
 
 msgid "{addon} policy changed."
@@ -3095,7 +3093,8 @@ msgstr "Ta dodatek zahteva plačilo, plačljive storitve ali programsko opremo a
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ta dodatek ne zahteva dodatnih plačil, plačljivih storitev ali programske opreme ali dodatne strojne opreme."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Kategorije so primarni način, kako uporabniki brskajo med dodatki. Za kar najboljšo izpostavljenost izberite take, ki ustrezajo funkcionalnosti dodatka. Velja samo za dodatke na seznamu."
 
 #, python-format
@@ -3105,7 +3104,14 @@ msgstr ""
 "Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati. Pišite nam na naslednji naslov<a href=\"mailto:%(email)s\">%(email)s</a>, če imate razlog za "
 "spremembe v svojih kategorijah."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Če se vaš izdelek nahaja med izbranimi dodatki za to aplikacijo, mu kategorij ni mogoče spreminjati. Pišite nam na naslednji naslov<a href=\"mailto:%(email)s\">%(email)s</a>, če imate razlog za "
+"spremembe v svojih kategorijah."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Oznake pomagajo uporabnikom poiskati dodatek, morajo pa biti kratke besede, povezane z delovanjem dodatka, kot npr. zavihek, orodna vrstica, Twitter. Imate lahko največ {0} oznak. Velja samo za "
 "dodatke na seznamu."
@@ -3727,14 +3733,11 @@ msgstr "Vaš dodatek je onemogočil administrator in ni več prikazan v galeriji
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Vaš dodatek ne bo vključen v rezultate iskanja in na njegovi strani bo pisalo, da ste ga onemogočili. V tem stanju oddaje novih različic ne bodo sprejete."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Ustvarjeno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b %%e, %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Dodatek in večprocesni način:"
 
@@ -3968,6 +3971,7 @@ msgstr "Ste pripravljeni na potrditev dodatka? Preberite naš podroben vodnik o 
 msgid "See Tutorial"
 msgstr "Glej vodnik"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Ogled vseh prispevkov"
 
@@ -6896,6 +6900,9 @@ msgstr "Zgodovina dodatka"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Različica %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Združljivost:"
 
@@ -7823,8 +7830,12 @@ msgstr "Logotip noge"
 msgid "Choose a category"
 msgstr "Izberite kategorijo"
 
-msgid "View Mobile Site"
-msgstr "Prikaži mobilno stran"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "Obišči novo stran"
 
 msgid "Report a bug"
 msgstr "Prijavi hrošča"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-28 08:19+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,10 +343,6 @@ msgstr "Bearbeiten"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d. %%m. %%Y"
-
 msgid "by {0} on {1}"
 msgstr "von {0} am {1}"
 
@@ -533,6 +529,7 @@ msgstr "E-Mail-Adresse für Hilfestellungen"
 msgid "Info"
 msgstr "Info"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Zuletzt aktualisiert:"
 
@@ -1870,7 +1867,8 @@ msgstr "{0} {1} hinzugefügt."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Rolle von {0.name} für {addon} in {1} geändert."
 
-msgid "{addon} is now licensed under {0.name}."
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
 msgstr "{addon} steht jetzt unter der Lizenz {0.name}."
 
 msgid "{addon} policy changed."
@@ -3052,7 +3050,8 @@ msgstr "Dieses Add-on erfordert eine Zahlung, kostenpflichtige Dienste oder Soft
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Dieses Add-on erfordert keine zusätzliche Zahlung, kostenpflichtige Dienste oder Software oder zusätzliche Hardware."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+#, fuzzy
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Kategorien sind die wichtigste Möglichkeit, mit der Nutzer Add-ons durchsuchen. Wählen Sie die aus, die am besten zu den Funktionen Ihres Add-ons passen, um möglichst viele Interessenten zu "
 "erreichen. Dies ist nur für gelistete Add-ons wichtig."
@@ -3064,7 +3063,14 @@ msgstr ""
 "Kategorien können nicht geändert werden, solange Ihr Add-on für diese Anwendung vorgestellt wird. Bitte schicken Sie eine E-Mail an <a href=\"mailto:%(email)s\">%(email)s</a>, wenn es einen Grund "
 "gibt, Ihre Kategorien zu verändern."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, fuzzy, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Kategorien können nicht geändert werden, solange Ihr Add-on für diese Anwendung vorgestellt wird. Bitte schicken Sie eine E-Mail an <a href=\"mailto:%(email)s\">%(email)s</a>, wenn es einen Grund "
+"gibt, Ihre Kategorien zu verändern."
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 "Schlagwörter helfen Nutzern, Ihre Add-ons zu finden. Sie sollten aus kurzen Beschreibungen wie „Tabs“, „Symbolleiste“ oder „Twitter“ bestehen. Sie können maximal {0} Schlagwörter angeben. Dies ist "
 "nur für gelistete Add-ons wichtig."
@@ -3673,14 +3679,11 @@ msgid "Your add-on won't be included in search results, and its listing page wil
 msgstr ""
 "Ihr Add-on erscheint nicht in Suchergebnissen und seine Listenseite wird anzeigen, dass Sie es deaktiviert haben. Einreichungen neuer Versionen zum Listen werden in diesem Status nicht akzeptiert."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Erstellt:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%d %%b %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Status bei Add-on-Multiprozess:"
 
@@ -3909,6 +3912,7 @@ msgstr "Möchten Sie ein Add-on übermitteln? Lesen Sie unsere Schritt-für-Schr
 msgid "See Tutorial"
 msgstr "Anleitung ansehen"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Alle Einreichungen anzeigen"
 
@@ -6823,6 +6827,9 @@ msgstr "Add-on-Chronik"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s · %(created)s <span class=\"light\">· %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr "Kompatibilität"
 
@@ -7713,8 +7720,12 @@ msgstr "Fußzeilenlogo"
 msgid "Choose a category"
 msgstr "Wählen Sie eine Kategorie"
 
-msgid "View Mobile Site"
-msgstr "Zur mobilen Version"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+#, fuzzy
+msgid "View the new site"
+msgstr "Neue Website besuchen"
 
 msgid "Report a bug"
 msgstr "Fehler melden"

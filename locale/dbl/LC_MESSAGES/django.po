@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-02 03:33+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,10 +337,6 @@ msgstr "Ḗḓīŧ"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "ƀẏ {0} ǿƞ {1}"
 
@@ -523,6 +519,7 @@ msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 msgid "Info"
 msgstr "Īƞƒǿ"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Ŀȧşŧ Ŭƥḓȧŧḗḓ:"
 
@@ -1840,8 +1837,8 @@ msgstr "{0} {1} ȧḓḓḗḓ."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} řǿŀḗ ƈħȧƞɠḗḓ ŧǿ {1} ƒǿř {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} īş ƞǿẇ ŀīƈḗƞşḗḓ ŭƞḓḗř {0.name}."
+msgid "{addon} is now licensed under {0}."
+msgstr "{addon} īş ƞǿẇ ŀīƈḗƞşḗḓ ŭƞḓḗř {0}."
 
 msgid "{addon} policy changed."
 msgstr "{addon} ƥǿŀīƈẏ ƈħȧƞɠḗḓ."
@@ -3017,8 +3014,8 @@ msgstr "Ŧħīş ȧḓḓ-ǿƞ řḗɋŭīřḗş ƥȧẏḿḗƞŧ, ƞǿƞ-ƒř
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ řḗɋŭīřḗ ȧƞẏ ȧḓḓīŧīǿƞȧŀ ƥȧẏḿḗƞŧş, ƥȧīḓ şḗřṽīƈḗş ǿř şǿƒŧẇȧřḗ, ǿř ȧḓḓīŧīǿƞȧŀ ħȧřḓẇȧřḗ."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr "Ƈȧŧḗɠǿřīḗş ȧřḗ ŧħḗ ƥřīḿȧřẏ ẇȧẏ ŭşḗřş ƀřǿẇşḗ ŧħřǿŭɠħ ȧḓḓ-ǿƞş. Ƈħǿǿşḗ ȧƞẏ ŧħȧŧ ƒīŧ ẏǿŭř ȧḓḓ-ǿƞ'ş ƒŭƞƈŧīǿƞȧŀīŧẏ ƒǿř ŧħḗ ḿǿşŧ ḗẋƥǿşŭřḗ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr "Ƈȧŧḗɠǿřīḗş ȧřḗ ŧħḗ ƥřīḿȧřẏ ẇȧẏ ŭşḗřş ƀřǿẇşḗ ŧħřǿŭɠħ ȧḓḓ-ǿƞş. Ƈħǿǿşḗ ȧƞẏ ŧħȧŧ ƒīŧ ẏǿŭř ȧḓḓ-ǿƞ'ş ƒŭƞƈŧīǿƞȧŀīŧẏ ƒǿř ŧħḗ ḿǿşŧ ḗẋƥǿşŭřḗ."
 
 #, python-format
 msgid ""
@@ -3026,8 +3023,12 @@ msgid ""
 msgstr ""
 "Ƈȧŧḗɠǿřīḗş ƈȧƞƞǿŧ ƀḗ ƈħȧƞɠḗḓ ẇħīŀḗ ẏǿŭř ȧḓḓ-ǿƞ īş ƒḗȧŧŭřḗḓ ƒǿř ŧħīş ȧƥƥŀīƈȧŧīǿƞ. Ƥŀḗȧşḗ ḗḿȧīŀ <a href=\"mailto:%(email)s\">%(email)s</a> īƒ ŧħḗřḗ īş ȧ řḗȧşǿƞ ẏǿŭ ƞḗḗḓ ŧǿ ḿǿḓīƒẏ ẏǿŭř ƈȧŧḗɠǿřīḗş."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr "Ŧȧɠş ħḗŀƥ ŭşḗřş ƒīƞḓ ẏǿŭř ȧḓḓ-ǿƞ ȧƞḓ şħǿŭŀḓ ƀḗ şħǿřŧ ḓḗşƈřīƥŧǿřş şŭƈħ ȧş ŧȧƀş, ŧǿǿŀƀȧř, ǿř ŧẇīŧŧḗř. Ẏǿŭ ḿȧẏ ħȧṽḗ ȧ ḿȧẋīḿŭḿ ǿƒ {0} ŧȧɠş. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr "Ƈȧŧḗɠǿřīḗş ƈȧƞƞǿŧ ƀḗ ƈħȧƞɠḗḓ ẇħīŀḗ ẏǿŭř ȧḓḓ-ǿƞ īş ƒḗȧŧŭřḗḓ. Ƥŀḗȧşḗ ḗḿȧīŀ <a href=\"mailto:%(email)s\">%(email)s</a> īƒ ŧħḗřḗ īş ȧ řḗȧşǿƞ ẏǿŭ ƞḗḗḓ ŧǿ ḿǿḓīƒẏ ẏǿŭř ƈȧŧḗɠǿřīḗş."
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Ŧȧɠş ħḗŀƥ ŭşḗřş ƒīƞḓ ẏǿŭř ȧḓḓ-ǿƞ ȧƞḓ şħǿŭŀḓ ƀḗ şħǿřŧ ḓḗşƈřīƥŧǿřş şŭƈħ ȧş ŧȧƀş, ŧǿǿŀƀȧř, ǿř ŧẇīŧŧḗř. Ẏǿŭ ḿȧẏ ħȧṽḗ ȧ ḿȧẋīḿŭḿ ǿƒ {0} ŧȧɠş."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3627,14 +3628,11 @@ msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ḓīşȧƀŀḗḓ ƀẏ ȧ şīŧḗ �
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ẇǿƞ'ŧ ƀḗ īƞƈŀŭḓḗḓ īƞ şḗȧřƈħ řḗşŭŀŧş, ȧƞḓ īŧş ŀīşŧīƞɠ ƥȧɠḗ ẇīŀŀ īƞḓīƈȧŧḗ ẏǿŭ ḓīşȧƀŀḗḓ īŧ. Ƞḗẇ ṽḗřşīǿƞ şŭƀḿīşşīǿƞş ƒǿř ŀīşŧīƞɠ ẇǿƞ'ŧ ƀḗ ȧƈƈḗƥŧḗḓ īƞ ŧħīş şŧȧŧḗ."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Ƈřḗȧŧḗḓ:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%ƀ %%ḗ, %%Ẏ"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Aḓḓ-ǿƞ Ḿŭŀŧī Ƥřǿƈḗşş Şŧȧŧŭş:"
 
@@ -3859,6 +3857,7 @@ msgstr "Řḗȧḓẏ ŧǿ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ? Řḗȧḓ ǿŭř �
 msgid "See Tutorial"
 msgstr "Şḗḗ Ŧŭŧǿřīȧŀ"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Ṽīḗẇ Aŀŀ Şŭƀḿīşşīǿƞş"
 
@@ -6725,6 +6724,9 @@ msgstr "Aḓḓ-ǿƞ Ħīşŧǿřẏ"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Ṽḗřşīǿƞ %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
+msgid "(Confirmed)"
+msgstr "(Ƈǿƞƒīřḿḗḓ)"
+
 msgid "Compatibility:"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ:"
 
@@ -7607,8 +7609,11 @@ msgstr "Ƒǿǿŧḗř ŀǿɠǿ"
 msgid "Choose a category"
 msgstr "Ƈħǿǿşḗ ȧ ƈȧŧḗɠǿřẏ"
 
-msgid "View Mobile Site"
-msgstr "Ṽīḗẇ Ḿǿƀīŀḗ Şīŧḗ"
+msgid "The new website supports mobile and desktop clients"
+msgstr "Ŧħḗ ƞḗẇ ẇḗƀşīŧḗ şŭƥƥǿřŧş ḿǿƀīŀḗ ȧƞḓ ḓḗşķŧǿƥ ƈŀīḗƞŧş"
+
+msgid "View the new site"
+msgstr "Ṽīḗẇ ŧħḗ ƞḗẇ şīŧḗ"
 
 msgid "Report a bug"
 msgstr "Řḗƥǿřŧ ȧ ƀŭɠ"
