@@ -152,8 +152,9 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
     def get_compatibility(self, obj):
         return {
             app.short: {
-                'min': compat.min.version if compat else '1.0',
-                'max': compat.max.version if compat else '9999'
+                'min': compat.min.version if compat else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': compat.max.version if compat else amo.FAKE_MAX_VERSION
             } for app, compat in obj.compatible_apps.items()
         }
 

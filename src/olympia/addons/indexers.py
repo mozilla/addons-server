@@ -252,7 +252,8 @@ class AddonIndexer(BaseSearchIndexer):
                 # want to reindex every time a new version of the app is
                 # released, so we directly index a super high version as the
                 # max.
-                min_human, max_human = '1.0', '9999'
+                min_human, max_human = amo.D2C_MIN_VERSIONS.get(
+                    app.id, '1.0'), amo.FAKE_MAX_VERSION,
                 min_, max_ = version_int(min_human), version_int(max_human)
             compatible_apps[app.id] = {
                 'min': min_, 'min_human': min_human,

@@ -63,10 +63,11 @@ def addon_to_dict(addon, disco=False, src='api'):
         d['version'] = v.version
         d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
         d['compatible_apps'] = [{
-            unicode(amo.APP_IDS[obj.application].pretty): {
-                'min': unicode(obj.min) if obj else '1.0',
-                'max': unicode(obj.max) if obj else '9999',
-            }} for obj in v.compatible_apps.values() if obj]
+            unicode(amo.APP_IDS[appver.application].pretty): {
+                'min': unicode(appver.min) if appver else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': unicode(appver.max) if appver else amo.FAKE_MAX_VERSION,
+            }} for app, appver in v.compatible_apps.items() if appver]
     if addon.eula:
         d['eula'] = unicode(addon.eula)
 

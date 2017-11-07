@@ -171,11 +171,15 @@ for _app in APP_USAGE:
     for _type in _app.types:
         APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
+# Fake max version for when we want max compatibility
+FAKE_MAX_VERSION = '9999'
+
 # The lowest maxVersion an app has to support to allow default-to-compatible.
 D2C_MIN_VERSIONS = {
     FIREFOX.id: '4.0',
     SEAMONKEY.id: '2.1',
     THUNDERBIRD.id: '5.0',
+    ANDROID.id: '11.0',
 }
 
 for _app in APPS_ALL.values():

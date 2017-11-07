@@ -565,9 +565,9 @@ class AddonSerializerOutputTestMixin(object):
             min=av_min, max=av_max)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
-            'android': {'max': '9999', 'min': '1.0'},
-            'firefox': {'max': '9999', 'min': '1.0'},
-            'seamonkey': {'max': '9999', 'min': '1.0'},
+            'android': {'max': '9999', 'min': '11.0'},
+            'firefox': {'max': '9999', 'min': '4.0'},
+            'seamonkey': {'max': '9999', 'min': '2.1'},
             # No thunderbird: it does not support that type, and when we return
             # fake compatibility data for NO_COMPAT add-ons we do obey that.
         }
