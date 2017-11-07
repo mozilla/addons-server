@@ -68,6 +68,10 @@
             {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
             Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
             {% endtrans %}
+
+            {% if version.autoapprovalsummary and version.autoapprovalsummary.confirmed %}
+            <span class="light">{{ _("(Confirmed)") }}</span>
+            {% endif %}
           </th>
         </tr>
         <tr class="listing-body">
