@@ -241,7 +241,7 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
         """)
         # Filter out versions that don't have the minimum maxVersion
         # requirement to qualify for default-to-compatible.
-        d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
+        d2c_max = amo.D2C_MIN_VERSIONS.get(app_id)
         if d2c_max:
             data['d2c_max_version'] = version_int(d2c_max)
             raw_sql.append(

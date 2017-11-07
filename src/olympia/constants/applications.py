@@ -172,7 +172,7 @@ for _app in APP_USAGE:
         APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
 # The lowest maxVersion an app has to support to allow default-to-compatible.
-D2C_MAX_VERSIONS = {
+D2C_MIN_VERSIONS = {
     FIREFOX.id: '4.0',
     SEAMONKEY.id: '2.1',
     THUNDERBIRD.id: '5.0',

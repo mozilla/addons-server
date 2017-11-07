@@ -369,9 +369,9 @@ class Version(OnChangeMixin, ModelBase):
         if self.addon.type in amo.NO_COMPAT:
             return True
         appversion = self.compatible_apps.get(app)
-        if appversion and app.id in amo.D2C_MAX_VERSIONS:
+        if appversion and app.id in amo.D2C_MIN_VERSIONS:
             return (version_int(appversion.max.version) >=
-                    version_int(amo.D2C_MAX_VERSIONS.get(app.id, '*')))
+                    version_int(amo.D2C_MIN_VERSIONS.get(app.id, '*')))
         return False
 
     def compat_override_app_versions(self):
