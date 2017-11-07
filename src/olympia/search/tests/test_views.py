@@ -181,8 +181,15 @@ class TestESSearch(SearchBase):
 
     def test_new_frontend_type_redirect(self):
         response = self.client.get(self.url + u'?q=fôo&type=extension')
-        self.assert3xx(
-            response, self.url + '?q=f%C3%B4o&atype=1', status_code=302)
+        # Can't use assert3xx because the query parameters ordering is not
+        # guaranteed.
+        assert response.status_code == 302
+        expected_params = 'q=f%C3%B4o&atype=1'
+        redirected = response.url
+        parsed = urlparse.urlparse(redirected)
+        params = parsed.query
+        assert parsed.path == self.url
+        assert urlparse.parse_qs(params) == urlparse.parse_qs(expected_params)
 
     def test_legacy_redirects(self):
         response = self.client.get(self.url + '?sort=averagerating')
