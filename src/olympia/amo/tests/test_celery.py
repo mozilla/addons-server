@@ -6,6 +6,8 @@ import mock
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 from waffle.models import Switch
+from post_request_task.task import (
+    _discard_tasks, _stop_queuing_tasks)
 
 from olympia.amo.tests import TestCase, create_switch
 from olympia.amo.celery import task
@@ -70,6 +72,12 @@ class TestTaskQueued(TransactionTestCase):
         super(TestTaskQueued, self).setUp()
         create_switch('activate-django-post-request')
         fake_task_func.reset_mock()
+        _discard_tasks()
+
+    def tearDown(self):
+        fake_task_func.reset_mock()
+        _discard_tasks()
+        _stop_queuing_tasks()
 
     def test_not_queued_outside_request_response_cycle(self):
         fake_task.delay()
