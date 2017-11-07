@@ -1,14 +1,11 @@
 import datetime
 from datetime import timedelta
 
-from django.core.signals import request_finished, request_started
-
 import mock
-import pytest
 
 from olympia.amo.cron import gc
 from olympia.amo.tests import TestCase
-from olympia.amo.celery import app, task
+from olympia.amo.celery import task
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.files.models import FileUpload
 
