@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-07 19:49+0000\n"
+"PO-Revision-Date: 2017-11-07 20:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3074,11 +3074,10 @@ msgstr "Tutón přidatk sej płaćenje, płaćomne słužby, softwaru abo přida
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Tutón přidatk sej přidatne płaćenja, płaćomne słužby, softwaru abo přidatnu hardwaru njewužaduje."
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 "Kategorije su najwažniša móžnosć, z kotrejež pomocu wužiwarjo móža přidatki přepytować. Wubjerće kategoriju, kotraž hodźi so k funkcionalnosći wašeho přidatka, zo byšće tak wulki kaž móžno publikum "
-"docpěł. To je relewantne jenož za nalistowane přidatki."
+"docpěł."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3086,17 +3085,12 @@ msgstr ""
 "Kategorije njedadźa so změnić, dołhož so waš přidatk za tute nałoženje předstaja. Prošu pósćelće e-mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje kategorije "
 "změnił."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"Kategorije njedadźa so změnić, dołhož so waš přidatk za tute nałoženje předstaja. Prošu pósćelće e-mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje kategorije "
-"změnił."
+msgstr "Kategorije njedadźa so změnić, dołhož so waš přidatk předstaja. Prošu pósćelće e-mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje kategorije změnił."
 
-#, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-"Znački wužiwarjam pomhaja, waš přidatk namakać a měli krótke pomjenjowanja kaž „rajtarki“, „symbolowa lajsta“ abo „Twitter“ być. Móžeće maksimalnje {0} značkow měć. To je jenož relewantne za "
-"nalistowane přidatki."
+msgstr "Znački wužiwarjam pomhaja, waš přidatk namakać a měli krótke pomjenjowanja kaž „rajtarki“, „symbolowa lajsta“ abo „Twitter“ być. Móžeće maksimalnje {0} značkow měć."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -7759,9 +7753,8 @@ msgid "Choose a category"
 msgstr "Wubjerće kategoriju"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "Nowe websydło mobilne a desktopowe klient podpěruje"
+msgstr "Nowe websydło mobilne a desktopowe klienty podpěruje"
 
-#, fuzzy
 msgid "View the new site"
 msgstr "Wopytajće nowe sydło"
 
