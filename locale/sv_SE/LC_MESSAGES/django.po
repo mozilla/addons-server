@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-08 12:55+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2017-11-08 16:29+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -3017,12 +3017,8 @@ msgstr "Detta tillägg kräver betalning, icke-gratis tjänster eller programvar
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Detta tillägg kräver inga ytterligare betalningar, betalda tjänster eller programvara eller extra hårdvara."
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
-"Kategorier är det främsta sättet användare surfar bland tillägg.\n"
-"                        Välj någon som passar ditt tilläggs funktionalitet för den bästa\n"
-"                        exponeringen. Det är endast relevant för listade tillägg."
+msgstr "Kategorier är det främsta sättet användare bläddrar igenom tillägg. Välj än som passar ditt tilläggs funktionalitet för att få mest exponering."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3030,19 +3026,12 @@ msgstr ""
 "Kategorier kan inte ändras medan ditt tillägg är utvald för denna applikation. Skicka ett mejl till <a href=\"mailto:%(email)s\">%(email)s</a> om det finns en anledning till att du behöver ändra "
 "dina kategorier."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"Kategorier kan inte ändras medan ditt tillägg är utvald för denna applikation. Skicka ett mejl till <a href=\"mailto:%(email)s\">%(email)s</a> om det finns en anledning till att du behöver ändra "
-"dina kategorier."
+msgstr "Kategorier kan inte ändras när tillägget är utvalt. Vänligen mejla <a href=\"mailto:%(email)s\">%(email)s</a> om det finns anledning att ändra dina kategorier."
 
-#, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-"Taggar hjälper användarna att hitta ditt tillägg och bör \n"
-"                        vara korta beskrivningar så som flikar, \n"
-"                        verktygsfält eller twitter.  Du kan ha högst {0} taggar.\n"
-"                        Det är endast relevant för listade tillägg."
+msgstr "Taggar hjälper användarna att hitta ditt tillägg och bör vara korta beskrivningar som flikar, verktygsfält eller twitter. Du kan ha högst {0} taggar."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -6810,7 +6799,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Bekräftad)"
 
 msgid "Compatibility:"
 msgstr "Kompatibilitet:"
@@ -7695,10 +7684,10 @@ msgid "Choose a category"
 msgstr "Välj en kategori"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Den nya webbplatsen stöder mobila och stationära datorer"
 
 msgid "View the new site"
-msgstr "Besök den nya webbplatsen"
+msgstr "Visa den nya webbplatsen"
 
 msgid "Report a bug"
 msgstr "Rapportera en bugg"
