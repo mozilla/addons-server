@@ -9,5 +9,3 @@ sed -i '0,/^\([[:space:]]*listen: *\).*/s//\1"0.0.0.0:5500"/;' autograph.yaml
 
 # Start autograph in background
 $GOPATH/bin/autograph -c autograph.yaml &>/dev/null &
-
-export AUTOGRAPH_URL="http://localhost:5500"
