@@ -4,9 +4,6 @@ sudo: false
 python:
   - 2.7
 
-go:
-  - 1.8
-
 env:
   global:
     - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
@@ -53,6 +50,9 @@ install:
   - nvm install 6
   - nvm use 6
   - pip install --upgrade pip wheel setuptools tox==1.8.1
+  - curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
+  - chmod +x ~/bin/gimme
+  - eval "$(gimme 1.8.5)"
   - ./scripts/start-autograph.sh
 
 before_script:
