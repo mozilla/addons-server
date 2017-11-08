@@ -1556,6 +1556,10 @@ AUTOGRAPH_CONFIG = {
         default='webextensions-rsa')
 }
 
+# Enable addon signing. This setting is primarily be thought to be used
+# for Autograph based signing. Trunion based signing also listens to
+# `SIGNING_SERVER` being empty. We are trying to have Autograph
+# being configured to something locally running by default though.
 ENABLE_ADDON_SIGNING = True
 
 # True when the Django app is running from the test suite.
