@@ -95,9 +95,11 @@ XSENDFILE = True
 # empty or bad zip files, or try posting to the endpoints. We don't want that.
 SIGNING_SERVER = ''
 
-# Correctly configure autograph but don't enable signing generically
-AUTOGRAPH_CONFIG['server_url'] = 'http://localhost:5500'
+# Correctly configure autograph for travis but don't enable signing generically
 ENABLE_ADDON_SIGNING = False
+
+if os.environ.get('RUNNING_IN_CI'):
+    AUTOGRAPH_CONFIG['server_url'] = 'http://localhost:5500'
 
 # Limit logging in tests.
 LOGGING = {
