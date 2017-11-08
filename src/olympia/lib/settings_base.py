@@ -1556,6 +1556,8 @@ AUTOGRAPH_CONFIG = {
         default='webextensions-rsa')
 }
 
+ENABLE_ADDON_SIGNING = True
+
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
 

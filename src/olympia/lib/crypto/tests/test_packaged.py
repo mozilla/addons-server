@@ -25,7 +25,9 @@ from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
 
-@override_settings(SIGNING_SERVER='http://signing.server')
+@override_settings(
+    SIGNING_SERVER='http://signing.server',
+    ENABLE_ADDON_SIGNING=True)
 class TestPackagedTrunion(TestCase):
 
     def setUp(self):
@@ -306,6 +308,7 @@ class TestPackagedTrunion(TestCase):
         assert packaged.get_id(self.addon) == hashed
 
 
+@override_settings(ENABLE_ADDON_SIGNING=True)
 class TestPackagedAutograph(TestPackagedTrunion):
 
     def setUp(self):

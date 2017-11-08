@@ -94,7 +94,10 @@ XSENDFILE = True
 # Don't enable the signing by default in tests, many would fail trying to sign
 # empty or bad zip files, or try posting to the endpoints. We don't want that.
 SIGNING_SERVER = ''
-PRELIMINARY_SIGNING_SERVER = ''
+
+# Correctly configure autograph but don't enable signing generically
+AUTOGRAPH_CONFIG['server_url'] = 'http://localhost:5500'
+ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
 LOGGING = {

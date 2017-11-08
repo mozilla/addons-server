@@ -140,14 +140,10 @@ def sign_file(file_obj):
 
     Otherwise return the signed file.
     """
-    if not waffle.switch_is_active('activate-autograph-signing'):
-        # Only relevant for old trunion signing server where we didn't have
-        # a proper local test environment. Don't do any signing if we
-        # haven't configured it.
-        if not settings.SIGNING_SERVER:
-            log.info(u'Not signing file {0}: no active endpoint'.format(
-                file_obj.pk))
-            return
+    if not settings.SIGNING_SERVER or not settings.ENABLE_ADDON_SIGNING:
+        log.info(u'Not signing file {0}: no active endpoint'.format(
+            file_obj.pk))
+        return
 
     # No file? No signature.
     if not os.path.exists(file_obj.file_path):
