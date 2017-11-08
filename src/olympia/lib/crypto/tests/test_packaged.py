@@ -14,11 +14,12 @@ from django.test.utils import override_settings
 import mock
 import pytest
 import responses
+from signing_clients.apps import SignatureInfo
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import TestCase
-from olympia.files.utils import extract_xpi
+from olympia.amo.tests import TestCase, create_switch
+from olympia.files.utils import extract_xpi, parse_xpi
 from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
@@ -41,7 +42,23 @@ class TestPackagedTrunion(TestCase):
             os.makedirs(os.path.dirname(self.file_.file_path))
 
         fp = zipfile.ZipFile(self.file_.file_path, 'w')
-        fp.writestr('install.rdf', '<?xml version="1.0"?><RDF></RDF>')
+        fp.writestr('install.rdf', (
+            '<?xml version="1.0"?><RDF '
+                'xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" '
+                'xmlns:em="http://www.mozilla.org/2004/em-rdf#">'
+            '<Description about="urn:mozilla:install-manifest">'
+            '      <em:id>foo@jetpack</em:id>'
+            '      <em:type>2</em:type>'
+            '      <em:bootstrap>true</em:bootstrap>'
+            '      <em:unpack>false</em:unpack>'
+            '      <em:version>0.1</em:version>'
+            '      <em:name>foo</em:name>'
+            '      <em:description>foo bar</em:description>'
+            '      <em:optionsType>2</em:optionsType>'
+            '      <em:targetApplication></em:targetApplication>'
+            '</Description>'
+            '</RDF>'))
+
         fp.close()
 
         self._register_urls()
@@ -250,8 +267,8 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: //axi91xGZwlaVjKiw9xuw==\n'
-            'SHA1-Digest-Manifest: ep9V9fWlCso0PZUcnM60watGvrM=') in call.body
+            'MD5-Digest-Manifest: iwyQTujW4ZPixlvEbc+pkQ==\n'
+            'SHA1-Digest-Manifest: npn2wroZIDWvBF7+7aFzRCZ+Om8=') in call.body
 
     @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
@@ -266,8 +283,8 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: //axi91xGZwlaVjKiw9xuw==\n'
-            'SHA1-Digest-Manifest: ep9V9fWlCso0PZUcnM60watGvrM=') in call.body
+            'MD5-Digest-Manifest: iwyQTujW4ZPixlvEbc+pkQ==\n'
+            'SHA1-Digest-Manifest: npn2wroZIDWvBF7+7aFzRCZ+Om8=') in call.body
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
@@ -286,6 +303,59 @@ class TestPackagedTrunion(TestCase):
         assert len(self.addon.guid) > 64
         assert len(packaged.get_id(self.addon)) <= 64
         assert packaged.get_id(self.addon) == hashed
+
+
+class TestPackagedAutograph(TestPackagedTrunion):
+
+    def setUp(self):
+        create_switch('activate-autograph-signing')
+        super(TestPackagedAutograph, self).setUp()
+
+    def _register_urls(self):
+        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+    def _get_signature_info(self):
+        with zipfile.ZipFile(self.file_.file_path, mode='r') as zobj:
+            print(zobj.namelist())
+            with zobj.open('META-INF/mozilla.rsa', 'r') as fobj:
+                pkcs7 = fobj.read()
+
+        return SignatureInfo(pkcs7)
+
+    def assert_not_signed(self):
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
+
+    def assert_signed(self):
+        assert self.file_.is_signed
+        assert self.file_.cert_serial_num
+        assert self.file_.hash
+        assert packaged.is_signed(self.file_.file_path)
+
+    def test_no_server_full(self):
+        # Test not needed for autograph
+        return
+
+    def test_call_signing(self):
+        packaged.sign_file(self.file_)
+
+        signature_info = self._get_signature_info()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+
+    def test_call_signing_too_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        packaged.sign_file(self.file_)
+
+        signature_info = self._get_signature_info()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == hashed
 
 
 class TestTasks(TestCase):

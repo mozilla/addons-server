@@ -64,7 +64,7 @@ def call_signing(file_obj):
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
-    use_autograph = waffle.switch_is_active('enable-autograph-signing')
+    use_autograph = waffle.switch_is_active('activate-autograph-signing')
     signed_manifest = unicode(jar.signatures)
     has_error = False
 
@@ -140,7 +140,7 @@ def sign_file(file_obj):
 
     Otherwise return the signed file.
     """
-    if not waffle.switch_is_active('enable-autograph-signing'):
+    if not waffle.switch_is_active('activate-autograph-signing'):
         # Only relevant for old trunion signing server where we didn't have
         # a proper local test environment. Don't do any signing if we
         # haven't configured it.
