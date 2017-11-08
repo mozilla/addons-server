@@ -4,12 +4,15 @@ import os
 import shutil
 import tempfile
 import zipfile
-from base64 import b64decode
+from base64 import b64decode, b64encode, urlsafe_b64decode
 
+import waffle
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils.encoding import force_bytes
 
 import requests
+from requests_hawk import HawkAuth
 from django_statsd.clients import statsd
 from signing_clients.apps import get_signer_serial_number, JarExtractor
 
@@ -36,7 +39,7 @@ def supports_firefox(file_obj):
     return apps.filter(max__application__in=SIGN_FOR_APPS)
 
 
-def get_endpoint(server):
+def get_trunion_endpoint(server):
     """Get the endpoint to sign the file."""
     if not server:  # Setting is empty, signing isn't enabled.
         return
@@ -55,26 +58,65 @@ def get_id(addon):
     return hashlib.sha256(guid).hexdigest()
 
 
-def call_signing(file_obj, endpoint):
+def call_signing(file_obj):
     """Get the jar signature and send it to the signing server to be signed."""
     # Extract jar signature.
     jar = JarExtractor(path=storage.open(file_obj.file_path))
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
-    log.debug(u'Calling signing service: {0}'.format(endpoint))
-    with statsd.timer('services.sign.addon'):
-        response = requests.post(
-            endpoint,
-            timeout=settings.SIGNING_SERVER_TIMEOUT,
-            data={'addon_id': get_id(file_obj.version.addon)},
-            files={'file': (u'mozilla.sf', unicode(jar.signatures))})
-    if response.status_code != 200:
-        msg = u'Posting to add-on signing failed: {0}'.format(response.reason)
+    use_autograph = waffle.switch_is_active('enable-autograph-signing')
+    signed_manifest = unicode(jar.signatures)
+    has_error = False
+
+    if use_autograph:
+        conf = settings.AUTOGRAPH_CONFIG
+        log.debug('Calling autograph service: {0}'.format(conf['server_url']))
+
+        # create the signing request
+        signing_request = [{
+            'input': b64encode(signed_manifest),
+            'keyid': conf['signer'],
+            'options': {
+                'id': get_id(file_obj.version.addon),
+            },
+        }]
+
+        # post the request
+        with statsd.timer('services.sign.addon'):
+            response = requests.post(
+                '{server}/sign/data'.format(server=conf['server_url']),
+                json=signing_request,
+                auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+
+        if response.status_code != requests.codes.CREATED:
+            has_error = True
+    else:
+        log.debug(u'Calling signing service: {0}'.format(
+            settings.SIGNING_SERVER))
+
+        with statsd.timer('services.sign.addon'):
+            response = requests.post(
+                get_trunion_endpoint(settings.SIGNING_SERVER),
+                timeout=settings.SIGNING_SERVER_TIMEOUT,
+                data={'addon_id': get_id(file_obj.version.addon)},
+                files={'file': (u'mozilla.sf', signed_manifest)})
+
+        if response.status_code != requests.codes.OK:
+            has_error = True
+
+    if has_error:
+        msg = u'Posting to add-on signing failed: {0} {1}'.format(
+            response.reason, response.text)
         log.error(msg)
         raise SigningError(msg)
 
-    pkcs7 = b64decode(json.loads(response.content)['mozilla.rsa'])
+    # convert the base64 encoded pkcs7 signature back to binary
+    if use_autograph:
+        pkcs7 = urlsafe_b64decode(force_bytes(response.json()[0]['signature']))
+    else:
+        pkcs7 = b64decode(response.json()['mozilla.rsa'])
+
     cert_serial_num = get_signer_serial_number(pkcs7)
 
     # We only want the (unique) temporary file name.
@@ -82,7 +124,7 @@ def call_signing(file_obj, endpoint):
         temp_filename = temp_file.name
 
     jar.make_signed(
-        signed_manifest=unicode(jar.signatures),
+        signed_manifest=signed_manifest,
         signature=pkcs7,
         sigpath=u'mozilla',
         outpath=temp_filename)
@@ -90,7 +132,7 @@ def call_signing(file_obj, endpoint):
     return cert_serial_num
 
 
-def sign_file(file_obj, server):
+def sign_file(file_obj):
     """Sign a File.
 
     If there's no endpoint (signing is not enabled), or the file is a hotfix,
@@ -99,11 +141,14 @@ def sign_file(file_obj, server):
 
     Otherwise return the signed file.
     """
-    endpoint = get_endpoint(server)
-    if not endpoint:  # Signing not enabled.
-        log.info(u'Not signing file {0}: no active endpoint'.format(
-            file_obj.pk))
-        return
+    if not waffle.switch_is_active('enable-autograph-signing'):
+        # Only relevant for old trunion signing server where we didn't have
+        # a proper local test environment. Don't do any signing if we
+        # haven't configured it.
+        if not settings.SIGNING_SERVER:
+            log.info(u'Not signing file {0}: no active endpoint'.format(
+                file_obj.pk))
+            return
 
     # No file? No signature.
     if not os.path.exists(file_obj.file_path):
@@ -136,9 +181,10 @@ def sign_file(file_obj, server):
         return
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = unicode(call_signing(file_obj, endpoint))
+    cert_serial_num = unicode(call_signing(file_obj))
 
     size = storage.size(file_obj.file_path)
+
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
     file_obj.update(cert_serial_num=cert_serial_num,

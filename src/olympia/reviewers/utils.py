@@ -601,7 +601,7 @@ class ReviewBase(object):
 
         # Sign addon.
         for file_ in self.files:
-            sign_file(file_, settings.SIGNING_SERVER)
+            sign_file(file_)
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -788,7 +788,7 @@ class ReviewUnlisted(ReviewBase):
 
         # Sign addon.
         for file_ in self.files:
-            sign_file(file_, settings.SIGNING_SERVER)
+            sign_file(file_)
 
         self.set_files(amo.STATUS_PUBLIC, self.files)
 

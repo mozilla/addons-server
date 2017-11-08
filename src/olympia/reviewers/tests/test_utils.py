@@ -553,8 +553,8 @@ class TestReviewHelper(TestCase):
     def test_nomination_to_public(self, sign_mock):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_public()
+
+        self.helper.handler.process_public()
 
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -569,7 +569,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, 'full')
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -581,8 +581,8 @@ class TestReviewHelper(TestCase):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(nomination=self.days_ago(9))
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_public()
+
+        self.helper.handler.process_public()
 
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -597,7 +597,7 @@ class TestReviewHelper(TestCase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file, 'full')
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -611,8 +611,8 @@ class TestReviewHelper(TestCase):
         self.request = None
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_public()
+
+        self.helper.handler.process_public()
 
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -631,7 +631,7 @@ class TestReviewHelper(TestCase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file, 'full')
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -662,8 +662,7 @@ class TestReviewHelper(TestCase):
         assert self.addon.current_version.files.all()[0].status == (
             amo.STATUS_PUBLIC)
 
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_public()
+        self.helper.handler.process_public()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
@@ -683,7 +682,7 @@ class TestReviewHelper(TestCase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file, 'full')
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -716,8 +715,7 @@ class TestReviewHelper(TestCase):
         assert self.addon.current_version.files.all()[0].status == (
             amo.STATUS_PUBLIC)
 
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_sandbox()
+        self.helper.handler.process_sandbox()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
@@ -821,8 +819,8 @@ class TestReviewHelper(TestCase):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NULL,
                         channel=amo.RELEASE_CHANNEL_UNLISTED)
-        with self.settings(SIGNING_SERVER='full'):
-            self.helper.handler.process_public()
+
+        self.helper.handler.process_public()
 
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -838,7 +836,7 @@ class TestReviewHelper(TestCase):
             '%s signed and ready to download' % self.preamble)
         assert 'our automatic tests and is now signed' in mail.outbox[0].body
 
-        sign_mock.assert_called_with(self.file, 'full')
+        sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -848,9 +846,9 @@ class TestReviewHelper(TestCase):
         sign_mock.side_effect = Exception
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
-        with self.settings(SIGNING_SERVER='full'):
-            with self.assertRaises(Exception):
-                self.helper.handler.process_public()
+
+        with self.assertRaises(Exception):
+            self.helper.handler.process_public()
 
         # AddonApprovalsCounter was not touched since we failed signing.
         assert not AddonApprovalsCounter.objects.filter(

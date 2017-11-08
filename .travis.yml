@@ -49,6 +49,7 @@ install:
   - nvm install 6
   - nvm use 6
   - pip install --upgrade pip wheel setuptools tox==1.8.1
+  - ./scripts/start-autograph.sh
 
 before_script:
   - mysql --version

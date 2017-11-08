@@ -344,3 +344,9 @@ vine==1.1.4 \
     --hash=sha256:52116d59bc45392af9fdd3b75ed98ae48a93e822cee21e5fda249105c59a7a72
 django-jinja==2.4.0 \
     --hash=sha256:67d0c77da305013c09f5bc6a45deda8dd66936b94d6548fd893d7ac2dfcafe6e
+requests-hawk==1.0.0 \
+    --hash=sha256:aef0dff8053dcae2057774516386bed0a3bc03fabea9e18f3aa98f02672ea5d0 \
+    --hash=sha256:c2626ab31ebef0c81b97781c44c2275bfcc6d8e8520fc4ced495f0f386f8fe26
+mohawk==0.3.4 \
+    --hash=sha256:b3f85ffa93a5c7d2f9cc591246ef9f8ac4a9fa716bfd5bae0377699a2d89d78c \
+    --hash=sha256:e98b331d9fa9ece7b8be26094cbe2d57613ae882133cc755167268a984bc0ab3
