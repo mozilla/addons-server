@@ -270,8 +270,8 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: iwyQTujW4ZPixlvEbc+pkQ==\n'
-            'SHA1-Digest-Manifest: npn2wroZIDWvBF7+7aFzRCZ+Om8=') in call.body
+            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
+            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
 
     @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
@@ -286,8 +286,8 @@ class TestPackagedTrunion(TestCase):
         assert (
             'name="file"; filename="mozilla.sf"\r\n\r\n'
             'Signature-Version: 1.0\n'
-            'MD5-Digest-Manifest: iwyQTujW4ZPixlvEbc+pkQ==\n'
-            'SHA1-Digest-Manifest: npn2wroZIDWvBF7+7aFzRCZ+Om8=') in call.body
+            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
+            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
