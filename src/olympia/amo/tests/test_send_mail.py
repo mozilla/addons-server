@@ -41,8 +41,7 @@ class TestSendMail(BaseTestCase):
     def test_deny(self):
         to = 'nobody@mozilla.org'
         settings.EMAIL_DENY_LIST = (to,)
-        success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False)
+        success = send_mail('test subject', 'test body', recipient_list=[to])
 
         assert success
         assert len(mail.outbox) == 0
@@ -51,14 +50,12 @@ class TestSendMail(BaseTestCase):
         to = 'nobody@mozilla.org'
         settings.EMAIL_DENY_LIST = (to,)
         success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False,
-                            use_deny_list=True)
+                            recipient_list=[to], use_deny_list=True)
         assert success
         assert len(mail.outbox) == 0
 
         success = send_mail('test subject', 'test body',
-                            recipient_list=[to], fail_silently=False,
-                            use_deny_list=False)
+                            recipient_list=[to], use_deny_list=False)
         assert success
         assert len(mail.outbox) == 1
 
@@ -74,7 +71,7 @@ class TestSendMail(BaseTestCase):
         assert setting.default_checked
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
-                            recipient_list=[to], fail_silently=False)
+                            recipient_list=[to])
 
         assert success, "Email wasn't sent"
         assert len(mail.outbox) == 1
@@ -93,7 +90,7 @@ class TestSendMail(BaseTestCase):
             notification_id=n.id).count() == 1
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
-                            recipient_list=[to], fail_silently=False)
+                            recipient_list=[to])
 
         assert "You received this email because" in mail.outbox[0].body
         assert success, "Email wasn't sent"
@@ -111,7 +108,7 @@ class TestSendMail(BaseTestCase):
         assert n.mandatory, "Notification isn't mandatory"
 
         success = send_mail('test subject', 'test body', perm_setting=n,
-                            recipient_list=[to], fail_silently=False)
+                            recipient_list=[to])
 
         assert success, "Email wasn't sent"
         body = mail.outbox[0].body
@@ -130,7 +127,7 @@ class TestSendMail(BaseTestCase):
             notification_id=n.id).count() == 1
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
-                            recipient_list=[to], fail_silently=False)
+                            recipient_list=[to])
 
         assert success, "Email wasn't sent"
         assert len(mail.outbox) == 0
@@ -138,8 +135,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     def test_success_real_mail(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nobody@mozilla.org'],
-                         fail_silently=False)
+                         recipient_list=['nobody@mozilla.org'])
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
@@ -148,8 +144,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_success_fake_mail(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nobody@mozilla.org'],
-                         fail_silently=False)
+                         recipient_list=['nobody@mozilla.org'])
         assert len(mail.outbox) == 0
         assert FakeEmail.objects.count() == 1
         assert FakeEmail.objects.get().message.endswith('test body')
@@ -159,8 +154,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
     def test_qa_allowed_list(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nope@mozilla.org'],
-                         fail_silently=False)
+                         recipient_list=['nope@mozilla.org'])
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
@@ -172,8 +166,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
     def test_qa_allowed_list_with_mixed_emails(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nope@mozilla.org', 'b@example.fr'],
-                         fail_silently=False)
+                         recipient_list=['nope@mozilla.org', 'b@example.fr'])
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['nope@mozilla.org']
         assert FakeEmail.objects.count() == 1
@@ -183,7 +176,7 @@ class TestSendMail(BaseTestCase):
         to = user.email
         translation.activate('zh_TW')
         send_mail('test subject', 'test body', perm_setting='reply',
-                  recipient_list=[to], fail_silently=False)
+                  recipient_list=[to])
         assert u'an add-on developer replies to' in mail.outbox[0].body
 
     def test_send_html_mail_jinja(self):
@@ -275,17 +268,20 @@ class TestSendMail(BaseTestCase):
         return make_backend
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_retry(self, backend):
-        backend.side_effect = self.make_backend_class([True, True, False])
+    def test_async_wont_retry(self, backend):
+        backend.side_effect = self.make_backend_class([True, True])
         with self.assertRaises(RuntimeError):
             send_mail('test subject',
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
 
+    @mock.patch('olympia.amo.tasks.EmailMessage')
+    def test_async_will_retry(self, backend):
+        backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(Retry):
             send_mail('test subject',
                       'test body',
-                      async=True,
+                      max_retries=2,
                       recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
@@ -294,6 +290,5 @@ class TestSendMail(BaseTestCase):
         with self.assertRaises(RuntimeError):
             send_mail('test subject',
                       'test body',
-                      async=True,
                       max_retries=1,
                       recipient_list=['somebody@mozilla.org'])

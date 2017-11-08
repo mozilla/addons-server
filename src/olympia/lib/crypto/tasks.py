@@ -169,6 +169,5 @@ def sign_addons(addon_ids, force=False, **kw):
                         addon.get_dev_url(action='versions')))
                 amo.utils.send_mail(
                     subject, message, recipient_list=emails,
-                    fail_silently=True,
                     headers={'Reply-To': 'amo-admins@mozilla.org'})
                 addons_emailed.add(addon.pk)
