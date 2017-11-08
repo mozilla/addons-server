@@ -67,9 +67,20 @@ class LICENSE_CC_BY_SA(_LicenseBase):
     builtin = 17
 
 
+class LICENSE_COPYRIGHT_AR(_LicenseBase):
+    id = 8
+    name = _(u'All Rights Reserved')
+    icons = 'copyr'
+    some_rights = False
+    creative_commons = False
+    url = None
+    builtin = 18
+
+
 PERSONA_LICENSES = (LICENSE_COPYRIGHT, LICENSE_CC_BY, LICENSE_CC_BY_NC,
                     LICENSE_CC_BY_NC_ND, LICENSE_CC_BY_NC_SA, LICENSE_CC_BY_ND,
                     LICENSE_CC_BY_SA)
+ALL_LICENSES = PERSONA_LICENSES + tuple([LICENSE_COPYRIGHT_AR])
 PERSONA_LICENSES_CHOICES = [(l.id, l) for l in PERSONA_LICENSES]
 PERSONA_LICENSES_IDS = dict(PERSONA_LICENSES_CHOICES)
-LICENSES_BY_BUILTIN = {l.builtin: l for l in PERSONA_LICENSES}
+LICENSES_BY_BUILTIN = {l.builtin: l for l in ALL_LICENSES}
