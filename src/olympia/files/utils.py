@@ -28,8 +28,7 @@ from django.utils.encoding import force_text
 import flufl.lock
 import rdflib
 import waffle
-from signing_clients.apps import (
-    get_signer_organizational_unit_name, SignatureInfo)
+from signing_clients.apps import get_signer_organizational_unit_name
 
 import olympia.core.logger
 from olympia import amo, core

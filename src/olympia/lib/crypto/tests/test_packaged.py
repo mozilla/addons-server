@@ -15,11 +15,12 @@ import mock
 import pytest
 import responses
 from signing_clients.apps import SignatureInfo
+from waffle.models import Switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase, create_switch
-from olympia.files.utils import extract_xpi, parse_xpi
+from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
@@ -44,8 +45,8 @@ class TestPackagedTrunion(TestCase):
         fp = zipfile.ZipFile(self.file_.file_path, 'w')
         fp.writestr('install.rdf', (
             '<?xml version="1.0"?><RDF '
-                'xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" '
-                'xmlns:em="http://www.mozilla.org/2004/em-rdf#">'
+            '   xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" '
+            '   xmlns:em="http://www.mozilla.org/2004/em-rdf#">'
             '<Description about="urn:mozilla:install-manifest">'
             '      <em:id>foo@jetpack</em:id>'
             '      <em:type>2</em:type>'
@@ -311,24 +312,29 @@ class TestPackagedAutograph(TestPackagedTrunion):
         create_switch('activate-autograph-signing')
         super(TestPackagedAutograph, self).setUp()
 
+    def tearDown(self):
+        Switch.objects.filter(name='activate-autograph-signing').delete()
+        super(TestPackagedAutograph, self).tearDown()
+
     def _register_urls(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
     def _get_signature_info(self):
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zobj:
-            print(zobj.namelist())
             with zobj.open('META-INF/mozilla.rsa', 'r') as fobj:
                 pkcs7 = fobj.read()
 
         return SignatureInfo(pkcs7)
 
     def assert_not_signed(self):
+        # Overwritten to not rely on `responses` but check the real deal
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
         assert not packaged.is_signed(self.file_.file_path)
 
     def assert_signed(self):
+        # Overwritten to not rely on `responses` but check the real deal
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
