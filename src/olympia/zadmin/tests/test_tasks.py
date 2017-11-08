@@ -133,7 +133,7 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_once_with(file_, settings.SIGNING_SERVER)
+        mock_sign_file.assert_called_once_with(file_)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
@@ -163,7 +163,7 @@ class TestLangpackFetcher(TestCase):
         # automatically for legacy extensions, that includes langpacks)
         assert file_.strict_compatibility is True
 
-        mock_sign_file.assert_called_with(file_, settings.SIGNING_SERVER)
+        mock_sign_file.assert_called_with(file_)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_duplicate_langpack(self, mock_sign_file):
@@ -185,7 +185,7 @@ class TestLangpackFetcher(TestCase):
                 amo.FIREFOX.latest_version)
 
         mock_sign_file.assert_called_once_with(
-            addon.current_version.files.get(), settings.SIGNING_SERVER)
+            addon.current_version.files.get())
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack_beta(self, mock_sign_file):
@@ -207,8 +207,7 @@ class TestLangpackFetcher(TestCase):
         version = addon.versions.get(version=versions[1])
         assert version.files.all()[0].status == amo.STATUS_BETA
 
-        mock_sign_file.assert_called_with(
-            version.files.get(), settings.SIGNING_SERVER)
+        mock_sign_file.assert_called_with(version.files.get())
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):
