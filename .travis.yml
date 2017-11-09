@@ -24,6 +24,7 @@ cache:
   pip: true
   directories:
     - node_modules
+    - $HOME/.gimme
 
 services:
   - mysql
@@ -43,6 +44,8 @@ addons:
 
 before_install:
   - mysql -e 'create database olympia;'
+  - export GOPATH=$HOME/go
+  - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
 
 install:
   - nvm current
@@ -50,9 +53,7 @@ install:
   - nvm install 6
   - nvm use 6
   - pip install --upgrade pip wheel setuptools tox==1.8.1
-  - curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
-  - chmod +x ~/bin/gimme
-  - eval "$(gimme 1.8.5)"
+  - eval "$(./gimme 1.8.5)"
   - ./scripts/start-autograph.sh
 
 before_script:
