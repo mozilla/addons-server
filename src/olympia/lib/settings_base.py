@@ -1551,6 +1551,10 @@ AUTOGRAPH_CONFIG = {
     'key': env(
         'AUTOGRAPH_HAWK_KEY',
         default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu'),
+    # This is configurable but we don't expect it to be set to anything else
+    # but `webextensions-rsa` at this moment because AMO only accepts
+    # regular add-ons, no system add-ons or extensions for example. These
+    # are already signed when submitted to AMO.
     'signer': env(
         'AUTOGRAPH_SIGNER_ID',
         default='webextensions-rsa')
