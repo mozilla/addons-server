@@ -8,4 +8,4 @@ cd $GOPATH/src/go.mozilla.org/autograph
 sed -i '0,/^\([[:space:]]*listen: *\).*/s//\1"$AUTOGRAPH_SERVER_URL"/;' autograph.yaml
 
 # Start autograph in background
-$GOPATH/bin/autograph -c autograph.yaml &>/dev/null &
+$GOPATH/bin/autograph -c autograph.yaml 2>&1 &
