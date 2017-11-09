@@ -16,7 +16,7 @@ log = olympia.core.logger.getLogger('z.task')
 @task
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,
-               cc=None, headers=None, max_retries=None, reply_to=None,
+               cc=None, headers=None, max_retries=3, reply_to=None,
                **kwargs):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
@@ -31,11 +31,8 @@ def send_email(recipient, subject, message, from_email=None,
         result.send()
         return True
     except Exception as e:
-        if max_retries:
-            log.error('retrying send_mail() that failed with error: %s' % e)
-            return send_email.retry(exc=e, max_retries=max_retries)
-        else:
-            raise
+        log.exception('send_mail() failed with error: %s, retrying' % e)
+        return send_email.retry(exc=e, max_retries=max_retries)
 
 
 @task

@@ -268,9 +268,9 @@ class TestSendMail(BaseTestCase):
         return make_backend
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_wont_retry(self, backend):
-        backend.side_effect = self.make_backend_class([True, True])
-        with self.assertRaises(RuntimeError):
+    def test_async_will_retry_default(self, backend):
+        backend.side_effect = self.make_backend_class([True, True, False])
+        with self.assertRaises(Retry):
             send_mail('test subject',
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
