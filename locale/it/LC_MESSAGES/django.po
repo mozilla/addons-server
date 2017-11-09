@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-09 15:30+0000\n"
+"PO-Revision-Date: 2017-11-09 16:18+0000\n"
 "Last-Translator: Sav22999 <savemore99.sm@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3071,11 +3071,11 @@ msgstr ""
 "Non è possibile modificare le categorie quando il componente aggiuntivo è consigliato per questa applicazione. Invia un’email a <a href=\"mailto:%(email)s\">%(email)s</a> se hai bisogno di fare "
 "questa modifica."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Non è possibile modificare le categorie quando il componente aggiuntivo è consigliato per questa applicazione. Invia un’email a <a href=\"mailto:%(email)s\">%(email)s</a> se hai bisogno di fare "
-"questa modifica."
+"Non è possibile modificare le categorie mentre il componente aggiuntivo è elencato tra i Consigliati. Per richiedere una modifica di categoria, invia un’email a <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -7762,7 +7762,7 @@ msgid "Choose a category"
 msgstr "Scegliere una categoria"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Il nuovo sito web è ottimizzato sia per computer sia per dispositivi portatili"
 
 msgid "View the new site"
 msgstr "Visita il nuovo sito"
