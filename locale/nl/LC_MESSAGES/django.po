@@ -135,7 +135,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Domein van URL moet er een zijn van [%s], of een subdomein."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen."
+msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on voor deze toepassing wordt aanbevolen."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -3053,8 +3053,8 @@ msgstr "Categorieën zijn de voornaamste manier waarop gebruikers door add-ons b
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw "
-"categorieën te wijzigen."
+"Categorieën kunnen niet worden gewijzigd terwijl uw add-on voor deze toepassing wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw "
+"categorieën aan te passen."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
