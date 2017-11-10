@@ -6,9 +6,9 @@ Django==1.8.18 \
     --hash=sha256:d8e2fd119756ab10b43a31052c3c8efbc262064b81eecb7871372de4d37b1a94 \
     --hash=sha256:c7611cdd5e2539a443b7960c7cafd867d986c2720a1b44808deaa60ce3da50c7 # pyup: >=1.8,<1.9
 # Jinja2 is required by Sphinx
-Jinja2==2.9.6 \
-    --hash=sha256:2231bace0dfd8d2bf1e5d7e41239c06c9e0ded46e70cc1094a0aa64b0afeb054 \
-    --hash=sha256:ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff
+Jinja2==2.10 \
+    --hash=sha256:74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd \
+    --hash=sha256:f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4
 # MarkupSafe is required by Jinja2
 MarkupSafe==1.0 \
     --hash=sha256:a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665
@@ -140,8 +140,9 @@ django-extensions==1.6.7 \
 django-mozilla-product-details==0.13 \
     --hash=sha256:ce97fc2533aa06560d9b438ebba2522dc0b2ada86d6e0537cfb5ac06db1a6aa2 \
     --hash=sha256:4ffa5a104f53645460a50c9342a41e3ea02d432851becf56e820d42faa94839f
-django-multidb-router==0.6 \
-    --hash=sha256:4c488dcb84cffd88bcd2b1651962b767f9bb245206407c8ea678043cd39d3ca8
+django-multidb-router==0.7 \
+    --hash=sha256:8e802c09ed69a1f4ce5716524a1dc1668a8a2e25d9112369dc92c2b963e70332 \
+    --hash=sha256:682d2be38ca1e2a12bc33528b3d4ccddf9775c926a5667b53f840df620094a86
 django-post-request-task==0.2.0 \
     --hash=sha256:b761beed705c18d6ee85642049d07ca9d7f936e3392c6d56a58c36a39e5e9803 \
     --hash=sha256:7afe4c7418db8592a7b56391cbfe56a86008bc1b4622dd923573b6981ba1562c
