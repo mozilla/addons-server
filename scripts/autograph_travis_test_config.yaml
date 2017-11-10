@@ -3,7 +3,7 @@ server:
     # is used by django sometimes so let's not do that.
     listen: "0.0.0.0:5500"
     # cache 500k nonces to protect from authorization replay attacks
-    noncecachesize: 524288
+    noncecachesize: 10
 
 # The keys below are testing keys that do not grant any power
 signers:
@@ -118,9 +118,4 @@ authorizations:
     - id: alice
       key: fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu
       signers:
-          - appkey1
-          - appkey2
-          - appkey3
-          - normankey
           - webextensions-rsa
-          - extensions-ecdsa
