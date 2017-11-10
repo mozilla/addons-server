@@ -3,7 +3,7 @@ import os
 import shutil
 import tempfile
 import zipfile
-from base64 import b64decode, b64encode, urlsafe_b64decode
+from base64 import b64decode, b64encode
 
 import waffle
 from django.conf import settings
@@ -112,7 +112,7 @@ def call_signing(file_obj):
 
     # convert the base64 encoded pkcs7 signature back to binary
     if use_autograph:
-        pkcs7 = urlsafe_b64decode(force_bytes(response.json()[0]['signature']))
+        pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
     else:
         pkcs7 = b64decode(response.json()['mozilla.rsa'])
 
