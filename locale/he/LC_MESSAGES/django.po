@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-07 22:48+0000\n"
+"PO-Revision-Date: 2017-11-11 20:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1545,7 +1545,7 @@ msgid "All locales"
 msgstr "כל השפות"
 
 msgid "List of language packs and dictionaries."
-msgstr "רשימת חבילות שפה ומילונים"
+msgstr "רשימת חבילות שפה ומילונים."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
@@ -2093,7 +2093,7 @@ msgid "Search Engine"
 msgstr "מנוע חיפוש"
 
 msgid "Language Pack (Application)"
-msgstr "חבילות שפה (תוכנות)"
+msgstr "חבילת שפה (יישום)"
 
 msgid "Language Pack (Add-on)"
 msgstr "חבילת שפה (תוספת)"
@@ -2116,7 +2116,7 @@ msgstr "מילונים"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
-msgstr "חבילות שפה (תוכנות)"
+msgstr "חבילות שפה (יישום)"
 
 msgid "Language Packs (Add-on)"
 msgstr "חבילות שפה (תוספת)"
@@ -5740,7 +5740,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">מילונים וחבילות שפה</a></strong> מוסיפים תמיכה לשפות נוספות עבור %(app_name)s."
 
 msgid "How do I install, manage, or remove an add-on?"
 msgstr "כיצד ניתן להתקין, לנהל או להסיר תוספת?"
