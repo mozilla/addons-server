@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-09-09 12:20+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -759,17 +759,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recensione"
 msgstr[1] "{reviews} recensioni"
 
-msgid "Learn more"
-msgstr "Ulteriori informazioni"
-
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
-msgid "Must be a valid e-mail address."
-msgstr "L’indirizzo email deve essere valido."
-
 msgid "No results found."
 msgstr "Nessun risultato trovato."
+
+msgid "Loading..."
+msgstr "Caricamento…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> carattere disponibile."
+msgstr[1] "<b>{0}</b> caratteri disponibili."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Questa funzione è momentaneamente disattivata per dei lavori di manutenzione. Riprovare più tardi."
+
+msgid "Remove this localization"
+msgstr "Rimuovi questa localizzazione"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} stava visualizzando questa pagina per primo."
@@ -806,21 +815,6 @@ msgstr "Media Recensioni"
 
 msgid "Number of Reviews"
 msgstr "Numero recensioni"
-
-msgid "Loading..."
-msgstr "Caricamento…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> carattere disponibile."
-msgstr[1] "<b>{0}</b> caratteri disponibili."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Questa funzione è momentaneamente disattivata per dei lavori di manutenzione. Riprovare più tardi."
-
-msgid "Remove this localization"
-msgstr "Rimuovi questa localizzazione"
 
 msgid "Requested Info"
 msgstr "Informazioni richieste"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-11 15:37+0000\n"
 "Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -57,7 +57,7 @@ msgstr[1] "Validering af din tilføjelse mislykkedes, der var {0} fejl."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;og {0} mere"
+msgstr[0] ""
 msgstr[1] ""
 
 msgid "See full validation report"
@@ -749,17 +749,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} brugeranmeldelse"
 msgstr[1] "{reviews} brugeranmeldelser"
 
-msgid "Learn more"
-msgstr "Lær mere"
-
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Must be a valid e-mail address."
-msgstr "Skal være en gyldig mailadresse."
-
 msgid "No results found."
 msgstr "Ingen resultater fundet."
+
+msgid "Loading..."
+msgstr "Indlæser..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> tegn tilbage."
+msgstr[1] "<b>{0}</b> tegn tilbage."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
+
+msgid "Remove this localization"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -795,21 +804,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr "Indlæser..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> tegn tilbage."
-msgstr[1] "<b>{0}</b> tegn tilbage."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"

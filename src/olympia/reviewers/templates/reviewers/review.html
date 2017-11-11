@@ -65,9 +65,13 @@
         {% for version in pager.object_list|reverse %}
         <tr class="listing-header">
           <th colspan="2">
-            {% trans version = version.version, created = version.created|datetime, version_status = version_status(addon, version) %}
+            {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
             Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
             {% endtrans %}
+
+            {% if version.autoapprovalsummary and version.autoapprovalsummary.confirmed %}
+            <span class="light">{{ _("(Confirmed)") }}</span>
+            {% endif %}
           </th>
         </tr>
         <tr class="listing-body">
@@ -258,7 +262,7 @@
   </div>
 </form>
 
-<form method="POST" action="{{ url('reviewers.whiteboard', addon.slug if addon.slug else addon.pk) }}">
+<form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
   {% csrf_token %}
   <div class="whiteboard">
     <div class="whiteboard-inner">

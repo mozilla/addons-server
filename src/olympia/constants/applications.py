@@ -1,8 +1,12 @@
+import re
+
 from django.utils.translation import ugettext_lazy as _
 
 from olympia.versions.compare import version_int as vint
 
-from base import *  # noqa
+from base import (
+    ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH, ADDON_LPAPP,
+    ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME)
 
 
 class App(object):
@@ -155,6 +159,7 @@ class UNKNOWN_APP(App):
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, THUNDERBIRD, SEAMONKEY, FIREFOX)
 APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
+APP_USAGE_STATICTHEME = (FIREFOX,)
 APPS = {app.short: app for app in APP_USAGE}
 APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
 APP_IDS = {app.id: app for app in APP_USAGE}
@@ -166,11 +171,15 @@ for _app in APP_USAGE:
     for _type in _app.types:
         APP_TYPE_SUPPORT.setdefault(_type, []).append(_app)
 
+# Fake max version for when we want max compatibility
+FAKE_MAX_VERSION = '9999'
+
 # The lowest maxVersion an app has to support to allow default-to-compatible.
-D2C_MAX_VERSIONS = {
+D2C_MIN_VERSIONS = {
     FIREFOX.id: '4.0',
     SEAMONKEY.id: '2.1',
     THUNDERBIRD.id: '5.0',
+    ANDROID.id: '11.0',
 }
 
 for _app in APPS_ALL.values():

@@ -78,14 +78,14 @@ class TestFeeds(TestCase):
         """first page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=1)
         assert doc('rss item title')[0].text == (
-            'Addon for DTC 1.3 - December  5, 2011')
+            'Addon for DTC 1.3 - Dec. 5, 2011')
         self.assert_page_relations(doc, {'self': 1, 'next': 2, 'last': 4})
 
     def test_feed_middle_page(self):
         """a middle page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=2)
         assert doc('rss item title')[0].text == (
-            'Addon for DTC 1.2 - December  5, 2011')
+            'Addon for DTC 1.2 - Dec. 5, 2011')
         self.assert_page_relations(doc, {'previous': 1, 'self': 2, 'next': 3,
                                          'last': 4})
 
@@ -93,17 +93,17 @@ class TestFeeds(TestCase):
         """last page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=4)
         assert doc('rss item title')[0].text == (
-            'Addon for DTC 1.0 - December  5, 2011')
+            'Addon for DTC 1.0 - Dec. 5, 2011')
         self.assert_page_relations(doc, {'previous': 3, 'self': 4, 'last': 4})
 
     def test_feed_invalid_page(self):
         """an invalid page falls back to page 1"""
         doc = self.get_feed('addon-337203', page=5)
         assert doc('rss item title')[0].text == (
-            'Addon for DTC 1.3 - December  5, 2011')
+            'Addon for DTC 1.3 - Dec. 5, 2011')
 
     def test_feed_no_page(self):
         """no page defaults to page 1"""
         doc = self.get_feed('addon-337203')
         assert doc('rss item title')[0].text == (
-            'Addon for DTC 1.3 - December  5, 2011')
+            'Addon for DTC 1.3 - Dec. 5, 2011')

@@ -59,7 +59,8 @@ class PreviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Preview
-        fields = ('id', 'caption', 'image_url', 'thumbnail_url')
+        fields = ('id', 'caption', 'image_size', 'image_url', 'thumbnail_size',
+                  'thumbnail_url')
 
     def get_image_url(self, obj):
         return absolutify(obj.image_url)
@@ -77,7 +78,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Preview from ES data."""
-        obj = Preview(id=data['id'])
+        obj = Preview(id=data['id'], sizes=data.get('sizes', {}))
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.
@@ -149,11 +150,13 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
             'versions.edit', args=[obj.pk], prefix_only=True))
 
     def get_compatibility(self, obj):
-        if obj.addon.type in amo.NO_COMPAT:
-            return {}
-        return {app.short: {'min': compat.min.version,
-                            'max': compat.max.version}
-                for app, compat in obj.compatible_apps.items()}
+        return {
+            app.short: {
+                'min': compat.min.version if compat else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': compat.max.version if compat else amo.FAKE_MAX_VERSION
+            } for app, compat in obj.compatible_apps.items()
+        }
 
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
@@ -438,7 +441,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 compatible_apps[app_name] = ApplicationsVersions(
                     min=AppVersion(version=compat_dict.get('min_human', '')),
                     max=AppVersion(version=compat_dict.get('max_human', '')))
-            version.compatible_apps = compatible_apps
+            version._compatible_apps = compatible_apps
         else:
             version = None
         return version
@@ -630,6 +633,9 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
             collection.addons.filter(valid_q).values_list('guid', flat=True))
 
     def get_replacement(self, obj):
+        if obj.has_external_url():
+            # It's an external url so no guids.
+            return []
         addon_match = re.search(self.ADDON_PATH_REGEX, obj.path)
         if addon_match:
             return self._get_addon_guid(addon_match.group('addon_id'))

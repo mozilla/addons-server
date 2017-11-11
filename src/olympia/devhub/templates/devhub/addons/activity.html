@@ -32,7 +32,7 @@
           <p class="timestamp">
           {% trans user=item.user|user_link, ago=item.created|timesince,
                    iso=item.created|isotime,
-                   pretty=item.created|babel_datetime %}
+                   pretty=item.created|datetime %}
           <time datetime="{{ iso }}" title="{{ pretty }}">{{ ago }}</time>
           by {{ user }}
           {% endtrans %}

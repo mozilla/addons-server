@@ -7,7 +7,7 @@ from django.utils.encoding import force_bytes
 from django_jinja import library
 
 from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import page_title, datetime_filter
+from olympia.amo.templatetags.jinja_helpers import page_title, format_date
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import filter_queryset_to_pending_replies
@@ -60,10 +60,10 @@ def source_form_field(field):
 def file_status_message(file):
     choices = File.STATUS_CHOICES
     return {'fileid': file.id, 'platform': file.get_platform_display(),
-            'created': datetime_filter(file.created),
+            'created': format_date(file.created),
             'status': choices[file.status],
             'actions': amo.LOG_REVIEW_EMAIL_USER,
-            'status_date': datetime_filter(file.datestatuschanged)}
+            'status_date': format_date(file.datestatuschanged)}
 
 
 @library.global_function

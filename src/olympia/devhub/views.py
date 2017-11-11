@@ -437,9 +437,12 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    policy_form = forms.PolicyForm(post_data, addon=addon)
-    ctx.update(policy_form=policy_form)
-    fs.append(policy_form)
+    if addon.type != amo.ADDON_STATICTHEME:
+        policy_form = forms.PolicyForm(post_data, addon=addon)
+        ctx.update(policy_form=policy_form)
+        fs.append(policy_form)
+    else:
+        policy_form = None
 
     def mail_user_changes(author, title, template_part, recipients):
         from olympia.amo.utils import send_mail
@@ -500,7 +503,7 @@ def ownership(request, addon_id, addon):
 
         if license_form in fs:
             license_form.save()
-        if policy_form in fs:
+        if policy_form and policy_form in fs:
             policy_form.save()
         messages.success(request, ugettext('Changes successfully saved.'))
 
@@ -676,16 +679,16 @@ def _compat_result(request, revalidate_url, target_app, target_version,
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, id=file_id)
     try:
-        v_result = file.validation
+        result = file.validation
     except FileValidation.DoesNotExist:
         if request.method != 'POST':
             return http.HttpResponseNotAllowed(['POST'])
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
-        v_result = tasks.validate(file).get()
+        result = tasks.validate(file, synchronous=True).get()
 
-    return {'validation': v_result.processed_validation, 'error': None}
+    return {'validation': result.processed_validation, 'error': None}
 
 
 @json_view
@@ -835,15 +838,17 @@ def ajax_dependencies(request, addon_id, addon):
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {'admin': forms.AdminForm}
     if show_listed:
         models.update({
             'basic': addon_forms.AddonFormBasic,
-            'media': addon_forms.AddonFormMedia,
             'details': addon_forms.AddonFormDetails,
             'support': addon_forms.AddonFormSupport,
             'technical': addon_forms.AddonFormTechnical,
         })
+        if not static_theme:
+            models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
             'basic': addon_forms.AddonFormBasicUnlisted,
@@ -859,8 +864,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'basic' and show_listed:
         tags = addon.tags.not_denied().values_list('tag_text', flat=True)
-        cat_form = addon_forms.CategoryFormSet(request.POST or None,
-                                               addon=addon, request=request)
+        category_form_class = (forms.SingleCategoryForm if static_theme else
+                               addon_forms.CategoryFormSet)
+        cat_form = category_form_class(
+            request.POST or None, addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':
@@ -868,7 +875,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
-    elif section == 'technical' and show_listed:
+    elif section == 'technical' and show_listed and not static_theme:
         dependency_form = forms.DependencyFormSet(
             request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
@@ -1023,16 +1030,19 @@ def upload_image(request, addon_id, addon, upload_type):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
+    static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
         request.POST or None,
         request.FILES or None,
         instance=version
-    )
+    ) if not static_theme else None
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
 
-    data = {'version_form': version_form, 'file_form': file_form}
+    data = {'file_form': file_form}
+    if version_form:
+        data['version_form'] = version_form
 
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
@@ -1048,7 +1058,6 @@ def version_edit(request, addon_id, addon, version_id):
 
     if (request.method == 'POST' and
             all([form.is_valid() for form in data.values()])):
-        data['version_form'].save()
         data['file_form'].save()
 
         if 'compat_form' in data:
@@ -1064,25 +1073,27 @@ def version_edit(request, addon_id, addon, version_id):
                         'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
 
-        if 'approvalnotes' in version_form.changed_data:
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   addon, version, request.user)
+        if 'version_form' in data:
+            data['version_form'].save()
+            if 'approvalnotes' in version_form.changed_data:
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                       addon, version, request.user)
 
-        if ('source' in version_form.changed_data and
-                version_form.cleaned_data['source']):
-            addon.update(admin_review=True)
-            if version.has_info_request:
-                version.update(has_info_request=False)
-                log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
-                               request.user, version)
-            else:
-                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   addon, version, request.user)
+            if ('source' in version_form.changed_data and
+                    version_form.cleaned_data['source']):
+                addon.update(admin_review=True)
+                if version.has_info_request:
+                    version.update(has_info_request=False)
+                    log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
+                                   request.user, version)
+                else:
+                    ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                       addon, version, request.user)
 
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)

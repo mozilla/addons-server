@@ -47,7 +47,7 @@ from .models import EmailPreviewTopic
 log = olympia.core.logger.getLogger('z.zadmin')
 
 
-@admin_required(reviewers=True)
+@admin_required
 def langpacks(request):
     if request.method == 'POST':
         try:
@@ -341,7 +341,7 @@ def index(request):
     return render(request, 'zadmin/index.html', {'log': log})
 
 
-@admin_required(reviewers=True)
+@admin_required
 def addon_search(request):
     ctx = {}
     if 'q' in request.GET:
@@ -383,7 +383,7 @@ def general_search(request, app_id, model_id):
             for o in qs[:limit]]
 
 
-@admin_required(reviewers=True)
+@admin_required
 @addon_view_factory(qs=Addon.objects.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
@@ -422,7 +422,7 @@ def addon_manage(request, addon):
         'formset': formset, 'form_map': form_map, 'file_map': file_map})
 
 
-@admin_required(reviewers=True)
+@admin_required
 def download_file(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 

@@ -250,13 +250,11 @@ class BaseCategoryFormSet(BaseFormSet):
         self.request = kw.pop('request', None)
         super(BaseCategoryFormSet, self).__init__(*args, **kw)
         self.initial = []
-        apps = sorted(self.addon.compatible_apps.keys(),
-                      key=lambda x: x.id)
+        apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
 
         # Drop any apps that don't have appropriate categories.
         qs = Category.objects.filter(type=self.addon.type)
-        app_cats = dict((k, list(v)) for k, v in
-                        sorted_groupby(qs, 'application'))
+        app_cats = {k: list(v) for k, v in sorted_groupby(qs, 'application')}
         for app in list(apps):
             if app and not app_cats.get(app.id):
                 apps.remove(app)

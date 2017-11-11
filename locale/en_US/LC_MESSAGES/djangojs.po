@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -753,17 +753,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} user review"
 msgstr[1] "{reviews} user reviews"
 
-msgid "Learn more"
-msgstr "Learn more"
-
 msgid "Image changes being processed"
 msgstr "Image changes being processed"
 
-msgid "Must be a valid e-mail address."
-msgstr "Must be a valid e-mail address."
-
 msgid "No results found."
 msgstr "No results found."
+
+msgid "Loading..."
+msgstr "Loading..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> character left."
+msgstr[1] "<b>{0}</b> characters left."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+
+msgid "Remove this localization"
+msgstr "Remove this localization"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} was viewing this page first."
@@ -800,21 +809,6 @@ msgstr "Average Reviews"
 
 msgid "Number of Reviews"
 msgstr "Number of Reviews"
-
-msgid "Loading..."
-msgstr "Loading..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> character left."
-msgstr[1] "<b>{0}</b> characters left."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-
-msgid "Remove this localization"
-msgstr "Remove this localization"
 
 msgid "Requested Info"
 msgstr "Requested Info"

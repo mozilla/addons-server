@@ -145,7 +145,7 @@ def sign_addons(addon_ids, force=False, **kw):
                     signed_at_least_a_file = True
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
-            except:
+            except Exception:
                 log.error(u'Failed signing file {0}'.format(file_obj.pk),
                           exc_info=True)
                 # Revert the version bump, restore the backup.
@@ -169,6 +169,5 @@ def sign_addons(addon_ids, force=False, **kw):
                         addon.get_dev_url(action='versions')))
                 amo.utils.send_mail(
                     subject, message, recipient_list=emails,
-                    fail_silently=True,
                     headers={'Reply-To': 'amo-admins@mozilla.org'})
                 addons_emailed.add(addon.pk)

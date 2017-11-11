@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-11 17:40+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -753,17 +753,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Learn more"
-msgstr "Lue lisää"
-
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
 msgstr ""
+
+msgid "Loading..."
+msgstr "Ladataan..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> merkki jäljellä."
+msgstr[1] "<b>{0}</b> merkkiä jäljellä."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, sillä suoritamme verkkosivun huoltoa. Tarkista tilanne hieman myöhemmin uudelleen."
+
+msgid "Remove this localization"
+msgstr "Poista tämä lokalisointi"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -800,21 +809,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "Ladataan..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> merkki jäljellä."
-msgstr[1] "<b>{0}</b> merkkiä jäljellä."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, sillä suoritamme verkkosivun huoltoa. Tarkista tilanne hieman myöhemmin uudelleen."
-
-msgid "Remove this localization"
-msgstr "Poista tämä lokalisointi"
 
 msgid "Requested Info"
 msgstr ""

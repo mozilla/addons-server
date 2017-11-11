@@ -1409,6 +1409,14 @@ class TestFindReplacement(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+    def test_external_url(self):
+        ReplacementAddon.objects.create(
+            guid='xxx', path='https://mozilla.org/')
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, get_outgoing_url('https://mozilla.org/'))
+
 
 class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon
@@ -2793,6 +2801,27 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['count'] == 1
         assert data['results'][0]['id'] == addon2.pk
+
+    def test_filter_fuzziness(self):
+        with self.activate('de'):
+            addon = addon_factory(slug='my-addon', name={
+                'de': 'Mein Taschenmesser'
+            }, default_locale='de')
+
+            # Won't get matched, we have a prefix length of 4 so that
+            # the first 4 characters are not analyzed for fuzziness
+            addon_factory(slug='my-addon2', name={
+                'de': u'Mein Hufrinnenmesser'
+            }, default_locale='de')
+
+        self.refresh()
+
+        with self.activate('de'):
+            data = self.perform_search(self.url, {'q': 'Taschenmssser'})
+
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
 
 
 class TestAddonAutoCompleteSearchView(ESTestCase):

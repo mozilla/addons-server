@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-09-10 11:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -754,17 +754,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} felhasználói értékelés"
 msgstr[1] "{reviews} felhasználói értékelés"
 
-msgid "Learn more"
-msgstr "Tudjon meg többet"
-
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
-msgid "Must be a valid e-mail address."
-msgstr "Érvényes e-mail címnek kell lennie."
-
 msgid "No results found."
 msgstr "Nincs találat."
+
+msgid "Loading..."
+msgstr "Betöltés…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> karakter maradt."
+msgstr[1] "<b>{0}</b> karakter maradt."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
+
+msgid "Remove this localization"
+msgstr "Honosítás eltávolítása"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} nézte meg először az oldalt."
@@ -801,21 +810,6 @@ msgstr "Átlagos értékelések"
 
 msgid "Number of Reviews"
 msgstr "Értékelések száma"
-
-msgid "Loading..."
-msgstr "Betöltés…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> karakter maradt."
-msgstr[1] "<b>{0}</b> karakter maradt."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
-
-msgid "Remove this localization"
-msgstr "Honosítás eltávolítása"
 
 msgid "Requested Info"
 msgstr "Kért információ"

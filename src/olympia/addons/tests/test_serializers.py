@@ -159,7 +159,8 @@ class AddonSerializerOutputTestMixin(object):
             user=first_author, addon=self.addon, position=1)
         second_preview = Preview.objects.create(
             addon=self.addon, position=2,
-            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'},
+            sizes={'thumbnail': [199, 99], 'image': [567, 780]})
         first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
@@ -170,7 +171,7 @@ class AddonSerializerOutputTestMixin(object):
             application=amo.THUNDERBIRD.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         # Reset current_version.compatible_apps now that we've added an app.
-        del self.addon.current_version.compatible_apps
+        del self.addon.current_version._compatible_apps
 
         cat2 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
@@ -240,6 +241,8 @@ class AddonSerializerOutputTestMixin(object):
             first_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             first_preview.thumbnail_url)
+        assert result_preview['image_size'] == first_preview.image_size
+        assert result_preview['thumbnail_size'] == first_preview.thumbnail_size
 
         result_preview = result['previews'][1]
         assert result_preview['id'] == second_preview.pk
@@ -251,6 +254,10 @@ class AddonSerializerOutputTestMixin(object):
             second_preview.image_url)
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url)
+        assert (result_preview['image_size'] == second_preview.image_size ==
+                [567, 780])
+        assert (result_preview['thumbnail_size'] ==
+                second_preview.thumbnail_size == [199, 99])
 
         assert result['ratings'] == {
             'average': self.addon.average_rating,
@@ -546,8 +553,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result_version['compatibility'] == {}
         assert result_version['is_strict_compatibility_enabled'] is False
 
-        # Test an add-on with some compatibility info but which should not have
-        # any because its type is in NO_COMPAT.
+        # Test an add-on with some compatibility info but that should be
+        # ignored because its type is in NO_COMPAT.
         self.addon = addon_factory(type=amo.ADDON_SEARCH)
         av_min = AppVersion.objects.get_or_create(
             application=amo.THUNDERBIRD.id, version='2.0.99')[0]
@@ -557,7 +564,13 @@ class AddonSerializerOutputTestMixin(object):
             application=amo.THUNDERBIRD.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         result_version = self.serialize()['current_version']
-        assert result_version['compatibility'] == {}
+        assert result_version['compatibility'] == {
+            'android': {'max': '9999', 'min': '11.0'},
+            'firefox': {'max': '9999', 'min': '4.0'},
+            'seamonkey': {'max': '9999', 'min': '2.1'},
+            # No thunderbird: it does not support that type, and when we return
+            # fake compatibility data for NO_COMPAT add-ons we do obey that.
+        }
         assert result_version['is_strict_compatibility_enabled'] is False
 
 
@@ -1000,6 +1013,12 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_PUBLIC)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
+
+        # But urls aren't resolved - and don't break everything
+        rep.update(path=absolutify(addon.get_url_path()))
+        result = self.serialize(rep)
+        assert result['guid'] == u'legacy@mozilla'
+        assert result['replacement'] == []
 
     def test_valid_collection_path(self):
         addon = addon_factory(slug=u'stuff', guid=u'newstuff@mozilla')

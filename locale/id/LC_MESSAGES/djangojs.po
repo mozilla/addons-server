@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-14 08:40+0000\n"
 "Last-Translator: Rahmat Subekti <rahmatsubekti@live.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -743,17 +743,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ulasan pengguna"
 
-msgid "Learn more"
-msgstr "Pelajari selengkapnya"
-
 msgid "Image changes being processed"
 msgstr "Perubahan gambar sedang diproses"
 
-msgid "Must be a valid e-mail address."
-msgstr "Harus alamat surel valid."
-
 msgid "No results found."
 msgstr "Tidak ditemukan hasil."
+
+msgid "Loading..."
+msgstr "Memuat..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Sisa <b>{0}</b> karakter."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. Periksa kembali nanti."
+
+msgid "Remove this localization"
+msgstr "Hapus pelokalan ini"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} melihat laman ini terlebih dahulu."
@@ -790,20 +798,6 @@ msgstr "Ulasan Rata-rata"
 
 msgid "Number of Reviews"
 msgstr "Jumlah Ulasan"
-
-msgid "Loading..."
-msgstr "Memuat..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Sisa <b>{0}</b> karakter."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. Periksa kembali nanti."
-
-msgid "Remove this localization"
-msgstr "Hapus pelokalan ini"
 
 msgid "Requested Info"
 msgstr "Info yang Diminta"

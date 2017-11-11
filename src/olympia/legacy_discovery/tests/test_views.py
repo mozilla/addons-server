@@ -9,7 +9,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import datetime_filter
+from olympia.amo.templatetags.jinja_helpers import format_date
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.bandwagon.models import MonthlyPick
@@ -434,7 +434,7 @@ class TestPersonaDetails(TestCase):
             if detail.find('h3').text_content() == 'Created':
                 created = detail.find('p').text_content()
                 assert created == (
-                    trim_whitespace(datetime_filter(self.addon.created)))
+                    trim_whitespace(format_date(self.addon.created)))
                 break  # Needed, or we go in the "else" clause.
         else:
             assert False, 'No "Created" entry found.'

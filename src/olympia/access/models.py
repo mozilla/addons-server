@@ -44,7 +44,7 @@ class GroupUser(models.Model):
         except AttributeError:
             pass
         # Help cache-machine invalidate the group-related queries...
-        Group.objects.invalidate(self.group)
+        Group.objects.invalidate(self.group, *self.user.groups.all())
 
 
 @dispatch.receiver(signals.post_save, sender=GroupUser,

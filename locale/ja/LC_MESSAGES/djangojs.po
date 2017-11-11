@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-30 04:33+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -742,17 +742,25 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 件のユーザーレビュー"
 
-msgid "Learn more"
-msgstr "詳細"
-
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
-msgid "Must be a valid e-mail address."
-msgstr "正しいメールアドレスを入力してください。"
-
 msgid "No results found."
 msgstr "結果が見つかりませんでした。"
+
+msgid "Loading..."
+msgstr "読み込み中..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "残り <b>{0}</b> 文字です。"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
+
+msgid "Remove this localization"
+msgstr "このローカライズを削除"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
@@ -789,20 +797,6 @@ msgstr "レビュー平均"
 
 msgid "Number of Reviews"
 msgstr "レビュー数"
-
-msgid "Loading..."
-msgstr "読み込み中..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "残り <b>{0}</b> 文字です。"
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
-
-msgid "Remove this localization"
-msgstr "このローカライズを削除"
 
 msgid "Requested Info"
 msgstr "求められている情報"

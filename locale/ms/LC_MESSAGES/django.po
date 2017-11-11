@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-18 07:03+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
+"PO-Revision-Date: 2017-11-08 02:24+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -79,10 +79,6 @@ msgstr "Muat turun Sekarang"
 
 msgid "Download"
 msgstr "Muat turun"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Teruskan untuk Muat turun&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Sorotan"
@@ -158,12 +154,6 @@ msgstr "Jelaskan tema anda."
 msgid "Enter a new author's email address"
 msgstr "Masukkan alamat e-mel baru pengarang"
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Pengguna ada pilihan menyumbang lebih atau kurang daripada amaun ini."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Pengguna akan sentiasa ditanya dalam Pengurus Add-ons (Firefox 4 dan ke atas). Hanya diguna pakai untuk desktop."
-
 msgid "Listed"
 msgstr "Tersenarai"
 
@@ -195,99 +185,6 @@ msgstr "Add-on ini belum disemak oleh Mozilla. <a href=\"%(url)s\">Ketahui lanju
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Pembangun add-on ini meminta bantuan anda untuk menyokong pembangunan yang berterusan dengan memberikan sedikit sumbangan."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Pembangun add-on ini meminta anda menunjukkan sokongan dengan membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Pembangun add-on ini meminta anda menunjukkan sokongan dengan membuat sedikt sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Menyumbang"
-
-#. Click Contribute button OR Install button
-msgid "or"
-msgstr "atau"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Cadangan Sumbangan: {0}"
-
-msgid "What's this?"
-msgstr "Apa ini?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Pembangun add-on ini mahu anda mempertimbangkan untuk membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> jika anda seronok menggunakannya."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Pembangun add-on ini mahu anda mempertimbangkan untuk membuat sedikit sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> jika anda seronok menggunakannya."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla komited untuk menyokong ekosistem pembangun yang cergas dan sihat. Sumbangan pilihan anda membantu mengekalkan pembangunan selanjutnya add-on ini."
-
-msgid "Make a Contribution"
-msgstr "Hulurkan Derma"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Bantu menyokong pembangunan berterusan <strong>%(addon_name)s</strong> dengan membuat sedikit sumbangan melalui <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Untuk menunjukkan sokongan anda kepada <b>%(addon_name)s</b>, pembangun meminta anda membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Untuk menunjukkan sokongan anda kepada <b>%(addon_name)s</b>, pembangun meminta anda membuat sedikit sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "Berapa jumlah yang anda mahu sumbangkan?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "Jumlah maksimum sumbangan ialah {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "Jumlah minimum sumbangan ialah {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Amaun sumbangan mesti dalam nombor."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Sumbangan sekali-sahaja yang dicadangan {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Sumbangan sekali-sahaja {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Berikan komen atau permintaan dengan sumbangan anda."
-
-msgid "(optional)"
-msgstr "(pilihan)"
-
-msgid "Make Contribution"
-msgstr "Memberi Sumbangan"
-
-msgid "Contacting PayPal"
-msgstr "Menghubungi PayPal"
-
-msgid "No Thanks"
-msgstr "Tidak, Terima kasih"
-
-msgid "Contribution made, thank you."
-msgstr "Sumbangan telah dibuat, terima kasih."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -372,15 +269,6 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} pengguna"
 
-msgid "Payment cancelled"
-msgstr "Bayaran terbatal"
-
-msgid "Payment completed"
-msgstr "Bayaran lengkap"
-
-msgid "Return to the addon."
-msgstr "Kembali ke addon."
-
 msgid "by"
 msgstr "oleh"
 
@@ -441,10 +329,6 @@ msgstr "Edit"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d-%%m-%%Y"
-
 msgid "by {0} on {1}"
 msgstr "oleh {0} pada {1}"
 
@@ -480,6 +364,9 @@ msgstr ""
 
 msgid "Send Report"
 msgstr "Hantar Laporan"
+
+msgid "or"
+msgstr "atau"
 
 msgid "Cancel"
 msgstr "Batal"
@@ -554,25 +441,6 @@ msgstr "Keizinan"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> dicadangkan"
-
-msgid "Enjoy this add-on?"
-msgstr "Suka add-on ini?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta bantuan anda untuk menyokong pembangunan yang berterusan dengan memberikan sedikit sumbangan."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta anda menunjukkan sokongan dengan membuat sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Pembangun add-on ini</a> meminta anda menunjukkan sokongan dengan membuat sedikt sumbangan untuk <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Add-on ini memerlukan add-ons berikut supaya dapat berfungsi dengan sempurna:"
 
@@ -614,13 +482,14 @@ msgstr "Urusan Pentadbir"
 msgid "Icon of {0}"
 msgstr "Ikon {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "<a href=\"%(url)s\">Bertemu Pembangun</a>"
+msgid "Contribute"
+msgstr "Menyumbang"
 
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Ketahui mengapa {0} dicipta dan yang akan datang untuk add-on ini."
+msgid "Enjoy this add-on?"
+msgstr "Suka add-on ini?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "Pembangun add-on ini meminta bantuan anda untuk menyokong pembangunan yang berterusan dengan memberikan sedikit sumbangan."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -638,6 +507,7 @@ msgstr "E-mel Sokongan"
 msgid "Info"
 msgstr "Info"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Kemaskini Terakhir:"
 
@@ -698,33 +568,6 @@ msgstr "Sesetengah add-ons meminta izin untuk melaksanakan fungsi tertentu. Oleh
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Sila ambil perhatian bahawa add-on ini menggunakan teknologi legasi, yang memberikannya akses kepada semua fungsi dan data pelayar tanpa meminta kebenaran anda."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Terima kasih kerana memasang {0}"
-
-#. {0} is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Bertemu Pembangun {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Sebelum memuat turun add-on ini, sila pertimbangkan memberi sokongan untuk pembangunan add-on ini dengan membuat sedikit sumbangan."
-
-msgid "Why was {0} created?"
-msgstr "Mengapa {0} dicipta?"
-
-msgid "What's next for {0}"
-msgstr "Apa perkembangan lanjutan {0}"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "Perihal Pembangun"
-
-msgid "No Photo"
-msgstr "Tiada Foto"
-
-msgid "Who is {0}?"
-msgstr "Siapakah gerangan {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Add-on ini telah dibuang oleh pengarangnya."
@@ -941,6 +784,9 @@ msgstr "Sesetengah ciri pada halaman ini dinyahdayakan buat sementara waktu seme
 
 msgid "Are you human?"
 msgstr "Adakah anda manusia?"
+
+msgid "What's this?"
+msgstr "Apa ini?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1200,6 +1046,9 @@ msgstr "Mulakan Koleksi Baru"
 
 msgid "Name:"
 msgstr "Nama:"
+
+msgid "(optional)"
+msgstr "(pilihan)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "atau <a id=\"collections-new-cancel\" href=\"#\">Batal</a>"
@@ -1966,8 +1815,8 @@ msgstr "{0} {1} ditambah."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "peranan {0.name} ditukar ke {1} untuk {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} kini dilesenkan di bawah {0.name}."
+msgid "{addon} is now licensed under {0}."
+msgstr "{addon} kini dilesenkan di bawah {0}."
 
 msgid "{addon} policy changed."
 msgstr "polisi {addon} ditukar."
@@ -2433,6 +2282,51 @@ msgstr "Laman-khusus"
 msgid "Web and Developer Tools"
 msgstr "Web dan Alatan Pembangun"
 
+msgid "All Rights Reserved"
+msgstr "Hak Cipta Terpelihara"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "Mana-mana"
+
+msgid "All Platforms"
+msgstr "Platform All"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "App"
 
@@ -2580,51 +2474,6 @@ msgstr "Rendah kualiti, diregangkan, atau imej kosong"
 msgid "Header image alignment problem"
 msgstr "Masalah penjajaran imej pengepala"
 
-msgid "All Rights Reserved"
-msgstr "Hak Cipta Terpelihara"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Mana-mana"
-
-msgid "All Platforms"
-msgstr "Platform All"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Core"
 
@@ -2670,33 +2519,6 @@ msgstr "Add-on ini ada Polisi Privasi"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Sila tetapkan Polisi Privasi add-on anda:"
-
-msgid "Why did you make this add-on?"
-msgstr "Kenapa anda bina add-on ini?"
-
-msgid "What's next for this add-on?"
-msgstr "Apa perkembangan lanjut add-on ini?"
-
-msgid "The developers of this add-on"
-msgstr "Pembangun add-on ini"
-
-msgid "The Mozilla Foundation"
-msgstr "Yayasan Mozilla"
-
-msgid "An organization of my choice"
-msgstr "Sebuah organisasi piihan saya"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Sila masukkan cadangan amaun lebih daripada 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Sila masukkan cadangan amaun kurang daripada ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "ID PayPal diperlukan untuk menerima sumbangan."
-
-msgid "Could not validate PayPal id."
-msgstr "Tidak dapat mengesahkan id PayPal."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
@@ -2851,9 +2673,6 @@ msgstr "Peranan pengarang add-on anda telah ditukar"
 msgid "An author has been removed from your add-on"
 msgstr "Seorang pengarang disingkir daripada add-on anda"
 
-msgid "There were errors in your submission."
-msgstr "Ada ralat dalam serahan anda."
-
 msgid "Validate Add-on"
 msgstr "Sahkan Add-on"
 
@@ -2935,17 +2754,8 @@ msgstr "Polisi Semakan dan Peraturan"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox kami. Ini juga ada hubungan dengan Notis Privasi kami yang menjelaskan cara kami mengendalikan maklumat anda."
-
-msgid "Printable Version"
-msgstr "Versi Boleh Cetak"
-
 msgid "Accept"
 msgstr "Terima"
-
-msgid "I Accept this Agreement"
-msgstr "Saya Terima Perjanjian ini"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "atau <a href=\"{0}\">Batal</a>"
@@ -3132,26 +2942,6 @@ msgstr ""
 "pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain dan menguruskan bayaran</li> <li><b>Penyemak:</b> "
 "Boleh menyemak tetapan dan statistik add-on, tapi tidak boleh membuat apa-apa perubahan</li> </ul>"
 
-msgid "Manage Developer Profile"
-msgstr "Urus Profil Pembangun"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Profil pembangun<a href=\"%(url)s\"></a> anda pada masa ini<strong>umum</strong> dan <strong>diperlukan</strong> untuk sumbangan."
-
-msgid "Remove Both"
-msgstr "Buang Kedua-duanya"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Profil pembangun<a href=\"%(url)s\"></a> anda pada masa ini <strong>umum</strong>."
-
-msgid "Remove Profile"
-msgstr "Buang Profil"
-
-msgid "Create Profile"
-msgstr "Cipta Profil"
-
 msgid "Basic Information"
 msgstr "Maklumat Asas"
 
@@ -3198,17 +2988,19 @@ msgstr "Add-on ini perlu dibayar, perkhidmatan, perisian atau perkakasan tambaha
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Add-on ini tidak perlu apa-apa bayaran, perkhidmatan, perisian atau perkakasan tambahan."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr ""
-"Kategori adalah cara utama yang pengguna gunakan untuk melayari add-ons. Pilih kategori yang paling sesuai untuk add-on anda supaya dapat pendedahan terbaik. Ini hanya berkenaan add-ons yang "
-"tersenarai."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr "Kategori adalah cara utama yang digunakan pengguna untuk mencari add-ons. Pilih kategori yang paling sesuai untuk add-on anda supaya dapat pendedahan terbaik."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "Kategori tidak boleh ditukar semasa add-on anda menjadi ciri aplikasi ini. Sila e-mel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan supaya kategori anda itu perlu ditukar."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr "Tag membantu pengguna menemukan add-on anda, dan keterangannya perlu ringkas seperti tab, bar alatan, atau twitter. Anda boleh {0} tag maksimum. Ini hanya berkenaan add-on yang tersenarai."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr "Kategori tidak boleh ditukar semasa add-on anda menjadi ciri aplikasi. Sila e-mel <a href=\"mailto:%(email)s\">%(email)s</a> jika anda ada alasan supaya kategori itu perlu ditukar."
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Tag membantu pengguna mencari add-on anda, dan keterangannya perlu ringkas seperti tab, bar alatan, atau twitter. Anda boleh ada {0} tag maksimum."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3359,11 +3151,11 @@ msgid "Whiteboard"
 msgstr "Whiteboard"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Whiteboaed ialah tempat untuk menyediakan maklumat berkaitan add-on anda, versi apa saja, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. "
-"Whiteboard juga boleh diedit oleh editor."
+"Papan putih ialah tempat untuk menyediakan maklumat berkaitan add-on anda, apa saja versi, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. Papan "
+"putih juga boleh diedit oleh editor."
 
 msgid "Remove this dependent add-on"
 msgstr "Buang add-on bergantung ini"
@@ -3418,6 +3210,39 @@ msgstr "Sila beri keterangan skrinsyot ini:"
 
 msgid "Add a Screenshot..."
 msgstr "Tambah Skrinsyot..."
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Bolehkah pihak lain kongsikan Add-on, selagi anda diberi penghargaan?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Bolehkah pihak lain menggunakan Add-on anda bagi tujuan komersial?"
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Add-on anda?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
+
+msgid "Yes, as long as they share alike"
+msgstr "Ya, selagi mereka berkongsi yang sama"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "Pemberi lesen membenarkan pihak lain untuk mengedarkan kerja terbitan hanya di bawah lesen yang sama atau yang serasi dengan yang mengawal lesen kerja."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
+
+msgid "Your Add-on will be released under the following license:"
+msgstr "Add-on anda akan dikeluarkan di bawah lesen berikut:"
+
+msgid "Select a different license."
+msgstr "Pilih lesen yang lain."
 
 msgid "Tests"
 msgstr "Ujian"
@@ -3500,9 +3325,6 @@ msgstr "Statistik harian muat turun dan pengguna."
 
 msgid "Statistics"
 msgstr "Statistik"
-
-msgid "Manage Payments"
-msgstr "Urus Bayaran"
 
 msgid "Manage Status & Versions"
 msgstr "Urus Status & Versi"
@@ -3595,8 +3417,8 @@ msgstr "Laman web Sokongan:"
 msgid "License:"
 msgstr "Lesen:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Sila pilih lesen yang bersesuaian dengan hak cipta yang anda beri untuk sumber kod anda."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Sila pilih lesen yang bersesuaian dengan hak cipta yang anda beri."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Jika add-on anda menghantar data daripada komputer pengguna, polisi privasi diperlukan yang menjelaskan jenis data yang dihantar dan cara data itu digunakan."
@@ -3613,14 +3435,8 @@ msgstr "Nota ini hanya tampak kepada anda dan penyemak kami."
 msgid "Cancel and Disable Version"
 msgstr "Batal dan Nyahdaya Versi"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Batal Semakan dan Nyahdaya Versi"
-
 msgid "Submit Version"
 msgstr "Hantar Versi"
-
-msgid "Submit Version for Review"
-msgstr "Hantar Versi untuk Semakan"
 
 msgid "Describe Version"
 msgstr "Huraikan Versi"
@@ -3782,14 +3598,11 @@ msgid "Your add-on won't be included in search results, and its listing page wil
 msgstr ""
 "Add-on anda tidak akan dimasukkan dalam hasil carian, dan halaman penyenaraiannya akan menunjukkan anda menyahdayakannya. Serahan versi baru untuk penyenaraian tidak akan diterima dalam keadaan ini."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Dicipta:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b %%e, %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Status Multi Proses Add-on:"
 
@@ -3829,38 +3642,6 @@ msgstr "Versi Terbaru:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Ini ialah muat naik terbaru versi yang tidak disenaraikan."
-
-msgid "(required since this add-on accepts contributions)"
-msgstr "(diperlukan kerana add-on ini menerima sumbangan)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Urus Profil Pembangun Anda"
-
-msgid "Create a Developer Profile"
-msgstr "Cipta Profil Pembangun"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "Halaman ini akan dibuang untuk mengutamakan medan URL Sumbangan dalam halaman Edit utama, Pastikan anda menggunakan medan tersebut supaya Sumbangan terus aktif."
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Profil pembangun anda akan memaklumkan pengguna perihal diri anda, mengapa anda mencipta add-on ini, dan perkembangannya. Profil ini diperlukan bagi add-on yang meminta sumbangan, tetapi mungkin "
-"berguna kepada pembangun yang berminat untuk berhubungan dengan pengguna."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Pastikan profil pengguna anda sentiasa dikemaskini."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Kemaskini profil pengguna anda.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Samada idea ini anda dapat semasa beratur di kedai atau menyelesaikan masalah besar seseorang, kongsi kisah anda."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Memaklumkan pengguna apa yang akan datang tidak lama lagi akan memberikan mereka sesuatu yang ditunggu-tunggu."
 
 msgid "Upload New Version"
 msgstr "Muat naik Versi Baru"
@@ -3972,11 +3753,11 @@ msgstr "Lapor Pepijat"
 msgid "Site Status"
 msgstr "Status Laman"
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: bina & uji ekstensi"
+
 msgid "Compatibility Checker"
 msgstr "Penguji Keserasian"
-
-msgid "Compatibility Reporter"
-msgstr "Pelapor Keserasian"
 
 msgid "Promote"
 msgstr "Mempromosi"
@@ -4047,6 +3828,7 @@ msgstr "Sudah sedia menghantar add-on? Baca tutorial langkah-demi-langkah periha
 msgid "See Tutorial"
 msgstr "Lihat Tutorial"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Tinjau Semua Serahan"
 
@@ -4067,6 +3849,9 @@ msgstr "Dokumen"
 
 msgid "Sign Out"
 msgstr "Daftar Keluar"
+
+msgid "No Photo"
+msgstr "Tiada Foto"
 
 msgid "User Photo"
 msgstr "Foto Pengguna"
@@ -4107,114 +3892,20 @@ msgstr "Add-on anda sudah siap? Hantar ekstensi atau tema anda untuk disenaraika
 msgid "Sign In"
 msgstr "Daftar Masuk"
 
-msgid "Validator"
-msgstr "Pengesah"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Alatan baris arahan untuk membina, melaksana dan menguji ekstensi."
 
 msgid "Automated code tests for your add-on."
 msgstr "Ujian kod automatik untuk add-on anda."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Semak samada add-on anda akan terkesan dengan perubahan dalam Firefox."
+msgid "Compatibility Test"
+msgstr "Ujian Keserasian"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Maklumkan kami samada add-on berfungsi dalam versi Firefox yang tertentu."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "Anda sedang meminta <b>sumbangan</b> daripada pengguna"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Halaman sumbangan anda: <a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Nyahdaya Sumbangan"
-
-msgid "Voluntary Contributions"
-msgstr "Sumbangan Sukarela"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Add-ons yang didaftar dalam program sumbangan kami boleh meminta bantuan kewangan secara sukarela daripada pengguna."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Beri galakan kepada pengguna untuk menyokong add-on anda melalui Profil Pembangun anda"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Pilih bila dan cara pengguna diminta untuk membuat sumbangan"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Terima sumbangan anda melalui akaun PayPal anda atau dihantarkan ke organisasi pilihan anda"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Sumbangan hanya disediakan untuk add-on dengan versi tersenarai."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Sumbangan hanya disediakan untuk add-on dengan <a href=\"%(url)s\">profil pembangun lengkap</a>."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Sumbangan hanya disediakan untuk add-on yang diluluskan."
-
-msgid "Set up Contributions"
-msgstr "Menetapkan Sumbangan"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Langkah 2. Harga dan Ketersediaan"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "atau <a href=\"%(cancel)s\">Batal</a>"
-
-msgid "Contributions"
-msgstr "Sumbangan"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Isi medan di bawah untuk memulakan meminta sumbangan sukarela daripada pengguna."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Siapa penerima sumbangan add-on ini?"
-
-msgid "What is the name of the organization?"
-msgstr "Apakah nama organisasi berkenaan?"
-
-msgid "What is the URL of the organization?"
-msgstr "Apakah URL organisasi berkenaan?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "Apakah ID PayPal organisasi berkenaan?"
-
-msgid "What is your PayPal ID?"
-msgstr "Apakah ID PayPal anda?"
-
-msgid "Sign up for PayPal"
-msgstr "Mendaftar PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "Berapa jumlah sumbangan yang anda cadangkan?"
-
-msgid "(Example: 3.99)"
-msgstr "(Contoh: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Bilakah pengguna akan diminta memberikan sumbangan?"
-
-msgid "Send a thank-you note?"
-msgstr "Hantar nota ucapan terima kasih?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "Kami akan hantar e-mel automatik dengan mesej ini kepada pengguna yang memberikan sumbangan kepada anda."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"Kami mencadangkan supaya anda mengucapkan terima kasih kepada pengguna dan memaklumkan  betapa anda menghargainya sokongan mereka. Anda juga boleh memaklum mereka perihal perkembangan seterusnya "
-"add-on anda itu dan add-on lain yang anda mahu mereka mencubanya."
-
-msgid "Activate Contributions"
-msgstr "Aktifkan Sumbangan"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "atau <a id=\"setup-cancel\" href=\"#\">Batal</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Semak untuk melihat samada ekstensi anda serasi dengan Firefox."
 
 msgid "Transfer ownership"
 msgstr "Pindah pemilikan"
@@ -4240,35 +3931,14 @@ msgstr "Lesen Tema"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Bolehkah orang lain berkongsi tema anda, selagi anda diberi penghargaan?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Tema anda?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
-
-msgid "Yes, as long as they share alike"
-msgstr "Ya, selagi mereka berkongsi yang sama"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Pemberi lesen membenarkan pihak lain untuk mengedarkan kerja terbitan hanya di bawah lesen yang sama atau yang serasi dengan yang mengawal lesen kerja."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Tema anda akan dikeluarkan di bawah lesen berikut:"
-
-msgid "Select a different license."
-msgstr "Pilih lesen yang lain."
 
 msgid "Select a license for your Theme."
 msgstr "Pilih lesen untuk Tema anda."
@@ -4606,837 +4276,6 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
 
-msgid "Approved reviews"
-msgstr "Semakan diluluskan"
-
-msgid "Deleted reviews"
-msgstr "Semakan yang dibuang"
-
-msgid "View entries between"
-msgstr "Papar entri antara"
-
-msgid "and"
-msgstr "dan"
-
-msgid "Filter by type/action"
-msgstr "Tapis mengikut jenis/tindakan"
-
-msgid "Passed automatic validation"
-msgstr "Pengesahan automatik diluluskan"
-
-msgid "Failed automatic validation"
-msgstr "Pengesahan automatik gagal"
-
-msgid "Filter by automatic validation"
-msgstr "Tapis mengikut pengesahan automatik"
-
-msgid "containing"
-msgstr "mengandungi"
-
-msgid "start"
-msgstr "mula"
-
-msgid "end"
-msgstr "akhir"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "add-on, editor atau komen"
-
-msgid "Search by add-on name / author email"
-msgstr "Cari mengikut nama add-on / e-mel pengarang"
-
-msgid "yes"
-msgstr "ya"
-
-msgid "no"
-msgstr "tidak"
-
-msgid "Admin Flag"
-msgstr "Tanda Pentadbir"
-
-msgid "Add-on Types"
-msgstr "Jenis Add-on"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Cari mengikut nama add-on / e-mel pengarang / guid"
-
-msgid "Max. Version"
-msgstr "Versi Max"
-
-msgid "Comments:"
-msgstr "Komen:"
-
-msgid "Operating systems:"
-msgstr "Sistem pengoperasian:"
-
-msgid "Applications:"
-msgstr "Aplikasi:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Maklumkan saya apabila add-on ini dikemaskini. (Kemaskini seterusnya tidak akan menjana e-mel)"
-
-msgid "Clear Admin Review Flag"
-msgstr "Buang Tanda Semakan Pentadbir"
-
-msgid "Is more info requested?"
-msgstr "Perlu minta info selanjutnya?"
-
-msgid "Choose a canned response..."
-msgstr "Pilih respons lazim..."
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "nama tema"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Ada seseorang sedang menyemak tema ini."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "tema, penyemak, atau komen"
-
-msgid "Keep review; remove flags"
-msgstr "Kekalkan semakan; buang tanda"
-
-msgid "Skip for now"
-msgstr "Langkau dulu sekarang"
-
-msgid "Delete review"
-msgstr "Buang semakan"
-
-msgid "Admin Review"
-msgstr "Semakan Pentadbir"
-
-msgid "Jetpack Add-on"
-msgstr "Add-on Jetpack"
-
-msgid "More Information Requested"
-msgstr "Perlukan Maklumat Lanjut"
-
-msgid "Contains Reviewer Comment"
-msgstr "Ada Komen Penyemak"
-
-msgid "Sources provided"
-msgstr "Sumber disediakan"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Menggunakan sesuaian CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Menggunakan keizinan nativeMessaging."
-
-msgid "Uses a content script for all URLs."
-msgstr "Menggunakan skrip kandungan semua URLs."
-
-msgid "Has too many daily users."
-msgstr "Ada terlalu ramai pengguna harian."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Ada terlalu sedikit kemaskini diluluskan-manusia."
-
-msgid "Has a pending info request."
-msgstr "Ada permintaan info tertangguh."
-
-msgid "Is flagged for admin review."
-msgstr "Ditandai untuk semakan pentadbir."
-
-msgid "Is locked by a reviewer."
-msgstr "Dikunci oleh penyemak."
-
-msgid "Duplicate Submission"
-msgstr "Duplikasi Serahan"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Terima kasih kerana mengemukakan Tema anda"
-
-msgid "A problem with your Theme submission"
-msgstr "Ada masalah dengan serahan Tema anda"
-
-msgid "Theme submission flagged for review"
-msgstr "Serahan tema anda ditandakan untuk semakan"
-
-msgid "A question about your Theme submission"
-msgstr "Ada soalan perihal serahan Tema anda"
-
-msgid "Type"
-msgstr "Jenis"
-
-msgid "Waiting Time"
-msgstr "Tempoh Menunggu"
-
-msgid "Flags"
-msgstr "Tanda"
-
-msgid "moments ago"
-msgstr "sebentar tadi"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minit"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} jam"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} hari"
-
-msgid "Last Review"
-msgstr "Semakan Terakhir"
-
-msgid "Last Update"
-msgstr "Kemaskini Terakhir"
-
-msgid "No Reviews"
-msgstr "Tiada Semakan"
-
-msgid "Weight"
-msgstr "Pertimbangkan"
-
-msgid "Last Content Review"
-msgstr "Semakan Kandungan Terakhir"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Komen akan dihantar kepada pembangun."
-
-msgid "Confirm Approval"
-msgstr "Sahkan Kelulusan"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "Versi umum terkini add-on ini diluluskan secara automatik. Ini akan merekodkan pengesahan kelulusan anda tanpa memaklumkan pembangun."
-
-msgid "Reject Multiple Versions"
-msgstr "Tolak Versi Pelbagai"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Ini akan menolak versi umum yang dipilih. Komen akan dihantar kepada pembangun."
-
-msgid "Reviewer reply"
-msgstr "Jawapan penyemak"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Ini akan menghantar mesej kepada pembangun. Anda akan dimaklumkan apabila mereka membalas."
-
-msgid "Request super-review"
-msgstr "Minta semakan-teliti"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terhadap add-on ini, sila masukkan komen anda dalam kawasan di bawah. Ini tidak akan dihantar kepada pembangun."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
-
-msgid "Approve Content"
-msgstr "Kandungan Lulus"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Add-ons Baru (Kurang daripada 5 hari)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Memadai (5 hingga 10 hari)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Terlewat (Melebihi 10 hari)"
-
-msgid "An unknown error occurred"
-msgstr "Ada ralat yang tidak diketahui"
-
-msgid "Self-reviews are not allowed."
-msgstr "Semakan-sendiri tidak dibenarkan."
-
-msgid "Review successfully processed."
-msgstr "Semakan berjaya diproses."
-
-msgid "Review lock limit reached"
-msgstr "Mencapai had semakan dikunci"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} semakan tema berjaya diproses (+{1} poin, {2} jumlah)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Tema anda yang dikunci telah berjaya dilepaskan. Penyemak lain kini boleh menyemak tema berkenaan. Anda perlu memuat semula halaman untuk melihat perubahan yang dinyatakan di dalam jadual di bawah."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Laporan Penyalahgunaan"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Berfungsi dengan"
-
-msgid "Visibility"
-msgstr "Ketampakan"
-
-msgid "Visible"
-msgstr "Tampak"
-
-msgid "Average Daily Users"
-msgstr "Purata Pengguna Harian"
-
-msgid "Abuse Reports"
-msgstr "Laporan Penyalahgunaan"
-
-msgid "View Privacy Policy"
-msgstr "Lihat Dasar Privasi"
-
-msgid "Requires Payment"
-msgstr "Perlu Bayaran"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "Tarikh Kelulusan Terakhir"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Kelulusan Semenjak Semakan Automatik Terakhir"
-
-msgid "Abuse Reports ({num})"
-msgstr "Laporan Penyalahgunaan ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Ulasan Buruk Pengguna ({num})"
-
-msgid "More about this add-on"
-msgstr "Maklumat lanjut perihal add-on ini"
-
-msgid "Image Gallery"
-msgstr "Galeri Imej"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Kembali ke halaman utama Alatan Penyemak"
-
-msgid "Queues"
-msgstr "Giliran"
-
-msgid "New Add-ons"
-msgstr "Add-ons Baru"
-
-msgid "Updates"
-msgstr "Kemaskini"
-
-msgid "Moderated Reviews"
-msgstr "Ulasan Moderat"
-
-msgid "Auto Approved Add-ons"
-msgstr "Add-on Automatik Diluluskan"
-
-msgid "Content Review"
-msgstr "Semakan Kandungan"
-
-msgid "Unlisted Queues"
-msgstr "Barisan Tiada-disenaraikan"
-
-msgid "All Unlisted Add-ons"
-msgstr "Semua Add-ons Tiada-disenaraikan"
-
-msgid "Logs"
-msgstr "Log"
-
-msgid "Add-on Review Log"
-msgstr "Log Semakan Add-on"
-
-msgid "Moderated Review Log"
-msgstr "Log Ulasan Moderat"
-
-msgid "Signed Beta Files Log"
-msgstr "Log Fail Beta Ditandatangani"
-
-msgid "Announcement"
-msgstr "Pengumuman"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Tapis"
-
-msgid "Date"
-msgstr "Tarikh"
-
-msgid "Event"
-msgstr "Acara"
-
-msgid "More details."
-msgstr "Butiran lanjut."
-
-msgid "No events found for this period."
-msgstr "Tiada acara dalam tempoh ini."
-
-msgid "Log details"
-msgstr "Butiran log"
-
-msgid "Review Author"
-msgstr "Pengarang Semakan"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Tajuk Add-on"
-
-msgid "Review Title"
-msgstr "Tajuk Semakan"
-
-msgid "Review Text"
-msgstr "Teks Semakan"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Semakan telah ditandakan sebelum dihapuskan."
-
-msgid "Undelete"
-msgstr "Batalkan membuang"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Add-ons Baru ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Kemaskini ({num})"
-
-msgid "Current waiting times:"
-msgstr "Tempoh menunggu semasa:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-ons"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Bilangan Semakan"
-
-msgid "Reviews This Month"
-msgstr "Semakan Bulan Ini"
-
-msgid "New Reviewers"
-msgstr "Penyemak Baru"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Anda #{0} dengan {1} semakan"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Semakan Moderat ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Carta-kedudukan Penyemak"
-
-msgid "No review points awarded yet."
-msgstr "Belum ada markah yang diberikan."
-
-msgid "Rank"
-msgstr "Kedudukan"
-
-msgid "Score"
-msgstr "Markah"
-
-msgid "Update message of the day"
-msgstr "Kemaskini mesej penting hari ini"
-
-msgid "Save"
-msgstr "Simpan"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Prestasi Penyemak Add-on"
-
-msgid "View statistics for user"
-msgstr "Papar statistik untuk pengguna"
-
-msgid "Range"
-msgstr "Julat"
-
-msgid "Your Reviews"
-msgstr "Semakan Anda"
-
-msgid "By {user_name}"
-msgstr "Mengikut {user_name}"
-
-msgid "Active Contributors"
-msgstr "Penyumbang Aktif"
-
-msgid "This Month"
-msgstr "Bulan Ini"
-
-msgid "This Year"
-msgstr "Tahun Ini"
-
-msgid "Monthly Performance"
-msgstr "Prestasi Bulanan"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Pecahan Poin Sepanjang-masa mengikut Jenis"
-
-msgid "Total"
-msgstr "Jumlah"
-
-msgid "Month"
-msgstr "Bulan"
-
-msgid "Year"
-msgstr "Tahun"
-
-msgid "All-Time"
-msgstr "Sepanjang-Masa"
-
-msgid "Advanced Search"
-msgstr "Carian Lanjutan"
-
-msgid "clear search"
-msgstr "buang carian"
-
-msgid "Process Reviews"
-msgstr "Proses Semakan"
-
-msgid "Moderation actions:"
-msgstr "Tindakan moderat:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "mengikut %(user)s pada %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandakan oleh %(user)s pada %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Semua semakan adalah moderat. Syabas!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Masih belum ada add-on jenis ini untuk disemak buat masa ini."
-
-msgid "Helpful Links:"
-msgstr "Pautan Berguna:"
-
-msgid "Add-on Policy"
-msgstr "Polisi Add-on"
-
-msgid "Editors' Guide"
-msgstr "Panduan Editor"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Semakan Kandungan {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Semakan {0}"
-
-msgid "Add-on user change history"
-msgstr "Sejarah perubahan pengguna add-on"
-
-msgid "Add-on History"
-msgstr "Sejarah Add-on"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Keserasian:"
-
-msgid "Additional sources:"
-msgstr "Sumber tambahan:"
-
-msgid "Download files"
-msgstr "Muat turun fail"
-
-msgid "The developer has provided source code."
-msgstr "Pembangun menyediakan kod sumber."
-
-msgid "Weight:"
-msgstr "Pertimbangkan:"
-
-msgid "Not Auto Approved Because"
-msgstr "Tidak Auto Diluluskan Kerana"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Skrip auto-diluluskan masih belum dijalankan untuk versi ini."
-
-msgid "This version has not been reviewed."
-msgstr "Versi ini masih belum disemak."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Sila pilih satu atau lebih versi dalam senarai di atas."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Anda masih boleh hantar borang ini, tapi jika anda tahu tidak akan berlaku konflik."
-
-msgid "Insert canned response..."
-msgstr "Sertakan respons lazim..."
-
-msgid "Files:"
-msgstr "Fail:"
-
-msgid "Tested on:"
-msgstr "Diuji pada:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Amaran!</strong> Ada pengguna lain meninjau halaman ini sebelum anda."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "Whiteboard adalah tempat untuk bertukar maklumat berkaitan addon ini (apa sahaja versi), antara pembangun dengan editor. Ini adalah boleh dilihat dan boleh diedit oleh kedua-duanya."
-
-msgid "Update the whiteboard"
-msgstr "Kemaskini whiteboard"
-
-msgid "(admin)"
-msgstr "(pentadbir)"
-
-msgid "Admin Page"
-msgstr "Halaman Pentadbir"
-
-msgid "Review This Add-on"
-msgstr "Semak Add-ons Ini"
-
-msgid "More Information"
-msgstr "Maklumat Lanjut"
-
-msgid "Resolution"
-msgstr "Resolusi"
-
-msgid "Reviewer"
-msgstr "Penyemak"
-
-msgid "Add-on has been deleted."
-msgstr "Add-on telah dibuang."
-
-msgid "Show Comments"
-msgstr "Papar Komen"
-
-msgid "Hide Comments"
-msgstr "Sorok Komen"
-
-msgid "No reviews found for this period."
-msgstr "Tiada semakan ditemukan dalam tempoh ini."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] melaporkan %(object)s pada %(date)s"
-
-msgid "Dismiss this announcement"
-msgstr "Abaikan pengumuman ini"
-
-msgid "Files in this version:"
-msgstr "Fail dalam versi ini:"
-
-msgid "Contents"
-msgstr "Kandungan"
-
-msgid "Compare"
-msgstr "Banding"
-
-msgid "Permissions:"
-msgstr "Keizinan:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Oleh %(user)s pada %(date)s</div>"
-
-msgid "Older"
-msgstr "Lebih lama"
-
-msgid "Newer"
-msgstr "Lebih baru"
-
-msgid "Recent Points"
-msgstr "Poin Terkini"
-
-msgid "No points awarded yet."
-msgstr "Belum ada poin yang diberikan."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Penyemak Teratas (7 hari lepas)"
-
-msgid "No top reviewers yet."
-msgstr "Belum ada penyemak teratas lagi."
-
-msgid "All Time"
-msgstr "Sepanjang Masa"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Anda ada <span>{0}</span> poin."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s pada %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Tarikh telah Dibuang"
-
-msgid "No deleted themes found for this period."
-msgstr "Tiada tema dihapuskan yang ditemukan dalam tempoh ini."
-
-msgid "Theme Review History for {0}"
-msgstr "Sejarah Semakan Tema untuk {0}"
-
-msgid "Review Date"
-msgstr "Tarikh Semakan"
-
-msgid "Action"
-msgstr "Tindakan"
-
-msgid "Reason"
-msgstr "Alasan"
-
-msgid "There are currently no reviews."
-msgstr "Masih tiada semakan."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Semakan Tema Menunggu"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Semakan Ditanda"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Kemaskini"
-
-msgid "Flagged Themes"
-msgstr "Tema Ditandai"
-
-msgid "Theme Review Queue"
-msgstr "Giliran Semakan Tema"
-
-msgid "Review Options"
-msgstr "Pilihan Semakan"
-
-msgid "Auto-advance after review"
-msgstr "Auto-kemajuan selepas semakan"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Dayakan pintasan papan kekunci"
-
-msgid "Keyboard Shortcuts"
-msgstr "Pintasan Papan Kekunci"
-
-msgid "Next Theme"
-msgstr "Tema Berikut"
-
-msgid "Previous Theme"
-msgstr "Tema Terdahulu"
-
-msgid "Your Review History"
-msgstr "Sejarah Semakan Anda"
-
-msgid "Commit Review"
-msgstr "Melakukan Semakan"
-
-msgid "Commit Reviews"
-msgstr "Melakukan Semakan"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} daripada {1} disemak"
-
-msgid "There are currently no Themes to review."
-msgstr "Masih tiada Tema untuk semakan buat masa ini."
-
-msgid "Clear Search"
-msgstr "Buang Carian"
-
-msgid "Release My Theme Locks"
-msgstr "Buka Kunci Tema Saya"
-
-msgid "Interactive Theme Queue"
-msgstr "Giliran Tema Interaktif"
-
-msgid "Reviewers' Guide"
-msgstr "Panduan Penyemak"
-
-msgid "Theme Review for {0}"
-msgstr "Semakan Tema untuk {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Kemungkinan Duplikasi Serahan)"
-
-msgid "Past Review Notes"
-msgstr "Nota Semakan Terdahulu"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Minta Info Lanjut: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Ditandai: {0}"
-
-msgid "Approve Theme"
-msgstr "Luluskan Tema"
-
-msgid "Field required"
-msgstr "Medan diperlukan"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Masukkan ID atau URL duplikasi"
-
-msgid "Select a reason for rejection"
-msgstr "Pilih alasan untuk penolakan"
-
-msgid "Describe your reason for rejection"
-msgstr "Jelaskan alasan anda untuk penolakan"
-
-msgid "Ask a question to the artist"
-msgstr "Tanya soalan kepada artis"
-
-msgid "Describe your reason for flagging"
-msgstr "Jelaskab alasan anda untuk penandaan"
-
-msgid "Rejected or Unreviewed"
-msgstr "Ditolak atau Tidak-disemak"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Add-ons Baru ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Kemaskini ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Semakan Moderat ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Add-on Automatik Diluluskan ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Semakan Kandungan ({0})"
-
-msgid "Flagged"
-msgstr "Ditandai"
-
 msgid "Cannot diff a version against itself"
 msgstr "Tidak dapat membezakan versi ini dengan versi sendiri"
 
@@ -5539,6 +4378,9 @@ msgstr "Fail add-on sedang diproses, sila tunggu."
 
 msgid "Fetching validation results..."
 msgstr "Mendapatkan hasil pengesahan..."
+
+msgid "Files:"
+msgstr "Fail:"
 
 msgid "Deleted files:"
 msgstr "Fail yang telah dibuang:"
@@ -5745,6 +4587,9 @@ msgstr "Terima kasih kerana menggunakan %(app)s dan menyokong <a href=\"%(url)s\
 
 msgid "Add-ons downloaded:"
 msgstr "Add-on dimuat turun:"
+
+msgid "View Privacy Policy"
+msgstr "Lihat Dasar Privasi"
 
 msgid "Active Users"
 msgstr "Pengguna Aktif"
@@ -6277,7 +5122,7 @@ msgstr "Siapa yang mencipta add-ons ini?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "Add-ons yang disenaraikan di sini dicipta oleh ribuan pembangun dalam komuniti kami, daripada hobi individu hingga ke pertubuhan besar. Semua add-ons yang disenaraikan kepada umum ini telah disemak "
 "oleh sebuah pasukan editor sebelum boleh dikeluarkan. Add-ons yang ada tanda sebagai Eksperimen masih belum disemak dan anda perlu berhati-hati apabila mahu memasangnya."
@@ -7038,7 +5883,7 @@ msgstr "Bagaimana boleh saya laporkan ulasan spam atau tidak sesuai oleh penggun
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "Untuk melaporkan ulasan pengguna, log masuk akaun anda dan lawati halaman ulasan add-on. Cari ulasan yang mahu anda lapor, klik \"Lapor ulasan ini\" dan pilih alasannya. Pasukan editorial kami akan "
 "menyiasat ulasan tersebut dan mengambil tindakan sewajarnya."
@@ -7333,22 +6178,812 @@ msgstr "Kami mengesyorkan menaik taraf ke <a href=\"%(tb_url)s\">Thunderbird</a>
 msgid "Read more about Sunbird"
 msgstr "Ketahui selanjutnya perihal Sunbird"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Ada ralat semasa menghubungi PayPal. Sila cuba lagi nanti."
+msgid "Approved reviews"
+msgstr "Semakan diluluskan"
 
-msgid "There was an error with this currency."
-msgstr "Ada ralat dengan matawang ini."
+msgid "Deleted reviews"
+msgstr "Semakan yang dibuang"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Nilai terlalu kecil apabila ditukarkan kepada matawang penerima."
+msgid "View entries between"
+msgstr "Papar entri antara"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "Pembeli dan penjual mesti ada akaun PayPal yang berlainan."
+msgid "and"
+msgstr "dan"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "Tapis mengikut jenis/tindakan"
+
+msgid "Passed automatic validation"
+msgstr "Pengesahan automatik diluluskan"
+
+msgid "Failed automatic validation"
+msgstr "Pengesahan automatik gagal"
+
+msgid "Filter by automatic validation"
+msgstr "Tapis mengikut pengesahan automatik"
+
+msgid "containing"
+msgstr "mengandungi"
+
+msgid "start"
+msgstr "mula"
+
+msgid "end"
+msgstr "akhir"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "add-on, penyemak atau komen"
+
+msgid "Search by add-on name / author email"
+msgstr "Cari mengikut nama add-on / e-mel pengarang"
+
+msgid "yes"
+msgstr "ya"
+
+msgid "no"
+msgstr "tidak"
+
+msgid "Admin Flag"
+msgstr "Tanda Pentadbir"
+
+msgid "Add-on Types"
+msgstr "Jenis Add-on"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Cari mengikut nama add-on / e-mel pengarang / guid"
+
+msgid "Max. Version"
+msgstr "Versi Max"
+
+msgid "Comments:"
+msgstr "Komen:"
+
+msgid "Operating systems:"
+msgstr "Sistem pengoperasian:"
+
+msgid "Applications:"
+msgstr "Aplikasi:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Maklumkan saya apabila add-on ini dikemaskini. (Kemaskini seterusnya tidak akan menjana e-mel)"
+
+msgid "Clear Admin Review Flag"
+msgstr "Buang Tanda Semakan Pentadbir"
+
+msgid "Is more info requested?"
+msgstr "Perlu minta info selanjutnya?"
+
+msgid "Choose a canned response..."
+msgstr "Pilih respons lazim..."
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "nama tema"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Ada seseorang sedang menyemak tema ini."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "tema, penyemak, atau komen"
+
+msgid "Keep review; remove flags"
+msgstr "Kekalkan semakan; buang tanda"
+
+msgid "Skip for now"
+msgstr "Langkau dulu sekarang"
+
+msgid "Delete review"
+msgstr "Buang semakan"
+
+msgid "Admin Review"
+msgstr "Semakan Pentadbir"
+
+msgid "Jetpack Add-on"
+msgstr "Add-on Jetpack"
+
+msgid "More Information Requested"
+msgstr "Perlukan Maklumat Lanjut"
+
+msgid "Contains Reviewer Comment"
+msgstr "Ada Komen Penyemak"
+
+msgid "Sources provided"
+msgstr "Sumber disediakan"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Dikunci oleh penyemak."
+
+msgid "Duplicate Submission"
+msgstr "Duplikasi Serahan"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Terima kasih kerana mengemukakan Tema anda"
+
+msgid "A problem with your Theme submission"
+msgstr "Ada masalah dengan serahan Tema anda"
+
+msgid "Theme submission flagged for review"
+msgstr "Serahan tema anda ditandakan untuk semakan"
+
+msgid "A question about your Theme submission"
+msgstr "Ada soalan perihal serahan Tema anda"
+
+msgid "Type"
+msgstr "Jenis"
+
+msgid "Waiting Time"
+msgstr "Tempoh Menunggu"
+
+msgid "Flags"
+msgstr "Tanda"
+
+msgid "moments ago"
+msgstr "sebentar tadi"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} minit"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} jam"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} hari"
+
+msgid "Last Review"
+msgstr "Semakan Terakhir"
+
+msgid "Last Update"
+msgstr "Kemaskini Terakhir"
+
+msgid "No Reviews"
+msgstr "Tiada Semakan"
+
+msgid "Weight"
+msgstr "Pertimbangkan"
+
+msgid "Last Content Review"
+msgstr "Semakan Kandungan Terakhir"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Komen akan dihantar kepada pembangun."
+
+msgid "Confirm Approval"
+msgstr "Sahkan Kelulusan"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "Versi umum terkini add-on ini diluluskan secara automatik. Ini akan merekodkan pengesahan kelulusan anda tanpa memaklumkan pembangun."
+
+msgid "Reject Multiple Versions"
+msgstr "Tolak Versi Pelbagai"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Ini akan menolak versi umum yang dipilih. Komen akan dihantar kepada pembangun."
+
+msgid "Reviewer reply"
+msgstr "Jawapan penyemak"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Ini akan menghantar mesej kepada pembangun. Anda akan dimaklumkan apabila mereka membalas."
+
+msgid "Request super-review"
+msgstr "Minta semakan-teliti"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terhadap add-on ini, sila masukkan komen anda dalam kawasan di bawah. Ini tidak akan dihantar kepada pembangun."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
+
+msgid "Approve Content"
+msgstr "Kandungan Lulus"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Add-ons Baru (Kurang daripada 5 hari)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Memadai (5 hingga 10 hari)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Terlewat (Melebihi 10 hari)"
+
+msgid "An unknown error occurred"
+msgstr "Ada ralat yang tidak diketahui"
+
+msgid "Self-reviews are not allowed."
+msgstr "Semakan-sendiri tidak dibenarkan."
+
+msgid "Review successfully processed."
+msgstr "Semakan berjaya diproses."
+
+msgid "Review lock limit reached"
+msgstr "Mencapai had semakan dikunci"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} semakan tema berjaya diproses (+{1} poin, {2} jumlah)."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+"Tema anda yang dikunci telah berjaya dilepaskan. Penyemak lain kini boleh menyemak tema berkenaan. Anda perlu memuat semula halaman untuk melihat perubahan yang dinyatakan di dalam jadual di bawah."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: Laporan Penyalahgunaan"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Berfungsi dengan"
+
+msgid "Visibility"
+msgstr "Ketampakan"
+
+msgid "Visible"
+msgstr "Tampak"
+
+msgid "Average Daily Users"
+msgstr "Purata Pengguna Harian"
+
+msgid "Abuse Reports"
+msgstr "Laporan Penyalahgunaan"
+
+msgid "Requires Payment"
+msgstr "Perlu Bayaran"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "Tarikh Kelulusan Terakhir"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "Kelulusan Semenjak Semakan Automatik Terakhir"
+
+msgid "Abuse Reports ({num})"
+msgstr "Laporan Penyalahgunaan ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Ulasan Buruk Pengguna ({num})"
+
+msgid "More about this add-on"
+msgstr "Maklumat lanjut perihal add-on ini"
+
+msgid "Image Gallery"
+msgstr "Galeri Imej"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Kembali ke halaman utama Alatan Penyemak"
+
+msgid "Queues"
+msgstr "Giliran"
+
+msgid "New Add-ons"
+msgstr "Add-ons Baru"
+
+msgid "Updates"
+msgstr "Kemaskini"
+
+msgid "Moderated Reviews"
+msgstr "Ulasan Moderat"
+
+msgid "Auto Approved Add-ons"
+msgstr "Add-on Automatik Diluluskan"
+
+msgid "Content Review"
+msgstr "Semakan Kandungan"
+
+msgid "Unlisted Queues"
+msgstr "Barisan Tiada-disenaraikan"
+
+msgid "All Unlisted Add-ons"
+msgstr "Semua Add-ons Tiada-disenaraikan"
+
+msgid "Logs"
+msgstr "Log"
+
+msgid "Add-on Review Log"
+msgstr "Log Semakan Add-on"
+
+msgid "Moderated Review Log"
+msgstr "Log Ulasan Moderat"
+
+msgid "Signed Beta Files Log"
+msgstr "Log Fail Beta Ditandatangani"
+
+msgid "Announcement"
+msgstr "Pengumuman"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Tapis"
+
+msgid "Date"
+msgstr "Tarikh"
+
+msgid "Event"
+msgstr "Acara"
+
+msgid "More details."
+msgstr "Butiran lanjut."
+
+msgid "No events found for this period."
+msgstr "Tiada acara dalam tempoh ini."
+
+msgid "Log details"
+msgstr "Butiran log"
+
+msgid "Review Author"
+msgstr "Pengarang Semakan"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "Penjual tidak menerima bayaran dalam %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Tajuk Add-on"
+
+msgid "Review Title"
+msgstr "Tajuk Semakan"
+
+msgid "Review Text"
+msgstr "Teks Semakan"
+
+msgid "Review was flagged prior to deletion."
+msgstr "Semakan telah ditandakan sebelum dihapuskan."
+
+msgid "Undelete"
+msgstr "Batalkan membuang"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Add-ons Baru ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Kemaskini ({num})"
+
+msgid "Current waiting times:"
+msgstr "Tempoh menunggu semasa:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-ons"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Bilangan Semakan"
+
+msgid "Reviews This Month"
+msgstr "Semakan Bulan Ini"
+
+msgid "New Reviewers"
+msgstr "Penyemak Baru"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "Anda #{0} dengan {1} semakan"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "Semakan Moderat ({num})"
+
+msgid "Reviewer Leaderboard"
+msgstr "Carta-kedudukan Penyemak"
+
+msgid "No review points awarded yet."
+msgstr "Belum ada markah yang diberikan."
+
+msgid "Rank"
+msgstr "Kedudukan"
+
+msgid "Score"
+msgstr "Markah"
+
+msgid "Update message of the day"
+msgstr "Kemaskini mesej penting hari ini"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Prestasi Penyemak Add-on"
+
+msgid "View statistics for user"
+msgstr "Papar statistik untuk pengguna"
+
+msgid "Range"
+msgstr "Julat"
+
+msgid "Your Reviews"
+msgstr "Semakan Anda"
+
+msgid "By {user_name}"
+msgstr "Mengikut {user_name}"
+
+msgid "Active Contributors"
+msgstr "Penyumbang Aktif"
+
+msgid "This Month"
+msgstr "Bulan Ini"
+
+msgid "This Year"
+msgstr "Tahun Ini"
+
+msgid "Monthly Performance"
+msgstr "Prestasi Bulanan"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "Pecahan Poin Sepanjang-masa mengikut Jenis"
+
+msgid "Total"
+msgstr "Jumlah"
+
+msgid "Month"
+msgstr "Bulan"
+
+msgid "Year"
+msgstr "Tahun"
+
+msgid "All-Time"
+msgstr "Sepanjang-Masa"
+
+msgid "Advanced Search"
+msgstr "Carian Lanjutan"
+
+msgid "clear search"
+msgstr "buang carian"
+
+msgid "Process Reviews"
+msgstr "Proses Semakan"
+
+msgid "Moderation actions:"
+msgstr "Tindakan moderat:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "mengikut %(user)s pada %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandakan oleh %(user)s pada %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Semua semakan adalah moderat. Syabas!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "Masih belum ada add-on jenis ini untuk disemak buat masa ini."
+
+msgid "Helpful Links:"
+msgstr "Pautan Berguna:"
+
+msgid "Add-on Policy"
+msgstr "Polisi Add-on"
+
+msgid "Reviewer's Guide"
+msgstr "Panduan Penyemak"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Semakan Kandungan {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Semakan {0}"
+
+msgid "Add-on user change history"
+msgstr "Sejarah perubahan pengguna add-on"
+
+msgid "Add-on History"
+msgstr "Sejarah Add-on"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "(Confirmed)"
+msgstr "(Disahkan)"
+
+msgid "Compatibility:"
+msgstr "Keserasian:"
+
+msgid "Additional sources:"
+msgstr "Sumber tambahan:"
+
+msgid "Download files"
+msgstr "Muat turun fail"
+
+msgid "The developer has provided source code."
+msgstr "Pembangun menyediakan kod sumber."
+
+msgid "Weight:"
+msgstr "Pertimbangkan:"
+
+msgid "Not Auto Approved Because"
+msgstr "Tidak Auto Diluluskan Kerana"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Skrip auto-diluluskan masih belum dijalankan untuk versi ini."
+
+msgid "This version has not been reviewed."
+msgstr "Versi ini masih belum disemak."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Sila pilih satu atau lebih versi dalam senarai di atas."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "Anda masih boleh hantar borang ini, tapi jika anda tahu tidak akan berlaku konflik."
+
+msgid "Insert canned response..."
+msgstr "Sertakan respons lazim..."
+
+msgid "Tested on:"
+msgstr "Diuji pada:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>Amaran!</strong> Ada pengguna lain meninjau halaman ini sebelum anda."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "Papan putih iaah tempat untuk bertukar maklumat berkaitan add-on ini (apa sahaja versi), antara pembangun dengan penyemak. Ini boleh dilihat dan diedit oleh kedua-duanya."
+
+msgid "Update the whiteboard"
+msgstr "Kemaskini whiteboard"
+
+msgid "(admin)"
+msgstr "(pentadbir)"
+
+msgid "Admin Page"
+msgstr "Halaman Pentadbir"
+
+msgid "Review This Add-on"
+msgstr "Semak Add-ons Ini"
+
+msgid "More Information"
+msgstr "Maklumat Lanjut"
+
+msgid "Resolution"
+msgstr "Resolusi"
+
+msgid "Reviewer"
+msgstr "Penyemak"
+
+msgid "Add-on has been deleted."
+msgstr "Add-on telah dibuang."
+
+msgid "Show Comments"
+msgstr "Papar Komen"
+
+msgid "Hide Comments"
+msgstr "Sorok Komen"
+
+msgid "No reviews found for this period."
+msgstr "Tiada semakan ditemukan dalam tempoh ini."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] melaporkan %(object)s pada %(date)s"
+
+msgid "Dismiss this announcement"
+msgstr "Abaikan pengumuman ini"
+
+msgid "Files in this version:"
+msgstr "Fail dalam versi ini:"
+
+msgid "Contents"
+msgstr "Kandungan"
+
+msgid "Compare"
+msgstr "Banding"
+
+msgid "Permissions:"
+msgstr "Keizinan:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>Oleh %(user)s pada %(date)s</div>"
+
+msgid "Older"
+msgstr "Lebih lama"
+
+msgid "Newer"
+msgstr "Lebih baru"
+
+msgid "Recent Points"
+msgstr "Poin Terkini"
+
+msgid "No points awarded yet."
+msgstr "Belum ada poin yang diberikan."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Penyemak Teratas (7 hari lepas)"
+
+msgid "No top reviewers yet."
+msgstr "Belum ada penyemak teratas lagi."
+
+msgid "All Time"
+msgstr "Sepanjang Masa"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "Anda ada <span>{0}</span> poin."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s pada %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Tarikh telah Dibuang"
+
+msgid "No deleted themes found for this period."
+msgstr "Tiada tema dihapuskan yang ditemukan dalam tempoh ini."
+
+msgid "Theme Review History for {0}"
+msgstr "Sejarah Semakan Tema untuk {0}"
+
+msgid "Review Date"
+msgstr "Tarikh Semakan"
+
+msgid "Action"
+msgstr "Tindakan"
+
+msgid "Reason"
+msgstr "Alasan"
+
+msgid "There are currently no reviews."
+msgstr "Masih tiada semakan."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} Semakan Tema Menunggu"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} Semakan Ditanda"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} Kemaskini"
+
+msgid "Flagged Themes"
+msgstr "Tema Ditandai"
+
+msgid "Theme Review Queue"
+msgstr "Giliran Semakan Tema"
+
+msgid "Review Options"
+msgstr "Pilihan Semakan"
+
+msgid "Auto-advance after review"
+msgstr "Auto-kemajuan selepas semakan"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Dayakan pintasan papan kekunci"
+
+msgid "Keyboard Shortcuts"
+msgstr "Pintasan Papan Kekunci"
+
+msgid "Next Theme"
+msgstr "Tema Berikut"
+
+msgid "Previous Theme"
+msgstr "Tema Terdahulu"
+
+msgid "Your Review History"
+msgstr "Sejarah Semakan Anda"
+
+msgid "Commit Review"
+msgstr "Melakukan Semakan"
+
+msgid "Commit Reviews"
+msgstr "Melakukan Semakan"
+
+msgid "{0} out of {1} reviewed"
+msgstr "{0} daripada {1} disemak"
+
+msgid "There are currently no Themes to review."
+msgstr "Masih tiada Tema untuk semakan buat masa ini."
+
+msgid "Clear Search"
+msgstr "Buang Carian"
+
+msgid "Release My Theme Locks"
+msgstr "Buka Kunci Tema Saya"
+
+msgid "Interactive Theme Queue"
+msgstr "Giliran Tema Interaktif"
+
+msgid "Reviewers' Guide"
+msgstr "Panduan Penyemak"
+
+msgid "Theme Review for {0}"
+msgstr "Semakan Tema untuk {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Kemungkinan Duplikasi Serahan)"
+
+msgid "Past Review Notes"
+msgstr "Nota Semakan Terdahulu"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Minta Info Lanjut: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Ditandai: {0}"
+
+msgid "Approve Theme"
+msgstr "Luluskan Tema"
+
+msgid "Field required"
+msgstr "Medan diperlukan"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Masukkan ID atau URL duplikasi"
+
+msgid "Select a reason for rejection"
+msgstr "Pilih alasan untuk penolakan"
+
+msgid "Describe your reason for rejection"
+msgstr "Jelaskan alasan anda untuk penolakan"
+
+msgid "Ask a question to the artist"
+msgstr "Tanya soalan kepada artis"
+
+msgid "Describe your reason for flagging"
+msgstr "Jelaskab alasan anda untuk penandaan"
+
+msgid "Rejected or Unreviewed"
+msgstr "Ditolak atau Tidak-disemak"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Add-ons Baru ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Kemaskini ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Semakan Moderat ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Add-on Automatik Diluluskan ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Semakan Kandungan ({0})"
+
+msgid "Flagged"
+msgstr "Ditandai"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7389,8 +7024,8 @@ msgstr "Anda tidak boleh semak add-on anda sendiri."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Anda tidak boleh tertinggal lebih daripada satu semakan untuk add-on versi yang sama."
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan editor."
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Terima kasih; semakan ini telah ditandakan untuk kelulusan penyemak."
 
 msgid "Add a review for {0}"
 msgstr "Beri ulasan untuk {0}"
@@ -7645,9 +7280,6 @@ msgstr "Anda tidak boleh tambah versi yang tersenarai ke add-on ini via API kera
 msgid "No uploaded file for that addon and version."
 msgstr "Tiada fail dimuat naik untuk add-on dan versi tersebut."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Terima kasih kerana menyumbangkan {addon_name}"
-
 msgid "Overview"
 msgstr "Intisari"
 
@@ -7668,6 +7300,9 @@ msgstr "mengikut Platform"
 
 msgid "by Add-on Status"
 msgstr "mengikut Status Add-on"
+
+msgid "Contributions"
+msgstr "Sumbangan"
 
 msgid "Subscribers"
 msgstr "Pelanggan"
@@ -7940,8 +7575,11 @@ msgstr "Logo pembawah"
 msgid "Choose a category"
 msgstr "Pilih kategori"
 
-msgid "View Mobile Site"
-msgstr "Papar Laman Mobile"
+msgid "The new website supports mobile and desktop clients"
+msgstr "Laman web yang baru menyokong klien mudah alih dan desktop"
+
+msgid "View the new site"
+msgstr "Layari laman baru"
 
 msgid "Report a bug"
 msgstr "Laporkan pepijat"

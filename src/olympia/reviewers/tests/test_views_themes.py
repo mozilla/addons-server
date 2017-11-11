@@ -10,7 +10,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase, initialize_session
-from olympia.access.models import GroupUser
+from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import Persona
 from olympia.amo.tests import addon_factory, days_ago
@@ -22,8 +22,7 @@ from olympia.users.models import UserProfile
 
 
 class ThemeReviewTestMixin(object):
-    fixtures = ['base/users', 'reviewers/user_persona_reviewer',
-                'reviewers/user_senior_persona_reviewer']
+    fixtures = ['base/users']
 
     def setUp(self):
         super(ThemeReviewTestMixin, self).setUp()
@@ -39,7 +38,8 @@ class ThemeReviewTestMixin(object):
         user = UserProfile.objects.create(email=email,
                                           username=username)
         user.save()
-        GroupUser.objects.create(group_id=50060, user=user)
+        group = Group.objects.get(name='Reviewers: Themes')
+        GroupUser.objects.create(group=group, user=user)
 
         self.client.login(email=email)
         self.reviewer_count += 1
@@ -469,11 +469,8 @@ class TestThemeQueueFlagged(ThemeReviewTestMixin, TestCase):
         self.flagged = True
         self.queue_url = reverse('reviewers.themes.queue_flagged')
 
-    def test_admin_only(self):
+    def test_access(self):
         self.login('persona_reviewer@mozilla.com')
-        assert self.client.get(self.queue_url).status_code == 403
-
-        self.login('senior_persona_reviewer@mozilla.com')
         assert self.client.get(self.queue_url).status_code == 200
 
 
@@ -485,11 +482,8 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         self.rereview = True
         self.queue_url = reverse('reviewers.themes.queue_rereview')
 
-    def test_admin_only(self):
+    def test_access(self):
         self.login('persona_reviewer@mozilla.com')
-        assert self.client.get(self.queue_url).status_code == 403
-
-        self.login('senior_persona_reviewer@mozilla.com')
         assert self.client.get(self.queue_url).status_code == 200
 
     def test_soft_deleted_addon(self):
@@ -508,7 +502,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
                                           theme=theme.persona)
         theme.delete()
 
-        self.login('senior_persona_reviewer@mozilla.com')
+        self.login('persona_reviewer@mozilla.com')
         r = self.client.get(self.queue_url)
         assert r.status_code == 200
         doc = pq(r.content)
@@ -519,15 +513,17 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         """Test rejected addons in RQT are not displayed in review lists."""
         self.theme_factory(status=amo.STATUS_PUBLIC)
         self.theme_factory(status=amo.STATUS_REJECTED)
-        self.login('senior_persona_reviewer@mozilla.com')
+        self.login('persona_reviewer@mozilla.com')
         r = self.client.get(self.queue_url)
         assert r.status_code == 200
         assert pq(r.content)('.theme').length == 1
 
     def test_rejected_addon_in_locks(self):
         """Test rejected addons in locks are not displayed in review lists."""
-        reviewer = UserProfile.objects.get(
-            email='persona_reviewer@mozilla.com')
+        reviewer = UserProfile.objects.create(
+            email='other_persona_reviewer@mozilla.com',
+            username='other_persona_reviewer')
+        self.grant_permission(reviewer, 'Personas:Review')
         # Either public or rejected locked themes should not showing up.
         public_theme = self.theme_factory(status=amo.STATUS_PUBLIC)
         ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
@@ -535,10 +531,10 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         rejected_theme = self.theme_factory(status=amo.STATUS_REJECTED)
         ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
                                  theme=rejected_theme.persona)
-        self.login('senior_persona_reviewer@mozilla.com')
-        r = self.client.get(self.queue_url)
-        assert r.status_code == 200
-        assert pq(r.content)('.theme').length == 0
+        self.login('persona_reviewer@mozilla.com')
+        response = self.client.get(self.queue_url)
+        assert response.status_code == 200
+        assert pq(response.content)('.theme').length == 0
 
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
     @mock.patch('olympia.reviewers.tasks.copy_stored_file')
@@ -669,8 +665,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
 
 
 class TestDeletedThemeLookup(TestCase):
-    fixtures = ['base/users', 'reviewers/user_persona_reviewer',
-                'reviewers/user_senior_persona_reviewer']
+    fixtures = ['reviewers/user_persona_reviewer']
 
     def setUp(self):
         super(TestDeletedThemeLookup, self).setUp()
@@ -678,20 +673,21 @@ class TestDeletedThemeLookup(TestCase):
         self.deleted.update(status=amo.STATUS_DELETED)
 
     def test_table(self):
-        self.login('senior_persona_reviewer@mozilla.com')
+        self.login('persona_reviewer@mozilla.com')
         response = self.client.get(reverse('reviewers.themes.deleted'))
         assert response.status_code == 200
         assert (self.deleted.name.localized_string in
                 smart_text(response.content))
 
     def test_perm(self):
+        # Personas:Review allow access to deleted themes as well.
         self.login('persona_reviewer@mozilla.com')
-        r = self.client.get(reverse('reviewers.themes.deleted'))
-        assert r.status_code == 403
+        response = self.client.get(reverse('reviewers.themes.deleted'))
+        assert response.status_code == 200
 
 
 class TestThemeSearch(amo.tests.ESTestCase):
-    fixtures = ['reviewers/user_senior_persona_reviewer']
+    fixtures = ['reviewers/user_persona_reviewer']
 
     def setUp(self):
         super(TestThemeSearch, self).setUp()
@@ -705,7 +701,7 @@ class TestThemeSearch(amo.tests.ESTestCase):
 
         request = amo.tests.req_factory_factory(
             reverse('reviewers.themes.search'),
-            user=UserProfile.objects.get(username='senior_persona_reviewer'))
+            user=UserProfile.objects.get(username='persona_reviewer'))
         request.GET = get_query
         return json.loads(themes_search(request).content)['objects']
 
@@ -725,12 +721,12 @@ class TestThemeSearch(amo.tests.ESTestCase):
 
 
 class TestDashboard(TestCase):
-    fixtures = ['reviewers/user_senior_persona_reviewer']
+    fixtures = ['reviewers/user_persona_reviewer']
 
     def setUp(self):
         super(TestDashboard, self).setUp()
         self.url = reverse('reviewers.themes.home')
-        self.user = UserProfile.objects.get()
+        self.user = UserProfile.objects.get(username='persona_reviewer')
         self.request = amo.tests.req_factory_factory(self.url, user=self.user)
         initialize_session(self.request, {})
 
@@ -747,10 +743,10 @@ class TestDashboard(TestCase):
                                  status=amo.STATUS_PUBLIC)
         RereviewQueueTheme.objects.create(theme=rereview.persona)
 
-        r = home(self.request)
-        assert r.status_code == 200
+        response = home(self.request)
+        assert response.status_code == 200
 
-        doc = pq(r.content)
+        doc = pq(response.content)
         titles = doc('#reviewers-stats-charts .reviewer-stats-title a')
         assert titles[0].text.strip()[0] == '1'  # Pending count.
         assert titles[1].text.strip()[0] == '2'  # Flagged count.
@@ -762,10 +758,10 @@ class TestDashboard(TestCase):
             ActivityLog.create(amo.LOG.THEME_REVIEW, theme,
                                user=UserProfile.objects.get())
 
-        r = home(self.request)
-        assert r.status_code == 200
+        response = home(self.request)
+        assert response.status_code == 200
 
-        doc = pq(r.content)
+        doc = pq(response.content)
         # Total reviews.
         assert doc('.reviewer-stats-table:first-child td.int').text() == '3'
         # Reviews monthly.

@@ -19,7 +19,7 @@ log = olympia.core.logger.getLogger('z.api')
 
 def addon_to_dict(addon, disco=False, src='api'):
     """
-    Renders an addon in JSON for the API.
+    Renders an addon into a dict for the legacy API.
     """
     def url(u, **kwargs):
         return settings.SITE_URL + urlparams(u, **kwargs)
@@ -62,10 +62,12 @@ def addon_to_dict(addon, disco=False, src='api'):
     if v:
         d['version'] = v.version
         d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
-        d['compatible_apps'] = [
-            {unicode(amo.APP_IDS[obj.application].pretty): {
-                'min': unicode(obj.min), 'max': unicode(obj.max)}}
-            for obj in v.compatible_apps.values()]
+        d['compatible_apps'] = [{
+            unicode(amo.APP_IDS[appver.application].pretty): {
+                'min': unicode(appver.min) if appver else (
+                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                'max': unicode(appver.max) if appver else amo.FAKE_MAX_VERSION,
+            }} for app, appver in v.compatible_apps.items() if appver]
     if addon.eula:
         d['eula'] = unicode(addon.eula)
 
@@ -240,7 +242,7 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
         """)
         # Filter out versions that don't have the minimum maxVersion
         # requirement to qualify for default-to-compatible.
-        d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
+        d2c_max = amo.D2C_MIN_VERSIONS.get(app_id)
         if d2c_max:
             data['d2c_max_version'] = version_int(d2c_max)
             raw_sql.append(

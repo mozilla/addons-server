@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-10 16:38+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -762,17 +762,27 @@ msgstr[0] "{reviews} recenzia používateľa"
 msgstr[1] "{reviews} recenzie používateľov"
 msgstr[2] "{reviews} recenzií používateľov"
 
-msgid "Learn more"
-msgstr "Ďalšie informácie"
-
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
-msgid "Must be a valid e-mail address."
-msgstr "Musí to byť platná e-mailová adresa."
-
 msgid "No results found."
 msgstr "Neboli nájdené žiadne výsledky."
+
+msgid "Loading..."
+msgstr "Načítava sa..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Zostáva <b>{0}</b> znak."
+msgstr[1] "Zostávajú <b>{0}</b> znaky."
+msgstr[2] "Zostáva <b>{0}</b> znakov."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
+
+msgid "Remove this localization"
+msgstr "Odstrániť túto lokalizáciu"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} zobrazil túto stránku skôr."
@@ -809,22 +819,6 @@ msgstr "Priemerné hodnotenie"
 
 msgid "Number of Reviews"
 msgstr "Počet hodnotení"
-
-msgid "Loading..."
-msgstr "Načítava sa..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Zostáva <b>{0}</b> znak."
-msgstr[1] "Zostávajú <b>{0}</b> znaky."
-msgstr[2] "Zostáva <b>{0}</b> znakov."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
-
-msgid "Remove this localization"
-msgstr "Odstrániť túto lokalizáciu"
 
 msgid "Requested Info"
 msgstr "Požadované informácie"

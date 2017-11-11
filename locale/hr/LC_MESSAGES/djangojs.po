@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -764,17 +764,27 @@ msgstr[0] "{reviews} korisnička ocjena"
 msgstr[1] "{reviews} korisničke ocjene"
 msgstr[2] "{reviews} korisničke ocjene"
 
-msgid "Learn more"
-msgstr "Saznajte više"
-
 msgid "Image changes being processed"
 msgstr "Obrađuju se izmjene na slici"
 
-msgid "Must be a valid e-mail address."
-msgstr "Mora biti valjana email adresa."
-
 msgid "No results found."
 msgstr "Nema rezultata."
+
+msgid "Loading..."
+msgstr "Pokretanje..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "preostalo <b>{0}</b> slovo."
+msgstr[1] "preostalo <b>{0}</b> slova."
+msgstr[2] "preostalo <b>{0}</b> slova."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Usluga je privremeno onemogućena tijekom radova na održavanju stranice. Molimo pokušajte kasnije."
+
+msgid "Remove this localization"
+msgstr "Ukloni ovaj prijevod"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} je prvi pregledao stranicu."
@@ -811,22 +821,6 @@ msgstr "Prosječne ocjene"
 
 msgid "Number of Reviews"
 msgstr "Broj ocjena"
-
-msgid "Loading..."
-msgstr "Pokretanje..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "preostalo <b>{0}</b> slovo."
-msgstr[1] "preostalo <b>{0}</b> slova."
-msgstr[2] "preostalo <b>{0}</b> slova."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Usluga je privremeno onemogućena tijekom radova na održavanju stranice. Molimo pokušajte kasnije."
-
-msgid "Remove this localization"
-msgstr "Ukloni ovaj prijevod"
 
 msgid "Requested Info"
 msgstr "Zatražene informacije"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
-"PO-Revision-Date: 2017-10-11 20:59+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
+"PO-Revision-Date: 2017-11-08 14:23+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -83,10 +83,6 @@ msgstr "Nu downloaden"
 msgid "Download"
 msgstr "Downloaden"
 
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Doorgaan naar download&nbsp;&rarr;"
-
 msgid "Featured"
 msgstr "Aanbevolen"
 
@@ -139,7 +135,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Domein van URL moet er een zijn van [%s], of een subdomein."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen."
+msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on voor deze toepassing wordt aanbevolen."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -165,12 +161,6 @@ msgstr "Beschrijf uw thema."
 
 msgid "Enter a new author's email address"
 msgstr "Voer het e-mailadres van een nieuwe schrijver in"
-
-msgid "Users have the option of contributing more or less than this amount."
-msgstr "Gebruikers hebben de keuze om meer of minder dan dit bedrag bij te dragen."
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Gebruikers wordt dit altijd gevraagd in de Add-onbeheerder (vanaf Firefox 4). Alleen van toepassing op de desktopversie."
 
 # Column name in a table.
 msgid "Listed"
@@ -204,97 +194,6 @@ msgstr "Deze add-on is niet door Mozilla beoordeeld. <a href=\"%(url)s\">Meer in
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Deze add-on is door de ontwikkelaars ervan gemarkeerd als experimenteel."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "De ontwikkelaar van deze add-on vraagt uw steun voor verdere ontwikkeling door middel van een kleine bijdrage."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "De ontwikkelaar van deze add-on vraagt u uw steun te laten blijken door een bijdrage te doen aan de <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "De ontwikkelaar van deze add-on vraagt u uw steun te laten blijken door een kleine bijdrage te doen aan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-msgid "Contribute"
-msgstr "Bijdragen"
-
-#. Click Contribute button OR Install button
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "of"
-
-msgid "Suggested Contribution: {0}"
-msgstr "Voorgestelde bijdrage: {0}"
-
-msgid "What's this?"
-msgstr "Wat is dit?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "De ontwikkelaar van deze add-zou graag willen dat u overweegt een bijdrage te doen aan de <a href=\"%(charity_url)s\">%(charity_name)s</a> als u de add-on met plezier gebruikt."
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "De ontwikkelaar van deze add-zou graag willen dat u overweegt een kleine bijdrage te doen aan <a href=\"%(charity_url)s\">%(charity_name)s</a> als u de add-on met plezier gebruikt."
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla wil een levendig en gezond ontwikkelaars-ecosysteem steunen. Uw optionele bijdrage steunt verdere ontwikkeling van deze add-on."
-
-msgid "Make a Contribution"
-msgstr "Geef een bijdrage"
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Steun verdere ontwikkeling van <strong>%(addon_name)s</strong> door een kleine bijdrage te geven via <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Om uw steun voor <b>%(addon_name)s</b> te tonen, vraagt de ontwikkelaar om een donatie aan <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">PayPal</a>."
-
-#, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Om uw steun voor <b>%(addon_name)s</b> te tonen, vraagt de ontwikkelaar om een kleine bijdrage aan <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">PayPal</a>."
-
-msgid "How much would you like to contribute?"
-msgstr "Hoeveel wilt u bijdragen?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "De maximale bijdrage is {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "De minimale bijdrage is {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "Het bedrag dient een getal te zijn."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr "Een voorgestelde eenmalige bijdrage van {0}"
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr "Een eenmalige bijdrage van {0} {1}"
-
-msgid "Leave a comment or request with your contribution."
-msgstr "Plaats een opmerking of verzoek bij uw bijdrage."
-
-msgid "(optional)"
-msgstr "(optioneel)"
-
-msgid "Make Contribution"
-msgstr "Bijdrage geven"
-
-msgid "Contacting PayPal"
-msgstr "Contact met PayPal"
-
-msgid "No Thanks"
-msgstr "Nee, dank u"
-
-msgid "Contribution made, thank you."
-msgstr "Bijdrage geleverd, dank u."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -386,15 +285,6 @@ msgid_plural "{0} users"
 msgstr[0] "{0} gebruiker"
 msgstr[1] "{0} gebruikers"
 
-msgid "Payment cancelled"
-msgstr "Betaling geannuleerd"
-
-msgid "Payment completed"
-msgstr "Betaling voltooid"
-
-msgid "Return to the addon."
-msgstr "Terug naar de add-on."
-
 msgid "by"
 msgstr "door"
 
@@ -456,10 +346,6 @@ msgstr "Bewerken"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%d-%%m-%%Y"
-
 msgid "by {0} on {1}"
 msgstr "door {0} op {1}"
 
@@ -496,6 +382,11 @@ msgstr ""
 
 msgid "Send Report"
 msgstr "Rapport verzenden"
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "of"
 
 msgid "Cancel"
 msgstr "Annuleren"
@@ -571,25 +462,6 @@ msgstr "Toestemmingen"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Deze add-on is door de ontwikkelaars ervan gemarkeerd als experimenteel"
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> voorgesteld"
-
-msgid "Enjoy this add-on?"
-msgstr "Tevreden over deze add-on?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "De <a href=\"%(meet_url)s\">ontwikkelaar van deze add-on</a> vraagt om uw hulp bij de verdere ontwikkeling middels een kleine financiële bijdrage."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "De <a href=\"%(meet_url)s\">ontwikkelaar van deze add-on</a> vraagt u uw steun te uiten middels een donatie aan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "De <a href=\"%(meet_url)s\">ontwikkelaar van deze add-on</a> vraagt u uw steun te uiten middels een kleine financiële bijdrage aan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Voor deze add-on dienen de volgende add-ons goed te werken:"
 
@@ -633,15 +505,14 @@ msgstr "Beheerdersbeheer"
 msgid "Icon of {0}"
 msgstr "Pictogram van {0}"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Maak kennis met de ontwikkelaar: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Maak kennis met de ontwikkelaars</a>"
+msgid "Contribute"
+msgstr "Bijdragen"
 
-# {0} is an add-on name.
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Lees waarom {0} is gemaakt en ontdek wat de toekomst biedt voor deze add-on."
+msgid "Enjoy this add-on?"
+msgstr "Tevreden over deze add-on?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "De ontwikkelaar van deze add-on vraagt uw steun voor verdere ontwikkeling door middel van een kleine bijdrage."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -659,6 +530,7 @@ msgstr "E-mailadres voor ondersteuning"
 msgid "Info"
 msgstr "Informatie"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "Laatst bijgewerkt:"
 
@@ -719,37 +591,6 @@ msgstr "Sommige add-ons vragen toestemming om bepaalde functies uit te voeren. A
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Houd er rekening mee dat deze add-on verouderde technologie gebruikt, die de add-on toegang tot alle browserfuncties geeft zonder om uw toestemming te vragen."
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "Bedankt voor het installeren van {0}"
-
-#. {0} is an add-on name.
-# %1 is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "Maak kennis met de ontwikkelaar van {0}"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Overweeg voordat u deze add-on downloadt de ontwikkeling van deze add-on te steunen door middel van een kleine bijdrage."
-
-# %1 is an add-on name.
-msgid "Why was {0} created?"
-msgstr "Waarom is {0} gemaakt?"
-
-# %1 is an add-on name.
-msgid "What's next for {0}"
-msgstr "Wat biedt de toekomst voor {0}"
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] "Over de ontwikkelaar"
-msgstr[1] "Over de ontwikkelaars"
-
-msgid "No Photo"
-msgstr "Geen foto"
-
-msgid "Who is {0}?"
-msgstr "Wie is {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr "Deze add-on is verwijderd door de schrijver."
@@ -969,6 +810,9 @@ msgstr "Enkele functies op deze pagina zijn tijdelijk uitgeschakeld vanwege onde
 
 msgid "Are you human?"
 msgstr "Bent u een mens?"
+
+msgid "What's this?"
+msgstr "Wat is dit?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1230,6 +1074,9 @@ msgstr "Een nieuwe collectie starten"
 
 msgid "Name:"
 msgstr "Naam:"
+
+msgid "(optional)"
+msgstr "(optioneel)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annuleer</a>"
@@ -2014,8 +1861,8 @@ msgstr "{0} {1} toegevoegd."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "rol van {0.name} gewijzigd in {1} voor {addon}."
 
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} valt nu onder de licentie {0.name}."
+msgid "{addon} is now licensed under {0}."
+msgstr "{addon} valt nu onder de licentie {0}."
 
 msgid "{addon} policy changed."
 msgstr "beleid van {addon} gewijzigd."
@@ -2486,6 +2333,51 @@ msgstr "Website-specifiek"
 msgid "Web and Developer Tools"
 msgstr "Web- en ontwikkelhulpmiddelen"
 
+msgid "All Rights Reserved"
+msgstr "Alle rechten voorbehouden"
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "Alle"
+
+msgid "All Platforms"
+msgstr "Alle platformen"
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "App"
 
@@ -2635,51 +2527,6 @@ msgstr "Afbeelding van lage kwaliteit, opgerekt of leeg"
 msgid "Header image alignment problem"
 msgstr "Probleem met uitlijning headerafbeelding"
 
-msgid "All Rights Reserved"
-msgstr "Alle rechten voorbehouden"
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "Alle"
-
-msgid "All Platforms"
-msgstr "Alle platformen"
-
-msgid "Linux"
-msgstr "Linux"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "Kern"
 
@@ -2725,33 +2572,6 @@ msgstr "Deze add-on heeft een privacybeleid"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Geef het privacybeleid van uw add-on op:"
-
-msgid "Why did you make this add-on?"
-msgstr "Waarom hebt u bijgedragen?"
-
-msgid "What's next for this add-on?"
-msgstr "Wat biedt de toekomst voor deze add-on?"
-
-msgid "The developers of this add-on"
-msgstr "De ontwikkelaars van deze add-on"
-
-msgid "The Mozilla Foundation"
-msgstr "De Mozilla Foundation"
-
-msgid "An organization of my choice"
-msgstr "Een door mij gekozen organisatie"
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr "Voer een voorgesteld bedrag in dat groter is dan 0."
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr "Voer een voorgesteld bedrag in dat lager is dan ${0}."
-
-msgid "PayPal ID required to accept contributions."
-msgstr "PayPal-ID is vereist om bijdragen te kunnen accepteren."
-
-msgid "Could not validate PayPal id."
-msgstr "Kon PayPal-ID niet valideren."
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een archiefbestand {extensions}."
@@ -2911,9 +2731,6 @@ msgstr "Een schrijver heeft een gewijzigde rol voor uw add-on"
 msgid "An author has been removed from your add-on"
 msgstr "Er is een schrijver verwijderd van uw add-on"
 
-msgid "There were errors in your submission."
-msgstr "Er zijn fouten opgetreden tijdens het indienen."
-
 msgid "Validate Add-on"
 msgstr "Add-on valideren"
 
@@ -2995,17 +2812,8 @@ msgstr "Beoordelingsregels en -beleid"
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ik heb deze Overeenkomst en de Regels en het Beleid gelezen en accepteer deze"
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst. Deze verwijst tevens naar onze Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
-
-msgid "Printable Version"
-msgstr "Afdrukbare versie"
-
 msgid "Accept"
 msgstr "Accepteren"
-
-msgid "I Accept this Agreement"
-msgstr "Ik accepteer deze Overeenkomst"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "of <a href=\"{0}\">Annuleer</a>"
@@ -3193,26 +3001,6 @@ msgstr ""
 " van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers en beheren van "
 "betalingen</li> <li><b>Lezer:</b> Kan de instellingen en statistieken van de add-on bekijken, maar kan geen wijzigingen aanbrengen</li> </ul>"
 
-msgid "Manage Developer Profile"
-msgstr "Ontwikkelaarsprofiel beheren"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "Uw <a href=\"%(url)s\">ontwikkelaarsprofiel</a> is momenteel <strong>publiek</strong> en <strong>vereist</strong> voor bijdragen."
-
-msgid "Remove Both"
-msgstr "Beide verwijderen"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr "Uw <a href=\"%(url)s\">ontwikkelaarsprofiel</a> is momenteel <strong>publiek</strong>."
-
-msgid "Remove Profile"
-msgstr "Profiel verwijderen"
-
-msgid "Create Profile"
-msgstr "Profiel aanmaken"
-
 msgid "Basic Information"
 msgstr "Basisgegevens"
 
@@ -3259,21 +3047,23 @@ msgstr "Deze add-on vereist betaling, niet-gratis diensten of software, of aanvu
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Deze add-on vereist geen aanvullende betalingen, betaalde diensten of software, of aanvullende hardware."
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr ""
-"Categorieën zijn de voornaamste manier waarop gebruikers door add-ons bladeren. Kies er één die de functionaliteit van uw add-on in de meeste gevallen beschrijft. Alleen relevant voor vermelde add-"
-"ons."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr "Categorieën zijn de voornaamste manier waarop gebruikers door add-ons bladeren. Kies er één die de functionaliteit van uw add-on in de meeste gevallen beschrijft."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Categorieën kunnen niet worden gewijzigd als uw add-on voor deze toepassing wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw "
-"categorieën te wijzigen."
+"Categorieën kunnen niet worden gewijzigd terwijl uw add-on voor deze toepassing wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw "
+"categorieën aan te passen."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Labels helpen gebruikers om uw add-on te vinden en dienen korte beschrijvingen te zijn, zoals tabbladen, werkbalk of twitter. U kunt maximaal {0} labels gebruiken. Alleen relevant voor vermelde add-"
-"ons."
+"Categorieën kunnen niet worden gewijzigd terwijl uw add-on wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw categorieën aan te "
+"passen."
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Labels helpen gebruikers om uw add-on te vinden en dienen korte beschrijvingen te zijn, zoals tabbladen, werkbalk of twitter. U kunt maximaal {0} labels gebruiken."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3427,11 +3217,11 @@ msgid "Whiteboard"
 msgstr "Notitiebord"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Het notitiebord is een plek waar u relevante informatie over uw informatie aan de editor kunt verstrekken, ongeacht de versie. Gebruik het bord om manieren om de add-on te testen op te geven, naast "
-"andere behulpzame informatie. Het notitiebord kan door editors worden bewerkt."
+"Het notitiebord is de plek waar u relevante informatie over uw add-on voor de beoordelaars kunt opgeven, ongeacht de versie. Gebruik het om manieren voor het testen van de add-on te op te geven, en "
+"eventuele andere behulpzame informatie. Dit notitiebord kan ook door beoordelaars worden bewerkt."
 
 msgid "Remove this dependent add-on"
 msgstr "Deze afhankelijke add-on verwijderen"
@@ -3486,6 +3276,39 @@ msgstr "Geef een titel voor deze schermafbeelding:"
 
 msgid "Add a Screenshot..."
 msgstr "Een schermafbeelding toevoegen…"
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr "Mogen anderen uw add-on delen, zolang ze u bedanken?"
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr "De licentiegever staat anderen alleen voor niet-commerciële doeleinden toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren."
+
+msgid "Can others make commercial use of your Add-on?"
+msgstr "Mogen anderen uw add-on commercieel gebruiken?"
+
+msgid "Can others create derivative works from your Add-on?"
+msgstr "Mogen anderen werk afleiden van uw add-on?"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, en staat tevens toe werk ervan af te leiden."
+
+msgid "Yes, as long as they share alike"
+msgstr "Ja, zo lang ze dat ook delen"
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "De licentiegever staat anderen alleen toe afgeleid werk te verspreiden onder dezelfde licentie of een licentie die compatibel is met de licentie waaronder het werk van de licentiegever valt."
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr "De licentiegever staat anderen alleen toe ongewijzigde kopieën van het werk te kopiëren, verspreiden en verzenden &ndash; geen ervan afgeleide werken."
+
+msgid "Your Add-on will be released under the following license:"
+msgstr "Uw add-on wordt uitgegeven onder de volgende licentie:"
+
+msgid "Select a different license."
+msgstr "Een andere licentie selecteren."
 
 msgid "Tests"
 msgstr "Tests"
@@ -3568,9 +3391,6 @@ msgstr "Dagelijkse statistieken over downloads en gebruikers."
 
 msgid "Statistics"
 msgstr "Statistieken"
-
-msgid "Manage Payments"
-msgstr "Betalingen beheren"
 
 msgid "Manage Status & Versions"
 msgstr "Status en versies beheren"
@@ -3665,8 +3485,8 @@ msgstr "Ondersteuningswebsite:"
 msgid "License:"
 msgstr "Licentie:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Kies een licentie die toepasselijk is voor de rechten die u op uw broncode wilt geven."
+msgid "Please choose a license appropriate for the rights you grant."
+msgstr "Kies een licentie die toepasselijk is voor de rechten die u wilt geven."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid vereist dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt."
@@ -3683,14 +3503,8 @@ msgstr "Deze opmerkingen zijn alleen voor u en onze beoordelaars zichtbaar."
 msgid "Cancel and Disable Version"
 msgstr "Annuleren en versie uitschakelen"
 
-msgid "Cancel Review and Disable Version"
-msgstr "Beoordeling annuleren en versie uitschakelen"
-
 msgid "Submit Version"
 msgstr "Versie indienen"
-
-msgid "Submit Version for Review"
-msgstr "Versie voor beoordeling indienen"
 
 msgid "Describe Version"
 msgstr "Versie beschrijven"
@@ -3853,14 +3667,11 @@ msgstr ""
 "Uw add-on wordt niet in zoekresultaten opgenomen, en de vermeldingspagina ervan geeft aan dat u de add-on hebt uitgeschakeld. Inzendingen van nieuwe versies voor vermelding worden in deze toestand "
 "niet geaccepteerd."
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Gemaakt:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%d %%b %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr "Multiprocess-status van add-on:"
 
@@ -3900,38 +3711,6 @@ msgstr "Nieuwste versie:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Dit is de nieuwste geüploade niet-vermelde versie."
-
-msgid "(required since this add-on accepts contributions)"
-msgstr "(vereist aangezien deze add-on bijdragen accepteert)"
-
-msgid "Manage Your Developer Profile"
-msgstr "Uw ontwikkelaarsprofiel beheren"
-
-msgid "Create a Developer Profile"
-msgstr "Ontwikkelaarsprofiel aanmaken"
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr "Deze pagina wordt binnenkort verwijderd, ten gunste van het veld URL voor bijdragen in de hoofdpagina Bewerken. Zorg ervoor dat u dat veld gebruikt om bijdragen mogelijk te houden."
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-"Uw ontwikkelaarsprofiel vertelt uw gebruikers wat over u, waarom u deze add-on hebt gemaakt en wat er op stapel staat voor de add-on. Dit profiel is vereist voor add-ons die om bijdragen vragen, "
-"maar kan nuttig zijn voor elke ontwikkelaar die in contact wil komen met gebruikers."
-
-msgid "Make sure your user profile is up to date."
-msgstr "Zorg ervoor dat uw gebruikersprofiel is bijgewerkt."
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>Werk uw gebruikersprofiel bij.</strong></a>"
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Of het nu een idee was terwijl u in de rij stond bij de kruidenier of de oplossing voor een van de grote levensvragen: deel uw verhaal."
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Door uw gebruikers te vertellen wat eraan zit te komen, geeft u ze iets om naar uit te kijken."
 
 msgid "Upload New Version"
 msgstr "Nieuwe versie uploaden"
@@ -4046,11 +3825,11 @@ msgstr "Bug melden"
 msgid "Site Status"
 msgstr "Websitestatus"
 
+msgid "Web-Ext: build & test extensions"
+msgstr "Web-Ext: extensies bouwen en testen"
+
 msgid "Compatibility Checker"
 msgstr "Compatibiliteitscontrole"
-
-msgid "Compatibility Reporter"
-msgstr "Compatibiliteitsrapportage"
 
 msgid "Promote"
 msgstr "Promoten"
@@ -4121,6 +3900,7 @@ msgstr "Klaar om een add-on in te dienen? Lees onze stap-voor-stap handleiding o
 msgid "See Tutorial"
 msgstr "Handleiding bekijken"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Alle inzendingen bekijken"
 
@@ -4142,6 +3922,9 @@ msgstr "Documenten"
 
 msgid "Sign Out"
 msgstr "Afmelden"
+
+msgid "No Photo"
+msgstr "Geen foto"
 
 msgid "User Photo"
 msgstr "Gebruikersfoto"
@@ -4182,115 +3965,20 @@ msgstr "Hebt u een add-on af? Dien uw extensie of thema in voor vermelding op ad
 msgid "Sign In"
 msgstr "Aanmelden"
 
-# Header for a column in a table
-msgid "Validator"
-msgstr "Validator"
+msgid "Web-Ext"
+msgstr "Web-Ext"
+
+msgid "A command line tool to build, run, and test extensions."
+msgstr "Een opdrachtregelhulpprogramma voor het bouwen, uitvoeren en testen van extensies."
 
 msgid "Automated code tests for your add-on."
 msgstr "Geautomatiseerde codetests voor uw add-on."
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Bekijk of het aannemelijk is dat uw add-on door wijzigingen in Firefox wordt beïnvloed."
+msgid "Compatibility Test"
+msgstr "Compatibiliteitstest"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr "Laat ons weten of een add-on in een bepaalde versie van Firefox werkt."
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "U vraagt momenteel om <b>bijdragen</b> van gebruikers"
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Uw bijdragepagina:<a href=\"%(url)s\">%(url_full)s</a>"
-
-msgid "Disable Contributions"
-msgstr "Bijdragen uitschakelen"
-
-msgid "Voluntary Contributions"
-msgstr "Vrijwillige bijdragen"
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Add-ons die meedoen aan ons programma van bijdragen kunnen een vrijwillige financiële bijdrage van gebruikers vragen."
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "Moedig gebruikers aan om uw add-on te ondersteunen via uw Ontwikkelaarsprofiel"
-
-msgid "Choose when and how users are asked to contribute"
-msgstr "Kies wanneer en hoe gebruikers worden gevraagd bij te dragen"
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Ontvang bijdragen op uw PayPal-rekening of stuur ze naar een door u gekozen organisatie"
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Bijdragen zijn alleen beschikbaar voor add-ons met vermelde versies."
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "Bijdragen zijn alleen beschikbaar voor add-ons met een <a href=\"%(url)s\">volledig ontwikkelaarsprofiel</a>."
-
-msgid "Contributions are only available for approved add-ons."
-msgstr "Bijdragen zijn alleen beschikbaar voor goedgekeurde add-ons."
-
-msgid "Set up Contributions"
-msgstr "Bijdragen instellen"
-
-msgid "Step 2. Pricing and Availability"
-msgstr "Stap 2. Prijs en beschikbaarheid"
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr "of <a href=\"%(cancel)s\">Annuleren</a>"
-
-msgid "Contributions"
-msgstr "Bijdragen"
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Vul onderstaande velden in om te beginnen met vragen om vrijwillige bijdragen van gebruikers."
-
-msgid "Who will receive contributions to this add-on?"
-msgstr "Wie ontvangt bijdragen voor deze add-on?"
-
-msgid "What is the name of the organization?"
-msgstr "Wat is de naam van de organisatie?"
-
-msgid "What is the URL of the organization?"
-msgstr "Wat is de URL van de organisatie?"
-
-msgid "What is the PayPal ID of the organization?"
-msgstr "Wat is de PayPal-ID van de organisatie?"
-
-msgid "What is your PayPal ID?"
-msgstr "Wat is uw PayPal-ID?"
-
-msgid "Sign up for PayPal"
-msgstr "Registreren bij PayPal"
-
-msgid "What is your suggested contribution?"
-msgstr "Wat is uw voorgestelde bijdrage?"
-
-msgid "(Example: 3.99)"
-msgstr "(Voorbeeld: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr "Wanneer kunnen gebruikers om een bijdrage worden gevraagd?"
-
-msgid "Send a thank-you note?"
-msgstr "Een bedankbriefje sturen?"
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "We sturen gebruikers die een bijdrage leveren aan uw add-on automatisch dit e-mailbericht."
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-"We raden aan de gebruikers te bedanken en te vertellen hoezeer u hun steun waardeert. Wellicht wilt u ze ook vertellen wat er voor uw add-on op stapel staat en over andere add-ons die u voor ze hebt"
-" gemaakt om uit te proberen."
-
-msgid "Activate Contributions"
-msgstr "Bijdragen activeren"
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr "of <a id=\"setup-cancel\" href=\"#\">Annuleer</a>"
+msgid "Check to see if your extension is compatible with Firefox."
+msgstr "Controleren of uw extensie compatibel is met Firefox."
 
 msgid "Transfer ownership"
 msgstr "Eigendom overdragen"
@@ -4316,35 +4004,14 @@ msgstr "Thema-licentie"
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Mogen andere uw thema delen, zolang ze u bedanken?"
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "De licentiegever staat anderen alleen voor niet-commerciële doeleinden toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren."
-
 msgid "Can others make commercial use of your Theme?"
 msgstr "Mogen anderen uw thema commercieel gebruiken?"
 
 msgid "Can others create derivative works from your Theme?"
 msgstr "Mogen anderen werk afleiden van uw thema?"
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, en staat tevens toe werk ervan af te leiden."
-
-msgid "Yes, as long as they share alike"
-msgstr "Ja, zo lang ze dat ook delen"
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "De licentiegever staat anderen alleen toe afgeleid werk te verspreiden onder dezelfde licentie of een licentie die compatibel is met de licentie waaronder het werk van de licentiegever valt."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "De licentiegever staat anderen alleen toe ongewijzigde kopieën van het werk te kopiëren, verspreiden en verzenden &ndash; geen ervan afgeleide werken."
-
 msgid "Your Theme will be released under the following license:"
 msgstr "Uw thema wordt uitgegeven onder de volgende licentie:"
-
-msgid "Select a different license."
-msgstr "Een andere licentie selecteren."
 
 msgid "Select a license for your Theme."
 msgstr "Selecteer een licentie voor uw thema."
@@ -4686,855 +4353,6 @@ msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_headin
 msgid "Dozens of amazing emojis—always a click away."
 msgstr "Tientallen geweldige emoji’s – altijd via één muisklik."
 
-msgid "Approved reviews"
-msgstr "Goedgekeurde beoordelingen"
-
-msgid "Deleted reviews"
-msgstr "Verwijderde beoordelingen"
-
-msgid "View entries between"
-msgstr "Ingaven bekijken tussen"
-
-msgid "and"
-msgstr "en"
-
-msgid "Filter by type/action"
-msgstr "Filteren op type/actie"
-
-msgid "Passed automatic validation"
-msgstr "Automatische validatie doorstaan"
-
-msgid "Failed automatic validation"
-msgstr "Automatische validatie niet doorstaan"
-
-msgid "Filter by automatic validation"
-msgstr "Filteren op automatische validatie"
-
-msgid "containing"
-msgstr "bevat"
-
-msgid "start"
-msgstr "start"
-
-msgid "end"
-msgstr "einde"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr "add-on, editor of opmerking"
-
-msgid "Search by add-on name / author email"
-msgstr "Zoeken op add-onnaam / e-mailadres schrijver"
-
-msgid "yes"
-msgstr "ja"
-
-msgid "no"
-msgstr "nee"
-
-msgid "Admin Flag"
-msgstr "Beheerdersmarkering"
-
-msgid "Add-on Types"
-msgstr "Add-ontypen"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Zoeken op add-onnaam / e-mailadres schrijver / guid"
-
-msgid "Max. Version"
-msgstr "Max. versie"
-
-msgid "Comments:"
-msgstr "Opmerkingen:"
-
-msgid "Operating systems:"
-msgstr "Besturingssystemen:"
-
-msgid "Applications:"
-msgstr "Toepassingen:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
-
-msgid "Clear Admin Review Flag"
-msgstr "Beoordelingsmarkering voor beheerder wissen"
-
-msgid "Is more info requested?"
-msgstr "Is er meer informatie gevraagd?"
-
-msgid "Choose a canned response..."
-msgstr "Kies een voorgedefinieerd antwoord…"
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "themanaam"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Iemand anders beoordeelt dit thema."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "thema, beoordelaar of opmerking"
-
-msgid "Keep review; remove flags"
-msgstr "Beoordeling behouden; markeringen verwijderen"
-
-msgid "Skip for now"
-msgstr "Voorlopig overslaan"
-
-msgid "Delete review"
-msgstr "Beoordeling verwijderen"
-
-msgid "Admin Review"
-msgstr "Beheerdersbeoordeling"
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack-add-on"
-
-msgid "More Information Requested"
-msgstr "Meer informatie gevraagd"
-
-msgid "Contains Reviewer Comment"
-msgstr "Bevat beoordelaarsopmerking"
-
-msgid "Sources provided"
-msgstr "Bronnen geleverd"
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr "Gebruikt een aangepaste CSP."
-
-msgid "Uses nativeMessaging permission."
-msgstr "Gebruikt de nativeMessaging-toestemming."
-
-msgid "Uses a content script for all URLs."
-msgstr "Gebruikt een inhoudsscript voor alle URL’s."
-
-msgid "Has too many daily users."
-msgstr "Heeft te veel dagelijkse gebruikers."
-
-msgid "Has too few consecutive human-approved updates."
-msgstr "Heeft te weinig opeenvolgende door mensen goedgekeurde updates."
-
-msgid "Has a pending info request."
-msgstr "Heeft een aanvraag voor info in behandeling."
-
-msgid "Is flagged for admin review."
-msgstr "Is gemarkeerd voor beoordeling."
-
-msgid "Is locked by a reviewer."
-msgstr "Is vergrendeld door een beoordelaar."
-
-msgid "Duplicate Submission"
-msgstr "Dubbele inzending"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Bedankt voor het indienen van uw thema"
-
-msgid "A problem with your Theme submission"
-msgstr "Een probleem met de indiening van uw thema"
-
-msgid "Theme submission flagged for review"
-msgstr "Ingediend thema gemarkeerd voor beoordeling"
-
-msgid "A question about your Theme submission"
-msgstr "Een vraag over uw ingediende thema"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Wachttijd"
-
-msgid "Flags"
-msgstr "Markeringen"
-
-# is this preceded by a number?
-msgid "moments ago"
-msgstr "kortgeleden"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minuut"
-msgstr[1] "{0} minuten"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} uur"
-msgstr[1] "{0} uur"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} dag"
-msgstr[1] "{0} dagen"
-
-msgid "Last Review"
-msgstr "Laatste beoordeling"
-
-msgid "Last Update"
-msgstr "Laatste update"
-
-msgid "No Reviews"
-msgstr "Geen beoordelingen"
-
-msgid "Weight"
-msgstr "Gewicht"
-
-msgid "Last Content Review"
-msgstr "Laatste inhoudsbeoordeling"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Dit wijst deze versie af en verwijdert deze uit de wachtrij. De opmerkingen worden naar de ontwikkelaar gestuurd."
-
-msgid "Confirm Approval"
-msgstr "Goedkeuring bevestigen"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. Dit houdt uw bevestiging van de goedkeuring bij, zonder de ontwikkelaar te informeren."
-
-msgid "Reject Multiple Versions"
-msgstr "Meerdere versies afwijzen"
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Hierdoor worden de geselecteerde publieke versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
-
-msgid "Reviewer reply"
-msgstr "Antwoord van beoordelaar"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Dit stuurt een bericht naar de ontwikkelaar. U ontvangt een bericht als er antwoord is gegeven."
-
-msgid "Request super-review"
-msgstr "Superbeoordeling aanvragen"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Als u vraagtekens bij deze add-on hebt waar een beheerder naar zou moeten kijken, voer dan hieronder uw opmerkingen in. Deze worden niet naar de ontwikkelaar gestuurd."
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Maak een opmerking bij deze versie. De schrijver kan dit niet zien."
-
-msgid "Approve Content"
-msgstr "Inhoud goedkeuren"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Nieuwe add-ons (minder dan 5 dagen)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Toelaatbaar (5 tot 10 dagen)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Verlaat (meer dan 10 dagen)"
-
-msgid "An unknown error occurred"
-msgstr "Er is een onbekende fout opgetreden"
-
-msgid "Self-reviews are not allowed."
-msgstr "Zelfbeoordelingen zijn niet toegestaan."
-
-msgid "Review successfully processed."
-msgstr "Beoordeling met succes verwerkt."
-
-msgid "Review lock limit reached"
-msgstr "Limiet voor beoordelingsvergrendelingen bereikt"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} themabeoordeling met succes verwerkt (+{1} punten, {2} totaal)."
-msgstr[1] "{0} themabeoordelingen met succes verwerkt (+{1} punten, {2} totaal)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Uw themablokkades zijn met succes opgeheven. Andere beoordelaars kunnen nu die vrijgegevens thema’s beoordelen. U dient mogelijk de pagina te vernieuwen om de wijzigingen in onderstaande tabel te "
-"zien."
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon}:: Misbruikmeldingen"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Misbruikmeldingen voor {addon} en de ontwikkelaars ervan ({num})"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr "Werkt met"
-
-msgid "Visibility"
-msgstr "Zichtbaarheid"
-
-msgid "Visible"
-msgstr "Zichtbaar"
-
-msgid "Average Daily Users"
-msgstr "Gemiddeld aantal dagelijkse gebruikers"
-
-msgid "Abuse Reports"
-msgstr "Misbruikmeldingen"
-
-msgid "View Privacy Policy"
-msgstr "Privacybeleid bekijken"
-
-msgid "Requires Payment"
-msgstr "Vereist betaling"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "Datum van laatste goedkeuring"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr "Goedkeuringen sinds laatste automatische beoordeling"
-
-msgid "Abuse Reports ({num})"
-msgstr "Misbruikmeldingen ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr "Slechte gebruikersbeoordelingen ({num})"
-
-msgid "More about this add-on"
-msgstr "Meer over deze add-on"
-
-msgid "Image Gallery"
-msgstr "Afbeeldingengalerij"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Niets te zien hier!  De ontwikkelaar heeft geen details gegeven."
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Terug naar de startpagina van Beoordelaarshulpmiddelen"
-
-msgid "Queues"
-msgstr "Wachtrijen"
-
-msgid "New Add-ons"
-msgstr "Nieuwe add-ons"
-
-msgid "Updates"
-msgstr "Updates"
-
-msgid "Moderated Reviews"
-msgstr "Gemodereerde beoordelingen"
-
-msgid "Auto Approved Add-ons"
-msgstr "Automatisch goedgekeurde add-ons"
-
-msgid "Content Review"
-msgstr "Inhoudsbeoordeling"
-
-msgid "Unlisted Queues"
-msgstr "Niet-vermelde wachtrijen"
-
-msgid "All Unlisted Add-ons"
-msgstr "Alle niet-vermelde add-ons"
-
-msgid "Logs"
-msgstr "Logbestanden"
-
-msgid "Add-on Review Log"
-msgstr "Add-on-beoordelingslogboek"
-
-msgid "Moderated Review Log"
-msgstr "Logboek van gemodereerde beoordelingen"
-
-msgid "Signed Beta Files Log"
-msgstr "Logboek van ondertekende bètabestanden"
-
-msgid "Announcement"
-msgstr "Mededeling"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filteren"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Event"
-msgstr "Gebeurtenis"
-
-msgid "More details."
-msgstr "Meer details."
-
-msgid "No events found for this period."
-msgstr "Geen gebeurtenissen gevonden in deze periode."
-
-msgid "Log details"
-msgstr "Details loggen"
-
-msgid "Review Author"
-msgstr "Auteur van beoordeling"
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Add-ontitel"
-
-msgid "Review Title"
-msgstr "Beoordelingstitel"
-
-msgid "Review Text"
-msgstr "Beoordelingstekst"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Beoordeling is vóór verwijdering gemarkeerd."
-
-msgid "Undelete"
-msgstr "Verwijdering ongedaan maken"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nieuwe add-on ({num})"
-msgstr[1] "Nieuwe add-ons ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Update ({num})"
-msgstr[1] "Updates ({num})"
-
-msgid "Current waiting times:"
-msgstr "Huidige wachttijden:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-on"
-msgstr[1] "{0} add-ons"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Totale aantal beoordelingen"
-
-msgid "Reviews This Month"
-msgstr "Beoordelingen deze maand"
-
-msgid "New Reviewers"
-msgstr "Nieuwe beoordelaars"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "U bent nr. {0} met {1} beoordelingen"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Gemodereerde beoordeling ({num})"
-msgstr[1] "Gemodereerde beoordelingen ({num})"
-
-msgid "Reviewer Leaderboard"
-msgstr "Beoordelaars-scorebord"
-
-msgid "No review points awarded yet."
-msgstr "Nog geen beoordelingspunten toegekend."
-
-msgid "Rank"
-msgstr "Rang"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Update message of the day"
-msgstr "Bericht van de dag bijwerken"
-
-msgid "Save"
-msgstr "Opslaan"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Prestaties van add-on-beoordelaar"
-
-msgid "View statistics for user"
-msgstr "Statistieken voor gebruiker bekijken"
-
-msgid "Range"
-msgstr "Bereik"
-
-msgid "Your Reviews"
-msgstr "Uw beoordelingen"
-
-msgid "By {user_name}"
-msgstr "Door {user_name}"
-
-msgid "Active Contributors"
-msgstr "Actieve medewerkers"
-
-msgid "This Month"
-msgstr "Deze maand"
-
-msgid "This Year"
-msgstr "Dit jaar"
-
-msgid "Monthly Performance"
-msgstr "Maandelijkse prestaties"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Puntenopbouw op type"
-
-msgid "Total"
-msgstr "Totaal"
-
-msgid "Month"
-msgstr "Maand"
-
-msgid "Year"
-msgstr "Jaar"
-
-msgid "All-Time"
-msgstr "Alles"
-
-msgid "Advanced Search"
-msgstr "Geavanceerd zoeken"
-
-msgid "clear search"
-msgstr "zoekopdracht wissen"
-
-msgid "Process Reviews"
-msgstr "Beoordelingen verwerken"
-
-msgid "Moderation actions:"
-msgstr "Evaluatie-acties:"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "door %(user)s op %(date)s %(stars)s (%(locale)s)"
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Gemarkeerd door %(user)s op %(date)s</span>"
-
-msgid "All reviews have been moderated. Good work!"
-msgstr "Alle beoordelingen zijn verwerkt. Goed werk!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Er zijn momenteel geen add-ons van dit type te beoordelen."
-
-msgid "Helpful Links:"
-msgstr "Nuttige koppelingen:"
-
-msgid "Add-on Policy"
-msgstr "Add-onbeleid"
-
-msgid "Editors' Guide"
-msgstr "Gids voor editors"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Inhoudsbeoordeling {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Beoordeling {0}"
-
-msgid "Add-on user change history"
-msgstr "Wijzigingsgeschiedenis van add-on-gebruiker"
-
-msgid "Add-on History"
-msgstr "Add-on-geschiedenis"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versie %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "Compatibility:"
-msgstr "Compatibiliteit:"
-
-msgid "Additional sources:"
-msgstr "Aanvullende bronnen:"
-
-msgid "Download files"
-msgstr "Bestanden downloaden"
-
-msgid "The developer has provided source code."
-msgstr "De ontwikkelaar heeft een broncode opgegeven."
-
-msgid "Weight:"
-msgstr "Gewicht:"
-
-msgid "Not Auto Approved Because"
-msgstr "Niet automatisch goedgekeurd vanwege"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Script voor automatische goedkeuring is nog niet op deze versie uitgevoerd."
-
-msgid "This version has not been reviewed."
-msgstr "Deze versie is niet beoordeeld."
-
-msgid "Please select one or more versions in the list above."
-msgstr "Selecteer een of meer versies in de bovenstaande lijst."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "U kunt dit formulier nog steeds indienen, maar doe dit alleen als u weet dat er geen conflicten zullen optreden."
-
-msgid "Insert canned response..."
-msgstr "Voorgedefinieerd antwoord invoegen…"
-
-msgid "Files:"
-msgstr "Bestanden:"
-
-msgid "Tested on:"
-msgstr "Getest op:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Waarschuwing!</strong> Een andere gebruiker heeft deze pagina vóór u bekeken."
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr "Het schrijfbord is de plaats om voor deze add-on relevante informatie (ongeacht de versie) tussen de ontwikkelaar en de editor uit te wisselen. Dit is voor beiden zichtbaar en te bewerken."
-
-msgid "Update the whiteboard"
-msgstr "Notitiebord bijwerken"
-
-msgid "(admin)"
-msgstr "(beheer)"
-
-msgid "Admin Page"
-msgstr "Beheerderspagina"
-
-msgid "Review This Add-on"
-msgstr "Deze add-on beoordelen"
-
-msgid "More Information"
-msgstr "Meer informatie"
-
-msgid "Resolution"
-msgstr "Resolutie"
-
-msgid "Reviewer"
-msgstr "Beoordelaar"
-
-msgid "Add-on has been deleted."
-msgstr "Add-on is verwijderd."
-
-msgid "Show Comments"
-msgstr "Opmerkingen tonen"
-
-msgid "Hide Comments"
-msgstr "Opmerkingen verbergen"
-
-msgid "No reviews found for this period."
-msgstr "Geen beoordelingen in deze periode gevonden."
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] heeft %(object)s gerapporteerd op %(date)s"
-
-msgid "Dismiss this announcement"
-msgstr "Deze aankondiging verwijderen"
-
-msgid "Files in this version:"
-msgstr "Bestanden in deze versie:"
-
-msgid "Contents"
-msgstr "Inhoud"
-
-msgid "Compare"
-msgstr "Vergelijken"
-
-msgid "Permissions:"
-msgstr "Toestemmingen:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr "<div>Door %(user)s op %(date)s</div>"
-
-msgid "Older"
-msgstr "Ouder"
-
-msgid "Newer"
-msgstr "Nieuwer"
-
-msgid "Recent Points"
-msgstr "Recente punten"
-
-msgid "No points awarded yet."
-msgstr "Nog geen punten toegewezen."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Topbeoordelaars (laatste 7 dagen)"
-
-msgid "No top reviewers yet."
-msgstr "Nog geen topbeoordelaars."
-
-msgid "All Time"
-msgstr "Altijd"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "U hebt <span>{0}</span> punten."
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s op %(date)s [%(ip_address)s]"
-
-msgid "Date Deleted"
-msgstr "Verwijderingsdatum"
-
-msgid "No deleted themes found for this period."
-msgstr "Geen verwijderde thema’s gevonden in deze periode."
-
-msgid "Theme Review History for {0}"
-msgstr "Thema-beoordelingsgeschiedenis voor {0}"
-
-msgid "Review Date"
-msgstr "Beoordelingsdatum"
-
-msgid "Action"
-msgstr "Actie"
-
-msgid "Reason"
-msgstr "Reden"
-
-msgid "There are currently no reviews."
-msgstr "Er zijn momenteel geen beoordelingen."
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} themabeoordeling in wachtrij"
-msgstr[1] "{num} themabeoordelingen in wachtrij"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} gemarkeerde beoordeling"
-msgstr[1] "{num} gemarkeerde beoordelingen"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} update"
-msgstr[1] "{num} updates"
-
-msgid "Flagged Themes"
-msgstr "Gemarkeerde thema’s"
-
-msgid "Theme Review Queue"
-msgstr "Thema-beoordelingswachtrij"
-
-msgid "Review Options"
-msgstr "Beoordelingsopties"
-
-msgid "Auto-advance after review"
-msgstr "Automatisch doorzetten na beoordeling"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Sneltoetsen inschakelen"
-
-msgid "Keyboard Shortcuts"
-msgstr "Sneltoetsen"
-
-msgid "Next Theme"
-msgstr "Volgende thema"
-
-msgid "Previous Theme"
-msgstr "Vorige thema"
-
-msgid "Your Review History"
-msgstr "Uw beoordelingsgeschiedenis"
-
-msgid "Commit Review"
-msgstr "Beoordeling indienen"
-
-msgid "Commit Reviews"
-msgstr "Beoordelingen indienen"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} van {1} beoordeeld"
-
-msgid "There are currently no Themes to review."
-msgstr "Er zijn momenteel geen thema’s om te beoordelen."
-
-msgid "Clear Search"
-msgstr "Zoekveld leegmaken"
-
-msgid "Release My Theme Locks"
-msgstr "Mijn themablokkades verwijderen"
-
-msgid "Interactive Theme Queue"
-msgstr "Interactieve thema-wachtrij"
-
-msgid "Reviewers' Guide"
-msgstr "Beoordelingsrichtlijnen"
-
-msgid "Theme Review for {0}"
-msgstr "Thema-beoordeling voor {0}"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Waarschijnlijk dubbel ingediend)"
-
-msgid "Past Review Notes"
-msgstr "Eerdere beoordelingsopmerkingen"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Meer informatie gevraagd: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Gemarkeerd: {0}"
-
-msgid "Approve Theme"
-msgstr "Thema goedkeuren"
-
-msgid "Field required"
-msgstr "Veld vereist"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Voer de ID of URL van het duplicaat in"
-
-msgid "Select a reason for rejection"
-msgstr "Selecteer een reden van afwijzing"
-
-msgid "Describe your reason for rejection"
-msgstr "Beschrijf uw reden van afwijzing"
-
-msgid "Ask a question to the artist"
-msgstr "Een vraag aan de kunstenaar stellen"
-
-msgid "Describe your reason for flagging"
-msgstr "Beschrijf uw reden voor markering"
-
-msgid "Rejected or Unreviewed"
-msgstr "Afgewezen of niet beoordeeld"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "Nieuwe add-on ({0})"
-msgstr[1] "Nieuwe add-ons ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Update ({0})"
-msgstr[1] "Updates ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Aangepaste beoordeling ({0})"
-msgstr[1] "Aangepaste beoordelingen ({0})"
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Automatisch goedgekeurde add-on ({0})"
-msgstr[1] "Automatisch goedgekeurde add-ons ({0})"
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Inhoudsbeoordeling ({0})"
-msgstr[1] "Inhoudsbeoordelingen ({0})"
-
-msgid "Flagged"
-msgstr "Gemarkeerd"
-
 msgid "Cannot diff a version against itself"
 msgstr "Kan geen diff van een versie tegen zichzelf maken"
 
@@ -5637,6 +4455,9 @@ msgstr "Add-onbestand wordt verwerkt, een ogenblik geduld."
 
 msgid "Fetching validation results..."
 msgstr "Validatieresultaten ophalen…"
+
+msgid "Files:"
+msgstr "Bestanden:"
 
 msgid "Deleted files:"
 msgstr "Verwijderde bestanden:"
@@ -5843,6 +4664,9 @@ msgstr "Bedankt voor het gebruiken van %(app)s en het ondersteunen van <a href=\
 
 msgid "Add-ons downloaded:"
 msgstr "Gedownloade add-ons:"
+
+msgid "View Privacy Policy"
+msgstr "Privacybeleid bekijken"
 
 msgid "Active Users"
 msgstr "Actieve gebruikers"
@@ -6367,18 +5191,18 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, ook wel bekend als “AMO”, is de officiële website van Mozilla voor add-ons voor Mozilla-software, zoals Firefox, Thunderbird en SeaMonkey. Met add-ons kunt uw nieuwe functies "
-"toevoegen en de wijze waarop uw browser of toepassing werkt wijzigen. Kijk eens rond en verken de duizenden manieren waarop u de manier waarop u dingen online doet kunt aanpassen."
+"addons.mozilla.org, ook wel bekend als ‘AMO’, is de officiële website van Mozilla voor add-ons voor Mozilla-software, zoals Firefox, Thunderbird en SeaMonkey. Met add-ons kunt u nieuwe functies "
+"toevoegen en de wijze waarop uw browser of toepassing werkt wijzigen. Kijk eens rond en verken de duizenden manieren om de wijze waarop u dingen online doet kunt aanpassen."
 
 msgid "Who creates these add-ons?"
 msgstr "Wie maakt deze add-ons?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"De add-ons die hier worden vermeld, zijn gemaakt door duizenden ontwikkelaars uit onze gemeenschap, variërend van individuele hobbyisten tot grote bedrijven. Alle gepubliceerde add-ons worden door "
-"een team van editors beoordeeld voordat ze worden vrijgegeven. Als Experimenteel gemarkeerde add-ons zijn niet beoordeeld en dienen alleen met voorzorg te worden geïnstalleerd."
+"De hier vermelde add-ons zijn gemaakt door duizenden ontwikkelaars uit onze gemeenschap, variërend van individuele hobbyisten tot grote bedrijven. Alle openlijk vermelde add-ons worden beoordeeld "
+"door een team van beoordelaars voordat ze worden vrijgegeven. Als Experimenteel gemarkeerde add-ons zijn niet beoordeeld en dienen alleen met voorzorg te worden geïnstalleerd."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Hoe houd ik de ontwikkelingen bij AMO in de gaten?"
@@ -6440,8 +5264,8 @@ msgstr "Ik heb een vraag"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"Een goede plek om te starten is onze <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Als u daar geen antwoord vindt kunt u het <a href=\"%(forum_url)s\">op onze "
-"forums vragen</a>."
+"Een goed beginpunt is onze <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Als u daar geen antwoord vindt, kunt u het <a href=\"%(forum_url)s\">op onze forums "
+"vragen</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -7137,10 +5961,10 @@ msgstr "Hoe rapporteer ik een ongepaste gebruikersbeoordeling of een beoordeling
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
 "Meld u aan met uw account en bezoek de beoordelingspagina van de add-on om een gebruikersbeoordeling van een add-on te rapporteren. Zoek de beoordeling die u wilt rapporteren, klik op ‘Deze "
-"beoordeling rapporteren’ en selecteer een reden. Ons editorteam onderzoekt de beoordeling en neemt toepasselijke actie."
+"beoordeling rapporteren’ en selecteer een reden. Ons team van beoordelaars zal de beoordeling onderzoeken en gepaste actie ondernemen."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Hoe kan ik een fout melden of contact opnemen met het Mozilla Add-ons-team?"
@@ -7430,22 +6254,832 @@ msgstr "Wij raden u aan te upgraden naar<a href=\"%(tb_url)s\">Thunderbird</a> e
 msgid "Read more about Sunbird"
 msgstr "Lees meer over Sunbird"
 
-msgid "There was an error communicating with PayPal. Please try again later."
-msgstr "Er is een fout opgetreden in de communicatie met PayPal. Probeer het later nog eens."
+msgid "Approved reviews"
+msgstr "Goedgekeurde beoordelingen"
 
-msgid "There was an error with this currency."
-msgstr "Er is een fout opgetreden met deze valuta."
+msgid "Deleted reviews"
+msgstr "Verwijderde beoordelingen"
 
-msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Het bedrag is te klein om geconverteerd te kunnen worden naar de valuta van de ontvanger."
+msgid "View entries between"
+msgstr "Ingaven bekijken tussen"
 
-msgid "The buyer and seller must have different PayPal accounts."
-msgstr "De koper en de verkoper dienen verschillende PayPal-rekeningen te hebben."
+msgid "and"
+msgstr "en"
 
-#. L10n: {0} is the currency.
+msgid "Filter by type/action"
+msgstr "Filteren op type/actie"
+
+msgid "Passed automatic validation"
+msgstr "Automatische validatie doorstaan"
+
+msgid "Failed automatic validation"
+msgstr "Automatische validatie niet doorstaan"
+
+msgid "Filter by automatic validation"
+msgstr "Filteren op automatische validatie"
+
+msgid "containing"
+msgstr "bevat"
+
+msgid "start"
+msgstr "start"
+
+msgid "end"
+msgstr "einde"
+
+#. L10n: Description of what can be searched for
+msgid "add-on, reviewer or comment"
+msgstr "add-on, beoordelaar of opmerking"
+
+msgid "Search by add-on name / author email"
+msgstr "Zoeken op add-onnaam / e-mailadres schrijver"
+
+msgid "yes"
+msgstr "ja"
+
+msgid "no"
+msgstr "nee"
+
+msgid "Admin Flag"
+msgstr "Beheerdersmarkering"
+
+msgid "Add-on Types"
+msgstr "Add-ontypen"
+
+msgid "Search by add-on name / author email / guid"
+msgstr "Zoeken op add-onnaam / e-mailadres schrijver / guid"
+
+msgid "Max. Version"
+msgstr "Max. versie"
+
+msgid "Comments:"
+msgstr "Opmerkingen:"
+
+msgid "Operating systems:"
+msgstr "Besturingssystemen:"
+
+msgid "Applications:"
+msgstr "Toepassingen:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
+
+msgid "Clear Admin Review Flag"
+msgstr "Beoordelingsmarkering voor beheerder wissen"
+
+msgid "Is more info requested?"
+msgstr "Is er meer informatie gevraagd?"
+
+msgid "Choose a canned response..."
+msgstr "Kies een voorgedefinieerd antwoord…"
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "themanaam"
+
+msgid "Someone else is reviewing this theme."
+msgstr "Iemand anders beoordeelt dit thema."
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr "thema, beoordelaar of opmerking"
+
+msgid "Keep review; remove flags"
+msgstr "Beoordeling behouden; markeringen verwijderen"
+
+msgid "Skip for now"
+msgstr "Voorlopig overslaan"
+
+msgid "Delete review"
+msgstr "Beoordeling verwijderen"
+
+msgid "Admin Review"
+msgstr "Beheerdersbeoordeling"
+
+msgid "Jetpack Add-on"
+msgstr "Jetpack-add-on"
+
+msgid "More Information Requested"
+msgstr "Meer informatie gevraagd"
+
+msgid "Contains Reviewer Comment"
+msgstr "Bevat beoordelaarsopmerking"
+
+msgid "Sources provided"
+msgstr "Bronnen geleverd"
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr "Is vergrendeld door een beoordelaar."
+
+msgid "Duplicate Submission"
+msgstr "Dubbele inzending"
+
+msgid "Thanks for submitting your Theme"
+msgstr "Bedankt voor het indienen van uw thema"
+
+msgid "A problem with your Theme submission"
+msgstr "Een probleem met de indiening van uw thema"
+
+msgid "Theme submission flagged for review"
+msgstr "Ingediend thema gemarkeerd voor beoordeling"
+
+msgid "A question about your Theme submission"
+msgstr "Een vraag over uw ingediende thema"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Waiting Time"
+msgstr "Wachttijd"
+
+msgid "Flags"
+msgstr "Markeringen"
+
+# is this preceded by a number?
+msgid "moments ago"
+msgstr "kortgeleden"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} minuut"
+msgstr[1] "{0} minuten"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} uur"
+msgstr[1] "{0} uur"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} dag"
+msgstr[1] "{0} dagen"
+
+msgid "Last Review"
+msgstr "Laatste beoordeling"
+
+msgid "Last Update"
+msgstr "Laatste update"
+
+msgid "No Reviews"
+msgstr "Geen beoordelingen"
+
+msgid "Weight"
+msgstr "Gewicht"
+
+msgid "Last Content Review"
+msgstr "Laatste inhoudsbeoordeling"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Dit wijst deze versie af en verwijdert deze uit de wachtrij. De opmerkingen worden naar de ontwikkelaar gestuurd."
+
+msgid "Confirm Approval"
+msgstr "Goedkeuring bevestigen"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. Dit houdt uw bevestiging van de goedkeuring bij, zonder de ontwikkelaar te informeren."
+
+msgid "Reject Multiple Versions"
+msgstr "Meerdere versies afwijzen"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "Hierdoor worden de geselecteerde publieke versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
+
+msgid "Reviewer reply"
+msgstr "Antwoord van beoordelaar"
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Dit stuurt een bericht naar de ontwikkelaar. U ontvangt een bericht als er antwoord is gegeven."
+
+msgid "Request super-review"
+msgstr "Superbeoordeling aanvragen"
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr "Als u vraagtekens bij deze add-on hebt waar een beheerder naar zou moeten kijken, voer dan hieronder uw opmerkingen in. Deze worden niet naar de ontwikkelaar gestuurd."
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr "Maak een opmerking bij deze versie. De schrijver kan dit niet zien."
+
+msgid "Approve Content"
+msgstr "Inhoud goedkeuren"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
+
+msgid "New Add-ons (Under 5 days)"
+msgstr "Nieuwe add-ons (minder dan 5 dagen)"
+
+msgid "Passable (5 to 10 days)"
+msgstr "Toelaatbaar (5 tot 10 dagen)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "Verlaat (meer dan 10 dagen)"
+
+msgid "An unknown error occurred"
+msgstr "Er is een onbekende fout opgetreden"
+
+msgid "Self-reviews are not allowed."
+msgstr "Zelfbeoordelingen zijn niet toegestaan."
+
+msgid "Review successfully processed."
+msgstr "Beoordeling met succes verwerkt."
+
+msgid "Review lock limit reached"
+msgstr "Limiet voor beoordelingsvergrendelingen bereikt"
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] "{0} themabeoordeling met succes verwerkt (+{1} punten, {2} totaal)."
+msgstr[1] "{0} themabeoordelingen met succes verwerkt (+{1} punten, {2} totaal)."
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+"Uw themablokkades zijn met succes opgeheven. Andere beoordelaars kunnen nu die vrijgegevens thema’s beoordelen. U dient mogelijk de pagina te vernieuwen om de wijzigingen in onderstaande tabel te "
+"zien."
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon}:: Misbruikmeldingen"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Misbruikmeldingen voor {addon} en de ontwikkelaars ervan ({num})"
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr "Werkt met"
+
+msgid "Visibility"
+msgstr "Zichtbaarheid"
+
+msgid "Visible"
+msgstr "Zichtbaar"
+
+msgid "Average Daily Users"
+msgstr "Gemiddeld aantal dagelijkse gebruikers"
+
+msgid "Abuse Reports"
+msgstr "Misbruikmeldingen"
+
+msgid "Requires Payment"
+msgstr "Vereist betaling"
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "Datum van laatste goedkeuring"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr "Goedkeuringen sinds laatste automatische beoordeling"
+
+msgid "Abuse Reports ({num})"
+msgstr "Misbruikmeldingen ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr "Slechte gebruikersbeoordelingen ({num})"
+
+msgid "More about this add-on"
+msgstr "Meer over deze add-on"
+
+msgid "Image Gallery"
+msgstr "Afbeeldingengalerij"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Niets te zien hier!  De ontwikkelaar heeft geen details gegeven."
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr "Terug naar de startpagina van Beoordelaarshulpmiddelen"
+
+msgid "Queues"
+msgstr "Wachtrijen"
+
+msgid "New Add-ons"
+msgstr "Nieuwe add-ons"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Moderated Reviews"
+msgstr "Gemodereerde beoordelingen"
+
+msgid "Auto Approved Add-ons"
+msgstr "Automatisch goedgekeurde add-ons"
+
+msgid "Content Review"
+msgstr "Inhoudsbeoordeling"
+
+msgid "Unlisted Queues"
+msgstr "Niet-vermelde wachtrijen"
+
+msgid "All Unlisted Add-ons"
+msgstr "Alle niet-vermelde add-ons"
+
+msgid "Logs"
+msgstr "Logbestanden"
+
+msgid "Add-on Review Log"
+msgstr "Add-on-beoordelingslogboek"
+
+msgid "Moderated Review Log"
+msgstr "Logboek van gemodereerde beoordelingen"
+
+msgid "Signed Beta Files Log"
+msgstr "Logboek van ondertekende bètabestanden"
+
+msgid "Announcement"
+msgstr "Mededeling"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "Filteren"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Event"
+msgstr "Gebeurtenis"
+
+msgid "More details."
+msgstr "Meer details."
+
+msgid "No events found for this period."
+msgstr "Geen gebeurtenissen gevonden in deze periode."
+
+msgid "Log details"
+msgstr "Details loggen"
+
+msgid "Review Author"
+msgstr "Auteur van beoordeling"
+
 #, python-format
-msgid "The seller does not accept payments in %s."
-msgstr "De verkoper accepteert geen betalingen in %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr "Add-ontitel"
+
+msgid "Review Title"
+msgstr "Beoordelingstitel"
+
+msgid "Review Text"
+msgstr "Beoordelingstekst"
+
+msgid "Review was flagged prior to deletion."
+msgstr "Beoordeling is vóór verwijdering gemarkeerd."
+
+msgid "Undelete"
+msgstr "Verwijdering ongedaan maken"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nieuwe add-on ({num})"
+msgstr[1] "Nieuwe add-ons ({num})"
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] "Update ({num})"
+msgstr[1] "Updates ({num})"
+
+msgid "Current waiting times:"
+msgstr "Huidige wachttijden:"
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-on"
+msgstr[1] "{0} add-ons"
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "Totale aantal beoordelingen"
+
+msgid "Reviews This Month"
+msgstr "Beoordelingen deze maand"
+
+msgid "New Reviewers"
+msgstr "Nieuwe beoordelaars"
+
+msgid "You're #{0} with {1} reviews"
+msgstr "U bent nr. {0} met {1} beoordelingen"
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] "Gemodereerde beoordeling ({num})"
+msgstr[1] "Gemodereerde beoordelingen ({num})"
+
+msgid "Reviewer Leaderboard"
+msgstr "Beoordelaars-scorebord"
+
+msgid "No review points awarded yet."
+msgstr "Nog geen beoordelingspunten toegekend."
+
+msgid "Rank"
+msgstr "Rang"
+
+msgid "Score"
+msgstr "Score"
+
+msgid "Update message of the day"
+msgstr "Bericht van de dag bijwerken"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Add-on Reviewer Performance"
+msgstr "Prestaties van add-on-beoordelaar"
+
+msgid "View statistics for user"
+msgstr "Statistieken voor gebruiker bekijken"
+
+msgid "Range"
+msgstr "Bereik"
+
+msgid "Your Reviews"
+msgstr "Uw beoordelingen"
+
+msgid "By {user_name}"
+msgstr "Door {user_name}"
+
+msgid "Active Contributors"
+msgstr "Actieve medewerkers"
+
+msgid "This Month"
+msgstr "Deze maand"
+
+msgid "This Year"
+msgstr "Dit jaar"
+
+msgid "Monthly Performance"
+msgstr "Maandelijkse prestaties"
+
+msgid "All-time Point Breakdown by Type"
+msgstr "Puntenopbouw op type"
+
+msgid "Total"
+msgstr "Totaal"
+
+msgid "Month"
+msgstr "Maand"
+
+msgid "Year"
+msgstr "Jaar"
+
+msgid "All-Time"
+msgstr "Alles"
+
+msgid "Advanced Search"
+msgstr "Geavanceerd zoeken"
+
+msgid "clear search"
+msgstr "zoekopdracht wissen"
+
+msgid "Process Reviews"
+msgstr "Beoordelingen verwerken"
+
+msgid "Moderation actions:"
+msgstr "Evaluatie-acties:"
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr "door %(user)s op %(date)s %(stars)s (%(locale)s)"
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Gemarkeerd door %(user)s op %(date)s</span>"
+
+msgid "All reviews have been moderated. Good work!"
+msgstr "Alle beoordelingen zijn verwerkt. Goed werk!"
+
+msgid "There are currently no add-ons of this type to review."
+msgstr "Er zijn momenteel geen add-ons van dit type te beoordelen."
+
+msgid "Helpful Links:"
+msgstr "Nuttige koppelingen:"
+
+msgid "Add-on Policy"
+msgstr "Add-onbeleid"
+
+msgid "Reviewer's Guide"
+msgstr "Gids voor beoordelaars"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "Inhoudsbeoordeling {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr "Beoordeling {0}"
+
+msgid "Add-on user change history"
+msgstr "Wijzigingsgeschiedenis van add-on-gebruiker"
+
+msgid "Add-on History"
+msgstr "Add-on-geschiedenis"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "Versie %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "(Confirmed)"
+msgstr "(Bevestigd)"
+
+msgid "Compatibility:"
+msgstr "Compatibiliteit:"
+
+msgid "Additional sources:"
+msgstr "Aanvullende bronnen:"
+
+msgid "Download files"
+msgstr "Bestanden downloaden"
+
+msgid "The developer has provided source code."
+msgstr "De ontwikkelaar heeft een broncode opgegeven."
+
+msgid "Weight:"
+msgstr "Gewicht:"
+
+msgid "Not Auto Approved Because"
+msgstr "Niet automatisch goedgekeurd vanwege"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Script voor automatische goedkeuring is nog niet op deze versie uitgevoerd."
+
+msgid "This version has not been reviewed."
+msgstr "Deze versie is niet beoordeeld."
+
+msgid "Please select one or more versions in the list above."
+msgstr "Selecteer een of meer versies in de bovenstaande lijst."
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "U kunt dit formulier nog steeds indienen, maar doe dit alleen als u weet dat er geen conflicten zullen optreden."
+
+msgid "Insert canned response..."
+msgstr "Voorgedefinieerd antwoord invoegen…"
+
+msgid "Tested on:"
+msgstr "Getest op:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr "<strong>Waarschuwing!</strong> Een andere gebruiker heeft deze pagina vóór u bekeken."
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+"Het notitiebord is de plek waar voor deze add-on relevante informatie (ongeacht de versie) tussen de ontwikkelaar en de beoordelaar kan worden uitgewisseld. Dit is voor beiden zichtbaar en te "
+"bewerken."
+
+msgid "Update the whiteboard"
+msgstr "Notitiebord bijwerken"
+
+msgid "(admin)"
+msgstr "(beheer)"
+
+msgid "Admin Page"
+msgstr "Beheerderspagina"
+
+msgid "Review This Add-on"
+msgstr "Deze add-on beoordelen"
+
+msgid "More Information"
+msgstr "Meer informatie"
+
+msgid "Resolution"
+msgstr "Resolutie"
+
+msgid "Reviewer"
+msgstr "Beoordelaar"
+
+msgid "Add-on has been deleted."
+msgstr "Add-on is verwijderd."
+
+msgid "Show Comments"
+msgstr "Opmerkingen tonen"
+
+msgid "Hide Comments"
+msgstr "Opmerkingen verbergen"
+
+msgid "No reviews found for this period."
+msgstr "Geen beoordelingen in deze periode gevonden."
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] heeft %(object)s gerapporteerd op %(date)s"
+
+msgid "Dismiss this announcement"
+msgstr "Deze aankondiging verwijderen"
+
+msgid "Files in this version:"
+msgstr "Bestanden in deze versie:"
+
+msgid "Contents"
+msgstr "Inhoud"
+
+msgid "Compare"
+msgstr "Vergelijken"
+
+msgid "Permissions:"
+msgstr "Toestemmingen:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr "<div>Door %(user)s op %(date)s</div>"
+
+msgid "Older"
+msgstr "Ouder"
+
+msgid "Newer"
+msgstr "Nieuwer"
+
+msgid "Recent Points"
+msgstr "Recente punten"
+
+msgid "No points awarded yet."
+msgstr "Nog geen punten toegewezen."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr "Topbeoordelaars (laatste 7 dagen)"
+
+msgid "No top reviewers yet."
+msgstr "Nog geen topbeoordelaars."
+
+msgid "All Time"
+msgstr "Altijd"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr "U hebt <span>{0}</span> punten."
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s op %(date)s [%(ip_address)s]"
+
+msgid "Date Deleted"
+msgstr "Verwijderingsdatum"
+
+msgid "No deleted themes found for this period."
+msgstr "Geen verwijderde thema’s gevonden in deze periode."
+
+msgid "Theme Review History for {0}"
+msgstr "Thema-beoordelingsgeschiedenis voor {0}"
+
+msgid "Review Date"
+msgstr "Beoordelingsdatum"
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Reason"
+msgstr "Reden"
+
+msgid "There are currently no reviews."
+msgstr "Er zijn momenteel geen beoordelingen."
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] "{num} themabeoordeling in wachtrij"
+msgstr[1] "{num} themabeoordelingen in wachtrij"
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] "{num} gemarkeerde beoordeling"
+msgstr[1] "{num} gemarkeerde beoordelingen"
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] "{num} update"
+msgstr[1] "{num} updates"
+
+msgid "Flagged Themes"
+msgstr "Gemarkeerde thema’s"
+
+msgid "Theme Review Queue"
+msgstr "Thema-beoordelingswachtrij"
+
+msgid "Review Options"
+msgstr "Beoordelingsopties"
+
+msgid "Auto-advance after review"
+msgstr "Automatisch doorzetten na beoordeling"
+
+msgid "Enable keyboard shortcuts"
+msgstr "Sneltoetsen inschakelen"
+
+msgid "Keyboard Shortcuts"
+msgstr "Sneltoetsen"
+
+msgid "Next Theme"
+msgstr "Volgende thema"
+
+msgid "Previous Theme"
+msgstr "Vorige thema"
+
+msgid "Your Review History"
+msgstr "Uw beoordelingsgeschiedenis"
+
+msgid "Commit Review"
+msgstr "Beoordeling indienen"
+
+msgid "Commit Reviews"
+msgstr "Beoordelingen indienen"
+
+msgid "{0} out of {1} reviewed"
+msgstr "{0} van {1} beoordeeld"
+
+msgid "There are currently no Themes to review."
+msgstr "Er zijn momenteel geen thema’s om te beoordelen."
+
+msgid "Clear Search"
+msgstr "Zoekveld leegmaken"
+
+msgid "Release My Theme Locks"
+msgstr "Mijn themablokkades verwijderen"
+
+msgid "Interactive Theme Queue"
+msgstr "Interactieve thema-wachtrij"
+
+msgid "Reviewers' Guide"
+msgstr "Beoordelingsrichtlijnen"
+
+msgid "Theme Review for {0}"
+msgstr "Thema-beoordeling voor {0}"
+
+msgid "(Probable Duplicate Submission)"
+msgstr "(Waarschijnlijk dubbel ingediend)"
+
+msgid "Past Review Notes"
+msgstr "Eerdere beoordelingsopmerkingen"
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr "Meer informatie gevraagd: {0}"
+
+msgid "Flagged: {0}"
+msgstr "Gemarkeerd: {0}"
+
+msgid "Approve Theme"
+msgstr "Thema goedkeuren"
+
+msgid "Field required"
+msgstr "Veld vereist"
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr "Voer de ID of URL van het duplicaat in"
+
+msgid "Select a reason for rejection"
+msgstr "Selecteer een reden van afwijzing"
+
+msgid "Describe your reason for rejection"
+msgstr "Beschrijf uw reden van afwijzing"
+
+msgid "Ask a question to the artist"
+msgstr "Een vraag aan de kunstenaar stellen"
+
+msgid "Describe your reason for flagging"
+msgstr "Beschrijf uw reden voor markering"
+
+msgid "Rejected or Unreviewed"
+msgstr "Afgewezen of niet beoordeeld"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Nieuwe add-on ({0})"
+msgstr[1] "Nieuwe add-ons ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Update ({0})"
+msgstr[1] "Updates ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] "Aangepaste beoordeling ({0})"
+msgstr[1] "Aangepaste beoordelingen ({0})"
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Automatisch goedgekeurde add-on ({0})"
+msgstr[1] "Automatisch goedgekeurde add-ons ({0})"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Inhoudsbeoordeling ({0})"
+msgstr[1] "Inhoudsbeoordelingen ({0})"
+
+msgid "Flagged"
+msgstr "Gemarkeerd"
 
 #, python-format
 msgid "Reviews for %s"
@@ -7486,8 +7120,8 @@ msgstr "U kunt geen beoordeling voor uw eigen add-on schrijven."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "U kunt niet meerdere beoordelingen voor dezelfde versie van een add-on schrijven."
 
-msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Bedankt; deze beoordeling is gemarkeerd voor goedkeuring door een editor."
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Bedankt; deze beoordeling is gemarkeerd voor goedkeuring door een beoordelaar."
 
 msgid "Add a review for {0}"
 msgstr "Een beoordeling voor {0} toevoegen"
@@ -7755,9 +7389,6 @@ msgstr "U kunt geen vermelde versie aan deze add-on toevoegen via de API vanwege
 msgid "No uploaded file for that addon and version."
 msgstr "Geen geüpload bestand voor die add-on en versie."
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr "Bedankt voor uw bijdrage aan {addon_name}"
-
 msgid "Overview"
 msgstr "Overzicht"
 
@@ -7778,6 +7409,9 @@ msgstr "op platform"
 
 msgid "by Add-on Status"
 msgstr "op add-onstatus"
+
+msgid "Contributions"
+msgstr "Bijdragen"
 
 msgid "Subscribers"
 msgstr "Abonnees"
@@ -8055,8 +7689,11 @@ msgstr "Voettekstlogo"
 msgid "Choose a category"
 msgstr "Kies een categorie"
 
-msgid "View Mobile Site"
-msgstr "Mobiel-website bekijken"
+msgid "The new website supports mobile and desktop clients"
+msgstr "De nieuwe website ondersteunt mobiele en desktopclients"
+
+msgid "View the new site"
+msgstr "De nieuwe website bekijken"
 
 msgid "Report a bug"
 msgstr "Een bug melden"

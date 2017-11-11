@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2012-06-22 09:07+0200\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -750,17 +750,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Learn more"
-msgstr "Més informació"
-
 msgid "Image changes being processed"
 msgstr "S'estan processant els canvis a la imatge"
 
-msgid "Must be a valid e-mail address."
-msgstr "Cal que sigui una adreça electrònica vàlida."
-
 msgid "No results found."
 msgstr "No s'ha trobat cap resultat."
+
+msgid "Loading..."
+msgstr "S'està carregant..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> caràcter restant."
+msgstr[1] "<b>{0}</b> caràcters restants."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Aquesta funció s'ha desactivat temporalment per a tasques de manteniment del lloc web. Torneu més tard."
+
+msgid "Remove this localization"
+msgstr "Retira aquesta localització"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ha visitat aquesta pàgina per primer cop."
@@ -797,21 +806,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "S'està carregant..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> caràcter restant."
-msgstr[1] "<b>{0}</b> caràcters restants."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Aquesta funció s'ha desactivat temporalment per a tasques de manteniment del lloc web. Torneu més tard."
-
-msgid "Remove this localization"
-msgstr "Retira aquesta localització"
 
 msgid "Requested Info"
 msgstr ""

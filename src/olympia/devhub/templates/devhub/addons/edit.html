@@ -30,7 +30,7 @@
     {% include 'devhub/addons/edit/basic.html' %}
   </div>
 
-  {% if show_listed_fields %}
+  {% if show_listed_fields and addon.type != amo.ADDON_STATICTHEME%}
     <div class="edit-addon-section" id="edit-addon-media"
          data-checkurl="{{ url('devhub.ajax.image.status', addon.slug) }}">
       {% include 'devhub/addons/edit/media.html' %}

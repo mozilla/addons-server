@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-09-14 03:00+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -759,17 +759,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} revue utilisateur"
 msgstr[1] "{reviews} revues utilisateur"
 
-msgid "Learn more"
-msgstr "En savoir plus"
-
 msgid "Image changes being processed"
 msgstr "Changements d’images en cours"
 
-msgid "Must be a valid e-mail address."
-msgstr "Doit être une adresse courriel valide."
-
 msgid "No results found."
 msgstr "Aucun résultat trouvé."
+
+msgid "Loading..."
+msgstr "Chargement…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> caractère restant."
+msgstr[1] "<b>{0}</b> caractères restants."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Cette fonctionnalité est désactivée temporairement pendant la maintenance. Merci de revenir un peu plus tard."
+
+msgid "Remove this localization"
+msgstr "Retirer cette localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
@@ -806,21 +815,6 @@ msgstr "Revues moyennes"
 
 msgid "Number of Reviews"
 msgstr "Nombre de revues"
-
-msgid "Loading..."
-msgstr "Chargement…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> caractère restant."
-msgstr[1] "<b>{0}</b> caractères restants."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Cette fonctionnalité est désactivée temporairement pendant la maintenance. Merci de revenir un peu plus tard."
-
-msgid "Remove this localization"
-msgstr "Retirer cette localisation"
 
 msgid "Requested Info"
 msgstr "Infos demandées"

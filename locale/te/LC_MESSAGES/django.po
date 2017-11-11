@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-10 08:39+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
@@ -78,10 +78,6 @@ msgstr "ఇప్పుడే దింపుకోళ్ళు చేయండ�
 
 msgid "Download"
 msgstr " దింపుకోళ్ళు"
-
-#. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-msgid "Continue to Download&nbsp;&rarr;"
-msgstr " దింపుకోళ్ళు కొనసాగించు&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "విశేషత పొందినవి"
@@ -162,12 +158,6 @@ msgstr "మీ అలంకారాన్ని వివరించండి.
 msgid "Enter a new author's email address"
 msgstr ""
 
-msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
-
-msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
-
 msgid "Listed"
 msgstr "జాబితాచేయబడినవి"
 
@@ -199,98 +189,6 @@ msgstr "ఈ పొడిగింతలను Mozilla సమీక్షిం�
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "ఈ పొడిగింతను దాని డెవలపర్లు ప్రయోగాత్మకంగా గుర్తించారు."
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "ఈ జోడింపు తరువాతి అభివృద్ది కొనసాగింపు కోసం దాని డెవలపర్ మీ నుండి కొద్ది మొత్తంలో సహాయం కోరుతున్నారు."
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-
-#, python-format
-msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-
-msgid "Contribute"
-msgstr "తోడ్పడండి"
-
-#. Click Contribute button OR Install button
-msgid "or"
-msgstr "లేదా"
-
-msgid "Suggested Contribution: {0}"
-msgstr ""
-
-msgid "What's this?"
-msgstr "ఏమిటిది?"
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
-
-#, python-format
-msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
-
-msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr ""
-
-msgid "Make a Contribution"
-msgstr ""
-
-#, python-format
-msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-
-#, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-
-#, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
-msgstr ""
-
-msgid "How much would you like to contribute?"
-msgstr "మీరు ఎంత సహాయం చేయాలనుకుంటున్నారు?"
-
-msgid "The maximum contribution amount is {0}."
-msgstr "గరిష్ట సహకార మొత్తం {0}."
-
-msgid "The minimum contribution amount is {0}."
-msgstr "కనీస సహకార మొత్తం {0}."
-
-msgid "Contribution amount must be a number."
-msgstr "సహకార మొత్తం ఒక సంఖ్యగా ఉండాలి."
-
-#. {0} is a currency amount (e.g., $5.00)
-msgid "A one-time suggested contribution of {0}"
-msgstr ""
-
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
-#. field
-msgid "A one-time contribution of {0} {1}"
-msgstr ""
-
-msgid "Leave a comment or request with your contribution."
-msgstr ""
-
-msgid "(optional)"
-msgstr "(ఇష్ట ప్రకారమైన)"
-
-msgid "Make Contribution"
-msgstr "సహకారం చేయండి"
-
-msgid "Contacting PayPal"
-msgstr "సంప్రదించండి PayPal"
-
-msgid "No Thanks"
-msgstr "ఫరవాలేదు"
-
-msgid "Contribution made, thank you."
-msgstr ""
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -379,15 +277,6 @@ msgid_plural "{0} users"
 msgstr[0] "{0} వాడుకరి"
 msgstr[1] "{0} వాడుకరులు"
 
-msgid "Payment cancelled"
-msgstr "చెల్లింపు రద్దు చేయబడింది"
-
-msgid "Payment completed"
-msgstr "చెల్లింపు పూర్తయింది"
-
-msgid "Return to the addon."
-msgstr "పొడిగింతకు తిరిగి వెళ్ళు."
-
 msgid "by"
 msgstr "ద్వారా"
 
@@ -449,10 +338,6 @@ msgstr "సవరణ"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#, python-format
-msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
-
 msgid "by {0} on {1}"
 msgstr "{1} పై {0} ద్వారా"
 
@@ -487,6 +372,9 @@ msgstr ""
 
 msgid "Send Report"
 msgstr "నివేదిక పంపు"
+
+msgid "or"
+msgstr "లేదా"
 
 msgid "Cancel"
 msgstr "రద్దుచేయి"
@@ -560,25 +448,6 @@ msgstr "అనుమతులు"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
 
-#, python-format
-msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> సూచించారు"
-
-msgid "Enjoy this add-on?"
-msgstr "ఈ పొడిగింతను ఆనందించారా?"
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "ఈ పొడిగింత <a href=\"%(meet_url)s\">డెవలపర్</a> దాని తదుపరి అభివృద్ది కొనసాగింపు కొరకు మీ నుండి కొద్ది మొత్తంలో సహాయంను కోరుచున్నారు."
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-
-#, python-format
-msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
-
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
@@ -622,14 +491,14 @@ msgstr ""
 msgid "Icon of {0}"
 msgstr "{0} యొక్క చిహ్నం"
 
-#, python-format
-msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
-msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Contribute"
+msgstr "తోడ్పడండి"
 
-msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgid "Enjoy this add-on?"
+msgstr "ఈ పొడిగింతను ఆనందించారా?"
+
+msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
+msgstr "ఈ జోడింపు తరువాతి అభివృద్ది కొనసాగింపు కోసం దాని డెవలపర్ మీ నుండి కొద్ది మొత్తంలో సహాయం కోరుతున్నారు."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -647,6 +516,7 @@ msgstr "ఇమెయిల్ మద్దతు"
 msgid "Info"
 msgstr "సమాచారం"
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
 msgstr "చివరిగా నవీకరించబడింది:"
 
@@ -703,34 +573,6 @@ msgstr ""
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
-
-#. {0} is an add-on name.
-msgid "Thank you for installing {0}"
-msgstr "{0} స్థాపించినందుకు ధన్యవాదాలు"
-
-#. {0} is an add-on name.
-msgid "Meet the {0} Developer"
-msgstr "{0} డెవలపర్ను కలవండి"
-
-msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr ""
-
-msgid "Why was {0} created?"
-msgstr ""
-
-msgid "What's next for {0}"
-msgstr ""
-
-msgid "About the Developer"
-msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "No Photo"
-msgstr "చిత్రం లేదు"
-
-msgid "Who is {0}?"
-msgstr "{0} ఎవరు?"
 
 msgid "This add-on has been removed by its author."
 msgstr "ఈ పొడిగింత దాని రచయితచే తొలగించబడింది."
@@ -941,6 +783,9 @@ msgstr ""
 
 msgid "Are you human?"
 msgstr "మీరు మనిషా?"
+
+msgid "What's this?"
+msgstr "ఏమిటిది?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -1195,6 +1040,9 @@ msgstr "క్రొత్త సేకరణను ప్రారంభిం�
 
 msgid "Name:"
 msgstr "పేరు:"
+
+msgid "(optional)"
+msgstr "(ఇష్ట ప్రకారమైన)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "లేదా <a id=\"collections-new-cancel\" href=\"#\">రద్దు</a>"
@@ -1964,8 +1812,9 @@ msgstr "{0} {1} జోడించబడింది."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+#, fuzzy
+msgid "{addon} is now licensed under {0}."
+msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
 
 msgid "{addon} policy changed."
 msgstr "{addon} విధానం మార్చబడింది."
@@ -2431,6 +2280,51 @@ msgstr ""
 msgid "Web and Developer Tools"
 msgstr ""
 
+msgid "All Rights Reserved"
+msgstr ""
+
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+msgid "Any"
+msgstr "ఏదైనా"
+
+msgid "All Platforms"
+msgstr "అన్ని వేదికలు"
+
+msgid "Linux"
+msgstr "లైనక్స్"
+
+msgid "Mac OS X"
+msgstr "Mac OS X"
+
+msgid "BSD"
+msgstr "BSD"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "Solaris"
+msgstr "Solaris"
+
+msgid "Android"
+msgstr "Android"
+
 msgid "App"
 msgstr "అనువర్తనం"
 
@@ -2578,51 +2472,6 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
-msgid "All Rights Reserved"
-msgstr ""
-
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-msgid "Any"
-msgstr "ఏదైనా"
-
-msgid "All Platforms"
-msgstr "అన్ని వేదికలు"
-
-msgid "Linux"
-msgstr "లైనక్స్"
-
-msgid "Mac OS X"
-msgstr "Mac OS X"
-
-msgid "BSD"
-msgstr "BSD"
-
-msgid "Windows"
-msgstr "Windows"
-
-msgid "Solaris"
-msgstr "Solaris"
-
-msgid "Android"
-msgstr "Android"
-
 msgid "Core"
 msgstr "అంర్భాగం"
 
@@ -2668,33 +2517,6 @@ msgstr "ఈ పొడిగింత గోప్యతా విధానాన
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "దయచేసి మీ పొడిగింత యొక్క గోప్యతా విధానాన్ని పేర్కొనండి:"
-
-msgid "Why did you make this add-on?"
-msgstr "మీరు ఎందుకు ఈ పొడిగింతను చేసారు?"
-
-msgid "What's next for this add-on?"
-msgstr "తదుపరి ఈ పొడిగింత కోసం ఏమున్నది?"
-
-msgid "The developers of this add-on"
-msgstr "ఈ పొడిగింత యొక్క డెవలపర్లు"
-
-msgid "The Mozilla Foundation"
-msgstr "The Mozilla Foundation"
-
-msgid "An organization of my choice"
-msgstr ""
-
-msgid "Please enter a suggested amount greater than 0."
-msgstr ""
-
-msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
-
-msgid "PayPal ID required to accept contributions."
-msgstr ""
-
-msgid "Could not validate PayPal id."
-msgstr ""
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
@@ -2847,9 +2669,6 @@ msgstr "మీ పొడిగింతలో ఒక రచయిత పాత�
 msgid "An author has been removed from your add-on"
 msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
 
-msgid "There were errors in your submission."
-msgstr ""
-
 msgid "Validate Add-on"
 msgstr "పొడిగింతను ధృవీకరించండి"
 
@@ -2929,17 +2748,8 @@ msgstr "సమీక్ష విధానాలు మరియు నియమ
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
-msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
-
-msgid "Printable Version"
-msgstr ""
-
 msgid "Accept"
 msgstr "అంగీకరించు"
-
-msgid "I Accept this Agreement"
-msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "లేదా <a href=\"{0}\"> రద్దు చేయి </a>"
@@ -3122,26 +2932,6 @@ msgid ""
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 
-msgid "Manage Developer Profile"
-msgstr "డెవలపర్ ప్రొఫైల్ని నిర్వహించండి"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
-
-msgid "Remove Both"
-msgstr "రెండు తొలగించండి"
-
-#, python-format
-msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
-
-msgid "Remove Profile"
-msgstr "ఫైల్‌ని తీసివేయి"
-
-msgid "Create Profile"
-msgstr "ప్రొఫైల్ ను సృష్టించు"
-
 msgid "Basic Information"
 msgstr "ప్రాథమిక సమాచారం"
 
@@ -3188,7 +2978,7 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
-msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
+msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 
 #, python-format
@@ -3196,7 +2986,11 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
+#, python-format
+msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
@@ -3343,8 +3137,8 @@ msgid "Whiteboard"
 msgstr "వైట్‌బోర్డ్"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by editors."
+"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
+"help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Remove this dependent add-on"
@@ -3398,6 +3192,41 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr ""
+
+msgid "Can others share your Add-on, as long as you're given credit?"
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
+msgstr ""
+
+#, fuzzy
+msgid "Can others make commercial use of your Add-on?"
+msgstr "మీ పొడిగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
+
+#, fuzzy
+msgid "Can others create derivative works from your Add-on?"
+msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
+
+msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
+msgstr ""
+
+msgid "Yes, as long as they share alike"
+msgstr ""
+
+msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
+msgstr ""
+
+msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
+msgstr ""
+
+msgid "Your Add-on will be released under the following license:"
+msgstr ""
+
+msgid "Select a different license."
+msgstr "వేరే లైసెన్స్ని ఎంచుకోండి."
 
 msgid "Tests"
 msgstr "పరీక్షలు"
@@ -3478,9 +3307,6 @@ msgstr ""
 
 msgid "Statistics"
 msgstr "గణాంకాలు"
-
-msgid "Manage Payments"
-msgstr "చెల్లింపులను నిర్వహించండి"
 
 msgid "Manage Status & Versions"
 msgstr ""
@@ -3574,7 +3400,7 @@ msgstr ""
 msgid "License:"
 msgstr "లైసెన్స్:"
 
-msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
@@ -3592,13 +3418,7 @@ msgstr ""
 msgid "Cancel and Disable Version"
 msgstr ""
 
-msgid "Cancel Review and Disable Version"
-msgstr ""
-
 msgid "Submit Version"
-msgstr ""
-
-msgid "Submit Version for Review"
 msgstr ""
 
 msgid "Describe Version"
@@ -3758,14 +3578,11 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "సృష్టించబడింది:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, python-format
-msgid "%%b %%e, %%Y"
-msgstr "%%b %%e, %%Y"
-
 msgid "Add-on Multi Process Status:"
 msgstr ""
 
@@ -3804,36 +3621,6 @@ msgid "Latest Version:"
 msgstr ""
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
-
-msgid "(required since this add-on accepts contributions)"
-msgstr ""
-
-msgid "Manage Your Developer Profile"
-msgstr ""
-
-msgid "Create a Developer Profile"
-msgstr ""
-
-msgid "This page will soon be removed in favor of the Contributions URL field in the main Edit page. Make sure to use that field to keep Contributions enabled."
-msgstr ""
-
-msgid ""
-"Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
-"developer interested in connecting with users."
-msgstr ""
-
-msgid "Make sure your user profile is up to date."
-msgstr ""
-
-#, python-format
-msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
-
-msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
-
-msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr ""
 
 msgid "Upload New Version"
@@ -3943,10 +3730,10 @@ msgstr ""
 msgid "Site Status"
 msgstr ""
 
-msgid "Compatibility Checker"
+msgid "Web-Ext: build & test extensions"
 msgstr ""
 
-msgid "Compatibility Reporter"
+msgid "Compatibility Checker"
 msgstr ""
 
 msgid "Promote"
@@ -4018,6 +3805,7 @@ msgstr ""
 msgid "See Tutorial"
 msgstr ""
 
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "అన్ని సమర్పణలను వీక్షించండి"
 
@@ -4038,6 +3826,9 @@ msgstr "పత్రాలు"
 
 msgid "Sign Out"
 msgstr ""
+
+msgid "No Photo"
+msgstr "చిత్రం లేదు"
 
 msgid "User Photo"
 msgstr ""
@@ -4074,111 +3865,20 @@ msgstr ""
 msgid "Sign In"
 msgstr ""
 
-msgid "Validator"
+msgid "Web-Ext"
+msgstr ""
+
+msgid "A command line tool to build, run, and test extensions."
 msgstr ""
 
 msgid "Automated code tests for your add-on."
 msgstr ""
 
-msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+#, fuzzy
+msgid "Compatibility Test"
+msgstr "అనుకూలత పరీక్షలు"
 
-msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
-
-msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
-
-#, python-format
-msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
-
-msgid "Disable Contributions"
-msgstr ""
-
-msgid "Voluntary Contributions"
-msgstr ""
-
-msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr ""
-
-msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
-
-msgid "Choose when and how users are asked to contribute"
-msgstr ""
-
-msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr ""
-
-msgid "Contributions are only available for add-ons with listed versions."
-msgstr ""
-
-#, python-format
-msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
-
-msgid "Contributions are only available for approved add-ons."
-msgstr ""
-
-msgid "Set up Contributions"
-msgstr ""
-
-msgid "Step 2. Pricing and Availability"
-msgstr ""
-
-#, python-format
-msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
-
-msgid "Contributions"
-msgstr ""
-
-msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
-
-msgid "Who will receive contributions to this add-on?"
-msgstr ""
-
-msgid "What is the name of the organization?"
-msgstr ""
-
-msgid "What is the URL of the organization?"
-msgstr ""
-
-msgid "What is the PayPal ID of the organization?"
-msgstr ""
-
-msgid "What is your PayPal ID?"
-msgstr "మీ PayPal ID ఏమిటి?"
-
-msgid "Sign up for PayPal"
-msgstr ""
-
-msgid "What is your suggested contribution?"
-msgstr ""
-
-msgid "(Example: 3.99)"
-msgstr "(ఉదాహరణ: 3.99)"
-
-msgid "When should users be asked for contributions?"
-msgstr ""
-
-msgid "Send a thank-you note?"
-msgstr ""
-
-msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr ""
-
-msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
-msgstr ""
-
-msgid "Activate Contributions"
-msgstr ""
-
-msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
+msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
 msgid "Transfer ownership"
@@ -4205,35 +3905,14 @@ msgstr ""
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
 
 msgid "Can others create derivative works from your Theme?"
 msgstr ""
 
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "Yes, as long as they share alike"
-msgstr ""
-
-msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
 msgid "Your Theme will be released under the following license:"
 msgstr ""
-
-msgid "Select a different license."
-msgstr "వేరే లైసెన్స్ని ఎంచుకోండి."
 
 msgid "Select a license for your Theme."
 msgstr ""
@@ -4565,853 +4244,6 @@ msgstr ""
 msgid "Dozens of amazing emojis—always a click away."
 msgstr ""
 
-msgid "Approved reviews"
-msgstr "ఆమోదించబడిన సమీక్షలు"
-
-msgid "Deleted reviews"
-msgstr "తొలగించిన సమీక్షలు"
-
-msgid "View entries between"
-msgstr ""
-
-msgid "and"
-msgstr "మరియు"
-
-msgid "Filter by type/action"
-msgstr "రకం ద్వారా వడపోత/action"
-
-msgid "Passed automatic validation"
-msgstr ""
-
-msgid "Failed automatic validation"
-msgstr ""
-
-msgid "Filter by automatic validation"
-msgstr ""
-
-msgid "containing"
-msgstr "కలిగి ఉంటోంది"
-
-msgid "start"
-msgstr "ప్రారంభం"
-
-msgid "end"
-msgstr "ముగింపు"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, editor or comment"
-msgstr ""
-
-msgid "Search by add-on name / author email"
-msgstr ""
-
-msgid "yes"
-msgstr "అవును"
-
-msgid "no"
-msgstr "కాదు"
-
-msgid "Admin Flag"
-msgstr ""
-
-msgid "Add-on Types"
-msgstr ""
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Comments:"
-msgstr "వ్యాఖ్యలు:"
-
-msgid "Operating systems:"
-msgstr ""
-
-msgid "Applications:"
-msgstr "అనువర్తనాలు:"
-
-msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
-
-msgid "Clear Admin Review Flag"
-msgstr ""
-
-msgid "Is more info requested?"
-msgstr "మరింత సమాచారం అభ్యర్థించారా?"
-
-msgid "Choose a canned response..."
-msgstr ""
-
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "అలంకారం పేరు"
-
-msgid "Someone else is reviewing this theme."
-msgstr ""
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr ""
-
-msgid "Keep review; remove flags"
-msgstr ""
-
-msgid "Skip for now"
-msgstr "ప్రస్తుతం దాటవేయి"
-
-msgid "Delete review"
-msgstr "సమీక్షను తొలగించండి"
-
-msgid "Admin Review"
-msgstr ""
-
-msgid "Jetpack Add-on"
-msgstr "Jetpack పొడిగింత"
-
-msgid "More Information Requested"
-msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
-
-msgid "Contains Reviewer Comment"
-msgstr "సమీక్షకుడి వ్యాఖ్యను కలిగి ఉంటుంది"
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "WebExtension"
-msgstr "WebExtension"
-
-msgid "Uses a custom CSP."
-msgstr ""
-
-msgid "Uses nativeMessaging permission."
-msgstr ""
-
-msgid "Uses a content script for all URLs."
-msgstr ""
-
-msgid "Has too many daily users."
-msgstr ""
-
-msgid "Has too few consecutive human-approved updates."
-msgstr ""
-
-msgid "Has a pending info request."
-msgstr ""
-
-msgid "Is flagged for admin review."
-msgstr ""
-
-msgid "Is locked by a reviewer."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
-msgstr ""
-
-msgid "Type"
-msgstr "రకం"
-
-msgid "Waiting Time"
-msgstr ""
-
-msgid "Flags"
-msgstr ""
-
-msgid "moments ago"
-msgstr "క్షణాలు క్రితం"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} నిమిషం"
-msgstr[1] "{0} నిమిషాలు"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} గంట"
-msgstr[1] "{0} గంటలు"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} రోజు"
-msgstr[1] "{0} రోజులు"
-
-msgid "Last Review"
-msgstr "చివరి సమీక్ష"
-
-msgid "Last Update"
-msgstr "చివరి నవీకరణ"
-
-msgid "No Reviews"
-msgstr "సమీక్షలు లేవు"
-
-msgid "Weight"
-msgstr "బరువు"
-
-msgid "Last Content Review"
-msgstr "చివరి విషయం సమీక్ష"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr "ఆమోదాన్ని నిర్ధారించండి"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr ""
-
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reviewer reply"
-msgstr ""
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Approve Content"
-msgstr "విషయం ఆమోదం"
-
-msgid "This records your approbation of the content of this version, without notifying the developer."
-msgstr ""
-
-msgid "New Add-ons (Under 5 days)"
-msgstr ""
-
-msgid "Passable (5 to 10 days)"
-msgstr "ఆమోదయోగ్యమైనది (5 నుండి 10 రోజులు)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "మీరిన (10 రోజులు)"
-
-msgid "An unknown error occurred"
-msgstr "ఒక తెలియని దోషం ఎదురైంది"
-
-msgid "Self-reviews are not allowed."
-msgstr ""
-
-msgid "Review successfully processed."
-msgstr ""
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: దుర్వినియోగ నివేదికలు"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-msgid "Works with"
-msgstr ""
-
-msgid "Visibility"
-msgstr ""
-
-msgid "Visible"
-msgstr "కనిపించు"
-
-msgid "Average Daily Users"
-msgstr ""
-
-msgid "Abuse Reports"
-msgstr "దుర్వినియోగ నివేదికలు"
-
-msgid "View Privacy Policy"
-msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
-
-msgid "Requires Payment"
-msgstr ""
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "Last Approval Date"
-msgstr "చివరి ఆమోదం తేదీ"
-
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
-msgid "Abuse Reports ({num})"
-msgstr "దుర్వినియోగ నివేదికలు ({num})"
-
-msgid "Bad User Reviews ({num})"
-msgstr ""
-
-msgid "More about this add-on"
-msgstr ""
-
-msgid "Image Gallery"
-msgstr "బొమ్మల సేకరణ"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
-
-msgid "Return to the Reviewer Tools homepage"
-msgstr ""
-
-msgid "Queues"
-msgstr ""
-
-msgid "New Add-ons"
-msgstr ""
-
-msgid "Updates"
-msgstr "తాజాకరణలు"
-
-msgid "Moderated Reviews"
-msgstr ""
-
-msgid "Auto Approved Add-ons"
-msgstr ""
-
-msgid "Content Review"
-msgstr "విషయం సమీక్ష"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Logs"
-msgstr "చిట్టాలు"
-
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "ప్రకటన"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "వడపోత"
-
-msgid "Date"
-msgstr "తేదీ"
-
-msgid "Event"
-msgstr "కార్యక్రమం"
-
-msgid "More details."
-msgstr "మరిన్ని వివరాలు."
-
-msgid "No events found for this period."
-msgstr ""
-
-msgid "Log details"
-msgstr ""
-
-msgid "Review Author"
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Title"
-msgstr "సమీక్ష శీర్షిక"
-
-msgid "Review Text"
-msgstr ""
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr "తొలగించనిది"
-
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Current waiting times:"
-msgstr ""
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} పొడిగింత"
-msgstr[1] ""
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "మొత్తం సమీక్షలు"
-
-msgid "Reviews This Month"
-msgstr "ఈ నెల సమీక్షలు"
-
-msgid "New Reviewers"
-msgstr ""
-
-msgid "You're #{0} with {1} reviews"
-msgstr ""
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
-msgstr ""
-
-msgid "Update message of the day"
-msgstr ""
-
-msgid "Save"
-msgstr "భద్రపరచు"
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr "స్థాయి"
-
-msgid "Your Reviews"
-msgstr "మీ సమీక్షలు"
-
-msgid "By {user_name}"
-msgstr ""
-
-msgid "Active Contributors"
-msgstr ""
-
-msgid "This Month"
-msgstr "ఈ నెల"
-
-msgid "This Year"
-msgstr "ఈ సంవత్సరం"
-
-msgid "Monthly Performance"
-msgstr ""
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Total"
-msgstr "మొత్తం"
-
-msgid "Month"
-msgstr "నెల"
-
-msgid "Year"
-msgstr "సంవత్సరం"
-
-msgid "All-Time"
-msgstr "అన్ని సమయాలలో"
-
-msgid "Advanced Search"
-msgstr "అధునాతన శోధన"
-
-msgid "clear search"
-msgstr "శోధనను తుడువు"
-
-msgid "Process Reviews"
-msgstr ""
-
-msgid "Moderation actions:"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
-
-msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-msgid "There are currently no add-ons of this type to review."
-msgstr ""
-
-msgid "Helpful Links:"
-msgstr ""
-
-msgid "Add-on Policy"
-msgstr "పొడిగింత విధానం"
-
-msgid "Editors' Guide"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "విషయం సమీక్ష {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr ""
-
-msgid "Add-on user change history"
-msgstr ""
-
-msgid "Add-on History"
-msgstr ""
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
-
-msgid "Compatibility:"
-msgstr "అనుకూలత:"
-
-msgid "Additional sources:"
-msgstr ""
-
-msgid "Download files"
-msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
-
-msgid "The developer has provided source code."
-msgstr ""
-
-#, fuzzy
-msgid "Weight:"
-msgstr "బరువు"
-
-msgid "Not Auto Approved Because"
-msgstr ""
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr ""
-
-msgid "Please select one or more versions in the list above."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr ""
-
-msgid "Files:"
-msgstr "ఫైళ్లు:"
-
-msgid "Tested on:"
-msgstr "పరీక్షించబడింది:"
-
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
-
-msgid "Update the whiteboard"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(నిర్వాహకుడు)"
-
-msgid "Admin Page"
-msgstr "నిర్వాహకుని పేజీ"
-
-msgid "Review This Add-on"
-msgstr ""
-
-msgid "More Information"
-msgstr "మరింత సమాచారం"
-
-msgid "Resolution"
-msgstr ""
-
-msgid "Reviewer"
-msgstr ""
-
-msgid "Add-on has been deleted."
-msgstr ""
-
-msgid "Show Comments"
-msgstr "వ్యాఖ్యానాలు చూపు"
-
-msgid "Hide Comments"
-msgstr "వ్యాఖ్యలను దాచు"
-
-msgid "No reviews found for this period."
-msgstr ""
-
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
-
-msgid "Dismiss this announcement"
-msgstr ""
-
-msgid "Files in this version:"
-msgstr ""
-
-msgid "Contents"
-msgstr "విషయాలు"
-
-msgid "Compare"
-msgstr "పోల్చు"
-
-msgid "Permissions:"
-msgstr "అనుమతులు:"
-
-#, python-format
-msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
-
-msgid "Older"
-msgstr "పాతవి"
-
-msgid "Newer"
-msgstr "సరికొత్తవి"
-
-msgid "Recent Points"
-msgstr "ఇటీవలి పాయింట్లు"
-
-msgid "No points awarded yet."
-msgstr "ఇంకా పాయింట్లు ఇవ్వలేదు."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr ""
-
-msgid "No top reviewers yet."
-msgstr ""
-
-msgid "All Time"
-msgstr "అన్ని సమయాలలో"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
-
-msgid "Date Deleted"
-msgstr "తొలగించబడిన తేదీ"
-
-msgid "No deleted themes found for this period."
-msgstr ""
-
-msgid "Theme Review History for {0}"
-msgstr ""
-
-msgid "Review Date"
-msgstr "సమీక్ష తేదీ"
-
-msgid "Action"
-msgstr "చర్య"
-
-msgid "Reason"
-msgstr "కారణం"
-
-msgid "There are currently no reviews."
-msgstr ""
-
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Flagged Themes"
-msgstr ""
-
-msgid "Theme Review Queue"
-msgstr ""
-
-msgid "Review Options"
-msgstr "సమీక్ష ఎంపికలు"
-
-msgid "Auto-advance after review"
-msgstr ""
-
-msgid "Enable keyboard shortcuts"
-msgstr ""
-
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-msgid "Next Theme"
-msgstr ""
-
-msgid "Previous Theme"
-msgstr ""
-
-msgid "Your Review History"
-msgstr "మీ సమీక్ష చరిత్ర"
-
-msgid "Commit Review"
-msgstr "అనువాదముల సమీక్ష"
-
-msgid "Commit Reviews"
-msgstr ""
-
-msgid "{0} out of {1} reviewed"
-msgstr ""
-
-msgid "There are currently no Themes to review."
-msgstr ""
-
-msgid "Clear Search"
-msgstr ""
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr ""
-
-msgid "Reviewers' Guide"
-msgstr ""
-
-msgid "Theme Review for {0}"
-msgstr ""
-
-msgid "(Probable Duplicate Submission)"
-msgstr ""
-
-msgid "Past Review Notes"
-msgstr ""
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr ""
-
-msgid "Flagged: {0}"
-msgstr ""
-
-msgid "Approve Theme"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr ""
-
-msgid "Select a reason for rejection"
-msgstr ""
-
-msgid "Describe your reason for rejection"
-msgstr ""
-
-msgid "Ask a question to the artist"
-msgstr "కళాకారుడిని ప్రశ్న అడగండి"
-
-msgid "Describe your reason for flagging"
-msgstr ""
-
-msgid "Rejected or Unreviewed"
-msgstr ""
-
-#, python-format
-msgid "[status:%s]"
-msgstr ""
-
-msgid "New Add-on ({0})"
-msgid_plural "New Add-ons ({0})"
-msgstr[0] "కొత్త పొడిగింత ({0})"
-msgstr[1] "కొత్త పొడిగింతలు ({0})"
-
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "నవీకరణ ({0})"
-msgstr[1] "నవీకరణలు ({0})"
-
-msgid "Moderated Review ({0})"
-msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Auto Approved Add-on ({0})"
-msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "విషయం సమీక్ష ({0})"
-msgstr[1] "విషయం సమీక్ష ({0})"
-
-msgid "Flagged"
-msgstr ""
-
 msgid "Cannot diff a version against itself"
 msgstr ""
 
@@ -5514,6 +4346,9 @@ msgstr ""
 
 msgid "Fetching validation results..."
 msgstr ""
+
+msgid "Files:"
+msgstr "ఫైళ్లు:"
 
 msgid "Deleted files:"
 msgstr "తొలగించిన ఫైల్లు:"
@@ -5718,6 +4553,9 @@ msgstr ""
 
 msgid "Add-ons downloaded:"
 msgstr ""
+
+msgid "View Privacy Policy"
+msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
 
 msgid "Active Users"
 msgstr "చురుకైన వాడుకరులు"
@@ -6248,7 +5086,7 @@ msgstr ""
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
@@ -6908,7 +5746,7 @@ msgstr ""
 
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"editorial team will investigate the review and take appropriate action."
+"reviewers team will investigate the review and take appropriate action."
 msgstr ""
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -7174,21 +6012,829 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr ""
 
-msgid "There was an error communicating with PayPal. Please try again later."
+msgid "Approved reviews"
+msgstr "ఆమోదించబడిన సమీక్షలు"
+
+msgid "Deleted reviews"
+msgstr "తొలగించిన సమీక్షలు"
+
+msgid "View entries between"
 msgstr ""
 
-msgid "There was an error with this currency."
+msgid "and"
+msgstr "మరియు"
+
+msgid "Filter by type/action"
+msgstr "రకం ద్వారా వడపోత/action"
+
+msgid "Passed automatic validation"
 msgstr ""
 
-msgid "The amount is too small for conversion into the receiver's currency."
+msgid "Failed automatic validation"
 msgstr ""
 
-msgid "The buyer and seller must have different PayPal accounts."
+msgid "Filter by automatic validation"
 msgstr ""
 
-#. L10n: {0} is the currency.
+msgid "containing"
+msgstr "కలిగి ఉంటోంది"
+
+msgid "start"
+msgstr "ప్రారంభం"
+
+msgid "end"
+msgstr "ముగింపు"
+
+#. L10n: Description of what can be searched for
+#, fuzzy
+msgid "add-on, reviewer or comment"
+msgstr "సమీక్షకుడి వ్యాఖ్యను కలిగి ఉంటుంది"
+
+msgid "Search by add-on name / author email"
+msgstr ""
+
+msgid "yes"
+msgstr "అవును"
+
+msgid "no"
+msgstr "కాదు"
+
+msgid "Admin Flag"
+msgstr ""
+
+msgid "Add-on Types"
+msgstr ""
+
+msgid "Search by add-on name / author email / guid"
+msgstr ""
+
+msgid "Max. Version"
+msgstr ""
+
+msgid "Comments:"
+msgstr "వ్యాఖ్యలు:"
+
+msgid "Operating systems:"
+msgstr ""
+
+msgid "Applications:"
+msgstr "అనువర్తనాలు:"
+
+msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
+msgstr ""
+
+msgid "Clear Admin Review Flag"
+msgstr ""
+
+msgid "Is more info requested?"
+msgstr "మరింత సమాచారం అభ్యర్థించారా?"
+
+msgid "Choose a canned response..."
+msgstr ""
+
+#. L10n: Description of what can be searched for.
+msgid "theme name"
+msgstr "అలంకారం పేరు"
+
+msgid "Someone else is reviewing this theme."
+msgstr ""
+
+#. L10n: Description of what can be searched for.
+msgid "theme, reviewer, or comment"
+msgstr ""
+
+msgid "Keep review; remove flags"
+msgstr ""
+
+msgid "Skip for now"
+msgstr "ప్రస్తుతం దాటవేయి"
+
+msgid "Delete review"
+msgstr "సమీక్షను తొలగించండి"
+
+msgid "Admin Review"
+msgstr ""
+
+msgid "Jetpack Add-on"
+msgstr "Jetpack పొడిగింత"
+
+msgid "More Information Requested"
+msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
+
+msgid "Contains Reviewer Comment"
+msgstr "సమీక్షకుడి వ్యాఖ్యను కలిగి ఉంటుంది"
+
+msgid "Sources provided"
+msgstr ""
+
+msgid "WebExtension"
+msgstr "WebExtension"
+
+msgid "Is locked by a reviewer."
+msgstr ""
+
+msgid "Duplicate Submission"
+msgstr ""
+
+msgid "Thanks for submitting your Theme"
+msgstr ""
+
+msgid "A problem with your Theme submission"
+msgstr ""
+
+msgid "Theme submission flagged for review"
+msgstr ""
+
+msgid "A question about your Theme submission"
+msgstr ""
+
+msgid "Type"
+msgstr "రకం"
+
+msgid "Waiting Time"
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "moments ago"
+msgstr "క్షణాలు క్రితం"
+
+#. L10n: first argument is number of minutes
+msgid "{0} minute"
+msgid_plural "{0} minutes"
+msgstr[0] "{0} నిమిషం"
+msgstr[1] "{0} నిమిషాలు"
+
+#. L10n: first argument is number of hours
+msgid "{0} hour"
+msgid_plural "{0} hours"
+msgstr[0] "{0} గంట"
+msgstr[1] "{0} గంటలు"
+
+#. L10n: first argument is number of days
+msgid "{0} day"
+msgid_plural "{0} days"
+msgstr[0] "{0} రోజు"
+msgstr[1] "{0} రోజులు"
+
+msgid "Last Review"
+msgstr "చివరి సమీక్ష"
+
+msgid "Last Update"
+msgstr "చివరి నవీకరణ"
+
+msgid "No Reviews"
+msgstr "సమీక్షలు లేవు"
+
+msgid "Weight"
+msgstr "బరువు"
+
+msgid "Last Content Review"
+msgstr "చివరి విషయం సమీక్ష"
+
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
+
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr ""
+
+msgid "Confirm Approval"
+msgstr "ఆమోదాన్ని నిర్ధారించండి"
+
+msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr ""
+
+msgid "Reject Multiple Versions"
+msgstr ""
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr ""
+
+msgid "Reviewer reply"
+msgstr ""
+
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr ""
+
+msgid "Request super-review"
+msgstr ""
+
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
+msgstr ""
+
+msgid "Make a comment on this version. The developer won't be able to see this."
+msgstr ""
+
+msgid "Approve Content"
+msgstr "విషయం ఆమోదం"
+
+msgid "This records your approbation of the content of this version, without notifying the developer."
+msgstr ""
+
+msgid "New Add-ons (Under 5 days)"
+msgstr ""
+
+msgid "Passable (5 to 10 days)"
+msgstr "ఆమోదయోగ్యమైనది (5 నుండి 10 రోజులు)"
+
+msgid "Overdue (Over 10 days)"
+msgstr "మీరిన (10 రోజులు)"
+
+msgid "An unknown error occurred"
+msgstr "ఒక తెలియని దోషం ఎదురైంది"
+
+msgid "Self-reviews are not allowed."
+msgstr ""
+
+msgid "Review successfully processed."
+msgstr ""
+
+msgid "Review lock limit reached"
+msgstr ""
+
+msgid "{0} theme review successfully processed (+{1} points, {2} total)."
+msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
+msgstr ""
+
+msgid "{addon} :: Abuse Reports"
+msgstr "{addon} :: దుర్వినియోగ నివేదికలు"
+
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#. This refers to this version's compatible applications, such as Firefox 8.0
+msgid "Works with"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "Visible"
+msgstr "కనిపించు"
+
+msgid "Average Daily Users"
+msgstr ""
+
+msgid "Abuse Reports"
+msgstr "దుర్వినియోగ నివేదికలు"
+
+msgid "Requires Payment"
+msgstr ""
+
+msgid "EULA"
+msgstr "EULA"
+
+msgid "Last Approval Date"
+msgstr "చివరి ఆమోదం తేదీ"
+
+msgid "Approvals Since Last Automatic Review"
+msgstr ""
+
+msgid "Abuse Reports ({num})"
+msgstr "దుర్వినియోగ నివేదికలు ({num})"
+
+msgid "Bad User Reviews ({num})"
+msgstr ""
+
+msgid "More about this add-on"
+msgstr ""
+
+msgid "Image Gallery"
+msgstr "బొమ్మల సేకరణ"
+
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr ""
+
+msgid "Return to the Reviewer Tools homepage"
+msgstr ""
+
+msgid "Queues"
+msgstr ""
+
+msgid "New Add-ons"
+msgstr ""
+
+msgid "Updates"
+msgstr "తాజాకరణలు"
+
+msgid "Moderated Reviews"
+msgstr ""
+
+msgid "Auto Approved Add-ons"
+msgstr ""
+
+msgid "Content Review"
+msgstr "విషయం సమీక్ష"
+
+msgid "Unlisted Queues"
+msgstr ""
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Logs"
+msgstr "చిట్టాలు"
+
+msgid "Add-on Review Log"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+msgid "Announcement"
+msgstr "ప్రకటన"
+
+#. "Filter" is a button label (verb)
+msgid "Filter"
+msgstr "వడపోత"
+
+msgid "Date"
+msgstr "తేదీ"
+
+msgid "Event"
+msgstr "కార్యక్రమం"
+
+msgid "More details."
+msgstr "మరిన్ని వివరాలు."
+
+msgid "No events found for this period."
+msgstr ""
+
+msgid "Log details"
+msgstr ""
+
+msgid "Review Author"
+msgstr ""
+
 #, python-format
-msgid "The seller does not accept payments in %s."
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
+
+msgid "Add-on Title"
+msgstr ""
+
+msgid "Review Title"
+msgstr "సమీక్ష శీర్షిక"
+
+msgid "Review Text"
+msgstr ""
+
+msgid "Review was flagged prior to deletion."
+msgstr ""
+
+msgid "Undelete"
+msgstr "తొలగించనిది"
+
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Current waiting times:"
+msgstr ""
+
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} పొడిగింత"
+msgstr[1] ""
+
+#, python-format
+msgid "{0}%%"
+msgstr "{0}%%"
+
+msgid "Total Reviews"
+msgstr "మొత్తం సమీక్షలు"
+
+msgid "Reviews This Month"
+msgstr "ఈ నెల సమీక్షలు"
+
+msgid "New Reviewers"
+msgstr ""
+
+msgid "You're #{0} with {1} reviews"
+msgstr ""
+
+#. num = number of reviews in the queue
+msgid "Moderated Review ({num})"
+msgid_plural "Moderated Reviews ({num})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Reviewer Leaderboard"
+msgstr ""
+
+msgid "No review points awarded yet."
+msgstr ""
+
+msgid "Rank"
+msgstr ""
+
+msgid "Score"
+msgstr ""
+
+msgid "Update message of the day"
+msgstr ""
+
+msgid "Save"
+msgstr "భద్రపరచు"
+
+msgid "Add-on Reviewer Performance"
+msgstr ""
+
+msgid "View statistics for user"
+msgstr ""
+
+msgid "Range"
+msgstr "స్థాయి"
+
+msgid "Your Reviews"
+msgstr "మీ సమీక్షలు"
+
+msgid "By {user_name}"
+msgstr ""
+
+msgid "Active Contributors"
+msgstr ""
+
+msgid "This Month"
+msgstr "ఈ నెల"
+
+msgid "This Year"
+msgstr "ఈ సంవత్సరం"
+
+msgid "Monthly Performance"
+msgstr ""
+
+msgid "All-time Point Breakdown by Type"
+msgstr ""
+
+msgid "Total"
+msgstr "మొత్తం"
+
+msgid "Month"
+msgstr "నెల"
+
+msgid "Year"
+msgstr "సంవత్సరం"
+
+msgid "All-Time"
+msgstr "అన్ని సమయాలలో"
+
+msgid "Advanced Search"
+msgstr "అధునాతన శోధన"
+
+msgid "clear search"
+msgstr "శోధనను తుడువు"
+
+msgid "Process Reviews"
+msgstr ""
+
+msgid "Moderation actions:"
+msgstr ""
+
+#, python-format
+msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgstr ""
+
+#, python-format
+msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
+msgstr ""
+
+msgid "All reviews have been moderated. Good work!"
+msgstr ""
+
+msgid "There are currently no add-ons of this type to review."
+msgstr ""
+
+msgid "Helpful Links:"
+msgstr ""
+
+msgid "Add-on Policy"
+msgstr "పొడిగింత విధానం"
+
+#, fuzzy
+msgid "Reviewer's Guide"
+msgstr "మార్గదర్శకాలను సమీక్షించండి"
+
+#. "Content Review [add-on name]"
+msgid "Content Review {0}"
+msgstr "విషయం సమీక్ష {0}"
+
+#. "Review [add-on name]"
+msgid "Review {0}"
+msgstr ""
+
+msgid "Add-on user change history"
+msgstr ""
+
+msgid "Add-on History"
+msgstr ""
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+
+msgid "(Confirmed)"
+msgstr ""
+
+msgid "Compatibility:"
+msgstr "అనుకూలత:"
+
+msgid "Additional sources:"
+msgstr ""
+
+msgid "Download files"
+msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
+
+msgid "The developer has provided source code."
+msgstr ""
+
+#, fuzzy
+msgid "Weight:"
+msgstr "బరువు"
+
+msgid "Not Auto Approved Because"
+msgstr ""
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
+msgstr ""
+
+msgid "Please select one or more versions in the list above."
+msgstr ""
+
+msgid "You can still submit this form, however only do so if you know it won't conflict."
+msgstr ""
+
+msgid "Insert canned response..."
+msgstr ""
+
+msgid "Tested on:"
+msgstr "పరీక్షించబడింది:"
+
+msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "Update the whiteboard"
+msgstr ""
+
+msgid "(admin)"
+msgstr "(నిర్వాహకుడు)"
+
+msgid "Admin Page"
+msgstr "నిర్వాహకుని పేజీ"
+
+msgid "Review This Add-on"
+msgstr ""
+
+msgid "More Information"
+msgstr "మరింత సమాచారం"
+
+msgid "Resolution"
+msgstr ""
+
+msgid "Reviewer"
+msgstr ""
+
+msgid "Add-on has been deleted."
+msgstr ""
+
+msgid "Show Comments"
+msgstr "వ్యాఖ్యానాలు చూపు"
+
+msgid "Hide Comments"
+msgstr "వ్యాఖ్యలను దాచు"
+
+msgid "No reviews found for this period."
+msgstr ""
+
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr ""
+
+msgid "Dismiss this announcement"
+msgstr ""
+
+msgid "Files in this version:"
+msgstr ""
+
+msgid "Contents"
+msgstr "విషయాలు"
+
+msgid "Compare"
+msgstr "పోల్చు"
+
+msgid "Permissions:"
+msgstr "అనుమతులు:"
+
+#, python-format
+msgid "<div>By %(user)s on %(date)s</div>"
+msgstr ""
+
+msgid "Older"
+msgstr "పాతవి"
+
+msgid "Newer"
+msgstr "సరికొత్తవి"
+
+msgid "Recent Points"
+msgstr "ఇటీవలి పాయింట్లు"
+
+msgid "No points awarded yet."
+msgstr "ఇంకా పాయింట్లు ఇవ్వలేదు."
+
+msgid "Top Reviewers (past 7 days)"
+msgstr ""
+
+msgid "No top reviewers yet."
+msgstr ""
+
+msgid "All Time"
+msgstr "అన్ని సమయాలలో"
+
+#. {0} is a number, like "480".
+msgid "You have <span>{0}</span> points."
+msgstr ""
+
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr ""
+
+msgid "Date Deleted"
+msgstr "తొలగించబడిన తేదీ"
+
+msgid "No deleted themes found for this period."
+msgstr ""
+
+msgid "Theme Review History for {0}"
+msgstr ""
+
+msgid "Review Date"
+msgstr "సమీక్ష తేదీ"
+
+msgid "Action"
+msgstr "చర్య"
+
+msgid "Reason"
+msgstr "కారణం"
+
+msgid "There are currently no reviews."
+msgstr ""
+
+msgid "{num} Pending Theme Review"
+msgid_plural "{num} Pending Theme Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{num} Flagged Review"
+msgid_plural "{num} Flagged Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "{num} Update"
+msgid_plural "{num} Updates"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Flagged Themes"
+msgstr ""
+
+msgid "Theme Review Queue"
+msgstr ""
+
+msgid "Review Options"
+msgstr "సమీక్ష ఎంపికలు"
+
+msgid "Auto-advance after review"
+msgstr ""
+
+msgid "Enable keyboard shortcuts"
+msgstr ""
+
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+msgid "Next Theme"
+msgstr ""
+
+msgid "Previous Theme"
+msgstr ""
+
+msgid "Your Review History"
+msgstr "మీ సమీక్ష చరిత్ర"
+
+msgid "Commit Review"
+msgstr "అనువాదముల సమీక్ష"
+
+msgid "Commit Reviews"
+msgstr ""
+
+msgid "{0} out of {1} reviewed"
+msgstr ""
+
+msgid "There are currently no Themes to review."
+msgstr ""
+
+msgid "Clear Search"
+msgstr ""
+
+msgid "Release My Theme Locks"
+msgstr ""
+
+msgid "Interactive Theme Queue"
+msgstr ""
+
+msgid "Reviewers' Guide"
+msgstr ""
+
+msgid "Theme Review for {0}"
+msgstr ""
+
+msgid "(Probable Duplicate Submission)"
+msgstr ""
+
+msgid "Past Review Notes"
+msgstr ""
+
+#. {previous review action taken on theme}: {comment about review action}
+msgid "More Info Requested: {0}"
+msgstr ""
+
+msgid "Flagged: {0}"
+msgstr ""
+
+msgid "Approve Theme"
+msgstr ""
+
+msgid "Field required"
+msgstr ""
+
+msgid "Enter the ID or URL of the duplicate"
+msgstr ""
+
+msgid "Select a reason for rejection"
+msgstr ""
+
+msgid "Describe your reason for rejection"
+msgstr ""
+
+msgid "Ask a question to the artist"
+msgstr "కళాకారుడిని ప్రశ్న అడగండి"
+
+msgid "Describe your reason for flagging"
+msgstr ""
+
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, python-format
+msgid "[status:%s]"
+msgstr ""
+
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "కొత్త పొడిగింత ({0})"
+msgstr[1] "కొత్త పొడిగింతలు ({0})"
+
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "నవీకరణ ({0})"
+msgstr[1] "నవీకరణలు ({0})"
+
+msgid "Moderated Review ({0})"
+msgid_plural "Moderated Reviews ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "విషయం సమీక్ష ({0})"
+msgstr[1] "విషయం సమీక్ష ({0})"
+
+msgid "Flagged"
 msgstr ""
 
 #, python-format
@@ -7230,7 +6876,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-msgid "Thanks; this review has been flagged for editor approval."
+msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr ""
 
 msgid "Add a review for {0}"
@@ -7486,9 +7132,6 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
-msgid "Thanks for contributing to {addon_name}"
-msgstr ""
-
 msgid "Overview"
 msgstr ""
 
@@ -7509,6 +7152,9 @@ msgstr ""
 
 msgid "by Add-on Status"
 msgstr "ద్వారా పొడిగింత స్థితి"
+
+msgid "Contributions"
+msgstr ""
 
 msgid "Subscribers"
 msgstr ""
@@ -7770,7 +7416,10 @@ msgstr ""
 msgid "Choose a category"
 msgstr ""
 
-msgid "View Mobile Site"
+msgid "The new website supports mobile and desktop clients"
+msgstr ""
+
+msgid "View the new site"
 msgstr ""
 
 msgid "Report a bug"

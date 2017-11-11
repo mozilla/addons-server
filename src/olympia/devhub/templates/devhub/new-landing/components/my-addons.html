@@ -105,11 +105,11 @@
               {% if addon.last_updated %}
                 <span>{{ _('Last Updated:') }}</span>
                 {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                <span>{{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}</span>
+                <span>{{ addon.last_updated|date }}</span>
               {% else %}
                 <span>{{ _('Created:') }}</span>
                 {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                <span>{{ addon.created|datetime(_('%%b %%e, %%Y')) }}</span>
+                <span>{{ addon.created|date }}</span>
               {% endif %}
             </span>
           </div>

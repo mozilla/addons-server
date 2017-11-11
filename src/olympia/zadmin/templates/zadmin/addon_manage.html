@@ -29,7 +29,7 @@
       <tbody>
       {% for v in versions %}
         <tr>
-          <td>{{ v.created|datetime }}</td>
+          <td>{{ v.created|date }}</td>
           <td>
             {% if v.channel == amo.RELEASE_CHANNEL_LISTED %}
               <a href="{{ url('reviewers.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>

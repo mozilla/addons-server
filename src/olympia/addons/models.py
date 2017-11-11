@@ -6,6 +6,7 @@ import os
 import posixpath
 import re
 import time
+import urlparse
 from operator import attrgetter
 from datetime import datetime
 
@@ -1229,10 +1230,6 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
-        # Search providers and personas don't list their supported apps.
-        if self.type in amo.NO_COMPAT:
-            return dict((app, None) for app in
-                        amo.APP_TYPE_SUPPORT[self.type])
         if self.current_version:
             return self.current_version.compatible_apps
         else:
@@ -2168,6 +2165,13 @@ class ReplacementAddon(ModelBase):
 
     class Meta:
         db_table = 'replacement_addons'
+
+    @staticmethod
+    def path_is_external(path):
+        return urlparse.urlsplit(path).scheme in ['http', 'https']
+
+    def has_external_url(self):
+        return self.path_is_external(self.path)
 
 
 models.signals.post_save.connect(update_incompatible_versions,

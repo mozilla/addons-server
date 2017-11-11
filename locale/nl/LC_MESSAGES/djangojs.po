@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-10 11:23+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -757,17 +757,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} gebruikersbeoordeling"
 msgstr[1] "{reviews} gebruikersbeoordelingen"
 
-msgid "Learn more"
-msgstr "Meer info"
-
 msgid "Image changes being processed"
 msgstr "Afbeeldingswijzigingen worden verwerkt"
 
-msgid "Must be a valid e-mail address."
-msgstr "Dient een geldig e-mailadres te zijn."
-
 msgid "No results found."
 msgstr "Geen resultaten."
+
+msgid "Loading..."
+msgstr "Laden…"
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> teken resterend."
+msgstr[1] "<b>{0}</b> tekens resterend."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
+
+msgid "Remove this localization"
+msgstr "Deze vertaling verwijderen"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} heeft eerst deze pagina bekeken."
@@ -804,21 +813,6 @@ msgstr "Gemiddelde beoordelingen"
 
 msgid "Number of Reviews"
 msgstr "Aantal beoordelingen"
-
-msgid "Loading..."
-msgstr "Laden…"
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> teken resterend."
-msgstr[1] "<b>{0}</b> tekens resterend."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website. Probeer het later nog eens."
-
-msgid "Remove this localization"
-msgstr "Deze vertaling verwijderen"
 
 msgid "Requested Info"
 msgstr "Aangevraagde informatie"

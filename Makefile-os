@@ -53,7 +53,7 @@ shell:
 	docker-compose exec web bash
 
 djshell:
-	docker-compose exec web ./manage.py shell
+	docker-compose exec web ./manage.py shell_plus
 
 dbshell:
 	docker-compose exec web ./manage.py dbshell

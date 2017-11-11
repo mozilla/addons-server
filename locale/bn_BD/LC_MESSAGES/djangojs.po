@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-06-13 01:18+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -750,17 +750,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Learn more"
-msgstr "আরো জানুন"
-
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
 msgstr "কোন ফলাফল পাওয়া যায়নি।"
+
+msgid "Loading..."
+msgstr "লোডিং..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
+msgstr[1] "{0} টি শব্দ বাকি আছে।"
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "ওয়েবসাইটটির তত্বাবধানের জন্য এই ফিচারটি সাময়িকভাবে নিষ্ক্রিয় করা হয়েছে। অনুগ্রহপূর্বক কিছুক্ষণ পর পুনরায় চেষ্টা করুন।"
+
+msgid "Remove this localization"
+msgstr "এই স্থানীয়করণ অপসারণ করুন"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -797,21 +806,6 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr ""
-
-msgid "Loading..."
-msgstr "লোডিং..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"
-msgstr[1] "{0} টি শব্দ বাকি আছে।"
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ওয়েবসাইটটির তত্বাবধানের জন্য এই ফিচারটি সাময়িকভাবে নিষ্ক্রিয় করা হয়েছে। অনুগ্রহপূর্বক কিছুক্ষণ পর পুনরায় চেষ্টা করুন।"
-
-msgid "Remove this localization"
-msgstr "এই স্থানীয়করণ অপসারণ করুন"
 
 msgid "Requested Info"
 msgstr "অনুরোধকৃত তখ্য"

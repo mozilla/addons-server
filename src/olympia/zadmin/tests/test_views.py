@@ -917,20 +917,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.features', 200)
         self.assert_status('discovery.module_admin', 200)
 
-    def test_sr_reviewers_user(self):
-        # Sr Reviewers users have only a few privileges.
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Sr Reviewer',
-                                     rules='ReviewerAdminTools:View')
-        GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(email='regular@mozilla.com')
-        self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.langpacks', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 200)
-        self.assert_status('zadmin.env', 403)
-        self.assert_status('zadmin.settings', 403)
-
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')

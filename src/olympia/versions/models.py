@@ -179,7 +179,7 @@ class Version(OnChangeMixin, ModelBase):
         # fetching the ApplicationsVersions that were just created. To work
         # around this we pre-generate version.compatible_apps and avoid the
         # queries completely.
-        version.compatible_apps = compatible_apps
+        version._compatible_apps = compatible_apps
 
         if addon.type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
             # Search extensions and static themes are always for all platforms.
@@ -320,8 +320,19 @@ class Version(OnChangeMixin, ModelBase):
               .select_related('activity_log', 'version').no_cache())
         return al
 
-    @cached_property
+    @property
     def compatible_apps(self):
+        # Dicts, search providers and personas don't have compatibility info.
+        # Fake one for them.
+        if self.addon and self.addon.type in amo.NO_COMPAT:
+            return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
+        # Otherwise, return _compatible_apps which is a cached property that
+        # is filled by the transformer, or simply calculated from the related
+        # compat instances.
+        return self._compatible_apps
+
+    @cached_property
+    def _compatible_apps(self):
         """Get a mapping of {APP: ApplicationsVersions}."""
         avs = self.apps.select_related('version')
         return self._compat_map(avs)
@@ -355,10 +366,12 @@ class Version(OnChangeMixin, ModelBase):
 
     def is_compatible_app(self, app):
         """Returns True if the provided app passes compatibility conditions."""
+        if self.addon.type in amo.NO_COMPAT:
+            return True
         appversion = self.compatible_apps.get(app)
-        if appversion and app.id in amo.D2C_MAX_VERSIONS:
+        if appversion and app.id in amo.D2C_MIN_VERSIONS:
             return (version_int(appversion.max.version) >=
-                    version_int(amo.D2C_MAX_VERSIONS.get(app.id, '*')))
+                    version_int(amo.D2C_MIN_VERSIONS.get(app.id, '*')))
         return False
 
     def compat_override_app_versions(self):
@@ -513,7 +526,7 @@ class Version(OnChangeMixin, ModelBase):
 
         for version in versions:
             v_id = version.id
-            version.compatible_apps = cls._compat_map(av_dict.get(v_id, []))
+            version._compatible_apps = cls._compat_map(av_dict.get(v_id, []))
             version.all_files = file_dict.get(v_id, [])
             for f in version.all_files:
                 f.version = version

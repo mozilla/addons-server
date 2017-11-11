@@ -32,10 +32,10 @@
         "pk": 50060,
         "model": "access.group",
         "fields": {
-            "rules": "Personas:Review,Reviews:Edit",
+            "rules": "Personas:Review",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
-            "name": "Persona Reviewers",
+            "name": "Reviewers: Themes",
             "created": "2012-05-22 17:53:57"
         }
     },

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-10-17 08:19+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -752,17 +752,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} отзив"
 msgstr[1] "{reviews} отзива"
 
-msgid "Learn more"
-msgstr "Научете повече"
-
 msgid "Image changes being processed"
 msgstr "Обработват се промените по изображението"
 
-msgid "Must be a valid e-mail address."
-msgstr "Трябва да е валиден имейл адрес."
-
 msgid "No results found."
 msgstr "Няма резултати."
+
+msgid "Loading..."
+msgstr "Зареждане..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "остава <b>{0}</b> знак."
+msgstr[1] "остават <b>{0}</b> знака."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, проверете отново малко по-късно."
+
+msgid "Remove this localization"
+msgstr "Премахни тази локализация"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} разглеждаше тази страница първо."
@@ -799,21 +808,6 @@ msgstr "Средна оценка"
 
 msgid "Number of Reviews"
 msgstr "Брой отзиви"
-
-msgid "Loading..."
-msgstr "Зареждане..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "остава <b>{0}</b> знак."
-msgstr[1] "остават <b>{0}</b> знака."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, проверете отново малко по-късно."
-
-msgid "Remove this localization"
-msgstr "Премахни тази локализация"
 
 msgid "Requested Info"
 msgstr "Изискана информация"

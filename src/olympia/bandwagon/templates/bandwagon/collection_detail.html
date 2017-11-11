@@ -41,7 +41,7 @@
             {% endtrans %}
           </li>
         {% endif %}
-        <li>{{ _('Updated {0}')|format_html(c.modified|datetime) }}</li>
+        <li>{{ _('Updated {0}')|format_html(c.modified|date) }}</li>
       </ul>
     </div>
     <div class='object-details'>

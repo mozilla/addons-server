@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2016-02-15 10:49+0000\n"
 "Last-Translator: Abdalrahman Hwoij <howij1995@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -788,17 +788,30 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-msgid "Learn more"
-msgstr "اعرف المزيد"
-
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
 msgstr "لم يُعثر على نتائج."
+
+msgid "Loading..."
+msgstr "يُحمّل..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "لا حروف متبقية"
+msgstr[1] "حرف واحد متبقي"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيانة الموقع حاليًا. رجاءً حاول مجددًا بعد قليل."
+
+msgid "Remove this localization"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -834,25 +847,6 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
-
-msgid "Loading..."
-msgstr "يُحمّل..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيانة الموقع حاليًا. رجاءً حاول مجددًا بعد قليل."
-
-msgid "Remove this localization"
 msgstr ""
 
 msgid "Requested Info"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-10-17 20:43+0000\n"
+"POT-Creation-Date: 2017-11-07 18:41+0000\n"
 "PO-Revision-Date: 2017-08-14 21:59+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -751,17 +751,26 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} användarrecension"
 msgstr[1] "{reviews} användarrecensioner"
 
-msgid "Learn more"
-msgstr "Lär dig mer"
-
 msgid "Image changes being processed"
 msgstr "Bildändringar behandlas"
 
-msgid "Must be a valid e-mail address."
-msgstr "Måste vara en giltig e-postadress."
-
 msgid "No results found."
 msgstr "Inga träffar hittades."
+
+msgid "Loading..."
+msgstr "Laddar..."
+
+#. L10n: {0} is the number of characters left.
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> tecken kvar."
+msgstr[1] "<b>{0}</b> tecken kvar."
+
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
+
+msgid "Remove this localization"
+msgstr "Ta bort denna översättning"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tittade på sidan först."
@@ -798,21 +807,6 @@ msgstr "Genomsnittliga omdömen"
 
 msgid "Number of Reviews"
 msgstr "Antal recensioner"
-
-msgid "Loading..."
-msgstr "Laddar..."
-
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> tecken kvar."
-msgstr[1] "<b>{0}</b> tecken kvar."
-
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
-
-msgid "Remove this localization"
-msgstr "Ta bort denna översättning"
 
 msgid "Requested Info"
 msgstr "Begärd info"

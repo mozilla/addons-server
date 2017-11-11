@@ -23,11 +23,11 @@
   {% endwith %}
   <p class="byline">
     {% if is_reply %}
-      {% trans user=review.user|user_link, date=review.created|datetime %}
+      {% trans user=review.user|user_link, date=review.created|date %}
         by {{ user }} <b>(Developer)</b> on {{ date }}
       {% endtrans %}
     {% else %}
-      {% trans user=review.user|user_link, date=review.created|datetime %}
+      {% trans user=review.user|user_link, date=review.created|date %}
         by {{ user }} on {{ date }}
       {% endtrans %}
     {% endif %}

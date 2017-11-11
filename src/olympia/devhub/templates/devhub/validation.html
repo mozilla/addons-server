@@ -17,7 +17,7 @@
     {% if timestamp %}
     <tr>
         <th>{{ _('Validated at:') }}</th>
-        <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|datetime}}</time></td>
+        <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|date}}</time></td>
     </tr>
     {% endif %}
     {% if result_type == 'compat' %}
