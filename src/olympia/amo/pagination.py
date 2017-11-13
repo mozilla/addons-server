@@ -1,6 +1,12 @@
+from math import ceil
+
 from django.conf import settings
 from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
+
+
+class MaxPageReached(InvalidPage):
+    pass
 
 
 class ESPaginator(Paginator):
@@ -26,6 +32,23 @@ class ESPaginator(Paginator):
         self.use_elasticsearch_dsl = kwargs.pop('use_elasticsearch_dsl', True)
         Paginator.__init__(self, *args, **kwargs)
 
+    def _get_num_pages(self):
+        """
+        Returns the total number of pages.
+        """
+        if self._num_pages is None:
+            if self.count == 0 and not self.allow_empty_first_page:
+                self._num_pages = 0
+            else:
+                # Make sure we never return a page beyond max_result_window
+                hits = min(
+                    self.max_result_window,
+                    max(1, self.count - self.orphans))
+
+                self._num_pages = int(ceil(hits / float(self.per_page)))
+        return self._num_pages
+    num_pages = property(_get_num_pages)
+
     def validate_number(self, number):
         """
         Validates the given 1-based page number.
@@ -50,7 +73,7 @@ class ESPaginator(Paginator):
         top = bottom + self.per_page
 
         if top > self.max_result_window:
-            raise InvalidPage(
+            raise MaxPageReached(
                 'That page number is too high for the current page size')
 
         # Force the search to evaluate and then attach the count. We want to

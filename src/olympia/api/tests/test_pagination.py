@@ -1,3 +1,5 @@
+import mock
+
 from rest_framework import generics
 from rest_framework import serializers
 from rest_framework import status
@@ -5,7 +7,8 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.amo.tests import TestCase
 from olympia.api.pagination import (
-    CustomPageNumberPagination, OneOrZeroPageNumberPagination)
+    CustomPageNumberPagination, OneOrZeroPageNumberPagination,
+    ESPageNumberPagination)
 
 
 class PassThroughSerializer(serializers.BaseSerializer):
@@ -45,6 +48,55 @@ class TestCustomPageNumberPagination(TestCase):
             'next': 'http://testserver/?page=2',
             'count': 100
         }
+
+
+class TestESPageNumberPagination(TestCustomPageNumberPagination):
+
+    def test_next_page_never_exeeds_max_result_window(self):
+        mocked_qs = mock.MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
+
+        view = generics.ListAPIView.as_view(
+            serializer_class=PassThroughSerializer,
+            queryset=mocked_qs,
+            pagination_class=ESPageNumberPagination
+        )
+
+        request = self.factory.get('/', {'page_size': 5, 'page': 4999})
+        response = view(request)
+        assert response.data == {
+            'page_size': 5,
+            'results': mock.ANY,
+            'previous': 'http://testserver/?page=4998&page_size=5',
+            'next': 'http://testserver/?page=5000&page_size=5',
+            'count': 30000
+        }
+
+        request = self.factory.get('/', {'page_size': 5, 'page': 5000})
+        response = view(request)
+        assert response.data == {
+            'page_size': 5,
+            'results': mock.ANY,
+            'previous': 'http://testserver/?page=4999&page_size=5',
+            'next': None,
+            # We don't lie about the total count
+            'count': 30000
+        }
+
+    def test_throw_better_max_window_exception(self):
+        mocked_qs = mock.MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
+
+        view = generics.ListAPIView.as_view(
+            serializer_class=PassThroughSerializer,
+            queryset=mocked_qs,
+            pagination_class=ESPageNumberPagination
+        )
+
+        request = self.factory.get('/', {'page_size': 5, 'page': 50001})
+        response = view(request)
+        assert response.status_code == 404
+        assert response.data == {u'detail': u'Maximum allowed page reached.'}
 
 
 class TestOneOrZeroPageNumberPagination(TestCase):
