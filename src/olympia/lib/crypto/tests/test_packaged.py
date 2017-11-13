@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import base64
 import hashlib
 import os
 import shutil
@@ -12,20 +13,25 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
+import responses
+from signing_clients.apps import SignatureInfo
+from waffle.models import Switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, create_switch
 from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
 
-@override_settings(SIGNING_SERVER='http://full')
-class TestPackaged(TestCase):
+@override_settings(
+    SIGNING_SERVER='http://signing.server',
+    ENABLE_ADDON_SIGNING=True)
+class TestPackagedTrunion(TestCase):
 
     def setUp(self):
-        super(TestPackaged, self).setUp()
+        super(TestPackagedTrunion, self).setUp()
 
         # Change addon file name
         self.addon = amo.tests.addon_factory()
@@ -39,50 +45,61 @@ class TestPackaged(TestCase):
             os.makedirs(os.path.dirname(self.file_.file_path))
 
         fp = zipfile.ZipFile(self.file_.file_path, 'w')
-        fp.writestr('install.rdf', '<?xml version="1.0"?><RDF></RDF>')
+        fp.writestr('install.rdf', (
+            '<?xml version="1.0"?><RDF '
+            '   xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" '
+            '   xmlns:em="http://www.mozilla.org/2004/em-rdf#">'
+            '<Description about="urn:mozilla:install-manifest">'
+            '      <em:id>foo@jetpack</em:id>'
+            '      <em:type>2</em:type>'
+            '      <em:bootstrap>true</em:bootstrap>'
+            '      <em:unpack>false</em:unpack>'
+            '      <em:version>0.1</em:version>'
+            '      <em:name>foo</em:name>'
+            '      <em:description>foo bar</em:description>'
+            '      <em:optionsType>2</em:optionsType>'
+            '      <em:targetApplication></em:targetApplication>'
+            '</Description>'
+            '</RDF>'))
+
         fp.close()
+
+        self._register_urls()
 
     def tearDown(self):
         if os.path.exists(self.file_.file_path):
             os.unlink(self.file_.file_path)
-        super(TestPackaged, self).tearDown()
+        super(TestPackagedTrunion, self).tearDown()
 
-    @pytest.fixture(autouse=True)
-    def mock_post(self, monkeypatch):
-        """Fake a standard trunion response."""
-        self.requests_post_calls = []
+    def _register_urls(self):
+        signature_path = os.path.join(
+            settings.ROOT, 'src/olympia/lib/crypto/tests/',
+            'webextension_signed.rsa')
 
-        class FakeResponse:
-            status_code = 200
-            content = '{"mozilla.rsa": ""}'
+        with open(signature_path, 'rb') as fobj:
+            signature = fobj.read()
 
-        def mock_post_call(url, timeout, data, files):
-            self.requests_post_calls.append((url, timeout, data, files))
-            return FakeResponse
-
-        monkeypatch.setattr('requests.post', mock_post_call)
-
-    @pytest.fixture(autouse=True)
-    def mock_get_signer_serial_number(self, monkeypatch):
-        """Fake a standard signing-client response."""
-        monkeypatch.setattr(
-            'olympia.lib.crypto.packaged.get_signer_serial_number',
-            lambda pkcs7: 'serial number')
+        responses.add(
+            responses.POST,
+            'http://signing.server/1.0/sign_addon',
+            json={'mozilla.rsa': base64.b64encode(signature)},
+            status=200)
 
     def assert_not_signed(self):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
         assert not packaged.is_signed(self.file_.file_path)
-        assert not self.requests_post_calls
+        assert not responses.calls
 
     def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
         assert packaged.is_signed(self.file_.file_path)
-        assert len(self.requests_post_calls) == 1
+        assert len(responses.calls) == 1
 
+    @responses.activate
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -90,9 +107,10 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
+    @responses.activate
     def test_supports_firefox_android_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -101,9 +119,10 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
+    @responses.activate
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -111,9 +130,10 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
+    @responses.activate
     def test_supports_firefox_android_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -122,9 +142,10 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
+    @responses.activate
     def test_supports_firefox_recent_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -132,9 +153,10 @@ class TestPackaged(TestCase):
         max_appversion.update(version='37', version_int=version_int('37'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
+    @responses.activate
     def test_supports_firefox_android_recent_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -143,22 +165,24 @@ class TestPackaged(TestCase):
                               version='37', version_int=version_int('37'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
-    def test_get_endpoint(self):
+    def test_get_trunion_endpoint(self):
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert packaged.get_endpoint(
-            settings.SIGNING_SERVER).startswith('http://full')
+        expected = 'http://signing.server/1.0/sign_addon'
+        assert (
+            packaged.get_trunion_endpoint(settings.SIGNING_SERVER) == expected)
 
     def test_no_server_full(self):
         with self.settings(SIGNING_SERVER=''):
-            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+            packaged.sign_file(self.file_)
         self.assert_not_signed()
 
+    @responses.activate
     def test_sign_file(self):
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
@@ -166,12 +190,13 @@ class TestPackaged(TestCase):
             with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
                 assert mozillasf.read().endswith('\n\n')
 
+    @responses.activate
     def test_sign_file_non_ascii_filename(self):
         src = self.file_.file_path
         self.file_.update(filename=u'jétpack.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_signed()
 
     def test_no_sign_missing_file(self):
@@ -179,7 +204,7 @@ class TestPackaged(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
@@ -189,34 +214,37 @@ class TestPackaged(TestCase):
         """Don't sign hotfix addons."""
         for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
             self.addon.update(guid=hotfix_guid)
-            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+            packaged.sign_file(self.file_)
             self.assert_not_signed()
 
     def test_no_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         self.assert_not_signed()
 
+    @responses.activate
     def test_is_signed(self):
         assert not packaged.is_signed(self.file_.file_path)
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         assert packaged.is_signed(self.file_.file_path)
 
+    @responses.activate
     def test_size_updated(self):
         unsigned_size = storage.size(self.file_.file_path)
-        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        packaged.sign_file(self.file_)
         signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
 
+    @responses.activate
     def test_sign_file_multi_package(self):
         fpath = 'src/olympia/files/fixtures/files/multi-package.xpi'
         with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+            packaged.sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
             assert not packaged.is_signed(self.file_.file_path)
@@ -233,30 +261,33 @@ class TestPackaged(TestCase):
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
 
+    @responses.activate
     def test_call_signing(self):
-        packaged.call_signing(self.file_, 'endpoint_url')
-        assert self.requests_post_calls == [
-            ('endpoint_url',
-             settings.SIGNING_SERVER_TIMEOUT,
-             {'addon_id': 'xxxxx'},
-             {'file': (u'mozilla.sf',
-                       u'Signature-Version: 1.0\nMD5-Digest-Manifest: '
-                       u'//axi91xGZwlaVjKiw9xuw==\nSHA1-Digest-Manifest: '
-                       u'ep9V9fWlCso0PZUcnM60watGvrM=\n\n')})]
+        packaged.call_signing(self.file_)
+        call = responses.calls[0].request
+        assert call.url == 'http://signing.server/1.0/sign_addon'
+        assert 'name="addon_id"\r\n\r\nxxxxx' in call.body
+        assert (
+            'name="file"; filename="mozilla.sf"\r\n\r\n'
+            'Signature-Version: 1.0\n'
+            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
+            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
 
+    @responses.activate
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
-        packaged.call_signing(self.file_, 'endpoint_url')
-        assert self.requests_post_calls == [
-            ('endpoint_url',
-             settings.SIGNING_SERVER_TIMEOUT,
-             {'addon_id': hashed},  # Truncated to 64 chars.
-             {'file': (u'mozilla.sf',
-                       u'Signature-Version: 1.0\nMD5-Digest-Manifest: '
-                       u'//axi91xGZwlaVjKiw9xuw==\nSHA1-Digest-Manifest: '
-                       u'ep9V9fWlCso0PZUcnM60watGvrM=\n\n')})]
+        packaged.call_signing(self.file_)
+
+        call = responses.calls[0].request
+        assert call.url == 'http://signing.server/1.0/sign_addon'
+        assert 'name="addon_id"\r\n\r\n{0}'.format(hashed) in call.body
+        assert (
+            'name="file"; filename="mozilla.sf"\r\n\r\n'
+            'Signature-Version: 1.0\n'
+            'MD5-Digest-Manifest: UrEJ9n5q8I9UW2KlFUJDkA==\n'
+            'SHA1-Digest-Manifest: lTdbRmVMF7o/C+BT9GnMQne2Ap4=') in call.body
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
@@ -275,6 +306,65 @@ class TestPackaged(TestCase):
         assert len(self.addon.guid) > 64
         assert len(packaged.get_id(self.addon)) <= 64
         assert packaged.get_id(self.addon) == hashed
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+class TestPackagedAutograph(TestPackagedTrunion):
+
+    def setUp(self):
+        create_switch('activate-autograph-signing')
+        super(TestPackagedAutograph, self).setUp()
+
+    def tearDown(self):
+        Switch.objects.filter(name='activate-autograph-signing').delete()
+        super(TestPackagedAutograph, self).tearDown()
+
+    def _register_urls(self):
+        responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+    def _get_signature_info(self):
+        with zipfile.ZipFile(self.file_.file_path, mode='r') as zobj:
+            with zobj.open('META-INF/mozilla.rsa', 'r') as fobj:
+                pkcs7 = fobj.read()
+
+        return SignatureInfo(pkcs7)
+
+    def assert_not_signed(self):
+        # Overwritten to not rely on `responses` but check the real deal
+        assert not self.file_.is_signed
+        assert not self.file_.cert_serial_num
+        assert not self.file_.hash
+        assert not packaged.is_signed(self.file_.file_path)
+
+    def assert_signed(self):
+        # Overwritten to not rely on `responses` but check the real deal
+        assert self.file_.is_signed
+        assert self.file_.cert_serial_num
+        assert self.file_.hash
+        assert packaged.is_signed(self.file_.file_path)
+
+    def test_no_server_full(self):
+        # Test not needed for autograph
+        return
+
+    def test_call_signing(self):
+        packaged.sign_file(self.file_)
+
+        signature_info = self._get_signature_info()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+
+    def test_call_signing_too_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        packaged.sign_file(self.file_)
+
+        signature_info = self._get_signature_info()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == hashed
 
 
 class TestTasks(TestCase):
@@ -369,8 +459,7 @@ class TestTasks(TestCase):
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             tasks.sign_addons([self.addon.pk])
-            mock_sign_file.assert_called_with(
-                self.file_, settings.SIGNING_SERVER)
+            mock_sign_file.assert_called_with(self.file_)
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_supported_applications(self, mock_sign_file):
@@ -381,8 +470,7 @@ class TestTasks(TestCase):
             for app in (amo.ANDROID.id, amo.FIREFOX.id):
                 self.max_appversion.update(application=app)
                 tasks.sign_addons([self.addon.pk])
-                mock_sign_file.assert_called_with(
-                    self.file_, settings.SIGNING_SERVER)
+                mock_sign_file.assert_called_with(self.file_)
                 mock_sign_file.reset_mock()
 
     def assert_not_signed(self, mock_sign_file, file_hash):
@@ -572,8 +660,7 @@ class TestTasks(TestCase):
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             tasks.sign_addons([self.addon.pk], reason='expiry')
-            mock_sign_file.assert_called_with(
-                self.file_, settings.SIGNING_SERVER)
+            mock_sign_file.assert_called_with(self.file_)
 
         assert 'expiration' in mail.outbox[0].message().as_string()
 

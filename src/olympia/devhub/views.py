@@ -1164,12 +1164,12 @@ def auto_sign_file(file_, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,

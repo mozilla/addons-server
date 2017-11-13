@@ -1533,11 +1533,38 @@ DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
 # This is the signing server for signing files.
 SIGNING_SERVER = ''
+
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
+
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
 HOTFIX_ADDON_GUIDS = ['firefox-hotfix@mozilla.org',
                       'thunderbird-hotfix@mozilla.org']
+
+AUTOGRAPH_CONFIG = {
+    'server_url': env(
+        'AUTOGRAPH_SERVER_URL',
+        default='http://autograph:8000'),
+    'user_id': env(
+        'AUTOGRAPH_HAWK_USER_ID',
+        default='alice'),
+    'key': env(
+        'AUTOGRAPH_HAWK_KEY',
+        default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu'),
+    # This is configurable but we don't expect it to be set to anything else
+    # but `webextensions-rsa` at this moment because AMO only accepts
+    # regular add-ons, no system add-ons or extensions for example. These
+    # are already signed when submitted to AMO.
+    'signer': env(
+        'AUTOGRAPH_SIGNER_ID',
+        default='webextensions-rsa')
+}
+
+# Enable addon signing. This setting is primarily be thought to be used
+# for Autograph based signing. Trunion based signing also listens to
+# `SIGNING_SERVER` being empty. We are trying to have Autograph
+# being configured to something locally running by default though.
+ENABLE_ADDON_SIGNING = True
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False

@@ -63,6 +63,9 @@ services:
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
 
+  autograph:
+    image: mozilla/autograph:2.0.5
+
   selenium-firefox:
     image: selenium/standalone-firefox-debug
     expose:

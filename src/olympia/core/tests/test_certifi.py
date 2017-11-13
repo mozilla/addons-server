@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import pytest
 import requests
 from cryptography.hazmat.backends.openssl.backend import backend
 
 from olympia.amo.tests import TestCase
 
 
+@pytest.mark.withoutresponses
 class TestCertifi(TestCase):
 
     def test_openssl_version(self):

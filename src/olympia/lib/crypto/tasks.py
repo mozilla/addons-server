@@ -2,8 +2,6 @@ import os
 import re
 import shutil
 
-from django.conf import settings
-
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import AddonUser
@@ -139,8 +137,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify manifest file)
                 # before the file is signed.
                 update_version_number(file_obj, bumped_version_number)
-                server = settings.SIGNING_SERVER
-                signed = bool(sign_file(file_obj, server))
+                signed = bool(sign_file(file_obj))
                 if signed:  # Bump the version number if at least one signed.
                     signed_at_least_a_file = True
                 else:  # We didn't sign, so revert the version bump.
