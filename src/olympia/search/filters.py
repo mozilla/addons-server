@@ -280,7 +280,7 @@ class SearchQueryFilter(BaseFilterBackend):
         # do a term query on `name_sort` for an exact match against the add-on
         # name and boost it since this is likely what the user wants.
         should.append(query.Term(**{
-            'name_sort': {
+            'name.raw': {
                 'value': search_query, 'boost': 100
             }
         }))
