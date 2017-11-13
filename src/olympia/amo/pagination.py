@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
@@ -19,7 +20,7 @@ class ESPaginator(Paginator):
     # setting if present. ES defaults to 10000 but we'd like more to make sure
     # all our extensions can be found if searching without a query and
     # paginating through all results.
-    max_result_window = 25000
+    max_result_window = settings.ES_MAX_RESULT_WINDOW
 
     def __init__(self, *args, **kwargs):
         self.use_elasticsearch_dsl = kwargs.pop('use_elasticsearch_dsl', True)
