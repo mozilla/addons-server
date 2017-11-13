@@ -94,8 +94,6 @@ class TestSearchPaginator(TestCase):
 
         assert ESPaginator.max_result_window == 25000
 
-        page = paginator.page(5000)
-
         with pytest.raises(InvalidPage) as exc:
             # We're fetching 5 items per page, so requesting page 5001 should
             # fail, since the max result window should is set to 25000.

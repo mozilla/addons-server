@@ -2,9 +2,6 @@ from collections import OrderedDict
 
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from rest_framework.exceptions import NotFound
-from django.utils.translation import ugettext_lazy as _
-from django.core.paginator import InvalidPage
 
 from olympia.amo.pagination import ESPaginator
 
