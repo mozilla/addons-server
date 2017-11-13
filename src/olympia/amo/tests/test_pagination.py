@@ -89,7 +89,9 @@ class TestSearchPaginator(TestCase):
 
     def test_invalid_page(self):
         mocked_qs = MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
         paginator = ESPaginator(mocked_qs, 5)
+
         assert ESPaginator.max_result_window == 25000
 
         with pytest.raises(InvalidPage) as exc:
@@ -110,6 +112,19 @@ class TestSearchPaginator(TestCase):
 
         with self.assertRaises(PageNotAnInteger):
             paginator.page('lol')
+
+    def test_no_pages_beyond_max_window_result(self):
+        mocked_qs = MagicMock()
+        mocked_qs.__getitem__().execute().hits.total = 30000
+        paginator = ESPaginator(mocked_qs, 5)
+
+        assert ESPaginator.max_result_window == 25000
+
+        page = paginator.page(4999)
+        assert page.has_next() is True
+
+        page = paginator.page(5000)
+        assert page.has_next() is False
 
     def test_paginate_returns_this_paginator(self):
         request = MagicMock()

@@ -98,7 +98,8 @@ def create_index(index, config=None):
 
     config['settings']['index'].update({
         'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
-        'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS
+        'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS,
+        'max_result_window': settings.ES_MAX_RESULT_WINDOW,
     })
 
     if not es.indices.exists(index):

@@ -1,3 +1,6 @@
+from math import ceil
+
+from django.conf import settings
 from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
@@ -19,11 +22,28 @@ class ESPaginator(Paginator):
     # setting if present. ES defaults to 10000 but we'd like more to make sure
     # all our extensions can be found if searching without a query and
     # paginating through all results.
-    max_result_window = 25000
+    max_result_window = settings.ES_MAX_RESULT_WINDOW
 
     def __init__(self, *args, **kwargs):
         self.use_elasticsearch_dsl = kwargs.pop('use_elasticsearch_dsl', True)
         Paginator.__init__(self, *args, **kwargs)
+
+    def _get_num_pages(self):
+        """
+        Returns the total number of pages.
+        """
+        if self._num_pages is None:
+            if self.count == 0 and not self.allow_empty_first_page:
+                self._num_pages = 0
+            else:
+                # Make sure we never return a page beyond max_result_window
+                hits = min(
+                    self.max_result_window,
+                    max(1, self.count - self.orphans))
+
+                self._num_pages = int(ceil(hits / float(self.per_page)))
+        return self._num_pages
+    num_pages = property(_get_num_pages)
 
     def validate_number(self, number):
         """

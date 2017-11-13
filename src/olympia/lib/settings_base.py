@@ -1495,6 +1495,14 @@ ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
 
+# Maximum result position. ES defaults to 10000 but we'd like more to make sure
+# all our extensions can be found if searching without a query and
+# paginating through all results.
+# NOTE: This setting is being set during reindex, if this needs changing
+# we need to trigger a reindex. It's also hard-coded in amo/pagination.py
+# and there's a test verifying it's value is 25000 in amo/test_pagination.py
+ES_MAX_RESULT_WINDOW = 25000
+
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
 
