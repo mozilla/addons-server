@@ -281,7 +281,7 @@ class SearchQueryFilter(BaseFilterBackend):
         # name and boost it since this is likely what the user wants.
         should.append(query.Term(**{
             'name_sort': {
-                'value': search_query, 'boost': 10
+                'value': search_query, 'boost': 100
             }
         }))
 

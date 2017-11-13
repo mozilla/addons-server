@@ -785,13 +785,16 @@ class TestSearchResultScoring(ESTestCase):
 
         assert results[0] == addons[1].pk
 
-    def test_score_boost_exact_match_2(self):
+    def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         addons = [
             amo.tests.addon_factory(
                 name='1-Click YouTube Video Download',
                 type=amo.ADDON_EXTENSION,
-                average_daily_users=566337, weekly_downloads=150000),
+                average_daily_users=566337, weekly_downloads=150000,
+                description=(
+                    'button, click that button, 1-Click Youtube Video '
+                    'Downloader is a click click great tool')),
             amo.tests.addon_factory(
                 name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
                 average_daily_users=50, weekly_downloads=0),
