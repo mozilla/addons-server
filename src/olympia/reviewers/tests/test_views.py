@@ -465,6 +465,15 @@ class TestHome(ReviewerTest):
         review.delete(user_responsible=user)
         return review
 
+    def test_content_reviewer_can_access(self):
+        GroupUser.objects.filter(user=self.user).all().delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 403  # No rights
+
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_approved_review(self):
         review = self.make_review()
         ActivityLog.create(
@@ -3176,6 +3185,7 @@ class TestReview(ReviewBase):
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
 
     def test_confirm_auto_approval_content_review(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.url = reverse(
             'reviewers.review', args=['content', self.addon.slug])
         summary = AutoApprovalSummary.objects.create(
@@ -3201,6 +3211,7 @@ class TestReview(ReviewBase):
     def test_confirm_auto_approval_with_permission(self):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:PostReview')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
@@ -3669,9 +3680,26 @@ class TestWhiteboard(ReviewBase):
             'reviewers.review', args=('listed', self.addon_param)))
         assert self.addon.reload().whiteboard == whiteboard_info
 
-    @patch('olympia.addons.decorators.owner_or_unlisted_reviewer',
-           lambda r, a: True)
+    def test_whiteboard_addition_content_review(self):
+        whiteboard_info = u'Whiteboard info for content.'
+        url = reverse(
+            'reviewers.whiteboard', args=['content', self.addon_param])
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        assert response.status_code == 403  # Not a content reviewer.
+
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ContentReview')
+        self.login_as_reviewer()
+
+        response = self.client.post(url, {'whiteboard': whiteboard_info})
+        self.assert3xx(response, reverse(
+            'reviewers.review', args=('content', self.addon_param)))
+        assert self.addon.reload().whiteboard == whiteboard_info
+
     def test_whiteboard_addition_unlisted_addon(self):
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         whiteboard_info = u'Whiteboard info.'
         url = reverse(
