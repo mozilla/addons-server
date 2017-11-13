@@ -21,7 +21,7 @@ from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.decorators import (
-    json_view, permission_required, post_required)
+    json_view, login_required, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
@@ -632,7 +632,9 @@ def _get_comments_for_hard_deleted_versions(addon):
     return comment_versions.values()
 
 
-@addons_reviewer_required
+# Permission checks are done in the view itself depending on type of review
+# needed. We require a login at the very least, though.
+@login_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
@@ -649,14 +651,43 @@ def review(request, addon, channel=None):
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel, amo.RELEASE_CHANNEL_LISTED)
 
-    if content_review_only and not acl.action_allowed(
-            request, amo.permissions.ADDONS_CONTENT_REVIEW):
-        raise PermissionDenied
+    # We're going to need those later:
+    was_auto_approved = (
+        channel == amo.RELEASE_CHANNEL_LISTED and
+        addon.current_version and addon.current_version.was_auto_approved)
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions())
 
-    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
-                     not addon.has_listed_versions())
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
+    # If we're just looking (GET) we can bypass the specific permissions checks
+    # if we have ReviewerTools:View.
+    bypass_more_specific_permissions_because_read_only = (
+        request.method == 'GET' and acl.action_allowed(
+            request, amo.permissions.REVIEWER_TOOLS_VIEW))
+
+    if not bypass_more_specific_permissions_because_read_only:
+        # Are we looking at an unlisted review page, or (weirdly) the listed
+        # review page of an unlisted-only add-on?
+        if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+            raise PermissionDenied
+
+        # If we're only doing a content review, we just need to check for the
+        # content review permission, otherwise it's the "main" review page.
+        if content_review_only:
+            if not acl.action_allowed(
+                    request, amo.permissions.ADDONS_CONTENT_REVIEW):
+                raise PermissionDenied
+        else:
+            # Was the add-on auto-approved?
+            if was_auto_approved and not acl.action_allowed(
+                    request, amo.permissions.ADDONS_POST_REVIEW):
+                raise PermissionDenied
+
+            # Finally, if it wasn't auto-approved, check for legacy reviewer
+            # permission.
+            if not was_auto_approved and not acl.action_allowed(
+                    request, amo.permissions.ADDONS_REVIEW):
+                raise PermissionDenied
 
     version = addon.find_latest_version(
         channel=channel, exclude=(amo.STATUS_BETA,))
@@ -675,17 +706,12 @@ def review(request, addon, channel=None):
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    is_post_reviewer = acl.action_allowed(request,
-                                          amo.permissions.ADDONS_POST_REVIEW)
 
     approvals_info = None
     reports = None
     user_ratings = None
-    was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
-        if addon.current_version:
-            was_auto_approved = addon.current_version.was_auto_approved
-        if is_post_reviewer and version and version.is_webextension:
+        if was_auto_approved:
             try:
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:
@@ -703,7 +729,7 @@ def review(request, addon, channel=None):
 
         if content_review_only:
             queue_type = 'content_review'
-        elif was_auto_approved and is_post_reviewer:
+        elif was_auto_approved:
             queue_type = 'auto_approved'
         else:
             queue_type = form.helper.handler.review_type
@@ -788,7 +814,7 @@ def review(request, addon, channel=None):
     # generate auto approvals info. Note that the variable should not clash
     # the already existing 'version'.
     for a_version in pager.object_list:
-        if not is_post_reviewer or not a_version.is_ready_for_auto_approval:
+        if not a_version.is_ready_for_auto_approval:
             continue
         try:
             summary = a_version.autoapprovalsummary
@@ -817,9 +843,8 @@ def review(request, addon, channel=None):
         actions_minimal=actions_minimal, addon=addon,
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         canned=canned, content_review_only=content_review_only, count=count,
-        flags=flags, form=form, is_admin=is_admin,
-        is_post_reviewer=is_post_reviewer, num_pages=num_pages, pager=pager,
-        reports=reports, show_diff=show_diff,
+        flags=flags, form=form, is_admin=is_admin, num_pages=num_pages,
+        pager=pager, reports=reports, show_diff=show_diff,
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,

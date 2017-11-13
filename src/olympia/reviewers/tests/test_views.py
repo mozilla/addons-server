@@ -94,7 +94,7 @@ class TestEventLog(ReviewerTest):
             ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         response = self.client.get(self.url, {'filter': 'deleted'})
         assert response.status_code == 200
-        assert pq(r.content)('tbody tr').length == 2
+        assert pq(response.content)('tbody tr').length == 2
 
     def test_no_results(self):
         response = self.client.get(self.url, {'end': '2004-01-01'})
@@ -2472,7 +2472,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED,
             weight=284)
-
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
         url = reverse('reviewers.review', args=[self.addon.slug])
         response = self.client.get(url)
         assert response.status_code == 200
@@ -3152,10 +3152,10 @@ class TestReview(ReviewBase):
     def test_confirm_auto_approval_no_permission(self):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        self.login_as_reviewer()
+        self.login_as_reviewer()  # Legacy reviewer, not post-review.
         response = self.client.post(
             self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 200
+        assert response.status_code == 403
         # Nothing happened: the user did not have the permission to do that.
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
@@ -3170,7 +3170,7 @@ class TestReview(ReviewBase):
         self.login_as_reviewer()
         response = self.client.post(
             self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 200
+        assert response.status_code == 403
         # Nothing happened: the user did not have the permission to do that.
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
