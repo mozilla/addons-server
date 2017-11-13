@@ -83,21 +83,6 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
             'count': 30000
         }
 
-    def test_throw_better_max_window_exception(self):
-        mocked_qs = mock.MagicMock()
-        mocked_qs.__getitem__().execute().hits.total = 30000
-
-        view = generics.ListAPIView.as_view(
-            serializer_class=PassThroughSerializer,
-            queryset=mocked_qs,
-            pagination_class=ESPageNumberPagination
-        )
-
-        request = self.factory.get('/', {'page_size': 5, 'page': 50001})
-        response = view(request)
-        assert response.status_code == 404
-        assert response.data == {u'detail': u'Maximum allowed page reached.'}
-
 
 class TestOneOrZeroPageNumberPagination(TestCase):
     def setUp(self):

@@ -6,7 +6,7 @@ from rest_framework.exceptions import NotFound
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import InvalidPage
 
-from olympia.amo.pagination import ESPaginator, MaxPageReached
+from olympia.amo.pagination import ESPaginator
 
 
 class CustomPageNumberPagination(PageNumberPagination):
@@ -30,37 +30,6 @@ class CustomPageNumberPagination(PageNumberPagination):
 class ESPageNumberPagination(CustomPageNumberPagination):
     """Custom pagination implementation to hook in our `ESPaginator`."""
     django_paginator_class = ESPaginator
-    max_allowed_page_message = _('Maximum allowed page reached.')
-
-    def paginate_queryset(self, queryset, request, view=None):
-        """
-        Paginate a queryset if required, either returning a
-        page object, or `None` if pagination is not configured for this view.
-
-        Overwritten to hook in a better error message for exceeding
-        `max_window_size`.
-        """
-        page_size = self.get_page_size(request)
-        if not page_size:
-            return None
-
-        paginator = self.django_paginator_class(queryset, page_size)
-        page_number = request.query_params.get(self.page_query_param, 1)
-        if page_number in self.last_page_strings:
-            page_number = paginator.num_pages
-
-        try:
-            self.page = paginator.page(page_number)
-        except MaxPageReached as exc:
-            raise NotFound(self.max_allowed_page_message)
-        except InvalidPage as exc:
-            msg = self.invalid_page_message.format(
-                page_number=page_number, message=unicode(exc)
-            )
-            raise NotFound(msg)
-
-        self.request = request
-        return list(self.page)
 
 
 class OneOrZeroPageNumberPagination(CustomPageNumberPagination):

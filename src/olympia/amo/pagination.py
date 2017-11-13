@@ -5,10 +5,6 @@ from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
 
-class MaxPageReached(InvalidPage):
-    pass
-
-
 class ESPaginator(Paginator):
     """
     A better paginator for search results
@@ -73,7 +69,7 @@ class ESPaginator(Paginator):
         top = bottom + self.per_page
 
         if top > self.max_result_window:
-            raise MaxPageReached(
+            raise InvalidPage(
                 'That page number is too high for the current page size')
 
         # Force the search to evaluate and then attach the count. We want to
