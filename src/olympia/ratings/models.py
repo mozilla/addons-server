@@ -170,7 +170,7 @@ class Rating(ModelBase):
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
 
-        if (rating_was_moderated):
+        if rating_was_moderated:
             ReviewerScore.award_moderation_points(user_responsible,
                                                   self.addon,
                                                   self.pk)
