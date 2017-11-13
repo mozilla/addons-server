@@ -20,10 +20,10 @@ class TestDiscoveryViewList(TestCase):
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = OrderedDict([
             (44686, addon_factory(id=44686, type=amo.ADDON_PERSONA)),
-            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+            (455926, addon_factory(id=455926, type=amo.ADDON_EXTENSION)),
             (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
             (376685, addon_factory(id=376685, type=amo.ADDON_PERSONA)),
-            (455926, addon_factory(id=455926, type=amo.ADDON_EXTENSION)),
+            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
             (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
             (208568, addon_factory(id=208568, type=amo.ADDON_PERSONA)),
         ])
