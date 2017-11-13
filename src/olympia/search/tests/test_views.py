@@ -727,29 +727,29 @@ class TestSearchResultScoring(ESTestCase):
         self.refresh()
 
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
         # Doesn't match "All Downloader Professional"
-        assert addons[2].pk not in result
+        assert addons[2].pk not in results
 
         # Matches both "Merge Windows" and "Merge All Windows" but can't
         # correctly predict their exact scoring since we don't have
         # an exact match that would prefer 'merge windows'. Both should be
         # the first two matches though.
-        assert addons[1].pk in result[:2]
-        assert addons[0].pk in result[:2]
+        assert addons[1].pk in results[:2]
+        assert addons[0].pk in results[:2]
 
         response = self.client.get(self.url, {'q': 'merge all windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
         # Make sure we match 'All Downloader Professional' but it's
         # term match frequency is much lower than the other two so it's
         # last.
-        assert addons[2].pk == result[-1]
+        assert addons[2].pk == results[-1]
 
         # Other two are first rank again.
-        assert addons[1].pk in result[:2]
-        assert addons[0].pk in result[:2]
+        assert addons[1].pk in results[:2]
+        assert addons[0].pk in results[:2]
 
     def test_score_boost_name_match_slop(self):
         addon = amo.tests.addon_factory(
@@ -760,9 +760,62 @@ class TestSearchResultScoring(ESTestCase):
 
         # direct match
         response = self.client.get(self.url, {'q': 'merge windows'})
-        result = self.get_results(response)
+        results = self.get_results(response)
 
-        assert result[0] == addon.pk
+        assert results[0] == addon.pk
+
+    def test_score_boost_exact_match(self):
+        """Test that we rank exact matches at the top."""
+        addons = [
+            amo.tests.addon_factory(
+                name='test addon test11', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test21', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test31', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+        ]
+
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': 'test addon test21'})
+        results = self.get_results(response)
+
+        assert results[0] == addons[1].pk
+
+    def test_score_boost_exact_match_l10n(self):
+        """Test that we rank exact matches for loalized content at the top."""
+        addons = [
+            amo.tests.addon_factory(
+                name='test addon test11', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test21', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+            amo.tests.addon_factory(
+                name='test addon test31', type=amo.ADDON_EXTENSION,
+                average_daily_users=0, weekly_downloads=0),
+        ]
+
+        addons[0].name = {
+            'en-US': 'test addon test11', 'es': 'complemento de prueba test11'}
+        addons[1].name = {
+            'en-US': 'test addon test21', 'es': 'complemento de prueba test21'}
+        addons[2].name = {
+            'en-US': 'test addon test31', 'es': 'complemento de prueba test31'}
+
+        for addon in addons:
+            addon.save()
+
+        self.refresh()
+
+        url = self.url.replace('en-US', 'es')
+        response = self.client.get(url, {'q': 'complemento de prueba test21'})
+        results = self.get_results(response)
+
+        assert results[0] == addons[1].pk
 
 
 class TestPersonaSearch(SearchBase):

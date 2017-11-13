@@ -134,6 +134,20 @@ class TestQueryFilter(FilterTestsBase):
             ]}}
         }
 
+    def test_q_exact(self):
+        qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'term': {
+                'name_sort': {
+                    'boost': 10, 'value': u'adblock plus',
+                }
+            }
+        }
+
+        assert expected in should
+
 
 class TestReviewedContentFilter(FilterTestsBase):
 
