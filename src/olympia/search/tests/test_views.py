@@ -785,6 +785,27 @@ class TestSearchResultScoring(ESTestCase):
 
         assert results[0] == addons[1].pk
 
+    def test_score_boost_exact_match_2(self):
+        """Test that we rank exact matches at the top."""
+        addons = [
+            amo.tests.addon_factory(
+                name='1-Click YouTube Video Download',
+                type=amo.ADDON_EXTENSION,
+                average_daily_users=566337, weekly_downloads=150000),
+            amo.tests.addon_factory(
+                name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
+                average_daily_users=50, weekly_downloads=0),
+        ]
+
+        self.refresh()
+
+        response = self.client.get(self.url, {
+            'q': 'Amazon 1-Click Lock'
+        })
+        results = self.get_results(response)
+
+        assert results[0] == addons[1].pk
+
     def test_score_boost_exact_match_l10n(self):
         """Test that we rank exact matches for loalized content at the top."""
         addons = [
