@@ -27,16 +27,16 @@ discopane_items = [
     # 'All Fall' theme.
     DiscoItem(addon_id=44686, type=amo.ADDON_PERSONA, addon_name='All Fall'),
 
-    # uBlock Origin
+    # Search Image
     DiscoItem(
-        addon_id=607454,
-        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
+        addon_id=455926,
+        addon_name='Search Image',
+        heading=_(u'Easily find images {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'A lightweight and effective ad blocker. uBlock Origin '
-              u'enforces thousands of content filters without chewing up a '
-              u'bunch of memory.'),
+            _(u'Highlight any text and right-click to quickly perform an '
+              u'image search.'),
             '</blockquote>')),
 
     # Enhancer for YouTube
@@ -54,16 +54,16 @@ discopane_items = [
     DiscoItem(
         addon_id=376685, type=amo.ADDON_PERSONA, addon_name='Snub Nosed Dog'),
 
-    # Search Image
+    # uBlock Origin
     DiscoItem(
-        addon_id=455926,
-        addon_name='Search Image',
-        heading=_(u'Easily find images {start_sub_heading}with {addon_name}'
+        addon_id=607454,
+        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Highlight any text and right-click to quickly perform an '
-              u'image search.'),
+            _(u'A lightweight and effective ad blocker. uBlock Origin '
+              u'enforces thousands of content filters without chewing up a '
+              u'bunch of memory.'),
             '</blockquote>')),
 
     # Emoji Cheatsheet.
@@ -75,7 +75,6 @@ discopane_items = [
             '<blockquote>',
             _(u'Dozens of amazing emojis—always a click away.'),
             '</blockquote>')),
-
 
     # 'Butterfly Fantasies' theme.
     DiscoItem(
