@@ -141,7 +141,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'term': {
                 'name.raw': {
-                    'boost': 10, 'value': u'adblock plus',
+                    'boost': 100, 'value': u'adblock plus',
                 }
             }
         }

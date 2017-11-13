@@ -279,6 +279,8 @@ class SearchQueryFilter(BaseFilterBackend):
         # Exact matches need to be queried against a non-analyzed field. Let's
         # do a term query on `name.raw` for an exact match against the add-on
         # name and boost it since this is likely what the user wants.
+        # Use a super-high boost to avoid `description` or `summary`
+        # getting in our way.
         should.append(query.Term(**{
             'name.raw': {
                 'value': search_query, 'boost': 100
