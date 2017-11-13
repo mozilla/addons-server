@@ -22,8 +22,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, Persona
 from olympia.files.models import FileValidation
+from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
-from olympia.reviews.models import Review
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -796,10 +796,10 @@ class AutoApprovalSummary(ModelBase):
                 AbuseReport.objects
                 .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
                 .filter(created__gte=one_year_ago).count() * 10, 100),
-            # 1% of the total of "recent" reviews with a score of 3 or less
+            # 1% of the total of "recent" ratings with a score of 3 or less
             # adds 2 to the weight, up to a maximum of 100.
-            'negative_reviews': min(int(
-                Review.objects
+            'negative_ratings': min(int(
+                Rating.objects
                 .filter(addon=addon)
                 .filter(rating__lte=3, created__gte=one_year_ago)
                 .count() / 100.0 * 2.0), 100),

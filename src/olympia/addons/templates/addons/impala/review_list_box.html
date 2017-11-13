@@ -16,7 +16,7 @@
           {% endtrans %}
           &middot;
           <a class="permalink"
-             href="{{ url('addons.reviews.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
+             href="{{ url('addons.ratings.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
         </p>
         <p class="description">{{ review.body|nl2br }}</p>
         {% if replies[review.id] %}
@@ -28,7 +28,7 @@
     {% if addon %}
       <p>
         <a class="more-info" href="{{ addon.reviews_url }}">
-          {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
+          {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
             See all user reviews
           {% pluralize %}
             See all {{ cnt }} user reviews
@@ -41,7 +41,7 @@
       <h3>
         {{ _('This add-on has not yet been reviewed.') }}
         {% if addon.can_review(user) %}
-          <a id="add-first-review" href="{{ url('addons.reviews.add', addon.slug) }}">
+          <a id="add-first-review" href="{{ url('addons.ratings.add', addon.slug) }}">
             {{ _('Be the first!') }}
           </a>
         {% endif %}

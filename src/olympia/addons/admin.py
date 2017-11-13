@@ -32,8 +32,8 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('support_url', 'support_email'),
         }),
         ('Stats', {
-            'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
-                       'text_reviews_count',
+            'fields': ('average_rating', 'bayesian_rating', 'total_ratings',
+                       'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
                        'average_daily_downloads', 'average_daily_users'),
         }),

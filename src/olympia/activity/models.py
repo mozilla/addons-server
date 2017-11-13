@@ -20,7 +20,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile
@@ -191,7 +191,7 @@ class ActivityLogManager(ManagerBase):
             amo.LOG.BETA_SIGNED.id,
             amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
 
-    def total_reviews(self, theme=False):
+    def total_ratings(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
         action_ids = ([amo.LOG.THEME_REVIEW.id] if theme
@@ -234,8 +234,8 @@ class ActivityLogManager(ManagerBase):
         except StopIteration:
             return None
 
-    def total_reviews_user_position(self, user, theme=False):
-        return self.user_position(self.total_reviews(theme), user)
+    def total_ratings_user_position(self, user, theme=False):
+        return self.user_position(self.total_ratings(theme), user)
 
     def monthly_reviews_user_position(self, user, theme=False):
         return self.user_position(self.monthly_reviews(theme), user)
@@ -356,7 +356,7 @@ class ActivityLog(ModelBase):
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
         addon = None
-        review = None
+        rating = None
         version = None
         collection = None
         tag = None
@@ -371,8 +371,8 @@ class ActivityLog(ModelBase):
                 else:
                     addon = self.f(u'{0}', arg.name)
                 arguments.remove(arg)
-            if isinstance(arg, Review) and not review:
-                review = self.f(u'<a href="{0}">{1}</a>',
+            if isinstance(arg, Rating) and not rating:
+                rating = self.f(u'<a href="{0}">{1}</a>',
                                 arg.get_url_path(), ugettext('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
@@ -414,9 +414,16 @@ class ActivityLog(ModelBase):
         user = user_link(self.user)
 
         try:
-            kw = dict(addon=addon, review=review, version=version,
-                      collection=collection, tag=tag, user=user, group=group,
-                      file=file_)
+            kw = {
+                'addon': addon,
+                'rating': rating,
+                'version': version,
+                'collection': collection,
+                'tag': tag,
+                'user': user,
+                'group': group,
+                'file': file_,
+            }
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

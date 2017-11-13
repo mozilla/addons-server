@@ -32,7 +32,7 @@ from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission, WebextPermissionDescription
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
@@ -838,7 +838,7 @@ class TestDetailPage(TestCase):
 
     def test_reviews(self):
         def create_review(body='review text'):
-            return Review.objects.create(
+            return Rating.objects.create(
                 addon=self.addon, user=user_factory(),
                 rating=random.randrange(0, 6),
                 body=body)
@@ -1295,11 +1295,11 @@ class TestXssOnName(amo.tests.TestXss):
         self.assertNameAndNoXSS(url)
 
     def test_reviews_list(self):
-        url = reverse('addons.reviews.list', args=[self.addon.slug])
+        url = reverse('addons.ratings.list', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
 
     def test_reviews_add(self):
-        url = reverse('addons.reviews.add', args=[self.addon.slug])
+        url = reverse('addons.ratings.add', args=[self.addon.slug])
         self.client.login(email='fligtar@gmail.com')
         self.assertNameAndNoXSS(url)
 

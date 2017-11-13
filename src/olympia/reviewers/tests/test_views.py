@@ -18,7 +18,7 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 from freezegun import freeze_time
 
-from olympia import amo, core, reviews
+from olympia import amo, core, ratings
 from olympia.amo.tests import (
     addon_factory, file_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
@@ -29,9 +29,9 @@ from olympia.addons.models import (
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription)
-from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
@@ -49,7 +49,7 @@ class ReviewerTest(TestCase):
     def make_review(self, username='a'):
         u = UserProfile.objects.create(username=username)
         a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
-        return Review.objects.create(user=u, addon=a, title='foo', body='bar')
+        return Rating.objects.create(user=u, addon=a, title='foo', body='bar')
 
 
 class TestEventLog(ReviewerTest):
@@ -75,7 +75,7 @@ class TestEventLog(ReviewerTest):
         """
         review = self.make_review(username='b')
         ActivityLog.create(
-            amo.LOG.APPROVE_REVIEW, review, review.addon).update(
+            amo.LOG.APPROVE_RATING, review, review.addon).update(
             created=datetime(2011, 1, 1))
 
         r = self.client.get(self.url, dict(end='2011-01-01'))
@@ -90,8 +90,8 @@ class TestEventLog(ReviewerTest):
         """
         review = self.make_review()
         for i in xrange(2):
-            ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
-            ActivityLog.create(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+            ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
+            ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         r = self.client.get(self.url, dict(filter='deleted'))
         assert pq(r.content)('tbody tr').length == 2
 
@@ -104,7 +104,7 @@ class TestEventLogDetail(TestEventLog):
 
     def test_me(self):
         review = self.make_review()
-        ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
+        ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
         id = ActivityLog.objects.reviewer_events()[0].id
         r = self.client.get(reverse('reviewers.eventlog.detail', args=[id]))
         assert r.status_code == 200
@@ -461,7 +461,7 @@ class TestHome(ReviewerTest):
     def test_approved_review(self):
         review = self.make_review()
         ActivityLog.create(
-            amo.LOG.APPROVE_REVIEW, review, review.addon, details={
+            amo.LOG.APPROVE_RATING, review, review.addon, details={
                 'addon_name': 'test',
                 'addon_id': review.addon.pk,
                 'is_flagged': True,
@@ -1171,19 +1171,19 @@ class TestNominatedQueue(QueueTest):
 
 
 class TestModeratedQueue(QueueTest):
-    fixtures = ['base/users', 'reviews/dev-reply']
+    fixtures = ['base/users', 'ratings/dev-reply']
 
     def setUp(self):
         super(TestModeratedQueue, self).setUp()
 
         self.url = reverse('reviewers.queue_moderated')
-        url_flag = reverse('addons.reviews.flag', args=['a1865', 218468])
+        url_flag = reverse('addons.ratings.flag', args=['a1865', 218468])
 
-        response = self.client.post(url_flag, {'flag': ReviewFlag.SPAM})
+        response = self.client.post(url_flag, {'flag': RatingFlag.SPAM})
         assert response.status_code == 200
 
-        assert ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count() == 1
-        assert Review.objects.filter(editorreview=True).count() == 1
+        assert RatingFlag.objects.filter(flag=RatingFlag.SPAM).count() == 1
+        assert Rating.objects.filter(editorreview=True).count() == 1
         self.grant_permission(self.user, 'Ratings:Moderate')
 
     def test_results(self):
@@ -1199,7 +1199,7 @@ class TestModeratedQueue(QueueTest):
         assert doc('#id_form-0-action_1:checked').length == 1
 
         flagged = doc('.reviews-flagged-reasons span.light').text()
-        reviewer = ReviewFlag.objects.all()[0].user.name
+        reviewer = RatingFlag.objects.all()[0].user.name
         assert flagged.startswith('Flagged by %s' % reviewer), (
             'Unexpected text: %s' % flagged)
 
@@ -1208,7 +1208,7 @@ class TestModeratedQueue(QueueTest):
         assert response.status_code == 200
         form_0_data = initial(response.context['reviews_formset'].forms[0])
 
-        assert Review.objects.filter(addon=1865).count() == 2
+        assert Rating.objects.filter(addon=1865).count() == 2
 
         formset_data = formset(form_0_data)
         formset_data['form-0-action'] = action
@@ -1217,7 +1217,7 @@ class TestModeratedQueue(QueueTest):
         self.assert3xx(response, self.url)
 
     def test_skip(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+        self.setup_actions(ratings.REVIEW_MODERATE_SKIP)
 
         # Make sure it's still there.
         response = self.client.get(self.url)
@@ -1226,7 +1226,7 @@ class TestModeratedQueue(QueueTest):
         assert rows.length == 1
 
     def test_skip_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
+        self.setup_actions(ratings.REVIEW_MODERATE_SKIP)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 0
 
@@ -1235,8 +1235,8 @@ class TestModeratedQueue(QueueTest):
 
     def test_remove(self):
         """Make sure the reviewer tools can delete a review."""
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
-        logs = self.get_logs(amo.LOG.DELETE_REVIEW)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
+        logs = self.get_logs(amo.LOG.DELETE_RATING)
         assert logs.count() == 1
 
         # Make sure it's removed from the queue.
@@ -1248,9 +1248,9 @@ class TestModeratedQueue(QueueTest):
             reverse('reviewers.eventlog.detail', args=[logs[0].id]))
 
         # Make sure it was actually deleted.
-        assert Review.objects.filter(addon=1865).count() == 1
+        assert Rating.objects.filter(addon=1865).count() == 1
         # But make sure it wasn't *actually* deleted.
-        assert Review.unfiltered.filter(addon=1865).count() == 2
+        assert Rating.unfiltered.filter(addon=1865).count() == 2
 
     def test_remove_fails_for_own_addon(self):
         """
@@ -1262,10 +1262,10 @@ class TestModeratedQueue(QueueTest):
         AddonUser(addon=addon, user=user).save()
 
         # Make sure the initial count is as expected
-        assert Review.objects.filter(addon=1865).count() == 2
+        assert Rating.objects.filter(addon=1865).count() == 2
 
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
-        logs = self.get_logs(amo.LOG.DELETE_REVIEW)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
+        logs = self.get_logs(amo.LOG.DELETE_RATING)
         assert logs.count() == 0
 
         # Make sure it's not removed from the queue.
@@ -1273,33 +1273,33 @@ class TestModeratedQueue(QueueTest):
         assert pq(response.content)('#reviews-flagged .no-results').length == 0
 
         # Make sure it was not actually deleted.
-        assert Review.objects.filter(addon=1865).count() == 2
+        assert Rating.objects.filter(addon=1865).count() == 2
 
     def test_remove_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
+        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_keep(self):
         """Make sure the reviewer tools can remove flags and keep a review."""
-        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
-        logs = self.get_logs(amo.LOG.APPROVE_REVIEW)
+        self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
+        logs = self.get_logs(amo.LOG.APPROVE_RATING)
         assert logs.count() == 1
 
         # Make sure it's removed from the queue.
-        r = self.client.get(self.url)
-        assert pq(r.content)('#reviews-flagged .no-results').length == 1
+        response = self.client.get(self.url)
+        assert pq(response.content)('#reviews-flagged .no-results').length == 1
 
-        review = Review.objects.filter(addon=1865)
+        rating = Rating.objects.filter(addon=1865)
 
         # Make sure it's NOT deleted...
-        assert review.count() == 2
+        assert rating.count() == 2
 
         # ...but it's no longer flagged.
-        assert review.filter(editorreview=1).count() == 0
+        assert rating.filter(editorreview=1).count() == 0
 
     def test_keep_score(self):
-        self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
+        self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
         assert ReviewerScore.objects.filter(
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
@@ -1308,30 +1308,30 @@ class TestModeratedQueue(QueueTest):
         # a bunch of reviews from different scenarios and make sure they don't
         # count towards the total.
         # Add a review associated with an normal addon
-        review = Review.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(), user=user_factory(),
             body='show me', editorreview=True)
-        ReviewFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         # Add a review associated with an incomplete addon
-        review = Review.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(status=amo.STATUS_NULL), user=user_factory(),
             title='please', body='dont show me', editorreview=True)
-        ReviewFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         # Add a review associated to an unlisted version
         addon = addon_factory()
         version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        review = Review.objects.create(
+        rating = Rating.objects.create(
             addon=addon_factory(), version=version, user=user_factory(),
             title='please', body='dont show me either', editorreview=True)
-        ReviewFlag.objects.create(review=review)
+        RatingFlag.objects.create(rating=rating)
 
         self._test_queue_count(2, 'Moderated Reviews', 2)
 
     def test_no_reviews(self):
-        Review.objects.all().delete()
+        Rating.objects.all().delete()
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3272,36 +3272,36 @@ class TestReview(ReviewBase):
             u'anonymous [10.4.5.6] reported regularuser التطب on %s Foo, Bâr!'
             % created_at)
 
-    def test_user_reviews(self):
+    def test_user_ratings(self):
         user = user_factory()
-        user_review = Review.objects.create(
+        rating = Rating.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = user_review.created.strftime('%b. %d, %Y')
-        Review.objects.create(  # Review with no body, ignored.
+        created_at = rating.created.strftime('%b. %d, %Y')
+        Rating.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
-        Review.objects.create(  # Reply to a review, ignored.
-            body='Replyyyyy', reply_to=user_review,
+        Rating.objects.create(  # Reply to a review, ignored.
+            body='Replyyyyy', reply_to=rating,
             addon=self.addon, user=user_factory())
-        Review.objects.create(  # Review with high rating,, ignored.
+        Rating.objects.create(  # Review with high rating,, ignored.
             body=u'Qui platônem temporibus in', rating=5, addon=self.addon,
             user=user_factory())
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc('.user_reviews')
+        assert not doc('.user_ratings')
 
         self.grant_permission(self.reviewer, 'Addons:PostReview')
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert not doc('.user_reviews')
+        assert not doc('.user_ratings')
 
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert doc('.user_reviews')
+        assert doc('.user_ratings')
         assert (
-            doc('.user_reviews').text() ==
+            doc('.user_ratings').text() ==
             u'%s on %s [10.5.6.7] Rated 3 out of 5 stars Lôrem ipsum dolor' % (
                 user.username, created_at
             )

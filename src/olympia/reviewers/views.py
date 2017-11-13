@@ -25,6 +25,7 @@ from olympia.amo.decorators import (
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
@@ -35,7 +36,6 @@ from olympia.reviewers.models import (
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
-from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -92,7 +92,7 @@ def eventlog_detail(request, id):
     review = None
     # I really cannot express the depth of the insanity incarnate in
     # our logging code...
-    if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
+    if len(log.arguments) > 1 and isinstance(log.arguments[1], Rating):
         review = log.arguments[1]
 
     is_admin = acl.action_allowed(request,
@@ -152,7 +152,7 @@ def home(request):
     progress, percentage = _reviewer_progress(
         limited_reviewer=limited_reviewer)
     reviews_max_display = getattr(settings, 'REVIEWER_REVIEWS_MAX_DISPLAY', 5)
-    reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
+    reviews_total = ActivityLog.objects.total_ratings()[:reviews_max_display]
     reviews_monthly = (
         ActivityLog.objects.monthly_reviews()[:reviews_max_display])
     reviews_total_count = ActivityLog.objects.user_approve_reviews(
@@ -165,7 +165,7 @@ def home(request):
     # If not available, query for it.
     reviews_total_position = (
         ActivityLog.objects.user_position(reviews_total, request.user) or
-        ActivityLog.objects.total_reviews_user_position(request.user))
+        ActivityLog.objects.total_ratings_user_position(request.user))
 
     reviews_monthly_position = (
         ActivityLog.objects.user_position(reviews_monthly, request.user) or
@@ -482,7 +482,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
-        'moderated': Review.objects.all().to_moderate().count,
+        'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue().count),
         'content_review': (
@@ -520,14 +520,14 @@ def queue_pending(request):
 
 @ratings_moderator_required
 def queue_moderated(request):
-    qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
+    qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
-    flags = dict(ReviewFlag.FLAGS)
+    flags = dict(RatingFlag.FLAGS)
 
-    reviews_formset = forms.ReviewFlagFormSet(request.POST or None,
+    reviews_formset = forms.RatingFlagFormSet(request.POST or None,
                                               queryset=page.object_list,
                                               request=request)
 
@@ -680,7 +680,7 @@ def review(request, addon, channel=None):
 
     approvals_info = None
     reports = None
-    user_reviews = None
+    user_ratings = None
     was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if addon.current_version:
@@ -696,8 +696,8 @@ def review(request, addon, channel=None):
             (AbuseReport.objects
                         .filter(Q(addon=addon) | Q(user__in=developers))
                         .order_by('-created')), 5).page(1)
-        user_reviews = Paginator(
-            (Review.without_replies
+        user_ratings = Paginator(
+            (Rating.without_replies
                    .filter(addon=addon, rating__lte=3, body__isnull=False)
                    .order_by('-created')), 5).page(1)
 
@@ -821,7 +821,7 @@ def review(request, addon, channel=None):
         is_post_reviewer=is_post_reviewer, num_pages=num_pages, pager=pager,
         reports=reports, show_diff=show_diff,
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes=user_changes_log, user_reviews=user_reviews,
+        user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,
         whiteboard_form=forms.WhiteboardForm(instance=addon),
         whiteboard_url=whiteboard_url)

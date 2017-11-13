@@ -333,7 +333,7 @@ SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^admin\/',
     r'^users\/email',
-    r'^reviews\/emails',
+    r'^ratings\/emails',
     r'^reviewers\/emails',
     r'^amo\/emails',
     r'^devhub\/email\/revoked-key-email.ltxt',
@@ -489,8 +489,8 @@ INSTALLED_APPS = (
     'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.pages',
+    'olympia.ratings',
     'olympia.reviewers',
-    'olympia.reviews',
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
@@ -615,7 +615,7 @@ MINIFY_BUNDLES = {
             'css/impala/hovercards.less',
             'css/impala/toplist.less',
             'css/impala/carousel.less',
-            'css/impala/reviews.less',
+            'css/impala/ratings.less',
             'css/impala/buttons.less',
             'css/impala/promos.less',
             'css/impala/addon_details.less',
@@ -758,7 +758,7 @@ MINIFY_BUNDLES = {
             'js/lib/ui.lightbox.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
-            'js/zamboni/reviews.js',
+            'js/zamboni/ratings.js',
 
             # Personas
             'js/lib/jquery.hoverIntent.js',
@@ -855,7 +855,7 @@ MINIFY_BUNDLES = {
             'js/lib/ui.lightbox.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
-            'js/impala/reviews.js',
+            'js/impala/ratings.js',
 
             # Browse listing pages
             'js/impala/listing.js',
@@ -1087,20 +1087,20 @@ CELERY_IMPORTS = (
 )
 
 CELERY_TASK_QUEUES = (
+    Queue('addons', routing_key='addons'),
+    Queue('amo', routing_key='amo'),
+    Queue('api', routing_key='api'),
+    Queue('bandwagon', routing_key='bandwagon'),
+    Queue('cron', routing_key='cron'),
+    Queue('crypto', routing_key='crypto'),
     Queue('default', routing_key='default'),
-    Queue('priority', routing_key='priority'),
     Queue('devhub', routing_key='devhub'),
     Queue('images', routing_key='images'),
     Queue('limited', routing_key='limited'),
-    Queue('amo', routing_key='amo'),
-    Queue('addons', routing_key='addons'),
-    Queue('api', routing_key='api'),
-    Queue('cron', routing_key='cron'),
-    Queue('bandwagon', routing_key='bandwagon'),
+    Queue('priority', routing_key='priority'),
+    Queue('ratings', routing_key='ratings'),
     Queue('reviewers', routing_key='reviewers'),
-    Queue('crypto', routing_key='crypto'),
     Queue('search', routing_key='search'),
-    Queue('reviews', routing_key='reviews'),
     Queue('stats', routing_key='stats'),
     Queue('tags', routing_key='tags'),
     Queue('users', routing_key='users'),
@@ -1212,11 +1212,11 @@ CELERY_TASK_ROUTES = {
     'olympia.lib.es.management.commands.reindex.update_aliases': {
         'queue': 'search'},
 
-    # Reviews
-    'olympia.reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
-    'olympia.reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
-    'olympia.reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
-    'olympia.reviews.tasks.update_denorm': {'queue': 'reviews'},
+    # Ratings
+    'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
+    'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
+    'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
+    'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
 
 
     # Stats

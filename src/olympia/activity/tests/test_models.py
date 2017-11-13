@@ -14,7 +14,7 @@ from olympia.amo.tests import (
     addon_factory, user_factory, TestCase, version_factory)
 from olympia.bandwagon.models import Collection
 from olympia.tags.models import Tag
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -147,11 +147,11 @@ class TestActivityLog(TestCase):
         assert url_path not in unicode(entries[0])
 
     def test_fancy_rendering(self):
-        """HTML for Review, and Collection."""
-        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
+        """HTML for Rating, and Collection."""
+        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_RATING.id)
         user = UserProfile.objects.create()
-        review = Review.objects.create(user=user, addon_id=3615)
-        activity_log.arguments = [activity_log, review]
+        rating = Rating.objects.create(user=user, addon_id=3615)
+        activity_log.arguments = [activity_log, rating]
         assert '>Review</a> for None written.' in activity_log.to_string()
         activity_log.action = amo.LOG.ADD_TO_COLLECTION.id
         activity_log.arguments = [activity_log, Collection.objects.create()]
@@ -321,11 +321,11 @@ class TestActivityLogCount(TestCase):
 
     def test_not_total(self):
         ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
-        assert len(ActivityLog.objects.total_reviews()) == 0
+        assert len(ActivityLog.objects.total_ratings()) == 0
 
     def test_total_few(self):
         self.add_approve_logs(5)
-        result = ActivityLog.objects.total_reviews()
+        result = ActivityLog.objects.total_ratings()
         assert len(result) == 1
         assert result[0]['approval_count'] == 5
 
@@ -333,17 +333,17 @@ class TestActivityLogCount(TestCase):
         log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
                                  Addon.objects.get())
         log.update(created=self.lm)
-        result = ActivityLog.objects.total_reviews()
+        result = ActivityLog.objects.total_ratings()
         assert len(result) == 1
         assert result[0]['approval_count'] == 1
         assert result[0]['user'] == self.user.pk
 
-    def test_total_reviews_user_position(self):
+    def test_total_ratings_user_position(self):
         self.add_approve_logs(5)
-        result = ActivityLog.objects.total_reviews_user_position(self.user)
+        result = ActivityLog.objects.total_ratings_user_position(self.user)
         assert result == 1
         user = UserProfile.objects.create(email="no@mozil.la")
-        result = ActivityLog.objects.total_reviews_user_position(user)
+        result = ActivityLog.objects.total_ratings_user_position(user)
         assert result is None
 
     def test_monthly_reviews_user_position(self):

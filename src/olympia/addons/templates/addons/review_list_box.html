@@ -23,8 +23,8 @@
     {% endfor %}
     {% if addon %}
       <p>
-        <a class="more-info" href="{{ url('addons.reviews.list', addon.slug) }}">
-          {% trans num=addon.total_reviews, cnt=addon.total_reviews|numberfmt %}
+        <a class="more-info" href="{{ url('addons.ratings.list', addon.slug) }}">
+          {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
             See all reviews of this add-on
           {% pluralize %}
             See all {{ cnt }} reviews of this add-on

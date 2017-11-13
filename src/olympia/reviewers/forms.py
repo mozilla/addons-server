@@ -10,15 +10,15 @@ from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 
 import olympia.core.logger
 from olympia import amo
-from olympia import reviews
+from olympia import ratings
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
 from olympia.lib import happyforms
-from olympia.reviews.templatetags.jinja_helpers import user_can_delete_review
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
+from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
 from olympia.reviewers.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.reviewers.tasks import (
     approve_rereview, reject_rereview, send_mail)
@@ -31,8 +31,8 @@ log = olympia.core.logger.getLogger('z.reviewers.forms')
 ACTION_FILTERS = (('', ''), ('approved', _(u'Approved reviews')),
                   ('deleted', _(u'Deleted reviews')))
 
-ACTION_DICT = dict(approved=amo.LOG.APPROVE_REVIEW,
-                   deleted=amo.LOG.DELETE_REVIEW)
+ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING,
+                   deleted=amo.LOG.DELETE_RATING)
 
 
 class EventLogForm(happyforms.Form):
@@ -516,26 +516,26 @@ class WhiteboardForm(forms.ModelForm):
         fields = ['whiteboard']
 
 
-class ModerateReviewFlagForm(happyforms.ModelForm):
+class ModerateRatingFlagForm(happyforms.ModelForm):
 
-    action_choices = [(reviews.REVIEW_MODERATE_KEEP,
+    action_choices = [(ratings.REVIEW_MODERATE_KEEP,
                        _(u'Keep review; remove flags')),
-                      (reviews.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
-                      (reviews.REVIEW_MODERATE_DELETE,
+                      (ratings.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
+                      (ratings.REVIEW_MODERATE_DELETE,
                        _(u'Delete review'))]
     action = forms.ChoiceField(choices=action_choices, required=False,
                                initial=0, widget=forms.RadioSelect())
 
     class Meta:
-        model = Review
+        model = Rating
         fields = ('action',)
 
 
-class BaseReviewFlagFormSet(BaseModelFormSet):
+class BaseRatingFlagFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
-        super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
+        super(BaseRatingFlagFormSet, self).__init__(*args, **kwargs)
 
     def save(self):
         for form in self.forms:
@@ -543,12 +543,12 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                                             form.instance):
                 action = int(form.cleaned_data['action'])
 
-                if action == reviews.REVIEW_MODERATE_DELETE:
+                if action == ratings.REVIEW_MODERATE_DELETE:
                     form.instance.delete(user_responsible=self.request.user)
-                elif action == reviews.REVIEW_MODERATE_KEEP:
+                elif action == ratings.REVIEW_MODERATE_KEEP:
                     form.instance.approve(user=self.request.user)
 
 
-ReviewFlagFormSet = modelformset_factory(Review, extra=0,
-                                         form=ModerateReviewFlagForm,
-                                         formset=BaseReviewFlagFormSet)
+RatingFlagFormSet = modelformset_factory(Rating, extra=0,
+                                         form=ModerateRatingFlagForm,
+                                         formset=BaseRatingFlagFormSet)

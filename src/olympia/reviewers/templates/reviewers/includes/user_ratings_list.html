@@ -1,0 +1,14 @@
+<ul class="user_ratings">
+  {% for rating in user_ratings %}
+  <li>
+    {% with date=rating.created|date, ip_address=rating.ip_address %}
+      {% trans user=rating.user|user_link %}
+        {{ user }} on {{ date }} [{{ ip_address }}]
+      {% endtrans %}
+    {% endwith %}
+    <blockquote>
+      <strong>{{ rating.title }}</strong> {{ rating.rating|stars }}<br/>
+      {{ rating.body }}</blockquote>
+  </li>
+  {% endfor %}
+</ul>

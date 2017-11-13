@@ -8,7 +8,7 @@ from olympia.addons.models import Category
 
 
 class TestRedirects(TestCase):
-    fixtures = ['reviews/test_models', 'addons/persona', 'base/global-stats']
+    fixtures = ['ratings/test_models', 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
         """`/personas/film and tv` should go to /themes/film-and-tv"""

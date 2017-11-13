@@ -1,0 +1,157 @@
+[
+    {
+        "pk": 2,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-US",
+            "created": "2009-12-22 20:12:06",
+            "id": 2,
+            "modified": "2009-12-22 20:12:06",
+            "localized_string": "r1 title en"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "de",
+            "created": "2009-12-22 20:12:06",
+            "id": 2,
+            "modified": "2009-12-22 20:12:06",
+            "localized_string": "r1 title de"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "de",
+            "created": "2009-12-22 20:12:06",
+            "id": 3,
+            "modified": "2009-12-22 20:12:06",
+            "localized_string": "r2 title de"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-us",
+            "created": "2009-12-22 20:12:06",
+            "id": 4,
+            "modified": "2009-12-22 20:12:06",
+            "localized_string": "my addon name"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "users.userprofile",
+        "fields": {
+            "created": "2009-10-19 06:21:02",
+            "modified": "2009-10-19 06:21:02",
+            "username": "no one",
+            "email": "arya@example.com"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "addons.addon",
+        "fields": {
+            "type": 1,
+            "status": 4,
+            "slug": "a4",
+            "description": null,
+            "modified": "2008-05-22 11:59:13",
+            "name": 4,
+            "created": "2004-06-11 18:23:31",
+            "_current_version": 592,
+            "last_updated": "2010-01-14 14:15:28"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "versions.license",
+        "fields": {
+            "modified": "2004-06-11 18:23:31",
+            "created": "2004-06-11 18:23:31"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "versions.version",
+        "fields": {
+            "addon": 4,
+            "license": 1,
+            "modified": "2004-06-11 18:23:31",
+            "created": "2004-06-11 18:23:31"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "ratings.rating",
+        "fields": {
+            "body": null,
+            "rating": 4,
+            "title": 2,
+            "created": "2009-12-22 20:12:06",
+            "modified": "2009-12-22 20:12:06",
+            "version": 5,
+            "addon": 4,
+            "user": 1,
+            "reply_to": null
+        }
+    },
+    {
+        "pk": 2,
+        "model": "ratings.rating",
+        "fields": {
+            "body": null,
+            "rating": 4,
+            "title": 3,
+            "created": "2009-12-22 20:12:06",
+            "modified": "2009-12-22 20:12:06",
+            "version": 5,
+            "addon": 4,
+            "user": 1,
+            "reply_to": null,
+            "previous_count": 1,
+            "is_latest": true
+        }
+    },
+    {
+        "pk": 592,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2009-12-06 03:06:48",
+            "modified": "2009-12-06 06:43:48",
+            "version": "1.32",
+            "addon": 4
+        }
+    },
+    {
+        "pk": 592,
+        "model": "files.file",
+        "fields": {
+            "status": 4,
+            "hash": "sha256:fa8934ccfacc78cd35944ae1a1fd0b398f5644698e2f362358c711726e81737e",
+            "created": "2009-12-06 06:47:22",
+            "modified": "2010-01-14 14:15:29",
+            "filename": "gmail/mime-1.32-fx.xpi",
+            "platform": 1,
+            "version": 592,
+            "datestatuschanged": "2010-01-14 14:15:28"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 4,
+            "role": 5,
+            "listed": true,
+            "user": 1
+        }
+    }
+]

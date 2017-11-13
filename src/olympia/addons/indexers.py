@@ -348,8 +348,8 @@ class AddonIndexer(BaseSearchIndexer):
                             for preview in obj.all_previews]
         data['ratings'] = {
             'average': obj.average_rating,
-            'count': obj.total_reviews,
-            'text_count': obj.text_reviews_count,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
         }
         # We can use tag_list because the indexing code goes through the
         # transformer that sets it (attach_tags).

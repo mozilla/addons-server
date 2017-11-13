@@ -14,7 +14,7 @@ from olympia.amo.tests import addon_factory, TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, UserEmailField, UserProfile,
     UserForeignKey)
@@ -167,17 +167,17 @@ class TestUserProfile(TestCase):
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
         version = addon.find_latest_public_listed_version()
-        new_review = Review(version=version, user=u, rating=2, body='hello',
+        new_rating = Rating(version=version, user=u, rating=2, body='hello',
                             addon=addon)
-        new_review.save()
-        new_reply = Review(version=version, user=u, reply_to=new_review,
+        new_rating.save()
+        new_reply = Rating(version=version, user=u, reply_to=new_rating,
                            addon=addon, body='my reply')
         new_reply.save()
 
         review_list = [r.pk for r in u.reviews]
 
         assert len(review_list) == 1
-        assert new_review.pk in review_list, (
+        assert new_rating.pk in review_list, (
             'Original review must show up in review list.')
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
