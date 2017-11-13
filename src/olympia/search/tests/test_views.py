@@ -809,38 +809,6 @@ class TestSearchResultScoring(ESTestCase):
 
         assert results[0] == addons[1].pk
 
-    def test_score_boost_exact_match_l10n(self):
-        """Test that we rank exact matches for loalized content at the top."""
-        addons = [
-            amo.tests.addon_factory(
-                name='test addon test11', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='test addon test21', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-            amo.tests.addon_factory(
-                name='test addon test31', type=amo.ADDON_EXTENSION,
-                average_daily_users=0, weekly_downloads=0),
-        ]
-
-        addons[0].name = {
-            'en-US': 'test addon test11', 'es': 'complemento de prueba test11'}
-        addons[1].name = {
-            'en-US': 'test addon test21', 'es': 'complemento de prueba test21'}
-        addons[2].name = {
-            'en-US': 'test addon test31', 'es': 'complemento de prueba test31'}
-
-        for addon in addons:
-            addon.save()
-
-        self.refresh()
-
-        url = self.url.replace('en-US', 'es')
-        response = self.client.get(url, {'q': 'complemento de prueba test21'})
-        results = self.get_results(response)
-
-        assert results[0] == addons[1].pk
-
 
 class TestPersonaSearch(SearchBase):
 
