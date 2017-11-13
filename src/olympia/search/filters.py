@@ -282,7 +282,8 @@ class SearchQueryFilter(BaseFilterBackend):
         should.append(query.Term(**{
             'name_sort': {
                 'value': search_query, 'boost': 10
-        }}))
+            }
+        }))
 
         # For name, also search in translated field with the right language
         # and analyzer.
