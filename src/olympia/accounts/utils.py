@@ -119,19 +119,21 @@ def process_sqs_queue(queue_url, aws_region, queue_wait_time):
             region_name=aws_region)
         # Poll for messages indefinitely.
         while True:
-            # msg = queue.read(wait_time_seconds=queue_wait_time)
             response = sqs.receive_message(
                 QueueUrl=queue_url, WaitTimeSeconds=queue_wait_time,
                 MaxNumberOfMessages=10)
             msgs = response.get('Messages', []) if response else []
             for message in msgs:
-                process_fxa_event(message.get('Body', ''))
-                # This intentionally deletes the event even if it was some
-                # unrecognized type.  Not point leaving a backlog.
-                if 'ReceiptHandle' in message:
-                    sqs.delete_message(
-                        QueueUrl=queue_url,
-                        ReceiptHandle=message['ReceiptHandle'])
-    except Exception as e:
-        log.exception('Error while processing account events: %s' % e)
-        raise e
+                try:
+                    process_fxa_event(message.get('Body', ''))
+                    # This intentionally deletes the event even if it was some
+                    # unrecognized type.  Not point leaving a backlog.
+                    if 'ReceiptHandle' in message:
+                        sqs.delete_message(
+                            QueueUrl=queue_url,
+                            ReceiptHandle=message['ReceiptHandle'])
+                except Exception as exc:
+                    log.exception('Error while processing message: %s' % exc)
+    except Exception as exc:
+        log.exception('Error while processing account events: %s' % exc)
+        raise exc
