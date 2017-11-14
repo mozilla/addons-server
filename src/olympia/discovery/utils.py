@@ -2,6 +2,7 @@ import json
 import urlparse
 
 from django.conf import settings
+from django.utils.http import urlencode
 
 import requests
 from django_statsd.clients import statsd
@@ -17,14 +18,11 @@ log = olympia.core.logger.getLogger('z.amo')
 
 
 def call_recommendation_server(telemetry_id, locale, platform):
-    params = []
-    if locale:
-        params.append('locale=%s' % locale)
-    if platform:
-        params.append('platform=%s' % platform)
+    params = [(key, value) for key, value in (
+        ('locale', locale), ('platform', platform)) if value]
     endpoint = urlparse.urljoin(
         settings.RECOMMENDATION_ENGINE_URL,
-        '%s/%s%s' % (telemetry_id, '?' if params else '', '&'.join(params)))
+        '%s/%s%s' % (telemetry_id, '?' if params else '', urlencode(params)))
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
