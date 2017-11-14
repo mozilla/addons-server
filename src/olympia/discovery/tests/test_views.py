@@ -154,8 +154,11 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
 
-        response = self.client.get(self.url, {'lang': 'en-US',
-                                              'telemetry-client-id': '666'})
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
+                       'platform': 'WINNT'})
+        self.get_recommendations.assert_called_with('666', 'en-US', 'WINNT')
+
         # should still be the same number of results.
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']
