@@ -13,13 +13,17 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = DiscoverySerializer
 
+    def get_param(self, name):
+        return self.kwargs.get(name) or self.request.GET.get(name)
+
     def get_discopane_items(self):
         if not getattr(self, 'discopane_items', None):
-            telemetry_id = (self.kwargs.get('telemetry-client-id') or
-                            self.request.GET.get('telemetry-client-id'))
+            telemetry_id = self.get_param('telemetry-client-id')
             self.discopane_items = discopane_items
             if switch_is_active('disco-recommendations') and telemetry_id:
-                recommendations = get_recommendations(telemetry_id)
+                recommendations = get_recommendations(
+                    telemetry_id, self.get_param('lang'),
+                    self.get_param('platform'))
                 if recommendations:
                     # if we got some recommendations then replace the
                     # extensions in discopane_items with them.
