@@ -297,6 +297,9 @@ class ActivityLog(ModelBase):
             if model_name in ('str', 'int', 'null'):
                 objs.append(pk)
             else:
+                # Cope with renames of key models:
+                if model_name == 'reviews.review':
+                    model_name = 'ratings.rating'
                 (app_label, model_name) = model_name.split('.')
                 model = apps.get_model(app_label, model_name)
                 # Cope with soft deleted models and unlisted addons.

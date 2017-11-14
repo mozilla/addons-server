@@ -86,10 +86,10 @@ class TestActivityLog(TestCase):
 
     def setUp(self):
         super(TestActivityLog, self).setUp()
-        u = UserProfile.objects.create(username='yolo')
+        self.user = UserProfile.objects.create(username='yolo')
         self.request = Mock()
-        self.request.user = self.user = u
-        core.set_user(u)
+        self.request.user = self.user
+        core.set_user(self.user)
 
     def tearDown(self):
         core.set_user(None)
@@ -170,6 +170,18 @@ class TestActivityLog(TestCase):
         entry._arguments = 'failboat?'
         entry.save()
         assert entry.arguments is None
+
+    def test_arguments_old_reviews_app(self):
+        addon = Addon.objects.get()
+        rating = Rating.objects.create(
+            addon=addon, user=self.user, user_responsible=self.user, rating=5)
+        activity = ActivityLog.objects.latest('pk')
+        # Override _arguments to use reviews.review instead of ratings.rating,
+        # as old data already present in the db would use.
+        activity._arguments = (
+            u'[{"addons.addon": %d}, {"reviews.review": %d}]' % (
+                addon.pk, rating.pk))
+        assert activity.arguments == [addon, rating]
 
     def test_no_arguments(self):
         ActivityLog.create(amo.LOG.CUSTOM_HTML)
