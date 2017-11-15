@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-08-10 16:57+0000\n"
+"PO-Revision-Date: 2017-11-15 14:03+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -194,7 +194,7 @@ msgid "Marked for deletion"
 msgstr "Marcado para eliminar"
 
 msgid "Updating results&hellip;"
-msgstr "A atualizar resultados:"
+msgstr "A atualizar resultados&hellip;"
 
 msgid "Category"
 msgstr "Categoria"
@@ -686,7 +686,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "A adicionar aos favoritos&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "A remover favoritos"
+msgstr "A remover favoritos&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Adicionar aos favoritos"
@@ -786,7 +786,7 @@ msgid "{name} was viewing this add-on first."
 msgstr "{name} estava a ver primeiro este extra."
 
 msgid "Loading&hellip;"
-msgstr "A carregar"
+msgstr "A carregar&hellip;"
 
 msgid "Version Notes"
 msgstr "Notas da versão"
