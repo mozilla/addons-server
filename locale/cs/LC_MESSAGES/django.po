@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-11 21:34+0000\n"
+"PO-Revision-Date: 2017-11-15 10:56+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3066,7 +3066,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "Tento doplněk nevyžaduje platby, placené služby či software, ani dodatečný hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Kategorie jsou pro uživatele hlavní způsob orientace mezi doplňky. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které se k němu hodí."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3077,9 +3077,11 @@ msgstr ""
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho kategorie. Pokud máte důvod, proč je potřeba kategorie změnit, napište nám prosím e-mailem na <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Štítky pomáhají uživatelům najít doplněk. Měly by to být krátké popisky jako například panely, lišta nebo twitter. Můžete zadat maximálně {0} tagů."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -6281,7 +6283,6 @@ msgid "end"
 msgstr "konec"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
 msgstr "doplněk, recenze nebo komentář"
 
@@ -6770,9 +6771,8 @@ msgstr "Užitečné odkazy:"
 msgid "Add-on Policy"
 msgstr "Zásady pro doplňky"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Příručka redaktora"
+msgstr "Příručka recenzenta"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
