@@ -2,7 +2,7 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from olympia.amo import permissions
+from olympia.constants import permissions
 from olympia.access import acl
 from olympia.amo.decorators import login_required
 
