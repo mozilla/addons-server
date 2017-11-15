@@ -7,6 +7,7 @@ from olympia.reviewers import views, views_themes
 # All URLs under /editors/
 urlpatterns = (
     url(r'^$', views.home, name='reviewers.home'),
+    url(r'dashboard$', views.dashboard, name='reviewers.dashboard'),
     url(r'^queue$', views.queue, name='reviewers.queue'),
     url(r'^queue/new$', views.queue_nominated,
         name='reviewers.queue_nominated'),

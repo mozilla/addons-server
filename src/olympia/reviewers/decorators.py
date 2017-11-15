@@ -117,3 +117,22 @@ def any_reviewer_required(f):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper
+
+
+def any_reviewer_or_moderator_required(f):
+    """Like @any_reviewer_required, but allows users with Ratings:Moderate
+    as well."""
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        allow_access = (
+            acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW) or
+            acl.action_allowed(request, permissions.ADDONS_REVIEW) or
+            acl.action_allowed(request, permissions.ADDONS_REVIEW_UNLISTED) or
+            acl.action_allowed(request, permissions.ADDONS_CONTENT_REVIEW) or
+            acl.action_allowed(request, permissions.ADDONS_POST_REVIEW) or
+            acl.action_allowed(request, permissions.THEMES_REVIEW) or
+            acl.action_allowed(request, permissions.RATINGS_MODERATE))
+        if allow_access:
+            return f(request, *args, **kw)
+        raise PermissionDenied
+    return wrapper

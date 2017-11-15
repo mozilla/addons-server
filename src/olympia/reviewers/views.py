@@ -19,7 +19,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
-from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.utils import paginate, render
@@ -30,7 +30,7 @@ from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
     EventLog, get_flags, get_reviewing_cache, get_reviewing_cache_key,
-    PerformanceGraph, ReviewerScore, ReviewerSubscription,
+    PerformanceGraph, RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.reviewers.utils import (
@@ -42,7 +42,8 @@ from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
     addons_reviewer_required, any_reviewer_required,
-    ratings_moderator_required, unlisted_addons_reviewer_required)
+    any_reviewer_or_moderator_required, ratings_moderator_required,
+    unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -62,7 +63,7 @@ def context(request, **kw):
     return ctx
 
 
-@any_reviewer_required
+@any_reviewer_or_moderator_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.reviewer_events()
@@ -85,7 +86,7 @@ def eventlog(request):
     return render(request, 'reviewers/eventlog.html', data)
 
 
-@any_reviewer_required
+@any_reviewer_or_moderator_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.reviewer_events(), pk=id)
 
@@ -134,6 +135,101 @@ def beta_signed_log(request):
     data = context(request, form=form, pager=pager,
                    motd_editable=motd_editable)
     return render(request, 'reviewers/beta_signed_log.html', data)
+
+
+@any_reviewer_or_moderator_required
+def dashboard(request):
+    # The dashboard is divided into sections that depend on what the reviewer
+    # has access to, each section having one or more links, each link being
+    # defined by a text and an URL. The template will show every link of every
+    # section we provide in the context.
+    sections = OrderedDict()
+    if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        sections[ugettext('Legacy Add-ons')] = [(
+            ugettext('New Add-ons ({0})').format(
+                ViewFullReviewQueue.objects.count()),
+            reverse('reviewers.queue_nominated')
+        ), (
+            ugettext('Add-on Updates ({0})').format(
+                ViewPendingQueue.objects.count()),
+            reverse('reviewers.queue_pending')
+        ), (
+            ugettext('Performance'),
+            reverse('reviewers.performance')
+        ), (
+            ugettext('Add-on Review Log'),
+            reverse('reviewers.reviewlog')
+        ), (
+            ugettext('Signed Beta Files Log'),
+            reverse('reviewers.beta_signed_log')
+        )]
+    if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
+        sections[ugettext('Auto-Approved Add-ons')] = [(
+            ugettext('Auto Approved Add-ons ({0})').format(
+                AutoApprovalSummary.get_auto_approved_queue().count()),
+            reverse('reviewers.queue_auto_approved')
+        ), (
+            ugettext('Performance'),
+            reverse('reviewers.performance')
+        ), (
+            ugettext('Add-on Review Log'),
+            reverse('reviewers.reviewlog')
+        )]
+    if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
+        sections[ugettext('Content Review')] = [(
+            ugettext('Content Review ({0})').format(
+                AutoApprovalSummary.get_content_review_queue().count()),
+            reverse('reviewers.queue_content_review')
+        ), (
+            ugettext('Performance'),
+            reverse('reviewers.performance')
+        )]
+    if acl.action_allowed(request, amo.permissions.THEMES_REVIEW):
+        sections[ugettext('Lightweight Themes')] = [(
+            ugettext('New Themes ({0})').format(
+                Persona.objects.filter(
+                    addon__status=amo.STATUS_PENDING).count()),
+            reverse('reviewers.themes.list')
+        ), (
+            ugettext('Themes Updates ({0})').format(
+                RereviewQueueTheme.objects.count()),
+            reverse('reviewers.themes.list_rereview')
+        ), (
+            ugettext('Flagged Themes ({0})').format(
+                Persona.objects.filter(
+                    addon__status=amo.STATUS_REVIEW_PENDING).count()),
+            reverse('reviewers.themes.list_flagged')
+        ), (
+            ugettext('Themes Review Log'),
+            reverse('reviewers.themes.logs')
+        ), (
+            ugettext('Deleted themes Log'),
+            reverse('reviewers.themes.deleted')
+        )]
+    if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+        sections[ugettext('User Ratings Moderation')] = [(
+            ugettext('Ratings Awaiting Moderation ({0})').format(
+                Rating.objects.all().to_moderate().count()),
+            reverse('reviewers.queue_moderated')
+        ), (
+            ugettext('Moderated Review Log'),
+            reverse('reviewers.eventlog')
+        )]
+    if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED):
+        sections[ugettext('Unlisted Add-ons')] = [(
+            ugettext('All Unlisted Add-ons'),
+            reverse('reviewers.unlisted_queue_all')
+        )]
+
+    if acl.action_allowed(request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
+        sections[ugettext('Announcement')] = [(
+            ugettext('Update message of the day'),
+            reverse('reviewers.motd')
+        )]
+    return render(request, 'reviewers/dashboard.html', base_context(**{
+        # base_context includes motd.
+        'sections': sections
+    }))
 
 
 @any_reviewer_required

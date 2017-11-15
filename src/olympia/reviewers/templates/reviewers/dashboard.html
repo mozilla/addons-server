@@ -1,0 +1,21 @@
+{% extends "reviewers/base.html" %}
+
+{# Obsolete blocks that are not supposed to be displayed in the new reviewer UI #}
+{% block navbar %}{% endblock %}
+{% block pillnav %}{% endblock %}
+{% block header_search %}{% endblock %}
+
+{% block content %}
+  <div id="reviewers_main" class="dashboard">
+    <div class="listing">
+      {% for section_name in sections %}
+        <h3>{{ section_name }}</h3>
+        <ul>
+          {% for text, href in sections[section_name] %}
+            <li><a href="{{ href }}">{{ text }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
