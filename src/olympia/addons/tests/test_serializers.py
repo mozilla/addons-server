@@ -23,6 +23,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
@@ -773,6 +774,27 @@ class TestVersionSerializerOutput(TestCase):
         # LicenseSerializer is unable to find the Version, so it falls back to
         # None.
         assert result['url'] is None
+
+    def test_builtin_license(self):
+        addon = addon_factory()
+        self.version = addon.current_version
+        license = self.version.license
+        license.update(builtin=18)
+        assert license._constant == LICENSES_BY_BUILTIN[18]
+
+        result = LicenseSerializer(
+            context={'request': self.request}).to_representation(license)
+        assert result['id'] == license.pk
+        # A request with no ?lang gets you the site default l10n in a dict to
+        # match how non-constant values are returned.
+        assert result['name'] == {
+            'en-US': unicode(LICENSES_BY_BUILTIN[18].name)}
+
+        # But a requested lang returns a flat string
+        lang_request = APIRequestFactory().get('/?lang=fr')
+        result = LicenseSerializer(
+            context={'request': lang_request}).to_representation(license)
+        assert result['name'] == unicode(LICENSES_BY_BUILTIN[18].name)
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version
