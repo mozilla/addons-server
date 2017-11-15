@@ -116,7 +116,8 @@ class LicenseSerializer(serializers.ModelSerializer):
         # given License. However, since we're serializing through a nested
         # serializer, we cheat and use `instance.version_instance` which is
         # set by SimpleVersionSerializer.to_representation() while serializing.
-        if hasattr(obj, 'version_instance'):
+        # Only get the version license url for non-builtin licenses.
+        if not obj.builtin and hasattr(obj, 'version_instance'):
             return absolutify(obj.version_instance.license_url())
         return None
 

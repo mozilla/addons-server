@@ -752,13 +752,18 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
-        license.update(url=None)
+        license.update(url=None, builtin=license.OTHER)
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license']
         assert result['license']['id'] == license.pk
         assert result['license']['url'] == absolutify(
             self.version.license_url())
+
+        license.update(builtin=1)
+        result = self.serialize()
+        # Builtin licenses with no url shouldn't get the version license url.
+        assert result['license']['url'] is None
 
     def test_license_serializer_no_url_no_parent(self):
         # This should not happen (LicenseSerializer should always be called
