@@ -116,7 +116,7 @@ def eventlog_detail(request, id):
     return render(request, 'reviewers/eventlog_detail.html', data)
 
 
-@any_reviewer_required
+@addons_reviewer_required
 def beta_signed_log(request):
     """Log of all the beta files that got signed."""
     form = forms.BetaSignedLogForm(request.GET)
