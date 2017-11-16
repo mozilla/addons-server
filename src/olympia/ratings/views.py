@@ -91,7 +91,7 @@ def review_list(request, addon, review_id=None, user_id=None):
 def get_flags(request, reviews):
     reviews = [r.id for r in reviews]
     qs = RatingFlag.objects.filter(rating__in=reviews, user=request.user.id)
-    return {obj.review_id: obj for obj in qs}
+    return {obj.rating_id: obj for obj in qs}
 
 
 @addon_view

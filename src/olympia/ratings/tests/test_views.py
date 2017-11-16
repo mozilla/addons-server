@@ -171,6 +171,22 @@ class TestViews(ReviewTest):
         classes = sorted(c.get('class') for c in actions.find('li a'))
         assert classes == ['delete-review', 'review-reply-edit']
 
+    def test_list_item_actions_already_flagged(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        self.client.login(email=user.email)
+        rating = Rating.objects.get(id=218207)
+        RatingFlag.objects.create(rating=rating, user=user)
+        response = self.client.get(jinja_helpers.url(
+            'addons.ratings.list', self.addon.slug))
+        assert response.status_code == 200
+        reviews = pq(response.content)('#reviews .item')
+        item = reviews.filter('#review-218207')
+        actions = item.find('.item-actions')
+        assert actions.length == 1
+        classes = sorted(c.get('class') for c in actions.find('li a'))
+        # flag-review action is absent since the user already flagged it.
+        assert classes == ['delete-review']
+
     def test_cant_view_unlisted_addon_reviews(self):
         """An unlisted addon doesn't have reviews."""
         self.make_addon_unlisted(self.addon)
