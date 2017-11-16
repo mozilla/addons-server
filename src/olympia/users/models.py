@@ -140,6 +140,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                              editable=False)
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
+    email_changed = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
     # Note: this is only used for API responses (thus addons-frontend) - all
