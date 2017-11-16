@@ -1,5 +1,7 @@
 import re
 
+from django.conf import settings
+
 from rest_framework import serializers
 
 from olympia import amo
@@ -91,13 +93,18 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
-    name = TranslationSerializerField()
+    name = serializers.SerializerMethodField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
         fields = ('id', 'name', 'text', 'url')
+
+    def __init__(self, *args, **kwargs):
+        super(LicenseSerializer, self).__init__(*args, **kwargs)
+        self.db_name = TranslationSerializerField()
+        self.db_name.bind('name', self)
 
     def get_url(self, obj):
         return obj.url or self.get_version_license_url(obj)
@@ -109,9 +116,25 @@ class LicenseSerializer(serializers.ModelSerializer):
         # given License. However, since we're serializing through a nested
         # serializer, we cheat and use `instance.version_instance` which is
         # set by SimpleVersionSerializer.to_representation() while serializing.
-        if hasattr(obj, 'version_instance'):
+        # Only get the version license url for non-builtin licenses.
+        if not obj.builtin and hasattr(obj, 'version_instance'):
             return absolutify(obj.version_instance.license_url())
         return None
+
+    def get_name(self, obj):
+        # See if there is a license constant
+        license_constant = obj._constant
+        if not license_constant:
+            # If not fall back on the name in the database.
+            return self.db_name.get_attribute(obj)
+        else:
+            request = self.context.get('request', None)
+            if request and request.method == 'GET' and 'lang' in request.GET:
+                # A single lang requested so return a flat string
+                return unicode(license_constant.name)
+            else:
+                # Otherwise mock the dict, and it's going to be lang default.
+                return {settings.LANGUAGE_CODE: unicode(license_constant.name)}
 
 
 class CompactLicenseSerializer(LicenseSerializer):
