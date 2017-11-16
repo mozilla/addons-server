@@ -1376,7 +1376,7 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Confirm complete already.
 
-        addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=addon).delete()
         addon = Addon.objects.get(id=3615)
         assert not addon.has_complete_metadata()
         assert addon.has_complete_metadata(has_listed_versions=False)
@@ -1408,7 +1408,7 @@ class TestAddonModels(TestCase):
 
         # Clear everything
         addon.versions.update(license=None)
-        addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=addon).delete()
         delete_translation(addon, 'summary')
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Still complete

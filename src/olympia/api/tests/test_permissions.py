@@ -15,6 +15,7 @@ from olympia.api.permissions import (
     AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, WithDynamicEndpoints)
+from olympia.access.models import GroupUser
 
 
 class ProtectedView(APIView):
@@ -45,7 +46,7 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
         self.login(self.user)
 
     def test_user_must_be_in_required_group(self):
-        self.user.groups.all().delete()
+        GroupUser.objects.filter(user=self.user).delete()
         res = self.client.get(self.url)
         assert res.status_code == 403, res.content
         assert res.data['detail'] == (
