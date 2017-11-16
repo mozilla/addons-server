@@ -21,7 +21,7 @@ from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.decorators import (
-    json_view, permission_required, post_required)
+    json_view, login_required, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
@@ -62,7 +62,7 @@ def context(request, **kw):
     return ctx
 
 
-@addons_reviewer_required
+@any_reviewer_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.reviewer_events()
@@ -85,7 +85,7 @@ def eventlog(request):
     return render(request, 'reviewers/eventlog.html', data)
 
 
-@addons_reviewer_required
+@any_reviewer_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.reviewer_events(), pk=id)
 
@@ -223,7 +223,7 @@ def _reviewer_progress(limited_reviewer=False):
     return (progress, percentage)
 
 
-@addons_reviewer_required
+@any_reviewer_required
 def performance(request, user_id=False):
     user = request.user
     reviewers = _recent_reviewers()
@@ -632,13 +632,50 @@ def _get_comments_for_hard_deleted_versions(addon):
     return comment_versions.values()
 
 
-@addons_reviewer_required
-@addon_view_factory(qs=Addon.unfiltered.all)
-def review(request, addon, channel=None):
-    whiteboard_url = reverse(
-        'reviewers.whiteboard',
-        args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
-    if channel == 'content':
+def perform_review_permission_checks(
+        request, addon, channel, content_review_only=False):
+    """Perform the permission checks needed by the review() view or anything
+    that follows the same behavior, such as the whiteboard() view.
+
+    Raises PermissionDenied when the current user on the request does not have
+    the right permissions for the context defined by addon, channel and
+    content_review_only boolean.
+    """
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions())
+    was_auto_approved = (
+        channel == amo.RELEASE_CHANNEL_LISTED and
+        addon.current_version and addon.current_version.was_auto_approved)
+
+    # Are we looking at an unlisted review page, or (weirdly) the listed
+    # review page of an unlisted-only add-on?
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
+
+    # If we're only doing a content review, we just need to check for the
+    # content review permission, otherwise it's the "main" review page.
+    if content_review_only:
+        if not acl.action_allowed(
+                request, amo.permissions.ADDONS_CONTENT_REVIEW):
+            raise PermissionDenied
+    else:
+        # Was the add-on auto-approved?
+        if was_auto_approved and not acl.action_allowed(
+                request, amo.permissions.ADDONS_POST_REVIEW):
+            raise PermissionDenied
+
+        # Finally, if it wasn't auto-approved, check for legacy reviewer
+        # permission.
+        if not was_auto_approved and not acl.action_allowed(
+                request, amo.permissions.ADDONS_REVIEW):
+            raise PermissionDenied
+
+
+def determine_channel(channel_as_text):
+    """Determine which channel the review is for according to the channel
+    parameter as text, and whether we should be in content-review only mode."""
+    if channel_as_text == 'content':
         # 'content' is not a real channel, just a different review mode for
         # listed add-ons.
         content_review_only = True
@@ -647,16 +684,33 @@ def review(request, addon, channel=None):
         content_review_only = False
     # channel is passed in as text, but we want the constant.
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
-        channel, amo.RELEASE_CHANNEL_LISTED)
+        channel_as_text, amo.RELEASE_CHANNEL_LISTED)
+    return channel, content_review_only
 
-    if content_review_only and not acl.action_allowed(
-            request, amo.permissions.ADDONS_CONTENT_REVIEW):
-        raise PermissionDenied
 
-    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
-                     not addon.has_listed_versions())
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
+# Permission checks for this view are done inside, depending on type of review
+# needed, using perform_review_permission_checks().
+@login_required
+@addon_view_factory(qs=Addon.unfiltered.all)
+def review(request, addon, channel=None):
+    whiteboard_url = reverse(
+        'reviewers.whiteboard',
+        args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
+    channel, content_review_only = determine_channel(channel)
+
+    was_auto_approved = (
+        channel == amo.RELEASE_CHANNEL_LISTED and
+        addon.current_version and addon.current_version.was_auto_approved)
+
+    # If we're just looking (GET) we can bypass the specific permissions checks
+    # if we have ReviewerTools:View.
+    bypass_more_specific_permissions_because_read_only = (
+        request.method == 'GET' and acl.action_allowed(
+            request, amo.permissions.REVIEWER_TOOLS_VIEW))
+
+    if not bypass_more_specific_permissions_because_read_only:
+        perform_review_permission_checks(
+            request, addon, channel, content_review_only=content_review_only)
 
     version = addon.find_latest_version(
         channel=channel, exclude=(amo.STATUS_BETA,))
@@ -675,17 +729,12 @@ def review(request, addon, channel=None):
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
                             helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    is_post_reviewer = acl.action_allowed(request,
-                                          amo.permissions.ADDONS_POST_REVIEW)
 
     approvals_info = None
     reports = None
     user_ratings = None
-    was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
-        if addon.current_version:
-            was_auto_approved = addon.current_version.was_auto_approved
-        if is_post_reviewer and version and version.is_webextension:
+        if was_auto_approved:
             try:
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:
@@ -703,7 +752,7 @@ def review(request, addon, channel=None):
 
         if content_review_only:
             queue_type = 'content_review'
-        elif was_auto_approved and is_post_reviewer:
+        elif was_auto_approved:
             queue_type = 'auto_approved'
         else:
             queue_type = form.helper.handler.review_type
@@ -788,7 +837,7 @@ def review(request, addon, channel=None):
     # generate auto approvals info. Note that the variable should not clash
     # the already existing 'version'.
     for a_version in pager.object_list:
-        if not is_post_reviewer or not a_version.is_ready_for_auto_approval:
+        if not a_version.is_ready_for_auto_approval:
             continue
         try:
             summary = a_version.autoapprovalsummary
@@ -817,9 +866,8 @@ def review(request, addon, channel=None):
         actions_minimal=actions_minimal, addon=addon,
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         canned=canned, content_review_only=content_review_only, count=count,
-        flags=flags, form=form, is_admin=is_admin,
-        is_post_reviewer=is_post_reviewer, num_pages=num_pages, pager=pager,
-        reports=reports, show_diff=show_diff,
+        flags=flags, form=form, is_admin=is_admin, num_pages=num_pages,
+        pager=pager, reports=reports, show_diff=show_diff,
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes=user_changes_log, user_ratings=user_ratings,
         version=version, was_auto_approved=was_auto_approved,
@@ -830,7 +878,7 @@ def review(request, addon, channel=None):
 
 @never_cache
 @json_view
-@addons_reviewer_required
+@any_reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
         return {}
@@ -874,7 +922,7 @@ def review_viewing(request):
 
 @never_cache
 @json_view
-@addons_reviewer_required
+@any_reviewer_required
 def queue_viewing(request):
     if 'addon_ids' not in request.POST:
         return {}
@@ -895,7 +943,7 @@ def queue_viewing(request):
 
 
 @json_view
-@addons_reviewer_required
+@any_reviewer_required
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon.objects, pk=addon_id)
     version = addon.latest_version
@@ -904,13 +952,13 @@ def queue_version_notes(request, addon_id):
 
 
 @json_view
-@addons_reviewer_required
+@any_reviewer_required
 def queue_review_text(request, log_id):
     review = get_object_or_404(CommentLog, activity_log_id=log_id)
     return {'reviewtext': review.comments}
 
 
-@addons_reviewer_required
+@any_reviewer_required
 def reviewlog(request):
     data = request.GET.copy()
 
@@ -950,7 +998,7 @@ def reviewlog(request):
     return render(request, 'reviewers/reviewlog.html', data)
 
 
-@addons_reviewer_required
+@any_reviewer_required
 @addon_view
 def abuse_reports(request, addon):
     developers = addon.listed_authors
@@ -961,20 +1009,27 @@ def abuse_reports(request, addon):
     return render(request, 'reviewers/abuse_reports.html', data)
 
 
-@addons_reviewer_required
+@any_reviewer_required
 def leaderboard(request):
     return render(request, 'reviewers/leaderboard.html', context(
         request, scores=ReviewerScore.all_users_by_score()))
 
 
-@addons_reviewer_required
+# Permission checks for this view are done inside, depending on type of review
+# needed, using perform_review_permission_checks().
+@login_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def whiteboard(request, addon, channel):
+    channel_as_text = channel
+    channel, content_review_only = determine_channel(channel)
+    perform_review_permission_checks(
+        request, addon, channel, content_review_only=content_review_only)
+
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 
     if form.is_valid():
         addon = form.save()
-        return redirect('reviewers.review', channel,
+        return redirect('reviewers.review', channel_as_text,
                         addon.slug if addon.slug else addon.pk)
     raise PermissionDenied
 

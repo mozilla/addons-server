@@ -2,7 +2,7 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from olympia import amo
+from olympia.constants import permissions
 from olympia.access import acl
 from olympia.amo.decorators import login_required
 
@@ -14,7 +14,7 @@ def _view_on_get(request):
     a GET request, they are allowed to view.
     """
     return (request.method == 'GET' and
-            acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW))
+            acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW))
 
 
 def addons_reviewer_required(f):
@@ -85,18 +85,35 @@ def ratings_moderator_required(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         if _view_on_get(request) or acl.action_allowed(
-                request, amo.permissions.RATINGS_MODERATE):
+                request, permissions.RATINGS_MODERATE):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper
 
 
 def any_reviewer_required(f):
-    """Require an addons or personas reviewer."""
+    """Require any kind of reviewer. Use only for views that don't alter data
+    but just provide a generic reviewer-related page, such as the reviewer
+    dashboard.
+
+    Allows access to users with any of those permissions:
+    - ReviewerTools:View
+    - Addons:Review
+    - Addons:ReviewUnlisted
+    - Addons:ContentReview
+    - Addons:PostReview
+    - Personas:Review
+    """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        try:
-            return addons_reviewer_required(f)(request, *args, **kw)
-        except PermissionDenied:
-            return personas_reviewer_required(f)(request, *args, **kw)
+        allow_access = (
+            acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW) or
+            acl.action_allowed(request, permissions.ADDONS_REVIEW) or
+            acl.action_allowed(request, permissions.ADDONS_REVIEW_UNLISTED) or
+            acl.action_allowed(request, permissions.ADDONS_CONTENT_REVIEW) or
+            acl.action_allowed(request, permissions.ADDONS_POST_REVIEW) or
+            acl.action_allowed(request, permissions.THEMES_REVIEW))
+        if allow_access:
+            return f(request, *args, **kw)
+        raise PermissionDenied
     return wrapper
