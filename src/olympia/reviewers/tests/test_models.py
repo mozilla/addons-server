@@ -682,6 +682,25 @@ class TestReviewerScore(TestCase):
         assert len(leaders['leader_top']) == 3
         assert len(leaders['leader_near']) == 2
 
+    def test_leaderboard_score_when_in_multiple_reviewer_groups(self):
+        group_reviewers = Group.objects.create(
+            name='Reviewers: Addons', rules='Addons:Review')
+        group_content_reviewers = Group.objects.create(
+            name='Reviewers: Content', rules='Addons:ContentReview')
+        GroupUser.objects.create(group=group_reviewers, user=self.user)
+        GroupUser.objects.create(group=group_content_reviewers, user=self.user)
+
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=True, content_review=False)
+        assert ReviewerScore._leaderboard_list() == [(
+            self.user.id, self.user.name, amo.REVIEWED_SCORES[
+                amo.REVIEWED_EXTENSION_HIGH_RISK])]
+
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.create(
             username='otherreviewer', email='otherreviewer@mozilla.com')
