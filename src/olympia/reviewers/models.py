@@ -623,12 +623,16 @@ class ReviewerScore(ModelBase):
         Returns base leaderboard list. Each item will be a tuple containing
         (user_id, name, total).
         """
+
+        reviewers = (UserProfile.objects
+                                .filter(groups__name__startswith='Reviewers: ')
+                                .exclude(groups__name__in=('Staff', 'Admins',
+                                         'No Reviewer Incentives'))
+                                .distinct())
         qs = (cls.objects
                  .values_list('user__id')
+                 .filter(user__in=reviewers)
                  .annotate(total=Sum('score'))
-                 .filter(user__groups__name__startswith='Reviewers: ')
-                 .exclude(user__groups__name__in=('No Reviewer Incentives',
-                                                  'Staff', 'Admins'))
                  .order_by('-total'))
 
         if since is not None:
@@ -640,7 +644,7 @@ class ReviewerScore(ModelBase):
         if addon_type is not None:
             qs = qs.filter(addon__type=addon_type)
 
-        users = UserProfile.objects.in_bulk([item[0] for item in qs])
+        users = {reviewer.pk: reviewer for reviewer in reviewers}
         return [
             (item[0], users.get(item[0], UserProfile()).name, item[1])
             for item in qs]
