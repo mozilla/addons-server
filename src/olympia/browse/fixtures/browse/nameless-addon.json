@@ -26,7 +26,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "admin_review": 0,
             "external_software": 0,
             "name": null,
             "created": "2009-12-30 06:35:27",

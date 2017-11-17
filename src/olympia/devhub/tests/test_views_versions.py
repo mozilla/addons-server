@@ -13,7 +13,7 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.users.models import UserProfile
@@ -699,7 +699,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
-        assert version.addon.admin_review
+        assert version.addon.needs_admin_code_review
 
         # Check that the corresponding automatic activity log has been created.
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
@@ -716,7 +716,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             assert response.status_code == 200
             assert not Version.objects.get(pk=self.version.pk).source
 
-    def test_dont_reset_admin_review_flag_if_no_new_source(self):
+    def test_dont_reset_needs_admin_code_review_flag_if_no_new_source(self):
         tdir = temp.gettempdir()
         tmp_file = temp.NamedTemporaryFile
         with tmp_file(suffix=".zip", dir=tdir) as source_file:
@@ -727,17 +727,18 @@ class TestVersionEditDetails(TestVersionEditBase):
             assert response.status_code == 302
             version = Version.objects.get(pk=self.version.pk)
             assert version.source
-            assert version.addon.admin_review
+            assert version.addon.needs_admin_code_review
 
         # Unset the "admin review" flag, and re save the version. It shouldn't
         # reset the flag, as the source hasn't changed.
-        version.addon.update(admin_review=False)
+        AddonReviewerFlags.objects.get(addon=version.addon).update(
+            needs_admin_code_review=False)
         data = self.formset(name='some other name')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
-        assert not version.addon.admin_review
+        assert not version.addon.needs_admin_code_review
 
     def test_update_source_file_should_drop_info_request_flag(self):
         version = Version.objects.get(pk=self.version.pk)

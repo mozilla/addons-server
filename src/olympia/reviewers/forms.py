@@ -102,11 +102,9 @@ class QueueSearchForm(happyforms.Form):
         label=_(u'Search by add-on name / author email'))
     searching = forms.BooleanField(widget=forms.HiddenInput, required=False,
                                    initial=True)
-    admin_review = forms.ChoiceField(required=False,
-                                     choices=[('', ''),
-                                              ('1', _(u'yes')),
-                                              ('0', _(u'no'))],
-                                     label=_(u'Admin Flag'))
+    needs_admin_code_review = forms.ChoiceField(
+        required=False, label=_(u'Needs Admin Code Review'), choices=[
+            ('', ''), ('1', _(u'yes')), ('0', _(u'no'))])
     application_id = forms.ChoiceField(
         required=False,
         label=_(u'Application'),
@@ -130,8 +128,9 @@ class QueueSearchForm(happyforms.Form):
 
     def filter_qs(self, qs):
         data = self.cleaned_data
-        if data['admin_review']:
-            qs = qs.filter(admin_review=data['admin_review'])
+        if data['needs_admin_code_review']:
+            qs = qs.filter(
+                needs_admin_code_review=data['needs_admin_code_review'])
         if data['addon_type_ids']:
             qs = qs.filter_raw('addon_type_id IN', data['addon_type_ids'])
         if data['application_id']:
@@ -182,10 +181,9 @@ class AllAddonSearchForm(happyforms.Form):
         widget=forms.HiddenInput,
         required=False,
         initial=True)
-    admin_review = forms.ChoiceField(
-        required=False,
-        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
-        label=_(u'Admin Flag'))
+    needs_admin_code_review = forms.ChoiceField(
+        required=False, label=_(u'Needs Admin Code Review'), choices=[
+            ('', ''), ('1', _(u'yes')), ('0', _(u'no'))])
     application_id = forms.ChoiceField(
         required=False,
         label=_(u'Application'),
@@ -226,8 +224,9 @@ class AllAddonSearchForm(happyforms.Form):
 
     def filter_qs(self, qs):
         data = self.cleaned_data
-        if data['admin_review']:
-            qs = qs.filter(admin_review=data['admin_review'])
+        if data['needs_admin_code_review']:
+            qs = qs.filter(
+                needs_admin_code_review=data['needs_admin_code_review'])
         if data['deleted']:
             qs = qs.filter(is_deleted=data['deleted'])
         if data['application_id']:
@@ -308,8 +307,10 @@ class ReviewForm(happyforms.Form):
                                         u'add-on is updated. (Subsequent '
                                         u'updates will not generate an '
                                         u'email)'))
-    adminflag = forms.BooleanField(required=False,
-                                   label=_(u'Clear Admin Review Flag'))
+    clear_admin_code_review = forms.BooleanField(
+        required=False, label=_(u'Clear Admin Code Review Flag'))
+    clear_admin_content_review = forms.BooleanField(
+        required=False, label=_(u'Clear Admin Content Review Flag'))
     info_request = forms.BooleanField(
         required=False, label=_(u'Is more info requested?'))
 

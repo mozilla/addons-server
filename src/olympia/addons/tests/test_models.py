@@ -2280,7 +2280,7 @@ class TestAddonFromUpload(UploadTest):
         upload = self.get_upload('extension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(upload, [self.platform])
-        assert not addon.admin_review
+        assert not addon.needs_admin_code_review
 
     def test_validation_timeout(self):
         upload = self.get_upload('extension.xpi')
@@ -2292,7 +2292,7 @@ class TestAddonFromUpload(UploadTest):
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
         addon = Addon.from_upload(upload, [self.platform])
-        assert addon.admin_review
+        assert addon.needs_admin_code_review
 
     def test_webextension_generate_guid(self):
         addon = Addon.from_upload(

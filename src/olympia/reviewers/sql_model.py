@@ -256,9 +256,12 @@ class RawSQLManager(object):
         """Makes a WHERE clause out of field = val."""
         if not FIELD_PATTERN.match(field):
             raise ValueError('Not a valid field for where clause: %r' % field)
-        param_k = self._param(val)
         field = self._resolve_alias(field)
-        return u'%s = %%(%s)s' % (field, param_k)
+        if val is None:
+            return u'%s IS NULL' % (field, )
+        else:
+            param_k = self._param(val)
+            return u'%s = %%(%s)s' % (field, param_k)
 
     def _filter_to_clause(self, *specs, **kw):
         """Makes a WHERE clause out of filter_raw() arguments."""

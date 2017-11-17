@@ -945,7 +945,7 @@ class TestReviewHelper(TestCase):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_super_review()
 
-        assert self.addon.admin_review
+        assert self.addon.needs_admin_code_review
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -959,7 +959,7 @@ class TestReviewHelper(TestCase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.helper.handler.process_super_review()
 
-        assert self.addon.admin_review
+        assert self.addon.needs_admin_code_review
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
@@ -967,7 +967,7 @@ class TestReviewHelper(TestCase):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.helper.handler.process_super_review()
 
-        assert self.addon.admin_review
+        assert self.addon.needs_admin_code_review
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -1015,7 +1015,7 @@ class TestReviewHelper(TestCase):
             self.setup_data(status)
             self.helper.handler.process_super_review()
 
-            assert self.addon.admin_review
+            assert self.addon.needs_admin_code_review
 
             assert len(mail.outbox) == 1
             assert mail.outbox[0].subject == (

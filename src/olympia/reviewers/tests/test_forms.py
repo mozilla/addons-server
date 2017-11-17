@@ -5,7 +5,7 @@ from django.utils.encoding import force_text
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory, file_factory, TestCase, version_factory)
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.utils import ReviewHelper
@@ -32,7 +32,7 @@ class TestReviewForm(TestCase):
             helper=ReviewHelper(request=self.request, addon=self.addon,
                                 version=self.version))
 
-    def set_statuses(self, addon_status, file_status):
+    def set_statuses_and_get_actions(self, addon_status, file_status):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
@@ -41,51 +41,58 @@ class TestReviewForm(TestCase):
         return form.helper.get_actions(self.request)
 
     def test_actions_reject(self):
-        reject = self.set_statuses(
+        actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW)['reject']['details']
-        assert force_text(reject).startswith('This will reject this version')
+        assert force_text(actions).startswith('This will reject this version')
 
     def test_actions_addon_status_null(self):
         # If the add-on is null we only show info, comment and super review.
-        assert len(self.set_statuses(addon_status=amo.STATUS_NULL,
-                                     file_status=amo.STATUS_NULL)) == 3
+        assert len(self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_NULL)) == 3
 
     def test_actions_addon_status_deleted(self):
         # If the add-on is deleted we only show info, comment and super review.
-        assert len(self.set_statuses(addon_status=amo.STATUS_DELETED,
-                                     file_status=amo.STATUS_NULL)) == 3
+        assert len(self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_NULL)) == 3
 
     def test_actions_no_pending_files(self):
         # If the add-on has no pending files we only show info, comment and
         # super review.
-        assert len(self.set_statuses(addon_status=amo.STATUS_PUBLIC,
-                                     file_status=amo.STATUS_PUBLIC)) == 3
-        assert len(self.set_statuses(addon_status=amo.STATUS_PUBLIC,
-                                     file_status=amo.STATUS_BETA)) == 3
-        assert len(self.set_statuses(addon_status=amo.STATUS_DISABLED,
-                                     file_status=amo.STATUS_DISABLED)) == 3
+        assert len(self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC)) == 3
+        assert len(self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_BETA)) == 3
+        assert len(self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_DISABLED,
+            file_status=amo.STATUS_DISABLED)) == 3
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_actions_admin_flagged_addon_actions(self, action_allowed_mock):
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         # Test with an admin reviewer.
         action_allowed_mock.return_value = True
-        status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                   file_status=amo.STATUS_AWAITING_REVIEW)
-        assert 'public' in status.keys()
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW)
+        assert 'public' in actions.keys()
         # Test with an non-admin reviewer.
         action_allowed_mock.return_value = False
-        status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                   file_status=amo.STATUS_AWAITING_REVIEW)
-        assert 'public' not in status.keys()
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW)
+        assert 'public' not in actions.keys()
 
     def test_canned_responses_no_app(self):
         self.cr_addon = CannedResponse.objects.create(
             name=u'addon reason', response=u'addon reason body',
             sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
-        self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                          file_status=amo.STATUS_AWAITING_REVIEW)
+        self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW)
         form = self.get_form()
         choices = form.fields['canned_response'].choices[1][1]
         # choices is grouped by the sort_group, where choices[0] is the

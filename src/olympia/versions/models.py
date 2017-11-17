@@ -493,8 +493,12 @@ class Version(OnChangeMixin, ModelBase):
         return bool(self.source)
 
     @property
-    def admin_review(self):
-        return self.addon.admin_review
+    def needs_admin_code_review(self):
+        return self.addon.needs_admin_code_review
+
+    @property
+    def needs_admin_content_review(self):
+        return self.addon.needs_admin_content_review
 
     @classmethod
     def _compat_map(cls, avs):
