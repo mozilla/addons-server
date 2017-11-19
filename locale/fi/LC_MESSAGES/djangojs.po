@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-08-11 17:40+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
+"PO-Revision-Date: 2017-11-17 20:37+0000\n"
+"Last-Translator: nikolaskorsman <nikolaskorsman@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "See full validation report"
 msgstr ""
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Vahvistetaan {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
