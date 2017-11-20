@@ -67,7 +67,7 @@ def with_addon(allow_missing=False):
                         {'error': msg},
                         status=status.HTTP_404_NOT_FOUND)
             # Call the view if there is no add-on, the current user is an
-            # auther of the add-on or the current user is an admin and the
+            # author of the add-on or the current user is an admin and the
             # request is a GET.
             has_perm = (
                 addon is None or
@@ -142,6 +142,7 @@ class VersionView(APIView):
                 ugettext(u'You cannot submit an add-on with a guid ending '
                          u'"@mozilla.org"'),
                 status.HTTP_400_BAD_REQUEST)
+
         if not mozilla_signed_extension_submission_allowed(request.user, pkg):
             raise forms.ValidationError(
                 ugettext(u'You cannot submit a Mozilla Signed Extension'))
@@ -180,6 +181,12 @@ class VersionView(APIView):
             # No guid was present in the package, but one was provided in the
             # URL, so we take it instead of generating one ourselves. But
             # first, validate it properly.
+            if len(guid) > 64:
+                raise forms.ValidationError(ugettext(
+                    'Please specify your Add-on GUID in the manifest if it\'s '
+                    'longer than 64 characters.'
+                ))
+
             if not amo.ADDON_GUID_PATTERN.match(guid):
                 raise forms.ValidationError(
                     ugettext('Invalid GUID in URL'),
