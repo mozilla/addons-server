@@ -183,8 +183,8 @@ class VersionView(APIView):
             # first, validate it properly.
             if len(guid) > 64:
                 raise forms.ValidationError(ugettext(
-                    'Add-on ID must be 64 characters or less if not specified '
-                    'in the manifest.'
+                    'Please specify your Add-on GUID in the manifest if it\'s '
+                    'longer than 64 characters.'
                 ))
 
             if not amo.ADDON_GUID_PATTERN.match(guid):
