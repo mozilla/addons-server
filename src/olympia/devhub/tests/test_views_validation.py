@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
