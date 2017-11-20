@@ -133,8 +133,9 @@ class LicenseSerializer(serializers.ModelSerializer):
                 # A single lang requested so return a flat string
                 return unicode(license_constant.name)
             else:
-                # Otherwise mock the dict, and it's going to be lang default.
-                return {settings.LANGUAGE_CODE: unicode(license_constant.name)}
+                # Otherwise mock the dict with the default lang.
+                lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
+                return {lang: unicode(license_constant.name)}
 
 
 class CompactLicenseSerializer(LicenseSerializer):
