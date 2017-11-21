@@ -194,6 +194,24 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert isinstance(
             mock_save_stats_to_file.call_args[0][0], DownloadCount)
 
+    @mock.patch(
+        'olympia.stats.management.commands.download_counts_from_file.'
+        'save_stats_to_file')
+    @mock.patch(
+        'olympia.stats.management.commands.download_counts_from_file.'
+        'close_old_connections')
+    def test_download_counts_from_file_closes_old_connections(
+            self, close_old_connections_mock, mock_save_stats_to_file):
+        # Create the necessary "valid download sources" entries.
+        DownloadSource.objects.create(name='search', type='full')
+        DownloadSource.objects.create(name='coll', type='prefix')
+
+        management.call_command('download_counts_from_file', hive_folder,
+                                date=self.date)
+        assert DownloadCount.objects.all().count() == 2
+        close_old_connections_mock.assert_called_once()
+
+
     @mock.patch('olympia.stats.management.commands.save_stats_to_file')
     def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('theme_update_counts_from_file', hive_folder,

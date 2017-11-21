@@ -2,7 +2,7 @@ import codecs
 from datetime import datetime, timedelta
 from os import path, unlink
 
-from django.db import connection
+from django.db import close_old_connections
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
@@ -159,7 +159,7 @@ class Command(BaseCommand):
                 dc.count += counter
                 dc.sources = update_inc(dc.sources, src, counter)
 
-        # Close all connections in this thread before we start creating the
+        # Close all old connections in this thread before we start creating the
         # `DownloadCount` values.
         # https://github.com/mozilla/addons-server/issues/6886
         # If the calculation above takes too long it might happen that we run
@@ -167,7 +167,7 @@ class Command(BaseCommand):
         # (potentially because of misconfiguration).
         # Django will re-connect properly after it notices that all
         # connections are closed.
-        connection.close_if_unusable_or_obsolete()
+        close_old_connections()
 
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
