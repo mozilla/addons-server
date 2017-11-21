@@ -63,7 +63,7 @@ def context(request, **kw):
     return ctx
 
 
-@any_reviewer_or_moderator_required
+@ratings_moderator_required
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.reviewer_events()
@@ -86,7 +86,7 @@ def eventlog(request):
     return render(request, 'reviewers/eventlog.html', data)
 
 
-@any_reviewer_or_moderator_required
+@ratings_moderator_required
 def eventlog_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.reviewer_events(), pk=id)
 

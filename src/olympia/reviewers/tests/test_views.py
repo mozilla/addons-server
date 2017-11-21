@@ -57,9 +57,11 @@ class TestEventLog(ReviewerTest):
 
     def setUp(self):
         super(TestEventLog, self).setUp()
-        self.login_as_reviewer()
+        user = user_factory()
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.login(email=user.email)
         self.url = reverse('reviewers.eventlog')
-        core.set_user(UserProfile.objects.get(username='reviewer'))
+        core.set_user(user)
 
     def test_log(self):
         response = self.client.get(self.url)
@@ -102,15 +104,13 @@ class TestEventLog(ReviewerTest):
         assert response.status_code == 200
         assert '"no-results"' in response.content
 
-
-class TestEventLogDetail(TestEventLog):
-
-    def test_me(self):
+    def test_event_log_detail(self):
         review = self.make_review()
         ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
-        id = ActivityLog.objects.reviewer_events()[0].id
-        r = self.client.get(reverse('reviewers.eventlog.detail', args=[id]))
-        assert r.status_code == 200
+        id_ = ActivityLog.objects.reviewer_events()[0].id
+        response = self.client.get(
+            reverse('reviewers.eventlog.detail', args=[id_]))
+        assert response.status_code == 200
 
 
 class TestBetaSignedLog(ReviewerTest):
@@ -711,6 +711,7 @@ class TestHome(ReviewerTest):
         self.user = UserProfile.objects.get(id=5497308)
         self.user.display_name = 'reviewer'
         self.user.save()
+        self.grant_permission(self.user, 'Ratings:Moderate')
         core.set_user(self.user)
 
     def approve_reviews(self):
