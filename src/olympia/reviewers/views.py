@@ -144,7 +144,8 @@ def dashboard(request):
     # defined by a text and an URL. The template will show every link of every
     # section we provide in the context.
     sections = OrderedDict()
-    if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+    view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
+    if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
         sections[ugettext('Legacy Add-ons')] = [(
             ugettext('New Add-ons ({0})').format(
                 ViewFullReviewQueue.objects.count()),
@@ -163,7 +164,8 @@ def dashboard(request):
             ugettext('Signed Beta Files Log'),
             reverse('reviewers.beta_signed_log')
         )]
-    if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
                 AutoApprovalSummary.get_auto_approved_queue().count()),
@@ -175,7 +177,8 @@ def dashboard(request):
             ugettext('Add-on Review Log'),
             reverse('reviewers.reviewlog')
         )]
-    if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
                 AutoApprovalSummary.get_content_review_queue().count()),
@@ -184,7 +187,8 @@ def dashboard(request):
             ugettext('Performance'),
             reverse('reviewers.performance')
         )]
-    if acl.action_allowed(request, amo.permissions.THEMES_REVIEW):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.THEMES_REVIEW):
         sections[ugettext('Lightweight Themes')] = [(
             ugettext('New Themes ({0})').format(
                 Persona.objects.filter(
@@ -206,7 +210,8 @@ def dashboard(request):
             ugettext('Deleted themes Log'),
             reverse('reviewers.themes.deleted')
         )]
-    if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.RATINGS_MODERATE):
         sections[ugettext('User Ratings Moderation')] = [(
             ugettext('Ratings Awaiting Moderation ({0})').format(
                 Rating.objects.all().to_moderate().count()),
@@ -215,13 +220,15 @@ def dashboard(request):
             ugettext('Moderated Review Log'),
             reverse('reviewers.eventlog')
         )]
-    if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_REVIEW_UNLISTED):
         sections[ugettext('Unlisted Add-ons')] = [(
             ugettext('All Unlisted Add-ons'),
             reverse('reviewers.unlisted_queue_all')
         )]
 
-    if acl.action_allowed(request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
+    if view_all or acl.action_allowed(
+            request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
         sections[ugettext('Announcement')] = [(
             ugettext('Update message of the day'),
             reverse('reviewers.motd')

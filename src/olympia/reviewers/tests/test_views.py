@@ -484,6 +484,36 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
 
+    def test_can_see_all_through_reviewer_view_all_permission(self):
+        self.grant_permission(self.user, 'ReviewerTools:View')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 7  # All 7 sections are present.
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.beta_signed_log'),
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.queue_content_review'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.themes.list'),
+            reverse('reviewers.themes.list_rereview'),
+            reverse('reviewers.themes.list_flagged'),
+            reverse('reviewers.themes.logs'),
+            reverse('reviewers.themes.deleted'),
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.eventlog'),
+            reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.motd'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+
     def test_legacy_reviewer(self):
         # Create some add-ons to test the queue counts.
         addon_factory(
