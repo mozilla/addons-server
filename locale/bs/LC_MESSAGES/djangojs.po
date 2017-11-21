@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-21 10:29+0000\n"
+"PO-Revision-Date: 2017-11-21 10:37+0000\n"
 "Last-Translator: Nihad <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bs\n"
@@ -54,36 +54,36 @@ msgstr "Omogućili smo novi linter kako bi procesirali vaš dodatak. Molimo da z
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
+msgstr[1] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
+msgstr[2] "Vaš dodatak nije prošao ovjeru zbog {0} greške."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "&hellip;i {0} više"
+msgstr[1] "&hellip;i {0} više"
+msgstr[2] "&hellip;i {0} više"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Pogledajte cijeli izvještaj ovjere"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Ovjera {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Vaš dodatak premašuje maksimalnu veličinu od {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Primljen prazan odgovor od servera; status: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Neočekivana greška servera prilikom ovjere."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Završena ovjera {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Ovjera vašeg dodatka je istekla i biće ručno pregledana."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
