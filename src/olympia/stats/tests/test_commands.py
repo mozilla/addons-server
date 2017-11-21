@@ -6,6 +6,7 @@ from datetime import date, timedelta
 import mock
 from django.conf import settings
 from django.core import management
+from django.test.testcases import TransactionTestCase
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
@@ -45,7 +46,7 @@ class FixturesFolderMixin(object):
         super(FixturesFolderMixin, self).tearDown()
 
 
-class TestADICommand(FixturesFolderMixin, TestCase):
+class TestADICommand(FixturesFolderMixin, TransactionTestCase):
     fixtures = ('base/addon_3615', 'base/featured', 'addons/persona',
                 'base/appversion.json')
     date = '2014-07-10'
