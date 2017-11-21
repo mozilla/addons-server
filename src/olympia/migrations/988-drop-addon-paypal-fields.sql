@@ -1,0 +1,10 @@
+ALTER TABLE `addons`
+    DROP COLUMN `the_reason`,
+    DROP COLUMN `the_future`,
+    DROP COLUMN `wants_contributions`,
+    DROP COLUMN `paypal_id`,
+    DROP COLUMN `charity`,
+    DROP COLUMN `suggested_amount`,
+    DROP COLUMN `annoying`,
+    DROP COLUMN `enable_thankyou`,
+    DROP COLUMN `thankyou_note`;
