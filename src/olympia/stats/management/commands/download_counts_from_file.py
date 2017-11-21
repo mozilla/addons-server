@@ -2,6 +2,7 @@ import codecs
 from datetime import datetime, timedelta
 from os import path, unlink
 
+from django.db import close_old_connections
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
@@ -158,10 +159,22 @@ class Command(BaseCommand):
                 dc.count += counter
                 dc.sources = update_inc(dc.sources, src, counter)
 
+        # Close all old connections in this thread before we start creating the
+        # `DownloadCount` values.
+        # https://github.com/mozilla/addons-server/issues/6886
+        # If the calculation above takes too long it might happen that we run
+        # into `wait_timeout` problems and django doesn't reconnect properly
+        # (potentially because of misconfiguration).
+        # Django will re-connect properly after it notices that all
+        # connections are closed.
+        close_old_connections()
+
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
+
         for download_count in download_counts.values():
             save_stats_to_file(download_count)
+
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 
