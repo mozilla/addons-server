@@ -211,7 +211,6 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert DownloadCount.objects.all().count() == 2
         close_old_connections_mock.assert_called_once()
 
-
     @mock.patch('olympia.stats.management.commands.save_stats_to_file')
     def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('theme_update_counts_from_file', hive_folder,
