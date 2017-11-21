@@ -165,6 +165,8 @@ class Command(BaseCommand):
         # If the calculation above takes too long it might happen that we run
         # into `wait_timeout` problems and django doesn't reconnect properly
         # (potentially because of misconfiguration).
+        # Django will re-connect properly after it notices that all
+        # connections are closed.
         connections.close_all()
 
         # Create in bulk: this is much faster.
