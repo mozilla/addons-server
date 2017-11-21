@@ -31,7 +31,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ReviewerScore, ReviewerSubscription)
+    AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
+    ReviewerSubscription)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
@@ -56,9 +57,11 @@ class TestEventLog(ReviewerTest):
 
     def setUp(self):
         super(TestEventLog, self).setUp()
-        self.login_as_reviewer()
+        user = user_factory()
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.login(email=user.email)
         self.url = reverse('reviewers.eventlog')
-        core.set_user(UserProfile.objects.get(username='reviewer'))
+        core.set_user(user)
 
     def test_log(self):
         response = self.client.get(self.url)
@@ -101,15 +104,13 @@ class TestEventLog(ReviewerTest):
         assert response.status_code == 200
         assert '"no-results"' in response.content
 
-
-class TestEventLogDetail(TestEventLog):
-
-    def test_me(self):
+    def test_event_log_detail(self):
         review = self.make_review()
         ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
-        id = ActivityLog.objects.reviewer_events()[0].id
-        r = self.client.get(reverse('reviewers.eventlog.detail', args=[id]))
-        assert r.status_code == 200
+        id_ = ActivityLog.objects.reviewer_events()[0].id
+        response = self.client.get(
+            reverse('reviewers.eventlog.detail', args=[id_]))
+        assert response.status_code == 200
 
 
 class TestBetaSignedLog(ReviewerTest):
@@ -442,6 +443,294 @@ class TestReviewLog(ReviewerTest):
             '#log-listing tr td a').eq(1).attr('href') == url
 
 
+class TestDashboard(TestCase):
+    def setUp(self):
+        self.url = reverse('reviewers.dashboard')
+        self.user = user_factory()
+        self.client.login(email=self.user.email)
+
+    def test_not_a_reviewer(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_all_permissions(self):
+        admins_group = Group.objects.create(name='Admins', rules='*:*')
+        GroupUser.objects.create(user=self.user, group=admins_group)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 7  # All 7 sections are present.
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.beta_signed_log'),
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.queue_content_review'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.themes.list'),
+            reverse('reviewers.themes.list_rereview'),
+            reverse('reviewers.themes.list_flagged'),
+            reverse('reviewers.themes.logs'),
+            reverse('reviewers.themes.deleted'),
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.eventlog'),
+            reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.motd'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+
+    def test_can_see_all_through_reviewer_view_all_permission(self):
+        self.grant_permission(self.user, 'ReviewerTools:View')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 7  # All 7 sections are present.
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.beta_signed_log'),
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.queue_content_review'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.themes.list'),
+            reverse('reviewers.themes.list_rereview'),
+            reverse('reviewers.themes.list_flagged'),
+            reverse('reviewers.themes.logs'),
+            reverse('reviewers.themes.deleted'),
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.eventlog'),
+            reverse('reviewers.unlisted_queue_all'),
+            reverse('reviewers.motd'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+
+    def test_legacy_reviewer(self):
+        # Create some add-ons to test the queue counts.
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+
+        # Grant user the permission to see only the legacy add-ons section.
+        self.grant_permission(self.user, 'Addons:Review')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.beta_signed_log'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Add-ons (1)'
+        assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
+
+    def test_post_reviewer(self):
+        # Create an add-on to test the queue count.
+        addon = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon)
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+
+        # Grant user the permission to see only the Auto Approved section.
+        self.grant_permission(self.user, 'Addons:PostReview')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (1)'
+
+    def test_content_reviewer(self):
+        # Create an add-on to test the queue count.
+        addon = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon)
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+
+        # Grant user the permission to see only the Content Review section.
+        self.grant_permission(self.user, 'Addons:ContentReview')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.queue_content_review'),
+            reverse('reviewers.performance'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'Content Review (1)'
+
+    def test_themes_reviewer(self):
+        # Create some themes to test the queue counts.
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
+        addon = addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+        RereviewQueueTheme.objects.create(theme=addon.persona)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
+
+        # Grant user the permission to see only the themes section.
+        self.grant_permission(self.user, 'Personas:Review')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.themes.list'),
+            reverse('reviewers.themes.list_rereview'),
+            reverse('reviewers.themes.list_flagged'),
+            reverse('reviewers.themes.logs'),
+            reverse('reviewers.themes.deleted'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Themes (2)'
+        assert doc('.dashboard a')[1].text == 'Themes Updates (1)'
+        assert doc('.dashboard a')[2].text == 'Flagged Themes (3)'
+
+    def test_ratings_moderator(self):
+        # Create an rating to test the queue count.
+        addon = addon_factory()
+        user = user_factory()
+        rating = Rating.objects.create(
+            addon=addon, version=addon.current_version, user=user, flag=True,
+            body=u'This âdd-on sucks!!111', rating=1, editorreview=True)
+        rating.ratingflag_set.create()
+
+        # Grant user the permission to see only the ratings to review section.
+        self.grant_permission(self.user, 'Ratings:Moderate')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.eventlog'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'Ratings Awaiting Moderation (1)'
+
+    def test_unlisted_reviewer(self):
+        # Grant user the permission to see only the unlisted add-ons section.
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 1
+        expected_links = [
+            reverse('reviewers.unlisted_queue_all'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+
+    def test_post_reviewer_and_content_reviewer(self):
+        # Create add-ons to test the queue count. The first add-on has its
+        # content approved, so the post review queue should contain 2 add-ons,
+        # and the content review queue only 1.
+        addon = addon_factory(
+            version_kw={'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
+
+        addon = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon)
+        AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+
+        # Grant user the permission to see both the Content Review and the
+        # Auto Approved Add-ons sections.
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.grant_permission(self.user, 'Addons:PostReview')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 2  # 2 sections are shown.
+        expected_links = [
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.queue_content_review'),
+            reverse('reviewers.performance'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (2)'
+        assert doc('.dashboard a')[3].text == 'Content Review (1)'
+
+    def test_legacy_reviewer_and_ratings_moderator(self):
+        # Grant user the permission to see both the legacy add-ons and the
+        # ratings moderation sections.
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Ratings:Moderate')
+
+        # Test.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.dashboard h3')) == 2
+        expected_links = [
+            reverse('reviewers.queue_nominated'),
+            reverse('reviewers.queue_pending'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            reverse('reviewers.beta_signed_log'),
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.eventlog'),
+        ]
+        links = [link.attrib['href'] for link in doc('.dashboard a')]
+        assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Add-ons (0)'
+        assert doc('.dashboard a')[1].text == 'Add-on Updates (0)'
+        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
+
+
 class TestHome(ReviewerTest):
     fixtures = ReviewerTest.fixtures + ['base/addon_3615']
 
@@ -452,6 +741,7 @@ class TestHome(ReviewerTest):
         self.user = UserProfile.objects.get(id=5497308)
         self.user.display_name = 'reviewer'
         self.user.save()
+        self.grant_permission(self.user, 'Ratings:Moderate')
         core.set_user(self.user)
 
     def approve_reviews(self):
