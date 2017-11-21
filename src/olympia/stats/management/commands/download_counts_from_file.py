@@ -167,7 +167,7 @@ class Command(BaseCommand):
         # (potentially because of misconfiguration).
         # Django will re-connect properly after it notices that all
         # connections are closed.
-        connection.close()
+        connection.close_if_unusable_or_obsolete()
 
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
