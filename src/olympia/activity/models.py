@@ -89,7 +89,7 @@ class CommentLog(ModelBase):
     This table is for indexing the activity log by comment.
     """
     activity_log = models.ForeignKey('ActivityLog')
-    comments = models.CharField(max_length=255)
+    comments = models.TextField()
 
     class Meta:
         db_table = 'log_activity_comment'
