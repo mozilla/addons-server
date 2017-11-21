@@ -117,7 +117,12 @@ class Command(BaseCommand):
         helper.handler.data = {
             # The comment is not translated on purpose, to behave like regular
             # human approval does.
-            'comments': u'This version has been approved for the public.'
+            'comments': u'This version has been screened and approved for the '
+                        u'public. Keep in mind that other reviewers may look '
+                        u'into this version in the future and determine that '
+                        u'it requires changes or should be taken down. In '
+                        u'that case, you will be notified again with details '
+                        u'and next steps.'
                         u'\r\n\r\nThank you!'
         }
         helper.handler.process_public()
