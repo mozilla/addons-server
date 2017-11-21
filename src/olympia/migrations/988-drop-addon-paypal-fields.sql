@@ -1,4 +1,10 @@
 ALTER TABLE `addons`
+    DROP FOREIGN KEY `addons_ibfk_11`,
+    DROP FOREIGN KEY `addons_ibfk_12`,
+    DROP FOREIGN KEY `addons_ibfk_13`,
+    DROP FOREIGN KEY `addons_ibfk_15`;
+
+ALTER TABLE `addons`    
     DROP COLUMN `the_reason`,
     DROP COLUMN `the_future`,
     DROP COLUMN `wants_contributions`,
