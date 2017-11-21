@@ -2,7 +2,7 @@ import codecs
 from datetime import datetime, timedelta
 from os import path, unlink
 
-from django.db import connections
+from django.db import connection
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
@@ -167,7 +167,7 @@ class Command(BaseCommand):
         # (potentially because of misconfiguration).
         # Django will re-connect properly after it notices that all
         # connections are closed.
-        connections.close_all()
+        connection.close()
 
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
