@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-20 14:10+0000\n"
+"PO-Revision-Date: 2017-11-21 16:46+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -974,7 +974,7 @@ msgid "Collections :: %s"
 msgstr "אוספים :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "אוספים הם קבוצות של תוספות שקשורות זו לזו שכולם יכולים ליצור ולשתף."
+msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו שכל אחד יכול ליצור ולשתף."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
@@ -1354,7 +1354,7 @@ msgid "No collections found."
 msgstr "לא נמצאו אוספים."
 
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "האוספים עם הכי הרבה עוקבים"
 
 msgid "Newest Collections"
 msgstr "האוספים החדשים ביותר"
@@ -1370,7 +1370,7 @@ msgstr "אוספים פופולריים לאחרונה"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו שכל אחד יכול ליצור ולשתף. ניתן לחקור את האוספים שנוצרו על ידי משתמשים אחרים או <a href=\"%(url)s\">ליצור כאלה משלך</a>."
 
 # 100%
 msgid "Subscribe"
@@ -2841,7 +2841,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "הסכמה"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "או <a href=\"{0}\">ביטול</a>"
@@ -2965,7 +2965,7 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "צפייה ועדכון טווחי תאימות יישום."
 
 msgid "Compatibility"
 msgstr "תאימות"
@@ -3617,7 +3617,7 @@ msgid "Only publish this version to my beta channel."
 msgstr "לפרסם את הגרסה הזו רק לערוץ הבטא שלי."
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "מעקפים מנהליים"
 
 msgid "Submit File"
 msgstr "שליחת קובץ"
@@ -3630,7 +3630,7 @@ msgstr ""
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "להנחיות מפורטות, יש לפנות אל <a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
