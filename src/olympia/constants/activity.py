@@ -243,10 +243,10 @@ class REMOVE_FROM_COLLECTION(_LOG):
     format = _(u'{addon} removed from {collection}.')
 
 
-class ADD_REVIEW(_LOG):
+class ADD_RATING(_LOG):
     id = 29
     action_class = 'review'
-    format = _(u'{review} for {addon} written.')
+    format = _(u'{rating} for {addon} written.')
 
 
 # TODO(davedash): Add these when we do the admin site
@@ -310,21 +310,21 @@ class CHANGE_ICON(_LOG):
     format = _(u'{addon} icon changed.')
 
 
-class APPROVE_REVIEW(_LOG):
+class APPROVE_RATING(_LOG):
     id = 40
     action_class = 'approve'
-    format = _(u'{review} for {addon} approved.')
-    reviewer_format = _(u'{user} approved {review} for {addon}.')
+    format = _(u'{rating} for {addon} approved.')
+    reviewer_format = _(u'{user} approved {rating} for {addon}.')
     keep = True
     reviewer_event = True
 
 
-class DELETE_REVIEW(_LOG):
-    """Requires review.id and add-on objects."""
+class DELETE_RATING(_LOG):
+    """Requires rating.id and add-on objects."""
     id = 41
     action_class = 'review'
-    format = _(u'Review {review} for {addon} deleted.')
-    reviewer_format = _(u'{user} deleted {review} for {addon}.')
+    format = _(u'Review {rating} for {addon} deleted.')
+    reviewer_format = _(u'{user} deleted {rating} for {addon}.')
     keep = True
     reviewer_event = True
 
@@ -416,10 +416,10 @@ class ADMIN_VIEWED_LOG(_LOG):
     admin_event = True
 
 
-class EDIT_REVIEW(_LOG):
+class EDIT_RATING(_LOG):
     id = 107
     action_class = 'review'
-    format = _(u'{review} for {addon} updated.')
+    format = _(u'{rating} for {addon} updated.')
 
 
 class THEME_REVIEW(_LOG):

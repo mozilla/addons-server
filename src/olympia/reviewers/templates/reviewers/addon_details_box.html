@@ -137,14 +137,10 @@
                   </td>
                 </tr>
               {% endif %}
-              {% if is_post_reviewer and approvals_info %}
+              {% if approvals_info %}
                 <tr class="last-approval-date">
                   <th> {{ _('Last Approval Date') }} </th>
                   <td> {{ approvals_info.last_human_review|date }}
-                </tr>
-                <tr class="approval-counter">
-                  <th> {{ _('Approvals Since Last Automatic Review') }} </th>
-                  <td> {{ approvals_info.counter }} </td>
                 </tr>
               {% endif %}
             </tbody>
@@ -171,15 +167,15 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-  {% if is_post_reviewer and was_auto_approved %}
+  {% if was_auto_approved %}
     {% if reports %}
       <h3><a href="{{ url('reviewers.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/abuse_reports_list.html" %}
     {% endif %}
 
-    {% if user_reviews %}
-      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|format_html(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
-      {% include "reviewers/includes/user_reviews_list.html" %}
+    {% if user_ratings %}
+      <h3><a href="{{ url('addons.ratings.list', addon.slug) }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
+      {% include "reviewers/includes/user_ratings_list.html" %}
     {% endif %}
   {% endif %}
 

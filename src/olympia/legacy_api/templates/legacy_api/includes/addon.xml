@@ -113,7 +113,7 @@
     </contribution_data>
     {%- endif -%}
     <developer_comments>{{ addon.developer_comments }}</developer_comments>
-    <reviews num="{{ addon.total_reviews }}">
+    <reviews num="{{ addon.total_ratings }}">
       {{ addon.reviews_url|absolutify|urlparams(src='api') }}
     </reviews>
     <total_downloads>{{ addon.total_downloads }}</total_downloads>

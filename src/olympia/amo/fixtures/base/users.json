@@ -240,53 +240,5 @@
             "group": 50005,
             "user": 5497311
         }
-    },
-    {
-        "pk": 15,
-        "model": "users.userprofile",
-        "fields": {
-            "display_collections_fav": false,
-            "display_collections": false,
-            "occupation": "",
-            "display_name": "",
-            "location": "",
-            "picture_type": "",
-            "averagerating": null,
-            "homepage": "",
-            "email": "support-staff@mozilla.com",
-            "notifycompat": true,
-            "username": "support_staff",
-            "biography": null,
-            "failed_login_attempts": 0,
-            "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2012-05-22 14:59:28",
-            "read_dev_agreement": "2017-09-23 00:00:00",
-            "created": "2012-01-06 12:31:13",
-            "notes": null,
-            "modified": "2012-05-22 14:59:28",
-            "last_login_ip": "127.0.0.1",
-            "notifyevents": true,
-            "last_login": "2012-05-22 14:59:28"
-        }
-    },
-    {
-        "pk": 50057,
-        "model": "access.group",
-        "fields": {
-            "rules": "AccountLookup:View,Transaction:View,Transaction:Refund,Lookup:View",
-            "notes": "",
-            "modified": "2012-05-22 17:53:57",
-            "name": "Support Staff",
-            "created": "2012-05-22 17:53:57"
-        }
-    },
-    {
-        "pk": 6,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50057,
-            "user": 15
-        }
     }
 ]

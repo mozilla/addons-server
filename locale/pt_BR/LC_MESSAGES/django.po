@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-08 03:24+0000\n"
+"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"PO-Revision-Date: 2017-11-07 19:18+0000\n"
 "Last-Translator: Luiz Carlos de Morais <lcom_flip@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7884,7 +7884,6 @@ msgstr "Escolha uma categoria"
 msgid "The new website supports mobile and desktop clients"
 msgstr "O novo site suporta clientes para dispositivos móveis e computadores"
 
-#, fuzzy
 msgid "View the new site"
 msgstr "Visite o novo site"
 

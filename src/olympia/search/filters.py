@@ -272,9 +272,20 @@ class SearchQueryFilter(BaseFilterBackend):
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
-        for k, v in rules:
+        for query_cls, opts in rules:
             for field in ('name', 'slug', 'listed_authors.name'):
-                should.append(k(**{field: v}))
+                should.append(query_cls(**{field: opts}))
+
+        # Exact matches need to be queried against a non-analyzed field. Let's
+        # do a term query on `name.raw` for an exact match against the add-on
+        # name and boost it since this is likely what the user wants.
+        # Use a super-high boost to avoid `description` or `summary`
+        # getting in our way.
+        should.append(query.Term(**{
+            'name.raw': {
+                'value': search_query, 'boost': 100
+            }
+        }))
 
         # For name, also search in translated field with the right language
         # and analyzer.

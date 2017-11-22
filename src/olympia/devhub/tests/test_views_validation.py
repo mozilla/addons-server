@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -108,18 +107,8 @@ class TestUploadErrors(BaseUploadTest):
               'type': 'error', 'fatal': True}])
         assert data['validation']['ending_tier'] == 1
 
-    def test_too_long_uuid(self):
-        """An add-on uuid must be 64chars at most, see bug 1201176."""
-        with self.assertRaises(forms.ValidationError) as exc:
-            check_xpi_info({
-                'guid': u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
-                        u'bug_1201176_and_should_fail@xpi'})
-        expected = 'Add-on ID must be 64 characters or less.'
-        assert exc.exception.message == expected
-
     def test_long_uuid(self):
         """An add-on uuid may be more than 64 chars, see bug 1203915."""
-        self.create_switch('allow-long-addon-guid')
         long_guid = (u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
                      u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi')
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})

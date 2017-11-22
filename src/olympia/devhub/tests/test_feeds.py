@@ -9,7 +9,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
 from olympia.bandwagon.models import Collection
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.versions.models import Version
 
@@ -52,10 +52,10 @@ class TestActivity(HubTest):
             tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
             ActivityLog.create(amo.LOG.ADD_TAG, self.addon, tag)
 
-    def log_review(self, num):
-        review = Review(addon=self.addon)
+    def log_rating(self, num):
+        rating = Rating(addon=self.addon)
         for i in xrange(num):
-            ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, review)
+            ActivityLog.create(amo.LOG.ADD_RATING, self.addon, rating)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -115,14 +115,14 @@ class TestActivity(HubTest):
 
     def test_filter_reviews(self):
         self.log_creates(10)
-        self.log_review(10)
+        self.log_rating(10)
         doc = self.get_pq()
         assert len(doc('.item')) == 20
         doc = self.get_pq(action='reviews')
         assert len(doc('.item')) == 10
 
     def test_pagination(self):
-        self.log_review(21)
+        self.log_rating(21)
         doc = self.get_pq()
 
         # 20 items on page 1.

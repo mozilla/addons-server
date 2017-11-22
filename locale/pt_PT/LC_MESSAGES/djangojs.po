@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-08-10 16:57+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"PO-Revision-Date: 2017-11-21 20:52+0000\n"
+"Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgid "Marked for deletion"
 msgstr "Marcado para eliminar"
 
 msgid "Updating results&hellip;"
-msgstr "A atualizar resultados:"
+msgstr "A atualizar resultados&hellip;"
 
 msgid "Category"
 msgstr "Categoria"
@@ -215,7 +215,7 @@ msgid "Week of {0}"
 msgstr "Semana de {0}"
 
 msgid " downloads"
-msgstr " descargas"
+msgstr " descarregamentos"
 
 msgid "{0} users"
 msgstr "{0} utilizadores"
@@ -239,7 +239,7 @@ msgid "{0} installs"
 msgstr "{0} instalações"
 
 msgid "Downloads"
-msgstr "Descargas"
+msgstr "Descarregamentos"
 
 msgid "Daily Users"
 msgstr "Utilizadores diários"
@@ -430,11 +430,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Descargas e utilizadores diários, últimos {0} dias"
+msgstr "Descarregamentos e utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Descargas e utilizadores diários desde {0} a {1}"
+msgstr "Descarregamentos e utilizadores diários desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -446,11 +446,11 @@ msgstr "Instalações e utilizadores diários desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Descargas, últimos {0} dias"
+msgstr "Descarregamentos, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Descargas desde {0} a {1}"
+msgstr "Descarregamentos desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -502,11 +502,11 @@ msgstr "Estado do extra desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Fontes das descargas, últimos {0} dias"
+msgstr "Fontes dos descarregamentos, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Fontes das descargas desde {0} a {1}"
+msgstr "Fontes dos descarregamentos desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -686,7 +686,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "A adicionar aos favoritos&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "A remover favoritos"
+msgstr "A remover favoritos&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Adicionar aos favoritos"
@@ -786,7 +786,7 @@ msgid "{name} was viewing this add-on first."
 msgstr "{name} estava a ver primeiro este extra."
 
 msgid "Loading&hellip;"
-msgstr "A carregar"
+msgstr "A carregar&hellip;"
 
 msgid "Version Notes"
 msgstr "Notas da versão"

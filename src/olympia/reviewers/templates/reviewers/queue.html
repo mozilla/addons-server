@@ -86,7 +86,7 @@
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>
             <ul class="reviews-flagged-reasons">
-              {% for reason in review.instance.reviewflag_set.all() %}
+              {% for reason in review.instance.ratingflag_set.all() %}
               <li>
               <div>
                 {% trans user=reason.user|user_link, date=reason.modified|datetime,

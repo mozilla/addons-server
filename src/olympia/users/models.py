@@ -140,6 +140,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                              editable=False)
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
+    email_changed = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
     # Note: this is only used for API responses (thus addons-frontend) - all
@@ -347,7 +348,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
-        qs = self._reviews_all.filter(reply_to=None)
+        qs = self._ratings_all.filter(reply_to=None)
         # Force the query to occur immediately. Several
         # reviews-related tests hang if this isn't done.
         return qs

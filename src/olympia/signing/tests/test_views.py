@@ -640,6 +640,44 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert addon.name == 'Meine Beispielerweiterung'
         assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
 
+    def test_too_long_guid_not_in_manifest_forbidden(self):
+        fname = (
+            'src/olympia/files/fixtures/files/webextension_no_id.xpi')
+
+        guid = (
+            'this_guid_is_longer_than_the_limit_of_64_chars_see_bug_1201176_'
+            'and_should_fail@webextension-guid')
+
+        response = self.request(
+            'PUT',
+            url=self.url(guid, '1.0'),
+            version='1.0',
+            filename=fname)
+        assert response.status_code == 400
+        assert response.data == {
+            'error': (
+                u'Please specify your Add-on GUID in the manifest if it\'s '
+                u'longer than 64 characters.')
+        }
+
+        assert not Addon.unfiltered.filter(guid=guid).exists()
+
+    def test_too_long_guid_in_manifest_allowed(self):
+        fname = (
+            'src/olympia/files/fixtures/files/webextension_too_long_guid.xpi')
+
+        guid = (
+            'this_guid_is_longer_than_the_limit_of_64_chars_see_bug_1201176_'
+            'and_should_fail@webextension-guid')
+
+        response = self.request(
+            'PUT',
+            url=self.url(guid, '1.0'),
+            version='1.0',
+            filename=fname)
+        assert response.status_code == 201
+        assert Addon.unfiltered.filter(guid=guid).exists()
+
 
 class TestCheckVersion(BaseUploadVersionCase):
 

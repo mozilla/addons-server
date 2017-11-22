@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-08 02:28+0000\n"
+"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"PO-Revision-Date: 2017-11-20 13:55+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -654,7 +654,7 @@ msgid "Tools"
 msgstr "ツール"
 
 msgid "My Profile"
-msgstr "自分のプロフィール"
+msgstr "自分のプロファイル"
 
 msgid "Account Settings"
 msgstr "アカウント設定"
@@ -1561,7 +1561,7 @@ msgid "{0}'s Themes"
 msgstr "{0} さんのテーマ"
 
 msgid "View Profile"
-msgstr "プロフィールを見る"
+msgstr "プロファイルを見る"
 
 msgid "Create Your Own Theme"
 msgstr "自分のテーマを作る"
@@ -2040,7 +2040,7 @@ msgid "Themes (Static)"
 msgstr "テーマ (静的)"
 
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "このアドオンページと開発者プロフィールでのみ尋ねる"
+msgstr "このアドオンページと開発者プロファイルでのみ尋ねる"
 
 msgid "Ask after users start downloading this add-on"
 msgstr "ユーザーがこのアドオンのダウンロードを開始した後に尋ねる"
@@ -7549,7 +7549,7 @@ msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Firefox アカウントでは今のところメールアドレスの変更はできません。"
 
 msgid "Profile Photo"
-msgstr "プロフィール写真"
+msgstr "プロファイル写真"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
@@ -7687,7 +7687,7 @@ msgid "Manage Firefox Account..."
 msgstr "Firefox アカウントを管理..."
 
 msgid "Profile"
-msgstr "プロフィール"
+msgstr "プロファイル"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "あなたについてのもう少し詳しい情報を記入してください。すべての項目は任意ですが、他のユーザーがあなたを知る手がかりになるでしょう。"
@@ -7709,7 +7709,7 @@ msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "使用可能な HTML は %(html)s です。リンクは使用できません。"
 
 msgid "Decide what collections should be shown in your profile."
-msgstr "あなたのプロフィールに表示されるコレクションを選んでください。"
+msgstr "あなたのプロファイルに表示されるコレクションを選んでください。"
 
 msgid "Display the collections I have created"
 msgstr "自分が作成したコレクションを表示"
@@ -7757,7 +7757,7 @@ msgid "User Info for {0}"
 msgstr "{0} のユーザー情報"
 
 msgid "Edit profile"
-msgstr "プロフィールを編集"
+msgstr "プロファイルを編集"
 
 msgid "Manage user"
 msgstr "ユーザーを管理"

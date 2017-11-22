@@ -243,7 +243,7 @@ def _get_items(action, addons):
                            amo.LOG.CHANGE_STATUS, amo.LOG.APPROVE_VERSION,),
                    collections=(amo.LOG.ADD_TO_COLLECTION,
                                 amo.LOG.REMOVE_FROM_COLLECTION,),
-                   reviews=(amo.LOG.ADD_REVIEW,))
+                   reviews=(amo.LOG.ADD_RATING,))
 
     filter_ = filters.get(action)
     items = (ActivityLog.objects.for_addons(addons)
@@ -1164,12 +1164,12 @@ def auto_sign_file(file_, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
         ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
-        sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1218,18 +1218,16 @@ def version_bounce(request, addon_id, addon, version):
 @dev_required
 def version_stats(request, addon_id, addon):
     qs = Version.objects.filter(addon=addon)
-    reviews = (qs.annotate(review_count=Count('reviews'))
+    reviews = (qs.annotate(review_count=Count('ratings'))
                .values('id', 'version', 'review_count'))
-    d = dict((v['id'], v) for v in reviews)
+    data = {v['id']: v for v in reviews}
     files = (
-        qs
-        .annotate(file_count=Count('files'))
-        .values_list('id', 'file_count'))
+        qs.annotate(file_count=Count('files')).values_list('id', 'file_count'))
     for id_, file_count in files:
         # For backwards compatibility
-        d[id_]['files'] = file_count
-        d[id_]['reviews'] = d[id_].pop('review_count')
-    return d
+        data[id_]['files'] = file_count
+        data[id_]['reviews'] = data[id_].pop('review_count')
+    return data
 
 
 @login_required

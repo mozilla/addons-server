@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import json
+import time
 import urlparse
 from base64 import urlsafe_b64decode, urlsafe_b64encode
+from datetime import datetime
 
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
@@ -9,6 +12,8 @@ from django.test.utils import override_settings
 import mock
 
 from olympia.accounts import utils
+from olympia.accounts.utils import process_fxa_event
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
 
 FXA_CONFIG = {
@@ -111,3 +116,74 @@ def test_redirect_for_login(default_fxa_login_url):
     response = utils.redirect_for_login(request)
     default_fxa_login_url.assert_called_with(request)
     assert response['location'] == login_url
+
+
+class TestProcessSqsQueue(TestCase):
+
+    @mock.patch('olympia.accounts.utils.process_fxa_event')
+    @mock.patch('boto3.client')
+    def test_process_sqs_queue(self, client, process_fxa_event):
+        messages = [
+            {'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}, None,
+            {'Body': 'thisonetoo'}]
+        sqs = mock.MagicMock(
+            **{'receive_message.side_effect': [{'Messages': messages}]})
+        delete_mock = mock.MagicMock()
+        sqs.delete_message = delete_mock
+        client.return_value = sqs
+
+        with self.assertRaises(StopIteration):
+            utils.process_sqs_queue(
+                queue_url='https://nowh.ere/', aws_region='NARNIA_1',
+                queue_wait_time=20)
+
+        client.assert_called()
+        process_fxa_event.assert_called()
+        # The 'None' in messages would cause an exception, but it should be
+        # handled, and the remaining message(s) still processed.
+        process_fxa_event.assert_has_calls(
+            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')])
+        delete_mock.assert_called_once()  # Receipt handle is present in foo.
+        delete_mock.assert_called_with(
+            QueueUrl='https://nowh.ere/', ReceiptHandle='$$$')
+
+
+def totimestamp(datetime_obj):
+    return time.mktime(datetime_obj.timetuple())
+
+
+class TestProcessFxAEvent(TestCase):
+    body = json.dumps({'Message': json.dumps(
+        {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
+         'uid': 'ABCDEF012345689',
+         'ts': totimestamp(datetime(2017, 10, 11))})})
+
+    def test_success_integration(self):
+        user = user_factory(email='old-email@example.com',
+                            fxa_id='ABCDEF012345689')
+        process_fxa_event(self.body)
+        user.reload()
+        assert user.email == 'new-email@example.com'
+        assert user.email_changed == datetime(2017, 10, 11, 0, 0)
+
+    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
+    def test_success(self, primary_email_change_event):
+        process_fxa_event(self.body)
+        primary_email_change_event.assert_called()
+        primary_email_change_event.assert_called_with(
+            'new-email@example.com', 'ABCDEF012345689', datetime(2017, 10, 11))
+
+    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
+    def test_malformed_body_doesnt_throw(self, primary_email_change_event):
+        process_fxa_event('')
+        process_fxa_event(json.dumps({'Message': ''}))
+        process_fxa_event(json.dumps({'Message': 'ddfdfd'}))
+        # No timestamp
+        process_fxa_event(json.dumps({'Message': json.dumps(
+            {'email': 'foo@baa', 'event': 'primaryEmailChanged',
+             'uid': '999'})}))
+        # Not a supported event type
+        process_fxa_event(json.dumps({'Message': json.dumps(
+            {'email': 'foo@baa', 'event': 'not-an-event', 'uid': '999',
+             'ts': totimestamp(datetime.now())})}))
+        primary_email_change_event.assert_not_called()

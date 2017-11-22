@@ -16,7 +16,7 @@ from olympia.amo import search as amo_search
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.bandwagon.models import Collection
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -197,13 +197,13 @@ def _get_daily_jobs(date=None):
             created__lt=next_date).count,
         'user_count_new': UserProfile.objects.extra(**extra).count,
 
-        # Review counts
-        'review_count_total': Review.objects.filter(created__lte=date,
+        # Rating counts
+        'review_count_total': Rating.objects.filter(created__lte=date,
                                                     editorreview=0).count,
         # We can't use "**extra" here, because this query joins on reviews
         # itself, and thus raises the following error:
         # "Column 'created' in where clause is ambiguous".
-        'review_count_new': Review.objects.filter(editorreview=0).extra(
+        'review_count_new': Rating.objects.filter(editorreview=0).extra(
             where=['DATE(reviews.created)=%s'], params=[date_str]).count,
 
         # Collection counts

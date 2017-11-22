@@ -933,7 +933,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
     def test_incomplete_directs_to_details(self):
         # We get bounced back to details step.
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(
             reverse('devhub.submit.finish', args=['a3615']), follow=True)
         self.assert3xx(
@@ -944,7 +944,7 @@ class TestAddonSubmitResume(TestSubmitBase):
 
     def test_redirect_from_other_pages(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(
             reverse('devhub.addons.edit', args=['a3615']), follow=True)
         self.assert3xx(
@@ -974,7 +974,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
 
     def test_no_redirect_for_metadata(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -1171,7 +1171,7 @@ class VersionSubmitUploadMixin(object):
 
     def test_no_redirect_for_metadata(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=self.addon).delete()
         response = self.client.get(self.url)
         assert response.status_code == 200
 

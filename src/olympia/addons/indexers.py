@@ -22,7 +22,8 @@ class AddonIndexer(BaseSearchIndexer):
     """Fields we don't need to expose in the results, only used for filtering
     or sorting."""
     hidden_fields = (
-        'name_sort',
+        '*.raw',
+        '*_sort',
         'boost',
         'hotness',
         # Translated content that is used for filtering purposes is stored
@@ -140,11 +141,17 @@ class AddonIndexer(BaseSearchIndexer):
                         },
                     },
                     'modified': {'type': 'date', 'index': False},
-                    # Adding word-delimiter to split on camelcase and
-                    # punctuation.
-                    'name': {'type': 'text',
-                             'analyzer': 'standardPlusWordDelimiter'},
-                    # Turn off analysis on name so we can sort by it.
+                    'name': {
+                        'type': 'text',
+                        # Adding word-delimiter to split on camelcase and
+                        # punctuation.
+                        'analyzer': 'standardPlusWordDelimiter',
+                        'fields': {
+                            # Turn off analysis on name so we can sort by it.
+                            'raw': {'type': 'keyword'}
+                        },
+                    },
+                    # TODO: Can be removed once we have `name.raw` indexed
                     'name_sort': {'type': 'keyword'},
                     'persona': {
                         'type': 'object',
@@ -348,8 +355,8 @@ class AddonIndexer(BaseSearchIndexer):
                             for preview in obj.all_previews]
         data['ratings'] = {
             'average': obj.average_rating,
-            'count': obj.total_reviews,
-            'text_count': obj.text_reviews_count,
+            'count': obj.total_ratings,
+            'text_count': obj.text_ratings_count,
         }
         # We can use tag_list because the indexing code goes through the
         # transformer that sets it (attach_tags).

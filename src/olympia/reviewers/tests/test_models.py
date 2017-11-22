@@ -16,7 +16,7 @@ from olympia.amo.tests import (
     addon_factory, file_factory, user_factory, version_factory)
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
 from olympia.files.models import FileValidation
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.versions.models import (
     Version, version_uploaded)
 from olympia.files.models import File, WebextPermission
@@ -682,6 +682,25 @@ class TestReviewerScore(TestCase):
         assert len(leaders['leader_top']) == 3
         assert len(leaders['leader_near']) == 2
 
+    def test_leaderboard_score_when_in_multiple_reviewer_groups(self):
+        group_reviewers = Group.objects.create(
+            name='Reviewers: Addons', rules='Addons:Review')
+        group_content_reviewers = Group.objects.create(
+            name='Reviewers: Content', rules='Addons:ContentReview')
+        GroupUser.objects.create(group=group_reviewers, user=self.user)
+        GroupUser.objects.create(group=group_content_reviewers, user=self.user)
+
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=True, content_review=False)
+        assert ReviewerScore._leaderboard_list() == [(
+            self.user.id, self.user.name, amo.REVIEWED_SCORES[
+                amo.REVIEWED_EXTENSION_HIGH_RISK])]
+
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.create(
             username='otherreviewer', email='otherreviewer@mozilla.com')
@@ -807,7 +826,7 @@ class TestAutoApprovalSummary(TestCase):
             'abuse_reports': 0,
             'admin_review': 0,
             'average_daily_users': 0,
-            'negative_reviews': 0,
+            'negative_ratings': 0,
             'reputation': 0,
             'past_rejection_history': 0,
             'uses_custom_csp': 0,
@@ -875,51 +894,51 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 10
         assert weight_info['abuse_reports'] == 10
 
-    def test_calculate_weight_negative_reviews(self):
-        # Positive review, does not count.
-        Review.objects.create(
+    def test_calculate_weight_negative_ratings(self):
+        # Positive rating, does not count.
+        Rating.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=5)
 
-        # Negative review, but too old, does not count.
-        old_review = Review.objects.create(
+        # Negative rating, but too old, does not count.
+        old_rating = Rating.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=1)
-        old_review.update(created=self.days_ago(370))
+        old_rating.update(created=self.days_ago(370))
 
         # Negative review on a different add-on, does not count either.
         extra_addon = addon_factory()
-        Review.objects.create(
+        Rating.objects.create(
             user=user_factory(), addon=extra_addon,
             version=extra_addon.current_version, rating=1)
 
-        # Recent negative reviews.
-        reviews = [Review(
+        # Recent negative ratings.
+        ratings = [Rating(
             user=user_factory(), addon=self.addon,
             version=self.version, rating=3) for i in range(0, 49)]
-        Review.objects.bulk_create(reviews)
+        Rating.objects.bulk_create(ratings)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 0  # Not enough negative reviews yet...
-        assert weight_info['negative_reviews'] == 0
+        assert summary.weight == 0  # Not enough negative ratings yet...
+        assert weight_info['negative_ratings'] == 0
 
         # Create one more to get to weight == 1.
-        Review.objects.create(
+        Rating.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=2)
         weight_info = summary.calculate_weight()
         assert summary.weight == 1
-        assert weight_info['negative_reviews'] == 1
+        assert weight_info['negative_ratings'] == 1
 
         # Create 5000 more (sorry!) to make sure it's capped at 100.
-        reviews = [Review(
+        ratings = [Rating(
             user=user_factory(), addon=self.addon,
             version=self.version, rating=3) for i in range(0, 5000)]
-        Review.objects.bulk_create(reviews)
+        Rating.objects.bulk_create(ratings)
 
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
-        assert weight_info['negative_reviews'] == 100
+        assert weight_info['negative_ratings'] == 100
 
     def test_calculate_weight_reputation(self):
         summary = AutoApprovalSummary(version=self.version)
@@ -1291,7 +1310,7 @@ class TestAutoApprovalSummary(TestCase):
             'abuse_reports': 0,
             'admin_review': 0,
             'average_daily_users': 0,
-            'negative_reviews': 0,
+            'negative_ratings': 0,
             'reputation': 0,
             'past_rejection_history': 0,
             'uses_custom_csp': 30,

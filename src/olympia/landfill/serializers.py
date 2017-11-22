@@ -16,7 +16,7 @@ from olympia.constants.base import (
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
 
@@ -65,19 +65,19 @@ class GenerateAddonsSerializer(serializers.Serializer):
             summary=u'My Addon summary',
             tags=['some_tag', 'another_tag', 'ui-testing',
                   'selenium', 'python'],
-            total_reviews=500,
+            total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
         )
         Preview.objects.create(addon=addon, position=1)
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
-        Review.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
         version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
@@ -118,7 +118,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             support_url=u'https://support.example.org/support/ui-theme-addon/',
             tags=['some_tag', 'another_tag', 'ui-testing',
                     'selenium', 'python'],
-            total_reviews=777,
+            total_ratings=777,
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
         )

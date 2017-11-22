@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-07 18:41+0000\n"
-"PO-Revision-Date: 2017-11-07 19:24+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"PO-Revision-Date: 2017-11-21 21:04+0000\n"
+"Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr "Não são permitidas ligações."
+msgstr "Não são permitidas hiperligações."
 
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
@@ -251,7 +251,7 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s descarga semanal"
+msgstr[0] "%(num)s descarregamento semanal"
 msgstr[1] "%(num)s descargas semanais"
 
 #, python-format
@@ -272,7 +272,7 @@ msgstr "Compatível com o Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} descarga semanal"
+msgstr[0] "{0} descarregamento semanal"
 msgstr[1] "{0} descargas semanais"
 
 #. {0} is the number of users.
@@ -662,8 +662,8 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> descarga semanal"
-msgstr[1] "<strong>{0}</strong> descargas semanais"
+msgstr[0] "<strong>{0}</strong> descarregamento semanal"
+msgstr[1] "<strong>{0}</strong> descarregamentos semanais"
 
 msgid "Not Reviewed"
 msgstr "Não revisto"
@@ -1241,7 +1241,7 @@ msgid "Description"
 msgstr "Descrição"
 
 msgid "Contributors & More"
-msgstr "Contribuintes e Mais"
+msgstr "Contribuidores e Mais"
 
 msgid "Save Changes"
 msgstr "Guardar alterações"
@@ -1260,7 +1260,7 @@ msgid "Remove"
 msgstr "Remover"
 
 msgid "Collection Contributors"
-msgstr "Contribuintes da coleção"
+msgstr "Contribuidores da coleção"
 
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
@@ -1436,7 +1436,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Descargas semanais"
+msgstr "Descarregamentos semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1448,7 +1448,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Descargas"
+msgstr "Descarregamentos"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1555,7 +1555,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por descargas semanais"
+msgstr "Extensões por descarregamentos semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1581,7 +1581,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por descargas semanais"
+msgstr "Temas completos por descarregamentos semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -2129,7 +2129,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de descargas"
+msgstr "Gestão de descarregamentos"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2306,7 +2306,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Descargas e gestão de ficheiros"
+msgstr "Descarregamentos e gestão de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -3171,7 +3171,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "No caso de as estatísticas de descarregamentos e de utilização do seu extra poderem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3359,10 +3359,10 @@ msgid "Actions"
 msgstr "Ações"
 
 msgid "Resume the submission process for this add-on."
-msgstr "Retomar o processo de submissão para este extra."
+msgstr "Continuar o processo de envio para este extra."
 
 msgid "Resume"
-msgstr "Resumir"
+msgstr "Continuar"
 
 msgid "Delete this add-on."
 msgstr "Eliminar este extra."
@@ -3380,7 +3380,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre descargas e utilizadores."
+msgstr "Estatísticas diárias sobre descarregamentos e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3890,7 +3890,7 @@ msgid "What's New"
 msgstr "Novidades"
 
 msgid "Ready to submit an add-on? Read our step-by-step tutorial on the submission process."
-msgstr "Pronto/a para submeter um extra? Leia o nosso tutorial passo-a-passo sobre o processo de submissão."
+msgstr "Pronto(a) para submeter um extra? Leia o nosso tutorial passo-a-passo sobre o processo de submissão."
 
 msgid "See Tutorial"
 msgstr "Ver tutorial"
@@ -4193,7 +4193,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Criado em %(created)s e alterado para %(status)s"
 
 msgid "Status & Versions"
-msgstr "Estado & versões"
+msgstr "Estado e versões"
 
 msgid "Edit this version"
 msgstr "Editar esta versão"
@@ -7586,14 +7586,14 @@ msgid "Downloaded by Date"
 msgstr "Descarregados por data"
 
 msgid "How are downloads counted?"
-msgstr "Como é que as descargas são contabilizadas?"
+msgstr "Como é que os descarregamentos são contabilizados?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Como é que as descargas são contabilizadas?</h2> <p> O número de descargas é atualizado todas as noites e apenas inclui descargas originais de extras e não atualizações. As descargas podem ser "
-"decompostas pela fonte específica que referenciou a descarga. </p>"
+"<h2>Como é que os descarregamentos são contabilizados?</h2> <p> O número de descarregamentos é atualizado todas as noites e inclui apenas descarregamentos originais de extras e não de atualizações. "
+"Os descarregamentos podem ser decompostos pela fonte específica que referenciou o descarregamento. </p>"
 
 msgid "User languages by Date"
 msgstr "Idiomas de utilizador por data"
@@ -7602,7 +7602,7 @@ msgid "Platform usage by Date"
 msgstr "Utilização da plataforma por data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> descargas"
+msgstr "<b>{0}</b> descarregamentos"
 
 msgid "Loading..."
 msgstr "A carregar..."
@@ -7635,7 +7635,7 @@ msgid "Reviews Created by Date"
 msgstr "Análise criadas por data"
 
 msgid "Download sources by Date"
-msgstr "Fonte das descargas por data"
+msgstr "Fonte dos descarregamentos por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
@@ -7671,14 +7671,14 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>O que são utilizadores diários?</h2> <p> Os temas instalados a partir deste site procuram por atualizações diariamente. O número total destas verificações por atualizações são conhecidas como "
+"<h2>O que são utilizadores diários?</h2> <p> Os temas instalados a partir deste site procuram atualizações diariamente. O número total destas verificações por atualizações são conhecidas como "
 "utilizadores diários ativos, ou o número de pessoas a utilizar o tema por dia. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>O que são utilizadores diários?</h2> <p> Os extras instalados a partir deste site procuram por atualizações diariamente. O número total destas verificações por atualizações são conhecidas como "
+"<h2>O que são utilizadores diários?</h2> <p> Os extras instalados a partir deste site procuram atualizações diariamente. O número total destas verificações por atualizações são conhecidas como "
 "utilizadores diários ativos. Os utilizadores diários podem ser decompostos por versão do extra, sistema operativo, estado do extra, aplicação e idioma. </p>"
 
 msgid "User Signups by Date"

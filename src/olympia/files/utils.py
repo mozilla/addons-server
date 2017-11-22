@@ -834,13 +834,6 @@ def check_xpi_info(xpi_info, addon=None):
                 authors__id=current_user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
-        guid_too_long = (
-            not waffle.switch_is_active('allow-long-addon-guid') and
-            len(guid) > 64
-        )
-        if guid_too_long:
-            raise forms.ValidationError(
-                ugettext('Add-on ID must be 64 characters or less.'))
         if addon and addon.guid != guid:
             msg = ugettext(
                 'The add-on ID in your manifest.json or install.rdf (%s) '

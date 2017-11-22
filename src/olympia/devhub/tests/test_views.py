@@ -19,7 +19,7 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, AddonUser)
+    Addon, AddonCategory, AddonFeatureCompatibility, AddonUser)
 from olympia.amo.templatetags.jinja_helpers import (
     url as url_reverse, format_date)
 from olympia.amo.tests import addon_factory, user_factory, version_factory
@@ -31,7 +31,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
-from olympia.reviews.models import Review
+from olympia.ratings.models import Rating
 from olympia.translations.models import delete_translation, Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
@@ -413,7 +413,7 @@ class TestVersionStats(TestCase):
         version = addon.current_version
         user = UserProfile.objects.get(email='admin@mozilla.com')
         for _ in range(10):
-            Review.objects.create(addon=addon, user=user,
+            Rating.objects.create(addon=addon, user=user,
                                   version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
@@ -574,7 +574,8 @@ class TestHome(TestCase):
 
     def test_my_addons_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()  # Make add-on incomplete
+        # Make add-on incomplete
+        AddonCategory.objects.filter(addon=self.addon).delete()
         doc = self.get_pq()
         addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
         assert addon_item.length == 1
@@ -628,7 +629,7 @@ class TestActivityFeed(TestCase):
             reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 302
 
-    def add_log(self, action=amo.LOG.ADD_REVIEW):
+    def add_log(self, action=amo.LOG.ADD_RATING):
         core.set_user(UserProfile.objects.get(email='del@icio.us'))
         ActivityLog.create(action, self.addon, self.version)
 
@@ -1216,7 +1217,7 @@ class TestUploadDetail(BaseUploadTest):
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(status=amo.STATUS_NULL)
-        addon.categories.all().delete()
+        AddonCategory.objects.filter(addon=addon).delete()
         addon.addonuser_set.create(user=user)
         self.post()
 

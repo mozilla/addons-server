@@ -20,10 +20,10 @@ class TestDiscoveryViewList(TestCase):
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = OrderedDict([
             (44686, addon_factory(id=44686, type=amo.ADDON_PERSONA)),
-            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+            (455926, addon_factory(id=455926, type=amo.ADDON_EXTENSION)),
             (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
             (376685, addon_factory(id=376685, type=amo.ADDON_PERSONA)),
-            (455926, addon_factory(id=455926, type=amo.ADDON_EXTENSION)),
+            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
             (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
             (208568, addon_factory(id=208568, type=amo.ADDON_PERSONA)),
         ])
@@ -154,8 +154,11 @@ class TestDiscoveryRecommendations(TestDiscoveryViewList):
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
 
-        response = self.client.get(self.url, {'lang': 'en-US',
-                                              'telemetry-client-id': '666'})
+        response = self.client.get(
+            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
+                       'platform': 'WINNT'})
+        self.get_recommendations.assert_called_with('666', 'en-US', 'WINNT')
+
         # should still be the same number of results.
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']

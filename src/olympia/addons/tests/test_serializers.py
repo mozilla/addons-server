@@ -23,6 +23,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import AddonSearchView, AddonAutoCompleteSearchView
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files.models import WebextPermission
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
@@ -136,8 +137,8 @@ class AddonSerializerOutputTestMixin(object):
             support_email=u'support@example.org',
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
-            total_reviews=666,
-            text_reviews_count=555,
+            total_ratings=666,
+            text_ratings_count=555,
             version_kw={
                 'license': license,
                 'releasenotes': {
@@ -262,8 +263,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['ratings'] == {
             'average': self.addon.average_rating,
             'bayesian_average': self.addon.bayesian_rating,
-            'count': self.addon.total_reviews,
-            'text_count': self.addon.text_reviews_count,
+            'count': self.addon.total_ratings,
+            'text_count': self.addon.text_ratings_count,
         }
         assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
@@ -751,13 +752,18 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
-        license.update(url=None)
+        license.update(url=None, builtin=license.OTHER)
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license']
         assert result['license']['id'] == license.pk
         assert result['license']['url'] == absolutify(
             self.version.license_url())
+
+        license.update(builtin=1)
+        result = self.serialize()
+        # Builtin licenses with no url shouldn't get the version license url.
+        assert result['license']['url'] is None
 
     def test_license_serializer_no_url_no_parent(self):
         # This should not happen (LicenseSerializer should always be called
@@ -773,6 +779,35 @@ class TestVersionSerializerOutput(TestCase):
         # LicenseSerializer is unable to find the Version, so it falls back to
         # None.
         assert result['url'] is None
+
+    def test_builtin_license(self):
+        addon = addon_factory()
+        self.version = addon.current_version
+        license = self.version.license
+        license.update(builtin=18)
+        assert license._constant == LICENSES_BY_BUILTIN[18]
+
+        result = LicenseSerializer(
+            context={'request': self.request}).to_representation(license)
+        assert result['id'] == license.pk
+        # A request with no ?lang gets you the site default l10n in a dict to
+        # match how non-constant values are returned.
+        assert result['name'] == {
+            'en-US': unicode(LICENSES_BY_BUILTIN[18].name)}
+
+        accept_request = APIRequestFactory().get('/')
+        accept_request.LANG = 'de'
+        result = LicenseSerializer(
+            context={'request': accept_request}).to_representation(license)
+        # An Accept-Language should result in a different default though.
+        assert result['name'] == {
+            'de': unicode(LICENSES_BY_BUILTIN[18].name)}
+
+        # But a requested lang returns a flat string
+        lang_request = APIRequestFactory().get('/?lang=fr')
+        result = LicenseSerializer(
+            context={'request': lang_request}).to_representation(license)
+        assert result['name'] == unicode(LICENSES_BY_BUILTIN[18].name)
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version
