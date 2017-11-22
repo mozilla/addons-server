@@ -80,11 +80,12 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
     """
     slug = getattr(instance, slug_field, None)
 
-    if not slug and unlisted:
+    if unlisted and not slug:
         slug = get_random_slug()
-    elif not slug and not unlisted:
-        slug = instance.name
+    else:
+        slug = slug or instance.name
 
+    if not slug:
         # Initialize the slug with what we have available: a name translation,
         # or the id of the instance, or in last resort the model name.
         translations = Translation.objects.filter(id=instance.name_id)
