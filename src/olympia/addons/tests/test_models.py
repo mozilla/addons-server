@@ -43,19 +43,19 @@ class TestCleanSlug(TestCase):
     def test_clean_slug_new_object(self):
         # Make sure there's at least an addon with the "addon" slug, subsequent
         # ones should be "addon-1", "addon-2" ...
-        a = Addon.objects.create()
+        a = Addon.objects.create(name='Addon')
         assert a.slug == "addon"
 
         # Start with a first clash. This should give us "addon-1".
         # We're not saving yet, we're testing the slug creation without an id.
-        b = Addon()
+        b = Addon(name='Addon')
         b.clean_slug()
         assert b.slug == 'addon1'
         # Now save the instance to the database for future clashes.
         b.save()
 
         # Test on another object without an id.
-        c = Addon()
+        c = Addon(name='Addon')
         c.clean_slug()
         assert c.slug == 'addon2'
 
@@ -66,30 +66,20 @@ class TestCleanSlug(TestCase):
 
         # And yet another object without an id. Make sure we're not trying to
         # assign the 'addon-2' slug from the deleted addon.
-        d = Addon()
+        d = Addon(name='Addon')
         d.clean_slug()
         assert d.slug == 'addon3'
 
-    def test_clean_slug_with_id(self):
+    def test_clean_slug_no_name(self):
         # Create an addon and save it to have an id.
         a = Addon.objects.create()
         # Start over: don't use the name nor the id to generate the slug.
         a.slug = a.name = ""
         a.clean_slug()
-        # Slugs created from an id are of the form "id~", eg "123~" to avoid
-        # clashing with URLs.
-        assert a.slug == "%s~" % a.id
 
-        # And again, this time make it clash.
-        b = Addon.objects.create()
-        # Set a's slug to be what should be created for b from its id.
-        a.slug = "%s~" % b.id
-        a.save()
-
-        # Now start over for b.
-        b.slug = b.name = ""
-        b.clean_slug()
-        assert b.slug == "%s~1" % b.id
+        # Slugs that are generated from add-ons without an name use
+        # uuid without the node bit so have the length 20.
+        assert len(a.slug) == 20
 
     def test_clean_slug_with_name(self):
         # Make sure there's at least an addon with the "fooname" slug,
@@ -173,6 +163,7 @@ class TestCleanSlug(TestCase):
         # part of the "for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Addon.objects.create(slug=long_slug)
+
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
 

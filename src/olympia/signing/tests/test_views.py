@@ -123,6 +123,11 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(
             latest_version, is_beta=False)
 
+        # Also make sure that we are assigning a random 20 character long
+        # slug that has nothing to do with the addon name.
+        assert len(addon.slug) == 20
+        assert not 'create' in addon.slug
+
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())

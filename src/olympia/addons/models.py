@@ -7,6 +7,7 @@ import posixpath
 import re
 import time
 import urlparse
+import uuid
 from operator import attrgetter
 from datetime import datetime
 
@@ -57,25 +58,38 @@ from . import signals
 log = olympia.core.logger.getLogger('z.addons')
 
 
-def clean_slug(instance, slug_field='slug'):
+MAX_SLUG_INCREMENT = 99
+_SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
+
+
+def get_random_slug():
+    """Return a 20 character long random string"""
+    return ''.join(str(uuid.uuid4()).split('-')[:-1])
+
+
+def clean_slug(instance, slug_field='slug', unlisted=False):
     """Cleans a model instance slug.
 
-    This strives to be as generic as possible as it's used by Addons
-    and Collections, and maybe more in the future.
+    This strives to be as generic as possible but is generally only used
+    by Add-ons at the moment.
 
+    :param instance: The instance to clean the slug for.
+    :param slug_field: The field where to get the currently set slug from.
+    :param unlisted: Whether the instance is listed or unlisted. We generate
+                     random slugs For unlisted instances.
     """
     slug = getattr(instance, slug_field, None) or instance.name
 
-    if not slug:
+    if not slug and unlisted:
+        slug = get_random_slug()
+    elif not slug and not unlisted:
         # Initialize the slug with what we have available: a name translation,
         # or the id of the instance, or in last resort the model name.
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
-        elif instance.id:
-            slug = str(instance.id)
         else:
-            slug = instance.__class__.__name__
+            slug = get_random_slug()
 
     max_length = instance._meta.get_field(slug_field).max_length
     slug = slugify(slug)[:max_length]
@@ -99,23 +113,27 @@ def clean_slug(instance, slug_field='slug'):
     # suffix that is available. Eg, if there's a "foo-bar" slug, "foo" is still
     # available.
     clash = qs.filter(**{slug_field: slug})
+
     if clash.exists():
-        # Leave space for 99 clashes.
-        slug = slugify(slug)[:max_length - 2]
+        max_postfix_length = len(str(MAX_SLUG_INCREMENT))
+
+        slug = slugify(slug)[:max_length - max_postfix_length]
 
         # There is a clash, so find a suffix that will make this slug unique.
         lookup = {'%s__startswith' % slug_field: slug}
         clashes = qs.filter(**lookup)
 
-        # Try numbers between 1 and the number of clashes + 1 (+ 1 because we
-        # start the range at 1, not 0):
-        # if we have two clashes "foo1" and "foo2", we need to try "foox"
-        # for x between 1 and 3 to be absolutely sure to find an available one.
-        for idx in range(1, len(clashes) + 2):
-            new = ('%s%s' % (slug, idx))[:max_length]
-            if new not in clashes:
-                slug = new
-                break
+        prefix_len = len(slug)
+        used_slug_numbers = [value[prefix_len:] for value in clashes]
+
+        # find the next free slug number
+        slug_numbers = {int(i) for i in used_slug_numbers if i.isdigit()}
+        unused_numbers = _SLUG_INCREMENT_SUFFIXES - slug_numbers
+
+        if unused_numbers:
+            num = min(unused_numbers)
+        elif max_length is None:
+            num = max(slug_numbers) + 1
         else:
             # This could happen. The current implementation (using
             # ``[:max_length -3]``) only works for the first 100 clashes in the
@@ -124,7 +142,10 @@ def clean_slug(instance, slug_field='slug'):
             # After that, {verylongslug}-100 will be trimmed down to
             # {verylongslug}-10, which is already assigned, but it's the last
             # solution tested.
-            raise RuntimeError
+            raise RuntimeError(
+                'No suitable slug increment for {} found'.format(slug))
+
+        slug = '{slug}{postfix}'.format(slug=slug, postfix=num)
 
     setattr(instance, slug_field, slug)
 
@@ -410,7 +431,12 @@ class Addon(OnChangeMixin, ModelBase):
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
-        clean_slug(self, slug_field)
+
+        is_unlisted = (
+            self.current_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+            if self.current_version else True)
+
+        clean_slug(self, slug_field, unlisted=is_unlisted)
 
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
