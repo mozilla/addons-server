@@ -1,7 +1,6 @@
 $(document).ready(function() {
-    function BrowserPreview() {
-        this.generate = function(id) {
-            var $div = $('#' + id);
+    function StaticThemeBrowserPreview() {
+        this.generate = function($div) {
             $div.append($(
                 '<svg id="SvgjsSvg1006" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs">' +
                 '<defs id="SvgjsDefs1007"></defs>' +
@@ -86,9 +85,9 @@ $(document).ready(function() {
 
     function initThemeWizard() {
         var $wizard = $(this),
-            browserPreview = new BrowserPreview();
+            browserPreview = new StaticThemeBrowserPreview();
 
-        browserPreview.generate('browser-preview');
+        browserPreview.generate($('#browser-preview'));
 
         $wizard.on('click', '.reset', _pd(function() {
             var $this = $(this),
@@ -131,7 +130,7 @@ $(document).ready(function() {
 
         function updateManifest() {
             textarea = $wizard.find('#manifest').val(generateManifest());
-            $wizard.find('a.download').attr('href', '#');
+            $wizard.find('button.upload').attr('disabled', ! required_fields_present());
         }
 
         function getFile($input) {
@@ -183,13 +182,8 @@ $(document).ready(function() {
 
         var $color = $wizard.find('input.color-picker');
         $color.change(function() {
-            var $this = $(this),
-                val = $this.val();
-            if (val.indexOf('#') === 0) {
-                var rgb = hex2rgb(val);
-                $this.attr('data-rgb', format('{0},{1},{2}', rgb.r, rgb.g, rgb.b));
-            }
-            browserPreview[$this[0].id] = val;
+            var $this = $(this);
+            browserPreview[$this[0].id] = $this.val();
             updateManifest();
         }).trigger('change');
 
@@ -209,7 +203,7 @@ $(document).ready(function() {
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
                 var formData = new FormData();
-                formData.append('upload', blob, 'test.zip');
+                formData.append('upload', blob, 'upload.zip');
                 $.ajax({
                     type: 'POST',
                     url: $button.attr('formaction'),
@@ -240,13 +234,10 @@ $(document).ready(function() {
             }
         }
 
-        function hex2rgb(hex) {
-            hex = parseInt((hex.indexOf('#') > -1 ? hex.substring(1) : hex), 16);
-            return {
-                r: hex >> 16,
-                g: (hex & 0x00FF00) >> 8,
-                b: hex & 0x0000FF
-            };
+        function required_fields_present() {
+            return $wizard.find('#header-img')[0].files.length > 0 &&
+                   $wizard.find('#accentcolor').val() !== "" &&
+                   $wizard.find('#textcolor').val() !== "";
         }
     }
 
