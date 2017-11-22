@@ -44,9 +44,9 @@ class TestCleanSlug(TestCase):
         # Make sure there's at least an addon with the "addon" slug, subsequent
         # ones should be "addon-1", "addon-2" ...
         a = Addon.objects.create(name='Addon')
-        assert a.slug == "addon"
+        assert a.slug == 'addon'
 
-        # Start with a first clash. This should give us "addon-1".
+        # Start with a first clash. This should give us 'addon-1".
         # We're not saving yet, we're testing the slug creation without an id.
         b = Addon(name='Addon')
         b.clean_slug()
@@ -74,7 +74,7 @@ class TestCleanSlug(TestCase):
         # Create an addon and save it to have an id.
         a = Addon.objects.create()
         # Start over: don't use the name nor the id to generate the slug.
-        a.slug = a.name = ""
+        a.slug = a.name = ''
         a.clean_slug()
 
         # Slugs that are generated from add-ons without an name use
@@ -82,24 +82,24 @@ class TestCleanSlug(TestCase):
         assert len(a.slug) == 20
 
     def test_clean_slug_with_name(self):
-        # Make sure there's at least an addon with the "fooname" slug,
-        # subsequent ones should be "fooname-1", "fooname-2" ...
-        a = Addon.objects.create(name="fooname")
-        assert a.slug == "fooname"
+        # Make sure there's at least an addon with the 'fooname' slug,
+        # subsequent ones should be 'fooname-1', 'fooname-2' ...
+        a = Addon.objects.create(name='fooname')
+        assert a.slug == 'fooname'
 
-        b = Addon(name="fooname")
+        b = Addon(name='fooname')
         b.clean_slug()
-        assert b.slug == "fooname1"
+        assert b.slug == 'fooname1'
 
     def test_clean_slug_with_slug(self):
-        # Make sure there's at least an addon with the "fooslug" slug,
-        # subsequent ones should be "fooslug-1", "fooslug-2" ...
-        a = Addon.objects.create(name="fooslug")
-        assert a.slug == "fooslug"
+        # Make sure there's at least an addon with the 'fooslug' slug,
+        # subsequent ones should be 'fooslug-1', 'fooslug-2' ...
+        a = Addon.objects.create(name='fooslug')
+        assert a.slug == 'fooslug'
 
-        b = Addon(name="fooslug")
+        b = Addon(name='fooslug')
         b.clean_slug()
-        assert b.slug == "fooslug1"
+        assert b.slug == 'fooslug1'
 
     def test_clean_slug_denied_slug(self):
         denied_slug = 'foodenied'
@@ -107,30 +107,30 @@ class TestCleanSlug(TestCase):
 
         a = Addon(slug=denied_slug)
         a.clean_slug()
-        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
+        # Blacklisted slugs (like 'activate" or IDs) have a "~" appended to
         # avoid clashing with URLs.
-        assert a.slug == "%s~" % denied_slug
+        assert a.slug == '%s~' % denied_slug
         # Now save the instance to the database for future clashes.
         a.save()
 
         b = Addon(slug=denied_slug)
         b.clean_slug()
-        assert b.slug == "%s~1" % denied_slug
+        assert b.slug == '%s~1' % denied_slug
 
     def test_clean_slug_denied_slug_long_slug(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
         DeniedSlug.objects.create(name=long_slug[:30])
 
-        # If there's no clashing slug, just append a "~".
+        # If there's no clashing slug, just append a '~'.
         a = Addon.objects.create(slug=long_slug[:30])
-        assert a.slug == "%s~" % long_slug[:29]
+        assert a.slug == '%s~' % long_slug[:29]
 
         # If there's a clash, use the standard clash resolution.
         a = Addon.objects.create(slug=long_slug[:30])
-        assert a.slug == "%s1" % long_slug[:28]
+        assert a.slug == '%s1' % long_slug[:28]
 
     def test_clean_slug_long_slug(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
         # If there's no clashing slug, don't over-shorten it.
         a = Addon.objects.create(slug=long_slug)
@@ -139,28 +139,28 @@ class TestCleanSlug(TestCase):
         # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        assert b.slug == "%s1" % long_slug[:28]
+        assert b.slug == '%s1' % long_slug[:28]
 
     def test_clean_slug_always_slugify(self):
-        illegal_chars = "some spaces and !?@"
+        illegal_chars = 'some spaces and !?@'
 
         # Slugify if there's a slug provided.
         a = Addon(slug=illegal_chars)
         a.clean_slug()
-        assert a.slug.startswith("some-spaces-and"), a.slug
+        assert a.slug.startswith('some-spaces-and'), a.slug
 
         # Also slugify if there's no slug provided.
         b = Addon(name=illegal_chars)
         b.clean_slug()
-        assert b.slug.startswith("some-spaces-and"), b.slug
+        assert b.slug.startswith('some-spaces-and'), b.slug
 
     def test_clean_slug_worst_case_scenario(self):
-        long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
+        long_slug = 'this_is_a_very_long_slug_that_is_longer_than_thirty_chars'
 
         # Generate 100 addons with this very long slug. We should encounter the
         # worst case scenario where all the available clashes have been
-        # avoided. Check the comment in addons.models.clean_slug, in the "else"
-        # part of the "for" loop checking for available slugs not yet assigned.
+        # avoided. Check the comment in addons.models.clean_slug, in the 'else'
+        # part of the 'for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Addon.objects.create(slug=long_slug)
 
@@ -176,6 +176,10 @@ class TestCleanSlug(TestCase):
         b = Addon.objects.create(name='ends with dash -')
         assert b.slug == 'ends-with-dash-1'
         assert b.slug == amo.utils.slugify(b.slug)
+
+    def test_clean_slug_unicode(self):
+        addon = Addon.objects.create(name=u'Addön 1')
+        assert addon.slug == u'addön-1'
 
 
 class TestAddonManager(TestCase):
@@ -576,8 +580,8 @@ class TestAddonModels(TestCase):
         log = AddonLog.objects.order_by('-id').first().activity_log
         assert log.action == amo.LOG.DELETE_ADDON.id
         assert log.to_string() == (
-            "Addon id {0} with GUID {1} has been deleted".format(addon_id,
-                                                                 guid))
+            'Addon id {0} with GUID {1} has been deleted'.format(
+                addon_id, guid))
 
     def test_delete(self):
         addon = Addon.unfiltered.get(pk=3615)

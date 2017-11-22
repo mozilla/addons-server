@@ -145,7 +145,7 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
             raise RuntimeError(
                 'No suitable slug increment for {} found'.format(slug))
 
-        slug = '{slug}{postfix}'.format(slug=slug, postfix=num)
+        slug = u'{slug}{postfix}'.format(slug=slug, postfix=num)
 
     setattr(instance, slug_field, slug)
 
