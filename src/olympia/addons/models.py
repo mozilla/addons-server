@@ -59,7 +59,7 @@ log = olympia.core.logger.getLogger('z.addons')
 
 
 MAX_SLUG_INCREMENT = 99
-_SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
+SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 
 
 def get_random_slug():
@@ -128,7 +128,7 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
 
         # find the next free slug number
         slug_numbers = {int(i) for i in used_slug_numbers if i.isdigit()}
-        unused_numbers = _SLUG_INCREMENT_SUFFIXES - slug_numbers
+        unused_numbers = SLUG_INCREMENT_SUFFIXES - slug_numbers
 
         if unused_numbers:
             num = min(unused_numbers)
@@ -136,9 +136,9 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
             num = max(slug_numbers) + 1
         else:
             # This could happen. The current implementation (using
-            # ``[:max_length -3]``) only works for the first 100 clashes in the
+            # ``[:max_length -2]``) only works for the first 100 clashes in the
             # worst case (if the slug is equal to or longuer than
-            # ``max_length - 3`` chars).
+            # ``max_length - 2`` chars).
             # After that, {verylongslug}-100 will be trimmed down to
             # {verylongslug}-10, which is already assigned, but it's the last
             # solution tested.
