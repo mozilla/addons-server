@@ -28,36 +28,6 @@ QUEUE_PER_PAGE = 100
 
 
 @personas_reviewer_required
-def home(request):
-    data = context(
-        reviews_total=ActivityLog.objects.total_ratings(theme=True)[:5],
-        reviews_monthly=ActivityLog.objects.monthly_reviews(theme=True)[:5],
-        queue_counts=queue_counts_themes(request)
-    )
-    return render(request, 'reviewers/themes/home.html', data)
-
-
-def queue_counts_themes(request):
-    counts = {
-        'themes': Persona.objects.no_cache()
-                                 .filter(addon__status=amo.STATUS_PENDING)
-                                 .count(),
-        'flagged_themes': (
-            Persona.objects.no_cache()
-                           .filter(addon__status=amo.STATUS_REVIEW_PENDING)
-                           .count()),
-        'rereview_themes': RereviewQueueTheme.objects.count()
-    }
-    rv = {}
-    if isinstance(type, basestring):
-        return counts[type]
-    for k, v in counts.items():
-        if not isinstance(type, list) or k in type:
-            rv[k] = v
-    return rv
-
-
-@personas_reviewer_required
 def themes_list(request, flagged=False, rereview=False):
     """Themes queue in list format."""
     themes = []
