@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-21 09:44+0000\n"
+"PO-Revision-Date: 2017-11-22 11:44+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1343,7 +1343,7 @@ msgid "Add-ons in Your Collection"
 msgstr "Utvidingar i samlinga di"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Om du vil inkludere ei utviding i denne samlinga, skriv inn namnet i ruta nedanfor og trykk Enter."
 
 msgid "Add-on"
 msgstr "Utviding"
@@ -1461,6 +1461,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Om du installerer ei ordboks-utviding legg du til eit nytt språkalternativ i %(app_name)s stavekontrollen din, som kontrollerer stavninga når du fyller ut nettskjema. Språkpakkeutvidingar endrar "
+"språket i heile programmet."
 
 msgid "Available in your locale"
 msgstr "Tilgjengeleg på ditt språk"
@@ -1517,7 +1519,7 @@ msgstr "Bla gjennom enno fleire søkeleverandørar på <a href=\"http://mycroftp
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sLag ditt eige%(amo_mdn_link_close)s søkjeverktøy"
 
 msgid "Most Popular Extensions"
 msgstr "Mest populære utvidingar"
