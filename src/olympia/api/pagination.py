@@ -17,6 +17,7 @@ class CustomPageNumberPagination(PageNumberPagination):
             # Note that self.page_size doesn't work, it contains the default
             # page size.
             ('page_size', self.page.paginator.per_page),
+            ('page_count', self.page.paginator.num_pages),
             ('count', self.page.paginator.count),
             ('next', self.get_next_link()),
             ('previous', self.get_previous_link()),
@@ -42,6 +43,7 @@ class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
         # return next/prev links.
         return Response(OrderedDict([
             ('page_size', 1),
+            ('page_count', 1),
             ('count', len(data)),
             ('next', None),
             ('previous', None),

@@ -98,6 +98,7 @@ The following properties will be available in paginated responses:
 * *next*: the URL for the next page in the pagination.
 * *previous*: the URL for the previous page in the pagination.
 * *page_size*: The number of items per page in the pagination.
+* *page_count*: The number of pages available in the pagination.
 * *count*: the total number of records.
 * *results*: the array containing the results for this page.
 
