@@ -78,11 +78,13 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
     :param unlisted: Whether the instance is listed or unlisted. We generate
                      random slugs For unlisted instances.
     """
-    slug = getattr(instance, slug_field, None) or instance.name
+    slug = getattr(instance, slug_field, None)
 
     if not slug and unlisted:
         slug = get_random_slug()
     elif not slug and not unlisted:
+        slug = instance.name
+
         # Initialize the slug with what we have available: a name translation,
         # or the id of the instance, or in last resort the model name.
         translations = Translation.objects.filter(id=instance.name_id)
