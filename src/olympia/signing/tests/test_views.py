@@ -126,7 +126,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         # Also make sure that we are assigning a random 20 character long
         # slug that has nothing to do with the addon name.
         assert len(addon.slug) == 20
-        assert not 'create' in addon.slug
+        assert 'create' not in addon.slug
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
