@@ -940,7 +940,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/static_theme.js',
             'js/node_lib/jquery.minicolors.js',
             'js/node_lib/jszip.js',
-            'js/node_lib/svg.js'
         ),
         'zamboni/reviewers': (
             'js/lib/highcharts.src.js',

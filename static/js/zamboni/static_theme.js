@@ -1,53 +1,21 @@
 $(document).ready(function() {
     function BrowserPreview() {
         this.generate = function(id) {
-            var svg = SVG(id);
             var $div = $('#' + id);
-            var div_height = $div.height();
-            // header background
-            svg.rect($div.width(), div_height)
-               .attr('class', 'accentcolor');
-            // main header image
-            svg.image('').attr('id', 'svg-header-img')
-               .loaded(function(loader) {
-                    this.size(loader.width, loader.height);
-                });
-
-            // header text
-            svg.text('File    Edit   View    History   Bookmarks   Tools   Help')
-               .x(5).cy(div_height / 4).font('size', '1.4em')
-               .attr('class', 'textcolor');
-            svg.text('Inactive Tab')
-               .x(160).cy(div_height / 2).font('size', '1.4em')
-               .attr('class', 'textcolor');
-
-            // toolbars
-            svg.rect($div.width(), div_height / 2)  // toolbar background
-               .y(div_height / 2)
-               .attr('class', 'toolbar');
-            svg.rect(150, div_height / 4)  // active tab background
-               .y(div_height / 4)
-               .attr('class', 'toolbar');
-
-            // toolbar text
-            svg.text('Active Tab')
-               .x(10).cy(div_height / 2).font('size', '1.4em')
-               .attr('class', 'toolbar_text');
-            svg.text('# Most Visited. # Getting Started. # Other Bookmark')
-               .x(10).cy(div_height).font('size', '1.4em')
-               .attr('class', 'toolbar_text');
-
-            // url field background
-            svg.rect(400, (div_height / 4) - 20)
-               .x(100).y((div_height / 2) + 10)
-               .attr('class', 'toolbar_field');
-
-            // toolbar text
-            svg.text('https://addons.mozilla.org/')
-               .x(130).y((div_height / 2) + 35).font('size', '1.4em')
-               .attr('class', 'toolbar_field_text');
-
-            return svg;
+            $div.append($(
+                '<svg id="SvgjsSvg1006" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs">' +
+                '<defs id="SvgjsDefs1007"></defs>' +
+                '<rect id="SvgjsRect1008" width="900" height="200" class="accentcolor"></rect>' +
+                '<image id="svg-header-img" width="0" height="0"></image>' +
+                '<text id="SvgjsText1010" font-family="Helvetica, Arial, sans-serif" x="5" y="34.20000076293945" font-size="1.4em" class="textcolor" fill=""><tspan id="SvgjsTspan1011" dy="1.8199999999999998" x="5">File    Edit   View    History   Bookmarks   Tools   Help</tspan></text>' +
+                '<text id="SvgjsText1012" font-family="Helvetica, Arial, sans-serif" x="160" y="84.20000076293945" font-size="1.4em" class="textcolor" fill=""><tspan id="SvgjsTspan1013" dy="1.8199999999999998" x="160">Inactive Tab</tspan></text>' +
+                '<rect id="SvgjsRect1014" width="900" height="100" y="100" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>' +
+                '<rect id="SvgjsRect1015" width="150" height="50" y="50" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>' +
+                '<text id="SvgjsText1016" font-family="Helvetica, Arial, sans-serif" x="10" y="84.20000076293945" font-size="1.4em" class="toolbar_text" fill=""><tspan id="SvgjsTspan1017" dy="1.8199999999999998" x="10">Active Tab</tspan></text>' +
+                '<text id="SvgjsText1018" font-family="Helvetica, Arial, sans-serif" x="10" y="184.20000076293945" font-size="1.4em" class="toolbar_text" fill=""><tspan id="SvgjsTspan1019" dy="1.8199999999999998" x="10"># Most Visited. # Getting Started. # Other Bookmark</tspan></text>' +
+                '<rect id="SvgjsRect1020" width="400" height="30" x="100" y="110" class="toolbar_field" fill="#fff"></rect>' +
+                '<text id="SvgjsText1021" font-family="Helvetica, Arial, sans-serif" x="130" y="128.20000076293945" font-size="1.4em" class="toolbar_field_text" fill=""><tspan id="SvgjsTspan1022" dy="1.8199999999999998" x="130">https://addons.mozilla.org/</tspan></text>' +
+                '</svg>'));
         };
 
         Object.defineProperty(this, 'accentcolor', {
@@ -55,31 +23,31 @@ $(document).ready(function() {
                 if (!color) {
                     color = '#ccc';
                 }
-                SVG.select('rect.accentcolor').fill(color);
+                $('rect.accentcolor').attr('fill', color);
             }
         });
 
         Object.defineProperty(this, 'textcolor', {
             set: function(color) {
-                SVG.select('text.textcolor').fill(color);
+                $('text.textcolor').attr('fill', color);
             }
         });
 
         Object.defineProperty(this, 'toolbar', {
             set: function(color) {
-                var fill;
+                var attrs;
                 if (!color) {
-                    fill = {color: '#fff', opacity: 0.6};
+                    attrs = {'fill': '#fff', 'fill-opacity': "0.6"};
                 } else {
-                    fill = {color: color, opacity: 1};
+                    attrs = {'fill': color, 'fill-opacity': "1"};
                 }
-                SVG.select('rect.toolbar').fill(fill);
+                $('rect.toolbar').attr(attrs);
             }
         });
 
         Object.defineProperty(this, 'toolbar_text', {
             set: function(color) {
-                SVG.select('text.toolbar_text').fill(color);
+                $('text.toolbar_text').attr('fill', color);
             }
         });
 
@@ -88,21 +56,27 @@ $(document).ready(function() {
                 if (!color) {
                     color = '#fff';
                 }
-                SVG.select('rect.toolbar_field').fill({color: color});
+                $('rect.toolbar_field').attr('fill', color);
             }
         });
 
         Object.defineProperty(this, 'toolbar_field_text', {
             set: function(color) {
-                SVG.select('text.toolbar_field_text').fill(color);
+                $('text.toolbar_field_text').attr('fill', color);
             }
         });
 
         this.updateHeaderURL = function(src, width) {
-            var header_img = SVG.get('svg-header-img');
-            header_img.load(src);
-            var div = header_img.parent(SVG.Doc).parent();
-            header_img.x(div.clientWidth - width);
+            var header_img = $('#svg-header-img');
+
+            var img  = new window.Image();
+            $(img).on('load', function() {
+                header_img.attr({width: img.width, height: img.height});
+            });
+            header_img.attr('href', (img.src = header_img.src = src));
+
+            var div = header_img.parents('div')[0];
+            header_img.attr('x', div.clientWidth - width);
         };
     }
 

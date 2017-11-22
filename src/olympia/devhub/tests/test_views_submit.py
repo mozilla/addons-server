@@ -1271,12 +1271,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert not doc('#wizardlink')
 
-        response = self.client.get(reverse(
-            'devhub.submit.version.upload', args=['unlisted']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_LISTED

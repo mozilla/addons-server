@@ -24,7 +24,6 @@
     "less": "2.7.2",
     "source-map": "0.6.1",
     "stylus": "0.54.5",
-    "svg.js": "2.6.3",
     "raven-js": "3.19.1",
     "timeago": "1.6.1",
     "uglify-js": "3.1.9",
