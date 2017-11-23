@@ -435,10 +435,11 @@ class Addon(OnChangeMixin, ModelBase):
         if self.status == amo.STATUS_DELETED:
             return
 
-        randomize_slug = False
-
-        if self.id and not self.has_listed_versions():
-            randomize_slug = True
+        randomize_slug = (
+            self.id and
+            self.versions.all().exists() and not
+            self.has_listed_versions()
+        )
 
         clean_slug(self, slug_field, randomize=randomize_slug)
 
