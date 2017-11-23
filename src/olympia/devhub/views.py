@@ -1332,7 +1332,6 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
-        addon_update = {}
         if data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True})
@@ -1348,9 +1347,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            addon_update['status'] = amo.STATUS_NOMINATED
-        if addon_update:
-            addon.update(**addon_update)
+            addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
         next_url = (next_details
