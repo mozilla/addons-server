@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 20:11+0000\n"
+"PO-Revision-Date: 2017-11-23 20:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6703,9 +6703,8 @@ msgstr "Protokol signěrowanych betadatajow"
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Awtomatiski pśizwólony dodank ({0})"
+msgstr "Awtomatiski pśizwólone dodanki ({0})"
 
 msgid "Content Review"
 msgstr "Pśeglědanje wopśimjeśa"
@@ -6717,25 +6716,20 @@ msgstr[1] "Pśeglědani wopśimjeśa ({0})"
 msgstr[2] "Pśeglědanja wopśimjeśa ({0})"
 msgstr[3] "Pśeglědanjow wopśimjeśa ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Nowy dodank ({0})"
+msgstr "Nowe drastwy ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Aktualizacija ({0})"
+msgstr "Aktualizacije drastwow ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Markěrowane drastwy"
+msgstr "Markěrowane drastwy ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Pśeglědanje drastwy"
+msgstr "Protokol pśeglědanych drastwow"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Drastwu lašowaś"
+msgstr "Protokol wulašowanych drastwow"
 
 msgid "User Ratings Moderation"
 msgstr "Moderacija wužywarskich pógódnośenjow"
@@ -6746,9 +6740,8 @@ msgstr "Pógódnośenja, kótarež na moderaciju cakaju ({0})"
 msgid "Moderated Review Log"
 msgstr "Protokol moderěrowanych pśeglědanjow"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Wšykne njenalicone dodanki"
+msgstr "Njenalicone dodanki"
 
 msgid "All Unlisted Add-ons"
 msgstr "Wšykne njenalicone dodanki"
@@ -6824,7 +6817,6 @@ msgstr "Datum slědnego pśizwólenja"
 msgid "Abuse Reports ({num})"
 msgstr "Znjewužywańske rozpšawy ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužywarske pógódnośenja ({num})"
 
