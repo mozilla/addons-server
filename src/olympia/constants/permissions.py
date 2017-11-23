@@ -45,8 +45,6 @@ COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 STATS_VIEW = AclPermission('Stats', 'View')
 # Can view collection statistics.
 COLLECTION_STATS_VIEW = AclPermission('CollectionStats', 'View')
-# Can view revenue statistics.
-REVENUE_STATS_VIEW = AclPermission('RevenueStats', 'View')
 
 # Can submit experiments.
 EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')

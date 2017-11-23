@@ -8,15 +8,6 @@ class _NOTIFICATION(object):
     pass
 
 
-class thanks(_NOTIFICATION):
-    id = 2
-    group = 'user'
-    short = 'dev_thanks'
-    label = _('an add-on developer thanks me for a contribution')
-    mandatory = False
-    default_checked = True
-
-
 class reply(_NOTIFICATION):
     id = 3
     group = 'user'

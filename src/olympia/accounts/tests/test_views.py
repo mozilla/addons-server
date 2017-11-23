@@ -1245,22 +1245,22 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
         assert (
-            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
 
     def test_user_set_notifications_included(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         UserNotification.objects.create(
-            user=self.user, notification_id=thanks_notification.id,
+            user=self.user, notification_id=reply_notification.id,
             enabled=False)
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
 
     def test_no_auth_fails(self):
@@ -1279,7 +1279,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 11
+        assert len(response.data) == 10
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
@@ -1303,43 +1303,43 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         super(TestAccountNotificationViewSetUpdate, self).setUp()
 
     def test_new_notification(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         assert not UserNotification.objects.filter(
-            user=self.user, notification_id=thanks_notification.id).exists()
+            user=self.user, notification_id=reply_notification.id).exists()
         self.client.login_api(self.user)
         # Check it's set to the default True beforehand.
         assert (
-            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
             self.client.get(self.list_url).data)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=thanks_notification.id)
+            user=self.user, notification_id=reply_notification.id)
         assert not un_obj.enabled
 
     def test_updated_notification(self):
-        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        reply_notification = NOTIFICATIONS_BY_ID[3]
         # Create the UserNotification object
         UserNotification.objects.create(
-            user=self.user, notification_id=thanks_notification.id,
+            user=self.user, notification_id=reply_notification.id,
             enabled=True)
         self.client.login_api(self.user)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=self.user, notification_id=thanks_notification.id)
+            user=self.user, notification_id=reply_notification.id)
         assert not un_obj.enabled
 
     def test_set_mandatory_fail(self):
@@ -1371,13 +1371,13 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
 
-        response = self.client.post(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'reply': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
-            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
         # And the notification has been saved.
         un_obj = UserNotification.objects.get(
-            user=original_user, notification_id=NOTIFICATIONS_BY_ID[2].id)
+            user=original_user, notification_id=NOTIFICATIONS_BY_ID[3].id)
         assert not un_obj.enabled

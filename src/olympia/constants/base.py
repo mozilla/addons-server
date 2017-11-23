@@ -250,19 +250,6 @@ VIDEO_TYPES = ('video/webm',)
 NO_COMPAT = (ADDON_SEARCH, ADDON_DICT, ADDON_PERSONA)
 HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 
-# Contributions
-CONTRIB_NONE = 0
-CONTRIB_PASSIVE = 1
-CONTRIB_AFTER = 2
-CONTRIB_ROADBLOCK = 3
-
-CONTRIB_CHOICES = (
-    (CONTRIB_PASSIVE,
-     _(u"Only ask on this add-on's page and developer profile")),
-    (CONTRIB_AFTER, _(u"Ask after users start downloading this add-on")),
-    (CONTRIB_ROADBLOCK, _(u"Ask before users can download this add-on")),
-)
-
 # Personas
 PERSONAS_ADDON_ID = 10900  # Add-on ID of the Personas Plus Add-on
 PERSONAS_FIREFOX_MIN = '3.6'  # First Firefox version to support Personas
@@ -374,9 +361,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "detected_type": "extension",
     "ending_tier": 5,
 }
-
-# Contributions.
-FOUNDATION_ORG = 1  # The charities.id of the Mozilla Foundation.
 
 VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
                               (([\.-]\d)?\d*)         # followed by nothing
