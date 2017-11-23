@@ -67,7 +67,7 @@ def get_random_slug():
     return ''.join(str(uuid.uuid4()).split('-')[:-1])
 
 
-def clean_slug(instance, slug_field='slug', unlisted=False):
+def clean_slug(instance, slug_field='slug', randomize=False):
     """Cleans a model instance slug.
 
     This strives to be as generic as possible but is generally only used
@@ -75,12 +75,12 @@ def clean_slug(instance, slug_field='slug', unlisted=False):
 
     :param instance: The instance to clean the slug for.
     :param slug_field: The field where to get the currently set slug from.
-    :param unlisted: Whether the instance is listed or unlisted. We generate
-                     random slugs For unlisted instances.
+    :param randomize: Whether we allow the slug to be randomized.
+        This may happen for purely unlisted add-ons created via API.
     """
     slug = getattr(instance, slug_field, None)
 
-    if unlisted and not slug:
+    if randomize:
         slug = get_random_slug()
     else:
         slug = slug or instance.name
@@ -435,11 +435,12 @@ class Addon(OnChangeMixin, ModelBase):
         if self.status == amo.STATUS_DELETED:
             return
 
-        is_unlisted = (
-            self.current_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-            if self.current_version else True)
+        randomize_slug = False
 
-        clean_slug(self, slug_field, unlisted=is_unlisted)
+        if self.id and not self.has_listed_versions():
+            randomize_slug = True
+
+        clean_slug(self, slug_field, randomize=randomize_slug)
 
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()

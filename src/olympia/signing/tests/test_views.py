@@ -123,8 +123,29 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(
             latest_version, is_beta=False)
 
-        # Also make sure that we are assigning a random 20 character long
-        # slug that has nothing to do with the addon name.
+    def test_new_addon_random_slug_unlisted_channel(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request('PUT', addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+
+        assert len(addon.slug) == 20
+        assert 'create' not in addon.slug
+
+    def test_new_addon_no_random_slug_listed_channel(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT', addon=guid, version='1.0',
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+
         assert len(addon.slug) == 20
         assert 'create' not in addon.slug
 
