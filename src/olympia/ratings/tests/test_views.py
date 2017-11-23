@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+from datetime import timedelta
 
 from django.core import mail
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
 import mock
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -1968,19 +1970,31 @@ class TestRatingViewSetPost(TestCase):
             u"an add-on."]
 
     def test_throttle(self):
-        self.user = user_factory()
-        self.client.login_api(self.user)
-        # First post, no problem.
-        response = self.client.post(self.url, {
-            'addon': self.addon.pk, 'body': u'My réview', 'title': None,
-            'rating': 2, 'version': self.addon.current_version.pk})
-        assert response.status_code == 201
+        with freeze_time('2017-11-01') as frozen_time:
+            self.user = user_factory()
+            self.client.login_api(self.user)
+            # First post, no problem.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My réview', 'title': None,
+                'rating': 2, 'version': self.addon.current_version.pk})
+            assert response.status_code == 201
 
-        # Second post, nope, have to wait a while.
-        response = self.client.post(self.url, {
-            'addon': self.addon.pk, 'body': u'My n3w réview', 'title': None,
-            'rating': 2, 'version': self.addon.current_version.pk})
-        assert response.status_code == 429
+            # Add version so to avoid the one rating per version restriction.
+            new_version = version_factory(addon=self.addon)
+            # Second post, nope, have to wait a while.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My n3w réview',
+                'title': None,
+                'rating': 2, 'version': new_version.pk})
+            assert response.status_code == 429
+
+            # Throttle is 1 minute so check we can go again
+            frozen_time.tick(delta=timedelta(seconds=60))
+            # And we're good.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My réview', 'title': None,
+                'rating': 2, 'version': new_version.pk})
+            assert response.status_code == 201, response.content
 
 
 class TestRatingViewSetFlag(TestCase):
