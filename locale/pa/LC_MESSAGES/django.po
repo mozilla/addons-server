@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1835,7 +1835,8 @@ msgstr "{addon} {collection}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
 
 #. L10n: {0} is a category name.
@@ -1870,16 +1871,20 @@ msgstr "{addon} ਨੀਤੀ ਬਦਲ ਗਈ।"
 msgid "{addon} icon changed."
 msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{addon} ਲਈ {review} ਸਵੀਕਾਰ ਹੋਇਆ।"
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} ਨੇ {addon} ਲਈ {review}ਸਵੀਕਾਰ ਕੀਤਾ।"
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} ਦੀ {review} ਸਮੀਖਿਆ ਹਟਾਈ।"
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon} ਦੀ {user} {review} ਹਟਾਈ।"
 
 msgid "Application max version for {version} updated."
@@ -1924,7 +1929,8 @@ msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "ਐਡਮਿਨ {0} ਨੇ {user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
 
 msgid "{addon} reviewed."
@@ -4436,10 +4442,10 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4448,10 +4454,10 @@ msgstr ""
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4506,9 +4512,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -6330,6 +6333,170 @@ msgstr "ਅਸੀਂ <a href=\"%(tb_url)s\">ਥੰਡਰਬਰਡ</a> ਅਤੇ 
 msgid "Read more about Sunbird"
 msgstr "ਸਨਬਰਡ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "%s ਲਈ ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Review History for this Addon"
+msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ %d ਮਿਲੇ"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "ਹੋਰ ( ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "ਲੋੜੀਂਂਦਾ ਖੇਤਰ"
+
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਥੀਮ ਦਾ ਡਿਜਾਇਨ ਅੱਪਡੇਟ ਕਰੋ ਜਦੋਂ ਇਹ ਇੱਕ ਵਾਰ ਪ੍ਰਵਾਨਿਤ ਹੋ ਜਾਵੇ।"
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "ਧੰਨਵਾਦ; ਇਸ ਸਮੀਖਿਆ ਉੱਤੇ ਸੰਪਾਦਕ ਪ੍ਰਵਾਨਗੀ ਲਈ ਝੰਡਾ ਲਗਾਇਆ ਗਿਆ।"
+
+msgid "Add a review for {0}"
+msgstr "{0} ਲਈ ਇੱਕ ਸਮੀਖਿਆ ਜੋੜੋ"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "{0} ਵੱਲੋਂ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ"
+
+msgid "Write a Reply"
+msgstr "ਇੱਕ ਜਵਾਬ ਲਿਖੋ"
+
+msgid "Submit"
+msgstr "ਭੇਜੋ"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ਜਾਂ <a href=\"%(url)s\">ਰੱਦ ਕਰੋ</a>"
+
+msgid "Please select a reason:"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਕਾਰਨ ਚੁਣੋ:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "%(date)s ਤੇ %(user)s <b>(Developer)</b> ਵੱਲੋਂ"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "ਇਹ ਸਮੀਖਿਆ ਐਡ-ਆਨ ({0}) ਦੇ ਪਿਛਲੇ ਵਰਜਨ ਲਈ ਹੈ।"
+
+#, fuzzy, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀ ਸਮੀਖਿਆ</a> ਹੈ।"
+msgstr[1] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀਆਂ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਹੋਰ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
+
+msgid "Flagged for review"
+msgstr "ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲੱਗਿਆ"
+
+msgid "Report this review"
+msgstr "ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ ਦਿਓ"
+
+msgid "Reply to review"
+msgstr "ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿਓ"
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "ਸਮੀਖਿਆ ਸੋਧ"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Reviews for {0}"
+msgstr "{0} ਲਈ ਸਮੀਖਿਆਵਾਂ"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆ"
+msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆਵਾਂ"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "{0} ਵੱਲੋਂ ਡਿਵੈਲਪਰ ਜਵਾਬ"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆ"
+msgstr[1] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆਵਾਂ"
+
+msgid "No reviews found."
+msgstr "ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>ਔਸਤ</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "ਨਵੀਂ ਸਮੀਖਿਆ ਲਿਖੋ"
+
+msgid "Be the first to write a review."
+msgstr "ਸਮੀਖਿਆ ਲਿੱਖਣ ਵਿੱਚ ਪਹਿਲ ਕਰੋ।"
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} ਸਮੀਖਿਆ"
+msgstr[1] "{num} ਸਮੀਖਿਆਵਾਂ"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
+
 msgid "Approved reviews"
 msgstr "ਮਨਜ਼ੂਰ ਸਮੀਖਿਆਵਾਂ"
 
@@ -6371,14 +6538,15 @@ msgstr "ਐਡ-ਆਨ, ਸੰਪਾਦਕ ਜਾਂ ਟਿੱਪਣੀ"
 msgid "Search by add-on name / author email"
 msgstr "ਐਡ-ਆਨ ਨਾਂ/ ਲੇਖਕ ਈਮੇਲ ਦੁਅਾਰਾ ਖੋਜ ਕਰੋ"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
+
 msgid "yes"
 msgstr "ਹਾਂ"
 
 msgid "no"
 msgstr "ਨਹੀਂ"
-
-msgid "Admin Flag"
-msgstr "ਪ੍ਰਬੰਧਕ ਝੰਡਾ"
 
 msgid "Add-on Types"
 msgstr "ਐਡ-ਆਨ ਕਿਸਮਾਂ"
@@ -6401,7 +6569,12 @@ msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "ਅਗਲੀ ਵਾਰ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਹੋਵੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ। (ਪਿਛਲੀਆਂ ਅੱਪਡੇਟਾਂ ਈਮੇਲ ਜਾਰੀ ਨਹੀਂ ਕਰਨਗੀਆਂ)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
 #, fuzzy
@@ -6429,11 +6602,9 @@ msgstr "ਸਮੀਖਿਆ ਰੱਖੋ; ਝੰਡੇ ਹਟਾਓ"
 msgid "Skip for now"
 msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 
-msgid "Delete review"
-msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
-
-msgid "Admin Review"
-msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
 msgid "Jetpack Add-on"
 msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
@@ -6564,6 +6735,85 @@ msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+
+msgid "Add-on Review Log"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+
+msgid "Signed Beta Files Log"
+msgstr "ਸਾਈਨ ਹੋਈਆਂ ਬੀਟਾ ਫਾਈਲਾਂ ਦਾ ਲਾਗ"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "ਥੀਮ ਸਮੀਖਿਆ"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "ਥੀਮ ਹਟਾਓ"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+msgid "Announcement"
+msgstr "ਐਲਾਨ"
+
+msgid "Update message of the day"
+msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "ਨਵੇਂ ਐਡ-ਆਨ (5 ਦਿਨਾਂ ਅੰਦਰ)"
 
@@ -6628,15 +6878,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "{addon} ({num}) ਲਈ ਬਦਸਲੂਕੀ ਰਿਪੋਰਟਾਂ"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({num})"
 
 msgid "More about this add-on"
@@ -6670,31 +6917,11 @@ msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ"
 msgid "Auto Approved Add-ons"
 msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
-#, fuzzy
-msgid "Content Review"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
-
 msgid "Unlisted Queues"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
 
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-
 msgid "Logs"
 msgstr "ਚਿੱਠੇ"
-
-msgid "Add-on Review Log"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
-
-msgid "Moderated Review Log"
-msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
-
-msgid "Signed Beta Files Log"
-msgstr "ਸਾਈਨ ਹੋਈਆਂ ਬੀਟਾ ਫਾਈਲਾਂ ਦਾ ਲਾਗ"
-
-msgid "Announcement"
-msgstr "ਐਲਾਨ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6792,9 +7019,6 @@ msgstr "ਦਰਜਾ"
 
 msgid "Score"
 msgstr "ਅੰਕ"
-
-msgid "Update message of the day"
-msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
 
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
@@ -7184,175 +7408,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
-
 msgid "Flagged"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Review History for this Addon"
-msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ %d ਮਿਲੇ"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "ਹੋਰ ( ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "ਲੋੜੀਂਂਦਾ ਖੇਤਰ"
-
-#, fuzzy
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਥੀਮ ਦਾ ਡਿਜਾਇਨ ਅੱਪਡੇਟ ਕਰੋ ਜਦੋਂ ਇਹ ਇੱਕ ਵਾਰ ਪ੍ਰਵਾਨਿਤ ਹੋ ਜਾਵੇ।"
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "ਧੰਨਵਾਦ; ਇਸ ਸਮੀਖਿਆ ਉੱਤੇ ਸੰਪਾਦਕ ਪ੍ਰਵਾਨਗੀ ਲਈ ਝੰਡਾ ਲਗਾਇਆ ਗਿਆ।"
-
-msgid "Add a review for {0}"
-msgstr "{0} ਲਈ ਇੱਕ ਸਮੀਖਿਆ ਜੋੜੋ"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "{0} ਵੱਲੋਂ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ"
-
-msgid "Write a Reply"
-msgstr "ਇੱਕ ਜਵਾਬ ਲਿਖੋ"
-
-msgid "Submit"
-msgstr "ਭੇਜੋ"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ਜਾਂ <a href=\"%(url)s\">ਰੱਦ ਕਰੋ</a>"
-
-msgid "Please select a reason:"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਕਾਰਨ ਚੁਣੋ:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(date)s ਤੇ %(user)s <b>(Developer)</b> ਵੱਲੋਂ"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "ਇਹ ਸਮੀਖਿਆ ਐਡ-ਆਨ ({0}) ਦੇ ਪਿਛਲੇ ਵਰਜਨ ਲਈ ਹੈ।"
-
-#, fuzzy, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀ ਸਮੀਖਿਆ</a> ਹੈ।"
-msgstr[1] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਪਿਛਲੀਆਂ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">ਹੋਰ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
-
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲੱਗਿਆ"
-
-msgid "Report this review"
-msgstr "ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ ਦਿਓ"
-
-msgid "Reply to review"
-msgstr "ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿਓ"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "ਸਮੀਖਿਆ ਸੋਧ"
-
-msgid "Delete reply"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Reviews for {0}"
-msgstr "{0} ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆ"
-msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0}</b> ਸਮੀਖਿਆਵਾਂ"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0} ਵੱਲੋਂ ਡਿਵੈਲਪਰ ਜਵਾਬ"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆ"
-msgstr[1] "%(user)s ਵੱਲੋਂ %(addon)s ਲਈ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "No reviews found."
-msgstr "ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>ਔਸਤ</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "ਨਵੀਂ ਸਮੀਖਿਆ ਲਿਖੋ"
-
-msgid "Be the first to write a review."
-msgstr "ਸਮੀਖਿਆ ਲਿੱਖਣ ਵਿੱਚ ਪਹਿਲ ਕਰੋ।"
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} ਸਮੀਖਿਆ"
-msgstr[1] "{num} ਸਮੀਖਿਆਵਾਂ"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ {0} ਮਿਲੇ"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚੋਂ %(rating)s ਮਿਲੇ"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7482,6 +7539,9 @@ msgid "Version already exists."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"

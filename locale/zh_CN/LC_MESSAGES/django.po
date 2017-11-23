@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-07 21:34+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1776,7 +1776,8 @@ msgstr "{addon} 已添加到收藏集 {collection}。"
 msgid "{addon} removed from {collection}."
 msgstr "{addon} 已从 {collection} 中移除。"
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{addon} 的 {review} 已撰写。"
 
 #. L10n: {0} is a category name.
@@ -1810,16 +1811,20 @@ msgstr "{addon} 的政策已更改。"
 msgid "{addon} icon changed."
 msgstr "{addon} 的图标已更改。"
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{addon} 的 {review} 已核准。"
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} 核准了 {addon} 的 {review}。"
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} 的 {review} 已删除。"
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} 删除了 {addon} 的 {review}。"
 
 msgid "Application max version for {version} updated."
@@ -1864,7 +1869,8 @@ msgstr "用户 {user} 已限制。"
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理员 {0} 查看了 {user} 的活动日志。"
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{addon} 的 {review} 已更新。"
 
 msgid "{addon} reviewed."
@@ -4214,11 +4220,11 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "屏蔽广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "轻松查找图像 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "选中文本并右击以快速执行一次图像搜索。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -4226,11 +4232,11 @@ msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_headin
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "轻松查找图像 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "屏蔽广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "选中文本并右击以快速执行一次图像搜索。"
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "玩转 emoji 表情 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -4285,9 +4291,6 @@ msgstr "未能解析清单文件。"
 
 msgid "Could not find an add-on ID."
 msgstr "无法找到附加组件 ID。"
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "附加组件 ID 必须少于或等于 64 个字符。"
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6062,6 +6065,165 @@ msgstr "我们建议升级到 <a href=\"%(tb_url)s\">Thunderbird</a> 和 <a href
 msgid "Read more about Sunbird"
 msgstr "了解更多有关 Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "对 %s 的意见"
+
+msgid "Review History for this Addon"
+msgstr "这个附加组件的评论历史"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "评分：%d / 5 星"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "选择“其他”作为标识原因时，必须提供一段简明解释。"
+
+msgid "Other (please specify)"
+msgstr "其他 (请说明)"
+
+msgid "This field is required."
+msgstr "此字段必填。"
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "审核创建后，您不能更改要审核的附加组件。"
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "您不能回复已有回复的评价。"
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "审核创建后，您不能更改要审核的附加组件版本。"
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "该附加组件版本不存在或非公开。"
+
+msgid "You can't leave a review on your own add-on."
+msgstr "您不能评价自己的附加组件。"
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "您不能为同一版本的附加组件留下两条评价。"
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "谢谢，已将此评价标为批准。"
+
+msgid "Add a review for {0}"
+msgstr "为 {0} 添加评论"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>请注意以下内容︰</h2><ul><li>请像与朋友分享体验一样介绍此附加组件。最好给出明确且有用的细节，如哪些功能您喜欢或者不喜欢，它是如何简单易用，或者它有什么缺点等。避免泛泛而谈，如用\"很棒\"或\"糟糕"
+"\"评价，除非您能说明原因。</li><li>请不要在评论中提交错误报告。我们不会向附加组件开发者提供您的电子邮件地址，因此他们无法与您进行必要的联系来帮助解决您的问题。请在<a href=\"%(support)s\">技术支持段"
+"落</a>找到附加组件开发者的联系方式。您也可以尝试在<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加组件社区</a>寻求帮助。</li><li>请确保点评恰当，避免使用不当的语言，"
+"不附带任何个人信息。</li></ul><p>阅读<a href=\"%(guide)s\">《评论指南》</a>可详细了解有关附加组件评论的信息。</p>"
+
+msgid "Reply to review by {0}"
+msgstr "回复 {0} 的评价"
+
+msgid "Write a Reply"
+msgstr "撰写回复"
+
+msgid "Submit"
+msgstr "提交"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "或者 <a href=\"%(url)s\">取消</a>"
+
+msgid "Please select a reason:"
+msgstr "请选择一个原因："
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "作者 %(user)s <b>(开发者)</b> 日期 %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "这个评论是针对附加组件的一个早期版本的（{0}）。"
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "对这个附加组件，此用户<a href=\"%(user_review_url)s\">曾发表过%(cnt)s个评价</a>。"
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "对这个附加组件，此用户的<a href=\"%(user_review_url)s\">其他评论</a>。"
+
+msgid "Flagged for review"
+msgstr "已标记的评价"
+
+msgid "Report this review"
+msgstr "举报此评价"
+
+msgid "Reply to review"
+msgstr "回复评价"
+
+msgid "Edit reply"
+msgstr "编辑回复"
+
+msgid "Edit review"
+msgstr "编辑评价"
+
+msgid "Delete reply"
+msgstr "删除回复"
+
+msgid "Delete review"
+msgstr "删除评价"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: 评价"
+
+msgid "Reviews for {0}"
+msgstr "对 {0} 的评价"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "这个附加组件有 <b>{0}</b> 条评价"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "由开发者 {0} 做的回复"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(user)s 对 %(addon)s 发表的评价"
+
+msgid "No reviews found."
+msgstr "还没有评价。"
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>平均</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "撰写新评价"
+
+msgid "Be the first to write a review."
+msgstr "写下第一条评价吧。"
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} 条评价"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "评分{0}星，满分5星"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "给 %(rating)s 以5星评价"
+
 msgid "Approved reviews"
 msgstr "已通过的审核"
 
@@ -6102,14 +6264,15 @@ msgstr "附加组件、审核员或意见"
 msgid "Search by add-on name / author email"
 msgstr "以附加组件名称或作者电子邮件地址搜索"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "管理员审核"
+
 msgid "yes"
 msgstr "是"
 
 msgid "no"
 msgstr "否"
-
-msgid "Admin Flag"
-msgstr "管理员标记"
 
 msgid "Add-on Types"
 msgstr "附加组件类型"
@@ -6132,7 +6295,12 @@ msgstr "应用程序："
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "在此附加组件下次更新时通知我。（之后的更新不会发送电子邮件通知）"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "清除管理员审核标记"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "清除管理员审核标记"
 
 msgid "Is more info requested?"
@@ -6158,11 +6326,9 @@ msgstr "保留评价、移除标记"
 msgid "Skip for now"
 msgstr "暂时跳过"
 
-msgid "Delete review"
-msgstr "删除评价"
-
-msgid "Admin Review"
-msgstr "管理员审核"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "附加组件内容审核"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 附加组件"
@@ -6278,6 +6444,81 @@ msgstr "核准内容"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "这将记录您接受此版本的内容，不会通知开发者。"
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "我的附加组件"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "新附加组件 ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "附加组件更新"
+
+msgid "Add-on Review Log"
+msgstr "附加组件审核日志"
+
+msgid "Signed Beta Files Log"
+msgstr "已签名 Beta 文件日志"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "自动批准的附加组件"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "自动批准的附加组件 ({0})"
+
+msgid "Content Review"
+msgstr "内容审核"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "内容审核 ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "新附加组件 ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "更新 ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "待审的主题"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "主题审核"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "删除主题"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "提请仲裁的评价日志"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "所有未上架的附加组件"
+
+msgid "All Unlisted Add-ons"
+msgstr "所有未上架的附加组件"
+
+msgid "Announcement"
+msgstr "公告"
+
+msgid "Update message of the day"
+msgstr "更新每日消息"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
 
@@ -6337,13 +6578,11 @@ msgstr "最终用户许可协议"
 msgid "Last Approval Date"
 msgstr "上次批准时间"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "连续自动批准次数"
-
 msgid "Abuse Reports ({num})"
 msgstr "滥用报告 ({num} 项)"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "不良用户评价 ({num} 项)"
 
 msgid "More about this add-on"
@@ -6373,29 +6612,11 @@ msgstr "提请仲裁的评价"
 msgid "Auto Approved Add-ons"
 msgstr "自动批准的附加组件"
 
-msgid "Content Review"
-msgstr "内容审核"
-
 msgid "Unlisted Queues"
 msgstr "未上架队列"
 
-msgid "All Unlisted Add-ons"
-msgstr "所有未上架的附加组件"
-
 msgid "Logs"
 msgstr "日志"
-
-msgid "Add-on Review Log"
-msgstr "附加组件审核日志"
-
-msgid "Moderated Review Log"
-msgstr "提请仲裁的评价日志"
-
-msgid "Signed Beta Files Log"
-msgstr "已签名 Beta 文件日志"
-
-msgid "Announcement"
-msgstr "公告"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6485,9 +6706,6 @@ msgstr "排名"
 
 msgid "Score"
 msgstr "积分"
-
-msgid "Update message of the day"
-msgstr "更新每日消息"
 
 msgid "Save"
 msgstr "保存"
@@ -6861,168 +7079,8 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "自动批准的附加组件 ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "内容审核 ({0})"
-
 msgid "Flagged"
 msgstr "待审"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "对 %s 的意见"
-
-msgid "Review History for this Addon"
-msgstr "这个附加组件的评论历史"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "评分：%d / 5 星"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "选择“其他”作为标识原因时，必须提供一段简明解释。"
-
-msgid "Other (please specify)"
-msgstr "其他 (请说明)"
-
-msgid "This field is required."
-msgstr "此字段必填。"
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "审核创建后，您不能更改要审核的附加组件。"
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "您不能回复已有回复的评价。"
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "审核创建后，您不能更改要审核的附加组件版本。"
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "该附加组件版本不存在或非公开。"
-
-msgid "You can't leave a review on your own add-on."
-msgstr "您不能评价自己的附加组件。"
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "您不能为同一版本的附加组件留下两条评价。"
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "谢谢，已将此评价标为批准。"
-
-msgid "Add a review for {0}"
-msgstr "为 {0} 添加评论"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>请注意以下内容︰</h2><ul><li>请像与朋友分享体验一样介绍此附加组件。最好给出明确且有用的细节，如哪些功能您喜欢或者不喜欢，它是如何简单易用，或者它有什么缺点等。避免泛泛而谈，如用\"很棒\"或\"糟糕"
-"\"评价，除非您能说明原因。</li><li>请不要在评论中提交错误报告。我们不会向附加组件开发者提供您的电子邮件地址，因此他们无法与您进行必要的联系来帮助解决您的问题。请在<a href=\"%(support)s\">技术支持段"
-"落</a>找到附加组件开发者的联系方式。您也可以尝试在<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加组件社区</a>寻求帮助。</li><li>请确保点评恰当，避免使用不当的语言，"
-"不附带任何个人信息。</li></ul><p>阅读<a href=\"%(guide)s\">《评论指南》</a>可详细了解有关附加组件评论的信息。</p>"
-
-msgid "Reply to review by {0}"
-msgstr "回复 {0} 的评价"
-
-msgid "Write a Reply"
-msgstr "撰写回复"
-
-msgid "Submit"
-msgstr "提交"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "或者 <a href=\"%(url)s\">取消</a>"
-
-msgid "Please select a reason:"
-msgstr "请选择一个原因："
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "作者 %(user)s <b>(开发者)</b> 日期 %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "这个评论是针对附加组件的一个早期版本的（{0}）。"
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "对这个附加组件，此用户<a href=\"%(user_review_url)s\">曾发表过%(cnt)s个评价</a>。"
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "对这个附加组件，此用户的<a href=\"%(user_review_url)s\">其他评论</a>。"
-
-msgid "Flagged for review"
-msgstr "已标记的评价"
-
-msgid "Report this review"
-msgstr "举报此评价"
-
-msgid "Reply to review"
-msgstr "回复评价"
-
-msgid "Edit reply"
-msgstr "编辑回复"
-
-msgid "Edit review"
-msgstr "编辑评价"
-
-msgid "Delete reply"
-msgstr "删除回复"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: 评价"
-
-msgid "Reviews for {0}"
-msgstr "对 {0} 的评价"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "这个附加组件有 <b>{0}</b> 条评价"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "由开发者 {0} 做的回复"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s 对 %(addon)s 发表的评价"
-
-msgid "No reviews found."
-msgstr "还没有评价。"
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>平均</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "撰写新评价"
-
-msgid "Be the first to write a review."
-msgstr "写下第一条评价吧。"
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} 条评价"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "评分{0}星，满分5星"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "给 %(rating)s 以5星评价"
 
 msgid "Maximum query length exceeded."
 msgstr "超出最大查询长度。"
@@ -7159,6 +7217,9 @@ msgstr "版本已经存在。"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "仅 WebExtension 允许省略 GUID"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "URL 中的 GUID 无效"

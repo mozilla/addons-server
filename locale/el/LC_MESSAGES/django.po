@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1850,7 +1850,8 @@ msgstr "Το {addon} προστέθηκε στη συλλογή {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "Αφαιρέθηκε το {addon} από τη συλλογή {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "Συντάχθηκε η αξιολόγηση {review} για το {addon}."
 
 #. L10n: {0} is a category name.
@@ -1885,16 +1886,20 @@ msgstr "Άλλαξε η πολιτική του {addon}."
 msgid "{addon} icon changed."
 msgstr "Άλλαξε το εικονίδιο του {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "Η αξιολόγηση {review} για το {addon} εγκρίθηκε."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "Ο/Η {user} ενέκρινε την αξιολόγηση {review} για το πρόσθετο {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Η αξιολόγηση {review} για το {addon} διαγράφηκε."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "Ο χρήστης {user} διέγραψε την αξιολόγηση {review} για το {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1939,7 +1944,8 @@ msgstr "Ο χρήστης {user} περιορίστηκε."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Ο διαχειριστής {0} προέβαλε την καταγραφή δραστηριότητας για τον χρήστη {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} για {addon} ενημερώθηκε."
 
 msgid "{addon} reviewed."
@@ -4331,10 +4337,10 @@ msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
 #, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4344,10 +4350,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 #, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4403,9 +4409,6 @@ msgstr "Αδυναμία λήψης αρχείου manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "Αδυναμία εύρεσης ID προσθέτου."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6175,6 +6178,166 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Διαβάστε περισσότερα για το Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Αξιολογήσεις για το %s"
+
+msgid "Review History for this Addon"
+msgstr "Ιστορικό αξιολογήσεων για το πρόσθετο"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Βαθμολογήθηκε με %d στα 5 αστέρια"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Πρέπει να παρέχεται μια σύντομη εξήγηση όταν γίνεται επιλογή του \"Άλλο\" ως αιτία αναφοράς."
+
+msgid "Other (please specify)"
+msgstr "Άλλος (παρακαλούμε εξηγήστε)"
+
+msgid "This field is required."
+msgstr "Αυτό το πεδίο απαιτείται."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Δεν μπορείτε να απαντήσετε σε μια κριτική που είναι ήδη απάντηση."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Αυτή η έκδοση του προσθέτου δεν υπάρχει ή δεν είναι δημόσια."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Δεν μπορείτε να αφήσετε κριτική για το δικό σας πρόσθετο."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr ""
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Ευχαριστούμε, η αξιολόγηση έχει σημειωθεί για να εγκριθεί από τους συντάκτες μας."
+
+msgid "Add a review for {0}"
+msgstr "Προσθήκη αξιολόγησης για το {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "Απάντηση στην αξιολόγηση από τον/την {0}"
+
+msgid "Write a Reply"
+msgstr "Γράψτε απάντηση"
+
+msgid "Submit"
+msgstr "Υποβολή"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ή <a href=\"%(url)s\">Ακύρωση</a>"
+
+msgid "Please select a reason:"
+msgstr "Παρακαλούμε επιλέξτε ένα λόγο"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "από τον %(user)s <b>(δημιουργός)</b> στις %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Αυτή η αξιολόγηση γράφτηκε για παλιότερη έκδοση του πρόσθετου ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Αυτός ο χρήστης έχει υποβάλει <a href=\"%(user_review_url)s\">παλιότερη αξιολόγηση</a> για το πρόσθετο."
+msgstr[1] "Αυτός ο χρήστης έχει υποβάλει <a href=\"%(user_review_url)s\">%(cnt)s παλιότερες αξιολογήσεις</a> για το πρόσθετο."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Αυτός ο χρήστης έχει υποβάλει κι <a href=\"%(user_review_url)s\">άλλες αξιολογήσεις</a> για το πρόσθετο."
+
+msgid "Flagged for review"
+msgstr "Έχει επισημανθεί για αξιολόγηση"
+
+msgid "Report this review"
+msgstr "Αναφορά αξιολόγησης"
+
+msgid "Reply to review"
+msgstr "Απάντηση στην αξιολόγηση"
+
+msgid "Edit reply"
+msgstr "Επεξεργασία απάντησης"
+
+msgid "Edit review"
+msgstr "Επεξεργασία αξιολόγησης"
+
+msgid "Delete reply"
+msgstr "Διαγραφή απάντησης"
+
+msgid "Delete review"
+msgstr "Διαγραφή αξιολόγησης"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Αξιολογήσεις"
+
+msgid "Reviews for {0}"
+msgstr "Αξιολογήσεις για το {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> αξιολόγηση για το πρόσθετο"
+msgstr[1] "<b>{0}</b> αξιολογήσεις για το πρόσθετο"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Απάντηση δημιουργού από {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Αξιολόγηση για το %(addon)s από τον/την %(user)s"
+msgstr[1] "Αξιολογήσεις για το %(addon)s από %(user)s"
+
+msgid "No reviews found."
+msgstr "Δεν βρέθηκαν αξιολογήσεις"
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Μέσο</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Γράψτε νέα αξιολόγηση"
+
+msgid "Be the first to write a review."
+msgstr "Γράψτε την πρώτη αξιολόγηση."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} αξιολόγηση"
+msgstr[1] "{num} αξιολογήσεις"
+
+msgid "Rated {0} out of 5 stars"
+msgstr ""
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
 msgid "Approved reviews"
 msgstr "Εγκεκριμένες αξιολογήσεις"
 
@@ -6216,14 +6379,15 @@ msgstr "θέμα, κριτής ή σχόλιο"
 msgid "Search by add-on name / author email"
 msgstr "Αναζήτηση με βάση το όνομα του πρόσθετου/ email δημιουργού"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Αξιολόγηση συντάκτη"
+
 msgid "yes"
 msgstr "ναι"
 
 msgid "no"
 msgstr "όχι"
-
-msgid "Admin Flag"
-msgstr "Σήμανση για διαχειριστές"
 
 msgid "Add-on Types"
 msgstr "Τύποι πρόσθετων"
@@ -6246,8 +6410,13 @@ msgstr "Εφαρμογές:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Να ειδοποιηθώ την επόμενη φορά που θα ενημερωθεί το πρόσθετο. (Θα αποσταλεί μήνυμα μόνο για την πρώτη ενημέρωση)"
 
-msgid "Clear Admin Review Flag"
-msgstr ""
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Αξιολόγηση συντάκτη"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Υποβολή Επιθεώρησης"
 
 msgid "Is more info requested?"
 msgstr "Απαιτούνται περισσότερες πληροφορίες;"
@@ -6272,11 +6441,9 @@ msgstr "Διατήρηση αξιολόγησης· απομάκρυνση σή�
 msgid "Skip for now"
 msgstr "Παράκαμψη για την ώρα"
 
-msgid "Delete review"
-msgstr "Διαγραφή αξιολόγησης"
-
-msgid "Admin Review"
-msgstr "Αξιολόγηση συντάκτη"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Υποβολή Επιθεώρησης"
 
 msgid "Jetpack Add-on"
 msgstr "Πρόσθετο Jetpack"
@@ -6397,6 +6564,93 @@ msgstr "Αποδοχή / Απόρριψη"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Τα πρόσθετά μου"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Νέο πρόσθετο ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Ενημερώσεις πρόσθετου"
+
+msgid "Add-on Review Log"
+msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Υποβολή Επιθεώρησης"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
+msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Νέο πρόσθετο ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Ενημέρωση ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Θέματα με επισήμανση"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Επιθεώρηση θέματος"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Διαγραφή θέματος"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Πρόσθετα Android"
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Announcement"
+msgstr "Ανακοίνωση"
+
+msgid "Update message of the day"
+msgstr "Ενημέρωση του μηνύματος της ημέρας"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Νέα πρόσθετα (λιγότερες από 5 ημέρες)"
 
@@ -6457,13 +6711,11 @@ msgstr "ΣΑΤΧ (EULA)"
 msgid "Last Approval Date"
 msgstr "Ημερομηνία τελευταίας έγκρισης"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 msgid "Abuse Reports ({num})"
 msgstr "Αναφορές κατάχρησης ({num})"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Κακές κριτικές χρηστών ({num})"
 
 msgid "More about this add-on"
@@ -6493,30 +6745,11 @@ msgstr "Ελεγμένες αξιολογήσεις"
 msgid "Auto Approved Add-ons"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 
-#, fuzzy
-msgid "Content Review"
-msgstr "Υποβολή Επιθεώρησης"
-
 msgid "Unlisted Queues"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Logs"
 msgstr "Καταγραφές"
-
-msgid "Add-on Review Log"
-msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Ανακοίνωση"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6610,9 +6843,6 @@ msgstr "Βαθμολογία"
 
 msgid "Score"
 msgstr "Βαθμολογία"
-
-msgid "Update message of the day"
-msgstr "Ενημέρωση του μηνύματος της ημέρας"
 
 msgid "Save"
 msgstr "Αποθήκευση"
@@ -7002,171 +7232,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
 msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
-msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
-
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Αξιολογήσεις για το %s"
-
-msgid "Review History for this Addon"
-msgstr "Ιστορικό αξιολογήσεων για το πρόσθετο"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Βαθμολογήθηκε με %d στα 5 αστέρια"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Πρέπει να παρέχεται μια σύντομη εξήγηση όταν γίνεται επιλογή του \"Άλλο\" ως αιτία αναφοράς."
-
-msgid "Other (please specify)"
-msgstr "Άλλος (παρακαλούμε εξηγήστε)"
-
-msgid "This field is required."
-msgstr "Αυτό το πεδίο απαιτείται."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Δεν μπορείτε να απαντήσετε σε μια κριτική που είναι ήδη απάντηση."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Αυτή η έκδοση του προσθέτου δεν υπάρχει ή δεν είναι δημόσια."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Δεν μπορείτε να αφήσετε κριτική για το δικό σας πρόσθετο."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Ευχαριστούμε, η αξιολόγηση έχει σημειωθεί για να εγκριθεί από τους συντάκτες μας."
-
-msgid "Add a review for {0}"
-msgstr "Προσθήκη αξιολόγησης για το {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "Απάντηση στην αξιολόγηση από τον/την {0}"
-
-msgid "Write a Reply"
-msgstr "Γράψτε απάντηση"
-
-msgid "Submit"
-msgstr "Υποβολή"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ή <a href=\"%(url)s\">Ακύρωση</a>"
-
-msgid "Please select a reason:"
-msgstr "Παρακαλούμε επιλέξτε ένα λόγο"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "από τον %(user)s <b>(δημιουργός)</b> στις %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Αυτή η αξιολόγηση γράφτηκε για παλιότερη έκδοση του πρόσθετου ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Αυτός ο χρήστης έχει υποβάλει <a href=\"%(user_review_url)s\">παλιότερη αξιολόγηση</a> για το πρόσθετο."
-msgstr[1] "Αυτός ο χρήστης έχει υποβάλει <a href=\"%(user_review_url)s\">%(cnt)s παλιότερες αξιολογήσεις</a> για το πρόσθετο."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Αυτός ο χρήστης έχει υποβάλει κι <a href=\"%(user_review_url)s\">άλλες αξιολογήσεις</a> για το πρόσθετο."
-
-msgid "Flagged for review"
-msgstr "Έχει επισημανθεί για αξιολόγηση"
-
-msgid "Report this review"
-msgstr "Αναφορά αξιολόγησης"
-
-msgid "Reply to review"
-msgstr "Απάντηση στην αξιολόγηση"
-
-msgid "Edit reply"
-msgstr "Επεξεργασία απάντησης"
-
-msgid "Edit review"
-msgstr "Επεξεργασία αξιολόγησης"
-
-msgid "Delete reply"
-msgstr "Διαγραφή απάντησης"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Αξιολογήσεις"
-
-msgid "Reviews for {0}"
-msgstr "Αξιολογήσεις για το {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> αξιολόγηση για το πρόσθετο"
-msgstr[1] "<b>{0}</b> αξιολογήσεις για το πρόσθετο"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Απάντηση δημιουργού από {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Αξιολόγηση για το %(addon)s από τον/την %(user)s"
-msgstr[1] "Αξιολογήσεις για το %(addon)s από %(user)s"
-
-msgid "No reviews found."
-msgstr "Δεν βρέθηκαν αξιολογήσεις"
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Μέσο</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Γράψτε νέα αξιολόγηση"
-
-msgid "Be the first to write a review."
-msgstr "Γράψτε την πρώτη αξιολόγηση."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} αξιολόγηση"
-msgstr[1] "{num} αξιολογήσεις"
-
-msgid "Rated {0} out of 5 stars"
-msgstr ""
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7303,6 +7370,9 @@ msgid "Version already exists."
 msgstr "Η έκδοση υπάρχει ήδη."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-10 11:46+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -1847,7 +1847,8 @@ msgstr "{addon}, {collection} koleksiyonuna eklendi."
 msgid "{addon} removed from {collection}."
 msgstr "{addon}, {collection} koleksiyonundan çıkarıldı."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{addon} için {review} yazıldı."
 
 #. L10n: {0} is a category name.
@@ -1881,17 +1882,21 @@ msgstr "{addon} politikası değiştirildi."
 msgid "{addon} icon changed."
 msgstr "{addon} simgesi değiştirildi."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{addon} için {review} onaylandı."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user}, {addon} için {review} incelemesini onayladı."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} için inceleme {review} silindi."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr ""
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user}, {addon} için {review} incelemesini onayladı."
 
 msgid "Application max version for {version} updated."
 msgstr "{version} için maksimum uygulama sürümü güncellendi."
@@ -1935,7 +1940,8 @@ msgstr "{user} adlı kullanıcı kısıtlandı."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{addon} için {review} güncellendi."
 
 msgid "{addon} reviewed."
@@ -4341,10 +4347,10 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4353,10 +4359,10 @@ msgstr ""
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4412,9 +4418,6 @@ msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr "Eklenti kimliği bulunamadı."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Eklenti kimliği 64 veya daha az karakterli olmalı."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6168,6 +6171,175 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Sunbird hakkında daha fazla bilgi alın"
 
+#, fuzzy, python-format
+msgid "Reviews for %s"
+msgstr "İncelemeler"
+
+#, fuzzy
+msgid "Review History for this Addon"
+msgstr "İnceleme Geçmişi"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr ""
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "Diğer (lütfen belirtin)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "İnceleme talep edildi"
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr ""
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Add a review for {0}"
+msgstr "{0} Eklentileri"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr ""
+
+msgid "Write a Reply"
+msgstr "Yanıt yazın"
+
+msgid "Submit"
+msgstr "Gönder"
+
+#. this string is following a <button>.
+#, fuzzy, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
+
+msgid "Please select a reason:"
+msgstr "Lütfen bir neden seçin:"
+
+#, fuzzy, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "yazan: %(user)s tarih: %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr ""
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] ""
+
+#, fuzzy, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "veya <a href=\"%(href)s\">bu eklentinin eski sürümlerini</a> görün."
+
+#, fuzzy
+msgid "Flagged for review"
+msgstr "İleri inceleme için işaretlenmiş"
+
+msgid "Report this review"
+msgstr "Bu incelemeyi rapor et"
+
+#, fuzzy
+msgid "Reply to review"
+msgstr "Ön izleme için üstüne gelin"
+
+#, fuzzy
+msgid "Edit reply"
+msgstr "Temayı düzenle"
+
+#, fuzzy
+msgid "Edit review"
+msgstr "İncelemeyi Tamamla"
+
+msgid "Delete reply"
+msgstr "Yanıtı sil"
+
+msgid "Delete review"
+msgstr "İncelemeyi sil"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: İncelemeler"
+
+msgid "Reviews for {0}"
+msgstr "{0} incelemeleri"
+
+#. {0} is a number.
+#, fuzzy
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> eklenti"
+
+#. {0} is a developer's name.
+#, fuzzy
+msgid "Developer reply by {0}"
+msgstr "Geliştiricinin yanıtı"
+
+#, fuzzy, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
+
+msgid "No reviews found."
+msgstr "İnceleme bulunamadı."
+
+#, fuzzy, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>{0}</strong> kullanıcı"
+
+msgid "Write a New Review"
+msgstr "Yeni bir inceleme yazın"
+
+msgid "Be the first to write a review."
+msgstr ""
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} inceleme"
+
+msgid "Rated {0} out of 5 stars"
+msgstr ""
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr ""
+
 #, fuzzy
 msgid "Approved reviews"
 msgstr "Onaylandı"
@@ -6218,15 +6390,15 @@ msgstr "eklenti, editör veya yorum"
 msgid "Search by add-on name / author email"
 msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "İnceleme Bekliyor"
+
 msgid "yes"
 msgstr "evet"
 
 msgid "no"
 msgstr "hayır"
-
-#, fuzzy
-msgid "Admin Flag"
-msgstr "Yönetici Sayfası"
 
 msgid "Add-on Types"
 msgstr "Eklenti türleri"
@@ -6252,7 +6424,11 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr ""
 
 #, fuzzy
-msgid "Clear Admin Review Flag"
+msgid "Clear Admin Code Review Flag"
+msgstr "Eklenti İnceleme Süreci"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Eklenti İnceleme Süreci"
 
 #, fuzzy
@@ -6279,12 +6455,9 @@ msgstr ""
 msgid "Skip for now"
 msgstr "Şimdilik geç"
 
-msgid "Delete review"
-msgstr "İncelemeyi sil"
-
 #, fuzzy
-msgid "Admin Review"
-msgstr "İnceleme Bekliyor"
+msgid "Needs Admin Content Review"
+msgstr "Eklenti İçeriği İncelemesi"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack eklentisi"
@@ -6409,6 +6582,85 @@ msgstr "İçeriği onayla"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Eklentilerim"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Eklenti güncellemeleri"
+
+#, fuzzy
+msgid "Add-on Review Log"
+msgstr "Eklenti İnceleme Süreci"
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Engellenen Eklentiler"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "İncelemeyi Tamamla"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "İnceleme:"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Yeni Eklentiler ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "{0} tarihinde güncellendi"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Öne Çıkan Temalar"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Tema İnceleme"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Temayı sil"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr ""
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Engellenen Eklentiler"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "Engellenen Eklentiler"
+
+msgid "Announcement"
+msgstr "Duyuru"
+
+msgid "Update message of the day"
+msgstr "Günün iletisini güncelle"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Yeni Eklentiler (5 günden az)"
 
@@ -6470,14 +6722,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Son onay tarihi"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 msgid "Abuse Reports ({num})"
 msgstr "Suistimal raporları ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Kullanıcı incelemeleri"
 
 msgid "More about this add-on"
@@ -6514,32 +6763,11 @@ msgid "Auto Approved Add-ons"
 msgstr "Engellenen Eklentiler"
 
 #, fuzzy
-msgid "Content Review"
-msgstr "İncelemeyi Tamamla"
-
-#, fuzzy
 msgid "Unlisted Queues"
 msgstr "Listelenmemiş"
 
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "Engellenen Eklentiler"
-
 msgid "Logs"
 msgstr "Günlükler"
-
-#, fuzzy
-msgid "Add-on Review Log"
-msgstr "Eklenti İnceleme Süreci"
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Duyuru"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6637,9 +6865,6 @@ msgstr "Sıra"
 
 msgid "Score"
 msgstr "Puan"
-
-msgid "Update message of the day"
-msgstr "Günün iletisini güncelle"
 
 msgid "Save"
 msgstr "Kaydet"
@@ -7040,179 +7265,8 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Yeni Eklentiler ({0})"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "İnceleme:"
-
 msgid "Flagged"
 msgstr "İşaretli"
-
-#, fuzzy, python-format
-msgid "Reviews for %s"
-msgstr "İncelemeler"
-
-#, fuzzy
-msgid "Review History for this Addon"
-msgstr "İnceleme Geçmişi"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr ""
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "Diğer (lütfen belirtin)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "İnceleme talep edildi"
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-#, fuzzy
-msgid "Add a review for {0}"
-msgstr "{0} Eklentileri"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr ""
-
-msgid "Write a Reply"
-msgstr "Yanıt yazın"
-
-msgid "Submit"
-msgstr "Gönder"
-
-#. this string is following a <button>.
-#, fuzzy, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
-
-msgid "Please select a reason:"
-msgstr "Lütfen bir neden seçin:"
-
-#, fuzzy, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "yazan: %(user)s tarih: %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-
-#, fuzzy, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "veya <a href=\"%(href)s\">bu eklentinin eski sürümlerini</a> görün."
-
-#, fuzzy
-msgid "Flagged for review"
-msgstr "İleri inceleme için işaretlenmiş"
-
-msgid "Report this review"
-msgstr "Bu incelemeyi rapor et"
-
-#, fuzzy
-msgid "Reply to review"
-msgstr "Ön izleme için üstüne gelin"
-
-#, fuzzy
-msgid "Edit reply"
-msgstr "Temayı düzenle"
-
-#, fuzzy
-msgid "Edit review"
-msgstr "İncelemeyi Tamamla"
-
-msgid "Delete reply"
-msgstr "Yanıtı sil"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: İncelemeler"
-
-msgid "Reviews for {0}"
-msgstr "{0} incelemeleri"
-
-#. {0} is a number.
-#, fuzzy
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> eklenti"
-
-#. {0} is a developer's name.
-#, fuzzy
-msgid "Developer reply by {0}"
-msgstr "Geliştiricinin yanıtı"
-
-#, fuzzy, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
-
-msgid "No reviews found."
-msgstr "İnceleme bulunamadı."
-
-#, fuzzy, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>{0}</strong> kullanıcı"
-
-msgid "Write a New Review"
-msgstr "Yeni bir inceleme yazın"
-
-msgid "Be the first to write a review."
-msgstr ""
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} inceleme"
-
-msgid "Rated {0} out of 5 stars"
-msgstr ""
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7347,6 +7401,9 @@ msgid "Version already exists."
 msgstr "Sürüm hâlihazırda mevcut."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-07 20:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1876,7 +1876,8 @@ msgstr "Přidatk {addon} je so zběrce {collection} přidał."
 msgid "{addon} removed from {collection}."
 msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{review} za {addon} napisane."
 
 #. L10n: {0} is a category name.
@@ -1910,16 +1911,20 @@ msgstr "Prawidła přidatka {addon} změnjene."
 msgid "{addon} icon changed."
 msgstr "Symbol přidatka {addon} změnjeny."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "Přepruwowanje {review} za přidatk {addon} schwalene."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "Wužiwar {user} je pohódnoćenje {review} za přidatk {addon} schwalił."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Pohódnoćenje {review} za {addon} zhašane."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} je {review} za {addon} zhašał."
 
 msgid "Application max version for {version} updated."
@@ -1964,7 +1969,8 @@ msgstr "Wužiwar {user} je so wobmjezował."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrator {0} je sej protokol aktiwitow za wužiwarja {user} wobhladał."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} je so za přidatk {addon} zaktualizował."
 
 msgid "{addon} reviewed."
@@ -4365,11 +4371,11 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lochko wobrazy namakać {start_sub_heading} z {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Lochki a efektiwny blokowak wabjenja. uBlock Origin wunuzuje tysacy wobsahowych filtrow, bjez toho zo by so wjele składa přetrjebało."
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Wuzběhńće tekst a klikńće z prawej tastu, zo byšće spěšne pytanje za wobrazami přewjedł."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Polěpšće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
@@ -4377,11 +4383,11 @@ msgstr "Polěpšće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Wužiwajće rjad nowych funkcijow YouTube kaž kinomodus, blokowanje wabjenja, wodźenje awtomatiskeho wothrawanja a wjace."
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lochko wobrazy namakać {start_sub_heading} z {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Wuzběhńće tekst a klikńće z prawej tastu, zo byšće spěšne pytanje za wobrazami přewjedł."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Lochki a efektiwny blokowak wabjenja. uBlock Origin wunuzuje tysacy wobsahowych filtrow, bjez toho zo by so wjele składa přetrjebało."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4436,9 +4442,6 @@ msgstr "Manifestowa dataja njeda so analyzować."
 
 msgid "Could not find an add-on ID."
 msgstr "Žadyn přidatkowy ID namakany."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Přidatkowy ID smě maksimalnje 64 znamješkow měć."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6299,6 +6302,179 @@ msgstr "Poručamy, zo <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(light
 msgid "Read more about Sunbird"
 msgstr "Čitajće wjace wo Sunbrid"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Pohódnoćenja za %s"
+
+msgid "Review History for this Addon"
+msgstr "Historija pohódnoćenjow za tutón přidatk"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Z %d z 5 hwěžkow pohódnoćeny"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Dyrbi so krótke wujasnjenje podać, hdyž so „Druhe“ jako přičina zdźělenki wuběra."
+
+msgid "Other (please specify)"
+msgstr "Druhe (prošu podać)"
+
+msgid "This field is required."
+msgstr "Tute polo je trěbne."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Njemóžeće přidatk pohódnoćenja změnić, hdyž je wutworjeny."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Njemóžeće na pohódnoćenje wotmołwić, kotrež je hižo wotmołwa."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Njemóžeće wersiju pohódnoćeneho přidatka změnić, hdyž pohódnoćenje je so wutworiło."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Tuta wersija přidatka njeeksistuje abo zjawna njeje."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Njemóžeće pohódnoćenje za swójski přidatk zawostajić."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Njemóžeće wjace hač jedne pohódnoćenje za samsnu wersiju přidatka zawostajić."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Dźakujemy so; tute pohódnocénje je so za schwalenje přepruwowarja markěrowało."
+
+msgid "Add a review for {0}"
+msgstr "Pohódnoćenje za {0} přidać"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so "
+"wam spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu "
+"tak je. </li> <li> Prošu njesćelće tu rozprawy wo programowych zmylkach. Njestajamy wuwiwarjam přidatkow wašu e-mejlowu adresu k dispoziciji, tohodla njemóža so z wami do zwiska stajić, zo bychu "
+"waš problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće hladał, hač podpěra je k dispoziciji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
+"on-support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a "
+"href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Na pohódnoćenje wot {0} wotmołwić"
+
+msgid "Write a Reply"
+msgstr "Wotmołwu pisać"
+
+msgid "Submit"
+msgstr "Wotpósłać"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "abo <a href=\"%(url)s\">Přetorhnyć</a>"
+
+msgid "Please select a reason:"
+msgstr "Wubjerće prošu přičinu:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "wot %(user)s <b>(wuwiwar)</b> %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Tute pohódnoćenje je za předchadnu wersiju přidatka ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">starše pohódnoćenje</a> tutoho přidatka."
+msgstr[1] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s staršej pohódnoćeni</a> tutoho přidatka."
+msgstr[2] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s starše pohódnoćenja</a> tutoho přidatka."
+msgstr[3] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s staršich pohódnoćenjow</a> tutoho přidatka."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Tutón wužiwar ma <a href=\"%(user_review_url)s\">druhe pohódnoćenja</a> tutoho přidatka."
+
+msgid "Flagged for review"
+msgstr "Za přepruwowanje markěrowany"
+
+msgid "Report this review"
+msgstr "Tute pohódnoćenje zdźělić"
+
+msgid "Reply to review"
+msgstr "Na pohódnoćenje wotmołwić"
+
+msgid "Edit reply"
+msgstr "Wotmołwu wobdźěłać"
+
+msgid "Edit review"
+msgstr "Pohódnoćenje wobdźěłać"
+
+msgid "Delete reply"
+msgstr "Wotmołwu zhašeć"
+
+msgid "Delete review"
+msgstr "Pohódnoćenje zhašeć"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Pohódnoćenja"
+
+msgid "Reviews for {0}"
+msgstr "Pohódnoćenja za {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> pohódnoćenje za tutón přidatk"
+msgstr[1] "<b>{0}</b> pohódnoćeni za tutón přidatk"
+msgstr[2] "<b>{0}</b> pohódnoćenja za tutón přidatk"
+msgstr[3] "<b>{0}</b> pohódnoćenjow za tutón přidatk"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Wotmołwa wot wuwiwarja {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Pohódnoćenje za %(addon)s wot %(user)s"
+msgstr[1] "Pohódnoćeni za %(addon)s wot %(user)s"
+msgstr[2] "Pohódnoćenja za %(addon)s wot %(user)s"
+msgstr[3] "Pohódnoćenja za %(addon)s wot %(user)s"
+
+msgid "No reviews found."
+msgstr "Žane pohódnoćenja namakane."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Přerězk</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Napisajće nowe pohódnoćenje"
+
+msgid "Be the first to write a review."
+msgstr "Budźće prěni, kotryž pohódnoćenje pisa."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} pohódnoćenje"
+msgstr[1] "{num} pohódnoćeni"
+msgstr[2] "{num} pohódnoćenja"
+msgstr[3] "{num} pohódnoćenjow"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Z {0} z 5 hwěžkow pohódnoćeny"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
+
 msgid "Approved reviews"
 msgstr "Schwalene přepruwowanja"
 
@@ -6339,14 +6515,15 @@ msgstr "přidatk, přepruwowar abo komentar"
 msgid "Search by add-on name / author email"
 msgstr "Za mjenom přidatka / e-mejlowej adresu awtora pytać"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Přepruwowanje administratora"
+
 msgid "yes"
 msgstr "haj"
 
 msgid "no"
 msgstr "ně"
-
-msgid "Admin Flag"
-msgstr "Adminstratorowe markěrowanje"
 
 msgid "Add-on Types"
 msgstr "Typy přidatkow"
@@ -6369,7 +6546,12 @@ msgstr "Nałoženja:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Informujće mje přichodny raz, hdyž so tutón přidatk aktualizuje. (Slědowace aktualizacije e-mejlku njepłodźa)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Marku za přepruwowanje přez administratora wotstronić"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Marku za přepruwowanje přez administratora wotstronić"
 
 msgid "Is more info requested?"
@@ -6395,11 +6577,9 @@ msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
 msgid "Skip for now"
 msgstr "Nětko přeskočić"
 
-msgid "Delete review"
-msgstr "Pohódnoćenje zhašeć"
-
-msgid "Admin Review"
-msgstr "Přepruwowanje administratora"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Přepruwowanje wobsaha přidatka"
 
 msgid "Jetpack Add-on"
 msgstr "Přidatk typa Jetpack"
@@ -6524,6 +6704,84 @@ msgstr "Wobsah schwalić"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "To waše schwalenje wobsah tuteje wersije registruje bjez toho, zo by wuwiwar powěsć dóstał."
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Moje přidatki"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Nowy přidatk ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Aktualizacije přidatkow"
+
+msgid "Add-on Review Log"
+msgstr "Protokol přidatkowych přepruwowanjow"
+
+msgid "Signed Beta Files Log"
+msgstr "Protokol signowanych betadatajow"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Awtomatisce schwalene přidatki"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Awtomatisce schwaleny přidatk ({0})"
+
+msgid "Content Review"
+msgstr "Přepruwowanje wobsaha"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Přepruwowanje wobsaha ({0})"
+msgstr[1] "Přepruwowani wobsaha ({0})"
+msgstr[2] "Přepruwowanja wobsaha ({0})"
+msgstr[3] "Přepruwowanjow wobsaha ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Nowy přidatk ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Aktualizacija ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Markěrowane drasty"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Přepruwowanje drasty"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Drastu zhašeć"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Protokol moderěrowanych přepruwowanjow"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Wšě njenalistowane přidatki"
+
+msgid "All Unlisted Add-ons"
+msgstr "Wšě njenalistowane přidatki"
+
+msgid "Announcement"
+msgstr "Připowědźenje"
+
+msgid "Update message of the day"
+msgstr "Powěsć dnja aktualizować"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Nowe přidatki (pod 5 dnjemi)"
 
@@ -6587,13 +6845,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Datum poslednjeho schwalenja"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Schwalenja wot poslednjeho awtomatiskeho přepruwowanja"
-
 msgid "Abuse Reports ({num})"
 msgstr "Znjewužiwanske rozprawy ({num})"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Špatne wužiwarske pohódnoćenja ({num})"
 
 msgid "More about this add-on"
@@ -6623,29 +6879,11 @@ msgstr "Moderěrowane přepruwowanja"
 msgid "Auto Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
 
-msgid "Content Review"
-msgstr "Přepruwowanje wobsaha"
-
 msgid "Unlisted Queues"
 msgstr "Čakanske rynki za njepodate přidatki"
 
-msgid "All Unlisted Add-ons"
-msgstr "Wšě njenalistowane přidatki"
-
 msgid "Logs"
 msgstr "Protokole"
-
-msgid "Add-on Review Log"
-msgstr "Protokol přidatkowych přepruwowanjow"
-
-msgid "Moderated Review Log"
-msgstr "Protokol moderěrowanych přepruwowanjow"
-
-msgid "Signed Beta Files Log"
-msgstr "Protokol signowanych betadatajow"
-
-msgid "Announcement"
-msgstr "Připowědźenje"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6747,9 +6985,6 @@ msgstr "Pozicija"
 
 msgid "Score"
 msgstr "Staw po dypkach"
-
-msgid "Update message of the day"
-msgstr "Powěsć dnja aktualizować"
 
 msgid "Save"
 msgstr "Składować"
@@ -7145,185 +7380,8 @@ msgstr[1] "Awtomatisce schwalenej přidatkaj ({0})"
 msgstr[2] "Awtomatisce schwalene přidatki ({0})"
 msgstr[3] "Awtomatisce schwalene přidatki ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Přepruwowanje wobsaha ({0})"
-msgstr[1] "Přepruwowani wobsaha ({0})"
-msgstr[2] "Přepruwowanja wobsaha ({0})"
-msgstr[3] "Přepruwowanjow wobsaha ({0})"
-
 msgid "Flagged"
 msgstr "Markěrowany"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Pohódnoćenja za %s"
-
-msgid "Review History for this Addon"
-msgstr "Historija pohódnoćenjow za tutón přidatk"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Z %d z 5 hwěžkow pohódnoćeny"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Dyrbi so krótke wujasnjenje podać, hdyž so „Druhe“ jako přičina zdźělenki wuběra."
-
-msgid "Other (please specify)"
-msgstr "Druhe (prošu podać)"
-
-msgid "This field is required."
-msgstr "Tute polo je trěbne."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Njemóžeće přidatk pohódnoćenja změnić, hdyž je wutworjeny."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Njemóžeće na pohódnoćenje wotmołwić, kotrež je hižo wotmołwa."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Njemóžeće wersiju pohódnoćeneho přidatka změnić, hdyž pohódnoćenje je so wutworiło."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Tuta wersija přidatka njeeksistuje abo zjawna njeje."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Njemóžeće pohódnoćenje za swójski přidatk zawostajić."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Njemóžeće wjace hač jedne pohódnoćenje za samsnu wersiju přidatka zawostajić."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Dźakujemy so; tute pohódnocénje je so za schwalenje přepruwowarja markěrowało."
-
-msgid "Add a review for {0}"
-msgstr "Pohódnoćenje za {0} přidać"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so "
-"wam spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu "
-"tak je. </li> <li> Prošu njesćelće tu rozprawy wo programowych zmylkach. Njestajamy wuwiwarjam přidatkow wašu e-mejlowu adresu k dispoziciji, tohodla njemóža so z wami do zwiska stajić, zo bychu "
-"waš problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće hladał, hač podpěra je k dispoziciji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
-"on-support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a "
-"href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Na pohódnoćenje wot {0} wotmołwić"
-
-msgid "Write a Reply"
-msgstr "Wotmołwu pisać"
-
-msgid "Submit"
-msgstr "Wotpósłać"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "abo <a href=\"%(url)s\">Přetorhnyć</a>"
-
-msgid "Please select a reason:"
-msgstr "Wubjerće prošu přičinu:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "wot %(user)s <b>(wuwiwar)</b> %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Tute pohódnoćenje je za předchadnu wersiju přidatka ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">starše pohódnoćenje</a> tutoho přidatka."
-msgstr[1] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s staršej pohódnoćeni</a> tutoho přidatka."
-msgstr[2] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s starše pohódnoćenja</a> tutoho přidatka."
-msgstr[3] "Tutón wužiwar ma <a href=\"%(user_review_url)s\">%(cnt)s staršich pohódnoćenjow</a> tutoho přidatka."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Tutón wužiwar ma <a href=\"%(user_review_url)s\">druhe pohódnoćenja</a> tutoho přidatka."
-
-msgid "Flagged for review"
-msgstr "Za přepruwowanje markěrowany"
-
-msgid "Report this review"
-msgstr "Tute pohódnoćenje zdźělić"
-
-msgid "Reply to review"
-msgstr "Na pohódnoćenje wotmołwić"
-
-msgid "Edit reply"
-msgstr "Wotmołwu wobdźěłać"
-
-msgid "Edit review"
-msgstr "Pohódnoćenje wobdźěłać"
-
-msgid "Delete reply"
-msgstr "Wotmołwu zhašeć"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Pohódnoćenja"
-
-msgid "Reviews for {0}"
-msgstr "Pohódnoćenja za {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> pohódnoćenje za tutón přidatk"
-msgstr[1] "<b>{0}</b> pohódnoćeni za tutón přidatk"
-msgstr[2] "<b>{0}</b> pohódnoćenja za tutón přidatk"
-msgstr[3] "<b>{0}</b> pohódnoćenjow za tutón přidatk"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Wotmołwa wot wuwiwarja {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Pohódnoćenje za %(addon)s wot %(user)s"
-msgstr[1] "Pohódnoćeni za %(addon)s wot %(user)s"
-msgstr[2] "Pohódnoćenja za %(addon)s wot %(user)s"
-msgstr[3] "Pohódnoćenja za %(addon)s wot %(user)s"
-
-msgid "No reviews found."
-msgstr "Žane pohódnoćenja namakane."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Přerězk</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Napisajće nowe pohódnoćenje"
-
-msgid "Be the first to write a review."
-msgstr "Budźće prěni, kotryž pohódnoćenje pisa."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} pohódnoćenje"
-msgstr[1] "{num} pohódnoćeni"
-msgstr[2] "{num} pohódnoćenja"
-msgstr[3] "{num} pohódnoćenjow"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Z {0} z 5 hwěžkow pohódnoćeny"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dołhosć naprašowanjow je překročena."
@@ -7456,6 +7514,9 @@ msgstr "Wersija hižo eksistuje."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Jenož WebExtensions smědźa so GUID wzdać"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "Njepłaćiwy GUID w URL"

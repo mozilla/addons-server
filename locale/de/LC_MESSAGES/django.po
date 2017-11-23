@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-07 20:28+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1842,7 +1842,8 @@ msgstr "{addon} zu {collection} hinzugefügt."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} aus {collection} entfernt."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{review} für {addon} geschrieben."
 
 #. L10n: {0} is a category name.
@@ -1876,16 +1877,20 @@ msgstr "Regeln von {addon} geändert."
 msgid "{addon} icon changed."
 msgstr "Symbol von {addon} geändert."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{review} für {addon} freigeschaltet."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} hat {review} für {addon} freigeschaltet."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Bewertung {review} für {addon} gelöscht."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} hat {review} für {addon} gelöscht."
 
 msgid "Application max version for {version} updated."
@@ -1930,7 +1935,8 @@ msgstr "Benutzer {user} eingeschränkt."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrator {0} hat Aktivitätsprotokoll für {user} angesehen."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} für {addon} aktualisiert."
 
 msgid "{addon} reviewed."
@@ -4339,11 +4345,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Einfach Bilder finden {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Ein schlanker und effektiver Werbeblocker. uBlock Origin nutzt Tausende von Inhaltsfiltern und geht dabei sparsam mit dem Speicherplatz um."
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Markieren Sie Text und rechtsklicken Sie, um eine schnelle Bildersuche durchzuführen."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbessern Sie Videos {start_sub_heading} mit {addon_name}{end_sub_heading}"
@@ -4351,11 +4357,11 @@ msgstr "Verbessern Sie Videos {start_sub_heading} mit {addon_name}{end_sub_headi
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Nutzen Sie eine Reihe neuer YouTube-Funktionen wie Kinomodus, Werbeblocker, Autowiedergabesteuerung und mehr."
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Einfach Bilder finden {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blockieren Sie Werbung {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Markieren Sie Text und rechtsklicken Sie, um eine schnelle Bildersuche durchzuführen."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Ein schlanker und effektiver Werbeblocker. uBlock Origin nutzt Tausende von Inhaltsfiltern und geht dabei sparsam mit dem Speicherplatz um."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbessern Sie Ihr Emoji-Spiel {start_sub_heading} mit {addon_name}{end_sub_heading}"
@@ -4410,9 +4416,6 @@ msgstr "Manifest-Datei konnte nicht verarbeitet werden."
 
 msgid "Could not find an add-on ID."
 msgstr "Es wurde keine Add-on-ID gefunden."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Add-on-ID darf höchstens 64 Zeichen lang sein."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6287,6 +6290,171 @@ msgstr "Wir empfehlen Ihnen ein Upgrade auf <a href=\"%(tb_url)s\">Thunderbird</
 msgid "Read more about Sunbird"
 msgstr "Lesen Sie mehr über Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Bewertungen für %s"
+
+msgid "Review History for this Addon"
+msgstr "Chronik dieses Add-ons bearbeiten"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Mit %d von 5 Sternen bewertet"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Wird „Sonstiges“ als Grund für die Meldung ausgewählt, muss eine kurze Erklärung angegeben werden."
+
+msgid "Other (please specify)"
+msgstr "Sonstiges (bitte eine Begründung angeben)"
+
+msgid "This field is required."
+msgstr "Dieses Feld ist erforderlich."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Sie können das Add-on einer Bewertung nicht ändern, sobald sie erstellt wurde."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Sie können nicht auf eine Bewertung antworten, die bereits eine Antwort ist."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Sie können die Version des bewerteten Add-ons nicht ändern, sobald die Bewertung erstellt wurde."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Diese Version des Add-ons existiert nicht oder ist nicht öffentlich."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Sie können keine Bewertung für Ihr eigenes Add-on schreiben."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Sie können nicht mehr als eine Bewertung für dieselbe Version eines Add-ons abgeben."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Danke; diese Bewertung wurde zur Moderation markiert."
+
+msgid "Add a review for {0}"
+msgstr "Eine Bewertung für {0} schreiben"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Denken Sie an die folgenden Tipps:</h2> <ul> <li>  Schreiben Sie so, als würden Sie einem Freund über das Erlebnis mit dem Add-on erzählen.  Geben Sie hilfreiche Einzelheiten an, zum Beispiel: "
+"welche Funktionen Ihnen (nicht) gefallen haben, wie leicht man es verwenden kann und welche Nachteile es hat. Vermeiden Sie allgemeine Formulierungen wie „gut“ oder „schlecht“, wenn Sie dafür keine "
+"Gründe angeben können. </li> <li> Schreiben Sie hier bitte keine Fehlerberichte. Der Add-on-Entwickler kann Ihre E-Mail-Adresse nicht sehen, müsste Sie zur Lösung des Problems aber möglicherweise "
+"kontaktieren. Im <a href=\"%(support)s\">Abschnitt „Hilfe“</a> erfahren Sie, wo Sie Unterstützung zu diesem Add-on erhalten. Sie können auch in der <a href=\"https://discourse.mozilla-community.org/"
+"c/add-ons/add-on-support\">Add-on-Gemeinschaft</a> um Hilfe bitten.</li> <li> Halten Sie die Bewertungen bitte sauber, gebrauchen Sie keine unpassenden Ausdrücke und veröffentlichen Sie keine "
+"persönlichen Daten. </li> </ul> <p>Weitere Details zu Benutzerbewertungen von Add-ons finden Sie im <a href=\"%(guide)s\">Bewertungsleitfaden</a>.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Antwort zur Bewertung von {0}"
+
+msgid "Write a Reply"
+msgstr "Schreiben Sie eine Antwort"
+
+msgid "Submit"
+msgstr "Abschicken"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "oder <a href=\"%(url)s\">Abbrechen</a>"
+
+msgid "Please select a reason:"
+msgstr "Bitte wählen Sie einen Grund:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "von %(user)s <b>(Entwickler)</b> am %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Diese Bewertung wurde für eine vorherige Version des Add-ons ({0}) abgegeben."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Dieser Benutzer hat eine <a href=\"%(user_review_url)s\">ältere Bewertung</a> zu diesem Add-on."
+msgstr[1] "Dieser Benutzer hat <a href=\"%(user_review_url)s\">%(cnt)s ältere Bewertungen</a> zu diesem Add-on."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Dieser Benutzer hat auch <a href=\"%(user_review_url)s\">weitere Bewertungen</a> dieses Add-ons."
+
+msgid "Flagged for review"
+msgstr "Markiert für eine Überprüfung"
+
+msgid "Report this review"
+msgstr "Diese Bewertung als unpassend markieren"
+
+msgid "Reply to review"
+msgstr "Antwort zur Bewertung"
+
+msgid "Edit reply"
+msgstr "Antwort bearbeiten"
+
+msgid "Edit review"
+msgstr "Bewertung editieren"
+
+msgid "Delete reply"
+msgstr "Antwort löschen"
+
+msgid "Delete review"
+msgstr "Bewertung löschen"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Bewertungen"
+
+msgid "Reviews for {0}"
+msgstr "Bewertungen von {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> Bewertung für dieses Add-on"
+msgstr[1] "<b>{0}</b> Bewertungen für dieses Add-on"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Antwort von Entwickler {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Bewertung für %(addon)s von %(user)s"
+msgstr[1] "Bewertungen für %(addon)s von %(user)s"
+
+msgid "No reviews found."
+msgstr "Keine Bewertung gefunden."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Durchschnitt</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Schreiben Sie eine neue Bewertung"
+
+msgid "Be the first to write a review."
+msgstr "Schreiben Sie als Erster eine Bewertung"
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} Bewertung"
+msgstr[1] "{num} Bewertungen"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Bewertet mit {0} von 5 Sternen"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Bewertet mit %(rating)s von 5 Sternen"
+
 msgid "Approved reviews"
 msgstr "Freigeschaltete Bewertungen"
 
@@ -6327,14 +6495,15 @@ msgstr "Add-on, Überprüfer oder Kommentar"
 msgid "Search by add-on name / author email"
 msgstr "Nach Add-on-Name/E-Mail-Adresse des Autors suchen"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Admin-Überprüfung"
+
 msgid "yes"
 msgstr "Ja"
 
 msgid "no"
 msgstr "Nein"
-
-msgid "Admin Flag"
-msgstr "Admin-Markierung"
 
 msgid "Add-on Types"
 msgstr "Add-on-Typen"
@@ -6357,7 +6526,12 @@ msgstr "Anwendungen:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Mich beim nächsten Mal benachrichtigen, wenn dieses Add-on aktualisiert wird (folgende Updates werden keine E-Mail erzeugen)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Markierung für Admin-Überprüfung löschen"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Markierung für Admin-Überprüfung löschen"
 
 msgid "Is more info requested?"
@@ -6383,11 +6557,9 @@ msgstr "Überprüfung behalten; Markierungen entfernen"
 msgid "Skip for now"
 msgstr "Vorerst überspringen"
 
-msgid "Delete review"
-msgstr "Bewertung löschen"
-
-msgid "Admin Review"
-msgstr "Admin-Überprüfung"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Add-on-Inhaltsüberprüfung"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-Add-on"
@@ -6506,6 +6678,82 @@ msgstr "Inhalt annehmen"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Dadurch wird Ihre Zustimmung zum Inhalt dieser Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Meine Add-ons"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Neues Add-on ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Add-on-Updates"
+
+msgid "Add-on Review Log"
+msgstr "Logbuch der Add-on-Überprüfungen"
+
+msgid "Signed Beta Files Log"
+msgstr "Protokoll signierter Beta-Dateien"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Automatisch freigeschaltete Add-ons"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Add-on automatisch freigeschaltet ({0})"
+
+msgid "Content Review"
+msgstr "Inhaltsüberprüfung"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Inhaltsüberprüfung ({0})"
+msgstr[1] "Inhaltsüberprüfung ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Neues Add-on ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Aktualisierung ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Markierte Themes"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Theme-Überprüfung"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Theme löschen"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Logbuch der moderierten Überprüfungen"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Alle ungelisteten Add-ons"
+
+msgid "All Unlisted Add-ons"
+msgstr "Alle ungelisteten Add-ons"
+
+msgid "Announcement"
+msgstr "Ankündigung"
+
+msgid "Update message of the day"
+msgstr "Nachricht des Tages aktualisieren"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Neue Add-ons (unter 5 Tagen)"
 
@@ -6568,13 +6816,11 @@ msgstr "Endbenutzer-Lizenzvereinbarung (EULA)"
 msgid "Last Approval Date"
 msgstr "Datum der letzten Freischaltung"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Freischaltungen seit letzter automatischer Überprüfung"
-
 msgid "Abuse Reports ({num})"
 msgstr "Missbrauchsmeldungen ({num})"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Negative Benutzerbewertungen ({num})"
 
 msgid "More about this add-on"
@@ -6604,29 +6850,11 @@ msgstr "Moderierte Überprüfungen"
 msgid "Auto Approved Add-ons"
 msgstr "Automatisch freigeschaltete Add-ons"
 
-msgid "Content Review"
-msgstr "Inhaltsüberprüfung"
-
 msgid "Unlisted Queues"
 msgstr "Warteschlangen für nicht aufgeführte Add-ons"
 
-msgid "All Unlisted Add-ons"
-msgstr "Alle ungelisteten Add-ons"
-
 msgid "Logs"
 msgstr "Logs"
-
-msgid "Add-on Review Log"
-msgstr "Logbuch der Add-on-Überprüfungen"
-
-msgid "Moderated Review Log"
-msgstr "Logbuch der moderierten Überprüfungen"
-
-msgid "Signed Beta Files Log"
-msgstr "Protokoll signierter Beta-Dateien"
-
-msgid "Announcement"
-msgstr "Ankündigung"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6720,9 +6948,6 @@ msgstr "Rang"
 
 msgid "Score"
 msgstr "Punktestand"
-
-msgid "Update message of the day"
-msgstr "Nachricht des Tages aktualisieren"
 
 msgid "Save"
 msgstr "Speichern"
@@ -7103,175 +7328,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Add-on automatisch freigeschaltet ({0})"
 msgstr[1] "Add-ons automatisch freigeschaltet ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Inhaltsüberprüfung ({0})"
-msgstr[1] "Inhaltsüberprüfung ({0})"
-
 msgid "Flagged"
 msgstr "Markiert"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Bewertungen für %s"
-
-msgid "Review History for this Addon"
-msgstr "Chronik dieses Add-ons bearbeiten"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Mit %d von 5 Sternen bewertet"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Wird „Sonstiges“ als Grund für die Meldung ausgewählt, muss eine kurze Erklärung angegeben werden."
-
-msgid "Other (please specify)"
-msgstr "Sonstiges (bitte eine Begründung angeben)"
-
-msgid "This field is required."
-msgstr "Dieses Feld ist erforderlich."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Sie können das Add-on einer Bewertung nicht ändern, sobald sie erstellt wurde."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Sie können nicht auf eine Bewertung antworten, die bereits eine Antwort ist."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Sie können die Version des bewerteten Add-ons nicht ändern, sobald die Bewertung erstellt wurde."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Diese Version des Add-ons existiert nicht oder ist nicht öffentlich."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Sie können keine Bewertung für Ihr eigenes Add-on schreiben."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Sie können nicht mehr als eine Bewertung für dieselbe Version eines Add-ons abgeben."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Danke; diese Bewertung wurde zur Moderation markiert."
-
-msgid "Add a review for {0}"
-msgstr "Eine Bewertung für {0} schreiben"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Denken Sie an die folgenden Tipps:</h2> <ul> <li>  Schreiben Sie so, als würden Sie einem Freund über das Erlebnis mit dem Add-on erzählen.  Geben Sie hilfreiche Einzelheiten an, zum Beispiel: "
-"welche Funktionen Ihnen (nicht) gefallen haben, wie leicht man es verwenden kann und welche Nachteile es hat. Vermeiden Sie allgemeine Formulierungen wie „gut“ oder „schlecht“, wenn Sie dafür keine "
-"Gründe angeben können. </li> <li> Schreiben Sie hier bitte keine Fehlerberichte. Der Add-on-Entwickler kann Ihre E-Mail-Adresse nicht sehen, müsste Sie zur Lösung des Problems aber möglicherweise "
-"kontaktieren. Im <a href=\"%(support)s\">Abschnitt „Hilfe“</a> erfahren Sie, wo Sie Unterstützung zu diesem Add-on erhalten. Sie können auch in der <a href=\"https://discourse.mozilla-community.org/"
-"c/add-ons/add-on-support\">Add-on-Gemeinschaft</a> um Hilfe bitten.</li> <li> Halten Sie die Bewertungen bitte sauber, gebrauchen Sie keine unpassenden Ausdrücke und veröffentlichen Sie keine "
-"persönlichen Daten. </li> </ul> <p>Weitere Details zu Benutzerbewertungen von Add-ons finden Sie im <a href=\"%(guide)s\">Bewertungsleitfaden</a>.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Antwort zur Bewertung von {0}"
-
-msgid "Write a Reply"
-msgstr "Schreiben Sie eine Antwort"
-
-msgid "Submit"
-msgstr "Abschicken"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "oder <a href=\"%(url)s\">Abbrechen</a>"
-
-msgid "Please select a reason:"
-msgstr "Bitte wählen Sie einen Grund:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "von %(user)s <b>(Entwickler)</b> am %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Diese Bewertung wurde für eine vorherige Version des Add-ons ({0}) abgegeben."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Dieser Benutzer hat eine <a href=\"%(user_review_url)s\">ältere Bewertung</a> zu diesem Add-on."
-msgstr[1] "Dieser Benutzer hat <a href=\"%(user_review_url)s\">%(cnt)s ältere Bewertungen</a> zu diesem Add-on."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Dieser Benutzer hat auch <a href=\"%(user_review_url)s\">weitere Bewertungen</a> dieses Add-ons."
-
-msgid "Flagged for review"
-msgstr "Markiert für eine Überprüfung"
-
-msgid "Report this review"
-msgstr "Diese Bewertung als unpassend markieren"
-
-msgid "Reply to review"
-msgstr "Antwort zur Bewertung"
-
-msgid "Edit reply"
-msgstr "Antwort bearbeiten"
-
-msgid "Edit review"
-msgstr "Bewertung editieren"
-
-msgid "Delete reply"
-msgstr "Antwort löschen"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Bewertungen"
-
-msgid "Reviews for {0}"
-msgstr "Bewertungen von {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> Bewertung für dieses Add-on"
-msgstr[1] "<b>{0}</b> Bewertungen für dieses Add-on"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Antwort von Entwickler {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Bewertung für %(addon)s von %(user)s"
-msgstr[1] "Bewertungen für %(addon)s von %(user)s"
-
-msgid "No reviews found."
-msgstr "Keine Bewertung gefunden."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Durchschnitt</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Schreiben Sie eine neue Bewertung"
-
-msgid "Be the first to write a review."
-msgstr "Schreiben Sie als Erster eine Bewertung"
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} Bewertung"
-msgstr[1] "{num} Bewertungen"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Bewertet mit {0} von 5 Sternen"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Bewertet mit %(rating)s von 5 Sternen"
 
 msgid "Maximum query length exceeded."
 msgstr "Maximale Anfragenlänge überschritten."
@@ -7409,6 +7467,9 @@ msgstr "Version existiert bereits."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Nur WebExtensions dürfen auf die GUID verzichten"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "Ungültige GUID in URL"

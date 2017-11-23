@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-08 05:33+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1791,7 +1791,8 @@ msgstr "{addon} დამატებულია {collection}-ში."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ამოღებულია {collection}-იდან."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{addon}-ის {review} გაკეთებულია."
 
 #. L10n: {0} is a category name.
@@ -1825,16 +1826,20 @@ msgstr "{addon}-ის დებულება შეიცვალა."
 msgid "{addon} icon changed."
 msgstr "{addon}-ის ხატულა შეიცვალა."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{addon}-ის {review} მიღებულია."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{addon}-ის {review} მიიღო {user}-მა."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "{addon}-ის {review} მიმოხილვა წაიშალა."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon}-ის {review} წაშალა {user}-მა."
 
 msgid "Application max version for {version} updated."
@@ -1879,7 +1884,8 @@ msgstr "მომხმარებელი {user} შეიზღუდა."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "ადმინისტრატორმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{addon}-ის {review} განახლდა."
 
 msgid "{addon} reviewed."
@@ -4258,11 +4264,11 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "მოხერხებულად უყურეთ ვიდეოებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -4270,11 +4276,11 @@ msgstr "მოხერხებულად უყურეთ ვიდეო�
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, დაკვრის ავტომატურ მართვას და ა.შ."
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მარტივად მოიძიეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ხელთ იქონიეთ უამრავი სიცილაკი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -4329,9 +4335,6 @@ msgstr "მანიფესტის ფაილის დამუშავ�
 
 msgid "Could not find an add-on ID."
 msgstr "დამატების ID ვერ მოიძებნა."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "დამატების ID უნდა შედგებოდეს 64, ან უფრო ნაკლები სიმბოლოსგან."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6187,6 +6190,167 @@ msgstr "გირჩევთ, მის ნაცვლად გამოი�
 msgid "Read more about Sunbird"
 msgstr "შეიტყვეთ მეტი Sunbird-ის შესახებ"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "%s-ის მიმოხილვები"
+
+msgid "Review History for this Addon"
+msgstr "დამატების მიმოხილვების ისტორია"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "%d შეფასება 5 ვარსკვლავიდან"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
+
+msgid "Other (please specify)"
+msgstr "სხვა (გთხოვთ მიუთითოთ)"
+
+msgid "This field is required."
+msgstr "ამ ველის შევსება აუცილებელია."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "განსახილველი დამატების შეცვლა, არ შეგიძლიათ."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "მიმოხილვაზე გაკეთებულ გამოხმაურებაზე, პასუხის გაცემა აღარ შეგიძლიათ."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "განსახილველი დამატების ვერსიის შეცვლა, არ შეგიძლიათ."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "დამატების ეს ვერსია არ არსებობს, ან არაა საჯარო."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "საკუთარ დამატებაზე მიმოხილვის დატოვება, არ შეგიძლიათ."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
+
+msgid "Add a review for {0}"
+msgstr "{0}-ზე მიმოხილვის დატოვება"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
+"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან \"ცუდია"
+"\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
+"მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
+"შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
+"გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "{0}-ის მიმოხილვაზე პასუხი"
+
+msgid "Write a Reply"
+msgstr "დაწერეთ პასუხი"
+
+msgid "Submit"
+msgstr "წარდგენა"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ან <a href=\"%(url)s\">გაუქმება</a>"
+
+msgid "Please select a reason:"
+msgstr "გთხოვთ მიუთითოთ მიზეზი:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "%(user)s <b>(შემმუშავებელი)</b> %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "ეს მიმოხილვა გაკეთებულია დამატების წინა ვერსიის შესახებ ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
+
+msgid "Flagged for review"
+msgstr "ჩანიშნულია განსახილველად"
+
+msgid "Report this review"
+msgstr "მოხსენება ამ მიმოხილვაზე"
+
+msgid "Reply to review"
+msgstr "პასუხი მიმოხილვაზე"
+
+msgid "Edit reply"
+msgstr "პასუხის ჩასწორება"
+
+msgid "Edit review"
+msgstr "მიმოხილვის ჩასწორება"
+
+msgid "Delete reply"
+msgstr "პასუხის წაშლა"
+
+msgid "Delete review"
+msgstr "მიმოხილვის წაშლა"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: მიმოხილვა"
+
+msgid "Reviews for {0}"
+msgstr "მიმოხილვები {0}-ის შესახებ"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "{0} შემმუშავებლის პასუხი"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
+
+msgid "No reviews found."
+msgstr "მიმოხილვები ვერ მოიძებნა."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>საშუალო</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "დაწერეთ მიმოხილვა"
+
+msgid "Be the first to write a review."
+msgstr "დატოვეთ მიმოხილვა პირველმა."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} მიმოხილვა"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "{0} შეფასება 5 ვარსკვლავიდან"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
+
 msgid "Approved reviews"
 msgstr "დამოწმებული მიმოხილვები"
 
@@ -6227,14 +6391,15 @@ msgstr "დამატება, მიმომხილველი, ან �
 msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "ადმინისტრატორის მიმოხილვა"
+
 msgid "yes"
 msgstr "დიახ"
 
 msgid "no"
 msgstr "არა"
-
-msgid "Admin Flag"
-msgstr "ადმინისტრატორის მონიშვნა"
 
 msgid "Add-on Types"
 msgstr "დამატების ტიპი"
@@ -6257,7 +6422,12 @@ msgstr "პროგრამები:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "შეტყობინება, მომავალში ამ დამატების განახლებისას. (მომდევნო განახლებებზე აღარ შეიქმნება ელფოსტის წერილები)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "ადმინისტრატორის მიმოხილვის მონიშვნის მოხსნა"
 
 msgid "Is more info requested?"
@@ -6283,11 +6453,9 @@ msgstr "განხილვის გაგრძელება; მონი
 msgid "Skip for now"
 msgstr "ამჟამად გამოტოვება"
 
-msgid "Delete review"
-msgstr "მიმოხილვის წაშლა"
-
-msgid "Admin Review"
-msgstr "ადმინისტრატორის მიმოხილვა"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "დამატების შიგთავსის მიმოხილვა"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack დამატება"
@@ -6403,6 +6571,81 @@ msgstr "შიგთავსის მიღება"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "ამის შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "ჩემი დამატებები"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "ახალი დამატებები ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "დამატების განახლებები"
+
+msgid "Add-on Review Log"
+msgstr "დამატების განხილვის აღრიცხვა"
+
+msgid "Signed Beta Files Log"
+msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "ავტომატურად მიღებული დამატებები"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "ავტომატურად მიღებული დამატებები ({0})"
+
+msgid "Content Review"
+msgstr "შიგთავსის განხილვა"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "შიგთავსის განხილვა ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "ახალი დამატებები ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "განახლებები ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "ჩანიშნული თემები"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "თემის მიმოხილვა"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "თემის წაშლა"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "შემოწმებული განხილვის აღრიცხვა"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "ყველა გამოუქვეყნებელი დამატება"
+
+msgid "All Unlisted Add-ons"
+msgstr "ყველა გამოუქვეყნებელი დამატება"
+
+msgid "Announcement"
+msgstr "გამოცხადება"
+
+msgid "Update message of the day"
+msgstr "დღის შეტყობინების განახლება"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "ახალი დამატებები (5 დღეზე ნაკლები)"
 
@@ -6462,13 +6705,11 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "მიღების ბოლო თარიღი"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "მიღების შესახებ გადაწყვეტილებები, ბოლო ავტომატური განხილვის შემდგომ"
-
 msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "მომხმარებლის ცუდი მიმოხილვები ({num})"
 
 msgid "More about this add-on"
@@ -6498,29 +6739,11 @@ msgstr "შემოწმებული მიმოხილვები"
 msgid "Auto Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
 
-msgid "Content Review"
-msgstr "შიგთავსის განხილვა"
-
 msgid "Unlisted Queues"
 msgstr "გამოუქვეყნებლების რიგი"
 
-msgid "All Unlisted Add-ons"
-msgstr "ყველა გამოუქვეყნებელი დამატება"
-
 msgid "Logs"
 msgstr "აღრიცხვა"
-
-msgid "Add-on Review Log"
-msgstr "დამატების განხილვის აღრიცხვა"
-
-msgid "Moderated Review Log"
-msgstr "შემოწმებული განხილვის აღრიცხვა"
-
-msgid "Signed Beta Files Log"
-msgstr "დამოწმებული Beta ფაილების აღრიცხვა"
-
-msgid "Announcement"
-msgstr "გამოცხადება"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6610,9 +6833,6 @@ msgstr "ადგილი"
 
 msgid "Score"
 msgstr "ქულა"
-
-msgid "Update message of the day"
-msgstr "დღის შეტყობინების განახლება"
 
 msgid "Save"
 msgstr "შენახვა"
@@ -6986,170 +7206,8 @@ msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "ავტომატურად მიღებული დამატებები ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "შიგთავსის განხილვა ({0})"
-
 msgid "Flagged"
 msgstr "ჩანიშნული"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s-ის მიმოხილვები"
-
-msgid "Review History for this Addon"
-msgstr "დამატების მიმოხილვების ისტორია"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "%d შეფასება 5 ვარსკვლავიდან"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "მცირე განმარტება აუცილებელია, \"სხვა\" მიზეზის შერჩევისას, მონიშვნის დროს."
-
-msgid "Other (please specify)"
-msgstr "სხვა (გთხოვთ მიუთითოთ)"
-
-msgid "This field is required."
-msgstr "ამ ველის შევსება აუცილებელია."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "განსახილველი დამატების შეცვლა, არ შეგიძლიათ."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "მიმოხილვაზე გაკეთებულ გამოხმაურებაზე, პასუხის გაცემა აღარ შეგიძლიათ."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "განსახილველი დამატების ვერსიის შეცვლა, არ შეგიძლიათ."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "დამატების ეს ვერსია არ არსებობს, ან არაა საჯარო."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "საკუთარ დამატებაზე მიმოხილვის დატოვება, არ შეგიძლიათ."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "დამატების ერთსა და იმავე ვერსიაზე, ერთზე მეტი მიმოხილვის დატოვება არ შეგიძლიათ."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "გმადლობთ; ეს მიმოხილვა ჩანიშნულია და შემსწორებელი განიხილავს."
-
-msgid "Add a review for {0}"
-msgstr "{0}-ზე მიმოხილვის დატოვება"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>დაიმახსოვრეთ:</h2> <ul> <li> დაწერეთ ისე, თითქოს მეგობარს უყვებით თქვენი გამოცდილების შესახებ, ამ დამატებით სარგებლობასთან დაკავშირებით. ყურადღება გაამახვილეთ განსაკუთრებულ და გამოსადეგ "
-"შესაძლებლობებსა და იმ საკითხებზე, რომელიც მოგწონთ და/ან არ მოგწონთ, მარტივი გამოსაყენებელია თუ არა და რა ნაკლოვანებები გააჩნია. თავი აარიდეთ ზოგად შეფასებებს, როგორიცაა \"ძალიან კარგია\", ან \"ცუდია"
-"\" თუ არ აპირებთ მიზეზების განვრცობას, რატომ ფიქრობთ ასე. </li> <li> გთხოვთ არ დაწეროთ ხარვეზების შესახებ აქ. შემმუშავებლებისთვის თქვენი ელფოსტის მისამართი არაა ხელმისაწვდომი და პრობლემის "
-"მოსაგვარებლად, თქვენთან დაკავშირებას ვერ შეძლებენ. გაეცანით დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილებას</a> და ნახეთ, შესაძლებელია თუ არა, საკითხის გადაწყვეტა. ასევე, დახმარება "
-"შეგიძლიათ ითხოვოთ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">დამატებების ფორუმზე</a>. </li> <li>გთხოვთ მიმოხილვები არ დააბინძუროთ უხამსი სიტყვებით და არ "
-"გამოაქვეყნოთ პირადი მონაცემები. </li> </ul> <p>გთხოვთ გაეცნოთ <a href=\"%(guide)s\">მიმოხილვის სახელმძღვანელოს</a>, დამატებითი ინფორმაციის მისაღებად.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "{0}-ის მიმოხილვაზე პასუხი"
-
-msgid "Write a Reply"
-msgstr "დაწერეთ პასუხი"
-
-msgid "Submit"
-msgstr "წარდგენა"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ან <a href=\"%(url)s\">გაუქმება</a>"
-
-msgid "Please select a reason:"
-msgstr "გთხოვთ მიუთითოთ მიზეზი:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(user)s <b>(შემმუშავებელი)</b> %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "ეს მიმოხილვა გაკეთებულია დამატების წინა ვერსიის შესახებ ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">%(cnt)s წინა მიმოხილვა</a> დატოვებული, ამ დამატების შესახებ."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "მომხმარებელს აქვს <a href=\"%(user_review_url)s\">სხვა მიმოხილვები</a> დატოვებული, ამ დამატების შესახებ."
-
-msgid "Flagged for review"
-msgstr "ჩანიშნულია განსახილველად"
-
-msgid "Report this review"
-msgstr "მოხსენება ამ მიმოხილვაზე"
-
-msgid "Reply to review"
-msgstr "პასუხი მიმოხილვაზე"
-
-msgid "Edit reply"
-msgstr "პასუხის ჩასწორება"
-
-msgid "Edit review"
-msgstr "მიმოხილვის ჩასწორება"
-
-msgid "Delete reply"
-msgstr "პასუხის წაშლა"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: მიმოხილვა"
-
-msgid "Reviews for {0}"
-msgstr "მიმოხილვები {0}-ის შესახებ"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> მიმოხილვა, ამ დამატების შესახებ"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0} შემმუშავებლის პასუხი"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s-ის მიმოხილვები %(addon)s დამატების შესახებ"
-
-msgid "No reviews found."
-msgstr "მიმოხილვები ვერ მოიძებნა."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>საშუალო</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "დაწერეთ მიმოხილვა"
-
-msgid "Be the first to write a review."
-msgstr "დატოვეთ მიმოხილვა პირველმა."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} მიმოხილვა"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "{0} შეფასება 5 ვარსკვლავიდან"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
 
 msgid "Maximum query length exceeded."
 msgstr "მოთხოვნის სიგრძე აჭარბებს ზღვარს."
@@ -7279,6 +7337,9 @@ msgstr "ვერსია უკვე არსებობს."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID-ის გამოტოვება, მხოლოდ WebExtensions-ის შემთხვევაშია შესაძლებელი"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "უმართებულო GUID URL ბმულში"
