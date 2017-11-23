@@ -6,5 +6,5 @@ Reply:
 {% endif %}{{ reply }}
 
 You can read the review below:
-{{ reply_url }}
+{{ rating_url }}
 {% endblock %}

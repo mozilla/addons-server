@@ -408,7 +408,7 @@ class TestCreate(ReviewTest):
         assert len(mail.outbox) == 1
 
         assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
-        self.assertTemplateUsed(response, 'ratings/emails/add_review.ltxt')
+        self.assertTemplateUsed(response, 'ratings/emails/new_rating.txt')
 
     def test_reply_not_author_or_admin(self):
         url = jinja_helpers.url(

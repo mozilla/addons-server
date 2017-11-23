@@ -197,7 +197,7 @@ class Rating(ModelBase):
                 'name': self.addon.name,
                 'reply_title': self.title,
                 'reply': self.body,
-                'reply_url': jinja_helpers.absolutify(reply_url)
+                'rating_url': jinja_helpers.absolutify(reply_url)
             }
             recipients = [self.reply_to.user.email]
             subject = u'Mozilla Add-on Developer Reply: %s' % self.addon.name
@@ -205,17 +205,17 @@ class Rating(ModelBase):
             perm_setting = 'reply'
         else:
             # It's a new rating.
-            reply_url = jinja_helpers.url(
-                'addons.ratings.reply', self.addon.slug, self.pk,
+            rating_url = jinja_helpers.url(
+                'addons.ratings.detail', self.addon.slug, self.pk,
                 add_prefix=False)
             data = {
                 'name': self.addon.name,
                 'rating': self,
-                'reply_url': jinja_helpers.absolutify(reply_url)
+                'rating_url': jinja_helpers.absolutify(rating_url)
             }
             recipients = [author.email for author in self.addon.authors.all()]
-            subject = u'Mozilla Add-on User Review: %s' % self.addon.name
-            template = 'ratings/emails/add_review.ltxt'
+            subject = u'Mozilla Add-on User Rating: %s' % self.addon.name
+            template = 'ratings/emails/new_rating.txt'
             perm_setting = 'new_review'
         send_mail_jinja(
             subject, template, data,
