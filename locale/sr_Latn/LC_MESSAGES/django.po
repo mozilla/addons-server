@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2051,7 +2051,8 @@ msgstr "{addon} dodat u {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} uklonjeno iz {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{review} za {addon} je napisana."
 
 #. L10n: {0} is a category name.
@@ -2086,16 +2087,20 @@ msgstr "Polisa izmenjena za {addon}."
 msgid "{addon} icon changed."
 msgstr "Ikonica je promenjena za {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{review} za {addon} je odobren."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} je odobrio {review} za {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Recenzija {review} za {addon} je izbrisana."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} je izbrisao {review} za {addon}."
 
 msgid "Application max version for {version} updated."
@@ -2140,7 +2145,8 @@ msgstr "Korisnik {user} je ograničen."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrator {0} je pregledao dnevnik aktivnosti za {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} za {addon} je ažuriran."
 
 msgid "{addon} reviewed."
@@ -4953,12 +4959,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid ""
+"Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid ""
-"A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
-"content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4969,11 +4974,12 @@ msgid ""
 "play control, and more."
 msgstr ""
 
-msgid ""
-"Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid ""
+"A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
+"content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid ""
@@ -5033,9 +5039,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -7265,6 +7268,194 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Čitajte više o Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Recenzije za %s"
+
+msgid "Review History for this Addon"
+msgstr "Istorija pregleda za ovaj dodatak"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Ocenjeno sa %d od 5 zvezdica"
+
+msgid ""
+"A short explanation must be provided when selecting \"Other\" as a flag "
+"reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr "Drugo (molimo navedite)"
+
+#, fuzzy
+msgid "This field is required."
+msgstr "Obavezno polje"
+
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Možete da ažurirate dizajn Vaše teme nakom što se odobri."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid ""
+"You can't change the version of the add-on reviewed once the review has been "
+"created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "neko piše recenziju na moj dodatak"
+
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Ne možete više datoteka otpremiti za ovu verziju."
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Hvala; ova recenzija je označena za odobrenje urednika."
+
+msgid "Add a review for {0}"
+msgstr "Dodaj recenziju za {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a "
+"friend about your experience with the add-on. Give specifics and helpful "
+"details, such as what features you liked and/or disliked, how easy to use it "
+"is, and any disadvantages it has. Avoid generic language such as calling it "
+"\"Great\" or \"Bad\" unless you can give reasons why you believe this is so. "
+"</li> <li> Please do not post bug reports here. We do not make your email "
+"address available to add-on developers, so they can't contact you to resolve "
+"your issue. See this add-on's <a href=\"%(support)s\">support section</a> to "
+"find out if assistance is available. You can also try asking the <a href="
+"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use "
+"of improper language and do not post any personal information. </li> </ul> "
+"<p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more "
+"detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "Odgovor na recenziju od {0}"
+
+msgid "Write a Reply"
+msgstr "Napiši odgovor"
+
+msgid "Submit"
+msgstr "Pošalji"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ili <a href=\"%(url)s\">otkaži</a>"
+
+msgid "Please select a reason:"
+msgstr "Izaberite razlog:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "od %(user)s <b>(Programer)</b> datuma %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ovaj pregled je za prethodnu verziju dodatka ({0})."
+
+#, fuzzy, python-format
+msgid ""
+"This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
+"add-on."
+msgid_plural ""
+"This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
+"of this add-on."
+msgstr[0] ""
+"Ovaj korisnik ima <a href=\"%(user_review_url)s\">prethodni pregled</a> ovog "
+"dodatka."
+msgstr[1] ""
+"Ovaj korisnik ima <a href=\"%(user_review_url)s\">%(cnt)s prethodna "
+"pregleda</a> ovog dodatka."
+
+#, python-format
+msgid ""
+"This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-"
+"on."
+msgstr ""
+"Ovaj korisnik ima <a href=\"%(user_review_url)s\">druge preglede</a> ovog "
+"dodatka."
+
+msgid "Flagged for review"
+msgstr "Označeno za recenziju"
+
+msgid "Report this review"
+msgstr "Prijavi ovu recenziju"
+
+msgid "Reply to review"
+msgstr "Odgovori na recenziju"
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "Uredi recenziju"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "Obrisana kritika"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: recenzija"
+
+msgid "Reviews for {0}"
+msgstr "Recenzije za {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> pregled za ovaj dodatak"
+msgstr[1] "<b>{0}</b> pregleda za ovaj dodatak"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Programer {0} je odgovorio"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Recenzija za %(addon)s od %(user)s"
+msgstr[1] "Recenzije za %(addon)s od %(user)s"
+
+msgid "No reviews found."
+msgstr "Nema pronađenih rezultata."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Prosek</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Napiši novu recenziju"
+
+msgid "Be the first to write a review."
+msgstr "Budite prvi da napišete recenziju."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} kritika"
+msgstr[1] "{num} kritike"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Ocenjeno sa {0} od 5 zvezdica"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
+
 msgid "Approved reviews"
 msgstr "Odobrene kritike"
 
@@ -7306,14 +7497,15 @@ msgstr "dodatak, urednik ili komentar"
 msgid "Search by add-on name / author email"
 msgstr "Pretraži po nazivu dodatka / e-pošti autora"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Recenzija administratora"
+
 msgid "yes"
 msgstr "da"
 
 msgid "no"
 msgstr "ne"
-
-msgid "Admin Flag"
-msgstr "Admin zastava"
 
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
@@ -7340,7 +7532,12 @@ msgstr ""
 "Obavesti me sledeći put kada se ovaj dodatak ažurira. (Naknadna ažuriranja "
 "neće generisati e-poštu)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Ukloni oznaku za recenziju administratora"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Ukloni oznaku za recenziju administratora"
 
 #, fuzzy
@@ -7368,11 +7565,9 @@ msgstr "Zadrži recenziju; ukloni zastavice"
 msgid "Skip for now"
 msgstr "Preskoči za sada"
 
-msgid "Delete review"
-msgstr "Obrisana kritika"
-
-msgid "Admin Review"
-msgstr "Recenzija administratora"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Izvršiti recenziju"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack dodatak"
@@ -7525,6 +7720,85 @@ msgid ""
 "notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Moji dodaci"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Svi moji dodaci"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Ažuriranja dodatka"
+
+msgid "Add-on Review Log"
+msgstr "Dnevnik recenzija dodatka"
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Dodaci za Android"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Svi moji dodaci"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Izvršiti recenziju"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Kontorlisan pregled ({0})"
+msgstr[1] "Kontorlisana pregleda ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Svi moji dodaci"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Ažurirano {0}"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Označene teme"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Recenzija teme"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Izbriši temu"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Kontrolisan dnevnik pregleda"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Svi dodaci"
+
+#, fuzzy
+msgid "All Unlisted Add-ons"
+msgstr "Svi dodaci"
+
+msgid "Announcement"
+msgstr "Saopštenje"
+
+msgid "Update message of the day"
+msgstr "Ažuriraj poruku dana"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Novi dodatak (ispod 5 dana)"
 
@@ -7592,15 +7866,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Status dozvole"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "Izveštaji o zlostavljanju za {addon} ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "({num}) uređena recenzija"
 
 msgid "More about this add-on"
@@ -7634,31 +7905,11 @@ msgstr "Uređene recenzije"
 msgid "Auto Approved Add-ons"
 msgstr "Dodaci za Android"
 
-#, fuzzy
-msgid "Content Review"
-msgstr "Izvršiti recenziju"
-
 msgid "Unlisted Queues"
 msgstr ""
 
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "Svi dodaci"
-
 msgid "Logs"
 msgstr "Dnevnici"
-
-msgid "Add-on Review Log"
-msgstr "Dnevnik recenzija dodatka"
-
-msgid "Moderated Review Log"
-msgstr "Kontrolisan dnevnik pregleda"
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Saopštenje"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -7756,9 +8007,6 @@ msgstr "Pozicija"
 
 msgid "Score"
 msgstr "Rezultat"
-
-msgid "Update message of the day"
-msgstr "Ažuriraj poruku dana"
 
 msgid "Save"
 msgstr "Sačuvaj"
@@ -8170,199 +8418,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Svi moji dodaci"
 msgstr[1] "Svi moji dodaci"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Kontorlisan pregled ({0})"
-msgstr[1] "Kontorlisana pregleda ({0})"
-
 msgid "Flagged"
 msgstr "Označeno"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Recenzije za %s"
-
-msgid "Review History for this Addon"
-msgstr "Istorija pregleda za ovaj dodatak"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Ocenjeno sa %d od 5 zvezdica"
-
-msgid ""
-"A short explanation must be provided when selecting \"Other\" as a flag "
-"reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr "Drugo (molimo navedite)"
-
-#, fuzzy
-msgid "This field is required."
-msgstr "Obavezno polje"
-
-#, fuzzy
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Možete da ažurirate dizajn Vaše teme nakom što se odobri."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid ""
-"You can't change the version of the add-on reviewed once the review has been "
-"created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-#, fuzzy
-msgid "You can't leave a review on your own add-on."
-msgstr "neko piše recenziju na moj dodatak"
-
-#, fuzzy
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ne možete više datoteka otpremiti za ovu verziju."
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Hvala; ova recenzija je označena za odobrenje urednika."
-
-msgid "Add a review for {0}"
-msgstr "Dodaj recenziju za {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a "
-"friend about your experience with the add-on. Give specifics and helpful "
-"details, such as what features you liked and/or disliked, how easy to use it "
-"is, and any disadvantages it has. Avoid generic language such as calling it "
-"\"Great\" or \"Bad\" unless you can give reasons why you believe this is so. "
-"</li> <li> Please do not post bug reports here. We do not make your email "
-"address available to add-on developers, so they can't contact you to resolve "
-"your issue. See this add-on's <a href=\"%(support)s\">support section</a> to "
-"find out if assistance is available. You can also try asking the <a href="
-"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use "
-"of improper language and do not post any personal information. </li> </ul> "
-"<p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more "
-"detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "Odgovor na recenziju od {0}"
-
-msgid "Write a Reply"
-msgstr "Napiši odgovor"
-
-msgid "Submit"
-msgstr "Pošalji"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ili <a href=\"%(url)s\">otkaži</a>"
-
-msgid "Please select a reason:"
-msgstr "Izaberite razlog:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "od %(user)s <b>(Programer)</b> datuma %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ovaj pregled je za prethodnu verziju dodatka ({0})."
-
-#, fuzzy, python-format
-msgid ""
-"This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
-"add-on."
-msgid_plural ""
-"This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
-"of this add-on."
-msgstr[0] ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">prethodni pregled</a> ovog "
-"dodatka."
-msgstr[1] ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">%(cnt)s prethodna "
-"pregleda</a> ovog dodatka."
-
-#, python-format
-msgid ""
-"This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-"
-"on."
-msgstr ""
-"Ovaj korisnik ima <a href=\"%(user_review_url)s\">druge preglede</a> ovog "
-"dodatka."
-
-msgid "Flagged for review"
-msgstr "Označeno za recenziju"
-
-msgid "Report this review"
-msgstr "Prijavi ovu recenziju"
-
-msgid "Reply to review"
-msgstr "Odgovori na recenziju"
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Uredi recenziju"
-
-msgid "Delete reply"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: recenzija"
-
-msgid "Reviews for {0}"
-msgstr "Recenzije za {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> pregled za ovaj dodatak"
-msgstr[1] "<b>{0}</b> pregleda za ovaj dodatak"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Programer {0} je odgovorio"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Recenzija za %(addon)s od %(user)s"
-msgstr[1] "Recenzije za %(addon)s od %(user)s"
-
-msgid "No reviews found."
-msgstr "Nema pronađenih rezultata."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Prosek</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Napiši novu recenziju"
-
-msgid "Be the first to write a review."
-msgstr "Budite prvi da napišete recenziju."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} kritika"
-msgstr[1] "{num} kritike"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Ocenjeno sa {0} od 5 zvezdica"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -8504,6 +8561,11 @@ msgid "Version already exists."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid ""
+"Please specify your Add-on GUID in the manifest if it's longer than 64 "
+"characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"

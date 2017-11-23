@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1812,8 +1812,8 @@ msgstr "{addon} ȧḓḓḗḓ ŧǿ {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} řḗḿǿṽḗḓ ƒřǿḿ {collection}."
 
-msgid "{review} for {addon} written."
-msgstr "{review} ƒǿř {addon} ẇřīŧŧḗƞ."
+msgid "{rating} for {addon} written."
+msgstr "{rating} ƒǿř {addon} ẇřīŧŧḗƞ."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1846,17 +1846,17 @@ msgstr "{addon} ƥǿŀīƈẏ ƈħȧƞɠḗḓ."
 msgid "{addon} icon changed."
 msgstr "{addon} īƈǿƞ ƈħȧƞɠḗḓ."
 
-msgid "{review} for {addon} approved."
-msgstr "{review} ƒǿř {addon} ȧƥƥřǿṽḗḓ."
+msgid "{rating} for {addon} approved."
+msgstr "{rating} ƒǿř {addon} ȧƥƥřǿṽḗḓ."
 
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} ȧƥƥřǿṽḗḓ {review} ƒǿř {addon}."
+msgid "{user} approved {rating} for {addon}."
+msgstr "{user} ȧƥƥřǿṽḗḓ {rating} ƒǿř {addon}."
 
-msgid "Review {review} for {addon} deleted."
-msgstr "Řḗṽīḗẇ {review} ƒǿř {addon} ḓḗŀḗŧḗḓ."
+msgid "Review {rating} for {addon} deleted."
+msgstr "Řḗṽīḗẇ {rating} ƒǿř {addon} ḓḗŀḗŧḗḓ."
 
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} ḓḗŀḗŧḗḓ {review} ƒǿř {addon}."
+msgid "{user} deleted {rating} for {addon}."
+msgstr "{user} ḓḗŀḗŧḗḓ {rating} ƒǿř {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Aƥƥŀīƈȧŧīǿƞ ḿȧẋ ṽḗřşīǿƞ ƒǿř {version} ŭƥḓȧŧḗḓ."
@@ -1900,8 +1900,8 @@ msgstr "Ŭşḗř {user} řḗşŧřīƈŧḗḓ."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Aḓḿīƞ {0} ṽīḗẇḗḓ ȧƈŧīṽīŧẏ ŀǿɠ ƒǿř {user}."
 
-msgid "{review} for {addon} updated."
-msgstr "{review} ƒǿř {addon} ŭƥḓȧŧḗḓ."
+msgid "{rating} for {addon} updated."
+msgstr "{rating} ƒǿř {addon} ŭƥḓȧŧḗḓ."
 
 msgid "{addon} reviewed."
 msgstr "{addon} řḗṽīḗẇḗḓ."
@@ -4280,11 +4280,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşīŀẏ ƒīƞḓ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ ɋŭīƈķŀẏ ƥḗřƒǿřḿ ȧƞ īḿȧɠḗ şḗȧřƈħ."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
@@ -4292,11 +4292,11 @@ msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_na
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ ƈǿƞŧřǿŀ, ȧƞḓ ḿǿřḗ."
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḗȧşīŀẏ ƒīƞḓ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ ɋŭīƈķŀẏ ƥḗřƒǿřḿ ȧƞ īḿȧɠḗ şḗȧřƈħ."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
@@ -4351,9 +4351,6 @@ msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŧħḗ ḿȧƞīƒḗşŧ ƒīŀḗ."
 
 msgid "Could not find an add-on ID."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧƞ ȧḓḓ-ǿƞ ĪḒ."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "Aḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ 64 ƈħȧřȧƈŧḗřş ǿř ŀḗşş."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6191,6 +6188,171 @@ msgstr "Ẇḗ řḗƈǿḿḿḗƞḓ ŭƥɠřȧḓīƞɠ ŧǿ <a href=\"%(tb_u
 msgid "Read more about Sunbird"
 msgstr "Řḗȧḓ ḿǿřḗ ȧƀǿŭŧ Şŭƞƀīřḓ"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Řḗṽīḗẇş ƒǿř %s"
+
+msgid "Review History for this Addon"
+msgstr "Řḗṽīḗẇ Ħīşŧǿřẏ ƒǿř ŧħīş Aḓḓǿƞ"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Řȧŧḗḓ %d ǿŭŧ ǿƒ 5 şŧȧřş"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "A şħǿřŧ ḗẋƥŀȧƞȧŧīǿƞ ḿŭşŧ ƀḗ ƥřǿṽīḓḗḓ ẇħḗƞ şḗŀḗƈŧīƞɠ \"Ǿŧħḗř\" ȧş ȧ ƒŀȧɠ řḗȧşǿƞ."
+
+msgid "Other (please specify)"
+msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
+
+msgid "This field is required."
+msgstr "Ŧħīş ƒīḗŀḓ īş řḗɋŭīřḗḓ."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ȧḓḓ-ǿƞ ǿƒ ȧ řḗṽīḗẇ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ řḗƥŀẏ ŧǿ ȧ řḗṽīḗẇ ŧħȧŧ īş ȧŀřḗȧḓẏ ȧ řḗƥŀẏ."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ řḗṽīḗẇḗḓ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Ŧħīş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ ḗẋīşŧ ǿř īşƞ'ŧ ƥŭƀŀīƈ."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇƞ ȧḓḓ-ǿƞ."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇḗř ȧƥƥřǿṽȧŀ."
+
+msgid "Add a review for {0}"
+msgstr "Aḓḓ ȧ řḗṽīḗẇ ƒǿř {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Ķḗḗƥ ŧħḗşḗ ŧīƥş īƞ ḿīƞḓ:</h2> <ul> <li> Ẇřīŧḗ ŀīķḗ ẏǿŭ'řḗ ŧḗŀŀīƞɠ ȧ ƒřīḗƞḓ ȧƀǿŭŧ ẏǿŭř ḗẋƥḗřīḗƞƈḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞ. Ɠīṽḗ şƥḗƈīƒīƈş ȧƞḓ ħḗŀƥƒŭŀ ḓḗŧȧīŀş, şŭƈħ ȧş ẇħȧŧ ƒḗȧŧŭřḗş ẏǿŭ ŀīķḗḓ ȧƞḓ/ǿř "
+"ḓīşŀīķḗḓ, ħǿẇ ḗȧşẏ ŧǿ ŭşḗ īŧ īş, ȧƞḓ ȧƞẏ ḓīşȧḓṽȧƞŧȧɠḗş īŧ ħȧş. Aṽǿīḓ ɠḗƞḗřīƈ ŀȧƞɠŭȧɠḗ şŭƈħ ȧş ƈȧŀŀīƞɠ īŧ \"Ɠřḗȧŧ\" ǿř \"Ɓȧḓ\" ŭƞŀḗşş ẏǿŭ ƈȧƞ ɠīṽḗ řḗȧşǿƞş ẇħẏ ẏǿŭ ƀḗŀīḗṽḗ ŧħīş īş şǿ. </li> <li> "
+"Ƥŀḗȧşḗ ḓǿ ƞǿŧ ƥǿşŧ ƀŭɠ řḗƥǿřŧş ħḗřḗ. Ẇḗ ḓǿ ƞǿŧ ḿȧķḗ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ȧṽȧīŀȧƀŀḗ ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş, şǿ ŧħḗẏ ƈȧƞ'ŧ ƈǿƞŧȧƈŧ ẏǿŭ ŧǿ řḗşǿŀṽḗ ẏǿŭř īşşŭḗ. Şḗḗ ŧħīş ȧḓḓ-ǿƞ'ş <a href=\"%(support)s"
+"\">şŭƥƥǿřŧ şḗƈŧīǿƞ</a> ŧǿ ƒīƞḓ ǿŭŧ īƒ ȧşşīşŧȧƞƈḗ īş ȧṽȧīŀȧƀŀḗ. Ẏǿŭ ƈȧƞ ȧŀşǿ ŧřẏ ȧşķīƞɠ ŧħḗ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">ȧḓḓ-ǿƞ ƈǿḿḿŭƞīŧẏ</a> ƒǿř "
+"ħḗŀƥ. </li> <li>Ƥŀḗȧşḗ ķḗḗƥ řḗṽīḗẇş ƈŀḗȧƞ, ȧṽǿīḓ ŧħḗ ŭşḗ ǿƒ īḿƥřǿƥḗř ŀȧƞɠŭȧɠḗ ȧƞḓ ḓǿ ƞǿŧ ƥǿşŧ ȧƞẏ ƥḗřşǿƞȧŀ īƞƒǿřḿȧŧīǿƞ. </li> </ul> <p>Ƥŀḗȧşḗ řḗȧḓ ŧħḗ <a href=\"%(guide)s\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> "
+"ƒǿř ḿǿřḗ ḓḗŧȧīŀ ȧƀǿŭŧ ŭşḗř ȧḓḓ-ǿƞ řḗṽīḗẇş.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Řḗƥŀẏ ŧǿ řḗṽīḗẇ ƀẏ {0}"
+
+msgid "Write a Reply"
+msgstr "Ẇřīŧḗ ȧ Řḗƥŀẏ"
+
+msgid "Submit"
+msgstr "Şŭƀḿīŧ"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ǿř <a href=\"%(url)s\">Ƈȧƞƈḗŀ</a>"
+
+msgid "Please select a reason:"
+msgstr "Ƥŀḗȧşḗ şḗŀḗƈŧ ȧ řḗȧşǿƞ:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "ƀẏ %(user)s <b>(Ḓḗṽḗŀǿƥḗř)</b> ǿƞ %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ŧħīş řḗṽīḗẇ īş ƒǿř ȧ ƥřḗṽīǿŭş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Ŧħīş ŭşḗř ħȧş ȧ <a href=\"%(user_review_url)s\">ƥřḗṽīǿŭş řḗṽīḗẇ</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
+msgstr[1] "Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">%(cnt)s ƥřḗṽīǿŭş řḗṽīḗẇş</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">ǿŧħḗř řḗṽīḗẇş</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
+
+msgid "Flagged for review"
+msgstr "Ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
+
+msgid "Report this review"
+msgstr "Řḗƥǿřŧ ŧħīş řḗṽīḗẇ"
+
+msgid "Reply to review"
+msgstr "Řḗƥŀẏ ŧǿ řḗṽīḗẇ"
+
+msgid "Edit reply"
+msgstr "Ḗḓīŧ řḗƥŀẏ"
+
+msgid "Edit review"
+msgstr "Ḗḓīŧ řḗṽīḗẇ"
+
+msgid "Delete reply"
+msgstr "Ḓḗŀḗŧḗ řḗƥŀẏ"
+
+msgid "Delete review"
+msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Řḗṽīḗẇş"
+
+msgid "Reviews for {0}"
+msgstr "Řḗṽīḗẇş ƒǿř {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> řḗṽīḗẇ ƒǿř ŧħīş ȧḓḓ-ǿƞ"
+msgstr[1] "<b>{0}</b> řḗṽīḗẇş ƒǿř ŧħīş ȧḓḓ-ǿƞ"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Ḓḗṽḗŀǿƥḗř řḗƥŀẏ ƀẏ {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Řḗṽīḗẇ ƒǿř %(addon)s ƀẏ %(user)s"
+msgstr[1] "Řḗṽīḗẇş ƒǿř %(addon)s ƀẏ %(user)s"
+
+msgid "No reviews found."
+msgstr "Ƞǿ řḗṽīḗẇş ƒǿŭƞḓ."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Aṽḗřȧɠḗ</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Ẇřīŧḗ ȧ Ƞḗẇ Řḗṽīḗẇ"
+
+msgid "Be the first to write a review."
+msgstr "Ɓḗ ŧħḗ ƒīřşŧ ŧǿ ẇřīŧḗ ȧ řḗṽīḗẇ."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} řḗṽīḗẇ"
+msgstr[1] "{num} řḗṽīḗẇş"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Řȧŧḗḓ {0} ǿŭŧ ǿƒ 5 şŧȧřş"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Řȧŧḗḓ %(rating)s ǿŭŧ ǿƒ 5 şŧȧřş"
+
 msgid "Approved reviews"
 msgstr "Aƥƥřǿṽḗḓ řḗṽīḗẇş"
 
@@ -6231,14 +6393,14 @@ msgstr "ȧḓḓ-ǿƞ, řḗṽīḗẇḗř ǿř ƈǿḿḿḗƞŧ"
 msgid "Search by add-on name / author email"
 msgstr "Şḗȧřƈħ ƀẏ ȧḓḓ-ǿƞ ƞȧḿḗ / ȧŭŧħǿř ḗḿȧīŀ"
 
+msgid "Needs Admin Code Review"
+msgstr "Ƞḗḗḓş Aḓḿīƞ Ƈǿḓḗ Řḗṽīḗẇ"
+
 msgid "yes"
 msgstr "ẏḗş"
 
 msgid "no"
 msgstr "ƞǿ"
-
-msgid "Admin Flag"
-msgstr "Aḓḿīƞ Ƒŀȧɠ"
 
 msgid "Add-on Types"
 msgstr "Aḓḓ-ǿƞ Ŧẏƥḗş"
@@ -6261,8 +6423,11 @@ msgstr "Aƥƥŀīƈȧŧīǿƞş:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Ƞǿŧīƒẏ ḿḗ ŧħḗ ƞḗẋŧ ŧīḿḗ ŧħīş ȧḓḓ-ǿƞ īş ŭƥḓȧŧḗḓ. (Şŭƀşḗɋŭḗƞŧ ŭƥḓȧŧḗş ẇīŀŀ ƞǿŧ ɠḗƞḗřȧŧḗ ȧƞ ḗḿȧīŀ)"
 
-msgid "Clear Admin Review Flag"
-msgstr "Ƈŀḗȧř Aḓḿīƞ Řḗṽīḗẇ Ƒŀȧɠ"
+msgid "Clear Admin Code Review Flag"
+msgstr "Ƈŀḗȧř Aḓḿīƞ Ƈǿḓḗ Řḗṽīḗẇ Ƒŀȧɠ"
+
+msgid "Clear Admin Content Review Flag"
+msgstr "Ƈŀḗȧř Aḓḿīƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ Ƒŀȧɠ"
 
 msgid "Is more info requested?"
 msgstr "Īş ḿǿřḗ īƞƒǿ řḗɋŭḗşŧḗḓ?"
@@ -6287,11 +6452,8 @@ msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 msgid "Skip for now"
 msgstr "Şķīƥ ƒǿř ƞǿẇ"
 
-msgid "Delete review"
-msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
-
-msgid "Admin Review"
-msgstr "Aḓḿīƞ Řḗṽīḗẇ"
+msgid "Needs Admin Content Review"
+msgstr "Ƞḗḗḓş Aḓḿīƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
 
 msgid "Jetpack Add-on"
 msgstr "Ĵḗŧƥȧƈķ Aḓḓ-ǿƞ"
@@ -6410,6 +6572,71 @@ msgstr "Aƥƥřǿṽḗ Ƈǿƞŧḗƞŧ"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Ŧħīş řḗƈǿřḓş ẏǿŭř ȧƥƥřǿƀȧŧīǿƞ ǿƒ ŧħḗ ƈǿƞŧḗƞŧ ǿƒ ŧħīş ṽḗřşīǿƞ, ẇīŧħǿŭŧ ƞǿŧīƒẏīƞɠ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
+msgid "Legacy Add-ons"
+msgstr "Ŀḗɠȧƈẏ Aḓḓ-ǿƞş"
+
+msgid "New Add-ons ({0})"
+msgstr "Ƞḗẇ Aḓḓ-ǿƞş ({0})"
+
+msgid "Add-on Updates ({0})"
+msgstr "Aḓḓ-ǿƞ Ŭƥḓȧŧḗş ({0})"
+
+msgid "Add-on Review Log"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ŀǿɠ"
+
+msgid "Signed Beta Files Log"
+msgstr "Şīɠƞḗḓ Ɓḗŧȧ Ƒīŀḗş Ŀǿɠ"
+
+msgid "Auto-Approved Add-ons"
+msgstr "Aŭŧǿ-Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
+
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
+
+msgid "Content Review"
+msgstr "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
+msgstr[1] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
+
+msgid "New Themes ({0})"
+msgstr "Ƞḗẇ Ŧħḗḿḗş ({0})"
+
+msgid "Themes Updates ({0})"
+msgstr "Ŧħḗḿḗş Ŭƥḓȧŧḗş ({0})"
+
+msgid "Flagged Themes ({0})"
+msgstr "Ƒŀȧɠɠḗḓ Ŧħḗḿḗş ({0})"
+
+msgid "Themes Review Log"
+msgstr "Ŧħḗḿḗş Řḗṽīḗẇ Ŀǿɠ"
+
+msgid "Deleted themes Log"
+msgstr "Ḓḗŀḗŧḗḓ ŧħḗḿḗş Ŀǿɠ"
+
+msgid "User Ratings Moderation"
+msgstr "Ŭşḗř Řȧŧīƞɠş Ḿǿḓḗřȧŧīǿƞ"
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr "Řȧŧīƞɠş Aẇȧīŧīƞɠ Ḿǿḓḗřȧŧīǿƞ ({0})"
+
+msgid "Moderated Review Log"
+msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ Ŀǿɠ"
+
+msgid "Unlisted Add-ons"
+msgstr "Ŭƞŀīşŧḗḓ Aḓḓ-ǿƞş"
+
+msgid "All Unlisted Add-ons"
+msgstr "Aŀŀ Ŭƞŀīşŧḗḓ Aḓḓ-ǿƞş"
+
+msgid "Announcement"
+msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
+
+msgid "Update message of the day"
+msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Ƞḗẇ Aḓḓ-ǿƞş (Ŭƞḓḗř 5 ḓȧẏş)"
 
@@ -6470,14 +6697,11 @@ msgstr "ḖŬĿA"
 msgid "Last Approval Date"
 msgstr "Ŀȧşŧ Aƥƥřǿṽȧŀ Ḓȧŧḗ"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Aƥƥřǿṽȧŀş Şīƞƈḗ Ŀȧşŧ Aŭŧǿḿȧŧīƈ Řḗṽīḗẇ"
-
 msgid "Abuse Reports ({num})"
 msgstr "Aƀŭşḗ Řḗƥǿřŧş ({num})"
 
-msgid "Bad User Reviews ({num})"
-msgstr "Ɓȧḓ Ŭşḗř Řḗṽīḗẇş ({num})"
+msgid "Bad User Ratings ({num})"
+msgstr "Ɓȧḓ Ŭşḗř Řȧŧīƞɠş ({num})"
 
 msgid "More about this add-on"
 msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ"
@@ -6506,29 +6730,11 @@ msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
 msgid "Auto Approved Add-ons"
 msgstr "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
 
-msgid "Content Review"
-msgstr "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
-
 msgid "Unlisted Queues"
 msgstr "Ŭƞŀīşŧḗḓ Ɋŭḗŭḗş"
 
-msgid "All Unlisted Add-ons"
-msgstr "Aŀŀ Ŭƞŀīşŧḗḓ Aḓḓ-ǿƞş"
-
 msgid "Logs"
 msgstr "Ŀǿɠş"
-
-msgid "Add-on Review Log"
-msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ŀǿɠ"
-
-msgid "Moderated Review Log"
-msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ Ŀǿɠ"
-
-msgid "Signed Beta Files Log"
-msgstr "Şīɠƞḗḓ Ɓḗŧȧ Ƒīŀḗş Ŀǿɠ"
-
-msgid "Announcement"
-msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6622,9 +6828,6 @@ msgstr "Řȧƞķ"
 
 msgid "Score"
 msgstr "Şƈǿřḗ"
-
-msgid "Update message of the day"
-msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
 
 msgid "Save"
 msgstr "Şȧṽḗ"
@@ -7005,175 +7208,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞ ({0})"
 msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
-msgstr[1] "Ƈǿƞŧḗƞŧ Řḗṽīḗẇ ({0})"
-
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Řḗṽīḗẇş ƒǿř %s"
-
-msgid "Review History for this Addon"
-msgstr "Řḗṽīḗẇ Ħīşŧǿřẏ ƒǿř ŧħīş Aḓḓǿƞ"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Řȧŧḗḓ %d ǿŭŧ ǿƒ 5 şŧȧřş"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "A şħǿřŧ ḗẋƥŀȧƞȧŧīǿƞ ḿŭşŧ ƀḗ ƥřǿṽīḓḗḓ ẇħḗƞ şḗŀḗƈŧīƞɠ \"Ǿŧħḗř\" ȧş ȧ ƒŀȧɠ řḗȧşǿƞ."
-
-msgid "Other (please specify)"
-msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
-
-msgid "This field is required."
-msgstr "Ŧħīş ƒīḗŀḓ īş řḗɋŭīřḗḓ."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ȧḓḓ-ǿƞ ǿƒ ȧ řḗṽīḗẇ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Ẏǿŭ ƈȧƞ'ŧ řḗƥŀẏ ŧǿ ȧ řḗṽīḗẇ ŧħȧŧ īş ȧŀřḗȧḓẏ ȧ řḗƥŀẏ."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ řḗṽīḗẇḗḓ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Ŧħīş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ ḗẋīşŧ ǿř īşƞ'ŧ ƥŭƀŀīƈ."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇƞ ȧḓḓ-ǿƞ."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Ŧħȧƞķş; ŧħīş řḗṽīḗẇ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇḗř ȧƥƥřǿṽȧŀ."
-
-msgid "Add a review for {0}"
-msgstr "Aḓḓ ȧ řḗṽīḗẇ ƒǿř {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Ķḗḗƥ ŧħḗşḗ ŧīƥş īƞ ḿīƞḓ:</h2> <ul> <li> Ẇřīŧḗ ŀīķḗ ẏǿŭ'řḗ ŧḗŀŀīƞɠ ȧ ƒřīḗƞḓ ȧƀǿŭŧ ẏǿŭř ḗẋƥḗřīḗƞƈḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞ. Ɠīṽḗ şƥḗƈīƒīƈş ȧƞḓ ħḗŀƥƒŭŀ ḓḗŧȧīŀş, şŭƈħ ȧş ẇħȧŧ ƒḗȧŧŭřḗş ẏǿŭ ŀīķḗḓ ȧƞḓ/ǿř "
-"ḓīşŀīķḗḓ, ħǿẇ ḗȧşẏ ŧǿ ŭşḗ īŧ īş, ȧƞḓ ȧƞẏ ḓīşȧḓṽȧƞŧȧɠḗş īŧ ħȧş. Aṽǿīḓ ɠḗƞḗřīƈ ŀȧƞɠŭȧɠḗ şŭƈħ ȧş ƈȧŀŀīƞɠ īŧ \"Ɠřḗȧŧ\" ǿř \"Ɓȧḓ\" ŭƞŀḗşş ẏǿŭ ƈȧƞ ɠīṽḗ řḗȧşǿƞş ẇħẏ ẏǿŭ ƀḗŀīḗṽḗ ŧħīş īş şǿ. </li> <li> "
-"Ƥŀḗȧşḗ ḓǿ ƞǿŧ ƥǿşŧ ƀŭɠ řḗƥǿřŧş ħḗřḗ. Ẇḗ ḓǿ ƞǿŧ ḿȧķḗ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ȧṽȧīŀȧƀŀḗ ŧǿ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗřş, şǿ ŧħḗẏ ƈȧƞ'ŧ ƈǿƞŧȧƈŧ ẏǿŭ ŧǿ řḗşǿŀṽḗ ẏǿŭř īşşŭḗ. Şḗḗ ŧħīş ȧḓḓ-ǿƞ'ş <a href=\"%(support)s"
-"\">şŭƥƥǿřŧ şḗƈŧīǿƞ</a> ŧǿ ƒīƞḓ ǿŭŧ īƒ ȧşşīşŧȧƞƈḗ īş ȧṽȧīŀȧƀŀḗ. Ẏǿŭ ƈȧƞ ȧŀşǿ ŧřẏ ȧşķīƞɠ ŧħḗ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">ȧḓḓ-ǿƞ ƈǿḿḿŭƞīŧẏ</a> ƒǿř "
-"ħḗŀƥ. </li> <li>Ƥŀḗȧşḗ ķḗḗƥ řḗṽīḗẇş ƈŀḗȧƞ, ȧṽǿīḓ ŧħḗ ŭşḗ ǿƒ īḿƥřǿƥḗř ŀȧƞɠŭȧɠḗ ȧƞḓ ḓǿ ƞǿŧ ƥǿşŧ ȧƞẏ ƥḗřşǿƞȧŀ īƞƒǿřḿȧŧīǿƞ. </li> </ul> <p>Ƥŀḗȧşḗ řḗȧḓ ŧħḗ <a href=\"%(guide)s\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> "
-"ƒǿř ḿǿřḗ ḓḗŧȧīŀ ȧƀǿŭŧ ŭşḗř ȧḓḓ-ǿƞ řḗṽīḗẇş.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Řḗƥŀẏ ŧǿ řḗṽīḗẇ ƀẏ {0}"
-
-msgid "Write a Reply"
-msgstr "Ẇřīŧḗ ȧ Řḗƥŀẏ"
-
-msgid "Submit"
-msgstr "Şŭƀḿīŧ"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ǿř <a href=\"%(url)s\">Ƈȧƞƈḗŀ</a>"
-
-msgid "Please select a reason:"
-msgstr "Ƥŀḗȧşḗ şḗŀḗƈŧ ȧ řḗȧşǿƞ:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "ƀẏ %(user)s <b>(Ḓḗṽḗŀǿƥḗř)</b> ǿƞ %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ŧħīş řḗṽīḗẇ īş ƒǿř ȧ ƥřḗṽīǿŭş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ŧħīş ŭşḗř ħȧş ȧ <a href=\"%(user_review_url)s\">ƥřḗṽīǿŭş řḗṽīḗẇ</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
-msgstr[1] "Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">%(cnt)s ƥřḗṽīǿŭş řḗṽīḗẇş</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Ŧħīş ŭşḗř ħȧş <a href=\"%(user_review_url)s\">ǿŧħḗř řḗṽīḗẇş</a> ǿƒ ŧħīş ȧḓḓ-ǿƞ."
-
-msgid "Flagged for review"
-msgstr "Ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
-
-msgid "Report this review"
-msgstr "Řḗƥǿřŧ ŧħīş řḗṽīḗẇ"
-
-msgid "Reply to review"
-msgstr "Řḗƥŀẏ ŧǿ řḗṽīḗẇ"
-
-msgid "Edit reply"
-msgstr "Ḗḓīŧ řḗƥŀẏ"
-
-msgid "Edit review"
-msgstr "Ḗḓīŧ řḗṽīḗẇ"
-
-msgid "Delete reply"
-msgstr "Ḓḗŀḗŧḗ řḗƥŀẏ"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Řḗṽīḗẇş"
-
-msgid "Reviews for {0}"
-msgstr "Řḗṽīḗẇş ƒǿř {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> řḗṽīḗẇ ƒǿř ŧħīş ȧḓḓ-ǿƞ"
-msgstr[1] "<b>{0}</b> řḗṽīḗẇş ƒǿř ŧħīş ȧḓḓ-ǿƞ"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Ḓḗṽḗŀǿƥḗř řḗƥŀẏ ƀẏ {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Řḗṽīḗẇ ƒǿř %(addon)s ƀẏ %(user)s"
-msgstr[1] "Řḗṽīḗẇş ƒǿř %(addon)s ƀẏ %(user)s"
-
-msgid "No reviews found."
-msgstr "Ƞǿ řḗṽīḗẇş ƒǿŭƞḓ."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Aṽḗřȧɠḗ</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Ẇřīŧḗ ȧ Ƞḗẇ Řḗṽīḗẇ"
-
-msgid "Be the first to write a review."
-msgstr "Ɓḗ ŧħḗ ƒīřşŧ ŧǿ ẇřīŧḗ ȧ řḗṽīḗẇ."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} řḗṽīḗẇ"
-msgstr[1] "{num} řḗṽīḗẇş"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Řȧŧḗḓ {0} ǿŭŧ ǿƒ 5 şŧȧřş"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Řȧŧḗḓ %(rating)s ǿŭŧ ǿƒ 5 şŧȧřş"
 
 msgid "Maximum query length exceeded."
 msgstr "Ḿȧẋīḿŭḿ ɋŭḗřẏ ŀḗƞɠŧħ ḗẋƈḗḗḓḗḓ."
@@ -7304,6 +7340,9 @@ msgstr "Ṽḗřşīǿƞ ȧŀřḗȧḓẏ ḗẋīşŧş."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Ǿƞŀẏ ẆḗƀḖẋŧḗƞşīǿƞş ȧřḗ ȧŀŀǿẇḗḓ ŧǿ ǿḿīŧ ŧħḗ ƓŬĪḒ"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř Aḓḓ-ǿƞ ƓŬĪḒ īƞ ŧħḗ ḿȧƞīƒḗşŧ īƒ īŧ'ş ŀǿƞɠḗř ŧħȧƞ 64 ƈħȧřȧƈŧḗřş."
 
 msgid "Invalid GUID in URL"
 msgstr "Īƞṽȧŀīḓ ƓŬĪḒ īƞ ŬŘĿ"

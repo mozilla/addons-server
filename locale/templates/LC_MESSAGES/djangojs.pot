@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,15 +241,15 @@ msgstr ""
 msgid "Your Theme's Name"
 msgstr ""
 
-#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+#: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
 msgid "Flagged for review"
 msgstr ""
 
-#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+#: static/js/impala/ratings.js:40 static/js/zamboni/ratings.js:34
 msgid "Your input is required"
 msgstr ""
 
-#: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
+#: static/js/impala/ratings.js:152 static/js/zamboni/ratings.js:103
 msgid "Marked for deletion"
 msgstr ""
 

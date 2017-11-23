@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-10-31 14:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1808,7 +1808,8 @@ msgstr "{addon} добавена в {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} премахнат от {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "Написан {review} за {addon}."
 
 #. L10n: {0} is a category name.
@@ -1843,16 +1844,20 @@ msgstr "Полицата на {addon} променена."
 msgid "{addon} icon changed."
 msgstr "Иконката на {addon} променена."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "{review} за {addon} одобрена."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} одобри {review} за {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Отзива {review} към {addon} е изтрит."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} изтри {review} за {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1899,7 +1904,8 @@ msgstr "Администраторът {0} прегледа журнала с д
 
 # 83%
 # 100%
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} за {addon} одобрена."
 
 msgid "{addon} reviewed."
@@ -4286,10 +4292,10 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
 msgstr[1] "{0} предупреждения"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4298,10 +4304,10 @@ msgstr ""
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4356,9 +4362,6 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
-
-msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #, python-format
@@ -6093,6 +6096,167 @@ msgstr ""
 msgid "Read more about Sunbird"
 msgstr "Прочетете повече за Sunbird"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Отзиви за %s"
+
+msgid "Review History for this Addon"
+msgstr "История на добавката"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Оценена с %d от 5 звезди"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+msgid "Other (please specify)"
+msgstr ""
+
+msgid "This field is required."
+msgstr ""
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr ""
+
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+msgid "You can't leave a review on your own add-on."
+msgstr ""
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr ""
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr ""
+
+# 77%
+# 100%
+msgid "Add a review for {0}"
+msgstr ""
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+
+msgid "Reply to review by {0}"
+msgstr "Отговаряне на отзива на {0}"
+
+msgid "Write a Reply"
+msgstr "Публикуване на отговор"
+
+msgid "Submit"
+msgstr "Изпращане"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "или <a href=\"%(url)s\">Отказ</a>"
+
+msgid "Please select a reason:"
+msgstr "Моля, изберете причина:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "от %(user)s <b>(Разработчик)</b> на %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Това е отзив за предна версия на добавката ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Потребителят има <a href=\"%(user_review_url)s\">предишен отзив</a> към добавката."
+msgstr[1] "Потребителят има <a href=\"%(user_review_url)s\">%(cnt)s предишни отзива</a> към добавката."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr ""
+
+msgid "Flagged for review"
+msgstr ""
+
+msgid "Report this review"
+msgstr "Докладване на рецензията"
+
+msgid "Reply to review"
+msgstr ""
+
+msgid "Edit reply"
+msgstr ""
+
+msgid "Edit review"
+msgstr "Редактиране на отзив"
+
+msgid "Delete reply"
+msgstr ""
+
+msgid "Delete review"
+msgstr "Изтриване на рецензия"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Отзиви"
+
+msgid "Reviews for {0}"
+msgstr "Отзиви за {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> отзив към добавката"
+msgstr[1] "<b>{0}</b> отзив към добавката"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Отговор от разработчика {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Отзив за %(addon)s от %(user)s"
+msgstr[1] "Отзиви за %(addon)s от %(user)s"
+
+msgid "No reviews found."
+msgstr "Не са намерени отзиви."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr ""
+
+msgid "Write a New Review"
+msgstr "Писане на рецензия"
+
+msgid "Be the first to write a review."
+msgstr ""
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} отзив"
+msgstr[1] "{num} отзива"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Оценена с {0} от 5 звезди"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Оценена с %(rating)s от 5 звезди"
+
 msgid "Approved reviews"
 msgstr "Одобрени рецензии"
 
@@ -6134,14 +6298,15 @@ msgstr "Все още няма отзиви към добавки."
 msgid "Search by add-on name / author email"
 msgstr "Търсене по име на добавката / имейл на автора"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Административна рецензия"
+
 msgid "yes"
 msgstr "да"
 
 msgid "no"
 msgstr "но"
-
-msgid "Admin Flag"
-msgstr ""
 
 msgid "Add-on Types"
 msgstr "Видове добавки"
@@ -6164,8 +6329,13 @@ msgstr "Приложения:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
 
-msgid "Clear Admin Review Flag"
-msgstr ""
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Административна рецензия"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
+msgstr "Изпращане на рецензия"
 
 msgid "Is more info requested?"
 msgstr "Поискана ли е повече информация?"
@@ -6190,11 +6360,9 @@ msgstr ""
 msgid "Skip for now"
 msgstr ""
 
-msgid "Delete review"
-msgstr "Изтриване на рецензия"
-
-msgid "Admin Review"
-msgstr "Административна рецензия"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Изпращане на рецензия"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6317,6 +6485,93 @@ msgstr "Одобряване / отхвърляне"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Мои добавки"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Нова добавка ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Обновявания на добавката"
+
+msgid "Add-on Review Log"
+msgstr "Журнал на рецензиите"
+
+msgid "Signed Beta Files Log"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Добавки за Andorid"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Нова добавка ({0})"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Изпращане на рецензия"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Модерирана рецензия ({0})"
+msgstr[1] "Модерирани рецензии ({0})"
+
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Нова добавка ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Обновена ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Препоръчани теми"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Модерирани рецензии"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Изтриване на темата"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "Модерирани рецензии"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Добавки за Andorid"
+
+msgid "All Unlisted Add-ons"
+msgstr ""
+
+msgid "Announcement"
+msgstr "Обявление"
+
+msgid "Update message of the day"
+msgstr ""
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Нови добавки (под 5 дена)"
 
@@ -6377,13 +6632,11 @@ msgstr "ЛСКП"
 msgid "Last Approval Date"
 msgstr ""
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 msgid "Abuse Reports ({num})"
 msgstr ""
 
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Лоши отзиви ({num})"
 
 msgid "More about this add-on"
@@ -6414,30 +6667,11 @@ msgstr "Модерирани рецензии"
 msgid "Auto Approved Add-ons"
 msgstr ""
 
-#, fuzzy
-msgid "Content Review"
-msgstr "Изпращане на рецензия"
-
 msgid "Unlisted Queues"
 msgstr "Непоказани опашки"
 
-msgid "All Unlisted Add-ons"
-msgstr ""
-
 msgid "Logs"
 msgstr "Журнали"
-
-msgid "Add-on Review Log"
-msgstr "Журнал на рецензиите"
-
-msgid "Moderated Review Log"
-msgstr "Модерирани рецензии"
-
-msgid "Signed Beta Files Log"
-msgstr ""
-
-msgid "Announcement"
-msgstr "Обявление"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6530,9 +6764,6 @@ msgid "Rank"
 msgstr ""
 
 msgid "Score"
-msgstr ""
-
-msgid "Update message of the day"
 msgstr ""
 
 msgid "Save"
@@ -6924,174 +7155,10 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Модерирана рецензия ({0})"
-msgstr[1] "Модерирани рецензии ({0})"
-
 # 80%
 # 100%
 msgid "Flagged"
 msgstr ""
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Отзиви за %s"
-
-msgid "Review History for this Addon"
-msgstr "История на добавката"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Оценена с %d от 5 звезди"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
-
-msgid "Other (please specify)"
-msgstr ""
-
-msgid "This field is required."
-msgstr ""
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
-
-msgid "You can't reply to a review that is already a reply."
-msgstr ""
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
-
-msgid "You can't leave a review on your own add-on."
-msgstr ""
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
-
-# 77%
-# 100%
-msgid "Add a review for {0}"
-msgstr ""
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-
-msgid "Reply to review by {0}"
-msgstr "Отговаряне на отзива на {0}"
-
-msgid "Write a Reply"
-msgstr "Публикуване на отговор"
-
-msgid "Submit"
-msgstr "Изпращане"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "или <a href=\"%(url)s\">Отказ</a>"
-
-msgid "Please select a reason:"
-msgstr "Моля, изберете причина:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "от %(user)s <b>(Разработчик)</b> на %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Това е отзив за предна версия на добавката ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Потребителят има <a href=\"%(user_review_url)s\">предишен отзив</a> към добавката."
-msgstr[1] "Потребителят има <a href=\"%(user_review_url)s\">%(cnt)s предишни отзива</a> към добавката."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Report this review"
-msgstr "Докладване на рецензията"
-
-msgid "Reply to review"
-msgstr ""
-
-msgid "Edit reply"
-msgstr ""
-
-msgid "Edit review"
-msgstr "Редактиране на отзив"
-
-msgid "Delete reply"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Отзиви"
-
-msgid "Reviews for {0}"
-msgstr "Отзиви за {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> отзив към добавката"
-msgstr[1] "<b>{0}</b> отзив към добавката"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Отговор от разработчика {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Отзив за %(addon)s от %(user)s"
-msgstr[1] "Отзиви за %(addon)s от %(user)s"
-
-msgid "No reviews found."
-msgstr "Не са намерени отзиви."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
-
-msgid "Write a New Review"
-msgstr "Писане на рецензия"
-
-msgid "Be the first to write a review."
-msgstr ""
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} отзив"
-msgstr[1] "{num} отзива"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Оценена с {0} от 5 звезди"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Оценена с %(rating)s от 5 звезди"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7221,6 +7288,9 @@ msgid "Version already exists."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"

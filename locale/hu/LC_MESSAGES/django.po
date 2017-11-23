@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-11-07 23:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1835,7 +1835,8 @@ msgstr "A(z) {addon} kiegészítő hozzáadásra került a(z) {collection} gyűj
 msgid "{addon} removed from {collection}."
 msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "{review} értékelés érkezett a(z) {addon} kiegészítőhöz."
 
 #. L10n: {0} is a category name.
@@ -1869,16 +1870,20 @@ msgstr "{addon} kiegészítő irányelvei megváltoztak."
 msgid "{addon} icon changed."
 msgstr "{addon} kiegészítő ikonja megváltozott."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "a(z) {addon} kiegészítő {review} jóváhagyva."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {review} értékelését."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "A {addon} kiegészítőhöz tartozó {review} értékelés törlésre került."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon} kiegészítőhöz tartozó {review} értékelést {user} felhasználó törölte."
 
 msgid "Application max version for {version} updated."
@@ -1923,7 +1928,8 @@ msgstr "{user} felhasználó korlátozva."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "{0} admin megjelenítette {user} felhasználó tevékenységnaplóját."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} frissítve ehhez: {addon}."
 
 msgid "{addon} reviewed."
@@ -4329,11 +4335,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Találjon könnyen képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Jelöljön ki tetszőleges szöveget, és kattintson a jobb egérgombbal a gyors képkereséshez."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tegye jobbá a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -4341,11 +4347,11 @@ msgstr "Tegye jobbá a videókat {start_sub_heading}a(z) {addon_name} kiegészí
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Találjon könnyen képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Jelöljön ki tetszőleges szöveget, és kattintson a jobb egérgombbal a gyors képkereséshez."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -4400,9 +4406,6 @@ msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
 
 msgid "Could not find an add-on ID."
 msgstr "Nem található a kiegészítő azonosítója."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "A kiegészítő azonosító 64 karakter vagy rövidebb lehet."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6266,6 +6269,171 @@ msgstr "Javasoljuk a <a href=\"%(tb_url)s\">Thunderbirdre</a> és a <a href=\"%(
 msgid "Read more about Sunbird"
 msgstr "Tudjon meg többet a Sunbirdről"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "%s értékelései"
+
+msgid "Review History for this Addon"
+msgstr "Kiegészítő értékelésének előzményei"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "%d csillagra értékelve 5-ből"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Meg kell adnia egy rövid magyarázatot, ha az „Egyéb” lehetőséget választja a megjelölés okaként."
+
+msgid "Other (please specify)"
+msgstr "Egyéb (adja meg)"
+
+msgid "This field is required."
+msgstr "Ez a mező kötelező."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Nem módosíthatja az értékeléshez tartozó kiegészítőt az értékelés létrehozása után."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "Nem válaszolhat olyan értékelésre, amely már egy válasz."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "Nem módosíthatja az értékelt kiegészítő verzióját az értékelés létrehozása után."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "A kiegészítő ezen verziója nem létezik, vagy nem nyilvános."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "Nem készíthet értékelést a saját kiegészítőjéhez."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Nem készíthet több értékelést egy kiegészítő ugyanazon verziójához."
+
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Köszönjük; ez az értékelés értékelői jóváhagyásra lett jelölve."
+
+msgid "Add a review for {0}"
+msgstr "Értékelés hozzáadása a(z) {0} kiegészítőhöz"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Tartsa ezeket észben</h2> <ul> <li> Írjon úgy, mintha egy barátjának mesélné el a tapasztalatát a kiegészítővel. Adjon meg részletes és segítőkész részleteket, mint például hogy mi tetszett/nem "
+"tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. </"
+"li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
+"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. Segítségért felkeresheti a <a href=\"https://discourse.mozilla-community."
+"org/c/add-ons/add-on-support\">kiegészítők közösségét</a> is. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő nyelvezetet, és ne írjon le semmi személyes információt. </li> </ul> "
+"<p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Válasz {0} értékelésére"
+
+msgid "Write a Reply"
+msgstr "Válasz írása"
+
+msgid "Submit"
+msgstr "Elküldés"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "vagy <a href=\"%(url)s\">Mégsem</a>"
+
+msgid "Please select a reason:"
+msgstr "Válasszon okot:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "%(user)s írta <b>(fejlesztő)</b> ekkor: %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ez az értékelés a kiegészítő előző verziójához készült ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "A felhasználó már <a href=\"%(user_review_url)s\">korábban értékelte</a> ezt a kiegészítőt."
+msgstr[1] "A felhasználó már <a href=\"%(user_review_url)s\">%(cnt)s alkalommal értékelte</a> ezt a kiegészítőt."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "A felhasználónak <a href=\"%(user_review_url)s\">további értékelése</a> van ehhez az adatbázishoz."
+
+msgid "Flagged for review"
+msgstr "Megjelölt értékelés"
+
+msgid "Report this review"
+msgstr "Értékelés feljelentése"
+
+msgid "Reply to review"
+msgstr "Válasz az értékelésre"
+
+msgid "Edit reply"
+msgstr "Válasz szerkesztése"
+
+msgid "Edit review"
+msgstr "Értékelés szerkesztése"
+
+msgid "Delete reply"
+msgstr "Válasz törlése"
+
+msgid "Delete review"
+msgstr "Értékelés törlése"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Értékelések"
+
+msgid "Reviews for {0}"
+msgstr "{0} értékelései"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> értékelés a kiegészítőhöz"
+msgstr[1] "<b>{0}</b> értékelés a kiegészítőhöz"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "{0} fejlesztő válasza"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "%(addon)s kiegészítő értékelése, írta: %(user)s"
+msgstr[1] "%(addon)s kiegészítő értékelései, írta: %(user)s"
+
+msgid "No reviews found."
+msgstr "Nem található értékelés."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Átlagos</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Új értékelés írása"
+
+msgid "Be the first to write a review."
+msgstr "Legyen az első értékelő."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} értékelés"
+msgstr[1] "{num} értékelés"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "{0} csillagra értékelve az 5-ből"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "%(rating)s csillagra értékelve az 5-ből"
+
 msgid "Approved reviews"
 msgstr "Jóváhagyott értékelések"
 
@@ -6306,14 +6474,15 @@ msgstr "kiegészítő, étékelő vagy megjegyzés"
 msgid "Search by add-on name / author email"
 msgstr "Keresés kiegészítő neve / szerző e-mail címe szerint"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Adminisztrátori értékelés"
+
 msgid "yes"
 msgstr "igen"
 
 msgid "no"
 msgstr "nem"
-
-msgid "Admin Flag"
-msgstr "Admin jel"
 
 msgid "Add-on Types"
 msgstr "Kiegészítőtípusok"
@@ -6336,7 +6505,12 @@ msgstr "Alkalmazások:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Értesítsen a kiegészítő frissítésekor. (Kisebb frissítésekről nem érkezik levél)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Adminisztrátori értékelés jelző törlése"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Adminisztrátori értékelés jelző törlése"
 
 msgid "Is more info requested?"
@@ -6362,11 +6536,9 @@ msgstr "Értékelés megtartása; jelzők eltávolítása"
 msgid "Skip for now"
 msgstr "Kihagyás"
 
-msgid "Delete review"
-msgstr "Értékelés törlése"
-
-msgid "Admin Review"
-msgstr "Adminisztrátori értékelés"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Kiegészítő tartalmának értékelése"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack kiegészítők"
@@ -6485,6 +6657,84 @@ msgstr "Tartalom jóváhagyása"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Ez rögzíti, hogy jóváhagyta a verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Saját kiegészítők"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Új kiegészítő ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Kiegészítő frissítései"
+
+msgid "Add-on Review Log"
+msgstr "Kiegészítő értékelési naplója"
+
+msgid "Signed Beta Files Log"
+msgstr "Aláírt béta fájlok naplója"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Automatikusan jóváhagyott kiegészítők"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Automatikusan jóváhagyott kiegészítő ({0})"
+
+msgid "Content Review"
+msgstr "Tartalom értékelése"
+
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Tartalom értékelés ({0})"
+msgstr[1] "Tartalom értékelés ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Új kiegészítő ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Frissítés ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Megjelölt témák"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Témaértékelés"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Téma törlése"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+# 80%
+# 100%
+msgid "Moderated Review Log"
+msgstr "Moderált értékelések naplója"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Minden nem listázott kiegészítő"
+
+msgid "All Unlisted Add-ons"
+msgstr "Minden nem listázott kiegészítő"
+
+msgid "Announcement"
+msgstr "Bejelentés"
+
+msgid "Update message of the day"
+msgstr "A nap üzenetének frissítése"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Új kiegészítők (5 napnál frissebbek)"
 
@@ -6545,15 +6795,13 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Legutóbbi jóváhagyás dátuma"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr "Jóváhagyások a legutóbbi automatikus értékelés óta"
-
 msgid "Abuse Reports ({num})"
 msgstr "Visszaélési jelentések ({num})"
 
 # 87%
 # 100%
-msgid "Bad User Reviews ({num})"
+#, fuzzy
+msgid "Bad User Ratings ({num})"
 msgstr "Rossz felhasználói értékelések ({num})"
 
 msgid "More about this add-on"
@@ -6583,31 +6831,11 @@ msgstr "Moderált értékelések"
 msgid "Auto Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
 
-msgid "Content Review"
-msgstr "Tartalom értékelése"
-
 msgid "Unlisted Queues"
 msgstr "Titkos sorok"
 
-msgid "All Unlisted Add-ons"
-msgstr "Minden nem listázott kiegészítő"
-
 msgid "Logs"
 msgstr "Naplók"
-
-msgid "Add-on Review Log"
-msgstr "Kiegészítő értékelési naplója"
-
-# 80%
-# 100%
-msgid "Moderated Review Log"
-msgstr "Moderált értékelések naplója"
-
-msgid "Signed Beta Files Log"
-msgstr "Aláírt béta fájlok naplója"
-
-msgid "Announcement"
-msgstr "Bejelentés"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6707,9 +6935,6 @@ msgstr "Helyezés"
 
 msgid "Score"
 msgstr "Pontszám"
-
-msgid "Update message of the day"
-msgstr "A nap üzenetének frissítése"
 
 msgid "Save"
 msgstr "Mentés"
@@ -7092,175 +7317,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "Automatikusan jóváhagyott kiegészítő ({0})"
 msgstr[1] "Automatikusan jóváhagyott kiegészítők ({0})"
 
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Tartalom értékelés ({0})"
-msgstr[1] "Tartalom értékelés ({0})"
-
 msgid "Flagged"
 msgstr "Megjelölve"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "%s értékelései"
-
-msgid "Review History for this Addon"
-msgstr "Kiegészítő értékelésének előzményei"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "%d csillagra értékelve 5-ből"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Meg kell adnia egy rövid magyarázatot, ha az „Egyéb” lehetőséget választja a megjelölés okaként."
-
-msgid "Other (please specify)"
-msgstr "Egyéb (adja meg)"
-
-msgid "This field is required."
-msgstr "Ez a mező kötelező."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "Nem módosíthatja az értékeléshez tartozó kiegészítőt az értékelés létrehozása után."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "Nem válaszolhat olyan értékelésre, amely már egy válasz."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Nem módosíthatja az értékelt kiegészítő verzióját az értékelés létrehozása után."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "A kiegészítő ezen verziója nem létezik, vagy nem nyilvános."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "Nem készíthet értékelést a saját kiegészítőjéhez."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Nem készíthet több értékelést egy kiegészítő ugyanazon verziójához."
-
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Köszönjük; ez az értékelés értékelői jóváhagyásra lett jelölve."
-
-msgid "Add a review for {0}"
-msgstr "Értékelés hozzáadása a(z) {0} kiegészítőhöz"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Tartsa ezeket észben</h2> <ul> <li> Írjon úgy, mintha egy barátjának mesélné el a tapasztalatát a kiegészítővel. Adjon meg részletes és segítőkész részleteket, mint például hogy mi tetszett/nem "
-"tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. </"
-"li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
-"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. Segítségért felkeresheti a <a href=\"https://discourse.mozilla-community."
-"org/c/add-ons/add-on-support\">kiegészítők közösségét</a> is. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő nyelvezetet, és ne írjon le semmi személyes információt. </li> </ul> "
-"<p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Válasz {0} értékelésére"
-
-msgid "Write a Reply"
-msgstr "Válasz írása"
-
-msgid "Submit"
-msgstr "Elküldés"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "vagy <a href=\"%(url)s\">Mégsem</a>"
-
-msgid "Please select a reason:"
-msgstr "Válasszon okot:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "%(user)s írta <b>(fejlesztő)</b> ekkor: %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ez az értékelés a kiegészítő előző verziójához készült ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "A felhasználó már <a href=\"%(user_review_url)s\">korábban értékelte</a> ezt a kiegészítőt."
-msgstr[1] "A felhasználó már <a href=\"%(user_review_url)s\">%(cnt)s alkalommal értékelte</a> ezt a kiegészítőt."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "A felhasználónak <a href=\"%(user_review_url)s\">további értékelése</a> van ehhez az adatbázishoz."
-
-msgid "Flagged for review"
-msgstr "Megjelölt értékelés"
-
-msgid "Report this review"
-msgstr "Értékelés feljelentése"
-
-msgid "Reply to review"
-msgstr "Válasz az értékelésre"
-
-msgid "Edit reply"
-msgstr "Válasz szerkesztése"
-
-msgid "Edit review"
-msgstr "Értékelés szerkesztése"
-
-msgid "Delete reply"
-msgstr "Válasz törlése"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Értékelések"
-
-msgid "Reviews for {0}"
-msgstr "{0} értékelései"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> értékelés a kiegészítőhöz"
-msgstr[1] "<b>{0}</b> értékelés a kiegészítőhöz"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "{0} fejlesztő válasza"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(addon)s kiegészítő értékelése, írta: %(user)s"
-msgstr[1] "%(addon)s kiegészítő értékelései, írta: %(user)s"
-
-msgid "No reviews found."
-msgstr "Nem található értékelés."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Átlagos</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Új értékelés írása"
-
-msgid "Be the first to write a review."
-msgstr "Legyen az első értékelő."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} értékelés"
-msgstr[1] "{num} értékelés"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "{0} csillagra értékelve az 5-ből"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "%(rating)s csillagra értékelve az 5-ből"
 
 msgid "Maximum query length exceeded."
 msgstr "Túllépte a maximális lekérdezés hosszt."
@@ -7398,6 +7456,9 @@ msgstr "A verzió már létezik."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "Érvénytelen GUID az URL-ben"

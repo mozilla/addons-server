@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-13 17:58+0000\n"
+"POT-Creation-Date: 2017-11-23 17:01+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1843,7 +1843,8 @@ msgstr "{addon} u shtua te {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} u hoq prej {collection}."
 
-msgid "{review} for {addon} written."
+#, fuzzy
+msgid "{rating} for {addon} written."
 msgstr "U shkrua {review} për {addon}."
 
 #. L10n: {0} is a category name.
@@ -1878,16 +1879,20 @@ msgstr "Rregullat për {addon} u ndryshuan."
 msgid "{addon} icon changed."
 msgstr "U ndryshua ikona për {addon}."
 
-msgid "{review} for {addon} approved."
+#, fuzzy
+msgid "{rating} for {addon} approved."
 msgstr "U miratua {review} për {addon}."
 
-msgid "{user} approved {review} for {addon}."
+#, fuzzy
+msgid "{user} approved {rating} for {addon}."
 msgstr "{user} miratoi {review} për {addon}."
 
-msgid "Review {review} for {addon} deleted."
+#, fuzzy
+msgid "Review {rating} for {addon} deleted."
 msgstr "Shqyrtimi {review} për {addon} u fshi."
 
-msgid "{user} deleted {review} for {addon}."
+#, fuzzy
+msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} fshiu {review} për {addon}."
 
 msgid "Application max version for {version} updated."
@@ -1932,7 +1937,8 @@ msgstr "Përdoruesi {user} u kufizua."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Përgjegjësi {0} pa regjistrimin e veprimtarisë për {user}."
 
-msgid "{review} for {addon} updated."
+#, fuzzy
+msgid "{rating} for {addon} updated."
 msgstr "{review} për {addon} u përditësua."
 
 msgid "{addon} reviewed."
@@ -4384,10 +4390,10 @@ msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
 #, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #, fuzzy
@@ -4398,10 +4404,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 #, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #, fuzzy
@@ -4459,9 +4465,6 @@ msgstr "S’përtypi dot kartelën manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "S’u gjet dot një ID Shtese."
-
-msgid "Add-on ID must be 64 characters or less."
-msgstr "ID-ja e shtesës duhet të jetë nga 64 shenja e poshtë."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -6328,6 +6331,173 @@ msgstr "Këshillojmë të kaloni te <a href=\"%(tb_url)s\">Thunderbird</a>-i dhe
 msgid "Read more about Sunbird"
 msgstr "Lexoni më tepër rreth Sunbird-it"
 
+#, python-format
+msgid "Reviews for %s"
+msgstr "Shqyrtime për %s"
+
+msgid "Review History for this Addon"
+msgstr "Shihni Historikun për këtë Shtesë"
+
+#. L10n: This describes the number of stars given out of 5
+#, python-format
+msgid "Rated %d out of 5 stars"
+msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
+
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "Kur përzgjidhet \"Tjetër\" si arsye, duhet dhënë një shpjegim i shkurtër."
+
+msgid "Other (please specify)"
+msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
+
+msgid "This field is required."
+msgstr "Kjo fushë është e domosdoshme."
+
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "S’mund të ndryshoni shtesën të cilën trajton një shqyrtim, pasi të jetë krijuar shqyrtimi."
+
+msgid "You can't reply to a review that is already a reply."
+msgstr "S’mund të përgjigjeni në një shqyrtim që është vetë një përgjigje."
+
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "S’mund të ndryshoni versionin e shtesës së shqyrtuar një herë, pasi të jetë krijuar shqyrtimi."
+
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr "Ky version i shtesës s’ekziston ose s’është publik."
+
+msgid "You can't leave a review on your own add-on."
+msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
+
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
+
+#, fuzzy
+msgid "Thanks; this review has been flagged for reviewer approval."
+msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim redaktorial."
+
+# %s is the name of the add-on
+msgid "Add a review for {0}"
+msgstr "Shtoni një shqyrtim për {0}"
+
+#, python-format
+msgid ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
+msgstr ""
+"<h2>Mbani parasysh këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të dobishme, të tilla si, ç’veçori ju pëlqyen dhe/ose "
+"nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot "
+"arsye se përse besoni se është kështu. </li> <li> Ju lutemi, te shqyrtimet mos postoni njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, ndaj ata s’mund të lidhen me "
+"për zgjidhjen e problemit tuaj. Shihni këtë <a href=\"%(support)s\">ndarje asistence</a> të shtesës për të parë nëse jepet asistencë për të. Mund të provoni edhe të pyesni për ndihmë te <a href="
+"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">bashkësia e shtesave</a>. </li> <li>Ju lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të "
+"dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\">Udhëzimet mbi Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
+
+msgid "Reply to review by {0}"
+msgstr "Përgjigje shqyrtimit nga {0}"
+
+msgid "Write a Reply"
+msgstr "Shkruani një Përgjigje"
+
+msgid "Submit"
+msgstr "Parashtroje"
+
+#. this string is following a <button>.
+#, python-format
+msgid "or <a href=\"%(url)s\">Cancel</a>"
+msgstr "ose <a href=\"%(url)s\">Anulojeni</a>"
+
+msgid "Please select a reason:"
+msgstr "Ju lutemi, përzgjidhni një arsye:"
+
+#, python-format
+msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr "nga %(user)s <b>(Zhvillues)</b> më %(date)s"
+
+#. {0} is a version number (like 1.01)
+msgid "This review is for a previous version of the add-on ({0})."
+msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës ({0})."
+
+#, python-format
+msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
+msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
+msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
+
+#, python-format
+msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
+msgstr "Ky përdorues ka edhe <a href=\"%(user_review_url)s\">shqyrtime të tjera</a> të kësaj shtese."
+
+msgid "Flagged for review"
+msgstr "Me shenjë për shqyrtim"
+
+msgid "Report this review"
+msgstr "Njoftoni mbi këtë shqyrtim"
+
+msgid "Reply to review"
+msgstr "Përgjigjjuni shqyrtimit"
+
+msgid "Edit reply"
+msgstr "Përpunoni përgjigjen"
+
+msgid "Edit review"
+msgstr "Përpunoni shqyrtimin"
+
+msgid "Delete reply"
+msgstr "Fshije përgjigjen"
+
+msgid "Delete review"
+msgstr "Fshije shqyrtimin"
+
+#. {0} is an add-on name.
+msgid "{0} :: Reviews"
+msgstr "{0} :: Shqyrtime"
+
+msgid "Reviews for {0}"
+msgstr "Shqyrtime për {0}"
+
+#. {0} is a number.
+msgid "<b>{0}</b> review for this add-on"
+msgid_plural "<b>{0}</b> reviews for this add-on"
+msgstr[0] "<b>{0}</b> shqyrtim për këtë shtesë"
+msgstr[1] "<b>{0}</b> shqyrtime për këtë shtesë"
+
+#. {0} is a developer's name.
+msgid "Developer reply by {0}"
+msgstr "Përgjigje zhvilluesi nga {0}"
+
+#, python-format
+msgid "Review for %(addon)s by %(user)s"
+msgid_plural "Reviews for %(addon)s by %(user)s"
+msgstr[0] "Shqyrtim për %(addon)s nga %(user)s"
+msgstr[1] "Shqyrtime për %(addon)s nga %(user)s"
+
+msgid "No reviews found."
+msgstr "S’u gjetën shqyrtime."
+
+#, python-format
+msgid "<strong>Average</strong> (%(total)s)"
+msgstr "<strong>Mesatare</strong> (%(total)s)"
+
+msgid "Write a New Review"
+msgstr "Shkruani një Shqyrtim të Ri"
+
+msgid "Be the first to write a review."
+msgstr "Bëhuni i pari që shkruan një shqyrtim."
+
+msgid "{num} review"
+msgid_plural "{num} reviews"
+msgstr[0] "{num} shqyrtim"
+msgstr[1] "{num} shqyrtime"
+
+msgid "Rated {0} out of 5 stars"
+msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
+
+#, python-format
+msgid "Rated %(rating)s out of 5 stars"
+msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
+
 msgid "Approved reviews"
 msgstr "Shqyrtime të miratuara"
 
@@ -6369,14 +6539,15 @@ msgstr "shtesë, redaktor ose koment"
 msgid "Search by add-on name / author email"
 msgstr "Kërkoni sipas emrash / email-esh autorësh të shtesës"
 
+#, fuzzy
+msgid "Needs Admin Code Review"
+msgstr "Shqyrtim nga Përgjegjësi"
+
 msgid "yes"
 msgstr "po"
 
 msgid "no"
 msgstr "jo"
-
-msgid "Admin Flag"
-msgstr "Shenjë nga Përgjegjësi"
 
 msgid "Add-on Types"
 msgstr "Lloje Shtesash"
@@ -6399,7 +6570,12 @@ msgstr "Aplikacione:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet e njëpasnjëshme s’do të shoqërohen me email.)"
 
-msgid "Clear Admin Review Flag"
+#, fuzzy
+msgid "Clear Admin Code Review Flag"
+msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
+
+#, fuzzy
+msgid "Clear Admin Content Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
 
 #, fuzzy
@@ -6426,11 +6602,9 @@ msgstr "Mbaje shqyrtimin; hiq flamurkat"
 msgid "Skip for now"
 msgstr "Hëpërhë anashkaloje"
 
-msgid "Delete review"
-msgstr "Fshije shqyrtimin"
-
-msgid "Admin Review"
-msgstr "Shqyrtim nga Përgjegjësi"
+#, fuzzy
+msgid "Needs Admin Content Review"
+msgstr "Shqyrtim Parashtrimi"
 
 msgid "Jetpack Add-on"
 msgstr "Shtesë Jetpack"
@@ -6555,6 +6729,84 @@ msgstr "Miratojeni / Hidheni Poshtë"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
+#, fuzzy
+msgid "Legacy Add-ons"
+msgstr "Shtesat e Mia"
+
+#, fuzzy
+msgid "New Add-ons ({0})"
+msgstr "Shtesë e Re ({0})"
+
+#, fuzzy
+msgid "Add-on Updates ({0})"
+msgstr "Përditësime Shtese"
+
+msgid "Add-on Review Log"
+msgstr "Regjistër Shqyrtimesh Shtese"
+
+msgid "Signed Beta Files Log"
+msgstr "Regjistër Nënshkrimesh Kartelash Beta"
+
+#, fuzzy
+msgid "Auto-Approved Add-ons"
+msgstr "Shtesa Android"
+
+#, fuzzy
+msgid "Auto Approved Add-ons ({0})"
+msgstr "Shtesa Android"
+
+#, fuzzy
+msgid "Content Review"
+msgstr "Shqyrtim Parashtrimi"
+
+#, fuzzy
+msgid "Content Review ({0})"
+msgid_plural "Content Review ({0})"
+msgstr[0] "Shqyrtim i Moderuar ({0})"
+msgstr[1] "Shqyrtime të Moderuara ({0})"
+
+#, fuzzy
+msgid "New Themes ({0})"
+msgstr "Shtesë e Re ({0})"
+
+#, fuzzy
+msgid "Themes Updates ({0})"
+msgstr "Përditësim ({0})"
+
+#, fuzzy
+msgid "Flagged Themes ({0})"
+msgstr "Tema Me Shenjë"
+
+#, fuzzy
+msgid "Themes Review Log"
+msgstr "Shqyrtim Teme"
+
+#, fuzzy
+msgid "Deleted themes Log"
+msgstr "Fshije Temën"
+
+msgid "User Ratings Moderation"
+msgstr ""
+
+msgid "Ratings Awaiting Moderation ({0})"
+msgstr ""
+
+msgid "Moderated Review Log"
+msgstr "U moderua Regjistri i Shqyrtimeve"
+
+#, fuzzy
+msgid "Unlisted Add-ons"
+msgstr "Krejt Shtesat Jo Në Listë"
+
+msgid "All Unlisted Add-ons"
+msgstr "Krejt Shtesat Jo Në Listë"
+
+msgid "Announcement"
+msgstr "Njoftim"
+
+msgid "Update message of the day"
+msgstr "Mesazhi i sotëm i përditësimit"
+
 msgid "New Add-ons (Under 5 days)"
 msgstr "Shtesa të Reja (Nën 5 ditë)"
 
@@ -6620,15 +6872,12 @@ msgstr "EULA"
 msgid "Last Approval Date"
 msgstr "Gjendje Miratimi"
 
-msgid "Approvals Since Last Automatic Review"
-msgstr ""
-
 #, fuzzy
 msgid "Abuse Reports ({num})"
 msgstr "Raporte Abuzimesh për {addon} ({num})"
 
 #, fuzzy
-msgid "Bad User Reviews ({num})"
+msgid "Bad User Ratings ({num})"
 msgstr "Shqyrtim i Moderuar ({num})"
 
 msgid "More about this add-on"
@@ -6660,30 +6909,11 @@ msgstr "Shqyrtime të Moderuara"
 msgid "Auto Approved Add-ons"
 msgstr "Shtesa Android"
 
-#, fuzzy
-msgid "Content Review"
-msgstr "Shqyrtim Parashtrimi"
-
 msgid "Unlisted Queues"
 msgstr "Radhë të Paklasifikuarash"
 
-msgid "All Unlisted Add-ons"
-msgstr "Krejt Shtesat Jo Në Listë"
-
 msgid "Logs"
 msgstr "Regjistrime"
-
-msgid "Add-on Review Log"
-msgstr "Regjistër Shqyrtimesh Shtese"
-
-msgid "Moderated Review Log"
-msgstr "U moderua Regjistri i Shqyrtimeve"
-
-msgid "Signed Beta Files Log"
-msgstr "Regjistër Nënshkrimesh Kartelash Beta"
-
-msgid "Announcement"
-msgstr "Njoftim"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6778,9 +7008,6 @@ msgstr "Renditje"
 
 msgid "Score"
 msgstr "Pikë"
-
-msgid "Update message of the day"
-msgstr "Mesazhi i sotëm i përditësimit"
 
 msgid "Save"
 msgstr "Ruaje"
@@ -7165,178 +7392,8 @@ msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] "Shtesa të Miratuara Vetvetiu ({0})"
 
-#, fuzzy
-msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Shqyrtim i Moderuar ({0})"
-msgstr[1] "Shqyrtime të Moderuara ({0})"
-
 msgid "Flagged"
 msgstr "Me Shenjë"
-
-#, python-format
-msgid "Reviews for %s"
-msgstr "Shqyrtime për %s"
-
-msgid "Review History for this Addon"
-msgstr "Shihni Historikun për këtë Shtesë"
-
-#. L10n: This describes the number of stars given out of 5
-#, python-format
-msgid "Rated %d out of 5 stars"
-msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
-
-msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Kur përzgjidhet \"Tjetër\" si arsye, duhet dhënë një shpjegim i shkurtër."
-
-msgid "Other (please specify)"
-msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
-
-msgid "This field is required."
-msgstr "Kjo fushë është e domosdoshme."
-
-msgid "You can't change the add-on of a review once it has been created."
-msgstr "S’mund të ndryshoni shtesën të cilën trajton një shqyrtim, pasi të jetë krijuar shqyrtimi."
-
-msgid "You can't reply to a review that is already a reply."
-msgstr "S’mund të përgjigjeni në një shqyrtim që është vetë një përgjigje."
-
-msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "S’mund të ndryshoni versionin e shtesës së shqyrtuar një herë, pasi të jetë krijuar shqyrtimi."
-
-msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Ky version i shtesës s’ekziston ose s’është publik."
-
-msgid "You can't leave a review on your own add-on."
-msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
-
-msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
-
-#, fuzzy
-msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Faleminderit; këtij shqyrtimi iu vu shenjë për miratim redaktorial."
-
-# %s is the name of the add-on
-msgid "Add a review for {0}"
-msgstr "Shtoni një shqyrtim për {0}"
-
-#, python-format
-msgid ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
-msgstr ""
-"<h2>Mbani parasysh këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të dobishme, të tilla si, ç’veçori ju pëlqyen dhe/ose "
-"nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot "
-"arsye se përse besoni se është kështu. </li> <li> Ju lutemi, te shqyrtimet mos postoni njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, ndaj ata s’mund të lidhen me "
-"për zgjidhjen e problemit tuaj. Shihni këtë <a href=\"%(support)s\">ndarje asistence</a> të shtesës për të parë nëse jepet asistencë për të. Mund të provoni edhe të pyesni për ndihmë te <a href="
-"\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">bashkësia e shtesave</a>. </li> <li>Ju lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të "
-"dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\">Udhëzimet mbi Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
-
-msgid "Reply to review by {0}"
-msgstr "Përgjigje shqyrtimit nga {0}"
-
-msgid "Write a Reply"
-msgstr "Shkruani një Përgjigje"
-
-msgid "Submit"
-msgstr "Parashtroje"
-
-#. this string is following a <button>.
-#, python-format
-msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "ose <a href=\"%(url)s\">Anulojeni</a>"
-
-msgid "Please select a reason:"
-msgstr "Ju lutemi, përzgjidhni një arsye:"
-
-#, python-format
-msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "nga %(user)s <b>(Zhvillues)</b> më %(date)s"
-
-#. {0} is a version number (like 1.01)
-msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ky shqyrtim është për një version të mëparshëm të shtesës ({0})."
-
-#, python-format
-msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
-msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "Ky përdorues ka <a href=\"%(user_review_url)s\">shqyrtim të mëparshëm</a> të kësaj shtese."
-msgstr[1] "Ky përdorues ka <a href=\"%(user_review_url)s\">%(cnt)s shqyrtime të mëparshme</a> të kësaj shtesë."
-
-#, python-format
-msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "Ky përdorues ka edhe <a href=\"%(user_review_url)s\">shqyrtime të tjera</a> të kësaj shtese."
-
-msgid "Flagged for review"
-msgstr "Me shenjë për shqyrtim"
-
-msgid "Report this review"
-msgstr "Njoftoni mbi këtë shqyrtim"
-
-msgid "Reply to review"
-msgstr "Përgjigjjuni shqyrtimit"
-
-msgid "Edit reply"
-msgstr "Përpunoni përgjigjen"
-
-msgid "Edit review"
-msgstr "Përpunoni shqyrtimin"
-
-msgid "Delete reply"
-msgstr "Fshije përgjigjen"
-
-#. {0} is an add-on name.
-msgid "{0} :: Reviews"
-msgstr "{0} :: Shqyrtime"
-
-msgid "Reviews for {0}"
-msgstr "Shqyrtime për {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> review for this add-on"
-msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> shqyrtim për këtë shtesë"
-msgstr[1] "<b>{0}</b> shqyrtime për këtë shtesë"
-
-#. {0} is a developer's name.
-msgid "Developer reply by {0}"
-msgstr "Përgjigje zhvilluesi nga {0}"
-
-#, python-format
-msgid "Review for %(addon)s by %(user)s"
-msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Shqyrtim për %(addon)s nga %(user)s"
-msgstr[1] "Shqyrtime për %(addon)s nga %(user)s"
-
-msgid "No reviews found."
-msgstr "S’u gjetën shqyrtime."
-
-#, python-format
-msgid "<strong>Average</strong> (%(total)s)"
-msgstr "<strong>Mesatare</strong> (%(total)s)"
-
-msgid "Write a New Review"
-msgstr "Shkruani një Shqyrtim të Ri"
-
-msgid "Be the first to write a review."
-msgstr "Bëhuni i pari që shkruan një shqyrtim."
-
-msgid "{num} review"
-msgid_plural "{num} reviews"
-msgstr[0] "{num} shqyrtim"
-msgstr[1] "{num} shqyrtime"
-
-msgid "Rated {0} out of 5 stars"
-msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
-
-#, python-format
-msgid "Rated %(rating)s out of 5 stars"
-msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7474,6 +7531,9 @@ msgstr "Versioni ekziston."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
+
+msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr ""
 
 msgid "Invalid GUID in URL"
 msgstr "GUID i pavlefshëm në URL"
