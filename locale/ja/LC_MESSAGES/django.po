@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 22:11+0000\n"
+"PO-Revision-Date: 2017-11-23 22:13+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1779,9 +1779,8 @@ msgstr "{addon} が {collection} へ追加されました。"
 msgid "{addon} removed from {collection}."
 msgstr "{addon} が {collection} から削除されました。"
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{addon} についての {review} が投稿されました。"
+msgstr "{addon} の {rating} が投稿されました。"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1814,21 +1813,17 @@ msgstr "{addon} のポリシーが変更されました。"
 msgid "{addon} icon changed."
 msgstr "{addon} のアイコンが変更されました。"
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{addon} の {review} が承認されました。"
+msgstr "{addon} の {rating} が承認されました。"
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} が {addon} の {review} を承認しました。"
+msgstr "{user} が {addon} の {rating} を承認しました。"
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{addon} のレビュー {review} を削除しました。"
+msgstr "{addon} のレビュー {rating} が削除されました。"
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} が {addon} のレビュー {review} を削除しました。"
+msgstr "{user} が {addon} の {rating} を削除しました。"
 
 msgid "Application max version for {version} updated."
 msgstr "{version} のアプリケーション最高バージョンが更新されました。"
@@ -1872,9 +1867,8 @@ msgstr "ユーザー {user} が制限されました。"
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理者 {0} が {user} の活動記録を見ました。"
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{addon} の {review} が更新されました。"
+msgstr "{addon} の {rating} が更新されました。"
 
 msgid "{addon} reviewed."
 msgstr "{addon} のレビューが投稿されました。"
