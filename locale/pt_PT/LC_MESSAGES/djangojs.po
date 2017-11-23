@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-13 17:58+0000\n"
-"PO-Revision-Date: 2017-11-22 15:45+0000\n"
+"PO-Revision-Date: 2015-10-19 13:34+0000\n"
 "Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -52,7 +52,7 @@ msgstr "Ativámos um novo linter para processar o seu extra. Por favor, reporte 
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Falhou a validação do seu extra com {0} erro."
+msgstr[0] "O seu extra falhou a validação com {0} erro."
 msgstr[1] "O seu extra falhou a validação com {0} erros."
 
 msgid "&hellip;and {0} more"
