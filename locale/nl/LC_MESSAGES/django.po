@@ -1446,7 +1446,7 @@ msgid "Weekly Downloads"
 msgstr "Wekelijkse downloads"
 
 msgid "Up & Coming"
-msgstr "Aankomend"
+msgstr ""
 
 msgid "Recently Added"
 msgstr "Onlangs toegevoegd"
@@ -3181,7 +3181,7 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr "Nee, de broncode van deze add-on is niet beschikbaar voor het publiek."
 
 msgid "Public Stats?"
-msgstr "Publieke statistieken?"
+msgstr ""
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr "Of de downlaod- en gebruiksstatistieken van uw add-on in onze online weergave mogen worden weergegeven. Alleen relevant voor vermelde add-ons."
