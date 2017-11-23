@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 22:10+0000\n"
+"PO-Revision-Date: 2017-11-23 22:15+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6560,7 +6560,7 @@ msgid "New Add-ons ({0})"
 msgstr "ახალი დამატება ({0})"
 
 msgid "Add-on Updates ({0})"
-msgstr "დამატების განახლება ({0})"
+msgstr "დამატების განახლებები ({0})"
 
 msgid "Add-on Review Log"
 msgstr "დამატების განხილვის აღრიცხვა"
@@ -6590,26 +6590,23 @@ msgstr "თემის განახლებები ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "ჩანიშნული თემები ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "თემის მიმოხილვა"
+msgstr "თემის მიმოხილვის ჩანაწერი"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "თემის წაშლა"
+msgstr "წაშლილი თემის ჩანაწერი"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "მომხმარებელთა შეფასების შემოწმება"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "შეფასებები, დაყოვნებული შესამოწმებლად ({0})"
 
 msgid "Moderated Review Log"
 msgstr "შემოწმებული განხილვის აღრიცხვა"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "ყველა გამოუქვეყნებელი დამატება"
+msgstr "გამოუქვეყნებელი დამატებები"
 
 msgid "All Unlisted Add-ons"
 msgstr "ყველა გამოუქვეყნებელი დამატება"
@@ -6682,9 +6679,8 @@ msgstr "მიღების ბოლო თარიღი"
 msgid "Abuse Reports ({num})"
 msgstr "მოხსენებები დარღვევების შესახებ ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "მომხმარებლის ცუდი მიმოხილვები ({num})"
+msgstr "მომხმარებლის უარყოფითი მიმოხილვები ({num})"
 
 msgid "More about this add-on"
 msgstr "მეტი ამ დამატების შესახებ"
@@ -7313,7 +7309,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID-ის გამოტოვება, მხოლოდ WebExtensions-ის შემთხვევაშია შესაძლებელი"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "გთხოვთ, მიუთითოთ დამატების GUID მანიფესტის ფაილში, თუ არ აღემატება 64 სიმბოლოს."
 
 msgid "Invalid GUID in URL"
 msgstr "უმართებულო GUID URL ბმულში"
