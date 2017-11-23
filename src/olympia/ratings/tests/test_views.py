@@ -1361,6 +1361,19 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 1
         assert data['count'] == 1
 
+    def test_no_throttle(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=1)
+
+        # We should be able to get as quick as we want.
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        assert response.status_code == 200
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        assert response.status_code == 200
+
 
 class TestRatingViewSetDelete(TestCase):
     client_class = APITestClient
@@ -1447,6 +1460,24 @@ class TestRatingViewSetDelete(TestCase):
         response = self.client.delete(self.url)
         assert response.status_code == 404
         assert Rating.objects.count() == 1
+
+    def test_no_throttle(self):
+        # Add two reviews for different versions.
+        rating_a = self.rating
+        version_b = version_factory(addon=self.addon)
+        rating_b = Rating.objects.create(
+            addon=self.addon, version=version_b, rating=2,
+            body='Second Review to delete', user=self.user)
+
+        # And confirm we can rapidly delete them.
+        self.client.login_api(self.user)
+        response = self.client.delete(
+            reverse('rating-detail', kwargs={'pk': rating_a.pk}))
+        assert response.status_code == 204
+        response = self.client.delete(
+            reverse('rating-detail', kwargs={'pk': rating_b.pk}))
+        assert response.status_code == 204
+        assert Rating.objects.count() == 0
 
 
 class TestRatingViewSetEdit(TestCase):
@@ -1583,6 +1614,17 @@ class TestRatingViewSetEdit(TestCase):
         assert activity_log.action == amo.LOG.EDIT_RATING.id
 
         assert len(mail.outbox) == 0
+
+    def test_no_throttle(self):
+        self.client.login_api(self.user)
+        response = self.client.patch(self.url, {'rating': 2, 'body': u'nó!'})
+        assert response.status_code == 200
+        self.rating.reload()
+        assert unicode(self.rating.body) == u'nó!'
+        response = self.client.patch(self.url, {'rating': 3, 'body': u'yés!'})
+        assert response.status_code == 200
+        self.rating.reload()
+        assert unicode(self.rating.body) == u'yés!'
 
 
 class TestRatingViewSetPost(TestCase):
@@ -1925,6 +1967,21 @@ class TestRatingViewSetPost(TestCase):
             u"You can't leave more than one review for the same version of "
             u"an add-on."]
 
+    def test_throttle(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        # First post, no problem.
+        response = self.client.post(self.url, {
+            'addon': self.addon.pk, 'body': u'My réview', 'title': None,
+            'rating': 2, 'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+
+        # Second post, nope, have to wait a while.
+        response = self.client.post(self.url, {
+            'addon': self.addon.pk, 'body': u'My n3w réview', 'title': None,
+            'rating': 2, 'version': self.addon.current_version.pk})
+        assert response.status_code == 429
+
 
 class TestRatingViewSetFlag(TestCase):
     client_class = APITestClient
@@ -2064,6 +2121,26 @@ class TestRatingViewSetFlag(TestCase):
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 403
         assert self.rating.reload().editorreview is False
+
+    def test_no_throttle(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        # Create another addon for us to flag
+        addon_b = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        rating_b = Rating.objects.create(
+            addon=addon_b, version=addon_b.current_version, rating=2,
+            body='My review', user=self.rating_user)
+        url_b = reverse('rating-flag', kwargs={'pk': rating_b.pk})
+
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 202
+        response = self.client.post(
+            url_b, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 202
+        # Both should have been flagged.
+        assert RatingFlag.objects.count() == 2
 
 
 class TestRatingViewSetReply(TestCase):
@@ -2218,3 +2295,20 @@ class TestRatingViewSetReply(TestCase):
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
             u"You can't reply to a review that is already a reply."]
+
+    def test_throttle(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+
+        # First post, no problem.
+        response = self.client.post(self.url, data={
+            'body': u'My réply...',
+        })
+        assert response.status_code == 201
+
+        # Second post, nope, have to wait a while.
+        response = self.client.post(self.url, {
+            'body': u'Another réply',
+        })
+        assert response.status_code == 429
