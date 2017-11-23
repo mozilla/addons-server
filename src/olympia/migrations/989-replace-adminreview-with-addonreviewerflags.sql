@@ -1,10 +1,11 @@
 -- Make the old field nullable to prepare for its future removal.
 ALTER TABLE `addons` MODIFY COLUMN `adminreview` tinyint(1) NULL;
 -- Create the new table.
+-- Note: if the migration fails for you locally, remove the 'UNSIGNED' next to addon_id below.
 CREATE TABLE `addons_addonreviewerflags` (
     `created` datetime(6) NOT NULL,
     `modified` datetime(6) NOT NULL,
-    `addon_id` integer NOT NULL PRIMARY KEY,
+    `addon_id` integer UNSIGNED NOT NULL PRIMARY KEY,
     `needs_admin_code_review` bool NOT NULL,
     `needs_admin_content_review` bool NOT NULL
 )
