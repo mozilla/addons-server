@@ -80,7 +80,7 @@ def clean_slug(instance, slug_field='slug', randomize=False):
     """
     slug = getattr(instance, slug_field, None)
 
-    if randomize:
+    if not slug and randomize:
         slug = get_random_slug()
     else:
         slug = slug or instance.name
