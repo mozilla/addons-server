@@ -303,7 +303,6 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    admin_review = models.BooleanField(default=False, db_column='adminreview')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
     dev_agreement = models.BooleanField(
@@ -557,7 +556,8 @@ class Addon(OnChangeMixin, ModelBase):
         addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
 
         if upload.validation_timeout:
-            addon.update(admin_review=True)
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
         Version.from_upload(upload, addon, platforms, source=source,
                             channel=channel)
 
@@ -1362,6 +1362,20 @@ class Addon(OnChangeMixin, ModelBase):
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions))
 
+    @property
+    def needs_admin_code_review(self):
+        try:
+            return self.addonreviewerflags.needs_admin_code_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
+    def needs_admin_content_review(self):
+        try:
+            return self.addonreviewerflags.needs_admin_content_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1466,6 +1480,13 @@ def attach_tags(addons):
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
+
+
+class AddonReviewerFlags(ModelBase):
+    addon = addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE)
+    needs_admin_code_review = models.BooleanField(default=False)
+    needs_admin_content_review = models.BooleanField(default=False)
 
 
 class Persona(caching.CachingMixin, models.Model):

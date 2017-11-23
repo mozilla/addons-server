@@ -19,7 +19,8 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
-from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.utils import paginate, render
@@ -503,10 +504,6 @@ def is_admin_reviewer(request):
                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
-def exclude_admin_only_addons(qs):
-    return qs.filter(admin_review=False)
-
-
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
            SearchForm=forms.QueueSearchForm):
     if qs is None:
@@ -525,21 +522,20 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         is_searching = False
     admin_reviewer = is_admin_reviewer(request)
 
-    if hasattr(qs, 'filter'):
+    # Those restrictions will only work with our RawSQLModel, so we need to
+    # make sure we're not dealing with a regular Django ORM queryset first.
+    if hasattr(qs, 'sql_model'):
         if not is_searching and not admin_reviewer:
-            qs = exclude_admin_only_addons(qs)
-
-        # Those additional restrictions will only work with our RawSQLModel,
-        # so we need to make sure we're not dealing with a regular Django ORM
-        # queryset first.
-        if hasattr(qs, 'sql_model') and not unlisted:
+            qs = qs.filter(
+                Q(needs_admin_code_review=None) |
+                Q(needs_admin_code_review=False))
+        if not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
                     'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
 
-            # Hide webextensions from the queues so that human reviewers
-            # don't pick them up: auto-approve cron should take care of
-            # them.
+            # Hide webextensions from the listed queues so that human reviewers
+            # don't pick them up: auto-approve cron should take care of them.
             qs = qs.filter(**{'files.is_webextension': False})
 
     motd_editable = acl.action_allowed(
@@ -567,35 +563,36 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
 
 def queue_counts(type=None, unlisted=False, admin_reviewer=False,
                  limited_reviewer=False, **kw):
-    def construct_query(query_type, days_min=None, days_max=None):
-        query = query_type.objects
+    def construct_query_from_sql_model(sqlmodel, days_min=None, days_max=None):
+        qs = sqlmodel.objects
 
         if not admin_reviewer:
-            query = exclude_admin_only_addons(query)
+            qs = qs.filter(
+                Q(needs_admin_code_review=None) |
+                Q(needs_admin_code_review=False))
         if days_min:
-            query = query.having('waiting_time_days >=', days_min)
+            qs = qs.having('waiting_time_days >=', days_min)
         if days_max:
-            query = query.having('waiting_time_days <=', days_max)
+            qs = qs.having('waiting_time_days <=', days_max)
         if limited_reviewer:
-            query = query.having('waiting_time_hours >=',
-                                 amo.REVIEW_LIMITED_DELAY_HOURS)
-
-        return query.count
+            qs = qs.having('waiting_time_hours >=',
+                           amo.REVIEW_LIMITED_DELAY_HOURS)
+        return qs.count
 
     counts = {
-        'pending': construct_query(ViewPendingQueue, **kw),
-        'nominated': construct_query(ViewFullReviewQueue, **kw),
+        'pending': construct_query_from_sql_model(ViewPendingQueue, **kw),
+        'nominated': construct_query_from_sql_model(ViewFullReviewQueue, **kw),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
-            AutoApprovalSummary.get_auto_approved_queue().count),
+            AutoApprovalSummary.get_auto_approved_queue(
+                admin_reviewer=admin_reviewer).count),
         'content_review': (
-            AutoApprovalSummary.get_content_review_queue().count),
+            AutoApprovalSummary.get_content_review_queue(
+                admin_reviewer=admin_reviewer).count),
     }
     if unlisted:
         counts = {
-            'all': (ViewUnlistedAllList.objects if admin_reviewer
-                    else exclude_admin_only_addons(
-                        ViewUnlistedAllList.objects)).count
+            'all': construct_query_from_sql_model(ViewUnlistedAllList)
         }
     rv = {}
     if isinstance(type, basestring):
@@ -669,8 +666,10 @@ def application_versions_json(request):
 
 @permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
+    admin_reviewer = is_admin_reviewer(request)
     qs = (
-        AutoApprovalSummary.get_content_review_queue()
+        AutoApprovalSummary.get_content_review_queue(
+            admin_reviewer=admin_reviewer)
         .select_related('addonapprovalscounter')
         .order_by('addonapprovalscounter__last_content_review', 'created')
     )
@@ -680,8 +679,10 @@ def queue_content_review(request):
 
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
+    admin_reviewer = is_admin_reviewer(request)
     qs = (
-        AutoApprovalSummary.get_auto_approved_queue()
+        AutoApprovalSummary.get_auto_approved_queue(
+            admin_reviewer=admin_reviewer)
         .select_related(
             'addonapprovalscounter', '_current_version__autoapprovalsummary')
         .order_by(
@@ -868,8 +869,19 @@ def review(request, addon, channel=None):
         if form.cleaned_data.get('notify'):
             ReviewerSubscription.objects.get_or_create(user=request.user,
                                                        addon=addon)
-        if form.cleaned_data.get('adminflag') and is_admin:
-            addon.update(admin_review=False)
+        if is_admin:
+            flags_data = {}
+            if form.cleaned_data.get('clear_admin_code_review'):
+                flags_data['needs_admin_code_review'] = False
+            if form.cleaned_data.get('clear_admin_content_review'):
+                flags_data['needs_admin_content_review'] = False
+            if flags_data:
+                try:
+                    reviewerflags = addon.addonreviewerflags
+                    reviewerflags.update(**flags_data)
+                except AddonReviewerFlags.DoesNotExist:
+                    # If it does not exist, there is nothing to unflag.
+                    pass
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)

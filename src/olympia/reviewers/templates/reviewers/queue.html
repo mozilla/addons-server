@@ -1,5 +1,7 @@
 {% extends "reviewers/base.html" %}
 
+{% block bodyclass %}{{ super() }} {{ " content-review" if tab == "content_review" else "" }}{% endblock %}
+
 {% block content %}
 
 <div id="reviewers-score-bar" class="c">
@@ -28,7 +30,7 @@
         <div class="advanced-search">
           <div class="column1">
             <div class="form-row">
-              {% for elem in ('admin_review', 'application_id') %}
+              {% for elem in ('needs_admin_code_review', 'application_id') %}
                 {% if search_form[elem] %}
                     <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
                     <div class="form-elem">{{ search_form[elem] }}</div>

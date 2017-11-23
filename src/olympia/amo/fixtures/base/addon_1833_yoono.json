@@ -47,7 +47,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": null,
-            "admin_review": false,
             "external_software": false,
             "name": 7955,
             "created": "2006-01-10 10:07:33",

@@ -25,7 +25,8 @@ from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
+    Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
+    AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -863,9 +864,12 @@ class TestHome(ReviewerTest):
         addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-        addon_factory(
-            status=amo.STATUS_NOMINATED, admin_review=True,
+        addon_that_needs_admin_code_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=addon_that_needs_admin_code_review,
+            needs_admin_code_review=True)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1905,6 +1909,7 @@ class TestContentReviewQueue(QueueTest):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ContentReview')
         self.client.login(email=user.email)
+        return user
 
     def get_addon_latest_version(self, addon):
         """Method used by _test_results() to fetch the version that the queue
@@ -1936,6 +1941,18 @@ class TestContentReviewQueue(QueueTest):
         AddonApprovalsCounter.objects.create(
             addon=extra_addon3, last_content_review=self.days_ago(1))
 
+        # This one has never been content-reviewed, but it has the
+        # needs_admin_content_review flag, and we're not an admin.
+        extra_addon4 = addon_factory(name=u'Extra Addön 4')
+        extra_addon4.update(created=self.days_ago(2))
+        AutoApprovalSummary.objects.create(
+            version=extra_addon4.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
+        AddonApprovalsCounter.objects.create(
+            addon=extra_addon4, last_content_review=None)
+        AddonReviewerFlags.objects.create(
+            addon=extra_addon4, needs_admin_content_review=True)
+
         # This first add-on has been content reviewed so long ago that we
         # should do it again.
         addon1 = addon_factory(name=u'Addön 1')
@@ -1954,7 +1971,8 @@ class TestContentReviewQueue(QueueTest):
         AddonApprovalsCounter.objects.create(
             addon=addon2, last_content_review=self.days_ago(842))
 
-        # This one has never been content-reviewed.
+        # This one has never been content-reviewed. It has an
+        # needs_admin_code_review flag, but that should not have any impact.
         addon3 = addon_factory(name=u'Addön 2')
         addon3.update(created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
@@ -1962,6 +1980,8 @@ class TestContentReviewQueue(QueueTest):
             verdict=amo.AUTO_APPROVED, confirmed=True)
         AddonApprovalsCounter.objects.create(
             addon=addon3, last_content_review=None)
+        AddonReviewerFlags.objects.create(
+            addon=addon3, needs_admin_code_review=True)
 
         # This one has never been content reviewed either, and it does not even
         # have an AddonApprovalsCounter.
@@ -2005,6 +2025,17 @@ class TestContentReviewQueue(QueueTest):
         assert link.attr('href') == self.url
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 4')
+
+    def test_results_admin(self):
+        # Admins should see the extra add-on that needs admin content review.
+        user = self.login_with_permission()
+        self.grant_permission(user, 'ReviewerAdminTools:View')
+        self.generate_files()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        link = doc('.tabnav li a').eq(3)
+        assert link.text() == 'Content Review (5)'
 
     def test_navbar_queue_counts(self):
         self.login_with_permission()
@@ -2139,21 +2170,21 @@ class BaseTestQueueSearch(SearchTest):
         if subset is None:
             subset = []
         files = OrderedDict([
-            ('Not Admin Reviewed', {
+            ('Not Needing Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
-            ('Another Not Admin Reviewed', {
+            ('Another Not Needing Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
-            ('Admin Reviewed', {
+            ('Needs Admin Review', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
-                'admin_review': True,
+                'needs_admin_code_review': True,
             }),
             ('Justin Bieber Theme', {
                 'version_str': '0.1',
@@ -2202,39 +2233,49 @@ class BaseTestQueueSearch(SearchTest):
                 file_kw.update({'status': attrs.pop('file_status')})
                 attrs['file_kw'] = file_kw
                 attrs.update({'version_kw': version_kw, 'file_kw': file_kw})
+                needs_admin_code_review = attrs.pop(
+                    'needs_admin_code_review', None)
                 results[name] = addon_factory(
                     status=attrs.pop('addon_status'), name=name, **attrs)
+                if needs_admin_code_review:
+                    AddonReviewerFlags.objects.create(
+                        addon=results[name], needs_admin_code_review=True)
         return results
 
     def generate_file(self, name):
         return self.generate_files([name])[name]
 
-    def test_search_by_admin_reviewed_admin(self):
+    def test_search_by_needs_admin_code_review_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(admin_review=1)
-        assert self.named_addons(r) == ['Admin Reviewed']
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(needs_admin_code_review=1)
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Needs Admin Review']
 
     def test_queue_counts_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(text_query='admin', per_page=1)
-        doc = pq(r.content)
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(text_query='admin', per_page=1)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 2')
 
     def test_search_by_addon_name_admin(self):
         self.login_as_admin()
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
                              'Justin Bieber Theme'])
-        r = self.search(text_query='admin')
-        assert sorted(self.named_addons(r)) == [
-            'Admin Reviewed', 'Not Admin Reviewed']
+        response = self.search(text_query='admin')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == [
+            'Needs Admin Review', 'Not Needing Admin Review']
 
     def test_not_searching(self, **kwargs):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
         response = self.search(**kwargs)
-        assert sorted(self.named_addons(response)) == ['Not Admin Reviewed']
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == [
+            'Not Needing Admin Review']
         # We were just displaying the queue, not searching, but the searching
         # hidden input in the form should always be set to True regardless, it
         # will be used once the user submits the form.
@@ -2245,33 +2286,39 @@ class BaseTestQueueSearch(SearchTest):
         self.test_not_searching(some_param=1)
 
     def test_search_by_nothing(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(searching='True')
-        assert sorted(self.named_addons(r)) == (
-            ['Admin Reviewed', 'Not Admin Reviewed'])
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(searching='True')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
+            ['Needs Admin Review', 'Not Needing Admin Review'])
 
-    def test_search_by_admin_reviewed(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(admin_review=1, searching='True')
-        assert self.named_addons(r) == ['Admin Reviewed']
+    def test_search_by_needs_admin_code_review(self):
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review'])
+        response = self.search(needs_admin_code_review=1, searching='True')
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Needs Admin Review']
 
     def test_queue_counts(self):
-        self.generate_files(['Not Admin Reviewed',
-                             'Another Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search(text_query='admin', per_page=1, searching='True')
-        doc = pq(r.content)
+        self.generate_files(['Not Needing Admin Review',
+                             'Another Not Needing Admin Review',
+                             'Needs Admin Review'])
+        response = self.search(
+            text_query='admin', per_page=1, searching='True')
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('.data-grid-top .num-results').text() == (
             u'Results 1 \u2013 1 of 3')
 
     def test_search_by_addon_name(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
+        self.generate_files(['Not Needing Admin Review', 'Needs Admin Review',
                              'Justin Bieber Theme'])
-        r = self.search(text_query='admin', searching='True')
-        assert sorted(self.named_addons(r)) == (
-            ['Admin Reviewed', 'Not Admin Reviewed'])
+        response = self.search(text_query='admin', searching='True')
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
+            ['Needs Admin Review', 'Not Needing Admin Review'])
 
     def test_search_by_addon_in_locale(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         uni = 'フォクすけといっしょ'.decode('utf8')
         addon = Addon.objects.get(pk=generated.id)
@@ -2283,7 +2330,7 @@ class BaseTestQueueSearch(SearchTest):
         assert self.named_addons(response) == [name]
 
     def test_search_by_addon_author(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         user = UserProfile.objects.all()[0]
         email = user.email.swapcase()
@@ -2291,15 +2338,17 @@ class BaseTestQueueSearch(SearchTest):
         for role in [amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV]:
             author.role = role
             author.save()
-            r = self.search(text_query=email)
-            assert self.named_addons(r) == [name]
+            response = self.search(text_query=email)
+            assert response.status_code == 200
+            assert self.named_addons(response) == [name]
         author.role = amo.AUTHOR_ROLE_VIEWER
         author.save()
-        r = self.search(text_query=email)
-        assert self.named_addons(r) == []
+        response = self.search(text_query=email)
+        assert response.status_code == 200
+        assert self.named_addons(response) == []
 
     def test_search_by_supported_email_in_locale(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
         uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
         addon = Addon.objects.get(pk=generated.id)
@@ -2311,14 +2360,15 @@ class BaseTestQueueSearch(SearchTest):
         assert self.named_addons(response) == [name]
 
     def test_clear_search_visible(self):
-        r = self.search(text_query='admin', searching=True)
-        assert r.status_code == 200
-        assert pq(r.content)('.clear-queue-search').text() == 'clear search'
+        response = self.search(text_query='admin', searching=True)
+        assert response.status_code == 200
+        assert pq(response.content)(
+            '.clear-queue-search').text() == 'clear search'
 
     def test_clear_search_hidden(self):
-        r = self.search(text_query='admin')
-        assert r.status_code == 200
-        assert not pq(r.content)('.clear-queue-search').text()
+        response = self.search(text_query='admin')
+        assert response.status_code == 200
+        assert not pq(response.content)('.clear-queue-search').text()
 
 
 class TestQueueSearch(BaseTestQueueSearch):
@@ -2329,29 +2379,32 @@ class TestQueueSearch(BaseTestQueueSearch):
         self.url = reverse('reviewers.queue_nominated')
 
     def test_search_by_addon_type(self):
-        self.generate_files(['Not Admin Reviewed', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
                              'Justin Bieber Search Bar'])
-        r = self.search(addon_type_ids=[amo.ADDON_THEME])
-        assert self.named_addons(r) == ['Justin Bieber Theme']
+        response = self.search(addon_type_ids=[amo.ADDON_THEME])
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Justin Bieber Theme']
 
     def test_search_by_addon_type_any(self):
-        self.generate_file('Not Admin Reviewed')
-        r = self.search(addon_type_ids=[amo.ADDON_ANY])
-        assert self.named_addons(r), 'Expected some add-ons'
+        self.generate_file('Not Needing Admin Review')
+        response = self.search(addon_type_ids=[amo.ADDON_ANY])
+        assert response.status_code == 200
+        assert self.named_addons(response), 'Expected some add-ons'
 
     def test_search_by_many_addon_types(self):
-        self.generate_files(['Not Admin Reviewed', 'Justin Bieber Theme',
+        self.generate_files(['Not Needing Admin Review', 'Justin Bieber Theme',
                              'Justin Bieber Search Bar'])
-        r = self.search(addon_type_ids=[amo.ADDON_THEME,
-                                        amo.ADDON_SEARCH])
-        assert sorted(self.named_addons(r)) == (
+        response = self.search(addon_type_ids=[amo.ADDON_THEME,
+                                               amo.ADDON_SEARCH])
+        assert response.status_code == 200
+        assert sorted(self.named_addons(response)) == (
             ['Justin Bieber Search Bar', 'Justin Bieber Theme'])
 
     def test_search_by_app(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
-        r = self.search(application_id=[amo.ANDROID.id])
-        assert r.status_code == 200
-        assert self.named_addons(r) == ['Bieber For Mobile']
+        response = self.search(application_id=[amo.ANDROID.id])
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Bieber For Mobile']
 
     def test_preserve_multi_apps(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
@@ -2394,33 +2447,24 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         super(TestQueueSearchUnlistedAllList, self).setUp()
         self.url = reverse('reviewers.unlisted_queue_all')
 
-    def test_not_searching(self, **kwargs):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        response = self.search(**kwargs)
-        assert sorted(self.named_addons(response)) == [
-            'Not Admin Reviewed']
-        # We were just displaying the queue, not searching, but the searching
-        # hidden input in the form should always be set to True regardless, it
-        # will be used once the user submits the form.
-        doc = pq(response.content)
-        assert doc('#id_searching').attr('value') == 'True'
-
     def test_search_deleted(self):
-        self.generate_files(['Not Admin Reviewed', 'Deleted'])
+        self.generate_files(['Not Needing Admin Review', 'Deleted'])
         r = self.search(deleted=1)
         assert self.named_addons(r) == ['Deleted']
 
     def test_search_not_deleted(self):
-        self.generate_files(['Not Admin Reviewed', 'Deleted'])
-        r = self.search(deleted=0)
-        assert self.named_addons(r) == ['Not Admin Reviewed']
+        self.generate_files(['Not Needing Admin Review', 'Deleted'])
+        response = self.search(deleted=0)
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Not Needing Admin Review']
 
     def test_search_by_guid(self):
-        name = 'Not Admin Reviewed'
+        name = 'Not Needing Admin Review'
         addon = self.generate_file(name)
-        addon.update(guid='guidymcguid.com')
-        r = self.search(text_query='mcguid')
-        assert self.named_addons(r) == ['Not Admin Reviewed']
+        addon.update(guid='@guidymcguid')
+        response = self.search(text_query='mcguid')
+        assert response.status_code == 200
+        assert self.named_addons(response) == ['Not Needing Admin Review']
 
 
 class ReviewBase(QueueTest):
@@ -2498,9 +2542,10 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
-    def test_flag_admin_review(self):
+    def test_flag_needs_admin_code_review(self):
         self.addon.current_version.files.update(is_restart_required=False)
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 1
@@ -2961,48 +3006,67 @@ class TestReview(ReviewBase):
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 1
+        assert doc('#id_clear_admin_code_review').length == 1
+        assert doc('#id_clear_admin_content_review').length == 0
 
     def test_unflag_option_forflagged_as_reviewer(self):
         self.login_as_reviewer()
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 0
+        assert doc('#id_clear_admin_code_review').length == 0
+        assert doc('#id_clear_admin_content_review').length == 0
 
-    def test_unflag_option_notflagged_as_admin(self):
+    def test_unflag_content_option_forflagged_as_admin(self):
         self.login_as_admin()
-        self.addon.update(admin_review=False)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=False,
+            needs_admin_content_review=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#id_adminflag').length == 0
+        assert doc('#id_clear_admin_code_review').length == 0
+        assert doc('#id_clear_admin_content_review').length == 1
 
     def test_unadmin_flag_as_admin(self):
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            needs_admin_code_review=True,
+            needs_admin_content_review=True)
         self.login_as_admin()
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor',
-                                               'adminflag': True})
+        response = self.client.post(
+            self.url, {'action': 'reply',
+                       'comments': 'hello sailor',
+                       'clear_admin_code_review': True,
+                       'clear_admin_content_review': True})
         self.assert3xx(response, reverse('reviewers.queue_pending'),
                        status_code=302)
-        assert not Addon.objects.get(pk=self.addon.pk).admin_review
+        self.addon.addonreviewerflags.reload()
+        assert not self.addon.needs_admin_code_review
+        assert not self.addon.needs_admin_content_review
 
     def test_unadmin_flag_as_reviewer(self):
-        self.addon.update(admin_review=True)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_reviewer()
-        response = self.client.post(self.url, {'action': 'reply',
-                                               'comments': 'hello sailor',
-                                               'adminflag': True})
-        # Should silently fail to set adminflag but work otherwise.
+        response = self.client.post(
+            self.url, {'action': 'reply',
+                       'comments': 'hello sailor',
+                       'clear_admin_code_review': True})
+        # Should silently fail to clear admin code review flag but work
+        # otherwise.
         self.assert3xx(response, reverse('reviewers.queue_pending'),
                        status_code=302)
-        assert Addon.objects.get(pk=self.addon.pk).admin_review
+        assert self.addon.needs_admin_code_review
+        assert not self.addon.needs_admin_content_review
 
     def test_info_request_checkbox(self):
         self.login_as_reviewer()
@@ -3419,7 +3483,9 @@ class TestReview(ReviewBase):
     @patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
@@ -3433,7 +3499,9 @@ class TestReview(ReviewBase):
 
     def test_admin_flagged_addon_actions_as_reviewer(self):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True)
         self.login_as_reviewer()
         response = self.client.post(self.url, self.get_dict(action='public'))
         assert response.status_code == 200  # Form error.
@@ -3481,6 +3549,51 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        assert response.status_code == 302
+        summary.reload()
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).get()
+        assert a_log.details['version'] == self.addon.current_version.version
+        assert a_log.details['comments'] == ''
+        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+
+    def test_cant_contentreview_if_admin_content_review_flag_is_set(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_content_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(self.url, {
+            'action': 'confirm_auto_approved',
+            'comments': 'ignore me this action does not support comments'
+        })
+        # The request will succeed but nothing will happen.
+        assert response.status_code == 200
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_CONTENT.id).count() == 0
+
+    def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.url = reverse(
+            'reviewers.review', args=['content', self.addon.slug])
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_content_review=True)
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, 'ReviewerAdminTools:View')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'

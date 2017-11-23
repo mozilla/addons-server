@@ -27,7 +27,8 @@
 .ed-sprite-jetpack { background-position: 0 -80px; }
 .ed-sprite-is_restart_required { background-position: 0 -96px; }
 .ed-sprite-notes { background-position: 0 -112px; }
-.ed-sprite-admin-review { background-position: 0 -128px; }
+.ed-sprite-needs-admin-content-review { background-position: 0 -128px; }
+.ed-sprite-needs-admin-code-review { background-position: 0 -128px; }
 .ed-sprite-reviewer { background-position: 0 -144px; }
 .ed-sprite-info { background-position: 0 -160px; }
 .ed-sprite-sources-provided { background-position: 0 -192px; }
@@ -44,6 +45,19 @@
 .plat-sprite-windows { background-position: 0 -64px; }
 .plat-sprite-solaris { background-position: 0 -80px; }
 .plat-sprite-android { background-position: 0 -96px; }
+
+body.content-review .ed-sprite-needs-admin-content-review {
+    display: block /* show needs admin content review flag on content review pages */
+}
+body:not(.content-review) .ed-sprite-needs-admin-code-review {
+    display: block /* show needs admin code review on non-content review pages */
+}
+body:not(.content-review) .ed-sprite-needs-admin-content-review {
+    display: none /* hide needs admin content review on non-content review pages */
+}
+body.content-review .ed-sprite-needs-admin-code-review {
+    display: none /* hide needs admin code review on content review pages */
+}
 
 .sort-icon {
     background: url(../../img/developers/reviewer-sprite.png?9) no-repeat top left;

@@ -338,7 +338,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.source
-        assert Addon.objects.get(pk=addon.pk).admin_review
+        assert Addon.objects.get(pk=addon.pk).needs_admin_code_review
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_listed(self):
@@ -1080,7 +1080,7 @@ class VersionSubmitUploadMixin(object):
         version = self.addon.find_latest_version(channel=self.channel)
         assert version.source
         self.assert3xx(response, self.get_next_url(version))
-        assert self.addon.reload().admin_review
+        assert self.addon.reload().needs_admin_code_review
 
     def test_with_bad_source_format(self):
         tdir = temp.gettempdir()
@@ -1595,4 +1595,4 @@ class TestFileSubmitUpload(UploadTest):
         next_url = reverse('devhub.submit.file.finish',
                            args=[self.addon.slug, self.version.pk])
         self.assert3xx(response, next_url)
-        assert not self.addon.reload().admin_review
+        assert not self.addon.reload().needs_admin_code_review

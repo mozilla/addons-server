@@ -30,7 +30,7 @@ from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -1086,7 +1086,8 @@ def version_edit(request, addon_id, addon, version_id):
 
             if ('source' in version_form.changed_data and
                     version_form.cleaned_data['source']):
-                addon.update(admin_review=True)
+                AddonReviewerFlags.objects.update_or_create(
+                    addon=addon, defaults={'needs_admin_code_review': True})
                 if version.has_info_request:
                     version.update(has_info_request=False)
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
@@ -1331,9 +1332,9 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
-        addon_update = {}
         if data.get('source'):
-            addon_update['admin_review'] = True
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
             activity_log = ActivityLog.objects.create(
                 action=amo.LOG.SOURCE_CODE_UPLOADED.id,
                 user=request.user,
@@ -1346,9 +1347,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            addon_update['status'] = amo.STATUS_NOMINATED
-        if addon_update:
-            addon.update(**addon_update)
+            addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
         next_url = (next_details
