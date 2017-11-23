@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 22:15+0000\n"
+"PO-Revision-Date: 2017-11-23 23:22+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -778,7 +778,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
+msgstr "ვებსაიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიუწვდომელია. გთხოვთ, სცადოთ ხელახლა, ოდნავ მოგვიანებით."
 
 msgid "Are you human?"
 msgstr "ადამიანი ხართ?"
