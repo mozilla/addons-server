@@ -51,7 +51,7 @@
   >
   {% if submit_page == 'addon' and waffle.switch('allow-static-theme-uploads') %}
     <a class="button" id="wizardlink" href="{{ url('devhub.submit.wizard', channel_param) }}"
-      >Create a Theme</a>
+      >{{ _('Create a Theme') }}</a>
   {% endif %}
 
   {{ new_addon_form.non_field_errors() }}

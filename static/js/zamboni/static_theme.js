@@ -1,22 +1,5 @@
 $(document).ready(function() {
     function StaticThemeBrowserPreview() {
-        this.generate = function($div) {
-            $div.append($(
-                '<svg id="SvgjsSvg1006" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs">' +
-                '<defs id="SvgjsDefs1007"></defs>' +
-                '<rect id="SvgjsRect1008" width="900" height="200" class="accentcolor"></rect>' +
-                '<image id="svg-header-img" width="0" height="0"></image>' +
-                '<text id="SvgjsText1010" font-family="Helvetica, Arial, sans-serif" x="5" y="34.20000076293945" font-size="1.4em" class="textcolor" fill=""><tspan id="SvgjsTspan1011" dy="1.8199999999999998" x="5">File    Edit   View    History   Bookmarks   Tools   Help</tspan></text>' +
-                '<text id="SvgjsText1012" font-family="Helvetica, Arial, sans-serif" x="160" y="84.20000076293945" font-size="1.4em" class="textcolor" fill=""><tspan id="SvgjsTspan1013" dy="1.8199999999999998" x="160">Inactive Tab</tspan></text>' +
-                '<rect id="SvgjsRect1014" width="900" height="100" y="100" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>' +
-                '<rect id="SvgjsRect1015" width="150" height="50" y="50" class="toolbar" fill="#fff" fill-opacity="0.6"></rect>' +
-                '<text id="SvgjsText1016" font-family="Helvetica, Arial, sans-serif" x="10" y="84.20000076293945" font-size="1.4em" class="toolbar_text" fill=""><tspan id="SvgjsTspan1017" dy="1.8199999999999998" x="10">Active Tab</tspan></text>' +
-                '<text id="SvgjsText1018" font-family="Helvetica, Arial, sans-serif" x="10" y="184.20000076293945" font-size="1.4em" class="toolbar_text" fill=""><tspan id="SvgjsTspan1019" dy="1.8199999999999998" x="10"># Most Visited. # Getting Started. # Other Bookmark</tspan></text>' +
-                '<rect id="SvgjsRect1020" width="400" height="30" x="100" y="110" class="toolbar_field" fill="#fff"></rect>' +
-                '<text id="SvgjsText1021" font-family="Helvetica, Arial, sans-serif" x="130" y="128.20000076293945" font-size="1.4em" class="toolbar_field_text" fill=""><tspan id="SvgjsTspan1022" dy="1.8199999999999998" x="130">https://addons.mozilla.org/</tspan></text>' +
-                '</svg>'));
-        };
-
         Object.defineProperty(this, 'accentcolor', {
             set: function(color) {
                 if (!color) {
@@ -87,8 +70,6 @@ $(document).ready(function() {
         var $wizard = $(this),
             browserPreview = new StaticThemeBrowserPreview();
 
-        browserPreview.generate($('#browser-preview'));
-
         $wizard.on('click', '.reset', _pd(function() {
             var $this = $(this),
             $row = $this.closest('.row');
@@ -106,12 +87,13 @@ $(document).ready(function() {
             if (!file) return;  // don't do anything if no file selected.
             $row.find('input[type=file], .note').hide();
 
-            reader.onload = (function(aImg) { return function(e) {
-                aImg.attr('src', e.target.result);
-                aImg.show().addClass('loaded');
+            var $preview_img = $row.find('.preview');
+            reader.onload = function(e) {
+                $preview_img.attr('src', e.target.result);
+                $preview_img.show().addClass('loaded');
                 $row.find('.reset').show();
                 updateManifest();
-            };})($row.find('.preview'));
+            };
             reader.readAsDataURL(file);
 
             var filename = file.name.replace(/\.[^/.]+$/, "");

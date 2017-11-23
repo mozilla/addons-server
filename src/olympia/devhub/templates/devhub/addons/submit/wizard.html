@@ -57,7 +57,9 @@
     </div>
     <div>
         <h3>{{ _('Browser Preview') }}</h3>
-        <div id="browser-preview"></div>
+        <div id="browser-preview">
+            {% include 'devhub/addons/includes/static_theme_preview_svg.xml' %}
+        </div>
     </div>
     <textarea id="manifest"></textarea>
 
