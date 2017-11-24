@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 07:35+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2017-11-24 11:20+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1994,7 +1994,7 @@ msgid "Content approved"
 msgstr "Inhoud goedgekeurd"
 
 msgid "{addon} {version} content rejected."
-msgstr "Inhoud {addon} {version} afgewezen."
+msgstr "Inhoud van {addon} {version} afgewezen."
 
 msgid "Content rejected"
 msgstr "Inhoud afgewezen"
@@ -6487,10 +6487,10 @@ msgid "Notify me the next time this add-on is updated. (Subsequent updates will 
 msgstr "Mij informeren als deze add-on de volgende keer wordt bijgewerkt (Volgende updates genereren geen e-mailbericht)"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "Markering codebeoordeling door beheerder wissen"
+msgstr "Markering voor codebeoordeling door beheerder wissen"
 
 msgid "Clear Admin Content Review Flag"
-msgstr "Markering inhoudsbeoordeling door beheerder wissen"
+msgstr "Markering voor inhoudsbeoordeling door beheerder wissen"
 
 msgid "Is more info requested?"
 msgstr "Is er meer informatie gevraagd?"
@@ -6678,10 +6678,10 @@ msgid "Themes Review Log"
 msgstr "Themabeoordelingslogboek"
 
 msgid "Deleted themes Log"
-msgstr "Logboek verwijderde thema’s"
+msgstr "Logboek van verwijderde thema’s"
 
 msgid "User Ratings Moderation"
-msgstr "Moderatie gebruikerswaarderingen"
+msgstr "Moderatie van gebruikerswaarderingen"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr "Op moderatie wachtende waarderingen ({0})"
@@ -7417,7 +7417,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Alleen WebExtensions mogen de GUID weglaten"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr "Geef uw add-on-GUID op in het manifest als het langer is dan 64 tekens."
+msgstr "Geef de GUID van uw add-on op in het manifest als deze langer is dan 64 tekens."
 
 msgid "Invalid GUID in URL"
 msgstr "Ongeldige GUID in URL"
@@ -7565,7 +7565,7 @@ msgid "No data available."
 msgstr "Geen gegevens beschikbaar."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "Dit dashboard is momenteel <b>publiek</b>."
+msgstr ""
 
 msgid "Contribution stats are currently <b>private</b>."
 msgstr "Bijdragestatistieken zijn momenteel <b>privé</b>."
