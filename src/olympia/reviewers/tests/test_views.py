@@ -467,9 +467,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
             reverse('reviewers.themes.list'),
@@ -477,9 +479,12 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -497,9 +502,11 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
             reverse('reviewers.themes.list'),
@@ -507,9 +514,12 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -541,6 +551,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -567,6 +578,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -620,6 +632,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.themes.list_flagged'),
             reverse('reviewers.themes.logs'),
             reverse('reviewers.themes.deleted'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -647,6 +660,7 @@ class TestDashboard(TestCase):
         expected_links = [
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -663,6 +677,7 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -697,13 +712,18 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (2)'
-        assert doc('.dashboard a')[3].text == 'Content Review (1)'
+        assert 'target' not in doc('.dashboard a')[0].attrib
+        assert doc('.dashboard a')[3].text == 'Review Guide'
+        assert doc('.dashboard a')[3].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[3].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[4].text == 'Content Review (1)'
 
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
@@ -722,14 +742,21 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             reverse('reviewers.beta_signed_log'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.eventlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'New Add-ons (0)'
+        assert 'target' not in doc('.dashboard a')[0].attrib
         assert doc('.dashboard a')[1].text == 'Add-on Updates (0)'
-        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
+        assert doc('.dashboard a')[6].text == 'Ratings Awaiting Moderation (0)'
+        assert 'target' not in doc('.dashboard a')[6].attrib
+        assert doc('.dashboard a')[8].text == 'Moderation Guide'
+        assert doc('.dashboard a')[8].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[8].attrib['rel'] == 'noopener noreferrer'
 
 
 class TestHome(ReviewerTest):
