@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 07:31+0000\n"
+"PO-Revision-Date: 2017-11-24 07:35+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6636,17 +6636,14 @@ msgstr "Inhoud goedkeuren"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Dit legt uw goedkeuring van de inhoud van deze versie vast, zonder de ontwikkelaar te informeren."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Mijn add-ons"
+msgstr "Verouderde add-ons"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Nieuwe add-on ({0})"
+msgstr "Nieuwe add-ons ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Add-on-updates"
+msgstr "Add-on-updates ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Add-on-beoordelingslogboek"
@@ -6654,13 +6651,11 @@ msgstr "Add-on-beoordelingslogboek"
 msgid "Signed Beta Files Log"
 msgstr "Logboek van ondertekende bètabestanden"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatisch goedgekeurde add-on ({0})"
+msgstr "Automatisch goedgekeurde add-ons ({0})"
 
 msgid "Content Review"
 msgstr "Inhoudsbeoordeling"
@@ -6670,38 +6665,32 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Inhoudsbeoordeling ({0})"
 msgstr[1] "Inhoudsbeoordelingen ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Nieuwe add-on ({0})"
+msgstr "Nieuwe thema’s ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Update ({0})"
+msgstr "Thema-updates ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Gemarkeerde thema’s"
+msgstr "Gemarkeerde thema’s ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Themabeoordeling"
+msgstr "Themabeoordelingslogboek"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Thema verwijderen"
+msgstr "Logboek verwijderde thema’s"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderatie gebruikerswaarderingen"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Op moderatie wachtende waarderingen ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Logboek van gemodereerde beoordelingen"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Alle niet-vermelde add-ons"
+msgstr "Niet-vermelde add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle niet-vermelde add-ons"
@@ -6777,9 +6766,8 @@ msgstr "Datum van laatste goedkeuring"
 msgid "Abuse Reports ({num})"
 msgstr "Misbruikmeldingen ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Slechte gebruikersbeoordelingen ({num})"
+msgstr "Slechte gebruikerswaarderingen ({num})"
 
 msgid "More about this add-on"
 msgstr "Meer over deze add-on"
@@ -7429,7 +7417,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Alleen WebExtensions mogen de GUID weglaten"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Geef uw add-on-GUID op in het manifest als het langer is dan 64 tekens."
 
 msgid "Invalid GUID in URL"
 msgstr "Ongeldige GUID in URL"
