@@ -17,6 +17,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -1280,7 +1281,7 @@ def submit_version_distribution(request, addon_id, addon):
 
 @transaction.atomic
 def _submit_upload(request, addon, channel, next_details, next_finish,
-                   version=None):
+                   version=None, wizard=False):
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
@@ -1309,7 +1310,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                     parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
-            is_beta = data['beta'] and channel == amo.RELEASE_CHANNEL_LISTED
+            is_beta = (data.get('beta') and
+                       channel == amo.RELEASE_CHANNEL_LISTED)
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
@@ -1363,14 +1365,16 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
     else:
         channel_choice_text = ''  # We only need this for Version upload.
     submit_page = 'file' if version else 'version' if addon else 'addon'
-    return render(request, 'devhub/addons/submit/upload.html',
+    template = ('devhub/addons/submit/upload.html' if not wizard else
+                'devhub/addons/submit/wizard.html')
+    return render(request, template,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
                    'addon': addon,
                    'submit_notification_warning':
                        get_config('submit_notification_warning'),
                    'submit_page': submit_page,
-                   'listed': channel == amo.RELEASE_CHANNEL_LISTED,
+                   'channel': channel,
                    'channel_choice_text': channel_choice_text})
 
 
@@ -1403,6 +1407,15 @@ def submit_version_auto(request, addon_id, addon):
     return _submit_upload(request, addon, channel,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
+
+
+@login_required
+@waffle.decorators.waffle_switch('allow-static-theme-uploads')
+def submit_addon_theme_wizard(request, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, None, channel_id,
+                          'devhub.submit.details', 'devhub.submit.finish',
+                          wizard=True)
 
 
 @dev_required

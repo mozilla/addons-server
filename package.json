@@ -20,6 +20,7 @@
     "@claviska/jquery-minicolors": "2.2.6",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
+    "jszip": "3.1.4",
     "less": "2.7.2",
     "source-map": "0.6.1",
     "stylus": "0.54.5",
