@@ -164,6 +164,9 @@ def dashboard(request):
         ), (
             ugettext('Signed Beta Files Log'),
             reverse('reviewers.beta_signed_log')
+        ), (
+            ugettext('Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
@@ -177,6 +180,9 @@ def dashboard(request):
         ), (
             ugettext('Add-on Review Log'),
             reverse('reviewers.reviewlog')
+        ), (
+            ugettext('Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
@@ -210,6 +216,9 @@ def dashboard(request):
         ), (
             ugettext('Deleted themes Log'),
             reverse('reviewers.themes.deleted')
+        ), (
+            ugettext('Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.RATINGS_MODERATE):
@@ -220,14 +229,19 @@ def dashboard(request):
         ), (
             ugettext('Moderated Review Log'),
             reverse('reviewers.eventlog')
+        ), (
+            ugettext('Moderation Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_REVIEW_UNLISTED):
         sections[ugettext('Unlisted Add-ons')] = [(
             ugettext('All Unlisted Add-ons'),
             reverse('reviewers.unlisted_queue_all')
+        ), (
+            ugettext('Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
-
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
         sections[ugettext('Announcement')] = [(
