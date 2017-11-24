@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 18:11+0000\n"
+"PO-Revision-Date: 2017-11-24 18:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6465,9 +6465,8 @@ msgstr "kiegészítő, étékelő vagy megjegyzés"
 msgid "Search by add-on name / author email"
 msgstr "Keresés kiegészítő neve / szerző e-mail címe szerint"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Adminisztrátori értékelés"
+msgstr "Adminisztrátori kódértékelés szükséges"
 
 msgid "yes"
 msgstr "igen"
@@ -6496,13 +6495,11 @@ msgstr "Alkalmazások:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Értesítsen a kiegészítő frissítésekor. (Kisebb frissítésekről nem érkezik levél)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Adminisztrátori értékelés jelző törlése"
+msgstr "Adminisztrátori kódértékelés jelző törlése"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Adminisztrátori értékelés jelző törlése"
+msgstr "Adminisztrátori tartalomértékelés jelző törlése"
 
 msgid "Is more info requested?"
 msgstr "Több információt kér?"
@@ -6527,9 +6524,8 @@ msgstr "Értékelés megtartása; jelzők eltávolítása"
 msgid "Skip for now"
 msgstr "Kihagyás"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Kiegészítő tartalmának értékelése"
+msgstr "Adminisztrátori tartalomértékelés szükséges"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack kiegészítők"
@@ -6648,17 +6644,14 @@ msgstr "Tartalom jóváhagyása"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Ez rögzíti, hogy jóváhagyta a verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Saját kiegészítők"
+msgstr "Örökölt kiegészítők"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Új kiegészítő ({0})"
+msgstr "Új kiegészítők ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Kiegészítő frissítései"
+msgstr "Kiegészítő-frissítések ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Kiegészítő értékelési naplója"
@@ -6666,13 +6659,11 @@ msgstr "Kiegészítő értékelési naplója"
 msgid "Signed Beta Files Log"
 msgstr "Aláírt béta fájlok naplója"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatikusan jóváhagyott kiegészítő ({0})"
+msgstr "Automatikusan jóváhagyott kiegészítők ({0})"
 
 msgid "Content Review"
 msgstr "Tartalom értékelése"
@@ -6682,17 +6673,14 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Tartalom értékelés ({0})"
 msgstr[1] "Tartalom értékelés ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Új kiegészítő ({0})"
+msgstr "Új témák ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Frissítés ({0})"
+msgstr "Témafrissítések ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Megjelölt témák"
+msgstr "Megjelölt témák ({0})"
 
 msgid "Themes Review Log"
 msgstr "Témaértékelési napló"
