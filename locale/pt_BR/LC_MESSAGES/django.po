@@ -1902,9 +1902,8 @@ msgstr "{0} {1} adicionado."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Função de {0.name} mudou para {1} para {addon}."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} agora é licenciado sob {0.name}."
+msgstr "{addon} está agora licenciado sob {0}."
 
 msgid "{addon} policy changed."
 msgstr "Política de {addon} alterada."
