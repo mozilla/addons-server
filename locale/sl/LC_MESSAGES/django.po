@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 17:23+0000\n"
+"PO-Revision-Date: 2017-11-24 17:33+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -6728,13 +6728,11 @@ msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja ra
 msgid "Legacy Add-ons"
 msgstr "Moji dodatki"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Nov dodatek ({0})"
+msgstr "Nov dodatki ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Posodobitve dodatkov"
+msgstr "Posodobitve dodatkov ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Dnevnik s pregledi dodatkov"
@@ -6772,9 +6770,8 @@ msgstr "Označene teme"
 msgid "Themes Review Log"
 msgstr "Pregled teme"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Izbriši temo"
+msgstr "Dnevnik izbrisanih tem"
 
 msgid "User Ratings Moderation"
 msgstr ""
