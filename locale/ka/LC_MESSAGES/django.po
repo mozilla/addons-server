@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 23:25+0000\n"
+"PO-Revision-Date: 2017-11-24 23:33+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -7989,19 +7989,19 @@ msgid "Add-ons I've created"
 msgstr "ამ შემმუშავებლის, სხვა დამატებები"
 
 msgid "My Most Popular Themes"
-msgstr "ჩემი ყველაზე მეტად სასურველი თემები"
+msgstr "შემმუშავებლის შექმნილი, ყველაზე მეტად სასურველი თემები"
 
 msgid "Themes I've created"
-msgstr "ჩემ მიერ შექმნილი თემები"
+msgstr "ამ შემმუშავებლის მიერ თემები"
 
 msgid "Followed by Me"
-msgstr "ჩემი გამომწერები"
+msgstr "შემმუშავებლის გამომწერები"
 
 msgid "Created by Me"
-msgstr "ჩემ მიერ შექმნილი"
+msgstr "ამ შემმუშავებლის მიერ შექმნილი"
 
 msgid "My Reviews"
-msgstr "ჩემი მიმოხილვები"
+msgstr "ამ შემმუშავებლის მიმოხილვები"
 
 msgid "No add-on reviews yet."
 msgstr "მიმოხილვები, ჯერ არ გაკეთებულა."
