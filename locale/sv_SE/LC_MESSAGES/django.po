@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 17:20+0000\n"
+"PO-Revision-Date: 2017-11-24 17:57+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6650,13 +6650,11 @@ msgstr "Godkänn innehåll"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Detta registrerar ditt godkännande av innehållet i den här versionen utan att meddela utvecklaren."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Mina tillägg"
+msgstr "Äldre tillägg"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Nytt tillägg ({0})"
+msgstr "Nya tillägg ({0})"
 
 #, fuzzy
 msgid "Add-on Updates ({0})"
@@ -6713,9 +6711,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr "Modererad granskningslogg"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Alla olistade tillägg"
+msgstr "Olistade tillägg"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alla olistade tillägg"
