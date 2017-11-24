@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 01:31+0000\n"
+"PO-Revision-Date: 2017-11-24 01:35+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -6603,9 +6603,8 @@ msgstr "Pengkadaran Menunggu Moderat ({0})"
 msgid "Moderated Review Log"
 msgstr "Log Ulasan Moderat"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Semua Add-ons Tiada-disenaraikan"
+msgstr "Add-ons Tidak Disenaraikan"
 
 msgid "All Unlisted Add-ons"
 msgstr "Semua Add-ons Tiada-disenaraikan"
@@ -6679,9 +6678,8 @@ msgstr "Tarikh Kelulusan Terakhir"
 msgid "Abuse Reports ({num})"
 msgstr "Laporan Penyalahgunaan ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Ulasan Buruk Pengguna ({num})"
+msgstr "Pengkadaran Teruk Pengguna ({num})"
 
 msgid "More about this add-on"
 msgstr "Maklumat lanjut perihal add-on ini"
