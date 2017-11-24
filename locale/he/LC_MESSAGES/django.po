@@ -6353,9 +6353,8 @@ msgstr "תוספת, סוקר או הערה"
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "סקירת תוספת חדשה"
+msgstr ""
 
 msgid "yes"
 msgstr "כן"
@@ -6414,9 +6413,8 @@ msgstr ""
 msgid "Skip for now"
 msgstr "דילוג לבינתיים"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "סקירת תוכן של תוספת"
+msgstr ""
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6591,9 +6589,8 @@ msgstr "ערכות נושא מומלצות"
 msgid "Themes Review Log"
 msgstr "סקירה לערכת נושא"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "מחיקת ערכת נושא"
+msgstr ""
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6604,9 +6601,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "תוספות ל־Android"
+msgstr ""
 
 msgid "All Unlisted Add-ons"
 msgstr ""
