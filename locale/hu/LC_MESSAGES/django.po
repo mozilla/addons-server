@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 08:57+0000\n"
+"PO-Revision-Date: 2017-11-24 18:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6694,13 +6694,11 @@ msgstr "Frissítés ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Megjelölt témák"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Témaértékelés"
+msgstr "Témaértékelési napló"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Téma törlése"
+msgstr "Törölt témák naplója"
 
 msgid "User Ratings Moderation"
 msgstr "Felhasználói értékelések moderálása"
@@ -6713,9 +6711,8 @@ msgstr "Moderálásra váró értékelések ({0})"
 msgid "Moderated Review Log"
 msgstr "Moderált értékelések naplója"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Minden nem listázott kiegészítő"
+msgstr "Nem listázott kiegészítők"
 
 msgid "All Unlisted Add-ons"
 msgstr "Minden nem listázott kiegészítő"
