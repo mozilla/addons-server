@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 17:33+0000\n"
+"PO-Revision-Date: 2017-11-24 18:21+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1881,9 +1881,8 @@ msgstr "{addon} dodan v {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} odstranjen iz {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} za {addon} spisan."
+msgstr "{rating} za {addon} spisan."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1916,21 +1915,17 @@ msgstr "Pravilnik za {addon} spremenjen."
 msgid "{addon} icon changed."
 msgstr "Sličica za {addon} spremenjena."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} za{addon} odobren."
+msgstr "{rating} za {addon} odobren."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} odobril {review} za {addon}."
+msgstr "{user} je odobril {rating} za {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Ocena {review} za {addon} izbrisana."
+msgstr "Ocena {rating} za {addon} izbrisana."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} je izbrisal {review} za {addon}."
+msgstr "{user} je izbrisal {rating} za {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Najv. različica aplikacije za {version} posodobljena."
@@ -1975,9 +1970,8 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Admin {0} ogledal dnevnik aktivnosti za {user}."
 
 # 83%
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} za {addon} posodobljen."
+msgstr "{rating} za {addon} posodobljen."
 
 msgid "{addon} reviewed."
 msgstr "{addon} pregledan."
@@ -6535,9 +6529,8 @@ msgstr "dodatek, pregledovalec ali komentar"
 msgid "Search by add-on name / author email"
 msgstr "Iskanje po imenu dodatka/e-pošti avtorja"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Skrbnikov pregled"
+msgstr "Potrebuje skrbnikov pregled kode"
 
 msgid "yes"
 msgstr "da"
@@ -6566,13 +6559,11 @@ msgstr "Programi:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Obvesti me, ko bo ta dodatek naslednjič posodobljen. (Nadaljnje posodobitve ne bodo pošiljale e-pošte)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Zbriši zastavico za skrbnikov pregled"
+msgstr "Izbriši zastavico za skrbnikov pregled kode"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Zbriši zastavico za skrbnikov pregled"
+msgstr "Izbriši zastavico za skrbnikov pregled vsebine"
 
 msgid "Is more info requested?"
 msgstr "Je zahtevanih več podatkov?"
@@ -6597,9 +6588,8 @@ msgstr "Ne izbriši ocene; odstrani zastavice"
 msgid "Skip for now"
 msgstr "Preskoči za zdaj"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Pregled vsebine dodatka"
+msgstr "Potrebuje skrbnikov pregled vsebine"
 
 msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
@@ -6724,9 +6714,8 @@ msgstr "Odobri vsebino"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "To zabeleži vašo odobritev vsebine te različice, brez obveščanja razvijalca."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Moji dodatki"
+msgstr "Zastareli dodatki"
 
 msgid "New Add-ons ({0})"
 msgstr "Nov dodatki ({0})"
@@ -6762,31 +6751,28 @@ msgstr "Nove teme ({0})"
 msgid "Themes Updates ({0})"
 msgstr "Posodobitve tem ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Označene teme"
+msgstr "Označene teme ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Pregled teme"
+msgstr "Dnevnik pregledov tem"
 
 msgid "Deleted themes Log"
 msgstr "Dnevnik izbrisanih tem"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderacija ocen uporabnikov"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Ocene, ki čakajo na moderacijo ({0})"
 
 # 80%
 # 100%
 msgid "Moderated Review Log"
 msgstr "Moderiran dnevnik pregledov"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Vsi nenavedeni dodatki"
+msgstr "Nenavedeni dodatki"
 
 msgid "All Unlisted Add-ons"
 msgstr "Vsi nenavedeni dodatki"
@@ -7546,7 +7532,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID-ju se lahko izognejo samo WebExtensions"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "V manifestu navedite GUID svojega dodatka, če je daljši od 64 znakov."
 
 msgid "Invalid GUID in URL"
 msgstr "Neveljaven GUID v spletnem naslovu"
