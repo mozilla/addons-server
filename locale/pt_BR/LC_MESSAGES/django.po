@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 12:10+0000\n"
+"PO-Revision-Date: 2017-11-24 12:31+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6632,9 +6632,8 @@ msgstr "extensão, editor ou comentário"
 msgid "Search by add-on name / author email"
 msgstr "Procurar pelo nome do complemento / e-mail do autor"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Análise do administrador"
+msgstr "Precisa revisar o código de administração"
 
 msgid "yes"
 msgstr "sim"
@@ -6663,13 +6662,11 @@ msgstr "Aplicações:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Notificar-me na próxima vez que este complemento for atualizado. (Atualizações posteriores não gerarão uma mensagem)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Limpar propriedade de administração"
+msgstr "Limpar a sinalização de revisão do código de administração"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Limpar propriedade de administração"
+msgstr "Limpar a sinalização da revisão do conteúdo de administração"
 
 msgid "Is more info requested?"
 msgstr "Mais informação solicitada?"
@@ -6694,9 +6691,8 @@ msgstr "Manter análise; remover denúncias"
 msgid "Skip for now"
 msgstr "Ignorar por enquanto"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Revisão do conteúdo da extensão"
+msgstr "Necessita de revisão do conteúdo de administração"
 
 msgid "Jetpack Add-on"
 msgstr "Complemento Jetpack"
@@ -6815,17 +6811,14 @@ msgstr "Aprovar conteúdo"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Registrar a aprovação do conteúdo desta versão, sem notificar o desenvolvedor."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Minhas extensões"
+msgstr "Extensões legadas"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Novo complemento ({0})"
+msgstr "Novas extensões ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Atualizações do complemento"
+msgstr "Atualizações de extensões ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Registro de análise do complemento"
@@ -6833,13 +6826,11 @@ msgstr "Registro de análise do complemento"
 msgid "Signed Beta Files Log"
 msgstr "Registro de arquivos beta assinados"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Extensão aprovada automaticamente ({0})"
+msgstr "Extensões aprovadas automaticamente ({0})"
 
 msgid "Content Review"
 msgstr "Avaliar conteúdo"
@@ -6850,25 +6841,20 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Análise de conteúdo ({0})"
 msgstr[1] "Análises de conteúdo ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Novo complemento ({0})"
+msgstr "Novos temas ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Atualização ({0})"
+msgstr "Atualizações de temas ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Temas marcados"
+msgstr "Temas marcados ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Análise do tema"
+msgstr "Registro de revisões de temas"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Excluir tema"
+msgstr "Registro de temas excluido"
 
 msgid "User Ratings Moderation"
 msgstr "Moderação de classificações de usuário"
@@ -6882,9 +6868,8 @@ msgstr "Classificações aguardando moderação ({0})"
 msgid "Moderated Review Log"
 msgstr "Registro de análise moderada"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Todos as extensões não listadas"
+msgstr "Extensões não-listadas"
 
 msgid "All Unlisted Add-ons"
 msgstr "Todos as extensões não listadas"
