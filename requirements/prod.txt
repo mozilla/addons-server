@@ -353,8 +353,9 @@ statsd==3.2.1 \
 vine==1.1.4 \
     --hash=sha256:6849544be74ec3638e84d90bc1cf2e1e9224cc10d96cd4383ec3f69e9bce077b \
     --hash=sha256:52116d59bc45392af9fdd3b75ed98ae48a93e822cee21e5fda249105c59a7a72
-django-jinja==2.4.0 \
-    --hash=sha256:67d0c77da305013c09f5bc6a45deda8dd66936b94d6548fd893d7ac2dfcafe6e
+django-jinja==2.4.1 \
+    --hash=sha256:ceaa0eeebc4d91a5800967e50f4f087f0b6457503e3c2af85dc199bed8732a9a \
+    --hash=sha256:8a49d73de616a12075eee14c6d3bbab936261a463457d40348d8b8e2995cfbed
 requests-hawk==1.0.0 \
     --hash=sha256:aef0dff8053dcae2057774516386bed0a3bc03fabea9e18f3aa98f02672ea5d0 \
     --hash=sha256:c2626ab31ebef0c81b97781c44c2275bfcc6d8e8520fc4ced495f0f386f8fe26
