@@ -820,8 +820,6 @@ class TestEmailDevs(TestCase):
     def test_exclude_pending_for_addons(self):
         self.addon.update(status=amo.STATUS_PENDING)
         for name, label in DevMailerForm._choices:
-            if name in ('payments', 'desktop_apps'):
-                continue
             res = self.post(recipients=name)
             self.assertNoFormErrors(res)
             assert len(mail.outbox) == 0

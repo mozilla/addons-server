@@ -22,7 +22,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
-    Category, Charity, CompatOverride, CompatOverrideRange, FrozenAddon,
+    Category, CompatOverride, CompatOverrideRange, FrozenAddon,
     IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
@@ -2436,21 +2436,6 @@ class TestAddonFromUpload(UploadTest):
 
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
-
-
-class TestCharity(TestCase):
-    fixtures = ['base/charity.json']
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url(self):
-        charity = Charity(name="a", paypal="b", url="http://foo.com")
-        charity.save()
-        assert charity.outgoing_url.startswith(REDIRECT_URL)
-
-    @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
-    def test_url_foundation(self):
-        foundation = Charity.objects.get(pk=amo.FOUNDATION_ORG)
-        assert not foundation.outgoing_url.startswith(REDIRECT_URL)
 
 
 class TestFrozenAddons(TestCase):

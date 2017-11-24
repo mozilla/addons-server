@@ -38,7 +38,7 @@ from olympia.amo.utils import (
     attach_trans_dict, cache_ns_key, chunked,
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
     urlparams, find_language, AMOJSONEncoder)
-from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
@@ -1983,21 +1983,6 @@ class AppSupport(ModelBase):
     class Meta:
         db_table = 'appsupport'
         unique_together = ('addon', 'app')
-
-
-class Charity(ModelBase):
-    name = models.CharField(max_length=255)
-    url = models.URLField()
-    paypal = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'charities'
-
-    @property
-    def outgoing_url(self):
-        if self.pk == amo.FOUNDATION_ORG:
-            return self.url
-        return get_outgoing_url(unicode(self.url))
 
 
 class DeniedSlug(ModelBase):

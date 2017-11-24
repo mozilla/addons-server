@@ -79,16 +79,9 @@ class StatsTest(TestCase):
                 yield (view, args)
 
     def public_views_gen(self, **kwargs):
-        # all views are potentially public, except for contributions
+        # all views are potentially public
         for view, args in self.views_gen(**kwargs):
-            if not view.startswith('stats.contributions'):
-                yield (view, args)
-
-    def private_views_gen(self, **kwargs):
-        # only contributions views are always private
-        for view, args in self.views_gen(**kwargs):
-            if view.startswith('stats.contributions'):
-                yield (view, args)
+            yield (view, args)
 
     def _check_it(self, views, status):
         for view, kwargs in views:
@@ -109,7 +102,6 @@ class TestUnlistedAddons(StatsTest):
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(format='json'), 404)
-        self._check_it(self.private_views_gen(format='json'), 404)
 
 
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
@@ -155,20 +147,6 @@ class TestSeriesSecurity(StatsTest):
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(format='json'), 200)
-        self._check_it(self.private_views_gen(format='json'), 403)
-
-    def test_private_addon_contrib_stats_group(self):
-        # Logged in with stats and contrib stats group.
-        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
-        group1 = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=user, group=group1)
-        group2 = Group.objects.create(name='Revenue Stats',
-                                      rules='RevenueStats:View')
-        GroupUser.objects.create(user=user, group=group2)
-        self.login_as_visitor()
-
-        self._check_it(self.public_views_gen(format='json'), 200)
-        self._check_it(self.private_views_gen(format='json'), 200)
 
     def test_private_addon_anonymous(self):
         # Not logged in
@@ -179,7 +157,6 @@ class TestSeriesSecurity(StatsTest):
         # Logged in but no groups
         self.login_as_visitor()
         self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
-        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
 
     def test_public_addon_stats_group(self):
         # Logged in with stats group.
@@ -189,26 +166,11 @@ class TestSeriesSecurity(StatsTest):
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
-        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
-
-    def test_public_addon_contrib_stats_group(self):
-        # Logged in with stats and contrib stats group.
-        user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
-        group1 = Group.objects.create(name='Stats', rules='Stats:View')
-        GroupUser.objects.create(user=user, group=group1)
-        group2 = Group.objects.create(name='Revenue Stats',
-                                      rules='RevenueStats:View')
-        GroupUser.objects.create(user=user, group=group2)
-        self.login_as_visitor()
-
-        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
-        self._check_it(self.private_views_gen(addon_id=5, format='json'), 200)
 
     def test_public_addon_anonymous(self):
         # Not logged in
         self.client.logout()
         self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
-        self._check_it(self.private_views_gen(addon_id=5, format='json'), 403)
 
 
 class TestCSVs(ESStatsTest):
@@ -240,15 +202,6 @@ class TestCSVs(ESStatsTest):
             self.csv_eq(response, """date,count
                                      2009-06-02,1500
                                      2009-06-01,1000""")
-
-    def test_contributions_series(self):
-        response = self.get_view_response('stats.contributions_series',
-                                          group='day', format='csv')
-
-        assert response.status_code == 200
-        self.csv_eq(response, """date,total,count,average
-                                 2009-06-02,4.98,2,2.49
-                                 2009-06-01,5.00,1,5.0""")
 
     def test_sources_series(self):
         response = self.get_view_response('stats.sources_series',
@@ -690,35 +643,6 @@ class TestResponses(ESStatsTest):
                           2009-06-12,10,3,2
                           2009-06-07,10,3,2
                           2009-06-01,10,3,2""")
-
-    def test_contributions_series_json(self):
-        r = self.get_view_response('stats.contributions_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
-            {
-                "count": 2,
-                "date": "2009-06-02",
-                "average": 2.49,
-                "total": 4.98,
-                "end": "2009-06-02"
-            },
-            {
-                "count": 1,
-                "date": "2009-06-01",
-                "average": 5.0,
-                "total": 5.0,
-                "end": "2009-06-01"
-            }
-        ])
-
-    def test_contributions_series_csv(self):
-        r = self.get_view_response('stats.contributions_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,total,average
-                          2009-06-02,2,4.98,2.49
-                          2009-06-01,1,5.00,5.0""")
 
 
 # Test the SQL query by using known dates, for weeks and months etc.

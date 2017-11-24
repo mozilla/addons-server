@@ -173,7 +173,7 @@ class TestEdit(UserViewBase):
         choices = email.NOTIFICATIONS_CHOICES
         self.check_default_choices(choices)
 
-        self.data['notifications'] = [2, 4, 6]
+        self.data['notifications'] = [4, 6]
         r = self.client.post(self.url, self.data)
         self.assert3xx(r, self.url, 302)
 

@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db import connection
-from django.db.models import Avg, Count, Q, Sum
+from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
@@ -41,7 +41,7 @@ from olympia.stats.forms import DateForm
 from olympia.zadmin.models import SiteEvent
 
 from .models import (
-    CollectionCount, Contribution, DownloadCount, ThemeUserCount, UpdateCount)
+    CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')
@@ -50,7 +50,7 @@ logger = olympia.core.logger.getLogger('z.apps.stats.views')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'contributions', 'overview', 'sources', 'os',
+SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
           'locales', 'statuses', 'versions', 'apps')
 COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
@@ -320,41 +320,25 @@ def check_series_params_or_404(group, start, end, format):
     return get_daterange_or_404(start, end)
 
 
-def check_stats_permission(request, addon, for_contributions=False):
+def check_stats_permission(request, addon):
     """
     Check if user is allowed to view stats for ``addon``.
 
     Raises PermissionDenied if user is not allowed.
     """
-    # If public, non-contributions: everybody can view.
-    if addon.public_stats and not for_contributions:
-        return
-
-    # Everything else requires an authenticated user.
-    if not request.user.is_authenticated():
+    can_view = addon.public_stats or (
+        request.user.is_authenticated() and (
+            addon.has_author(request.user) or
+            acl.action_allowed(request, amo.permissions.STATS_VIEW))
+    )
+    if not can_view:
         raise PermissionDenied
-
-    if not for_contributions:
-        # Only authors and Stats Viewers allowed.
-        if (addon.has_author(request.user) or
-                acl.action_allowed(request, amo.permissions.STATS_VIEW)):
-            return
-
-    else:  # For contribution stats.
-        # Only authors and Contribution Stats Viewers.
-        if (addon.has_author(request.user) or
-                acl.action_allowed(request,
-                                   amo.permissions.REVENUE_STATS_VIEW)):
-            return
-
-    raise PermissionDenied
 
 
 @addon_view
 @non_atomic_requests
 def stats_report(request, addon, report):
-    check_stats_permission(request, addon,
-                           for_contributions=(report == 'contributions'))
+    check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
     return render(request, 'stats/reports/%s.html' % report,
@@ -443,33 +427,6 @@ def site_event_format(request, events):
             'description': e.description,
             'url': e.more_info_url,
         }
-
-
-@addon_view
-@non_atomic_requests
-def contributions_series(request, addon, group, start, end, format):
-    """Generate summarized contributions grouped by ``group`` in ``format``."""
-    date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, for_contributions=True)
-
-    # Beware: this needs to scan all the matching rows to do aggregates.
-    qs = (Contribution.objects.extra(select={'date_created': 'date(created)'})
-          .filter(addon=addon, amount__gt=0, transaction_id__isnull=False,
-                  created__range=date_range)
-          .values('date_created')
-          .annotate(count=Count('amount'), average=Avg('amount'),
-                    total=Sum('amount')))
-
-    # Add `date` and `end` keys for legacy compat.
-    series = sorted(qs, key=lambda x: x['date_created'], reverse=True)
-    for row in series:
-        row['end'] = row['date'] = row.pop('date_created')
-
-    if format == 'csv':
-        return render_csv(request, addon, series,
-                          ['date', 'count', 'total', 'average'])
-    elif format == 'json':
-        return render_json(request, addon, series)
 
 
 def daterange(start_date, end_date):
