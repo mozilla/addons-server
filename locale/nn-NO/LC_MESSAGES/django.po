@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 18:35+0000\n"
+"PO-Revision-Date: 2017-11-24 07:05+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -210,7 +210,7 @@ msgid "Add-ons for {0}"
 msgstr "Utvidingar for {0}"
 
 msgid "Featured Extensions"
-msgstr "Utvalde utvidingar"
+msgstr "Framheva utvidingar"
 
 msgid "Popular Extensions"
 msgstr "Populære utvidingar"
@@ -1393,7 +1393,7 @@ msgstr "%s tema"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr "Utvalde utvidingar :: %s"
+msgstr "Framheva utvidingar :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1431,14 +1431,14 @@ msgstr "Nedlastingar"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr "{0}: Utvalde utvidingar"
+msgstr "{0}: Framheva utvidingar"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr "Ingen utvalde utvidingar i {0}."
+msgstr "Ingen framheva utvidingar i {0}."
 
 msgid "Featured Add-ons"
-msgstr "Utvalde utvidingar"
+msgstr "Framheva utvidingar"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -1545,7 +1545,7 @@ msgstr "Framgangsrike utvidingar"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr "Utvalde komplette tema"
+msgstr "Framheva komplette tema"
 
 msgid "Most Popular Complete Themes"
 msgstr "Mest populære fullstendige tema"
@@ -2605,9 +2605,8 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Kategorier kan ikkje endrast medan innlegget ditt er framheva for denne appen."
+msgstr "Kategorier kan ikkje endrast når utvidinga di er framheva."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
@@ -3182,7 +3181,7 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Brukt i opplisting av utvidingar, slik som søkjeresultat og framheva utvidingar."
 
 #. The size of the icon
 msgid "64x64px"
@@ -6415,13 +6414,11 @@ msgstr ""
 msgid "Legacy Add-ons"
 msgstr "Mine utvidingar"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Ny utviding ({0})"
+msgstr "Nye utvidingar ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Utvidingsoppdateringar"
+msgstr "Utvidingsoppdateringar ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Vurderingslogg for utvidingar"
@@ -6429,13 +6426,11 @@ msgstr "Vurderingslogg for utvidingar"
 msgid "Signed Beta Files Log"
 msgstr "SIgnert beta-fillogg"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Automatisk godkjende tillegg"
+msgstr "Auto-godkjende utvidingar"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatisk godkjend tillegg ({0})"
+msgstr "Auto-godkjende utvidingar ({0})"
 
 msgid "Content Review"
 msgstr "Innhaldsvurdering"
@@ -6445,17 +6440,14 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Innhaldsvurdering({0})"
 msgstr[1] "Innhaldsvurderingar ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Ny utviding ({0})"
+msgstr "Nye tema ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Oppdatering ({0})"
+msgstr "Temaoppdateringar ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Flagga tema"
+msgstr "Flagga tema ({0})"
 
 #, fuzzy
 msgid "Themes Review Log"
