@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 08:50+0000\n"
+"PO-Revision-Date: 2017-11-24 08:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1835,9 +1835,8 @@ msgstr "A(z) {addon} kiegészítő hozzáadásra került a(z) {collection} gyűj
 msgid "{addon} removed from {collection}."
 msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} értékelés érkezett a(z) {addon} kiegészítőhöz."
+msgstr "{rating} érkezett a(z) {addon} kiegészítőhöz."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1870,9 +1869,8 @@ msgstr "{addon} kiegészítő irányelvei megváltoztak."
 msgid "{addon} icon changed."
 msgstr "{addon} kiegészítő ikonja megváltozott."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "a(z) {addon} kiegészítő {review} jóváhagyva."
+msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
 #, fuzzy
 msgid "{user} approved {rating} for {addon}."
@@ -6708,7 +6706,7 @@ msgid "User Ratings Moderation"
 msgstr "Felhasználói értékelések moderálása"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Moderálásra váró értékelések ({0})"
 
 # 80%
 # 100%
@@ -7451,7 +7449,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "A leírófájlban adja meg a kiegészítő GUID-ját, ha 64 karakternél hosszabb."
 
 msgid "Invalid GUID in URL"
 msgstr "Érvénytelen GUID az URL-ben"
