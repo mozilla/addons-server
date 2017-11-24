@@ -816,8 +816,11 @@ def review(request, addon, channel=None):
         perform_review_permission_checks(
             request, addon, channel, content_review_only=content_review_only)
 
-    version = addon.find_latest_version(
-        channel=channel, exclude=(amo.STATUS_BETA,))
+    # Find the last version (ignoring beta and disabled: they don't need to be
+    # reviewed, betas are always public and disabled will revert to their
+    # original status if they are ever re-enabled), it will be the version we
+    # want to review.
+    version = addon.find_latest_version(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(

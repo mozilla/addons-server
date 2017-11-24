@@ -3188,8 +3188,12 @@ class TestReview(ReviewBase):
         else:
             action = 'reply'
 
-        data = dict(action=action, operating_systems='win',
-                    applications='something', comments='something')
+        data = {
+            'action': action,
+            'operating_systems': 'win',
+            'applications': 'something',
+            'comments': 'something',
+        }
         self.client.post(url, data)
 
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
@@ -3247,16 +3251,16 @@ class TestReview(ReviewBase):
 
     def test_viewing(self):
         url = reverse('reviewers.review_viewing')
-        r = self.client.post(url, {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(url, {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
 
         # Now, login as someone else and test.
         self.login_as_admin()
-        r = self.client.post(url, {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(url, {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 0
@@ -3266,30 +3270,30 @@ class TestReview(ReviewBase):
     def test_viewing_lock_limit(self):
         url = reverse('reviewers.review_viewing')
 
-        res = self.client.post(url, {'addon_id': 1234})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
 
         # Second review page is over the limit.
-        res = self.client.post(url, {'addon_id': 5678})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(response.content)
         assert data['current'] == settings.TASK_USER_ID  # Mozilla's task ID.
         assert data['current_name'] == 'Review lock limit reached'
         assert data['is_user'] == 2
 
         # Now, login as someone else and test.  First page is blocked.
         self.login_as_admin()
-        res = self.client.post(url, {'addon_id': 1234})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 0
 
         # Second page is available.
-        res = self.client.post(url, {'addon_id': 5678})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(response.content)
         admin = UserProfile.objects.get(username='admin')
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
@@ -3302,15 +3306,15 @@ class TestReview(ReviewBase):
         url = reverse('reviewers.review_viewing')
         admin = UserProfile.objects.get(username='admin')
 
-        res = self.client.post(url, {'addon_id': 101})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 101})
+        data = json.loads(response.content)
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
         assert data['is_user'] == 1
 
         # Admin don't have time for no limits.
-        res = self.client.post(url, {'addon_id': 202})
-        data = json.loads(res.content)
+        response = self.client.post(url, {'addon_id': 202})
+        data = json.loads(response.content)
         assert data['current'] == admin.id
         assert data['current_name'] == admin.name
         assert data['is_user'] == 1
@@ -3327,9 +3331,9 @@ class TestReview(ReviewBase):
         assert cache.get(key) is None
 
     def test_viewing_queue(self):
-        r = self.client.post(reverse('reviewers.review_viewing'),
-                             {'addon_id': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.post(reverse('reviewers.review_viewing'),
+                                    {'addon_id': self.addon.id})
+        data = json.loads(response.content)
         assert data['current'] == self.reviewer.id
         assert data['current_name'] == self.reviewer.name
         assert data['is_user'] == 1
@@ -3894,6 +3898,22 @@ class TestReview(ReviewBase):
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
             'public|reject|')
+
+    def test_post_review_ignore_disabled_or_beta(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        expected_actions = [
+            'confirm_auto_approved', 'reject_multiple_versions', 'reply',
+            'super', 'comment']
+        assert (
+            [action[0] for action in response.context['actions']] ==
+            expected_actions)
 
 
 class TestReviewPending(ReviewBase):
