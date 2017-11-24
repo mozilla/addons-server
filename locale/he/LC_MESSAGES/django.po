@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-22 17:23+0000\n"
+"PO-Revision-Date: 2017-11-24 06:26+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4356,7 +4356,7 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
@@ -6354,7 +6354,7 @@ msgid "Search by add-on name / author email"
 msgstr ""
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "נדרשת סקירת קוד של מנהל"
 
 msgid "yes"
 msgstr "כן"
@@ -6386,9 +6386,8 @@ msgstr ""
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "סקירת תוכן של תוספת"
+msgstr "מחיקת סימון דרישת סריקת תוכן של מנהל"
 
 msgid "Is more info requested?"
 msgstr "האם נדרש מידע נוסף?"
@@ -6414,7 +6413,7 @@ msgid "Skip for now"
 msgstr "דילוג לבינתיים"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "נדרשת סקירת תוכן של מנהל"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6581,16 +6580,14 @@ msgstr "ערכות נושא חדשות ({0})"
 msgid "Themes Updates ({0})"
 msgstr "עדכוני ערכות נושא ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "ערכות נושא מומלצות"
+msgstr "ערכות נושא מסומנות ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "סקירה לערכת נושא"
+msgstr "יומן סקירות ערכות נושא"
 
 msgid "Deleted themes Log"
-msgstr ""
+msgstr "יומן ערכות נושא שנמחקו"
 
 msgid "User Ratings Moderation"
 msgstr ""
