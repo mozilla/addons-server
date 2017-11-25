@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-25 18:28+0000\n"
+"PO-Revision-Date: 2017-11-25 18:31+0000\n"
 "Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -251,7 +251,7 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s descarregamento semanal"
+msgstr[0] "%(num)s descarga semanal"
 msgstr[1] "%(num)s descargas semanais"
 
 #, python-format
@@ -272,7 +272,7 @@ msgstr "Compatível com o Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} descarregamento semanal"
+msgstr[0] "{0} descarga semanal"
 msgstr[1] "{0} descargas semanais"
 
 #. {0} is the number of users.
@@ -662,8 +662,8 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> descarregamento semanal"
-msgstr[1] "<strong>{0}</strong> descarregamentos semanais"
+msgstr[0] "<strong>{0}</strong> descarga semanal"
+msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 msgid "Not Reviewed"
 msgstr "Não revisto"
@@ -1436,7 +1436,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Descarregamentos semanais"
+msgstr "Descargas semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1448,7 +1448,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Descarregamentos"
+msgstr "Descargas"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1555,7 +1555,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por descarregamentos semanais"
+msgstr "Extensões por descargas semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1581,7 +1581,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por descarregamentos semanais"
+msgstr "Temas completos por descargas semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -2129,7 +2129,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de descarregamentos"
+msgstr "Gestão de descargas"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2306,7 +2306,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Descarregamentos e gestão de ficheiros"
+msgstr "Descargas e gestão de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -3171,7 +3171,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "No caso de as estatísticas de descarregamentos e de utilização do seu extra poderem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3359,7 +3359,7 @@ msgid "Actions"
 msgstr "Ações"
 
 msgid "Resume the submission process for this add-on."
-msgstr "Continuar o processo de envio para este extra."
+msgstr "Retomar o processo de submissão para este extra."
 
 msgid "Resume"
 msgstr "Retomar"
@@ -3380,7 +3380,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre descarregamentos e utilizadores."
+msgstr "Estatísticas diárias sobre descargas e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -7625,14 +7625,14 @@ msgid "Downloaded by Date"
 msgstr "Descarregados por data"
 
 msgid "How are downloads counted?"
-msgstr "Como é que os descarregamentos são contabilizados?"
+msgstr "Como é que as descargas são contabilizadas?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Como é que os descarregamentos são contabilizados?</h2> <p> O número de descarregamentos é atualizado todas as noites e inclui apenas descarregamentos originais de extras e não de atualizações. "
-"Os descarregamentos podem ser decompostos pela fonte específica que referenciou o descarregamento. </p>"
+"<h2>Como é que as descargas são contabilizadas?</h2> <p> O número de descargas é atualizado todas as noites e apenas inclui descargas originais de extras e não atualizações. As descargas podem ser "
+"decompostas pela fonte específica que referenciou a descarga. </p>"
 
 msgid "User languages by Date"
 msgstr "Idiomas de utilizador por data"
@@ -7641,7 +7641,7 @@ msgid "Platform usage by Date"
 msgstr "Utilização da plataforma por data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> descarregamentos"
+msgstr "<b>{0}</b> descargas"
 
 msgid "Loading..."
 msgstr "A carregar..."
@@ -7674,7 +7674,7 @@ msgid "Reviews Created by Date"
 msgstr "Análise criadas por data"
 
 msgid "Download sources by Date"
-msgstr "Fonte dos descarregamentos por data"
+msgstr "Fonte das descargas por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
@@ -7818,7 +7818,7 @@ msgstr "<a href=\"%(reg)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessã
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Para experimentar os milhares de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
+msgstr "Para experimentar os milhares de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
