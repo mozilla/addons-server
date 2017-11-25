@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-25 15:13+0000\n"
+"PO-Revision-Date: 2017-11-25 15:55+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6530,13 +6530,11 @@ msgstr "Applications :"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Me notifier la prochaine fois que ce module est mis à jour. (les mises à jours suivantes ne génèreront pas de message)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Enlever le drapeau de demande de revue administrateur"
+msgstr "Enlever le drapeau de revue administrateur"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Enlever le drapeau de demande de revue administrateur"
+msgstr "Enlever le drapeau de revue administrateur pour le contenu"
 
 msgid "Is more info requested?"
 msgstr "Besoin de plus d’informations ?"
@@ -6687,9 +6685,8 @@ msgstr "Modules obsolètes"
 msgid "New Add-ons ({0})"
 msgstr "Nouveaux modules ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Mises à jour du module"
+msgstr "Mises à jour du module ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Journal de revue du module"
@@ -6697,13 +6694,11 @@ msgstr "Journal de revue du module"
 msgid "Signed Beta Files Log"
 msgstr "Journal pour les fichiers beta signés"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Modules complémentaires approuvés automatiquement"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Module complémentaire approuvé automatiquement ({0})"
+msgstr "Modules complémentaires approuvés automatiquement ({0})"
 
 msgid "Content Review"
 msgstr "Revue du contenu"
@@ -6729,7 +6724,7 @@ msgid "Deleted themes Log"
 msgstr "Journal des thèmes supprimés"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Modération des notes d’utilisateurs"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr "Notes en attente de modération ({0})"
@@ -6814,7 +6809,6 @@ msgstr "Dernière date d’approbation"
 msgid "Abuse Reports ({num})"
 msgstr "Signalements d’abus ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Avis négatifs d’utilisateurs ({num})"
 
@@ -7465,7 +7459,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Seules les WebExtensions sont autorisées à omettre le GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Veuillez spécifier le GUID de votre module dans le manifeste s’il est plus long que 64 caractères."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID invalide dans l’URL"
