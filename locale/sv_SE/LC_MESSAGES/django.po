@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-25 11:30+0000\n"
+"PO-Revision-Date: 2017-11-25 11:35+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6652,9 +6652,8 @@ msgstr "Äldre tillägg"
 msgid "New Add-ons ({0})"
 msgstr "Nya tillägg ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Tilläggsuppdateringar"
+msgstr "Tilläggsuppdateringar ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Granskningslogg för tillägg"
@@ -6662,13 +6661,11 @@ msgstr "Granskningslogg för tillägg"
 msgid "Signed Beta Files Log"
 msgstr "Signerad Beta fillogg"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatiskt godkänt tillägg ({0})"
+msgstr "Automatiskt godkända tillägg ({0})"
 
 msgid "Content Review"
 msgstr "Innehållsgranskning"
@@ -6678,30 +6675,26 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Innehållsgranskning ({0})"
 msgstr[1] "Innehållsgranskningar ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Nytt tillägg ({0})"
+msgstr "Nya teman ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Uppdatering ({0})"
+msgstr "Temauppdateringar ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Flaggade teman"
+msgstr "Flaggade teman ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Temagranskning"
+msgstr "Temagranskningslogg"
 
 msgid "Deleted themes Log"
 msgstr "Borttagen temalogg"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderering användarbetyg"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Betyg som väntar på moderering ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Modererad granskningslogg"
@@ -6781,9 +6774,8 @@ msgstr "Senaste datum för godkännande"
 msgid "Abuse Reports ({num})"
 msgstr "Missbruksrapporter ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Dåliga användarrecensioner ({num})"
+msgstr "Dåliga användarbetyg ({num})"
 
 msgid "More about this add-on"
 msgstr "Mer om detta tillägg"
@@ -7424,7 +7416,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Endast WebExtensions får utelämna GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Ange ditt tilläggs GUID i manifestet om det är längre än 64 tecken."
 
 msgid "Invalid GUID in URL"
 msgstr "Ogiltigt GUID i URL"
