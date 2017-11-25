@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 17:57+0000\n"
+"PO-Revision-Date: 2017-11-25 11:30+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6467,9 +6467,8 @@ msgstr "tillägg, granskare eller kommentar"
 msgid "Search by add-on name / author email"
 msgstr "Sök efter tilläggsnamn / upphovsman e-post"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Administratörsgranskning"
+msgstr "Behöver administrativ kodgranskning"
 
 msgid "yes"
 msgstr "ja"
@@ -6498,13 +6497,11 @@ msgstr "Applikationer:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Meddela mig nästa gång detta tillägg uppdateras. (Senare uppdateringar kommer inte att generera ett e-postmeddelande)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Rensa administratörs granskningsflagga"
+msgstr "Rensa flagga för administrativ kodgranskning"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Rensa administratörs granskningsflagga"
+msgstr "Rensa flagga för administrativ innehållsgranskning"
 
 msgid "Is more info requested?"
 msgstr "Behöver du mer information?"
@@ -6529,9 +6526,8 @@ msgstr "Behåll recension; ta bort flaggor"
 msgid "Skip for now"
 msgstr "Hoppa över nu"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Innehållsgranskning för tillägg"
+msgstr "Behöver administrativ innehållsgranskning"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-tillägg"
@@ -6698,9 +6694,8 @@ msgstr "Flaggade teman"
 msgid "Themes Review Log"
 msgstr "Temagranskning"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Ta bort tema"
+msgstr "Borttagen temalogg"
 
 msgid "User Ratings Moderation"
 msgstr ""
