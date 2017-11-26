@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-26 12:06+0000\n"
+"PO-Revision-Date: 2017-11-26 12:25+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3150,11 +3150,12 @@ msgstr ""
 msgid "Whiteboard"
 msgstr "Oppslagstavle"
 
-#, fuzzy
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
-msgstr "Tavla er platsen for å utveksle informasjon som er relevant for dette tillegget (uansett versjon), mellon utviklaren og redaktøren. Dette både sjåast og redigerast av begge."
+msgstr ""
+"Tavla er plassen for å utveksle informasjon som er relevant for utvidinga di, uansett versjon, til vurderarane. Bruk henne til å gje ulike måtar å teste utvidinga på, og eventuell ytterlegare "
+"informasjon som kan hjelpe til. Denne tavla kan og redigerast av vurderarar."
 
 msgid "Remove this dependent add-on"
 msgstr "Fjern denne ventande utvidinga"
@@ -3217,13 +3218,11 @@ msgstr ""
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
 msgstr ""
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Ein opphavsmann har ftt ei rolle endra i utvidinga di"
+msgstr "Kan andre bruke utvidinga di til kommersielle føremål?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Ein opphavsmann er fjerna frå utvidinga di"
+msgstr "Kan andre lage arbeid som er avleia frå utvidinga di?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
@@ -3237,9 +3236,8 @@ msgstr ""
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Temaet ditt vert sleppt under følgjande lisens:"
+msgstr "Utvidinga di vert sleppt under følgjande lisens:"
 
 msgid "Select a different license."
 msgstr "Vel ein annan lisens."
@@ -3523,9 +3521,8 @@ msgstr "Kvar skal versjonar husast"
 msgid "Upload Version"
 msgstr "Last opp versjon"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "Etter opplasting vil ei rad automatiserte valideringstenester køyrast på fila di."
+msgstr "Bruk feltet nedanfor for å laste opp utvidingspakken din. Etter opplasting, vil ei rad automatiserte valideringstestar køyrast på fila di."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Kva for plattformer er denne fila kompatibel med?"
