@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 07:05+0000\n"
+"PO-Revision-Date: 2017-11-26 12:06+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6227,9 +6227,8 @@ msgstr "utviding, vurderar eller kommentar"
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Adminvurdering"
+msgstr "Treng administrativ kodevurdering"
 
 msgid "yes"
 msgstr "ja"
@@ -6258,13 +6257,11 @@ msgstr "Appar:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Adminvurdering"
+msgstr "Fjern flagg for administrativ kodevurdering"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Innhaldsvurdering for utviding"
+msgstr "Fjern flagg for administrativ innhaldsvurdering"
 
 msgid "Is more info requested?"
 msgstr "Treng du meir informasjon?"
@@ -6289,9 +6286,8 @@ msgstr "Behald vurdering; fjern flagg"
 msgid "Skip for now"
 msgstr "Hopp over no"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Innhaldsvurdering for utviding"
+msgstr "Treng administrativ Innhaldsvurdering"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack-utviding"
@@ -6410,9 +6406,8 @@ msgstr "Godkjenn innhald"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Mine utvidingar"
+msgstr "Forelda utvidingar"
 
 msgid "New Add-ons ({0})"
 msgstr "Nye utvidingar ({0})"
@@ -6449,13 +6444,11 @@ msgstr "Temaoppdateringar ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Flagga tema ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Temavurdering"
+msgstr "Temavurderingslogg"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Slett tema"
+msgstr "Sletta temalogg"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6466,9 +6459,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr "Moderert vurderingslogg"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Alle ulista utvidingar"
+msgstr "Ulista utvidingar"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle ulista utvidingar"
@@ -6542,7 +6534,6 @@ msgstr "Seinaste dato for godkjenning"
 msgid "Abuse Reports ({num})"
 msgstr "Misbruksrapportar ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Dårlege brukarvurderingar ({num})"
 
