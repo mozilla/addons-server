@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-27 14:31+0000\n"
+"PO-Revision-Date: 2017-11-27 14:38+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3038,7 +3038,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Finkje dit fekje oan as de basisfunksjes fan dizze add-on in bepaalde foarm fan betelling foarôf oan of nei in proefperioade fereasket om wurkje te kinnen."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Dizze add-on fereasket betelling, net-fergese tsjinsten of software, of oanfoljende hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
@@ -6525,21 +6525,17 @@ msgstr[1] "Ynhâldsbeoardieling ({0})"
 msgid "New Themes ({0})"
 msgstr "Nije tema’s ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Fernijing ({0})"
+msgstr "Tema-fernijingen ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Oanrekommandearre tema’s"
+msgstr "Markearre tema’s ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Temabeoardieling"
+msgstr "Temabeoardielingslochboek"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Tema fuortsmite"
+msgstr "Lochboek fan fuortsmiten tema’s"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6550,9 +6546,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Alle net-fermelde add-ons"
+msgstr "Net-fermelde add-ons"
 
 msgid "All Unlisted Add-ons"
 msgstr "Alle net-fermelde add-ons"
@@ -6626,9 +6621,8 @@ msgstr "Datum fan lêste goedkarring"
 msgid "Abuse Reports ({num})"
 msgstr "Misbrûkmeldingen ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Slimme brûkersbeoardielingen ({num})"
+msgstr "Slimme brûkerswurdearringen ({num})"
 
 msgid "More about this add-on"
 msgstr "Mear oer dizze add-on"
@@ -6855,7 +6849,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr ""
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Befêstige)"
 
 msgid "Compatibility:"
 msgstr ""
@@ -6876,13 +6870,13 @@ msgid "Not Auto Approved Because"
 msgstr "Net automatysk goedkard fanwegen"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Script foar automatyske goedkarring is noch net op dizze ferzje útfierd."
 
 msgid "This version has not been reviewed."
 msgstr ""
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Selektearje ien of mear ferzjes yn de boppesteande list."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -7280,7 +7274,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Fier de GUID fan jo add-on yn it manifest as dizze langer is as 64 tekens."
 
 msgid "Invalid GUID in URL"
 msgstr "Unjildige GUID yn URL"
@@ -7576,7 +7570,7 @@ msgid "Choose a category"
 msgstr ""
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "De nije website stipet mobile en desktopclients"
 
 msgid "View the new site"
 msgstr "De nije website besjen"
