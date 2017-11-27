@@ -1873,10 +1873,10 @@ msgid "{rating} for {addon} approved."
 msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {review} értékelését."
+msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {rating} értékelését."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr "A(z) {addon} kiegészítőhöz tartozó {review} értékelés törlésre került."
+msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törlésre került."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} törölte a(z) {addon} kiegészítőhöz tartozó {rating} értékelést."

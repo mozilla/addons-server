@@ -1847,7 +1847,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} rimosso da {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr "Scritta {review} per {addon}."
+msgstr "Scritta {rating} per {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1881,10 +1881,10 @@ msgid "{addon} icon changed."
 msgstr "Icona di {addon} modificata."
 
 msgid "{rating} for {addon} approved."
-msgstr "Approvata {review} per {addon}."
+msgstr "Approvata {rating} per {addon}."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} ha approvato la {review} per {addon}."
+msgstr "{user} ha approvato la {rating} per {addon}."
 
 #, fuzzy
 msgid "Review {rating} for {addon} deleted."
