@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 18:25+0000\n"
+"PO-Revision-Date: 2017-11-27 08:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5378,7 +5378,7 @@ msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki 
 msgstr "További információkért a közreműködésről, olvassa el ezt a <a href=\"%(url)s\">wiki oldalt</a>."
 
 msgid "Developer FAQ"
-msgstr "Fejlesztői GYIK"
+msgstr "Fejlesztői GyIK"
 
 msgid "Sections"
 msgstr "Szakaszok"
