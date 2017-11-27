@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-27 08:00+0000\n"
+"PO-Revision-Date: 2017-11-27 14:19+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1872,17 +1872,14 @@ msgstr "{addon} kiegészítő ikonja megváltozott."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {review} értékelését."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "A {addon} kiegészítőhöz tartozó {review} értékelés törlésre került."
+msgstr "A(z) {addon} kiegészítőhöz tartozó {review} értékelés törlésre került."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{addon} kiegészítőhöz tartozó {review} értékelést {user} felhasználó törölte."
+msgstr "{user} törölte a(z) {addon} kiegészítőhöz tartozó {rating} értékelést."
 
 msgid "Application max version for {version} updated."
 msgstr "Az alkalmazás legmagasabb verziószáma frissítve lett erre: {version}."
@@ -1926,9 +1923,8 @@ msgstr "{user} felhasználó korlátozva."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "{0} admin megjelenítette {user} felhasználó tevékenységnaplóját."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} frissítve ehhez: {addon}."
+msgstr "{rating} frissítve a(z) {addon} kiegészítőnél."
 
 msgid "{addon} reviewed."
 msgstr "{addon} értékelve."
@@ -6776,7 +6772,6 @@ msgstr "Visszaélési jelentések ({num})"
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Rossz felhasználói értékelések ({num})"
 
