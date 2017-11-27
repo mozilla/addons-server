@@ -1846,7 +1846,6 @@ msgstr "{addon} aggiunto a {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} rimosso da {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
 msgstr "Scritta {review} per {addon}."
 
@@ -1881,11 +1880,9 @@ msgstr "{addon} ha cambiato informativa sulla privacy."
 msgid "{addon} icon changed."
 msgstr "Icona di {addon} modificata."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
 msgstr "Approvata {review} per {addon}."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user} ha approvato la {review} per {addon}."
 
