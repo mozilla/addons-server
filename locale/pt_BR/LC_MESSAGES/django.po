@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 12:31+0000\n"
+"PO-Revision-Date: 2017-11-27 00:22+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1874,9 +1874,8 @@ msgstr "{addon} adicionado a {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} removido de {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} escrita para {addon}."
+msgstr "{rating} para {addon} escrita."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1911,21 +1910,17 @@ msgstr "Política de {addon} alterada."
 msgid "{addon} icon changed."
 msgstr "Ícone de {addon} alterado."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} para {addon} aprovada."
+msgstr "{rating} para {addon} aprovada."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} aprovou {review} para {addon}."
+msgstr "{user} aprovou {rating} para {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Análise {review} para {addon} excluída."
+msgstr "Análise {rating} para {addon} excluída."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} excluiu {review} para {addon}."
+msgstr "{user} excluiu {rating} para {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versão máxima da aplicação para {version} atualizada."
@@ -1969,9 +1964,8 @@ msgstr "Usuário {user} restringido."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "O administrador {0} visualizou o registro de atividade de {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} de {addon} atualizada."
+msgstr "{rating} do {addon} atualizada."
 
 msgid "{addon} reviewed."
 msgstr "{addon} analisado."
@@ -3100,11 +3094,8 @@ msgstr "Essa extensão requer pagamento, serviços ou software pagos ou hardware
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Esta extensão não precisa de nenhum pagamento, serviços ou softwares pagos ou hardware adicional."
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
-"As categorias são o método mais comum que os usuários usam para navegar pelas extensões. Escolha uma que se enquadre na funcionalidade da sua extensão para uma maior exposição. Isto apenas é "
-"relevante para extensões listadas."
+msgstr "As categorias são o método mais comum que os usuários usam para navegar pelas extensões. Escolha uma que se enquadre na funcionalidade da sua extensão para uma maior exposição."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -6945,9 +6936,8 @@ msgstr "Denúncias de abuso ({num})"
 # %1 is the review count
 # 87%
 # 100%
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Análises negativas de usuários ({num})"
+msgstr "Classificações negativas de usuários ({num})"
 
 msgid "More about this add-on"
 msgstr "Mais sobre esta extensão"
@@ -7231,12 +7221,8 @@ msgstr "Testado em:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro usuário estava visualizando essa página antes de você."
 
-#, fuzzy
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-"O quadro branco é o local para se trocar informações relevantes para\n"
-"               este complemento (qualquer versão) entre o desenvolvedor e o editor.\n"
-"               Isto é visível e editável apenas por eles."
+msgstr "O quadro branco é o lugar para trocar informação relevante desta extensão (qualquer que seja a versão), entre o desenvolvedor e o revisor. Isto é visível e editável por ambos."
 
 msgid "Update the whiteboard"
 msgstr "Atualizar o quadro branco"
