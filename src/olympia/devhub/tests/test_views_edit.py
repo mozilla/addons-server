@@ -127,8 +127,10 @@ class BaseTestEditBasic(BaseTestEdit):
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
-            # We randomize slugs for unlisted add-ons
             assert unicode(addon.slug) == data['slug']
+        else:
+            # We randomize slugs for unlisted add-ons
+            assert len(data['slug']) == 20
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
@@ -195,9 +197,11 @@ class BaseTestEditBasic(BaseTestEdit):
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
-            # We randomize slugs for unlisted add-ons so we can't rely
-            # on the output
             assert unicode(addon.slug) == data['slug']
+        else:
+            # We randomize slugs for unlisted add-ons so we can't rely
+            # on the output and can only check the length of the hash
+            assert len(data['slug']) == 20
 
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
