@@ -124,13 +124,10 @@ class BaseTestEditBasic(BaseTestEdit):
         assert addon.name.id == old_name.id
 
         assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.slug) == data['slug']
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
-            assert unicode(addon.slug) == data['slug']
-        else:
-            # We randomize slugs for unlisted add-ons
-            assert len(data['slug']) == 20
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
