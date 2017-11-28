@@ -213,7 +213,7 @@ def dashboard(request):
             ugettext('Themes Review Log'),
             reverse('reviewers.themes.logs')
         ), (
-            ugettext('Deleted themes Log'),
+            ugettext('Deleted Themes Log'),
             reverse('reviewers.themes.deleted')
         ), (
             ugettext('Review Guide'),
