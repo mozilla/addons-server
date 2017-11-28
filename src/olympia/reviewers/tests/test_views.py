@@ -473,7 +473,58 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_all_permissions(self):
+    def test_admin_all_permissions(self):
+        # Create a lot of add-ons to test the queue counts.
+        # Nominated and pending.
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        under_admin_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review, needs_admin_code_review=True)
+        under_admin_review_and_pending = addon_factory()
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+        version_factory(
+            addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # Auto-approved and Content Review.
+        addon1 = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon1)
+        AutoApprovalSummary.objects.create(
+            version=addon1.current_version, verdict=amo.AUTO_APPROVED)
+        under_content_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
+        AutoApprovalSummary.objects.create(
+            version=under_content_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_content_review, needs_admin_content_review=True)
+        addon2 = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=addon2)
+        AutoApprovalSummary.objects.create(
+            version=addon2.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=addon2, needs_admin_content_review=True)
+        under_code_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
+        AutoApprovalSummary.objects.create(
+            version=under_code_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_code_review, needs_admin_code_review=True)
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
         response = self.client.get(self.url)
@@ -508,6 +559,10 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
+        assert doc('.dashboard a')[0].text == 'New Add-ons (2)'
+        assert doc('.dashboard a')[1].text == 'Add-on Updates (3)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[10].text == 'Content Review (4)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -555,6 +610,18 @@ class TestDashboard(TestCase):
         version_factory(
             addon=addon_factory(),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        # These two are under admin review and will be ignored.
+        under_admin_review = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review, needs_admin_code_review=True)
+        under_admin_review_and_pending = addon_factory()
+        AddonReviewerFlags.objects.create(
+            addon=under_admin_review_and_pending, needs_admin_code_review=True)
+        version_factory(
+            addon=under_admin_review_and_pending,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
 
         # Grant user the permission to see only the legacy add-ons section.
         self.grant_permission(self.user, 'Addons:Review')
@@ -578,13 +645,24 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[1].text == 'Add-on Updates (2)'
 
     def test_post_reviewer(self):
-        # Create an add-on to test the queue count.
+        # Create an add-on to test the queue count. It's under admin content
+        # review but that does not have an impact.
         addon = addon_factory(
             version_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
-
+        AddonReviewerFlags.objects.create(
+            addon=addon, needs_admin_content_review=True)
+        # This one however is under admin code review, it's ignored.
+        under_code_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
+        AutoApprovalSummary.objects.create(
+            version=under_code_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_code_review, needs_admin_code_review=True)
         # Grant user the permission to see only the Auto Approved section.
         self.grant_permission(self.user, 'Addons:PostReview')
 
@@ -604,12 +682,24 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
-        # Create an add-on to test the queue count.
+        # Create an add-on to test the queue count. It's under admin code
+        # review but that does not have an impact.
         addon = addon_factory(
             version_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=addon, needs_admin_code_review=True)
+        # This one is under admin *content* review so it's ignored.
+        under_content_review = addon_factory(
+            version_kw={'is_webextension': True})
+        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
+        AutoApprovalSummary.objects.create(
+            version=under_content_review.current_version,
+            verdict=amo.AUTO_APPROVED)
+        AddonReviewerFlags.objects.create(
+            addon=under_content_review, needs_admin_content_review=True)
 
         # Grant user the permission to see only the Content Review section.
         self.grant_permission(self.user, 'Addons:ContentReview')
