@@ -145,14 +145,23 @@ def dashboard(request):
     # section we provide in the context.
     sections = OrderedDict()
     view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
+    admin_reviewer = is_admin_reviewer(request)
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        full_review_queue = ViewFullReviewQueue.objects
+        pending_queue = ViewPendingQueue.objects
+        if not admin_reviewer:
+            full_review_queue = filter_admin_review_for_legacy_queue(
+                full_review_queue)
+            pending_queue = filter_admin_review_for_legacy_queue(
+                pending_queue)
+
         sections[ugettext('Legacy Add-ons')] = [(
             ugettext('New Add-ons ({0})').format(
-                ViewFullReviewQueue.objects.count()),
+                full_review_queue.count()),
             reverse('reviewers.queue_nominated')
         ), (
             ugettext('Add-on Updates ({0})').format(
-                ViewPendingQueue.objects.count()),
+                pending_queue.count()),
             reverse('reviewers.queue_pending')
         ), (
             ugettext('Performance'),
@@ -171,7 +180,8 @@ def dashboard(request):
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
-                AutoApprovalSummary.get_auto_approved_queue().count()),
+                AutoApprovalSummary.get_auto_approved_queue(
+                    admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_auto_approved')
         ), (
             ugettext('Performance'),
@@ -187,7 +197,8 @@ def dashboard(request):
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
-                AutoApprovalSummary.get_content_review_queue().count()),
+                AutoApprovalSummary.get_content_review_queue(
+                    admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_content_review')
         ), (
             ugettext('Performance'),
@@ -430,6 +441,11 @@ def is_admin_reviewer(request):
                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
+def filter_admin_review_for_legacy_queue(qs):
+    return qs.filter(
+        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False))
+
+
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
            SearchForm=forms.QueueSearchForm):
     if qs is None:
@@ -452,9 +468,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
         if not is_searching and not admin_reviewer:
-            qs = qs.filter(
-                Q(needs_admin_code_review=None) |
-                Q(needs_admin_code_review=False))
+            qs = filter_admin_review_for_legacy_queue(qs)
         if not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
@@ -493,9 +507,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         qs = sqlmodel.objects
 
         if not admin_reviewer:
-            qs = qs.filter(
-                Q(needs_admin_code_review=None) |
-                Q(needs_admin_code_review=False))
+            qs = filter_admin_review_for_legacy_queue(qs)
         if days_min:
             qs = qs.having('waiting_time_days >=', days_min)
         if days_max:
