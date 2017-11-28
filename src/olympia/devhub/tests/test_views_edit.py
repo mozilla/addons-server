@@ -59,10 +59,11 @@ class BaseTestEdit(TestCase):
                 Tag(tag_text=t).save_tag(addon)
         else:
             self.make_addon_unlisted(addon)
+            addon.save()
 
-        self.url = addon.get_dev_url()
         self.user = UserProfile.objects.get(pk=55021)
         self.addon = self.get_addon()
+        self.url = self.addon.get_dev_url()
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=3615)
@@ -122,8 +123,8 @@ class BaseTestEditBasic(BaseTestEdit):
         assert unicode(addon.name) == data['name']
         assert addon.name.id == old_name.id
 
-        assert unicode(addon.slug) == data['slug']
         assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.slug) == data['slug']
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
@@ -159,15 +160,16 @@ class BaseTestEditBasic(BaseTestEdit):
         response = self.client.post(self.basic_edit_url, data)
         assert response.status_code == 200
 
+        addon = self.get_addon()
+
         # Fetch the page so the LinkifiedTranslation gets in cache.
         response = self.client.get(
-            reverse('devhub.addons.edit', args=[data['slug']]))
+            reverse('devhub.addons.edit', args=[addon.slug]))
         assert pq(response.content)('[data-name=summary]').html().strip() == (
             '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
 
         # Now make sure we don't have escaped content in the rendered form.
-        form = AddonFormBasic(instance=self.get_addon(),
-                              request=req_factory_factory('/'))
+        form = AddonFormBasic(instance=addon, request=req_factory_factory('/'))
         html = pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html()
         assert html.strip() == '<b>oh my</b>'
 
@@ -187,9 +189,8 @@ class BaseTestEditBasic(BaseTestEdit):
         addon = self.get_addon()
 
         assert unicode(addon.name) == data['name']
-
-        assert unicode(addon.slug) == data['slug']
         assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.slug) == data['slug']
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
@@ -1026,6 +1027,7 @@ class BaseTestEditDetails(BaseTestEdit):
         self.addon.save()
         response = self.client.get(self.url)
         doc = pq(response.content)
+
         assert doc('#edit-addon-details span[lang]').html() == (
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
 
