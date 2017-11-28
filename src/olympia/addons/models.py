@@ -67,7 +67,7 @@ def get_random_slug():
     return ''.join(str(uuid.uuid4()).split('-')[:-1])
 
 
-def clean_slug(instance, slug_field='slug', randomize=False):
+def clean_slug(instance, slug_field='slug'):
     """Cleans a model instance slug.
 
     This strives to be as generic as possible but is generally only used
@@ -75,15 +75,8 @@ def clean_slug(instance, slug_field='slug', randomize=False):
 
     :param instance: The instance to clean the slug for.
     :param slug_field: The field where to get the currently set slug from.
-    :param randomize: Whether we allow the slug to be randomized.
-        This may happen for purely unlisted add-ons created via API.
     """
-    slug = getattr(instance, slug_field, None)
-
-    if not slug and randomize:
-        slug = get_random_slug()
-    else:
-        slug = slug or instance.name
+    slug = getattr(instance, slug_field, None) or instance.name
 
     if not slug:
         # Initialize the slug with what we have available: a name translation,
@@ -435,13 +428,7 @@ class Addon(OnChangeMixin, ModelBase):
         if self.status == amo.STATUS_DELETED:
             return
 
-        randomize_slug = (
-            self.id and
-            self.versions.all().exists() and not
-            self.has_listed_versions()
-        )
-
-        clean_slug(self, slug_field, randomize=randomize_slug)
+        clean_slug(self, slug_field)
 
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
@@ -554,6 +541,9 @@ class Addon(OnChangeMixin, ModelBase):
             data['guid'] = guid = generate_addon_guid()
 
         data = cls.resolve_webext_translations(data, upload)
+
+        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+            data['slug'] = get_random_slug()
 
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 

@@ -181,40 +181,6 @@ class TestCleanSlug(TestCase):
         addon = Addon.objects.create(name=u'Addön 1')
         assert addon.slug == u'addön-1'
 
-    def test_clean_slug_unlisted_version(self):
-        """Randomize the slug if an add-on only has unlisted versions."""
-        addon = addon_factory(
-            name=u'Addön',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-
-        assert addon.has_unlisted_versions()
-        assert not addon.has_listed_versions()
-
-        assert u'addön' not in addon.slug
-        assert len(addon.slug) == 20
-
-    def test_clean_slug_listed_version(self):
-        """Don't randomize slug if an add-on has listed versions."""
-        addon = addon_factory(
-            name=u'Addön',
-            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
-
-        assert not addon.has_unlisted_versions()
-        assert addon.has_listed_versions()
-        assert addon.slug == u'addön'
-
-    def test_clean_slug_listed_and_unlisted_version(self):
-        addon = addon_factory(
-            name=u'Addön',
-            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
-        version_factory(
-            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
-        addon.clean_slug()
-
-        assert addon.has_unlisted_versions()
-        assert addon.has_listed_versions()
-        assert addon.slug == u'addön'
-
 
 class TestAddonManager(TestCase):
     fixtures = ['base/appversion', 'base/users',
