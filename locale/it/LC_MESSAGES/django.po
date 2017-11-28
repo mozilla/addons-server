@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-23 19:21+0000\n"
-"Last-Translator: Sav22999 <savemore99.sm@gmail.com>\n"
+"PO-Revision-Date: 2017-11-28 06:43+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1886,9 +1886,8 @@ msgstr "Approvata {rating} per {addon}."
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user} ha approvato la {rating} per {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Revisione {review} di {addon} eliminata."
+msgstr "Recensione {rating} di {addon} eliminata."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} ha eliminato {rating} di {addon}."
@@ -1935,9 +1934,8 @@ msgstr "Utente {user} limitato."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "L’amministratore {0} ha visualizzato il registro attività di {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} per {addon} aggiornata."
+msgstr "{rating} per {addon} aggiornata."
 
 msgid "{addon} reviewed."
 msgstr "Il componente aggiuntivo {addon} è stato revisionato."
@@ -6530,9 +6528,8 @@ msgstr "componente aggiuntivo, revisore o commento"
 msgid "Search by add-on name / author email"
 msgstr "Cerca per nome del componente aggiuntivo o email dell’autore"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Revisione amministratore"
+msgstr "Necessaria revisione del codice da parte di un amministratore"
 
 msgid "yes"
 msgstr "sì"
@@ -6561,13 +6558,11 @@ msgstr "Applicazioni:"
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "Invia una notifica al prossimo aggiornamento del componente aggiuntivo (aggiornamenti successivi non genereranno alcuna email)"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Cancella il flag per la revisione da parte di un amministratore"
+msgstr "Rimuovi il flag per la revisione del codice da parte di un amministratore"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Cancella il flag per la revisione da parte di un amministratore"
+msgstr "Rimuovi il flag per la revisione dei contenuti da parte di un amministratore"
 
 msgid "Is more info requested?"
 msgstr "Sono richieste informazioni aggiuntive?"
@@ -6592,9 +6587,8 @@ msgstr "Mantieni revisioni; rimuovi flag"
 msgid "Skip for now"
 msgstr "Ignora per il momento"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Revisione contenuti del componente aggiuntivo"
+msgstr "Necessaria revisione dei contenuti da parte di un amministratore"
 
 msgid "Jetpack Add-on"
 msgstr "Componente aggiuntivo basato su Jetpack"
@@ -6717,17 +6711,14 @@ msgstr "Approva contenuti"
 msgid "This records your approbation of the content of this version, without notifying the developer."
 msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "I miei componenti aggiuntivi"
+msgstr "Componenti aggiuntivi obsoleti"
 
-#, fuzzy
 msgid "New Add-ons ({0})"
-msgstr "Nuovo componente aggiuntivo ({0})"
+msgstr "Nuovi componenti aggiuntivi ({0})"
 
-#, fuzzy
 msgid "Add-on Updates ({0})"
-msgstr "Aggiornamenti del componente aggiuntivo"
+msgstr "Componenti aggiuntivi aggiornati ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Registro revisione componente aggiuntivo"
@@ -6738,9 +6729,8 @@ msgstr "Log file beta firmati digitalmente"
 msgid "Auto-Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Componente aggiuntivo approvato automaticamente ({0})"
+msgstr "Componenti aggiuntivi approvati automaticamente ({0})"
 
 msgid "Content Review"
 msgstr "Revisione contenuti"
@@ -6750,38 +6740,32 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Revisione contenuti ({0})"
 msgstr[1] "Revisione contenuti ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Nuovo componente aggiuntivo ({0})"
+msgstr "Nuovi temi ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Aggiornato ({0})"
+msgstr "Temi aggiornati ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Temi segnalati"
+msgstr "Temi segnalati ({0})"
 
-#, fuzzy
 msgid "Themes Review Log"
-msgstr "Revisione tema"
+msgstr "Registro temi revisionati"
 
-#, fuzzy
 msgid "Deleted themes Log"
-msgstr "Elimina tema"
+msgstr "Registro temi eliminati"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderazione valutazioni utente"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Valutazioni in attesa di moderazione ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Registro di revisione moderato"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Tutti i componenti aggiuntivi esterni"
+msgstr "Componenti aggiuntivi esterni"
 
 msgid "All Unlisted Add-ons"
 msgstr "Tutti i componenti aggiuntivi esterni"
@@ -7508,7 +7492,7 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Solo ai componenti aggiuntivi che utilizzano WebExtensions è consentito omettere il GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "In caso il GUID del componente aggiuntivo superi i 64 caratteri, specificarlo per intero nel manifesto."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID non valido nell’URL"
