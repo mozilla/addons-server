@@ -1,21 +1,3 @@
-{% macro dropdown_menu(type, title, tabs, is_selected) %}
-{# type -- string (e.g. 'queue', 'log')
-   title -- translation string (e.g. _('Queues'))
-   tabs -- list of url/tab_code/tab_text tuples
-   is_selected -- boolean condition to highlight this element #}
-  {% if tabs %}
-    <li{% if is_selected %} class="selected"{% endif %}>
-      {% set tab_url = tabs[0][0] %}
-      <a href="{{ tab_url if tab_url.startswith('/') else url(tab_url) }}" class="controller trigger-{{ type }}">{{ title }}</a>
-      <ul>
-        {% for url_, tab_code, text in tabs %}
-          <li><a href="{{ url_ if url_.startswith('/') else url(url_) }}">{{ text }}</a></li>
-        {% endfor %}
-      </ul>
-    </li>
-  {% endif %}
-{% endmacro %}
-
 {% macro tabnav(type, tab, tabs, no_search_toggle) %}
 {# type -- string (e.g. 'queue', 'log')
    tabs -- list of named_url/tab_code/tab_text tuples #}
