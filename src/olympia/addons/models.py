@@ -70,7 +70,7 @@ def get_random_slug():
 def clean_slug(instance, slug_field='slug'):
     """Cleans a model instance slug.
 
-    This strives to be as generic as possible but is generally only used
+    This strives to be as generic as possible but is only used
     by Add-ons at the moment.
 
     :param instance: The instance to clean the slug for.
