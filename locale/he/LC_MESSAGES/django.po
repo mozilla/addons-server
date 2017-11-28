@@ -1872,9 +1872,8 @@ msgstr "התוספת {addon} נוספה לאוסף {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "התוספת {addon} הוסרה מהאוסף {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "תרומות עבור {addon}."
+msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1908,9 +1907,8 @@ msgstr "המדיניות של התוספת {addon} השתנתה."
 msgid "{addon} icon changed."
 msgstr "הצלמית של התוספת {addon} השתנתה."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "תרומות עבור {addon}."
+msgstr ""
 
 #, fuzzy
 msgid "{user} approved {rating} for {addon}."
@@ -1965,9 +1963,8 @@ msgstr "המשתמש {user} הוגבל."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "תרומות עבור {addon}."
+msgstr ""
 
 msgid "{addon} reviewed."
 msgstr ""
