@@ -79,8 +79,8 @@ def clean_slug(instance, slug_field='slug'):
     slug = getattr(instance, slug_field, None) or instance.name
 
     if not slug:
-        # Initialize the slug with what we have available: a name translation,
-        # or the id of the instance, or in last resort the model name.
+        # Initialize the slug with what we have available: a name translation
+        # or in last resort a random slug.
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
