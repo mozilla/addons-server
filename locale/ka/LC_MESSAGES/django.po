@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-24 23:33+0000\n"
+"PO-Revision-Date: 2017-11-29 15:34+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2932,7 +2932,7 @@ msgid "Authors"
 msgstr "ავტორები"
 
 msgid "About author roles"
-msgstr "ავტორის მოვალეობის შესახებ"
+msgstr "მოვალეობები"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -7835,7 +7835,7 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "ცვლილებში აღმოჩნდა შეცდომები. გთხოვთ შეასწოროთ და ხელახლა გადმოაგზავნოთ."
 
 msgid "User reported."
-msgstr "მოხსენება გაგზავნილია მომხმარებლის შესახებ."
+msgstr "მომხმარებლის შესახებ მოხსენება გაგზავნილია."
 
 msgid "new"
 msgstr "ახალი"
@@ -7980,7 +7980,7 @@ msgid "Themes Artist"
 msgstr "თემების მხატვარი"
 
 msgid "About me"
-msgstr "შემქმნელის შესახებ"
+msgstr "მონაცემები"
 
 msgid "In a little more detail..."
 msgstr "ცოტა უფრო ვრცლად..."
