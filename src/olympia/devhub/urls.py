@@ -77,6 +77,11 @@ detail_patterns = [
     url('^versions/submit/(?P<version_id>\d+)/finish$',
         views.submit_version_finish,
         name='devhub.submit.version.finish'),
+
+    url('^versions/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_version_theme_wizard,
+        name='devhub.submit.version.wizard'),
+
     # New file submission
     url('^versions/(?P<version_id>\d+)/submit-file/$',
         views.submit_file,
