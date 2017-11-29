@@ -1996,6 +1996,42 @@ class TestRatingViewSetPost(TestCase):
                 'rating': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
+    def test_rating_throttle_separated_from_abuse_throttle(self):
+        with freeze_time('2017-11-01') as frozen_time:
+            self.user = user_factory()
+            self.client.login_api(self.user)
+
+            # Submit an abuse report
+            url = reverse('abusereportaddon-list')
+            response = self.client.post(
+                url, data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201
+
+            # Make sure you can still submit a rating after the abuse report.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My n3w réview',
+                'title': None,
+                'rating': 2, 'version': self.addon.current_version.pk})
+            assert response.status_code == 201
+
+            # Add version so to avoid the one rating per version restriction.
+            new_version = version_factory(addon=self.addon)
+            # Second post, nope, have to wait a while.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My n3w réview',
+                'title': None,
+                'rating': 2, 'version': new_version.pk})
+            assert response.status_code == 429
+
+            # Throttle is 1 minute so check we can go again
+            frozen_time.tick(delta=timedelta(seconds=60))
+            # And we're good.
+            response = self.client.post(self.url, {
+                'addon': self.addon.pk, 'body': u'My réview', 'title': None,
+                'rating': 2, 'version': new_version.pk})
+            assert response.status_code == 201, response.content
+
 
 class TestRatingViewSetFlag(TestCase):
     client_class = APITestClient
