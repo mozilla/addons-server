@@ -2002,9 +2002,10 @@ class TestRatingViewSetPost(TestCase):
             self.client.login_api(self.user)
 
             # Submit an abuse report
-            url = reverse('abusereportaddon-list')
+            report_abuse_url = reverse('abusereportaddon-list')
             response = self.client.post(
-                url, data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
+                report_abuse_url,
+                data={'addon': unicode(self.addon.pk), 'message': 'lol!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201
 
@@ -2023,6 +2024,13 @@ class TestRatingViewSetPost(TestCase):
                 'title': None,
                 'rating': 2, 'version': new_version.pk})
             assert response.status_code == 429
+
+            # We can still report abuse, it's a different throttle.
+            response = self.client.post(
+                report_abuse_url,
+                data={'addon': unicode(self.addon.pk), 'message': 'again!'},
+                REMOTE_ADDR='123.45.67.89')
+            assert response.status_code == 201
 
             # Throttle is 1 minute so check we can go again
             frozen_time.tick(delta=timedelta(seconds=60))
