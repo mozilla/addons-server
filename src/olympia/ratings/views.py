@@ -224,6 +224,7 @@ def edit(request, addon, review_id):
 
 class RatingThrottle(UserRateThrottle):
     rate = '1/minute'
+    scope = 'user_rating'
 
     def allow_request(self, request, view):
         if request.method.lower() == 'post':
