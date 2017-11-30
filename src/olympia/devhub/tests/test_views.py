@@ -100,15 +100,19 @@ class TestDashboard(HubTest):
         footer appear.
 
         """
-        # Create 9 add-ons, there's already one existing from the setUp.
-        self.clone_addon(9)
+        # Create 10 add-ons.  We going to make the existing one from the setUp
+        # a static theme which shouldn't show up as an addon in this list.
+        self.clone_addon(10)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
         assert doc('nav.paginator').length == 0
 
-        # Create 5 add-ons.
+        # Create 5 add-ons -have to change self.addon back to clone extensions.
+        self.addon.update(type=amo.ADDON_EXTENSION)
         self.clone_addon(5)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url, {'page': 2})
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 5
@@ -120,9 +124,13 @@ class TestDashboard(HubTest):
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
             addon.addonuser_set.create(user=self.user_profile)
+        # And 2 static themes.
+        for x in range(2):
+            addon = addon_factory(type=amo.ADDON_STATICTHEME)
+            addon.addonuser_set.create(user=self.user_profile)
         response = self.client.get(self.themes_url)
         doc = pq(response.content)
-        assert len(doc('.item .item-info')) == 2
+        assert len(doc('.item .item-info')) == 4
 
     def test_show_hide_statistics(self):
         # Not disabled by user: show statistics.
