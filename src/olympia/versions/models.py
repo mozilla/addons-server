@@ -32,6 +32,7 @@ from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
 from .compare import version_dict, version_int
+from .tasks import generate_static_theme_preview
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -201,6 +202,21 @@ class Version(OnChangeMixin, ModelBase):
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=version)
+
+        # Generate a preview and icon for listed static themes
+        if (addon.type == amo.ADDON_STATICTHEME and
+                channel == amo.RELEASE_CHANNEL_LISTED):
+            from olympia.addons.models import Preview  # Avoid circular ref.
+            dst_root = os.path.join(user_media_path('addons'), str(addon.id))
+            theme_data = parsed_data.get('theme', {})
+            version_root = os.path.join(dst_root, unicode(version.id))
+
+            utils.extract_header_img(
+                version.all_files[0].file_path, theme_data, version_root)
+            preview = Preview.objects.create(
+                addon=addon, caption=unicode(version.version))
+            generate_static_theme_preview(
+                theme_data, version_root, preview)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.

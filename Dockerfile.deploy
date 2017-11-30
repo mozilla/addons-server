@@ -38,6 +38,8 @@ RUN apt-get update && apt-get install -y \
         uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
         git                              \
+        # ImageMagick is used to make our static theme previews
+        ImageMagick-devel \
         # Dependencies for mysql-python
         mysql-client                     \
         default-libmysqlclient-dev       \

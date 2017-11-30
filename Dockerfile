@@ -33,6 +33,8 @@ RUN apt-get update && apt-get install -y \
         python-pip \
         nodejs \
         npm \
+        # ImageMagick is used to make our static theme previews
+        ImageMagick-devel \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python

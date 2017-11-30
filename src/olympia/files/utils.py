@@ -498,6 +498,8 @@ class ManifestJSONExtractor(object):
                     'permissions': self.get('permissions', []),
                     'content_scripts': self.get('content_scripts', []),
                 })
+            elif self.type == amo.ADDON_STATICTHEME:
+                data.update(theme=self.get('theme', {}))
         return data
 
 
@@ -1144,6 +1146,21 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         return default['message']
 
     return message['message']
+
+
+def extract_header_img(file_obj, theme_data, dest_path):
+    """Extract static theme header image from `file_obj`."""
+    xpi = get_filepath(file_obj)
+    images_dict = theme_data.get('images', {})
+    # Get the reference in the manifest.  theme_frame is the Chrome variant.
+    header_url = images_dict.get(
+        'headerURL', images_dict.get('theme_frame'))
+
+    try:
+        with zipfile.ZipFile(xpi, 'r') as source:
+            source.extract(header_url, dest_path)
+    except IOError as ioerror:
+        log.debug(ioerror)
 
 
 @contextlib.contextmanager
