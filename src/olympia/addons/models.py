@@ -520,7 +520,7 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, channel):
+    def initialize_addon_from_upload(cls, data, upload, channel, user):
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
@@ -559,23 +559,20 @@ class Addon(OnChangeMixin, ModelBase):
         if old_guid_addon:
             old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
             old_guid_addon.save()
-        return addon
 
-    @classmethod
-    def create_addon_from_upload_data(cls, data, upload, channel, user=None,
-                                      **kwargs):
-        addon = cls.initialize_addon_from_upload(data, upload, channel,
-                                                 **kwargs)
-        AddonUser(addon=addon, user=user).save()
+        if user:
+            AddonUser(addon=addon, user=user).save()
         return addon
 
     @classmethod
     def from_upload(cls, upload, platforms, source=None,
-                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None):
+                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None,
+                    user=None):
         if not parsed_data:
             parsed_data = parse_addon(upload)
 
-        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
+        addon = cls.initialize_addon_from_upload(
+            parsed_data, upload, channel, user)
 
         if upload.validation_timeout:
             AddonReviewerFlags.objects.update_or_create(
