@@ -10,6 +10,7 @@ from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
@@ -221,6 +222,17 @@ def edit(request, addon, review_id):
         return json_view.error(form.errors)
 
 
+class RatingThrottle(UserRateThrottle):
+    rate = '1/minute'
+    scope = 'user_rating'
+
+    def allow_request(self, request, view):
+        if request.method.lower() == 'post':
+            return super(RatingThrottle, self).allow_request(request, view)
+        else:
+            return True
+
+
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [
@@ -249,6 +261,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
     )]
     reply_serializer_class = RatingSerializerReply
+    throttle_classes = (RatingThrottle,)
 
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
@@ -431,7 +444,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
-    @detail_route(methods=['post'])
+    @detail_route(methods=['post'], throttle_classes=[])
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
         # checks.

@@ -4,6 +4,8 @@
 {{ dev_page_title(_('Theme generate'), addon) }}
 {% endblock %}
 
+{% set channel_param = 'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
+
 {% block primary %}
   <h3>{{ _('Theme generator') }}</h3>
   <div id="theme-wizard">
@@ -67,20 +69,31 @@
       {% csrf_token %}
       <div class="hidden">
         {{ new_addon_form.upload }}
-        {{ new_addon_form.supported_platforms.errors }}
         {{ new_addon_form.supported_platforms }}
       </div>
+      {{ new_addon_form.supported_platforms.errors }}
+      {{ new_addon_form.upload.errors }}
       {{ new_addon_form.non_field_errors() }}
+      <ul class="errorlist validator">
+      </ul>
       <div class="submission-buttons addon-submission-field">
         <button class="delete-button" type="sumbit"
-                formaction="{{ url('devhub.submit.upload', 'unlisted'
-                if channel == amo.RELEASE_CHANNEL_UNLISTED else 'listed') }}">
-            {{ _('Back') }}
+            {% if addon %}
+                formaction="{{ url('devhub.submit.version.upload', addon.slug, channel_param) }}"
+            {% else %}
+                formaction="{{ url('devhub.submit.upload', channel_param) }}"
+            {% endif %}
+            >{{ _('Back') }}
         </button>
         &nbsp;
         <button class="button upload"
-            formaction="{{ url('devhub.upload' + (
-                '_unlisted' if channel == amo.RELEASE_CHANNEL_UNLISTED else '')) }}"
+            {% if addon %}
+                formaction="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
+            {% else %}
+                formaction="{{ url('devhub.upload_unlisted'
+                                   if channel == amo.RELEASE_CHANNEL_UNLISTED
+                                   else 'devhub.upload') }}"
+            {% endif %}
             data-uploading-text="{{ _('Uploading Theme') }}">{{ _('Upload Theme') }}</button>
       </div>
     </form>

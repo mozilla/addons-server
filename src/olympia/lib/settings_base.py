@@ -311,9 +311,8 @@ SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
-    'google231a41e803e464e9.html', 'robots.txt', 'statistics', 'services',
-    'sunbird', 'static', 'user-media',
-    '__version__',
+    'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
+    'services', 'sunbird', 'static', 'user-media', '__version__',
 )
 DEFAULT_APP = 'firefox'
 

@@ -16,6 +16,7 @@ from olympia.addons.views import AddonViewSet
 
 class AbuseThrottle(UserRateThrottle):
     rate = '20/day'
+    scope = 'user_abuse'
 
 
 class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):

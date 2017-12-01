@@ -141,7 +141,7 @@ $(document).ready(function() {
             manifest = {
                 name: $wizard.find('#theme-name').val(),
                 manifest_version: 2,
-                version: '1.0',
+                version: generateVersionString(),
                 theme: {
                     images: {
                         headerURL: headerURL
@@ -150,6 +150,12 @@ $(document).ready(function() {
                 }
             };
             return JSON.stringify(manifest, null, 4);
+        }
+
+        function generateVersionString() {
+            var dateNow = new Date();
+            return [dateNow.getFullYear(), dateNow.getMonth() + 1, dateNow.getDate(),
+                    dateNow.getHours() * 60 + dateNow.getMinutes()].join('.');
         }
 
         function buildZip() {
@@ -181,6 +187,7 @@ $(document).ready(function() {
             var $button =  $(event.target);
             var zip = buildZip();
             $button.addClass('uploading').addClass('disabled')
+                   .data('upload-text', $button.text())
                    .text($button.data('uploading-text'));
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
@@ -202,17 +209,32 @@ $(document).ready(function() {
         }));
 
         function uploadDone(data) {
-            //console.log(data);
             if (!data.validation) {
                 setTimeout(function() {
                     $.ajax({
                         url: data.url,
                         dataType: 'json',
-                        success: uploadDone
+                        success: uploadDone,
+                        error: function (xhr, text, error) {
+                            // Fake the validation so we can display as an error.
+                            uploadDone({validation:{
+                                errors:1,
+                                messages:[{message:error}]
+                            }});
+                        }
                     });
                 }, 1000);
             } else {
-                $wizard.find('#submit-describe').submit();
+                if (data.validation.errors === 0 ) {
+                    $wizard.find('#submit-describe').submit();
+                } else {
+                    data.validation.messages.forEach(function(message) {
+                       $('.errorlist.validator').append($('<li>', {'html': message.message}));
+                       console.error(message);
+                    });
+                    $('button.upload').removeClass('uploading').removeClass('disabled')
+                                      .text($('button.upload').data('upload-text'));
+                }
             }
         }
 

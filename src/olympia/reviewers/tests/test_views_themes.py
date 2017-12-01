@@ -9,7 +9,7 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase, initialize_session
+from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import Persona
@@ -17,7 +17,7 @@ from olympia.amo.tests import addon_factory, days_ago
 from olympia.amo.urlresolvers import reverse
 from olympia.reviewers.models import (
     RereviewQueueTheme, ReviewerScore, ThemeLock)
-from olympia.reviewers.views_themes import _get_themes, home, themes_search
+from olympia.reviewers.views_themes import _get_themes, themes_search
 from olympia.users.models import UserProfile
 
 
@@ -720,60 +720,11 @@ class TestThemeSearch(amo.tests.ESTestCase):
         assert self.search('theme', rereview=True)[0]['id'] == self.addon.id
 
 
-class TestDashboard(TestCase):
-    fixtures = ['reviewers/user_persona_reviewer']
-
-    def setUp(self):
-        super(TestDashboard, self).setUp()
-        self.url = reverse('reviewers.themes.home')
-        self.user = UserProfile.objects.get(username='persona_reviewer')
-        self.request = amo.tests.req_factory_factory(self.url, user=self.user)
-        initialize_session(self.request, {})
-
-    def test_dashboard_queue_counts(self):
-        # Pending.
-        addon_factory(type=amo.ADDON_PERSONA,
-                      status=amo.STATUS_PENDING)
-        for i in range(2):
-            # Flagged.
-            addon_factory(type=amo.ADDON_PERSONA,
-                          status=amo.STATUS_REVIEW_PENDING)
-        # Rereview.
-        rereview = addon_factory(type=amo.ADDON_PERSONA,
-                                 status=amo.STATUS_PUBLIC)
-        RereviewQueueTheme.objects.create(theme=rereview.persona)
-
-        response = home(self.request)
-        assert response.status_code == 200
-
-        doc = pq(response.content)
-        titles = doc('#reviewers-stats-charts .reviewer-stats-title a')
-        assert titles[0].text.strip()[0] == '1'  # Pending count.
-        assert titles[1].text.strip()[0] == '2'  # Flagged count.
-        assert titles[2].text.strip()[0] == '1'  # Rereview count.
-
-    def test_dashboard_review_counts(self):
-        theme = addon_factory(type=amo.ADDON_PERSONA)
-        for i in range(3):
-            ActivityLog.create(amo.LOG.THEME_REVIEW, theme,
-                               user=UserProfile.objects.get())
-
-        response = home(self.request)
-        assert response.status_code == 200
-
-        doc = pq(response.content)
-        # Total reviews.
-        assert doc('.reviewer-stats-table:first-child td.int').text() == '3'
-        # Reviews monthly.
-        assert doc('.reviewer-stats-table:last-child td.int').text() == '3'
-
-    def test_themes_is_selected_in_nav(self):
-        self.client.login(email=self.user.email)
-        # Also grant access to addons, so that the nav is shown.
-        self.grant_permission(self.user, 'Addons:Review')
-        doc = pq(self.client.get(self.url).content)
-        assert (doc('.amo-header nav a.selected').attr('href') ==
-                '/en-US/editors/themes')
+class TestOldDashboard(TestCase):
+    def test_redirect_to_new_dashboard(self):
+        response = self.client.get('/en-US/reviewers/themes')
+        self.assert3xx(
+            response, reverse('reviewers.dashboard'), status_code=301)
 
 
 class TestXssOnThemeName(amo.tests.TestXss):
