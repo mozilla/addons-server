@@ -3527,7 +3527,7 @@ class TestReview(ReviewBase):
         rating = Rating.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = defaultfilters.date(report.created)
+        created_at = defaultfilters.date(rating.created)
         Rating.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
         Rating.objects.create(  # Reply to a review, ignored.
