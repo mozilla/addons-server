@@ -223,7 +223,7 @@ function initDailyMessage(doc) {
     $motd.find('.close').show();
     if (storage.get('motd_closed') != $('p', $motd).text()) {
         // You haven't read this spam yet? Here, I have something to show you.
-        $motd.slideDown();
+        $motd.show();
     }
     $motd.find('.close').click(function(e) {
         e.stopPropagation();

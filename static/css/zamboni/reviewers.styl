@@ -1082,35 +1082,11 @@ h2.addon {
         float: right;
     }
 }
-#navbar {
-    clear: left;
-}
 gradient-two-color($color1, $color2) {
     background-color: $color2;
     background-image: -webkit-gradient(linear, left bottom, left top, from($color1), to($color2));
     background-image: linear-gradient($color1, $color2);
     background-image: -webkit-linear-gradient($color1, $color2);
-}
-.pill-nav-amo {
-    gradient-two-color(darken(#563C4B, 50%), darken(#563C4B, 30%));
-    border-radius: 16px;
-    display: inline-block;
-    padding: 8px 1px;
-    position: relative;
-    top: 9px;
-
-    a {
-        border-radius: 15px;
-        color: #ccc;
-        font-size: 15px;
-        padding: 9px 15px;
-
-        &.selected {
-            gradient-two-color(lighten(#2B4389, 10%), darken(#2B4389, 10%));
-            color: #fff;
-            pointer-events: none;
-        }
-    }
 }
 
 .whiteboard {

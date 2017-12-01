@@ -3,7 +3,6 @@ from datetime import date, datetime, timedelta
 import json
 import time
 
-from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
@@ -30,7 +29,7 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers import forms
 from olympia.reviewers.models import (
     AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
-    EventLog, get_flags, get_reviewing_cache, get_reviewing_cache_key,
+    get_flags, get_reviewing_cache, get_reviewing_cache_key,
     PerformanceGraph, RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
     set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
@@ -146,14 +145,23 @@ def dashboard(request):
     # section we provide in the context.
     sections = OrderedDict()
     view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
+    admin_reviewer = is_admin_reviewer(request)
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        full_review_queue = ViewFullReviewQueue.objects
+        pending_queue = ViewPendingQueue.objects
+        if not admin_reviewer:
+            full_review_queue = filter_admin_review_for_legacy_queue(
+                full_review_queue)
+            pending_queue = filter_admin_review_for_legacy_queue(
+                pending_queue)
+
         sections[ugettext('Legacy Add-ons')] = [(
             ugettext('New Add-ons ({0})').format(
-                ViewFullReviewQueue.objects.count()),
+                full_review_queue.count()),
             reverse('reviewers.queue_nominated')
         ), (
             ugettext('Add-on Updates ({0})').format(
-                ViewPendingQueue.objects.count()),
+                pending_queue.count()),
             reverse('reviewers.queue_pending')
         ), (
             ugettext('Performance'),
@@ -172,7 +180,8 @@ def dashboard(request):
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
-                AutoApprovalSummary.get_auto_approved_queue().count()),
+                AutoApprovalSummary.get_auto_approved_queue(
+                    admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_auto_approved')
         ), (
             ugettext('Performance'),
@@ -188,7 +197,8 @@ def dashboard(request):
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
-                AutoApprovalSummary.get_content_review_queue().count()),
+                AutoApprovalSummary.get_content_review_queue(
+                    admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_content_review')
         ), (
             ugettext('Performance'),
@@ -214,7 +224,7 @@ def dashboard(request):
             ugettext('Themes Review Log'),
             reverse('reviewers.themes.logs')
         ), (
-            ugettext('Deleted themes Log'),
+            ugettext('Deleted Themes Log'),
             reverse('reviewers.themes.deleted')
         ), (
             ugettext('Review Guide'),
@@ -252,93 +262,6 @@ def dashboard(request):
         # base_context includes motd.
         'sections': sections
     }))
-
-
-@any_reviewer_required
-def home(request):
-    if (not acl.action_allowed(request, amo.permissions.ADDONS_REVIEW) and
-            acl.action_allowed(request, amo.permissions.THEMES_REVIEW)):
-        return http.HttpResponseRedirect(reverse('reviewers.themes.home'))
-
-    motd_editable = acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-    durations = (('new', ugettext('New Add-ons (Under 5 days)')),
-                 ('med', ugettext('Passable (5 to 10 days)')),
-                 ('old', ugettext('Overdue (Over 10 days)')))
-
-    limited_reviewer = is_limited_reviewer(request)
-    progress, percentage = _reviewer_progress(
-        limited_reviewer=limited_reviewer)
-    reviews_max_display = getattr(settings, 'REVIEWER_REVIEWS_MAX_DISPLAY', 5)
-    reviews_total = ActivityLog.objects.total_ratings()[:reviews_max_display]
-    reviews_monthly = (
-        ActivityLog.objects.monthly_reviews()[:reviews_max_display])
-    reviews_total_count = ActivityLog.objects.user_approve_reviews(
-        request.user).count()
-    reviews_monthly_count = (
-        ActivityLog.objects.current_month_user_approve_reviews(
-            request.user).count())
-
-    # Try to read user position from retrieved reviews.
-    # If not available, query for it.
-    reviews_total_position = (
-        ActivityLog.objects.user_position(reviews_total, request.user) or
-        ActivityLog.objects.total_ratings_user_position(request.user))
-
-    reviews_monthly_position = (
-        ActivityLog.objects.user_position(reviews_monthly, request.user) or
-        ActivityLog.objects.monthly_reviews_user_position(request.user))
-
-    limited_reviewer = is_limited_reviewer(request)
-    data = context(
-        request,
-        reviews_total=reviews_total,
-        reviews_monthly=reviews_monthly,
-        reviews_total_count=reviews_total_count,
-        reviews_monthly_count=reviews_monthly_count,
-        reviews_total_position=reviews_total_position,
-        reviews_monthly_position=reviews_monthly_position,
-        new_reviewers=EventLog.new_reviewers(),
-        eventlog=ActivityLog.objects.reviewer_events()[:6],
-        progress=progress,
-        percentage=percentage,
-        durations=durations,
-        reviews_max_display=reviews_max_display,
-        motd_editable=motd_editable,
-        queue_counts_total=queue_counts(admin_reviewer=True,
-                                        limited_reviewer=limited_reviewer),
-    )
-
-    return render(request, 'reviewers/home.html', data)
-
-
-def _reviewer_progress(limited_reviewer=False):
-    """Return the progress (number of add-ons still unreviewed for a given
-       period of time) and the percentage (out of all add-ons of that type)."""
-
-    types = ['nominated', 'pending']
-    progress = {'new': queue_counts(types, days_max=4, unlisted=False,
-                                    admin_reviewer=True,
-                                    limited_reviewer=limited_reviewer),
-                'med': queue_counts(types, days_min=5, days_max=10,
-                                    unlisted=False, admin_reviewer=True,
-                                    limited_reviewer=limited_reviewer),
-                'old': queue_counts(types, days_min=11, unlisted=False,
-                                    admin_reviewer=True,
-                                    limited_reviewer=limited_reviewer)}
-
-    # Return the percent of (p)rogress out of (t)otal.
-    def pct(p, t):
-        return (p / float(t)) * 100 if p > 0 else 0
-
-    percentage = {}
-    for t in types:
-        total = progress['new'][t] + progress['med'][t] + progress['old'][t]
-        percentage[t] = {}
-        for duration in ('new', 'med', 'old'):
-            percentage[t][duration] = pct(progress[duration][t], total)
-
-    return (progress, percentage)
 
 
 @any_reviewer_required
@@ -518,6 +441,11 @@ def is_admin_reviewer(request):
                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
+def filter_admin_review_for_legacy_queue(qs):
+    return qs.filter(
+        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False))
+
+
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
            SearchForm=forms.QueueSearchForm):
     if qs is None:
@@ -540,9 +468,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
         if not is_searching and not admin_reviewer:
-            qs = qs.filter(
-                Q(needs_admin_code_review=None) |
-                Q(needs_admin_code_review=False))
+            qs = filter_admin_review_for_legacy_queue(qs)
         if not unlisted:
             if is_limited_reviewer(request):
                 qs = qs.having(
@@ -581,9 +507,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         qs = sqlmodel.objects
 
         if not admin_reviewer:
-            qs = qs.filter(
-                Q(needs_admin_code_review=None) |
-                Q(needs_admin_code_review=False))
+            qs = filter_admin_review_for_legacy_queue(qs)
         if days_min:
             qs = qs.having('waiting_time_days >=', days_min)
         if days_max:

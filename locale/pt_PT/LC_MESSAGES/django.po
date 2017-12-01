@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-25 18:31+0000\n"
-"Last-Translator: albertdcastro <albertdcastro@gmail.com>\n"
+"PO-Revision-Date: 2017-11-27 18:40+0000\n"
+"Last-Translator: Alberto Castro <albertdcastro@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -74,10 +74,10 @@ msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
 
 msgid "Download Now"
-msgstr "Descarregar agora"
+msgstr "Transferir agora"
 
 msgid "Download"
-msgstr "Descarregar"
+msgstr "Transferir"
 
 msgid "Featured"
 msgstr "Em destaque"
@@ -251,8 +251,8 @@ msgstr "Adicionado {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s descarga semanal"
-msgstr[1] "%(num)s descargas semanais"
+msgstr[0] "%(num)s transferência semanal"
+msgstr[1] "%(num)s transferências semanais"
 
 #, python-format
 msgid "%(num)s user"
@@ -272,7 +272,7 @@ msgstr "Compatível com o Firefox 57+"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} descarga semanal"
+msgstr[0] "{0} transferência semanal"
 msgstr[1] "{0} descargas semanais"
 
 #. {0} is the number of users.
@@ -447,7 +447,7 @@ msgid "by %(users)s"
 msgstr "por %(users)s"
 
 msgid "Download Anyway"
-msgstr "Descarregar mesmo assim"
+msgstr "Transferir mesmo assim"
 
 msgid "[Warning]"
 msgstr "[Aviso]"
@@ -662,7 +662,7 @@ msgstr "Nota do colecionador"
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> descarga semanal"
+msgstr[0] "<strong>{0}</strong> transferência semanal"
 msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 msgid "Not Reviewed"
@@ -762,10 +762,10 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Pedimos desculpa, mas não encontrámos o que procura.</h1> <p> A página ou ficheiro que pediu não foi encontrado no nosso site. É possível que tenha clicado numa ligação desatualizada, ou tenha "
-"digitado o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">submeta um issue</a>. Diga-nos de onde veio e o que procura e nós faremos os possíveis para o corrigir.</li> </ul> <p>Ou pode ir a algumas das páginas populares do nosso"
-" website. </p> <ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em destaque</a>?</li> <li>Deseja <a href=\"%(search)s\">procurar extras</a>? Pode ir para a <a "
+"<h1>Lamentamos, mas não encontrámos o que procura.</h1> <p> A página ou ficheiro que pediu não foi encontrado no nosso site. É possível que tenha clicado numa ligação desatualizada ou tenha digitado"
+" o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor, <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">submeta um comentário</a>. Diga-nos de onde veio e o que procura e nós faremos os possíveis para o corrigir.</li> </ul> <p>Ou pode ir a algumas das páginas populares do nosso "
+"website. </p> <ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em destaque</a>?</li> <li>Deseja <a href=\"%(search)s\">procurar extras</a>? Pode ir para a <a "
 "href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa em cima.</li> <li> Se preferir recomeçar, vá para a <a href=\"%(home)s\">página inicial dos extras</a>.</li> </ul>"
 
 msgid "Oops"
@@ -799,7 +799,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Esta funcionalidade está temporariamente desativada enquanto efetuamos uma manutenção ao website. Use o botão retroceder do seu navegador e tente de novo mais tarde."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Volte a tentar dentro de alguns minutos."
+msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Por favor, tente novamente dentro de alguns minutos."
 
 msgid "Are you human?"
 msgstr "Você é humano?"
@@ -1436,7 +1436,7 @@ msgid "Most Users"
 msgstr "Maior número de utilizadores"
 
 msgid "Weekly Downloads"
-msgstr "Descargas semanais"
+msgstr "Transferências semanais"
 
 msgid "Up & Coming"
 msgstr "Futuramente"
@@ -1448,7 +1448,7 @@ msgid "Created"
 msgstr "Criado"
 
 msgid "Downloads"
-msgstr "Descargas"
+msgstr "Transferências"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1472,10 +1472,10 @@ msgid "Install Language Pack"
 msgstr "Instalar pacote de idioma"
 
 msgid "Download Dictionary"
-msgstr "Descarregar dicionário"
+msgstr "Transferir dicionário"
 
 msgid "Download Language Pack"
-msgstr "Descarregar pacote de idioma"
+msgstr "Transferir pacote de idioma"
 
 #, python-format
 msgid ""
@@ -1555,7 +1555,7 @@ msgid "Extensions by Name"
 msgstr "Extensões por nome"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensões por descargas semanais"
+msgstr "Extensões por transferências semanais"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensões recentemente atualizadas"
@@ -1581,7 +1581,7 @@ msgid "Complete Themes by Name"
 msgstr "Temas completos por nome"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas completos por descargas semanais"
+msgstr "Temas completos por transferências semanais"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Temas completos atualizados recentemente"
@@ -2095,10 +2095,10 @@ msgid "Only ask on this add-on's page and developer profile"
 msgstr "Pedir apenas na página deste extra e no perfil do programador"
 
 msgid "Ask after users start downloading this add-on"
-msgstr "Perguntar depois de os utilizadores começarem a descarregar este extra"
+msgstr "Perguntar depois de os utilizadores começarem a transferir este extra"
 
 msgid "Ask before users can download this add-on"
-msgstr "Perguntar antes que os utilizadores descarreguem este extra"
+msgstr "Perguntar antes que os utilizadores transfiram este extra"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2129,7 +2129,7 @@ msgid "Bookmarks"
 msgstr "Marcadores"
 
 msgid "Download Management"
-msgstr "Gestão de descargas"
+msgstr "Gestão de transferências"
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
@@ -2306,7 +2306,7 @@ msgid "Privacy and Security"
 msgstr "Privacidade e segurança"
 
 msgid "Downloading and File Management"
-msgstr "Descargas e gestão de ficheiros"
+msgstr "Gestão de transferências e de ficheiros"
 
 msgid "Interface Customizations"
 msgstr "Personalizações de interface"
@@ -2324,7 +2324,7 @@ msgid "Site-specific"
 msgstr "Específico do site"
 
 msgid "Web and Developer Tools"
-msgstr "Ferramentas da web e de programador"
+msgstr "Ferramentas da web e de Programador"
 
 msgid "All Rights Reserved"
 msgstr "Todos os direitos reservados"
@@ -3171,7 +3171,7 @@ msgid "Public Stats?"
 msgstr "Estatísticas públicas?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
+msgstr "Se as estatísticas de transferências e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 msgid "This add-on's stats are publicly viewable."
@@ -3380,7 +3380,7 @@ msgid "New Version"
 msgstr "Nova versão"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Estatísticas diárias sobre descargas e utilizadores."
+msgstr "Estatísticas diárias sobre transferências e utilizadores."
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3549,16 +3549,16 @@ msgid "File Signed"
 msgstr "Ficheiro assinado"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
+msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode transferi-lo clicando no botão abaixo."
 
 msgid "Version Signed"
 msgstr "Versão assinada"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode descarregá-la clicando no botão abaixo."
+msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode transferi-la clicando no botão abaixo."
 
 msgid "Download {0}"
-msgstr "Descarregar {0}"
+msgstr "Transferir {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Selecionou apenas algumas das plataformas disponíveis para esta submissão.Pode carregar mais ficheiros, indicados outras plataformas:"
@@ -3760,8 +3760,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de descargas que um extra recebe. "
-"Por favor note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
+"Os utilizadores terão de aceitar um Acordo de licença de utilizador final (EULA) antes de instalar o extra. A presença de um EULA afeta significativamente o número de transferências que um extra "
+"recebe. Por favor, note que um EULA não é o mesmo de que uma licença de código, tal como a GPL ou a MPL. Isto apenas é relevante para extras listados."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -4522,7 +4522,7 @@ msgid "Problems decoding {0}."
 msgstr "Problemas ao decodificar {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Este ficheiro não é visível online. Por favor, descarregue o ficheiro para ver o conteúdo."
+msgstr "Este ficheiro não é visível online. Por favor, transfira o ficheiro para ver o conteúdo."
 
 msgid "This file is a directory."
 msgstr "Este ficheiro é uma directoria."
@@ -4662,7 +4662,7 @@ msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mis
 msgstr "Obrigado por usar o %(app)s e ajudar a <a href=\"%(url)s\">missão da Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Extras descarregados:"
+msgstr "Extras transferidos:"
 
 msgid "View Privacy Policy"
 msgstr "Ver Política de privacidade"
@@ -5453,9 +5453,9 @@ msgid ""
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir compatibilidade com o software da Mozilla mais recente, é importante descarregar atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda "
-"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente "
-"no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
+"Para garantir compatibilidade com o software da Mozilla mais recente, é importante transferir atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda funciona"
+" como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no "
+"processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu extra. Onde eu posso encontrar ajuda?"
@@ -5649,11 +5649,11 @@ msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on 
 msgstr "É por isso que é muito importante ler o <a href=\"%(g_url)s\">Guia de revisão de extras</a> para assegurar que o seu extra está configurado como esperado."
 
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Como posso ver quantas vezes o meu extra foi descarregado?"
+msgstr "Como posso ver quantas vezes o meu extra foi transferido?"
 
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas encontrado no painel de ferramentas de programador providencia informações que podem ajudá-lo a determinar o número de descargas do seu extra desde que o submeteu no AMO."
+"O painel de estatísticas, encontrado no painel de ferramentas de programador, fornece informações que podem ajudá-lo a determinar o número de transferências do seu extra desde que o submeteu no AMO."
 
 msgid "How can I see how many active users are using my add-on?"
 msgstr "Como posso ver quantos utilizadores ativos estão a utilizar o meu extra?"
@@ -5798,7 +5798,7 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "As <strong><a href=\"%(browse_url)s\">extensões</a></strong> adicionam novas funcionalidades ao %(app_name)s ou modificam uma funcionalidade existente. Existem extensões que lhe permitem bloquear "
-"anúncios, descarregar vídeos de websites, integrar de uma melhor maneira os websites sociais e adicionar funcionalidades que vê noutras aplicações."
+"anúncios, transferir vídeos de websites, integrar de uma melhor maneira os websites sociais e adicionar funcionalidades que vê noutras aplicações."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
@@ -7023,7 +7023,7 @@ msgid "Additional sources:"
 msgstr "Fontes adicionais:"
 
 msgid "Download files"
-msgstr "Descarregar ficheiros"
+msgstr "Transferir ficheiros"
 
 msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
@@ -7491,7 +7491,7 @@ msgstr "Extras criados"
 
 # 89%
 msgid "Add-ons Downloaded"
-msgstr "Extras descarregados"
+msgstr "Extras transferidos"
 
 msgid "Add-ons Updated"
 msgstr "Extras atualizados"
@@ -7604,7 +7604,7 @@ msgid "Add-ons Created by Date"
 msgstr "Extras criados por data"
 
 msgid "Add-ons Downloaded by Date"
-msgstr "Extras descarregados por data"
+msgstr "Extras transferidos por data"
 
 msgid "Add-ons in Use by Date"
 msgstr "Extras em utilização por data"
@@ -7622,17 +7622,17 @@ msgid "Contributions by Date"
 msgstr "Contribuições por data"
 
 msgid "Downloaded by Date"
-msgstr "Descarregados por data"
+msgstr "Transferidos por data"
 
 msgid "How are downloads counted?"
-msgstr "Como é que as descargas são contabilizadas?"
+msgstr "Como é que as transferências são contabilizadas?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Como é que as descargas são contabilizadas?</h2> <p> O número de descargas é atualizado todas as noites e apenas inclui descargas originais de extras e não atualizações. As descargas podem ser "
-"decompostas pela fonte específica que referenciou a descarga. </p>"
+"<h2>Como é que as transferências são contabilizadas?</h2> <p> O número de transferências é atualizado todas as noites e inclui apenas transferências originais de extras, e não atualizações. As "
+"transferências podem ser decompostas pela fonte específica que referenciou a transferência. </p>"
 
 msgid "User languages by Date"
 msgstr "Idiomas de utilizador por data"
@@ -7641,7 +7641,7 @@ msgid "Platform usage by Date"
 msgstr "Utilização da plataforma por data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> descargas"
+msgstr "<b>{0}</b> Transferências"
 
 msgid "Loading..."
 msgstr "A carregar..."
@@ -7674,7 +7674,7 @@ msgid "Reviews Created by Date"
 msgstr "Análise criadas por data"
 
 msgid "Download sources by Date"
-msgstr "Fonte das descargas por data"
+msgstr "Fonte das transferências por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
@@ -7688,8 +7688,8 @@ msgid ""
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Monitorização de fontes externas</h2> <p> Se ligou a página de detalhes do extra ou diretamente o seu ficheiro a partir de um site externo, tal como o seu blogue ou website, pode adicionar um "
-"parâmetro para ser referenciado como uma fonte adicional de descarga nesta página. Por exemplo, as ligações seguintes iriam aparecer classificadas como o seu blogue: <dl> <dt>Página de detalhes do "
-"extra</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligação direta ao ficheiro</dt> "
+"parâmetro para ser referenciado como uma fonte adicional de transferência nesta página. Por exemplo, as ligações seguintes iriam aparecer classificadas como o seu blogue: <dl> <dt>Página de detalhes"
+" do extra</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligação direta ao ficheiro</dt> "
 "<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Apenas os parâmetros src que começam com \"external-\" serão monitorizados, até"
 " 61 carateres adicionais. Qualquer texto depois de \"external-\" pode ser utilizado para descrever a fonte, tais como \"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. Os "
 "seguintes caracteres, seguros para URLs, são permitidos: <code>a-z A-Z - . _ ~ %% +</code>"
@@ -7770,7 +7770,7 @@ msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>extras</b>"
 
 msgid "Download Firefox"
-msgstr "Descarregar o Firefox"
+msgstr "Transferir o Firefox"
 
 msgid "Android Browser"
 msgstr "Navegador para Android"
@@ -7818,7 +7818,7 @@ msgstr "<a href=\"%(reg)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessã
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Para experimentar os milhares de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na web!"
+msgstr "Para experimentar os milhares de extras aqui disponíveis, transfira o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."

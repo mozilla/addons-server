@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views, views_themes
@@ -6,8 +7,9 @@ from olympia.reviewers import views, views_themes
 
 # All URLs under /editors/
 urlpatterns = (
-    url(r'^$', views.home, name='reviewers.home'),
-    url(r'^dashboard$', views.dashboard, name='reviewers.dashboard'),
+    url(r'^$', views.dashboard, name='reviewers.dashboard'),
+    url(r'^dashboard$',
+        lambda request: redirect('reviewers.dashboard', permanent=True)),
     url(r'^queue$', views.queue, name='reviewers.queue'),
     url(r'^queue/new$', views.queue_nominated,
         name='reviewers.queue_nominated'),
@@ -53,8 +55,8 @@ urlpatterns = (
         name='reviewers.abuse_reports'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
 
-    url('^themes$', views_themes.home,
-        name='reviewers.themes.home'),
+    url('^themes$',
+        lambda request: redirect('reviewers.dashboard', permanent=True)),
     url('^themes/pending$', views_themes.themes_list,
         name='reviewers.themes.list'),
     url('^themes/flagged$', views_themes.themes_list,

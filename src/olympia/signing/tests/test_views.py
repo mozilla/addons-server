@@ -123,6 +123,18 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(
             latest_version, is_beta=False)
 
+    def test_new_addon_random_slug_unlisted_channel(self):
+        guid = '@create-webextension'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request('PUT', addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+
+        assert len(addon.slug) == 20
+        assert 'create' not in addon.slug
+
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
