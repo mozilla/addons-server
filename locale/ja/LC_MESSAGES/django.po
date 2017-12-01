@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 19:32+0000\n"
+"PO-Revision-Date: 2017-12-01 19:39+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3536,13 +3536,13 @@ msgid "Header area background (accentcolor)"
 msgstr "ヘッダー領域の背景 (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
-msgstr ""
+msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。"
 
 msgid "Header area text (textcolor)"
 msgstr "ヘッダー領域の文字 (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr "ヘッダー領域の内に表示される文字の色。"
+msgstr "ヘッダー領域内に表示される文字色。"
 
 msgid "Toolbar area background (toolbar)."
 msgstr "ツールバー領域の背景 (toolbar)"
@@ -3563,10 +3563,10 @@ msgid "The background color for fields in the toolbar, such as the URL bar."
 msgstr "アドレスバーなどツールバー上の入力欄の背景色。"
 
 msgid "Toolbar field area text (toolbar_field_text)."
-msgstr ""
+msgstr "ツールバー入力領域の文字 (toolbar_field_text)"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "アドレスバーなどツールバー上の入力欄の文字色。"
 
 msgid "optional"
 msgstr "任意"
