@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-11-20 09:55+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2073,15 +2073,6 @@ msgstr "Izegrar"
 msgid "Themes (Static)"
 msgstr "Isental (Static)"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Suter kan ɣef usebter-agi n uzegrir akked umaɣnu n uneflay"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Suter iseqdacen ticki bdan asider n uzegri-agi"
-
-msgid "Ask before users can download this add-on"
-msgstr "Suter iseqdacen ticki bdan asider n uzegri-agi"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Wiyaḍ"
@@ -2968,8 +2959,8 @@ msgstr "Γef temlilin"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3561,6 +3552,10 @@ msgstr "Sali lqem"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Seqdec urtan da-a akken ad tazneḍ akemmus n uzegrir inek sakin fren yal azeyyeṛ icudden ar unagraw. Seld tuzna, amazrar n ikayaden iwurmanen ad ttwagen ɣef ufaylu inek."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Rnu asentel amaynut"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
 
@@ -3575,6 +3570,91 @@ msgstr "Azen afaylu"
 
 msgid "Sign Add-on"
 msgstr "Zmel azegrir"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Asentel yettwakkes."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Turagt n usentel"
+
+msgid "Select a header image for your Theme."
+msgstr "Fren tugna n uqeṛṛu i usentel inek."
+
+msgid "required"
+msgstr "yettwasra"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Reyyec d asawen ayeffus"
+
+msgid "Select a different header image"
+msgstr "Fren tugna nniḍen n uqeṛṛu"
+
+msgid "Select colors for your Theme."
+msgstr "Fren initeni usentel inek."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Wagi d ini n uḍris n yiccer."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(afrayan)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Srifeg s ufella akken ad d-sekneḍ"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Isental yettnernin"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Sali afaylu"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
@@ -4000,9 +4080,6 @@ msgstr "Aqeṛṛu"
 msgid "Footer"
 msgstr "Aḍaṛ"
 
-msgid "Select colors for your Theme."
-msgstr "Fren initeni usentel inek."
-
 msgid "Foreground Text"
 msgstr "Aḍris n zdat"
 
@@ -4067,9 +4144,6 @@ msgstr ""
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Ddu ɣer usqerdec deg  <a href=\"%(forum_url)s\">inmagaren</a>-nneɣ."
 
-msgid "Select a header image for your Theme."
-msgstr "Fren tugna n uqeṛṛu i usentel inek."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &tikalt; 200 ipiksilen"
 
@@ -4078,12 +4152,6 @@ msgstr "300 KAṬ adday"
 
 msgid "PNG or JPG"
 msgstr "PNG neɣ JPG"
-
-msgid "Aligned to top-right"
-msgstr "Reyyec d asawen ayeffus"
-
-msgid "Select a different header image"
-msgstr "Fren tugna nniḍen n uqeṛṛu"
 
 msgid "Select a footer image for your Theme."
 msgstr "Fren tugna n uḍaṛ i usentel inek."
@@ -4279,10 +4347,17 @@ msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
 #, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
 
 #, fuzzy
@@ -4290,13 +4365,6 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-#, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #, fuzzy
@@ -4636,498 +4704,6 @@ msgstr "Rnu anekcum uzwir ar tmahilin tirmitantin n iminig."
 
 msgid "Get Started"
 msgstr "Bdu"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Adirḥam n Imaṛat taɛṛabin yedduklen"
-
-msgid "Afghanistan Afghani"
-msgstr "Afgani n afganistan"
-
-msgid "Albania Lek"
-msgstr "Albanya Lek"
-
-msgid "Armenia Dram"
-msgstr "Dṛam n arminya"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Aflorin n Antiy Tahulandit"
-
-msgid "Angola Kwanza"
-msgstr "Angola Kwanza"
-
-msgid "Argentina Peso"
-msgstr "Peso n Aṛjuntin"
-
-msgid "Australia Dollar"
-msgstr "Adollaṛ n Ustralya"
-
-msgid "Aruba Guilder"
-msgstr "Florin n Aruba"
-
-msgid "Azerbaijan New Manat"
-msgstr "Manat n Azeṛbiǧan"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Mark n Bosnie-Herzégovine"
-
-msgid "Barbados Dollar"
-msgstr "Dollar n Baṛbados"
-
-msgid "Bangladesh Taka"
-msgstr "Ataka n Bengladic"
-
-msgid "Bulgaria Lev"
-msgstr "Bulgarya Lev"
-
-msgid "Bahrain Dinar"
-msgstr "Adinaṛ n Baḥrayn"
-
-msgid "Burundi Franc"
-msgstr "Burundi Franc"
-
-msgid "Bermuda Dollar"
-msgstr "Adular n Birmud"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Adulaṛ n Brunay Daṛsalam"
-
-msgid "Bolivia Boliviano"
-msgstr "Bolivya Boliviano"
-
-msgid "Brazil Real"
-msgstr "Ariyal n Brazil"
-
-msgid "Bahamas Dollar"
-msgstr "Adular n Bahamas"
-
-msgid "Bhutan Ngultrum"
-msgstr "Angultrum n Butan"
-
-msgid "Botswana Pula"
-msgstr "Apula n Butswana"
-
-msgid "Belarus Ruble"
-msgstr "Arubel n Bilarus"
-
-msgid "Belize Dollar"
-msgstr "Adulaṛ n Belize"
-
-msgid "Canada Dollar"
-msgstr "Adulaṛ n Kanada"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Afrank n Kungu /Kinshasa"
-
-msgid "Switzerland Franc"
-msgstr "Afṛank n Swis"
-
-msgid "Chile Peso"
-msgstr "Apizu n Cili"
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr "Apisu n Kulumbya"
-
-msgid "Costa Rica Colon"
-msgstr "Akulun n Kosta Rika"
-
-msgid "Cuba Convertible Peso"
-msgstr "Apizu yettwaselkaten n Kuba"
-
-msgid "Cuba Peso"
-msgstr "Apizu n Kuba"
-
-msgid "Cape Verde Escudo"
-msgstr "Askudu n Kap Vir"
-
-msgid "Czech Republic Koruna"
-msgstr "Akurun n Čik"
-
-msgid "Djibouti Franc"
-msgstr "Afrank n Ǧibuti"
-
-msgid "Denmark Krone"
-msgstr "Akurun n Danmaṛk"
-
-msgid "Dominican Republic Peso"
-msgstr "Apisu n Duminik"
-
-msgid "Algeria Dinar"
-msgstr "Ẓzeyer Dinaṛ"
-
-msgid "Egypt Pound"
-msgstr "Apawnd n Maseṛ"
-
-msgid "Eritrea Nakfa"
-msgstr "Anafka n Iritirya"
-
-msgid "Ethiopia Birr"
-msgstr "Abir n Ityupya"
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr "Adular n Fiji"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr "Apawnd n tegduda yedduklen"
-
-msgid "Georgia Lari"
-msgstr "Alari n Jyurjya"
-
-msgid "Guernsey Pound"
-msgstr "Apawnd n Girnizi"
-
-msgid "Ghana Cedi"
-msgstr "Asidi n Gana"
-
-msgid "Gibraltar Pound"
-msgstr "Apawnd n Jibraltar"
-
-msgid "Gambia Dalasi"
-msgstr "Adalsi n Gambya"
-
-msgid "Guinea Franc"
-msgstr "Afrank n Ɣinya"
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr "Adulaṛ n Gwiyan"
-
-msgid "Hong Kong Dollar"
-msgstr "Adulaṛ n Hung Kung"
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr "Shekel n Israel "
-
-msgid "Isle of Man Pound"
-msgstr "Adiṛham n Meṛṛuk"
-
-msgid "India Rupee"
-msgstr ""
-
-msgid "Iraq Dinar"
-msgstr "Adinaṛ n Ɛiraq"
-
-msgid "Iran Rial"
-msgstr "Ariyal n Iran"
-
-msgid "Iceland Krona"
-msgstr "Akurun n Island"
-
-msgid "Jersey Pound"
-msgstr "apawnd n Jirzay"
-
-msgid "Jamaica Dollar"
-msgstr "Adulaṛ n Jamayik"
-
-msgid "Jordan Dinar"
-msgstr "Adinaṛ n Juṛdan"
-
-msgid "Japan Yen"
-msgstr "Ayen n Japun"
-
-msgid "Kenya Shilling"
-msgstr "Aciling n Kinya"
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr "Afrank n Kumur"
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr "Dinaṛ n kuwayet"
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr ""
-
-msgid "Liberia Dollar"
-msgstr "Adulaṛ n Libirya"
-
-msgid "Lesotho Loti"
-msgstr "Aluṭi n Lesotho"
-
-msgid "Lithuania Litas"
-msgstr ""
-
-msgid "Latvia Lat"
-msgstr ""
-
-msgid "Libya Dinar"
-msgstr "Adinaṛ n Libya"
-
-msgid "Morocco Dirham"
-msgstr "Adiṛham n Meṛṛuk"
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr ""
-
-msgid "Malaysia Ringgit"
-msgstr ""
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr ""
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr ""
-
-msgid "Nepal Rupee"
-msgstr ""
-
-msgid "New Zealand Dollar"
-msgstr ""
-
-msgid "Oman Rial"
-msgstr ""
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr ""
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr ""
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr ""
-
-msgid "Russia Ruble"
-msgstr ""
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr ""
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr ""
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr ""
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr ""
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr ""
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr ""
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr ""
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr ""
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr ""
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr ""
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr "Dolla n Zimbabwi"
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"
@@ -6535,6 +6111,10 @@ msgid "Signed Beta Files Log"
 msgstr ""
 
 #, fuzzy
+msgid "Review Guide"
+msgstr "Amnir n ucegger"
+
+#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Qbel s wudem awurman izegrar"
 
@@ -6567,7 +6147,7 @@ msgid "Themes Review Log"
 msgstr "Acegger n usentel"
 
 #, fuzzy
-msgid "Deleted themes Log"
+msgid "Deleted Themes Log"
 msgstr "Kkes asentel"
 
 msgid "User Ratings Moderation"
@@ -6578,6 +6158,10 @@ msgstr ""
 
 msgid "Moderated Review Log"
 msgstr ""
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Asenqed n uzegrir yettwaleqmen"
 
 #, fuzzy
 msgid "Unlisted Add-ons"
@@ -6591,15 +6175,6 @@ msgstr "Tullɣa"
 
 msgid "Update message of the day"
 msgstr "Snifel izen n wass"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Izegrar imaynuten (Daw n 5 n wussan)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Ilemmasen (5 ar 10 n wussan)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Iqbuṛen (Ugar n 10 n wussan)"
 
 msgid "An unknown error occurred"
 msgstr "Taḍra-d tuccda tarussint"
@@ -6668,29 +6243,9 @@ msgstr "Timidelt n tugniwin"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."
 
-msgid "Return to the Reviewer Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
-
-msgid "Queues"
-msgstr "Yettwarna ar udras"
-
-msgid "New Add-ons"
-msgstr "Izegrar imaynuten"
-
-msgid "Updates"
-msgstr "Ileqman"
-
-msgid "Moderated Reviews"
-msgstr ""
-
-msgid "Auto Approved Add-ons"
-msgstr "Qbel s wudem awurman izegrar"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "Logs"
-msgstr "Iɣmisen"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6733,46 +6288,6 @@ msgstr ""
 msgid "Undelete"
 msgstr "Sefsex tukksa"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Azegrir amaynut ({num})"
-msgstr[1] "Izegrar imaynuten ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Lqem ({num})"
-msgstr[1] "Ileqman ({num})"
-
-msgid "Current waiting times:"
-msgstr "Akkud n uraǧu anazzal:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} azegrir"
-msgstr[1] "{0} izegrar"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Amḍan amatu n iceggiren"
-
-msgid "Reviews This Month"
-msgstr "Iceggiren n waggur-agi"
-
-msgid "New Reviewers"
-msgstr "Imceggiren imaynuten"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "aqlak d  #{0} akked {1} n iceggiren"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Reviewer Leaderboard"
 msgstr "Agzul n umaẓrag"
 
@@ -6802,6 +6317,9 @@ msgstr "Iceggiren inek"
 
 msgid "By {user_name}"
 msgstr "Sɣur {user_name}"
+
+msgid "Total Reviews"
+msgstr "Amḍan amatu n iceggiren"
 
 msgid "Active Contributors"
 msgstr "Iceggiren inek"
@@ -7035,26 +6553,14 @@ msgstr "Acuɣer"
 msgid "There are currently no reviews."
 msgstr "Ulac akka tura iceggiren."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Asentel yettṛaǧun asentem"
-msgstr[1] "{num} Isental yettṛaǧun asentem"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Lqem"
-msgstr[1] "{num} Ileqman"
-
 msgid "Flagged Themes"
 msgstr "Isental yettwacegren"
 
 msgid "Theme Review Queue"
 msgstr ""
+
+msgid "Queues"
+msgstr "Yettwarna ar udras"
 
 msgid "Review Options"
 msgstr "Iɣewwaṛen n ucegger"
@@ -7167,6 +6673,9 @@ msgstr[1] "Qbel s wudem awurman izegrar ({0})"
 
 msgid "Flagged"
 msgstr "Yettwasezmel"
+
+msgid "Updates"
+msgstr "Ileqman"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7331,9 +6840,6 @@ msgstr "s Twennaṭ"
 msgid "by Add-on Status"
 msgstr "s waddad n uzegrir"
 
-msgid "Contributions"
-msgstr "Ittekkiyen"
-
 msgid "Subscribers"
 msgstr "Imeltaɣen"
 
@@ -7447,9 +6953,6 @@ msgstr "Ulac isefka."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Tafelwit-agi n usenqded akka tura d <b>tazayezt</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
@@ -7473,9 +6976,6 @@ msgstr "Aseqdec n usnas s wazemz"
 
 msgid "Collections Created by Date"
 msgstr "Tigrummiwin yettwarnan s wazemz"
-
-msgid "Contributions by Date"
-msgstr "Attekki s wazemz"
 
 msgid "Downloaded by Date"
 msgstr "Isidar s wazemz"
@@ -7683,9 +7183,6 @@ msgstr "Ddu ad twaliḍ <a class=\"mobile-link\" href=\"#\">Asmel-neɣ n izegrar
 msgid "Android Add-ons"
 msgstr "Izegrar Android"
 
-msgid "required"
-msgstr "yettwasra"
-
 msgid "Required fields"
 msgstr "Urtan yettwasran"
 
@@ -7755,9 +7252,6 @@ msgstr "Aseqdac udrig {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Izegrarèiw izirazen"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "aneflay n uzegrir yesnemmer-iyi ɣef uttekki"
 
 msgid "an add-on developer replies to my review"
 msgstr "aneflay n uzegrir yerra-d i ucegger inu"

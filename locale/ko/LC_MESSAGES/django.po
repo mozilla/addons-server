@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-11-17 02:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2102,15 +2102,6 @@ msgstr "플러그인"
 msgid "Themes (Static)"
 msgstr "테마 제작자"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "이 부가 기능 페이지와 개발자 프로필에서만 요청하기"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "사용자가 부가 기능을 다운로드한 다음에 요청하기"
-
-msgid "Ask before users can download this add-on"
-msgstr "사용자가 부가 기능을 다운로드하기 전에 요청하기"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "기타"
@@ -3009,10 +3000,11 @@ msgstr "제작자"
 msgid "About author roles"
 msgstr "제작자 역할 안내"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
 "기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
@@ -3639,6 +3631,10 @@ msgstr "새 버전 업로드하기"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이용하신 후 플랫폼 제한 사항을 선택해 주세요. 업로드가 끝나면 파일들에 대한 몇가지 검사가 자동으로 이루어질 것입니다."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "새로운 테마 만들기"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
 
@@ -3655,6 +3651,92 @@ msgstr "새로운 테마 올리기"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "부가 기능 등록"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "테마가 삭제됐습니다."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "테마 라이선스"
+
+# 82%
+msgid "Select a header image for your Theme."
+msgstr "테마의 상단 이미지를 선택하세요."
+
+msgid "required"
+msgstr "필수 입력"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Top-right 방향으로 정렬됨"
+
+msgid "Select a different header image"
+msgstr "다른 상단 이미지 선택"
+
+msgid "Select colors for your Theme."
+msgstr "테마에 사용할 색을 설정하세요."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "탭 부분의 글자색입니다."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(선택사항)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "커서를 올려서 미리보기 확인"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "인기 급상승 테마"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "다른 파일 업로드"
 
 msgid "API Credentials"
 msgstr ""
@@ -4126,9 +4208,6 @@ msgstr "상단"
 msgid "Footer"
 msgstr "하단"
 
-msgid "Select colors for your Theme."
-msgstr "테마에 사용할 색을 설정하세요."
-
 msgid "Foreground Text"
 msgstr "글자 전경색"
 
@@ -4191,10 +4270,6 @@ msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "<a href=\"%(forum_url)s\">포럼</a>에 들어가서 대화를 나눠보세요."
 
-# 82%
-msgid "Select a header image for your Theme."
-msgstr "테마의 상단 이미지를 선택하세요."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 픽셀"
 
@@ -4203,12 +4278,6 @@ msgstr "최대 용량 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG 나 JPG"
-
-msgid "Aligned to top-right"
-msgstr "Top-right 방향으로 정렬됨"
-
-msgid "Select a different header image"
-msgstr "다른 상단 이미지 선택"
 
 # 82%
 msgid "Select a footer image for your Theme."
@@ -4419,22 +4488,22 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4784,498 +4853,6 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "시작하기"
-
-msgid "United Arab Emirates Dirham"
-msgstr ""
-
-msgid "Afghanistan Afghani"
-msgstr ""
-
-msgid "Albania Lek"
-msgstr ""
-
-msgid "Armenia Dram"
-msgstr ""
-
-msgid "Netherlands Antilles Guilder"
-msgstr ""
-
-msgid "Angola Kwanza"
-msgstr ""
-
-msgid "Argentina Peso"
-msgstr ""
-
-msgid "Australia Dollar"
-msgstr ""
-
-msgid "Aruba Guilder"
-msgstr ""
-
-msgid "Azerbaijan New Manat"
-msgstr ""
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr ""
-
-msgid "Bangladesh Taka"
-msgstr ""
-
-msgid "Bulgaria Lev"
-msgstr ""
-
-msgid "Bahrain Dinar"
-msgstr ""
-
-msgid "Burundi Franc"
-msgstr ""
-
-msgid "Bermuda Dollar"
-msgstr ""
-
-msgid "Brunei Darussalam Dollar"
-msgstr ""
-
-msgid "Bolivia Boliviano"
-msgstr ""
-
-msgid "Brazil Real"
-msgstr ""
-
-msgid "Bahamas Dollar"
-msgstr ""
-
-msgid "Bhutan Ngultrum"
-msgstr ""
-
-msgid "Botswana Pula"
-msgstr ""
-
-msgid "Belarus Ruble"
-msgstr ""
-
-msgid "Belize Dollar"
-msgstr ""
-
-msgid "Canada Dollar"
-msgstr ""
-
-msgid "Congo/Kinshasa Franc"
-msgstr ""
-
-msgid "Switzerland Franc"
-msgstr ""
-
-msgid "Chile Peso"
-msgstr ""
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr ""
-
-msgid "Costa Rica Colon"
-msgstr ""
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr ""
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr ""
-
-msgid "Djibouti Franc"
-msgstr ""
-
-msgid "Denmark Krone"
-msgstr ""
-
-msgid "Dominican Republic Peso"
-msgstr ""
-
-msgid "Algeria Dinar"
-msgstr ""
-
-msgid "Egypt Pound"
-msgstr ""
-
-msgid "Eritrea Nakfa"
-msgstr ""
-
-msgid "Ethiopia Birr"
-msgstr ""
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr ""
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr ""
-
-msgid "Georgia Lari"
-msgstr ""
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr ""
-
-msgid "Gibraltar Pound"
-msgstr ""
-
-msgid "Gambia Dalasi"
-msgstr ""
-
-msgid "Guinea Franc"
-msgstr ""
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr ""
-
-msgid "Hong Kong Dollar"
-msgstr ""
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr ""
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr ""
-
-msgid "Iraq Dinar"
-msgstr ""
-
-msgid "Iran Rial"
-msgstr ""
-
-msgid "Iceland Krona"
-msgstr ""
-
-msgid "Jersey Pound"
-msgstr ""
-
-msgid "Jamaica Dollar"
-msgstr ""
-
-msgid "Jordan Dinar"
-msgstr ""
-
-msgid "Japan Yen"
-msgstr ""
-
-msgid "Kenya Shilling"
-msgstr ""
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr ""
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr ""
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr ""
-
-msgid "Liberia Dollar"
-msgstr ""
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr ""
-
-msgid "Latvia Lat"
-msgstr ""
-
-msgid "Libya Dinar"
-msgstr ""
-
-msgid "Morocco Dirham"
-msgstr ""
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr ""
-
-msgid "Malaysia Ringgit"
-msgstr ""
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr ""
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr ""
-
-msgid "Nepal Rupee"
-msgstr ""
-
-msgid "New Zealand Dollar"
-msgstr ""
-
-msgid "Oman Rial"
-msgstr ""
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr ""
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr ""
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr ""
-
-msgid "Russia Ruble"
-msgstr ""
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr ""
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr ""
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr ""
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr ""
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr ""
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr ""
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr ""
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr ""
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr ""
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr ""
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"
@@ -6720,6 +6297,10 @@ msgid "Signed Beta Files Log"
 msgstr ""
 
 #, fuzzy
+msgid "Review Guide"
+msgstr "심사원 지침사항"
+
+#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "안드로이드용 부가 기능"
 
@@ -6753,7 +6334,7 @@ msgid "Themes Review Log"
 msgstr "테마 심사"
 
 #, fuzzy
-msgid "Deleted themes Log"
+msgid "Deleted Themes Log"
 msgstr "테마 삭제"
 
 msgid "User Ratings Moderation"
@@ -6768,6 +6349,10 @@ msgid "Moderated Review Log"
 msgstr "심사 조정 기록"
 
 #, fuzzy
+msgid "Moderation Guide"
+msgstr "조정 행동:"
+
+#, fuzzy
 msgid "Unlisted Add-ons"
 msgstr "모든 부가 기능"
 
@@ -6780,15 +6365,6 @@ msgstr "알림"
 
 msgid "Update message of the day"
 msgstr "오늘의 메시지 업데이트"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "신규 부가 기능 (최근 5일 이내)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "통과 가능 (5~10일 이내)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "기한 초과 (10일 초과)"
 
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
@@ -6864,32 +6440,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "내용이 아무것도 없습니다! 이 개발자는 세부 정보를 전혀 올려놓지 않았습니다."
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "편집자 도구 대문으로 돌아가기"
-
-msgid "Queues"
-msgstr "대기열"
-
-#, fuzzy
-msgid "New Add-ons"
-msgstr "그밖의 부가 기능"
-
-# 85%
-msgid "Updates"
-msgstr "업데이트"
-
-msgid "Moderated Reviews"
-msgstr "심사 조정중"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "안드로이드용 부가 기능"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "Logs"
-msgstr "기록"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6933,51 +6485,6 @@ msgstr ""
 msgid "Undelete"
 msgstr ""
 
-#, fuzzy
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "신규 부가 기능 (최근 5일 이내)"
-
-# 86%
-# 100%
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "업데이트 대기 ({num})"
-
-msgid "Current waiting times:"
-msgstr "현재 대기 시간:"
-
-# 81%
-# 100%
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "부가 기능 {0}개"
-
-#, python-format
-msgid "{0}%%"
-msgstr ""
-
-msgid "Total Reviews"
-msgstr "총 심사 수"
-
-msgid "Reviews This Month"
-msgstr "이달의 심사"
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "심사원"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "당신은 {0}번이며 {1}개의 심사가 있습니다"
-
-# 87%
-# 100%
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "조정중인 심사 ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "심사원 현황판"
 
@@ -7009,6 +6516,9 @@ msgstr "내 심사 내역"
 
 msgid "By {user_name}"
 msgstr "작성자: {user_name}"
+
+msgid "Total Reviews"
+msgstr "총 심사 수"
 
 # 81%
 # 100%
@@ -7248,23 +6758,14 @@ msgstr "사유"
 msgid "There are currently no reviews."
 msgstr "심사중인 테마가 없습니다."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "대기중인 테마 심사 {num}건"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "표시된 심사 {num}건"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "업데이트 {num}건"
-
 msgid "Flagged Themes"
 msgstr "표시된 테마"
 
 msgid "Theme Review Queue"
 msgstr "테마 심사 대기열"
+
+msgid "Queues"
+msgstr "대기열"
 
 msgid "Review Options"
 msgstr "심사 옵션"
@@ -7376,6 +6877,10 @@ msgstr[0] "내가 제작한 모든 부가 기능"
 
 msgid "Flagged"
 msgstr "표시됨"
+
+# 85%
+msgid "Updates"
+msgstr "업데이트"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7546,9 +7051,6 @@ msgstr "플랫폼별"
 msgid "by Add-on Status"
 msgstr "부가 기능 상태별"
 
-msgid "Contributions"
-msgstr "기부금"
-
 msgid "Subscribers"
 msgstr "구독자"
 
@@ -7673,9 +7175,6 @@ msgstr "데이터가 없습니다."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "대시보드가 현재 <b>공개</b> 상태입니다."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "기부금 통계가 현재 <b>비공개</b> 상태입니다."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "대시보드가 현재 <b>비공개</b> 상태입니다."
 
@@ -7699,9 +7198,6 @@ msgstr "날짜별 애플리케이션 사용량"
 
 msgid "Collections Created by Date"
 msgstr "날짜별 제작된 모음집"
-
-msgid "Contributions by Date"
-msgstr "날짜별 기부"
 
 msgid "Downloaded by Date"
 msgstr "날짜별 다운로드 횟수"
@@ -7926,9 +7422,6 @@ msgstr "<a class=\"mobile-link\" href=\"#\">모바일 부가 기능 사이트</a
 msgid "Android Add-ons"
 msgstr "안드로이드용 부가 기능"
 
-msgid "required"
-msgstr "필수 입력"
-
 msgid "Required fields"
 msgstr "필수 입력 사항"
 
@@ -7999,9 +7492,6 @@ msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "내 모바일 부가 기능"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "부가 기능 개발자가 기부에 감사를 표했습니다"
 
 msgid "an add-on developer replies to my review"
 msgstr "부가 기능 개발자가 평가에 댓글을 달았습니다"

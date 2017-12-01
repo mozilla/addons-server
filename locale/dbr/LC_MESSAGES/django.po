@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2070,15 +2070,6 @@ msgstr "suıƃnʅԀ"
 msgid "Themes (Static)"
 msgstr "(ɔıʇɐʇS) sǝɯǝɥ⊥"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "ǝʅıɟoɹd ɹǝdoʅǝʌǝp puɐ ǝƃɐd s,uo-ppɐ sıɥʇ uo ʞsɐ ʎʅuO"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "uo-ppɐ sıɥʇ ƃuıpɐoʅuʍop ʇɹɐʇs sɹǝsn ɹǝʇɟɐ ʞs∀"
-
-msgid "Ask before users can download this add-on"
-msgstr "uo-ppɐ sıɥʇ pɐoʅuʍop uɐɔ sɹǝsn ǝɹoɟǝq ʞs∀"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "ɹǝɥʇO"
@@ -2962,12 +2953,12 @@ msgstr "sǝʅoɹ ɹoɥʇnɐ ʇnoq∀"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>:sǝʅoɹ ǝʅqıssod 3 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
-"<li>sʇuǝɯʎɐd ƃuıƃɐuɐɯ puɐ sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ "
-"sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ uɐↃ <b>:ɹǝʍǝıɅ</b></li> </ul>"
+"<li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ "
+"uɐↃ <b>:ɹǝʍǝıɅ</b></li> </ul>"
 
 msgid "Basic Information"
 msgstr "uoıʇɐɯɹoɟuI ɔısɐԐ"
@@ -3560,6 +3551,9 @@ msgstr "uoısɹǝɅ pɐoʅd∩"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ".ǝʅıɟ ɹnoʎ uo unɹ ǝq ʅʅıʍ sʇsǝʇ uoıʇɐpıʅɐʌ pǝʇɐɯoʇnɐ ɟo sǝıɹǝs ɐ ´pɐoʅdn ɹǝʇɟ∀ .ǝƃɐʞɔɐd uo-ppɐ ɹnoʎ pɐoʅdn oʇ ʍoʅǝq spʅǝıɟ ǝɥʇ ǝs∩"
 
+msgid "Create a Theme"
+msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝʅıɟ sıɥʇ sı sɯɹoɟʇɐʅd ɥɔıɥＭ"
 
@@ -3574,6 +3568,84 @@ msgstr "ǝʅıℲ ʇıɯqnS"
 
 msgid "Sign Add-on"
 msgstr "uo-pp∀ uƃıS"
+
+msgid "Theme generate"
+msgstr "ǝʇɐɹǝuǝƃ ǝɯǝɥ⊥"
+
+msgid "Theme generator"
+msgstr "ɹoʇɐɹǝuǝƃ ǝɯǝɥ⊥"
+
+msgid "Select a header image for your Theme."
+msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
+
+msgid "required"
+msgstr "pǝɹınbǝɹ"
+
+msgid "Image height should be 200 pixels"
+msgstr "sʅǝxıd 002 ǝq pʅnoɥs ʇɥƃıǝɥ ǝƃɐɯI"
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr "(pǝʇɐɯıuɐ ʇou) ℲI⅁ ɹo ⅁ɅS ´⅁NԀ∀ ´⅁Ԁſ ´⅁NԀ"
+
+msgid "Aligned to top-right"
+msgstr "ʇɥƃıɹ-doʇ oʇ pǝuƃıʅ∀"
+
+msgid "Select a different header image"
+msgstr "ǝƃɐɯı ɹǝpɐǝɥ ʇuǝɹǝɟɟıp ɐ ʇɔǝʅǝS"
+
+msgid "Select colors for your Theme."
+msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
+
+msgid "Header area background (accentcolor)"
+msgstr "(ɹoʅoɔʇuǝɔɔɐ) punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝH"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ".ǝƃɐɯı ɹǝpɐǝɥ ǝɥʇ ɥƃnoɹɥʇ ǝʅqısıʌ ɹo pǝɹǝʌoɔ ʇou ɹǝpɐǝɥ ǝɥʇ ɟo ʇɹɐd ǝɥʇ uı pǝʎɐʅdsıp ´punoɹƃʞɔɐq ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
+
+msgid "Header area text (textcolor)"
+msgstr "(ɹoʅoɔʇxǝʇ) ʇxǝʇ ɐǝɹɐ ɹǝpɐǝH"
+
+msgid "The color of the text displayed in the header area."
+msgstr ".ɐǝɹɐ ɹǝpɐǝɥ ǝɥʇ uı pǝʎɐʅdsıp ʇxǝʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥ⊥"
+
+msgid "Toolbar area background (toolbar)."
+msgstr ".(ɹɐqʅooʇ) punoɹƃʞɔɐq ɐǝɹɐ ɹɐqʅoo⊥"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ".qɐʇ pǝʇɔǝʅǝs ǝɥʇ puɐ ´ɹɐq sʞɹɐɯʞooq ǝɥʇ ´ɹɐq uoıʇɐƃıʌɐu ǝɥʇ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ".(ʇxǝʇ_ɹɐqʅooʇ) ʇxǝʇ ɐǝɹɐ ɹɐqʅoo⊥"
+
+msgid "The color of toolbar text."
+msgstr ".ʇxǝʇ ɹɐqʅooʇ ɟo ɹoʅoɔ ǝɥ⊥"
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ".(pʅǝıɟ_ɹɐqʅooʇ) punoɹƃʞɔɐq ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ".ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ ɹoɟ ɹoʅoɔ punoɹƃʞɔɐq ǝɥ⊥"
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ".(ʇxǝʇ_pʅǝıɟ_ɹɐqʅooʇ) ʇxǝʇ ɐǝɹɐ pʅǝıɟ ɹɐqʅoo⊥"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr "ɹɐq ⅂ᴚ∩ ǝɥʇ sɐ ɥɔns ´ɹɐqʅooʇ ǝɥʇ uı spʅǝıɟ uı ʇxǝʇ ɟo ɹoʅoɔ ǝɥ⊥"
+
+msgid "optional"
+msgstr "ʅɐuoıʇdo"
+
+msgid "Browser Preview"
+msgstr "ʍǝıʌǝɹԀ ɹǝsʍoɹԐ"
+
+msgid "Back"
+msgstr "ʞɔɐԐ"
+
+msgid "Uploading Theme"
+msgstr "ǝɯǝɥ⊥ ƃuıpɐoʅd∩"
+
+msgid "Upload Theme"
+msgstr "ǝɯǝɥ⊥ pɐoʅd∩"
 
 msgid "API Credentials"
 msgstr "sʅɐıʇuǝpǝɹↃ IԀ∀"
@@ -3999,9 +4071,6 @@ msgstr "ɹǝpɐǝH"
 msgid "Footer"
 msgstr "ɹǝʇooℲ"
 
-msgid "Select colors for your Theme."
-msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
-
 msgid "Foreground Text"
 msgstr "ʇxǝ⊥ punoɹƃǝɹoℲ"
 
@@ -4066,9 +4135,6 @@ msgstr ".ǝɹoɯ puɐ ´suoıʇɔǝʅʅoɔ ´sʍǝıʌǝɹ uo pǝʇɐpdn ʎɐʇs
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ".<a href=\"%(forum_url)s\">sɯnɹoɟ</a> ɹno uı uoıʇɐsɹǝʌuoɔ ǝɥʇ uıoſ"
 
-msgid "Select a header image for your Theme."
-msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
-
 msgid "3000 &times; 200 pixels"
 msgstr "sʅǝxıd 002 &times; 0003"
 
@@ -4077,12 +4143,6 @@ msgstr "xɐɯ ԐӼ 003"
 
 msgid "PNG or JPG"
 msgstr "⅁Ԁſ ɹo ⅁NԀ"
-
-msgid "Aligned to top-right"
-msgstr "ʇɥƃıɹ-doʇ oʇ pǝuƃıʅ∀"
-
-msgid "Select a different header image"
-msgstr "ǝƃɐɯı ɹǝpɐǝɥ ʇuǝɹǝɟɟıp ɐ ʇɔǝʅǝS"
 
 msgid "Select a footer image for your Theme."
 msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝʇooɟ ɐ ʇɔǝʅǝS"
@@ -4281,23 +4341,23 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐɯı puıɟ ʎʅısɐƎ"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ".ɥɔɹɐǝs ǝƃɐɯı uɐ ɯɹoɟɹǝd ʎʅʞɔınb oʇ ʞɔıʅɔ-ʇɥƃıɹ puɐ ʇxǝʇ ʎuɐ ʇɥƃıʅɥƃıH"
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ".ʎɹoɯǝɯ ɟo ɥɔunq ɐ dn ƃuıʍǝɥɔ ʇnoɥʇıʍ sɹǝʇʅıɟ ʇuǝʇuoɔ ɟo spuɐsnoɥʇ sǝɔɹoɟuǝ uıƃıɹO ʞɔoʅԐn .ɹǝʞɔoʅq pɐ ǝʌıʇɔǝɟɟǝ puɐ ʇɥƃıǝʍʇɥƃıʅ ∀"
+
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɹoʍssɐd ǝƃɐuɐW"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ".ʅʅɐ ɯǝɥʇ ǝʅnɹ oʇ pɹoʍssɐd ǝuo ɥʇıʍ sǝɔıʌǝp ssoɹɔɐ suıƃoʅ ǝʇısqǝʍ snoıɹɐʌ ɹnoʎ ʅʅɐ ɔuʎs puɐ ʎɟıʅdɯıS"
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ".ǝɹoɯ puɐ ´ʅoɹʇuoɔ ʎɐʅd-oʇnɐ ´ƃuıʞɔoʅq pɐ ´ǝpoɯ ɐɯǝuıɔ ǝʞıʅ ´sǝɹnʇɐǝɟ ǝqn⊥no⅄ ʍǝu ɟo ǝʇıns ɐ ʎoɾuƎ"
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ".ʎɹoɯǝɯ ɟo ɥɔunq ɐ dn ƃuıʍǝɥɔ ʇnoɥʇıʍ sɹǝʇʅıɟ ʇuǝʇuoɔ ɟo spuɐsnoɥʇ sǝɔɹoɟuǝ uıƃıɹO ʞɔoʅԐn .ɹǝʞɔoʅq pɐ ǝʌıʇɔǝɟɟǝ puɐ ʇɥƃıǝʍʇɥƃıʅ ∀"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ d∩"
@@ -4635,498 +4695,6 @@ msgstr ".sǝɹnʇɐǝɟ ɹǝsʍoɹq ʅɐʇuǝɯıɹǝdxǝ oʇ ssǝɔɔɐ ʎʅɹ�
 
 msgid "Get Started"
 msgstr "pǝʇɹɐʇS ʇǝ⅁"
-
-msgid "United Arab Emirates Dirham"
-msgstr "ɯɐɥɹıᗡ sǝʇɐɹıɯƎ qɐɹ∀ pǝʇıu∩"
-
-msgid "Afghanistan Afghani"
-msgstr "ıuɐɥƃɟ∀ uɐʇsıuɐɥƃɟ∀"
-
-msgid "Albania Lek"
-msgstr "ʞǝ⅂ ɐıuɐqʅ∀"
-
-msgid "Armenia Dram"
-msgstr "ɯɐɹᗡ ɐıuǝɯɹ∀"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "ɹǝpʅın⅁ sǝʅʅıʇu∀ spuɐʅɹǝɥʇǝN"
-
-msgid "Angola Kwanza"
-msgstr "ɐzuɐʍӼ ɐʅoƃu∀"
-
-msgid "Argentina Peso"
-msgstr "osǝԀ ɐuıʇuǝƃɹ∀"
-
-msgid "Australia Dollar"
-msgstr "ɹɐʅʅoᗡ ɐıʅɐɹʇsn∀"
-
-msgid "Aruba Guilder"
-msgstr "ɹǝpʅın⅁ ɐqnɹ∀"
-
-msgid "Azerbaijan New Manat"
-msgstr "ʇɐuɐW ʍǝN uɐɾıɐqɹǝz∀"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "ɐʞɹɐW ǝʅqıʇɹǝʌuoↃ ɐuıʌoƃǝzɹǝH puɐ ɐıusoԐ"
-
-msgid "Barbados Dollar"
-msgstr "ɹɐʅʅoᗡ sopɐqɹɐԐ"
-
-msgid "Bangladesh Taka"
-msgstr "ɐʞɐ⊥ ɥsǝpɐʅƃuɐԐ"
-
-msgid "Bulgaria Lev"
-msgstr "ʌǝ⅂ ɐıɹɐƃʅnԐ"
-
-msgid "Bahrain Dinar"
-msgstr "ɹɐuıᗡ uıɐɹɥɐԐ"
-
-msgid "Burundi Franc"
-msgstr "ɔuɐɹℲ ıpunɹnԐ"
-
-msgid "Bermuda Dollar"
-msgstr "ɹɐʅʅoᗡ ɐpnɯɹǝԐ"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "ɹɐʅʅoᗡ ɯɐʅɐssnɹɐᗡ ıǝunɹԐ"
-
-msgid "Bolivia Boliviano"
-msgstr "ouɐıʌıʅoԐ ɐıʌıʅoԐ"
-
-msgid "Brazil Real"
-msgstr "ʅɐǝᴚ ʅızɐɹԐ"
-
-msgid "Bahamas Dollar"
-msgstr "ɹɐʅʅoᗡ sɐɯɐɥɐԐ"
-
-msgid "Bhutan Ngultrum"
-msgstr "ɯnɹʇʅnƃN uɐʇnɥԐ"
-
-msgid "Botswana Pula"
-msgstr "ɐʅnԀ ɐuɐʍsʇoԐ"
-
-msgid "Belarus Ruble"
-msgstr "ǝʅqnᴚ snɹɐʅǝԐ"
-
-msgid "Belize Dollar"
-msgstr "ɹɐʅʅoᗡ ǝzıʅǝԐ"
-
-msgid "Canada Dollar"
-msgstr "ɹɐʅʅoᗡ ɐpɐuɐↃ"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "ɔuɐɹℲ ɐsɐɥsuıӼ/oƃuoↃ"
-
-msgid "Switzerland Franc"
-msgstr "ɔuɐɹℲ puɐʅɹǝzʇıʍS"
-
-msgid "Chile Peso"
-msgstr "osǝԀ ǝʅıɥↃ"
-
-msgid "China Yuan Renminbi"
-msgstr "ıquıɯuǝᴚ uɐn⅄ ɐuıɥↃ"
-
-msgid "Colombia Peso"
-msgstr "osǝԀ ɐıqɯoʅoↃ"
-
-msgid "Costa Rica Colon"
-msgstr "uoʅoↃ ɐɔıᴚ ɐʇsoↃ"
-
-msgid "Cuba Convertible Peso"
-msgstr "osǝԀ ǝʅqıʇɹǝʌuoↃ ɐqnↃ"
-
-msgid "Cuba Peso"
-msgstr "osǝԀ ɐqnↃ"
-
-msgid "Cape Verde Escudo"
-msgstr "opnɔsƎ ǝpɹǝɅ ǝdɐↃ"
-
-msgid "Czech Republic Koruna"
-msgstr "ɐunɹoӼ ɔıʅqndǝᴚ ɥɔǝzↃ"
-
-msgid "Djibouti Franc"
-msgstr "ɔuɐɹℲ ıʇnoqıɾᗡ"
-
-msgid "Denmark Krone"
-msgstr "ǝuoɹӼ ʞɹɐɯuǝᗡ"
-
-msgid "Dominican Republic Peso"
-msgstr "osǝԀ ɔıʅqndǝᴚ uɐɔıuıɯoᗡ"
-
-msgid "Algeria Dinar"
-msgstr "ɹɐuıᗡ ɐıɹǝƃʅ∀"
-
-msgid "Egypt Pound"
-msgstr "punoԀ ʇdʎƃƎ"
-
-msgid "Eritrea Nakfa"
-msgstr "ɐɟʞɐN ɐǝɹʇıɹƎ"
-
-msgid "Ethiopia Birr"
-msgstr "ɹɹıԐ ɐıdoıɥʇƎ"
-
-msgid "Euro Member Countries"
-msgstr "sǝıɹʇunoↃ ɹǝqɯǝW oɹnƎ"
-
-msgid "Fiji Dollar"
-msgstr "ɹɐʅʅoᗡ ıɾıℲ"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "punoԀ (sɐuıʌʅɐW) spuɐʅsI puɐʅʞʅɐℲ"
-
-msgid "United Kingdom Pound"
-msgstr "punoԀ ɯopƃuıӼ pǝʇıu∩"
-
-msgid "Georgia Lari"
-msgstr "ıɹɐ⅂ ɐıƃɹoǝ⅁"
-
-msgid "Guernsey Pound"
-msgstr "punoԀ ʎǝsuɹǝn⅁"
-
-msgid "Ghana Cedi"
-msgstr "ıpǝↃ ɐuɐɥ⅁"
-
-msgid "Gibraltar Pound"
-msgstr "punoԀ ɹɐʇʅɐɹqı⅁"
-
-msgid "Gambia Dalasi"
-msgstr "ısɐʅɐᗡ ɐıqɯɐ⅁"
-
-msgid "Guinea Franc"
-msgstr "ɔuɐɹℲ ɐǝuın⅁"
-
-msgid "Guatemala Quetzal"
-msgstr "ʅɐzʇǝnÒ ɐʅɐɯǝʇɐn⅁"
-
-msgid "Guyana Dollar"
-msgstr "ɹɐʅʅoᗡ ɐuɐʎn⅁"
-
-msgid "Hong Kong Dollar"
-msgstr "ɹɐʅʅoᗡ ƃuoӼ ƃuoH"
-
-msgid "Honduras Lempira"
-msgstr "ɐɹıdɯǝ⅂ sɐɹnpuoH"
-
-msgid "Croatia Kuna"
-msgstr "ɐunӼ ɐıʇɐoɹↃ"
-
-msgid "Haiti Gourde"
-msgstr "ǝpɹno⅁ ıʇıɐH"
-
-msgid "Hungary Forint"
-msgstr "ʇuıɹoℲ ʎɹɐƃunH"
-
-msgid "Indonesia Rupiah"
-msgstr "ɥɐıdnᴚ ɐısǝuopuI"
-
-msgid "Israel Shekel"
-msgstr "ʅǝʞǝɥS ʅǝɐɹsI"
-
-msgid "Isle of Man Pound"
-msgstr "punoԀ uɐW ɟo ǝʅsI"
-
-msgid "India Rupee"
-msgstr "ǝǝdnᴚ ɐıpuI"
-
-msgid "Iraq Dinar"
-msgstr "ɹɐuıᗡ bɐɹI"
-
-msgid "Iran Rial"
-msgstr "ʅɐıᴚ uɐɹI"
-
-msgid "Iceland Krona"
-msgstr "ɐuoɹӼ puɐʅǝɔI"
-
-msgid "Jersey Pound"
-msgstr "punoԀ ʎǝsɹǝſ"
-
-msgid "Jamaica Dollar"
-msgstr "ɹɐʅʅoᗡ ɐɔıɐɯɐſ"
-
-msgid "Jordan Dinar"
-msgstr "ɹɐuıᗡ uɐpɹoſ"
-
-msgid "Japan Yen"
-msgstr "uǝ⅄ uɐdɐſ"
-
-msgid "Kenya Shilling"
-msgstr "ƃuıʅʅıɥS ɐʎuǝӼ"
-
-msgid "Kyrgyzstan Som"
-msgstr "ɯoS uɐʇszʎƃɹʎӼ"
-
-msgid "Cambodia Riel"
-msgstr "ʅǝıᴚ ɐıpoqɯɐↃ"
-
-msgid "Comoros Franc"
-msgstr "ɔuɐɹℲ soɹoɯoↃ"
-
-msgid "Korea (North) Won"
-msgstr "uoＭ (ɥʇɹoN) ɐǝɹoӼ"
-
-msgid "Korea (South) Won"
-msgstr "uoＭ (ɥʇnoS) ɐǝɹoӼ"
-
-msgid "Kuwait Dinar"
-msgstr "ɹɐuıᗡ ʇıɐʍnӼ"
-
-msgid "Cayman Islands Dollar"
-msgstr "ɹɐʅʅoᗡ spuɐʅsI uɐɯʎɐↃ"
-
-msgid "Kazakhstan Tenge"
-msgstr "ǝƃuǝ⊥ uɐʇsɥʞɐzɐӼ"
-
-msgid "Laos Kip"
-msgstr "dıӼ soɐ⅂"
-
-msgid "Lebanon Pound"
-msgstr "punoԀ uouɐqǝ⅂"
-
-msgid "Sri Lanka Rupee"
-msgstr "ǝǝdnᴚ ɐʞuɐ⅂ ıɹS"
-
-msgid "Liberia Dollar"
-msgstr "ɹɐʅʅoᗡ ɐıɹǝqı⅂"
-
-msgid "Lesotho Loti"
-msgstr "ıʇo⅂ oɥʇosǝ⅂"
-
-msgid "Lithuania Litas"
-msgstr "sɐʇı⅂ ɐıuɐnɥʇı⅂"
-
-msgid "Latvia Lat"
-msgstr "ʇɐ⅂ ɐıʌʇɐ⅂"
-
-msgid "Libya Dinar"
-msgstr "ɹɐuıᗡ ɐʎqı⅂"
-
-msgid "Morocco Dirham"
-msgstr "ɯɐɥɹıᗡ oɔɔoɹoW"
-
-msgid "Moldova Leu"
-msgstr "nǝ⅂ ɐʌopʅoW"
-
-msgid "Madagascar Ariary"
-msgstr "ʎɹɐıɹ∀ ɹɐɔsɐƃɐpɐW"
-
-msgid "Macedonia Denar"
-msgstr "ɹɐuǝᗡ ɐıuopǝɔɐW"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "ʇɐʎӼ (ɐɯɹnԐ) ɹɐɯuɐʎW"
-
-msgid "Mongolia Tughrik"
-msgstr "ʞıɹɥƃn⊥ ɐıʅoƃuoW"
-
-msgid "Macau Pataca"
-msgstr "ɐɔɐʇɐԀ nɐɔɐW"
-
-msgid "Mauritania Ouguiya"
-msgstr "ɐʎınƃnO ɐıuɐʇıɹnɐW"
-
-msgid "Mauritius Rupee"
-msgstr "ǝǝdnᴚ snıʇıɹnɐW"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "ɐɐʎıɟnᴚ (spuɐʅsI ǝʌıpʅɐW) sǝʌıpʅɐW"
-
-msgid "Malawi Kwacha"
-msgstr "ɐɥɔɐʍӼ ıʍɐʅɐW"
-
-msgid "Mexico Peso"
-msgstr "osǝԀ oɔıxǝW"
-
-msgid "Malaysia Ringgit"
-msgstr "ʇıƃƃuıᴚ ɐısʎɐʅɐW"
-
-msgid "Mozambique Metical"
-msgstr "ʅɐɔıʇǝW ǝnbıqɯɐzoW"
-
-msgid "Namibia Dollar"
-msgstr "ɹɐʅʅoᗡ ɐıqıɯɐN"
-
-msgid "Nigeria Naira"
-msgstr "ɐɹıɐN ɐıɹǝƃıN"
-
-msgid "Nicaragua Cordoba"
-msgstr "ɐqopɹoↃ ɐnƃɐɹɐɔıN"
-
-msgid "Norway Krone"
-msgstr "ǝuoɹӼ ʎɐʍɹoN"
-
-msgid "Nepal Rupee"
-msgstr "ǝǝdnᴚ ʅɐdǝN"
-
-msgid "New Zealand Dollar"
-msgstr "ɹɐʅʅoᗡ puɐʅɐǝZ ʍǝN"
-
-msgid "Oman Rial"
-msgstr "ʅɐıᴚ uɐɯO"
-
-msgid "Panama Balboa"
-msgstr "ɐoqʅɐԐ ɐɯɐuɐԀ"
-
-msgid "Peru Nuevo Sol"
-msgstr "ʅoS oʌǝnN nɹǝԀ"
-
-msgid "Papua New Guinea Kina"
-msgstr "ɐuıӼ ɐǝuın⅁ ʍǝN ɐndɐԀ"
-
-msgid "Philippines Peso"
-msgstr "osǝԀ sǝuıddıʅıɥԀ"
-
-msgid "Pakistan Rupee"
-msgstr "ǝǝdnᴚ uɐʇsıʞɐԀ"
-
-msgid "Poland Zloty"
-msgstr "ʎʇoʅZ puɐʅoԀ"
-
-msgid "Paraguay Guarani"
-msgstr "ıuɐɹɐn⅁ ʎɐnƃɐɹɐԀ"
-
-msgid "Qatar Riyal"
-msgstr "ʅɐʎıᴚ ɹɐʇɐÒ"
-
-msgid "Romania New Leu"
-msgstr "nǝ⅂ ʍǝN ɐıuɐɯoᴚ"
-
-msgid "Serbia Dinar"
-msgstr "ɹɐuıᗡ ɐıqɹǝS"
-
-msgid "Russia Ruble"
-msgstr "ǝʅqnᴚ ɐıssnᴚ"
-
-msgid "Rwanda Franc"
-msgstr "ɔuɐɹℲ ɐpuɐʍᴚ"
-
-msgid "Saudi Arabia Riyal"
-msgstr "ʅɐʎıᴚ ɐıqɐɹ∀ ıpnɐS"
-
-msgid "Solomon Islands Dollar"
-msgstr "ɹɐʅʅoᗡ spuɐʅsI uoɯoʅoS"
-
-msgid "Seychelles Rupee"
-msgstr "ǝǝdnᴚ sǝʅʅǝɥɔʎǝS"
-
-msgid "Sudan Pound"
-msgstr "punoԀ uɐpnS"
-
-msgid "Sweden Krona"
-msgstr "ɐuoɹӼ uǝpǝʍS"
-
-msgid "Singapore Dollar"
-msgstr "ɹɐʅʅoᗡ ǝɹodɐƃuıS"
-
-msgid "Saint Helena Pound"
-msgstr "punoԀ ɐuǝʅǝH ʇuıɐS"
-
-msgid "Sierra Leone Leone"
-msgstr "ǝuoǝ⅂ ǝuoǝ⅂ ɐɹɹǝıS"
-
-msgid "Somalia Shilling"
-msgstr "ƃuıʅʅıɥS ɐıʅɐɯoS"
-
-msgid "Seborga Luigino"
-msgstr "ouıƃın⅂ ɐƃɹoqǝS"
-
-msgid "Suriname Dollar"
-msgstr "ɹɐʅʅoᗡ ǝɯɐuıɹnS"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "ɐɹqoᗡ ǝdıɔuíɹԀ puɐ éɯo⊥ oãS"
-
-msgid "El Salvador Colon"
-msgstr "uoʅoↃ ɹopɐʌʅɐS ʅƎ"
-
-msgid "Syria Pound"
-msgstr "punoԀ ɐıɹʎS"
-
-msgid "Swaziland Lilangeni"
-msgstr "ıuǝƃuɐʅı⅂ puɐʅızɐʍS"
-
-msgid "Thailand Baht"
-msgstr "ʇɥɐԐ puɐʅıɐɥ⊥"
-
-msgid "Tajikistan Somoni"
-msgstr "ıuoɯoS uɐʇsıʞıɾɐ⊥"
-
-msgid "Turkmenistan Manat"
-msgstr "ʇɐuɐW uɐʇsıuǝɯʞɹn⊥"
-
-msgid "Tunisia Dinar"
-msgstr "ɹɐuıᗡ ɐısıun⊥"
-
-msgid "Tonga Pa'anga"
-msgstr "ɐƃuɐ,ɐԀ ɐƃuo⊥"
-
-msgid "Turkey Lira"
-msgstr "ɐɹı⅂ ʎǝʞɹn⊥"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "ɹɐʅʅoᗡ oƃɐqo⊥ puɐ pɐpıuıɹ⊥"
-
-msgid "Tuvalu Dollar"
-msgstr "ɹɐʅʅoᗡ nʅɐʌn⊥"
-
-msgid "Taiwan New Dollar"
-msgstr "ɹɐʅʅoᗡ ʍǝN uɐʍıɐ⊥"
-
-msgid "Tanzania Shilling"
-msgstr "ƃuıʅʅıɥS ɐıuɐzuɐ⊥"
-
-msgid "Ukraine Hryvna"
-msgstr "ɐuʌʎɹH ǝuıɐɹʞ∩"
-
-msgid "Uganda Shilling"
-msgstr "ƃuıʅʅıɥS ɐpuɐƃ∩"
-
-msgid "United States Dollar"
-msgstr "ɹɐʅʅoᗡ sǝʇɐʇS pǝʇıu∩"
-
-msgid "Uruguay Peso"
-msgstr "osǝԀ ʎɐnƃnɹ∩"
-
-msgid "Uzbekistan Som"
-msgstr "ɯoS uɐʇsıʞǝqz∩"
-
-msgid "Venezuela Bolivar"
-msgstr "ɹɐʌıʅoԐ ɐʅǝnzǝuǝɅ"
-
-msgid "Viet Nam Dong"
-msgstr "ƃuoᗡ ɯɐN ʇǝıɅ"
-
-msgid "Vanuatu Vatu"
-msgstr "nʇɐɅ nʇɐnuɐɅ"
-
-msgid "Samoa Tala"
-msgstr "ɐʅɐ⊥ ɐoɯɐS"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Ↄ∀ƎԐ ɔuɐɹℲ ∀ℲↃ (Ↄ∀ƎԐ) ǝuıɐɔıɹɟ∀ ǝɹèıɔuɐuıℲ éʇnɐunɯɯoↃ"
-
-msgid "East Caribbean Dollar"
-msgstr "ɹɐʅʅoᗡ uɐǝqqıɹɐↃ ʇsɐƎ"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "sʇɥƃıᴚ ƃuıʍɐɹᗡ ʅɐıɔǝdS (ℲWI) punℲ ʎɹɐʇǝuoW ʅɐuoıʇɐuɹǝʇuI"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "ɔuɐɹℲ (O∀ƎↃԐ) ǝuıɐɔıɹɟ∀ ǝɹèıɔuɐuıℲ éʇnɐunɯɯoↃ"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "ɔuɐɹℲ (ԀℲↃ) ǝnbıɟıɔɐԀ np sıɐçuɐɹℲ sɹıoʇdɯoↃ"
-
-msgid "Yemen Rial"
-msgstr "ʅɐıᴚ uǝɯǝ⅄"
-
-msgid "South Africa Rand"
-msgstr "puɐᴚ ɐɔıɹɟ∀ ɥʇnoS"
-
-msgid "Zambia Kwacha"
-msgstr "ɐɥɔɐʍӼ ɐıqɯɐZ"
-
-msgid "Zimbabwe Dollar"
-msgstr "ɹɐʅʅoᗡ ǝʍqɐqɯıZ"
 
 msgid "About Mozilla Add-ons"
 msgstr "suo-pp∀ ɐʅʅızoW ʇnoq∀"
@@ -6587,6 +6155,9 @@ msgstr "ƃo⅂ ʍǝıʌǝᴚ uo-pp∀"
 msgid "Signed Beta Files Log"
 msgstr "ƃo⅂ sǝʅıℲ ɐʇǝԐ pǝuƃıS"
 
+msgid "Review Guide"
+msgstr "ǝpın⅁ ʍǝıʌǝᴚ"
+
 msgid "Auto-Approved Add-ons"
 msgstr "suo-pp∀ pǝʌoɹdd∀-oʇn∀"
 
@@ -6613,8 +6184,8 @@ msgstr "({0}) sǝɯǝɥ⊥ pǝƃƃɐʅℲ"
 msgid "Themes Review Log"
 msgstr "ƃo⅂ ʍǝıʌǝᴚ sǝɯǝɥ⊥"
 
-msgid "Deleted themes Log"
-msgstr "ƃo⅂ sǝɯǝɥʇ pǝʇǝʅǝᗡ"
+msgid "Deleted Themes Log"
+msgstr "ƃo⅂ sǝɯǝɥ⊥ pǝʇǝʅǝᗡ"
 
 msgid "User Ratings Moderation"
 msgstr "uoıʇɐɹǝpoW sƃuıʇɐᴚ ɹǝs∩"
@@ -6624,6 +6195,9 @@ msgstr "({0}) uoıʇɐɹǝpoW ƃuıʇıɐʍ∀ sƃuıʇɐᴚ"
 
 msgid "Moderated Review Log"
 msgstr "ƃo⅂ ʍǝıʌǝᴚ pǝʇɐɹǝpoW"
+
+msgid "Moderation Guide"
+msgstr "ǝpın⅁ uoıʇɐɹǝpoW"
 
 msgid "Unlisted Add-ons"
 msgstr "suo-pp∀ pǝʇsıʅu∩"
@@ -6636,15 +6210,6 @@ msgstr "ʇuǝɯǝɔunouu∀"
 
 msgid "Update message of the day"
 msgstr "ʎɐp ǝɥʇ ɟo ǝƃɐssǝɯ ǝʇɐpd∩"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "(sʎɐp 5 ɹǝpu∩) suo-pp∀ ʍǝN"
-
-msgid "Passable (5 to 10 days)"
-msgstr "(sʎɐp 01 oʇ 5) ǝʅqɐssɐԀ"
-
-msgid "Overdue (Over 10 days)"
-msgstr "(sʎɐp 01 ɹǝʌO) ǝnpɹǝʌO"
 
 msgid "An unknown error occurred"
 msgstr "pǝɹɹnɔɔo ɹoɹɹǝ uʍouʞun u∀"
@@ -6712,29 +6277,8 @@ msgstr "ʎɹǝʅʅɐ⅁ ǝƃɐɯI"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ".sʅıɐʇǝp ʎuɐ ǝpnʅɔuı ʇou pıp ɹǝdoʅǝʌǝp ǝɥ⊥  ¡ǝɹǝɥ ǝǝs oʇ ƃuıɥʇoN"
 
-msgid "Return to the Reviewer Tools homepage"
-msgstr "ǝƃɐdǝɯoɥ sʅoo⊥ ɹǝʍǝıʌǝᴚ ǝɥʇ oʇ uɹnʇǝᴚ"
-
-msgid "Queues"
-msgstr "sǝnǝnÒ"
-
-msgid "New Add-ons"
-msgstr "suo-pp∀ ʍǝN"
-
-msgid "Updates"
-msgstr "sǝʇɐpd∩"
-
-msgid "Moderated Reviews"
-msgstr "sʍǝıʌǝᴚ pǝʇɐɹǝpoW"
-
-msgid "Auto Approved Add-ons"
-msgstr "suo-pp∀ pǝʌoɹdd∀ oʇn∀"
-
-msgid "Unlisted Queues"
-msgstr "sǝnǝnÒ pǝʇsıʅu∩"
-
-msgid "Logs"
-msgstr "sƃo⅂"
+msgid "Return to the Reviewer Tools dashboard"
+msgstr "pɹɐoqɥsɐp sʅoo⊥ ɹǝʍǝıʌǝᴚ ǝɥʇ oʇ uɹnʇǝᴚ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6777,46 +6321,6 @@ msgstr ".uoıʇǝʅǝp oʇ ɹoıɹd pǝƃƃɐʅɟ sɐʍ ʍǝıʌǝᴚ"
 msgid "Undelete"
 msgstr "ǝʇǝʅǝpu∩"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "({num}) uo-pp∀ ʍǝN"
-msgstr[1] "({num}) suo-pp∀ ʍǝN"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "({num}) ǝʇɐpd∩"
-msgstr[1] "({num}) sǝʇɐpd∩"
-
-msgid "Current waiting times:"
-msgstr ":sǝɯıʇ ƃuıʇıɐʍ ʇuǝɹɹnↃ"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "uo-ppɐ {0}"
-msgstr[1] "suo-ppɐ {0}"
-
-#, python-format
-msgid "{0}%%"
-msgstr "%%{0}"
-
-msgid "Total Reviews"
-msgstr "sʍǝıʌǝᴚ ʅɐʇo⊥"
-
-msgid "Reviews This Month"
-msgstr "ɥʇuoW sıɥ⊥ sʍǝıʌǝᴚ"
-
-msgid "New Reviewers"
-msgstr "sɹǝʍǝıʌǝᴚ ʍǝN"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "sʍǝıʌǝɹ {1} ɥʇıʍ {0}# ǝɹ,no⅄"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "({num}) ʍǝıʌǝᴚ pǝʇɐɹǝpoW"
-msgstr[1] "({num}) sʍǝıʌǝᴚ pǝʇɐɹǝpoW"
-
 msgid "Reviewer Leaderboard"
 msgstr "pɹɐoqɹǝpɐǝ⅂ ɹǝʍǝıʌǝᴚ"
 
@@ -6846,6 +6350,9 @@ msgstr "sʍǝıʌǝᴚ ɹno⅄"
 
 msgid "By {user_name}"
 msgstr "{user_name} ʎԐ"
+
+msgid "Total Reviews"
+msgstr "sʍǝıʌǝᴚ ʅɐʇo⊥"
 
 msgid "Active Contributors"
 msgstr "sɹoʇnqıɹʇuoↃ ǝʌıʇɔ∀"
@@ -7078,26 +6585,14 @@ msgstr "uosɐǝᴚ"
 msgid "There are currently no reviews."
 msgstr ".sʍǝıʌǝɹ ou ʎʅʇuǝɹɹnɔ ǝɹɐ ǝɹǝɥ⊥"
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "ʍǝıʌǝᴚ ǝɯǝɥ⊥ ƃuıpuǝԀ {num}"
-msgstr[1] "sʍǝıʌǝᴚ ǝɯǝɥ⊥ ƃuıpuǝԀ {num}"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "ʍǝıʌǝᴚ pǝƃƃɐʅℲ {num}"
-msgstr[1] "sʍǝıʌǝᴚ pǝƃƃɐʅℲ {num}"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "ǝʇɐpd∩ {num}"
-msgstr[1] "sǝʇɐpd∩ {num}"
-
 msgid "Flagged Themes"
 msgstr "sǝɯǝɥ⊥ pǝƃƃɐʅℲ"
 
 msgid "Theme Review Queue"
 msgstr "ǝnǝnÒ ʍǝıʌǝᴚ ǝɯǝɥ⊥"
+
+msgid "Queues"
+msgstr "sǝnǝnÒ"
 
 msgid "Review Options"
 msgstr "suoıʇdO ʍǝıʌǝᴚ"
@@ -7210,6 +6705,9 @@ msgstr[1] "({0}) suo-pp∀ pǝʌoɹdd∀ oʇn∀"
 
 msgid "Flagged"
 msgstr "pǝƃƃɐʅℲ"
+
+msgid "Updates"
+msgstr "sǝʇɐpd∩"
 
 msgid "Maximum query length exceeded."
 msgstr ".pǝpǝǝɔxǝ ɥʇƃuǝʅ ʎɹǝnb ɯnɯıxɐW"
@@ -7374,9 +6872,6 @@ msgstr "ɯɹoɟʇɐʅԀ ʎq"
 msgid "by Add-on Status"
 msgstr "snʇɐʇS uo-pp∀ ʎq"
 
-msgid "Contributions"
-msgstr "suoıʇnqıɹʇuoↃ"
-
 msgid "Subscribers"
 msgstr "sɹǝqıɹɔsqnS"
 
@@ -7490,9 +6985,6 @@ msgstr ".ǝʅqɐʅıɐʌɐ ɐʇɐp oN"
 msgid "This dashboard is currently <b>public</b>."
 msgstr ".<b>ɔıʅqnd</b> ʎʅʇuǝɹɹnɔ sı pɹɐoqɥsɐp sıɥ⊥"
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ".<b>ǝʇɐʌıɹd</b> ʎʅʇuǝɹɹnɔ ǝɹɐ sʇɐʇs uoıʇnqıɹʇuoↃ"
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ".<b>ǝʇɐʌıɹd</b> ʎʅʇuǝɹɹnɔ sı pɹɐoqɥsɐp sıɥ⊥"
 
@@ -7516,9 +7008,6 @@ msgstr "ǝʇɐᗡ ʎq ǝƃɐsn uoıʇɐɔıʅdd∀"
 
 msgid "Collections Created by Date"
 msgstr "ǝʇɐᗡ ʎq pǝʇɐǝɹↃ suoıʇɔǝʅʅoↃ"
-
-msgid "Contributions by Date"
-msgstr "ǝʇɐᗡ ʎq suoıʇnqıɹʇuoↃ"
 
 msgid "Downloaded by Date"
 msgstr "ǝʇɐᗡ ʎq pǝpɐoʅuʍoᗡ"
@@ -7737,9 +7226,6 @@ msgstr ".<a class=\"mobile-link\" href=\"#\">ǝʇıs suo-pp∀ ǝʅıqoW</a> ɹn
 msgid "Android Add-ons"
 msgstr "suo-pp∀ pıoɹpu∀"
 
-msgid "required"
-msgstr "pǝɹınbǝɹ"
-
 msgid "Required fields"
 msgstr "spʅǝıɟ pǝɹınbǝᴚ"
 
@@ -7809,9 +7295,6 @@ msgstr "{id} ɹǝsn snoɯʎuou∀"
 
 msgid "My Mobile Add-ons"
 msgstr "suo-pp∀ ǝʅıqoW ʎW"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "uoıʇnqıɹʇuoɔ ɐ ɹoɟ ǝɯ sʞuɐɥʇ ɹǝdoʅǝʌǝp uo-ppɐ uɐ"
 
 msgid "an add-on developer replies to my review"
 msgstr "ʍǝıʌǝɹ ʎɯ oʇ sǝıʅdǝɹ ɹǝdoʅǝʌǝp uo-ppɐ uɐ"

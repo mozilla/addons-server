@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-09-10 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -2125,15 +2125,6 @@ msgstr "Πρόσθετες λειτουργίες"
 msgid "Themes (Static)"
 msgstr "Καλλιτέχνης θεμάτων"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Ερώτηση μόνο στη σελίδα του πρόσθετου και στο προφίλ δημιουργού"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Έκκληση μετά την εκκίνηση της λήψης του πρόσθετου"
-
-msgid "Ask before users can download this add-on"
-msgstr "Έκκληση πριν εκκινηθεί η λήψη του πρόσθετου"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Άλλο"
@@ -3016,10 +3007,11 @@ msgstr "Δημιουργοί"
 msgid "About author roles"
 msgstr "Σχετικά με τους ρόλους των συντελεστών"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό συντακτών με 3 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων, συμπεριλαμβανομένων της "
 "πρόσθεσης και αφαίρεσης συντακτών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων του προσθέτου, εκτός της πρόσθεσης και αφαίρεσης συντακτών καθώς και των "
@@ -3613,6 +3605,10 @@ msgstr ""
 "Χρησιμοποιήστε τα παρακάτω πεδία για να αποστείλετε το πακέτο του πρόσθετου σας και να επιλέξετε τυχόν περιορισμούς λειτουργικού συστήματος. Μετά την αποστολή, θα διεξαχθεί στο αρχείο σας μια σειρά "
 "αυτοματοποιημένων δοκιμών και ελέγχων."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Δημιουργία νέου θέματος"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό το αρχείο;"
 
@@ -3627,6 +3623,91 @@ msgstr "Υποβολή αρχείου"
 
 msgid "Sign Add-on"
 msgstr "Υπογραφή πρόσθετου"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Το θέμα διαγράφηκε."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Άδεια θέματος"
+
+msgid "Select a header image for your Theme."
+msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
+
+msgid "required"
+msgstr "απαιτείται "
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr "Προσανατολισμένο πάνω δεξιά"
+
+msgid "Select a different header image"
+msgstr "Επιλογή διαφορετικής εικόνας κεφαλίδας"
+
+msgid "Select colors for your Theme."
+msgstr "Επιλέξτε χρώματα για το θέμα σας."
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "Αυτό είναι το χρώμα του κειμένου καρτέλας."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(προαιρετικό)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Περάστε από πάνω για προεπισκόπηση"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Επερχόμενα θέματα"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Μεταφόρτωση αρχείου"
 
 msgid "API Credentials"
 msgstr "Διαπιστευτήρια API"
@@ -4052,9 +4133,6 @@ msgstr "Κεφαλίδα"
 msgid "Footer"
 msgstr "Υποσέλιδο"
 
-msgid "Select colors for your Theme."
-msgstr "Επιλέξτε χρώματα για το θέμα σας."
-
 msgid "Foreground Text"
 msgstr "Κείμενο προσκηνίου"
 
@@ -4119,9 +4197,6 @@ msgstr ""
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 εικονοστοιχεία"
 
@@ -4130,12 +4205,6 @@ msgstr "Μεγ. 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG ή JPG"
-
-msgid "Aligned to top-right"
-msgstr "Προσανατολισμένο πάνω δεξιά"
-
-msgid "Select a different header image"
-msgstr "Επιλογή διαφορετικής εικόνας κεφαλίδας"
 
 msgid "Select a footer image for your Theme."
 msgstr "Επιλέξτε μια εικόνα υποσέλιδου για το θέμα σας."
@@ -4337,23 +4406,23 @@ msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
 #, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-#, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4694,498 +4763,6 @@ msgstr "Ξεκλειδώστε πρώιμη πρόσβαση σε πειραμα
 
 msgid "Get Started"
 msgstr "Ξεκινήστε"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Δράμι Ηνωμένων Αραβικών Εμιράτων"
-
-msgid "Afghanistan Afghani"
-msgstr "Αφγάνι Αφγανιστάν"
-
-msgid "Albania Lek"
-msgstr "Λεκ Αλβανίας"
-
-msgid "Armenia Dram"
-msgstr "Δράμι Αρμενίας"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Φιορίνι Ολλανδικών Αντιλλών"
-
-msgid "Angola Kwanza"
-msgstr "Κουάνζα Ανγκόλας"
-
-msgid "Argentina Peso"
-msgstr "Πέσο Αργεντινής"
-
-msgid "Australia Dollar"
-msgstr "Δολάριο Αυστραλίας"
-
-msgid "Aruba Guilder"
-msgstr "Φιορίνι Αρούμπα"
-
-msgid "Azerbaijan New Manat"
-msgstr "Νέο Μανάτ Αζερμπαϊτζάν"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Μετατρέψιμο Μάρκο Βοσνίας και Ερζεγοβίνης"
-
-msgid "Barbados Dollar"
-msgstr "Δολάριο Μπαρμπάντος"
-
-msgid "Bangladesh Taka"
-msgstr "Τάκα Μπανγκλαντές"
-
-msgid "Bulgaria Lev"
-msgstr "Λεβ Βουλγαρίας"
-
-msgid "Bahrain Dinar"
-msgstr "Δηνάριο Μπαχρέιν"
-
-msgid "Burundi Franc"
-msgstr "Φράγκο Μπουρουντί"
-
-msgid "Bermuda Dollar"
-msgstr "Δολάριο Βερμούδων"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Δολάριο Μπρουνέι"
-
-msgid "Bolivia Boliviano"
-msgstr "Μπολιβιάνο Βολιβίας"
-
-msgid "Brazil Real"
-msgstr "Ρεάλ Βραζιλίας"
-
-msgid "Bahamas Dollar"
-msgstr "Δολάριο Μπαχάμας"
-
-msgid "Bhutan Ngultrum"
-msgstr "Νγκούλντρουμ Μπουτάν"
-
-msgid "Botswana Pula"
-msgstr "Πούλα Μποτσουάνας"
-
-msgid "Belarus Ruble"
-msgstr "Ρούβλι Λευκορωσίας"
-
-msgid "Belize Dollar"
-msgstr "Δολάριο Μπελίζ"
-
-msgid "Canada Dollar"
-msgstr "Δολάριο Καναδά"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Φράγκο Κονγκό/Κινσάσα"
-
-msgid "Switzerland Franc"
-msgstr "Φράγκο Ελβετίας"
-
-msgid "Chile Peso"
-msgstr "Πέσο Χιλής"
-
-msgid "China Yuan Renminbi"
-msgstr "Ρενμινπί Γουάν Κίνας"
-
-msgid "Colombia Peso"
-msgstr "Πέσο Κολομβίας"
-
-msgid "Costa Rica Colon"
-msgstr "Κολόν Κόστα Ρίκα"
-
-msgid "Cuba Convertible Peso"
-msgstr "Μετατρέψιμο Πέσο Κούβας"
-
-msgid "Cuba Peso"
-msgstr "Πέσο Κούβας"
-
-msgid "Cape Verde Escudo"
-msgstr "Εσκούδο Πρασίνου Ακρωτηρίου"
-
-msgid "Czech Republic Koruna"
-msgstr "Κορόνα Δημοκρατίας της Τσεχίας"
-
-msgid "Djibouti Franc"
-msgstr "Φράγκο Τζιμπουτί"
-
-msgid "Denmark Krone"
-msgstr "Κορόνα Δανίας"
-
-msgid "Dominican Republic Peso"
-msgstr "Πέσο Δομινικανής Δημοκρατίας"
-
-msgid "Algeria Dinar"
-msgstr "Δηνάριο Αλγερίας"
-
-msgid "Egypt Pound"
-msgstr "Λίρα Αιγύπτου"
-
-msgid "Eritrea Nakfa"
-msgstr "Νάκφα Ερυθραίας"
-
-msgid "Ethiopia Birr"
-msgstr "Μπιρ Αιθιοπίας"
-
-msgid "Euro Member Countries"
-msgstr "Ευρώ Χωρών-Μελών Ευρωζώνης"
-
-msgid "Fiji Dollar"
-msgstr "Δολάριο Φίτζι"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Λίρα Νήσων Φώκλαντ (Μαλβίνας)"
-
-msgid "United Kingdom Pound"
-msgstr "Λίρα Ηνωμένου Βασιλείου"
-
-msgid "Georgia Lari"
-msgstr "Λάρι Γεωργίας"
-
-msgid "Guernsey Pound"
-msgstr "Λίρα Γκέρνσεϊ"
-
-msgid "Ghana Cedi"
-msgstr "Σέντι Γκάνας"
-
-msgid "Gibraltar Pound"
-msgstr "Λίρα Γιβραλτάρ"
-
-msgid "Gambia Dalasi"
-msgstr "Νταλάζι Γκάμπια"
-
-msgid "Guinea Franc"
-msgstr "Φράγκο Γουινέας"
-
-msgid "Guatemala Quetzal"
-msgstr "Κετσάλ Γουατεμάλας"
-
-msgid "Guyana Dollar"
-msgstr "Δολάριο Γουιάνας"
-
-msgid "Hong Kong Dollar"
-msgstr "Δολάριο Χονγκ Κονγκ"
-
-msgid "Honduras Lempira"
-msgstr "Λεμπίρα\tΟνδούρας"
-
-msgid "Croatia Kuna"
-msgstr "Κούνα Κροατίας"
-
-msgid "Haiti Gourde"
-msgstr "Γκουρντ Αϊτής"
-
-msgid "Hungary Forint"
-msgstr "Φιορίνι Ουγγαρίας"
-
-msgid "Indonesia Rupiah"
-msgstr "Ρουπία Ινδονησίας"
-
-msgid "Israel Shekel"
-msgstr "Σέκελ Ισραήλ"
-
-msgid "Isle of Man Pound"
-msgstr "Λίρα Νήσου Μαν"
-
-msgid "India Rupee"
-msgstr "Ρουπία Ινδίας"
-
-msgid "Iraq Dinar"
-msgstr "Δηνάριο Ιράκ"
-
-msgid "Iran Rial"
-msgstr "Ριάλ Ιράν"
-
-msgid "Iceland Krona"
-msgstr "Κορόνα Ισλανδίας"
-
-msgid "Jersey Pound"
-msgstr "Λίρα Τζέρσεϊ"
-
-msgid "Jamaica Dollar"
-msgstr "Δολάριο Τζαμάικας"
-
-msgid "Jordan Dinar"
-msgstr "Δηνάριο Ιορδανίας"
-
-msgid "Japan Yen"
-msgstr "Γιεν Ιαπωνίας"
-
-msgid "Kenya Shilling"
-msgstr "Σελίνι Κένυας"
-
-msgid "Kyrgyzstan Som"
-msgstr "Σομ Κιργιζίας"
-
-msgid "Cambodia Riel"
-msgstr "Ριέλ Καμπότζης"
-
-msgid "Comoros Franc"
-msgstr "Φράγκο Κομόρων"
-
-msgid "Korea (North) Won"
-msgstr "Γουόν (Βόρειας) Κορέας"
-
-msgid "Korea (South) Won"
-msgstr "Γουόν (Νότιας) Κορέας"
-
-msgid "Kuwait Dinar"
-msgstr "Δηνάριο Κουβέιτ"
-
-msgid "Cayman Islands Dollar"
-msgstr "Δολάριο Νησιών Κέιμαν"
-
-msgid "Kazakhstan Tenge"
-msgstr "Τένγκε Καζακστάν"
-
-msgid "Laos Kip"
-msgstr "Κιπ Λάος"
-
-msgid "Lebanon Pound"
-msgstr "Λίρα Λιβάνου"
-
-msgid "Sri Lanka Rupee"
-msgstr "Ρουπία Σρι Λάνκας"
-
-msgid "Liberia Dollar"
-msgstr "Δολάριο Λιβερίας"
-
-msgid "Lesotho Loti"
-msgstr "Λότι Λεσότο"
-
-msgid "Lithuania Litas"
-msgstr "Λίτας Λιθουανίας"
-
-msgid "Latvia Lat"
-msgstr "Λατς Λετονίας"
-
-msgid "Libya Dinar"
-msgstr "Δηνάριο Λιβύης"
-
-msgid "Morocco Dirham"
-msgstr "Ντιρχάμ Μαρόκου"
-
-msgid "Moldova Leu"
-msgstr "Λέου Μολδαβίας"
-
-msgid "Madagascar Ariary"
-msgstr "Αριάρι Μαδαγασκάρης"
-
-msgid "Macedonia Denar"
-msgstr "Δηνάριο ΠΓΔΜ"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Κυάτ Μιανμάρ (Μπούρμα)"
-
-msgid "Mongolia Tughrik"
-msgstr "Τουγκρίκ Μογγολίας"
-
-msgid "Macau Pataca"
-msgstr "Πατάκα Μακάο"
-
-msgid "Mauritania Ouguiya"
-msgstr "Ουγκίγια Μαυριτανίας"
-
-msgid "Mauritius Rupee"
-msgstr "Ρουπία Μαυρίκιου"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Ρουφίγια Μαλδίβων (Μαλδίβες Νήσοι)"
-
-msgid "Malawi Kwacha"
-msgstr "Κουάτσα Μαλάουι"
-
-msgid "Mexico Peso"
-msgstr "Πέσο Μεξικού"
-
-msgid "Malaysia Ringgit"
-msgstr "Ρινγκίτ Μαλαισίας"
-
-msgid "Mozambique Metical"
-msgstr "Μετικάλ Μοζαμβίκης"
-
-msgid "Namibia Dollar"
-msgstr "Δολάριο Ναμίμπιας"
-
-msgid "Nigeria Naira"
-msgstr "Νάιρα Νιγηρίας"
-
-msgid "Nicaragua Cordoba"
-msgstr "Κόρντομπα Νικαράγουας"
-
-msgid "Norway Krone"
-msgstr "Κορόνα Νορβηγίας"
-
-msgid "Nepal Rupee"
-msgstr "Ρουπία Νεπάλ"
-
-msgid "New Zealand Dollar"
-msgstr "Δολάριο Νέας Ζηλανδίας"
-
-msgid "Oman Rial"
-msgstr "Ριάλ Ομάν"
-
-msgid "Panama Balboa"
-msgstr "Μπαλμπόα Παναμάς"
-
-msgid "Peru Nuevo Sol"
-msgstr "Σολ Περού"
-
-msgid "Papua New Guinea Kina"
-msgstr "Κίνα Παπούα Νέας Γουινέας"
-
-msgid "Philippines Peso"
-msgstr "Πέσο Φιλιππίνων"
-
-msgid "Pakistan Rupee"
-msgstr "Ρουπία Πακιστάν"
-
-msgid "Poland Zloty"
-msgstr "Ζλότι Πολωνίας"
-
-msgid "Paraguay Guarani"
-msgstr "Γκουαρανί Παραγουάης"
-
-msgid "Qatar Riyal"
-msgstr "Ριγιάλ Κατάρ"
-
-msgid "Romania New Leu"
-msgstr "Νέο Λέου Ρουμανίας"
-
-msgid "Serbia Dinar"
-msgstr "Δηνάριο Σερβίας"
-
-msgid "Russia Ruble"
-msgstr "Ρούβλι Ρωσίας"
-
-msgid "Rwanda Franc"
-msgstr "Φράγκο Ρουάντα"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Ριάλ Σαουδικής Αραβίας"
-
-msgid "Solomon Islands Dollar"
-msgstr "Δολάριο Νήσων Σολομώντα"
-
-msgid "Seychelles Rupee"
-msgstr "Ρουπία Σεϋχελλών"
-
-msgid "Sudan Pound"
-msgstr "Λίρα Σουδάν"
-
-msgid "Sweden Krona"
-msgstr "Κορόνα Σουηδίας"
-
-msgid "Singapore Dollar"
-msgstr "Δολάριο Σιγκαπούρης"
-
-msgid "Saint Helena Pound"
-msgstr "Λίρα Αγίας Ελένης"
-
-msgid "Sierra Leone Leone"
-msgstr "Λεόνε Σιέρα Λεόνε"
-
-msgid "Somalia Shilling"
-msgstr "Σελίνι Σομαλίας"
-
-msgid "Seborga Luigino"
-msgstr "Λουιτζίνο Σεμπόργκα"
-
-msgid "Suriname Dollar"
-msgstr "Δολάριο Σουρινάμ"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Ντόμπρα Σάο Τομέ και Πρίνσιπε"
-
-msgid "El Salvador Colon"
-msgstr "Κολόν Ελ Σαλβαδόρ"
-
-msgid "Syria Pound"
-msgstr "Λίρα Συρίας"
-
-msgid "Swaziland Lilangeni"
-msgstr "Λιλανγκένι Σουαζιλάνδης"
-
-msgid "Thailand Baht"
-msgstr "Μπαχτ Ταϊλάνδης"
-
-msgid "Tajikistan Somoni"
-msgstr "Σομόνι Τατζικιστάν"
-
-msgid "Turkmenistan Manat"
-msgstr "Μανάτ Τουρκμενιστάν"
-
-msgid "Tunisia Dinar"
-msgstr "Δηνάριο Τυνησίας"
-
-msgid "Tonga Pa'anga"
-msgstr "Παάνγκα Τόνγκα"
-
-msgid "Turkey Lira"
-msgstr "Λίρα Τουρκίας"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Δολάριο Τρινιντάντ και Τομπάγκο"
-
-msgid "Tuvalu Dollar"
-msgstr "Δολάριο του Τουβαλού"
-
-msgid "Taiwan New Dollar"
-msgstr "Νέο Δολάριο Ταϊβάν"
-
-msgid "Tanzania Shilling"
-msgstr "Σελίνι Τανζανίας"
-
-msgid "Ukraine Hryvna"
-msgstr "Χρίβνια Ουκρανία"
-
-msgid "Uganda Shilling"
-msgstr "Σελίνι Ουγκάντας"
-
-msgid "United States Dollar"
-msgstr "Δολάριο Ηνωμένων Πολιτειών"
-
-msgid "Uruguay Peso"
-msgstr "Πέσο Ουρουγουάης"
-
-msgid "Uzbekistan Som"
-msgstr "Σομ Ουζμπεκιστάν"
-
-msgid "Venezuela Bolivar"
-msgstr "Μπολίβαρ Βενεζουέλας"
-
-msgid "Viet Nam Dong"
-msgstr "Ντονγκ Βιετνάμ"
-
-msgid "Vanuatu Vatu"
-msgstr "Βάτου Βανουάτου"
-
-msgid "Samoa Tala"
-msgstr "Τάλα Σαμόα"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr "Δολάριο Ανατολικής Καραϊβικής"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Φράγκο Γαλλικών Αποικιών Ειρηνικού (CFP)"
-
-msgid "Yemen Rial"
-msgstr "Ριάλ Υεμένης"
-
-msgid "South Africa Rand"
-msgstr "Ραντ Νοτίου Αφρικής"
-
-msgid "Zambia Kwacha"
-msgstr "Κουάτσα Ζάμπιας"
-
-msgid "Zimbabwe Dollar"
-msgstr "Δολάριο Ζιμπάμπουε"
 
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"
@@ -6586,6 +6163,10 @@ msgid "Signed Beta Files Log"
 msgstr ""
 
 #, fuzzy
+msgid "Review Guide"
+msgstr "Οδηγός του κριτή"
+
+#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 
@@ -6626,7 +6207,7 @@ msgid "Themes Review Log"
 msgstr "Επιθεώρηση θέματος"
 
 #, fuzzy
-msgid "Deleted themes Log"
+msgid "Deleted Themes Log"
 msgstr "Διαγραφή θέματος"
 
 msgid "User Ratings Moderation"
@@ -6637,6 +6218,10 @@ msgstr ""
 
 msgid "Moderated Review Log"
 msgstr ""
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Διαχειριστικές ενέργειες:"
 
 #, fuzzy
 msgid "Unlisted Add-ons"
@@ -6650,15 +6235,6 @@ msgstr "Ανακοίνωση"
 
 msgid "Update message of the day"
 msgstr "Ενημέρωση του μηνύματος της ημέρας"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Νέα πρόσθετα (λιγότερες από 5 ημέρες)"
-
-msgid "Passable (5 to 10 days)"
-msgstr ""
-
-msgid "Overdue (Over 10 days)"
-msgstr ""
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -6727,29 +6303,8 @@ msgstr "Συλλογή εικόνων"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Τίποτα προς προβολή!  Ο δημιουργός δεν συμπεριέλαβε καμία λεπτομέρεια."
 
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr ""
-
-msgid "Queues"
-msgstr "Λίστες αναμονής"
-
-msgid "New Add-ons"
-msgstr "Νέα πρόσθετα"
-
-msgid "Updates"
-msgstr "Ενημερώσεις"
-
-msgid "Moderated Reviews"
-msgstr "Ελεγμένες αξιολογήσεις"
-
-msgid "Auto Approved Add-ons"
-msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "Logs"
-msgstr "Καταγραφές"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6792,46 +6347,6 @@ msgstr ""
 msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Νέο πρόσθετο ({num})"
-msgstr[1] "Νέα πρόσθετα ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Ενημέρωση ({num})"
-msgstr[1] "Ενημερώσεις ({num})"
-
-msgid "Current waiting times:"
-msgstr ""
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} πρόσθετο"
-msgstr[1] "{0} πρόσθετα"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Συνολικές αξιολογήσεις"
-
-msgid "Reviews This Month"
-msgstr "Αξιολογήσεις μηνός"
-
-msgid "New Reviewers"
-msgstr "Νέοι κριτές"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Είστε #{0} με {1} κριτικές"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Reviewer Leaderboard"
 msgstr ""
 
@@ -6861,6 +6376,9 @@ msgstr "Οι κριτικές σας"
 
 msgid "By {user_name}"
 msgstr "Από {user_name}"
+
+msgid "Total Reviews"
+msgstr "Συνολικές αξιολογήσεις"
 
 msgid "Active Contributors"
 msgstr "Ενεργοί συντελεστές"
@@ -7096,26 +6614,14 @@ msgstr "Αιτιολόγηση"
 msgid "There are currently no reviews."
 msgstr "προς το παρόν δεν υπάρχουν επιθεωρήσεις."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Αξιολόγηση θέματος εκκρεμεί"
-msgstr[1] "{num} Αξιολογήσεις θέματος εκκρεμούν"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Αξιολόγηση επισημάνθηκε"
-msgstr[1] "{num} Αξιολογήσεις επισημάνθηκαν"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Ενημέρωση"
-msgstr[1] "{num} Ενημερώσεις"
-
 msgid "Flagged Themes"
 msgstr "Θέματα με επισήμανση"
 
 msgid "Theme Review Queue"
 msgstr "Ουρά επιθεωρήσεων θέματος"
+
+msgid "Queues"
+msgstr "Λίστες αναμονής"
 
 msgid "Review Options"
 msgstr "Επιλογές αξιολόγησης"
@@ -7234,6 +6740,9 @@ msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
 
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
+
+msgid "Updates"
+msgstr "Ενημερώσεις"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7405,9 +6914,6 @@ msgstr "κατά πλατφόρμα"
 msgid "by Add-on Status"
 msgstr "κατά κατάσταση πρόσθετου"
 
-msgid "Contributions"
-msgstr "Δωρεές"
-
 msgid "Subscribers"
 msgstr "Εγγεγραμμένοι"
 
@@ -7521,9 +7027,6 @@ msgstr "Κανένα διαθέσιμο δεδομένο."
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
@@ -7546,9 +7049,6 @@ msgid "Application usage by Date"
 msgstr "Χρήση εφαρμογής κατά ημερομηνία"
 
 msgid "Collections Created by Date"
-msgstr ""
-
-msgid "Contributions by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
@@ -7765,9 +7265,6 @@ msgstr "Ελέγξτε τη σελίδα μας <a class=\"mobile-link\" href=\"
 msgid "Android Add-ons"
 msgstr "Πρόσθετα Android"
 
-msgid "required"
-msgstr "απαιτείται "
-
 msgid "Required fields"
 msgstr "Απαιτούμενα πεδία"
 
@@ -7837,9 +7334,6 @@ msgstr "Ανώνυμος χρήστης {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Τα πρόσθετα μου για κινητό"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr ""

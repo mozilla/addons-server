@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2142,15 +2142,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Themes Artist"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Only ask on this add-on's page and developer profile"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Ask after users start downloading this add-on"
-
-msgid "Ask before users can download this add-on"
-msgstr "Ask before users can download this add-on"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Other"
@@ -3076,10 +3067,11 @@ msgstr "Authors"
 msgid "About author roles"
 msgstr "About author roles"
 
+#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
@@ -3731,6 +3723,10 @@ msgstr "Upload New Version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "Create a New Theme"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
@@ -3747,6 +3743,91 @@ msgstr "Submit a New Theme"
 #, fuzzy
 msgid "Sign Add-on"
 msgstr "Submit Add-on"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "Theme deleted."
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "Theme License"
+
+msgid "Select a header image for your Theme."
+msgstr "Select a header image for your Theme."
+
+msgid "required"
+msgstr "required"
+
+msgid "Image height should be 200 pixels"
+msgstr "Image height should be 200 pixels"
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr "PNG, JPG, APNG, SVG or GIF (not animated)"
+
+msgid "Aligned to top-right"
+msgstr "Aligned to top-right"
+
+msgid "Select a different header image"
+msgstr "Select a different header image"
+
+msgid "Select colors for your Theme."
+msgstr "Select colors for your Theme."
+
+msgid "Header area background (accentcolor)"
+msgstr "Header area background (accentcolor)"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+
+msgid "Header area text (textcolor)"
+msgstr "Header area text (textcolor)"
+
+msgid "The color of the text displayed in the header area."
+msgstr "The color of the text displayed in the header area."
+
+msgid "Toolbar area background (toolbar)."
+msgstr "Toolbar area background (toolbar)."
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr "Toolbar area text (toolbar_text)."
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "This is the color of the tab text."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr "Toolbar field area background (toolbar_field)."
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr "The background color for fields in the toolbar, such as the URL bar."
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr "Toolbar field area text (toolbar_field_text)."
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr "The color of text in fields in the toolbar, such as the URL bar"
+
+#, fuzzy
+msgid "optional"
+msgstr "(optional)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "Hover to Preview"
+
+msgid "Back"
+msgstr "Back"
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "Up & Coming Themes"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "Upload Another File"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -4218,9 +4299,6 @@ msgstr "Header"
 msgid "Footer"
 msgstr "Footer"
 
-msgid "Select colors for your Theme."
-msgstr "Select colors for your Theme."
-
 msgid "Foreground Text"
 msgstr "Foreground Text"
 
@@ -4285,9 +4363,6 @@ msgstr "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity fee
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Select a header image for your Theme."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
 
@@ -4296,12 +4371,6 @@ msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr "PNG or JPG"
-
-msgid "Aligned to top-right"
-msgstr "Aligned to top-right"
-
-msgid "Select a different header image"
-msgstr "Select a different header image"
 
 msgid "Select a footer image for your Theme."
 msgstr "Select a footer image for your Theme."
@@ -4517,11 +4586,18 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+
+#, fuzzy
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr "Simplify and sync all your various website logins across devices with one password to rule them all."
 
 #, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4529,13 +4605,6 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-
-#, fuzzy
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4880,498 +4949,6 @@ msgstr "Unlock early access to experimental browser features."
 #, fuzzy
 msgid "Get Started"
 msgstr "Getting Started"
-
-msgid "United Arab Emirates Dirham"
-msgstr "United Arab Emirates Dirham"
-
-msgid "Afghanistan Afghani"
-msgstr "Afghanistan Afghani"
-
-msgid "Albania Lek"
-msgstr "Albania Lek"
-
-msgid "Armenia Dram"
-msgstr "Armenia Dram"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Netherlands Antilles Guilder"
-
-msgid "Angola Kwanza"
-msgstr "Angola Kwanza"
-
-msgid "Argentina Peso"
-msgstr "Argentina Peso"
-
-msgid "Australia Dollar"
-msgstr "Australia Dollar"
-
-msgid "Aruba Guilder"
-msgstr "Aruba Guilder"
-
-msgid "Azerbaijan New Manat"
-msgstr "Azerbaijan New Manat"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Bosnia and Herzegovina Convertible Marka"
-
-msgid "Barbados Dollar"
-msgstr "Barbados Dollar"
-
-msgid "Bangladesh Taka"
-msgstr "Bangladesh Taka"
-
-msgid "Bulgaria Lev"
-msgstr "Bulgaria Lev"
-
-msgid "Bahrain Dinar"
-msgstr "Bahrain Dinar"
-
-msgid "Burundi Franc"
-msgstr "Burundi Franc"
-
-msgid "Bermuda Dollar"
-msgstr "Bermuda Dollar"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Brunei Darussalam Dollar"
-
-msgid "Bolivia Boliviano"
-msgstr "Bolivia Boliviano"
-
-msgid "Brazil Real"
-msgstr "Brazil Real"
-
-msgid "Bahamas Dollar"
-msgstr "Bahamas Dollar"
-
-msgid "Bhutan Ngultrum"
-msgstr "Bhutan Ngultrum"
-
-msgid "Botswana Pula"
-msgstr "Botswana Pula"
-
-msgid "Belarus Ruble"
-msgstr "Belarus Ruble"
-
-msgid "Belize Dollar"
-msgstr "Belize Dollar"
-
-msgid "Canada Dollar"
-msgstr "Canada Dollar"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Congo/Kinshasa Franc"
-
-msgid "Switzerland Franc"
-msgstr "Switzerland Franc"
-
-msgid "Chile Peso"
-msgstr "Chile Peso"
-
-msgid "China Yuan Renminbi"
-msgstr "China Yuan Renminbi"
-
-msgid "Colombia Peso"
-msgstr "Colombia Peso"
-
-msgid "Costa Rica Colon"
-msgstr "Costa Rica Colon"
-
-msgid "Cuba Convertible Peso"
-msgstr "Cuba Convertible Peso"
-
-msgid "Cuba Peso"
-msgstr "Cuba Peso"
-
-msgid "Cape Verde Escudo"
-msgstr "Cape Verde Escudo"
-
-msgid "Czech Republic Koruna"
-msgstr "Czech Republic Koruna"
-
-msgid "Djibouti Franc"
-msgstr "Djibouti Franc"
-
-msgid "Denmark Krone"
-msgstr "Denmark Krone"
-
-msgid "Dominican Republic Peso"
-msgstr "Dominican Republic Peso"
-
-msgid "Algeria Dinar"
-msgstr "Algeria Dinar"
-
-msgid "Egypt Pound"
-msgstr "Egypt Pound"
-
-msgid "Eritrea Nakfa"
-msgstr "Eritrea Nakfa"
-
-msgid "Ethiopia Birr"
-msgstr "Ethiopia Birr"
-
-msgid "Euro Member Countries"
-msgstr "Euro Member Countries"
-
-msgid "Fiji Dollar"
-msgstr "Fiji Dollar"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Falkland Islands (Malvinas) Pound"
-
-msgid "United Kingdom Pound"
-msgstr "United Kingdom Pound"
-
-msgid "Georgia Lari"
-msgstr "Georgia Lari"
-
-msgid "Guernsey Pound"
-msgstr "Guernsey Pound"
-
-msgid "Ghana Cedi"
-msgstr "Ghana Cedi"
-
-msgid "Gibraltar Pound"
-msgstr "Gibraltar Pound"
-
-msgid "Gambia Dalasi"
-msgstr "Gambia Dalasi"
-
-msgid "Guinea Franc"
-msgstr "Guinea Franc"
-
-msgid "Guatemala Quetzal"
-msgstr "Guatemala Quetzal"
-
-msgid "Guyana Dollar"
-msgstr "Guyana Dollar"
-
-msgid "Hong Kong Dollar"
-msgstr "Hong Kong Dollar"
-
-msgid "Honduras Lempira"
-msgstr "Honduras Lempira"
-
-msgid "Croatia Kuna"
-msgstr "Croatia Kuna"
-
-msgid "Haiti Gourde"
-msgstr "Haiti Gourde"
-
-msgid "Hungary Forint"
-msgstr "Hungary Forint"
-
-msgid "Indonesia Rupiah"
-msgstr "Indonesia Rupiah"
-
-msgid "Israel Shekel"
-msgstr "Israel Shekel"
-
-msgid "Isle of Man Pound"
-msgstr "Isle of Man Pound"
-
-msgid "India Rupee"
-msgstr "India Rupee"
-
-msgid "Iraq Dinar"
-msgstr "Iraq Dinar"
-
-msgid "Iran Rial"
-msgstr "Iran Rial"
-
-msgid "Iceland Krona"
-msgstr "Iceland Krona"
-
-msgid "Jersey Pound"
-msgstr "Jersey Pound"
-
-msgid "Jamaica Dollar"
-msgstr "Jamaica Dollar"
-
-msgid "Jordan Dinar"
-msgstr "Jordan Dinar"
-
-msgid "Japan Yen"
-msgstr "Japan Yen"
-
-msgid "Kenya Shilling"
-msgstr "Kenya Shilling"
-
-msgid "Kyrgyzstan Som"
-msgstr "Kyrgyzstan Som"
-
-msgid "Cambodia Riel"
-msgstr "Cambodia Riel"
-
-msgid "Comoros Franc"
-msgstr "Comoros Franc"
-
-msgid "Korea (North) Won"
-msgstr "Korea (North) Won"
-
-msgid "Korea (South) Won"
-msgstr "Korea (South) Won"
-
-msgid "Kuwait Dinar"
-msgstr "Kuwait Dinar"
-
-msgid "Cayman Islands Dollar"
-msgstr "Cayman Islands Dollar"
-
-msgid "Kazakhstan Tenge"
-msgstr "Kazakhstan Tenge"
-
-msgid "Laos Kip"
-msgstr "Laos Kip"
-
-msgid "Lebanon Pound"
-msgstr "Lebanon Pound"
-
-msgid "Sri Lanka Rupee"
-msgstr "Sri Lanka Rupee"
-
-msgid "Liberia Dollar"
-msgstr "Liberia Dollar"
-
-msgid "Lesotho Loti"
-msgstr "Lesotho Loti"
-
-msgid "Lithuania Litas"
-msgstr "Lithuania Litas"
-
-msgid "Latvia Lat"
-msgstr "Latvia Lat"
-
-msgid "Libya Dinar"
-msgstr "Libya Dinar"
-
-msgid "Morocco Dirham"
-msgstr "Morocco Dirham"
-
-msgid "Moldova Leu"
-msgstr "Moldova Leu"
-
-msgid "Madagascar Ariary"
-msgstr "Madagascar Ariary"
-
-msgid "Macedonia Denar"
-msgstr "Macedonia Denar"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Myanmar (Burma) Kyat"
-
-msgid "Mongolia Tughrik"
-msgstr "Mongolia Tughrik"
-
-msgid "Macau Pataca"
-msgstr "Macau Pataca"
-
-msgid "Mauritania Ouguiya"
-msgstr "Mauritania Ouguiya"
-
-msgid "Mauritius Rupee"
-msgstr "Mauritius Rupee"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Maldives (Maldive Islands) Rufiyaa"
-
-msgid "Malawi Kwacha"
-msgstr "Malawi Kwacha"
-
-msgid "Mexico Peso"
-msgstr "Mexico Peso"
-
-msgid "Malaysia Ringgit"
-msgstr "Malaysia Ringgit"
-
-msgid "Mozambique Metical"
-msgstr "Mozambique Metical"
-
-msgid "Namibia Dollar"
-msgstr "Namibia Dollar"
-
-msgid "Nigeria Naira"
-msgstr "Nigeria Naira"
-
-msgid "Nicaragua Cordoba"
-msgstr "Nicaragua Cordoba"
-
-msgid "Norway Krone"
-msgstr "Norway Krone"
-
-msgid "Nepal Rupee"
-msgstr "Nepal Rupee"
-
-msgid "New Zealand Dollar"
-msgstr "New Zealand Dollar"
-
-msgid "Oman Rial"
-msgstr "Oman Rial"
-
-msgid "Panama Balboa"
-msgstr "Panama Balboa"
-
-msgid "Peru Nuevo Sol"
-msgstr "Peru Nuevo Sol"
-
-msgid "Papua New Guinea Kina"
-msgstr "Papua New Guinea Kina"
-
-msgid "Philippines Peso"
-msgstr "Philippines Peso"
-
-msgid "Pakistan Rupee"
-msgstr "Pakistan Rupee"
-
-msgid "Poland Zloty"
-msgstr "Poland Zloty"
-
-msgid "Paraguay Guarani"
-msgstr "Paraguay Guarani"
-
-msgid "Qatar Riyal"
-msgstr "Qatar Riyal"
-
-msgid "Romania New Leu"
-msgstr "Romania New Leu"
-
-msgid "Serbia Dinar"
-msgstr "Serbia Dinar"
-
-msgid "Russia Ruble"
-msgstr "Russia Ruble"
-
-msgid "Rwanda Franc"
-msgstr "Rwanda Franc"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Saudi Arabia Riyal"
-
-msgid "Solomon Islands Dollar"
-msgstr "Solomon Islands Dollar"
-
-msgid "Seychelles Rupee"
-msgstr "Seychelles Rupee"
-
-msgid "Sudan Pound"
-msgstr "Sudan Pound"
-
-msgid "Sweden Krona"
-msgstr "Sweden Krona"
-
-msgid "Singapore Dollar"
-msgstr "Singapore Dollar"
-
-msgid "Saint Helena Pound"
-msgstr "Saint Helena Pound"
-
-msgid "Sierra Leone Leone"
-msgstr "Sierra Leone Leone"
-
-msgid "Somalia Shilling"
-msgstr "Somalia Shilling"
-
-msgid "Seborga Luigino"
-msgstr "Seborga Luigino"
-
-msgid "Suriname Dollar"
-msgstr "Suriname Dollar"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "São Tomé and Príncipe Dobra"
-
-msgid "El Salvador Colon"
-msgstr "El Salvador Colon"
-
-msgid "Syria Pound"
-msgstr "Syria Pound"
-
-msgid "Swaziland Lilangeni"
-msgstr "Swaziland Lilangeni"
-
-msgid "Thailand Baht"
-msgstr "Thailand Baht"
-
-msgid "Tajikistan Somoni"
-msgstr "Tajikistan Somoni"
-
-msgid "Turkmenistan Manat"
-msgstr "Turkmenistan Manat"
-
-msgid "Tunisia Dinar"
-msgstr "Tunisia Dinar"
-
-msgid "Tonga Pa'anga"
-msgstr "Tonga Pa'anga"
-
-msgid "Turkey Lira"
-msgstr "Turkey Lira"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Trinidad and Tobago Dollar"
-
-msgid "Tuvalu Dollar"
-msgstr "Tuvalu Dollar"
-
-msgid "Taiwan New Dollar"
-msgstr "Taiwan New Dollar"
-
-msgid "Tanzania Shilling"
-msgstr "Tanzania Shilling"
-
-msgid "Ukraine Hryvna"
-msgstr "Ukraine Hryvna"
-
-msgid "Uganda Shilling"
-msgstr "Uganda Shilling"
-
-msgid "United States Dollar"
-msgstr "United States Dollar"
-
-msgid "Uruguay Peso"
-msgstr "Uruguay Peso"
-
-msgid "Uzbekistan Som"
-msgstr "Uzbekistan Som"
-
-msgid "Venezuela Bolivar"
-msgstr "Venezuela Bolivar"
-
-msgid "Viet Nam Dong"
-msgstr "Viet Nam Dong"
-
-msgid "Vanuatu Vatu"
-msgstr "Vanuatu Vatu"
-
-msgid "Samoa Tala"
-msgstr "Samoa Tala"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-
-msgid "East Caribbean Dollar"
-msgstr "East Caribbean Dollar"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "International Monetary Fund (IMF) Special Drawing Rights"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Communauté Financière Africaine (BCEAO) Franc"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Comptoirs Français du Pacifique (CFP) Franc"
-
-msgid "Yemen Rial"
-msgstr "Yemen Rial"
-
-msgid "South Africa Rand"
-msgstr "South Africa Rand"
-
-msgid "Zambia Kwacha"
-msgstr "Zambia Kwacha"
-
-msgid "Zimbabwe Dollar"
-msgstr "Zimbabwe Dollar"
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"
@@ -6874,6 +6451,10 @@ msgid "Signed Beta Files Log"
 msgstr "Signed Beta Files Log"
 
 #, fuzzy
+msgid "Review Guide"
+msgstr "Reviewers' Guide"
+
+#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Android Add-ons"
 
@@ -6908,7 +6489,7 @@ msgid "Themes Review Log"
 msgstr "Theme Review"
 
 #, fuzzy
-msgid "Deleted themes Log"
+msgid "Deleted Themes Log"
 msgstr "Delete Theme"
 
 msgid "User Ratings Moderation"
@@ -6919,6 +6500,10 @@ msgstr "Ratings Awaiting Moderation ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Moderated Review Log"
+
+#, fuzzy
+msgid "Moderation Guide"
+msgstr "Moderation actions:"
 
 #, fuzzy
 msgid "Unlisted Add-ons"
@@ -6932,15 +6517,6 @@ msgstr "Announcement"
 
 msgid "Update message of the day"
 msgstr "Update message of the day"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "New Add-ons (Under 5 days)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Passable (5 to 10 days)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Overdue (Over 10 days)"
 
 msgid "An unknown error occurred"
 msgstr "An unknown error occurred"
@@ -7015,31 +6591,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nothing to see here!  The developer did not include any details."
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "Return to the Editor Tools homepage"
-
-msgid "Queues"
-msgstr "Queues"
-
-#, fuzzy
-msgid "New Add-ons"
-msgstr "More Add-ons"
-
-msgid "Updates"
-msgstr "Updates"
-
-msgid "Moderated Reviews"
-msgstr "Moderated Reviews"
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "Android Add-ons"
-
-msgid "Unlisted Queues"
-msgstr "Unlisted Queues"
-
-msgid "Logs"
-msgstr "Logs"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -7083,49 +6636,6 @@ msgstr "Review was flagged prior to deletion."
 msgid "Undelete"
 msgstr "Undelete"
 
-#, fuzzy
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "New Add-ons (Under 5 days)"
-msgstr[1] "New Add-ons (Under 5 days)"
-
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Pending Update ({num})"
-msgstr[1] "Pending Updates ({num})"
-
-msgid "Current waiting times:"
-msgstr "Current waiting times:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-on"
-msgstr[1] "{0} add-ons"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Total Reviews"
-
-msgid "Reviews This Month"
-msgstr "Reviews This Month"
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "Reviewers"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "You're #{0} with {1} reviews"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Moderated Review ({num})"
-msgstr[1] "Moderated Reviews ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Reviewer Leaderboard"
 
@@ -7156,6 +6666,9 @@ msgstr "Your Reviews"
 
 msgid "By {user_name}"
 msgstr "By {user_name}"
+
+msgid "Total Reviews"
+msgstr "Total Reviews"
 
 msgid "Active Contributors"
 msgstr "Active Contributors"
@@ -7394,26 +6907,14 @@ msgstr "Reason"
 msgid "There are currently no reviews."
 msgstr "There are currently no reviews."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Pending Theme Review"
-msgstr[1] "{num} Pending Theme Reviews"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Flagged Review"
-msgstr[1] "{num} Flagged Reviews"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Update"
-msgstr[1] "{num} Updates"
-
 msgid "Flagged Themes"
 msgstr "Flagged Themes"
 
 msgid "Theme Review Queue"
 msgstr "Theme Review Queue"
+
+msgid "Queues"
+msgstr "Queues"
 
 msgid "Review Options"
 msgstr "Review Options"
@@ -7529,6 +7030,9 @@ msgstr[1] "All Unlisted Add-ons ({0})"
 
 msgid "Flagged"
 msgstr "Flagged"
+
+msgid "Updates"
+msgstr "Updates"
 
 msgid "Maximum query length exceeded."
 msgstr "Maximum query length exceeded."
@@ -7700,9 +7204,6 @@ msgstr "by Platform"
 msgid "by Add-on Status"
 msgstr "by Add-on Status"
 
-msgid "Contributions"
-msgstr "Contributions"
-
 msgid "Subscribers"
 msgstr "Subscribers"
 
@@ -7817,9 +7318,6 @@ msgstr "No data available."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "This dashboard is currently <b>public</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Contribution stats are currently <b>private</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "This dashboard is currently <b>private</b>."
 
@@ -7843,9 +7341,6 @@ msgstr "Application usage by Date"
 
 msgid "Collections Created by Date"
 msgstr "Collections Created by Date"
-
-msgid "Contributions by Date"
-msgstr "Contributions by Date"
 
 msgid "Downloaded by Date"
 msgstr "Downloaded by Date"
@@ -8070,9 +7565,6 @@ msgstr "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a
 msgid "Android Add-ons"
 msgstr "Android Add-ons"
 
-msgid "required"
-msgstr "required"
-
 msgid "Required fields"
 msgstr "Required fields"
 
@@ -8143,9 +7635,6 @@ msgstr "Anonymous user {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "My Mobile Add-ons"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "an add-on developer thanks me for a contribution"
 
 msgid "an add-on developer replies to my review"
 msgstr "an add-on developer replies to my review"
