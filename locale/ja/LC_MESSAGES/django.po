@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 19:09+0000\n"
+"PO-Revision-Date: 2017-12-01 19:32+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2907,13 +2907,12 @@ msgstr "作者"
 msgid "About author roles"
 msgstr "作者の役割について"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
 "make any changes</li> </ul>"
 msgstr ""
-"<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作者の追加と削除および決済情報の管理を除く、アドオンのあらゆる情報を管理できます</li> <li><b>閲覧者:</b> "
+"<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作者の追加と削除を除く、アドオンのあらゆる情報を管理できます</li> <li><b>閲覧者:</b> "
 "アドオンの設定と統計情報を見ることができますが、変更は一切できません</li> </ul>"
 
 msgid "Basic Information"
@@ -3519,10 +3518,10 @@ msgid "required"
 msgstr "必須"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "画像の高さは 200 ピクセルにしてください"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG、JPG、APNG、SVG または GIF (アニメーションなし)"
 
 msgid "Aligned to top-right"
 msgstr "右上に位置合わせ"
@@ -3534,34 +3533,34 @@ msgid "Select colors for your Theme."
 msgstr "テーマの配色を選択してください。"
 
 msgid "Header area background (accentcolor)"
-msgstr ""
+msgstr "ヘッダー領域の背景 (accentcolor)"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
 msgstr ""
 
 msgid "Header area text (textcolor)"
-msgstr ""
+msgstr "ヘッダー領域の文字 (textcolor)"
 
 msgid "The color of the text displayed in the header area."
-msgstr ""
+msgstr "ヘッダー領域の内に表示される文字の色。"
 
 msgid "Toolbar area background (toolbar)."
-msgstr ""
+msgstr "ツールバー領域の背景 (toolbar)"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
-msgstr ""
+msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。"
 
 msgid "Toolbar area text (toolbar_text)."
-msgstr ""
+msgstr "ツールバー領域の文字 (toolbar_text)"
 
 msgid "The color of toolbar text."
 msgstr "これはツールバー上の文字色です。"
 
 msgid "Toolbar field area background (toolbar_field)."
-msgstr ""
+msgstr "ツールバー入力領域の背景 (toolbar_field)"
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "アドレスバーなどツールバー上の入力欄の背景色。"
 
 msgid "Toolbar field area text (toolbar_field_text)."
 msgstr ""
@@ -3576,7 +3575,7 @@ msgid "Browser Preview"
 msgstr "ブラウザープレビュー"
 
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 msgid "Uploading Theme"
 msgstr "テーマをアップロード中"
