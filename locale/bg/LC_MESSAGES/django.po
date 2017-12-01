@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-11-23 17:01+0000\n"
-"PO-Revision-Date: 2017-11-29 15:33+0000\n"
+"PO-Revision-Date: 2017-12-01 10:57+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -129,12 +129,12 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Всички етикети трябва да са поне {0} знак."
 msgstr[1] "Всички етикети трябва да са поне {0} знака."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Домейнът трябва да е някой от [%s] или под домейн. "
+msgstr "Домейнът трябва да е някой от [%s] или под домейн."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Категориите не могат да се променят, докато добавката ви е препоръчана за това приложение."
+msgstr "Категориите не могат да бъдат променяни, докато добавката ви е препоръчана за това приложение."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -2112,7 +2112,7 @@ msgid "Incompatible"
 msgstr "Несъвместима"
 
 msgid "Alerts & Updates"
-msgstr "Известия и актуализации"
+msgstr "Известия и обновявания"
 
 msgid "Appearance"
 msgstr "Външен вид"
@@ -2124,7 +2124,7 @@ msgid "Download Management"
 msgstr "Управление на изтегляния"
 
 msgid "Feeds, News & Blogging"
-msgstr "Потоци, новини и блогове"
+msgstr "Емисии, новини и блогове"
 
 msgid "Games & Entertainment"
 msgstr "Игри и развлечения"
@@ -2142,7 +2142,7 @@ msgid "Shopping"
 msgstr "Пазаруване"
 
 msgid "Social & Communication"
-msgstr "Социални и комуникация"
+msgstr "Социални и общуване"
 
 msgid "Tabs"
 msgstr "Раздели"
@@ -2250,7 +2250,7 @@ msgid "Experimental"
 msgstr "Изпитателни"
 
 msgid "Feeds, News, & Blogging"
-msgstr "Потоци, новини и блогове"
+msgstr "Емисии, новини и блогове"
 
 msgid "Performance"
 msgstr "Производителност"
@@ -3176,7 +3176,7 @@ msgid "This add-on will be automatically upgraded to new versions of the Add-on 
 msgstr ""
 
 msgid "No, this add-on will be upgraded manually."
-msgstr "Не, тази добавка ще се актуализира ръчно."
+msgstr "Не, тази добавка ще се обновява ръчно."
 
 msgid "Universally unique identifier"
 msgstr "Универсално уникален идентификатор"
