@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: 2017-06-12 23:34+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2089,15 +2089,6 @@ msgstr "প্লাগইন"
 msgid "Themes (Static)"
 msgstr "থিম এর বিস্তারিত"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
-
-msgid "Ask after users start downloading this add-on"
-msgstr ""
-
-msgid "Ask before users can download this add-on"
-msgstr ""
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "অন্যান্য"
@@ -2980,8 +2971,8 @@ msgstr ""
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 
 msgid "Basic Information"
@@ -3570,6 +3561,10 @@ msgstr "সংস্করণ আপলোড করুন"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
+#, fuzzy
+msgid "Create a Theme"
+msgstr "একটি নতুন থিম তৈরী করুন"
+
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
@@ -3585,6 +3580,91 @@ msgstr "নতুন থিম জমা দিন"
 
 msgid "Sign Add-on"
 msgstr "সাইন অ্যাড-অন"
+
+#, fuzzy
+msgid "Theme generate"
+msgstr "থিম মুছে ফেলা হয়েছে।"
+
+#, fuzzy
+msgid "Theme generator"
+msgstr "থিম লাইসেন্স"
+
+msgid "Select a header image for your Theme."
+msgstr ""
+
+msgid "required"
+msgstr "প্রয়োজনীয়"
+
+msgid "Image height should be 200 pixels"
+msgstr ""
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+msgid "Aligned to top-right"
+msgstr ""
+
+msgid "Select a different header image"
+msgstr ""
+
+msgid "Select colors for your Theme."
+msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
+
+msgid "Header area background (accentcolor)"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr ""
+
+msgid "Header area text (textcolor)"
+msgstr ""
+
+msgid "The color of the text displayed in the header area."
+msgstr ""
+
+msgid "Toolbar area background (toolbar)."
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr ""
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr ""
+
+#, fuzzy
+msgid "The color of toolbar text."
+msgstr "এটি ট্যাবের রঙ"
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr ""
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr ""
+
+#, fuzzy
+msgid "optional"
+msgstr "(ঐচ্ছিক)"
+
+#, fuzzy
+msgid "Browser Preview"
+msgstr "প্রাকদর্শনের জন্য হোভার করুন"
+
+msgid "Back"
+msgstr ""
+
+#, fuzzy
+msgid "Uploading Theme"
+msgstr "আসন্ন থিম সমূহ"
+
+#, fuzzy
+msgid "Upload Theme"
+msgstr "ফাইল আপলোড করুন"
 
 msgid "API Credentials"
 msgstr ""
@@ -4031,9 +4111,6 @@ msgstr "হেডার"
 msgid "Footer"
 msgstr "ফুটার"
 
-msgid "Select colors for your Theme."
-msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
-
 msgid "Foreground Text"
 msgstr "পিছনের টেক্স"
 
@@ -4096,9 +4173,6 @@ msgstr "আপনার থিমের রিভিউ, সংগ্রহ এ�
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
-msgid "Select a header image for your Theme."
-msgstr ""
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 পিক্সেল"
 
@@ -4107,12 +4181,6 @@ msgstr "সর্বোচ্চ 300 কেবি"
 
 msgid "PNG or JPG"
 msgstr "PNG অথবা JPG"
-
-msgid "Aligned to top-right"
-msgstr ""
-
-msgid "Select a different header image"
-msgstr ""
 
 msgid "Select a footer image for your Theme."
 msgstr ""
@@ -4312,22 +4380,22 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} টি সতর্কতা"
 msgstr[1] ""
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text and right-click to quickly perform an image search."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
+
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4667,498 +4735,6 @@ msgstr ""
 
 msgid "Get Started"
 msgstr "শুরু হয়েছে"
-
-msgid "United Arab Emirates Dirham"
-msgstr "সংযুক্ত আরব আমিরাত দিরহাম"
-
-msgid "Afghanistan Afghani"
-msgstr "আফগানিস্তান অাফগানি"
-
-msgid "Albania Lek"
-msgstr "আলবেনিয়া লিক"
-
-msgid "Armenia Dram"
-msgstr "আরমেনিয়া ড্রাম"
-
-msgid "Netherlands Antilles Guilder"
-msgstr ""
-
-msgid "Angola Kwanza"
-msgstr ""
-
-msgid "Argentina Peso"
-msgstr "আর্জেন্টিনা পেসো"
-
-msgid "Australia Dollar"
-msgstr "অস্ট্রেলিয়া ডলার"
-
-msgid "Aruba Guilder"
-msgstr ""
-
-msgid "Azerbaijan New Manat"
-msgstr ""
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
-
-msgid "Barbados Dollar"
-msgstr "বারবাডোস ডলার"
-
-msgid "Bangladesh Taka"
-msgstr "বাংলাদেশ টাকা"
-
-msgid "Bulgaria Lev"
-msgstr ""
-
-msgid "Bahrain Dinar"
-msgstr "বাহরাইন দিনার"
-
-msgid "Burundi Franc"
-msgstr ""
-
-msgid "Bermuda Dollar"
-msgstr "বারমুডা ডলার"
-
-msgid "Brunei Darussalam Dollar"
-msgstr ""
-
-msgid "Bolivia Boliviano"
-msgstr ""
-
-msgid "Brazil Real"
-msgstr "ব্রাজিল রিয়েল"
-
-msgid "Bahamas Dollar"
-msgstr "বাহামস ডলার"
-
-msgid "Bhutan Ngultrum"
-msgstr ""
-
-msgid "Botswana Pula"
-msgstr ""
-
-msgid "Belarus Ruble"
-msgstr "বেলারুস রুবল"
-
-msgid "Belize Dollar"
-msgstr "বেলিজ ডলার"
-
-msgid "Canada Dollar"
-msgstr "কানাডা ডলার"
-
-msgid "Congo/Kinshasa Franc"
-msgstr ""
-
-msgid "Switzerland Franc"
-msgstr "সুইজারল্যান্ড ফ্রাঙ্ক"
-
-msgid "Chile Peso"
-msgstr "চিলি পেসো"
-
-msgid "China Yuan Renminbi"
-msgstr ""
-
-msgid "Colombia Peso"
-msgstr "কলোম্বিয়া পেসো"
-
-msgid "Costa Rica Colon"
-msgstr ""
-
-msgid "Cuba Convertible Peso"
-msgstr ""
-
-msgid "Cuba Peso"
-msgstr "কুবা পেসো"
-
-msgid "Cape Verde Escudo"
-msgstr ""
-
-msgid "Czech Republic Koruna"
-msgstr ""
-
-msgid "Djibouti Franc"
-msgstr ""
-
-msgid "Denmark Krone"
-msgstr "ডেনমার্ক ক্রোন"
-
-msgid "Dominican Republic Peso"
-msgstr ""
-
-msgid "Algeria Dinar"
-msgstr ""
-
-msgid "Egypt Pound"
-msgstr "মিশর পাউন্ড"
-
-msgid "Eritrea Nakfa"
-msgstr ""
-
-msgid "Ethiopia Birr"
-msgstr ""
-
-msgid "Euro Member Countries"
-msgstr ""
-
-msgid "Fiji Dollar"
-msgstr "ফিজি ডলার"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
-
-msgid "United Kingdom Pound"
-msgstr "যুক্তরাজ্য পাউন্ড"
-
-msgid "Georgia Lari"
-msgstr ""
-
-msgid "Guernsey Pound"
-msgstr ""
-
-msgid "Ghana Cedi"
-msgstr ""
-
-msgid "Gibraltar Pound"
-msgstr "জিবল্টার পাউন্ড"
-
-msgid "Gambia Dalasi"
-msgstr ""
-
-msgid "Guinea Franc"
-msgstr ""
-
-msgid "Guatemala Quetzal"
-msgstr ""
-
-msgid "Guyana Dollar"
-msgstr "গায়ানা ডলার"
-
-msgid "Hong Kong Dollar"
-msgstr "হংকং ডলার"
-
-msgid "Honduras Lempira"
-msgstr ""
-
-msgid "Croatia Kuna"
-msgstr ""
-
-msgid "Haiti Gourde"
-msgstr ""
-
-msgid "Hungary Forint"
-msgstr ""
-
-msgid "Indonesia Rupiah"
-msgstr ""
-
-msgid "Israel Shekel"
-msgstr "ইসারায়েল সেকেল"
-
-msgid "Isle of Man Pound"
-msgstr ""
-
-msgid "India Rupee"
-msgstr "ভারত রুপি"
-
-msgid "Iraq Dinar"
-msgstr "ইরাক দিনার"
-
-msgid "Iran Rial"
-msgstr "ইরান রিয়েল"
-
-msgid "Iceland Krona"
-msgstr ""
-
-msgid "Jersey Pound"
-msgstr ""
-
-msgid "Jamaica Dollar"
-msgstr "জামাইকা ডলার"
-
-msgid "Jordan Dinar"
-msgstr "জর্ডান ডিনার"
-
-msgid "Japan Yen"
-msgstr "জাপান ইয়েন"
-
-msgid "Kenya Shilling"
-msgstr "কেনিয়া শিলিং"
-
-msgid "Kyrgyzstan Som"
-msgstr ""
-
-msgid "Cambodia Riel"
-msgstr ""
-
-msgid "Comoros Franc"
-msgstr ""
-
-msgid "Korea (North) Won"
-msgstr ""
-
-msgid "Korea (South) Won"
-msgstr ""
-
-msgid "Kuwait Dinar"
-msgstr "কুয়েত দিনার"
-
-msgid "Cayman Islands Dollar"
-msgstr ""
-
-msgid "Kazakhstan Tenge"
-msgstr ""
-
-msgid "Laos Kip"
-msgstr ""
-
-msgid "Lebanon Pound"
-msgstr ""
-
-msgid "Sri Lanka Rupee"
-msgstr "শ্রীলঙ্কা রুপি"
-
-msgid "Liberia Dollar"
-msgstr "লাইবেরিয়া ডলার"
-
-msgid "Lesotho Loti"
-msgstr ""
-
-msgid "Lithuania Litas"
-msgstr "লিথুনিয়া লিটাস"
-
-msgid "Latvia Lat"
-msgstr "লাটভিয়া লাট"
-
-msgid "Libya Dinar"
-msgstr "লিবিয়া দিনার"
-
-msgid "Morocco Dirham"
-msgstr "মরোক্ক দিরহাম"
-
-msgid "Moldova Leu"
-msgstr ""
-
-msgid "Madagascar Ariary"
-msgstr ""
-
-msgid "Macedonia Denar"
-msgstr ""
-
-msgid "Myanmar (Burma) Kyat"
-msgstr ""
-
-msgid "Mongolia Tughrik"
-msgstr ""
-
-msgid "Macau Pataca"
-msgstr ""
-
-msgid "Mauritania Ouguiya"
-msgstr ""
-
-msgid "Mauritius Rupee"
-msgstr ""
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
-
-msgid "Malawi Kwacha"
-msgstr ""
-
-msgid "Mexico Peso"
-msgstr "মেক্সিকো পেসো"
-
-msgid "Malaysia Ringgit"
-msgstr "মালয়েসিয়া রিঙ্গিত"
-
-msgid "Mozambique Metical"
-msgstr ""
-
-msgid "Namibia Dollar"
-msgstr "নামিবী ডলার"
-
-msgid "Nigeria Naira"
-msgstr ""
-
-msgid "Nicaragua Cordoba"
-msgstr ""
-
-msgid "Norway Krone"
-msgstr "নরওয়ে ক্রোন"
-
-msgid "Nepal Rupee"
-msgstr "নেপালি রুপি"
-
-msgid "New Zealand Dollar"
-msgstr "নিউজিল্যান্ড ডলার"
-
-msgid "Oman Rial"
-msgstr "ওমান রিয়েল"
-
-msgid "Panama Balboa"
-msgstr ""
-
-msgid "Peru Nuevo Sol"
-msgstr ""
-
-msgid "Papua New Guinea Kina"
-msgstr ""
-
-msgid "Philippines Peso"
-msgstr "ফিলিপাইন পেসো"
-
-msgid "Pakistan Rupee"
-msgstr ""
-
-msgid "Poland Zloty"
-msgstr ""
-
-msgid "Paraguay Guarani"
-msgstr ""
-
-msgid "Qatar Riyal"
-msgstr "কাতার রিয়েল"
-
-msgid "Romania New Leu"
-msgstr ""
-
-msgid "Serbia Dinar"
-msgstr "সার্বিয়া দিনার"
-
-msgid "Russia Ruble"
-msgstr "রাশিয়া রুবল"
-
-msgid "Rwanda Franc"
-msgstr ""
-
-msgid "Saudi Arabia Riyal"
-msgstr ""
-
-msgid "Solomon Islands Dollar"
-msgstr ""
-
-msgid "Seychelles Rupee"
-msgstr ""
-
-msgid "Sudan Pound"
-msgstr "সুদান পাউন্ড"
-
-msgid "Sweden Krona"
-msgstr ""
-
-msgid "Singapore Dollar"
-msgstr "সিঙ্গাপুরী ডলার"
-
-msgid "Saint Helena Pound"
-msgstr ""
-
-msgid "Sierra Leone Leone"
-msgstr ""
-
-msgid "Somalia Shilling"
-msgstr ""
-
-msgid "Seborga Luigino"
-msgstr ""
-
-msgid "Suriname Dollar"
-msgstr ""
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr ""
-
-msgid "El Salvador Colon"
-msgstr ""
-
-msgid "Syria Pound"
-msgstr "সিরিয়া পাউন্ড"
-
-msgid "Swaziland Lilangeni"
-msgstr ""
-
-msgid "Thailand Baht"
-msgstr "থাইল্যান্ড বাথ"
-
-msgid "Tajikistan Somoni"
-msgstr ""
-
-msgid "Turkmenistan Manat"
-msgstr ""
-
-msgid "Tunisia Dinar"
-msgstr "তিউনিসিয়া ডলার"
-
-msgid "Tonga Pa'anga"
-msgstr ""
-
-msgid "Turkey Lira"
-msgstr "তুর্কি লিরা"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr ""
-
-msgid "Tuvalu Dollar"
-msgstr "তুভালু ডলার"
-
-msgid "Taiwan New Dollar"
-msgstr ""
-
-msgid "Tanzania Shilling"
-msgstr "তানজিয়া শিলিং"
-
-msgid "Ukraine Hryvna"
-msgstr ""
-
-msgid "Uganda Shilling"
-msgstr "উগান্ডা শিলিং"
-
-msgid "United States Dollar"
-msgstr ""
-
-msgid "Uruguay Peso"
-msgstr ""
-
-msgid "Uzbekistan Som"
-msgstr ""
-
-msgid "Venezuela Bolivar"
-msgstr ""
-
-msgid "Viet Nam Dong"
-msgstr ""
-
-msgid "Vanuatu Vatu"
-msgstr ""
-
-msgid "Samoa Tala"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
-
-msgid "East Caribbean Dollar"
-msgstr ""
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
-
-msgid "Yemen Rial"
-msgstr "ইয়েমেন রিয়াল"
-
-msgid "South Africa Rand"
-msgstr ""
-
-msgid "Zambia Kwacha"
-msgstr ""
-
-msgid "Zimbabwe Dollar"
-msgstr "জিম্বাবুয়ে ডলার"
 
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
@@ -6517,6 +6093,10 @@ msgid "Signed Beta Files Log"
 msgstr ""
 
 #, fuzzy
+msgid "Review Guide"
+msgstr "পর্যালোচনা নির্দেশিকা"
+
+#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 
@@ -6550,7 +6130,7 @@ msgid "Themes Review Log"
 msgstr "থিম রিভিউ"
 
 #, fuzzy
-msgid "Deleted themes Log"
+msgid "Deleted Themes Log"
 msgstr "থিম মুছে দিন"
 
 msgid "User Ratings Moderation"
@@ -6563,6 +6143,10 @@ msgid "Moderated Review Log"
 msgstr ""
 
 #, fuzzy
+msgid "Moderation Guide"
+msgstr "নিয়ন্ত্রিত অ্যাড-অন রিভিউ"
+
+#, fuzzy
 msgid "Unlisted Add-ons"
 msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 
@@ -6573,15 +6157,6 @@ msgid "Announcement"
 msgstr ""
 
 msgid "Update message of the day"
-msgstr ""
-
-msgid "New Add-ons (Under 5 days)"
-msgstr ""
-
-msgid "Passable (5 to 10 days)"
-msgstr ""
-
-msgid "Overdue (Over 10 days)"
 msgstr ""
 
 msgid "An unknown error occurred"
@@ -6655,30 +6230,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "এখানে দেখার মতো কিছু নেই!  ডেভেলপার কোনো বিবরণ অন্তর্ভুক্ত করেনি।"
 
 #, fuzzy
-msgid "Return to the Reviewer Tools homepage"
+msgid "Return to the Reviewer Tools dashboard"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
-
-msgid "Queues"
-msgstr "সারিগুলো"
-
-msgid "New Add-ons"
-msgstr "নতুন অ্যাড-অন"
-
-msgid "Updates"
-msgstr "হালনাগাদগুলো"
-
-msgid "Moderated Reviews"
-msgstr ""
-
-#, fuzzy
-msgid "Auto Approved Add-ons"
-msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
-
-msgid "Unlisted Queues"
-msgstr ""
-
-msgid "Logs"
-msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6722,48 +6275,6 @@ msgstr ""
 msgid "Undelete"
 msgstr ""
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-#, fuzzy
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "হালনাগাদকৃত {0}"
-msgstr[1] "হালনাগাদকৃত {0}"
-
-msgid "Current waiting times:"
-msgstr ""
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0} %%"
-
-msgid "Total Reviews"
-msgstr ""
-
-msgid "Reviews This Month"
-msgstr ""
-
-#, fuzzy
-msgid "New Reviewers"
-msgstr "পর্যালোচনাকারী"
-
-msgid "You're #{0} with {1} reviews"
-msgstr ""
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Reviewer Leaderboard"
 msgstr ""
 
@@ -6793,6 +6304,9 @@ msgstr ""
 
 msgid "By {user_name}"
 msgstr "{user_name} দ্বারা"
+
+msgid "Total Reviews"
+msgstr ""
 
 msgid "Active Contributors"
 msgstr "সক্রিয় অবদানকারী"
@@ -7029,26 +6543,14 @@ msgstr "কারন"
 msgid "There are currently no reviews."
 msgstr ""
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "Flagged Themes"
 msgstr ""
 
 msgid "Theme Review Queue"
 msgstr ""
+
+msgid "Queues"
+msgstr "সারিগুলো"
 
 msgid "Review Options"
 msgstr ""
@@ -7162,6 +6664,9 @@ msgstr[1] "{0} জন্য অ্যাড-অন"
 
 msgid "Flagged"
 msgstr "ফ্ল্যাগকৃত"
+
+msgid "Updates"
+msgstr "হালনাগাদগুলো"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7326,9 +6831,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr "এড-অন স্ট্যাটাস দ্বারা"
 
-msgid "Contributions"
-msgstr "অবদানসমূহ"
-
 msgid "Subscribers"
 msgstr ""
 
@@ -7442,9 +6944,6 @@ msgstr ""
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
@@ -7467,9 +6966,6 @@ msgid "Application usage by Date"
 msgstr ""
 
 msgid "Collections Created by Date"
-msgstr ""
-
-msgid "Contributions by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
@@ -7679,9 +7175,6 @@ msgstr "আমাদের <a class=\"mobile-link\" href=\"#\">মোবাই�
 msgid "Android Add-ons"
 msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 
-msgid "required"
-msgstr "প্রয়োজনীয়"
-
 msgid "Required fields"
 msgstr "প্রয়োজনীয় স্থানসমুহ"
 
@@ -7751,9 +7244,6 @@ msgid "Anonymous user {id}"
 msgstr ""
 
 msgid "My Mobile Add-ons"
-msgstr ""
-
-msgid "an add-on developer thanks me for a contribution"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

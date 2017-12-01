@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-11-23 17:01+0000\n"
+"POT-Creation-Date: 2017-12-01 14:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2069,15 +2069,6 @@ msgstr "Ƥŀŭɠīƞş"
 msgid "Themes (Static)"
 msgstr "Ŧħḗḿḗş (Şŧȧŧīƈ)"
 
-msgid "Only ask on this add-on's page and developer profile"
-msgstr "Ǿƞŀẏ ȧşķ ǿƞ ŧħīş ȧḓḓ-ǿƞ'ş ƥȧɠḗ ȧƞḓ ḓḗṽḗŀǿƥḗř ƥřǿƒīŀḗ"
-
-msgid "Ask after users start downloading this add-on"
-msgstr "Aşķ ȧƒŧḗř ŭşḗřş şŧȧřŧ ḓǿẇƞŀǿȧḓīƞɠ ŧħīş ȧḓḓ-ǿƞ"
-
-msgid "Ask before users can download this add-on"
-msgstr "Aşķ ƀḗƒǿřḗ ŭşḗřş ƈȧƞ ḓǿẇƞŀǿȧḓ ŧħīş ȧḓḓ-ǿƞ"
-
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ǿŧħḗř"
@@ -2961,12 +2952,12 @@ msgstr "Aƀǿŭŧ ȧŭŧħǿř řǿŀḗş"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
-"statistics, but cannot make any changes</li> </ul>"
+"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
+"make any changes</li> </ul>"
 msgstr ""
 "<p>Aḓḓ-ǿƞş ƈȧƞ ħȧṽḗ ȧƞẏ ƞŭḿƀḗř ǿƒ ȧŭŧħǿřş ẇīŧħ 3 ƥǿşşīƀŀḗ řǿŀḗş:</p> <ul> <li><b>Ǿẇƞḗř:</b> Ƈȧƞ ḿȧƞȧɠḗ ȧŀŀ ȧşƥḗƈŧş ǿƒ ŧħḗ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ, īƞƈŀŭḓīƞɠ ȧḓḓīƞɠ ȧƞḓ řḗḿǿṽīƞɠ ǿŧħḗř ȧŭŧħǿřş</li> "
-"<li><b>Ḓḗṽḗŀǿƥḗř:</b> Ƈȧƞ ḿȧƞȧɠḗ ȧŀŀ ȧşƥḗƈŧş ǿƒ ŧħḗ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ, ḗẋƈḗƥŧ ƒǿř ȧḓḓīƞɠ ȧƞḓ řḗḿǿṽīƞɠ ǿŧħḗř ȧŭŧħǿřş ȧƞḓ ḿȧƞȧɠīƞɠ ƥȧẏḿḗƞŧş</li> <li><b>Ṽīḗẇḗř:</b> Ƈȧƞ ṽīḗẇ ŧħḗ ȧḓḓ-ǿƞ'ş şḗŧŧīƞɠş ȧƞḓ "
-"şŧȧŧīşŧīƈş, ƀŭŧ ƈȧƞƞǿŧ ḿȧķḗ ȧƞẏ ƈħȧƞɠḗş</li> </ul>"
+"<li><b>Ḓḗṽḗŀǿƥḗř:</b> Ƈȧƞ ḿȧƞȧɠḗ ȧŀŀ ȧşƥḗƈŧş ǿƒ ŧħḗ ȧḓḓ-ǿƞ'ş ŀīşŧīƞɠ, ḗẋƈḗƥŧ ƒǿř ȧḓḓīƞɠ ȧƞḓ řḗḿǿṽīƞɠ ǿŧħḗř ȧŭŧħǿřş</li> <li><b>Ṽīḗẇḗř:</b> Ƈȧƞ ṽīḗẇ ŧħḗ ȧḓḓ-ǿƞ'ş şḗŧŧīƞɠş ȧƞḓ şŧȧŧīşŧīƈş, ƀŭŧ ƈȧƞƞǿŧ "
+"ḿȧķḗ ȧƞẏ ƈħȧƞɠḗş</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Ɓȧşīƈ Īƞƒǿřḿȧŧīǿƞ"
@@ -3559,6 +3550,9 @@ msgstr "Ŭƥŀǿȧḓ Ṽḗřşīǿƞ"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓş ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ. Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
+msgid "Create a Theme"
+msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ"
+
 msgid "Which platforms is this file compatible with?"
 msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
@@ -3573,6 +3567,84 @@ msgstr "Şŭƀḿīŧ Ƒīŀḗ"
 
 msgid "Sign Add-on"
 msgstr "Şīɠƞ Aḓḓ-ǿƞ"
+
+msgid "Theme generate"
+msgstr "Ŧħḗḿḗ ɠḗƞḗřȧŧḗ"
+
+msgid "Theme generator"
+msgstr "Ŧħḗḿḗ ɠḗƞḗřȧŧǿř"
+
+msgid "Select a header image for your Theme."
+msgstr "Şḗŀḗƈŧ ȧ ħḗȧḓḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
+
+msgid "required"
+msgstr "řḗɋŭīřḗḓ"
+
+msgid "Image height should be 200 pixels"
+msgstr "Īḿȧɠḗ ħḗīɠħŧ şħǿŭŀḓ ƀḗ 200 ƥīẋḗŀş"
+
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr "ƤȠƓ, ĴƤƓ, AƤȠƓ, ŞṼƓ ǿř ƓĪƑ (ƞǿŧ ȧƞīḿȧŧḗḓ)"
+
+msgid "Aligned to top-right"
+msgstr "Aŀīɠƞḗḓ ŧǿ ŧǿƥ-řīɠħŧ"
+
+msgid "Select a different header image"
+msgstr "Şḗŀḗƈŧ ȧ ḓīƒƒḗřḗƞŧ ħḗȧḓḗř īḿȧɠḗ"
+
+msgid "Select colors for your Theme."
+msgstr "Şḗŀḗƈŧ ƈǿŀǿřş ƒǿř ẏǿŭř Ŧħḗḿḗ."
+
+msgid "Header area background (accentcolor)"
+msgstr "Ħḗȧḓḗř ȧřḗȧ ƀȧƈķɠřǿŭƞḓ (ȧƈƈḗƞŧƈǿŀǿř)"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image."
+msgstr "Ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ħḗȧḓḗř ȧřḗȧ ƀȧƈķɠřǿŭƞḓ, ḓīşƥŀȧẏḗḓ īƞ ŧħḗ ƥȧřŧ ǿƒ ŧħḗ ħḗȧḓḗř ƞǿŧ ƈǿṽḗřḗḓ ǿř ṽīşīƀŀḗ ŧħřǿŭɠħ ŧħḗ ħḗȧḓḗř īḿȧɠḗ."
+
+msgid "Header area text (textcolor)"
+msgstr "Ħḗȧḓḗř ȧřḗȧ ŧḗẋŧ (ŧḗẋŧƈǿŀǿř)"
+
+msgid "The color of the text displayed in the header area."
+msgstr "Ŧħḗ ƈǿŀǿř ǿƒ ŧħḗ ŧḗẋŧ ḓīşƥŀȧẏḗḓ īƞ ŧħḗ ħḗȧḓḗř ȧřḗȧ."
+
+msgid "Toolbar area background (toolbar)."
+msgstr "Ŧǿǿŀƀȧř ȧřḗȧ ƀȧƈķɠřǿŭƞḓ (ŧǿǿŀƀȧř)."
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab."
+msgstr "Ŧħḗ ƀȧƈķɠřǿŭƞḓ ƈǿŀǿř ƒǿř ŧħḗ ƞȧṽīɠȧŧīǿƞ ƀȧř, ŧħḗ ƀǿǿķḿȧřķş ƀȧř, ȧƞḓ ŧħḗ şḗŀḗƈŧḗḓ ŧȧƀ."
+
+msgid "Toolbar area text (toolbar_text)."
+msgstr "Ŧǿǿŀƀȧř ȧřḗȧ ŧḗẋŧ (ŧǿǿŀƀȧř_ŧḗẋŧ)."
+
+msgid "The color of toolbar text."
+msgstr "Ŧħḗ ƈǿŀǿř ǿƒ ŧǿǿŀƀȧř ŧḗẋŧ."
+
+msgid "Toolbar field area background (toolbar_field)."
+msgstr "Ŧǿǿŀƀȧř ƒīḗŀḓ ȧřḗȧ ƀȧƈķɠřǿŭƞḓ (ŧǿǿŀƀȧř_ƒīḗŀḓ)."
+
+msgid "The background color for fields in the toolbar, such as the URL bar."
+msgstr "Ŧħḗ ƀȧƈķɠřǿŭƞḓ ƈǿŀǿř ƒǿř ƒīḗŀḓş īƞ ŧħḗ ŧǿǿŀƀȧř, şŭƈħ ȧş ŧħḗ ŬŘĿ ƀȧř."
+
+msgid "Toolbar field area text (toolbar_field_text)."
+msgstr "Ŧǿǿŀƀȧř ƒīḗŀḓ ȧřḗȧ ŧḗẋŧ (ŧǿǿŀƀȧř_ƒīḗŀḓ_ŧḗẋŧ)."
+
+msgid "The color of text in fields in the toolbar, such as the URL bar"
+msgstr "Ŧħḗ ƈǿŀǿř ǿƒ ŧḗẋŧ īƞ ƒīḗŀḓş īƞ ŧħḗ ŧǿǿŀƀȧř, şŭƈħ ȧş ŧħḗ ŬŘĿ ƀȧř"
+
+msgid "optional"
+msgstr "ǿƥŧīǿƞȧŀ"
+
+msgid "Browser Preview"
+msgstr "Ɓřǿẇşḗř Ƥřḗṽīḗẇ"
+
+msgid "Back"
+msgstr "Ɓȧƈķ"
+
+msgid "Uploading Theme"
+msgstr "Ŭƥŀǿȧḓīƞɠ Ŧħḗḿḗ"
+
+msgid "Upload Theme"
+msgstr "Ŭƥŀǿȧḓ Ŧħḗḿḗ"
 
 msgid "API Credentials"
 msgstr "AƤĪ Ƈřḗḓḗƞŧīȧŀş"
@@ -3998,9 +4070,6 @@ msgstr "Ħḗȧḓḗř"
 msgid "Footer"
 msgstr "Ƒǿǿŧḗř"
 
-msgid "Select colors for your Theme."
-msgstr "Şḗŀḗƈŧ ƈǿŀǿřş ƒǿř ẏǿŭř Ŧħḗḿḗ."
-
 msgid "Foreground Text"
 msgstr "Ƒǿřḗɠřǿŭƞḓ Ŧḗẋŧ"
 
@@ -4065,9 +4134,6 @@ msgstr "Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ŧħḗḿḗ'ş 
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Ĵǿīƞ ŧħḗ ƈǿƞṽḗřşȧŧīǿƞ īƞ ǿŭř <a href=\"%(forum_url)s\">ƒǿřŭḿş</a>."
 
-msgid "Select a header image for your Theme."
-msgstr "Şḗŀḗƈŧ ȧ ħḗȧḓḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
-
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 ƥīẋḗŀş"
 
@@ -4076,12 +4142,6 @@ msgstr "300 ĶƁ ḿȧẋ"
 
 msgid "PNG or JPG"
 msgstr "ƤȠƓ ǿř ĴƤƓ"
-
-msgid "Aligned to top-right"
-msgstr "Aŀīɠƞḗḓ ŧǿ ŧǿƥ-řīɠħŧ"
-
-msgid "Select a different header image"
-msgstr "Şḗŀḗƈŧ ȧ ḓīƒƒḗřḗƞŧ ħḗȧḓḗř īḿȧɠḗ"
 
 msgid "Select a footer image for your Theme."
 msgstr "Şḗŀḗƈŧ ȧ ƒǿǿŧḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
@@ -4280,23 +4340,23 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḗȧşīŀẏ ƒīƞḓ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ ɋŭīƈķŀẏ ƥḗřƒǿřḿ ȧƞ īḿȧɠḗ şḗȧřƈħ."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
+
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ƥȧşşẇǿřḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr "Şīḿƥŀīƒẏ ȧƞḓ şẏƞƈ ȧŀŀ ẏǿŭř ṽȧřīǿŭş ẇḗƀşīŧḗ ŀǿɠīƞş ȧƈřǿşş ḓḗṽīƈḗş ẇīŧħ ǿƞḗ ƥȧşşẇǿřḓ ŧǿ řŭŀḗ ŧħḗḿ ȧŀŀ."
 
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ ƈǿƞŧřǿŀ, ȧƞḓ ḿǿřḗ."
-
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
-
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
@@ -4634,498 +4694,6 @@ msgstr "Ŭƞŀǿƈķ ḗȧřŀẏ ȧƈƈḗşş ŧǿ ḗẋƥḗřīḿḗƞŧȧ
 
 msgid "Get Started"
 msgstr "Ɠḗŧ Şŧȧřŧḗḓ"
-
-msgid "United Arab Emirates Dirham"
-msgstr "Ŭƞīŧḗḓ Ařȧƀ Ḗḿīřȧŧḗş Ḓīřħȧḿ"
-
-msgid "Afghanistan Afghani"
-msgstr "Aƒɠħȧƞīşŧȧƞ Aƒɠħȧƞī"
-
-msgid "Albania Lek"
-msgstr "Aŀƀȧƞīȧ Ŀḗķ"
-
-msgid "Armenia Dram"
-msgstr "Ařḿḗƞīȧ Ḓřȧḿ"
-
-msgid "Netherlands Antilles Guilder"
-msgstr "Ƞḗŧħḗřŀȧƞḓş Aƞŧīŀŀḗş Ɠŭīŀḓḗř"
-
-msgid "Angola Kwanza"
-msgstr "Aƞɠǿŀȧ Ķẇȧƞẑȧ"
-
-msgid "Argentina Peso"
-msgstr "Ařɠḗƞŧīƞȧ Ƥḗşǿ"
-
-msgid "Australia Dollar"
-msgstr "Aŭşŧřȧŀīȧ Ḓǿŀŀȧř"
-
-msgid "Aruba Guilder"
-msgstr "Ařŭƀȧ Ɠŭīŀḓḗř"
-
-msgid "Azerbaijan New Manat"
-msgstr "Aẑḗřƀȧīĵȧƞ Ƞḗẇ Ḿȧƞȧŧ"
-
-msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Ɓǿşƞīȧ ȧƞḓ Ħḗřẑḗɠǿṽīƞȧ Ƈǿƞṽḗřŧīƀŀḗ Ḿȧřķȧ"
-
-msgid "Barbados Dollar"
-msgstr "Ɓȧřƀȧḓǿş Ḓǿŀŀȧř"
-
-msgid "Bangladesh Taka"
-msgstr "Ɓȧƞɠŀȧḓḗşħ Ŧȧķȧ"
-
-msgid "Bulgaria Lev"
-msgstr "Ɓŭŀɠȧřīȧ Ŀḗṽ"
-
-msgid "Bahrain Dinar"
-msgstr "Ɓȧħřȧīƞ Ḓīƞȧř"
-
-msgid "Burundi Franc"
-msgstr "Ɓŭřŭƞḓī Ƒřȧƞƈ"
-
-msgid "Bermuda Dollar"
-msgstr "Ɓḗřḿŭḓȧ Ḓǿŀŀȧř"
-
-msgid "Brunei Darussalam Dollar"
-msgstr "Ɓřŭƞḗī Ḓȧřŭşşȧŀȧḿ Ḓǿŀŀȧř"
-
-msgid "Bolivia Boliviano"
-msgstr "Ɓǿŀīṽīȧ Ɓǿŀīṽīȧƞǿ"
-
-msgid "Brazil Real"
-msgstr "Ɓřȧẑīŀ Řḗȧŀ"
-
-msgid "Bahamas Dollar"
-msgstr "Ɓȧħȧḿȧş Ḓǿŀŀȧř"
-
-msgid "Bhutan Ngultrum"
-msgstr "Ɓħŭŧȧƞ Ƞɠŭŀŧřŭḿ"
-
-msgid "Botswana Pula"
-msgstr "Ɓǿŧşẇȧƞȧ Ƥŭŀȧ"
-
-msgid "Belarus Ruble"
-msgstr "Ɓḗŀȧřŭş Řŭƀŀḗ"
-
-msgid "Belize Dollar"
-msgstr "Ɓḗŀīẑḗ Ḓǿŀŀȧř"
-
-msgid "Canada Dollar"
-msgstr "Ƈȧƞȧḓȧ Ḓǿŀŀȧř"
-
-msgid "Congo/Kinshasa Franc"
-msgstr "Ƈǿƞɠǿ/Ķīƞşħȧşȧ Ƒřȧƞƈ"
-
-msgid "Switzerland Franc"
-msgstr "Şẇīŧẑḗřŀȧƞḓ Ƒřȧƞƈ"
-
-msgid "Chile Peso"
-msgstr "Ƈħīŀḗ Ƥḗşǿ"
-
-msgid "China Yuan Renminbi"
-msgstr "Ƈħīƞȧ Ẏŭȧƞ Řḗƞḿīƞƀī"
-
-msgid "Colombia Peso"
-msgstr "Ƈǿŀǿḿƀīȧ Ƥḗşǿ"
-
-msgid "Costa Rica Colon"
-msgstr "Ƈǿşŧȧ Řīƈȧ Ƈǿŀǿƞ"
-
-msgid "Cuba Convertible Peso"
-msgstr "Ƈŭƀȧ Ƈǿƞṽḗřŧīƀŀḗ Ƥḗşǿ"
-
-msgid "Cuba Peso"
-msgstr "Ƈŭƀȧ Ƥḗşǿ"
-
-msgid "Cape Verde Escudo"
-msgstr "Ƈȧƥḗ Ṽḗřḓḗ Ḗşƈŭḓǿ"
-
-msgid "Czech Republic Koruna"
-msgstr "Ƈẑḗƈħ Řḗƥŭƀŀīƈ Ķǿřŭƞȧ"
-
-msgid "Djibouti Franc"
-msgstr "Ḓĵīƀǿŭŧī Ƒřȧƞƈ"
-
-msgid "Denmark Krone"
-msgstr "Ḓḗƞḿȧřķ Ķřǿƞḗ"
-
-msgid "Dominican Republic Peso"
-msgstr "Ḓǿḿīƞīƈȧƞ Řḗƥŭƀŀīƈ Ƥḗşǿ"
-
-msgid "Algeria Dinar"
-msgstr "Aŀɠḗřīȧ Ḓīƞȧř"
-
-msgid "Egypt Pound"
-msgstr "Ḗɠẏƥŧ Ƥǿŭƞḓ"
-
-msgid "Eritrea Nakfa"
-msgstr "Ḗřīŧřḗȧ Ƞȧķƒȧ"
-
-msgid "Ethiopia Birr"
-msgstr "Ḗŧħīǿƥīȧ Ɓīřř"
-
-msgid "Euro Member Countries"
-msgstr "Ḗŭřǿ Ḿḗḿƀḗř Ƈǿŭƞŧřīḗş"
-
-msgid "Fiji Dollar"
-msgstr "Ƒīĵī Ḓǿŀŀȧř"
-
-msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Ƒȧŀķŀȧƞḓ Īşŀȧƞḓş (Ḿȧŀṽīƞȧş) Ƥǿŭƞḓ"
-
-msgid "United Kingdom Pound"
-msgstr "Ŭƞīŧḗḓ Ķīƞɠḓǿḿ Ƥǿŭƞḓ"
-
-msgid "Georgia Lari"
-msgstr "Ɠḗǿřɠīȧ Ŀȧřī"
-
-msgid "Guernsey Pound"
-msgstr "Ɠŭḗřƞşḗẏ Ƥǿŭƞḓ"
-
-msgid "Ghana Cedi"
-msgstr "Ɠħȧƞȧ Ƈḗḓī"
-
-msgid "Gibraltar Pound"
-msgstr "Ɠīƀřȧŀŧȧř Ƥǿŭƞḓ"
-
-msgid "Gambia Dalasi"
-msgstr "Ɠȧḿƀīȧ Ḓȧŀȧşī"
-
-msgid "Guinea Franc"
-msgstr "Ɠŭīƞḗȧ Ƒřȧƞƈ"
-
-msgid "Guatemala Quetzal"
-msgstr "Ɠŭȧŧḗḿȧŀȧ Ɋŭḗŧẑȧŀ"
-
-msgid "Guyana Dollar"
-msgstr "Ɠŭẏȧƞȧ Ḓǿŀŀȧř"
-
-msgid "Hong Kong Dollar"
-msgstr "Ħǿƞɠ Ķǿƞɠ Ḓǿŀŀȧř"
-
-msgid "Honduras Lempira"
-msgstr "Ħǿƞḓŭřȧş Ŀḗḿƥīřȧ"
-
-msgid "Croatia Kuna"
-msgstr "Ƈřǿȧŧīȧ Ķŭƞȧ"
-
-msgid "Haiti Gourde"
-msgstr "Ħȧīŧī Ɠǿŭřḓḗ"
-
-msgid "Hungary Forint"
-msgstr "Ħŭƞɠȧřẏ Ƒǿřīƞŧ"
-
-msgid "Indonesia Rupiah"
-msgstr "Īƞḓǿƞḗşīȧ Řŭƥīȧħ"
-
-msgid "Israel Shekel"
-msgstr "Īşřȧḗŀ Şħḗķḗŀ"
-
-msgid "Isle of Man Pound"
-msgstr "Īşŀḗ ǿƒ Ḿȧƞ Ƥǿŭƞḓ"
-
-msgid "India Rupee"
-msgstr "Īƞḓīȧ Řŭƥḗḗ"
-
-msgid "Iraq Dinar"
-msgstr "Īřȧɋ Ḓīƞȧř"
-
-msgid "Iran Rial"
-msgstr "Īřȧƞ Řīȧŀ"
-
-msgid "Iceland Krona"
-msgstr "Īƈḗŀȧƞḓ Ķřǿƞȧ"
-
-msgid "Jersey Pound"
-msgstr "Ĵḗřşḗẏ Ƥǿŭƞḓ"
-
-msgid "Jamaica Dollar"
-msgstr "Ĵȧḿȧīƈȧ Ḓǿŀŀȧř"
-
-msgid "Jordan Dinar"
-msgstr "Ĵǿřḓȧƞ Ḓīƞȧř"
-
-msgid "Japan Yen"
-msgstr "Ĵȧƥȧƞ Ẏḗƞ"
-
-msgid "Kenya Shilling"
-msgstr "Ķḗƞẏȧ Şħīŀŀīƞɠ"
-
-msgid "Kyrgyzstan Som"
-msgstr "Ķẏřɠẏẑşŧȧƞ Şǿḿ"
-
-msgid "Cambodia Riel"
-msgstr "Ƈȧḿƀǿḓīȧ Řīḗŀ"
-
-msgid "Comoros Franc"
-msgstr "Ƈǿḿǿřǿş Ƒřȧƞƈ"
-
-msgid "Korea (North) Won"
-msgstr "Ķǿřḗȧ (Ƞǿřŧħ) Ẇǿƞ"
-
-msgid "Korea (South) Won"
-msgstr "Ķǿřḗȧ (Şǿŭŧħ) Ẇǿƞ"
-
-msgid "Kuwait Dinar"
-msgstr "Ķŭẇȧīŧ Ḓīƞȧř"
-
-msgid "Cayman Islands Dollar"
-msgstr "Ƈȧẏḿȧƞ Īşŀȧƞḓş Ḓǿŀŀȧř"
-
-msgid "Kazakhstan Tenge"
-msgstr "Ķȧẑȧķħşŧȧƞ Ŧḗƞɠḗ"
-
-msgid "Laos Kip"
-msgstr "Ŀȧǿş Ķīƥ"
-
-msgid "Lebanon Pound"
-msgstr "Ŀḗƀȧƞǿƞ Ƥǿŭƞḓ"
-
-msgid "Sri Lanka Rupee"
-msgstr "Şřī Ŀȧƞķȧ Řŭƥḗḗ"
-
-msgid "Liberia Dollar"
-msgstr "Ŀīƀḗřīȧ Ḓǿŀŀȧř"
-
-msgid "Lesotho Loti"
-msgstr "Ŀḗşǿŧħǿ Ŀǿŧī"
-
-msgid "Lithuania Litas"
-msgstr "Ŀīŧħŭȧƞīȧ Ŀīŧȧş"
-
-msgid "Latvia Lat"
-msgstr "Ŀȧŧṽīȧ Ŀȧŧ"
-
-msgid "Libya Dinar"
-msgstr "Ŀīƀẏȧ Ḓīƞȧř"
-
-msgid "Morocco Dirham"
-msgstr "Ḿǿřǿƈƈǿ Ḓīřħȧḿ"
-
-msgid "Moldova Leu"
-msgstr "Ḿǿŀḓǿṽȧ Ŀḗŭ"
-
-msgid "Madagascar Ariary"
-msgstr "Ḿȧḓȧɠȧşƈȧř Ařīȧřẏ"
-
-msgid "Macedonia Denar"
-msgstr "Ḿȧƈḗḓǿƞīȧ Ḓḗƞȧř"
-
-msgid "Myanmar (Burma) Kyat"
-msgstr "Ḿẏȧƞḿȧř (Ɓŭřḿȧ) Ķẏȧŧ"
-
-msgid "Mongolia Tughrik"
-msgstr "Ḿǿƞɠǿŀīȧ Ŧŭɠħřīķ"
-
-msgid "Macau Pataca"
-msgstr "Ḿȧƈȧŭ Ƥȧŧȧƈȧ"
-
-msgid "Mauritania Ouguiya"
-msgstr "Ḿȧŭřīŧȧƞīȧ Ǿŭɠŭīẏȧ"
-
-msgid "Mauritius Rupee"
-msgstr "Ḿȧŭřīŧīŭş Řŭƥḗḗ"
-
-msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Ḿȧŀḓīṽḗş (Ḿȧŀḓīṽḗ Īşŀȧƞḓş) Řŭƒīẏȧȧ"
-
-msgid "Malawi Kwacha"
-msgstr "Ḿȧŀȧẇī Ķẇȧƈħȧ"
-
-msgid "Mexico Peso"
-msgstr "Ḿḗẋīƈǿ Ƥḗşǿ"
-
-msgid "Malaysia Ringgit"
-msgstr "Ḿȧŀȧẏşīȧ Řīƞɠɠīŧ"
-
-msgid "Mozambique Metical"
-msgstr "Ḿǿẑȧḿƀīɋŭḗ Ḿḗŧīƈȧŀ"
-
-msgid "Namibia Dollar"
-msgstr "Ƞȧḿīƀīȧ Ḓǿŀŀȧř"
-
-msgid "Nigeria Naira"
-msgstr "Ƞīɠḗřīȧ Ƞȧīřȧ"
-
-msgid "Nicaragua Cordoba"
-msgstr "Ƞīƈȧřȧɠŭȧ Ƈǿřḓǿƀȧ"
-
-msgid "Norway Krone"
-msgstr "Ƞǿřẇȧẏ Ķřǿƞḗ"
-
-msgid "Nepal Rupee"
-msgstr "Ƞḗƥȧŀ Řŭƥḗḗ"
-
-msgid "New Zealand Dollar"
-msgstr "Ƞḗẇ Ẑḗȧŀȧƞḓ Ḓǿŀŀȧř"
-
-msgid "Oman Rial"
-msgstr "Ǿḿȧƞ Řīȧŀ"
-
-msgid "Panama Balboa"
-msgstr "Ƥȧƞȧḿȧ Ɓȧŀƀǿȧ"
-
-msgid "Peru Nuevo Sol"
-msgstr "Ƥḗřŭ Ƞŭḗṽǿ Şǿŀ"
-
-msgid "Papua New Guinea Kina"
-msgstr "Ƥȧƥŭȧ Ƞḗẇ Ɠŭīƞḗȧ Ķīƞȧ"
-
-msgid "Philippines Peso"
-msgstr "Ƥħīŀīƥƥīƞḗş Ƥḗşǿ"
-
-msgid "Pakistan Rupee"
-msgstr "Ƥȧķīşŧȧƞ Řŭƥḗḗ"
-
-msgid "Poland Zloty"
-msgstr "Ƥǿŀȧƞḓ Ẑŀǿŧẏ"
-
-msgid "Paraguay Guarani"
-msgstr "Ƥȧřȧɠŭȧẏ Ɠŭȧřȧƞī"
-
-msgid "Qatar Riyal"
-msgstr "Ɋȧŧȧř Řīẏȧŀ"
-
-msgid "Romania New Leu"
-msgstr "Řǿḿȧƞīȧ Ƞḗẇ Ŀḗŭ"
-
-msgid "Serbia Dinar"
-msgstr "Şḗřƀīȧ Ḓīƞȧř"
-
-msgid "Russia Ruble"
-msgstr "Řŭşşīȧ Řŭƀŀḗ"
-
-msgid "Rwanda Franc"
-msgstr "Řẇȧƞḓȧ Ƒřȧƞƈ"
-
-msgid "Saudi Arabia Riyal"
-msgstr "Şȧŭḓī Ařȧƀīȧ Řīẏȧŀ"
-
-msgid "Solomon Islands Dollar"
-msgstr "Şǿŀǿḿǿƞ Īşŀȧƞḓş Ḓǿŀŀȧř"
-
-msgid "Seychelles Rupee"
-msgstr "Şḗẏƈħḗŀŀḗş Řŭƥḗḗ"
-
-msgid "Sudan Pound"
-msgstr "Şŭḓȧƞ Ƥǿŭƞḓ"
-
-msgid "Sweden Krona"
-msgstr "Şẇḗḓḗƞ Ķřǿƞȧ"
-
-msgid "Singapore Dollar"
-msgstr "Şīƞɠȧƥǿřḗ Ḓǿŀŀȧř"
-
-msgid "Saint Helena Pound"
-msgstr "Şȧīƞŧ Ħḗŀḗƞȧ Ƥǿŭƞḓ"
-
-msgid "Sierra Leone Leone"
-msgstr "Şīḗřřȧ Ŀḗǿƞḗ Ŀḗǿƞḗ"
-
-msgid "Somalia Shilling"
-msgstr "Şǿḿȧŀīȧ Şħīŀŀīƞɠ"
-
-msgid "Seborga Luigino"
-msgstr "Şḗƀǿřɠȧ Ŀŭīɠīƞǿ"
-
-msgid "Suriname Dollar"
-msgstr "Şŭřīƞȧḿḗ Ḓǿŀŀȧř"
-
-msgid "São Tomé and Príncipe Dobra"
-msgstr "Şãǿ Ŧǿḿé ȧƞḓ Ƥříƞƈīƥḗ Ḓǿƀřȧ"
-
-msgid "El Salvador Colon"
-msgstr "Ḗŀ Şȧŀṽȧḓǿř Ƈǿŀǿƞ"
-
-msgid "Syria Pound"
-msgstr "Şẏřīȧ Ƥǿŭƞḓ"
-
-msgid "Swaziland Lilangeni"
-msgstr "Şẇȧẑīŀȧƞḓ Ŀīŀȧƞɠḗƞī"
-
-msgid "Thailand Baht"
-msgstr "Ŧħȧīŀȧƞḓ Ɓȧħŧ"
-
-msgid "Tajikistan Somoni"
-msgstr "Ŧȧĵīķīşŧȧƞ Şǿḿǿƞī"
-
-msgid "Turkmenistan Manat"
-msgstr "Ŧŭřķḿḗƞīşŧȧƞ Ḿȧƞȧŧ"
-
-msgid "Tunisia Dinar"
-msgstr "Ŧŭƞīşīȧ Ḓīƞȧř"
-
-msgid "Tonga Pa'anga"
-msgstr "Ŧǿƞɠȧ Ƥȧ'ȧƞɠȧ"
-
-msgid "Turkey Lira"
-msgstr "Ŧŭřķḗẏ Ŀīřȧ"
-
-msgid "Trinidad and Tobago Dollar"
-msgstr "Ŧřīƞīḓȧḓ ȧƞḓ Ŧǿƀȧɠǿ Ḓǿŀŀȧř"
-
-msgid "Tuvalu Dollar"
-msgstr "Ŧŭṽȧŀŭ Ḓǿŀŀȧř"
-
-msgid "Taiwan New Dollar"
-msgstr "Ŧȧīẇȧƞ Ƞḗẇ Ḓǿŀŀȧř"
-
-msgid "Tanzania Shilling"
-msgstr "Ŧȧƞẑȧƞīȧ Şħīŀŀīƞɠ"
-
-msgid "Ukraine Hryvna"
-msgstr "Ŭķřȧīƞḗ Ħřẏṽƞȧ"
-
-msgid "Uganda Shilling"
-msgstr "Ŭɠȧƞḓȧ Şħīŀŀīƞɠ"
-
-msgid "United States Dollar"
-msgstr "Ŭƞīŧḗḓ Şŧȧŧḗş Ḓǿŀŀȧř"
-
-msgid "Uruguay Peso"
-msgstr "Ŭřŭɠŭȧẏ Ƥḗşǿ"
-
-msgid "Uzbekistan Som"
-msgstr "Ŭẑƀḗķīşŧȧƞ Şǿḿ"
-
-msgid "Venezuela Bolivar"
-msgstr "Ṽḗƞḗẑŭḗŀȧ Ɓǿŀīṽȧř"
-
-msgid "Viet Nam Dong"
-msgstr "Ṽīḗŧ Ƞȧḿ Ḓǿƞɠ"
-
-msgid "Vanuatu Vatu"
-msgstr "Ṽȧƞŭȧŧŭ Ṽȧŧŭ"
-
-msgid "Samoa Tala"
-msgstr "Şȧḿǿȧ Ŧȧŀȧ"
-
-msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "Ƈǿḿḿŭƞȧŭŧé Ƒīƞȧƞƈīèřḗ Aƒřīƈȧīƞḗ (ƁḖAƇ) ƇƑA Ƒřȧƞƈ ƁḖAƇ"
-
-msgid "East Caribbean Dollar"
-msgstr "Ḗȧşŧ Ƈȧřīƀƀḗȧƞ Ḓǿŀŀȧř"
-
-msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Īƞŧḗřƞȧŧīǿƞȧŀ Ḿǿƞḗŧȧřẏ Ƒŭƞḓ (ĪḾƑ) Şƥḗƈīȧŀ Ḓřȧẇīƞɠ Řīɠħŧş"
-
-msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "Ƈǿḿḿŭƞȧŭŧé Ƒīƞȧƞƈīèřḗ Aƒřīƈȧīƞḗ (ƁƇḖAǾ) Ƒřȧƞƈ"
-
-msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Ƈǿḿƥŧǿīřş Ƒřȧƞçȧīş ḓŭ Ƥȧƈīƒīɋŭḗ (ƇƑƤ) Ƒřȧƞƈ"
-
-msgid "Yemen Rial"
-msgstr "Ẏḗḿḗƞ Řīȧŀ"
-
-msgid "South Africa Rand"
-msgstr "Şǿŭŧħ Aƒřīƈȧ Řȧƞḓ"
-
-msgid "Zambia Kwacha"
-msgstr "Ẑȧḿƀīȧ Ķẇȧƈħȧ"
-
-msgid "Zimbabwe Dollar"
-msgstr "Ẑīḿƀȧƀẇḗ Ḓǿŀŀȧř"
 
 msgid "About Mozilla Add-ons"
 msgstr "Aƀǿŭŧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş"
@@ -6587,6 +6155,9 @@ msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ŀǿɠ"
 msgid "Signed Beta Files Log"
 msgstr "Şīɠƞḗḓ Ɓḗŧȧ Ƒīŀḗş Ŀǿɠ"
 
+msgid "Review Guide"
+msgstr "Řḗṽīḗẇ Ɠŭīḓḗ"
+
 msgid "Auto-Approved Add-ons"
 msgstr "Aŭŧǿ-Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
 
@@ -6613,8 +6184,8 @@ msgstr "Ƒŀȧɠɠḗḓ Ŧħḗḿḗş ({0})"
 msgid "Themes Review Log"
 msgstr "Ŧħḗḿḗş Řḗṽīḗẇ Ŀǿɠ"
 
-msgid "Deleted themes Log"
-msgstr "Ḓḗŀḗŧḗḓ ŧħḗḿḗş Ŀǿɠ"
+msgid "Deleted Themes Log"
+msgstr "Ḓḗŀḗŧḗḓ Ŧħḗḿḗş Ŀǿɠ"
 
 msgid "User Ratings Moderation"
 msgstr "Ŭşḗř Řȧŧīƞɠş Ḿǿḓḗřȧŧīǿƞ"
@@ -6624,6 +6195,9 @@ msgstr "Řȧŧīƞɠş Aẇȧīŧīƞɠ Ḿǿḓḗřȧŧīǿƞ ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ Ŀǿɠ"
+
+msgid "Moderation Guide"
+msgstr "Ḿǿḓḗřȧŧīǿƞ Ɠŭīḓḗ"
 
 msgid "Unlisted Add-ons"
 msgstr "Ŭƞŀīşŧḗḓ Aḓḓ-ǿƞş"
@@ -6636,15 +6210,6 @@ msgstr "Aƞƞǿŭƞƈḗḿḗƞŧ"
 
 msgid "Update message of the day"
 msgstr "Ŭƥḓȧŧḗ ḿḗşşȧɠḗ ǿƒ ŧħḗ ḓȧẏ"
-
-msgid "New Add-ons (Under 5 days)"
-msgstr "Ƞḗẇ Aḓḓ-ǿƞş (Ŭƞḓḗř 5 ḓȧẏş)"
-
-msgid "Passable (5 to 10 days)"
-msgstr "Ƥȧşşȧƀŀḗ (5 ŧǿ 10 ḓȧẏş)"
-
-msgid "Overdue (Over 10 days)"
-msgstr "Ǿṽḗřḓŭḗ (Ǿṽḗř 10 ḓȧẏş)"
 
 msgid "An unknown error occurred"
 msgstr "Aƞ ŭƞķƞǿẇƞ ḗřřǿř ǿƈƈŭřřḗḓ"
@@ -6712,29 +6277,8 @@ msgstr "Īḿȧɠḗ Ɠȧŀŀḗřẏ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ƞǿŧħīƞɠ ŧǿ şḗḗ ħḗřḗ!  Ŧħḗ ḓḗṽḗŀǿƥḗř ḓīḓ ƞǿŧ īƞƈŀŭḓḗ ȧƞẏ ḓḗŧȧīŀş."
 
-msgid "Return to the Reviewer Tools homepage"
-msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Řḗṽīḗẇḗř Ŧǿǿŀş ħǿḿḗƥȧɠḗ"
-
-msgid "Queues"
-msgstr "Ɋŭḗŭḗş"
-
-msgid "New Add-ons"
-msgstr "Ƞḗẇ Aḓḓ-ǿƞş"
-
-msgid "Updates"
-msgstr "Ŭƥḓȧŧḗş"
-
-msgid "Moderated Reviews"
-msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
-
-msgid "Auto Approved Add-ons"
-msgstr "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş"
-
-msgid "Unlisted Queues"
-msgstr "Ŭƞŀīşŧḗḓ Ɋŭḗŭḗş"
-
-msgid "Logs"
-msgstr "Ŀǿɠş"
+msgid "Return to the Reviewer Tools dashboard"
+msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Řḗṽīḗẇḗř Ŧǿǿŀş ḓȧşħƀǿȧřḓ"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6777,46 +6321,6 @@ msgstr "Řḗṽīḗẇ ẇȧş ƒŀȧɠɠḗḓ ƥřīǿř ŧǿ ḓḗŀḗŧ�
 msgid "Undelete"
 msgstr "Ŭƞḓḗŀḗŧḗ"
 
-msgid "New Add-on ({num})"
-msgid_plural "New Add-ons ({num})"
-msgstr[0] "Ƞḗẇ Aḓḓ-ǿƞ ({num})"
-msgstr[1] "Ƞḗẇ Aḓḓ-ǿƞş ({num})"
-
-msgid "Update ({num})"
-msgid_plural "Updates ({num})"
-msgstr[0] "Ŭƥḓȧŧḗ ({num})"
-msgstr[1] "Ŭƥḓȧŧḗş ({num})"
-
-msgid "Current waiting times:"
-msgstr "Ƈŭřřḗƞŧ ẇȧīŧīƞɠ ŧīḿḗş:"
-
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} ȧḓḓ-ǿƞ"
-msgstr[1] "{0} ȧḓḓ-ǿƞş"
-
-#, python-format
-msgid "{0}%%"
-msgstr "{0}%%"
-
-msgid "Total Reviews"
-msgstr "Ŧǿŧȧŀ Řḗṽīḗẇş"
-
-msgid "Reviews This Month"
-msgstr "Řḗṽīḗẇş Ŧħīş Ḿǿƞŧħ"
-
-msgid "New Reviewers"
-msgstr "Ƞḗẇ Řḗṽīḗẇḗřş"
-
-msgid "You're #{0} with {1} reviews"
-msgstr "Ẏǿŭ'řḗ #{0} ẇīŧħ {1} řḗṽīḗẇş"
-
-#. num = number of reviews in the queue
-msgid "Moderated Review ({num})"
-msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ ({num})"
-msgstr[1] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş ({num})"
-
 msgid "Reviewer Leaderboard"
 msgstr "Řḗṽīḗẇḗř Ŀḗȧḓḗřƀǿȧřḓ"
 
@@ -6846,6 +6350,9 @@ msgstr "Ẏǿŭř Řḗṽīḗẇş"
 
 msgid "By {user_name}"
 msgstr "Ɓẏ {user_name}"
+
+msgid "Total Reviews"
+msgstr "Ŧǿŧȧŀ Řḗṽīḗẇş"
 
 msgid "Active Contributors"
 msgstr "Aƈŧīṽḗ Ƈǿƞŧřīƀŭŧǿřş"
@@ -7078,26 +6585,14 @@ msgstr "Řḗȧşǿƞ"
 msgid "There are currently no reviews."
 msgstr "Ŧħḗřḗ ȧřḗ ƈŭřřḗƞŧŀẏ ƞǿ řḗṽīḗẇş."
 
-msgid "{num} Pending Theme Review"
-msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} Ƥḗƞḓīƞɠ Ŧħḗḿḗ Řḗṽīḗẇ"
-msgstr[1] "{num} Ƥḗƞḓīƞɠ Ŧħḗḿḗ Řḗṽīḗẇş"
-
-msgid "{num} Flagged Review"
-msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} Ƒŀȧɠɠḗḓ Řḗṽīḗẇ"
-msgstr[1] "{num} Ƒŀȧɠɠḗḓ Řḗṽīḗẇş"
-
-msgid "{num} Update"
-msgid_plural "{num} Updates"
-msgstr[0] "{num} Ŭƥḓȧŧḗ"
-msgstr[1] "{num} Ŭƥḓȧŧḗş"
-
 msgid "Flagged Themes"
 msgstr "Ƒŀȧɠɠḗḓ Ŧħḗḿḗş"
 
 msgid "Theme Review Queue"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ Ɋŭḗŭḗ"
+
+msgid "Queues"
+msgstr "Ɋŭḗŭḗş"
 
 msgid "Review Options"
 msgstr "Řḗṽīḗẇ Ǿƥŧīǿƞş"
@@ -7210,6 +6705,9 @@ msgstr[1] "Aŭŧǿ Aƥƥřǿṽḗḓ Aḓḓ-ǿƞş ({0})"
 
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"
+
+msgid "Updates"
+msgstr "Ŭƥḓȧŧḗş"
 
 msgid "Maximum query length exceeded."
 msgstr "Ḿȧẋīḿŭḿ ɋŭḗřẏ ŀḗƞɠŧħ ḗẋƈḗḗḓḗḓ."
@@ -7374,9 +6872,6 @@ msgstr "ƀẏ Ƥŀȧŧƒǿřḿ"
 msgid "by Add-on Status"
 msgstr "ƀẏ Aḓḓ-ǿƞ Şŧȧŧŭş"
 
-msgid "Contributions"
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞş"
-
 msgid "Subscribers"
 msgstr "Şŭƀşƈřīƀḗřş"
 
@@ -7490,9 +6985,6 @@ msgstr "Ƞǿ ḓȧŧȧ ȧṽȧīŀȧƀŀḗ."
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Ŧħīş ḓȧşħƀǿȧřḓ īş ƈŭřřḗƞŧŀẏ <b>ƥŭƀŀīƈ</b>."
 
-msgid "Contribution stats are currently <b>private</b>."
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞ şŧȧŧş ȧřḗ ƈŭřřḗƞŧŀẏ <b>ƥřīṽȧŧḗ</b>."
-
 msgid "This dashboard is currently <b>private</b>."
 msgstr "Ŧħīş ḓȧşħƀǿȧřḓ īş ƈŭřřḗƞŧŀẏ <b>ƥřīṽȧŧḗ</b>."
 
@@ -7516,9 +7008,6 @@ msgstr "Aƥƥŀīƈȧŧīǿƞ ŭşȧɠḗ ƀẏ Ḓȧŧḗ"
 
 msgid "Collections Created by Date"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ ƀẏ Ḓȧŧḗ"
-
-msgid "Contributions by Date"
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞş ƀẏ Ḓȧŧḗ"
 
 msgid "Downloaded by Date"
 msgstr "Ḓǿẇƞŀǿȧḓḗḓ ƀẏ Ḓȧŧḗ"
@@ -7737,9 +7226,6 @@ msgstr "Ƈħḗƈķ ǿŭŧ ǿŭř <a class=\"mobile-link\" href=\"#\">Ḿǿƀī�
 msgid "Android Add-ons"
 msgstr "Aƞḓřǿīḓ Aḓḓ-ǿƞş"
 
-msgid "required"
-msgstr "řḗɋŭīřḗḓ"
-
 msgid "Required fields"
 msgstr "Řḗɋŭīřḗḓ ƒīḗŀḓş"
 
@@ -7809,9 +7295,6 @@ msgstr "Aƞǿƞẏḿǿŭş ŭşḗř {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Ḿẏ Ḿǿƀīŀḗ Aḓḓ-ǿƞş"
-
-msgid "an add-on developer thanks me for a contribution"
-msgstr "ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř ŧħȧƞķş ḿḗ ƒǿř ȧ ƈǿƞŧřīƀŭŧīǿƞ"
 
 msgid "an add-on developer replies to my review"
 msgstr "ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř řḗƥŀīḗş ŧǿ ḿẏ řḗṽīḗẇ"
