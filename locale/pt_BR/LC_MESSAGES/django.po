@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 17:31+0000\n"
+"PO-Revision-Date: 2017-12-01 17:41+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3693,13 +3693,11 @@ msgstr "Enviar arquivo"
 msgid "Sign Add-on"
 msgstr "Assinar complemento"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Tema excluído."
+msgstr "Gerar tema"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Licença do tema"
+msgstr "Gerador de temas"
 
 # 82%
 msgid "Select a header image for your Theme."
@@ -4519,9 +4517,8 @@ msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Um bloqueador de anúncios leve e efetivo. O uBlock Origin aplica milhares de filtros de conteúdos sem consumir muita memória."
 
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Gerenciar senhas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
 msgstr ""
@@ -6382,9 +6379,8 @@ msgstr "Registro de análise do complemento"
 msgid "Signed Beta Files Log"
 msgstr "Registro de arquivos beta assinados"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Guia dos Revisores"
+msgstr "Guia de revisão"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
@@ -6413,7 +6409,6 @@ msgstr "Temas marcados ({0})"
 msgid "Themes Review Log"
 msgstr "Registro de revisões de temas"
 
-#, fuzzy
 msgid "Deleted Themes Log"
 msgstr "Registro de temas excluido"
 
@@ -6429,9 +6424,8 @@ msgstr "Classificações aguardando moderação ({0})"
 msgid "Moderated Review Log"
 msgstr "Registro de análise moderada"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Ações de moderação:"
+msgstr "Guia de moderação"
 
 msgid "Unlisted Add-ons"
 msgstr "Extensões não-listadas"
@@ -6515,9 +6509,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nada por aqui!  O desenvolvedor não incluiu detalhes."
 
 # %1$s is the application name.  Example:  Firefox
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Voltar para a página de Ferramentas de revisão"
+msgstr "Regressar ao painel de controle das ferramentas do revisor"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
