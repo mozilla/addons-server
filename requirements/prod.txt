@@ -94,9 +94,9 @@ celery==4.1.0 \
 boto3==1.4.8 \
     --hash=sha256:edd35eb7cd8d56f08e65b112206936cf9f76bb406fb15f63075ff72331ef6f5f \
     --hash=sha256:332c6a17fd695581dd6f9ed825ce13c2d5ee3a6f5e1b079bed0ff7293809faf0
-botocore==1.8.5 \
-    --hash=sha256:3a9a99455b884bcd33814a387f92b710c05c5957f681cf4e5f68bd4a6eb16c9a \
-    --hash=sha256:5d2e5bb69dede6dd26b26c90c19bc27cb5c9d5f5e9003db4ca1f27e8eca57035
+botocore==1.8.6 \
+    --hash=sha256:ea67794478a3cd9001c3fa7dfcdf0aa90ab30858130041045ec8f9f90d3a2063 \
+    --hash=sha256:58db28effd55b603cb668065cf868804b7ff5680986b79516b5f48600d39819b
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -267,8 +267,8 @@ mozilla-logger==0.2 \
 natsort==5.1.1 \
     --hash=sha256:ee2f7715bf45a65cc1ab1d80360b00299102c7bf9d87757a27e14ddaafa57d0e \
     --hash=sha256:9ffbfb74bf3fc3905be1b9b052ed865675651e38fcd972ed1ed5c64a02f93cbd
-newrelic==2.96.0.80 \
-    --hash=sha256:fc7125f3caed2b678c884468c1416ab87e7150ede0d46c738fca08d88c8bd008
+newrelic==2.98.0.81 \
+    --hash=sha256:965214625392d41b9620c6928a6b10036bf1e2a2b797cdb6682650e95e1f616e
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
