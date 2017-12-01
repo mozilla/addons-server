@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-12-01 14:42+0000\n"
-"PO-Revision-Date: 2017-12-01 19:28+0000\n"
+"PO-Revision-Date: 2017-12-01 19:37+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3023,15 +3023,14 @@ msgstr "Avtorji"
 msgid "About author roles"
 msgstr "O vlogah avtorjev"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> <li><b>Viewer:</b> Can view the add-on's settings and statistics, but cannot "
 "make any changes</li> </ul>"
 msgstr ""
-"<p>Dodatki imajo lahko poljubno številko avtorjev z eno od naslednjih 3 možnih vlog:</p> <ul> <li><b>Lastnik:</b> Lahko skrbi za vse zadeve okoli dodatka, med drugim lahko dodaja ali odstranjuje "
-"druge avtorje</li> <li><b>Razvijalec:</b>Lahko skrbi za vse zadeve okoli dodatka, ne more pa dodajati ali odstranjevati drugih avtorjev in delati s plačili</li> <li><b>Opazovalec:</b> Ima dostop do "
-"prikazov in statistike, vendar ne more spreminjati ničesar</li> </ul>"
+"<p>Dodatki imajo lahko poljubno število avtorjev z eno od naslednjih možnih vlog:</p> <ul> <li><b>Lastnik:</b> Lahko skrbi za vse zadeve glede dodatka, med drugim lahko dodaja ali odstranjuje druge "
+"avtorje</li> <li><b>Razvijalec:</b> Lahko skrbi za vse zadeve glede dodatka, ne more pa dodajati ali odstranjevati drugih avtorjev</li> <li><b>Opazovalec:</b> Ima dostop do prikazov in statistike, "
+"vendar ne more spreminjati ničesar</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Osnovni podatki"
@@ -3659,13 +3658,11 @@ msgstr "Pošlji datoteko"
 msgid "Sign Add-on"
 msgstr "Podpiši dodatek"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Tema zbrisana."
+msgstr "Ustvari temo"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Licenca za temo"
+msgstr "Ustvarjalnik tem"
 
 # 82%
 msgid "Select a header image for your Theme."
@@ -3717,13 +3714,13 @@ msgid "Toolbar field area background (toolbar_field)."
 msgstr "Ozadje območja polja orodne vrstice (toolbar_field)."
 
 msgid "The background color for fields in the toolbar, such as the URL bar."
-msgstr ""
+msgstr "Barva ozadja polj v orodni vrstici, kot je vrstica z naslovom."
 
 msgid "Toolbar field area text (toolbar_field_text)."
 msgstr "Besedilo območja polja orodne vrstice (toolbar_field_text)."
 
 msgid "The color of text in fields in the toolbar, such as the URL bar"
-msgstr ""
+msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom"
 
 msgid "optional"
 msgstr "neobvezno"
@@ -6300,9 +6297,8 @@ msgstr "Dnevnik s pregledi dodatkov"
 msgid "Signed Beta Files Log"
 msgstr "Dnevnik podpisanih datotek beta"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Vodnik za pregledovalce"
+msgstr "Vodnik za preglede"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -6332,7 +6328,6 @@ msgstr "Označene teme ({0})"
 msgid "Themes Review Log"
 msgstr "Dnevnik pregledov tem"
 
-#, fuzzy
 msgid "Deleted Themes Log"
 msgstr "Dnevnik izbrisanih tem"
 
